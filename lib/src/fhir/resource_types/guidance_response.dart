@@ -16,7 +16,7 @@ class GuidanceResponse extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.requestIdentifier,
     this.identifier,
@@ -233,7 +233,8 @@ class GuidanceResponse extends DomainResource {
                 )
               : throw ArgumentError(
                   'GuidanceResponse cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [GuidanceResponse]
   /// that takes in a [String]
@@ -253,15 +254,6 @@ class GuidanceResponse extends DomainResource {
 
   @override
   String get fhirType => 'GuidanceResponse';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [requestIdentifier]
   /// The identifier of the request associated with this response. If an

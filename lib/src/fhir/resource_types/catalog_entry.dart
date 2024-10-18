@@ -15,7 +15,7 @@ class CatalogEntry extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.type,
@@ -204,8 +204,10 @@ class CatalogEntry extends DomainResource {
               ? CatalogEntry.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('CatalogEntry cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'CatalogEntry cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CatalogEntry]
   /// that takes in a [String]
@@ -225,15 +227,6 @@ class CatalogEntry extends DomainResource {
 
   @override
   String get fhirType => 'CatalogEntry';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Used in supporting different identifiers for the same product, e.g.
@@ -473,7 +466,7 @@ class CatalogEntryRelatedEntry extends BackboneElement {
 
   CatalogEntryRelatedEntry({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.relationtype,
     required this.item,
@@ -538,7 +531,8 @@ class CatalogEntryRelatedEntry extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CatalogEntryRelatedEntry cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CatalogEntryRelatedEntry]
   /// that takes in a [String]
@@ -558,15 +552,6 @@ class CatalogEntryRelatedEntry extends BackboneElement {
 
   @override
   String get fhirType => 'CatalogEntryRelatedEntry';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [relationtype]
   /// The type of relation to the related item: child, parent,

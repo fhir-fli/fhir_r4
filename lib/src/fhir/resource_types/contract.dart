@@ -15,7 +15,7 @@ class Contract extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.url,
@@ -360,8 +360,10 @@ class Contract extends DomainResource {
               ? Contract.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Contract cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Contract cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Contract]
   /// that takes in a [String]
@@ -381,15 +383,6 @@ class Contract extends DomainResource {
 
   @override
   String get fhirType => 'Contract';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Unique identifier for this Contract or a derivative that references a
@@ -902,7 +895,7 @@ class ContractContentDefinition extends BackboneElement {
 
   ContractContentDefinition({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.subType,
@@ -993,7 +986,8 @@ class ContractContentDefinition extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ContractContentDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContractContentDefinition]
   /// that takes in a [String]
@@ -1013,15 +1007,6 @@ class ContractContentDefinition extends BackboneElement {
 
   @override
   String get fhirType => 'ContractContentDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Precusory content structure and use, i.e., a boilerplate, template,
@@ -1151,7 +1136,7 @@ class ContractTerm extends BackboneElement {
 
   ContractTerm({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.issued,
@@ -1299,8 +1284,10 @@ class ContractTerm extends BackboneElement {
               ? ContractTerm.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ContractTerm cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ContractTerm cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContractTerm]
   /// that takes in a [String]
@@ -1320,15 +1307,6 @@ class ContractTerm extends BackboneElement {
 
   @override
   String get fhirType => 'ContractTerm';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Unique identifier for this particular Contract Provision.
@@ -1527,7 +1505,7 @@ class ContractSecurityLabel extends BackboneElement {
 
   ContractSecurityLabel({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.number,
     required this.classification,
@@ -1613,7 +1591,8 @@ class ContractSecurityLabel extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ContractSecurityLabel cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContractSecurityLabel]
   /// that takes in a [String]
@@ -1633,15 +1612,6 @@ class ContractSecurityLabel extends BackboneElement {
 
   @override
   String get fhirType => 'ContractSecurityLabel';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [number]
   /// Number used to link this term or term element to the applicable
@@ -1742,7 +1712,7 @@ class ContractOffer extends BackboneElement {
 
   ContractOffer({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.party,
@@ -1873,8 +1843,10 @@ class ContractOffer extends BackboneElement {
               ? ContractOffer.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ContractOffer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ContractOffer cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContractOffer]
   /// that takes in a [String]
@@ -1894,15 +1866,6 @@ class ContractOffer extends BackboneElement {
 
   @override
   String get fhirType => 'ContractOffer';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Unique identifier for this particular Contract Provision.
@@ -2075,7 +2038,7 @@ class ContractParty extends BackboneElement {
 
   ContractParty({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.reference,
     required this.role,
@@ -2141,8 +2104,10 @@ class ContractParty extends BackboneElement {
               ? ContractParty.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ContractParty cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ContractParty cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContractParty]
   /// that takes in a [String]
@@ -2162,15 +2127,6 @@ class ContractParty extends BackboneElement {
 
   @override
   String get fhirType => 'ContractParty';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [reference]
   /// Participant in the offer.
@@ -2241,7 +2197,7 @@ class ContractAnswer extends BackboneElement {
 
   ContractAnswer({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.valueBoolean,
     this.valueDecimal,
@@ -2375,8 +2331,10 @@ class ContractAnswer extends BackboneElement {
               ? ContractAnswer.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ContractAnswer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ContractAnswer cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContractAnswer]
   /// that takes in a [String]
@@ -2396,15 +2354,6 @@ class ContractAnswer extends BackboneElement {
 
   @override
   String get fhirType => 'ContractAnswer';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [valueBoolean]
   /// Response to an offer clause or question text, which enables selection
@@ -2647,7 +2596,7 @@ class ContractAsset extends BackboneElement {
 
   ContractAsset({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.scope,
     this.type,
@@ -2819,8 +2768,10 @@ class ContractAsset extends BackboneElement {
               ? ContractAsset.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ContractAsset cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ContractAsset cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContractAsset]
   /// that takes in a [String]
@@ -2840,15 +2791,6 @@ class ContractAsset extends BackboneElement {
 
   @override
   String get fhirType => 'ContractAsset';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [scope]
   /// Differentiates the kind of the asset .
@@ -3066,7 +3008,7 @@ class ContractContext extends BackboneElement {
 
   ContractContext({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.reference,
     this.code,
@@ -3145,7 +3087,8 @@ class ContractContext extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ContractContext cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContractContext]
   /// that takes in a [String]
@@ -3165,15 +3108,6 @@ class ContractContext extends BackboneElement {
 
   @override
   String get fhirType => 'ContractContext';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [reference]
   /// Asset context reference may include the creator, custodian, or owning
@@ -3265,7 +3199,7 @@ class ContractValuedItem extends BackboneElement {
 
   ContractValuedItem({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.entityCodeableConcept,
     this.entityReference,
@@ -3416,7 +3350,8 @@ class ContractValuedItem extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ContractValuedItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContractValuedItem]
   /// that takes in a [String]
@@ -3436,15 +3371,6 @@ class ContractValuedItem extends BackboneElement {
 
   @override
   String get fhirType => 'ContractValuedItem';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [entityCodeableConcept]
   /// Specific type of Contract Valued Item that may be priced.
@@ -3695,7 +3621,7 @@ class ContractAction extends BackboneElement {
 
   ContractAction({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.doNotPerform,
     required this.type,
@@ -3907,8 +3833,10 @@ class ContractAction extends BackboneElement {
               ? ContractAction.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ContractAction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ContractAction cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContractAction]
   /// that takes in a [String]
@@ -3928,15 +3856,6 @@ class ContractAction extends BackboneElement {
 
   @override
   String get fhirType => 'ContractAction';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [doNotPerform]
   /// True if the term prohibits the action.
@@ -4272,7 +4191,7 @@ class ContractSubject extends BackboneElement {
 
   ContractSubject({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.reference,
     this.role,
@@ -4342,7 +4261,8 @@ class ContractSubject extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ContractSubject cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContractSubject]
   /// that takes in a [String]
@@ -4362,15 +4282,6 @@ class ContractSubject extends BackboneElement {
 
   @override
   String get fhirType => 'ContractSubject';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [reference]
   /// The entity the action is performed or not performed on or for.
@@ -4446,7 +4357,7 @@ class ContractSigner extends BackboneElement {
 
   ContractSigner({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     required this.party,
@@ -4516,8 +4427,10 @@ class ContractSigner extends BackboneElement {
               ? ContractSigner.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ContractSigner cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ContractSigner cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContractSigner]
   /// that takes in a [String]
@@ -4537,15 +4450,6 @@ class ContractSigner extends BackboneElement {
 
   @override
   String get fhirType => 'ContractSigner';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Role of this Contract signer, e.g. notary, grantee.
@@ -4630,7 +4534,7 @@ class ContractFriendly extends BackboneElement {
 
   ContractFriendly({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.contentAttachment,
     this.contentReference,
@@ -4698,7 +4602,8 @@ class ContractFriendly extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ContractFriendly cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContractFriendly]
   /// that takes in a [String]
@@ -4718,15 +4623,6 @@ class ContractFriendly extends BackboneElement {
 
   @override
   String get fhirType => 'ContractFriendly';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [contentAttachment]
   /// Human readable rendering of this Contract in a format and
@@ -4805,7 +4701,7 @@ class ContractLegal extends BackboneElement {
 
   ContractLegal({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.contentAttachment,
     this.contentReference,
@@ -4883,8 +4779,10 @@ class ContractLegal extends BackboneElement {
               ? ContractLegal.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ContractLegal cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ContractLegal cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContractLegal]
   /// that takes in a [String]
@@ -4904,15 +4802,6 @@ class ContractLegal extends BackboneElement {
 
   @override
   String get fhirType => 'ContractLegal';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [contentAttachment]
   /// Contract legal text in human renderable form.
@@ -5016,7 +4905,7 @@ class ContractRule extends BackboneElement {
 
   ContractRule({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.contentAttachment,
     this.contentReference,
@@ -5082,8 +4971,10 @@ class ContractRule extends BackboneElement {
               ? ContractRule.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ContractRule cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ContractRule cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContractRule]
   /// that takes in a [String]
@@ -5103,15 +4994,6 @@ class ContractRule extends BackboneElement {
 
   @override
   String get fhirType => 'ContractRule';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [contentAttachment]
   /// Computable Contract conveyed using a policy rule language (e.g. XACML,

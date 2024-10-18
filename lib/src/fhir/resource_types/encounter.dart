@@ -16,7 +16,7 @@ class Encounter extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -290,8 +290,10 @@ class Encounter extends DomainResource {
               ? Encounter.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Encounter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Encounter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Encounter]
   /// that takes in a [String]
@@ -311,15 +313,6 @@ class Encounter extends DomainResource {
 
   @override
   String get fhirType => 'Encounter';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifier(s) by which this encounter is known.
@@ -668,7 +661,7 @@ class EncounterStatusHistory extends BackboneElement {
 
   EncounterStatusHistory({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.status,
     required this.period,
@@ -733,7 +726,8 @@ class EncounterStatusHistory extends BackboneElement {
                 )
               : throw ArgumentError(
                   'EncounterStatusHistory cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EncounterStatusHistory]
   /// that takes in a [String]
@@ -753,15 +747,6 @@ class EncounterStatusHistory extends BackboneElement {
 
   @override
   String get fhirType => 'EncounterStatusHistory';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [status]
   /// planned | arrived | triaged | in-progress | onleave | finished |
@@ -839,7 +824,7 @@ class EncounterClassHistory extends BackboneElement {
 
   EncounterClassHistory({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.class_,
     required this.period,
@@ -903,7 +888,8 @@ class EncounterClassHistory extends BackboneElement {
                 )
               : throw ArgumentError(
                   'EncounterClassHistory cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EncounterClassHistory]
   /// that takes in a [String]
@@ -923,15 +909,6 @@ class EncounterClassHistory extends BackboneElement {
 
   @override
   String get fhirType => 'EncounterClassHistory';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [class_]
   /// inpatient | outpatient | ambulatory | emergency +.
@@ -1002,7 +979,7 @@ class EncounterParticipant extends BackboneElement {
 
   EncounterParticipant({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.period,
@@ -1080,7 +1057,8 @@ class EncounterParticipant extends BackboneElement {
                 )
               : throw ArgumentError(
                   'EncounterParticipant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EncounterParticipant]
   /// that takes in a [String]
@@ -1100,15 +1078,6 @@ class EncounterParticipant extends BackboneElement {
 
   @override
   String get fhirType => 'EncounterParticipant';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Role of participant in encounter.
@@ -1195,7 +1164,7 @@ class EncounterDiagnosis extends BackboneElement {
 
   EncounterDiagnosis({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.condition,
     this.use,
@@ -1268,7 +1237,8 @@ class EncounterDiagnosis extends BackboneElement {
                 )
               : throw ArgumentError(
                   'EncounterDiagnosis cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EncounterDiagnosis]
   /// that takes in a [String]
@@ -1288,15 +1258,6 @@ class EncounterDiagnosis extends BackboneElement {
 
   @override
   String get fhirType => 'EncounterDiagnosis';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [condition]
   /// Reason the encounter takes place, as specified using information from
@@ -1387,7 +1348,7 @@ class EncounterHospitalization extends BackboneElement {
 
   EncounterHospitalization({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.preAdmissionIdentifier,
     this.origin,
@@ -1509,7 +1470,8 @@ class EncounterHospitalization extends BackboneElement {
                 )
               : throw ArgumentError(
                   'EncounterHospitalization cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EncounterHospitalization]
   /// that takes in a [String]
@@ -1529,15 +1491,6 @@ class EncounterHospitalization extends BackboneElement {
 
   @override
   String get fhirType => 'EncounterHospitalization';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [preAdmissionIdentifier]
   /// Pre-admission identifier.
@@ -1686,7 +1639,7 @@ class EncounterLocation extends BackboneElement {
 
   EncounterLocation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.location,
     this.status,
@@ -1765,7 +1718,8 @@ class EncounterLocation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'EncounterLocation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EncounterLocation]
   /// that takes in a [String]
@@ -1785,15 +1739,6 @@ class EncounterLocation extends BackboneElement {
 
   @override
   String get fhirType => 'EncounterLocation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [location]
   /// The location where the encounter takes place.

@@ -10,7 +10,7 @@ class ElementDefinition extends BackboneType {
 
   ElementDefinition({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.path,
     this.representation,
@@ -1379,7 +1379,8 @@ class ElementDefinition extends BackboneType {
                 )
               : throw ArgumentError(
                   'ElementDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ElementDefinition]
   /// that takes in a [String]
@@ -1399,15 +1400,6 @@ class ElementDefinition extends BackboneType {
 
   @override
   String get fhirType => 'ElementDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [path]
   /// The path identifies the element and is expressed as a "."-separated
@@ -5101,7 +5093,7 @@ class ElementDefinitionSlicing extends Element {
 
   ElementDefinitionSlicing({
     super.id,
-    this.extension_,
+    super.extension_,
     this.discriminator,
     this.description,
     this.ordered,
@@ -5176,7 +5168,8 @@ class ElementDefinitionSlicing extends Element {
                 )
               : throw ArgumentError(
                   'ElementDefinitionSlicing cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ElementDefinitionSlicing]
   /// that takes in a [String]
@@ -5196,15 +5189,6 @@ class ElementDefinitionSlicing extends Element {
 
   @override
   String get fhirType => 'ElementDefinitionSlicing';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [discriminator]
   /// Designates which child elements are used to discriminate between the
@@ -5311,7 +5295,7 @@ class ElementDefinitionDiscriminator extends Element {
 
   ElementDefinitionDiscriminator({
     super.id,
-    this.extension_,
+    super.extension_,
     required this.type,
     required this.path,
     super.userData,
@@ -5367,7 +5351,8 @@ class ElementDefinitionDiscriminator extends Element {
                 )
               : throw ArgumentError(
                   'ElementDefinitionDiscriminator cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ElementDefinitionDiscriminator]
   /// that takes in a [String]
@@ -5387,15 +5372,6 @@ class ElementDefinitionDiscriminator extends Element {
 
   @override
   String get fhirType => 'ElementDefinitionDiscriminator';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// How the element value is interpreted when discrimination is evaluated.
@@ -5472,7 +5448,7 @@ class ElementDefinitionBase extends Element {
 
   ElementDefinitionBase({
     super.id,
-    this.extension_,
+    super.extension_,
     required this.path,
     required this.min,
     required this.max,
@@ -5533,7 +5509,8 @@ class ElementDefinitionBase extends Element {
                 )
               : throw ArgumentError(
                   'ElementDefinitionBase cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ElementDefinitionBase]
   /// that takes in a [String]
@@ -5553,15 +5530,6 @@ class ElementDefinitionBase extends Element {
 
   @override
   String get fhirType => 'ElementDefinitionBase';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [path]
   /// The Path that identifies the base element - this matches the
@@ -5650,7 +5618,7 @@ class ElementDefinitionType extends Element {
 
   ElementDefinitionType({
     super.id,
-    this.extension_,
+    super.extension_,
     required this.code,
     this.profile,
     this.targetProfile,
@@ -5726,7 +5694,8 @@ class ElementDefinitionType extends Element {
                 )
               : throw ArgumentError(
                   'ElementDefinitionType cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ElementDefinitionType]
   /// that takes in a [String]
@@ -5746,15 +5715,6 @@ class ElementDefinitionType extends Element {
 
   @override
   String get fhirType => 'ElementDefinitionType';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// URL of Data type or Resource that is a(or the) type used for this
@@ -5883,7 +5843,7 @@ class ElementDefinitionExample extends Element {
 
   ElementDefinitionExample({
     super.id,
-    this.extension_,
+    super.extension_,
     required this.label,
     this.valueBase64Binary,
     this.valueBoolean,
@@ -6259,7 +6219,8 @@ class ElementDefinitionExample extends Element {
                 )
               : throw ArgumentError(
                   'ElementDefinitionExample cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ElementDefinitionExample]
   /// that takes in a [String]
@@ -6279,15 +6240,6 @@ class ElementDefinitionExample extends Element {
 
   @override
   String get fhirType => 'ElementDefinitionExample';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [label]
   /// Describes the purpose of this example amoung the set of examples.
@@ -6988,7 +6940,7 @@ class ElementDefinitionConstraint extends Element {
 
   ElementDefinitionConstraint({
     super.id,
-    this.extension_,
+    super.extension_,
     required this.key,
     this.requirements,
     required this.severity,
@@ -7077,7 +7029,8 @@ class ElementDefinitionConstraint extends Element {
                 )
               : throw ArgumentError(
                   'ElementDefinitionConstraint cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ElementDefinitionConstraint]
   /// that takes in a [String]
@@ -7097,15 +7050,6 @@ class ElementDefinitionConstraint extends Element {
 
   @override
   String get fhirType => 'ElementDefinitionConstraint';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [key]
   /// Allows identification of which elements have their cardinalities
@@ -7249,7 +7193,7 @@ class ElementDefinitionBinding extends Element {
 
   ElementDefinitionBinding({
     super.id,
-    this.extension_,
+    super.extension_,
     required this.strength,
     this.description,
     this.valueSet,
@@ -7314,7 +7258,8 @@ class ElementDefinitionBinding extends Element {
                 )
               : throw ArgumentError(
                   'ElementDefinitionBinding cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ElementDefinitionBinding]
   /// that takes in a [String]
@@ -7334,15 +7279,6 @@ class ElementDefinitionBinding extends Element {
 
   @override
   String get fhirType => 'ElementDefinitionBinding';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [strength]
   /// Indicates the degree of conformance expectations associated with this
@@ -7430,7 +7366,7 @@ class ElementDefinitionMapping extends Element {
 
   ElementDefinitionMapping({
     super.id,
-    this.extension_,
+    super.extension_,
     required this.identity,
     this.language,
     required this.map,
@@ -7500,7 +7436,8 @@ class ElementDefinitionMapping extends Element {
                 )
               : throw ArgumentError(
                   'ElementDefinitionMapping cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ElementDefinitionMapping]
   /// that takes in a [String]
@@ -7520,15 +7457,6 @@ class ElementDefinitionMapping extends Element {
 
   @override
   String get fhirType => 'ElementDefinitionMapping';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identity]
   /// An internal reference to the definition of a mapping.

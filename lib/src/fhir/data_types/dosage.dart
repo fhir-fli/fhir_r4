@@ -10,7 +10,7 @@ class Dosage extends BackboneType {
 
   Dosage({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.sequence,
     this.text,
@@ -160,8 +160,10 @@ class Dosage extends BackboneType {
               ? Dosage.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Dosage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Dosage cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Dosage]
   /// that takes in a [String]
@@ -181,15 +183,6 @@ class Dosage extends BackboneType {
 
   @override
   String get fhirType => 'Dosage';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [sequence]
   /// Indicates the order in which the dosage instructions should be applied
@@ -412,7 +405,7 @@ class DosageDoseAndRate extends Element {
 
   DosageDoseAndRate({
     super.id,
-    this.extension_,
+    super.extension_,
     this.type,
     this.doseRange,
     this.doseQuantity,
@@ -494,7 +487,8 @@ class DosageDoseAndRate extends Element {
                 )
               : throw ArgumentError(
                   'DosageDoseAndRate cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DosageDoseAndRate]
   /// that takes in a [String]
@@ -514,15 +508,6 @@ class DosageDoseAndRate extends Element {
 
   @override
   String get fhirType => 'DosageDoseAndRate';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The kind of dose or rate specified, for example, ordered or calculated.

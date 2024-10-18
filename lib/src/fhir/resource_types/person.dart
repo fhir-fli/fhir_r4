@@ -15,7 +15,7 @@ class Person extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.name,
@@ -185,8 +185,10 @@ class Person extends DomainResource {
               ? Person.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Person cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Person cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Person]
   /// that takes in a [String]
@@ -206,15 +208,6 @@ class Person extends DomainResource {
 
   @override
   String get fhirType => 'Person';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifier for a person within a particular scope.
@@ -414,7 +407,7 @@ class PersonLink extends BackboneElement {
 
   PersonLink({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.target,
     this.assurance,
@@ -479,8 +472,10 @@ class PersonLink extends BackboneElement {
               ? PersonLink.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('PersonLink cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'PersonLink cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PersonLink]
   /// that takes in a [String]
@@ -500,15 +495,6 @@ class PersonLink extends BackboneElement {
 
   @override
   String get fhirType => 'PersonLink';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [target]
   /// The resource to which this actual person is associated.

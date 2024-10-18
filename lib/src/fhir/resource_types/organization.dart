@@ -17,7 +17,7 @@ class Organization extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
@@ -190,8 +190,10 @@ class Organization extends DomainResource {
               ? Organization.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Organization cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Organization cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Organization]
   /// that takes in a [String]
@@ -211,15 +213,6 @@ class Organization extends DomainResource {
 
   @override
   String get fhirType => 'Organization';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifier for the organization that is used to identify the
@@ -424,7 +417,7 @@ class OrganizationContact extends BackboneElement {
 
   OrganizationContact({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.purpose,
     this.name,
@@ -508,7 +501,8 @@ class OrganizationContact extends BackboneElement {
                 )
               : throw ArgumentError(
                   'OrganizationContact cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [OrganizationContact]
   /// that takes in a [String]
@@ -528,15 +522,6 @@ class OrganizationContact extends BackboneElement {
 
   @override
   String get fhirType => 'OrganizationContact';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [purpose]
   /// Indicates a purpose for which the contact can be reached.

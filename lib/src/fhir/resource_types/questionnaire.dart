@@ -17,7 +17,7 @@ class Questionnaire extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.identifier,
@@ -271,8 +271,10 @@ class Questionnaire extends DomainResource {
               ? Questionnaire.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Questionnaire cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Questionnaire cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Questionnaire]
   /// that takes in a [String]
@@ -292,15 +294,6 @@ class Questionnaire extends DomainResource {
 
   @override
   String get fhirType => 'Questionnaire';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this questionnaire when it is
@@ -706,7 +699,7 @@ class QuestionnaireItem extends BackboneElement {
 
   QuestionnaireItem({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.linkId,
     this.definition,
@@ -885,7 +878,8 @@ class QuestionnaireItem extends BackboneElement {
                 )
               : throw ArgumentError(
                   'QuestionnaireItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [QuestionnaireItem]
   /// that takes in a [String]
@@ -905,15 +899,6 @@ class QuestionnaireItem extends BackboneElement {
 
   @override
   String get fhirType => 'QuestionnaireItem';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [linkId]
   /// An identifier that is unique within the Questionnaire allowing linkage
@@ -1196,7 +1181,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
 
   QuestionnaireEnableWhen({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.question,
     required this.operator_,
@@ -1329,7 +1314,8 @@ class QuestionnaireEnableWhen extends BackboneElement {
                 )
               : throw ArgumentError(
                   'QuestionnaireEnableWhen cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [QuestionnaireEnableWhen]
   /// that takes in a [String]
@@ -1349,15 +1335,6 @@ class QuestionnaireEnableWhen extends BackboneElement {
 
   @override
   String get fhirType => 'QuestionnaireEnableWhen';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [question]
   /// The linkId for the question whose answer (or lack of answer) governs
@@ -1571,7 +1548,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
 
   QuestionnaireAnswerOption({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.valueInteger,
     this.valueDate,
@@ -1674,7 +1651,8 @@ class QuestionnaireAnswerOption extends BackboneElement {
                 )
               : throw ArgumentError(
                   'QuestionnaireAnswerOption cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [QuestionnaireAnswerOption]
   /// that takes in a [String]
@@ -1694,15 +1672,6 @@ class QuestionnaireAnswerOption extends BackboneElement {
 
   @override
   String get fhirType => 'QuestionnaireAnswerOption';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [valueInteger]
   /// A potential answer that's allowed as the answer to this question.
@@ -1849,7 +1818,7 @@ class QuestionnaireInitial extends BackboneElement {
 
   QuestionnaireInitial({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.valueBoolean,
     this.valueDecimal,
@@ -1985,7 +1954,8 @@ class QuestionnaireInitial extends BackboneElement {
                 )
               : throw ArgumentError(
                   'QuestionnaireInitial cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [QuestionnaireInitial]
   /// that takes in a [String]
@@ -2005,15 +1975,6 @@ class QuestionnaireInitial extends BackboneElement {
 
   @override
   String get fhirType => 'QuestionnaireInitial';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [valueBoolean]
   /// The actual value to for an initial answer.

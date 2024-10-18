@@ -9,7 +9,7 @@ class Coding extends DataType {
 
   Coding({
     super.id,
-    this.extension_,
+    super.extension_,
     this.system,
     this.version,
     this.code,
@@ -88,8 +88,10 @@ class Coding extends DataType {
               ? Coding.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Coding cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Coding cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Coding]
   /// that takes in a [String]
@@ -109,15 +111,6 @@ class Coding extends DataType {
 
   @override
   String get fhirType => 'Coding';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [system]
   /// The identification of the code system that defines the meaning of the

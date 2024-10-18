@@ -19,7 +19,7 @@ class ImagingStudy extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -267,8 +267,10 @@ class ImagingStudy extends DomainResource {
               ? ImagingStudy.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ImagingStudy cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ImagingStudy cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImagingStudy]
   /// that takes in a [String]
@@ -288,15 +290,6 @@ class ImagingStudy extends DomainResource {
 
   @override
   String get fhirType => 'ImagingStudy';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifiers for the ImagingStudy such as DICOM Study Instance UID, and
@@ -619,7 +612,7 @@ class ImagingStudySeries extends BackboneElement {
 
   ImagingStudySeries({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.uid,
     this.number,
@@ -764,7 +757,8 @@ class ImagingStudySeries extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImagingStudySeries cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImagingStudySeries]
   /// that takes in a [String]
@@ -784,15 +778,6 @@ class ImagingStudySeries extends BackboneElement {
 
   @override
   String get fhirType => 'ImagingStudySeries';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [uid]
   /// The DICOM Series Instance UID for the series.
@@ -997,7 +982,7 @@ class ImagingStudyPerformer extends BackboneElement {
 
   ImagingStudyPerformer({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.function_,
     required this.actor,
@@ -1063,7 +1048,8 @@ class ImagingStudyPerformer extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImagingStudyPerformer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImagingStudyPerformer]
   /// that takes in a [String]
@@ -1083,15 +1069,6 @@ class ImagingStudyPerformer extends BackboneElement {
 
   @override
   String get fhirType => 'ImagingStudyPerformer';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [function_]
   /// Distinguishes the type of involvement of the performer in the series.
@@ -1165,7 +1142,7 @@ class ImagingStudyInstance extends BackboneElement {
 
   ImagingStudyInstance({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.uid,
     required this.sopClass,
@@ -1244,7 +1221,8 @@ class ImagingStudyInstance extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImagingStudyInstance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImagingStudyInstance]
   /// that takes in a [String]
@@ -1264,15 +1242,6 @@ class ImagingStudyInstance extends BackboneElement {
 
   @override
   String get fhirType => 'ImagingStudyInstance';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [uid]
   /// The DICOM SOP Instance UID for this image or other DICOM content.

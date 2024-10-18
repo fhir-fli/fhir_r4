@@ -15,7 +15,7 @@ class DeviceDefinition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.udiDeviceIdentifier,
@@ -294,7 +294,8 @@ class DeviceDefinition extends DomainResource {
                 )
               : throw ArgumentError(
                   'DeviceDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DeviceDefinition]
   /// that takes in a [String]
@@ -314,15 +315,6 @@ class DeviceDefinition extends DomainResource {
 
   @override
   String get fhirType => 'DeviceDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Unique instance identifiers assigned to a device by the software,
@@ -682,7 +674,7 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
 
   DeviceDefinitionUdiDeviceIdentifier({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.deviceIdentifier,
     required this.issuer,
@@ -753,7 +745,8 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
                 )
               : throw ArgumentError(
                   'DeviceDefinitionUdiDeviceIdentifier cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DeviceDefinitionUdiDeviceIdentifier]
   /// that takes in a [String]
@@ -773,15 +766,6 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceDefinitionUdiDeviceIdentifier';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [deviceIdentifier]
   /// The identifier that is to be associated with every Device that
@@ -874,7 +858,7 @@ class DeviceDefinitionDeviceName extends BackboneElement {
 
   DeviceDefinitionDeviceName({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     required this.type,
@@ -940,7 +924,8 @@ class DeviceDefinitionDeviceName extends BackboneElement {
                 )
               : throw ArgumentError(
                   'DeviceDefinitionDeviceName cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DeviceDefinitionDeviceName]
   /// that takes in a [String]
@@ -960,15 +945,6 @@ class DeviceDefinitionDeviceName extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceDefinitionDeviceName';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// The name of the device.
@@ -1047,7 +1023,7 @@ class DeviceDefinitionSpecialization extends BackboneElement {
 
   DeviceDefinitionSpecialization({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.systemType,
     this.version,
@@ -1115,7 +1091,8 @@ class DeviceDefinitionSpecialization extends BackboneElement {
                 )
               : throw ArgumentError(
                   'DeviceDefinitionSpecialization cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DeviceDefinitionSpecialization]
   /// that takes in a [String]
@@ -1135,15 +1112,6 @@ class DeviceDefinitionSpecialization extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceDefinitionSpecialization';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [systemType]
   /// The standard that is used to operate and communicate.
@@ -1224,7 +1192,7 @@ class DeviceDefinitionCapability extends BackboneElement {
 
   DeviceDefinitionCapability({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.description,
@@ -1294,7 +1262,8 @@ class DeviceDefinitionCapability extends BackboneElement {
                 )
               : throw ArgumentError(
                   'DeviceDefinitionCapability cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DeviceDefinitionCapability]
   /// that takes in a [String]
@@ -1314,15 +1283,6 @@ class DeviceDefinitionCapability extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceDefinitionCapability';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Type of capability.
@@ -1396,7 +1356,7 @@ class DeviceDefinitionProperty extends BackboneElement {
 
   DeviceDefinitionProperty({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.valueQuantity,
@@ -1476,7 +1436,8 @@ class DeviceDefinitionProperty extends BackboneElement {
                 )
               : throw ArgumentError(
                   'DeviceDefinitionProperty cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DeviceDefinitionProperty]
   /// that takes in a [String]
@@ -1496,15 +1457,6 @@ class DeviceDefinitionProperty extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceDefinitionProperty';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Code that specifies the property DeviceDefinitionPropetyCode
@@ -1588,7 +1540,7 @@ class DeviceDefinitionMaterial extends BackboneElement {
 
   DeviceDefinitionMaterial({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.substance,
     this.alternate,
@@ -1662,7 +1614,8 @@ class DeviceDefinitionMaterial extends BackboneElement {
                 )
               : throw ArgumentError(
                   'DeviceDefinitionMaterial cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DeviceDefinitionMaterial]
   /// that takes in a [String]
@@ -1682,15 +1635,6 @@ class DeviceDefinitionMaterial extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceDefinitionMaterial';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [substance]
   /// The substance.

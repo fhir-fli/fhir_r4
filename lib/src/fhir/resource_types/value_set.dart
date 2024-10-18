@@ -17,7 +17,7 @@ class ValueSet extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.identifier,
@@ -238,8 +238,10 @@ class ValueSet extends DomainResource {
               ? ValueSet.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ValueSet cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ValueSet cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ValueSet]
   /// that takes in a [String]
@@ -259,15 +261,6 @@ class ValueSet extends DomainResource {
 
   @override
   String get fhirType => 'ValueSet';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this value set when it is
@@ -622,7 +615,7 @@ class ValueSetCompose extends BackboneElement {
 
   ValueSetCompose({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.lockedDate,
     this.inactive,
@@ -700,7 +693,8 @@ class ValueSetCompose extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ValueSetCompose cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ValueSetCompose]
   /// that takes in a [String]
@@ -720,15 +714,6 @@ class ValueSetCompose extends BackboneElement {
 
   @override
   String get fhirType => 'ValueSetCompose';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [lockedDate]
   /// The Locked Date is the effective date that is used to determine the
@@ -827,7 +812,7 @@ class ValueSetInclude extends BackboneElement {
 
   ValueSetInclude({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.system,
     this.version,
@@ -923,7 +908,8 @@ class ValueSetInclude extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ValueSetInclude cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ValueSetInclude]
   /// that takes in a [String]
@@ -943,15 +929,6 @@ class ValueSetInclude extends BackboneElement {
 
   @override
   String get fhirType => 'ValueSetInclude';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [system]
   /// An absolute URI which is the code system from which the selected codes
@@ -1076,7 +1053,7 @@ class ValueSetConcept extends BackboneElement {
 
   ValueSetConcept({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     this.display,
@@ -1154,7 +1131,8 @@ class ValueSetConcept extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ValueSetConcept cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ValueSetConcept]
   /// that takes in a [String]
@@ -1174,15 +1152,6 @@ class ValueSetConcept extends BackboneElement {
 
   @override
   String get fhirType => 'ValueSetConcept';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// Specifies a code for the concept to be included or excluded.
@@ -1279,7 +1248,7 @@ class ValueSetDesignation extends BackboneElement {
 
   ValueSetDesignation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.language,
     this.use,
@@ -1353,7 +1322,8 @@ class ValueSetDesignation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ValueSetDesignation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ValueSetDesignation]
   /// that takes in a [String]
@@ -1373,15 +1343,6 @@ class ValueSetDesignation extends BackboneElement {
 
   @override
   String get fhirType => 'ValueSetDesignation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [language]
   /// The language this designation is defined for.
@@ -1471,7 +1432,7 @@ class ValueSetFilter extends BackboneElement {
 
   ValueSetFilter({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.property,
     required this.op,
@@ -1540,8 +1501,10 @@ class ValueSetFilter extends BackboneElement {
               ? ValueSetFilter.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ValueSetFilter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ValueSetFilter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ValueSetFilter]
   /// that takes in a [String]
@@ -1561,15 +1524,6 @@ class ValueSetFilter extends BackboneElement {
 
   @override
   String get fhirType => 'ValueSetFilter';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [property]
   /// A code that identifies a property or a filter defined in the code
@@ -1664,7 +1618,7 @@ class ValueSetExpansion extends BackboneElement {
 
   ValueSetExpansion({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.timestamp,
@@ -1766,7 +1720,8 @@ class ValueSetExpansion extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ValueSetExpansion cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ValueSetExpansion]
   /// that takes in a [String]
@@ -1786,15 +1741,6 @@ class ValueSetExpansion extends BackboneElement {
 
   @override
   String get fhirType => 'ValueSetExpansion';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// An identifier that uniquely identifies this expansion of the valueset,
@@ -1936,7 +1882,7 @@ class ValueSetParameter extends BackboneElement {
 
   ValueSetParameter({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     this.valueString,
@@ -2046,7 +1992,8 @@ class ValueSetParameter extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ValueSetParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ValueSetParameter]
   /// that takes in a [String]
@@ -2066,15 +2013,6 @@ class ValueSetParameter extends BackboneElement {
 
   @override
   String get fhirType => 'ValueSetParameter';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// Name of the input parameter to the $expand operation; may be a
@@ -2241,7 +2179,7 @@ class ValueSetContains extends BackboneElement {
 
   ValueSetContains({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.system,
     this.abstract_,
@@ -2339,7 +2277,8 @@ class ValueSetContains extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ValueSetContains cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ValueSetContains]
   /// that takes in a [String]
@@ -2359,15 +2298,6 @@ class ValueSetContains extends BackboneElement {
 
   @override
   String get fhirType => 'ValueSetContains';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [system]
   /// An absolute URI which is the code system in which the code for this

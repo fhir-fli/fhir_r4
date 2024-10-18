@@ -16,7 +16,7 @@ class Location extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
@@ -230,8 +230,10 @@ class Location extends DomainResource {
               ? Location.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Location cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Location cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Location]
   /// that takes in a [String]
@@ -251,15 +253,6 @@ class Location extends DomainResource {
 
   @override
   String get fhirType => 'Location';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Unique code or number identifying the location to its users.
@@ -554,7 +547,7 @@ class LocationPosition extends BackboneElement {
 
   LocationPosition({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.longitude,
     required this.latitude,
@@ -627,7 +620,8 @@ class LocationPosition extends BackboneElement {
                 )
               : throw ArgumentError(
                   'LocationPosition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [LocationPosition]
   /// that takes in a [String]
@@ -647,15 +641,6 @@ class LocationPosition extends BackboneElement {
 
   @override
   String get fhirType => 'LocationPosition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [longitude]
   /// Longitude. The value domain and the interpretation are the same as for
@@ -751,7 +736,7 @@ class LocationHoursOfOperation extends BackboneElement {
 
   LocationHoursOfOperation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.daysOfWeek,
     this.allDay,
@@ -834,7 +819,8 @@ class LocationHoursOfOperation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'LocationHoursOfOperation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [LocationHoursOfOperation]
   /// that takes in a [String]
@@ -854,15 +840,6 @@ class LocationHoursOfOperation extends BackboneElement {
 
   @override
   String get fhirType => 'LocationHoursOfOperation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [daysOfWeek]
   /// Indicates which days of the week are available between the start and

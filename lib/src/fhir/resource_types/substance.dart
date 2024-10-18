@@ -14,7 +14,7 @@ class Substance extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
@@ -159,8 +159,10 @@ class Substance extends DomainResource {
               ? Substance.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Substance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Substance cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Substance]
   /// that takes in a [String]
@@ -180,15 +182,6 @@ class Substance extends DomainResource {
 
   @override
   String get fhirType => 'Substance';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Unique identifier for the substance.
@@ -354,7 +347,7 @@ class SubstanceInstance extends BackboneElement {
 
   SubstanceInstance({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.expiry,
@@ -429,7 +422,8 @@ class SubstanceInstance extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubstanceInstance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubstanceInstance]
   /// that takes in a [String]
@@ -449,15 +443,6 @@ class SubstanceInstance extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceInstance';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifier associated with the package/container (usually a label
@@ -548,7 +533,7 @@ class SubstanceIngredient extends BackboneElement {
 
   SubstanceIngredient({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.quantity,
     this.substanceCodeableConcept,
@@ -622,7 +607,8 @@ class SubstanceIngredient extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubstanceIngredient cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubstanceIngredient]
   /// that takes in a [String]
@@ -642,15 +628,6 @@ class SubstanceIngredient extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceIngredient';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [quantity]
   /// The amount of the ingredient in the substance - a concentration ratio.

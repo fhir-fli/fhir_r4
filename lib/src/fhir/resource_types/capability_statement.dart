@@ -17,7 +17,7 @@ class CapabilityStatement extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.version,
@@ -285,7 +285,8 @@ class CapabilityStatement extends DomainResource {
                 )
               : throw ArgumentError(
                   'CapabilityStatement cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CapabilityStatement]
   /// that takes in a [String]
@@ -305,15 +306,6 @@ class CapabilityStatement extends DomainResource {
 
   @override
   String get fhirType => 'CapabilityStatement';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this capability statement when
@@ -756,7 +748,7 @@ class CapabilityStatementSoftware extends BackboneElement {
 
   CapabilityStatementSoftware({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     this.version,
@@ -831,7 +823,8 @@ class CapabilityStatementSoftware extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CapabilityStatementSoftware cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CapabilityStatementSoftware]
   /// that takes in a [String]
@@ -851,15 +844,6 @@ class CapabilityStatementSoftware extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementSoftware';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// Name the software is known by.
@@ -956,7 +940,7 @@ class CapabilityStatementImplementation extends BackboneElement {
 
   CapabilityStatementImplementation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.description,
     this.url,
@@ -1036,7 +1020,8 @@ class CapabilityStatementImplementation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CapabilityStatementImplementation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CapabilityStatementImplementation]
   /// that takes in a [String]
@@ -1056,15 +1041,6 @@ class CapabilityStatementImplementation extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementImplementation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [description]
   /// Information about the specific installation that this capability
@@ -1174,7 +1150,7 @@ class CapabilityStatementRest extends BackboneElement {
 
   CapabilityStatementRest({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.mode,
     this.documentation,
@@ -1274,7 +1250,8 @@ class CapabilityStatementRest extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CapabilityStatementRest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CapabilityStatementRest]
   /// that takes in a [String]
@@ -1294,15 +1271,6 @@ class CapabilityStatementRest extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementRest';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [mode]
   /// Identifies whether this portion of the statement is describing the
@@ -1430,7 +1398,7 @@ class CapabilityStatementSecurity extends BackboneElement {
 
   CapabilityStatementSecurity({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.cors,
     this.service,
@@ -1510,7 +1478,8 @@ class CapabilityStatementSecurity extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CapabilityStatementSecurity cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CapabilityStatementSecurity]
   /// that takes in a [String]
@@ -1530,15 +1499,6 @@ class CapabilityStatementSecurity extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementSecurity';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [cors]
   /// Server adds CORS headers when responding to requests - this enables
@@ -1633,7 +1593,7 @@ class CapabilityStatementResource extends BackboneElement {
 
   CapabilityStatementResource({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.profile,
@@ -1811,7 +1771,8 @@ class CapabilityStatementResource extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CapabilityStatementResource cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CapabilityStatementResource]
   /// that takes in a [String]
@@ -1831,15 +1792,6 @@ class CapabilityStatementResource extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementResource';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// A type of resource exposed via the restful interface.
@@ -2129,7 +2081,7 @@ class CapabilityStatementInteraction extends BackboneElement {
 
   CapabilityStatementInteraction({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     this.documentation,
@@ -2197,7 +2149,8 @@ class CapabilityStatementInteraction extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CapabilityStatementInteraction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CapabilityStatementInteraction]
   /// that takes in a [String]
@@ -2217,15 +2170,6 @@ class CapabilityStatementInteraction extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementInteraction';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// Coded identifier of the operation, supported by the system resource.
@@ -2306,7 +2250,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
 
   CapabilityStatementSearchParam({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     this.definition,
@@ -2386,7 +2330,8 @@ class CapabilityStatementSearchParam extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CapabilityStatementSearchParam cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CapabilityStatementSearchParam]
   /// that takes in a [String]
@@ -2406,15 +2351,6 @@ class CapabilityStatementSearchParam extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementSearchParam';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// The name of the search parameter used in the interface.
@@ -2528,7 +2464,7 @@ class CapabilityStatementOperation extends BackboneElement {
 
   CapabilityStatementOperation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     required this.definition,
@@ -2601,7 +2537,8 @@ class CapabilityStatementOperation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CapabilityStatementOperation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CapabilityStatementOperation]
   /// that takes in a [String]
@@ -2621,15 +2558,6 @@ class CapabilityStatementOperation extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementOperation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// The name of the operation or query. For an operation, this is the name
@@ -2734,7 +2662,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
 
   CapabilityStatementInteraction1({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     this.documentation,
@@ -2802,7 +2730,8 @@ class CapabilityStatementInteraction1 extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CapabilityStatementInteraction1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CapabilityStatementInteraction1]
   /// that takes in a [String]
@@ -2822,15 +2751,6 @@ class CapabilityStatementInteraction1 extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementInteraction1';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// A coded identifier of the operation, supported by the system.
@@ -2909,7 +2829,7 @@ class CapabilityStatementMessaging extends BackboneElement {
 
   CapabilityStatementMessaging({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.endpoint,
     this.reliableCache,
@@ -2999,7 +2919,8 @@ class CapabilityStatementMessaging extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CapabilityStatementMessaging cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CapabilityStatementMessaging]
   /// that takes in a [String]
@@ -3019,15 +2940,6 @@ class CapabilityStatementMessaging extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementMessaging';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [endpoint]
   /// An endpoint (network accessible address) to which messages and/or
@@ -3139,7 +3051,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
 
   CapabilityStatementEndpoint({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.protocol,
     required this.address,
@@ -3204,7 +3116,8 @@ class CapabilityStatementEndpoint extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CapabilityStatementEndpoint cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CapabilityStatementEndpoint]
   /// that takes in a [String]
@@ -3224,15 +3137,6 @@ class CapabilityStatementEndpoint extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementEndpoint';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [protocol]
   /// A list of the messaging transport protocol(s) identifiers, supported by
@@ -3310,7 +3214,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
 
   CapabilityStatementSupportedMessage({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.mode,
     required this.definition,
@@ -3376,7 +3280,8 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CapabilityStatementSupportedMessage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CapabilityStatementSupportedMessage]
   /// that takes in a [String]
@@ -3396,15 +3301,6 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementSupportedMessage';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [mode]
   /// The mode of this event declaration - whether application is sender or
@@ -3481,7 +3377,7 @@ class CapabilityStatementDocument extends BackboneElement {
 
   CapabilityStatementDocument({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.mode,
     this.documentation,
@@ -3554,7 +3450,8 @@ class CapabilityStatementDocument extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CapabilityStatementDocument cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CapabilityStatementDocument]
   /// that takes in a [String]
@@ -3574,15 +3471,6 @@ class CapabilityStatementDocument extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementDocument';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [mode]
   /// Mode of this document declaration - whether an application is a

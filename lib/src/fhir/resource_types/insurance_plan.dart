@@ -14,7 +14,7 @@ class InsurancePlan extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
@@ -219,8 +219,10 @@ class InsurancePlan extends DomainResource {
               ? InsurancePlan.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('InsurancePlan cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'InsurancePlan cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [InsurancePlan]
   /// that takes in a [String]
@@ -240,15 +242,6 @@ class InsurancePlan extends DomainResource {
 
   @override
   String get fhirType => 'InsurancePlan';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifiers assigned to this health insurance product which
@@ -497,7 +490,7 @@ class InsurancePlanContact extends BackboneElement {
 
   InsurancePlanContact({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.purpose,
     this.name,
@@ -581,7 +574,8 @@ class InsurancePlanContact extends BackboneElement {
                 )
               : throw ArgumentError(
                   'InsurancePlanContact cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [InsurancePlanContact]
   /// that takes in a [String]
@@ -601,15 +595,6 @@ class InsurancePlanContact extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanContact';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [purpose]
   /// Indicates a purpose for which the contact can be reached.
@@ -705,7 +690,7 @@ class InsurancePlanCoverage extends BackboneElement {
 
   InsurancePlanCoverage({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.network,
@@ -783,7 +768,8 @@ class InsurancePlanCoverage extends BackboneElement {
                 )
               : throw ArgumentError(
                   'InsurancePlanCoverage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [InsurancePlanCoverage]
   /// that takes in a [String]
@@ -803,15 +789,6 @@ class InsurancePlanCoverage extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanCoverage';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Type of coverage (Medical; Dental; Mental Health; Substance Abuse;
@@ -893,7 +870,7 @@ class InsurancePlanBenefit extends BackboneElement {
 
   InsurancePlanBenefit({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.requirement,
@@ -970,7 +947,8 @@ class InsurancePlanBenefit extends BackboneElement {
                 )
               : throw ArgumentError(
                   'InsurancePlanBenefit cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [InsurancePlanBenefit]
   /// that takes in a [String]
@@ -990,15 +968,6 @@ class InsurancePlanBenefit extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanBenefit';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Type of benefit (primary care; speciality care; inpatient; outpatient).
@@ -1085,7 +1054,7 @@ class InsurancePlanLimit extends BackboneElement {
 
   InsurancePlanLimit({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.value,
     this.code,
@@ -1153,7 +1122,8 @@ class InsurancePlanLimit extends BackboneElement {
                 )
               : throw ArgumentError(
                   'InsurancePlanLimit cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [InsurancePlanLimit]
   /// that takes in a [String]
@@ -1173,15 +1143,6 @@ class InsurancePlanLimit extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanLimit';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [value]
   /// The maximum amount of a service item a plan will pay for a covered
@@ -1257,7 +1218,7 @@ class InsurancePlanPlan extends BackboneElement {
 
   InsurancePlanPlan({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.type,
@@ -1369,7 +1330,8 @@ class InsurancePlanPlan extends BackboneElement {
                 )
               : throw ArgumentError(
                   'InsurancePlanPlan cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [InsurancePlanPlan]
   /// that takes in a [String]
@@ -1389,15 +1351,6 @@ class InsurancePlanPlan extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanPlan';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifiers assigned to this health insurance plan which
@@ -1515,7 +1468,7 @@ class InsurancePlanGeneralCost extends BackboneElement {
 
   InsurancePlanGeneralCost({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.groupSize,
@@ -1597,7 +1550,8 @@ class InsurancePlanGeneralCost extends BackboneElement {
                 )
               : throw ArgumentError(
                   'InsurancePlanGeneralCost cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [InsurancePlanGeneralCost]
   /// that takes in a [String]
@@ -1617,15 +1571,6 @@ class InsurancePlanGeneralCost extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanGeneralCost';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Type of cost.
@@ -1729,7 +1674,7 @@ class InsurancePlanSpecificCost extends BackboneElement {
 
   InsurancePlanSpecificCost({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.category,
     this.benefit,
@@ -1799,7 +1744,8 @@ class InsurancePlanSpecificCost extends BackboneElement {
                 )
               : throw ArgumentError(
                   'InsurancePlanSpecificCost cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [InsurancePlanSpecificCost]
   /// that takes in a [String]
@@ -1819,15 +1765,6 @@ class InsurancePlanSpecificCost extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanSpecificCost';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [category]
   /// General category of benefit (Medical; Dental; Vision; Drug; Mental
@@ -1901,7 +1838,7 @@ class InsurancePlanBenefit1 extends BackboneElement {
 
   InsurancePlanBenefit1({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.cost,
@@ -1971,7 +1908,8 @@ class InsurancePlanBenefit1 extends BackboneElement {
                 )
               : throw ArgumentError(
                   'InsurancePlanBenefit1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [InsurancePlanBenefit1]
   /// that takes in a [String]
@@ -1991,15 +1929,6 @@ class InsurancePlanBenefit1 extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanBenefit1';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Type of specific benefit (preventative; primary care office visit;
@@ -2073,7 +2002,7 @@ class InsurancePlanCost extends BackboneElement {
 
   InsurancePlanCost({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.applicability,
@@ -2155,7 +2084,8 @@ class InsurancePlanCost extends BackboneElement {
                 )
               : throw ArgumentError(
                   'InsurancePlanCost cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [InsurancePlanCost]
   /// that takes in a [String]
@@ -2175,15 +2105,6 @@ class InsurancePlanCost extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanCost';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Type of cost (copay; individual cap; family cap; coinsurance;

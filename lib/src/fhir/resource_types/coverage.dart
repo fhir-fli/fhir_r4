@@ -15,7 +15,7 @@ class Coverage extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -224,8 +224,10 @@ class Coverage extends DomainResource {
               ? Coverage.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Coverage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Coverage cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Coverage]
   /// that takes in a [String]
@@ -245,15 +247,6 @@ class Coverage extends DomainResource {
 
   @override
   String get fhirType => 'Coverage';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// A unique identifier assigned to this coverage.
@@ -546,7 +539,7 @@ class CoverageClass extends BackboneElement {
 
   CoverageClass({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     required this.value,
@@ -616,8 +609,10 @@ class CoverageClass extends BackboneElement {
               ? CoverageClass.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('CoverageClass cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'CoverageClass cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CoverageClass]
   /// that takes in a [String]
@@ -637,15 +632,6 @@ class CoverageClass extends BackboneElement {
 
   @override
   String get fhirType => 'CoverageClass';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The type of classification for which an insurer-specific class label or
@@ -738,7 +724,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
 
   CoverageCostToBeneficiary({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.valueQuantity,
@@ -822,7 +808,8 @@ class CoverageCostToBeneficiary extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CoverageCostToBeneficiary cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CoverageCostToBeneficiary]
   /// that takes in a [String]
@@ -842,15 +829,6 @@ class CoverageCostToBeneficiary extends BackboneElement {
 
   @override
   String get fhirType => 'CoverageCostToBeneficiary';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The category of patient centric costs associated with treatment.
@@ -947,7 +925,7 @@ class CoverageException extends BackboneElement {
 
   CoverageException({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.period,
@@ -1013,7 +991,8 @@ class CoverageException extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CoverageException cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CoverageException]
   /// that takes in a [String]
@@ -1033,15 +1012,6 @@ class CoverageException extends BackboneElement {
 
   @override
   String get fhirType => 'CoverageException';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The code for the specific exception.

@@ -16,7 +16,7 @@ class BiologicallyDerivedProduct extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.productCategory,
@@ -194,7 +194,8 @@ class BiologicallyDerivedProduct extends DomainResource {
                 )
               : throw ArgumentError(
                   'BiologicallyDerivedProduct cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [BiologicallyDerivedProduct]
   /// that takes in a [String]
@@ -214,15 +215,6 @@ class BiologicallyDerivedProduct extends DomainResource {
 
   @override
   String get fhirType => 'BiologicallyDerivedProduct';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// This records identifiers associated with this biologically derived
@@ -435,7 +427,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
 
   BiologicallyDerivedProductCollection({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.collector,
     this.source,
@@ -516,7 +508,8 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
                 )
               : throw ArgumentError(
                   'BiologicallyDerivedProductCollection cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [BiologicallyDerivedProductCollection]
   /// that takes in a [String]
@@ -536,15 +529,6 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
 
   @override
   String get fhirType => 'BiologicallyDerivedProductCollection';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [collector]
   /// Healthcare professional who is performing the collection.
@@ -646,7 +630,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
 
   BiologicallyDerivedProductProcessing({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.description,
     this.procedure,
@@ -734,7 +718,8 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
                 )
               : throw ArgumentError(
                   'BiologicallyDerivedProductProcessing cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [BiologicallyDerivedProductProcessing]
   /// that takes in a [String]
@@ -754,15 +739,6 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
 
   @override
   String get fhirType => 'BiologicallyDerivedProductProcessing';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [description]
   /// Description of of processing.
@@ -877,7 +853,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
 
   BiologicallyDerivedProductManipulation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.description,
     this.timeDateTime,
@@ -953,7 +929,8 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'BiologicallyDerivedProductManipulation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [BiologicallyDerivedProductManipulation]
   /// that takes in a [String]
@@ -973,15 +950,6 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
 
   @override
   String get fhirType => 'BiologicallyDerivedProductManipulation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [description]
   /// Description of manipulation.
@@ -1074,7 +1042,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
 
   BiologicallyDerivedProductStorage({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.description,
     this.temperature,
@@ -1157,7 +1125,8 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
                 )
               : throw ArgumentError(
                   'BiologicallyDerivedProductStorage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [BiologicallyDerivedProductStorage]
   /// that takes in a [String]
@@ -1177,15 +1146,6 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
 
   @override
   String get fhirType => 'BiologicallyDerivedProductStorage';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [description]
   /// Description of storage.

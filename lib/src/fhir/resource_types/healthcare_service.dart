@@ -14,7 +14,7 @@ class HealthcareService extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
@@ -317,7 +317,8 @@ class HealthcareService extends DomainResource {
                 )
               : throw ArgumentError(
                   'HealthcareService cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [HealthcareService]
   /// that takes in a [String]
@@ -337,15 +338,6 @@ class HealthcareService extends DomainResource {
 
   @override
   String get fhirType => 'HealthcareService';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// External identifiers for this item.
@@ -726,7 +718,7 @@ class HealthcareServiceEligibility extends BackboneElement {
 
   HealthcareServiceEligibility({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.code,
     this.comment,
@@ -795,7 +787,8 @@ class HealthcareServiceEligibility extends BackboneElement {
                 )
               : throw ArgumentError(
                   'HealthcareServiceEligibility cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [HealthcareServiceEligibility]
   /// that takes in a [String]
@@ -815,15 +808,6 @@ class HealthcareServiceEligibility extends BackboneElement {
 
   @override
   String get fhirType => 'HealthcareServiceEligibility';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// Coded value for the eligibility.
@@ -902,7 +886,7 @@ class HealthcareServiceAvailableTime extends BackboneElement {
 
   HealthcareServiceAvailableTime({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.daysOfWeek,
     this.allDay,
@@ -985,7 +969,8 @@ class HealthcareServiceAvailableTime extends BackboneElement {
                 )
               : throw ArgumentError(
                   'HealthcareServiceAvailableTime cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [HealthcareServiceAvailableTime]
   /// that takes in a [String]
@@ -1005,15 +990,6 @@ class HealthcareServiceAvailableTime extends BackboneElement {
 
   @override
   String get fhirType => 'HealthcareServiceAvailableTime';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [daysOfWeek]
   /// Indicates which days of the week are available between the start and
@@ -1125,7 +1101,7 @@ class HealthcareServiceNotAvailable extends BackboneElement {
 
   HealthcareServiceNotAvailable({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.description,
     this.during,
@@ -1192,7 +1168,8 @@ class HealthcareServiceNotAvailable extends BackboneElement {
                 )
               : throw ArgumentError(
                   'HealthcareServiceNotAvailable cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [HealthcareServiceNotAvailable]
   /// that takes in a [String]
@@ -1212,15 +1189,6 @@ class HealthcareServiceNotAvailable extends BackboneElement {
 
   @override
   String get fhirType => 'HealthcareServiceNotAvailable';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [description]
   /// The reason that can be presented to the user as to why this time is not

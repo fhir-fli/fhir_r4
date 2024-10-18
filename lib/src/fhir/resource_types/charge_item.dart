@@ -19,7 +19,7 @@ class ChargeItem extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.definitionUri,
@@ -315,8 +315,10 @@ class ChargeItem extends DomainResource {
               ? ChargeItem.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ChargeItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ChargeItem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ChargeItem]
   /// that takes in a [String]
@@ -336,15 +338,6 @@ class ChargeItem extends DomainResource {
 
   @override
   String get fhirType => 'ChargeItem';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifiers assigned to this event performer or other systems.
@@ -760,7 +753,7 @@ class ChargeItemPerformer extends BackboneElement {
 
   ChargeItemPerformer({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.function_,
     required this.actor,
@@ -826,7 +819,8 @@ class ChargeItemPerformer extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ChargeItemPerformer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ChargeItemPerformer]
   /// that takes in a [String]
@@ -846,15 +840,6 @@ class ChargeItemPerformer extends BackboneElement {
 
   @override
   String get fhirType => 'ChargeItemPerformer';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [function_]
   /// Describes the type of performance or participation(e.g. primary

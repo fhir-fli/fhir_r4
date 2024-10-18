@@ -10,7 +10,7 @@ class TriggerDefinition extends DataType {
 
   TriggerDefinition({
     super.id,
-    this.extension_,
+    super.extension_,
     required this.type,
     this.name,
     this.timingTiming,
@@ -110,7 +110,8 @@ class TriggerDefinition extends DataType {
                 )
               : throw ArgumentError(
                   'TriggerDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TriggerDefinition]
   /// that takes in a [String]
@@ -130,15 +131,6 @@ class TriggerDefinition extends DataType {
 
   @override
   String get fhirType => 'TriggerDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The type of triggering event.

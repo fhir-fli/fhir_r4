@@ -15,7 +15,7 @@ class Patient extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
@@ -253,8 +253,10 @@ class Patient extends DomainResource {
               ? Patient.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Patient cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Patient cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Patient]
   /// that takes in a [String]
@@ -274,15 +276,6 @@ class Patient extends DomainResource {
 
   @override
   String get fhirType => 'Patient';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// An identifier for this patient.
@@ -590,7 +583,7 @@ class PatientContact extends BackboneElement {
 
   PatientContact({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.relationship,
     this.name,
@@ -695,8 +688,10 @@ class PatientContact extends BackboneElement {
               ? PatientContact.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('PatientContact cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'PatientContact cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PatientContact]
   /// that takes in a [String]
@@ -716,15 +711,6 @@ class PatientContact extends BackboneElement {
 
   @override
   String get fhirType => 'PatientContact';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [relationship]
   /// The nature of the relationship between the patient and the contact
@@ -855,7 +841,7 @@ class PatientCommunication extends BackboneElement {
 
   PatientCommunication({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.language,
     this.preferred,
@@ -922,7 +908,8 @@ class PatientCommunication extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PatientCommunication cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PatientCommunication]
   /// that takes in a [String]
@@ -942,15 +929,6 @@ class PatientCommunication extends BackboneElement {
 
   @override
   String get fhirType => 'PatientCommunication';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [language]
   /// The ISO-639-1 alpha 2 code in lower case for the language, optionally
@@ -1031,7 +1009,7 @@ class PatientLink extends BackboneElement {
 
   PatientLink({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.other,
     required this.type,
@@ -1094,8 +1072,10 @@ class PatientLink extends BackboneElement {
               ? PatientLink.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('PatientLink cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'PatientLink cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PatientLink]
   /// that takes in a [String]
@@ -1115,15 +1095,6 @@ class PatientLink extends BackboneElement {
 
   @override
   String get fhirType => 'PatientLink';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [other]
   /// The other patient resource that the link refers to.

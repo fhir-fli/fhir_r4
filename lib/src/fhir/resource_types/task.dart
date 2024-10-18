@@ -14,7 +14,7 @@ class Task extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
@@ -327,8 +327,10 @@ class Task extends DomainResource {
               ? Task.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Task cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Task cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Task]
   /// that takes in a [String]
@@ -348,15 +350,6 @@ class Task extends DomainResource {
 
   @override
   String get fhirType => 'Task';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// The business identifier for this task.
@@ -801,7 +794,7 @@ class TaskRestriction extends BackboneElement {
 
   TaskRestriction({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.repetitions,
     this.period,
@@ -880,7 +873,8 @@ class TaskRestriction extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TaskRestriction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TaskRestriction]
   /// that takes in a [String]
@@ -900,15 +894,6 @@ class TaskRestriction extends BackboneElement {
 
   @override
   String get fhirType => 'TaskRestriction';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [repetitions]
   /// Indicates the number of times the requested action should occur.
@@ -998,7 +983,7 @@ class TaskInput extends BackboneElement {
 
   TaskInput({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.valueBase64Binary,
@@ -1375,8 +1360,10 @@ class TaskInput extends BackboneElement {
               ? TaskInput.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('TaskInput cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'TaskInput cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TaskInput]
   /// that takes in a [String]
@@ -1396,15 +1383,6 @@ class TaskInput extends BackboneElement {
 
   @override
   String get fhirType => 'TaskInput';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// A code or description indicating how the input is intended to be used
@@ -2046,7 +2024,7 @@ class TaskOutput extends BackboneElement {
 
   TaskOutput({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.valueBase64Binary,
@@ -2423,8 +2401,10 @@ class TaskOutput extends BackboneElement {
               ? TaskOutput.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('TaskOutput cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'TaskOutput cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TaskOutput]
   /// that takes in a [String]
@@ -2444,15 +2424,6 @@ class TaskOutput extends BackboneElement {
 
   @override
   String get fhirType => 'TaskOutput';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The name of the Output parameter.

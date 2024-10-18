@@ -15,7 +15,7 @@ class SubscriptionTopic extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.url,
     this.identifier,
@@ -276,7 +276,8 @@ class SubscriptionTopic extends DomainResource {
                 )
               : throw ArgumentError(
                   'SubscriptionTopic cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubscriptionTopic]
   /// that takes in a [String]
@@ -296,15 +297,6 @@ class SubscriptionTopic extends DomainResource {
 
   @override
   String get fhirType => 'SubscriptionTopic';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this subscription topic when
@@ -705,7 +697,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
 
   SubscriptionTopicResourceTrigger({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.description,
     required this.resource,
@@ -792,7 +784,8 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubscriptionTopicResourceTrigger cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubscriptionTopicResourceTrigger]
   /// that takes in a [String]
@@ -812,15 +805,6 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
 
   @override
   String get fhirType => 'SubscriptionTopicResourceTrigger';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [description]
   /// The human readable description of this resource trigger for the
@@ -945,7 +929,7 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
 
   SubscriptionTopicQueryCriteria({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.previous,
     this.resultForCreate,
@@ -1036,7 +1020,8 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubscriptionTopicQueryCriteria cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubscriptionTopicQueryCriteria]
   /// that takes in a [String]
@@ -1056,15 +1041,6 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
 
   @override
   String get fhirType => 'SubscriptionTopicQueryCriteria';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [previous]
   /// The FHIR query based rules are applied to the previous resource state
@@ -1187,7 +1163,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
 
   SubscriptionTopicEventTrigger({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.description,
     required this.event,
@@ -1259,7 +1235,8 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubscriptionTopicEventTrigger cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubscriptionTopicEventTrigger]
   /// that takes in a [String]
@@ -1279,15 +1256,6 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
 
   @override
   String get fhirType => 'SubscriptionTopicEventTrigger';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [description]
   /// The human readable description of an event to trigger a notification
@@ -1385,7 +1353,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
 
   SubscriptionTopicCanFilterBy({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.description,
     this.resource,
@@ -1473,7 +1441,8 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubscriptionTopicCanFilterBy cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubscriptionTopicCanFilterBy]
   /// that takes in a [String]
@@ -1493,15 +1462,6 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
 
   @override
   String get fhirType => 'SubscriptionTopicCanFilterBy';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [description]
   /// Description of how this filtering parameter is intended to be used.
@@ -1630,7 +1590,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
 
   SubscriptionTopicNotificationShape({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.resource,
     this.include,
@@ -1703,7 +1663,8 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubscriptionTopicNotificationShape cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubscriptionTopicNotificationShape]
   /// that takes in a [String]
@@ -1723,15 +1684,6 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
 
   @override
   String get fhirType => 'SubscriptionTopicNotificationShape';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [resource]
   /// URL of the Resource that is the type used in this shape. This is the

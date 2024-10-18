@@ -15,7 +15,7 @@ class DocumentManifest extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.masterIdentifier,
     this.identifier,
@@ -196,7 +196,8 @@ class DocumentManifest extends DomainResource {
                 )
               : throw ArgumentError(
                   'DocumentManifest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DocumentManifest]
   /// that takes in a [String]
@@ -216,15 +217,6 @@ class DocumentManifest extends DomainResource {
 
   @override
   String get fhirType => 'DocumentManifest';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [masterIdentifier]
   /// A single identifier that uniquely identifies this manifest. Principally
@@ -456,7 +448,7 @@ class DocumentManifestRelated extends BackboneElement {
 
   DocumentManifestRelated({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.ref,
@@ -524,7 +516,8 @@ class DocumentManifestRelated extends BackboneElement {
                 )
               : throw ArgumentError(
                   'DocumentManifestRelated cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DocumentManifestRelated]
   /// that takes in a [String]
@@ -544,15 +537,6 @@ class DocumentManifestRelated extends BackboneElement {
 
   @override
   String get fhirType => 'DocumentManifestRelated';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Related identifier to this DocumentManifest. For example, Order

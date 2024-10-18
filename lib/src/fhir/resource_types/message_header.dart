@@ -18,7 +18,7 @@ class MessageHeader extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.eventCoding,
     this.eventUri,
@@ -185,8 +185,10 @@ class MessageHeader extends DomainResource {
               ? MessageHeader.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('MessageHeader cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'MessageHeader cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MessageHeader]
   /// that takes in a [String]
@@ -206,15 +208,6 @@ class MessageHeader extends DomainResource {
 
   @override
   String get fhirType => 'MessageHeader';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [eventCoding]
   /// Code that identifies the event this message represents and connects it
@@ -448,7 +441,7 @@ class MessageHeaderDestination extends BackboneElement {
 
   MessageHeaderDestination({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.name,
     this.target,
@@ -528,7 +521,8 @@ class MessageHeaderDestination extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MessageHeaderDestination cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MessageHeaderDestination]
   /// that takes in a [String]
@@ -548,15 +542,6 @@ class MessageHeaderDestination extends BackboneElement {
 
   @override
   String get fhirType => 'MessageHeaderDestination';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// Human-readable name for the target system.
@@ -660,7 +645,7 @@ class MessageHeaderSource extends BackboneElement {
 
   MessageHeaderSource({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.name,
     this.software,
@@ -748,7 +733,8 @@ class MessageHeaderSource extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MessageHeaderSource cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MessageHeaderSource]
   /// that takes in a [String]
@@ -768,15 +754,6 @@ class MessageHeaderSource extends BackboneElement {
 
   @override
   String get fhirType => 'MessageHeaderSource';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// Human-readable name for the source system.
@@ -898,7 +875,7 @@ class MessageHeaderResponse extends BackboneElement {
 
   MessageHeaderResponse({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.identifier,
     required this.code,
@@ -970,7 +947,8 @@ class MessageHeaderResponse extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MessageHeaderResponse cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MessageHeaderResponse]
   /// that takes in a [String]
@@ -990,15 +968,6 @@ class MessageHeaderResponse extends BackboneElement {
 
   @override
   String get fhirType => 'MessageHeaderResponse';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// The MessageHeader.id of the message to which this message is a

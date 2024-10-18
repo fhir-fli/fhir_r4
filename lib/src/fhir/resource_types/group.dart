@@ -17,7 +17,7 @@ class FhirGroup extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
@@ -177,8 +177,10 @@ class FhirGroup extends DomainResource {
               ? FhirGroup.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('FhirGroup cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'FhirGroup cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [FhirGroup]
   /// that takes in a [String]
@@ -198,15 +200,6 @@ class FhirGroup extends DomainResource {
 
   @override
   String get fhirType => 'FhirGroup';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// A unique business identifier for this group.
@@ -416,7 +409,7 @@ class GroupCharacteristic extends BackboneElement {
 
   GroupCharacteristic({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     this.valueCodeableConcept,
@@ -518,7 +511,8 @@ class GroupCharacteristic extends BackboneElement {
                 )
               : throw ArgumentError(
                   'GroupCharacteristic cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [GroupCharacteristic]
   /// that takes in a [String]
@@ -538,15 +532,6 @@ class GroupCharacteristic extends BackboneElement {
 
   @override
   String get fhirType => 'GroupCharacteristic';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// A code that identifies the kind of trait being asserted.
@@ -692,7 +677,7 @@ class GroupMember extends BackboneElement {
 
   GroupMember({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.entity,
     this.period,
@@ -763,8 +748,10 @@ class GroupMember extends BackboneElement {
               ? GroupMember.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('GroupMember cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'GroupMember cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [GroupMember]
   /// that takes in a [String]
@@ -784,15 +771,6 @@ class GroupMember extends BackboneElement {
 
   @override
   String get fhirType => 'GroupMember';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [entity]
   /// A reference to the entity that is a member of the group. Must be

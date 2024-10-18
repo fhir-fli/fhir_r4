@@ -17,7 +17,7 @@ class DetectedIssue extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -201,8 +201,10 @@ class DetectedIssue extends DomainResource {
               ? DetectedIssue.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('DetectedIssue cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'DetectedIssue cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DetectedIssue]
   /// that takes in a [String]
@@ -222,15 +224,6 @@ class DetectedIssue extends DomainResource {
 
   @override
   String get fhirType => 'DetectedIssue';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifier associated with the detected issue record.
@@ -473,7 +466,7 @@ class DetectedIssueEvidence extends BackboneElement {
 
   DetectedIssueEvidence({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.code,
     this.detail,
@@ -549,7 +542,8 @@ class DetectedIssueEvidence extends BackboneElement {
                 )
               : throw ArgumentError(
                   'DetectedIssueEvidence cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DetectedIssueEvidence]
   /// that takes in a [String]
@@ -569,15 +563,6 @@ class DetectedIssueEvidence extends BackboneElement {
 
   @override
   String get fhirType => 'DetectedIssueEvidence';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// A manifestation that led to the recording of this detected issue.
@@ -656,7 +641,7 @@ class DetectedIssueMitigation extends BackboneElement {
 
   DetectedIssueMitigation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.action,
     this.date,
@@ -729,7 +714,8 @@ class DetectedIssueMitigation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'DetectedIssueMitigation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DetectedIssueMitigation]
   /// that takes in a [String]
@@ -749,15 +735,6 @@ class DetectedIssueMitigation extends BackboneElement {
 
   @override
   String get fhirType => 'DetectedIssueMitigation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [action]
   /// Describes the action that was taken or the observation that was made

@@ -14,7 +14,7 @@ class NutritionProduct extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.status,
     this.category,
@@ -190,7 +190,8 @@ class NutritionProduct extends DomainResource {
                 )
               : throw ArgumentError(
                   'NutritionProduct cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [NutritionProduct]
   /// that takes in a [String]
@@ -210,15 +211,6 @@ class NutritionProduct extends DomainResource {
 
   @override
   String get fhirType => 'NutritionProduct';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [status]
   /// The current state of the product.
@@ -413,7 +405,7 @@ class NutritionProductNutrient extends BackboneElement {
 
   NutritionProductNutrient({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.item,
     this.amount,
@@ -485,7 +477,8 @@ class NutritionProductNutrient extends BackboneElement {
                 )
               : throw ArgumentError(
                   'NutritionProductNutrient cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [NutritionProductNutrient]
   /// that takes in a [String]
@@ -505,15 +498,6 @@ class NutritionProductNutrient extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionProductNutrient';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [item]
   /// The (relevant) nutrients in the product.
@@ -589,7 +573,7 @@ class NutritionProductIngredient extends BackboneElement {
 
   NutritionProductIngredient({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.item,
     this.amount,
@@ -659,7 +643,8 @@ class NutritionProductIngredient extends BackboneElement {
                 )
               : throw ArgumentError(
                   'NutritionProductIngredient cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [NutritionProductIngredient]
   /// that takes in a [String]
@@ -679,15 +664,6 @@ class NutritionProductIngredient extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionProductIngredient';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [item]
   /// The ingredient contained in the product.
@@ -760,7 +736,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
 
   NutritionProductProductCharacteristic({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.valueCodeableConcept,
@@ -859,7 +835,8 @@ class NutritionProductProductCharacteristic extends BackboneElement {
                 )
               : throw ArgumentError(
                   'NutritionProductProductCharacteristic cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [NutritionProductProductCharacteristic]
   /// that takes in a [String]
@@ -879,15 +856,6 @@ class NutritionProductProductCharacteristic extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionProductProductCharacteristic';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// A code specifying which characteristic of the product is being
@@ -1024,7 +992,7 @@ class NutritionProductInstance extends BackboneElement {
 
   NutritionProductInstance({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.quantity,
     this.identifier,
@@ -1117,7 +1085,8 @@ class NutritionProductInstance extends BackboneElement {
                 )
               : throw ArgumentError(
                   'NutritionProductInstance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [NutritionProductInstance]
   /// that takes in a [String]
@@ -1137,15 +1106,6 @@ class NutritionProductInstance extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionProductInstance';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [quantity]
   /// The amount of items or instances that the resource considers, for

@@ -16,7 +16,7 @@ class ConceptMap extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.identifier,
@@ -252,8 +252,10 @@ class ConceptMap extends DomainResource {
               ? ConceptMap.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ConceptMap cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ConceptMap cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ConceptMap]
   /// that takes in a [String]
@@ -273,15 +275,6 @@ class ConceptMap extends DomainResource {
 
   @override
   String get fhirType => 'ConceptMap';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this concept map when it is
@@ -665,7 +658,7 @@ class ConceptMapGroup extends BackboneElement {
 
   ConceptMapGroup({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.source,
     this.sourceVersion,
@@ -763,7 +756,8 @@ class ConceptMapGroup extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ConceptMapGroup cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ConceptMapGroup]
   /// that takes in a [String]
@@ -783,15 +777,6 @@ class ConceptMapGroup extends BackboneElement {
 
   @override
   String get fhirType => 'ConceptMapGroup';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [source]
   /// An absolute URI that identifies the source system where the concepts to
@@ -928,7 +913,7 @@ class ConceptMapElement extends BackboneElement {
 
   ConceptMapElement({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.code,
     this.display,
@@ -1008,7 +993,8 @@ class ConceptMapElement extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ConceptMapElement cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ConceptMapElement]
   /// that takes in a [String]
@@ -1028,15 +1014,6 @@ class ConceptMapElement extends BackboneElement {
 
   @override
   String get fhirType => 'ConceptMapElement';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// Identity (code or path) or the element/item being mapped.
@@ -1130,7 +1107,7 @@ class ConceptMapTarget extends BackboneElement {
 
   ConceptMapTarget({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.code,
     this.display,
@@ -1222,7 +1199,8 @@ class ConceptMapTarget extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ConceptMapTarget cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ConceptMapTarget]
   /// that takes in a [String]
@@ -1242,15 +1220,6 @@ class ConceptMapTarget extends BackboneElement {
 
   @override
   String get fhirType => 'ConceptMapTarget';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// Identity (code or path) or the element/item that the map refers to.
@@ -1373,7 +1342,7 @@ class ConceptMapDependsOn extends BackboneElement {
 
   ConceptMapDependsOn({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.property,
     this.system,
@@ -1453,7 +1422,8 @@ class ConceptMapDependsOn extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ConceptMapDependsOn cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ConceptMapDependsOn]
   /// that takes in a [String]
@@ -1473,15 +1443,6 @@ class ConceptMapDependsOn extends BackboneElement {
 
   @override
   String get fhirType => 'ConceptMapDependsOn';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [property]
   /// A reference to an element that holds a coded value that corresponds to
@@ -1596,7 +1557,7 @@ class ConceptMapUnmapped extends BackboneElement {
 
   ConceptMapUnmapped({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.mode,
     this.code,
@@ -1678,7 +1639,8 @@ class ConceptMapUnmapped extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ConceptMapUnmapped cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ConceptMapUnmapped]
   /// that takes in a [String]
@@ -1698,15 +1660,6 @@ class ConceptMapUnmapped extends BackboneElement {
 
   @override
   String get fhirType => 'ConceptMapUnmapped';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [mode]
   /// Defines which action to take if there is no match for the source

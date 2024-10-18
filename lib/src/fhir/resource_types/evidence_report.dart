@@ -17,7 +17,7 @@ class EvidenceReport extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     required this.status,
@@ -266,8 +266,10 @@ class EvidenceReport extends DomainResource {
               ? EvidenceReport.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('EvidenceReport cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'EvidenceReport cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EvidenceReport]
   /// that takes in a [String]
@@ -287,15 +289,6 @@ class EvidenceReport extends DomainResource {
 
   @override
   String get fhirType => 'EvidenceReport';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this EvidenceReport when it is
@@ -609,7 +602,7 @@ class EvidenceReportSubject extends BackboneElement {
 
   EvidenceReportSubject({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.characteristic,
     this.note,
@@ -685,7 +678,8 @@ class EvidenceReportSubject extends BackboneElement {
                 )
               : throw ArgumentError(
                   'EvidenceReportSubject cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EvidenceReportSubject]
   /// that takes in a [String]
@@ -705,15 +699,6 @@ class EvidenceReportSubject extends BackboneElement {
 
   @override
   String get fhirType => 'EvidenceReportSubject';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [characteristic]
   /// Characteristic.
@@ -788,7 +773,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
 
   EvidenceReportCharacteristic({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     this.valueReference,
@@ -892,7 +877,8 @@ class EvidenceReportCharacteristic extends BackboneElement {
                 )
               : throw ArgumentError(
                   'EvidenceReportCharacteristic cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EvidenceReportCharacteristic]
   /// that takes in a [String]
@@ -912,15 +898,6 @@ class EvidenceReportCharacteristic extends BackboneElement {
 
   @override
   String get fhirType => 'EvidenceReportCharacteristic';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// Characteristic code.
@@ -1062,7 +1039,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
 
   EvidenceReportRelatesTo({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     this.targetIdentifier,
@@ -1135,7 +1112,8 @@ class EvidenceReportRelatesTo extends BackboneElement {
                 )
               : throw ArgumentError(
                   'EvidenceReportRelatesTo cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EvidenceReportRelatesTo]
   /// that takes in a [String]
@@ -1155,15 +1133,6 @@ class EvidenceReportRelatesTo extends BackboneElement {
 
   @override
   String get fhirType => 'EvidenceReportRelatesTo';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// The type of relationship that this composition has with anther
@@ -1247,7 +1216,7 @@ class EvidenceReportSection extends BackboneElement {
 
   EvidenceReportSection({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.title,
     this.focus,
@@ -1397,7 +1366,8 @@ class EvidenceReportSection extends BackboneElement {
                 )
               : throw ArgumentError(
                   'EvidenceReportSection cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EvidenceReportSection]
   /// that takes in a [String]
@@ -1417,15 +1387,6 @@ class EvidenceReportSection extends BackboneElement {
 
   @override
   String get fhirType => 'EvidenceReportSection';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [title]
   /// The label for this particular section. This will be part of the

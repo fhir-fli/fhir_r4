@@ -15,7 +15,7 @@ class Condition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.clinicalStatus,
@@ -279,8 +279,10 @@ class Condition extends DomainResource {
               ? Condition.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Condition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Condition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Condition]
   /// that takes in a [String]
@@ -300,15 +302,6 @@ class Condition extends DomainResource {
 
   @override
   String get fhirType => 'Condition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifiers assigned to this condition by the performer or
@@ -700,7 +693,7 @@ class ConditionStage extends BackboneElement {
 
   ConditionStage({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.summary,
     this.assessment,
@@ -776,8 +769,10 @@ class ConditionStage extends BackboneElement {
               ? ConditionStage.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ConditionStage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ConditionStage cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ConditionStage]
   /// that takes in a [String]
@@ -797,15 +792,6 @@ class ConditionStage extends BackboneElement {
 
   @override
   String get fhirType => 'ConditionStage';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [summary]
   /// A simple summary of the stage such as "Stage 3". The determination of
@@ -894,7 +880,7 @@ class ConditionEvidence extends BackboneElement {
 
   ConditionEvidence({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.code,
     this.detail,
@@ -970,7 +956,8 @@ class ConditionEvidence extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ConditionEvidence cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ConditionEvidence]
   /// that takes in a [String]
@@ -990,15 +977,6 @@ class ConditionEvidence extends BackboneElement {
 
   @override
   String get fhirType => 'ConditionEvidence';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// A manifestation or symptom that led to the recording of this condition.

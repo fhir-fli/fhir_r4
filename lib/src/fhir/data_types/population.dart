@@ -9,7 +9,7 @@ class Population extends BackboneType {
 
   Population({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.ageRange,
     this.ageCodeableConcept,
@@ -93,8 +93,10 @@ class Population extends BackboneType {
               ? Population.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Population cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Population cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Population]
   /// that takes in a [String]
@@ -114,15 +116,6 @@ class Population extends BackboneType {
 
   @override
   String get fhirType => 'Population';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [ageRange]
   /// The age of the specific population.

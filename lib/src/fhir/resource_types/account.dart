@@ -16,7 +16,7 @@ class Account extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -186,8 +186,10 @@ class Account extends DomainResource {
               ? Account.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Account cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Account cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Account]
   /// that takes in a [String]
@@ -207,15 +209,6 @@ class Account extends DomainResource {
 
   @override
   String get fhirType => 'Account';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Unique identifier used to reference the account. Might or might not be
@@ -430,7 +423,7 @@ class AccountCoverage extends BackboneElement {
 
   AccountCoverage({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.coverage,
     this.priority,
@@ -497,7 +490,8 @@ class AccountCoverage extends BackboneElement {
                 )
               : throw ArgumentError(
                   'AccountCoverage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [AccountCoverage]
   /// that takes in a [String]
@@ -517,15 +511,6 @@ class AccountCoverage extends BackboneElement {
 
   @override
   String get fhirType => 'AccountCoverage';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [coverage]
   /// The party(s) that contribute to payment (or part of) of the charges
@@ -608,7 +593,7 @@ class AccountGuarantor extends BackboneElement {
 
   AccountGuarantor({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.party,
     this.onHold,
@@ -681,7 +666,8 @@ class AccountGuarantor extends BackboneElement {
                 )
               : throw ArgumentError(
                   'AccountGuarantor cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [AccountGuarantor]
   /// that takes in a [String]
@@ -701,15 +687,6 @@ class AccountGuarantor extends BackboneElement {
 
   @override
   String get fhirType => 'AccountGuarantor';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [party]
   /// The entity who is responsible.

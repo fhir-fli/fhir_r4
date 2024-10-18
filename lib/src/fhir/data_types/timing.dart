@@ -14,7 +14,7 @@ class Timing extends BackboneType {
 
   Timing({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.event,
     this.repeat,
@@ -86,8 +86,10 @@ class Timing extends BackboneType {
               ? Timing.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Timing cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Timing cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Timing]
   /// that takes in a [String]
@@ -107,15 +109,6 @@ class Timing extends BackboneType {
 
   @override
   String get fhirType => 'Timing';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [event]
   /// Identifies specific times when the event occurs.
@@ -210,7 +203,7 @@ class TimingRepeat extends Element {
 
   TimingRepeat({
     super.id,
-    this.extension_,
+    super.extension_,
     this.boundsDuration,
     this.boundsRange,
     this.boundsPeriod,
@@ -367,8 +360,10 @@ class TimingRepeat extends Element {
               ? TimingRepeat.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('TimingRepeat cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'TimingRepeat cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TimingRepeat]
   /// that takes in a [String]
@@ -388,15 +383,6 @@ class TimingRepeat extends Element {
 
   @override
   String get fhirType => 'TimingRepeat';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [boundsDuration]
   /// Either a duration for the length of the timing schedule, a range of

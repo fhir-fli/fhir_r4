@@ -17,7 +17,7 @@ class AdverseEvent extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.actuality,
@@ -252,8 +252,10 @@ class AdverseEvent extends DomainResource {
               ? AdverseEvent.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('AdverseEvent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'AdverseEvent cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [AdverseEvent]
   /// that takes in a [String]
@@ -273,15 +275,6 @@ class AdverseEvent extends DomainResource {
 
   @override
   String get fhirType => 'AdverseEvent';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifiers assigned to this adverse event by the performer or
@@ -602,7 +595,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
 
   AdverseEventSuspectEntity({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.instance,
     this.causality,
@@ -672,7 +665,8 @@ class AdverseEventSuspectEntity extends BackboneElement {
                 )
               : throw ArgumentError(
                   'AdverseEventSuspectEntity cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [AdverseEventSuspectEntity]
   /// that takes in a [String]
@@ -692,15 +686,6 @@ class AdverseEventSuspectEntity extends BackboneElement {
 
   @override
   String get fhirType => 'AdverseEventSuspectEntity';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [instance]
   /// Identifies the actual instance of what caused the adverse event. May be
@@ -775,7 +760,7 @@ class AdverseEventCausality extends BackboneElement {
 
   AdverseEventCausality({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.assessment,
     this.productRelatedness,
@@ -856,7 +841,8 @@ class AdverseEventCausality extends BackboneElement {
                 )
               : throw ArgumentError(
                   'AdverseEventCausality cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [AdverseEventCausality]
   /// that takes in a [String]
@@ -876,15 +862,6 @@ class AdverseEventCausality extends BackboneElement {
 
   @override
   String get fhirType => 'AdverseEventCausality';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [assessment]
   /// Assessment of if the entity caused the event.

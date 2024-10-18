@@ -15,7 +15,7 @@ class NutritionOrder extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
@@ -223,8 +223,10 @@ class NutritionOrder extends DomainResource {
               ? NutritionOrder.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('NutritionOrder cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'NutritionOrder cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [NutritionOrder]
   /// that takes in a [String]
@@ -244,15 +246,6 @@ class NutritionOrder extends DomainResource {
 
   @override
   String get fhirType => 'NutritionOrder';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifiers assigned to this order by the order sender or by the order
@@ -554,7 +547,7 @@ class NutritionOrderOralDiet extends BackboneElement {
 
   NutritionOrderOralDiet({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.schedule,
@@ -667,7 +660,8 @@ class NutritionOrderOralDiet extends BackboneElement {
                 )
               : throw ArgumentError(
                   'NutritionOrderOralDiet cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [NutritionOrderOralDiet]
   /// that takes in a [String]
@@ -687,15 +681,6 @@ class NutritionOrderOralDiet extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionOrderOralDiet';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The kind of diet or dietary restriction such as fiber restricted diet
@@ -823,7 +808,7 @@ class NutritionOrderNutrient extends BackboneElement {
 
   NutritionOrderNutrient({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.modifier,
     this.amount,
@@ -891,7 +876,8 @@ class NutritionOrderNutrient extends BackboneElement {
                 )
               : throw ArgumentError(
                   'NutritionOrderNutrient cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [NutritionOrderNutrient]
   /// that takes in a [String]
@@ -911,15 +897,6 @@ class NutritionOrderNutrient extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionOrderNutrient';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [modifier]
   /// The nutrient that is being modified such as carbohydrate or sodium.
@@ -995,7 +972,7 @@ class NutritionOrderTexture extends BackboneElement {
 
   NutritionOrderTexture({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.modifier,
     this.foodType,
@@ -1063,7 +1040,8 @@ class NutritionOrderTexture extends BackboneElement {
                 )
               : throw ArgumentError(
                   'NutritionOrderTexture cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [NutritionOrderTexture]
   /// that takes in a [String]
@@ -1083,15 +1061,6 @@ class NutritionOrderTexture extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionOrderTexture';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [modifier]
   /// Any texture modifications (for solid foods) that should be made, e.g.
@@ -1169,7 +1138,7 @@ class NutritionOrderSupplement extends BackboneElement {
 
   NutritionOrderSupplement({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.productName,
@@ -1261,7 +1230,8 @@ class NutritionOrderSupplement extends BackboneElement {
                 )
               : throw ArgumentError(
                   'NutritionOrderSupplement cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [NutritionOrderSupplement]
   /// that takes in a [String]
@@ -1281,15 +1251,6 @@ class NutritionOrderSupplement extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionOrderSupplement';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The kind of nutritional supplement product required such as a high
@@ -1408,7 +1369,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
 
   NutritionOrderEnteralFormula({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.baseFormulaType,
     this.baseFormulaProductName,
@@ -1518,7 +1479,8 @@ class NutritionOrderEnteralFormula extends BackboneElement {
                 )
               : throw ArgumentError(
                   'NutritionOrderEnteralFormula cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [NutritionOrderEnteralFormula]
   /// that takes in a [String]
@@ -1538,15 +1500,6 @@ class NutritionOrderEnteralFormula extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionOrderEnteralFormula';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [baseFormulaType]
   /// The type of enteral or infant formula such as an adult standard formula
@@ -1710,7 +1663,7 @@ class NutritionOrderAdministration extends BackboneElement {
 
   NutritionOrderAdministration({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.schedule,
     this.quantity,
@@ -1797,7 +1750,8 @@ class NutritionOrderAdministration extends BackboneElement {
                 )
               : throw ArgumentError(
                   'NutritionOrderAdministration cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [NutritionOrderAdministration]
   /// that takes in a [String]
@@ -1817,15 +1771,6 @@ class NutritionOrderAdministration extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionOrderAdministration';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [schedule]
   /// The time period and frequency at which the enteral formula should be

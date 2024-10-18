@@ -116,8 +116,10 @@ class Bundle extends Resource {
               ? Bundle.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Bundle cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Bundle cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Bundle]
   /// that takes in a [String]
@@ -283,7 +285,7 @@ class BundleLink extends BackboneElement {
 
   BundleLink({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.relation,
     required this.url,
@@ -347,8 +349,10 @@ class BundleLink extends BackboneElement {
               ? BundleLink.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('BundleLink cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'BundleLink cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [BundleLink]
   /// that takes in a [String]
@@ -368,15 +372,6 @@ class BundleLink extends BackboneElement {
 
   @override
   String get fhirType => 'BundleLink';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [relation]
   /// A name which details the functional use for this link - see
@@ -457,7 +452,7 @@ class BundleEntry extends BackboneElement {
 
   BundleEntry({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.link,
     this.fullUrl,
@@ -552,8 +547,10 @@ class BundleEntry extends BackboneElement {
               ? BundleEntry.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('BundleEntry cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'BundleEntry cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [BundleEntry]
   /// that takes in a [String]
@@ -573,15 +570,6 @@ class BundleEntry extends BackboneElement {
 
   @override
   String get fhirType => 'BundleEntry';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [link]
   /// A series of links that provide context to this entry.
@@ -715,7 +703,7 @@ class BundleSearch extends BackboneElement {
 
   BundleSearch({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.mode,
     this.score,
@@ -783,8 +771,10 @@ class BundleSearch extends BackboneElement {
               ? BundleSearch.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('BundleSearch cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'BundleSearch cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [BundleSearch]
   /// that takes in a [String]
@@ -804,15 +794,6 @@ class BundleSearch extends BackboneElement {
 
   @override
   String get fhirType => 'BundleSearch';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [mode]
   /// Why this entry is in the result set - whether it's included as a match
@@ -895,7 +876,7 @@ class BundleRequest extends BackboneElement {
 
   BundleRequest({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.method,
     required this.url,
@@ -987,8 +968,10 @@ class BundleRequest extends BackboneElement {
               ? BundleRequest.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('BundleRequest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'BundleRequest cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [BundleRequest]
   /// that takes in a [String]
@@ -1008,15 +991,6 @@ class BundleRequest extends BackboneElement {
 
   @override
   String get fhirType => 'BundleRequest';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [method]
   /// In a transaction or batch, this is the HTTP action to be executed for
@@ -1159,7 +1133,7 @@ class BundleResponse extends BackboneElement {
 
   BundleResponse({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.status,
     this.location,
@@ -1245,8 +1219,10 @@ class BundleResponse extends BackboneElement {
               ? BundleResponse.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('BundleResponse cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'BundleResponse cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [BundleResponse]
   /// that takes in a [String]
@@ -1266,15 +1242,6 @@ class BundleResponse extends BackboneElement {
 
   @override
   String get fhirType => 'BundleResponse';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [status]
   /// The status code returned by processing this entry. The status SHALL

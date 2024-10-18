@@ -18,7 +18,7 @@ class ImplementationGuide extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.url,
     this.version,
@@ -251,7 +251,8 @@ class ImplementationGuide extends DomainResource {
                 )
               : throw ArgumentError(
                   'ImplementationGuide cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImplementationGuide]
   /// that takes in a [String]
@@ -271,15 +272,6 @@ class ImplementationGuide extends DomainResource {
 
   @override
   String get fhirType => 'ImplementationGuide';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this implementation guide when
@@ -644,7 +636,7 @@ class ImplementationGuideDependsOn extends BackboneElement {
 
   ImplementationGuideDependsOn({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.uri,
     this.packageId,
@@ -719,7 +711,8 @@ class ImplementationGuideDependsOn extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImplementationGuideDependsOn cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImplementationGuideDependsOn]
   /// that takes in a [String]
@@ -739,15 +732,6 @@ class ImplementationGuideDependsOn extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuideDependsOn';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [uri]
   /// A canonical reference to the Implementation guide for the dependency.
@@ -845,7 +829,7 @@ class ImplementationGuideGlobal extends BackboneElement {
 
   ImplementationGuideGlobal({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     required this.profile,
@@ -911,7 +895,8 @@ class ImplementationGuideGlobal extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImplementationGuideGlobal cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImplementationGuideGlobal]
   /// that takes in a [String]
@@ -931,15 +916,6 @@ class ImplementationGuideGlobal extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuideGlobal';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The type of resource that all instances must conform to.
@@ -1019,7 +995,7 @@ class ImplementationGuideDefinition extends BackboneElement {
 
   ImplementationGuideDefinition({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.grouping,
     required this.resource,
@@ -1119,7 +1095,8 @@ class ImplementationGuideDefinition extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImplementationGuideDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImplementationGuideDefinition]
   /// that takes in a [String]
@@ -1139,15 +1116,6 @@ class ImplementationGuideDefinition extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuideDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [grouping]
   /// A logical group of resources. Logical groups can be used when building
@@ -1256,7 +1224,7 @@ class ImplementationGuideGrouping extends BackboneElement {
 
   ImplementationGuideGrouping({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     this.description,
@@ -1324,7 +1292,8 @@ class ImplementationGuideGrouping extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImplementationGuideGrouping cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImplementationGuideGrouping]
   /// that takes in a [String]
@@ -1344,15 +1313,6 @@ class ImplementationGuideGrouping extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuideGrouping';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// The human-readable title to display for the package of resources when
@@ -1437,7 +1397,7 @@ class ImplementationGuideResource extends BackboneElement {
 
   ImplementationGuideResource({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.reference,
     this.fhirVersion,
@@ -1538,7 +1498,8 @@ class ImplementationGuideResource extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImplementationGuideResource cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImplementationGuideResource]
   /// that takes in a [String]
@@ -1558,15 +1519,6 @@ class ImplementationGuideResource extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuideResource';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [reference]
   /// Where this resource is found.
@@ -1719,7 +1671,7 @@ class ImplementationGuidePage extends BackboneElement {
 
   ImplementationGuidePage({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.nameUrl,
     this.nameReference,
@@ -1798,7 +1750,8 @@ class ImplementationGuidePage extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImplementationGuidePage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImplementationGuidePage]
   /// that takes in a [String]
@@ -1818,15 +1771,6 @@ class ImplementationGuidePage extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuidePage';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [nameUrl]
   /// The source address for the page.
@@ -1926,7 +1870,7 @@ class ImplementationGuideParameter extends BackboneElement {
 
   ImplementationGuideParameter({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     required this.value,
@@ -1992,7 +1936,8 @@ class ImplementationGuideParameter extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImplementationGuideParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImplementationGuideParameter]
   /// that takes in a [String]
@@ -2012,15 +1957,6 @@ class ImplementationGuideParameter extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuideParameter';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// apply | path-resource | path-pages | path-tx-cache |
@@ -2097,7 +2033,7 @@ class ImplementationGuideTemplate extends BackboneElement {
 
   ImplementationGuideTemplate({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     required this.source,
@@ -2170,7 +2106,8 @@ class ImplementationGuideTemplate extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImplementationGuideTemplate cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImplementationGuideTemplate]
   /// that takes in a [String]
@@ -2190,15 +2127,6 @@ class ImplementationGuideTemplate extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuideTemplate';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// Type of template specified.
@@ -2292,7 +2220,7 @@ class ImplementationGuideManifest extends BackboneElement {
 
   ImplementationGuideManifest({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.rendering,
     required this.resource,
@@ -2385,7 +2313,8 @@ class ImplementationGuideManifest extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImplementationGuideManifest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImplementationGuideManifest]
   /// that takes in a [String]
@@ -2405,15 +2334,6 @@ class ImplementationGuideManifest extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuideManifest';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [rendering]
   /// A pointer to official web page, PDF or other rendering of the
@@ -2537,7 +2457,7 @@ class ImplementationGuideResource1 extends BackboneElement {
 
   ImplementationGuideResource1({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.reference,
     this.exampleBoolean,
@@ -2618,7 +2538,8 @@ class ImplementationGuideResource1 extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImplementationGuideResource1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImplementationGuideResource1]
   /// that takes in a [String]
@@ -2638,15 +2559,6 @@ class ImplementationGuideResource1 extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuideResource1';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [reference]
   /// Where this resource is found.
@@ -2755,7 +2667,7 @@ class ImplementationGuidePage1 extends BackboneElement {
 
   ImplementationGuidePage1({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     this.title,
@@ -2829,7 +2741,8 @@ class ImplementationGuidePage1 extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImplementationGuidePage1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImplementationGuidePage1]
   /// that takes in a [String]
@@ -2849,15 +2762,6 @@ class ImplementationGuidePage1 extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuidePage1';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// Relative path to the page.

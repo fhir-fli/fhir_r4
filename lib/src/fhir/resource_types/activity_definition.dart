@@ -16,7 +16,7 @@ class ActivityDefinition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.identifier,
@@ -518,7 +518,8 @@ class ActivityDefinition extends DomainResource {
                 )
               : throw ArgumentError(
                   'ActivityDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ActivityDefinition]
   /// that takes in a [String]
@@ -538,15 +539,6 @@ class ActivityDefinition extends DomainResource {
 
   @override
   String get fhirType => 'ActivityDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this activity definition when
@@ -1361,7 +1353,7 @@ class ActivityDefinitionParticipant extends BackboneElement {
 
   ActivityDefinitionParticipant({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.role,
@@ -1428,7 +1420,8 @@ class ActivityDefinitionParticipant extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ActivityDefinitionParticipant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ActivityDefinitionParticipant]
   /// that takes in a [String]
@@ -1448,15 +1441,6 @@ class ActivityDefinitionParticipant extends BackboneElement {
 
   @override
   String get fhirType => 'ActivityDefinitionParticipant';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The type of participant in the action.
@@ -1534,7 +1518,7 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
 
   ActivityDefinitionDynamicValue({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.path,
     required this.expression,
@@ -1599,7 +1583,8 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ActivityDefinitionDynamicValue cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ActivityDefinitionDynamicValue]
   /// that takes in a [String]
@@ -1619,15 +1604,6 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
 
   @override
   String get fhirType => 'ActivityDefinitionDynamicValue';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [path]
   /// The path to the element to be customized. This is the path on the

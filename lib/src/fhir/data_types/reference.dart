@@ -9,7 +9,7 @@ class Reference extends DataType {
 
   Reference({
     super.id,
-    this.extension_,
+    super.extension_,
     this.reference,
     this.type,
     this.identifier,
@@ -80,8 +80,10 @@ class Reference extends DataType {
               ? Reference.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Reference cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Reference cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Reference]
   /// that takes in a [String]
@@ -101,15 +103,6 @@ class Reference extends DataType {
 
   @override
   String get fhirType => 'Reference';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [reference]
   /// A reference to a location at which the other resource is found. The

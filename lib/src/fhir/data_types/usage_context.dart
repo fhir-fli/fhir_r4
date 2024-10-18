@@ -12,7 +12,7 @@ class UsageContext extends DataType {
 
   UsageContext({
     super.id,
-    this.extension_,
+    super.extension_,
     required this.code,
     this.valueCodeableConcept,
     this.valueQuantity,
@@ -84,8 +84,10 @@ class UsageContext extends DataType {
               ? UsageContext.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('UsageContext cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'UsageContext cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [UsageContext]
   /// that takes in a [String]
@@ -105,15 +107,6 @@ class UsageContext extends DataType {
 
   @override
   String get fhirType => 'UsageContext';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// A code that identifies the type of context being specified by this

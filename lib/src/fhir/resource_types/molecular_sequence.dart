@@ -14,7 +14,7 @@ class MolecularSequence extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.type,
@@ -225,7 +225,8 @@ class MolecularSequence extends DomainResource {
                 )
               : throw ArgumentError(
                   'MolecularSequence cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MolecularSequence]
   /// that takes in a [String]
@@ -245,15 +246,6 @@ class MolecularSequence extends DomainResource {
 
   @override
   String get fhirType => 'MolecularSequence';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// A unique identifier for this particular sequence instance. This is a
@@ -529,7 +521,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
 
   MolecularSequenceReferenceSeq({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.chromosome,
     this.genomeBuild,
@@ -645,7 +637,8 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MolecularSequenceReferenceSeq cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MolecularSequenceReferenceSeq]
   /// that takes in a [String]
@@ -665,15 +658,6 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
 
   @override
   String get fhirType => 'MolecularSequenceReferenceSeq';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [chromosome]
   /// Structural unit composed of a nucleic acid molecule which controls its
@@ -856,7 +840,7 @@ class MolecularSequenceVariant extends BackboneElement {
 
   MolecularSequenceVariant({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.start,
     this.end,
@@ -953,7 +937,8 @@ class MolecularSequenceVariant extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MolecularSequenceVariant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MolecularSequenceVariant]
   /// that takes in a [String]
@@ -973,15 +958,6 @@ class MolecularSequenceVariant extends BackboneElement {
 
   @override
   String get fhirType => 'MolecularSequenceVariant';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [start]
   /// Start position of the variant on the reference sequence. If the
@@ -1137,7 +1113,7 @@ class MolecularSequenceQuality extends BackboneElement {
 
   MolecularSequenceQuality({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.standardSequence,
@@ -1292,7 +1268,8 @@ class MolecularSequenceQuality extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MolecularSequenceQuality cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MolecularSequenceQuality]
   /// that takes in a [String]
@@ -1312,15 +1289,6 @@ class MolecularSequenceQuality extends BackboneElement {
 
   @override
   String get fhirType => 'MolecularSequenceQuality';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// INDEL / SNP / Undefined variant.
@@ -1586,7 +1554,7 @@ class MolecularSequenceRoc extends BackboneElement {
 
   MolecularSequenceRoc({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.score,
     this.numTP,
@@ -1684,7 +1652,8 @@ class MolecularSequenceRoc extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MolecularSequenceRoc cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MolecularSequenceRoc]
   /// that takes in a [String]
@@ -1704,15 +1673,6 @@ class MolecularSequenceRoc extends BackboneElement {
 
   @override
   String get fhirType => 'MolecularSequenceRoc';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [score]
   /// Invidual data point representing the GQ (genotype quality) score
@@ -1873,7 +1833,7 @@ class MolecularSequenceRepository extends BackboneElement {
 
   MolecularSequenceRepository({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.url,
@@ -1969,7 +1929,8 @@ class MolecularSequenceRepository extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MolecularSequenceRepository cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MolecularSequenceRepository]
   /// that takes in a [String]
@@ -1989,15 +1950,6 @@ class MolecularSequenceRepository extends BackboneElement {
 
   @override
   String get fhirType => 'MolecularSequenceRepository';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Click and see / RESTful API / Need login to see / RESTful API with
@@ -2137,7 +2089,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
 
   MolecularSequenceStructureVariant({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.variantType,
     this.exact,
@@ -2225,7 +2177,8 @@ class MolecularSequenceStructureVariant extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MolecularSequenceStructureVariant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MolecularSequenceStructureVariant]
   /// that takes in a [String]
@@ -2245,15 +2198,6 @@ class MolecularSequenceStructureVariant extends BackboneElement {
 
   @override
   String get fhirType => 'MolecularSequenceStructureVariant';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [variantType]
   /// Information about chromosome structure variation DNA change type.
@@ -2367,7 +2311,7 @@ class MolecularSequenceOuter extends BackboneElement {
 
   MolecularSequenceOuter({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.start,
     this.end,
@@ -2437,7 +2381,8 @@ class MolecularSequenceOuter extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MolecularSequenceOuter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MolecularSequenceOuter]
   /// that takes in a [String]
@@ -2457,15 +2402,6 @@ class MolecularSequenceOuter extends BackboneElement {
 
   @override
   String get fhirType => 'MolecularSequenceOuter';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [start]
   /// Structural variant outer start. If the coordinate system is either
@@ -2552,7 +2488,7 @@ class MolecularSequenceInner extends BackboneElement {
 
   MolecularSequenceInner({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.start,
     this.end,
@@ -2622,7 +2558,8 @@ class MolecularSequenceInner extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MolecularSequenceInner cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MolecularSequenceInner]
   /// that takes in a [String]
@@ -2642,15 +2579,6 @@ class MolecularSequenceInner extends BackboneElement {
 
   @override
   String get fhirType => 'MolecularSequenceInner';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [start]
   /// Structural variant inner start. If the coordinate system is either

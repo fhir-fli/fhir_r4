@@ -23,7 +23,7 @@ class Composition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -218,8 +218,10 @@ class Composition extends DomainResource {
               ? Composition.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Composition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Composition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Composition]
   /// that takes in a [String]
@@ -239,15 +241,6 @@ class Composition extends DomainResource {
 
   @override
   String get fhirType => 'Composition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// A version-independent identifier for the Composition. This identifier
@@ -506,7 +499,7 @@ class CompositionAttester extends BackboneElement {
 
   CompositionAttester({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.mode,
     this.time,
@@ -580,7 +573,8 @@ class CompositionAttester extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CompositionAttester cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CompositionAttester]
   /// that takes in a [String]
@@ -600,15 +594,6 @@ class CompositionAttester extends BackboneElement {
 
   @override
   String get fhirType => 'CompositionAttester';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [mode]
   /// The type of attestation the authenticator offers.
@@ -696,7 +681,7 @@ class CompositionRelatesTo extends BackboneElement {
 
   CompositionRelatesTo({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     this.targetIdentifier,
@@ -769,7 +754,8 @@ class CompositionRelatesTo extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CompositionRelatesTo cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CompositionRelatesTo]
   /// that takes in a [String]
@@ -789,15 +775,6 @@ class CompositionRelatesTo extends BackboneElement {
 
   @override
   String get fhirType => 'CompositionRelatesTo';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// The type of relationship that this composition has with anther
@@ -882,7 +859,7 @@ class CompositionEvent extends BackboneElement {
 
   CompositionEvent({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.code,
     this.period,
@@ -964,7 +941,8 @@ class CompositionEvent extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CompositionEvent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CompositionEvent]
   /// that takes in a [String]
@@ -984,15 +962,6 @@ class CompositionEvent extends BackboneElement {
 
   @override
   String get fhirType => 'CompositionEvent';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// This list of codes represents the main clinical acts, such as a
@@ -1085,7 +1054,7 @@ class CompositionSection extends BackboneElement {
 
   CompositionSection({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.title,
     this.code,
@@ -1215,7 +1184,8 @@ class CompositionSection extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CompositionSection cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CompositionSection]
   /// that takes in a [String]
@@ -1235,15 +1205,6 @@ class CompositionSection extends BackboneElement {
 
   @override
   String get fhirType => 'CompositionSection';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [title]
   /// The label for this particular section. This will be part of the

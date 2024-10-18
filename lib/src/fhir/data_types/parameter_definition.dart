@@ -12,7 +12,7 @@ class ParameterDefinition extends DataType {
 
   ParameterDefinition({
     super.id,
-    this.extension_,
+    super.extension_,
     this.name,
     required this.use,
     this.min,
@@ -103,7 +103,8 @@ class ParameterDefinition extends DataType {
                 )
               : throw ArgumentError(
                   'ParameterDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ParameterDefinition]
   /// that takes in a [String]
@@ -123,15 +124,6 @@ class ParameterDefinition extends DataType {
 
   @override
   String get fhirType => 'ParameterDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// The name of the parameter used to allow access to the value of the

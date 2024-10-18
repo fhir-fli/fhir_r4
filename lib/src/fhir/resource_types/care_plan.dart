@@ -17,7 +17,7 @@ class CarePlan extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
@@ -289,8 +289,10 @@ class CarePlan extends DomainResource {
               ? CarePlan.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('CarePlan cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'CarePlan cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CarePlan]
   /// that takes in a [String]
@@ -310,15 +312,6 @@ class CarePlan extends DomainResource {
 
   @override
   String get fhirType => 'CarePlan';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifiers assigned to this care plan by the performer or
@@ -681,7 +674,7 @@ class CarePlanActivity extends BackboneElement {
 
   CarePlanActivity({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.outcomeCodeableConcept,
     this.outcomeReference,
@@ -779,7 +772,8 @@ class CarePlanActivity extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CarePlanActivity cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CarePlanActivity]
   /// that takes in a [String]
@@ -799,15 +793,6 @@ class CarePlanActivity extends BackboneElement {
 
   @override
   String get fhirType => 'CarePlanActivity';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [outcomeCodeableConcept]
   /// Identifies the outcome at the point when the status of the activity is
@@ -926,7 +911,7 @@ class CarePlanDetail extends BackboneElement {
 
   CarePlanDetail({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.kind,
     this.instantiatesCanonical,
@@ -1119,8 +1104,10 @@ class CarePlanDetail extends BackboneElement {
               ? CarePlanDetail.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('CarePlanDetail cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'CarePlanDetail cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CarePlanDetail]
   /// that takes in a [String]
@@ -1140,15 +1127,6 @@ class CarePlanDetail extends BackboneElement {
 
   @override
   String get fhirType => 'CarePlanDetail';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [kind]
   /// A description of the kind of resource the in-line definition of a care

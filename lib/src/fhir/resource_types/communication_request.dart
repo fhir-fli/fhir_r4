@@ -16,7 +16,7 @@ class CommunicationRequest extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.basedOn,
@@ -290,7 +290,8 @@ class CommunicationRequest extends DomainResource {
                 )
               : throw ArgumentError(
                   'CommunicationRequest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CommunicationRequest]
   /// that takes in a [String]
@@ -310,15 +311,6 @@ class CommunicationRequest extends DomainResource {
 
   @override
   String get fhirType => 'CommunicationRequest';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifiers assigned to this communication request by the
@@ -668,7 +660,7 @@ class CommunicationRequestPayload extends BackboneElement {
 
   CommunicationRequestPayload({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.contentString,
     this.contentAttachment,
@@ -743,7 +735,8 @@ class CommunicationRequestPayload extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CommunicationRequestPayload cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CommunicationRequestPayload]
   /// that takes in a [String]
@@ -763,15 +756,6 @@ class CommunicationRequestPayload extends BackboneElement {
 
   @override
   String get fhirType => 'CommunicationRequestPayload';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [contentString]
   /// The communicated content (or for multi-part communications, one portion

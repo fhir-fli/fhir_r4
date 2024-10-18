@@ -10,7 +10,7 @@ class DataRequirement extends DataType {
 
   DataRequirement({
     super.id,
-    this.extension_,
+    super.extension_,
     required this.type,
     this.profile,
     this.subjectCodeableConcept,
@@ -122,7 +122,8 @@ class DataRequirement extends DataType {
                 )
               : throw ArgumentError(
                   'DataRequirement cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DataRequirement]
   /// that takes in a [String]
@@ -142,15 +143,6 @@ class DataRequirement extends DataType {
 
   @override
   String get fhirType => 'DataRequirement';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The type of the required data, specified as the type name of a
@@ -324,7 +316,7 @@ class DataRequirementCodeFilter extends Element {
 
   DataRequirementCodeFilter({
     super.id,
-    this.extension_,
+    super.extension_,
     this.path,
     this.searchParam,
     this.valueSet,
@@ -401,7 +393,8 @@ class DataRequirementCodeFilter extends Element {
                 )
               : throw ArgumentError(
                   'DataRequirementCodeFilter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DataRequirementCodeFilter]
   /// that takes in a [String]
@@ -421,15 +414,6 @@ class DataRequirementCodeFilter extends Element {
 
   @override
   String get fhirType => 'DataRequirementCodeFilter';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [path]
   /// The code-valued attribute of the filter. The specified path SHALL be a
@@ -548,7 +532,7 @@ class DataRequirementDateFilter extends Element {
 
   DataRequirementDateFilter({
     super.id,
-    this.extension_,
+    super.extension_,
     this.path,
     this.searchParam,
     this.valueDateTime,
@@ -627,7 +611,8 @@ class DataRequirementDateFilter extends Element {
                 )
               : throw ArgumentError(
                   'DataRequirementDateFilter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DataRequirementDateFilter]
   /// that takes in a [String]
@@ -647,15 +632,6 @@ class DataRequirementDateFilter extends Element {
 
   @override
   String get fhirType => 'DataRequirementDateFilter';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [path]
   /// The date-valued attribute of the filter. The specified path SHALL be a
@@ -790,7 +766,7 @@ class DataRequirementSort extends Element {
 
   DataRequirementSort({
     super.id,
-    this.extension_,
+    super.extension_,
     required this.path,
     required this.direction,
     super.userData,
@@ -846,7 +822,8 @@ class DataRequirementSort extends Element {
                 )
               : throw ArgumentError(
                   'DataRequirementSort cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DataRequirementSort]
   /// that takes in a [String]
@@ -866,15 +843,6 @@ class DataRequirementSort extends Element {
 
   @override
   String get fhirType => 'DataRequirementSort';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [path]
   /// The attribute of the sort. The specified path must be resolvable from

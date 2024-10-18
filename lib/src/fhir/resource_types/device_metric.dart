@@ -15,7 +15,7 @@ class DeviceMetric extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.type,
@@ -169,8 +169,10 @@ class DeviceMetric extends DomainResource {
               ? DeviceMetric.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('DeviceMetric cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'DeviceMetric cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DeviceMetric]
   /// that takes in a [String]
@@ -190,15 +192,6 @@ class DeviceMetric extends DomainResource {
 
   @override
   String get fhirType => 'DeviceMetric';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Unique instance identifiers assigned to a device by the device or
@@ -411,7 +404,7 @@ class DeviceMetricCalibration extends BackboneElement {
 
   DeviceMetricCalibration({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.state,
@@ -488,7 +481,8 @@ class DeviceMetricCalibration extends BackboneElement {
                 )
               : throw ArgumentError(
                   'DeviceMetricCalibration cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DeviceMetricCalibration]
   /// that takes in a [String]
@@ -508,15 +502,6 @@ class DeviceMetricCalibration extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceMetricCalibration';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Describes the type of the calibration method.

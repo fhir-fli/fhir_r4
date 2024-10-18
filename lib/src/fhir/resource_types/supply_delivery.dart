@@ -14,7 +14,7 @@ class SupplyDelivery extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.basedOn,
@@ -197,8 +197,10 @@ class SupplyDelivery extends DomainResource {
               ? SupplyDelivery.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('SupplyDelivery cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'SupplyDelivery cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SupplyDelivery]
   /// that takes in a [String]
@@ -218,15 +220,6 @@ class SupplyDelivery extends DomainResource {
 
   @override
   String get fhirType => 'SupplyDelivery';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifier for the supply delivery event that is used to identify it
@@ -457,7 +450,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
 
   SupplyDeliverySuppliedItem({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.quantity,
     this.itemCodeableConcept,
@@ -531,7 +524,8 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SupplyDeliverySuppliedItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SupplyDeliverySuppliedItem]
   /// that takes in a [String]
@@ -551,15 +545,6 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
 
   @override
   String get fhirType => 'SupplyDeliverySuppliedItem';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [quantity]
   /// The amount of supply that has been dispensed. Includes unit of measure.

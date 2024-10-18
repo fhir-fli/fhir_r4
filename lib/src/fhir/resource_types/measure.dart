@@ -14,7 +14,7 @@ class Measure extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.identifier,
@@ -425,8 +425,10 @@ class Measure extends DomainResource {
               ? Measure.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Measure cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Measure cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Measure]
   /// that takes in a [String]
@@ -446,15 +448,6 @@ class Measure extends DomainResource {
 
   @override
   String get fhirType => 'Measure';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this measure when it is
@@ -1127,7 +1120,7 @@ class MeasureGroup extends BackboneElement {
 
   MeasureGroup({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.code,
     this.description,
@@ -1214,8 +1207,10 @@ class MeasureGroup extends BackboneElement {
               ? MeasureGroup.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('MeasureGroup cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'MeasureGroup cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MeasureGroup]
   /// that takes in a [String]
@@ -1235,15 +1230,6 @@ class MeasureGroup extends BackboneElement {
 
   @override
   String get fhirType => 'MeasureGroup';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// Indicates a meaning for the group. This can be as simple as a unique
@@ -1346,7 +1332,7 @@ class MeasurePopulation extends BackboneElement {
 
   MeasurePopulation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.code,
     this.description,
@@ -1419,7 +1405,8 @@ class MeasurePopulation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MeasurePopulation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MeasurePopulation]
   /// that takes in a [String]
@@ -1439,15 +1426,6 @@ class MeasurePopulation extends BackboneElement {
 
   @override
   String get fhirType => 'MeasurePopulation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// The type of population criteria.
@@ -1537,7 +1515,7 @@ class MeasureStratifier extends BackboneElement {
 
   MeasureStratifier({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.code,
     this.description,
@@ -1622,7 +1600,8 @@ class MeasureStratifier extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MeasureStratifier cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MeasureStratifier]
   /// that takes in a [String]
@@ -1642,15 +1621,6 @@ class MeasureStratifier extends BackboneElement {
 
   @override
   String get fhirType => 'MeasureStratifier';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// Indicates a meaning for the stratifier. This can be as simple as a
@@ -1758,7 +1728,7 @@ class MeasureComponent extends BackboneElement {
 
   MeasureComponent({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.code,
     this.description,
@@ -1831,7 +1801,8 @@ class MeasureComponent extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MeasureComponent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MeasureComponent]
   /// that takes in a [String]
@@ -1851,15 +1822,6 @@ class MeasureComponent extends BackboneElement {
 
   @override
   String get fhirType => 'MeasureComponent';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// Indicates a meaning for the stratifier component. This can be as simple
@@ -1954,7 +1916,7 @@ class MeasureSupplementalData extends BackboneElement {
 
   MeasureSupplementalData({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.code,
     this.usage,
@@ -2037,7 +1999,8 @@ class MeasureSupplementalData extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MeasureSupplementalData cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MeasureSupplementalData]
   /// that takes in a [String]
@@ -2057,15 +2020,6 @@ class MeasureSupplementalData extends BackboneElement {
 
   @override
   String get fhirType => 'MeasureSupplementalData';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// Indicates a meaning for the supplemental data. This can be as simple as

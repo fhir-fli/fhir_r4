@@ -15,7 +15,7 @@ class ObservationDefinition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.category,
     required this.code,
@@ -194,7 +194,8 @@ class ObservationDefinition extends DomainResource {
                 )
               : throw ArgumentError(
                   'ObservationDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ObservationDefinition]
   /// that takes in a [String]
@@ -214,15 +215,6 @@ class ObservationDefinition extends DomainResource {
 
   @override
   String get fhirType => 'ObservationDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [category]
   /// A code that classifies the general type of observation.
@@ -462,7 +454,7 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
 
   ObservationDefinitionQuantitativeDetails({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.customaryUnit,
     this.unit,
@@ -544,7 +536,8 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ObservationDefinitionQuantitativeDetails cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ObservationDefinitionQuantitativeDetails]
   /// that takes in a [String]
@@ -564,15 +557,6 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
 
   @override
   String get fhirType => 'ObservationDefinitionQuantitativeDetails';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [customaryUnit]
   /// Customary unit used to report quantitative results of observations
@@ -681,7 +665,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
 
   ObservationDefinitionQualifiedInterval({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.category,
     this.range,
@@ -792,7 +776,8 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ObservationDefinitionQualifiedInterval cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ObservationDefinitionQualifiedInterval]
   /// that takes in a [String]
@@ -812,15 +797,6 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
 
   @override
   String get fhirType => 'ObservationDefinitionQualifiedInterval';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [category]
   /// The category of interval of values for continuous or ordinal

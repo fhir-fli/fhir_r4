@@ -16,7 +16,7 @@ class DeviceRequest extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
@@ -306,8 +306,10 @@ class DeviceRequest extends DomainResource {
               ? DeviceRequest.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('DeviceRequest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'DeviceRequest cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DeviceRequest]
   /// that takes in a [String]
@@ -327,15 +329,6 @@ class DeviceRequest extends DomainResource {
 
   @override
   String get fhirType => 'DeviceRequest';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifiers assigned to this order by the orderer or by the receiver.
@@ -739,7 +732,7 @@ class DeviceRequestParameter extends BackboneElement {
 
   DeviceRequestParameter({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.code,
     this.valueCodeableConcept,
@@ -826,7 +819,8 @@ class DeviceRequestParameter extends BackboneElement {
                 )
               : throw ArgumentError(
                   'DeviceRequestParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DeviceRequestParameter]
   /// that takes in a [String]
@@ -846,15 +840,6 @@ class DeviceRequestParameter extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceRequestParameter';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// A code or string that identifies the device detail being asserted.

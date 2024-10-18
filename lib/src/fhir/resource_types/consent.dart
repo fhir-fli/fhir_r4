@@ -17,7 +17,7 @@ class Consent extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -202,8 +202,10 @@ class Consent extends DomainResource {
               ? Consent.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Consent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Consent cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Consent]
   /// that takes in a [String]
@@ -223,15 +225,6 @@ class Consent extends DomainResource {
 
   @override
   String get fhirType => 'Consent';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Unique identifier for this copy of the Consent Statement.
@@ -469,7 +462,7 @@ class ConsentPolicy extends BackboneElement {
 
   ConsentPolicy({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.authority,
     this.uri,
@@ -543,8 +536,10 @@ class ConsentPolicy extends BackboneElement {
               ? ConsentPolicy.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ConsentPolicy cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ConsentPolicy cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ConsentPolicy]
   /// that takes in a [String]
@@ -564,15 +559,6 @@ class ConsentPolicy extends BackboneElement {
 
   @override
   String get fhirType => 'ConsentPolicy';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [authority]
   /// Entity or Organization having regulatory jurisdiction or accountability
@@ -670,7 +656,7 @@ class ConsentVerification extends BackboneElement {
 
   ConsentVerification({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.verified,
     this.verifiedWith,
@@ -744,7 +730,8 @@ class ConsentVerification extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ConsentVerification cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ConsentVerification]
   /// that takes in a [String]
@@ -764,15 +751,6 @@ class ConsentVerification extends BackboneElement {
 
   @override
   String get fhirType => 'ConsentVerification';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [verified]
   /// Has the instruction been verified.
@@ -865,7 +843,7 @@ class ConsentProvision extends BackboneElement {
 
   ConsentProvision({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.period,
@@ -1020,7 +998,8 @@ class ConsentProvision extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ConsentProvision cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ConsentProvision]
   /// that takes in a [String]
@@ -1040,15 +1019,6 @@ class ConsentProvision extends BackboneElement {
 
   @override
   String get fhirType => 'ConsentProvision';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Action to take - permit or deny - when the rule conditions are met. Not
@@ -1222,7 +1192,7 @@ class ConsentActor extends BackboneElement {
 
   ConsentActor({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.role,
     required this.reference,
@@ -1284,8 +1254,10 @@ class ConsentActor extends BackboneElement {
               ? ConsentActor.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ConsentActor cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ConsentActor cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ConsentActor]
   /// that takes in a [String]
@@ -1305,15 +1277,6 @@ class ConsentActor extends BackboneElement {
 
   @override
   String get fhirType => 'ConsentActor';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [role]
   /// How the individual is involved in the resources content that is
@@ -1388,7 +1351,7 @@ class ConsentData extends BackboneElement {
 
   ConsentData({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.meaning,
     required this.reference,
@@ -1451,8 +1414,10 @@ class ConsentData extends BackboneElement {
               ? ConsentData.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ConsentData cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ConsentData cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ConsentData]
   /// that takes in a [String]
@@ -1472,15 +1437,6 @@ class ConsentData extends BackboneElement {
 
   @override
   String get fhirType => 'ConsentData';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [meaning]
   /// How the resource reference is interpreted when testing consent

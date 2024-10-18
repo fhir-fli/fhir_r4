@@ -16,7 +16,7 @@ class QuestionnaireResponse extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.basedOn,
@@ -184,7 +184,8 @@ class QuestionnaireResponse extends DomainResource {
                 )
               : throw ArgumentError(
                   'QuestionnaireResponse cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [QuestionnaireResponse]
   /// that takes in a [String]
@@ -204,15 +205,6 @@ class QuestionnaireResponse extends DomainResource {
 
   @override
   String get fhirType => 'QuestionnaireResponse';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// A business identifier assigned to a particular completed (or partially
@@ -432,7 +424,7 @@ class QuestionnaireResponseItem extends BackboneElement {
 
   QuestionnaireResponseItem({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.linkId,
     this.definition,
@@ -527,7 +519,8 @@ class QuestionnaireResponseItem extends BackboneElement {
                 )
               : throw ArgumentError(
                   'QuestionnaireResponseItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [QuestionnaireResponseItem]
   /// that takes in a [String]
@@ -547,15 +540,6 @@ class QuestionnaireResponseItem extends BackboneElement {
 
   @override
   String get fhirType => 'QuestionnaireResponseItem';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [linkId]
   /// The item from the Questionnaire that corresponds to this item in the
@@ -673,7 +657,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
 
   QuestionnaireResponseAnswer({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.valueBoolean,
     this.valueDecimal,
@@ -819,7 +803,8 @@ class QuestionnaireResponseAnswer extends BackboneElement {
                 )
               : throw ArgumentError(
                   'QuestionnaireResponseAnswer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [QuestionnaireResponseAnswer]
   /// that takes in a [String]
@@ -839,15 +824,6 @@ class QuestionnaireResponseAnswer extends BackboneElement {
 
   @override
   String get fhirType => 'QuestionnaireResponseAnswer';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [valueBoolean]
   /// The answer (or one of the answers) provided by the respondent to the

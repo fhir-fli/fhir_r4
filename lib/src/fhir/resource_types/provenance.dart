@@ -24,7 +24,7 @@ class Provenance extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.target,
     this.occurredPeriod,
@@ -193,8 +193,10 @@ class Provenance extends DomainResource {
               ? Provenance.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Provenance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Provenance cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Provenance]
   /// that takes in a [String]
@@ -214,15 +216,6 @@ class Provenance extends DomainResource {
 
   @override
   String get fhirType => 'Provenance';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [target]
   /// The Reference(s) that were generated or updated by the activity
@@ -437,7 +430,7 @@ class ProvenanceAgent extends BackboneElement {
 
   ProvenanceAgent({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.role,
@@ -519,7 +512,8 @@ class ProvenanceAgent extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ProvenanceAgent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ProvenanceAgent]
   /// that takes in a [String]
@@ -539,15 +533,6 @@ class ProvenanceAgent extends BackboneElement {
 
   @override
   String get fhirType => 'ProvenanceAgent';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The participation the agent had with respect to the activity.
@@ -641,7 +626,7 @@ class ProvenanceEntity extends BackboneElement {
 
   ProvenanceEntity({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.role,
     required this.what,
@@ -716,7 +701,8 @@ class ProvenanceEntity extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ProvenanceEntity cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ProvenanceEntity]
   /// that takes in a [String]
@@ -736,15 +722,6 @@ class ProvenanceEntity extends BackboneElement {
 
   @override
   String get fhirType => 'ProvenanceEntity';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [role]
   /// How the entity was used during the activity.

@@ -18,7 +18,7 @@ class PlanDefinition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.identifier,
@@ -365,8 +365,10 @@ class PlanDefinition extends DomainResource {
               ? PlanDefinition.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('PlanDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'PlanDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PlanDefinition]
   /// that takes in a [String]
@@ -386,15 +388,6 @@ class PlanDefinition extends DomainResource {
 
   @override
   String get fhirType => 'PlanDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this plan definition when it
@@ -957,7 +950,7 @@ class PlanDefinitionGoal extends BackboneElement {
 
   PlanDefinitionGoal({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.category,
     required this.description,
@@ -1065,7 +1058,8 @@ class PlanDefinitionGoal extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PlanDefinitionGoal cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PlanDefinitionGoal]
   /// that takes in a [String]
@@ -1085,15 +1079,6 @@ class PlanDefinitionGoal extends BackboneElement {
 
   @override
   String get fhirType => 'PlanDefinitionGoal';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [category]
   /// Indicates a category the goal falls within.
@@ -1223,7 +1208,7 @@ class PlanDefinitionTarget extends BackboneElement {
 
   PlanDefinitionTarget({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.measure,
     this.detailQuantity,
@@ -1309,7 +1294,8 @@ class PlanDefinitionTarget extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PlanDefinitionTarget cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PlanDefinitionTarget]
   /// that takes in a [String]
@@ -1329,15 +1315,6 @@ class PlanDefinitionTarget extends BackboneElement {
 
   @override
   String get fhirType => 'PlanDefinitionTarget';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [measure]
   /// The parameter whose value is to be tracked, e.g. body weight, blood
@@ -1467,7 +1444,7 @@ class PlanDefinitionAction extends BackboneElement {
 
   PlanDefinitionAction({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.prefix,
     this.title,
@@ -1792,7 +1769,8 @@ class PlanDefinitionAction extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PlanDefinitionAction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PlanDefinitionAction]
   /// that takes in a [String]
@@ -1812,15 +1790,6 @@ class PlanDefinitionAction extends BackboneElement {
 
   @override
   String get fhirType => 'PlanDefinitionAction';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [prefix]
   /// A user-visible prefix for the action.
@@ -2312,7 +2281,7 @@ class PlanDefinitionCondition extends BackboneElement {
 
   PlanDefinitionCondition({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.kind,
     this.expression,
@@ -2379,7 +2348,8 @@ class PlanDefinitionCondition extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PlanDefinitionCondition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PlanDefinitionCondition]
   /// that takes in a [String]
@@ -2399,15 +2369,6 @@ class PlanDefinitionCondition extends BackboneElement {
 
   @override
   String get fhirType => 'PlanDefinitionCondition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [kind]
   /// The kind of condition.
@@ -2482,7 +2443,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
 
   PlanDefinitionRelatedAction({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.actionId,
     required this.relationship,
@@ -2560,7 +2521,8 @@ class PlanDefinitionRelatedAction extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PlanDefinitionRelatedAction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PlanDefinitionRelatedAction]
   /// that takes in a [String]
@@ -2580,15 +2542,6 @@ class PlanDefinitionRelatedAction extends BackboneElement {
 
   @override
   String get fhirType => 'PlanDefinitionRelatedAction';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [actionId]
   /// The element id of the related action.
@@ -2685,7 +2638,7 @@ class PlanDefinitionParticipant extends BackboneElement {
 
   PlanDefinitionParticipant({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.role,
@@ -2752,7 +2705,8 @@ class PlanDefinitionParticipant extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PlanDefinitionParticipant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PlanDefinitionParticipant]
   /// that takes in a [String]
@@ -2772,15 +2726,6 @@ class PlanDefinitionParticipant extends BackboneElement {
 
   @override
   String get fhirType => 'PlanDefinitionParticipant';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The type of participant in the action.
@@ -2858,7 +2803,7 @@ class PlanDefinitionDynamicValue extends BackboneElement {
 
   PlanDefinitionDynamicValue({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.path,
     this.expression,
@@ -2927,7 +2872,8 @@ class PlanDefinitionDynamicValue extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PlanDefinitionDynamicValue cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PlanDefinitionDynamicValue]
   /// that takes in a [String]
@@ -2947,15 +2893,6 @@ class PlanDefinitionDynamicValue extends BackboneElement {
 
   @override
   String get fhirType => 'PlanDefinitionDynamicValue';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [path]
   /// The path to the element to be customized. This is the path on the

@@ -15,7 +15,7 @@ class SubscriptionStatus extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.status,
     required this.type,
@@ -154,7 +154,8 @@ class SubscriptionStatus extends DomainResource {
                 )
               : throw ArgumentError(
                   'SubscriptionStatus cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubscriptionStatus]
   /// that takes in a [String]
@@ -174,15 +175,6 @@ class SubscriptionStatus extends DomainResource {
 
   @override
   String get fhirType => 'SubscriptionStatus';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [status]
   /// The status of the subscription, which marks the server state for
@@ -356,7 +348,7 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
 
   SubscriptionStatusNotificationEvent({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.eventNumber,
     this.timestamp,
@@ -440,7 +432,8 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubscriptionStatusNotificationEvent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubscriptionStatusNotificationEvent]
   /// that takes in a [String]
@@ -460,15 +453,6 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
 
   @override
   String get fhirType => 'SubscriptionStatusNotificationEvent';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [eventNumber]
   /// The sequential number of this event in this subscription context. Note

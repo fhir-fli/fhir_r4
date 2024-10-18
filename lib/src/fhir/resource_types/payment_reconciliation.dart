@@ -15,7 +15,7 @@ class PaymentReconciliation extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -203,7 +203,8 @@ class PaymentReconciliation extends DomainResource {
                 )
               : throw ArgumentError(
                   'PaymentReconciliation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PaymentReconciliation]
   /// that takes in a [String]
@@ -223,15 +224,6 @@ class PaymentReconciliation extends DomainResource {
 
   @override
   String get fhirType => 'PaymentReconciliation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// A unique identifier assigned to this payment reconciliation.
@@ -481,7 +473,7 @@ class PaymentReconciliationDetail extends BackboneElement {
 
   PaymentReconciliationDetail({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.predecessor,
@@ -596,7 +588,8 @@ class PaymentReconciliationDetail extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PaymentReconciliationDetail cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PaymentReconciliationDetail]
   /// that takes in a [String]
@@ -616,15 +609,6 @@ class PaymentReconciliationDetail extends BackboneElement {
 
   @override
   String get fhirType => 'PaymentReconciliationDetail';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Unique identifier for the current payment item for the referenced
@@ -787,7 +771,7 @@ class PaymentReconciliationProcessNote extends BackboneElement {
 
   PaymentReconciliationProcessNote({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.text,
@@ -857,7 +841,8 @@ class PaymentReconciliationProcessNote extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PaymentReconciliationProcessNote cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PaymentReconciliationProcessNote]
   /// that takes in a [String]
@@ -877,15 +862,6 @@ class PaymentReconciliationProcessNote extends BackboneElement {
 
   @override
   String get fhirType => 'PaymentReconciliationProcessNote';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The business purpose of the note text.

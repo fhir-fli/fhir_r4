@@ -16,7 +16,7 @@ class Procedure extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
@@ -354,8 +354,10 @@ class Procedure extends DomainResource {
               ? Procedure.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Procedure cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Procedure cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Procedure]
   /// that takes in a [String]
@@ -375,15 +377,6 @@ class Procedure extends DomainResource {
 
   @override
   String get fhirType => 'Procedure';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifiers assigned to this procedure by the performer or
@@ -852,7 +845,7 @@ class ProcedurePerformer extends BackboneElement {
 
   ProcedurePerformer({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.function_,
     required this.actor,
@@ -924,7 +917,8 @@ class ProcedurePerformer extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ProcedurePerformer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ProcedurePerformer]
   /// that takes in a [String]
@@ -944,15 +938,6 @@ class ProcedurePerformer extends BackboneElement {
 
   @override
   String get fhirType => 'ProcedurePerformer';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [function_]
   /// Distinguishes the type of involvement of the performer in the
@@ -1038,7 +1023,7 @@ class ProcedureFocalDevice extends BackboneElement {
 
   ProcedureFocalDevice({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.action,
     required this.manipulated,
@@ -1104,7 +1089,8 @@ class ProcedureFocalDevice extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ProcedureFocalDevice cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ProcedureFocalDevice]
   /// that takes in a [String]
@@ -1124,15 +1110,6 @@ class ProcedureFocalDevice extends BackboneElement {
 
   @override
   String get fhirType => 'ProcedureFocalDevice';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [action]
   /// The kind of change that happened to the device during the procedure.

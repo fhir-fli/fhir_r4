@@ -15,7 +15,7 @@ class Linkage extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.active,
     this.author,
@@ -123,8 +123,10 @@ class Linkage extends DomainResource {
               ? Linkage.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Linkage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Linkage cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Linkage]
   /// that takes in a [String]
@@ -144,15 +146,6 @@ class Linkage extends DomainResource {
 
   @override
   String get fhirType => 'Linkage';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [active]
   /// Indicates whether the asserted set of linkages are considered to be "in
@@ -281,7 +274,7 @@ class LinkageItem extends BackboneElement {
 
   LinkageItem({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     required this.resource,
@@ -344,8 +337,10 @@ class LinkageItem extends BackboneElement {
               ? LinkageItem.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('LinkageItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'LinkageItem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [LinkageItem]
   /// that takes in a [String]
@@ -365,15 +360,6 @@ class LinkageItem extends BackboneElement {
 
   @override
   String get fhirType => 'LinkageItem';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Distinguishes which item is "source of truth" (if any) and which items

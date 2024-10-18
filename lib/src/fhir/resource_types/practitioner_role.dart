@@ -15,7 +15,7 @@ class PractitionerRole extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
@@ -226,7 +226,8 @@ class PractitionerRole extends DomainResource {
                 )
               : throw ArgumentError(
                   'PractitionerRole cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PractitionerRole]
   /// that takes in a [String]
@@ -246,15 +247,6 @@ class PractitionerRole extends DomainResource {
 
   @override
   String get fhirType => 'PractitionerRole';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business Identifiers that are specific to a role/location.
@@ -505,7 +497,7 @@ class PractitionerRoleAvailableTime extends BackboneElement {
 
   PractitionerRoleAvailableTime({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.daysOfWeek,
     this.allDay,
@@ -588,7 +580,8 @@ class PractitionerRoleAvailableTime extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PractitionerRoleAvailableTime cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PractitionerRoleAvailableTime]
   /// that takes in a [String]
@@ -608,15 +601,6 @@ class PractitionerRoleAvailableTime extends BackboneElement {
 
   @override
   String get fhirType => 'PractitionerRoleAvailableTime';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [daysOfWeek]
   /// Indicates which days of the week are available between the start and
@@ -728,7 +712,7 @@ class PractitionerRoleNotAvailable extends BackboneElement {
 
   PractitionerRoleNotAvailable({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.description,
     this.during,
@@ -795,7 +779,8 @@ class PractitionerRoleNotAvailable extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PractitionerRoleNotAvailable cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PractitionerRoleNotAvailable]
   /// that takes in a [String]
@@ -815,15 +800,6 @@ class PractitionerRoleNotAvailable extends BackboneElement {
 
   @override
   String get fhirType => 'PractitionerRoleNotAvailable';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [description]
   /// The reason that can be presented to the user as to why this time is not

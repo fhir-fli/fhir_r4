@@ -18,7 +18,7 @@ class MedicationAdministration extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiates,
@@ -271,7 +271,8 @@ class MedicationAdministration extends DomainResource {
                 )
               : throw ArgumentError(
                   'MedicationAdministration cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MedicationAdministration]
   /// that takes in a [String]
@@ -291,15 +292,6 @@ class MedicationAdministration extends DomainResource {
 
   @override
   String get fhirType => 'MedicationAdministration';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifiers associated with this Medication Administration that are
@@ -639,7 +631,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
 
   MedicationAdministrationPerformer({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.function_,
     required this.actor,
@@ -705,7 +697,8 @@ class MedicationAdministrationPerformer extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MedicationAdministrationPerformer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MedicationAdministrationPerformer]
   /// that takes in a [String]
@@ -725,15 +718,6 @@ class MedicationAdministrationPerformer extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationAdministrationPerformer';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [function_]
   /// Distinguishes the type of involvement of the performer in the
@@ -808,7 +792,7 @@ class MedicationAdministrationDosage extends BackboneElement {
 
   MedicationAdministrationDosage({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.text,
     this.site,
@@ -907,7 +891,8 @@ class MedicationAdministrationDosage extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MedicationAdministrationDosage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MedicationAdministrationDosage]
   /// that takes in a [String]
@@ -927,15 +912,6 @@ class MedicationAdministrationDosage extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationAdministrationDosage';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [text]
   /// Free text dosage can be used for cases where the dosage administered is

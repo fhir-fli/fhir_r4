@@ -15,7 +15,7 @@ class VisionPrescription extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -152,7 +152,8 @@ class VisionPrescription extends DomainResource {
                 )
               : throw ArgumentError(
                   'VisionPrescription cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [VisionPrescription]
   /// that takes in a [String]
@@ -172,15 +173,6 @@ class VisionPrescription extends DomainResource {
 
   @override
   String get fhirType => 'VisionPrescription';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// A unique identifier assigned to this vision prescription.
@@ -353,7 +345,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
 
   VisionPrescriptionLensSpecification({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.product,
     required this.eye,
@@ -507,7 +499,8 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
                 )
               : throw ArgumentError(
                   'VisionPrescriptionLensSpecification cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [VisionPrescriptionLensSpecification]
   /// that takes in a [String]
@@ -527,15 +520,6 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
 
   @override
   String get fhirType => 'VisionPrescriptionLensSpecification';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [product]
   /// Identifies the type of vision correction product which is required for
@@ -764,7 +748,7 @@ class VisionPrescriptionPrism extends BackboneElement {
 
   VisionPrescriptionPrism({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.amount,
     required this.base,
@@ -830,7 +814,8 @@ class VisionPrescriptionPrism extends BackboneElement {
                 )
               : throw ArgumentError(
                   'VisionPrescriptionPrism cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [VisionPrescriptionPrism]
   /// that takes in a [String]
@@ -850,15 +835,6 @@ class VisionPrescriptionPrism extends BackboneElement {
 
   @override
   String get fhirType => 'VisionPrescriptionPrism';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [amount]
   /// Amount of prism to compensate for eye alignment in fractional units.

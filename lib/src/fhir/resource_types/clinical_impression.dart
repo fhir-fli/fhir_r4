@@ -21,7 +21,7 @@ class ClinicalImpression extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -269,7 +269,8 @@ class ClinicalImpression extends DomainResource {
                 )
               : throw ArgumentError(
                   'ClinicalImpression cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClinicalImpression]
   /// that takes in a [String]
@@ -289,15 +290,6 @@ class ClinicalImpression extends DomainResource {
 
   @override
   String get fhirType => 'ClinicalImpression';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifiers assigned to this clinical impression by the
@@ -637,7 +629,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
 
   ClinicalImpressionInvestigation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     this.item,
@@ -707,7 +699,8 @@ class ClinicalImpressionInvestigation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClinicalImpressionInvestigation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClinicalImpressionInvestigation]
   /// that takes in a [String]
@@ -727,15 +720,6 @@ class ClinicalImpressionInvestigation extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalImpressionInvestigation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// A name/code for the group ("set") of investigations. Typically, this
@@ -812,7 +796,7 @@ class ClinicalImpressionFinding extends BackboneElement {
 
   ClinicalImpressionFinding({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.itemCodeableConcept,
     this.itemReference,
@@ -887,7 +871,8 @@ class ClinicalImpressionFinding extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClinicalImpressionFinding cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClinicalImpressionFinding]
   /// that takes in a [String]
@@ -907,15 +892,6 @@ class ClinicalImpressionFinding extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalImpressionFinding';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [itemCodeableConcept]
   /// Specific text or code for finding or diagnosis, which may include

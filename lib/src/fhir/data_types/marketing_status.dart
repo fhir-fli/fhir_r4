@@ -11,7 +11,7 @@ class MarketingStatus extends BackboneType {
 
   MarketingStatus({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.country,
     this.jurisdiction,
@@ -96,7 +96,8 @@ class MarketingStatus extends BackboneType {
                 )
               : throw ArgumentError(
                   'MarketingStatus cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MarketingStatus]
   /// that takes in a [String]
@@ -116,15 +117,6 @@ class MarketingStatus extends BackboneType {
 
   @override
   String get fhirType => 'MarketingStatus';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [country]
   /// The country in which the marketing authorisation has been granted shall

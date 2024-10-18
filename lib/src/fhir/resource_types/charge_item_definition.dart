@@ -18,7 +18,7 @@ class ChargeItemDefinition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.url,
     this.identifier,
@@ -280,7 +280,8 @@ class ChargeItemDefinition extends DomainResource {
                 )
               : throw ArgumentError(
                   'ChargeItemDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ChargeItemDefinition]
   /// that takes in a [String]
@@ -300,15 +301,6 @@ class ChargeItemDefinition extends DomainResource {
 
   @override
   String get fhirType => 'ChargeItemDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this charge item definition
@@ -723,7 +715,7 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
 
   ChargeItemDefinitionApplicability({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.description,
     this.language,
@@ -800,7 +792,8 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ChargeItemDefinitionApplicability cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ChargeItemDefinitionApplicability]
   /// that takes in a [String]
@@ -820,15 +813,6 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
 
   @override
   String get fhirType => 'ChargeItemDefinitionApplicability';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [description]
   /// A brief, natural language description of the condition that effectively
@@ -933,7 +917,7 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
 
   ChargeItemDefinitionPropertyGroup({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.applicability,
     this.priceComponent,
@@ -1009,7 +993,8 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ChargeItemDefinitionPropertyGroup cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ChargeItemDefinitionPropertyGroup]
   /// that takes in a [String]
@@ -1029,15 +1014,6 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
 
   @override
   String get fhirType => 'ChargeItemDefinitionPropertyGroup';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [applicability]
   /// Expressions that describe applicability criteria for the
@@ -1123,7 +1099,7 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
 
   ChargeItemDefinitionPriceComponent({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.code,
@@ -1203,7 +1179,8 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ChargeItemDefinitionPriceComponent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ChargeItemDefinitionPriceComponent]
   /// that takes in a [String]
@@ -1223,15 +1200,6 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
 
   @override
   String get fhirType => 'ChargeItemDefinitionPriceComponent';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// This code identifies the type of the component.

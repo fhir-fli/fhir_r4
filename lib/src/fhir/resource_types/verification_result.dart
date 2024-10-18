@@ -15,7 +15,7 @@ class VerificationResult extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.target,
     this.targetLocation,
@@ -206,7 +206,8 @@ class VerificationResult extends DomainResource {
                 )
               : throw ArgumentError(
                   'VerificationResult cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [VerificationResult]
   /// that takes in a [String]
@@ -226,15 +227,6 @@ class VerificationResult extends DomainResource {
 
   @override
   String get fhirType => 'VerificationResult';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [target]
   /// A resource that was validated.
@@ -484,7 +476,7 @@ class VerificationResultPrimarySource extends BackboneElement {
 
   VerificationResultPrimarySource({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.who,
     this.type,
@@ -595,7 +587,8 @@ class VerificationResultPrimarySource extends BackboneElement {
                 )
               : throw ArgumentError(
                   'VerificationResultPrimarySource cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [VerificationResultPrimarySource]
   /// that takes in a [String]
@@ -615,15 +608,6 @@ class VerificationResultPrimarySource extends BackboneElement {
 
   @override
   String get fhirType => 'VerificationResultPrimarySource';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [who]
   /// Reference to the primary source.
@@ -759,7 +743,7 @@ class VerificationResultAttestation extends BackboneElement {
 
   VerificationResultAttestation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.who,
     this.onBehalfOf,
@@ -866,7 +850,8 @@ class VerificationResultAttestation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'VerificationResultAttestation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [VerificationResultAttestation]
   /// that takes in a [String]
@@ -886,15 +871,6 @@ class VerificationResultAttestation extends BackboneElement {
 
   @override
   String get fhirType => 'VerificationResultAttestation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [who]
   /// The individual or organization attesting to information.
@@ -1049,7 +1025,7 @@ class VerificationResultValidator extends BackboneElement {
 
   VerificationResultValidator({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.organization,
     this.identityCertificate,
@@ -1122,7 +1098,8 @@ class VerificationResultValidator extends BackboneElement {
                 )
               : throw ArgumentError(
                   'VerificationResultValidator cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [VerificationResultValidator]
   /// that takes in a [String]
@@ -1142,15 +1119,6 @@ class VerificationResultValidator extends BackboneElement {
 
   @override
   String get fhirType => 'VerificationResultValidator';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [organization]
   /// Reference to the organization validating information.

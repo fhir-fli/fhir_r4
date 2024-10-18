@@ -16,7 +16,7 @@ class CodeSystem extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.identifier,
@@ -302,8 +302,10 @@ class CodeSystem extends DomainResource {
               ? CodeSystem.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('CodeSystem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'CodeSystem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CodeSystem]
   /// that takes in a [String]
@@ -323,15 +325,6 @@ class CodeSystem extends DomainResource {
 
   @override
   String get fhirType => 'CodeSystem';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this code system when it is
@@ -789,7 +782,7 @@ class CodeSystemFilter extends BackboneElement {
 
   CodeSystemFilter({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     this.description,
@@ -868,7 +861,8 @@ class CodeSystemFilter extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CodeSystemFilter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CodeSystemFilter]
   /// that takes in a [String]
@@ -888,15 +882,6 @@ class CodeSystemFilter extends BackboneElement {
 
   @override
   String get fhirType => 'CodeSystemFilter';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// The code that identifies this filter when it is used as a filter in
@@ -999,7 +984,7 @@ class CodeSystemProperty extends BackboneElement {
 
   CodeSystemProperty({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     this.uri,
@@ -1079,7 +1064,8 @@ class CodeSystemProperty extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CodeSystemProperty cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CodeSystemProperty]
   /// that takes in a [String]
@@ -1099,15 +1085,6 @@ class CodeSystemProperty extends BackboneElement {
 
   @override
   String get fhirType => 'CodeSystemProperty';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// A code that is used to identify the property. The code is used
@@ -1219,7 +1196,7 @@ class CodeSystemConcept extends BackboneElement {
 
   CodeSystemConcept({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     this.display,
@@ -1324,7 +1301,8 @@ class CodeSystemConcept extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CodeSystemConcept cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CodeSystemConcept]
   /// that takes in a [String]
@@ -1344,15 +1322,6 @@ class CodeSystemConcept extends BackboneElement {
 
   @override
   String get fhirType => 'CodeSystemConcept';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// A code - a text symbol - that uniquely identifies the concept within
@@ -1486,7 +1455,7 @@ class CodeSystemDesignation extends BackboneElement {
 
   CodeSystemDesignation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.language,
     this.use,
@@ -1560,7 +1529,8 @@ class CodeSystemDesignation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CodeSystemDesignation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CodeSystemDesignation]
   /// that takes in a [String]
@@ -1580,15 +1550,6 @@ class CodeSystemDesignation extends BackboneElement {
 
   @override
   String get fhirType => 'CodeSystemDesignation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [language]
   /// The language this designation is defined for.
@@ -1675,7 +1636,7 @@ class CodeSystemProperty1 extends BackboneElement {
 
   CodeSystemProperty1({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     this.valueCode,
@@ -1784,7 +1745,8 @@ class CodeSystemProperty1 extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CodeSystemProperty1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CodeSystemProperty1]
   /// that takes in a [String]
@@ -1804,15 +1766,6 @@ class CodeSystemProperty1 extends BackboneElement {
 
   @override
   String get fhirType => 'CodeSystemProperty1';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// A code that is a reference to CodeSystem.property.code.

@@ -15,7 +15,7 @@ class TestScript extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.url,
     this.identifier,
@@ -287,8 +287,10 @@ class TestScript extends DomainResource {
               ? TestScript.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('TestScript cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'TestScript cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScript]
   /// that takes in a [String]
@@ -308,15 +310,6 @@ class TestScript extends DomainResource {
 
   @override
   String get fhirType => 'TestScript';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this test script when it is
@@ -719,7 +712,7 @@ class TestScriptOrigin extends BackboneElement {
 
   TestScriptOrigin({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.index,
     required this.profile,
@@ -784,7 +777,8 @@ class TestScriptOrigin extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TestScriptOrigin cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptOrigin]
   /// that takes in a [String]
@@ -804,15 +798,6 @@ class TestScriptOrigin extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptOrigin';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [index]
   /// Abstract name given to an origin server in this test script. The name
@@ -889,7 +874,7 @@ class TestScriptDestination extends BackboneElement {
 
   TestScriptDestination({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.index,
     required this.profile,
@@ -954,7 +939,8 @@ class TestScriptDestination extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TestScriptDestination cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptDestination]
   /// that takes in a [String]
@@ -974,15 +960,6 @@ class TestScriptDestination extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptDestination';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [index]
   /// Abstract name given to a destination server in this test script. The
@@ -1059,7 +1036,7 @@ class TestScriptMetadata extends BackboneElement {
 
   TestScriptMetadata({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.link,
     required this.capability,
@@ -1133,7 +1110,8 @@ class TestScriptMetadata extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TestScriptMetadata cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptMetadata]
   /// that takes in a [String]
@@ -1153,15 +1131,6 @@ class TestScriptMetadata extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptMetadata';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [link]
   /// A link to the FHIR specification that this test is covering.
@@ -1235,7 +1204,7 @@ class TestScriptLink extends BackboneElement {
 
   TestScriptLink({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.url,
     this.description,
@@ -1301,8 +1270,10 @@ class TestScriptLink extends BackboneElement {
               ? TestScriptLink.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('TestScriptLink cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'TestScriptLink cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptLink]
   /// that takes in a [String]
@@ -1322,15 +1293,6 @@ class TestScriptLink extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptLink';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// URL to a particular requirement or feature within the FHIR
@@ -1413,7 +1375,7 @@ class TestScriptCapability extends BackboneElement {
 
   TestScriptCapability({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.required_,
     required this.validated,
@@ -1510,7 +1472,8 @@ class TestScriptCapability extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TestScriptCapability cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptCapability]
   /// that takes in a [String]
@@ -1530,15 +1493,6 @@ class TestScriptCapability extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptCapability';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [required_]
   /// Whether or not the test execution will require the given capabilities
@@ -1692,7 +1646,7 @@ class TestScriptFixture extends BackboneElement {
 
   TestScriptFixture({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.autocreate,
     required this.autodelete,
@@ -1764,7 +1718,8 @@ class TestScriptFixture extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TestScriptFixture cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptFixture]
   /// that takes in a [String]
@@ -1784,15 +1739,6 @@ class TestScriptFixture extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptFixture';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [autocreate]
   /// Whether or not to implicitly create the fixture during setup. If true,
@@ -1889,7 +1835,7 @@ class TestScriptVariable extends BackboneElement {
 
   TestScriptVariable({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     this.defaultValue,
@@ -1999,7 +1945,8 @@ class TestScriptVariable extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TestScriptVariable cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptVariable]
   /// that takes in a [String]
@@ -2019,15 +1966,6 @@ class TestScriptVariable extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptVariable';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// Descriptive name for this variable.
@@ -2200,7 +2138,7 @@ class TestScriptSetup extends BackboneElement {
 
   TestScriptSetup({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.action,
     super.userData,
@@ -2264,7 +2202,8 @@ class TestScriptSetup extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TestScriptSetup cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptSetup]
   /// that takes in a [String]
@@ -2284,15 +2223,6 @@ class TestScriptSetup extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptSetup';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [action]
   /// Action would contain either an operation or an assertion.
@@ -2355,7 +2285,7 @@ class TestScriptAction extends BackboneElement {
 
   TestScriptAction({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.operation,
     this.assert_,
@@ -2423,7 +2353,8 @@ class TestScriptAction extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TestScriptAction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptAction]
   /// that takes in a [String]
@@ -2443,15 +2374,6 @@ class TestScriptAction extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptAction';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [operation]
   /// The operation to perform.
@@ -2527,7 +2449,7 @@ class TestScriptOperation extends BackboneElement {
 
   TestScriptOperation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.resource,
@@ -2702,7 +2624,8 @@ class TestScriptOperation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TestScriptOperation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptOperation]
   /// that takes in a [String]
@@ -2722,15 +2645,6 @@ class TestScriptOperation extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptOperation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Server interaction or operation type.
@@ -3015,7 +2929,7 @@ class TestScriptRequestHeader extends BackboneElement {
 
   TestScriptRequestHeader({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.field,
     required this.value,
@@ -3081,7 +2995,8 @@ class TestScriptRequestHeader extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TestScriptRequestHeader cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptRequestHeader]
   /// that takes in a [String]
@@ -3101,15 +3016,6 @@ class TestScriptRequestHeader extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptRequestHeader';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [field]
   /// The HTTP header field e.g. "Accept".
@@ -3189,7 +3095,7 @@ class TestScriptAssert extends BackboneElement {
 
   TestScriptAssert({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.label,
     this.description,
@@ -3397,7 +3303,8 @@ class TestScriptAssert extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TestScriptAssert cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptAssert]
   /// that takes in a [String]
@@ -3417,15 +3324,6 @@ class TestScriptAssert extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptAssert';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [label]
   /// The label would be used for tracking/logging purposes by test engines.
@@ -3784,7 +3682,7 @@ class TestScriptTest extends BackboneElement {
 
   TestScriptTest({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.name,
     this.description,
@@ -3860,8 +3758,10 @@ class TestScriptTest extends BackboneElement {
               ? TestScriptTest.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('TestScriptTest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'TestScriptTest cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptTest]
   /// that takes in a [String]
@@ -3881,15 +3781,6 @@ class TestScriptTest extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptTest';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// The name of this test used for tracking/logging purposes by test
@@ -3982,7 +3873,7 @@ class TestScriptAction1 extends BackboneElement {
 
   TestScriptAction1({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     super.userData,
     super.formatCommentsPre,
@@ -4038,7 +3929,8 @@ class TestScriptAction1 extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TestScriptAction1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptAction1]
   /// that takes in a [String]
@@ -4059,14 +3951,6 @@ class TestScriptAction1 extends BackboneElement {
   @override
   String get fhirType => 'TestScriptAction1';
 
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4122,7 +4006,7 @@ class TestScriptTeardown extends BackboneElement {
 
   TestScriptTeardown({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.action,
     super.userData,
@@ -4186,7 +4070,8 @@ class TestScriptTeardown extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TestScriptTeardown cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptTeardown]
   /// that takes in a [String]
@@ -4206,15 +4091,6 @@ class TestScriptTeardown extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptTeardown';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [action]
   /// The teardown action will only contain an operation.
@@ -4277,7 +4153,7 @@ class TestScriptAction2 extends BackboneElement {
 
   TestScriptAction2({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     super.userData,
     super.formatCommentsPre,
@@ -4333,7 +4209,8 @@ class TestScriptAction2 extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TestScriptAction2 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TestScriptAction2]
   /// that takes in a [String]
@@ -4354,14 +4231,6 @@ class TestScriptAction2 extends BackboneElement {
   @override
   String get fhirType => 'TestScriptAction2';
 
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

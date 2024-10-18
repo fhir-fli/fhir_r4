@@ -16,7 +16,7 @@ class StructureDefinition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.url,
     this.identifier,
@@ -294,7 +294,8 @@ class StructureDefinition extends DomainResource {
                 )
               : throw ArgumentError(
                   'StructureDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [StructureDefinition]
   /// that takes in a [String]
@@ -314,15 +315,6 @@ class StructureDefinition extends DomainResource {
 
   @override
   String get fhirType => 'StructureDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this structure definition when
@@ -762,7 +754,7 @@ class StructureDefinitionMapping extends BackboneElement {
 
   StructureDefinitionMapping({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.identity,
     this.uri,
@@ -844,7 +836,8 @@ class StructureDefinitionMapping extends BackboneElement {
                 )
               : throw ArgumentError(
                   'StructureDefinitionMapping cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [StructureDefinitionMapping]
   /// that takes in a [String]
@@ -864,15 +857,6 @@ class StructureDefinitionMapping extends BackboneElement {
 
   @override
   String get fhirType => 'StructureDefinitionMapping';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identity]
   /// An Internal id that is used to identify this mapping set when specific
@@ -985,7 +969,7 @@ class StructureDefinitionContext extends BackboneElement {
 
   StructureDefinitionContext({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     required this.expression,
@@ -1057,7 +1041,8 @@ class StructureDefinitionContext extends BackboneElement {
                 )
               : throw ArgumentError(
                   'StructureDefinitionContext cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [StructureDefinitionContext]
   /// that takes in a [String]
@@ -1077,15 +1062,6 @@ class StructureDefinitionContext extends BackboneElement {
 
   @override
   String get fhirType => 'StructureDefinitionContext';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Defines how to interpret the expression that defines what the context
@@ -1178,7 +1154,7 @@ class StructureDefinitionSnapshot extends BackboneElement {
 
   StructureDefinitionSnapshot({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.element,
     super.userData,
@@ -1242,7 +1218,8 @@ class StructureDefinitionSnapshot extends BackboneElement {
                 )
               : throw ArgumentError(
                   'StructureDefinitionSnapshot cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [StructureDefinitionSnapshot]
   /// that takes in a [String]
@@ -1262,15 +1239,6 @@ class StructureDefinitionSnapshot extends BackboneElement {
 
   @override
   String get fhirType => 'StructureDefinitionSnapshot';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [element]
   /// Captures constraints on each element within the resource.
@@ -1334,7 +1302,7 @@ class StructureDefinitionDifferential extends BackboneElement {
 
   StructureDefinitionDifferential({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.element,
     super.userData,
@@ -1398,7 +1366,8 @@ class StructureDefinitionDifferential extends BackboneElement {
                 )
               : throw ArgumentError(
                   'StructureDefinitionDifferential cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [StructureDefinitionDifferential]
   /// that takes in a [String]
@@ -1418,15 +1387,6 @@ class StructureDefinitionDifferential extends BackboneElement {
 
   @override
   String get fhirType => 'StructureDefinitionDifferential';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [element]
   /// Captures constraints on each element within the resource.

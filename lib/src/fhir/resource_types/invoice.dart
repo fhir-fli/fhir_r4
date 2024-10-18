@@ -15,7 +15,7 @@ class Invoice extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -210,8 +210,10 @@ class Invoice extends DomainResource {
               ? Invoice.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Invoice cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Invoice cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Invoice]
   /// that takes in a [String]
@@ -231,15 +233,6 @@ class Invoice extends DomainResource {
 
   @override
   String get fhirType => 'Invoice';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifier of this Invoice, often used for reference in correspondence
@@ -498,7 +491,7 @@ class InvoiceParticipant extends BackboneElement {
 
   InvoiceParticipant({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.role,
     required this.actor,
@@ -564,7 +557,8 @@ class InvoiceParticipant extends BackboneElement {
                 )
               : throw ArgumentError(
                   'InvoiceParticipant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [InvoiceParticipant]
   /// that takes in a [String]
@@ -584,15 +578,6 @@ class InvoiceParticipant extends BackboneElement {
 
   @override
   String get fhirType => 'InvoiceParticipant';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [role]
   /// Describes the type of involvement (e.g. transcriptionist, creator
@@ -670,7 +655,7 @@ class InvoiceLineItem extends BackboneElement {
 
   InvoiceLineItem({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.sequence,
     this.chargeItemReference,
@@ -755,7 +740,8 @@ class InvoiceLineItem extends BackboneElement {
                 )
               : throw ArgumentError(
                   'InvoiceLineItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [InvoiceLineItem]
   /// that takes in a [String]
@@ -775,15 +761,6 @@ class InvoiceLineItem extends BackboneElement {
 
   @override
   String get fhirType => 'InvoiceLineItem';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [sequence]
   /// Sequence in which the items appear on the invoice.
@@ -899,7 +876,7 @@ class InvoicePriceComponent extends BackboneElement {
 
   InvoicePriceComponent({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.code,
@@ -979,7 +956,8 @@ class InvoicePriceComponent extends BackboneElement {
                 )
               : throw ArgumentError(
                   'InvoicePriceComponent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [InvoicePriceComponent]
   /// that takes in a [String]
@@ -999,15 +977,6 @@ class InvoicePriceComponent extends BackboneElement {
 
   @override
   String get fhirType => 'InvoicePriceComponent';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// This code identifies the type of the component.

@@ -15,7 +15,7 @@ class EvidenceVariable extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.identifier,
@@ -303,7 +303,8 @@ class EvidenceVariable extends DomainResource {
                 )
               : throw ArgumentError(
                   'EvidenceVariable cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EvidenceVariable]
   /// that takes in a [String]
@@ -323,15 +324,6 @@ class EvidenceVariable extends DomainResource {
 
   @override
   String get fhirType => 'EvidenceVariable';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this evidence variable when it
@@ -745,7 +737,7 @@ class EvidenceVariableCharacteristic extends BackboneElement {
 
   EvidenceVariableCharacteristic({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.description,
     this.definitionReference,
@@ -865,7 +857,8 @@ class EvidenceVariableCharacteristic extends BackboneElement {
                 )
               : throw ArgumentError(
                   'EvidenceVariableCharacteristic cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EvidenceVariableCharacteristic]
   /// that takes in a [String]
@@ -885,15 +878,6 @@ class EvidenceVariableCharacteristic extends BackboneElement {
 
   @override
   String get fhirType => 'EvidenceVariableCharacteristic';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [description]
   /// A short, natural language description of the characteristic that could
@@ -1078,7 +1062,7 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
 
   EvidenceVariableTimeFromStart({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.description,
     this.quantity,
@@ -1163,7 +1147,8 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
                 )
               : throw ArgumentError(
                   'EvidenceVariableTimeFromStart cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EvidenceVariableTimeFromStart]
   /// that takes in a [String]
@@ -1183,15 +1168,6 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
 
   @override
   String get fhirType => 'EvidenceVariableTimeFromStart';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [description]
   /// A short, natural language description.
@@ -1293,7 +1269,7 @@ class EvidenceVariableCategory extends BackboneElement {
 
   EvidenceVariableCategory({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.name,
     this.valueCodeableConcept,
@@ -1374,7 +1350,8 @@ class EvidenceVariableCategory extends BackboneElement {
                 )
               : throw ArgumentError(
                   'EvidenceVariableCategory cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EvidenceVariableCategory]
   /// that takes in a [String]
@@ -1394,15 +1371,6 @@ class EvidenceVariableCategory extends BackboneElement {
 
   @override
   String get fhirType => 'EvidenceVariableCategory';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// A human-readable title or representation of the grouping.

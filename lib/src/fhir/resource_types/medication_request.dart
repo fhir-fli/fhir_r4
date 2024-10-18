@@ -19,7 +19,7 @@ class MedicationRequest extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -356,7 +356,8 @@ class MedicationRequest extends DomainResource {
                 )
               : throw ArgumentError(
                   'MedicationRequest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MedicationRequest]
   /// that takes in a [String]
@@ -376,15 +377,6 @@ class MedicationRequest extends DomainResource {
 
   @override
   String get fhirType => 'MedicationRequest';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifiers associated with this medication request that are defined by
@@ -896,7 +888,7 @@ class MedicationRequestDispenseRequest extends BackboneElement {
 
   MedicationRequestDispenseRequest({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.initialFill,
     this.dispenseInterval,
@@ -995,7 +987,8 @@ class MedicationRequestDispenseRequest extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MedicationRequestDispenseRequest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MedicationRequestDispenseRequest]
   /// that takes in a [String]
@@ -1015,15 +1008,6 @@ class MedicationRequestDispenseRequest extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationRequestDispenseRequest';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [initialFill]
   /// Indicates the quantity or duration for the first dispense of the
@@ -1167,7 +1151,7 @@ class MedicationRequestInitialFill extends BackboneElement {
 
   MedicationRequestInitialFill({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.quantity,
     this.duration,
@@ -1235,7 +1219,8 @@ class MedicationRequestInitialFill extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MedicationRequestInitialFill cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MedicationRequestInitialFill]
   /// that takes in a [String]
@@ -1255,15 +1240,6 @@ class MedicationRequestInitialFill extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationRequestInitialFill';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [quantity]
   /// The amount or quantity to provide as part of the first dispense.
@@ -1341,7 +1317,7 @@ class MedicationRequestSubstitution extends BackboneElement {
 
   MedicationRequestSubstitution({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.allowedBoolean,
     this.allowedCodeableConcept,
@@ -1416,7 +1392,8 @@ class MedicationRequestSubstitution extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MedicationRequestSubstitution cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MedicationRequestSubstitution]
   /// that takes in a [String]
@@ -1436,15 +1413,6 @@ class MedicationRequestSubstitution extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationRequestSubstitution';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [allowedBoolean]
   /// True if the prescriber allows a different drug to be dispensed from

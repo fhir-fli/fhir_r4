@@ -17,7 +17,7 @@ class TerminologyCapabilities extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.version,
@@ -274,7 +274,8 @@ class TerminologyCapabilities extends DomainResource {
                 )
               : throw ArgumentError(
                   'TerminologyCapabilities cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TerminologyCapabilities]
   /// that takes in a [String]
@@ -294,15 +295,6 @@ class TerminologyCapabilities extends DomainResource {
 
   @override
   String get fhirType => 'TerminologyCapabilities';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this terminology capabilities
@@ -723,7 +715,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
 
   TerminologyCapabilitiesSoftware({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     this.version,
@@ -791,7 +783,8 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TerminologyCapabilitiesSoftware cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TerminologyCapabilitiesSoftware]
   /// that takes in a [String]
@@ -811,15 +804,6 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
 
   @override
   String get fhirType => 'TerminologyCapabilitiesSoftware';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// Name the software is known by.
@@ -902,7 +886,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
 
   TerminologyCapabilitiesImplementation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.description,
     this.url,
@@ -970,7 +954,8 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TerminologyCapabilitiesImplementation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TerminologyCapabilitiesImplementation]
   /// that takes in a [String]
@@ -990,15 +975,6 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
 
   @override
   String get fhirType => 'TerminologyCapabilitiesImplementation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [description]
   /// Information about the specific installation that this terminology
@@ -1082,7 +1058,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
 
   TerminologyCapabilitiesCodeSystem({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.uri,
     this.version,
@@ -1162,7 +1138,8 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TerminologyCapabilitiesCodeSystem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TerminologyCapabilitiesCodeSystem]
   /// that takes in a [String]
@@ -1182,15 +1159,6 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
 
   @override
   String get fhirType => 'TerminologyCapabilitiesCodeSystem';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [uri]
   /// URI for the Code System.
@@ -1285,7 +1253,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
 
   TerminologyCapabilitiesVersion({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.code,
     this.isDefault,
@@ -1384,7 +1352,8 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TerminologyCapabilitiesVersion cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TerminologyCapabilitiesVersion]
   /// that takes in a [String]
@@ -1404,15 +1373,6 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
 
   @override
   String get fhirType => 'TerminologyCapabilitiesVersion';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// For version-less code systems, there should be a single version with no
@@ -1548,7 +1508,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
 
   TerminologyCapabilitiesFilter({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     required this.op,
@@ -1615,7 +1575,8 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TerminologyCapabilitiesFilter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TerminologyCapabilitiesFilter]
   /// that takes in a [String]
@@ -1635,15 +1596,6 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
 
   @override
   String get fhirType => 'TerminologyCapabilitiesFilter';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// Code of the property supported.
@@ -1723,7 +1675,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
 
   TerminologyCapabilitiesExpansion({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.hierarchical,
     this.paging,
@@ -1817,7 +1769,8 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TerminologyCapabilitiesExpansion cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TerminologyCapabilitiesExpansion]
   /// that takes in a [String]
@@ -1837,15 +1790,6 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
 
   @override
   String get fhirType => 'TerminologyCapabilitiesExpansion';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [hierarchical]
   /// Whether the server can return nested value sets.
@@ -1966,7 +1910,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
 
   TerminologyCapabilitiesParameter({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     this.documentation,
@@ -2034,7 +1978,8 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TerminologyCapabilitiesParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TerminologyCapabilitiesParameter]
   /// that takes in a [String]
@@ -2054,15 +1999,6 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
 
   @override
   String get fhirType => 'TerminologyCapabilitiesParameter';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// Expansion Parameter name.
@@ -2145,7 +2081,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
 
   TerminologyCapabilitiesValidateCode({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.translations,
     super.userData,
@@ -2206,7 +2142,8 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TerminologyCapabilitiesValidateCode cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TerminologyCapabilitiesValidateCode]
   /// that takes in a [String]
@@ -2226,15 +2163,6 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
 
   @override
   String get fhirType => 'TerminologyCapabilitiesValidateCode';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [translations]
   /// Whether translations are validated.
@@ -2302,7 +2230,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
 
   TerminologyCapabilitiesTranslation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.needsMap,
     super.userData,
@@ -2363,7 +2291,8 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TerminologyCapabilitiesTranslation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TerminologyCapabilitiesTranslation]
   /// that takes in a [String]
@@ -2383,15 +2312,6 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
 
   @override
   String get fhirType => 'TerminologyCapabilitiesTranslation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [needsMap]
   /// Whether the client must identify the map.
@@ -2458,7 +2378,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
 
   TerminologyCapabilitiesClosure({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.translation,
     super.userData,
@@ -2521,7 +2441,8 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
                 )
               : throw ArgumentError(
                   'TerminologyCapabilitiesClosure cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [TerminologyCapabilitiesClosure]
   /// that takes in a [String]
@@ -2541,15 +2462,6 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
 
   @override
   String get fhirType => 'TerminologyCapabilitiesClosure';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [translation]
   /// If cross-system closure is supported.

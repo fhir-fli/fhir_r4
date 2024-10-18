@@ -9,7 +9,7 @@ class Attachment extends DataType {
 
   Attachment({
     super.id,
-    this.extension_,
+    super.extension_,
     this.contentType,
     this.language,
     this.data,
@@ -109,8 +109,10 @@ class Attachment extends DataType {
               ? Attachment.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Attachment cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Attachment cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Attachment]
   /// that takes in a [String]
@@ -130,15 +132,6 @@ class Attachment extends DataType {
 
   @override
   String get fhirType => 'Attachment';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [contentType]
   /// Identifies the type of the data in the attachment and allows a method

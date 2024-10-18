@@ -14,7 +14,7 @@ class PackagedProductDefinition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.name,
@@ -219,7 +219,8 @@ class PackagedProductDefinition extends DomainResource {
                 )
               : throw ArgumentError(
                   'PackagedProductDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PackagedProductDefinition]
   /// that takes in a [String]
@@ -239,15 +240,6 @@ class PackagedProductDefinition extends DomainResource {
 
   @override
   String get fhirType => 'PackagedProductDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// A unique identifier for this package as whole. Unique instance
@@ -525,7 +517,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
 
   PackagedProductDefinitionLegalStatusOfSupply({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.code,
     this.jurisdiction,
@@ -593,7 +585,8 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PackagedProductDefinitionLegalStatusOfSupply cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PackagedProductDefinitionLegalStatusOfSupply]
   /// that takes in a [String]
@@ -613,15 +606,6 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
 
   @override
   String get fhirType => 'PackagedProductDefinitionLegalStatusOfSupply';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// The actual status of supply. Conveys in what situation this package
@@ -701,7 +685,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
 
   PackagedProductDefinitionPackage({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.type,
@@ -850,7 +834,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PackagedProductDefinitionPackage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PackagedProductDefinitionPackage]
   /// that takes in a [String]
@@ -870,15 +855,6 @@ class PackagedProductDefinitionPackage extends BackboneElement {
 
   @override
   String get fhirType => 'PackagedProductDefinitionPackage';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// An identifier that is specific to this particular part of the
@@ -1046,7 +1022,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
 
   PackagedProductDefinitionShelfLifeStorage({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.periodDuration,
@@ -1131,7 +1107,8 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PackagedProductDefinitionShelfLifeStorage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PackagedProductDefinitionShelfLifeStorage]
   /// that takes in a [String]
@@ -1151,15 +1128,6 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
 
   @override
   String get fhirType => 'PackagedProductDefinitionShelfLifeStorage';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// This describes the shelf life, taking into account various scenarios
@@ -1277,7 +1245,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 
   PackagedProductDefinitionProperty({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.valueCodeableConcept,
@@ -1369,7 +1337,8 @@ class PackagedProductDefinitionProperty extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PackagedProductDefinitionProperty cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PackagedProductDefinitionProperty]
   /// that takes in a [String]
@@ -1389,15 +1358,6 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 
   @override
   String get fhirType => 'PackagedProductDefinitionProperty';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// A code expressing the type of characteristic.
@@ -1518,7 +1478,7 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
 
   PackagedProductDefinitionContainedItem({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.item,
     this.amount,
@@ -1584,7 +1544,8 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
                 )
               : throw ArgumentError(
                   'PackagedProductDefinitionContainedItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [PackagedProductDefinitionContainedItem]
   /// that takes in a [String]
@@ -1604,15 +1565,6 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
 
   @override
   String get fhirType => 'PackagedProductDefinitionContainedItem';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [item]
   /// The actual item(s) of medication, as manufactured, or a device

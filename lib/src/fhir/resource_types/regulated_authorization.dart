@@ -17,7 +17,7 @@ class RegulatedAuthorization extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.subject,
@@ -208,7 +208,8 @@ class RegulatedAuthorization extends DomainResource {
                 )
               : throw ArgumentError(
                   'RegulatedAuthorization cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [RegulatedAuthorization]
   /// that takes in a [String]
@@ -228,15 +229,6 @@ class RegulatedAuthorization extends DomainResource {
 
   @override
   String get fhirType => 'RegulatedAuthorization';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifier for the authorization, typically assigned by the
@@ -497,7 +489,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
 
   RegulatedAuthorizationCase({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.type,
@@ -594,7 +586,8 @@ class RegulatedAuthorizationCase extends BackboneElement {
                 )
               : throw ArgumentError(
                   'RegulatedAuthorizationCase cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [RegulatedAuthorizationCase]
   /// that takes in a [String]
@@ -614,15 +607,6 @@ class RegulatedAuthorizationCase extends BackboneElement {
 
   @override
   String get fhirType => 'RegulatedAuthorizationCase';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifier by which this case can be referenced.

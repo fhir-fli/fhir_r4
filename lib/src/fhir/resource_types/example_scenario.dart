@@ -14,7 +14,7 @@ class ExampleScenario extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.identifier,
@@ -240,7 +240,8 @@ class ExampleScenario extends DomainResource {
                 )
               : throw ArgumentError(
                   'ExampleScenario cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ExampleScenario]
   /// that takes in a [String]
@@ -260,15 +261,6 @@ class ExampleScenario extends DomainResource {
 
   @override
   String get fhirType => 'ExampleScenario';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this example scenario when it
@@ -596,7 +588,7 @@ class ExampleScenarioActor extends BackboneElement {
 
   ExampleScenarioActor({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.actorId,
     required this.type,
@@ -676,7 +668,8 @@ class ExampleScenarioActor extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ExampleScenarioActor cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ExampleScenarioActor]
   /// that takes in a [String]
@@ -696,15 +689,6 @@ class ExampleScenarioActor extends BackboneElement {
 
   @override
   String get fhirType => 'ExampleScenarioActor';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [actorId]
   /// ID or acronym of actor.
@@ -807,7 +791,7 @@ class ExampleScenarioInstance extends BackboneElement {
 
   ExampleScenarioInstance({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.resourceId,
     required this.resourceType,
@@ -907,7 +891,8 @@ class ExampleScenarioInstance extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ExampleScenarioInstance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ExampleScenarioInstance]
   /// that takes in a [String]
@@ -927,15 +912,6 @@ class ExampleScenarioInstance extends BackboneElement {
 
   @override
   String get fhirType => 'ExampleScenarioInstance';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [resourceId]
   /// The id of the resource for referencing.
@@ -1064,7 +1040,7 @@ class ExampleScenarioVersion extends BackboneElement {
 
   ExampleScenarioVersion({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.versionId,
     required this.description,
@@ -1130,7 +1106,8 @@ class ExampleScenarioVersion extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ExampleScenarioVersion cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ExampleScenarioVersion]
   /// that takes in a [String]
@@ -1150,15 +1127,6 @@ class ExampleScenarioVersion extends BackboneElement {
 
   @override
   String get fhirType => 'ExampleScenarioVersion';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [versionId]
   /// The identifier of a specific version of a resource.
@@ -1238,7 +1206,7 @@ class ExampleScenarioContainedInstance extends BackboneElement {
 
   ExampleScenarioContainedInstance({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.resourceId,
     this.versionId,
@@ -1306,7 +1274,8 @@ class ExampleScenarioContainedInstance extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ExampleScenarioContainedInstance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ExampleScenarioContainedInstance]
   /// that takes in a [String]
@@ -1326,15 +1295,6 @@ class ExampleScenarioContainedInstance extends BackboneElement {
 
   @override
   String get fhirType => 'ExampleScenarioContainedInstance';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [resourceId]
   /// Each resource contained in the instance.
@@ -1415,7 +1375,7 @@ class ExampleScenarioProcess extends BackboneElement {
 
   ExampleScenarioProcess({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.title,
     this.description,
@@ -1507,7 +1467,8 @@ class ExampleScenarioProcess extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ExampleScenarioProcess cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ExampleScenarioProcess]
   /// that takes in a [String]
@@ -1527,15 +1488,6 @@ class ExampleScenarioProcess extends BackboneElement {
 
   @override
   String get fhirType => 'ExampleScenarioProcess';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [title]
   /// The diagram title of the group of operations.
@@ -1654,7 +1606,7 @@ class ExampleScenarioStep extends BackboneElement {
 
   ExampleScenarioStep({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.process,
     this.pause,
@@ -1743,7 +1695,8 @@ class ExampleScenarioStep extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ExampleScenarioStep cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ExampleScenarioStep]
   /// that takes in a [String]
@@ -1763,15 +1716,6 @@ class ExampleScenarioStep extends BackboneElement {
 
   @override
   String get fhirType => 'ExampleScenarioStep';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [process]
   /// Nested process.
@@ -1871,7 +1815,7 @@ class ExampleScenarioOperation extends BackboneElement {
 
   ExampleScenarioOperation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.number,
     this.type,
@@ -1981,7 +1925,8 @@ class ExampleScenarioOperation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ExampleScenarioOperation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ExampleScenarioOperation]
   /// that takes in a [String]
@@ -2001,15 +1946,6 @@ class ExampleScenarioOperation extends BackboneElement {
 
   @override
   String get fhirType => 'ExampleScenarioOperation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [number]
   /// The sequential number of the interaction, e.g. 1.2.5.
@@ -2175,7 +2111,7 @@ class ExampleScenarioAlternative extends BackboneElement {
 
   ExampleScenarioAlternative({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.title,
     this.description,
@@ -2243,7 +2179,8 @@ class ExampleScenarioAlternative extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ExampleScenarioAlternative cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ExampleScenarioAlternative]
   /// that takes in a [String]
@@ -2263,15 +2200,6 @@ class ExampleScenarioAlternative extends BackboneElement {
 
   @override
   String get fhirType => 'ExampleScenarioAlternative';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [title]
   /// The label to display for the alternative that gives a sense of the

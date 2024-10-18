@@ -17,7 +17,7 @@ class EpisodeOfCare extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -201,8 +201,10 @@ class EpisodeOfCare extends DomainResource {
               ? EpisodeOfCare.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('EpisodeOfCare cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'EpisodeOfCare cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EpisodeOfCare]
   /// that takes in a [String]
@@ -222,15 +224,6 @@ class EpisodeOfCare extends DomainResource {
 
   @override
   String get fhirType => 'EpisodeOfCare';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// The EpisodeOfCare may be known by different identifiers for different
@@ -448,7 +441,7 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
 
   EpisodeOfCareStatusHistory({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.status,
     required this.period,
@@ -513,7 +506,8 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
                 )
               : throw ArgumentError(
                   'EpisodeOfCareStatusHistory cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EpisodeOfCareStatusHistory]
   /// that takes in a [String]
@@ -533,15 +527,6 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
 
   @override
   String get fhirType => 'EpisodeOfCareStatusHistory';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [status]
   /// planned | waitlist | active | onhold | finished | cancelled.
@@ -612,7 +597,7 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
 
   EpisodeOfCareDiagnosis({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.condition,
     this.role,
@@ -685,7 +670,8 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
                 )
               : throw ArgumentError(
                   'EpisodeOfCareDiagnosis cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [EpisodeOfCareDiagnosis]
   /// that takes in a [String]
@@ -705,15 +691,6 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
 
   @override
   String get fhirType => 'EpisodeOfCareDiagnosis';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [condition]
   /// A list of conditions/problems/diagnoses that this episode of care is

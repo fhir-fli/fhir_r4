@@ -15,7 +15,7 @@ class OperationDefinition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.version,
@@ -286,7 +286,8 @@ class OperationDefinition extends DomainResource {
                 )
               : throw ArgumentError(
                   'OperationDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [OperationDefinition]
   /// that takes in a [String]
@@ -306,15 +307,6 @@ class OperationDefinition extends DomainResource {
 
   @override
   String get fhirType => 'OperationDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this operation definition when
@@ -769,7 +761,7 @@ class OperationDefinitionParameter extends BackboneElement {
 
   OperationDefinitionParameter({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     required this.use,
@@ -898,7 +890,8 @@ class OperationDefinitionParameter extends BackboneElement {
                 )
               : throw ArgumentError(
                   'OperationDefinitionParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [OperationDefinitionParameter]
   /// that takes in a [String]
@@ -918,15 +911,6 @@ class OperationDefinitionParameter extends BackboneElement {
 
   @override
   String get fhirType => 'OperationDefinitionParameter';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// The name of used to identify the parameter.
@@ -1116,7 +1100,7 @@ class OperationDefinitionBinding extends BackboneElement {
 
   OperationDefinitionBinding({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.strength,
     required this.valueSet,
@@ -1182,7 +1166,8 @@ class OperationDefinitionBinding extends BackboneElement {
                 )
               : throw ArgumentError(
                   'OperationDefinitionBinding cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [OperationDefinitionBinding]
   /// that takes in a [String]
@@ -1202,15 +1187,6 @@ class OperationDefinitionBinding extends BackboneElement {
 
   @override
   String get fhirType => 'OperationDefinitionBinding';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [strength]
   /// Indicates the degree of conformance expectations associated with this
@@ -1289,7 +1265,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
 
   OperationDefinitionReferencedFrom({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.source,
     this.sourceId,
@@ -1357,7 +1333,8 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
                 )
               : throw ArgumentError(
                   'OperationDefinitionReferencedFrom cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [OperationDefinitionReferencedFrom]
   /// that takes in a [String]
@@ -1377,15 +1354,6 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
 
   @override
   String get fhirType => 'OperationDefinitionReferencedFrom';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [source]
   /// The name of the parameter or dot-separated path of parameter names
@@ -1471,7 +1439,7 @@ class OperationDefinitionOverload extends BackboneElement {
 
   OperationDefinitionOverload({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.parameterName,
     this.comment,
@@ -1540,7 +1508,8 @@ class OperationDefinitionOverload extends BackboneElement {
                 )
               : throw ArgumentError(
                   'OperationDefinitionOverload cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [OperationDefinitionOverload]
   /// that takes in a [String]
@@ -1560,15 +1529,6 @@ class OperationDefinitionOverload extends BackboneElement {
 
   @override
   String get fhirType => 'OperationDefinitionOverload';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [parameterName]
   /// Name of parameter to include in overload.

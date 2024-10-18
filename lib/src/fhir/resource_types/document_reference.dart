@@ -19,7 +19,7 @@ class DocumentReference extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.masterIdentifier,
     this.identifier,
@@ -228,7 +228,8 @@ class DocumentReference extends DomainResource {
                 )
               : throw ArgumentError(
                   'DocumentReference cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DocumentReference]
   /// that takes in a [String]
@@ -248,15 +249,6 @@ class DocumentReference extends DomainResource {
 
   @override
   String get fhirType => 'DocumentReference';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [masterIdentifier]
   /// Document identifier as assigned by the source of the document. This
@@ -530,7 +522,7 @@ class DocumentReferenceRelatesTo extends BackboneElement {
 
   DocumentReferenceRelatesTo({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     required this.target,
@@ -595,7 +587,8 @@ class DocumentReferenceRelatesTo extends BackboneElement {
                 )
               : throw ArgumentError(
                   'DocumentReferenceRelatesTo cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DocumentReferenceRelatesTo]
   /// that takes in a [String]
@@ -615,15 +608,6 @@ class DocumentReferenceRelatesTo extends BackboneElement {
 
   @override
   String get fhirType => 'DocumentReferenceRelatesTo';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// The type of relationship that this document has with anther document.
@@ -695,7 +679,7 @@ class DocumentReferenceContent extends BackboneElement {
 
   DocumentReferenceContent({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.attachment,
     this.format,
@@ -761,7 +745,8 @@ class DocumentReferenceContent extends BackboneElement {
                 )
               : throw ArgumentError(
                   'DocumentReferenceContent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DocumentReferenceContent]
   /// that takes in a [String]
@@ -781,15 +766,6 @@ class DocumentReferenceContent extends BackboneElement {
 
   @override
   String get fhirType => 'DocumentReferenceContent';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [attachment]
   /// The document or URL of the document along with critical metadata to
@@ -865,7 +841,7 @@ class DocumentReferenceContext extends BackboneElement {
 
   DocumentReferenceContext({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.encounter,
     this.event,
@@ -975,7 +951,8 @@ class DocumentReferenceContext extends BackboneElement {
                 )
               : throw ArgumentError(
                   'DocumentReferenceContext cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [DocumentReferenceContext]
   /// that takes in a [String]
@@ -995,15 +972,6 @@ class DocumentReferenceContext extends BackboneElement {
 
   @override
   String get fhirType => 'DocumentReferenceContext';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [encounter]
   /// Describes the clinical encounter or type of care that the document

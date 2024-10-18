@@ -14,7 +14,7 @@ class SpecimenDefinition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.typeCollected,
@@ -152,7 +152,8 @@ class SpecimenDefinition extends DomainResource {
                 )
               : throw ArgumentError(
                   'SpecimenDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SpecimenDefinition]
   /// that takes in a [String]
@@ -172,15 +173,6 @@ class SpecimenDefinition extends DomainResource {
 
   @override
   String get fhirType => 'SpecimenDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// A business identifier associated with the kind of specimen.
@@ -337,7 +329,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
 
   SpecimenDefinitionTypeTested({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.isDerived,
     this.type,
@@ -450,7 +442,8 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SpecimenDefinitionTypeTested cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SpecimenDefinitionTypeTested]
   /// that takes in a [String]
@@ -470,15 +463,6 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
 
   @override
   String get fhirType => 'SpecimenDefinitionTypeTested';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [isDerived]
   /// Primary of secondary specimen.
@@ -624,7 +608,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
 
   SpecimenDefinitionContainer({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.material,
     this.type,
@@ -741,7 +725,8 @@ class SpecimenDefinitionContainer extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SpecimenDefinitionContainer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SpecimenDefinitionContainer]
   /// that takes in a [String]
@@ -761,15 +746,6 @@ class SpecimenDefinitionContainer extends BackboneElement {
 
   @override
   String get fhirType => 'SpecimenDefinitionContainer';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [material]
   /// The type of material of the container.
@@ -930,7 +906,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
 
   SpecimenDefinitionAdditive({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.additiveCodeableConcept,
     this.additiveReference,
@@ -998,7 +974,8 @@ class SpecimenDefinitionAdditive extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SpecimenDefinitionAdditive cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SpecimenDefinitionAdditive]
   /// that takes in a [String]
@@ -1018,15 +995,6 @@ class SpecimenDefinitionAdditive extends BackboneElement {
 
   @override
   String get fhirType => 'SpecimenDefinitionAdditive';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [additiveCodeableConcept]
   /// Substance introduced in the kind of container to preserve, maintain or
@@ -1105,7 +1073,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
 
   SpecimenDefinitionHandling({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.temperatureQualifier,
     this.temperatureRange,
@@ -1186,7 +1154,8 @@ class SpecimenDefinitionHandling extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SpecimenDefinitionHandling cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SpecimenDefinitionHandling]
   /// that takes in a [String]
@@ -1206,15 +1175,6 @@ class SpecimenDefinitionHandling extends BackboneElement {
 
   @override
   String get fhirType => 'SpecimenDefinitionHandling';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [temperatureQualifier]
   /// It qualifies the interval of temperature, which characterizes an

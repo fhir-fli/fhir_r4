@@ -15,7 +15,7 @@ class StructureMap extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.url,
     this.identifier,
@@ -237,8 +237,10 @@ class StructureMap extends DomainResource {
               ? StructureMap.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('StructureMap cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'StructureMap cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [StructureMap]
   /// that takes in a [String]
@@ -258,15 +260,6 @@ class StructureMap extends DomainResource {
 
   @override
   String get fhirType => 'StructureMap';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this structure map when it is
@@ -610,7 +603,7 @@ class StructureMapStructure extends BackboneElement {
 
   StructureMapStructure({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.url,
     required this.mode,
@@ -690,7 +683,8 @@ class StructureMapStructure extends BackboneElement {
                 )
               : throw ArgumentError(
                   'StructureMapStructure cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [StructureMapStructure]
   /// that takes in a [String]
@@ -710,15 +704,6 @@ class StructureMapStructure extends BackboneElement {
 
   @override
   String get fhirType => 'StructureMapStructure';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// The canonical reference to the structure.
@@ -822,7 +807,7 @@ class StructureMapGroup extends BackboneElement {
 
   StructureMapGroup({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     this.extends_,
@@ -918,7 +903,8 @@ class StructureMapGroup extends BackboneElement {
                 )
               : throw ArgumentError(
                   'StructureMapGroup cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [StructureMapGroup]
   /// that takes in a [String]
@@ -938,15 +924,6 @@ class StructureMapGroup extends BackboneElement {
 
   @override
   String get fhirType => 'StructureMapGroup';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// A unique name for the group for the convenience of human readers.
@@ -1069,7 +1046,7 @@ class StructureMapInput extends BackboneElement {
 
   StructureMapInput({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     this.type,
@@ -1149,7 +1126,8 @@ class StructureMapInput extends BackboneElement {
                 )
               : throw ArgumentError(
                   'StructureMapInput cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [StructureMapInput]
   /// that takes in a [String]
@@ -1169,15 +1147,6 @@ class StructureMapInput extends BackboneElement {
 
   @override
   String get fhirType => 'StructureMapInput';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// Name for this instance of data.
@@ -1280,7 +1249,7 @@ class StructureMapRule extends BackboneElement {
 
   StructureMapRule({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     required this.source,
@@ -1376,7 +1345,8 @@ class StructureMapRule extends BackboneElement {
                 )
               : throw ArgumentError(
                   'StructureMapRule cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [StructureMapRule]
   /// that takes in a [String]
@@ -1396,15 +1366,6 @@ class StructureMapRule extends BackboneElement {
 
   @override
   String get fhirType => 'StructureMapRule';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// Name of the rule for internal references.
@@ -1513,7 +1474,7 @@ class StructureMapSource extends BackboneElement {
 
   StructureMapSource({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.context,
     this.min,
@@ -1959,7 +1920,8 @@ class StructureMapSource extends BackboneElement {
                 )
               : throw ArgumentError(
                   'StructureMapSource cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [StructureMapSource]
   /// that takes in a [String]
@@ -1979,15 +1941,6 @@ class StructureMapSource extends BackboneElement {
 
   @override
   String get fhirType => 'StructureMapSource';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [context]
   /// Type or variable this rule applies to.
@@ -2784,7 +2737,7 @@ class StructureMapTarget extends BackboneElement {
 
   StructureMapTarget({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.context,
     this.contextType,
@@ -2898,7 +2851,8 @@ class StructureMapTarget extends BackboneElement {
                 )
               : throw ArgumentError(
                   'StructureMapTarget cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [StructureMapTarget]
   /// that takes in a [String]
@@ -2918,15 +2872,6 @@ class StructureMapTarget extends BackboneElement {
 
   @override
   String get fhirType => 'StructureMapTarget';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [context]
   /// Type or variable this rule applies to.
@@ -3077,7 +3022,7 @@ class StructureMapParameter extends BackboneElement {
 
   StructureMapParameter({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.valueId,
     this.valueString,
@@ -3168,7 +3113,8 @@ class StructureMapParameter extends BackboneElement {
                 )
               : throw ArgumentError(
                   'StructureMapParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [StructureMapParameter]
   /// that takes in a [String]
@@ -3188,15 +3134,6 @@ class StructureMapParameter extends BackboneElement {
 
   @override
   String get fhirType => 'StructureMapParameter';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [valueId]
   /// Parameter value - variable or literal.
@@ -3321,7 +3258,7 @@ class StructureMapDependent extends BackboneElement {
 
   StructureMapDependent({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     required this.variable,
@@ -3388,7 +3325,8 @@ class StructureMapDependent extends BackboneElement {
                 )
               : throw ArgumentError(
                   'StructureMapDependent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [StructureMapDependent]
   /// that takes in a [String]
@@ -3408,15 +3346,6 @@ class StructureMapDependent extends BackboneElement {
 
   @override
   String get fhirType => 'StructureMapDependent';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// Name of a rule or group to apply.

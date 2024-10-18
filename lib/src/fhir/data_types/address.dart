@@ -13,7 +13,7 @@ class Address extends DataType {
 
   Address({
     super.id,
-    this.extension_,
+    super.extension_,
     this.use,
     this.type,
     this.text,
@@ -125,8 +125,10 @@ class Address extends DataType {
               ? Address.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Address cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Address cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Address]
   /// that takes in a [String]
@@ -146,15 +148,6 @@ class Address extends DataType {
 
   @override
   String get fhirType => 'Address';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [use]
   /// The purpose of this address.

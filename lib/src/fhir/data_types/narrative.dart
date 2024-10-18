@@ -10,7 +10,7 @@ class Narrative extends DataType {
 
   Narrative({
     super.id,
-    this.extension_,
+    super.extension_,
     required this.status,
     required this.div,
     super.userData,
@@ -64,8 +64,10 @@ class Narrative extends DataType {
               ? Narrative.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Narrative cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Narrative cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Narrative]
   /// that takes in a [String]
@@ -85,15 +87,6 @@ class Narrative extends DataType {
 
   @override
   String get fhirType => 'Narrative';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [status]
   /// The status of the narrative - whether it's entirely generated (from

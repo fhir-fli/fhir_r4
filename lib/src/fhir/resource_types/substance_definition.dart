@@ -15,7 +15,7 @@ class SubstanceDefinition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.version,
@@ -272,7 +272,8 @@ class SubstanceDefinition extends DomainResource {
                 )
               : throw ArgumentError(
                   'SubstanceDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubstanceDefinition]
   /// that takes in a [String]
@@ -292,15 +293,6 @@ class SubstanceDefinition extends DomainResource {
 
   @override
   String get fhirType => 'SubstanceDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifier by which this substance is known.
@@ -599,7 +591,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 
   SubstanceDefinitionMoiety({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.role,
     this.identifier,
@@ -712,7 +704,8 @@ class SubstanceDefinitionMoiety extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubstanceDefinitionMoiety cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubstanceDefinitionMoiety]
   /// that takes in a [String]
@@ -732,15 +725,6 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionMoiety';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [role]
   /// Role that the moiety is playing.
@@ -901,7 +885,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
 
   SubstanceDefinitionProperty({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.valueCodeableConcept,
@@ -993,7 +977,8 @@ class SubstanceDefinitionProperty extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubstanceDefinitionProperty cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubstanceDefinitionProperty]
   /// that takes in a [String]
@@ -1013,15 +998,6 @@ class SubstanceDefinitionProperty extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionProperty';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// A code expressing the type of property.
@@ -1143,7 +1119,7 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
 
   SubstanceDefinitionMolecularWeight({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.method,
     this.type,
@@ -1215,7 +1191,8 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubstanceDefinitionMolecularWeight cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubstanceDefinitionMolecularWeight]
   /// that takes in a [String]
@@ -1235,15 +1212,6 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionMolecularWeight';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [method]
   /// The method by which the molecular weight was determined.
@@ -1330,7 +1298,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
 
   SubstanceDefinitionStructure({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.stereochemistry,
     this.opticalActivity,
@@ -1448,7 +1416,8 @@ class SubstanceDefinitionStructure extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubstanceDefinitionStructure cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubstanceDefinitionStructure]
   /// that takes in a [String]
@@ -1468,15 +1437,6 @@ class SubstanceDefinitionStructure extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionStructure';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [stereochemistry]
   /// Stereochemistry type.
@@ -1624,7 +1584,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
 
   SubstanceDefinitionRepresentation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.representation,
@@ -1705,7 +1665,8 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubstanceDefinitionRepresentation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubstanceDefinitionRepresentation]
   /// that takes in a [String]
@@ -1725,15 +1686,6 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionRepresentation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The kind of structural representation (e.g. full, partial).
@@ -1837,7 +1789,7 @@ class SubstanceDefinitionCode extends BackboneElement {
 
   SubstanceDefinitionCode({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.code,
     this.status,
@@ -1932,7 +1884,8 @@ class SubstanceDefinitionCode extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubstanceDefinitionCode cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubstanceDefinitionCode]
   /// that takes in a [String]
@@ -1952,15 +1905,6 @@ class SubstanceDefinitionCode extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionCode';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// The specific code.
@@ -2070,7 +2014,7 @@ class SubstanceDefinitionName extends BackboneElement {
 
   SubstanceDefinitionName({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     this.type,
@@ -2220,7 +2164,8 @@ class SubstanceDefinitionName extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubstanceDefinitionName cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubstanceDefinitionName]
   /// that takes in a [String]
@@ -2240,15 +2185,6 @@ class SubstanceDefinitionName extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionName';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// The actual name.
@@ -2421,7 +2357,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
 
   SubstanceDefinitionOfficial({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.authority,
     this.status,
@@ -2496,7 +2432,8 @@ class SubstanceDefinitionOfficial extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubstanceDefinitionOfficial cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubstanceDefinitionOfficial]
   /// that takes in a [String]
@@ -2516,15 +2453,6 @@ class SubstanceDefinitionOfficial extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionOfficial';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [authority]
   /// Which authority uses this official name.
@@ -2615,7 +2543,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 
   SubstanceDefinitionRelationship({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.substanceDefinitionReference,
     this.substanceDefinitionCodeableConcept,
@@ -2737,7 +2665,8 @@ class SubstanceDefinitionRelationship extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubstanceDefinitionRelationship cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubstanceDefinitionRelationship]
   /// that takes in a [String]
@@ -2757,15 +2686,6 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionRelationship';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [substanceDefinitionReference]
   /// A pointer to another substance, as a resource or just a
@@ -2942,7 +2862,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
 
   SubstanceDefinitionSourceMaterial({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.genus,
@@ -3032,7 +2952,8 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
                 )
               : throw ArgumentError(
                   'SubstanceDefinitionSourceMaterial cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [SubstanceDefinitionSourceMaterial]
   /// that takes in a [String]
@@ -3052,15 +2973,6 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionSourceMaterial';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// A classification that provides the origin of the raw material. Example:

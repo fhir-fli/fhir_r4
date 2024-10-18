@@ -14,7 +14,7 @@ class FhirList extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -191,8 +191,10 @@ class FhirList extends DomainResource {
               ? FhirList.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('FhirList cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'FhirList cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [FhirList]
   /// that takes in a [String]
@@ -212,15 +214,6 @@ class FhirList extends DomainResource {
 
   @override
   String get fhirType => 'FhirList';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifier for the List assigned for business purposes outside the
@@ -451,7 +444,7 @@ class ListEntry extends BackboneElement {
 
   ListEntry({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.flag,
     this.deleted,
@@ -529,8 +522,10 @@ class ListEntry extends BackboneElement {
               ? ListEntry.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ListEntry cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ListEntry cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ListEntry]
   /// that takes in a [String]
@@ -550,15 +545,6 @@ class ListEntry extends BackboneElement {
 
   @override
   String get fhirType => 'ListEntry';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [flag]
   /// The flag allows the system constructing the list to indicate the role

@@ -77,8 +77,10 @@ class Parameters extends Resource {
               ? Parameters.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Parameters cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Parameters cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Parameters]
   /// that takes in a [String]
@@ -172,7 +174,7 @@ class ParametersParameter extends BackboneElement {
 
   ParametersParameter({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     this.valueBase64Binary,
@@ -568,7 +570,8 @@ class ParametersParameter extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ParametersParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ParametersParameter]
   /// that takes in a [String]
@@ -588,15 +591,6 @@ class ParametersParameter extends BackboneElement {
 
   @override
   String get fhirType => 'ParametersParameter';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// The name of the parameter (reference to the operation definition).

@@ -16,7 +16,7 @@ class RelatedPerson extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
@@ -204,8 +204,10 @@ class RelatedPerson extends DomainResource {
               ? RelatedPerson.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('RelatedPerson cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'RelatedPerson cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [RelatedPerson]
   /// that takes in a [String]
@@ -225,15 +227,6 @@ class RelatedPerson extends DomainResource {
 
   @override
   String get fhirType => 'RelatedPerson';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifier for a person within a particular scope.
@@ -455,7 +448,7 @@ class RelatedPersonCommunication extends BackboneElement {
 
   RelatedPersonCommunication({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.language,
     this.preferred,
@@ -522,7 +515,8 @@ class RelatedPersonCommunication extends BackboneElement {
                 )
               : throw ArgumentError(
                   'RelatedPersonCommunication cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [RelatedPersonCommunication]
   /// that takes in a [String]
@@ -542,15 +536,6 @@ class RelatedPersonCommunication extends BackboneElement {
 
   @override
   String get fhirType => 'RelatedPersonCommunication';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [language]
   /// The ISO-639-1 alpha 2 code in lower case for the language, optionally

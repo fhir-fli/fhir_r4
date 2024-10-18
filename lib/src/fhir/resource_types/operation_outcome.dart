@@ -15,7 +15,7 @@ class OperationOutcome extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.issue,
     super.userData,
@@ -112,7 +112,8 @@ class OperationOutcome extends DomainResource {
                 )
               : throw ArgumentError(
                   'OperationOutcome cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [OperationOutcome]
   /// that takes in a [String]
@@ -132,15 +133,6 @@ class OperationOutcome extends DomainResource {
 
   @override
   String get fhirType => 'OperationOutcome';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [issue]
   /// An error, warning, or information message that results from a system
@@ -240,7 +232,7 @@ class OperationOutcomeIssue extends BackboneElement {
 
   OperationOutcomeIssue({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.severity,
     required this.code,
@@ -331,7 +323,8 @@ class OperationOutcomeIssue extends BackboneElement {
                 )
               : throw ArgumentError(
                   'OperationOutcomeIssue cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [OperationOutcomeIssue]
   /// that takes in a [String]
@@ -351,15 +344,6 @@ class OperationOutcomeIssue extends BackboneElement {
 
   @override
   String get fhirType => 'OperationOutcomeIssue';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [severity]
   /// Indicates whether the issue indicates a variation from successful

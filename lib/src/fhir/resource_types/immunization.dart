@@ -16,7 +16,7 @@ class Immunization extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -319,8 +319,10 @@ class Immunization extends DomainResource {
               ? Immunization.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Immunization cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Immunization cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Immunization]
   /// that takes in a [String]
@@ -340,15 +342,6 @@ class Immunization extends DomainResource {
 
   @override
   String get fhirType => 'Immunization';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// A unique identifier assigned to this immunization record.
@@ -770,7 +763,7 @@ class ImmunizationPerformer extends BackboneElement {
 
   ImmunizationPerformer({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.function_,
     required this.actor,
@@ -836,7 +829,8 @@ class ImmunizationPerformer extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImmunizationPerformer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImmunizationPerformer]
   /// that takes in a [String]
@@ -856,15 +850,6 @@ class ImmunizationPerformer extends BackboneElement {
 
   @override
   String get fhirType => 'ImmunizationPerformer';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [function_]
   /// Describes the type of performance (e.g. ordering provider,
@@ -939,7 +924,7 @@ class ImmunizationEducation extends BackboneElement {
 
   ImmunizationEducation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.documentType,
     this.reference,
@@ -1023,7 +1008,8 @@ class ImmunizationEducation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImmunizationEducation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImmunizationEducation]
   /// that takes in a [String]
@@ -1043,15 +1029,6 @@ class ImmunizationEducation extends BackboneElement {
 
   @override
   String get fhirType => 'ImmunizationEducation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [documentType]
   /// Identifier of the material presented to the patient.
@@ -1164,7 +1141,7 @@ class ImmunizationReaction extends BackboneElement {
 
   ImmunizationReaction({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.date,
     this.detail,
@@ -1240,7 +1217,8 @@ class ImmunizationReaction extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImmunizationReaction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImmunizationReaction]
   /// that takes in a [String]
@@ -1260,15 +1238,6 @@ class ImmunizationReaction extends BackboneElement {
 
   @override
   String get fhirType => 'ImmunizationReaction';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [date]
   /// Date of reaction to the immunization.
@@ -1362,7 +1331,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
 
   ImmunizationProtocolApplied({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.series,
     this.authority,
@@ -1469,7 +1438,8 @@ class ImmunizationProtocolApplied extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImmunizationProtocolApplied cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImmunizationProtocolApplied]
   /// that takes in a [String]
@@ -1489,15 +1459,6 @@ class ImmunizationProtocolApplied extends BackboneElement {
 
   @override
   String get fhirType => 'ImmunizationProtocolApplied';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [series]
   /// One possible path to achieve presumed immunity against a disease -

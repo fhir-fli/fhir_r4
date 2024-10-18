@@ -16,7 +16,7 @@ class ImmunizationRecommendation extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.patient,
@@ -139,7 +139,8 @@ class ImmunizationRecommendation extends DomainResource {
                 )
               : throw ArgumentError(
                   'ImmunizationRecommendation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImmunizationRecommendation]
   /// that takes in a [String]
@@ -159,15 +160,6 @@ class ImmunizationRecommendation extends DomainResource {
 
   @override
   String get fhirType => 'ImmunizationRecommendation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// A unique identifier assigned to this particular recommendation record.
@@ -305,7 +297,7 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
 
   ImmunizationRecommendationRecommendation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.vaccineCode,
     this.targetDisease,
@@ -473,7 +465,8 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImmunizationRecommendationRecommendation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImmunizationRecommendationRecommendation]
   /// that takes in a [String]
@@ -493,15 +486,6 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
 
   @override
   String get fhirType => 'ImmunizationRecommendationRecommendation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [vaccineCode]
   /// Vaccine(s) or vaccine group that pertain to the recommendation.
@@ -739,7 +723,7 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
 
   ImmunizationRecommendationDateCriterion({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     required this.value,
@@ -804,7 +788,8 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ImmunizationRecommendationDateCriterion cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ImmunizationRecommendationDateCriterion]
   /// that takes in a [String]
@@ -824,15 +809,6 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
 
   @override
   String get fhirType => 'ImmunizationRecommendationDateCriterion';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// Date classification of recommendation. For example, earliest date to

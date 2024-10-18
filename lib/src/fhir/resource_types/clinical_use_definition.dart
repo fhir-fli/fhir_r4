@@ -16,7 +16,7 @@ class ClinicalUseDefinition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.type,
@@ -186,7 +186,8 @@ class ClinicalUseDefinition extends DomainResource {
                 )
               : throw ArgumentError(
                   'ClinicalUseDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClinicalUseDefinition]
   /// that takes in a [String]
@@ -206,15 +207,6 @@ class ClinicalUseDefinition extends DomainResource {
 
   @override
   String get fhirType => 'ClinicalUseDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifier for this issue.
@@ -419,7 +411,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
 
   ClinicalUseDefinitionContraindication({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.diseaseSymptomProcedure,
     this.diseaseStatus,
@@ -517,7 +509,8 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClinicalUseDefinitionContraindication cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClinicalUseDefinitionContraindication]
   /// that takes in a [String]
@@ -537,15 +530,6 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionContraindication';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [diseaseSymptomProcedure]
   /// The situation that is being documented as contraindicating against this
@@ -655,7 +639,7 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
 
   ClinicalUseDefinitionOtherTherapy({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.relationshipType,
     required this.therapy,
@@ -719,7 +703,8 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClinicalUseDefinitionOtherTherapy cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClinicalUseDefinitionOtherTherapy]
   /// that takes in a [String]
@@ -739,15 +724,6 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionOtherTherapy';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [relationshipType]
   /// The type of relationship between the medicinal product indication or
@@ -820,7 +796,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
 
   ClinicalUseDefinitionIndication({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.diseaseSymptomProcedure,
     this.diseaseStatus,
@@ -927,7 +903,8 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClinicalUseDefinitionIndication cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClinicalUseDefinitionIndication]
   /// that takes in a [String]
@@ -947,15 +924,6 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionIndication';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [diseaseSymptomProcedure]
   /// The situation that is being documented as an indicaton for this item.
@@ -1095,7 +1063,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
 
   ClinicalUseDefinitionInteraction({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.interactant,
     this.type,
@@ -1189,7 +1157,8 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClinicalUseDefinitionInteraction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClinicalUseDefinitionInteraction]
   /// that takes in a [String]
@@ -1209,15 +1178,6 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionInteraction';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [interactant]
   /// The specific medication, food, substance or laboratory test that
@@ -1326,7 +1286,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
 
   ClinicalUseDefinitionInteractant({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.itemReference,
     this.itemCodeableConcept,
@@ -1394,7 +1354,8 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClinicalUseDefinitionInteractant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClinicalUseDefinitionInteractant]
   /// that takes in a [String]
@@ -1414,15 +1375,6 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionInteractant';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [itemReference]
   /// The specific medication, food or laboratory test that interacts.
@@ -1498,7 +1450,7 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
 
   ClinicalUseDefinitionUndesirableEffect({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.symptomConditionEffect,
     this.classification,
@@ -1572,7 +1524,8 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClinicalUseDefinitionUndesirableEffect cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClinicalUseDefinitionUndesirableEffect]
   /// that takes in a [String]
@@ -1592,15 +1545,6 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionUndesirableEffect';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [symptomConditionEffect]
   /// The situation in which the undesirable effect may manifest.
@@ -1690,7 +1634,7 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
 
   ClinicalUseDefinitionWarning({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.description,
     this.code,
@@ -1759,7 +1703,8 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClinicalUseDefinitionWarning cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClinicalUseDefinitionWarning]
   /// that takes in a [String]
@@ -1779,15 +1724,6 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionWarning';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [description]
   /// A textual definition of this warning, with formatting.

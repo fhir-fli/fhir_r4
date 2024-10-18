@@ -15,7 +15,7 @@ class FamilyMemberHistory extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
@@ -284,7 +284,8 @@ class FamilyMemberHistory extends DomainResource {
                 )
               : throw ArgumentError(
                   'FamilyMemberHistory cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [FamilyMemberHistory]
   /// that takes in a [String]
@@ -304,15 +305,6 @@ class FamilyMemberHistory extends DomainResource {
 
   @override
   String get fhirType => 'FamilyMemberHistory';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifiers assigned to this family member history by the
@@ -732,7 +724,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
 
   FamilyMemberHistoryCondition({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     this.outcome,
@@ -840,7 +832,8 @@ class FamilyMemberHistoryCondition extends BackboneElement {
                 )
               : throw ArgumentError(
                   'FamilyMemberHistoryCondition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [FamilyMemberHistoryCondition]
   /// that takes in a [String]
@@ -860,15 +853,6 @@ class FamilyMemberHistoryCondition extends BackboneElement {
 
   @override
   String get fhirType => 'FamilyMemberHistoryCondition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// The actual condition specified. Could be a coded condition (like MI or

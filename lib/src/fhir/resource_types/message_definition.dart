@@ -16,7 +16,7 @@ class MessageDefinition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.identifier,
@@ -290,7 +290,8 @@ class MessageDefinition extends DomainResource {
                 )
               : throw ArgumentError(
                   'MessageDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MessageDefinition]
   /// that takes in a [String]
@@ -310,15 +311,6 @@ class MessageDefinition extends DomainResource {
 
   @override
   String get fhirType => 'MessageDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// The business identifier that is used to reference the MessageDefinition
@@ -755,7 +747,7 @@ class MessageDefinitionFocus extends BackboneElement {
 
   MessageDefinitionFocus({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     this.profile,
@@ -835,7 +827,8 @@ class MessageDefinitionFocus extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MessageDefinitionFocus cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MessageDefinitionFocus]
   /// that takes in a [String]
@@ -855,15 +848,6 @@ class MessageDefinitionFocus extends BackboneElement {
 
   @override
   String get fhirType => 'MessageDefinitionFocus';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// The kind of resource that must be the focus for this message.
@@ -976,7 +960,7 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
 
   MessageDefinitionAllowedResponse({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.message,
     this.situation,
@@ -1044,7 +1028,8 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
                 )
               : throw ArgumentError(
                   'MessageDefinitionAllowedResponse cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [MessageDefinitionAllowedResponse]
   /// that takes in a [String]
@@ -1064,15 +1049,6 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
 
   @override
   String get fhirType => 'MessageDefinitionAllowedResponse';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [message]
   /// A reference to the message definition that must be adhered to by this

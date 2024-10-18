@@ -10,7 +10,7 @@ class ContactPoint extends DataType {
 
   ContactPoint({
     super.id,
-    this.extension_,
+    super.extension_,
     this.system,
     this.value,
     this.use,
@@ -88,8 +88,10 @@ class ContactPoint extends DataType {
               ? ContactPoint.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ContactPoint cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ContactPoint cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ContactPoint]
   /// that takes in a [String]
@@ -109,15 +111,6 @@ class ContactPoint extends DataType {
 
   @override
   String get fhirType => 'ContactPoint';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [system]
   /// Telecommunications form for contact point - what communications system

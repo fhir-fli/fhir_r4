@@ -20,7 +20,7 @@ class ResearchStudy extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.title,
@@ -312,8 +312,10 @@ class ResearchStudy extends DomainResource {
               ? ResearchStudy.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ResearchStudy cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ResearchStudy cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ResearchStudy]
   /// that takes in a [String]
@@ -333,15 +335,6 @@ class ResearchStudy extends DomainResource {
 
   @override
   String get fhirType => 'ResearchStudy';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifiers assigned to this research study by the sponsor or other
@@ -708,7 +701,7 @@ class ResearchStudyArm extends BackboneElement {
 
   ResearchStudyArm({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     this.type,
@@ -782,7 +775,8 @@ class ResearchStudyArm extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ResearchStudyArm cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ResearchStudyArm]
   /// that takes in a [String]
@@ -802,15 +796,6 @@ class ResearchStudyArm extends BackboneElement {
 
   @override
   String get fhirType => 'ResearchStudyArm';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// Unique, human-readable label for this arm of the study.
@@ -905,7 +890,7 @@ class ResearchStudyObjective extends BackboneElement {
 
   ResearchStudyObjective({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.name,
     this.type,
@@ -974,7 +959,8 @@ class ResearchStudyObjective extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ResearchStudyObjective cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ResearchStudyObjective]
   /// that takes in a [String]
@@ -994,15 +980,6 @@ class ResearchStudyObjective extends BackboneElement {
 
   @override
   String get fhirType => 'ResearchStudyObjective';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// Unique, human-readable label for this objective of the study.

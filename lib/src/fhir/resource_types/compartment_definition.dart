@@ -15,7 +15,7 @@ class CompartmentDefinition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.url,
     this.version,
@@ -201,7 +201,8 @@ class CompartmentDefinition extends DomainResource {
                 )
               : throw ArgumentError(
                   'CompartmentDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CompartmentDefinition]
   /// that takes in a [String]
@@ -221,15 +222,6 @@ class CompartmentDefinition extends DomainResource {
 
   @override
   String get fhirType => 'CompartmentDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this compartment definition
@@ -514,7 +506,7 @@ class CompartmentDefinitionResource extends BackboneElement {
 
   CompartmentDefinitionResource({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.code,
     this.param,
@@ -588,7 +580,8 @@ class CompartmentDefinitionResource extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CompartmentDefinitionResource cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CompartmentDefinitionResource]
   /// that takes in a [String]
@@ -608,15 +601,6 @@ class CompartmentDefinitionResource extends BackboneElement {
 
   @override
   String get fhirType => 'CompartmentDefinitionResource';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [code]
   /// The name of a resource supported by the server.

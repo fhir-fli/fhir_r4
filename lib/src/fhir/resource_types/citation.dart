@@ -18,7 +18,7 @@ class Citation extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.identifier,
@@ -346,8 +346,10 @@ class Citation extends DomainResource {
               ? Citation.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Citation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Citation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Citation]
   /// that takes in a [String]
@@ -367,15 +369,6 @@ class Citation extends DomainResource {
 
   @override
   String get fhirType => 'Citation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this citation when it is
@@ -836,7 +829,7 @@ class CitationSummary extends BackboneElement {
 
   CitationSummary({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.style,
     required this.text,
@@ -903,7 +896,8 @@ class CitationSummary extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationSummary cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationSummary]
   /// that takes in a [String]
@@ -923,15 +917,6 @@ class CitationSummary extends BackboneElement {
 
   @override
   String get fhirType => 'CitationSummary';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [style]
   /// Format for display of the citation.
@@ -1008,7 +993,7 @@ class CitationClassification extends BackboneElement {
 
   CitationClassification({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.classifier,
@@ -1080,7 +1065,8 @@ class CitationClassification extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationClassification cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationClassification]
   /// that takes in a [String]
@@ -1100,15 +1086,6 @@ class CitationClassification extends BackboneElement {
 
   @override
   String get fhirType => 'CitationClassification';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The kind of classifier (e.g. publication type, keyword).
@@ -1183,7 +1160,7 @@ class CitationStatusDate extends BackboneElement {
 
   CitationStatusDate({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.activity,
     this.actual,
@@ -1254,7 +1231,8 @@ class CitationStatusDate extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationStatusDate cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationStatusDate]
   /// that takes in a [String]
@@ -1274,15 +1252,6 @@ class CitationStatusDate extends BackboneElement {
 
   @override
   String get fhirType => 'CitationStatusDate';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [activity]
   /// Classification of the status.
@@ -1367,7 +1336,7 @@ class CitationRelatesTo extends BackboneElement {
 
   CitationRelatesTo({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.relationshipType,
     this.targetClassifier,
@@ -1462,7 +1431,8 @@ class CitationRelatesTo extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationRelatesTo cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationRelatesTo]
   /// that takes in a [String]
@@ -1482,15 +1452,6 @@ class CitationRelatesTo extends BackboneElement {
 
   @override
   String get fhirType => 'CitationRelatesTo';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [relationshipType]
   /// How the Citation resource relates to the target artifact.
@@ -1608,7 +1569,7 @@ class CitationCitedArtifact extends BackboneElement {
 
   CitationCitedArtifact({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.relatedIdentifier,
@@ -1799,7 +1760,8 @@ class CitationCitedArtifact extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationCitedArtifact cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationCitedArtifact]
   /// that takes in a [String]
@@ -1819,15 +1781,6 @@ class CitationCitedArtifact extends BackboneElement {
 
   @override
   String get fhirType => 'CitationCitedArtifact';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// A formal identifier that is used to identify this citation when it is
@@ -2043,7 +1996,7 @@ class CitationVersion extends BackboneElement {
 
   CitationVersion({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.value,
     this.baseCitation,
@@ -2110,7 +2063,8 @@ class CitationVersion extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationVersion cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationVersion]
   /// that takes in a [String]
@@ -2130,15 +2084,6 @@ class CitationVersion extends BackboneElement {
 
   @override
   String get fhirType => 'CitationVersion';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [value]
   /// The version number or other version identifier.
@@ -2215,7 +2160,7 @@ class CitationStatusDate1 extends BackboneElement {
 
   CitationStatusDate1({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.activity,
     this.actual,
@@ -2286,7 +2231,8 @@ class CitationStatusDate1 extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationStatusDate1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationStatusDate1]
   /// that takes in a [String]
@@ -2306,15 +2252,6 @@ class CitationStatusDate1 extends BackboneElement {
 
   @override
   String get fhirType => 'CitationStatusDate1';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [activity]
   /// Classification of the status.
@@ -2399,7 +2336,7 @@ class CitationTitle extends BackboneElement {
 
   CitationTitle({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.language,
@@ -2474,8 +2411,10 @@ class CitationTitle extends BackboneElement {
               ? CitationTitle.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('CitationTitle cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'CitationTitle cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationTitle]
   /// that takes in a [String]
@@ -2495,15 +2434,6 @@ class CitationTitle extends BackboneElement {
 
   @override
   String get fhirType => 'CitationTitle';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Used to express the reason or specific aspect for the title.
@@ -2590,7 +2520,7 @@ class CitationAbstract extends BackboneElement {
 
   CitationAbstract({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.language,
@@ -2670,7 +2600,8 @@ class CitationAbstract extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationAbstract cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationAbstract]
   /// that takes in a [String]
@@ -2690,15 +2621,6 @@ class CitationAbstract extends BackboneElement {
 
   @override
   String get fhirType => 'CitationAbstract';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Used to express the reason or specific aspect for the abstract.
@@ -2799,7 +2721,7 @@ class CitationPart extends BackboneElement {
 
   CitationPart({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.value,
@@ -2872,8 +2794,10 @@ class CitationPart extends BackboneElement {
               ? CitationPart.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('CitationPart cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'CitationPart cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationPart]
   /// that takes in a [String]
@@ -2893,15 +2817,6 @@ class CitationPart extends BackboneElement {
 
   @override
   String get fhirType => 'CitationPart';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The kind of component.
@@ -2990,7 +2905,7 @@ class CitationRelatesTo1 extends BackboneElement {
 
   CitationRelatesTo1({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.relationshipType,
     this.targetClassifier,
@@ -3085,7 +3000,8 @@ class CitationRelatesTo1 extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationRelatesTo1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationRelatesTo1]
   /// that takes in a [String]
@@ -3105,15 +3021,6 @@ class CitationRelatesTo1 extends BackboneElement {
 
   @override
   String get fhirType => 'CitationRelatesTo1';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [relationshipType]
   /// How the cited artifact relates to the target artifact.
@@ -3232,7 +3139,7 @@ class CitationPublicationForm extends BackboneElement {
 
   CitationPublicationForm({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.publishedIn,
     this.periodicRelease,
@@ -3366,7 +3273,8 @@ class CitationPublicationForm extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationPublicationForm cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationPublicationForm]
   /// that takes in a [String]
@@ -3386,15 +3294,6 @@ class CitationPublicationForm extends BackboneElement {
 
   @override
   String get fhirType => 'CitationPublicationForm';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [publishedIn]
   /// The collection the cited article or artifact is published in.
@@ -3593,7 +3492,7 @@ class CitationPublishedIn extends BackboneElement {
 
   CitationPublishedIn({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.identifier,
@@ -3685,7 +3584,8 @@ class CitationPublishedIn extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationPublishedIn cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationPublishedIn]
   /// that takes in a [String]
@@ -3705,15 +3605,6 @@ class CitationPublishedIn extends BackboneElement {
 
   @override
   String get fhirType => 'CitationPublishedIn';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Kind of container (e.g. Periodical, database, or book).
@@ -3827,7 +3718,7 @@ class CitationPeriodicRelease extends BackboneElement {
 
   CitationPeriodicRelease({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.citedMedium,
     this.volume,
@@ -3909,7 +3800,8 @@ class CitationPeriodicRelease extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationPeriodicRelease cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationPeriodicRelease]
   /// that takes in a [String]
@@ -3929,15 +3821,6 @@ class CitationPeriodicRelease extends BackboneElement {
 
   @override
   String get fhirType => 'CitationPeriodicRelease';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [citedMedium]
   /// Describes the form of the medium cited. Common codes are "Internet" or
@@ -4041,7 +3924,7 @@ class CitationDateOfPublication extends BackboneElement {
 
   CitationDateOfPublication({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.date,
     this.year,
@@ -4139,7 +4022,8 @@ class CitationDateOfPublication extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationDateOfPublication cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationDateOfPublication]
   /// that takes in a [String]
@@ -4159,15 +4043,6 @@ class CitationDateOfPublication extends BackboneElement {
 
   @override
   String get fhirType => 'CitationDateOfPublication';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [date]
   /// Date on which the issue of the journal was published.
@@ -4307,7 +4182,7 @@ class CitationWebLocation extends BackboneElement {
 
   CitationWebLocation({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.url,
@@ -4376,7 +4251,8 @@ class CitationWebLocation extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationWebLocation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationWebLocation]
   /// that takes in a [String]
@@ -4396,15 +4272,6 @@ class CitationWebLocation extends BackboneElement {
 
   @override
   String get fhirType => 'CitationWebLocation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Code the reason for different URLs, e.g. abstract and full-text.
@@ -4483,7 +4350,7 @@ class CitationClassification1 extends BackboneElement {
 
   CitationClassification1({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.classifier,
@@ -4561,7 +4428,8 @@ class CitationClassification1 extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationClassification1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationClassification1]
   /// that takes in a [String]
@@ -4581,15 +4449,6 @@ class CitationClassification1 extends BackboneElement {
 
   @override
   String get fhirType => 'CitationClassification1';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The kind of classifier (e.g. publication type, keyword).
@@ -4674,7 +4533,7 @@ class CitationWhoClassified extends BackboneElement {
 
   CitationWhoClassified({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.person,
     this.organization,
@@ -4762,7 +4621,8 @@ class CitationWhoClassified extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationWhoClassified cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationWhoClassified]
   /// that takes in a [String]
@@ -4782,15 +4642,6 @@ class CitationWhoClassified extends BackboneElement {
 
   @override
   String get fhirType => 'CitationWhoClassified';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [person]
   /// Person who created the classification.
@@ -4905,7 +4756,7 @@ class CitationContributorship extends BackboneElement {
 
   CitationContributorship({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.complete,
     this.entry,
@@ -4988,7 +4839,8 @@ class CitationContributorship extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationContributorship cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationContributorship]
   /// that takes in a [String]
@@ -5008,15 +4860,6 @@ class CitationContributorship extends BackboneElement {
 
   @override
   String get fhirType => 'CitationContributorship';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [complete]
   /// Indicates if the list includes all authors and/or contributors.
@@ -5106,7 +4949,7 @@ class CitationEntry extends BackboneElement {
 
   CitationEntry({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.name,
     this.initials,
@@ -5260,8 +5103,10 @@ class CitationEntry extends BackboneElement {
               ? CitationEntry.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('CitationEntry cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'CitationEntry cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationEntry]
   /// that takes in a [String]
@@ -5281,15 +5126,6 @@ class CitationEntry extends BackboneElement {
 
   @override
   String get fhirType => 'CitationEntry';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// A name associated with the individual.
@@ -5485,7 +5321,7 @@ class CitationAffiliationInfo extends BackboneElement {
 
   CitationAffiliationInfo({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.affiliation,
     this.role,
@@ -5565,7 +5401,8 @@ class CitationAffiliationInfo extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationAffiliationInfo cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationAffiliationInfo]
   /// that takes in a [String]
@@ -5585,15 +5422,6 @@ class CitationAffiliationInfo extends BackboneElement {
 
   @override
   String get fhirType => 'CitationAffiliationInfo';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [affiliation]
   /// Display for the organization.
@@ -5686,7 +5514,7 @@ class CitationContributionInstance extends BackboneElement {
 
   CitationContributionInstance({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.time,
@@ -5753,7 +5581,8 @@ class CitationContributionInstance extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationContributionInstance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationContributionInstance]
   /// that takes in a [String]
@@ -5773,15 +5602,6 @@ class CitationContributionInstance extends BackboneElement {
 
   @override
   String get fhirType => 'CitationContributionInstance';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The specific contribution.
@@ -5859,7 +5679,7 @@ class CitationSummary1 extends BackboneElement {
 
   CitationSummary1({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.type,
     this.style,
@@ -5938,7 +5758,8 @@ class CitationSummary1 extends BackboneElement {
                 )
               : throw ArgumentError(
                   'CitationSummary1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [CitationSummary1]
   /// that takes in a [String]
@@ -5958,15 +5779,6 @@ class CitationSummary1 extends BackboneElement {
 
   @override
   String get fhirType => 'CitationSummary1';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Used most commonly to express an author list or a contributorship

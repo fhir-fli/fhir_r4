@@ -16,7 +16,7 @@ class RequestGroup extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
@@ -239,8 +239,10 @@ class RequestGroup extends DomainResource {
               ? RequestGroup.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('RequestGroup cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'RequestGroup cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [RequestGroup]
   /// that takes in a [String]
@@ -260,15 +262,6 @@ class RequestGroup extends DomainResource {
 
   @override
   String get fhirType => 'RequestGroup';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Allows a service to provide a unique, business identifier for the
@@ -564,7 +557,7 @@ class RequestGroupAction extends BackboneElement {
 
   RequestGroupAction({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.prefix,
     this.title,
@@ -799,7 +792,8 @@ class RequestGroupAction extends BackboneElement {
                 )
               : throw ArgumentError(
                   'RequestGroupAction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [RequestGroupAction]
   /// that takes in a [String]
@@ -819,15 +813,6 @@ class RequestGroupAction extends BackboneElement {
 
   @override
   String get fhirType => 'RequestGroupAction';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [prefix]
   /// A user-visible prefix for the action.
@@ -1155,7 +1140,7 @@ class RequestGroupCondition extends BackboneElement {
 
   RequestGroupCondition({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.kind,
     this.expression,
@@ -1222,7 +1207,8 @@ class RequestGroupCondition extends BackboneElement {
                 )
               : throw ArgumentError(
                   'RequestGroupCondition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [RequestGroupCondition]
   /// that takes in a [String]
@@ -1242,15 +1228,6 @@ class RequestGroupCondition extends BackboneElement {
 
   @override
   String get fhirType => 'RequestGroupCondition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [kind]
   /// The kind of condition.
@@ -1325,7 +1302,7 @@ class RequestGroupRelatedAction extends BackboneElement {
 
   RequestGroupRelatedAction({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.actionId,
     required this.relationship,
@@ -1403,7 +1380,8 @@ class RequestGroupRelatedAction extends BackboneElement {
                 )
               : throw ArgumentError(
                   'RequestGroupRelatedAction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [RequestGroupRelatedAction]
   /// that takes in a [String]
@@ -1423,15 +1401,6 @@ class RequestGroupRelatedAction extends BackboneElement {
 
   @override
   String get fhirType => 'RequestGroupRelatedAction';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [actionId]
   /// The element id of the action this is related to.

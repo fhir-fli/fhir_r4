@@ -17,7 +17,7 @@ class GraphDefinition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.version,
@@ -217,7 +217,8 @@ class GraphDefinition extends DomainResource {
                 )
               : throw ArgumentError(
                   'GraphDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [GraphDefinition]
   /// that takes in a [String]
@@ -237,15 +238,6 @@ class GraphDefinition extends DomainResource {
 
   @override
   String get fhirType => 'GraphDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this graph definition when it
@@ -548,7 +540,7 @@ class GraphDefinitionLink extends BackboneElement {
 
   GraphDefinitionLink({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.path,
     this.sliceName,
@@ -649,7 +641,8 @@ class GraphDefinitionLink extends BackboneElement {
                 )
               : throw ArgumentError(
                   'GraphDefinitionLink cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [GraphDefinitionLink]
   /// that takes in a [String]
@@ -669,15 +662,6 @@ class GraphDefinitionLink extends BackboneElement {
 
   @override
   String get fhirType => 'GraphDefinitionLink';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [path]
   /// A FHIR expression that identifies one of FHIR References to other
@@ -814,7 +798,7 @@ class GraphDefinitionTarget extends BackboneElement {
 
   GraphDefinitionTarget({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.params,
@@ -909,7 +893,8 @@ class GraphDefinitionTarget extends BackboneElement {
                 )
               : throw ArgumentError(
                   'GraphDefinitionTarget cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [GraphDefinitionTarget]
   /// that takes in a [String]
@@ -929,15 +914,6 @@ class GraphDefinitionTarget extends BackboneElement {
 
   @override
   String get fhirType => 'GraphDefinitionTarget';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Type of resource this link refers to.
@@ -1052,7 +1028,7 @@ class GraphDefinitionCompartment extends BackboneElement {
 
   GraphDefinitionCompartment({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.use,
     required this.code,
@@ -1137,7 +1113,8 @@ class GraphDefinitionCompartment extends BackboneElement {
                 )
               : throw ArgumentError(
                   'GraphDefinitionCompartment cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [GraphDefinitionCompartment]
   /// that takes in a [String]
@@ -1157,15 +1134,6 @@ class GraphDefinitionCompartment extends BackboneElement {
 
   @override
   String get fhirType => 'GraphDefinitionCompartment';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [use]
   /// Defines how the compartment rule is used - whether it it is used to

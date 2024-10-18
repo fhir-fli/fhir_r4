@@ -15,7 +15,7 @@ class ClaimResponse extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
@@ -282,8 +282,10 @@ class ClaimResponse extends DomainResource {
               ? ClaimResponse.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('ClaimResponse cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'ClaimResponse cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClaimResponse]
   /// that takes in a [String]
@@ -303,15 +305,6 @@ class ClaimResponse extends DomainResource {
 
   @override
   String get fhirType => 'ClaimResponse';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// A unique identifier assigned to this claim response.
@@ -679,7 +672,7 @@ class ClaimResponseItem extends BackboneElement {
 
   ClaimResponseItem({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.itemSequence,
     this.noteNumber,
@@ -764,7 +757,8 @@ class ClaimResponseItem extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClaimResponseItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClaimResponseItem]
   /// that takes in a [String]
@@ -784,15 +778,6 @@ class ClaimResponseItem extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseItem';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [itemSequence]
   /// A number to uniquely reference the claim item entries.
@@ -897,7 +882,7 @@ class ClaimResponseAdjudication extends BackboneElement {
 
   ClaimResponseAdjudication({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.category,
     this.reason,
@@ -976,7 +961,8 @@ class ClaimResponseAdjudication extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClaimResponseAdjudication cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClaimResponseAdjudication]
   /// that takes in a [String]
@@ -996,15 +982,6 @@ class ClaimResponseAdjudication extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseAdjudication';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [category]
   /// A code to indicate the information type of this adjudication record.
@@ -1109,7 +1086,7 @@ class ClaimResponseDetail extends BackboneElement {
 
   ClaimResponseDetail({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.detailSequence,
     this.noteNumber,
@@ -1186,7 +1163,8 @@ class ClaimResponseDetail extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClaimResponseDetail cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClaimResponseDetail]
   /// that takes in a [String]
@@ -1206,15 +1184,6 @@ class ClaimResponseDetail extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseDetail';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [detailSequence]
   /// A number to uniquely reference the claim detail entry.
@@ -1306,7 +1275,7 @@ class ClaimResponseSubDetail extends BackboneElement {
 
   ClaimResponseSubDetail({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.subDetailSequence,
     this.noteNumber,
@@ -1373,7 +1342,8 @@ class ClaimResponseSubDetail extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClaimResponseSubDetail cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClaimResponseSubDetail]
   /// that takes in a [String]
@@ -1393,15 +1363,6 @@ class ClaimResponseSubDetail extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseSubDetail';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [subDetailSequence]
   /// A number to uniquely reference the claim sub-detail entry.
@@ -1484,7 +1445,7 @@ class ClaimResponseAddItem extends BackboneElement {
 
   ClaimResponseAddItem({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.itemSequence,
     this.detailSequence,
@@ -1680,7 +1641,8 @@ class ClaimResponseAddItem extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClaimResponseAddItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClaimResponseAddItem]
   /// that takes in a [String]
@@ -1700,15 +1662,6 @@ class ClaimResponseAddItem extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseAddItem';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [itemSequence]
   /// Claim items which this service line is intended to replace.
@@ -2003,7 +1956,7 @@ class ClaimResponseDetail1 extends BackboneElement {
 
   ClaimResponseDetail1({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.productOrService,
     this.modifier,
@@ -2114,7 +2067,8 @@ class ClaimResponseDetail1 extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClaimResponseDetail1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClaimResponseDetail1]
   /// that takes in a [String]
@@ -2134,15 +2088,6 @@ class ClaimResponseDetail1 extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseDetail1';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [productOrService]
   /// When the value is a group code then this item collects a set of related
@@ -2293,7 +2238,7 @@ class ClaimResponseSubDetail1 extends BackboneElement {
 
   ClaimResponseSubDetail1({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.productOrService,
     this.modifier,
@@ -2394,7 +2339,8 @@ class ClaimResponseSubDetail1 extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClaimResponseSubDetail1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClaimResponseSubDetail1]
   /// that takes in a [String]
@@ -2414,15 +2360,6 @@ class ClaimResponseSubDetail1 extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseSubDetail1';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [productOrService]
   /// When the value is a group code then this item collects a set of related
@@ -2563,7 +2500,7 @@ class ClaimResponseTotal extends BackboneElement {
 
   ClaimResponseTotal({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.category,
     required this.amount,
@@ -2627,7 +2564,8 @@ class ClaimResponseTotal extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClaimResponseTotal cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClaimResponseTotal]
   /// that takes in a [String]
@@ -2647,15 +2585,6 @@ class ClaimResponseTotal extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseTotal';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [category]
   /// A code to indicate the information type of this adjudication record.
@@ -2730,7 +2659,7 @@ class ClaimResponsePayment extends BackboneElement {
 
   ClaimResponsePayment({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     this.adjustment,
@@ -2819,7 +2748,8 @@ class ClaimResponsePayment extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClaimResponsePayment cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClaimResponsePayment]
   /// that takes in a [String]
@@ -2839,15 +2769,6 @@ class ClaimResponsePayment extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponsePayment';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Whether this represents partial or complete payment of the benefits
@@ -2966,7 +2887,7 @@ class ClaimResponseProcessNote extends BackboneElement {
 
   ClaimResponseProcessNote({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.number,
     this.type,
@@ -3047,7 +2968,8 @@ class ClaimResponseProcessNote extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClaimResponseProcessNote cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClaimResponseProcessNote]
   /// that takes in a [String]
@@ -3067,15 +2989,6 @@ class ClaimResponseProcessNote extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseProcessNote';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [number]
   /// A number to uniquely identify a note entry.
@@ -3177,7 +3090,7 @@ class ClaimResponseInsurance extends BackboneElement {
 
   ClaimResponseInsurance({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.sequence,
     required this.focal,
@@ -3260,7 +3173,8 @@ class ClaimResponseInsurance extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClaimResponseInsurance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClaimResponseInsurance]
   /// that takes in a [String]
@@ -3280,15 +3194,6 @@ class ClaimResponseInsurance extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseInsurance';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [sequence]
   /// A number to uniquely identify insurance entries and provide a sequence
@@ -3406,7 +3311,7 @@ class ClaimResponseError extends BackboneElement {
 
   ClaimResponseError({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.itemSequence,
     this.detailSequence,
@@ -3487,7 +3392,8 @@ class ClaimResponseError extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ClaimResponseError cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ClaimResponseError]
   /// that takes in a [String]
@@ -3507,15 +3413,6 @@ class ClaimResponseError extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseError';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [itemSequence]
   /// The sequence number of the line item submitted which contains the

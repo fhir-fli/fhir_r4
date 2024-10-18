@@ -15,7 +15,7 @@ class AllergyIntolerance extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.identifier,
     this.clinicalStatus,
@@ -240,7 +240,8 @@ class AllergyIntolerance extends DomainResource {
                 )
               : throw ArgumentError(
                   'AllergyIntolerance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [AllergyIntolerance]
   /// that takes in a [String]
@@ -260,15 +261,6 @@ class AllergyIntolerance extends DomainResource {
 
   @override
   String get fhirType => 'AllergyIntolerance';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifiers assigned to this AllergyIntolerance by the
@@ -605,7 +597,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
 
   AllergyIntoleranceReaction({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.substance,
     required this.manifestation,
@@ -712,7 +704,8 @@ class AllergyIntoleranceReaction extends BackboneElement {
                 )
               : throw ArgumentError(
                   'AllergyIntoleranceReaction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [AllergyIntoleranceReaction]
   /// that takes in a [String]
@@ -732,15 +725,6 @@ class AllergyIntoleranceReaction extends BackboneElement {
 
   @override
   String get fhirType => 'AllergyIntoleranceReaction';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [substance]
   /// Identification of the specific substance (or pharmaceutical product)

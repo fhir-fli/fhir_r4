@@ -16,7 +16,7 @@ class NamingSystem extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.name,
     required this.status,
@@ -195,8 +195,10 @@ class NamingSystem extends DomainResource {
               ? NamingSystem.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('NamingSystem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'NamingSystem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [NamingSystem]
   /// that takes in a [String]
@@ -216,15 +218,6 @@ class NamingSystem extends DomainResource {
 
   @override
   String get fhirType => 'NamingSystem';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [name]
   /// A natural language name identifying the naming system. This name should
@@ -480,7 +473,7 @@ class NamingSystemUniqueId extends BackboneElement {
 
   NamingSystemUniqueId({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     required this.type,
     required this.value,
@@ -566,7 +559,8 @@ class NamingSystemUniqueId extends BackboneElement {
                 )
               : throw ArgumentError(
                   'NamingSystemUniqueId cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [NamingSystemUniqueId]
   /// that takes in a [String]
@@ -586,15 +580,6 @@ class NamingSystemUniqueId extends BackboneElement {
 
   @override
   String get fhirType => 'NamingSystemUniqueId';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Identifies the unique identifier scheme used for this particular

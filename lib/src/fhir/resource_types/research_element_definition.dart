@@ -15,7 +15,7 @@ class ResearchElementDefinition extends DomainResource {
     super.language,
     super.text,
     super.contained,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.url,
     this.identifier,
@@ -365,7 +365,8 @@ class ResearchElementDefinition extends DomainResource {
                 )
               : throw ArgumentError(
                   'ResearchElementDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ResearchElementDefinition]
   /// that takes in a [String]
@@ -385,15 +386,6 @@ class ResearchElementDefinition extends DomainResource {
 
   @override
   String get fhirType => 'ResearchElementDefinition';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the resource. To make the use of extensions safe
-  /// and manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [url]
   /// An absolute URI that is used to identify this research element
@@ -953,7 +945,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
 
   ResearchElementDefinitionCharacteristic({
     super.id,
-    this.extension_,
+    super.extension_,
     super.modifierExtension,
     this.definitionCodeableConcept,
     this.definitionCanonical,
@@ -1151,7 +1143,8 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
                 )
               : throw ArgumentError(
                   'ResearchElementDefinitionCharacteristic cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [ResearchElementDefinitionCharacteristic]
   /// that takes in a [String]
@@ -1171,15 +1164,6 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
 
   @override
   String get fhirType => 'ResearchElementDefinitionCharacteristic';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [definitionCodeableConcept]
   /// Define members of the research element using Codes (such as condition,

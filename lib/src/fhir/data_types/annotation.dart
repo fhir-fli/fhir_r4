@@ -10,7 +10,7 @@ class Annotation extends DataType {
 
   Annotation({
     super.id,
-    this.extension_,
+    super.extension_,
     this.authorReference,
     this.authorString,
     this.time,
@@ -79,8 +79,10 @@ class Annotation extends DataType {
               ? Annotation.fromJson(
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
-              : throw ArgumentError('Annotation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.');
+              : throw ArgumentError(
+                  'Annotation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.',
+                );
 
   /// Factory constructor for [Annotation]
   /// that takes in a [String]
@@ -100,15 +102,6 @@ class Annotation extends DataType {
 
   @override
   String get fhirType => 'Annotation';
-
-  /// [extension_]
-  /// May be used to represent additional information that is not part of the
-  /// basic definition of the element. To make the use of extensions safe and
-  /// manageable, there is a strict set of governance applied to the
-  /// definition and use of extensions. Though any implementer can define an
-  /// extension, there is a set of requirements that SHALL be met as part of
-  /// the definition of the extension.
-  final List<FhirExtension>? extension_;
 
   /// [authorReference]
   /// The individual responsible for making the annotation.
