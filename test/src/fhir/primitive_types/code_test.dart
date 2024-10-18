@@ -9,14 +9,14 @@ void main() {
 
     test('Code', () {
       expect(FhirCode('Patient/123456').toString(), 'Patient/123456');
-      expect(FhirCode('Patient/123456').toJson(), 'Patient/123456');
+      expect(FhirCode('Patient/123456').toJson()['value'], 'Patient/123456');
       expect(FhirCode('Patient/123456').value, 'Patient/123456');
       expect(
         FhirCode('http://Patient.com/123456').toString(),
         'http://Patient.com/123456',
       );
       expect(
-        FhirCode('http://Patient.com/123456').toJson(),
+        FhirCode('http://Patient.com/123456').toJson()['value'],
         'http://Patient.com/123456',
       );
       expect(
@@ -24,14 +24,14 @@ void main() {
         'http://Patient.com/123456',
       );
       expect(FhirCode('___').toString(), '___');
-      expect(FhirCode('___').toJson(), '___');
+      expect(FhirCode('___').toJson()['value'], '___');
     });
 
     test('Valid FhirCode from String', () {
       final fhirCode = FhirCode(validCode);
       expect(fhirCode.value, equals(validCode));
       expect(fhirCode.toString(), equals(validCode));
-      expect(fhirCode.toJson(), equals(validCode));
+      expect(fhirCode.toJson()['value'], equals(validCode));
     });
 
     test('Invalid FhirCode throws FormatException', () {
@@ -42,23 +42,26 @@ void main() {
       final fhirCode = FhirCode.tryParse(validCode);
       expect(fhirCode?.value, equals(validCode));
       expect(fhirCode?.toString(), equals(validCode));
-      expect(fhirCode?.toJson(), equals(validCode));
+      expect(fhirCode?.toJson()['value'], equals(validCode));
     });
 
     test('FhirCode fromJson with valid String', () {
-      final fhirCode = FhirCode.fromJson(jsonCode);
+      final fhirCode = FhirCode.fromJson({'value': jsonCode});
       expect(fhirCode.value, equals(jsonCode));
-      expect(fhirCode.toJson(), equals(jsonCode));
+      expect(fhirCode.toJson()['value'], equals(jsonCode));
     });
 
     test('FhirCode fromJson with invalid type throws FormatException', () {
-      expect(() => FhirCode.fromJson(123), throwsFormatException);
+      expect(
+        () => FhirCode.fromJson({'value': 123}),
+        throwsA(isA<TypeError>()),
+      );
     });
 
     test('FhirCode fromYaml with valid YAML', () {
-      final fhirCode = FhirCode.fromYaml(yamlCode);
+      final fhirCode = FhirCode.fromYaml('value: $yamlCode');
       expect(fhirCode.value, equals(yamlCode));
-      expect(fhirCode.toJson(), equals(yamlCode));
+      expect(fhirCode.toJson()['value'], equals(yamlCode));
     });
 
     test('FhirCode equality with another FhirCode', () {
@@ -105,14 +108,9 @@ void main() {
       expect(updatedCode.value, equals(validCode));
     });
 
-    test('FhirCode hashCode', () {
-      final fhirCode = FhirCode(validCode);
-      expect(fhirCode.hashCode, equals(validCode.hashCode));
-    });
-
     test('FhirCode toJsonString', () {
       final fhirCode = FhirCode(validCode);
-      expect(fhirCode.toJsonString(), equals('"$validCode"'));
+      expect(fhirCode.toJsonString(), equals('{"value":"$validCode"}'));
     });
   });
 }

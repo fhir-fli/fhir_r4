@@ -13,13 +13,13 @@ void main() {
       final dateyyyyFromString = FhirDateTime.fromString(yyyy);
       expect(dateyyyyFromString.valueString, equals(yyyy));
       expect(dateyyyyFromString.valueDateTime, equals(yyyyDateTime));
-      expect(dateyyyyFromString.toJson(), equals(yyyy));
+      expect(dateyyyyFromString.toJson()['value'], equals(yyyy));
     });
     test('dateyyyyFromUnits', () {
       final dateyyyyFromUnits = FhirDateTime.fromUnits(year: 2012);
       expect(dateyyyyFromUnits.valueString, equals(yyyy));
       expect(dateyyyyFromUnits.valueDateTime, equals(yyyyDateTime));
-      expect(dateyyyyFromUnits.toJson(), equals(yyyy));
+      expect(dateyyyyFromUnits.toJson()['value'], equals(yyyy));
     });
 
     // Test for year and month precision
@@ -29,13 +29,13 @@ void main() {
       final dateyyyyMMFromString = FhirDateTime.fromString(yyyyMM);
       expect(dateyyyyMMFromString.valueString, equals(yyyyMM));
       expect(dateyyyyMMFromString.valueDateTime, equals(yyyyMMDateTime));
-      expect(dateyyyyMMFromString.toJson(), equals(yyyyMM));
+      expect(dateyyyyMMFromString.toJson()['value'], equals(yyyyMM));
     });
     test('dateyyyyMMFromUnits', () {
       final dateyyyyMMFromUnits = FhirDateTime.fromUnits(year: 2012, month: 1);
       expect(dateyyyyMMFromUnits.valueString, equals(yyyyMM));
       expect(dateyyyyMMFromUnits.valueDateTime, equals(yyyyMMDateTime));
-      expect(dateyyyyMMFromUnits.toJson(), equals(yyyyMM));
+      expect(dateyyyyMMFromUnits.toJson()['value'], equals(yyyyMM));
     });
 
     // Test for year, month, and day precision
@@ -45,14 +45,14 @@ void main() {
       final dateyyyyMMddFromString = FhirDateTime.fromString(yyyyMMdd);
       expect(dateyyyyMMddFromString.valueString, equals(yyyyMMdd));
       expect(dateyyyyMMddFromString.valueDateTime, equals(yyyyMMddDateTime));
-      expect(dateyyyyMMddFromString.toJson(), equals(yyyyMMdd));
+      expect(dateyyyyMMddFromString.toJson()['value'], equals(yyyyMMdd));
     });
     test('dateyyyyMMddFromUnits', () {
       final dateyyyyMMddFromUnits =
           FhirDateTime.fromUnits(year: 2012, month: 1, day: 31);
       expect(dateyyyyMMddFromUnits.valueString, equals(yyyyMMdd));
       expect(dateyyyyMMddFromUnits.valueDateTime, equals(yyyyMMddDateTime));
-      expect(dateyyyyMMddFromUnits.toJson(), equals(yyyyMMdd));
+      expect(dateyyyyMMddFromUnits.toJson()['value'], equals(yyyyMMdd));
     });
 
     // Test for year, month, day, and hour precision
@@ -65,7 +65,7 @@ void main() {
         dateyyyyMMddTHHFromString.valueDateTime,
         equals(yyyyMMddTHHDateTime),
       );
-      expect(dateyyyyMMddTHHFromString.toJson(), equals(yyyyMMddTHH));
+      expect(dateyyyyMMddTHHFromString.toJson()['value'], equals(yyyyMMddTHH));
     });
     test('dateyyyyMMddTHHFromUnits', () {
       final dateyyyyMMddTHHFromUnits =
@@ -75,7 +75,7 @@ void main() {
         dateyyyyMMddTHHFromUnits.valueDateTime,
         equals(yyyyMMddTHHDateTime),
       );
-      expect(dateyyyyMMddTHHFromUnits.toJson(), equals(yyyyMMddTHH));
+      expect(dateyyyyMMddTHHFromUnits.toJson()['value'], equals(yyyyMMddTHH));
     });
 
     // Test for year, month, day, hour, and minute precision
@@ -89,7 +89,10 @@ void main() {
         dateyyyyMMddTHHmmFromString.valueDateTime,
         equals(yyyyMMddTHHmmDateTime),
       );
-      expect(dateyyyyMMddTHHmmFromString.toJson(), equals(yyyyMMddTHHmm));
+      expect(
+        dateyyyyMMddTHHmmFromString.toJson()['value'],
+        equals(yyyyMMddTHHmm),
+      );
     });
     test('dateyyyyMMddTHHmmFromUnits', () {
       final dateyyyyMMddTHHmmFromUnits = FhirDateTime.fromUnits(
@@ -104,7 +107,10 @@ void main() {
         dateyyyyMMddTHHmmFromUnits.valueDateTime,
         equals(yyyyMMddTHHmmDateTime),
       );
-      expect(dateyyyyMMddTHHmmFromUnits.toJson(), equals(yyyyMMddTHHmm));
+      expect(
+        dateyyyyMMddTHHmmFromUnits.toJson()['value'],
+        equals(yyyyMMddTHHmm),
+      );
     });
 
     // Test for year, month, day, hour, minute, and second precision
@@ -121,7 +127,10 @@ void main() {
         dateyyyyMMddTHHmmssFromString.valueDateTime,
         equals(yyyyMMddTHHmmssDateTime),
       );
-      expect(dateyyyyMMddTHHmmssFromString.toJson(), equals(yyyyMMddTHHmmss));
+      expect(
+        dateyyyyMMddTHHmmssFromString.toJson()['value'],
+        equals(yyyyMMddTHHmmss),
+      );
     });
     test('dateyyyyMMddTHHmmssFromUnits', () {
       final dateyyyyMMddTHHmmssFromUnits = FhirDateTime.fromUnits(
@@ -137,7 +146,10 @@ void main() {
         dateyyyyMMddTHHmmssFromUnits.valueDateTime,
         equals(yyyyMMddTHHmmssDateTime),
       );
-      expect(dateyyyyMMddTHHmmssFromUnits.toJson(), equals(yyyyMMddTHHmmss));
+      expect(
+        dateyyyyMMddTHHmmssFromUnits.toJson()['value'],
+        equals(yyyyMMddTHHmmss),
+      );
     });
 
     // Test for year, month, day, hour, minute, second, and millisecond precision
@@ -155,7 +167,7 @@ void main() {
         equals(yyyyMMddTHHmmssSSSDateTime),
       );
       expect(
-        dateyyyyMMddTHHmmssSSSFromString.toJson(),
+        dateyyyyMMddTHHmmssSSSFromString.toJson()['value'],
         equals(yyyyMMddTHHmmssSSS),
       );
     });
@@ -178,7 +190,7 @@ void main() {
         equals(yyyyMMddTHHmmssSSSDateTime),
       );
       expect(
-        dateyyyyMMddTHHmmssSSSFromUnits.toJson(),
+        dateyyyyMMddTHHmmssSSSFromUnits.toJson()['value'],
         equals(yyyyMMddTHHmmssSSS),
       );
     });
@@ -199,7 +211,7 @@ void main() {
         equals(yyyyMMddTHHmmssSSSmmmDateTime),
       );
       expect(
-        dateyyyyMMddTHHmmssSSSmmmFromString.toJson(),
+        dateyyyyMMddTHHmmssSSSmmmFromString.toJson()['value'],
         equals(yyyyMMddTHHmmssSSSmmm),
       );
     });
@@ -223,12 +235,13 @@ void main() {
         equals(yyyyMMddTHHmmssSSSmmmDateTime),
       );
       expect(
-        dateyyyyMMddTHHmmssSSSmmmFromUnits.toJson(),
+        dateyyyyMMddTHHmmssSSSmmmFromUnits.toJson()['value'],
         equals(yyyyMMddTHHmmssSSSmmm),
       );
     });
 
-    // Test for year, month, day, hour, minute, second, millisecond, microsecond, and UTC precision
+    // Test for year, month, day, hour, minute, second, millisecond,
+    //microsecond, and UTC precision
     const yyyyMMddTHHmmssSSSmmmZ = '2012-01-31T12:30:45.123456Z';
     final yyyyMMddTHHmmssSSSmmmZDateTime =
         DateTime.utc(2012, 1, 31, 12, 30, 45, 123, 456);
@@ -245,7 +258,7 @@ void main() {
         equals(yyyyMMddTHHmmssSSSmmmZDateTime),
       );
       expect(
-        dateyyyyMMddTHHmmssSSSmmmZFromString.toJson(),
+        dateyyyyMMddTHHmmssSSSmmmZFromString.toJson()['value'],
         equals(yyyyMMddTHHmmssSSSmmmZ),
       );
     });
@@ -270,12 +283,13 @@ void main() {
         equals(yyyyMMddTHHmmssSSSmmmZDateTime),
       );
       expect(
-        dateyyyyMMddTHHmmssSSSmmmZFromUnits.toJson(),
+        dateyyyyMMddTHHmmssSSSmmmZFromUnits.toJson()['value'],
         equals(yyyyMMddTHHmmssSSSmmmZ),
       );
     });
 
-    // Test for year, month, day, hour, minute, second, millisecond, microsecond, and timezone offset
+    // Test for year, month, day, hour, minute, second, millisecond,
+    // microsecond, and timezone offset
     final yyyyMMddTHHmmssSSSmmmOffset = '2012-01-31T12:30:45.123456$offset';
     final yyyyMMddTHHmmssSSSmmmOffsetDateTime =
         DateTime(2012, 1, 31, 17, 30, 45, 123, 456)
@@ -292,7 +306,7 @@ void main() {
         equals(yyyyMMddTHHmmssSSSmmmOffsetDateTime),
       );
       expect(
-        dateyyyyMMddTHHmmssSSSmmmOffsetFromString.toJson(),
+        dateyyyyMMddTHHmmssSSSmmmOffsetFromString.toJson()['value'],
         equals(yyyyMMddTHHmmssSSSmmmOffset),
       );
     });
@@ -319,7 +333,7 @@ void main() {
         equals(yyyyMMddTHHmmssSSSmmmOffsetDateTime),
       );
       expect(
-        dateyyyyMMddTHHmmssSSSmmmOffsetFromUnits.toJson(),
+        dateyyyyMMddTHHmmssSSSmmmOffsetFromUnits.toJson()['value'],
         equals(yyyyMMddTHHmmssSSSmmmOffset),
       );
     });
@@ -347,7 +361,8 @@ void main() {
       final localDateTimeString =
           FhirDateTime.fromDateTime(localDateTime).toString();
 
-      /// If there's no timzeone in the input, we shouldn't have any in the output
+      /// If there's no timzeone in the input, we shouldn't have any in the
+      /// output
       expect(
         localDateTimeString.contains(RegExp(r'[\+|-][0-2][0-9]:[0-6][0-9]$')),
         true,
@@ -447,7 +462,7 @@ void main() {
           second: 30,
           millisecond: 000,
         );
-        final json = dateTime.toJson();
+        final json = dateTime.toJson()['value'];
         expect(json, equals('2023-07-15T13:45:30.000'));
       });
     });
@@ -499,7 +514,7 @@ void main() {
       test('Invalid FhirDate from string with Offset', () {
         expect(
           () => FhirDateTime.fromString('invalid_datetime'),
-          throwsA(isA<ArgumentError>()),
+          throwsA(isA<TypeError>()),
         );
       });
 

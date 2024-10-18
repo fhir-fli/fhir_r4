@@ -76,7 +76,8 @@ void main() {
   test('dateyyyyFromDateTime', () {
     expect(dateyyyyFromDateTime.valueString, equals(yyyyEmptyTimeZoneString));
     expect(dateyyyyFromDateTime.valueDateTime, equals(yyyyDateTime));
-    expect(dateyyyyFromDateTime.toJson(), equals(yyyyEmptyTimeZoneString));
+    expect(dateyyyyFromDateTime.toJson()['value'],
+        equals(yyyyEmptyTimeZoneString));
   });
 
   final yyyyMMddTHHmmssSSSEmptyString = '2012-01-31T12:30:59.123$offset';
@@ -100,7 +101,7 @@ void main() {
       equals(yyyyMMddTHHmmssSSSEmptyString),
     );
     expect(
-      dateyyyyMMddTHHmmssSSSFromString.toJson(),
+      dateyyyyMMddTHHmmssSSSFromString.toJson()['value'],
       equals(yyyyMMddTHHmmssSSSEmptyString),
     );
   });
@@ -111,7 +112,7 @@ void main() {
       equals(yyyyMMddTHHmmssSSSEmptyString),
     );
     expect(
-      dateyyyyMMddTHHmmssSSSFromUnits.toJson(),
+      dateyyyyMMddTHHmmssSSSFromUnits.toJson()['value'],
       equals(yyyyMMddTHHmmssSSSEmptyString),
     );
   });
@@ -148,7 +149,7 @@ void main() {
       equals(yyyyMMddTHHmmssSSSmmmDateTime),
     );
     expect(
-      dateyyyyMMddTHHmmssSSSmmmFromString.toJson(),
+      dateyyyyMMddTHHmmssSSSmmmFromString.toJson()['value'],
       equals(yyyyMMddTHHmmssSSSmmm),
     );
   });
@@ -162,7 +163,7 @@ void main() {
       equals(yyyyMMddTHHmmssSSSmmmDateTime),
     );
     expect(
-      dateyyyyMMddTHHmmssSSSmmmFromDateTime.toJson(),
+      dateyyyyMMddTHHmmssSSSmmmFromDateTime.toJson()['value'],
       equals(yyyyMMddTHHmmssSSSmmm),
     );
   });
@@ -176,7 +177,7 @@ void main() {
       equals(yyyyMMddTHHmmssSSSmmmDateTime),
     );
     expect(
-      dateyyyyMMddTHHmmssSSSmmmFromUnits.toJson(),
+      dateyyyyMMddTHHmmssSSSmmmFromUnits.toJson()['value'],
       equals(yyyyMMddTHHmmssSSSmmmEmptyTimeZoneString),
     );
   });

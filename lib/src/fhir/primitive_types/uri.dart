@@ -54,6 +54,20 @@ class FhirUri extends PrimitiveType<Uri> {
               'FhirUri cannot be constructed from the provided input,'
               ' it is neither a YAML string nor a YAML map.');
 
+  /// Attempts to parse the input as a [FhirUri], returns `null` if
+  /// parsing fails.
+  static FhirUri? tryParse(dynamic input) {
+    if (input is String) {
+      try {
+        return FhirUri(input);
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
   /// Validates the input string as a valid [Uri]
   static Uri _validateCanonical(String input) {
     final uri = Uri.tryParse(input);

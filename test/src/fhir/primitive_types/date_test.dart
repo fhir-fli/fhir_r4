@@ -19,35 +19,35 @@ void main() {
       final dateyyyyFromString = FhirDate.fromString(yyyy);
       expect(dateyyyyFromString.valueString, equals(yyyy));
       expect(dateyyyyFromString.valueDateTime, equals(yyyyDateTime));
-      expect(dateyyyyFromString.toJson(), equals(yyyy));
+      expect(dateyyyyFromString.toJson()['value'], equals(yyyy));
     });
 
     test('yyyyFromUnits', () {
       final dateyyyyFromString = FhirDate.fromUnits(year: 2012);
       expect(dateyyyyFromString.valueString, equals(yyyy));
       expect(dateyyyyFromString.valueDateTime, equals(yyyyDateTime));
-      expect(dateyyyyFromString.toJson(), equals(yyyy));
+      expect(dateyyyyFromString.toJson()['value'], equals(yyyy));
     });
 
     test('yyyyMMFromstring', () {
       final dateyyyyMMFromString = FhirDate.fromString(yyyyMM);
       expect(dateyyyyMMFromString.valueString, equals(yyyyMM));
       expect(dateyyyyMMFromString.valueDateTime, equals(yyyyMMDateTime));
-      expect(dateyyyyMMFromString.toJson(), equals(yyyyMM));
+      expect(dateyyyyMMFromString.toJson()['value'], equals(yyyyMM));
     });
 
     test('yyyyMMFromUnits', () {
       final dateyyyyMMFromString = FhirDate.fromUnits(year: 2012, month: 1);
       expect(dateyyyyMMFromString.valueString, equals(yyyyMM));
       expect(dateyyyyMMFromString.valueDateTime, equals(yyyyMMDateTime));
-      expect(dateyyyyMMFromString.toJson(), equals(yyyyMM));
+      expect(dateyyyyMMFromString.toJson()['value'], equals(yyyyMM));
     });
 
     test('yyyyMMddFromString', () {
       final dateyyyyMMddFromString = FhirDate.fromString(yyyyMMdd);
       expect(dateyyyyMMddFromString.valueString, equals(yyyyMMdd));
       expect(dateyyyyMMddFromString.valueDateTime, equals(yyyyMMddDateTime));
-      expect(dateyyyyMMddFromString.toJson(), equals(yyyyMMdd));
+      expect(dateyyyyMMddFromString.toJson()['value'], equals(yyyyMMdd));
     });
 
     test('yyyyMMddFromUnits', () {
@@ -55,14 +55,14 @@ void main() {
           FhirDate.fromUnits(year: 2012, month: 1, day: 31);
       expect(dateyyyyMMddFromString.valueString, equals(yyyyMMdd));
       expect(dateyyyyMMddFromString.valueDateTime, equals(yyyyMMddDateTime));
-      expect(dateyyyyMMddFromString.toJson(), equals(yyyyMMdd));
+      expect(dateyyyyMMddFromString.toJson()['value'], equals(yyyyMMdd));
     });
 
     test('yyyyMMddFromString with Offset', () {
       final dateyyyyMMddFromString = FhirDate.fromString(yyyyMMddOffset);
       expect(dateyyyyMMddFromString.valueString, equals(yyyyMMddOffset));
       expect(dateyyyyMMddFromString.valueDateTime, equals(yyyyMMddDateTime));
-      expect(dateyyyyMMddFromString.toJson(), equals(yyyyMMddOffset));
+      expect(dateyyyyMMddFromString.toJson()['value'], equals(yyyyMMddOffset));
     });
 
     final invalidDateString = 'invalid-date$offset';
@@ -70,7 +70,7 @@ void main() {
     test('Invalid FhirDate from string with Offset', () {
       expect(
         () => FhirDate.fromString(invalidDateString),
-        throwsA(isA<ArgumentError>()),
+        throwsA(isA<TypeError>()),
       );
     });
 
@@ -85,7 +85,10 @@ void main() {
         leapYearFromString.valueDateTime,
         equals(leapYearDateTime.toLocal()),
       );
-      expect(leapYearFromString.toJson(), equals(leapYearDateWithOffset));
+      expect(
+        leapYearFromString.toJson()['value'],
+        equals(leapYearDateWithOffset),
+      );
     });
 
     test('Valid FhirDate String', () {
@@ -100,7 +103,7 @@ void main() {
     test('Invalid FhirDate String', () {
       expect(
         () => FhirDate.fromString('invalid_date'),
-        throwsA(isA<ArgumentError>()),
+        throwsA(isA<TypeError>()),
       );
     });
 

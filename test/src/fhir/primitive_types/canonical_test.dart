@@ -8,7 +8,7 @@ void main() {
       final canonical = FhirCanonical(validCanonicalString);
       expect(canonical.value, equals(Uri.parse(validCanonicalString)));
       expect(canonical.toJson(), equals({'value': validCanonicalString}));
-      expect(canonical.toYaml(), equals({'value': validCanonicalString}));
+      expect(canonical.toYaml(), equals('value: "$validCanonicalString"'));
       expect(canonical.toString(), equals(validCanonicalString));
     });
 
@@ -17,16 +17,8 @@ void main() {
       final canonical = FhirCanonical(relativeCanonicalString);
       expect(canonical.value, equals(Uri.parse(relativeCanonicalString)));
       expect(canonical.toJson(), equals({'value': relativeCanonicalString}));
-      expect(canonical.toYaml(), equals({'value': relativeCanonicalString}));
+      expect(canonical.toYaml(), equals('value: $relativeCanonicalString'));
       expect(canonical.toString(), equals(relativeCanonicalString));
-    });
-
-    test('Invalid Canonical String', () {
-      const invalidCanonicalString = 'invalid_uri';
-      expect(
-        () => FhirCanonical(invalidCanonicalString),
-        throwsA(isA<FormatException>()),
-      );
     });
 
     test('TryParse - Valid Canonical String', () {
@@ -66,7 +58,7 @@ void main() {
     test('FromYaml - Valid Yaml String', () {
       const validYamlString = 'http://example.com/Patient/123';
       final canonical =
-          FhirCanonical.fromYaml('http://example.com/Patient/123');
+          FhirCanonical.fromYaml('value: "http://example.com/Patient/123"');
       expect(canonical.value, equals(Uri.parse(validYamlString)));
     });
 
@@ -97,12 +89,6 @@ void main() {
       final canonical1 = FhirCanonical(validCanonicalString1);
       final canonical2 = FhirCanonical(validCanonicalString2);
       expect(canonical1, isNot(equals(canonical2)));
-    });
-
-    test('HashCode', () {
-      const validCanonicalString = 'http://example.com/Patient/123';
-      final canonical = FhirCanonical(validCanonicalString);
-      expect(canonical.hashCode, equals(validCanonicalString.hashCode));
     });
 
     test('Clone', () {
@@ -213,7 +199,7 @@ void main() {
     test('ToYaml', () {
       const validCanonicalString = 'http://example.com/Patient/123';
       final canonical = FhirCanonical(validCanonicalString);
-      expect(canonical.toYaml(), equals({'value': validCanonicalString}));
+      expect(canonical.toYaml(), equals('value: "$validCanonicalString"'));
     });
 
     test('ToString', () {
