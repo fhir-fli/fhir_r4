@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// The EventDefinition resource provides a reusable description of when a
 /// particular event can occur.
 class EventDefinition extends DomainResource {
-  /// Primary constructor for [EventDefinition]
+  /// Primary constructor for
+  /// [EventDefinition]
 
   EventDefinition({
     super.id,
@@ -308,18 +309,20 @@ class EventDefinition extends DomainResource {
               )
               .toList()
           : null,
-      trigger: ensureNonNullList((json['trigger'] as List<dynamic>)
-          .map<TriggerDefinition>(
-            (v) => TriggerDefinition.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      trigger: ensureNonNullList(
+        (json['trigger'] as List<dynamic>)
+            .map<TriggerDefinition>(
+              (v) => TriggerDefinition.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [EventDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EventDefinition]
+  /// from a [String] or [YamlMap] object
   factory EventDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -332,8 +335,9 @@ class EventDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EventDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EventDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EventDefinition]

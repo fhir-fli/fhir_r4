@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// The Graph Definition resource defines a set and makes rules about the
 /// set.
 class GraphDefinition extends DomainResource {
-  /// Primary constructor for [GraphDefinition]
+  /// Primary constructor for
+  /// [GraphDefinition]
 
   GraphDefinition({
     super.id,
@@ -202,8 +203,8 @@ class GraphDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [GraphDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [GraphDefinition]
+  /// from a [String] or [YamlMap] object
   factory GraphDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -216,8 +217,9 @@ class GraphDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'GraphDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'GraphDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [GraphDefinition]
@@ -536,7 +538,8 @@ class GraphDefinition extends DomainResource {
 /// [GraphDefinitionLink]
 /// Links this graph makes rules about.
 class GraphDefinitionLink extends BackboneElement {
-  /// Primary constructor for [GraphDefinitionLink]
+  /// Primary constructor for
+  /// [GraphDefinitionLink]
 
   GraphDefinitionLink({
     super.id,
@@ -626,8 +629,8 @@ class GraphDefinitionLink extends BackboneElement {
     );
   }
 
-  /// Deserialize [GraphDefinitionLink] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [GraphDefinitionLink]
+  /// from a [String] or [YamlMap] object
   factory GraphDefinitionLink.fromYaml(
     dynamic yaml,
   ) =>
@@ -640,8 +643,9 @@ class GraphDefinitionLink extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'GraphDefinitionLink cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'GraphDefinitionLink '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [GraphDefinitionLink]
@@ -794,7 +798,8 @@ class GraphDefinitionLink extends BackboneElement {
 /// [GraphDefinitionTarget]
 /// Potential target for the link.
 class GraphDefinitionTarget extends BackboneElement {
-  /// Primary constructor for [GraphDefinitionTarget]
+  /// Primary constructor for
+  /// [GraphDefinitionTarget]
 
   GraphDefinitionTarget({
     super.id,
@@ -878,8 +883,8 @@ class GraphDefinitionTarget extends BackboneElement {
     );
   }
 
-  /// Deserialize [GraphDefinitionTarget] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [GraphDefinitionTarget]
+  /// from a [String] or [YamlMap] object
   factory GraphDefinitionTarget.fromYaml(
     dynamic yaml,
   ) =>
@@ -892,8 +897,9 @@ class GraphDefinitionTarget extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'GraphDefinitionTarget cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'GraphDefinitionTarget '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [GraphDefinitionTarget]
@@ -1024,7 +1030,8 @@ class GraphDefinitionTarget extends BackboneElement {
 /// [GraphDefinitionCompartment]
 /// Compartment Consistency Rules.
 class GraphDefinitionCompartment extends BackboneElement {
-  /// Primary constructor for [GraphDefinitionCompartment]
+  /// Primary constructor for
+  /// [GraphDefinitionCompartment]
 
   GraphDefinitionCompartment({
     super.id,
@@ -1098,8 +1105,8 @@ class GraphDefinitionCompartment extends BackboneElement {
     );
   }
 
-  /// Deserialize [GraphDefinitionCompartment] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [GraphDefinitionCompartment]
+  /// from a [String] or [YamlMap] object
   factory GraphDefinitionCompartment.fromYaml(
     dynamic yaml,
   ) =>
@@ -1112,8 +1119,9 @@ class GraphDefinitionCompartment extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'GraphDefinitionCompartment cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'GraphDefinitionCompartment '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [GraphDefinitionCompartment]

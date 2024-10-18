@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Indicates how the medication is/was taken or should be taken by the
 /// patient.
 class Dosage extends BackboneType {
-  /// Primary constructor for [Dosage]
+  /// Primary constructor for
+  /// [Dosage]
 
   Dosage({
     super.id,
@@ -147,8 +148,8 @@ class Dosage extends BackboneType {
     );
   }
 
-  /// Deserialize [Dosage] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Dosage]
+  /// from a [String] or [YamlMap] object
   factory Dosage.fromYaml(
     dynamic yaml,
   ) =>
@@ -161,8 +162,9 @@ class Dosage extends BackboneType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Dosage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Dosage '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Dosage]
@@ -401,7 +403,8 @@ class Dosage extends BackboneType {
 /// [DosageDoseAndRate]
 /// The amount of medication administered.
 class DosageDoseAndRate extends Element {
-  /// Primary constructor for [DosageDoseAndRate]
+  /// Primary constructor for
+  /// [DosageDoseAndRate]
 
   DosageDoseAndRate({
     super.id,
@@ -472,8 +475,8 @@ class DosageDoseAndRate extends Element {
     );
   }
 
-  /// Deserialize [DosageDoseAndRate] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DosageDoseAndRate]
+  /// from a [String] or [YamlMap] object
   factory DosageDoseAndRate.fromYaml(
     dynamic yaml,
   ) =>
@@ -486,8 +489,9 @@ class DosageDoseAndRate extends Element {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DosageDoseAndRate cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DosageDoseAndRate '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DosageDoseAndRate]

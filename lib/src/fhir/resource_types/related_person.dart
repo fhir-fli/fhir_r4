@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// but who is not the target of healthcare, nor has a formal
 /// responsibility in the care process.
 class RelatedPerson extends DomainResource {
-  /// Primary constructor for [RelatedPerson]
+  /// Primary constructor for
+  /// [RelatedPerson]
 
   RelatedPerson({
     super.id,
@@ -191,8 +192,8 @@ class RelatedPerson extends DomainResource {
     );
   }
 
-  /// Deserialize [RelatedPerson] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [RelatedPerson]
+  /// from a [String] or [YamlMap] object
   factory RelatedPerson.fromYaml(
     dynamic yaml,
   ) =>
@@ -205,8 +206,9 @@ class RelatedPerson extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'RelatedPerson cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'RelatedPerson '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [RelatedPerson]
@@ -444,7 +446,8 @@ class RelatedPerson extends DomainResource {
 /// A language which may be used to communicate with about the patient's
 /// health.
 class RelatedPersonCommunication extends BackboneElement {
-  /// Primary constructor for [RelatedPersonCommunication]
+  /// Primary constructor for
+  /// [RelatedPersonCommunication]
 
   RelatedPersonCommunication({
     super.id,
@@ -500,8 +503,8 @@ class RelatedPersonCommunication extends BackboneElement {
     );
   }
 
-  /// Deserialize [RelatedPersonCommunication] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [RelatedPersonCommunication]
+  /// from a [String] or [YamlMap] object
   factory RelatedPersonCommunication.fromYaml(
     dynamic yaml,
   ) =>
@@ -514,8 +517,9 @@ class RelatedPersonCommunication extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'RelatedPersonCommunication cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'RelatedPersonCommunication '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [RelatedPersonCommunication]

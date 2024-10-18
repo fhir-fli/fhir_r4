@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// content accessible in its native format. A Binary resource can contain
 /// any content, whether text, image, pdf, zip archive, etc.
 class Binary extends Resource {
-  /// Primary constructor for [Binary]
+  /// Primary constructor for
+  /// [Binary]
 
   Binary({
     super.id,
@@ -72,8 +73,8 @@ class Binary extends Resource {
     );
   }
 
-  /// Deserialize [Binary] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Binary]
+  /// from a [String] or [YamlMap] object
   factory Binary.fromYaml(
     dynamic yaml,
   ) =>
@@ -86,8 +87,9 @@ class Binary extends Resource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Binary cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Binary '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Binary]

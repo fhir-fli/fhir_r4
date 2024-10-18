@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Significant health conditions for a person related to the patient
 /// relevant in the context of care for the patient.
 class FamilyMemberHistory extends DomainResource {
-  /// Primary constructor for [FamilyMemberHistory]
+  /// Primary constructor for
+  /// [FamilyMemberHistory]
 
   FamilyMemberHistory({
     super.id,
@@ -269,8 +270,8 @@ class FamilyMemberHistory extends DomainResource {
     );
   }
 
-  /// Deserialize [FamilyMemberHistory] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [FamilyMemberHistory]
+  /// from a [String] or [YamlMap] object
   factory FamilyMemberHistory.fromYaml(
     dynamic yaml,
   ) =>
@@ -283,8 +284,9 @@ class FamilyMemberHistory extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'FamilyMemberHistory cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'FamilyMemberHistory '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [FamilyMemberHistory]
@@ -720,7 +722,8 @@ class FamilyMemberHistory extends DomainResource {
 /// one condition per resource, though there is nothing stopping multiple
 /// resources - one per condition.
 class FamilyMemberHistoryCondition extends BackboneElement {
-  /// Primary constructor for [FamilyMemberHistoryCondition]
+  /// Primary constructor for
+  /// [FamilyMemberHistoryCondition]
 
   FamilyMemberHistoryCondition({
     super.id,
@@ -817,8 +820,8 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     );
   }
 
-  /// Deserialize [FamilyMemberHistoryCondition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [FamilyMemberHistoryCondition]
+  /// from a [String] or [YamlMap] object
   factory FamilyMemberHistoryCondition.fromYaml(
     dynamic yaml,
   ) =>
@@ -831,8 +834,9 @@ class FamilyMemberHistoryCondition extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'FamilyMemberHistoryCondition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'FamilyMemberHistoryCondition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [FamilyMemberHistoryCondition]

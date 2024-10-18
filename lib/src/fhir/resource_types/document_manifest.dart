@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A collection of documents compiled for a purpose together with metadata
 /// that applies to the collection.
 class DocumentManifest extends DomainResource {
-  /// Primary constructor for [DocumentManifest]
+  /// Primary constructor for
+  /// [DocumentManifest]
 
   DocumentManifest({
     super.id,
@@ -162,13 +163,15 @@ class DocumentManifest extends DomainResource {
               '_value': json['_description'],
             })
           : null,
-      content: ensureNonNullList((json['content'] as List<dynamic>)
-          .map<Reference>(
-            (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      content: ensureNonNullList(
+        (json['content'] as List<dynamic>)
+            .map<Reference>(
+              (v) => Reference.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       related: json['related'] != null
           ? (json['related'] as List<dynamic>)
               .map<DocumentManifestRelated>(
@@ -181,8 +184,8 @@ class DocumentManifest extends DomainResource {
     );
   }
 
-  /// Deserialize [DocumentManifest] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DocumentManifest]
+  /// from a [String] or [YamlMap] object
   factory DocumentManifest.fromYaml(
     dynamic yaml,
   ) =>
@@ -195,8 +198,9 @@ class DocumentManifest extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DocumentManifest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DocumentManifest '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DocumentManifest]
@@ -444,7 +448,8 @@ class DocumentManifest extends DomainResource {
 /// [DocumentManifestRelated]
 /// Related identifiers or resources associated with the DocumentManifest.
 class DocumentManifestRelated extends BackboneElement {
-  /// Primary constructor for [DocumentManifestRelated]
+  /// Primary constructor for
+  /// [DocumentManifestRelated]
 
   DocumentManifestRelated({
     super.id,
@@ -501,8 +506,8 @@ class DocumentManifestRelated extends BackboneElement {
     );
   }
 
-  /// Deserialize [DocumentManifestRelated] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DocumentManifestRelated]
+  /// from a [String] or [YamlMap] object
   factory DocumentManifestRelated.fromYaml(
     dynamic yaml,
   ) =>
@@ -515,8 +520,9 @@ class DocumentManifestRelated extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DocumentManifestRelated cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DocumentManifestRelated '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DocumentManifestRelated]

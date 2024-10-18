@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Risk of harmful or undesirable, physiological response which is unique
 /// to an individual and associated with exposure to a substance.
 class AllergyIntolerance extends DomainResource {
-  /// Primary constructor for [AllergyIntolerance]
+  /// Primary constructor for
+  /// [AllergyIntolerance]
 
   AllergyIntolerance({
     super.id,
@@ -225,8 +226,8 @@ class AllergyIntolerance extends DomainResource {
     );
   }
 
-  /// Deserialize [AllergyIntolerance] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [AllergyIntolerance]
+  /// from a [String] or [YamlMap] object
   factory AllergyIntolerance.fromYaml(
     dynamic yaml,
   ) =>
@@ -239,8 +240,9 @@ class AllergyIntolerance extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'AllergyIntolerance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'AllergyIntolerance '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [AllergyIntolerance]
@@ -593,7 +595,8 @@ class AllergyIntolerance extends DomainResource {
 /// Details about each adverse reaction event linked to exposure to the
 /// identified substance.
 class AllergyIntoleranceReaction extends BackboneElement {
-  /// Primary constructor for [AllergyIntoleranceReaction]
+  /// Primary constructor for
+  /// [AllergyIntoleranceReaction]
 
   AllergyIntoleranceReaction({
     super.id,
@@ -647,13 +650,15 @@ class AllergyIntoleranceReaction extends BackboneElement {
               json['substance'] as Map<String, dynamic>,
             )
           : null,
-      manifestation: ensureNonNullList((json['manifestation'] as List<dynamic>)
-          .map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      manifestation: ensureNonNullList(
+        (json['manifestation'] as List<dynamic>)
+            .map<CodeableConcept>(
+              (v) => CodeableConcept.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       description: json['description'] != null
           ? FhirString.fromJson({
               'value': json['description'],
@@ -689,8 +694,8 @@ class AllergyIntoleranceReaction extends BackboneElement {
     );
   }
 
-  /// Deserialize [AllergyIntoleranceReaction] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [AllergyIntoleranceReaction]
+  /// from a [String] or [YamlMap] object
   factory AllergyIntoleranceReaction.fromYaml(
     dynamic yaml,
   ) =>
@@ -703,8 +708,9 @@ class AllergyIntoleranceReaction extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'AllergyIntoleranceReaction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'AllergyIntoleranceReaction '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [AllergyIntoleranceReaction]

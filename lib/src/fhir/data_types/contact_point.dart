@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Details for all kinds of technology mediated contact points for a
 /// person or organization, including telephone, email, etc.
 class ContactPoint extends DataType {
-  /// Primary constructor for [ContactPoint]
+  /// Primary constructor for
+  /// [ContactPoint]
 
   ContactPoint({
     super.id,
@@ -75,8 +76,8 @@ class ContactPoint extends DataType {
     );
   }
 
-  /// Deserialize [ContactPoint] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContactPoint]
+  /// from a [String] or [YamlMap] object
   factory ContactPoint.fromYaml(
     dynamic yaml,
   ) =>
@@ -89,8 +90,9 @@ class ContactPoint extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContactPoint cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContactPoint '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContactPoint]

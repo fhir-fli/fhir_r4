@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [FhirExtension]
 /// Optional Extension Element - found in all resources.
 class FhirExtension extends DataType {
-  /// Primary constructor for [FhirExtension]
+  /// Primary constructor for
+  /// [FhirExtension]
 
   FhirExtension({
     super.id,
@@ -369,8 +370,8 @@ class FhirExtension extends DataType {
     );
   }
 
-  /// Deserialize [FhirExtension] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [FhirExtension]
+  /// from a [String] or [YamlMap] object
   factory FhirExtension.fromYaml(
     dynamic yaml,
   ) =>
@@ -383,8 +384,9 @@ class FhirExtension extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'FhirExtension cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'FhirExtension '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [FhirExtension]

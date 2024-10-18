@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [Attachment]
 /// For referring to data content defined in other formats.
 class Attachment extends DataType {
-  /// Primary constructor for [Attachment]
+  /// Primary constructor for
+  /// [Attachment]
 
   Attachment({
     super.id,
@@ -96,8 +97,8 @@ class Attachment extends DataType {
     );
   }
 
-  /// Deserialize [Attachment] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Attachment]
+  /// from a [String] or [YamlMap] object
   factory Attachment.fromYaml(
     dynamic yaml,
   ) =>
@@ -110,8 +111,9 @@ class Attachment extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Attachment cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Attachment '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Attachment]

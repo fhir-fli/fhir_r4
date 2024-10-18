@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// This resource provides the status of the payment for goods and services
 /// rendered, and the request and response resource references.
 class PaymentNotice extends DomainResource {
-  /// Primary constructor for [PaymentNotice]
+  /// Primary constructor for
+  /// [PaymentNotice]
 
   PaymentNotice({
     super.id,
@@ -158,8 +159,8 @@ class PaymentNotice extends DomainResource {
     );
   }
 
-  /// Deserialize [PaymentNotice] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PaymentNotice]
+  /// from a [String] or [YamlMap] object
   factory PaymentNotice.fromYaml(
     dynamic yaml,
   ) =>
@@ -172,8 +173,9 @@ class PaymentNotice extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PaymentNotice cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PaymentNotice '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PaymentNotice]

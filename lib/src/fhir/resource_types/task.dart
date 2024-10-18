@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [Task]
 /// A task to be performed.
 class Task extends DomainResource {
-  /// Primary constructor for [Task]
+  /// Primary constructor for
+  /// [Task]
 
   Task({
     super.id,
@@ -314,8 +315,8 @@ class Task extends DomainResource {
     );
   }
 
-  /// Deserialize [Task] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Task]
+  /// from a [String] or [YamlMap] object
   factory Task.fromYaml(
     dynamic yaml,
   ) =>
@@ -328,8 +329,9 @@ class Task extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Task cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Task '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Task]
@@ -790,7 +792,8 @@ class Task extends DomainResource {
 /// element identifies any limitations on what parts of the referenced
 /// request should be actioned.
 class TaskRestriction extends BackboneElement {
-  /// Primary constructor for [TaskRestriction]
+  /// Primary constructor for
+  /// [TaskRestriction]
 
   TaskRestriction({
     super.id,
@@ -858,8 +861,8 @@ class TaskRestriction extends BackboneElement {
     );
   }
 
-  /// Deserialize [TaskRestriction] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TaskRestriction]
+  /// from a [String] or [YamlMap] object
   factory TaskRestriction.fromYaml(
     dynamic yaml,
   ) =>
@@ -872,8 +875,9 @@ class TaskRestriction extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TaskRestriction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TaskRestriction '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TaskRestriction]
@@ -979,7 +983,8 @@ class TaskRestriction extends BackboneElement {
 /// [TaskInput]
 /// Additional information that may be needed in the execution of the task.
 class TaskInput extends BackboneElement {
-  /// Primary constructor for [TaskInput]
+  /// Primary constructor for
+  /// [TaskInput]
 
   TaskInput({
     super.id,
@@ -1347,8 +1352,8 @@ class TaskInput extends BackboneElement {
     );
   }
 
-  /// Deserialize [TaskInput] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TaskInput]
+  /// from a [String] or [YamlMap] object
   factory TaskInput.fromYaml(
     dynamic yaml,
   ) =>
@@ -1361,8 +1366,9 @@ class TaskInput extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TaskInput cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TaskInput '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TaskInput]
@@ -2020,7 +2026,8 @@ class TaskInput extends BackboneElement {
 /// [TaskOutput]
 /// Outputs produced by the Task.
 class TaskOutput extends BackboneElement {
-  /// Primary constructor for [TaskOutput]
+  /// Primary constructor for
+  /// [TaskOutput]
 
   TaskOutput({
     super.id,
@@ -2388,8 +2395,8 @@ class TaskOutput extends BackboneElement {
     );
   }
 
-  /// Deserialize [TaskOutput] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TaskOutput]
+  /// from a [String] or [YamlMap] object
   factory TaskOutput.fromYaml(
     dynamic yaml,
   ) =>
@@ -2402,8 +2409,9 @@ class TaskOutput extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TaskOutput cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TaskOutput '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TaskOutput]

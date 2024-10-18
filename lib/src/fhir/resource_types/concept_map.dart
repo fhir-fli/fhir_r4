@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// other concepts - either concepts in code systems, or data element/data
 /// element concepts, or classes in class models.
 class ConceptMap extends DomainResource {
-  /// Primary constructor for [ConceptMap]
+  /// Primary constructor for
+  /// [ConceptMap]
 
   ConceptMap({
     super.id,
@@ -239,8 +240,8 @@ class ConceptMap extends DomainResource {
     );
   }
 
-  /// Deserialize [ConceptMap] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ConceptMap]
+  /// from a [String] or [YamlMap] object
   factory ConceptMap.fromYaml(
     dynamic yaml,
   ) =>
@@ -253,8 +254,9 @@ class ConceptMap extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ConceptMap cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ConceptMap '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ConceptMap]
@@ -654,7 +656,8 @@ class ConceptMap extends DomainResource {
 /// [ConceptMapGroup]
 /// A group of mappings that all have the same source and target system.
 class ConceptMapGroup extends BackboneElement {
-  /// Primary constructor for [ConceptMapGroup]
+  /// Primary constructor for
+  /// [ConceptMapGroup]
 
   ConceptMapGroup({
     super.id,
@@ -726,13 +729,15 @@ class ConceptMapGroup extends BackboneElement {
               '_value': json['_targetVersion'],
             })
           : null,
-      element: ensureNonNullList((json['element'] as List<dynamic>)
-          .map<ConceptMapElement>(
-            (v) => ConceptMapElement.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      element: ensureNonNullList(
+        (json['element'] as List<dynamic>)
+            .map<ConceptMapElement>(
+              (v) => ConceptMapElement.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       unmapped: json['unmapped'] != null
           ? ConceptMapUnmapped.fromJson(
               json['unmapped'] as Map<String, dynamic>,
@@ -741,8 +746,8 @@ class ConceptMapGroup extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConceptMapGroup] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ConceptMapGroup]
+  /// from a [String] or [YamlMap] object
   factory ConceptMapGroup.fromYaml(
     dynamic yaml,
   ) =>
@@ -755,8 +760,9 @@ class ConceptMapGroup extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ConceptMapGroup cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ConceptMapGroup '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ConceptMapGroup]
@@ -909,7 +915,8 @@ class ConceptMapGroup extends BackboneElement {
 /// Mappings for an individual concept in the source to one or more
 /// concepts in the target.
 class ConceptMapElement extends BackboneElement {
-  /// Primary constructor for [ConceptMapElement]
+  /// Primary constructor for
+  /// [ConceptMapElement]
 
   ConceptMapElement({
     super.id,
@@ -978,8 +985,8 @@ class ConceptMapElement extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConceptMapElement] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ConceptMapElement]
+  /// from a [String] or [YamlMap] object
   factory ConceptMapElement.fromYaml(
     dynamic yaml,
   ) =>
@@ -992,8 +999,9 @@ class ConceptMapElement extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ConceptMapElement cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ConceptMapElement '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ConceptMapElement]
@@ -1103,7 +1111,8 @@ class ConceptMapElement extends BackboneElement {
 /// [ConceptMapTarget]
 /// A concept from the target value set that this concept maps to.
 class ConceptMapTarget extends BackboneElement {
-  /// Primary constructor for [ConceptMapTarget]
+  /// Primary constructor for
+  /// [ConceptMapTarget]
 
   ConceptMapTarget({
     super.id,
@@ -1184,8 +1193,8 @@ class ConceptMapTarget extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConceptMapTarget] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ConceptMapTarget]
+  /// from a [String] or [YamlMap] object
   factory ConceptMapTarget.fromYaml(
     dynamic yaml,
   ) =>
@@ -1198,8 +1207,9 @@ class ConceptMapTarget extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ConceptMapTarget cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ConceptMapTarget '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ConceptMapTarget]
@@ -1338,7 +1348,8 @@ class ConceptMapTarget extends BackboneElement {
 /// is only applicable if the specified element can be resolved, and it has
 /// the specified value.
 class ConceptMapDependsOn extends BackboneElement {
-  /// Primary constructor for [ConceptMapDependsOn]
+  /// Primary constructor for
+  /// [ConceptMapDependsOn]
 
   ConceptMapDependsOn({
     super.id,
@@ -1407,8 +1418,8 @@ class ConceptMapDependsOn extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConceptMapDependsOn] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ConceptMapDependsOn]
+  /// from a [String] or [YamlMap] object
   factory ConceptMapDependsOn.fromYaml(
     dynamic yaml,
   ) =>
@@ -1421,8 +1432,9 @@ class ConceptMapDependsOn extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ConceptMapDependsOn cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ConceptMapDependsOn '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ConceptMapDependsOn]
@@ -1553,7 +1565,8 @@ class ConceptMapDependsOn extends BackboneElement {
 /// does not include codes that are unmatched, and the unmapped element is
 /// ignored in a code is specified to have equivalence = unmatched.
 class ConceptMapUnmapped extends BackboneElement {
-  /// Primary constructor for [ConceptMapUnmapped]
+  /// Primary constructor for
+  /// [ConceptMapUnmapped]
 
   ConceptMapUnmapped({
     super.id,
@@ -1624,8 +1637,8 @@ class ConceptMapUnmapped extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConceptMapUnmapped] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ConceptMapUnmapped]
+  /// from a [String] or [YamlMap] object
   factory ConceptMapUnmapped.fromYaml(
     dynamic yaml,
   ) =>
@@ -1638,8 +1651,9 @@ class ConceptMapUnmapped extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ConceptMapUnmapped cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ConceptMapUnmapped '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ConceptMapUnmapped]

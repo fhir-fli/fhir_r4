@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Captures constraints on each element within the resource, profile, or
 /// extension.
 class ElementDefinition extends BackboneType {
-  /// Primary constructor for [ElementDefinition]
+  /// Primary constructor for
+  /// [ElementDefinition]
 
   ElementDefinition({
     super.id,
@@ -1364,8 +1365,8 @@ class ElementDefinition extends BackboneType {
     );
   }
 
-  /// Deserialize [ElementDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ElementDefinition]
+  /// from a [String] or [YamlMap] object
   factory ElementDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -1378,8 +1379,9 @@ class ElementDefinition extends BackboneType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ElementDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ElementDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ElementDefinition]
@@ -5089,7 +5091,8 @@ class ElementDefinition extends BackboneType {
 /// that have the same path, until a shorter path occurs (the shorter path
 /// terminates the set).
 class ElementDefinitionSlicing extends Element {
-  /// Primary constructor for [ElementDefinitionSlicing]
+  /// Primary constructor for
+  /// [ElementDefinitionSlicing]
 
   ElementDefinitionSlicing({
     super.id,
@@ -5153,8 +5156,8 @@ class ElementDefinitionSlicing extends Element {
     );
   }
 
-  /// Deserialize [ElementDefinitionSlicing] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ElementDefinitionSlicing]
+  /// from a [String] or [YamlMap] object
   factory ElementDefinitionSlicing.fromYaml(
     dynamic yaml,
   ) =>
@@ -5167,8 +5170,9 @@ class ElementDefinitionSlicing extends Element {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ElementDefinitionSlicing cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ElementDefinitionSlicing '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ElementDefinitionSlicing]
@@ -5291,7 +5295,8 @@ class ElementDefinitionSlicing extends Element {
 /// completely distinguish which slice the element in the resource matches
 /// based on the allowed values for those elements in each of the slices.
 class ElementDefinitionDiscriminator extends Element {
-  /// Primary constructor for [ElementDefinitionDiscriminator]
+  /// Primary constructor for
+  /// [ElementDefinitionDiscriminator]
 
   ElementDefinitionDiscriminator({
     super.id,
@@ -5336,8 +5341,8 @@ class ElementDefinitionDiscriminator extends Element {
     );
   }
 
-  /// Deserialize [ElementDefinitionDiscriminator] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ElementDefinitionDiscriminator]
+  /// from a [String] or [YamlMap] object
   factory ElementDefinitionDiscriminator.fromYaml(
     dynamic yaml,
   ) =>
@@ -5350,8 +5355,9 @@ class ElementDefinitionDiscriminator extends Element {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ElementDefinitionDiscriminator cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ElementDefinitionDiscriminator '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ElementDefinitionDiscriminator]
@@ -5444,7 +5450,8 @@ class ElementDefinitionDiscriminator extends Element {
 /// to the base definition. On the original definition of the element, it
 /// will be same.
 class ElementDefinitionBase extends Element {
-  /// Primary constructor for [ElementDefinitionBase]
+  /// Primary constructor for
+  /// [ElementDefinitionBase]
 
   ElementDefinitionBase({
     super.id,
@@ -5494,8 +5501,8 @@ class ElementDefinitionBase extends Element {
     );
   }
 
-  /// Deserialize [ElementDefinitionBase] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ElementDefinitionBase]
+  /// from a [String] or [YamlMap] object
   factory ElementDefinitionBase.fromYaml(
     dynamic yaml,
   ) =>
@@ -5508,8 +5515,9 @@ class ElementDefinitionBase extends Element {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ElementDefinitionBase cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ElementDefinitionBase '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ElementDefinitionBase]
@@ -5614,7 +5622,8 @@ class ElementDefinitionBase extends Element {
 /// The data type or resource that the value of this element is permitted
 /// to be.
 class ElementDefinitionType extends Element {
-  /// Primary constructor for [ElementDefinitionType]
+  /// Primary constructor for
+  /// [ElementDefinitionType]
 
   ElementDefinitionType({
     super.id,
@@ -5679,8 +5688,8 @@ class ElementDefinitionType extends Element {
     );
   }
 
-  /// Deserialize [ElementDefinitionType] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ElementDefinitionType]
+  /// from a [String] or [YamlMap] object
   factory ElementDefinitionType.fromYaml(
     dynamic yaml,
   ) =>
@@ -5693,8 +5702,9 @@ class ElementDefinitionType extends Element {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ElementDefinitionType cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ElementDefinitionType '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ElementDefinitionType]
@@ -5839,7 +5849,8 @@ class ElementDefinitionType extends Element {
 /// A sample value for this element demonstrating the type of information
 /// that would typically be found in the element.
 class ElementDefinitionExample extends Element {
-  /// Primary constructor for [ElementDefinitionExample]
+  /// Primary constructor for
+  /// [ElementDefinitionExample]
 
   ElementDefinitionExample({
     super.id,
@@ -6204,8 +6215,8 @@ class ElementDefinitionExample extends Element {
     );
   }
 
-  /// Deserialize [ElementDefinitionExample] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ElementDefinitionExample]
+  /// from a [String] or [YamlMap] object
   factory ElementDefinitionExample.fromYaml(
     dynamic yaml,
   ) =>
@@ -6218,8 +6229,9 @@ class ElementDefinitionExample extends Element {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ElementDefinitionExample cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ElementDefinitionExample '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ElementDefinitionExample]
@@ -6936,7 +6948,8 @@ class ElementDefinitionExample extends Element {
 /// Formal constraints such as co-occurrence and other constraints that can
 /// be computationally evaluated within the context of the instance.
 class ElementDefinitionConstraint extends Element {
-  /// Primary constructor for [ElementDefinitionConstraint]
+  /// Primary constructor for
+  /// [ElementDefinitionConstraint]
 
   ElementDefinitionConstraint({
     super.id,
@@ -7014,8 +7027,8 @@ class ElementDefinitionConstraint extends Element {
     );
   }
 
-  /// Deserialize [ElementDefinitionConstraint] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ElementDefinitionConstraint]
+  /// from a [String] or [YamlMap] object
   factory ElementDefinitionConstraint.fromYaml(
     dynamic yaml,
   ) =>
@@ -7028,8 +7041,9 @@ class ElementDefinitionConstraint extends Element {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ElementDefinitionConstraint cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ElementDefinitionConstraint '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ElementDefinitionConstraint]
@@ -7189,7 +7203,8 @@ class ElementDefinitionConstraint extends Element {
 /// Binds to a value set if this element is coded (code, Coding,
 /// CodeableConcept, Quantity), or the data types (string, uri).
 class ElementDefinitionBinding extends Element {
-  /// Primary constructor for [ElementDefinitionBinding]
+  /// Primary constructor for
+  /// [ElementDefinitionBinding]
 
   ElementDefinitionBinding({
     super.id,
@@ -7243,8 +7258,8 @@ class ElementDefinitionBinding extends Element {
     );
   }
 
-  /// Deserialize [ElementDefinitionBinding] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ElementDefinitionBinding]
+  /// from a [String] or [YamlMap] object
   factory ElementDefinitionBinding.fromYaml(
     dynamic yaml,
   ) =>
@@ -7257,8 +7272,9 @@ class ElementDefinitionBinding extends Element {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ElementDefinitionBinding cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ElementDefinitionBinding '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ElementDefinitionBinding]
@@ -7362,7 +7378,8 @@ class ElementDefinitionBinding extends Element {
 /// Identifies a concept from an external specification that roughly
 /// corresponds to this element.
 class ElementDefinitionMapping extends Element {
-  /// Primary constructor for [ElementDefinitionMapping]
+  /// Primary constructor for
+  /// [ElementDefinitionMapping]
 
   ElementDefinitionMapping({
     super.id,
@@ -7421,8 +7438,8 @@ class ElementDefinitionMapping extends Element {
     );
   }
 
-  /// Deserialize [ElementDefinitionMapping] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ElementDefinitionMapping]
+  /// from a [String] or [YamlMap] object
   factory ElementDefinitionMapping.fromYaml(
     dynamic yaml,
   ) =>
@@ -7435,8 +7452,9 @@ class ElementDefinitionMapping extends Element {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ElementDefinitionMapping cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ElementDefinitionMapping '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ElementDefinitionMapping]

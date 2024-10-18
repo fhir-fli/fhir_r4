@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// This resource provides enrollment and plan details from the processing
 /// of an EnrollmentRequest resource.
 class EnrollmentResponse extends DomainResource {
-  /// Primary constructor for [EnrollmentResponse]
+  /// Primary constructor for
+  /// [EnrollmentResponse]
 
   EnrollmentResponse({
     super.id,
@@ -145,8 +146,8 @@ class EnrollmentResponse extends DomainResource {
     );
   }
 
-  /// Deserialize [EnrollmentResponse] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EnrollmentResponse]
+  /// from a [String] or [YamlMap] object
   factory EnrollmentResponse.fromYaml(
     dynamic yaml,
   ) =>
@@ -159,8 +160,9 @@ class EnrollmentResponse extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EnrollmentResponse cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EnrollmentResponse '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EnrollmentResponse]

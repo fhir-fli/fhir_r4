@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// been provided, or are to be provided, to a patient which is sent to an
 /// insurer for reimbursement.
 class Claim extends DomainResource {
-  /// Primary constructor for [Claim]
+  /// Primary constructor for
+  /// [Claim]
 
   Claim({
     super.id,
@@ -242,13 +243,15 @@ class Claim extends DomainResource {
               )
               .toList()
           : null,
-      insurance: ensureNonNullList((json['insurance'] as List<dynamic>)
-          .map<ClaimInsurance>(
-            (v) => ClaimInsurance.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      insurance: ensureNonNullList(
+        (json['insurance'] as List<dynamic>)
+            .map<ClaimInsurance>(
+              (v) => ClaimInsurance.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       accident: json['accident'] != null
           ? ClaimAccident.fromJson(
               json['accident'] as Map<String, dynamic>,
@@ -271,8 +274,8 @@ class Claim extends DomainResource {
     );
   }
 
-  /// Deserialize [Claim] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Claim]
+  /// from a [String] or [YamlMap] object
   factory Claim.fromYaml(
     dynamic yaml,
   ) =>
@@ -285,8 +288,9 @@ class Claim extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Claim cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Claim '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Claim]
@@ -671,7 +675,8 @@ class Claim extends DomainResource {
 /// Other claims which are related to this claim such as prior submissions
 /// or claims for related services or for the same event.
 class ClaimRelated extends BackboneElement {
-  /// Primary constructor for [ClaimRelated]
+  /// Primary constructor for
+  /// [ClaimRelated]
 
   ClaimRelated({
     super.id,
@@ -734,8 +739,8 @@ class ClaimRelated extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimRelated] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimRelated]
+  /// from a [String] or [YamlMap] object
   factory ClaimRelated.fromYaml(
     dynamic yaml,
   ) =>
@@ -748,8 +753,9 @@ class ClaimRelated extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimRelated cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimRelated '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimRelated]
@@ -852,7 +858,8 @@ class ClaimRelated extends BackboneElement {
 /// The party to be reimbursed for cost of the products and services
 /// according to the terms of the policy.
 class ClaimPayee extends BackboneElement {
-  /// Primary constructor for [ClaimPayee]
+  /// Primary constructor for
+  /// [ClaimPayee]
 
   ClaimPayee({
     super.id,
@@ -907,8 +914,8 @@ class ClaimPayee extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimPayee] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimPayee]
+  /// from a [String] or [YamlMap] object
   factory ClaimPayee.fromYaml(
     dynamic yaml,
   ) =>
@@ -921,8 +928,9 @@ class ClaimPayee extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimPayee cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimPayee '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimPayee]
@@ -1012,7 +1020,8 @@ class ClaimPayee extends BackboneElement {
 /// [ClaimCareTeam]
 /// The members of the team who provided the products and services.
 class ClaimCareTeam extends BackboneElement {
-  /// Primary constructor for [ClaimCareTeam]
+  /// Primary constructor for
+  /// [ClaimCareTeam]
 
   ClaimCareTeam({
     super.id,
@@ -1085,8 +1094,8 @@ class ClaimCareTeam extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimCareTeam] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimCareTeam]
+  /// from a [String] or [YamlMap] object
   factory ClaimCareTeam.fromYaml(
     dynamic yaml,
   ) =>
@@ -1099,8 +1108,9 @@ class ClaimCareTeam extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimCareTeam cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimCareTeam '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimCareTeam]
@@ -1229,7 +1239,8 @@ class ClaimCareTeam extends BackboneElement {
 /// Additional information codes regarding exceptions, special
 /// considerations, the condition, situation, prior or concurrent issues.
 class ClaimSupportingInfo extends BackboneElement {
-  /// Primary constructor for [ClaimSupportingInfo]
+  /// Primary constructor for
+  /// [ClaimSupportingInfo]
 
   ClaimSupportingInfo({
     super.id,
@@ -1340,8 +1351,8 @@ class ClaimSupportingInfo extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimSupportingInfo] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimSupportingInfo]
+  /// from a [String] or [YamlMap] object
   factory ClaimSupportingInfo.fromYaml(
     dynamic yaml,
   ) =>
@@ -1354,8 +1365,9 @@ class ClaimSupportingInfo extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimSupportingInfo cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimSupportingInfo '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimSupportingInfo]
@@ -1562,7 +1574,8 @@ class ClaimSupportingInfo extends BackboneElement {
 /// [ClaimDiagnosis]
 /// Information about diagnoses relevant to the claim items.
 class ClaimDiagnosis extends BackboneElement {
-  /// Primary constructor for [ClaimDiagnosis]
+  /// Primary constructor for
+  /// [ClaimDiagnosis]
 
   ClaimDiagnosis({
     super.id,
@@ -1646,8 +1659,8 @@ class ClaimDiagnosis extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimDiagnosis] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimDiagnosis]
+  /// from a [String] or [YamlMap] object
   factory ClaimDiagnosis.fromYaml(
     dynamic yaml,
   ) =>
@@ -1660,8 +1673,9 @@ class ClaimDiagnosis extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimDiagnosis cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimDiagnosis '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimDiagnosis]
@@ -1801,7 +1815,8 @@ class ClaimDiagnosis extends BackboneElement {
 /// Procedures performed on the patient relevant to the billing items with
 /// the claim.
 class ClaimProcedure extends BackboneElement {
-  /// Primary constructor for [ClaimProcedure]
+  /// Primary constructor for
+  /// [ClaimProcedure]
 
   ClaimProcedure({
     super.id,
@@ -1890,8 +1905,8 @@ class ClaimProcedure extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimProcedure] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimProcedure]
+  /// from a [String] or [YamlMap] object
   factory ClaimProcedure.fromYaml(
     dynamic yaml,
   ) =>
@@ -1904,8 +1919,9 @@ class ClaimProcedure extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimProcedure cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimProcedure '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimProcedure]
@@ -2046,7 +2062,8 @@ class ClaimProcedure extends BackboneElement {
 /// Financial instruments for reimbursement for the health care products
 /// and services specified on the claim.
 class ClaimInsurance extends BackboneElement {
-  /// Primary constructor for [ClaimInsurance]
+  /// Primary constructor for
+  /// [ClaimInsurance]
 
   ClaimInsurance({
     super.id,
@@ -2130,8 +2147,8 @@ class ClaimInsurance extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimInsurance] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimInsurance]
+  /// from a [String] or [YamlMap] object
   factory ClaimInsurance.fromYaml(
     dynamic yaml,
   ) =>
@@ -2144,8 +2161,9 @@ class ClaimInsurance extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimInsurance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimInsurance '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimInsurance]
@@ -2307,7 +2325,8 @@ class ClaimInsurance extends BackboneElement {
 /// Details of an accident which resulted in injuries which required the
 /// products and services listed in the claim.
 class ClaimAccident extends BackboneElement {
-  /// Primary constructor for [ClaimAccident]
+  /// Primary constructor for
+  /// [ClaimAccident]
 
   ClaimAccident({
     super.id,
@@ -2375,8 +2394,8 @@ class ClaimAccident extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimAccident] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimAccident]
+  /// from a [String] or [YamlMap] object
   factory ClaimAccident.fromYaml(
     dynamic yaml,
   ) =>
@@ -2389,8 +2408,9 @@ class ClaimAccident extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimAccident cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimAccident '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimAccident]
@@ -2507,7 +2527,8 @@ class ClaimAccident extends BackboneElement {
 /// A claim line. Either a simple product or service or a 'group' of
 /// details which can each be a simple items or groups of sub-details.
 class ClaimItem extends BackboneElement {
-  /// Primary constructor for [ClaimItem]
+  /// Primary constructor for
+  /// [ClaimItem]
 
   ClaimItem({
     super.id,
@@ -2719,8 +2740,8 @@ class ClaimItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimItem] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimItem]
+  /// from a [String] or [YamlMap] object
   factory ClaimItem.fromYaml(
     dynamic yaml,
   ) =>
@@ -2733,8 +2754,9 @@ class ClaimItem extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimItem '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimItem]
@@ -3091,7 +3113,8 @@ class ClaimItem extends BackboneElement {
 /// A claim detail line. Either a simple (a product or service) or a
 /// 'group' of sub-details which are simple items.
 class ClaimDetail extends BackboneElement {
-  /// Primary constructor for [ClaimDetail]
+  /// Primary constructor for
+  /// [ClaimDetail]
 
   ClaimDetail({
     super.id,
@@ -3222,8 +3245,8 @@ class ClaimDetail extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimDetail] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimDetail]
+  /// from a [String] or [YamlMap] object
   factory ClaimDetail.fromYaml(
     dynamic yaml,
   ) =>
@@ -3236,8 +3259,9 @@ class ClaimDetail extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimDetail cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimDetail '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimDetail]
@@ -3445,7 +3469,8 @@ class ClaimDetail extends BackboneElement {
 /// A claim detail line. Either a simple (a product or service) or a
 /// 'group' of sub-details which are simple items.
 class ClaimSubDetail extends BackboneElement {
-  /// Primary constructor for [ClaimSubDetail]
+  /// Primary constructor for
+  /// [ClaimSubDetail]
 
   ClaimSubDetail({
     super.id,
@@ -3566,8 +3591,8 @@ class ClaimSubDetail extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimSubDetail] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimSubDetail]
+  /// from a [String] or [YamlMap] object
   factory ClaimSubDetail.fromYaml(
     dynamic yaml,
   ) =>
@@ -3580,8 +3605,9 @@ class ClaimSubDetail extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimSubDetail cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimSubDetail '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimSubDetail]

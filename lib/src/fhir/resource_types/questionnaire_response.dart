@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// ordered and grouped into coherent subsets, corresponding to the
 /// structure of the grouping of the questionnaire being responded to.
 class QuestionnaireResponse extends DomainResource {
-  /// Primary constructor for [QuestionnaireResponse]
+  /// Primary constructor for
+  /// [QuestionnaireResponse]
 
   QuestionnaireResponse({
     super.id,
@@ -169,8 +170,8 @@ class QuestionnaireResponse extends DomainResource {
     );
   }
 
-  /// Deserialize [QuestionnaireResponse] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [QuestionnaireResponse]
+  /// from a [String] or [YamlMap] object
   factory QuestionnaireResponse.fromYaml(
     dynamic yaml,
   ) =>
@@ -183,8 +184,9 @@ class QuestionnaireResponse extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'QuestionnaireResponse cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'QuestionnaireResponse '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [QuestionnaireResponse]
@@ -420,7 +422,8 @@ class QuestionnaireResponse extends DomainResource {
 /// A group or question item from the original questionnaire for which
 /// answers are provided.
 class QuestionnaireResponseItem extends BackboneElement {
-  /// Primary constructor for [QuestionnaireResponseItem]
+  /// Primary constructor for
+  /// [QuestionnaireResponseItem]
 
   QuestionnaireResponseItem({
     super.id,
@@ -504,8 +507,8 @@ class QuestionnaireResponseItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [QuestionnaireResponseItem] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [QuestionnaireResponseItem]
+  /// from a [String] or [YamlMap] object
   factory QuestionnaireResponseItem.fromYaml(
     dynamic yaml,
   ) =>
@@ -518,8 +521,9 @@ class QuestionnaireResponseItem extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'QuestionnaireResponseItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'QuestionnaireResponseItem '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [QuestionnaireResponseItem]
@@ -653,7 +657,8 @@ class QuestionnaireResponseItem extends BackboneElement {
 /// [QuestionnaireResponseAnswer]
 /// The respondent's answer(s) to the question.
 class QuestionnaireResponseAnswer extends BackboneElement {
-  /// Primary constructor for [QuestionnaireResponseAnswer]
+  /// Primary constructor for
+  /// [QuestionnaireResponseAnswer]
 
   QuestionnaireResponseAnswer({
     super.id,
@@ -788,8 +793,8 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     );
   }
 
-  /// Deserialize [QuestionnaireResponseAnswer] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [QuestionnaireResponseAnswer]
+  /// from a [String] or [YamlMap] object
   factory QuestionnaireResponseAnswer.fromYaml(
     dynamic yaml,
   ) =>
@@ -802,8 +807,9 @@ class QuestionnaireResponseAnswer extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'QuestionnaireResponseAnswer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'QuestionnaireResponseAnswer '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [QuestionnaireResponseAnswer]

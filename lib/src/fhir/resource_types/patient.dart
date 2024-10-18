@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Demographics and other administrative information about an individual
 /// or animal receiving care or other health-related services.
 class Patient extends DomainResource {
-  /// Primary constructor for [Patient]
+  /// Primary constructor for
+  /// [Patient]
 
   Patient({
     super.id,
@@ -240,8 +241,8 @@ class Patient extends DomainResource {
     );
   }
 
-  /// Deserialize [Patient] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Patient]
+  /// from a [String] or [YamlMap] object
   factory Patient.fromYaml(
     dynamic yaml,
   ) =>
@@ -254,8 +255,9 @@ class Patient extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Patient cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Patient '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Patient]
@@ -579,7 +581,8 @@ class Patient extends DomainResource {
 /// [PatientContact]
 /// A contact party (e.g. guardian, partner, friend) for the patient.
 class PatientContact extends BackboneElement {
-  /// Primary constructor for [PatientContact]
+  /// Primary constructor for
+  /// [PatientContact]
 
   PatientContact({
     super.id,
@@ -675,8 +678,8 @@ class PatientContact extends BackboneElement {
     );
   }
 
-  /// Deserialize [PatientContact] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PatientContact]
+  /// from a [String] or [YamlMap] object
   factory PatientContact.fromYaml(
     dynamic yaml,
   ) =>
@@ -689,8 +692,9 @@ class PatientContact extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PatientContact cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PatientContact '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PatientContact]
@@ -837,7 +841,8 @@ class PatientContact extends BackboneElement {
 /// A language which may be used to communicate with the patient about his
 /// or her health.
 class PatientCommunication extends BackboneElement {
-  /// Primary constructor for [PatientCommunication]
+  /// Primary constructor for
+  /// [PatientCommunication]
 
   PatientCommunication({
     super.id,
@@ -893,8 +898,8 @@ class PatientCommunication extends BackboneElement {
     );
   }
 
-  /// Deserialize [PatientCommunication] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PatientCommunication]
+  /// from a [String] or [YamlMap] object
   factory PatientCommunication.fromYaml(
     dynamic yaml,
   ) =>
@@ -907,8 +912,9 @@ class PatientCommunication extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PatientCommunication cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PatientCommunication '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PatientCommunication]
@@ -1005,7 +1011,8 @@ class PatientCommunication extends BackboneElement {
 /// [PatientLink]
 /// Link to another patient resource that concerns the same actual patient.
 class PatientLink extends BackboneElement {
-  /// Primary constructor for [PatientLink]
+  /// Primary constructor for
+  /// [PatientLink]
 
   PatientLink({
     super.id,
@@ -1059,8 +1066,8 @@ class PatientLink extends BackboneElement {
     );
   }
 
-  /// Deserialize [PatientLink] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PatientLink]
+  /// from a [String] or [YamlMap] object
   factory PatientLink.fromYaml(
     dynamic yaml,
   ) =>
@@ -1073,8 +1080,9 @@ class PatientLink extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PatientLink cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PatientLink '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PatientLink]

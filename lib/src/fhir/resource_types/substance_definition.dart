@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// The detailed description of a substance, typically at a level beyond
 /// what is used for prescribing.
 class SubstanceDefinition extends DomainResource {
-  /// Primary constructor for [SubstanceDefinition]
+  /// Primary constructor for
+  /// [SubstanceDefinition]
 
   SubstanceDefinition({
     super.id,
@@ -257,8 +258,8 @@ class SubstanceDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [SubstanceDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubstanceDefinition]
+  /// from a [String] or [YamlMap] object
   factory SubstanceDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -271,8 +272,9 @@ class SubstanceDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubstanceDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubstanceDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubstanceDefinition]
@@ -587,7 +589,8 @@ class SubstanceDefinition extends DomainResource {
 /// [SubstanceDefinitionMoiety]
 /// Moiety, for structural modifications.
 class SubstanceDefinitionMoiety extends BackboneElement {
-  /// Primary constructor for [SubstanceDefinitionMoiety]
+  /// Primary constructor for
+  /// [SubstanceDefinitionMoiety]
 
   SubstanceDefinitionMoiety({
     super.id,
@@ -689,8 +692,8 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionMoiety] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionMoiety]
+  /// from a [String] or [YamlMap] object
   factory SubstanceDefinitionMoiety.fromYaml(
     dynamic yaml,
   ) =>
@@ -703,8 +706,9 @@ class SubstanceDefinitionMoiety extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubstanceDefinitionMoiety cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubstanceDefinitionMoiety '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubstanceDefinitionMoiety]
@@ -881,7 +885,8 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 /// [SubstanceDefinitionProperty]
 /// General specifications for this substance.
 class SubstanceDefinitionProperty extends BackboneElement {
-  /// Primary constructor for [SubstanceDefinitionProperty]
+  /// Primary constructor for
+  /// [SubstanceDefinitionProperty]
 
   SubstanceDefinitionProperty({
     super.id,
@@ -962,8 +967,8 @@ class SubstanceDefinitionProperty extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionProperty] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionProperty]
+  /// from a [String] or [YamlMap] object
   factory SubstanceDefinitionProperty.fromYaml(
     dynamic yaml,
   ) =>
@@ -976,8 +981,9 @@ class SubstanceDefinitionProperty extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubstanceDefinitionProperty cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubstanceDefinitionProperty '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubstanceDefinitionProperty]
@@ -1115,7 +1121,8 @@ class SubstanceDefinitionProperty extends BackboneElement {
 /// The molecular weight or weight range (for proteins, polymers or nucleic
 /// acids).
 class SubstanceDefinitionMolecularWeight extends BackboneElement {
-  /// Primary constructor for [SubstanceDefinitionMolecularWeight]
+  /// Primary constructor for
+  /// [SubstanceDefinitionMolecularWeight]
 
   SubstanceDefinitionMolecularWeight({
     super.id,
@@ -1176,8 +1183,8 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionMolecularWeight] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionMolecularWeight]
+  /// from a [String] or [YamlMap] object
   factory SubstanceDefinitionMolecularWeight.fromYaml(
     dynamic yaml,
   ) =>
@@ -1190,8 +1197,9 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubstanceDefinitionMolecularWeight cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubstanceDefinitionMolecularWeight '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubstanceDefinitionMolecularWeight]
@@ -1294,7 +1302,8 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
 /// [SubstanceDefinitionStructure]
 /// Structural information.
 class SubstanceDefinitionStructure extends BackboneElement {
-  /// Primary constructor for [SubstanceDefinitionStructure]
+  /// Primary constructor for
+  /// [SubstanceDefinitionStructure]
 
   SubstanceDefinitionStructure({
     super.id,
@@ -1401,8 +1410,8 @@ class SubstanceDefinitionStructure extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionStructure] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionStructure]
+  /// from a [String] or [YamlMap] object
   factory SubstanceDefinitionStructure.fromYaml(
     dynamic yaml,
   ) =>
@@ -1415,8 +1424,9 @@ class SubstanceDefinitionStructure extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubstanceDefinitionStructure cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubstanceDefinitionStructure '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubstanceDefinitionStructure]
@@ -1580,7 +1590,8 @@ class SubstanceDefinitionStructure extends BackboneElement {
 /// [SubstanceDefinitionRepresentation]
 /// A depiction of the structure or characterization of the substance.
 class SubstanceDefinitionRepresentation extends BackboneElement {
-  /// Primary constructor for [SubstanceDefinitionRepresentation]
+  /// Primary constructor for
+  /// [SubstanceDefinitionRepresentation]
 
   SubstanceDefinitionRepresentation({
     super.id,
@@ -1650,8 +1661,8 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionRepresentation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionRepresentation]
+  /// from a [String] or [YamlMap] object
   factory SubstanceDefinitionRepresentation.fromYaml(
     dynamic yaml,
   ) =>
@@ -1664,8 +1675,9 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubstanceDefinitionRepresentation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubstanceDefinitionRepresentation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubstanceDefinitionRepresentation]
@@ -1785,7 +1797,8 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
 /// [SubstanceDefinitionCode]
 /// Codes associated with the substance.
 class SubstanceDefinitionCode extends BackboneElement {
-  /// Primary constructor for [SubstanceDefinitionCode]
+  /// Primary constructor for
+  /// [SubstanceDefinitionCode]
 
   SubstanceDefinitionCode({
     super.id,
@@ -1869,8 +1882,8 @@ class SubstanceDefinitionCode extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionCode] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionCode]
+  /// from a [String] or [YamlMap] object
   factory SubstanceDefinitionCode.fromYaml(
     dynamic yaml,
   ) =>
@@ -1883,8 +1896,9 @@ class SubstanceDefinitionCode extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubstanceDefinitionCode cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubstanceDefinitionCode '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubstanceDefinitionCode]
@@ -2010,7 +2024,8 @@ class SubstanceDefinitionCode extends BackboneElement {
 /// [SubstanceDefinitionName]
 /// Names applicable to this substance.
 class SubstanceDefinitionName extends BackboneElement {
-  /// Primary constructor for [SubstanceDefinitionName]
+  /// Primary constructor for
+  /// [SubstanceDefinitionName]
 
   SubstanceDefinitionName({
     super.id,
@@ -2149,8 +2164,8 @@ class SubstanceDefinitionName extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionName] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionName]
+  /// from a [String] or [YamlMap] object
   factory SubstanceDefinitionName.fromYaml(
     dynamic yaml,
   ) =>
@@ -2163,8 +2178,9 @@ class SubstanceDefinitionName extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubstanceDefinitionName cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubstanceDefinitionName '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubstanceDefinitionName]
@@ -2353,7 +2369,8 @@ class SubstanceDefinitionName extends BackboneElement {
 /// [SubstanceDefinitionOfficial]
 /// Details of the official nature of this name.
 class SubstanceDefinitionOfficial extends BackboneElement {
-  /// Primary constructor for [SubstanceDefinitionOfficial]
+  /// Primary constructor for
+  /// [SubstanceDefinitionOfficial]
 
   SubstanceDefinitionOfficial({
     super.id,
@@ -2417,8 +2434,8 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionOfficial] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionOfficial]
+  /// from a [String] or [YamlMap] object
   factory SubstanceDefinitionOfficial.fromYaml(
     dynamic yaml,
   ) =>
@@ -2431,8 +2448,9 @@ class SubstanceDefinitionOfficial extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubstanceDefinitionOfficial cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubstanceDefinitionOfficial '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubstanceDefinitionOfficial]
@@ -2539,7 +2557,8 @@ class SubstanceDefinitionOfficial extends BackboneElement {
 /// A link between this substance and another, with details of the
 /// relationship.
 class SubstanceDefinitionRelationship extends BackboneElement {
-  /// Primary constructor for [SubstanceDefinitionRelationship]
+  /// Primary constructor for
+  /// [SubstanceDefinitionRelationship]
 
   SubstanceDefinitionRelationship({
     super.id,
@@ -2650,8 +2669,8 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionRelationship] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionRelationship]
+  /// from a [String] or [YamlMap] object
   factory SubstanceDefinitionRelationship.fromYaml(
     dynamic yaml,
   ) =>
@@ -2664,8 +2683,9 @@ class SubstanceDefinitionRelationship extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubstanceDefinitionRelationship cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubstanceDefinitionRelationship '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubstanceDefinitionRelationship]
@@ -2858,7 +2878,8 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 /// [SubstanceDefinitionSourceMaterial]
 /// Material or taxonomic/anatomical source for the substance.
 class SubstanceDefinitionSourceMaterial extends BackboneElement {
-  /// Primary constructor for [SubstanceDefinitionSourceMaterial]
+  /// Primary constructor for
+  /// [SubstanceDefinitionSourceMaterial]
 
   SubstanceDefinitionSourceMaterial({
     super.id,
@@ -2937,8 +2958,8 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionSourceMaterial] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionSourceMaterial]
+  /// from a [String] or [YamlMap] object
   factory SubstanceDefinitionSourceMaterial.fromYaml(
     dynamic yaml,
   ) =>
@@ -2951,8 +2972,9 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubstanceDefinitionSourceMaterial cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubstanceDefinitionSourceMaterial '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubstanceDefinitionSourceMaterial]

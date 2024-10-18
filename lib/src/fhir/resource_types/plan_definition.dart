@@ -9,7 +9,8 @@ import 'package:yaml/yaml.dart';
 /// non-clinical artifacts such as clinical decision support rules, order
 /// sets, protocols, and drug quality specifications.
 class PlanDefinition extends DomainResource {
-  /// Primary constructor for [PlanDefinition]
+  /// Primary constructor for
+  /// [PlanDefinition]
 
   PlanDefinition({
     super.id,
@@ -352,8 +353,8 @@ class PlanDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [PlanDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PlanDefinition]
+  /// from a [String] or [YamlMap] object
   factory PlanDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -366,8 +367,9 @@ class PlanDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PlanDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PlanDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PlanDefinition]
@@ -946,7 +948,8 @@ class PlanDefinition extends DomainResource {
 /// meeting a process improvement objective, meeting the acceptance
 /// criteria for a test as specified by a quality specification, etc.
 class PlanDefinitionGoal extends BackboneElement {
-  /// Primary constructor for [PlanDefinitionGoal]
+  /// Primary constructor for
+  /// [PlanDefinitionGoal]
 
   PlanDefinitionGoal({
     super.id,
@@ -1043,8 +1046,8 @@ class PlanDefinitionGoal extends BackboneElement {
     );
   }
 
-  /// Deserialize [PlanDefinitionGoal] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PlanDefinitionGoal]
+  /// from a [String] or [YamlMap] object
   factory PlanDefinitionGoal.fromYaml(
     dynamic yaml,
   ) =>
@@ -1057,8 +1060,9 @@ class PlanDefinitionGoal extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PlanDefinitionGoal cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PlanDefinitionGoal '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PlanDefinitionGoal]
@@ -1204,7 +1208,8 @@ class PlanDefinitionGoal extends BackboneElement {
 /// [PlanDefinitionTarget]
 /// Indicates what should be done and within what timeframe.
 class PlanDefinitionTarget extends BackboneElement {
-  /// Primary constructor for [PlanDefinitionTarget]
+  /// Primary constructor for
+  /// [PlanDefinitionTarget]
 
   PlanDefinitionTarget({
     super.id,
@@ -1279,8 +1284,8 @@ class PlanDefinitionTarget extends BackboneElement {
     );
   }
 
-  /// Deserialize [PlanDefinitionTarget] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PlanDefinitionTarget]
+  /// from a [String] or [YamlMap] object
   factory PlanDefinitionTarget.fromYaml(
     dynamic yaml,
   ) =>
@@ -1293,8 +1298,9 @@ class PlanDefinitionTarget extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PlanDefinitionTarget cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PlanDefinitionTarget '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PlanDefinitionTarget]
@@ -1440,7 +1446,8 @@ class PlanDefinitionTarget extends BackboneElement {
 /// pharmaceutical quality, an action would be the test that needs to be
 /// performed on a drug product as defined in the quality specification.
 class PlanDefinitionAction extends BackboneElement {
-  /// Primary constructor for [PlanDefinitionAction]
+  /// Primary constructor for
+  /// [PlanDefinitionAction]
 
   PlanDefinitionAction({
     super.id,
@@ -1754,8 +1761,8 @@ class PlanDefinitionAction extends BackboneElement {
     );
   }
 
-  /// Deserialize [PlanDefinitionAction] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PlanDefinitionAction]
+  /// from a [String] or [YamlMap] object
   factory PlanDefinitionAction.fromYaml(
     dynamic yaml,
   ) =>
@@ -1768,8 +1775,9 @@ class PlanDefinitionAction extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PlanDefinitionAction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PlanDefinitionAction '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PlanDefinitionAction]
@@ -2277,7 +2285,8 @@ class PlanDefinitionAction extends BackboneElement {
 /// An expression that describes applicability criteria or start/stop
 /// conditions for the action.
 class PlanDefinitionCondition extends BackboneElement {
-  /// Primary constructor for [PlanDefinitionCondition]
+  /// Primary constructor for
+  /// [PlanDefinitionCondition]
 
   PlanDefinitionCondition({
     super.id,
@@ -2333,8 +2342,8 @@ class PlanDefinitionCondition extends BackboneElement {
     );
   }
 
-  /// Deserialize [PlanDefinitionCondition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PlanDefinitionCondition]
+  /// from a [String] or [YamlMap] object
   factory PlanDefinitionCondition.fromYaml(
     dynamic yaml,
   ) =>
@@ -2347,8 +2356,9 @@ class PlanDefinitionCondition extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PlanDefinitionCondition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PlanDefinitionCondition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PlanDefinitionCondition]
@@ -2439,7 +2449,8 @@ class PlanDefinitionCondition extends BackboneElement {
 /// A relationship to another action such as "before" or "30-60 minutes
 /// after start of".
 class PlanDefinitionRelatedAction extends BackboneElement {
-  /// Primary constructor for [PlanDefinitionRelatedAction]
+  /// Primary constructor for
+  /// [PlanDefinitionRelatedAction]
 
   PlanDefinitionRelatedAction({
     super.id,
@@ -2506,8 +2517,8 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     );
   }
 
-  /// Deserialize [PlanDefinitionRelatedAction] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PlanDefinitionRelatedAction]
+  /// from a [String] or [YamlMap] object
   factory PlanDefinitionRelatedAction.fromYaml(
     dynamic yaml,
   ) =>
@@ -2520,8 +2531,9 @@ class PlanDefinitionRelatedAction extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PlanDefinitionRelatedAction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PlanDefinitionRelatedAction '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PlanDefinitionRelatedAction]
@@ -2634,7 +2646,8 @@ class PlanDefinitionRelatedAction extends BackboneElement {
 /// [PlanDefinitionParticipant]
 /// Indicates who should participate in performing the action described.
 class PlanDefinitionParticipant extends BackboneElement {
-  /// Primary constructor for [PlanDefinitionParticipant]
+  /// Primary constructor for
+  /// [PlanDefinitionParticipant]
 
   PlanDefinitionParticipant({
     super.id,
@@ -2690,8 +2703,8 @@ class PlanDefinitionParticipant extends BackboneElement {
     );
   }
 
-  /// Deserialize [PlanDefinitionParticipant] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PlanDefinitionParticipant]
+  /// from a [String] or [YamlMap] object
   factory PlanDefinitionParticipant.fromYaml(
     dynamic yaml,
   ) =>
@@ -2704,8 +2717,9 @@ class PlanDefinitionParticipant extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PlanDefinitionParticipant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PlanDefinitionParticipant '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PlanDefinitionParticipant]
@@ -2799,7 +2813,8 @@ class PlanDefinitionParticipant extends BackboneElement {
 /// an expression that calculated the weight, and the path on the resource
 /// that would contain the result.
 class PlanDefinitionDynamicValue extends BackboneElement {
-  /// Primary constructor for [PlanDefinitionDynamicValue]
+  /// Primary constructor for
+  /// [PlanDefinitionDynamicValue]
 
   PlanDefinitionDynamicValue({
     super.id,
@@ -2857,8 +2872,8 @@ class PlanDefinitionDynamicValue extends BackboneElement {
     );
   }
 
-  /// Deserialize [PlanDefinitionDynamicValue] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PlanDefinitionDynamicValue]
+  /// from a [String] or [YamlMap] object
   factory PlanDefinitionDynamicValue.fromYaml(
     dynamic yaml,
   ) =>
@@ -2871,8 +2886,9 @@ class PlanDefinitionDynamicValue extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PlanDefinitionDynamicValue cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PlanDefinitionDynamicValue '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PlanDefinitionDynamicValue]

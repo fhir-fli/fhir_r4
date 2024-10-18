@@ -10,7 +10,8 @@ import 'package:yaml/yaml.dart';
 /// signature ceremony Different signature approaches have different
 /// utilities.
 class Signature extends DataType {
-  /// Primary constructor for [Signature]
+  /// Primary constructor for
+  /// [Signature]
 
   Signature({
     super.id,
@@ -49,13 +50,15 @@ class Signature extends DataType {
               )
               .toList()
           : null,
-      type: ensureNonNullList((json['type'] as List<dynamic>)
-          .map<Coding>(
-            (v) => Coding.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      type: ensureNonNullList(
+        (json['type'] as List<dynamic>)
+            .map<Coding>(
+              (v) => Coding.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       when: FhirInstant.fromJson({
         'value': json['when'],
         '_value': json['_when'],
@@ -89,8 +92,8 @@ class Signature extends DataType {
     );
   }
 
-  /// Deserialize [Signature] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Signature]
+  /// from a [String] or [YamlMap] object
   factory Signature.fromYaml(
     dynamic yaml,
   ) =>
@@ -103,8 +106,9 @@ class Signature extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Signature cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Signature '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Signature]

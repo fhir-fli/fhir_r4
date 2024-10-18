@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [SpecimenDefinition]
 /// A kind of specimen with associated set of requirements.
 class SpecimenDefinition extends DomainResource {
-  /// Primary constructor for [SpecimenDefinition]
+  /// Primary constructor for
+  /// [SpecimenDefinition]
 
   SpecimenDefinition({
     super.id,
@@ -137,8 +138,8 @@ class SpecimenDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [SpecimenDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SpecimenDefinition]
+  /// from a [String] or [YamlMap] object
   factory SpecimenDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -151,8 +152,9 @@ class SpecimenDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SpecimenDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SpecimenDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SpecimenDefinition]
@@ -325,7 +327,8 @@ class SpecimenDefinition extends DomainResource {
 /// Specimen conditioned in a container as expected by the testing
 /// laboratory.
 class SpecimenDefinitionTypeTested extends BackboneElement {
-  /// Primary constructor for [SpecimenDefinitionTypeTested]
+  /// Primary constructor for
+  /// [SpecimenDefinitionTypeTested]
 
   SpecimenDefinitionTypeTested({
     super.id,
@@ -427,8 +430,8 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     );
   }
 
-  /// Deserialize [SpecimenDefinitionTypeTested] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SpecimenDefinitionTypeTested]
+  /// from a [String] or [YamlMap] object
   factory SpecimenDefinitionTypeTested.fromYaml(
     dynamic yaml,
   ) =>
@@ -441,8 +444,9 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SpecimenDefinitionTypeTested cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SpecimenDefinitionTypeTested '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SpecimenDefinitionTypeTested]
@@ -604,7 +608,8 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
 /// [SpecimenDefinitionContainer]
 /// The specimen's container.
 class SpecimenDefinitionContainer extends BackboneElement {
-  /// Primary constructor for [SpecimenDefinitionContainer]
+  /// Primary constructor for
+  /// [SpecimenDefinitionContainer]
 
   SpecimenDefinitionContainer({
     super.id,
@@ -710,8 +715,8 @@ class SpecimenDefinitionContainer extends BackboneElement {
     );
   }
 
-  /// Deserialize [SpecimenDefinitionContainer] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SpecimenDefinitionContainer]
+  /// from a [String] or [YamlMap] object
   factory SpecimenDefinitionContainer.fromYaml(
     dynamic yaml,
   ) =>
@@ -724,8 +729,9 @@ class SpecimenDefinitionContainer extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SpecimenDefinitionContainer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SpecimenDefinitionContainer '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SpecimenDefinitionContainer]
@@ -902,7 +908,8 @@ class SpecimenDefinitionContainer extends BackboneElement {
 /// Substance introduced in the kind of container to preserve, maintain or
 /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
 class SpecimenDefinitionAdditive extends BackboneElement {
-  /// Primary constructor for [SpecimenDefinitionAdditive]
+  /// Primary constructor for
+  /// [SpecimenDefinitionAdditive]
 
   SpecimenDefinitionAdditive({
     super.id,
@@ -959,8 +966,8 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     );
   }
 
-  /// Deserialize [SpecimenDefinitionAdditive] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SpecimenDefinitionAdditive]
+  /// from a [String] or [YamlMap] object
   factory SpecimenDefinitionAdditive.fromYaml(
     dynamic yaml,
   ) =>
@@ -973,8 +980,9 @@ class SpecimenDefinitionAdditive extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SpecimenDefinitionAdditive cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SpecimenDefinitionAdditive '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SpecimenDefinitionAdditive]
@@ -1069,7 +1077,8 @@ class SpecimenDefinitionAdditive extends BackboneElement {
 /// Set of instructions for preservation/transport of the specimen at a
 /// defined temperature interval, prior the testing process.
 class SpecimenDefinitionHandling extends BackboneElement {
-  /// Primary constructor for [SpecimenDefinitionHandling]
+  /// Primary constructor for
+  /// [SpecimenDefinitionHandling]
 
   SpecimenDefinitionHandling({
     super.id,
@@ -1139,8 +1148,8 @@ class SpecimenDefinitionHandling extends BackboneElement {
     );
   }
 
-  /// Deserialize [SpecimenDefinitionHandling] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SpecimenDefinitionHandling]
+  /// from a [String] or [YamlMap] object
   factory SpecimenDefinitionHandling.fromYaml(
     dynamic yaml,
   ) =>
@@ -1153,8 +1162,9 @@ class SpecimenDefinitionHandling extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SpecimenDefinitionHandling cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SpecimenDefinitionHandling '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SpecimenDefinitionHandling]

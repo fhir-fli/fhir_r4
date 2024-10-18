@@ -12,7 +12,8 @@ import 'package:yaml/yaml.dart';
 /// avoid confusion with the recording of assessment tools such as Apgar
 /// score.
 class ClinicalImpression extends DomainResource {
-  /// Primary constructor for [ClinicalImpression]
+  /// Primary constructor for
+  /// [ClinicalImpression]
 
   ClinicalImpression({
     super.id,
@@ -254,8 +255,8 @@ class ClinicalImpression extends DomainResource {
     );
   }
 
-  /// Deserialize [ClinicalImpression] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClinicalImpression]
+  /// from a [String] or [YamlMap] object
   factory ClinicalImpression.fromYaml(
     dynamic yaml,
   ) =>
@@ -268,8 +269,9 @@ class ClinicalImpression extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClinicalImpression cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClinicalImpression '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClinicalImpression]
@@ -625,7 +627,8 @@ class ClinicalImpression extends DomainResource {
 /// generated during the assessment process, or data previously generated
 /// and recorded that is pertinent to the outcomes.
 class ClinicalImpressionInvestigation extends BackboneElement {
-  /// Primary constructor for [ClinicalImpressionInvestigation]
+  /// Primary constructor for
+  /// [ClinicalImpressionInvestigation]
 
   ClinicalImpressionInvestigation({
     super.id,
@@ -684,8 +687,8 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalImpressionInvestigation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClinicalImpressionInvestigation]
+  /// from a [String] or [YamlMap] object
   factory ClinicalImpressionInvestigation.fromYaml(
     dynamic yaml,
   ) =>
@@ -698,8 +701,9 @@ class ClinicalImpressionInvestigation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClinicalImpressionInvestigation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClinicalImpressionInvestigation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClinicalImpressionInvestigation]
@@ -792,7 +796,8 @@ class ClinicalImpressionInvestigation extends BackboneElement {
 /// Specific findings or diagnoses that were considered likely or relevant
 /// to ongoing treatment.
 class ClinicalImpressionFinding extends BackboneElement {
-  /// Primary constructor for [ClinicalImpressionFinding]
+  /// Primary constructor for
+  /// [ClinicalImpressionFinding]
 
   ClinicalImpressionFinding({
     super.id,
@@ -856,8 +861,8 @@ class ClinicalImpressionFinding extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalImpressionFinding] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClinicalImpressionFinding]
+  /// from a [String] or [YamlMap] object
   factory ClinicalImpressionFinding.fromYaml(
     dynamic yaml,
   ) =>
@@ -870,8 +875,9 @@ class ClinicalImpressionFinding extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClinicalImpressionFinding cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClinicalImpressionFinding '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClinicalImpressionFinding]

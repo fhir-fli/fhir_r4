@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Describes validation requirements, source(s), status and dates for one
 /// or more elements.
 class VerificationResult extends DomainResource {
-  /// Primary constructor for [VerificationResult]
+  /// Primary constructor for
+  /// [VerificationResult]
 
   VerificationResult({
     super.id,
@@ -191,8 +192,8 @@ class VerificationResult extends DomainResource {
     );
   }
 
-  /// Deserialize [VerificationResult] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [VerificationResult]
+  /// from a [String] or [YamlMap] object
   factory VerificationResult.fromYaml(
     dynamic yaml,
   ) =>
@@ -205,8 +206,9 @@ class VerificationResult extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'VerificationResult cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'VerificationResult '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [VerificationResult]
@@ -472,7 +474,8 @@ class VerificationResult extends DomainResource {
 /// [VerificationResultPrimarySource]
 /// Information about the primary source(s) involved in validation.
 class VerificationResultPrimarySource extends BackboneElement {
-  /// Primary constructor for [VerificationResultPrimarySource]
+  /// Primary constructor for
+  /// [VerificationResultPrimarySource]
 
   VerificationResultPrimarySource({
     super.id,
@@ -572,8 +575,8 @@ class VerificationResultPrimarySource extends BackboneElement {
     );
   }
 
-  /// Deserialize [VerificationResultPrimarySource] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [VerificationResultPrimarySource]
+  /// from a [String] or [YamlMap] object
   factory VerificationResultPrimarySource.fromYaml(
     dynamic yaml,
   ) =>
@@ -586,8 +589,9 @@ class VerificationResultPrimarySource extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'VerificationResultPrimarySource cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'VerificationResultPrimarySource '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [VerificationResultPrimarySource]
@@ -739,7 +743,8 @@ class VerificationResultPrimarySource extends BackboneElement {
 /// [VerificationResultAttestation]
 /// Information about the entity attesting to information.
 class VerificationResultAttestation extends BackboneElement {
-  /// Primary constructor for [VerificationResultAttestation]
+  /// Primary constructor for
+  /// [VerificationResultAttestation]
 
   VerificationResultAttestation({
     super.id,
@@ -835,8 +840,8 @@ class VerificationResultAttestation extends BackboneElement {
     );
   }
 
-  /// Deserialize [VerificationResultAttestation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [VerificationResultAttestation]
+  /// from a [String] or [YamlMap] object
   factory VerificationResultAttestation.fromYaml(
     dynamic yaml,
   ) =>
@@ -849,8 +854,9 @@ class VerificationResultAttestation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'VerificationResultAttestation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'VerificationResultAttestation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [VerificationResultAttestation]
@@ -1021,7 +1027,8 @@ class VerificationResultAttestation extends BackboneElement {
 /// [VerificationResultValidator]
 /// Information about the entity validating information.
 class VerificationResultValidator extends BackboneElement {
-  /// Primary constructor for [VerificationResultValidator]
+  /// Primary constructor for
+  /// [VerificationResultValidator]
 
   VerificationResultValidator({
     super.id,
@@ -1083,8 +1090,8 @@ class VerificationResultValidator extends BackboneElement {
     );
   }
 
-  /// Deserialize [VerificationResultValidator] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [VerificationResultValidator]
+  /// from a [String] or [YamlMap] object
   factory VerificationResultValidator.fromYaml(
     dynamic yaml,
   ) =>
@@ -1097,8 +1104,9 @@ class VerificationResultValidator extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'VerificationResultValidator cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'VerificationResultValidator '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [VerificationResultValidator]

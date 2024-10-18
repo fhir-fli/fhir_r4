@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Identifies two or more records (resource instances) that refer to the
 /// same real-world "occurrence".
 class Linkage extends DomainResource {
-  /// Primary constructor for [Linkage]
+  /// Primary constructor for
+  /// [Linkage]
 
   Linkage({
     super.id,
@@ -100,18 +101,20 @@ class Linkage extends DomainResource {
               json['author'] as Map<String, dynamic>,
             )
           : null,
-      item: ensureNonNullList((json['item'] as List<dynamic>)
-          .map<LinkageItem>(
-            (v) => LinkageItem.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      item: ensureNonNullList(
+        (json['item'] as List<dynamic>)
+            .map<LinkageItem>(
+              (v) => LinkageItem.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [Linkage] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Linkage]
+  /// from a [String] or [YamlMap] object
   factory Linkage.fromYaml(
     dynamic yaml,
   ) =>
@@ -124,8 +127,9 @@ class Linkage extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Linkage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Linkage '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Linkage]
@@ -270,7 +274,8 @@ class Linkage extends DomainResource {
 /// real-world occurrence as well as how the items should be evaluated
 /// within the collection of linked items.
 class LinkageItem extends BackboneElement {
-  /// Primary constructor for [LinkageItem]
+  /// Primary constructor for
+  /// [LinkageItem]
 
   LinkageItem({
     super.id,
@@ -324,8 +329,8 @@ class LinkageItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [LinkageItem] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [LinkageItem]
+  /// from a [String] or [YamlMap] object
   factory LinkageItem.fromYaml(
     dynamic yaml,
   ) =>
@@ -338,8 +343,9 @@ class LinkageItem extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'LinkageItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'LinkageItem '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [LinkageItem]

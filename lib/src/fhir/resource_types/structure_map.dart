@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A Map of relationships between 2 structures that can be used to
 /// transform data.
 class StructureMap extends DomainResource {
-  /// Primary constructor for [StructureMap]
+  /// Primary constructor for
+  /// [StructureMap]
 
   StructureMap({
     super.id,
@@ -214,18 +215,20 @@ class StructureMap extends DomainResource {
         json['_import'] as List<dynamic>?,
         fromJson: FhirCanonical.fromJson,
       ),
-      group: ensureNonNullList((json['group'] as List<dynamic>)
-          .map<StructureMapGroup>(
-            (v) => StructureMapGroup.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      group: ensureNonNullList(
+        (json['group'] as List<dynamic>)
+            .map<StructureMapGroup>(
+              (v) => StructureMapGroup.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [StructureMap] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [StructureMap]
+  /// from a [String] or [YamlMap] object
   factory StructureMap.fromYaml(
     dynamic yaml,
   ) =>
@@ -238,8 +241,9 @@ class StructureMap extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'StructureMap cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'StructureMap '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [StructureMap]
@@ -599,7 +603,8 @@ class StructureMap extends DomainResource {
 /// describe instances that are converted, or the instances that are
 /// produced.
 class StructureMapStructure extends BackboneElement {
-  /// Primary constructor for [StructureMapStructure]
+  /// Primary constructor for
+  /// [StructureMapStructure]
 
   StructureMapStructure({
     super.id,
@@ -668,8 +673,8 @@ class StructureMapStructure extends BackboneElement {
     );
   }
 
-  /// Deserialize [StructureMapStructure] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [StructureMapStructure]
+  /// from a [String] or [YamlMap] object
   factory StructureMapStructure.fromYaml(
     dynamic yaml,
   ) =>
@@ -682,8 +687,9 @@ class StructureMapStructure extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'StructureMapStructure cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'StructureMapStructure '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [StructureMapStructure]
@@ -803,7 +809,8 @@ class StructureMapStructure extends BackboneElement {
 /// Organizes the mapping into manageable chunks for human review/ease of
 /// maintenance.
 class StructureMapGroup extends BackboneElement {
-  /// Primary constructor for [StructureMapGroup]
+  /// Primary constructor for
+  /// [StructureMapGroup]
 
   StructureMapGroup({
     super.id,
@@ -871,25 +878,29 @@ class StructureMapGroup extends BackboneElement {
               '_value': json['_documentation'],
             })
           : null,
-      input: ensureNonNullList((json['input'] as List<dynamic>)
-          .map<StructureMapInput>(
-            (v) => StructureMapInput.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
-      rule: ensureNonNullList((json['rule'] as List<dynamic>)
-          .map<StructureMapRule>(
-            (v) => StructureMapRule.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      input: ensureNonNullList(
+        (json['input'] as List<dynamic>)
+            .map<StructureMapInput>(
+              (v) => StructureMapInput.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
+      rule: ensureNonNullList(
+        (json['rule'] as List<dynamic>)
+            .map<StructureMapRule>(
+              (v) => StructureMapRule.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [StructureMapGroup] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [StructureMapGroup]
+  /// from a [String] or [YamlMap] object
   factory StructureMapGroup.fromYaml(
     dynamic yaml,
   ) =>
@@ -902,8 +913,9 @@ class StructureMapGroup extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'StructureMapGroup cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'StructureMapGroup '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [StructureMapGroup]
@@ -1042,7 +1054,8 @@ class StructureMapGroup extends BackboneElement {
 /// A name assigned to an instance of data. The instance must be provided
 /// when the mapping is invoked.
 class StructureMapInput extends BackboneElement {
-  /// Primary constructor for [StructureMapInput]
+  /// Primary constructor for
+  /// [StructureMapInput]
 
   StructureMapInput({
     super.id,
@@ -1111,8 +1124,8 @@ class StructureMapInput extends BackboneElement {
     );
   }
 
-  /// Deserialize [StructureMapInput] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [StructureMapInput]
+  /// from a [String] or [YamlMap] object
   factory StructureMapInput.fromYaml(
     dynamic yaml,
   ) =>
@@ -1125,8 +1138,9 @@ class StructureMapInput extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'StructureMapInput cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'StructureMapInput '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [StructureMapInput]
@@ -1245,7 +1259,8 @@ class StructureMapInput extends BackboneElement {
 /// [StructureMapRule]
 /// Transform Rule from source to target.
 class StructureMapRule extends BackboneElement {
-  /// Primary constructor for [StructureMapRule]
+  /// Primary constructor for
+  /// [StructureMapRule]
 
   StructureMapRule({
     super.id,
@@ -1296,13 +1311,15 @@ class StructureMapRule extends BackboneElement {
         'value': json['name'],
         '_value': json['_name'],
       }),
-      source: ensureNonNullList((json['source'] as List<dynamic>)
-          .map<StructureMapSource>(
-            (v) => StructureMapSource.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      source: ensureNonNullList(
+        (json['source'] as List<dynamic>)
+            .map<StructureMapSource>(
+              (v) => StructureMapSource.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       target: json['target'] != null
           ? (json['target'] as List<dynamic>)
               .map<StructureMapTarget>(
@@ -1330,8 +1347,8 @@ class StructureMapRule extends BackboneElement {
     );
   }
 
-  /// Deserialize [StructureMapRule] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [StructureMapRule]
+  /// from a [String] or [YamlMap] object
   factory StructureMapRule.fromYaml(
     dynamic yaml,
   ) =>
@@ -1344,8 +1361,9 @@ class StructureMapRule extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'StructureMapRule cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'StructureMapRule '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [StructureMapRule]
@@ -1470,7 +1488,8 @@ class StructureMapRule extends BackboneElement {
 /// [StructureMapSource]
 /// Source inputs to the mapping.
 class StructureMapSource extends BackboneElement {
-  /// Primary constructor for [StructureMapSource]
+  /// Primary constructor for
+  /// [StructureMapSource]
 
   StructureMapSource({
     super.id,
@@ -1905,8 +1924,8 @@ class StructureMapSource extends BackboneElement {
     );
   }
 
-  /// Deserialize [StructureMapSource] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [StructureMapSource]
+  /// from a [String] or [YamlMap] object
   factory StructureMapSource.fromYaml(
     dynamic yaml,
   ) =>
@@ -1919,8 +1938,9 @@ class StructureMapSource extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'StructureMapSource cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'StructureMapSource '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [StructureMapSource]
@@ -2733,7 +2753,8 @@ class StructureMapSource extends BackboneElement {
 /// [StructureMapTarget]
 /// Content to create because of this mapping rule.
 class StructureMapTarget extends BackboneElement {
-  /// Primary constructor for [StructureMapTarget]
+  /// Primary constructor for
+  /// [StructureMapTarget]
 
   StructureMapTarget({
     super.id,
@@ -2836,8 +2857,8 @@ class StructureMapTarget extends BackboneElement {
     );
   }
 
-  /// Deserialize [StructureMapTarget] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [StructureMapTarget]
+  /// from a [String] or [YamlMap] object
   factory StructureMapTarget.fromYaml(
     dynamic yaml,
   ) =>
@@ -2850,8 +2871,9 @@ class StructureMapTarget extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'StructureMapTarget cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'StructureMapTarget '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [StructureMapTarget]
@@ -3018,7 +3040,8 @@ class StructureMapTarget extends BackboneElement {
 /// [StructureMapParameter]
 /// Parameters to the transform.
 class StructureMapParameter extends BackboneElement {
-  /// Primary constructor for [StructureMapParameter]
+  /// Primary constructor for
+  /// [StructureMapParameter]
 
   StructureMapParameter({
     super.id,
@@ -3098,8 +3121,8 @@ class StructureMapParameter extends BackboneElement {
     );
   }
 
-  /// Deserialize [StructureMapParameter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [StructureMapParameter]
+  /// from a [String] or [YamlMap] object
   factory StructureMapParameter.fromYaml(
     dynamic yaml,
   ) =>
@@ -3112,8 +3135,9 @@ class StructureMapParameter extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'StructureMapParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'StructureMapParameter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [StructureMapParameter]
@@ -3254,7 +3278,8 @@ class StructureMapParameter extends BackboneElement {
 /// [StructureMapDependent]
 /// Which other rules to apply in the context of this rule.
 class StructureMapDependent extends BackboneElement {
-  /// Primary constructor for [StructureMapDependent]
+  /// Primary constructor for
+  /// [StructureMapDependent]
 
   StructureMapDependent({
     super.id,
@@ -3302,16 +3327,18 @@ class StructureMapDependent extends BackboneElement {
         'value': json['name'],
         '_value': json['_name'],
       }),
-      variable: ensureNonNullList(parsePrimitiveList<FhirString>(
-        json['variable'] as List<dynamic>?,
-        json['_variable'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
-      )),
+      variable: ensureNonNullList(
+        parsePrimitiveList<FhirString>(
+          json['variable'] as List<dynamic>?,
+          json['_variable'] as List<dynamic>?,
+          fromJson: FhirString.fromJson,
+        ),
+      ),
     );
   }
 
-  /// Deserialize [StructureMapDependent] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [StructureMapDependent]
+  /// from a [String] or [YamlMap] object
   factory StructureMapDependent.fromYaml(
     dynamic yaml,
   ) =>
@@ -3324,8 +3351,9 @@ class StructureMapDependent extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'StructureMapDependent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'StructureMapDependent '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [StructureMapDependent]

@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// statement of actual server functionality or a statement of required or
 /// desired server implementation.
 class CapabilityStatement extends DomainResource {
-  /// Primary constructor for [CapabilityStatement]
+  /// Primary constructor for
+  /// [CapabilityStatement]
 
   CapabilityStatement({
     super.id,
@@ -230,11 +231,13 @@ class CapabilityStatement extends DomainResource {
         'value': json['fhirVersion'],
         '_value': json['_fhirVersion'],
       }),
-      format: ensureNonNullList(parsePrimitiveList<FhirCode>(
-        json['format'] as List<dynamic>?,
-        json['_format'] as List<dynamic>?,
-        fromJson: FhirCode.fromJson,
-      )),
+      format: ensureNonNullList(
+        parsePrimitiveList<FhirCode>(
+          json['format'] as List<dynamic>?,
+          json['_format'] as List<dynamic>?,
+          fromJson: FhirCode.fromJson,
+        ),
+      ),
       patchFormat: parsePrimitiveList<FhirCode>(
         json['patchFormat'] as List<dynamic>?,
         json['_patchFormat'] as List<dynamic>?,
@@ -270,8 +273,8 @@ class CapabilityStatement extends DomainResource {
     );
   }
 
-  /// Deserialize [CapabilityStatement] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CapabilityStatement]
+  /// from a [String] or [YamlMap] object
   factory CapabilityStatement.fromYaml(
     dynamic yaml,
   ) =>
@@ -284,8 +287,9 @@ class CapabilityStatement extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CapabilityStatement cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CapabilityStatement '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CapabilityStatement]
@@ -744,7 +748,8 @@ class CapabilityStatement extends DomainResource {
 /// the capability statement describes the capabilities of a particular
 /// software version, independent of an installation.
 class CapabilityStatementSoftware extends BackboneElement {
-  /// Primary constructor for [CapabilityStatementSoftware]
+  /// Primary constructor for
+  /// [CapabilityStatementSoftware]
 
   CapabilityStatementSoftware({
     super.id,
@@ -808,8 +813,8 @@ class CapabilityStatementSoftware extends BackboneElement {
     );
   }
 
-  /// Deserialize [CapabilityStatementSoftware] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CapabilityStatementSoftware]
+  /// from a [String] or [YamlMap] object
   factory CapabilityStatementSoftware.fromYaml(
     dynamic yaml,
   ) =>
@@ -822,8 +827,9 @@ class CapabilityStatementSoftware extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CapabilityStatementSoftware cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CapabilityStatementSoftware '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CapabilityStatementSoftware]
@@ -936,7 +942,8 @@ class CapabilityStatementSoftware extends BackboneElement {
 /// capability statement - i.e. a particular installation, rather than the
 /// capabilities of a software program.
 class CapabilityStatementImplementation extends BackboneElement {
-  /// Primary constructor for [CapabilityStatementImplementation]
+  /// Primary constructor for
+  /// [CapabilityStatementImplementation]
 
   CapabilityStatementImplementation({
     super.id,
@@ -1005,8 +1012,8 @@ class CapabilityStatementImplementation extends BackboneElement {
     );
   }
 
-  /// Deserialize [CapabilityStatementImplementation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CapabilityStatementImplementation]
+  /// from a [String] or [YamlMap] object
   factory CapabilityStatementImplementation.fromYaml(
     dynamic yaml,
   ) =>
@@ -1019,8 +1026,9 @@ class CapabilityStatementImplementation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CapabilityStatementImplementation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CapabilityStatementImplementation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CapabilityStatementImplementation]
@@ -1146,7 +1154,8 @@ class CapabilityStatementImplementation extends BackboneElement {
 /// [CapabilityStatementRest]
 /// A definition of the restful capabilities of the solution, if any.
 class CapabilityStatementRest extends BackboneElement {
-  /// Primary constructor for [CapabilityStatementRest]
+  /// Primary constructor for
+  /// [CapabilityStatementRest]
 
   CapabilityStatementRest({
     super.id,
@@ -1235,8 +1244,8 @@ class CapabilityStatementRest extends BackboneElement {
     );
   }
 
-  /// Deserialize [CapabilityStatementRest] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CapabilityStatementRest]
+  /// from a [String] or [YamlMap] object
   factory CapabilityStatementRest.fromYaml(
     dynamic yaml,
   ) =>
@@ -1249,8 +1258,9 @@ class CapabilityStatementRest extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CapabilityStatementRest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CapabilityStatementRest '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CapabilityStatementRest]
@@ -1394,7 +1404,8 @@ class CapabilityStatementRest extends BackboneElement {
 /// Information about security implementation from an interface perspective
 /// - what a client needs to know.
 class CapabilityStatementSecurity extends BackboneElement {
-  /// Primary constructor for [CapabilityStatementSecurity]
+  /// Primary constructor for
+  /// [CapabilityStatementSecurity]
 
   CapabilityStatementSecurity({
     super.id,
@@ -1463,8 +1474,8 @@ class CapabilityStatementSecurity extends BackboneElement {
     );
   }
 
-  /// Deserialize [CapabilityStatementSecurity] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CapabilityStatementSecurity]
+  /// from a [String] or [YamlMap] object
   factory CapabilityStatementSecurity.fromYaml(
     dynamic yaml,
   ) =>
@@ -1477,8 +1488,9 @@ class CapabilityStatementSecurity extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CapabilityStatementSecurity cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CapabilityStatementSecurity '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CapabilityStatementSecurity]
@@ -1589,7 +1601,8 @@ class CapabilityStatementSecurity extends BackboneElement {
 /// A specification of the restful capabilities of the solution for a
 /// specific resource type.
 class CapabilityStatementResource extends BackboneElement {
-  /// Primary constructor for [CapabilityStatementResource]
+  /// Primary constructor for
+  /// [CapabilityStatementResource]
 
   CapabilityStatementResource({
     super.id,
@@ -1756,8 +1769,8 @@ class CapabilityStatementResource extends BackboneElement {
     );
   }
 
-  /// Deserialize [CapabilityStatementResource] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CapabilityStatementResource]
+  /// from a [String] or [YamlMap] object
   factory CapabilityStatementResource.fromYaml(
     dynamic yaml,
   ) =>
@@ -1770,8 +1783,9 @@ class CapabilityStatementResource extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CapabilityStatementResource cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CapabilityStatementResource '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CapabilityStatementResource]
@@ -2077,7 +2091,8 @@ class CapabilityStatementResource extends BackboneElement {
 /// [CapabilityStatementInteraction]
 /// Identifies a restful operation supported by the solution.
 class CapabilityStatementInteraction extends BackboneElement {
-  /// Primary constructor for [CapabilityStatementInteraction]
+  /// Primary constructor for
+  /// [CapabilityStatementInteraction]
 
   CapabilityStatementInteraction({
     super.id,
@@ -2134,8 +2149,8 @@ class CapabilityStatementInteraction extends BackboneElement {
     );
   }
 
-  /// Deserialize [CapabilityStatementInteraction] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CapabilityStatementInteraction]
+  /// from a [String] or [YamlMap] object
   factory CapabilityStatementInteraction.fromYaml(
     dynamic yaml,
   ) =>
@@ -2148,8 +2163,9 @@ class CapabilityStatementInteraction extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CapabilityStatementInteraction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CapabilityStatementInteraction '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CapabilityStatementInteraction]
@@ -2246,7 +2262,8 @@ class CapabilityStatementInteraction extends BackboneElement {
 /// either references to ones defined in the specification, or additional
 /// ones defined for/by the implementation.
 class CapabilityStatementSearchParam extends BackboneElement {
-  /// Primary constructor for [CapabilityStatementSearchParam]
+  /// Primary constructor for
+  /// [CapabilityStatementSearchParam]
 
   CapabilityStatementSearchParam({
     super.id,
@@ -2315,8 +2332,8 @@ class CapabilityStatementSearchParam extends BackboneElement {
     );
   }
 
-  /// Deserialize [CapabilityStatementSearchParam] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CapabilityStatementSearchParam]
+  /// from a [String] or [YamlMap] object
   factory CapabilityStatementSearchParam.fromYaml(
     dynamic yaml,
   ) =>
@@ -2329,8 +2346,9 @@ class CapabilityStatementSearchParam extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CapabilityStatementSearchParam cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CapabilityStatementSearchParam '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CapabilityStatementSearchParam]
@@ -2460,7 +2478,8 @@ class CapabilityStatementSearchParam extends BackboneElement {
 /// operation for details about how to invoke the operation, and the
 /// parameters.
 class CapabilityStatementOperation extends BackboneElement {
-  /// Primary constructor for [CapabilityStatementOperation]
+  /// Primary constructor for
+  /// [CapabilityStatementOperation]
 
   CapabilityStatementOperation({
     super.id,
@@ -2522,8 +2541,8 @@ class CapabilityStatementOperation extends BackboneElement {
     );
   }
 
-  /// Deserialize [CapabilityStatementOperation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CapabilityStatementOperation]
+  /// from a [String] or [YamlMap] object
   factory CapabilityStatementOperation.fromYaml(
     dynamic yaml,
   ) =>
@@ -2536,8 +2555,9 @@ class CapabilityStatementOperation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CapabilityStatementOperation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CapabilityStatementOperation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CapabilityStatementOperation]
@@ -2658,7 +2678,8 @@ class CapabilityStatementOperation extends BackboneElement {
 /// [CapabilityStatementInteraction1]
 /// A specification of restful operations supported by the system.
 class CapabilityStatementInteraction1 extends BackboneElement {
-  /// Primary constructor for [CapabilityStatementInteraction1]
+  /// Primary constructor for
+  /// [CapabilityStatementInteraction1]
 
   CapabilityStatementInteraction1({
     super.id,
@@ -2715,8 +2736,8 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     );
   }
 
-  /// Deserialize [CapabilityStatementInteraction1] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CapabilityStatementInteraction1]
+  /// from a [String] or [YamlMap] object
   factory CapabilityStatementInteraction1.fromYaml(
     dynamic yaml,
   ) =>
@@ -2729,8 +2750,9 @@ class CapabilityStatementInteraction1 extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CapabilityStatementInteraction1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CapabilityStatementInteraction1 '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CapabilityStatementInteraction1]
@@ -2825,7 +2847,8 @@ class CapabilityStatementInteraction1 extends BackboneElement {
 /// [CapabilityStatementMessaging]
 /// A description of the messaging capabilities of the solution.
 class CapabilityStatementMessaging extends BackboneElement {
-  /// Primary constructor for [CapabilityStatementMessaging]
+  /// Primary constructor for
+  /// [CapabilityStatementMessaging]
 
   CapabilityStatementMessaging({
     super.id,
@@ -2904,8 +2927,8 @@ class CapabilityStatementMessaging extends BackboneElement {
     );
   }
 
-  /// Deserialize [CapabilityStatementMessaging] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CapabilityStatementMessaging]
+  /// from a [String] or [YamlMap] object
   factory CapabilityStatementMessaging.fromYaml(
     dynamic yaml,
   ) =>
@@ -2918,8 +2941,9 @@ class CapabilityStatementMessaging extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CapabilityStatementMessaging cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CapabilityStatementMessaging '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CapabilityStatementMessaging]
@@ -3047,7 +3071,8 @@ class CapabilityStatementMessaging extends BackboneElement {
 /// An endpoint (network accessible address) to which messages and/or
 /// replies are to be sent.
 class CapabilityStatementEndpoint extends BackboneElement {
-  /// Primary constructor for [CapabilityStatementEndpoint]
+  /// Primary constructor for
+  /// [CapabilityStatementEndpoint]
 
   CapabilityStatementEndpoint({
     super.id,
@@ -3101,8 +3126,8 @@ class CapabilityStatementEndpoint extends BackboneElement {
     );
   }
 
-  /// Deserialize [CapabilityStatementEndpoint] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CapabilityStatementEndpoint]
+  /// from a [String] or [YamlMap] object
   factory CapabilityStatementEndpoint.fromYaml(
     dynamic yaml,
   ) =>
@@ -3115,8 +3140,9 @@ class CapabilityStatementEndpoint extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CapabilityStatementEndpoint cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CapabilityStatementEndpoint '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CapabilityStatementEndpoint]
@@ -3210,7 +3236,8 @@ class CapabilityStatementEndpoint extends BackboneElement {
 /// References to message definitions for messages this system can send or
 /// receive.
 class CapabilityStatementSupportedMessage extends BackboneElement {
-  /// Primary constructor for [CapabilityStatementSupportedMessage]
+  /// Primary constructor for
+  /// [CapabilityStatementSupportedMessage]
 
   CapabilityStatementSupportedMessage({
     super.id,
@@ -3265,8 +3292,8 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
     );
   }
 
-  /// Deserialize [CapabilityStatementSupportedMessage] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CapabilityStatementSupportedMessage]
+  /// from a [String] or [YamlMap] object
   factory CapabilityStatementSupportedMessage.fromYaml(
     dynamic yaml,
   ) =>
@@ -3279,8 +3306,9 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CapabilityStatementSupportedMessage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CapabilityStatementSupportedMessage '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CapabilityStatementSupportedMessage]
@@ -3373,7 +3401,8 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
 /// [CapabilityStatementDocument]
 /// A document definition.
 class CapabilityStatementDocument extends BackboneElement {
-  /// Primary constructor for [CapabilityStatementDocument]
+  /// Primary constructor for
+  /// [CapabilityStatementDocument]
 
   CapabilityStatementDocument({
     super.id,
@@ -3435,8 +3464,8 @@ class CapabilityStatementDocument extends BackboneElement {
     );
   }
 
-  /// Deserialize [CapabilityStatementDocument] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CapabilityStatementDocument]
+  /// from a [String] or [YamlMap] object
   factory CapabilityStatementDocument.fromYaml(
     dynamic yaml,
   ) =>
@@ -3449,8 +3478,9 @@ class CapabilityStatementDocument extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CapabilityStatementDocument cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CapabilityStatementDocument '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CapabilityStatementDocument]

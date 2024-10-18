@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A reply to an appointment request for a patient and/or practitioner(s),
 /// such as a confirmation or rejection.
 class AppointmentResponse extends DomainResource {
-  /// Primary constructor for [AppointmentResponse]
+  /// Primary constructor for
+  /// [AppointmentResponse]
 
   AppointmentResponse({
     super.id,
@@ -145,8 +146,8 @@ class AppointmentResponse extends DomainResource {
     );
   }
 
-  /// Deserialize [AppointmentResponse] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [AppointmentResponse]
+  /// from a [String] or [YamlMap] object
   factory AppointmentResponse.fromYaml(
     dynamic yaml,
   ) =>
@@ -159,8 +160,9 @@ class AppointmentResponse extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'AppointmentResponse cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'AppointmentResponse '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [AppointmentResponse]

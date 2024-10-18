@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A record of a request for service such as diagnostic investigations,
 /// treatments, or operations to be performed.
 class ServiceRequest extends DomainResource {
-  /// Primary constructor for [ServiceRequest]
+  /// Primary constructor for
+  /// [ServiceRequest]
 
   ServiceRequest({
     super.id,
@@ -383,8 +384,8 @@ class ServiceRequest extends DomainResource {
     );
   }
 
-  /// Deserialize [ServiceRequest] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ServiceRequest]
+  /// from a [String] or [YamlMap] object
   factory ServiceRequest.fromYaml(
     dynamic yaml,
   ) =>
@@ -397,8 +398,9 @@ class ServiceRequest extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ServiceRequest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ServiceRequest '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ServiceRequest]

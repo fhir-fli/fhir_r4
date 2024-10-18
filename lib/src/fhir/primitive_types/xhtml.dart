@@ -13,32 +13,32 @@ extension FhirXhtmlExtension on String {
 class FhirXhtml extends PrimitiveType<String?> {
   /// Constructor that accepts and validates an XHTML string, or allows `null`.
   FhirXhtml(String? input, [Element? element])
-      : super(input != null && _validateXhtml(input) ? input : null, element);
+      : super(input != null ? _validateXhtml(input) : null, element);
 
   /// Constructor that accepts already validated XHTML string, or `null`.
   FhirXhtml.fromValidatedXhtml(super.validatedInput, [super.element]);
 
   /// Factory constructor to create [FhirXhtml] from JSON.
-  factory FhirXhtml.fromJson(dynamic json) {
-    if (json is String && _validateXhtml(json)) {
-      return FhirXhtml.fromValidatedXhtml(json);
-    } else if (json == null) {
-      return FhirXhtml(null);
-    } else {
-      throw const FormatException('Invalid input for FhirXhtml');
-    }
+  factory FhirXhtml.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    return FhirXhtml(value, element);
   }
 
   /// Factory constructor to create [FhirXhtml] from YAML.
   factory FhirXhtml.fromYaml(String yaml) {
-    return FhirXhtml.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
+    return FhirXhtml.fromJson(
+      jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+    );
   }
 
   /// Static method to try parsing the input
   static FhirXhtml? tryParse(dynamic input) {
     if (input is String) {
       try {
-        return FhirXhtml(input);
+        final validatedString = _validateXhtml(input);
+        return FhirXhtml(validatedString);
       } catch (e) {
         return null;
       }
@@ -47,33 +47,34 @@ class FhirXhtml extends PrimitiveType<String?> {
     }
   }
 
-  static bool _validateXhtml(String xhtml) {
+  static String _validateXhtml(String xhtml) {
     try {
       final document = XmlDocument.parse(xhtml);
-
       final rootElement = document.rootElement;
 
-      /// Check if root element is <div>
+      // Check if root element is <div>
       if (rootElement.name.local != 'div') {
-        return false;
+        throw const FormatException('Root element must be <div>');
       }
 
-      /// Check for the correct XHTML namespace
+      // Check for the correct XHTML namespace
       final xmlns = rootElement.getAttribute('xmlns');
       if (xmlns != 'http://www.w3.org/1999/xhtml') {
-        return false;
+        throw const FormatException('Invalid XHTML namespace');
       }
 
-      /// Recursively validate elements
-      final result = _validateElement(rootElement, isRoot: true);
+      // Recursively validate elements
+      if (!_validateElement(rootElement, isRoot: true)) {
+        throw const FormatException('Invalid XHTML element structure');
+      }
 
-      return result;
+      return xhtml; // Return the valid XHTML string
     } catch (e) {
-      return false;
+      throw FormatException('Invalid XHTML: $e');
     }
   }
 
-// Helper method to validate XHTML attributes
+  // Helper method to validate XHTML attributes
   static bool _isValidAttribute(
     XmlAttribute attribute,
     String elementName,
@@ -286,13 +287,14 @@ class FhirXhtml extends PrimitiveType<String?> {
   }) {
     return FhirXhtml.fromValidatedXhtml(
       newValue ?? value,
-      element?.copyWith(
-        userData: userData,
-        formatCommentsPre: formatCommentsPre,
-        formatCommentsPost: formatCommentsPost,
-        annotations: annotations,
-        children: children,
-        namedChildren: namedChildren,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
       ),
     );
   }

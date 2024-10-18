@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [Period]
 /// A time period defined by a start and end date and optionally time.
 class Period extends DataType {
-  /// Primary constructor for [Period]
+  /// Primary constructor for
+  /// [Period]
 
   Period({
     super.id,
@@ -54,8 +55,8 @@ class Period extends DataType {
     );
   }
 
-  /// Deserialize [Period] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Period]
+  /// from a [String] or [YamlMap] object
   factory Period.fromYaml(
     dynamic yaml,
   ) =>
@@ -68,8 +69,9 @@ class Period extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Period cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Period '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Period]

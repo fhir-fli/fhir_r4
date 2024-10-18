@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// statement of actual server functionality or a statement of required or
 /// desired server implementation.
 class TerminologyCapabilities extends DomainResource {
-  /// Primary constructor for [TerminologyCapabilities]
+  /// Primary constructor for
+  /// [TerminologyCapabilities]
 
   TerminologyCapabilities({
     super.id,
@@ -259,8 +260,8 @@ class TerminologyCapabilities extends DomainResource {
     );
   }
 
-  /// Deserialize [TerminologyCapabilities] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TerminologyCapabilities]
+  /// from a [String] or [YamlMap] object
   factory TerminologyCapabilities.fromYaml(
     dynamic yaml,
   ) =>
@@ -273,8 +274,9 @@ class TerminologyCapabilities extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TerminologyCapabilities cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TerminologyCapabilities '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TerminologyCapabilities]
@@ -711,7 +713,8 @@ class TerminologyCapabilities extends DomainResource {
 /// is used when the statement describes the capabilities of a particular
 /// software version, independent of an installation.
 class TerminologyCapabilitiesSoftware extends BackboneElement {
-  /// Primary constructor for [TerminologyCapabilitiesSoftware]
+  /// Primary constructor for
+  /// [TerminologyCapabilitiesSoftware]
 
   TerminologyCapabilitiesSoftware({
     super.id,
@@ -768,8 +771,8 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesSoftware] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesSoftware]
+  /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesSoftware.fromYaml(
     dynamic yaml,
   ) =>
@@ -782,8 +785,9 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TerminologyCapabilitiesSoftware cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TerminologyCapabilitiesSoftware '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TerminologyCapabilitiesSoftware]
@@ -882,7 +886,8 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
 /// terminology capability statement - i.e. a particular installation,
 /// rather than the capabilities of a software program.
 class TerminologyCapabilitiesImplementation extends BackboneElement {
-  /// Primary constructor for [TerminologyCapabilitiesImplementation]
+  /// Primary constructor for
+  /// [TerminologyCapabilitiesImplementation]
 
   TerminologyCapabilitiesImplementation({
     super.id,
@@ -939,8 +944,8 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesImplementation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesImplementation]
+  /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesImplementation.fromYaml(
     dynamic yaml,
   ) =>
@@ -953,8 +958,9 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TerminologyCapabilitiesImplementation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TerminologyCapabilitiesImplementation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TerminologyCapabilitiesImplementation]
@@ -1054,7 +1060,8 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
 /// no code system URL, then this declares the general assumptions a client
 /// can make about support for any CodeSystem resource.
 class TerminologyCapabilitiesCodeSystem extends BackboneElement {
-  /// Primary constructor for [TerminologyCapabilitiesCodeSystem]
+  /// Primary constructor for
+  /// [TerminologyCapabilitiesCodeSystem]
 
   TerminologyCapabilitiesCodeSystem({
     super.id,
@@ -1123,8 +1130,8 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesCodeSystem] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesCodeSystem]
+  /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesCodeSystem.fromYaml(
     dynamic yaml,
   ) =>
@@ -1137,8 +1144,9 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TerminologyCapabilitiesCodeSystem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TerminologyCapabilitiesCodeSystem '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TerminologyCapabilitiesCodeSystem]
@@ -1249,7 +1257,8 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
 /// For the code system, a list of versions that are supported by the
 /// server.
 class TerminologyCapabilitiesVersion extends BackboneElement {
-  /// Primary constructor for [TerminologyCapabilitiesVersion]
+  /// Primary constructor for
+  /// [TerminologyCapabilitiesVersion]
 
   TerminologyCapabilitiesVersion({
     super.id,
@@ -1337,8 +1346,8 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesVersion] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesVersion]
+  /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesVersion.fromYaml(
     dynamic yaml,
   ) =>
@@ -1351,8 +1360,9 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TerminologyCapabilitiesVersion cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TerminologyCapabilitiesVersion '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TerminologyCapabilitiesVersion]
@@ -1504,7 +1514,8 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
 /// [TerminologyCapabilitiesFilter]
 /// Filter Properties supported.
 class TerminologyCapabilitiesFilter extends BackboneElement {
-  /// Primary constructor for [TerminologyCapabilitiesFilter]
+  /// Primary constructor for
+  /// [TerminologyCapabilitiesFilter]
 
   TerminologyCapabilitiesFilter({
     super.id,
@@ -1552,16 +1563,18 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      op: ensureNonNullList(parsePrimitiveList<FhirCode>(
-        json['op'] as List<dynamic>?,
-        json['_op'] as List<dynamic>?,
-        fromJson: FhirCode.fromJson,
-      )),
+      op: ensureNonNullList(
+        parsePrimitiveList<FhirCode>(
+          json['op'] as List<dynamic>?,
+          json['_op'] as List<dynamic>?,
+          fromJson: FhirCode.fromJson,
+        ),
+      ),
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesFilter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesFilter]
+  /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesFilter.fromYaml(
     dynamic yaml,
   ) =>
@@ -1574,8 +1587,9 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TerminologyCapabilitiesFilter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TerminologyCapabilitiesFilter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TerminologyCapabilitiesFilter]
@@ -1671,7 +1685,8 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
 /// Information about the
 /// [ValueSet/$expand](valueset-operation-expand.html) operation.
 class TerminologyCapabilitiesExpansion extends BackboneElement {
-  /// Primary constructor for [TerminologyCapabilitiesExpansion]
+  /// Primary constructor for
+  /// [TerminologyCapabilitiesExpansion]
 
   TerminologyCapabilitiesExpansion({
     super.id,
@@ -1754,8 +1769,8 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesExpansion] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesExpansion]
+  /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesExpansion.fromYaml(
     dynamic yaml,
   ) =>
@@ -1768,8 +1783,9 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TerminologyCapabilitiesExpansion cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TerminologyCapabilitiesExpansion '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TerminologyCapabilitiesExpansion]
@@ -1906,7 +1922,8 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
 /// [TerminologyCapabilitiesParameter]
 /// Supported expansion parameter.
 class TerminologyCapabilitiesParameter extends BackboneElement {
-  /// Primary constructor for [TerminologyCapabilitiesParameter]
+  /// Primary constructor for
+  /// [TerminologyCapabilitiesParameter]
 
   TerminologyCapabilitiesParameter({
     super.id,
@@ -1963,8 +1980,8 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesParameter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesParameter]
+  /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesParameter.fromYaml(
     dynamic yaml,
   ) =>
@@ -1977,8 +1994,9 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TerminologyCapabilitiesParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TerminologyCapabilitiesParameter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TerminologyCapabilitiesParameter]
@@ -2077,7 +2095,8 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
 /// [ValueSet/$validate-code](valueset-operation-validate-code.html)
 /// operation.
 class TerminologyCapabilitiesValidateCode extends BackboneElement {
-  /// Primary constructor for [TerminologyCapabilitiesValidateCode]
+  /// Primary constructor for
+  /// [TerminologyCapabilitiesValidateCode]
 
   TerminologyCapabilitiesValidateCode({
     super.id,
@@ -2127,8 +2146,8 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesValidateCode] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesValidateCode]
+  /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesValidateCode.fromYaml(
     dynamic yaml,
   ) =>
@@ -2141,8 +2160,9 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TerminologyCapabilitiesValidateCode cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TerminologyCapabilitiesValidateCode '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TerminologyCapabilitiesValidateCode]
@@ -2226,7 +2246,8 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
 /// Information about the
 /// [ConceptMap/$translate](conceptmap-operation-translate.html) operation.
 class TerminologyCapabilitiesTranslation extends BackboneElement {
-  /// Primary constructor for [TerminologyCapabilitiesTranslation]
+  /// Primary constructor for
+  /// [TerminologyCapabilitiesTranslation]
 
   TerminologyCapabilitiesTranslation({
     super.id,
@@ -2276,8 +2297,8 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesTranslation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesTranslation]
+  /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesTranslation.fromYaml(
     dynamic yaml,
   ) =>
@@ -2290,8 +2311,9 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TerminologyCapabilitiesTranslation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TerminologyCapabilitiesTranslation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TerminologyCapabilitiesTranslation]
@@ -2374,7 +2396,8 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
 /// [TerminologyCapabilitiesClosure]
 /// Whether the $closure operation is supported.
 class TerminologyCapabilitiesClosure extends BackboneElement {
-  /// Primary constructor for [TerminologyCapabilitiesClosure]
+  /// Primary constructor for
+  /// [TerminologyCapabilitiesClosure]
 
   TerminologyCapabilitiesClosure({
     super.id,
@@ -2426,8 +2449,8 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesClosure] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesClosure]
+  /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesClosure.fromYaml(
     dynamic yaml,
   ) =>
@@ -2440,8 +2463,9 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TerminologyCapabilitiesClosure cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TerminologyCapabilitiesClosure '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TerminologyCapabilitiesClosure]

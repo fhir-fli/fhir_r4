@@ -25,19 +25,17 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
   FhirUuid.fromUuid(super.input, [super.element]);
 
   /// Factory constructor to create [FhirUuid] from JSON.
-  factory FhirUuid.fromJson(dynamic json) {
-    if (json is String) {
-      return FhirUuid(json);
-    } else if (json == null) {
-      return FhirUuid(null);
-    } else {
-      throw const FormatException('Invalid input for FhirUuid');
-    }
+  factory FhirUuid.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    return FhirUuid(value, element);
   }
 
   /// Factory constructor to create [FhirUuid] from YAML input.
-  factory FhirUuid.fromYaml(String yaml) =>
-      FhirUuid.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
+  factory FhirUuid.fromYaml(String yaml) => FhirUuid.fromJson(
+        jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+      );
 
   /// Factory constructor to generate a UUID using version 1.
   factory FhirUuid.v1([Element? element]) {
@@ -175,13 +173,14 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
   }) {
     return FhirUuid.fromUuid(
       newValue ?? value,
-      element?.copyWith(
-        userData: userData,
-        formatCommentsPre: formatCommentsPre,
-        formatCommentsPost: formatCommentsPost,
-        annotations: annotations,
-        children: children,
-        namedChildren: namedChildren,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
       ),
     );
   }

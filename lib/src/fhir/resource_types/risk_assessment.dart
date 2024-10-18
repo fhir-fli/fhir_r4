@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// An assessment of the likely outcome(s) for a patient or other subject
 /// as well as the likelihood of each outcome.
 class RiskAssessment extends DomainResource {
-  /// Primary constructor for [RiskAssessment]
+  /// Primary constructor for
+  /// [RiskAssessment]
 
   RiskAssessment({
     super.id,
@@ -220,8 +221,8 @@ class RiskAssessment extends DomainResource {
     );
   }
 
-  /// Deserialize [RiskAssessment] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [RiskAssessment]
+  /// from a [String] or [YamlMap] object
   factory RiskAssessment.fromYaml(
     dynamic yaml,
   ) =>
@@ -234,8 +235,9 @@ class RiskAssessment extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'RiskAssessment cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'RiskAssessment '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [RiskAssessment]
@@ -531,7 +533,8 @@ class RiskAssessment extends DomainResource {
 /// [RiskAssessmentPrediction]
 /// Describes the expected outcome for the subject.
 class RiskAssessmentPrediction extends BackboneElement {
-  /// Primary constructor for [RiskAssessmentPrediction]
+  /// Primary constructor for
+  /// [RiskAssessmentPrediction]
 
   RiskAssessmentPrediction({
     super.id,
@@ -627,8 +630,8 @@ class RiskAssessmentPrediction extends BackboneElement {
     );
   }
 
-  /// Deserialize [RiskAssessmentPrediction] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [RiskAssessmentPrediction]
+  /// from a [String] or [YamlMap] object
   factory RiskAssessmentPrediction.fromYaml(
     dynamic yaml,
   ) =>
@@ -641,8 +644,9 @@ class RiskAssessmentPrediction extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'RiskAssessmentPrediction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'RiskAssessmentPrediction '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [RiskAssessmentPrediction]

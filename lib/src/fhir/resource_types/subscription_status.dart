@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// The SubscriptionStatus resource describes the state of a Subscription
 /// during notifications.
 class SubscriptionStatus extends DomainResource {
-  /// Primary constructor for [SubscriptionStatus]
+  /// Primary constructor for
+  /// [SubscriptionStatus]
 
   SubscriptionStatus({
     super.id,
@@ -139,8 +140,8 @@ class SubscriptionStatus extends DomainResource {
     );
   }
 
-  /// Deserialize [SubscriptionStatus] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubscriptionStatus]
+  /// from a [String] or [YamlMap] object
   factory SubscriptionStatus.fromYaml(
     dynamic yaml,
   ) =>
@@ -153,8 +154,9 @@ class SubscriptionStatus extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubscriptionStatus cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubscriptionStatus '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubscriptionStatus]
@@ -344,7 +346,8 @@ class SubscriptionStatus extends DomainResource {
 /// Detailed information about events relevant to this subscription
 /// notification.
 class SubscriptionStatusNotificationEvent extends BackboneElement {
-  /// Primary constructor for [SubscriptionStatusNotificationEvent]
+  /// Primary constructor for
+  /// [SubscriptionStatusNotificationEvent]
 
   SubscriptionStatusNotificationEvent({
     super.id,
@@ -417,8 +420,8 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubscriptionStatusNotificationEvent] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubscriptionStatusNotificationEvent]
+  /// from a [String] or [YamlMap] object
   factory SubscriptionStatusNotificationEvent.fromYaml(
     dynamic yaml,
   ) =>
@@ -431,8 +434,9 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubscriptionStatusNotificationEvent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubscriptionStatusNotificationEvent '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubscriptionStatusNotificationEvent]

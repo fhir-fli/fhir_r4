@@ -10,7 +10,8 @@ import 'package:yaml/yaml.dart';
 /// Usage of the ChargeItem is to enable the billing process and internal
 /// cost allocation.
 class ChargeItem extends DomainResource {
-  /// Primary constructor for [ChargeItem]
+  /// Primary constructor for
+  /// [ChargeItem]
 
   ChargeItem({
     super.id,
@@ -302,8 +303,8 @@ class ChargeItem extends DomainResource {
     );
   }
 
-  /// Deserialize [ChargeItem] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ChargeItem]
+  /// from a [String] or [YamlMap] object
   factory ChargeItem.fromYaml(
     dynamic yaml,
   ) =>
@@ -316,8 +317,9 @@ class ChargeItem extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ChargeItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ChargeItem '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ChargeItem]
@@ -749,7 +751,8 @@ class ChargeItem extends DomainResource {
 /// [ChargeItemPerformer]
 /// Indicates who or what performed or participated in the charged service.
 class ChargeItemPerformer extends BackboneElement {
-  /// Primary constructor for [ChargeItemPerformer]
+  /// Primary constructor for
+  /// [ChargeItemPerformer]
 
   ChargeItemPerformer({
     super.id,
@@ -804,8 +807,8 @@ class ChargeItemPerformer extends BackboneElement {
     );
   }
 
-  /// Deserialize [ChargeItemPerformer] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ChargeItemPerformer]
+  /// from a [String] or [YamlMap] object
   factory ChargeItemPerformer.fromYaml(
     dynamic yaml,
   ) =>
@@ -818,8 +821,9 @@ class ChargeItemPerformer extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ChargeItemPerformer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ChargeItemPerformer '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ChargeItemPerformer]

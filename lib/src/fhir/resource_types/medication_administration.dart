@@ -9,7 +9,8 @@ import 'package:yaml/yaml.dart';
 /// to the authorizing prescription, and the specific encounter between
 /// patient and health care practitioner.
 class MedicationAdministration extends DomainResource {
-  /// Primary constructor for [MedicationAdministration]
+  /// Primary constructor for
+  /// [MedicationAdministration]
 
   MedicationAdministration({
     super.id,
@@ -256,8 +257,8 @@ class MedicationAdministration extends DomainResource {
     );
   }
 
-  /// Deserialize [MedicationAdministration] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicationAdministration]
+  /// from a [String] or [YamlMap] object
   factory MedicationAdministration.fromYaml(
     dynamic yaml,
   ) =>
@@ -270,8 +271,9 @@ class MedicationAdministration extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicationAdministration cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicationAdministration '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicationAdministration]
@@ -627,7 +629,8 @@ class MedicationAdministration extends DomainResource {
 /// Indicates who or what performed the medication administration and how
 /// they were involved.
 class MedicationAdministrationPerformer extends BackboneElement {
-  /// Primary constructor for [MedicationAdministrationPerformer]
+  /// Primary constructor for
+  /// [MedicationAdministrationPerformer]
 
   MedicationAdministrationPerformer({
     super.id,
@@ -682,8 +685,8 @@ class MedicationAdministrationPerformer extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicationAdministrationPerformer] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicationAdministrationPerformer]
+  /// from a [String] or [YamlMap] object
   factory MedicationAdministrationPerformer.fromYaml(
     dynamic yaml,
   ) =>
@@ -696,8 +699,9 @@ class MedicationAdministrationPerformer extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicationAdministrationPerformer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicationAdministrationPerformer '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicationAdministrationPerformer]
@@ -788,7 +792,8 @@ class MedicationAdministrationPerformer extends BackboneElement {
 /// Describes the medication dosage information details e.g. dose, rate,
 /// site, route, etc.
 class MedicationAdministrationDosage extends BackboneElement {
-  /// Primary constructor for [MedicationAdministrationDosage]
+  /// Primary constructor for
+  /// [MedicationAdministrationDosage]
 
   MedicationAdministrationDosage({
     super.id,
@@ -876,8 +881,8 @@ class MedicationAdministrationDosage extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicationAdministrationDosage] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicationAdministrationDosage]
+  /// from a [String] or [YamlMap] object
   factory MedicationAdministrationDosage.fromYaml(
     dynamic yaml,
   ) =>
@@ -890,8 +895,9 @@ class MedicationAdministrationDosage extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicationAdministrationDosage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicationAdministrationDosage '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicationAdministrationDosage]

@@ -9,7 +9,8 @@ import 'package:yaml/yaml.dart';
 /// locations which might not be valid for mail delivery. There are a
 /// variety of postal address formats defined around the world.
 class Address extends DataType {
-  /// Primary constructor for [Address]
+  /// Primary constructor for
+  /// [Address]
 
   Address({
     super.id,
@@ -112,8 +113,8 @@ class Address extends DataType {
     );
   }
 
-  /// Deserialize [Address] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Address]
+  /// from a [String] or [YamlMap] object
   factory Address.fromYaml(
     dynamic yaml,
   ) =>
@@ -126,8 +127,9 @@ class Address extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Address cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Address '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Address]

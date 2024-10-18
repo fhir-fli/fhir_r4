@@ -9,7 +9,8 @@ import 'package:yaml/yaml.dart';
 /// stated coverage is valid and in-force and optionally to provide the
 /// insurance details of the policy.
 class CoverageEligibilityRequest extends DomainResource {
-  /// Primary constructor for [CoverageEligibilityRequest]
+  /// Primary constructor for
+  /// [CoverageEligibilityRequest]
 
   CoverageEligibilityRequest({
     super.id,
@@ -122,11 +123,13 @@ class CoverageEligibilityRequest extends DomainResource {
               json['priority'] as Map<String, dynamic>,
             )
           : null,
-      purpose: ensureNonNullList(parsePrimitiveList<EligibilityRequestPurpose>(
-        json['purpose'] as List<dynamic>?,
-        json['_purpose'] as List<dynamic>?,
-        fromJson: EligibilityRequestPurpose.fromJson,
-      )),
+      purpose: ensureNonNullList(
+        parsePrimitiveList<EligibilityRequestPurpose>(
+          json['purpose'] as List<dynamic>?,
+          json['_purpose'] as List<dynamic>?,
+          fromJson: EligibilityRequestPurpose.fromJson,
+        ),
+      ),
       patient: Reference.fromJson(
         json['patient'] as Map<String, dynamic>,
       ),
@@ -193,8 +196,8 @@ class CoverageEligibilityRequest extends DomainResource {
     );
   }
 
-  /// Deserialize [CoverageEligibilityRequest] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CoverageEligibilityRequest]
+  /// from a [String] or [YamlMap] object
   factory CoverageEligibilityRequest.fromYaml(
     dynamic yaml,
   ) =>
@@ -207,8 +210,9 @@ class CoverageEligibilityRequest extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CoverageEligibilityRequest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CoverageEligibilityRequest '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CoverageEligibilityRequest]
@@ -475,7 +479,8 @@ class CoverageEligibilityRequest extends DomainResource {
 /// Additional information codes regarding exceptions, special
 /// considerations, the condition, situation, prior or concurrent issues.
 class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
-  /// Primary constructor for [CoverageEligibilityRequestSupportingInfo]
+  /// Primary constructor for
+  /// [CoverageEligibilityRequestSupportingInfo]
 
   CoverageEligibilityRequestSupportingInfo({
     super.id,
@@ -536,8 +541,8 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     );
   }
 
-  /// Deserialize [CoverageEligibilityRequestSupportingInfo] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CoverageEligibilityRequestSupportingInfo]
+  /// from a [String] or [YamlMap] object
   factory CoverageEligibilityRequestSupportingInfo.fromYaml(
     dynamic yaml,
   ) =>
@@ -550,8 +555,9 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CoverageEligibilityRequestSupportingInfo cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CoverageEligibilityRequestSupportingInfo '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CoverageEligibilityRequestSupportingInfo]
@@ -661,7 +667,8 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
 /// Financial instruments for reimbursement for the health care products
 /// and services.
 class CoverageEligibilityRequestInsurance extends BackboneElement {
-  /// Primary constructor for [CoverageEligibilityRequestInsurance]
+  /// Primary constructor for
+  /// [CoverageEligibilityRequestInsurance]
 
   CoverageEligibilityRequestInsurance({
     super.id,
@@ -724,8 +731,8 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
     );
   }
 
-  /// Deserialize [CoverageEligibilityRequestInsurance] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CoverageEligibilityRequestInsurance]
+  /// from a [String] or [YamlMap] object
   factory CoverageEligibilityRequestInsurance.fromYaml(
     dynamic yaml,
   ) =>
@@ -738,8 +745,9 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CoverageEligibilityRequestInsurance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CoverageEligibilityRequestInsurance '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CoverageEligibilityRequestInsurance]
@@ -853,7 +861,8 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
 /// and/or an authorization prior to service delivery may be required by
 /// the payor.
 class CoverageEligibilityRequestItem extends BackboneElement {
-  /// Primary constructor for [CoverageEligibilityRequestItem]
+  /// Primary constructor for
+  /// [CoverageEligibilityRequestItem]
 
   CoverageEligibilityRequestItem({
     super.id,
@@ -970,8 +979,8 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [CoverageEligibilityRequestItem] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CoverageEligibilityRequestItem]
+  /// from a [String] or [YamlMap] object
   factory CoverageEligibilityRequestItem.fromYaml(
     dynamic yaml,
   ) =>
@@ -984,8 +993,9 @@ class CoverageEligibilityRequestItem extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CoverageEligibilityRequestItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CoverageEligibilityRequestItem '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CoverageEligibilityRequestItem]
@@ -1169,7 +1179,8 @@ class CoverageEligibilityRequestItem extends BackboneElement {
 /// [CoverageEligibilityRequestDiagnosis]
 /// Patient diagnosis for which care is sought.
 class CoverageEligibilityRequestDiagnosis extends BackboneElement {
-  /// Primary constructor for [CoverageEligibilityRequestDiagnosis]
+  /// Primary constructor for
+  /// [CoverageEligibilityRequestDiagnosis]
 
   CoverageEligibilityRequestDiagnosis({
     super.id,
@@ -1226,8 +1237,8 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     );
   }
 
-  /// Deserialize [CoverageEligibilityRequestDiagnosis] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CoverageEligibilityRequestDiagnosis]
+  /// from a [String] or [YamlMap] object
   factory CoverageEligibilityRequestDiagnosis.fromYaml(
     dynamic yaml,
   ) =>
@@ -1240,8 +1251,9 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CoverageEligibilityRequestDiagnosis cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CoverageEligibilityRequestDiagnosis '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CoverageEligibilityRequestDiagnosis]

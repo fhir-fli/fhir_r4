@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// for the identification of concepts, people, devices, etc. Represents a
 /// "System" used within the Identifier and Coding data types.
 class NamingSystem extends DomainResource {
-  /// Primary constructor for [NamingSystem]
+  /// Primary constructor for
+  /// [NamingSystem]
 
   NamingSystem({
     super.id,
@@ -172,18 +173,20 @@ class NamingSystem extends DomainResource {
               '_value': json['_usage'],
             })
           : null,
-      uniqueId: ensureNonNullList((json['uniqueId'] as List<dynamic>)
-          .map<NamingSystemUniqueId>(
-            (v) => NamingSystemUniqueId.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      uniqueId: ensureNonNullList(
+        (json['uniqueId'] as List<dynamic>)
+            .map<NamingSystemUniqueId>(
+              (v) => NamingSystemUniqueId.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [NamingSystem] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [NamingSystem]
+  /// from a [String] or [YamlMap] object
   factory NamingSystem.fromYaml(
     dynamic yaml,
   ) =>
@@ -196,8 +199,9 @@ class NamingSystem extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'NamingSystem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'NamingSystem '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [NamingSystem]
@@ -469,7 +473,8 @@ class NamingSystem extends DomainResource {
 /// Indicates how the system may be identified when referenced in
 /// electronic exchange.
 class NamingSystemUniqueId extends BackboneElement {
-  /// Primary constructor for [NamingSystemUniqueId]
+  /// Primary constructor for
+  /// [NamingSystemUniqueId]
 
   NamingSystemUniqueId({
     super.id,
@@ -544,8 +549,8 @@ class NamingSystemUniqueId extends BackboneElement {
     );
   }
 
-  /// Deserialize [NamingSystemUniqueId] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [NamingSystemUniqueId]
+  /// from a [String] or [YamlMap] object
   factory NamingSystemUniqueId.fromYaml(
     dynamic yaml,
   ) =>
@@ -558,8 +563,9 @@ class NamingSystemUniqueId extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'NamingSystemUniqueId cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'NamingSystemUniqueId '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [NamingSystemUniqueId]

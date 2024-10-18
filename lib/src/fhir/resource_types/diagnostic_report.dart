@@ -10,7 +10,8 @@ import 'package:yaml/yaml.dart';
 /// images, textual and coded interpretations, and formatted representation
 /// of diagnostic reports.
 class DiagnosticReport extends DomainResource {
-  /// Primary constructor for [DiagnosticReport]
+  /// Primary constructor for
+  /// [DiagnosticReport]
 
   DiagnosticReport({
     super.id,
@@ -251,8 +252,8 @@ class DiagnosticReport extends DomainResource {
     );
   }
 
-  /// Deserialize [DiagnosticReport] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DiagnosticReport]
+  /// from a [String] or [YamlMap] object
   factory DiagnosticReport.fromYaml(
     dynamic yaml,
   ) =>
@@ -265,8 +266,9 @@ class DiagnosticReport extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DiagnosticReport cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DiagnosticReport '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DiagnosticReport]
@@ -597,7 +599,8 @@ class DiagnosticReport extends DomainResource {
 /// generally created during the diagnostic process, and may be directly of
 /// the patient, or of treated specimens (i.e. slides of interest).
 class DiagnosticReportMedia extends BackboneElement {
-  /// Primary constructor for [DiagnosticReportMedia]
+  /// Primary constructor for
+  /// [DiagnosticReportMedia]
 
   DiagnosticReportMedia({
     super.id,
@@ -653,8 +656,8 @@ class DiagnosticReportMedia extends BackboneElement {
     );
   }
 
-  /// Deserialize [DiagnosticReportMedia] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DiagnosticReportMedia]
+  /// from a [String] or [YamlMap] object
   factory DiagnosticReportMedia.fromYaml(
     dynamic yaml,
   ) =>
@@ -667,8 +670,9 @@ class DiagnosticReportMedia extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DiagnosticReportMedia cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DiagnosticReportMedia '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DiagnosticReportMedia]

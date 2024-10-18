@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Catalog entries are wrappers that contextualize items included in a
 /// catalog.
 class CatalogEntry extends DomainResource {
-  /// Primary constructor for [CatalogEntry]
+  /// Primary constructor for
+  /// [CatalogEntry]
 
   CatalogEntry({
     super.id,
@@ -191,8 +192,8 @@ class CatalogEntry extends DomainResource {
     );
   }
 
-  /// Deserialize [CatalogEntry] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CatalogEntry]
+  /// from a [String] or [YamlMap] object
   factory CatalogEntry.fromYaml(
     dynamic yaml,
   ) =>
@@ -205,8 +206,9 @@ class CatalogEntry extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CatalogEntry cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CatalogEntry '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CatalogEntry]
@@ -462,7 +464,8 @@ class CatalogEntry extends DomainResource {
 /// Used for example, to point to a substance, or to a device used to
 /// administer a medication.
 class CatalogEntryRelatedEntry extends BackboneElement {
-  /// Primary constructor for [CatalogEntryRelatedEntry]
+  /// Primary constructor for
+  /// [CatalogEntryRelatedEntry]
 
   CatalogEntryRelatedEntry({
     super.id,
@@ -516,8 +519,8 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     );
   }
 
-  /// Deserialize [CatalogEntryRelatedEntry] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CatalogEntryRelatedEntry]
+  /// from a [String] or [YamlMap] object
   factory CatalogEntryRelatedEntry.fromYaml(
     dynamic yaml,
   ) =>
@@ -530,8 +533,9 @@ class CatalogEntryRelatedEntry extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CatalogEntryRelatedEntry cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CatalogEntryRelatedEntry '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CatalogEntryRelatedEntry]

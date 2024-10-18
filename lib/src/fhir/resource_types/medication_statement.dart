@@ -28,7 +28,8 @@ import 'package:yaml/yaml.dart';
 /// medications the patient, clinician or other party maintains. Medication
 /// administration is more formal and is not missing detailed information.
 class MedicationStatement extends DomainResource {
-  /// Primary constructor for [MedicationStatement]
+  /// Primary constructor for
+  /// [MedicationStatement]
 
   MedicationStatement({
     super.id,
@@ -260,8 +261,8 @@ class MedicationStatement extends DomainResource {
     );
   }
 
-  /// Deserialize [MedicationStatement] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicationStatement]
+  /// from a [String] or [YamlMap] object
   factory MedicationStatement.fromYaml(
     dynamic yaml,
   ) =>
@@ -274,8 +275,9 @@ class MedicationStatement extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicationStatement cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicationStatement '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicationStatement]

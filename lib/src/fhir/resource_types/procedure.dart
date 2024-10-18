@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// physical intervention like an operation, or less invasive like long
 /// term services, counseling, or hypnotherapy.
 class Procedure extends DomainResource {
-  /// Primary constructor for [Procedure]
+  /// Primary constructor for
+  /// [Procedure]
 
   Procedure({
     super.id,
@@ -341,8 +342,8 @@ class Procedure extends DomainResource {
     );
   }
 
-  /// Deserialize [Procedure] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Procedure]
+  /// from a [String] or [YamlMap] object
   factory Procedure.fromYaml(
     dynamic yaml,
   ) =>
@@ -355,8 +356,9 @@ class Procedure extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Procedure cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Procedure '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Procedure]
@@ -841,7 +843,8 @@ class Procedure extends DomainResource {
 /// [ProcedurePerformer]
 /// Limited to "real" people rather than equipment.
 class ProcedurePerformer extends BackboneElement {
-  /// Primary constructor for [ProcedurePerformer]
+  /// Primary constructor for
+  /// [ProcedurePerformer]
 
   ProcedurePerformer({
     super.id,
@@ -902,8 +905,8 @@ class ProcedurePerformer extends BackboneElement {
     );
   }
 
-  /// Deserialize [ProcedurePerformer] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ProcedurePerformer]
+  /// from a [String] or [YamlMap] object
   factory ProcedurePerformer.fromYaml(
     dynamic yaml,
   ) =>
@@ -916,8 +919,9 @@ class ProcedurePerformer extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ProcedurePerformer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ProcedurePerformer '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ProcedurePerformer]
@@ -1019,7 +1023,8 @@ class ProcedurePerformer extends BackboneElement {
 /// (calibration, battery replacement, fitting a prosthesis, attaching a
 /// wound-vac, etc.) as a focal portion of the Procedure.
 class ProcedureFocalDevice extends BackboneElement {
-  /// Primary constructor for [ProcedureFocalDevice]
+  /// Primary constructor for
+  /// [ProcedureFocalDevice]
 
   ProcedureFocalDevice({
     super.id,
@@ -1074,8 +1079,8 @@ class ProcedureFocalDevice extends BackboneElement {
     );
   }
 
-  /// Deserialize [ProcedureFocalDevice] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ProcedureFocalDevice]
+  /// from a [String] or [YamlMap] object
   factory ProcedureFocalDevice.fromYaml(
     dynamic yaml,
   ) =>
@@ -1088,8 +1093,9 @@ class ProcedureFocalDevice extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ProcedureFocalDevice cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ProcedureFocalDevice '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ProcedureFocalDevice]

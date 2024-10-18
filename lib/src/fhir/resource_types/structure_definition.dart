@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// underlying resources, data types defined in FHIR, and also for
 /// describing extensions and constraints on resources and data types.
 class StructureDefinition extends DomainResource {
-  /// Primary constructor for [StructureDefinition]
+  /// Primary constructor for
+  /// [StructureDefinition]
 
   StructureDefinition({
     super.id,
@@ -279,8 +280,8 @@ class StructureDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [StructureDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [StructureDefinition]
+  /// from a [String] or [YamlMap] object
   factory StructureDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -293,8 +294,9 @@ class StructureDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'StructureDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'StructureDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [StructureDefinition]
@@ -750,7 +752,8 @@ class StructureDefinition extends DomainResource {
 /// [StructureDefinitionMapping]
 /// An external specification that the content is mapped to.
 class StructureDefinitionMapping extends BackboneElement {
-  /// Primary constructor for [StructureDefinitionMapping]
+  /// Primary constructor for
+  /// [StructureDefinitionMapping]
 
   StructureDefinitionMapping({
     super.id,
@@ -821,8 +824,8 @@ class StructureDefinitionMapping extends BackboneElement {
     );
   }
 
-  /// Deserialize [StructureDefinitionMapping] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [StructureDefinitionMapping]
+  /// from a [String] or [YamlMap] object
   factory StructureDefinitionMapping.fromYaml(
     dynamic yaml,
   ) =>
@@ -835,8 +838,9 @@ class StructureDefinitionMapping extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'StructureDefinitionMapping cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'StructureDefinitionMapping '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [StructureDefinitionMapping]
@@ -965,7 +969,8 @@ class StructureDefinitionMapping extends BackboneElement {
 /// Identifies the types of resource or data type elements to which the
 /// extension can be applied.
 class StructureDefinitionContext extends BackboneElement {
-  /// Primary constructor for [StructureDefinitionContext]
+  /// Primary constructor for
+  /// [StructureDefinitionContext]
 
   StructureDefinitionContext({
     super.id,
@@ -1026,8 +1031,8 @@ class StructureDefinitionContext extends BackboneElement {
     );
   }
 
-  /// Deserialize [StructureDefinitionContext] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [StructureDefinitionContext]
+  /// from a [String] or [YamlMap] object
   factory StructureDefinitionContext.fromYaml(
     dynamic yaml,
   ) =>
@@ -1040,8 +1045,9 @@ class StructureDefinitionContext extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'StructureDefinitionContext cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'StructureDefinitionContext '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [StructureDefinitionContext]
@@ -1150,7 +1156,8 @@ class StructureDefinitionContext extends BackboneElement {
 /// A snapshot view is expressed in a standalone form that can be used and
 /// interpreted without considering the base StructureDefinition.
 class StructureDefinitionSnapshot extends BackboneElement {
-  /// Primary constructor for [StructureDefinitionSnapshot]
+  /// Primary constructor for
+  /// [StructureDefinitionSnapshot]
 
   StructureDefinitionSnapshot({
     super.id,
@@ -1193,18 +1200,20 @@ class StructureDefinitionSnapshot extends BackboneElement {
               )
               .toList()
           : null,
-      element: ensureNonNullList((json['element'] as List<dynamic>)
-          .map<ElementDefinition>(
-            (v) => ElementDefinition.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      element: ensureNonNullList(
+        (json['element'] as List<dynamic>)
+            .map<ElementDefinition>(
+              (v) => ElementDefinition.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [StructureDefinitionSnapshot] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [StructureDefinitionSnapshot]
+  /// from a [String] or [YamlMap] object
   factory StructureDefinitionSnapshot.fromYaml(
     dynamic yaml,
   ) =>
@@ -1217,8 +1226,9 @@ class StructureDefinitionSnapshot extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'StructureDefinitionSnapshot cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'StructureDefinitionSnapshot '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [StructureDefinitionSnapshot]
@@ -1298,7 +1308,8 @@ class StructureDefinitionSnapshot extends BackboneElement {
 /// A differential view is expressed relative to the base
 /// StructureDefinition - a statement of differences that it applies.
 class StructureDefinitionDifferential extends BackboneElement {
-  /// Primary constructor for [StructureDefinitionDifferential]
+  /// Primary constructor for
+  /// [StructureDefinitionDifferential]
 
   StructureDefinitionDifferential({
     super.id,
@@ -1341,18 +1352,20 @@ class StructureDefinitionDifferential extends BackboneElement {
               )
               .toList()
           : null,
-      element: ensureNonNullList((json['element'] as List<dynamic>)
-          .map<ElementDefinition>(
-            (v) => ElementDefinition.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      element: ensureNonNullList(
+        (json['element'] as List<dynamic>)
+            .map<ElementDefinition>(
+              (v) => ElementDefinition.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [StructureDefinitionDifferential] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [StructureDefinitionDifferential]
+  /// from a [String] or [YamlMap] object
   factory StructureDefinitionDifferential.fromYaml(
     dynamic yaml,
   ) =>
@@ -1365,8 +1378,9 @@ class StructureDefinitionDifferential extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'StructureDefinitionDifferential cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'StructureDefinitionDifferential '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [StructureDefinitionDifferential]

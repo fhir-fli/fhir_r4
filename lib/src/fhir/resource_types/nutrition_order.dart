@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A request to supply a diet, formula feeding (enteral) or oral
 /// nutritional supplement to a patient/resident.
 class NutritionOrder extends DomainResource {
-  /// Primary constructor for [NutritionOrder]
+  /// Primary constructor for
+  /// [NutritionOrder]
 
   NutritionOrder({
     super.id,
@@ -210,8 +211,8 @@ class NutritionOrder extends DomainResource {
     );
   }
 
-  /// Deserialize [NutritionOrder] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [NutritionOrder]
+  /// from a [String] or [YamlMap] object
   factory NutritionOrder.fromYaml(
     dynamic yaml,
   ) =>
@@ -224,8 +225,9 @@ class NutritionOrder extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'NutritionOrder cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'NutritionOrder '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [NutritionOrder]
@@ -543,7 +545,8 @@ class NutritionOrder extends DomainResource {
 /// [NutritionOrderOralDiet]
 /// Diet given orally in contrast to enteral (tube) feeding.
 class NutritionOrderOralDiet extends BackboneElement {
-  /// Primary constructor for [NutritionOrderOralDiet]
+  /// Primary constructor for
+  /// [NutritionOrderOralDiet]
 
   NutritionOrderOralDiet({
     super.id,
@@ -645,8 +648,8 @@ class NutritionOrderOralDiet extends BackboneElement {
     );
   }
 
-  /// Deserialize [NutritionOrderOralDiet] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [NutritionOrderOralDiet]
+  /// from a [String] or [YamlMap] object
   factory NutritionOrderOralDiet.fromYaml(
     dynamic yaml,
   ) =>
@@ -659,8 +662,9 @@ class NutritionOrderOralDiet extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'NutritionOrderOralDiet cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'NutritionOrderOralDiet '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [NutritionOrderOralDiet]
@@ -804,7 +808,8 @@ class NutritionOrderOralDiet extends BackboneElement {
 /// Class that defines the quantity and type of nutrient modifications (for
 /// example carbohydrate, fiber or sodium) required for the oral diet.
 class NutritionOrderNutrient extends BackboneElement {
-  /// Primary constructor for [NutritionOrderNutrient]
+  /// Primary constructor for
+  /// [NutritionOrderNutrient]
 
   NutritionOrderNutrient({
     super.id,
@@ -861,8 +866,8 @@ class NutritionOrderNutrient extends BackboneElement {
     );
   }
 
-  /// Deserialize [NutritionOrderNutrient] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [NutritionOrderNutrient]
+  /// from a [String] or [YamlMap] object
   factory NutritionOrderNutrient.fromYaml(
     dynamic yaml,
   ) =>
@@ -875,8 +880,9 @@ class NutritionOrderNutrient extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'NutritionOrderNutrient cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'NutritionOrderNutrient '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [NutritionOrderNutrient]
@@ -968,7 +974,8 @@ class NutritionOrderNutrient extends BackboneElement {
 /// Class that describes any texture modifications required for the patient
 /// to safely consume various types of solid foods.
 class NutritionOrderTexture extends BackboneElement {
-  /// Primary constructor for [NutritionOrderTexture]
+  /// Primary constructor for
+  /// [NutritionOrderTexture]
 
   NutritionOrderTexture({
     super.id,
@@ -1025,8 +1032,8 @@ class NutritionOrderTexture extends BackboneElement {
     );
   }
 
-  /// Deserialize [NutritionOrderTexture] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [NutritionOrderTexture]
+  /// from a [String] or [YamlMap] object
   factory NutritionOrderTexture.fromYaml(
     dynamic yaml,
   ) =>
@@ -1039,8 +1046,9 @@ class NutritionOrderTexture extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'NutritionOrderTexture cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'NutritionOrderTexture '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [NutritionOrderTexture]
@@ -1134,7 +1142,8 @@ class NutritionOrderTexture extends BackboneElement {
 /// Oral nutritional products given in order to add further nutritional
 /// value to the patient's diet.
 class NutritionOrderSupplement extends BackboneElement {
-  /// Primary constructor for [NutritionOrderSupplement]
+  /// Primary constructor for
+  /// [NutritionOrderSupplement]
 
   NutritionOrderSupplement({
     super.id,
@@ -1215,8 +1224,8 @@ class NutritionOrderSupplement extends BackboneElement {
     );
   }
 
-  /// Deserialize [NutritionOrderSupplement] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [NutritionOrderSupplement]
+  /// from a [String] or [YamlMap] object
   factory NutritionOrderSupplement.fromYaml(
     dynamic yaml,
   ) =>
@@ -1229,8 +1238,9 @@ class NutritionOrderSupplement extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'NutritionOrderSupplement cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'NutritionOrderSupplement '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [NutritionOrderSupplement]
@@ -1365,7 +1375,8 @@ class NutritionOrderSupplement extends BackboneElement {
 /// Feeding provided through the gastrointestinal tract via a tube,
 /// catheter, or stoma that delivers nutrition distal to the oral cavity.
 class NutritionOrderEnteralFormula extends BackboneElement {
-  /// Primary constructor for [NutritionOrderEnteralFormula]
+  /// Primary constructor for
+  /// [NutritionOrderEnteralFormula]
 
   NutritionOrderEnteralFormula({
     super.id,
@@ -1464,8 +1475,8 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     );
   }
 
-  /// Deserialize [NutritionOrderEnteralFormula] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [NutritionOrderEnteralFormula]
+  /// from a [String] or [YamlMap] object
   factory NutritionOrderEnteralFormula.fromYaml(
     dynamic yaml,
   ) =>
@@ -1478,8 +1489,9 @@ class NutritionOrderEnteralFormula extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'NutritionOrderEnteralFormula cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'NutritionOrderEnteralFormula '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [NutritionOrderEnteralFormula]
@@ -1659,7 +1671,8 @@ class NutritionOrderEnteralFormula extends BackboneElement {
 /// an instruction to increase the rate of continuous feeding every 2
 /// hours.
 class NutritionOrderAdministration extends BackboneElement {
-  /// Primary constructor for [NutritionOrderAdministration]
+  /// Primary constructor for
+  /// [NutritionOrderAdministration]
 
   NutritionOrderAdministration({
     super.id,
@@ -1735,8 +1748,8 @@ class NutritionOrderAdministration extends BackboneElement {
     );
   }
 
-  /// Deserialize [NutritionOrderAdministration] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [NutritionOrderAdministration]
+  /// from a [String] or [YamlMap] object
   factory NutritionOrderAdministration.fromYaml(
     dynamic yaml,
   ) =>
@@ -1749,8 +1762,9 @@ class NutritionOrderAdministration extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'NutritionOrderAdministration cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'NutritionOrderAdministration '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [NutritionOrderAdministration]

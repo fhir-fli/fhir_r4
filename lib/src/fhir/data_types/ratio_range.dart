@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A range of ratios expressed as a low and high numerator and a
 /// denominator.
 class RatioRange extends DataType {
-  /// Primary constructor for [RatioRange]
+  /// Primary constructor for
+  /// [RatioRange]
 
   RatioRange({
     super.id,
@@ -59,8 +60,8 @@ class RatioRange extends DataType {
     );
   }
 
-  /// Deserialize [RatioRange] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [RatioRange]
+  /// from a [String] or [YamlMap] object
   factory RatioRange.fromYaml(
     dynamic yaml,
   ) =>
@@ -73,8 +74,9 @@ class RatioRange extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'RatioRange cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'RatioRange '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [RatioRange]

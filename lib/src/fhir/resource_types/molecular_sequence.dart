@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [MolecularSequence]
 /// Raw data describing a biological sequence.
 class MolecularSequence extends DomainResource {
-  /// Primary constructor for [MolecularSequence]
+  /// Primary constructor for
+  /// [MolecularSequence]
 
   MolecularSequence({
     super.id,
@@ -210,8 +211,8 @@ class MolecularSequence extends DomainResource {
     );
   }
 
-  /// Deserialize [MolecularSequence] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MolecularSequence]
+  /// from a [String] or [YamlMap] object
   factory MolecularSequence.fromYaml(
     dynamic yaml,
   ) =>
@@ -224,8 +225,9 @@ class MolecularSequence extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MolecularSequence cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MolecularSequence '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MolecularSequence]
@@ -517,7 +519,8 @@ class MolecularSequence extends DomainResource {
 /// A sequence that is used as a reference to describe variants that are
 /// present in a sequence analyzed.
 class MolecularSequenceReferenceSeq extends BackboneElement {
-  /// Primary constructor for [MolecularSequenceReferenceSeq]
+  /// Primary constructor for
+  /// [MolecularSequenceReferenceSeq]
 
   MolecularSequenceReferenceSeq({
     super.id,
@@ -622,8 +625,8 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     );
   }
 
-  /// Deserialize [MolecularSequenceReferenceSeq] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MolecularSequenceReferenceSeq]
+  /// from a [String] or [YamlMap] object
   factory MolecularSequenceReferenceSeq.fromYaml(
     dynamic yaml,
   ) =>
@@ -636,8 +639,9 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MolecularSequenceReferenceSeq cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MolecularSequenceReferenceSeq '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MolecularSequenceReferenceSeq]
@@ -836,7 +840,8 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
 /// change(including insertion,deletion,SNP,etc.) It can represent some
 /// complex mutation or segment variation with the assist of CIGAR string.
 class MolecularSequenceVariant extends BackboneElement {
-  /// Primary constructor for [MolecularSequenceVariant]
+  /// Primary constructor for
+  /// [MolecularSequenceVariant]
 
   MolecularSequenceVariant({
     super.id,
@@ -922,8 +927,8 @@ class MolecularSequenceVariant extends BackboneElement {
     );
   }
 
-  /// Deserialize [MolecularSequenceVariant] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MolecularSequenceVariant]
+  /// from a [String] or [YamlMap] object
   factory MolecularSequenceVariant.fromYaml(
     dynamic yaml,
   ) =>
@@ -936,8 +941,9 @@ class MolecularSequenceVariant extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MolecularSequenceVariant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MolecularSequenceVariant '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MolecularSequenceVariant]
@@ -1109,7 +1115,8 @@ class MolecularSequenceVariant extends BackboneElement {
 /// feature in a quantitative way, such as a phred quality score
 /// ([SO:0001686](http://www.sequenceontology.org/browser/current_svn/term/SO:0001686)).
 class MolecularSequenceQuality extends BackboneElement {
-  /// Primary constructor for [MolecularSequenceQuality]
+  /// Primary constructor for
+  /// [MolecularSequenceQuality]
 
   MolecularSequenceQuality({
     super.id,
@@ -1253,8 +1260,8 @@ class MolecularSequenceQuality extends BackboneElement {
     );
   }
 
-  /// Deserialize [MolecularSequenceQuality] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MolecularSequenceQuality]
+  /// from a [String] or [YamlMap] object
   factory MolecularSequenceQuality.fromYaml(
     dynamic yaml,
   ) =>
@@ -1267,8 +1274,9 @@ class MolecularSequenceQuality extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MolecularSequenceQuality cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MolecularSequenceQuality '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MolecularSequenceQuality]
@@ -1550,7 +1558,8 @@ class MolecularSequenceQuality extends BackboneElement {
 /// Receiver Operator Characteristic (ROC) Curve to give
 /// sensitivity/specificity tradeoff.
 class MolecularSequenceRoc extends BackboneElement {
-  /// Primary constructor for [MolecularSequenceRoc]
+  /// Primary constructor for
+  /// [MolecularSequenceRoc]
 
   MolecularSequenceRoc({
     super.id,
@@ -1637,8 +1646,8 @@ class MolecularSequenceRoc extends BackboneElement {
     );
   }
 
-  /// Deserialize [MolecularSequenceRoc] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MolecularSequenceRoc]
+  /// from a [String] or [YamlMap] object
   factory MolecularSequenceRoc.fromYaml(
     dynamic yaml,
   ) =>
@@ -1651,8 +1660,9 @@ class MolecularSequenceRoc extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MolecularSequenceRoc cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MolecularSequenceRoc '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MolecularSequenceRoc]
@@ -1829,7 +1839,8 @@ class MolecularSequenceRoc extends BackboneElement {
 /// Configurations of the external repository. The repository shall store
 /// target's observedSeq or records related with target's observedSeq.
 class MolecularSequenceRepository extends BackboneElement {
-  /// Primary constructor for [MolecularSequenceRepository]
+  /// Primary constructor for
+  /// [MolecularSequenceRepository]
 
   MolecularSequenceRepository({
     super.id,
@@ -1914,8 +1925,8 @@ class MolecularSequenceRepository extends BackboneElement {
     );
   }
 
-  /// Deserialize [MolecularSequenceRepository] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MolecularSequenceRepository]
+  /// from a [String] or [YamlMap] object
   factory MolecularSequenceRepository.fromYaml(
     dynamic yaml,
   ) =>
@@ -1928,8 +1939,9 @@ class MolecularSequenceRepository extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MolecularSequenceRepository cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MolecularSequenceRepository '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MolecularSequenceRepository]
@@ -2085,7 +2097,8 @@ class MolecularSequenceRepository extends BackboneElement {
 /// [MolecularSequenceStructureVariant]
 /// Information about chromosome structure variation.
 class MolecularSequenceStructureVariant extends BackboneElement {
-  /// Primary constructor for [MolecularSequenceStructureVariant]
+  /// Primary constructor for
+  /// [MolecularSequenceStructureVariant]
 
   MolecularSequenceStructureVariant({
     super.id,
@@ -2162,8 +2175,8 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     );
   }
 
-  /// Deserialize [MolecularSequenceStructureVariant] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MolecularSequenceStructureVariant]
+  /// from a [String] or [YamlMap] object
   factory MolecularSequenceStructureVariant.fromYaml(
     dynamic yaml,
   ) =>
@@ -2176,8 +2189,9 @@ class MolecularSequenceStructureVariant extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MolecularSequenceStructureVariant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MolecularSequenceStructureVariant '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MolecularSequenceStructureVariant]
@@ -2307,7 +2321,8 @@ class MolecularSequenceStructureVariant extends BackboneElement {
 /// [MolecularSequenceOuter]
 /// Structural variant outer.
 class MolecularSequenceOuter extends BackboneElement {
-  /// Primary constructor for [MolecularSequenceOuter]
+  /// Primary constructor for
+  /// [MolecularSequenceOuter]
 
   MolecularSequenceOuter({
     super.id,
@@ -2366,8 +2381,8 @@ class MolecularSequenceOuter extends BackboneElement {
     );
   }
 
-  /// Deserialize [MolecularSequenceOuter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MolecularSequenceOuter]
+  /// from a [String] or [YamlMap] object
   factory MolecularSequenceOuter.fromYaml(
     dynamic yaml,
   ) =>
@@ -2380,8 +2395,9 @@ class MolecularSequenceOuter extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MolecularSequenceOuter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MolecularSequenceOuter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MolecularSequenceOuter]
@@ -2484,7 +2500,8 @@ class MolecularSequenceOuter extends BackboneElement {
 /// [MolecularSequenceInner]
 /// Structural variant inner.
 class MolecularSequenceInner extends BackboneElement {
-  /// Primary constructor for [MolecularSequenceInner]
+  /// Primary constructor for
+  /// [MolecularSequenceInner]
 
   MolecularSequenceInner({
     super.id,
@@ -2543,8 +2560,8 @@ class MolecularSequenceInner extends BackboneElement {
     );
   }
 
-  /// Deserialize [MolecularSequenceInner] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MolecularSequenceInner]
+  /// from a [String] or [YamlMap] object
   factory MolecularSequenceInner.fromYaml(
     dynamic yaml,
   ) =>
@@ -2557,8 +2574,9 @@ class MolecularSequenceInner extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MolecularSequenceInner cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MolecularSequenceInner '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MolecularSequenceInner]

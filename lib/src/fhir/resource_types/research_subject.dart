@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A physical entity which is the primary unit of operational and/or
 /// administrative interest in a study.
 class ResearchSubject extends DomainResource {
-  /// Primary constructor for [ResearchSubject]
+  /// Primary constructor for
+  /// [ResearchSubject]
 
   ResearchSubject({
     super.id,
@@ -138,8 +139,8 @@ class ResearchSubject extends DomainResource {
     );
   }
 
-  /// Deserialize [ResearchSubject] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ResearchSubject]
+  /// from a [String] or [YamlMap] object
   factory ResearchSubject.fromYaml(
     dynamic yaml,
   ) =>
@@ -152,8 +153,9 @@ class ResearchSubject extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ResearchSubject cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ResearchSubject '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ResearchSubject]

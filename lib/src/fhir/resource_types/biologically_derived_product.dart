@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// be transplanted or infused
 /// into another (possibly the same) biological entity.
 class BiologicallyDerivedProduct extends DomainResource {
-  /// Primary constructor for [BiologicallyDerivedProduct]
+  /// Primary constructor for
+  /// [BiologicallyDerivedProduct]
 
   BiologicallyDerivedProduct({
     super.id,
@@ -179,8 +180,8 @@ class BiologicallyDerivedProduct extends DomainResource {
     );
   }
 
-  /// Deserialize [BiologicallyDerivedProduct] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [BiologicallyDerivedProduct]
+  /// from a [String] or [YamlMap] object
   factory BiologicallyDerivedProduct.fromYaml(
     dynamic yaml,
   ) =>
@@ -193,8 +194,9 @@ class BiologicallyDerivedProduct extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'BiologicallyDerivedProduct cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'BiologicallyDerivedProduct '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [BiologicallyDerivedProduct]
@@ -423,7 +425,8 @@ class BiologicallyDerivedProduct extends DomainResource {
 /// [BiologicallyDerivedProductCollection]
 /// How this product was collected.
 class BiologicallyDerivedProductCollection extends BackboneElement {
-  /// Primary constructor for [BiologicallyDerivedProductCollection]
+  /// Primary constructor for
+  /// [BiologicallyDerivedProductCollection]
 
   BiologicallyDerivedProductCollection({
     super.id,
@@ -493,8 +496,8 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     );
   }
 
-  /// Deserialize [BiologicallyDerivedProductCollection] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [BiologicallyDerivedProductCollection]
+  /// from a [String] or [YamlMap] object
   factory BiologicallyDerivedProductCollection.fromYaml(
     dynamic yaml,
   ) =>
@@ -507,8 +510,9 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'BiologicallyDerivedProductCollection cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'BiologicallyDerivedProductCollection '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [BiologicallyDerivedProductCollection]
@@ -626,7 +630,8 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
 /// the fundamental nature of the product. For example adding
 /// anti-coagulants during the collection of Peripheral Blood Stem Cells.
 class BiologicallyDerivedProductProcessing extends BackboneElement {
-  /// Primary constructor for [BiologicallyDerivedProductProcessing]
+  /// Primary constructor for
+  /// [BiologicallyDerivedProductProcessing]
 
   BiologicallyDerivedProductProcessing({
     super.id,
@@ -703,8 +708,8 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     );
   }
 
-  /// Deserialize [BiologicallyDerivedProductProcessing] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [BiologicallyDerivedProductProcessing]
+  /// from a [String] or [YamlMap] object
   factory BiologicallyDerivedProductProcessing.fromYaml(
     dynamic yaml,
   ) =>
@@ -717,8 +722,9 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'BiologicallyDerivedProductProcessing cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'BiologicallyDerivedProductProcessing '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [BiologicallyDerivedProductProcessing]
@@ -849,7 +855,8 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
 /// the product. For example a buffy-coat enrichment or CD8 reduction of
 /// Peripheral Blood Stem Cells to make it more suitable for infusion.
 class BiologicallyDerivedProductManipulation extends BackboneElement {
-  /// Primary constructor for [BiologicallyDerivedProductManipulation]
+  /// Primary constructor for
+  /// [BiologicallyDerivedProductManipulation]
 
   BiologicallyDerivedProductManipulation({
     super.id,
@@ -914,8 +921,8 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     );
   }
 
-  /// Deserialize [BiologicallyDerivedProductManipulation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [BiologicallyDerivedProductManipulation]
+  /// from a [String] or [YamlMap] object
   factory BiologicallyDerivedProductManipulation.fromYaml(
     dynamic yaml,
   ) =>
@@ -928,8 +935,9 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'BiologicallyDerivedProductManipulation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'BiologicallyDerivedProductManipulation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [BiologicallyDerivedProductManipulation]
@@ -1038,7 +1046,8 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
 /// [BiologicallyDerivedProductStorage]
 /// Product storage.
 class BiologicallyDerivedProductStorage extends BackboneElement {
-  /// Primary constructor for [BiologicallyDerivedProductStorage]
+  /// Primary constructor for
+  /// [BiologicallyDerivedProductStorage]
 
   BiologicallyDerivedProductStorage({
     super.id,
@@ -1110,8 +1119,8 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     );
   }
 
-  /// Deserialize [BiologicallyDerivedProductStorage] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [BiologicallyDerivedProductStorage]
+  /// from a [String] or [YamlMap] object
   factory BiologicallyDerivedProductStorage.fromYaml(
     dynamic yaml,
   ) =>
@@ -1124,8 +1133,9 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'BiologicallyDerivedProductStorage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'BiologicallyDerivedProductStorage '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [BiologicallyDerivedProductStorage]

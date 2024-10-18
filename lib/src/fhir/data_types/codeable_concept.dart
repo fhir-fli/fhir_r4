@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A concept that may be defined by a formal reference to a terminology or
 /// ontology or may be provided by text.
 class CodeableConcept extends DataType {
-  /// Primary constructor for [CodeableConcept]
+  /// Primary constructor for
+  /// [CodeableConcept]
 
   CodeableConcept({
     super.id,
@@ -58,8 +59,8 @@ class CodeableConcept extends DataType {
     );
   }
 
-  /// Deserialize [CodeableConcept] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CodeableConcept]
+  /// from a [String] or [YamlMap] object
   factory CodeableConcept.fromYaml(
     dynamic yaml,
   ) =>
@@ -72,8 +73,9 @@ class CodeableConcept extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CodeableConcept cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CodeableConcept '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CodeableConcept]

@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// Includes companies, institutions, corporations, departments, community
 /// groups, healthcare practice groups, payer/insurer, etc.
 class Organization extends DomainResource {
-  /// Primary constructor for [Organization]
+  /// Primary constructor for
+  /// [Organization]
 
   Organization({
     super.id,
@@ -177,8 +178,8 @@ class Organization extends DomainResource {
     );
   }
 
-  /// Deserialize [Organization] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Organization]
+  /// from a [String] or [YamlMap] object
   factory Organization.fromYaml(
     dynamic yaml,
   ) =>
@@ -191,8 +192,9 @@ class Organization extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Organization cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Organization '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Organization]
@@ -413,7 +415,8 @@ class Organization extends DomainResource {
 /// [OrganizationContact]
 /// Contact for the organization for a certain purpose.
 class OrganizationContact extends BackboneElement {
-  /// Primary constructor for [OrganizationContact]
+  /// Primary constructor for
+  /// [OrganizationContact]
 
   OrganizationContact({
     super.id,
@@ -486,8 +489,8 @@ class OrganizationContact extends BackboneElement {
     );
   }
 
-  /// Deserialize [OrganizationContact] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [OrganizationContact]
+  /// from a [String] or [YamlMap] object
   factory OrganizationContact.fromYaml(
     dynamic yaml,
   ) =>
@@ -500,8 +503,9 @@ class OrganizationContact extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'OrganizationContact cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'OrganizationContact '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [OrganizationContact]

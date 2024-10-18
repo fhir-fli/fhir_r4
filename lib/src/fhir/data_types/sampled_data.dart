@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A series of measurements taken by a device, with upper and lower
 /// limits. There may be more than one dimension in the data.
 class SampledData extends DataType {
-  /// Primary constructor for [SampledData]
+  /// Primary constructor for
+  /// [SampledData]
 
   SampledData({
     super.id,
@@ -83,8 +84,8 @@ class SampledData extends DataType {
     );
   }
 
-  /// Deserialize [SampledData] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SampledData]
+  /// from a [String] or [YamlMap] object
   factory SampledData.fromYaml(
     dynamic yaml,
   ) =>
@@ -97,8 +98,9 @@ class SampledData extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SampledData cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SampledData '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SampledData]

@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// actually put on the market or the date as of which it is no longer
 /// available.
 class MarketingStatus extends BackboneType {
-  /// Primary constructor for [MarketingStatus]
+  /// Primary constructor for
+  /// [MarketingStatus]
 
   MarketingStatus({
     super.id,
@@ -81,8 +82,8 @@ class MarketingStatus extends BackboneType {
     );
   }
 
-  /// Deserialize [MarketingStatus] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MarketingStatus]
+  /// from a [String] or [YamlMap] object
   factory MarketingStatus.fromYaml(
     dynamic yaml,
   ) =>
@@ -95,8 +96,9 @@ class MarketingStatus extends BackboneType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MarketingStatus cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MarketingStatus '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MarketingStatus]

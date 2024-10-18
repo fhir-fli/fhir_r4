@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// an undesirable effect for a medicinal product, medication, device or
 /// procedure.
 class ClinicalUseDefinition extends DomainResource {
-  /// Primary constructor for [ClinicalUseDefinition]
+  /// Primary constructor for
+  /// [ClinicalUseDefinition]
 
   ClinicalUseDefinition({
     super.id,
@@ -171,8 +172,8 @@ class ClinicalUseDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinition]
+  /// from a [String] or [YamlMap] object
   factory ClinicalUseDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -185,8 +186,9 @@ class ClinicalUseDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClinicalUseDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClinicalUseDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClinicalUseDefinition]
@@ -407,7 +409,8 @@ class ClinicalUseDefinition extends DomainResource {
 /// [ClinicalUseDefinitionContraindication]
 /// Specifics for when this is a contraindication.
 class ClinicalUseDefinitionContraindication extends BackboneElement {
-  /// Primary constructor for [ClinicalUseDefinitionContraindication]
+  /// Primary constructor for
+  /// [ClinicalUseDefinitionContraindication]
 
   ClinicalUseDefinitionContraindication({
     super.id,
@@ -494,8 +497,8 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinitionContraindication] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinitionContraindication]
+  /// from a [String] or [YamlMap] object
   factory ClinicalUseDefinitionContraindication.fromYaml(
     dynamic yaml,
   ) =>
@@ -508,8 +511,9 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClinicalUseDefinitionContraindication cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClinicalUseDefinitionContraindication '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClinicalUseDefinitionContraindication]
@@ -635,7 +639,8 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
 /// Information about the use of the medicinal product in relation to other
 /// therapies described as part of the contraindication.
 class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
-  /// Primary constructor for [ClinicalUseDefinitionOtherTherapy]
+  /// Primary constructor for
+  /// [ClinicalUseDefinitionOtherTherapy]
 
   ClinicalUseDefinitionOtherTherapy({
     super.id,
@@ -688,8 +693,8 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinitionOtherTherapy] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinitionOtherTherapy]
+  /// from a [String] or [YamlMap] object
   factory ClinicalUseDefinitionOtherTherapy.fromYaml(
     dynamic yaml,
   ) =>
@@ -702,8 +707,9 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClinicalUseDefinitionOtherTherapy cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClinicalUseDefinitionOtherTherapy '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClinicalUseDefinitionOtherTherapy]
@@ -792,7 +798,8 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
 /// [ClinicalUseDefinitionIndication]
 /// Specifics for when this is an indication.
 class ClinicalUseDefinitionIndication extends BackboneElement {
-  /// Primary constructor for [ClinicalUseDefinitionIndication]
+  /// Primary constructor for
+  /// [ClinicalUseDefinitionIndication]
 
   ClinicalUseDefinitionIndication({
     super.id,
@@ -888,8 +895,8 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinitionIndication] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinitionIndication]
+  /// from a [String] or [YamlMap] object
   factory ClinicalUseDefinitionIndication.fromYaml(
     dynamic yaml,
   ) =>
@@ -902,8 +909,9 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClinicalUseDefinitionIndication cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClinicalUseDefinitionIndication '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClinicalUseDefinitionIndication]
@@ -1059,7 +1067,8 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
 /// [ClinicalUseDefinitionInteraction]
 /// Specifics for when this is an interaction.
 class ClinicalUseDefinitionInteraction extends BackboneElement {
-  /// Primary constructor for [ClinicalUseDefinitionInteraction]
+  /// Primary constructor for
+  /// [ClinicalUseDefinitionInteraction]
 
   ClinicalUseDefinitionInteraction({
     super.id,
@@ -1142,8 +1151,8 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinitionInteraction] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinitionInteraction]
+  /// from a [String] or [YamlMap] object
   factory ClinicalUseDefinitionInteraction.fromYaml(
     dynamic yaml,
   ) =>
@@ -1156,8 +1165,9 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClinicalUseDefinitionInteraction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClinicalUseDefinitionInteraction '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClinicalUseDefinitionInteraction]
@@ -1282,7 +1292,8 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
 /// The specific medication, food, substance or laboratory test that
 /// interacts.
 class ClinicalUseDefinitionInteractant extends BackboneElement {
-  /// Primary constructor for [ClinicalUseDefinitionInteractant]
+  /// Primary constructor for
+  /// [ClinicalUseDefinitionInteractant]
 
   ClinicalUseDefinitionInteractant({
     super.id,
@@ -1339,8 +1350,8 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinitionInteractant] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinitionInteractant]
+  /// from a [String] or [YamlMap] object
   factory ClinicalUseDefinitionInteractant.fromYaml(
     dynamic yaml,
   ) =>
@@ -1353,8 +1364,9 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClinicalUseDefinitionInteractant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClinicalUseDefinitionInteractant '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClinicalUseDefinitionInteractant]
@@ -1446,7 +1458,8 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
 /// Describe the possible undesirable effects (negative outcomes) from the
 /// use of the medicinal product as treatment.
 class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
-  /// Primary constructor for [ClinicalUseDefinitionUndesirableEffect]
+  /// Primary constructor for
+  /// [ClinicalUseDefinitionUndesirableEffect]
 
   ClinicalUseDefinitionUndesirableEffect({
     super.id,
@@ -1509,8 +1522,8 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinitionUndesirableEffect] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinitionUndesirableEffect]
+  /// from a [String] or [YamlMap] object
   factory ClinicalUseDefinitionUndesirableEffect.fromYaml(
     dynamic yaml,
   ) =>
@@ -1523,8 +1536,9 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClinicalUseDefinitionUndesirableEffect cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClinicalUseDefinitionUndesirableEffect '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClinicalUseDefinitionUndesirableEffect]
@@ -1630,7 +1644,8 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
 /// operate heavy machinery', 'May cause drowsiness', or 'Get medical
 /// advice/attention if you feel unwell'.
 class ClinicalUseDefinitionWarning extends BackboneElement {
-  /// Primary constructor for [ClinicalUseDefinitionWarning]
+  /// Primary constructor for
+  /// [ClinicalUseDefinitionWarning]
 
   ClinicalUseDefinitionWarning({
     super.id,
@@ -1688,8 +1703,8 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinitionWarning] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinitionWarning]
+  /// from a [String] or [YamlMap] object
   factory ClinicalUseDefinitionWarning.fromYaml(
     dynamic yaml,
   ) =>
@@ -1702,8 +1717,9 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClinicalUseDefinitionWarning cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClinicalUseDefinitionWarning '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClinicalUseDefinitionWarning]

@@ -9,7 +9,8 @@ import 'package:yaml/yaml.dart';
 /// practices such as versioning, expressing complex contributorship roles,
 /// and referencing computable resources.
 class Citation extends DomainResource {
-  /// Primary constructor for [Citation]
+  /// Primary constructor for
+  /// [Citation]
 
   Citation({
     super.id,
@@ -333,8 +334,8 @@ class Citation extends DomainResource {
     );
   }
 
-  /// Deserialize [Citation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Citation]
+  /// from a [String] or [YamlMap] object
   factory Citation.fromYaml(
     dynamic yaml,
   ) =>
@@ -347,8 +348,9 @@ class Citation extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Citation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Citation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Citation]
@@ -825,7 +827,8 @@ class Citation extends DomainResource {
 /// [CitationSummary]
 /// A human-readable display of the citation.
 class CitationSummary extends BackboneElement {
-  /// Primary constructor for [CitationSummary]
+  /// Primary constructor for
+  /// [CitationSummary]
 
   CitationSummary({
     super.id,
@@ -881,8 +884,8 @@ class CitationSummary extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationSummary] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationSummary]
+  /// from a [String] or [YamlMap] object
   factory CitationSummary.fromYaml(
     dynamic yaml,
   ) =>
@@ -895,8 +898,9 @@ class CitationSummary extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationSummary cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationSummary '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationSummary]
@@ -989,7 +993,8 @@ class CitationSummary extends BackboneElement {
 /// [CitationClassification]
 /// The assignment to an organizing scheme.
 class CitationClassification extends BackboneElement {
-  /// Primary constructor for [CitationClassification]
+  /// Primary constructor for
+  /// [CitationClassification]
 
   CitationClassification({
     super.id,
@@ -1050,8 +1055,8 @@ class CitationClassification extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationClassification] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationClassification]
+  /// from a [String] or [YamlMap] object
   factory CitationClassification.fromYaml(
     dynamic yaml,
   ) =>
@@ -1064,8 +1069,9 @@ class CitationClassification extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationClassification cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationClassification '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationClassification]
@@ -1156,7 +1162,8 @@ class CitationClassification extends BackboneElement {
 /// [CitationStatusDate]
 /// An effective date or period for a status of the citation.
 class CitationStatusDate extends BackboneElement {
-  /// Primary constructor for [CitationStatusDate]
+  /// Primary constructor for
+  /// [CitationStatusDate]
 
   CitationStatusDate({
     super.id,
@@ -1216,8 +1223,8 @@ class CitationStatusDate extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationStatusDate] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationStatusDate]
+  /// from a [String] or [YamlMap] object
   factory CitationStatusDate.fromYaml(
     dynamic yaml,
   ) =>
@@ -1230,8 +1237,9 @@ class CitationStatusDate extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationStatusDate cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationStatusDate '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationStatusDate]
@@ -1332,7 +1340,8 @@ class CitationStatusDate extends BackboneElement {
 /// [CitationRelatesTo]
 /// Artifact related to the Citation Resource.
 class CitationRelatesTo extends BackboneElement {
-  /// Primary constructor for [CitationRelatesTo]
+  /// Primary constructor for
+  /// [CitationRelatesTo]
 
   CitationRelatesTo({
     super.id,
@@ -1416,8 +1425,8 @@ class CitationRelatesTo extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationRelatesTo] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationRelatesTo]
+  /// from a [String] or [YamlMap] object
   factory CitationRelatesTo.fromYaml(
     dynamic yaml,
   ) =>
@@ -1430,8 +1439,9 @@ class CitationRelatesTo extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationRelatesTo cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationRelatesTo '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationRelatesTo]
@@ -1565,7 +1575,8 @@ class CitationRelatesTo extends BackboneElement {
 /// [CitationCitedArtifact]
 /// The article or artifact being described.
 class CitationCitedArtifact extends BackboneElement {
-  /// Primary constructor for [CitationCitedArtifact]
+  /// Primary constructor for
+  /// [CitationCitedArtifact]
 
   CitationCitedArtifact({
     super.id,
@@ -1745,8 +1756,8 @@ class CitationCitedArtifact extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationCitedArtifact] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationCitedArtifact]
+  /// from a [String] or [YamlMap] object
   factory CitationCitedArtifact.fromYaml(
     dynamic yaml,
   ) =>
@@ -1759,8 +1770,9 @@ class CitationCitedArtifact extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationCitedArtifact cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationCitedArtifact '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationCitedArtifact]
@@ -1992,7 +2004,8 @@ class CitationCitedArtifact extends BackboneElement {
 /// [CitationVersion]
 /// The defined version of the cited artifact.
 class CitationVersion extends BackboneElement {
-  /// Primary constructor for [CitationVersion]
+  /// Primary constructor for
+  /// [CitationVersion]
 
   CitationVersion({
     super.id,
@@ -2048,8 +2061,8 @@ class CitationVersion extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationVersion] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationVersion]
+  /// from a [String] or [YamlMap] object
   factory CitationVersion.fromYaml(
     dynamic yaml,
   ) =>
@@ -2062,8 +2075,9 @@ class CitationVersion extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationVersion cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationVersion '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationVersion]
@@ -2156,7 +2170,8 @@ class CitationVersion extends BackboneElement {
 /// [CitationStatusDate1]
 /// An effective date or period for a status of the cited artifact.
 class CitationStatusDate1 extends BackboneElement {
-  /// Primary constructor for [CitationStatusDate1]
+  /// Primary constructor for
+  /// [CitationStatusDate1]
 
   CitationStatusDate1({
     super.id,
@@ -2216,8 +2231,8 @@ class CitationStatusDate1 extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationStatusDate1] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationStatusDate1]
+  /// from a [String] or [YamlMap] object
   factory CitationStatusDate1.fromYaml(
     dynamic yaml,
   ) =>
@@ -2230,8 +2245,9 @@ class CitationStatusDate1 extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationStatusDate1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationStatusDate1 '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationStatusDate1]
@@ -2332,7 +2348,8 @@ class CitationStatusDate1 extends BackboneElement {
 /// [CitationTitle]
 /// The title details of the article or artifact.
 class CitationTitle extends BackboneElement {
-  /// Primary constructor for [CitationTitle]
+  /// Primary constructor for
+  /// [CitationTitle]
 
   CitationTitle({
     super.id,
@@ -2398,8 +2415,8 @@ class CitationTitle extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationTitle] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationTitle]
+  /// from a [String] or [YamlMap] object
   factory CitationTitle.fromYaml(
     dynamic yaml,
   ) =>
@@ -2412,8 +2429,9 @@ class CitationTitle extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationTitle cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationTitle '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationTitle]
@@ -2516,7 +2534,8 @@ class CitationTitle extends BackboneElement {
 /// [CitationAbstract]
 /// Summary of the article or artifact.
 class CitationAbstract extends BackboneElement {
-  /// Primary constructor for [CitationAbstract]
+  /// Primary constructor for
+  /// [CitationAbstract]
 
   CitationAbstract({
     super.id,
@@ -2585,8 +2604,8 @@ class CitationAbstract extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationAbstract] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationAbstract]
+  /// from a [String] or [YamlMap] object
   factory CitationAbstract.fromYaml(
     dynamic yaml,
   ) =>
@@ -2599,8 +2618,9 @@ class CitationAbstract extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationAbstract cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationAbstract '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationAbstract]
@@ -2717,7 +2737,8 @@ class CitationAbstract extends BackboneElement {
 /// [CitationPart]
 /// The component of the article or artifact.
 class CitationPart extends BackboneElement {
-  /// Primary constructor for [CitationPart]
+  /// Primary constructor for
+  /// [CitationPart]
 
   CitationPart({
     super.id,
@@ -2781,8 +2802,8 @@ class CitationPart extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationPart] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationPart]
+  /// from a [String] or [YamlMap] object
   factory CitationPart.fromYaml(
     dynamic yaml,
   ) =>
@@ -2795,8 +2816,9 @@ class CitationPart extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationPart cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationPart '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationPart]
@@ -2901,7 +2923,8 @@ class CitationPart extends BackboneElement {
 /// [CitationRelatesTo1]
 /// The artifact related to the cited artifact.
 class CitationRelatesTo1 extends BackboneElement {
-  /// Primary constructor for [CitationRelatesTo1]
+  /// Primary constructor for
+  /// [CitationRelatesTo1]
 
   CitationRelatesTo1({
     super.id,
@@ -2985,8 +3008,8 @@ class CitationRelatesTo1 extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationRelatesTo1] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationRelatesTo1]
+  /// from a [String] or [YamlMap] object
   factory CitationRelatesTo1.fromYaml(
     dynamic yaml,
   ) =>
@@ -2999,8 +3022,9 @@ class CitationRelatesTo1 extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationRelatesTo1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationRelatesTo1 '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationRelatesTo1]
@@ -3135,7 +3159,8 @@ class CitationRelatesTo1 extends BackboneElement {
 /// If multiple, used to represent alternative forms of the article that
 /// are not separate citations.
 class CitationPublicationForm extends BackboneElement {
-  /// Primary constructor for [CitationPublicationForm]
+  /// Primary constructor for
+  /// [CitationPublicationForm]
 
   CitationPublicationForm({
     super.id,
@@ -3258,8 +3283,8 @@ class CitationPublicationForm extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationPublicationForm] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationPublicationForm]
+  /// from a [String] or [YamlMap] object
   factory CitationPublicationForm.fromYaml(
     dynamic yaml,
   ) =>
@@ -3272,8 +3297,9 @@ class CitationPublicationForm extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationPublicationForm cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationPublicationForm '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationPublicationForm]
@@ -3488,7 +3514,8 @@ class CitationPublicationForm extends BackboneElement {
 /// [CitationPublishedIn]
 /// The collection the cited article or artifact is published in.
 class CitationPublishedIn extends BackboneElement {
-  /// Primary constructor for [CitationPublishedIn]
+  /// Primary constructor for
+  /// [CitationPublishedIn]
 
   CitationPublishedIn({
     super.id,
@@ -3569,8 +3596,8 @@ class CitationPublishedIn extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationPublishedIn] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationPublishedIn]
+  /// from a [String] or [YamlMap] object
   factory CitationPublishedIn.fromYaml(
     dynamic yaml,
   ) =>
@@ -3583,8 +3610,9 @@ class CitationPublishedIn extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationPublishedIn cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationPublishedIn '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationPublishedIn]
@@ -3714,7 +3742,8 @@ class CitationPublishedIn extends BackboneElement {
 /// [CitationPeriodicRelease]
 /// The specific issue in which the cited article resides.
 class CitationPeriodicRelease extends BackboneElement {
-  /// Primary constructor for [CitationPeriodicRelease]
+  /// Primary constructor for
+  /// [CitationPeriodicRelease]
 
   CitationPeriodicRelease({
     super.id,
@@ -3785,8 +3814,8 @@ class CitationPeriodicRelease extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationPeriodicRelease] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationPeriodicRelease]
+  /// from a [String] or [YamlMap] object
   factory CitationPeriodicRelease.fromYaml(
     dynamic yaml,
   ) =>
@@ -3799,8 +3828,9 @@ class CitationPeriodicRelease extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationPeriodicRelease cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationPeriodicRelease '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationPeriodicRelease]
@@ -3920,7 +3950,8 @@ class CitationPeriodicRelease extends BackboneElement {
 /// [CitationDateOfPublication]
 /// Defining the date on which the issue of the journal was published.
 class CitationDateOfPublication extends BackboneElement {
-  /// Primary constructor for [CitationDateOfPublication]
+  /// Primary constructor for
+  /// [CitationDateOfPublication]
 
   CitationDateOfPublication({
     super.id,
@@ -4007,8 +4038,8 @@ class CitationDateOfPublication extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationDateOfPublication] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationDateOfPublication]
+  /// from a [String] or [YamlMap] object
   factory CitationDateOfPublication.fromYaml(
     dynamic yaml,
   ) =>
@@ -4021,8 +4052,9 @@ class CitationDateOfPublication extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationDateOfPublication cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationDateOfPublication '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationDateOfPublication]
@@ -4178,7 +4210,8 @@ class CitationDateOfPublication extends BackboneElement {
 /// [CitationWebLocation]
 /// Used for any URL for the article or artifact cited.
 class CitationWebLocation extends BackboneElement {
-  /// Primary constructor for [CitationWebLocation]
+  /// Primary constructor for
+  /// [CitationWebLocation]
 
   CitationWebLocation({
     super.id,
@@ -4236,8 +4269,8 @@ class CitationWebLocation extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationWebLocation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationWebLocation]
+  /// from a [String] or [YamlMap] object
   factory CitationWebLocation.fromYaml(
     dynamic yaml,
   ) =>
@@ -4250,8 +4283,9 @@ class CitationWebLocation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationWebLocation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationWebLocation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationWebLocation]
@@ -4346,7 +4380,8 @@ class CitationWebLocation extends BackboneElement {
 /// [CitationClassification1]
 /// The assignment to an organizing scheme.
 class CitationClassification1 extends BackboneElement {
-  /// Primary constructor for [CitationClassification1]
+  /// Primary constructor for
+  /// [CitationClassification1]
 
   CitationClassification1({
     super.id,
@@ -4413,8 +4448,8 @@ class CitationClassification1 extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationClassification1] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationClassification1]
+  /// from a [String] or [YamlMap] object
   factory CitationClassification1.fromYaml(
     dynamic yaml,
   ) =>
@@ -4427,8 +4462,9 @@ class CitationClassification1 extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationClassification1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationClassification1 '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationClassification1]
@@ -4529,7 +4565,8 @@ class CitationClassification1 extends BackboneElement {
 /// [CitationWhoClassified]
 /// Provenance and copyright of classification.
 class CitationWhoClassified extends BackboneElement {
-  /// Primary constructor for [CitationWhoClassified]
+  /// Primary constructor for
+  /// [CitationWhoClassified]
 
   CitationWhoClassified({
     super.id,
@@ -4606,8 +4643,8 @@ class CitationWhoClassified extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationWhoClassified] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationWhoClassified]
+  /// from a [String] or [YamlMap] object
   factory CitationWhoClassified.fromYaml(
     dynamic yaml,
   ) =>
@@ -4620,8 +4657,9 @@ class CitationWhoClassified extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationWhoClassified cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationWhoClassified '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationWhoClassified]
@@ -4752,7 +4790,8 @@ class CitationWhoClassified extends BackboneElement {
 /// This element is used to list authors and other contributors, their
 /// contact information, specific contributions, and summary statements.
 class CitationContributorship extends BackboneElement {
-  /// Primary constructor for [CitationContributorship]
+  /// Primary constructor for
+  /// [CitationContributorship]
 
   CitationContributorship({
     super.id,
@@ -4824,8 +4863,8 @@ class CitationContributorship extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationContributorship] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationContributorship]
+  /// from a [String] or [YamlMap] object
   factory CitationContributorship.fromYaml(
     dynamic yaml,
   ) =>
@@ -4838,8 +4877,9 @@ class CitationContributorship extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationContributorship cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationContributorship '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationContributorship]
@@ -4945,7 +4985,8 @@ class CitationContributorship extends BackboneElement {
 /// [CitationEntry]
 /// An individual entity named in the author list or contributor list.
 class CitationEntry extends BackboneElement {
-  /// Primary constructor for [CitationEntry]
+  /// Primary constructor for
+  /// [CitationEntry]
 
   CitationEntry({
     super.id,
@@ -5090,8 +5131,8 @@ class CitationEntry extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationEntry] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationEntry]
+  /// from a [String] or [YamlMap] object
   factory CitationEntry.fromYaml(
     dynamic yaml,
   ) =>
@@ -5104,8 +5145,9 @@ class CitationEntry extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationEntry cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationEntry '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationEntry]
@@ -5317,7 +5359,8 @@ class CitationEntry extends BackboneElement {
 /// [CitationAffiliationInfo]
 /// Organization affiliated with the entity.
 class CitationAffiliationInfo extends BackboneElement {
-  /// Primary constructor for [CitationAffiliationInfo]
+  /// Primary constructor for
+  /// [CitationAffiliationInfo]
 
   CitationAffiliationInfo({
     super.id,
@@ -5386,8 +5429,8 @@ class CitationAffiliationInfo extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationAffiliationInfo] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationAffiliationInfo]
+  /// from a [String] or [YamlMap] object
   factory CitationAffiliationInfo.fromYaml(
     dynamic yaml,
   ) =>
@@ -5400,8 +5443,9 @@ class CitationAffiliationInfo extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationAffiliationInfo cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationAffiliationInfo '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationAffiliationInfo]
@@ -5510,7 +5554,8 @@ class CitationAffiliationInfo extends BackboneElement {
 /// [CitationContributionInstance]
 /// Contributions with accounting for time or number.
 class CitationContributionInstance extends BackboneElement {
-  /// Primary constructor for [CitationContributionInstance]
+  /// Primary constructor for
+  /// [CitationContributionInstance]
 
   CitationContributionInstance({
     super.id,
@@ -5566,8 +5611,8 @@ class CitationContributionInstance extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationContributionInstance] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationContributionInstance]
+  /// from a [String] or [YamlMap] object
   factory CitationContributionInstance.fromYaml(
     dynamic yaml,
   ) =>
@@ -5580,8 +5625,9 @@ class CitationContributionInstance extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationContributionInstance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationContributionInstance '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationContributionInstance]
@@ -5675,7 +5721,8 @@ class CitationContributionInstance extends BackboneElement {
 /// Used to record a display of the author/contributor list without
 /// separate coding for each list member.
 class CitationSummary1 extends BackboneElement {
-  /// Primary constructor for [CitationSummary1]
+  /// Primary constructor for
+  /// [CitationSummary1]
 
   CitationSummary1({
     super.id,
@@ -5743,8 +5790,8 @@ class CitationSummary1 extends BackboneElement {
     );
   }
 
-  /// Deserialize [CitationSummary1] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CitationSummary1]
+  /// from a [String] or [YamlMap] object
   factory CitationSummary1.fromYaml(
     dynamic yaml,
   ) =>
@@ -5757,8 +5804,9 @@ class CitationSummary1 extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CitationSummary1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CitationSummary1 '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CitationSummary1]

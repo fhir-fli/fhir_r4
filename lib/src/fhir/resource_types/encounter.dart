@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// purpose of providing healthcare service(s) or assessing the health
 /// status of a patient.
 class Encounter extends DomainResource {
-  /// Primary constructor for [Encounter]
+  /// Primary constructor for
+  /// [Encounter]
 
   Encounter({
     super.id,
@@ -277,8 +278,8 @@ class Encounter extends DomainResource {
     );
   }
 
-  /// Deserialize [Encounter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Encounter]
+  /// from a [String] or [YamlMap] object
   factory Encounter.fromYaml(
     dynamic yaml,
   ) =>
@@ -291,8 +292,9 @@ class Encounter extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Encounter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Encounter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Encounter]
@@ -657,7 +659,8 @@ class Encounter extends DomainResource {
 /// history without needing to read through the historical versions of the
 /// resource, or even have the server store them.
 class EncounterStatusHistory extends BackboneElement {
-  /// Primary constructor for [EncounterStatusHistory]
+  /// Primary constructor for
+  /// [EncounterStatusHistory]
 
   EncounterStatusHistory({
     super.id,
@@ -711,8 +714,8 @@ class EncounterStatusHistory extends BackboneElement {
     );
   }
 
-  /// Deserialize [EncounterStatusHistory] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EncounterStatusHistory]
+  /// from a [String] or [YamlMap] object
   factory EncounterStatusHistory.fromYaml(
     dynamic yaml,
   ) =>
@@ -725,8 +728,9 @@ class EncounterStatusHistory extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EncounterStatusHistory cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EncounterStatusHistory '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EncounterStatusHistory]
@@ -820,7 +824,8 @@ class EncounterStatusHistory extends BackboneElement {
 /// follow the patient and not require re-processing and not get lost or
 /// cancelled during a kind of discharge from emergency to inpatient.
 class EncounterClassHistory extends BackboneElement {
-  /// Primary constructor for [EncounterClassHistory]
+  /// Primary constructor for
+  /// [EncounterClassHistory]
 
   EncounterClassHistory({
     super.id,
@@ -873,8 +878,8 @@ class EncounterClassHistory extends BackboneElement {
     );
   }
 
-  /// Deserialize [EncounterClassHistory] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EncounterClassHistory]
+  /// from a [String] or [YamlMap] object
   factory EncounterClassHistory.fromYaml(
     dynamic yaml,
   ) =>
@@ -887,8 +892,9 @@ class EncounterClassHistory extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EncounterClassHistory cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EncounterClassHistory '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EncounterClassHistory]
@@ -975,7 +981,8 @@ class EncounterClassHistory extends BackboneElement {
 /// [EncounterParticipant]
 /// The list of people responsible for providing the service.
 class EncounterParticipant extends BackboneElement {
-  /// Primary constructor for [EncounterParticipant]
+  /// Primary constructor for
+  /// [EncounterParticipant]
 
   EncounterParticipant({
     super.id,
@@ -1042,8 +1049,8 @@ class EncounterParticipant extends BackboneElement {
     );
   }
 
-  /// Deserialize [EncounterParticipant] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EncounterParticipant]
+  /// from a [String] or [YamlMap] object
   factory EncounterParticipant.fromYaml(
     dynamic yaml,
   ) =>
@@ -1056,8 +1063,9 @@ class EncounterParticipant extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EncounterParticipant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EncounterParticipant '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EncounterParticipant]
@@ -1160,7 +1168,8 @@ class EncounterParticipant extends BackboneElement {
 /// [EncounterDiagnosis]
 /// The list of diagnosis relevant to this encounter.
 class EncounterDiagnosis extends BackboneElement {
-  /// Primary constructor for [EncounterDiagnosis]
+  /// Primary constructor for
+  /// [EncounterDiagnosis]
 
   EncounterDiagnosis({
     super.id,
@@ -1222,8 +1231,8 @@ class EncounterDiagnosis extends BackboneElement {
     );
   }
 
-  /// Deserialize [EncounterDiagnosis] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EncounterDiagnosis]
+  /// from a [String] or [YamlMap] object
   factory EncounterDiagnosis.fromYaml(
     dynamic yaml,
   ) =>
@@ -1236,8 +1245,9 @@ class EncounterDiagnosis extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EncounterDiagnosis cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EncounterDiagnosis '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EncounterDiagnosis]
@@ -1344,7 +1354,8 @@ class EncounterDiagnosis extends BackboneElement {
 /// [EncounterHospitalization]
 /// Details about the admission to a healthcare service.
 class EncounterHospitalization extends BackboneElement {
-  /// Primary constructor for [EncounterHospitalization]
+  /// Primary constructor for
+  /// [EncounterHospitalization]
 
   EncounterHospitalization({
     super.id,
@@ -1455,8 +1466,8 @@ class EncounterHospitalization extends BackboneElement {
     );
   }
 
-  /// Deserialize [EncounterHospitalization] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EncounterHospitalization]
+  /// from a [String] or [YamlMap] object
   factory EncounterHospitalization.fromYaml(
     dynamic yaml,
   ) =>
@@ -1469,8 +1480,9 @@ class EncounterHospitalization extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EncounterHospitalization cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EncounterHospitalization '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EncounterHospitalization]
@@ -1635,7 +1647,8 @@ class EncounterHospitalization extends BackboneElement {
 /// [EncounterLocation]
 /// List of locations where the patient has been during this encounter.
 class EncounterLocation extends BackboneElement {
-  /// Primary constructor for [EncounterLocation]
+  /// Primary constructor for
+  /// [EncounterLocation]
 
   EncounterLocation({
     super.id,
@@ -1703,8 +1716,8 @@ class EncounterLocation extends BackboneElement {
     );
   }
 
-  /// Deserialize [EncounterLocation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EncounterLocation]
+  /// from a [String] or [YamlMap] object
   factory EncounterLocation.fromYaml(
     dynamic yaml,
   ) =>
@@ -1717,8 +1730,9 @@ class EncounterLocation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EncounterLocation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EncounterLocation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EncounterLocation]

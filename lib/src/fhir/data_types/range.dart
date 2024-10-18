@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [Range]
 /// A set of ordered Quantities defined by a low and high limit.
 class Range extends DataType {
-  /// Primary constructor for [Range]
+  /// Primary constructor for
+  /// [Range]
 
   Range({
     super.id,
@@ -52,8 +53,8 @@ class Range extends DataType {
     );
   }
 
-  /// Deserialize [Range] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Range]
+  /// from a [String] or [YamlMap] object
   factory Range.fromYaml(
     dynamic yaml,
   ) =>
@@ -66,8 +67,9 @@ class Range extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Range cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Range '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Range]

@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [Reference]
 /// A reference from one resource to another.
 class Reference extends DataType {
-  /// Primary constructor for [Reference]
+  /// Primary constructor for
+  /// [Reference]
 
   Reference({
     super.id,
@@ -67,8 +68,8 @@ class Reference extends DataType {
     );
   }
 
-  /// Deserialize [Reference] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Reference]
+  /// from a [String] or [YamlMap] object
   factory Reference.fromYaml(
     dynamic yaml,
   ) =>
@@ -81,8 +82,9 @@ class Reference extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Reference cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Reference '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Reference]

@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [Population]
 /// A populatioof people with some set of grouping criteria.
 class Population extends BackboneType {
-  /// Primary constructor for [Population]
+  /// Primary constructor for
+  /// [Population]
 
   Population({
     super.id,
@@ -80,8 +81,8 @@ class Population extends BackboneType {
     );
   }
 
-  /// Deserialize [Population] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Population]
+  /// from a [String] or [YamlMap] object
   factory Population.fromYaml(
     dynamic yaml,
   ) =>
@@ -94,8 +95,9 @@ class Population extends BackboneType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Population cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Population '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Population]

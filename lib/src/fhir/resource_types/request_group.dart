@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// activities that have inter-dependencies such as "give this medication
 /// after that one".
 class RequestGroup extends DomainResource {
-  /// Primary constructor for [RequestGroup]
+  /// Primary constructor for
+  /// [RequestGroup]
 
   RequestGroup({
     super.id,
@@ -226,8 +227,8 @@ class RequestGroup extends DomainResource {
     );
   }
 
-  /// Deserialize [RequestGroup] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [RequestGroup]
+  /// from a [String] or [YamlMap] object
   factory RequestGroup.fromYaml(
     dynamic yaml,
   ) =>
@@ -240,8 +241,9 @@ class RequestGroup extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'RequestGroup cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'RequestGroup '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [RequestGroup]
@@ -553,7 +555,8 @@ class RequestGroup extends DomainResource {
 /// [RequestGroupAction]
 /// The actions, if any, produced by the evaluation of the artifact.
 class RequestGroupAction extends BackboneElement {
-  /// Primary constructor for [RequestGroupAction]
+  /// Primary constructor for
+  /// [RequestGroupAction]
 
   RequestGroupAction({
     super.id,
@@ -777,8 +780,8 @@ class RequestGroupAction extends BackboneElement {
     );
   }
 
-  /// Deserialize [RequestGroupAction] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [RequestGroupAction]
+  /// from a [String] or [YamlMap] object
   factory RequestGroupAction.fromYaml(
     dynamic yaml,
   ) =>
@@ -791,8 +794,9 @@ class RequestGroupAction extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'RequestGroupAction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'RequestGroupAction '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [RequestGroupAction]
@@ -1136,7 +1140,8 @@ class RequestGroupAction extends BackboneElement {
 /// An expression that describes applicability criteria, or start/stop
 /// conditions for the action.
 class RequestGroupCondition extends BackboneElement {
-  /// Primary constructor for [RequestGroupCondition]
+  /// Primary constructor for
+  /// [RequestGroupCondition]
 
   RequestGroupCondition({
     super.id,
@@ -1192,8 +1197,8 @@ class RequestGroupCondition extends BackboneElement {
     );
   }
 
-  /// Deserialize [RequestGroupCondition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [RequestGroupCondition]
+  /// from a [String] or [YamlMap] object
   factory RequestGroupCondition.fromYaml(
     dynamic yaml,
   ) =>
@@ -1206,8 +1211,9 @@ class RequestGroupCondition extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'RequestGroupCondition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'RequestGroupCondition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [RequestGroupCondition]
@@ -1298,7 +1304,8 @@ class RequestGroupCondition extends BackboneElement {
 /// A relationship to another action such as "before" or "30-60 minutes
 /// after start of".
 class RequestGroupRelatedAction extends BackboneElement {
-  /// Primary constructor for [RequestGroupRelatedAction]
+  /// Primary constructor for
+  /// [RequestGroupRelatedAction]
 
   RequestGroupRelatedAction({
     super.id,
@@ -1365,8 +1372,8 @@ class RequestGroupRelatedAction extends BackboneElement {
     );
   }
 
-  /// Deserialize [RequestGroupRelatedAction] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [RequestGroupRelatedAction]
+  /// from a [String] or [YamlMap] object
   factory RequestGroupRelatedAction.fromYaml(
     dynamic yaml,
   ) =>
@@ -1379,8 +1386,9 @@ class RequestGroupRelatedAction extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'RequestGroupRelatedAction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'RequestGroupRelatedAction '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [RequestGroupRelatedAction]

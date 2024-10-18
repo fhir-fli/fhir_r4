@@ -334,6 +334,10 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
 
   /// Constructors and static methods
   static FhirDateTimeBase constructor<T>(dynamic inValue, [Element? element]) {
+    // If inValue is null, return an instance with only the element
+    if (inValue == null) {
+      return _constructor<T>({}, null, true, element);
+    }
     Map<String, num?>? dateTimeMap;
     String? input;
 
@@ -361,8 +365,25 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   ]) {
     /// Determine the type and construct the appropriate FhirDateTimeBase object
     if (T == FhirDateTime) {
+      if (dateTimeMap.isEmpty) {
+        return FhirDateTime.fromBase(
+          year: null,
+          month: null,
+          day: null,
+          hour: null,
+          minute: null,
+          second: null,
+          millisecond: null,
+          microsecond: null,
+          timeZoneOffset: null,
+          isUtc: false,
+          element: element,
+        );
+      } else if (dateTimeMap['year'] == null) {
+        throw ArgumentError('Year is required for FhirDateTime');
+      }
       return FhirDateTime.fromBase(
-        year: dateTimeMap['year']?.toInt(),
+        year: dateTimeMap['year']!.toInt(),
         month: dateTimeMap['month']?.toInt(),
         day: dateTimeMap['day']?.toInt(),
         hour: dateTimeMap['hour']?.toInt(),
@@ -375,8 +396,19 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         element: element,
       );
     } else if (T == FhirDate) {
+      if (dateTimeMap.isEmpty) {
+        return FhirDate.fromBase(
+          year: null,
+          month: null,
+          day: null,
+          isUtc: false,
+          element: element,
+        );
+      } else if (dateTimeMap['year'] == null) {
+        throw ArgumentError('Year is required for FhirDate');
+      }
       return FhirDate.fromBase(
-        year: dateTimeMap['year']!.toInt(),
+        year: dateTimeMap['year']?.toInt(),
         month: dateTimeMap['month']?.toInt(),
         day: dateTimeMap['day']?.toInt(),
         timeZoneOffset: dateTimeMap['timeZoneOffset'],
@@ -384,22 +416,38 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         element: element,
       );
     } else if (T == FhirInstant) {
-      if (dateTimeMap['month'] == null ||
+      if (dateTimeMap.isEmpty) {
+        return FhirInstant.fromBase(
+          year: null,
+          month: null,
+          day: null,
+          hour: null,
+          minute: null,
+          second: null,
+          millisecond: null,
+          microsecond: null,
+          timeZoneOffset: null,
+          isUtc: false,
+          element: element,
+        );
+      } else if (dateTimeMap['year'] == null ||
+          dateTimeMap['month'] == null ||
           dateTimeMap['day'] == null ||
           dateTimeMap['hour'] == null ||
           dateTimeMap['minute'] == null ||
           dateTimeMap['second'] == null) {
         throw ArgumentError(
-          'Month, day, hour, minute, and second are required for FhirInstant',
+          'Year, month, day, hour, minute, and second '
+          'are required for FhirInstant',
         );
       }
       final instant = FhirInstant.fromBase(
         year: dateTimeMap['year']!.toInt(),
-        month: dateTimeMap['month']?.toInt(),
-        day: dateTimeMap['day']?.toInt(),
-        hour: dateTimeMap['hour']?.toInt(),
-        minute: dateTimeMap['minute']?.toInt(),
-        second: dateTimeMap['second']?.toInt(),
+        month: dateTimeMap['month']!.toInt(),
+        day: dateTimeMap['day']!.toInt(),
+        hour: dateTimeMap['hour']!.toInt(),
+        minute: dateTimeMap['minute']!.toInt(),
+        second: dateTimeMap['second']!.toInt(),
         millisecond: dateTimeMap['millisecond']?.toInt(),
         microsecond: dateTimeMap['microsecond']?.toInt(),
         timeZoneOffset: dateTimeMap['timeZoneOffset'] ?? 0,

@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// related person(s) and/or device(s) for a specific date/time. This may
 /// result in one or more Encounter(s).
 class Appointment extends DomainResource {
-  /// Primary constructor for [Appointment]
+  /// Primary constructor for
+  /// [Appointment]
 
   Appointment({
     super.id,
@@ -252,13 +253,15 @@ class Appointment extends DomainResource {
               )
               .toList()
           : null,
-      participant: ensureNonNullList((json['participant'] as List<dynamic>)
-          .map<AppointmentParticipant>(
-            (v) => AppointmentParticipant.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      participant: ensureNonNullList(
+        (json['participant'] as List<dynamic>)
+            .map<AppointmentParticipant>(
+              (v) => AppointmentParticipant.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       requestedPeriod: json['requestedPeriod'] != null
           ? (json['requestedPeriod'] as List<dynamic>)
               .map<Period>(
@@ -271,8 +274,8 @@ class Appointment extends DomainResource {
     );
   }
 
-  /// Deserialize [Appointment] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Appointment]
+  /// from a [String] or [YamlMap] object
   factory Appointment.fromYaml(
     dynamic yaml,
   ) =>
@@ -285,8 +288,9 @@ class Appointment extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Appointment cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Appointment '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Appointment]
@@ -685,7 +689,8 @@ class Appointment extends DomainResource {
 /// [AppointmentParticipant]
 /// List of participants involved in the appointment.
 class AppointmentParticipant extends BackboneElement {
-  /// Primary constructor for [AppointmentParticipant]
+  /// Primary constructor for
+  /// [AppointmentParticipant]
 
   AppointmentParticipant({
     super.id,
@@ -764,8 +769,8 @@ class AppointmentParticipant extends BackboneElement {
     );
   }
 
-  /// Deserialize [AppointmentParticipant] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [AppointmentParticipant]
+  /// from a [String] or [YamlMap] object
   factory AppointmentParticipant.fromYaml(
     dynamic yaml,
   ) =>
@@ -778,8 +783,9 @@ class AppointmentParticipant extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'AppointmentParticipant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'AppointmentParticipant '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [AppointmentParticipant]

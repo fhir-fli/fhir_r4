@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [ContactDetail]
 /// Specifies contact information for a person or organization.
 class ContactDetail extends DataType {
-  /// Primary constructor for [ContactDetail]
+  /// Primary constructor for
+  /// [ContactDetail]
 
   ContactDetail({
     super.id,
@@ -57,8 +58,8 @@ class ContactDetail extends DataType {
     );
   }
 
-  /// Deserialize [ContactDetail] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContactDetail]
+  /// from a [String] or [YamlMap] object
   factory ContactDetail.fromYaml(
     dynamic yaml,
   ) =>
@@ -71,8 +72,9 @@ class ContactDetail extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContactDetail cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContactDetail '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContactDetail]

@@ -22,14 +22,7 @@ class FhirPositiveInt extends FhirNumber {
     final value = json['value'] as num?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-
-    if (value == null) {
-      throw const FormatException(
-        'Invalid input for FhirPositiveInt: value is null',
-      );
-    }
-
-    return FhirPositiveInt(value.toInt(), element);
+    return FhirPositiveInt(value?.toInt(), element);
   }
 
   /// Factory constructor to create [FhirPositiveInt] from YAML input.
@@ -148,13 +141,14 @@ class FhirPositiveInt extends FhirNumber {
     }
     return FhirPositiveInt(
       (newValue ?? value) as int?,
-      element?.copyWith(
-        userData: userData,
-        formatCommentsPre: formatCommentsPre,
-        formatCommentsPost: formatCommentsPost,
-        annotations: annotations,
-        children: children,
-        namedChildren: namedChildren,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
       ),
     );
   }

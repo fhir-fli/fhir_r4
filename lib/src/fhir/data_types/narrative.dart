@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A human-readable summary of the resource conveying the essential
 /// clinical and business information for the resource.
 class Narrative extends DataType {
-  /// Primary constructor for [Narrative]
+  /// Primary constructor for
+  /// [Narrative]
 
   Narrative({
     super.id,
@@ -51,8 +52,8 @@ class Narrative extends DataType {
     );
   }
 
-  /// Deserialize [Narrative] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Narrative]
+  /// from a [String] or [YamlMap] object
   factory Narrative.fromYaml(
     dynamic yaml,
   ) =>
@@ -65,8 +66,9 @@ class Narrative extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Narrative cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Narrative '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Narrative]

@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// This resource provides the details including amount of a payment and
 /// allocates the payment items being paid.
 class PaymentReconciliation extends DomainResource {
-  /// Primary constructor for [PaymentReconciliation]
+  /// Primary constructor for
+  /// [PaymentReconciliation]
 
   PaymentReconciliation({
     super.id,
@@ -188,8 +189,8 @@ class PaymentReconciliation extends DomainResource {
     );
   }
 
-  /// Deserialize [PaymentReconciliation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PaymentReconciliation]
+  /// from a [String] or [YamlMap] object
   factory PaymentReconciliation.fromYaml(
     dynamic yaml,
   ) =>
@@ -202,8 +203,9 @@ class PaymentReconciliation extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PaymentReconciliation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PaymentReconciliation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PaymentReconciliation]
@@ -469,7 +471,8 @@ class PaymentReconciliation extends DomainResource {
 /// Distribution of the payment amount for a previously acknowledged
 /// payable.
 class PaymentReconciliationDetail extends BackboneElement {
-  /// Primary constructor for [PaymentReconciliationDetail]
+  /// Primary constructor for
+  /// [PaymentReconciliationDetail]
 
   PaymentReconciliationDetail({
     super.id,
@@ -573,8 +576,8 @@ class PaymentReconciliationDetail extends BackboneElement {
     );
   }
 
-  /// Deserialize [PaymentReconciliationDetail] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PaymentReconciliationDetail]
+  /// from a [String] or [YamlMap] object
   factory PaymentReconciliationDetail.fromYaml(
     dynamic yaml,
   ) =>
@@ -587,8 +590,9 @@ class PaymentReconciliationDetail extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PaymentReconciliationDetail cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PaymentReconciliationDetail '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PaymentReconciliationDetail]
@@ -767,7 +771,8 @@ class PaymentReconciliationDetail extends BackboneElement {
 /// A note that describes or explains the processing in a human readable
 /// form.
 class PaymentReconciliationProcessNote extends BackboneElement {
-  /// Primary constructor for [PaymentReconciliationProcessNote]
+  /// Primary constructor for
+  /// [PaymentReconciliationProcessNote]
 
   PaymentReconciliationProcessNote({
     super.id,
@@ -826,8 +831,8 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     );
   }
 
-  /// Deserialize [PaymentReconciliationProcessNote] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PaymentReconciliationProcessNote]
+  /// from a [String] or [YamlMap] object
   factory PaymentReconciliationProcessNote.fromYaml(
     dynamic yaml,
   ) =>
@@ -840,8 +845,9 @@ class PaymentReconciliationProcessNote extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PaymentReconciliationProcessNote cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PaymentReconciliationProcessNote '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PaymentReconciliationProcessNote]

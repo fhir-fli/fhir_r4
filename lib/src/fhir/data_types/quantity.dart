@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// quantified, including amounts involving arbitrary units and floating
 /// currencies.
 class Quantity extends DataType {
-  /// Primary constructor for [Quantity]
+  /// Primary constructor for
+  /// [Quantity]
 
   Quantity({
     super.id,
@@ -78,8 +79,8 @@ class Quantity extends DataType {
     );
   }
 
-  /// Deserialize [Quantity] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Quantity]
+  /// from a [String] or [YamlMap] object
   factory Quantity.fromYaml(
     dynamic yaml,
   ) =>
@@ -92,8 +93,9 @@ class Quantity extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Quantity cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Quantity '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Quantity]

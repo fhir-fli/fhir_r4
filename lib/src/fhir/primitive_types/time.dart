@@ -39,17 +39,18 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
 
   /// Factory method to construct [FhirTime] from JSON input. Validates the
   /// input and throws a [FormatException] if the input is not a valid String.
-  factory FhirTime.fromJson(dynamic json) {
-    if (json is String) {
-      return FhirTime(json);
-    } else {
-      throw const FormatException('Invalid input for FhirTime');
-    }
+
+  /// Factory constructor to create from JSON with standardized keys
+  factory FhirTime.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    return FhirTime(value, element);
   }
 
   /// Factory method to construct [FhirTime] from YAML input.
-  factory FhirTime.fromYaml(String yaml) =>
-      FhirTime.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
+  factory FhirTime.fromYaml(String yaml) => FhirTime.fromJson(
+      jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>);
 
   /// Method to attempt parsing the input into a [FhirTime]. Returns [null] if
   /// parsing fails.
@@ -292,13 +293,14 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   }) {
     return FhirTime(
       newValue ?? value,
-      element?.copyWith(
-        userData: userData,
-        formatCommentsPre: formatCommentsPre,
-        formatCommentsPost: formatCommentsPost,
-        annotations: annotations,
-        children: children,
-        namedChildren: namedChildren,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
       ),
     );
   }

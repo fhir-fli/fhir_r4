@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// order, presentation, phraseology and grouping to allow coherent,
 /// consistent data collection.
 class Questionnaire extends DomainResource {
-  /// Primary constructor for [Questionnaire]
+  /// Primary constructor for
+  /// [Questionnaire]
 
   Questionnaire({
     super.id,
@@ -258,8 +259,8 @@ class Questionnaire extends DomainResource {
     );
   }
 
-  /// Deserialize [Questionnaire] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Questionnaire]
+  /// from a [String] or [YamlMap] object
   factory Questionnaire.fromYaml(
     dynamic yaml,
   ) =>
@@ -272,8 +273,9 @@ class Questionnaire extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Questionnaire cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Questionnaire '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Questionnaire]
@@ -695,7 +697,8 @@ class Questionnaire extends DomainResource {
 /// A particular question, question grouping or display text that is part
 /// of the questionnaire.
 class QuestionnaireItem extends BackboneElement {
-  /// Primary constructor for [QuestionnaireItem]
+  /// Primary constructor for
+  /// [QuestionnaireItem]
 
   QuestionnaireItem({
     super.id,
@@ -863,8 +866,8 @@ class QuestionnaireItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [QuestionnaireItem] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [QuestionnaireItem]
+  /// from a [String] or [YamlMap] object
   factory QuestionnaireItem.fromYaml(
     dynamic yaml,
   ) =>
@@ -877,8 +880,9 @@ class QuestionnaireItem extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'QuestionnaireItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'QuestionnaireItem '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [QuestionnaireItem]
@@ -1177,7 +1181,8 @@ class QuestionnaireItem extends BackboneElement {
 /// (displayed/allow answers to be captured) when the specified condition
 /// is true.
 class QuestionnaireEnableWhen extends BackboneElement {
-  /// Primary constructor for [QuestionnaireEnableWhen]
+  /// Primary constructor for
+  /// [QuestionnaireEnableWhen]
 
   QuestionnaireEnableWhen({
     super.id,
@@ -1299,8 +1304,8 @@ class QuestionnaireEnableWhen extends BackboneElement {
     );
   }
 
-  /// Deserialize [QuestionnaireEnableWhen] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [QuestionnaireEnableWhen]
+  /// from a [String] or [YamlMap] object
   factory QuestionnaireEnableWhen.fromYaml(
     dynamic yaml,
   ) =>
@@ -1313,8 +1318,9 @@ class QuestionnaireEnableWhen extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'QuestionnaireEnableWhen cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'QuestionnaireEnableWhen '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [QuestionnaireEnableWhen]
@@ -1544,7 +1550,8 @@ class QuestionnaireEnableWhen extends BackboneElement {
 /// [QuestionnaireAnswerOption]
 /// One of the permitted answers for a "choice" or "open-choice" question.
 class QuestionnaireAnswerOption extends BackboneElement {
-  /// Primary constructor for [QuestionnaireAnswerOption]
+  /// Primary constructor for
+  /// [QuestionnaireAnswerOption]
 
   QuestionnaireAnswerOption({
     super.id,
@@ -1636,8 +1643,8 @@ class QuestionnaireAnswerOption extends BackboneElement {
     );
   }
 
-  /// Deserialize [QuestionnaireAnswerOption] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [QuestionnaireAnswerOption]
+  /// from a [String] or [YamlMap] object
   factory QuestionnaireAnswerOption.fromYaml(
     dynamic yaml,
   ) =>
@@ -1650,8 +1657,9 @@ class QuestionnaireAnswerOption extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'QuestionnaireAnswerOption cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'QuestionnaireAnswerOption '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [QuestionnaireAnswerOption]
@@ -1814,7 +1822,8 @@ class QuestionnaireAnswerOption extends BackboneElement {
 /// One or more values that should be pre-populated in the answer when
 /// initially rendering the questionnaire for user input.
 class QuestionnaireInitial extends BackboneElement {
-  /// Primary constructor for [QuestionnaireInitial]
+  /// Primary constructor for
+  /// [QuestionnaireInitial]
 
   QuestionnaireInitial({
     super.id,
@@ -1939,8 +1948,8 @@ class QuestionnaireInitial extends BackboneElement {
     );
   }
 
-  /// Deserialize [QuestionnaireInitial] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [QuestionnaireInitial]
+  /// from a [String] or [YamlMap] object
   factory QuestionnaireInitial.fromYaml(
     dynamic yaml,
   ) =>
@@ -1953,8 +1962,9 @@ class QuestionnaireInitial extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'QuestionnaireInitial cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'QuestionnaireInitial '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [QuestionnaireInitial]

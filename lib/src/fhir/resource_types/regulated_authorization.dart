@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// regulation, rule or legislative act. An example is Market Authorization
 /// relating to a Medicinal Product.
 class RegulatedAuthorization extends DomainResource {
-  /// Primary constructor for [RegulatedAuthorization]
+  /// Primary constructor for
+  /// [RegulatedAuthorization]
 
   RegulatedAuthorization({
     super.id,
@@ -193,8 +194,8 @@ class RegulatedAuthorization extends DomainResource {
     );
   }
 
-  /// Deserialize [RegulatedAuthorization] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [RegulatedAuthorization]
+  /// from a [String] or [YamlMap] object
   factory RegulatedAuthorization.fromYaml(
     dynamic yaml,
   ) =>
@@ -207,8 +208,9 @@ class RegulatedAuthorization extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'RegulatedAuthorization cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'RegulatedAuthorization '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [RegulatedAuthorization]
@@ -485,7 +487,8 @@ class RegulatedAuthorization extends DomainResource {
 /// and the workgroup is seeking implementer feedback on its use (see link
 /// at bottom of page).
 class RegulatedAuthorizationCase extends BackboneElement {
-  /// Primary constructor for [RegulatedAuthorizationCase]
+  /// Primary constructor for
+  /// [RegulatedAuthorizationCase]
 
   RegulatedAuthorizationCase({
     super.id,
@@ -571,8 +574,8 @@ class RegulatedAuthorizationCase extends BackboneElement {
     );
   }
 
-  /// Deserialize [RegulatedAuthorizationCase] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [RegulatedAuthorizationCase]
+  /// from a [String] or [YamlMap] object
   factory RegulatedAuthorizationCase.fromYaml(
     dynamic yaml,
   ) =>
@@ -585,8 +588,9 @@ class RegulatedAuthorizationCase extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'RegulatedAuthorizationCase cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'RegulatedAuthorizationCase '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [RegulatedAuthorizationCase]

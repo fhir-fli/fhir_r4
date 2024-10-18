@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A contributor to the content of a knowledge asset, including authors,
 /// editors, reviewers, and endorsers.
 class Contributor extends DataType {
-  /// Primary constructor for [Contributor]
+  /// Primary constructor for
+  /// [Contributor]
 
   Contributor({
     super.id,
@@ -61,8 +62,8 @@ class Contributor extends DataType {
     );
   }
 
-  /// Deserialize [Contributor] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Contributor]
+  /// from a [String] or [YamlMap] object
   factory Contributor.fromYaml(
     dynamic yaml,
   ) =>
@@ -75,8 +76,9 @@ class Contributor extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Contributor cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Contributor '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Contributor]

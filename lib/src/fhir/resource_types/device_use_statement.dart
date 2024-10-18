@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A record of a device being used by a patient where the record is the
 /// result of a report from the patient or another clinician.
 class DeviceUseStatement extends DomainResource {
-  /// Primary constructor for [DeviceUseStatement]
+  /// Primary constructor for
+  /// [DeviceUseStatement]
 
   DeviceUseStatement({
     super.id,
@@ -200,8 +201,8 @@ class DeviceUseStatement extends DomainResource {
     );
   }
 
-  /// Deserialize [DeviceUseStatement] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DeviceUseStatement]
+  /// from a [String] or [YamlMap] object
   factory DeviceUseStatement.fromYaml(
     dynamic yaml,
   ) =>
@@ -214,8 +215,9 @@ class DeviceUseStatement extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DeviceUseStatement cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DeviceUseStatement '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DeviceUseStatement]

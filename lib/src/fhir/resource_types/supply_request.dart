@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A record of a request for a medication, substance or device used in the
 /// healthcare setting.
 class SupplyRequest extends DomainResource {
-  /// Primary constructor for [SupplyRequest]
+  /// Primary constructor for
+  /// [SupplyRequest]
 
   SupplyRequest({
     super.id,
@@ -219,8 +220,8 @@ class SupplyRequest extends DomainResource {
     );
   }
 
-  /// Deserialize [SupplyRequest] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SupplyRequest]
+  /// from a [String] or [YamlMap] object
   factory SupplyRequest.fromYaml(
     dynamic yaml,
   ) =>
@@ -233,8 +234,9 @@ class SupplyRequest extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SupplyRequest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SupplyRequest '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SupplyRequest]
@@ -537,7 +539,8 @@ class SupplyRequest extends DomainResource {
 /// Specific parameters for the ordered item. For example, the size of the
 /// indicated item.
 class SupplyRequestParameter extends BackboneElement {
-  /// Primary constructor for [SupplyRequestParameter]
+  /// Primary constructor for
+  /// [SupplyRequestParameter]
 
   SupplyRequestParameter({
     super.id,
@@ -613,8 +616,8 @@ class SupplyRequestParameter extends BackboneElement {
     );
   }
 
-  /// Deserialize [SupplyRequestParameter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SupplyRequestParameter]
+  /// from a [String] or [YamlMap] object
   factory SupplyRequestParameter.fromYaml(
     dynamic yaml,
   ) =>
@@ -627,8 +630,9 @@ class SupplyRequestParameter extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SupplyRequestParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SupplyRequestParameter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SupplyRequestParameter]

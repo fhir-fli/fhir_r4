@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// The characteristics, operational status and capabilities of a
 /// medical-related component of a medical device.
 class DeviceDefinition extends DomainResource {
-  /// Primary constructor for [DeviceDefinition]
+  /// Primary constructor for
+  /// [DeviceDefinition]
 
   DeviceDefinition({
     super.id,
@@ -279,8 +280,8 @@ class DeviceDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [DeviceDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DeviceDefinition]
+  /// from a [String] or [YamlMap] object
   factory DeviceDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -293,8 +294,9 @@ class DeviceDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DeviceDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DeviceDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DeviceDefinition]
@@ -670,7 +672,8 @@ class DeviceDefinition extends DomainResource {
 /// include just the udiCarrier for the jurisdiction it is sold, or for
 /// multiple jurisdictions it could have been sold.
 class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
-  /// Primary constructor for [DeviceDefinitionUdiDeviceIdentifier]
+  /// Primary constructor for
+  /// [DeviceDefinitionUdiDeviceIdentifier]
 
   DeviceDefinitionUdiDeviceIdentifier({
     super.id,
@@ -730,8 +733,8 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     );
   }
 
-  /// Deserialize [DeviceDefinitionUdiDeviceIdentifier] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DeviceDefinitionUdiDeviceIdentifier]
+  /// from a [String] or [YamlMap] object
   factory DeviceDefinitionUdiDeviceIdentifier.fromYaml(
     dynamic yaml,
   ) =>
@@ -744,8 +747,9 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DeviceDefinitionUdiDeviceIdentifier cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DeviceDefinitionUdiDeviceIdentifier '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DeviceDefinitionUdiDeviceIdentifier]
@@ -854,7 +858,8 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
 /// [DeviceDefinitionDeviceName]
 /// A name given to the device to identify it.
 class DeviceDefinitionDeviceName extends BackboneElement {
-  /// Primary constructor for [DeviceDefinitionDeviceName]
+  /// Primary constructor for
+  /// [DeviceDefinitionDeviceName]
 
   DeviceDefinitionDeviceName({
     super.id,
@@ -909,8 +914,8 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     );
   }
 
-  /// Deserialize [DeviceDefinitionDeviceName] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DeviceDefinitionDeviceName]
+  /// from a [String] or [YamlMap] object
   factory DeviceDefinitionDeviceName.fromYaml(
     dynamic yaml,
   ) =>
@@ -923,8 +928,9 @@ class DeviceDefinitionDeviceName extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DeviceDefinitionDeviceName cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DeviceDefinitionDeviceName '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DeviceDefinitionDeviceName]
@@ -1019,7 +1025,8 @@ class DeviceDefinitionDeviceName extends BackboneElement {
 /// device conforms for a particular purpose, and used for the
 /// communication.
 class DeviceDefinitionSpecialization extends BackboneElement {
-  /// Primary constructor for [DeviceDefinitionSpecialization]
+  /// Primary constructor for
+  /// [DeviceDefinitionSpecialization]
 
   DeviceDefinitionSpecialization({
     super.id,
@@ -1076,8 +1083,8 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     );
   }
 
-  /// Deserialize [DeviceDefinitionSpecialization] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DeviceDefinitionSpecialization]
+  /// from a [String] or [YamlMap] object
   factory DeviceDefinitionSpecialization.fromYaml(
     dynamic yaml,
   ) =>
@@ -1090,8 +1097,9 @@ class DeviceDefinitionSpecialization extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DeviceDefinitionSpecialization cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DeviceDefinitionSpecialization '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DeviceDefinitionSpecialization]
@@ -1188,7 +1196,8 @@ class DeviceDefinitionSpecialization extends BackboneElement {
 /// [DeviceDefinitionCapability]
 /// Device capabilities.
 class DeviceDefinitionCapability extends BackboneElement {
-  /// Primary constructor for [DeviceDefinitionCapability]
+  /// Primary constructor for
+  /// [DeviceDefinitionCapability]
 
   DeviceDefinitionCapability({
     super.id,
@@ -1247,8 +1256,8 @@ class DeviceDefinitionCapability extends BackboneElement {
     );
   }
 
-  /// Deserialize [DeviceDefinitionCapability] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DeviceDefinitionCapability]
+  /// from a [String] or [YamlMap] object
   factory DeviceDefinitionCapability.fromYaml(
     dynamic yaml,
   ) =>
@@ -1261,8 +1270,9 @@ class DeviceDefinitionCapability extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DeviceDefinitionCapability cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DeviceDefinitionCapability '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DeviceDefinitionCapability]
@@ -1352,7 +1362,8 @@ class DeviceDefinitionCapability extends BackboneElement {
 /// The actual configuration settings of a device as it actually operates,
 /// e.g., regulation status, time properties.
 class DeviceDefinitionProperty extends BackboneElement {
-  /// Primary constructor for [DeviceDefinitionProperty]
+  /// Primary constructor for
+  /// [DeviceDefinitionProperty]
 
   DeviceDefinitionProperty({
     super.id,
@@ -1421,8 +1432,8 @@ class DeviceDefinitionProperty extends BackboneElement {
     );
   }
 
-  /// Deserialize [DeviceDefinitionProperty] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DeviceDefinitionProperty]
+  /// from a [String] or [YamlMap] object
   factory DeviceDefinitionProperty.fromYaml(
     dynamic yaml,
   ) =>
@@ -1435,8 +1446,9 @@ class DeviceDefinitionProperty extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DeviceDefinitionProperty cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DeviceDefinitionProperty '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DeviceDefinitionProperty]
@@ -1536,7 +1548,8 @@ class DeviceDefinitionProperty extends BackboneElement {
 /// [DeviceDefinitionMaterial]
 /// A substance used to create the material(s) of which the device is made.
 class DeviceDefinitionMaterial extends BackboneElement {
-  /// Primary constructor for [DeviceDefinitionMaterial]
+  /// Primary constructor for
+  /// [DeviceDefinitionMaterial]
 
   DeviceDefinitionMaterial({
     super.id,
@@ -1599,8 +1612,8 @@ class DeviceDefinitionMaterial extends BackboneElement {
     );
   }
 
-  /// Deserialize [DeviceDefinitionMaterial] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DeviceDefinitionMaterial]
+  /// from a [String] or [YamlMap] object
   factory DeviceDefinitionMaterial.fromYaml(
     dynamic yaml,
   ) =>
@@ -1613,8 +1626,9 @@ class DeviceDefinitionMaterial extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DeviceDefinitionMaterial cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DeviceDefinitionMaterial '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DeviceDefinitionMaterial]

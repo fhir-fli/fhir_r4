@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// record of an immunization as reported by a patient, a clinician or
 /// another party.
 class Immunization extends DomainResource {
-  /// Primary constructor for [Immunization]
+  /// Primary constructor for
+  /// [Immunization]
 
   Immunization({
     super.id,
@@ -306,8 +307,8 @@ class Immunization extends DomainResource {
     );
   }
 
-  /// Deserialize [Immunization] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Immunization]
+  /// from a [String] or [YamlMap] object
   factory Immunization.fromYaml(
     dynamic yaml,
   ) =>
@@ -320,8 +321,9 @@ class Immunization extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Immunization cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Immunization '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Immunization]
@@ -759,7 +761,8 @@ class Immunization extends DomainResource {
 /// [ImmunizationPerformer]
 /// Indicates who performed the immunization event.
 class ImmunizationPerformer extends BackboneElement {
-  /// Primary constructor for [ImmunizationPerformer]
+  /// Primary constructor for
+  /// [ImmunizationPerformer]
 
   ImmunizationPerformer({
     super.id,
@@ -814,8 +817,8 @@ class ImmunizationPerformer extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImmunizationPerformer] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImmunizationPerformer]
+  /// from a [String] or [YamlMap] object
   factory ImmunizationPerformer.fromYaml(
     dynamic yaml,
   ) =>
@@ -828,8 +831,9 @@ class ImmunizationPerformer extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImmunizationPerformer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImmunizationPerformer '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImmunizationPerformer]
@@ -920,7 +924,8 @@ class ImmunizationPerformer extends BackboneElement {
 /// Educational material presented to the patient (or guardian) at the time
 /// of vaccine administration.
 class ImmunizationEducation extends BackboneElement {
-  /// Primary constructor for [ImmunizationEducation]
+  /// Primary constructor for
+  /// [ImmunizationEducation]
 
   ImmunizationEducation({
     super.id,
@@ -993,8 +998,8 @@ class ImmunizationEducation extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImmunizationEducation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImmunizationEducation]
+  /// from a [String] or [YamlMap] object
   factory ImmunizationEducation.fromYaml(
     dynamic yaml,
   ) =>
@@ -1007,8 +1012,9 @@ class ImmunizationEducation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImmunizationEducation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImmunizationEducation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImmunizationEducation]
@@ -1137,7 +1143,8 @@ class ImmunizationEducation extends BackboneElement {
 /// Categorical data indicating that an adverse event is associated in time
 /// to an immunization.
 class ImmunizationReaction extends BackboneElement {
-  /// Primary constructor for [ImmunizationReaction]
+  /// Primary constructor for
+  /// [ImmunizationReaction]
 
   ImmunizationReaction({
     super.id,
@@ -1202,8 +1209,8 @@ class ImmunizationReaction extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImmunizationReaction] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImmunizationReaction]
+  /// from a [String] or [YamlMap] object
   factory ImmunizationReaction.fromYaml(
     dynamic yaml,
   ) =>
@@ -1216,8 +1223,9 @@ class ImmunizationReaction extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImmunizationReaction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImmunizationReaction '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImmunizationReaction]
@@ -1327,7 +1335,8 @@ class ImmunizationReaction extends BackboneElement {
 /// The protocol (set of recommendations) being followed by the provider
 /// who administered the dose.
 class ImmunizationProtocolApplied extends BackboneElement {
-  /// Primary constructor for [ImmunizationProtocolApplied]
+  /// Primary constructor for
+  /// [ImmunizationProtocolApplied]
 
   ImmunizationProtocolApplied({
     super.id,
@@ -1423,8 +1432,8 @@ class ImmunizationProtocolApplied extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImmunizationProtocolApplied] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImmunizationProtocolApplied]
+  /// from a [String] or [YamlMap] object
   factory ImmunizationProtocolApplied.fromYaml(
     dynamic yaml,
   ) =>
@@ -1437,8 +1446,9 @@ class ImmunizationProtocolApplied extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImmunizationProtocolApplied cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImmunizationProtocolApplied '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImmunizationProtocolApplied]

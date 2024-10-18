@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Related artifacts such as additional documentation, justification, or
 /// bibliographic references.
 class RelatedArtifact extends DataType {
-  /// Primary constructor for [RelatedArtifact]
+  /// Primary constructor for
+  /// [RelatedArtifact]
 
   RelatedArtifact({
     super.id,
@@ -87,8 +88,8 @@ class RelatedArtifact extends DataType {
     );
   }
 
-  /// Deserialize [RelatedArtifact] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [RelatedArtifact]
+  /// from a [String] or [YamlMap] object
   factory RelatedArtifact.fromYaml(
     dynamic yaml,
   ) =>
@@ -101,8 +102,9 @@ class RelatedArtifact extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'RelatedArtifact cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'RelatedArtifact '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [RelatedArtifact]

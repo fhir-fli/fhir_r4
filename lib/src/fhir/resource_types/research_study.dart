@@ -11,7 +11,8 @@ import 'package:yaml/yaml.dart';
 /// ResearchStudy involves the gathering of information about human or
 /// animal subjects.
 class ResearchStudy extends DomainResource {
-  /// Primary constructor for [ResearchStudy]
+  /// Primary constructor for
+  /// [ResearchStudy]
 
   ResearchStudy({
     super.id,
@@ -299,8 +300,8 @@ class ResearchStudy extends DomainResource {
     );
   }
 
-  /// Deserialize [ResearchStudy] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ResearchStudy]
+  /// from a [String] or [YamlMap] object
   factory ResearchStudy.fromYaml(
     dynamic yaml,
   ) =>
@@ -313,8 +314,9 @@ class ResearchStudy extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ResearchStudy cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ResearchStudy '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ResearchStudy]
@@ -697,7 +699,8 @@ class ResearchStudy extends DomainResource {
 /// a study. E.g. Exposure to drug A, wash-out, exposure to drug B,
 /// wash-out, follow-up.
 class ResearchStudyArm extends BackboneElement {
-  /// Primary constructor for [ResearchStudyArm]
+  /// Primary constructor for
+  /// [ResearchStudyArm]
 
   ResearchStudyArm({
     super.id,
@@ -760,8 +763,8 @@ class ResearchStudyArm extends BackboneElement {
     );
   }
 
-  /// Deserialize [ResearchStudyArm] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ResearchStudyArm]
+  /// from a [String] or [YamlMap] object
   factory ResearchStudyArm.fromYaml(
     dynamic yaml,
   ) =>
@@ -774,8 +777,9 @@ class ResearchStudyArm extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ResearchStudyArm cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ResearchStudyArm '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ResearchStudyArm]
@@ -886,7 +890,8 @@ class ResearchStudyArm extends BackboneElement {
 /// question to be answered by the analysis of data collected during the
 /// study.
 class ResearchStudyObjective extends BackboneElement {
-  /// Primary constructor for [ResearchStudyObjective]
+  /// Primary constructor for
+  /// [ResearchStudyObjective]
 
   ResearchStudyObjective({
     super.id,
@@ -944,8 +949,8 @@ class ResearchStudyObjective extends BackboneElement {
     );
   }
 
-  /// Deserialize [ResearchStudyObjective] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ResearchStudyObjective]
+  /// from a [String] or [YamlMap] object
   factory ResearchStudyObjective.fromYaml(
     dynamic yaml,
   ) =>
@@ -958,8 +963,9 @@ class ResearchStudyObjective extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ResearchStudyObjective cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ResearchStudyObjective '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ResearchStudyObjective]

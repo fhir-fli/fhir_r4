@@ -10,7 +10,8 @@ import 'package:yaml/yaml.dart';
 /// message on the defined "channel" so that another system can take an
 /// appropriate action.
 class Subscription extends DomainResource {
-  /// Primary constructor for [Subscription]
+  /// Primary constructor for
+  /// [Subscription]
 
   Subscription({
     super.id,
@@ -136,8 +137,8 @@ class Subscription extends DomainResource {
     );
   }
 
-  /// Deserialize [Subscription] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Subscription]
+  /// from a [String] or [YamlMap] object
   factory Subscription.fromYaml(
     dynamic yaml,
   ) =>
@@ -150,8 +151,9 @@ class Subscription extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Subscription cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Subscription '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Subscription]
@@ -341,7 +343,8 @@ class Subscription extends DomainResource {
 /// Details where to send notifications when resources are received that
 /// meet the criteria.
 class SubscriptionChannel extends BackboneElement {
-  /// Primary constructor for [SubscriptionChannel]
+  /// Primary constructor for
+  /// [SubscriptionChannel]
 
   SubscriptionChannel({
     super.id,
@@ -411,8 +414,8 @@ class SubscriptionChannel extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubscriptionChannel] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubscriptionChannel]
+  /// from a [String] or [YamlMap] object
   factory SubscriptionChannel.fromYaml(
     dynamic yaml,
   ) =>
@@ -425,8 +428,9 @@ class SubscriptionChannel extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubscriptionChannel cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubscriptionChannel '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubscriptionChannel]

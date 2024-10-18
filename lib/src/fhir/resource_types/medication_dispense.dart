@@ -9,7 +9,8 @@ import 'package:yaml/yaml.dart';
 /// medication. The medication dispense is the result of a pharmacy system
 /// responding to a medication order.
 class MedicationDispense extends DomainResource {
-  /// Primary constructor for [MedicationDispense]
+  /// Primary constructor for
+  /// [MedicationDispense]
 
   MedicationDispense({
     super.id,
@@ -289,8 +290,8 @@ class MedicationDispense extends DomainResource {
     );
   }
 
-  /// Deserialize [MedicationDispense] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicationDispense]
+  /// from a [String] or [YamlMap] object
   factory MedicationDispense.fromYaml(
     dynamic yaml,
   ) =>
@@ -303,8 +304,9 @@ class MedicationDispense extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicationDispense cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicationDispense '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicationDispense]
@@ -716,7 +718,8 @@ class MedicationDispense extends DomainResource {
 /// [MedicationDispensePerformer]
 /// Indicates who or what performed the event.
 class MedicationDispensePerformer extends BackboneElement {
-  /// Primary constructor for [MedicationDispensePerformer]
+  /// Primary constructor for
+  /// [MedicationDispensePerformer]
 
   MedicationDispensePerformer({
     super.id,
@@ -771,8 +774,8 @@ class MedicationDispensePerformer extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicationDispensePerformer] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicationDispensePerformer]
+  /// from a [String] or [YamlMap] object
   factory MedicationDispensePerformer.fromYaml(
     dynamic yaml,
   ) =>
@@ -785,8 +788,9 @@ class MedicationDispensePerformer extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicationDispensePerformer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicationDispensePerformer '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicationDispensePerformer]
@@ -881,7 +885,8 @@ class MedicationDispensePerformer extends BackboneElement {
 /// explains what substitution did or did not happen and why. If nothing is
 /// specified, substitution was not done.
 class MedicationDispenseSubstitution extends BackboneElement {
-  /// Primary constructor for [MedicationDispenseSubstitution]
+  /// Primary constructor for
+  /// [MedicationDispenseSubstitution]
 
   MedicationDispenseSubstitution({
     super.id,
@@ -957,8 +962,8 @@ class MedicationDispenseSubstitution extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicationDispenseSubstitution] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicationDispenseSubstitution]
+  /// from a [String] or [YamlMap] object
   factory MedicationDispenseSubstitution.fromYaml(
     dynamic yaml,
   ) =>
@@ -971,8 +976,9 @@ class MedicationDispenseSubstitution extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicationDispenseSubstitution cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicationDispenseSubstitution '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicationDispenseSubstitution]

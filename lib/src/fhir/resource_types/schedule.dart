@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A container for slots of time that may be available for booking
 /// appointments.
 class Schedule extends DomainResource {
-  /// Primary constructor for [Schedule]
+  /// Primary constructor for
+  /// [Schedule]
 
   Schedule({
     super.id,
@@ -136,13 +137,15 @@ class Schedule extends DomainResource {
               )
               .toList()
           : null,
-      actor: ensureNonNullList((json['actor'] as List<dynamic>)
-          .map<Reference>(
-            (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      actor: ensureNonNullList(
+        (json['actor'] as List<dynamic>)
+            .map<Reference>(
+              (v) => Reference.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       planningHorizon: json['planningHorizon'] != null
           ? Period.fromJson(
               json['planningHorizon'] as Map<String, dynamic>,
@@ -157,8 +160,8 @@ class Schedule extends DomainResource {
     );
   }
 
-  /// Deserialize [Schedule] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Schedule]
+  /// from a [String] or [YamlMap] object
   factory Schedule.fromYaml(
     dynamic yaml,
   ) =>
@@ -171,8 +174,9 @@ class Schedule extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Schedule cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Schedule '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Schedule]

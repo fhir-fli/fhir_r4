@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// The shelf-life and storage information for a medicinal product item or
 /// container can be described using this class.
 class ProductShelfLife extends BackboneType {
-  /// Primary constructor for [ProductShelfLife]
+  /// Primary constructor for
+  /// [ProductShelfLife]
 
   ProductShelfLife({
     super.id,
@@ -75,8 +76,8 @@ class ProductShelfLife extends BackboneType {
     );
   }
 
-  /// Deserialize [ProductShelfLife] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ProductShelfLife]
+  /// from a [String] or [YamlMap] object
   factory ProductShelfLife.fromYaml(
     dynamic yaml,
   ) =>
@@ -89,8 +90,9 @@ class ProductShelfLife extends BackboneType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ProductShelfLife cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ProductShelfLife '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ProductShelfLife]

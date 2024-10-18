@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// device may be an implantable device, or an external assistive device,
 /// such as a walker.
 class DeviceRequest extends DomainResource {
-  /// Primary constructor for [DeviceRequest]
+  /// Primary constructor for
+  /// [DeviceRequest]
 
   DeviceRequest({
     super.id,
@@ -293,8 +294,8 @@ class DeviceRequest extends DomainResource {
     );
   }
 
-  /// Deserialize [DeviceRequest] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DeviceRequest]
+  /// from a [String] or [YamlMap] object
   factory DeviceRequest.fromYaml(
     dynamic yaml,
   ) =>
@@ -307,8 +308,9 @@ class DeviceRequest extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DeviceRequest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DeviceRequest '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DeviceRequest]
@@ -728,7 +730,8 @@ class DeviceRequest extends DomainResource {
 /// Specific parameters for the ordered item. For example, the prism value
 /// for lenses.
 class DeviceRequestParameter extends BackboneElement {
-  /// Primary constructor for [DeviceRequestParameter]
+  /// Primary constructor for
+  /// [DeviceRequestParameter]
 
   DeviceRequestParameter({
     super.id,
@@ -804,8 +807,8 @@ class DeviceRequestParameter extends BackboneElement {
     );
   }
 
-  /// Deserialize [DeviceRequestParameter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DeviceRequestParameter]
+  /// from a [String] or [YamlMap] object
   factory DeviceRequestParameter.fromYaml(
     dynamic yaml,
   ) =>
@@ -818,8 +821,9 @@ class DeviceRequestParameter extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DeviceRequestParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DeviceRequestParameter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DeviceRequestParameter]

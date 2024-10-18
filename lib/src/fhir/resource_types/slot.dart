@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A slot of time on a schedule that may be available for booking
 /// appointments.
 class Slot extends DomainResource {
-  /// Primary constructor for [Slot]
+  /// Primary constructor for
+  /// [Slot]
 
   Slot({
     super.id,
@@ -168,8 +169,8 @@ class Slot extends DomainResource {
     );
   }
 
-  /// Deserialize [Slot] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Slot]
+  /// from a [String] or [YamlMap] object
   factory Slot.fromYaml(
     dynamic yaml,
   ) =>
@@ -182,8 +183,9 @@ class Slot extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Slot cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Slot '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Slot]

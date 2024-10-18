@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// such as a tablet or capsule, as contained in a packaged medicinal
 /// product.
 class ManufacturedItemDefinition extends DomainResource {
-  /// Primary constructor for [ManufacturedItemDefinition]
+  /// Primary constructor for
+  /// [ManufacturedItemDefinition]
 
   ManufacturedItemDefinition({
     super.id,
@@ -145,8 +146,8 @@ class ManufacturedItemDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [ManufacturedItemDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ManufacturedItemDefinition]
+  /// from a [String] or [YamlMap] object
   factory ManufacturedItemDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -159,8 +160,9 @@ class ManufacturedItemDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ManufacturedItemDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ManufacturedItemDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ManufacturedItemDefinition]
@@ -338,7 +340,8 @@ class ManufacturedItemDefinition extends DomainResource {
 /// [ManufacturedItemDefinitionProperty]
 /// General characteristics of this item.
 class ManufacturedItemDefinitionProperty extends BackboneElement {
-  /// Primary constructor for [ManufacturedItemDefinitionProperty]
+  /// Primary constructor for
+  /// [ManufacturedItemDefinitionProperty]
 
   ManufacturedItemDefinitionProperty({
     super.id,
@@ -419,8 +422,8 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     );
   }
 
-  /// Deserialize [ManufacturedItemDefinitionProperty] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ManufacturedItemDefinitionProperty]
+  /// from a [String] or [YamlMap] object
   factory ManufacturedItemDefinitionProperty.fromYaml(
     dynamic yaml,
   ) =>
@@ -433,8 +436,9 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ManufacturedItemDefinitionProperty cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ManufacturedItemDefinitionProperty '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ManufacturedItemDefinitionProperty]

@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [Measure]
 /// The Measure resource provides the definition of a quality measure.
 class Measure extends DomainResource {
-  /// Primary constructor for [Measure]
+  /// Primary constructor for
+  /// [Measure]
 
   Measure({
     super.id,
@@ -412,8 +413,8 @@ class Measure extends DomainResource {
     );
   }
 
-  /// Deserialize [Measure] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Measure]
+  /// from a [String] or [YamlMap] object
   factory Measure.fromYaml(
     dynamic yaml,
   ) =>
@@ -426,8 +427,9 @@ class Measure extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Measure cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Measure '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Measure]
@@ -1116,7 +1118,8 @@ class Measure extends DomainResource {
 /// [MeasureGroup]
 /// A group of population criteria for the measure.
 class MeasureGroup extends BackboneElement {
-  /// Primary constructor for [MeasureGroup]
+  /// Primary constructor for
+  /// [MeasureGroup]
 
   MeasureGroup({
     super.id,
@@ -1194,8 +1197,8 @@ class MeasureGroup extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureGroup] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MeasureGroup]
+  /// from a [String] or [YamlMap] object
   factory MeasureGroup.fromYaml(
     dynamic yaml,
   ) =>
@@ -1208,8 +1211,9 @@ class MeasureGroup extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MeasureGroup cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MeasureGroup '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MeasureGroup]
@@ -1328,7 +1332,8 @@ class MeasureGroup extends BackboneElement {
 /// [MeasurePopulation]
 /// A population criteria for the measure.
 class MeasurePopulation extends BackboneElement {
-  /// Primary constructor for [MeasurePopulation]
+  /// Primary constructor for
+  /// [MeasurePopulation]
 
   MeasurePopulation({
     super.id,
@@ -1390,8 +1395,8 @@ class MeasurePopulation extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasurePopulation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MeasurePopulation]
+  /// from a [String] or [YamlMap] object
   factory MeasurePopulation.fromYaml(
     dynamic yaml,
   ) =>
@@ -1404,8 +1409,9 @@ class MeasurePopulation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MeasurePopulation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MeasurePopulation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MeasurePopulation]
@@ -1511,7 +1517,8 @@ class MeasurePopulation extends BackboneElement {
 /// name of a valid CQL expression defined within a referenced library or a
 /// valid FHIR Resource Path.
 class MeasureStratifier extends BackboneElement {
-  /// Primary constructor for [MeasureStratifier]
+  /// Primary constructor for
+  /// [MeasureStratifier]
 
   MeasureStratifier({
     super.id,
@@ -1585,8 +1592,8 @@ class MeasureStratifier extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureStratifier] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MeasureStratifier]
+  /// from a [String] or [YamlMap] object
   factory MeasureStratifier.fromYaml(
     dynamic yaml,
   ) =>
@@ -1599,8 +1606,9 @@ class MeasureStratifier extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MeasureStratifier cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MeasureStratifier '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MeasureStratifier]
@@ -1724,7 +1732,8 @@ class MeasureStratifier extends BackboneElement {
 /// specified as either the name of a valid CQL expression defined within a
 /// referenced library or a valid FHIR Resource Path.
 class MeasureComponent extends BackboneElement {
-  /// Primary constructor for [MeasureComponent]
+  /// Primary constructor for
+  /// [MeasureComponent]
 
   MeasureComponent({
     super.id,
@@ -1786,8 +1795,8 @@ class MeasureComponent extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureComponent] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MeasureComponent]
+  /// from a [String] or [YamlMap] object
   factory MeasureComponent.fromYaml(
     dynamic yaml,
   ) =>
@@ -1800,8 +1809,9 @@ class MeasureComponent extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MeasureComponent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MeasureComponent '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MeasureComponent]
@@ -1912,7 +1922,8 @@ class MeasureComponent extends BackboneElement {
 /// either the name of a valid CQL expression within a referenced library,
 /// or a valid FHIR Resource Path.
 class MeasureSupplementalData extends BackboneElement {
-  /// Primary constructor for [MeasureSupplementalData]
+  /// Primary constructor for
+  /// [MeasureSupplementalData]
 
   MeasureSupplementalData({
     super.id,
@@ -1984,8 +1995,8 @@ class MeasureSupplementalData extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureSupplementalData] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MeasureSupplementalData]
+  /// from a [String] or [YamlMap] object
   factory MeasureSupplementalData.fromYaml(
     dynamic yaml,
   ) =>
@@ -1998,8 +2009,9 @@ class MeasureSupplementalData extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MeasureSupplementalData cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MeasureSupplementalData '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MeasureSupplementalData]

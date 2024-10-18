@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A clinical condition, problem, diagnosis, or other event, situation,
 /// issue, or clinical concept that has risen to a level of concern.
 class Condition extends DomainResource {
-  /// Primary constructor for [Condition]
+  /// Primary constructor for
+  /// [Condition]
 
   Condition({
     super.id,
@@ -266,8 +267,8 @@ class Condition extends DomainResource {
     );
   }
 
-  /// Deserialize [Condition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Condition]
+  /// from a [String] or [YamlMap] object
   factory Condition.fromYaml(
     dynamic yaml,
   ) =>
@@ -280,8 +281,9 @@ class Condition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Condition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Condition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Condition]
@@ -689,7 +691,8 @@ class Condition extends DomainResource {
 /// Clinical stage or grade of a condition. May include formal severity
 /// assessments.
 class ConditionStage extends BackboneElement {
-  /// Primary constructor for [ConditionStage]
+  /// Primary constructor for
+  /// [ConditionStage]
 
   ConditionStage({
     super.id,
@@ -756,8 +759,8 @@ class ConditionStage extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConditionStage] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ConditionStage]
+  /// from a [String] or [YamlMap] object
   factory ConditionStage.fromYaml(
     dynamic yaml,
   ) =>
@@ -770,8 +773,9 @@ class ConditionStage extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ConditionStage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ConditionStage '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ConditionStage]
@@ -876,7 +880,8 @@ class ConditionStage extends BackboneElement {
 /// Condition's verification status, such as evidence that confirmed or
 /// refuted the condition.
 class ConditionEvidence extends BackboneElement {
-  /// Primary constructor for [ConditionEvidence]
+  /// Primary constructor for
+  /// [ConditionEvidence]
 
   ConditionEvidence({
     super.id,
@@ -941,8 +946,8 @@ class ConditionEvidence extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConditionEvidence] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ConditionEvidence]
+  /// from a [String] or [YamlMap] object
   factory ConditionEvidence.fromYaml(
     dynamic yaml,
   ) =>
@@ -955,8 +960,9 @@ class ConditionEvidence extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ConditionEvidence cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ConditionEvidence '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ConditionEvidence]

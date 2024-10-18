@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// This resource provides the adjudication details from the processing of
 /// a Claim resource.
 class ClaimResponse extends DomainResource {
-  /// Primary constructor for [ClaimResponse]
+  /// Primary constructor for
+  /// [ClaimResponse]
 
   ClaimResponse({
     super.id,
@@ -269,8 +270,8 @@ class ClaimResponse extends DomainResource {
     );
   }
 
-  /// Deserialize [ClaimResponse] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimResponse]
+  /// from a [String] or [YamlMap] object
   factory ClaimResponse.fromYaml(
     dynamic yaml,
   ) =>
@@ -283,8 +284,9 @@ class ClaimResponse extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimResponse cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimResponse '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimResponse]
@@ -668,7 +670,8 @@ class ClaimResponse extends DomainResource {
 /// A claim line. Either a simple (a product or service) or a 'group' of
 /// details which can also be a simple items or groups of sub-details.
 class ClaimResponseItem extends BackboneElement {
-  /// Primary constructor for [ClaimResponseItem]
+  /// Primary constructor for
+  /// [ClaimResponseItem]
 
   ClaimResponseItem({
     super.id,
@@ -723,13 +726,15 @@ class ClaimResponseItem extends BackboneElement {
         json['_noteNumber'] as List<dynamic>?,
         fromJson: FhirPositiveInt.fromJson,
       ),
-      adjudication: ensureNonNullList((json['adjudication'] as List<dynamic>)
-          .map<ClaimResponseAdjudication>(
-            (v) => ClaimResponseAdjudication.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      adjudication: ensureNonNullList(
+        (json['adjudication'] as List<dynamic>)
+            .map<ClaimResponseAdjudication>(
+              (v) => ClaimResponseAdjudication.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       detail: json['detail'] != null
           ? (json['detail'] as List<dynamic>)
               .map<ClaimResponseDetail>(
@@ -742,8 +747,8 @@ class ClaimResponseItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimResponseItem] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimResponseItem]
+  /// from a [String] or [YamlMap] object
   factory ClaimResponseItem.fromYaml(
     dynamic yaml,
   ) =>
@@ -756,8 +761,9 @@ class ClaimResponseItem extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimResponseItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimResponseItem '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimResponseItem]
@@ -878,7 +884,8 @@ class ClaimResponseItem extends BackboneElement {
 /// adjudication of the detail items. If this item is a simple product or
 /// service then this is the result of the adjudication of this item.
 class ClaimResponseAdjudication extends BackboneElement {
-  /// Primary constructor for [ClaimResponseAdjudication]
+  /// Primary constructor for
+  /// [ClaimResponseAdjudication]
 
   ClaimResponseAdjudication({
     super.id,
@@ -946,8 +953,8 @@ class ClaimResponseAdjudication extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimResponseAdjudication] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimResponseAdjudication]
+  /// from a [String] or [YamlMap] object
   factory ClaimResponseAdjudication.fromYaml(
     dynamic yaml,
   ) =>
@@ -960,8 +967,9 @@ class ClaimResponseAdjudication extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimResponseAdjudication cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimResponseAdjudication '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimResponseAdjudication]
@@ -1082,7 +1090,8 @@ class ClaimResponseAdjudication extends BackboneElement {
 /// A claim detail. Either a simple (a product or service) or a 'group' of
 /// sub-details which are simple items.
 class ClaimResponseDetail extends BackboneElement {
-  /// Primary constructor for [ClaimResponseDetail]
+  /// Primary constructor for
+  /// [ClaimResponseDetail]
 
   ClaimResponseDetail({
     super.id,
@@ -1148,8 +1157,8 @@ class ClaimResponseDetail extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimResponseDetail] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimResponseDetail]
+  /// from a [String] or [YamlMap] object
   factory ClaimResponseDetail.fromYaml(
     dynamic yaml,
   ) =>
@@ -1162,8 +1171,9 @@ class ClaimResponseDetail extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimResponseDetail cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimResponseDetail '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimResponseDetail]
@@ -1271,7 +1281,8 @@ class ClaimResponseDetail extends BackboneElement {
 /// [ClaimResponseSubDetail]
 /// A sub-detail adjudication of a simple product or service.
 class ClaimResponseSubDetail extends BackboneElement {
-  /// Primary constructor for [ClaimResponseSubDetail]
+  /// Primary constructor for
+  /// [ClaimResponseSubDetail]
 
   ClaimResponseSubDetail({
     super.id,
@@ -1327,8 +1338,8 @@ class ClaimResponseSubDetail extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimResponseSubDetail] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimResponseSubDetail]
+  /// from a [String] or [YamlMap] object
   factory ClaimResponseSubDetail.fromYaml(
     dynamic yaml,
   ) =>
@@ -1341,8 +1352,9 @@ class ClaimResponseSubDetail extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimResponseSubDetail cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimResponseSubDetail '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimResponseSubDetail]
@@ -1441,7 +1453,8 @@ class ClaimResponseSubDetail extends BackboneElement {
 /// The first-tier service adjudications for payor added product or service
 /// lines.
 class ClaimResponseAddItem extends BackboneElement {
-  /// Primary constructor for [ClaimResponseAddItem]
+  /// Primary constructor for
+  /// [ClaimResponseAddItem]
 
   ClaimResponseAddItem({
     super.id,
@@ -1626,8 +1639,8 @@ class ClaimResponseAddItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimResponseAddItem] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimResponseAddItem]
+  /// from a [String] or [YamlMap] object
   factory ClaimResponseAddItem.fromYaml(
     dynamic yaml,
   ) =>
@@ -1640,8 +1653,9 @@ class ClaimResponseAddItem extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimResponseAddItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimResponseAddItem '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimResponseAddItem]
@@ -1952,7 +1966,8 @@ class ClaimResponseAddItem extends BackboneElement {
 /// [ClaimResponseDetail1]
 /// The second-tier service adjudications for payor added services.
 class ClaimResponseDetail1 extends BackboneElement {
-  /// Primary constructor for [ClaimResponseDetail1]
+  /// Primary constructor for
+  /// [ClaimResponseDetail1]
 
   ClaimResponseDetail1({
     super.id,
@@ -2052,8 +2067,8 @@ class ClaimResponseDetail1 extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimResponseDetail1] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimResponseDetail1]
+  /// from a [String] or [YamlMap] object
   factory ClaimResponseDetail1.fromYaml(
     dynamic yaml,
   ) =>
@@ -2066,8 +2081,9 @@ class ClaimResponseDetail1 extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimResponseDetail1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimResponseDetail1 '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimResponseDetail1]
@@ -2234,7 +2250,8 @@ class ClaimResponseDetail1 extends BackboneElement {
 /// [ClaimResponseSubDetail1]
 /// The third-tier service adjudications for payor added services.
 class ClaimResponseSubDetail1 extends BackboneElement {
-  /// Primary constructor for [ClaimResponseSubDetail1]
+  /// Primary constructor for
+  /// [ClaimResponseSubDetail1]
 
   ClaimResponseSubDetail1({
     super.id,
@@ -2324,8 +2341,8 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimResponseSubDetail1] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimResponseSubDetail1]
+  /// from a [String] or [YamlMap] object
   factory ClaimResponseSubDetail1.fromYaml(
     dynamic yaml,
   ) =>
@@ -2338,8 +2355,9 @@ class ClaimResponseSubDetail1 extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimResponseSubDetail1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimResponseSubDetail1 '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimResponseSubDetail1]
@@ -2496,7 +2514,8 @@ class ClaimResponseSubDetail1 extends BackboneElement {
 /// [ClaimResponseTotal]
 /// Categorized monetary totals for the adjudication.
 class ClaimResponseTotal extends BackboneElement {
-  /// Primary constructor for [ClaimResponseTotal]
+  /// Primary constructor for
+  /// [ClaimResponseTotal]
 
   ClaimResponseTotal({
     super.id,
@@ -2549,8 +2568,8 @@ class ClaimResponseTotal extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimResponseTotal] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimResponseTotal]
+  /// from a [String] or [YamlMap] object
   factory ClaimResponseTotal.fromYaml(
     dynamic yaml,
   ) =>
@@ -2563,8 +2582,9 @@ class ClaimResponseTotal extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimResponseTotal cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimResponseTotal '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimResponseTotal]
@@ -2655,7 +2675,8 @@ class ClaimResponseTotal extends BackboneElement {
 /// [ClaimResponsePayment]
 /// Payment details for the adjudication of the claim.
 class ClaimResponsePayment extends BackboneElement {
-  /// Primary constructor for [ClaimResponsePayment]
+  /// Primary constructor for
+  /// [ClaimResponsePayment]
 
   ClaimResponsePayment({
     super.id,
@@ -2733,8 +2754,8 @@ class ClaimResponsePayment extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimResponsePayment] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimResponsePayment]
+  /// from a [String] or [YamlMap] object
   factory ClaimResponsePayment.fromYaml(
     dynamic yaml,
   ) =>
@@ -2747,8 +2768,9 @@ class ClaimResponsePayment extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimResponsePayment cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimResponsePayment '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimResponsePayment]
@@ -2883,7 +2905,8 @@ class ClaimResponsePayment extends BackboneElement {
 /// A note that describes or explains adjudication results in a human
 /// readable form.
 class ClaimResponseProcessNote extends BackboneElement {
-  /// Primary constructor for [ClaimResponseProcessNote]
+  /// Primary constructor for
+  /// [ClaimResponseProcessNote]
 
   ClaimResponseProcessNote({
     super.id,
@@ -2953,8 +2976,8 @@ class ClaimResponseProcessNote extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimResponseProcessNote] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimResponseProcessNote]
+  /// from a [String] or [YamlMap] object
   factory ClaimResponseProcessNote.fromYaml(
     dynamic yaml,
   ) =>
@@ -2967,8 +2990,9 @@ class ClaimResponseProcessNote extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimResponseProcessNote cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimResponseProcessNote '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimResponseProcessNote]
@@ -3086,7 +3110,8 @@ class ClaimResponseProcessNote extends BackboneElement {
 /// Financial instruments for reimbursement for the health care products
 /// and services specified on the claim.
 class ClaimResponseInsurance extends BackboneElement {
-  /// Primary constructor for [ClaimResponseInsurance]
+  /// Primary constructor for
+  /// [ClaimResponseInsurance]
 
   ClaimResponseInsurance({
     super.id,
@@ -3158,8 +3183,8 @@ class ClaimResponseInsurance extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimResponseInsurance] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimResponseInsurance]
+  /// from a [String] or [YamlMap] object
   factory ClaimResponseInsurance.fromYaml(
     dynamic yaml,
   ) =>
@@ -3172,8 +3197,9 @@ class ClaimResponseInsurance extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimResponseInsurance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimResponseInsurance '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimResponseInsurance]
@@ -3307,7 +3333,8 @@ class ClaimResponseInsurance extends BackboneElement {
 /// [ClaimResponseError]
 /// Errors encountered during the processing of the adjudication.
 class ClaimResponseError extends BackboneElement {
-  /// Primary constructor for [ClaimResponseError]
+  /// Primary constructor for
+  /// [ClaimResponseError]
 
   ClaimResponseError({
     super.id,
@@ -3377,8 +3404,8 @@ class ClaimResponseError extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimResponseError] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ClaimResponseError]
+  /// from a [String] or [YamlMap] object
   factory ClaimResponseError.fromYaml(
     dynamic yaml,
   ) =>
@@ -3391,8 +3418,9 @@ class ClaimResponseError extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ClaimResponseError cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ClaimResponseError '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ClaimResponseError]

@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// The EvidenceVariable resource describes an element that knowledge
 /// (Evidence) is about.
 class EvidenceVariable extends DomainResource {
-  /// Primary constructor for [EvidenceVariable]
+  /// Primary constructor for
+  /// [EvidenceVariable]
 
   EvidenceVariable({
     super.id,
@@ -288,8 +289,8 @@ class EvidenceVariable extends DomainResource {
     );
   }
 
-  /// Deserialize [EvidenceVariable] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceVariable]
+  /// from a [String] or [YamlMap] object
   factory EvidenceVariable.fromYaml(
     dynamic yaml,
   ) =>
@@ -302,8 +303,9 @@ class EvidenceVariable extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceVariable cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceVariable '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceVariable]
@@ -733,7 +735,8 @@ class EvidenceVariable extends DomainResource {
 /// A characteristic that defines the members of the evidence element.
 /// Multiple characteristics are applied with "and" semantics.
 class EvidenceVariableCharacteristic extends BackboneElement {
-  /// Primary constructor for [EvidenceVariableCharacteristic]
+  /// Primary constructor for
+  /// [EvidenceVariableCharacteristic]
 
   EvidenceVariableCharacteristic({
     super.id,
@@ -842,8 +845,8 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceVariableCharacteristic] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceVariableCharacteristic]
+  /// from a [String] or [YamlMap] object
   factory EvidenceVariableCharacteristic.fromYaml(
     dynamic yaml,
   ) =>
@@ -856,8 +859,9 @@ class EvidenceVariableCharacteristic extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceVariableCharacteristic cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceVariableCharacteristic '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceVariableCharacteristic]
@@ -1058,7 +1062,8 @@ class EvidenceVariableCharacteristic extends BackboneElement {
 /// Indicates duration, period, or point of observation from the
 /// participant's study entry.
 class EvidenceVariableTimeFromStart extends BackboneElement {
-  /// Primary constructor for [EvidenceVariableTimeFromStart]
+  /// Primary constructor for
+  /// [EvidenceVariableTimeFromStart]
 
   EvidenceVariableTimeFromStart({
     super.id,
@@ -1132,8 +1137,8 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceVariableTimeFromStart] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceVariableTimeFromStart]
+  /// from a [String] or [YamlMap] object
   factory EvidenceVariableTimeFromStart.fromYaml(
     dynamic yaml,
   ) =>
@@ -1146,8 +1151,9 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceVariableTimeFromStart cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceVariableTimeFromStart '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceVariableTimeFromStart]
@@ -1265,7 +1271,8 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
 /// A grouping (or set of values) described along with other groupings to
 /// specify the set of groupings allowed for the variable.
 class EvidenceVariableCategory extends BackboneElement {
-  /// Primary constructor for [EvidenceVariableCategory]
+  /// Primary constructor for
+  /// [EvidenceVariableCategory]
 
   EvidenceVariableCategory({
     super.id,
@@ -1335,8 +1342,8 @@ class EvidenceVariableCategory extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceVariableCategory] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceVariableCategory]
+  /// from a [String] or [YamlMap] object
   factory EvidenceVariableCategory.fromYaml(
     dynamic yaml,
   ) =>
@@ -1349,8 +1356,9 @@ class EvidenceVariableCategory extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceVariableCategory cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceVariableCategory '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceVariableCategory]

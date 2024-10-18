@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A text note which also contains information about who made the
 /// statement and when.
 class Annotation extends DataType {
-  /// Primary constructor for [Annotation]
+  /// Primary constructor for
+  /// [Annotation]
 
   Annotation({
     super.id,
@@ -66,8 +67,8 @@ class Annotation extends DataType {
     );
   }
 
-  /// Deserialize [Annotation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Annotation]
+  /// from a [String] or [YamlMap] object
   factory Annotation.fromYaml(
     dynamic yaml,
   ) =>
@@ -80,8 +81,9 @@ class Annotation extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Annotation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Annotation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Annotation]

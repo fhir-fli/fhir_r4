@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// The ResearchElementDefinition resource describes a "PICO" element that
 /// knowledge (evidence, assertion, recommendation) is about.
 class ResearchElementDefinition extends DomainResource {
-  /// Primary constructor for [ResearchElementDefinition]
+  /// Primary constructor for
+  /// [ResearchElementDefinition]
 
   ResearchElementDefinition({
     super.id,
@@ -339,19 +340,20 @@ class ResearchElementDefinition extends DomainResource {
               '_value': json['_variableType'],
             })
           : null,
-      characteristic:
-          ensureNonNullList((json['characteristic'] as List<dynamic>)
-              .map<ResearchElementDefinitionCharacteristic>(
-                (v) => ResearchElementDefinitionCharacteristic.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()),
+      characteristic: ensureNonNullList(
+        (json['characteristic'] as List<dynamic>)
+            .map<ResearchElementDefinitionCharacteristic>(
+              (v) => ResearchElementDefinitionCharacteristic.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [ResearchElementDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ResearchElementDefinition]
+  /// from a [String] or [YamlMap] object
   factory ResearchElementDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -364,8 +366,9 @@ class ResearchElementDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ResearchElementDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ResearchElementDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ResearchElementDefinition]
@@ -941,7 +944,8 @@ class ResearchElementDefinition extends DomainResource {
 /// A characteristic that defines the members of the research element.
 /// Multiple characteristics are applied with "and" semantics.
 class ResearchElementDefinitionCharacteristic extends BackboneElement {
-  /// Primary constructor for [ResearchElementDefinitionCharacteristic]
+  /// Primary constructor for
+  /// [ResearchElementDefinitionCharacteristic]
 
   ResearchElementDefinitionCharacteristic({
     super.id,
@@ -1128,8 +1132,8 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     );
   }
 
-  /// Deserialize [ResearchElementDefinitionCharacteristic] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ResearchElementDefinitionCharacteristic]
+  /// from a [String] or [YamlMap] object
   factory ResearchElementDefinitionCharacteristic.fromYaml(
     dynamic yaml,
   ) =>
@@ -1142,8 +1146,9 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ResearchElementDefinitionCharacteristic cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ResearchElementDefinitionCharacteristic '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ResearchElementDefinitionCharacteristic]

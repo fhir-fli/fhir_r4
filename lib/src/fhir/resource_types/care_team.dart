@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// The Care Team includes all the people and organizations who plan to
 /// participate in the coordination and delivery of care for a patient.
 class CareTeam extends DomainResource {
-  /// Primary constructor for [CareTeam]
+  /// Primary constructor for
+  /// [CareTeam]
 
   CareTeam({
     super.id,
@@ -201,8 +202,8 @@ class CareTeam extends DomainResource {
     );
   }
 
-  /// Deserialize [CareTeam] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CareTeam]
+  /// from a [String] or [YamlMap] object
   factory CareTeam.fromYaml(
     dynamic yaml,
   ) =>
@@ -215,8 +216,9 @@ class CareTeam extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CareTeam cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CareTeam '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CareTeam]
@@ -469,7 +471,8 @@ class CareTeam extends DomainResource {
 /// Identifies all people and organizations who are expected to be involved
 /// in the care team.
 class CareTeamParticipant extends BackboneElement {
-  /// Primary constructor for [CareTeamParticipant]
+  /// Primary constructor for
+  /// [CareTeamParticipant]
 
   CareTeamParticipant({
     super.id,
@@ -542,8 +545,8 @@ class CareTeamParticipant extends BackboneElement {
     );
   }
 
-  /// Deserialize [CareTeamParticipant] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CareTeamParticipant]
+  /// from a [String] or [YamlMap] object
   factory CareTeamParticipant.fromYaml(
     dynamic yaml,
   ) =>
@@ -556,8 +559,9 @@ class CareTeamParticipant extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CareTeamParticipant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CareTeamParticipant '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CareTeamParticipant]

@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [Money]
 /// An amount of economic utility in some recognized currency.
 class Money extends DataType {
-  /// Primary constructor for [Money]
+  /// Primary constructor for
+  /// [Money]
 
   Money({
     super.id,
@@ -54,8 +55,8 @@ class Money extends DataType {
     );
   }
 
-  /// Deserialize [Money] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Money]
+  /// from a [String] or [YamlMap] object
   factory Money.fromYaml(
     dynamic yaml,
   ) =>
@@ -68,8 +69,9 @@ class Money extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Money cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Money '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Money]

@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A summary of information based on the results of executing a
 /// TestScript.
 class TestReport extends DomainResource {
-  /// Primary constructor for [TestReport]
+  /// Primary constructor for
+  /// [TestReport]
 
   TestReport({
     super.id,
@@ -169,8 +170,8 @@ class TestReport extends DomainResource {
     );
   }
 
-  /// Deserialize [TestReport] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TestReport]
+  /// from a [String] or [YamlMap] object
   factory TestReport.fromYaml(
     dynamic yaml,
   ) =>
@@ -183,8 +184,9 @@ class TestReport extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TestReport cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TestReport '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TestReport]
@@ -428,7 +430,8 @@ class TestReport extends DomainResource {
 /// A participant in the test execution, either the execution engine, a
 /// client, or a server.
 class TestReportParticipant extends BackboneElement {
-  /// Primary constructor for [TestReportParticipant]
+  /// Primary constructor for
+  /// [TestReportParticipant]
 
   TestReportParticipant({
     super.id,
@@ -490,8 +493,8 @@ class TestReportParticipant extends BackboneElement {
     );
   }
 
-  /// Deserialize [TestReportParticipant] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TestReportParticipant]
+  /// from a [String] or [YamlMap] object
   factory TestReportParticipant.fromYaml(
     dynamic yaml,
   ) =>
@@ -504,8 +507,9 @@ class TestReportParticipant extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TestReportParticipant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TestReportParticipant '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TestReportParticipant]
@@ -611,7 +615,8 @@ class TestReportParticipant extends BackboneElement {
 /// The results of the series of required setup operations before the tests
 /// were executed.
 class TestReportSetup extends BackboneElement {
-  /// Primary constructor for [TestReportSetup]
+  /// Primary constructor for
+  /// [TestReportSetup]
 
   TestReportSetup({
     super.id,
@@ -654,18 +659,20 @@ class TestReportSetup extends BackboneElement {
               )
               .toList()
           : null,
-      action: ensureNonNullList((json['action'] as List<dynamic>)
-          .map<TestReportAction>(
-            (v) => TestReportAction.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      action: ensureNonNullList(
+        (json['action'] as List<dynamic>)
+            .map<TestReportAction>(
+              (v) => TestReportAction.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [TestReportSetup] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TestReportSetup]
+  /// from a [String] or [YamlMap] object
   factory TestReportSetup.fromYaml(
     dynamic yaml,
   ) =>
@@ -678,8 +685,9 @@ class TestReportSetup extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TestReportSetup cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TestReportSetup '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TestReportSetup]
@@ -758,7 +766,8 @@ class TestReportSetup extends BackboneElement {
 /// [TestReportAction]
 /// Action would contain either an operation or an assertion.
 class TestReportAction extends BackboneElement {
-  /// Primary constructor for [TestReportAction]
+  /// Primary constructor for
+  /// [TestReportAction]
 
   TestReportAction({
     super.id,
@@ -815,8 +824,8 @@ class TestReportAction extends BackboneElement {
     );
   }
 
-  /// Deserialize [TestReportAction] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TestReportAction]
+  /// from a [String] or [YamlMap] object
   factory TestReportAction.fromYaml(
     dynamic yaml,
   ) =>
@@ -829,8 +838,9 @@ class TestReportAction extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TestReportAction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TestReportAction '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TestReportAction]
@@ -921,7 +931,8 @@ class TestReportAction extends BackboneElement {
 /// [TestReportOperation]
 /// The operation performed.
 class TestReportOperation extends BackboneElement {
-  /// Primary constructor for [TestReportOperation]
+  /// Primary constructor for
+  /// [TestReportOperation]
 
   TestReportOperation({
     super.id,
@@ -985,8 +996,8 @@ class TestReportOperation extends BackboneElement {
     );
   }
 
-  /// Deserialize [TestReportOperation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TestReportOperation]
+  /// from a [String] or [YamlMap] object
   factory TestReportOperation.fromYaml(
     dynamic yaml,
   ) =>
@@ -999,8 +1010,9 @@ class TestReportOperation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TestReportOperation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TestReportOperation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TestReportOperation]
@@ -1107,7 +1119,8 @@ class TestReportOperation extends BackboneElement {
 /// [TestReportAssert]
 /// The results of the assertion performed on the previous operations.
 class TestReportAssert extends BackboneElement {
-  /// Primary constructor for [TestReportAssert]
+  /// Primary constructor for
+  /// [TestReportAssert]
 
   TestReportAssert({
     super.id,
@@ -1171,8 +1184,8 @@ class TestReportAssert extends BackboneElement {
     );
   }
 
-  /// Deserialize [TestReportAssert] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TestReportAssert]
+  /// from a [String] or [YamlMap] object
   factory TestReportAssert.fromYaml(
     dynamic yaml,
   ) =>
@@ -1185,8 +1198,9 @@ class TestReportAssert extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TestReportAssert cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TestReportAssert '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TestReportAssert]
@@ -1293,7 +1307,8 @@ class TestReportAssert extends BackboneElement {
 /// [TestReportTest]
 /// A test executed from the test script.
 class TestReportTest extends BackboneElement {
-  /// Primary constructor for [TestReportTest]
+  /// Primary constructor for
+  /// [TestReportTest]
 
   TestReportTest({
     super.id,
@@ -1350,18 +1365,20 @@ class TestReportTest extends BackboneElement {
               '_value': json['_description'],
             })
           : null,
-      action: ensureNonNullList((json['action'] as List<dynamic>)
-          .map<TestReportAction>(
-            (v) => TestReportAction.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      action: ensureNonNullList(
+        (json['action'] as List<dynamic>)
+            .map<TestReportAction>(
+              (v) => TestReportAction.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [TestReportTest] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TestReportTest]
+  /// from a [String] or [YamlMap] object
   factory TestReportTest.fromYaml(
     dynamic yaml,
   ) =>
@@ -1374,8 +1391,9 @@ class TestReportTest extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TestReportTest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TestReportTest '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TestReportTest]
@@ -1484,7 +1502,8 @@ class TestReportTest extends BackboneElement {
 /// [TestReportAction1]
 /// Action would contain either an operation or an assertion.
 class TestReportAction1 extends BackboneElement {
-  /// Primary constructor for [TestReportAction1]
+  /// Primary constructor for
+  /// [TestReportAction1]
 
   TestReportAction1({
     super.id,
@@ -1529,8 +1548,8 @@ class TestReportAction1 extends BackboneElement {
     );
   }
 
-  /// Deserialize [TestReportAction1] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TestReportAction1]
+  /// from a [String] or [YamlMap] object
   factory TestReportAction1.fromYaml(
     dynamic yaml,
   ) =>
@@ -1543,8 +1562,9 @@ class TestReportAction1 extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TestReportAction1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TestReportAction1 '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TestReportAction1]
@@ -1617,7 +1637,8 @@ class TestReportAction1 extends BackboneElement {
 /// The results of the series of operations required to clean up after all
 /// the tests were executed (successfully or otherwise).
 class TestReportTeardown extends BackboneElement {
-  /// Primary constructor for [TestReportTeardown]
+  /// Primary constructor for
+  /// [TestReportTeardown]
 
   TestReportTeardown({
     super.id,
@@ -1660,18 +1681,20 @@ class TestReportTeardown extends BackboneElement {
               )
               .toList()
           : null,
-      action: ensureNonNullList((json['action'] as List<dynamic>)
-          .map<TestReportAction>(
-            (v) => TestReportAction.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      action: ensureNonNullList(
+        (json['action'] as List<dynamic>)
+            .map<TestReportAction>(
+              (v) => TestReportAction.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [TestReportTeardown] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TestReportTeardown]
+  /// from a [String] or [YamlMap] object
   factory TestReportTeardown.fromYaml(
     dynamic yaml,
   ) =>
@@ -1684,8 +1707,9 @@ class TestReportTeardown extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TestReportTeardown cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TestReportTeardown '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TestReportTeardown]
@@ -1764,7 +1788,8 @@ class TestReportTeardown extends BackboneElement {
 /// [TestReportAction2]
 /// The teardown action will only contain an operation.
 class TestReportAction2 extends BackboneElement {
-  /// Primary constructor for [TestReportAction2]
+  /// Primary constructor for
+  /// [TestReportAction2]
 
   TestReportAction2({
     super.id,
@@ -1809,8 +1834,8 @@ class TestReportAction2 extends BackboneElement {
     );
   }
 
-  /// Deserialize [TestReportAction2] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TestReportAction2]
+  /// from a [String] or [YamlMap] object
   factory TestReportAction2.fromYaml(
     dynamic yaml,
   ) =>
@@ -1823,8 +1848,9 @@ class TestReportAction2 extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TestReportAction2 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TestReportAction2 '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TestReportAction2]

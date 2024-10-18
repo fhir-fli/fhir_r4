@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A collection of error, warning, or information messages that result
 /// from a system action.
 class OperationOutcome extends DomainResource {
-  /// Primary constructor for [OperationOutcome]
+  /// Primary constructor for
+  /// [OperationOutcome]
 
   OperationOutcome({
     super.id,
@@ -87,18 +88,20 @@ class OperationOutcome extends DomainResource {
               )
               .toList()
           : null,
-      issue: ensureNonNullList((json['issue'] as List<dynamic>)
-          .map<OperationOutcomeIssue>(
-            (v) => OperationOutcomeIssue.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      issue: ensureNonNullList(
+        (json['issue'] as List<dynamic>)
+            .map<OperationOutcomeIssue>(
+              (v) => OperationOutcomeIssue.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [OperationOutcome] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [OperationOutcome]
+  /// from a [String] or [YamlMap] object
   factory OperationOutcome.fromYaml(
     dynamic yaml,
   ) =>
@@ -111,8 +114,9 @@ class OperationOutcome extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'OperationOutcome cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'OperationOutcome '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [OperationOutcome]
@@ -228,7 +232,8 @@ class OperationOutcome extends DomainResource {
 /// An error, warning, or information message that results from a system
 /// action.
 class OperationOutcomeIssue extends BackboneElement {
-  /// Primary constructor for [OperationOutcomeIssue]
+  /// Primary constructor for
+  /// [OperationOutcomeIssue]
 
   OperationOutcomeIssue({
     super.id,
@@ -308,8 +313,8 @@ class OperationOutcomeIssue extends BackboneElement {
     );
   }
 
-  /// Deserialize [OperationOutcomeIssue] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [OperationOutcomeIssue]
+  /// from a [String] or [YamlMap] object
   factory OperationOutcomeIssue.fromYaml(
     dynamic yaml,
   ) =>
@@ -322,8 +327,9 @@ class OperationOutcomeIssue extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'OperationOutcomeIssue cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'OperationOutcomeIssue '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [OperationOutcomeIssue]

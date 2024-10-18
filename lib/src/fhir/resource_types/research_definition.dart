@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// outcome (if specified) that the knowledge (evidence, assertion,
 /// recommendation) is about.
 class ResearchDefinition extends DomainResource {
-  /// Primary constructor for [ResearchDefinition]
+  /// Primary constructor for
+  /// [ResearchDefinition]
 
   ResearchDefinition({
     super.id,
@@ -353,8 +354,8 @@ class ResearchDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [ResearchDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ResearchDefinition]
+  /// from a [String] or [YamlMap] object
   factory ResearchDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -367,8 +368,9 @@ class ResearchDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ResearchDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ResearchDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ResearchDefinition]

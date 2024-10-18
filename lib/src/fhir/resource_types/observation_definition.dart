@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Set of definitional characteristics for a kind of observation or
 /// measurement produced or consumed by an orderable health care service.
 class ObservationDefinition extends DomainResource {
-  /// Primary constructor for [ObservationDefinition]
+  /// Primary constructor for
+  /// [ObservationDefinition]
 
   ObservationDefinition({
     super.id,
@@ -179,8 +180,8 @@ class ObservationDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [ObservationDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ObservationDefinition]
+  /// from a [String] or [YamlMap] object
   factory ObservationDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -193,8 +194,9 @@ class ObservationDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ObservationDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ObservationDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ObservationDefinition]
@@ -450,7 +452,8 @@ class ObservationDefinition extends DomainResource {
 /// [ObservationDefinitionQuantitativeDetails]
 /// Characteristics for quantitative results of this observation.
 class ObservationDefinitionQuantitativeDetails extends BackboneElement {
-  /// Primary constructor for [ObservationDefinitionQuantitativeDetails]
+  /// Primary constructor for
+  /// [ObservationDefinitionQuantitativeDetails]
 
   ObservationDefinitionQuantitativeDetails({
     super.id,
@@ -521,8 +524,8 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     );
   }
 
-  /// Deserialize [ObservationDefinitionQuantitativeDetails] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ObservationDefinitionQuantitativeDetails]
+  /// from a [String] or [YamlMap] object
   factory ObservationDefinitionQuantitativeDetails.fromYaml(
     dynamic yaml,
   ) =>
@@ -535,8 +538,9 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ObservationDefinitionQuantitativeDetails cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ObservationDefinitionQuantitativeDetails '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ObservationDefinitionQuantitativeDetails]
@@ -661,7 +665,8 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
 /// Multiple ranges of results qualified by different contexts for ordinal
 /// or continuous observations conforming to this ObservationDefinition.
 class ObservationDefinitionQualifiedInterval extends BackboneElement {
-  /// Primary constructor for [ObservationDefinitionQualifiedInterval]
+  /// Primary constructor for
+  /// [ObservationDefinitionQualifiedInterval]
 
   ObservationDefinitionQualifiedInterval({
     super.id,
@@ -761,8 +766,8 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     );
   }
 
-  /// Deserialize [ObservationDefinitionQualifiedInterval] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ObservationDefinitionQualifiedInterval]
+  /// from a [String] or [YamlMap] object
   factory ObservationDefinitionQualifiedInterval.fromYaml(
     dynamic yaml,
   ) =>
@@ -775,8 +780,9 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ObservationDefinitionQualifiedInterval cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ObservationDefinitionQualifiedInterval '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ObservationDefinitionQualifiedInterval]

@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Legally enforceable, formally recorded unilateral or bilateral
 /// directive i.e., a policy or agreement.
 class Contract extends DomainResource {
-  /// Primary constructor for [Contract]
+  /// Primary constructor for
+  /// [Contract]
 
   Contract({
     super.id,
@@ -347,8 +348,8 @@ class Contract extends DomainResource {
     );
   }
 
-  /// Deserialize [Contract] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Contract]
+  /// from a [String] or [YamlMap] object
   factory Contract.fromYaml(
     dynamic yaml,
   ) =>
@@ -361,8 +362,9 @@ class Contract extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Contract cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Contract '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Contract]
@@ -891,7 +893,8 @@ class Contract extends DomainResource {
 /// formation a Contract instance, which may be associated with and
 /// transformable into a Contract.
 class ContractContentDefinition extends BackboneElement {
-  /// Primary constructor for [ContractContentDefinition]
+  /// Primary constructor for
+  /// [ContractContentDefinition]
 
   ContractContentDefinition({
     super.id,
@@ -971,8 +974,8 @@ class ContractContentDefinition extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractContentDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContractContentDefinition]
+  /// from a [String] or [YamlMap] object
   factory ContractContentDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -985,8 +988,9 @@ class ContractContentDefinition extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContractContentDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContractContentDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContractContentDefinition]
@@ -1132,7 +1136,8 @@ class ContractContentDefinition extends BackboneElement {
 /// One or more Contract Provisions, which may be related and conveyed as a
 /// group, and may contain nested groups.
 class ContractTerm extends BackboneElement {
-  /// Primary constructor for [ContractTerm]
+  /// Primary constructor for
+  /// [ContractTerm]
 
   ContractTerm({
     super.id,
@@ -1271,8 +1276,8 @@ class ContractTerm extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractTerm] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContractTerm]
+  /// from a [String] or [YamlMap] object
   factory ContractTerm.fromYaml(
     dynamic yaml,
   ) =>
@@ -1285,8 +1290,9 @@ class ContractTerm extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContractTerm cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContractTerm '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContractTerm]
@@ -1501,7 +1507,8 @@ class ContractTerm extends BackboneElement {
 /// Security labels that protect the handling of information about the term
 /// and its elements, which may be specifically identified..
 class ContractSecurityLabel extends BackboneElement {
-  /// Primary constructor for [ContractSecurityLabel]
+  /// Primary constructor for
+  /// [ContractSecurityLabel]
 
   ContractSecurityLabel({
     super.id,
@@ -1576,8 +1583,8 @@ class ContractSecurityLabel extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractSecurityLabel] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContractSecurityLabel]
+  /// from a [String] or [YamlMap] object
   factory ContractSecurityLabel.fromYaml(
     dynamic yaml,
   ) =>
@@ -1590,8 +1597,9 @@ class ContractSecurityLabel extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContractSecurityLabel cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContractSecurityLabel '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContractSecurityLabel]
@@ -1708,7 +1716,8 @@ class ContractSecurityLabel extends BackboneElement {
 /// [ContractOffer]
 /// The matter of concern in the context of this provision of the agrement.
 class ContractOffer extends BackboneElement {
-  /// Primary constructor for [ContractOffer]
+  /// Primary constructor for
+  /// [ContractOffer]
 
   ContractOffer({
     super.id,
@@ -1830,8 +1839,8 @@ class ContractOffer extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractOffer] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContractOffer]
+  /// from a [String] or [YamlMap] object
   factory ContractOffer.fromYaml(
     dynamic yaml,
   ) =>
@@ -1844,8 +1853,9 @@ class ContractOffer extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContractOffer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContractOffer '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContractOffer]
@@ -2034,7 +2044,8 @@ class ContractOffer extends BackboneElement {
 /// [ContractParty]
 /// Offer Recipient.
 class ContractParty extends BackboneElement {
-  /// Primary constructor for [ContractParty]
+  /// Primary constructor for
+  /// [ContractParty]
 
   ContractParty({
     super.id,
@@ -2078,21 +2089,23 @@ class ContractParty extends BackboneElement {
               )
               .toList()
           : null,
-      reference: ensureNonNullList((json['reference'] as List<dynamic>)
-          .map<Reference>(
-            (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      reference: ensureNonNullList(
+        (json['reference'] as List<dynamic>)
+            .map<Reference>(
+              (v) => Reference.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       role: CodeableConcept.fromJson(
         json['role'] as Map<String, dynamic>,
       ),
     );
   }
 
-  /// Deserialize [ContractParty] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContractParty]
+  /// from a [String] or [YamlMap] object
   factory ContractParty.fromYaml(
     dynamic yaml,
   ) =>
@@ -2105,8 +2118,9 @@ class ContractParty extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContractParty cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContractParty '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContractParty]
@@ -2193,7 +2207,8 @@ class ContractParty extends BackboneElement {
 /// [ContractAnswer]
 /// Response to offer text.
 class ContractAnswer extends BackboneElement {
-  /// Primary constructor for [ContractAnswer]
+  /// Primary constructor for
+  /// [ContractAnswer]
 
   ContractAnswer({
     super.id,
@@ -2318,8 +2333,8 @@ class ContractAnswer extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractAnswer] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContractAnswer]
+  /// from a [String] or [YamlMap] object
   factory ContractAnswer.fromYaml(
     dynamic yaml,
   ) =>
@@ -2332,8 +2347,9 @@ class ContractAnswer extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContractAnswer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContractAnswer '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContractAnswer]
@@ -2592,7 +2608,8 @@ class ContractAnswer extends BackboneElement {
 /// [ContractAsset]
 /// Contract Term Asset List.
 class ContractAsset extends BackboneElement {
-  /// Primary constructor for [ContractAsset]
+  /// Primary constructor for
+  /// [ContractAsset]
 
   ContractAsset({
     super.id,
@@ -2755,8 +2772,8 @@ class ContractAsset extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractAsset] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContractAsset]
+  /// from a [String] or [YamlMap] object
   factory ContractAsset.fromYaml(
     dynamic yaml,
   ) =>
@@ -2769,8 +2786,9 @@ class ContractAsset extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContractAsset cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContractAsset '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContractAsset]
@@ -3004,7 +3022,8 @@ class ContractAsset extends BackboneElement {
 /// [ContractContext]
 /// Circumstance of the asset.
 class ContractContext extends BackboneElement {
-  /// Primary constructor for [ContractContext]
+  /// Primary constructor for
+  /// [ContractContext]
 
   ContractContext({
     super.id,
@@ -3072,8 +3091,8 @@ class ContractContext extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractContext] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContractContext]
+  /// from a [String] or [YamlMap] object
   factory ContractContext.fromYaml(
     dynamic yaml,
   ) =>
@@ -3086,8 +3105,9 @@ class ContractContext extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContractContext cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContractContext '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContractContext]
@@ -3195,7 +3215,8 @@ class ContractContext extends BackboneElement {
 /// [ContractValuedItem]
 /// Contract Valued Item List.
 class ContractValuedItem extends BackboneElement {
-  /// Primary constructor for [ContractValuedItem]
+  /// Primary constructor for
+  /// [ContractValuedItem]
 
   ContractValuedItem({
     super.id,
@@ -3335,8 +3356,8 @@ class ContractValuedItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractValuedItem] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContractValuedItem]
+  /// from a [String] or [YamlMap] object
   factory ContractValuedItem.fromYaml(
     dynamic yaml,
   ) =>
@@ -3349,8 +3370,9 @@ class ContractValuedItem extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContractValuedItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContractValuedItem '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContractValuedItem]
@@ -3617,7 +3639,8 @@ class ContractValuedItem extends BackboneElement {
 /// An actor taking a role in an activity for which it can be assigned some
 /// degree of responsibility for the activity taking place.
 class ContractAction extends BackboneElement {
-  /// Primary constructor for [ContractAction]
+  /// Primary constructor for
+  /// [ContractAction]
 
   ContractAction({
     super.id,
@@ -3820,8 +3843,8 @@ class ContractAction extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractAction] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContractAction]
+  /// from a [String] or [YamlMap] object
   factory ContractAction.fromYaml(
     dynamic yaml,
   ) =>
@@ -3834,8 +3857,9 @@ class ContractAction extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContractAction cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContractAction '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContractAction]
@@ -4187,7 +4211,8 @@ class ContractAction extends BackboneElement {
 /// [ContractSubject]
 /// Entity of the action.
 class ContractSubject extends BackboneElement {
-  /// Primary constructor for [ContractSubject]
+  /// Primary constructor for
+  /// [ContractSubject]
 
   ContractSubject({
     super.id,
@@ -4231,13 +4256,15 @@ class ContractSubject extends BackboneElement {
               )
               .toList()
           : null,
-      reference: ensureNonNullList((json['reference'] as List<dynamic>)
-          .map<Reference>(
-            (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      reference: ensureNonNullList(
+        (json['reference'] as List<dynamic>)
+            .map<Reference>(
+              (v) => Reference.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       role: json['role'] != null
           ? CodeableConcept.fromJson(
               json['role'] as Map<String, dynamic>,
@@ -4246,8 +4273,8 @@ class ContractSubject extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractSubject] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContractSubject]
+  /// from a [String] or [YamlMap] object
   factory ContractSubject.fromYaml(
     dynamic yaml,
   ) =>
@@ -4260,8 +4287,9 @@ class ContractSubject extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContractSubject cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContractSubject '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContractSubject]
@@ -4353,7 +4381,8 @@ class ContractSubject extends BackboneElement {
 /// organization bound by the contract, and any ancillary parties, which
 /// facilitate the execution of the contract such as a notary or witness.
 class ContractSigner extends BackboneElement {
-  /// Primary constructor for [ContractSigner]
+  /// Primary constructor for
+  /// [ContractSigner]
 
   ContractSigner({
     super.id,
@@ -4404,18 +4433,20 @@ class ContractSigner extends BackboneElement {
       party: Reference.fromJson(
         json['party'] as Map<String, dynamic>,
       ),
-      signature: ensureNonNullList((json['signature'] as List<dynamic>)
-          .map<Signature>(
-            (v) => Signature.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      signature: ensureNonNullList(
+        (json['signature'] as List<dynamic>)
+            .map<Signature>(
+              (v) => Signature.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [ContractSigner] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContractSigner]
+  /// from a [String] or [YamlMap] object
   factory ContractSigner.fromYaml(
     dynamic yaml,
   ) =>
@@ -4428,8 +4459,9 @@ class ContractSigner extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContractSigner cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContractSigner '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContractSigner]
@@ -4530,7 +4562,8 @@ class ContractSigner extends BackboneElement {
 /// Contract understand the roles, actions, obligations, responsibilities,
 /// and implication of the agreement.
 class ContractFriendly extends BackboneElement {
-  /// Primary constructor for [ContractFriendly]
+  /// Primary constructor for
+  /// [ContractFriendly]
 
   ContractFriendly({
     super.id,
@@ -4587,8 +4620,8 @@ class ContractFriendly extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractFriendly] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContractFriendly]
+  /// from a [String] or [YamlMap] object
   factory ContractFriendly.fromYaml(
     dynamic yaml,
   ) =>
@@ -4601,8 +4634,9 @@ class ContractFriendly extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContractFriendly cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContractFriendly '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContractFriendly]
@@ -4697,7 +4731,8 @@ class ContractFriendly extends BackboneElement {
 /// [ContractLegal]
 /// List of Legal expressions or representations of this Contract.
 class ContractLegal extends BackboneElement {
-  /// Primary constructor for [ContractLegal]
+  /// Primary constructor for
+  /// [ContractLegal]
 
   ContractLegal({
     super.id,
@@ -4766,8 +4801,8 @@ class ContractLegal extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractLegal] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContractLegal]
+  /// from a [String] or [YamlMap] object
   factory ContractLegal.fromYaml(
     dynamic yaml,
   ) =>
@@ -4780,8 +4815,9 @@ class ContractLegal extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContractLegal cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContractLegal '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContractLegal]
@@ -4901,7 +4937,8 @@ class ContractLegal extends BackboneElement {
 /// List of Computable Policy Rule Language Representations of this
 /// Contract.
 class ContractRule extends BackboneElement {
-  /// Primary constructor for [ContractRule]
+  /// Primary constructor for
+  /// [ContractRule]
 
   ContractRule({
     super.id,
@@ -4958,8 +4995,8 @@ class ContractRule extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractRule] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ContractRule]
+  /// from a [String] or [YamlMap] object
   factory ContractRule.fromYaml(
     dynamic yaml,
   ) =>
@@ -4972,8 +5009,9 @@ class ContractRule extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ContractRule cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ContractRule '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ContractRule]

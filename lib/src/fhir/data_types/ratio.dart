@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A relationship of two Quantity values - expressed as a numerator and a
 /// denominator.
 class Ratio extends DataType {
-  /// Primary constructor for [Ratio]
+  /// Primary constructor for
+  /// [Ratio]
 
   Ratio({
     super.id,
@@ -53,8 +54,8 @@ class Ratio extends DataType {
     );
   }
 
-  /// Deserialize [Ratio] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Ratio]
+  /// from a [String] or [YamlMap] object
   factory Ratio.fromYaml(
     dynamic yaml,
   ) =>
@@ -67,8 +68,9 @@ class Ratio extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Ratio cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Ratio '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Ratio]

@@ -10,7 +10,8 @@ import 'package:yaml/yaml.dart';
 /// modality (e.g. X-ray, CT, MR, ultrasound), but a study may have
 /// multiple series of different modalities.
 class ImagingStudy extends DomainResource {
-  /// Primary constructor for [ImagingStudy]
+  /// Primary constructor for
+  /// [ImagingStudy]
 
   ImagingStudy({
     super.id,
@@ -254,8 +255,8 @@ class ImagingStudy extends DomainResource {
     );
   }
 
-  /// Deserialize [ImagingStudy] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImagingStudy]
+  /// from a [String] or [YamlMap] object
   factory ImagingStudy.fromYaml(
     dynamic yaml,
   ) =>
@@ -268,8 +269,9 @@ class ImagingStudy extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImagingStudy cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImagingStudy '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImagingStudy]
@@ -608,7 +610,8 @@ class ImagingStudy extends DomainResource {
 /// [ImagingStudySeries]
 /// Each study has one or more series of images or other content.
 class ImagingStudySeries extends BackboneElement {
-  /// Primary constructor for [ImagingStudySeries]
+  /// Primary constructor for
+  /// [ImagingStudySeries]
 
   ImagingStudySeries({
     super.id,
@@ -742,8 +745,8 @@ class ImagingStudySeries extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImagingStudySeries] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImagingStudySeries]
+  /// from a [String] or [YamlMap] object
   factory ImagingStudySeries.fromYaml(
     dynamic yaml,
   ) =>
@@ -756,8 +759,9 @@ class ImagingStudySeries extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImagingStudySeries cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImagingStudySeries '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImagingStudySeries]
@@ -978,7 +982,8 @@ class ImagingStudySeries extends BackboneElement {
 /// [ImagingStudyPerformer]
 /// Indicates who or what performed the series and how they were involved.
 class ImagingStudyPerformer extends BackboneElement {
-  /// Primary constructor for [ImagingStudyPerformer]
+  /// Primary constructor for
+  /// [ImagingStudyPerformer]
 
   ImagingStudyPerformer({
     super.id,
@@ -1033,8 +1038,8 @@ class ImagingStudyPerformer extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImagingStudyPerformer] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImagingStudyPerformer]
+  /// from a [String] or [YamlMap] object
   factory ImagingStudyPerformer.fromYaml(
     dynamic yaml,
   ) =>
@@ -1047,8 +1052,9 @@ class ImagingStudyPerformer extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImagingStudyPerformer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImagingStudyPerformer '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImagingStudyPerformer]
@@ -1138,7 +1144,8 @@ class ImagingStudyPerformer extends BackboneElement {
 /// A single SOP instance within the series, e.g. an image, or presentation
 /// state.
 class ImagingStudyInstance extends BackboneElement {
-  /// Primary constructor for [ImagingStudyInstance]
+  /// Primary constructor for
+  /// [ImagingStudyInstance]
 
   ImagingStudyInstance({
     super.id,
@@ -1206,8 +1213,8 @@ class ImagingStudyInstance extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImagingStudyInstance] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImagingStudyInstance]
+  /// from a [String] or [YamlMap] object
   factory ImagingStudyInstance.fromYaml(
     dynamic yaml,
   ) =>
@@ -1220,8 +1227,9 @@ class ImagingStudyInstance extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImagingStudyInstance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImagingStudyInstance '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImagingStudyInstance]

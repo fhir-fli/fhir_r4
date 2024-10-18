@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// specific to the applicable population (e.g., age category, DRG) or the
 /// specific context of care (e.g., venue, care setting, provider of care).
 class UsageContext extends DataType {
-  /// Primary constructor for [UsageContext]
+  /// Primary constructor for
+  /// [UsageContext]
 
   UsageContext({
     super.id,
@@ -71,8 +72,8 @@ class UsageContext extends DataType {
     );
   }
 
-  /// Deserialize [UsageContext] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [UsageContext]
+  /// from a [String] or [YamlMap] object
   factory UsageContext.fromYaml(
     dynamic yaml,
   ) =>
@@ -85,8 +86,9 @@ class UsageContext extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'UsageContext cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'UsageContext '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [UsageContext]

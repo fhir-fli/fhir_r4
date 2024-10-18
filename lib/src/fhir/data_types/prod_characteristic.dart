@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// actually put on the market or the date as of which it is no longer
 /// available.
 class ProdCharacteristic extends BackboneType {
-  /// Primary constructor for [ProdCharacteristic]
+  /// Primary constructor for
+  /// [ProdCharacteristic]
 
   ProdCharacteristic({
     super.id,
@@ -123,8 +124,8 @@ class ProdCharacteristic extends BackboneType {
     );
   }
 
-  /// Deserialize [ProdCharacteristic] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ProdCharacteristic]
+  /// from a [String] or [YamlMap] object
   factory ProdCharacteristic.fromYaml(
     dynamic yaml,
   ) =>
@@ -137,8 +138,9 @@ class ProdCharacteristic extends BackboneType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ProdCharacteristic cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ProdCharacteristic '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ProdCharacteristic]

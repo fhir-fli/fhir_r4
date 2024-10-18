@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// custom resources not appropriate for inclusion in the FHIR
 /// specification.
 class Basic extends DomainResource {
-  /// Primary constructor for [Basic]
+  /// Primary constructor for
+  /// [Basic]
 
   Basic({
     super.id,
@@ -124,8 +125,8 @@ class Basic extends DomainResource {
     );
   }
 
-  /// Deserialize [Basic] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Basic]
+  /// from a [String] or [YamlMap] object
   factory Basic.fromYaml(
     dynamic yaml,
   ) =>
@@ -138,8 +139,9 @@ class Basic extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Basic cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Basic '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Basic]

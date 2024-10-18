@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A formal computable definition of an operation (on the RESTful
 /// interface) or a named query (using the search interaction).
 class OperationDefinition extends DomainResource {
-  /// Primary constructor for [OperationDefinition]
+  /// Primary constructor for
+  /// [OperationDefinition]
 
   OperationDefinition({
     super.id,
@@ -271,8 +272,8 @@ class OperationDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [OperationDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [OperationDefinition]
+  /// from a [String] or [YamlMap] object
   factory OperationDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -285,8 +286,9 @@ class OperationDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'OperationDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'OperationDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [OperationDefinition]
@@ -757,7 +759,8 @@ class OperationDefinition extends DomainResource {
 /// [OperationDefinitionParameter]
 /// The parameters for the operation/query.
 class OperationDefinitionParameter extends BackboneElement {
-  /// Primary constructor for [OperationDefinitionParameter]
+  /// Primary constructor for
+  /// [OperationDefinitionParameter]
 
   OperationDefinitionParameter({
     super.id,
@@ -875,8 +878,8 @@ class OperationDefinitionParameter extends BackboneElement {
     );
   }
 
-  /// Deserialize [OperationDefinitionParameter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [OperationDefinitionParameter]
+  /// from a [String] or [YamlMap] object
   factory OperationDefinitionParameter.fromYaml(
     dynamic yaml,
   ) =>
@@ -889,8 +892,9 @@ class OperationDefinitionParameter extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'OperationDefinitionParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'OperationDefinitionParameter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [OperationDefinitionParameter]
@@ -1096,7 +1100,8 @@ class OperationDefinitionParameter extends BackboneElement {
 /// Binds to a value set if this parameter is coded (code, Coding,
 /// CodeableConcept).
 class OperationDefinitionBinding extends BackboneElement {
-  /// Primary constructor for [OperationDefinitionBinding]
+  /// Primary constructor for
+  /// [OperationDefinitionBinding]
 
   OperationDefinitionBinding({
     super.id,
@@ -1151,8 +1156,8 @@ class OperationDefinitionBinding extends BackboneElement {
     );
   }
 
-  /// Deserialize [OperationDefinitionBinding] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [OperationDefinitionBinding]
+  /// from a [String] or [YamlMap] object
   factory OperationDefinitionBinding.fromYaml(
     dynamic yaml,
   ) =>
@@ -1165,8 +1170,9 @@ class OperationDefinitionBinding extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'OperationDefinitionBinding cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'OperationDefinitionBinding '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [OperationDefinitionBinding]
@@ -1261,7 +1267,8 @@ class OperationDefinitionBinding extends BackboneElement {
 /// Identifies other resource parameters within the operation invocation
 /// that are expected to resolve to this resource.
 class OperationDefinitionReferencedFrom extends BackboneElement {
-  /// Primary constructor for [OperationDefinitionReferencedFrom]
+  /// Primary constructor for
+  /// [OperationDefinitionReferencedFrom]
 
   OperationDefinitionReferencedFrom({
     super.id,
@@ -1318,8 +1325,8 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     );
   }
 
-  /// Deserialize [OperationDefinitionReferencedFrom] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [OperationDefinitionReferencedFrom]
+  /// from a [String] or [YamlMap] object
   factory OperationDefinitionReferencedFrom.fromYaml(
     dynamic yaml,
   ) =>
@@ -1332,8 +1339,9 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'OperationDefinitionReferencedFrom cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'OperationDefinitionReferencedFrom '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [OperationDefinitionReferencedFrom]
@@ -1435,7 +1443,8 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
 /// this operation, to help code generators when generating overloaded
 /// parameter sets for this operation.
 class OperationDefinitionOverload extends BackboneElement {
-  /// Primary constructor for [OperationDefinitionOverload]
+  /// Primary constructor for
+  /// [OperationDefinitionOverload]
 
   OperationDefinitionOverload({
     super.id,
@@ -1493,8 +1502,8 @@ class OperationDefinitionOverload extends BackboneElement {
     );
   }
 
-  /// Deserialize [OperationDefinitionOverload] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [OperationDefinitionOverload]
+  /// from a [String] or [YamlMap] object
   factory OperationDefinitionOverload.fromYaml(
     dynamic yaml,
   ) =>
@@ -1507,8 +1516,9 @@ class OperationDefinitionOverload extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'OperationDefinitionOverload cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'OperationDefinitionOverload '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [OperationDefinitionOverload]

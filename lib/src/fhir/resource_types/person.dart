@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Demographics and administrative information about a person independent
 /// of a specific health-related context.
 class Person extends DomainResource {
-  /// Primary constructor for [Person]
+  /// Primary constructor for
+  /// [Person]
 
   Person({
     super.id,
@@ -172,8 +173,8 @@ class Person extends DomainResource {
     );
   }
 
-  /// Deserialize [Person] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Person]
+  /// from a [String] or [YamlMap] object
   factory Person.fromYaml(
     dynamic yaml,
   ) =>
@@ -186,8 +187,9 @@ class Person extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Person cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Person '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Person]
@@ -403,7 +405,8 @@ class Person extends DomainResource {
 /// [PersonLink]
 /// Link to a resource that concerns the same actual person.
 class PersonLink extends BackboneElement {
-  /// Primary constructor for [PersonLink]
+  /// Primary constructor for
+  /// [PersonLink]
 
   PersonLink({
     super.id,
@@ -459,8 +462,8 @@ class PersonLink extends BackboneElement {
     );
   }
 
-  /// Deserialize [PersonLink] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PersonLink]
+  /// from a [String] or [YamlMap] object
   factory PersonLink.fromYaml(
     dynamic yaml,
   ) =>
@@ -473,8 +476,9 @@ class PersonLink extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PersonLink cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PersonLink '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PersonLink]

@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A person who is directly or indirectly involved in the provisioning of
 /// healthcare.
 class Practitioner extends DomainResource {
-  /// Primary constructor for [Practitioner]
+  /// Primary constructor for
+  /// [Practitioner]
 
   Practitioner({
     super.id,
@@ -180,8 +181,8 @@ class Practitioner extends DomainResource {
     );
   }
 
-  /// Deserialize [Practitioner] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Practitioner]
+  /// from a [String] or [YamlMap] object
   factory Practitioner.fromYaml(
     dynamic yaml,
   ) =>
@@ -194,8 +195,9 @@ class Practitioner extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Practitioner cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Practitioner '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Practitioner]
@@ -419,7 +421,8 @@ class Practitioner extends DomainResource {
 /// example, a medical license issued by a medical board authorizing the
 /// practitioner to practice medicine within a certian locality.
 class PractitionerQualification extends BackboneElement {
-  /// Primary constructor for [PractitionerQualification]
+  /// Primary constructor for
+  /// [PractitionerQualification]
 
   PractitionerQualification({
     super.id,
@@ -490,8 +493,8 @@ class PractitionerQualification extends BackboneElement {
     );
   }
 
-  /// Deserialize [PractitionerQualification] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PractitionerQualification]
+  /// from a [String] or [YamlMap] object
   factory PractitionerQualification.fromYaml(
     dynamic yaml,
   ) =>
@@ -504,8 +507,9 @@ class PractitionerQualification extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PractitionerQualification cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PractitionerQualification '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PractitionerQualification]

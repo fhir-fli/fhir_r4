@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [FhirList]
 /// A list is a curated collection of resources.
 class FhirList extends DomainResource {
-  /// Primary constructor for [FhirList]
+  /// Primary constructor for
+  /// [FhirList]
 
   FhirList({
     super.id,
@@ -178,8 +179,8 @@ class FhirList extends DomainResource {
     );
   }
 
-  /// Deserialize [FhirList] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [FhirList]
+  /// from a [String] or [YamlMap] object
   factory FhirList.fromYaml(
     dynamic yaml,
   ) =>
@@ -192,8 +193,9 @@ class FhirList extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'FhirList cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'FhirList '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [FhirList]
@@ -440,7 +442,8 @@ class FhirList extends DomainResource {
 /// [ListEntry]
 /// Entries in this list.
 class ListEntry extends BackboneElement {
-  /// Primary constructor for [ListEntry]
+  /// Primary constructor for
+  /// [ListEntry]
 
   ListEntry({
     super.id,
@@ -509,8 +512,8 @@ class ListEntry extends BackboneElement {
     );
   }
 
-  /// Deserialize [ListEntry] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ListEntry]
+  /// from a [String] or [YamlMap] object
   factory ListEntry.fromYaml(
     dynamic yaml,
   ) =>
@@ -523,8 +526,9 @@ class ListEntry extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ListEntry cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ListEntry '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ListEntry]

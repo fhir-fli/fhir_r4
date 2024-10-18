@@ -10,7 +10,8 @@ import 'package:yaml/yaml.dart';
 /// notes, scanned paper, and non-patient specific documents like policy
 /// text.
 class DocumentReference extends DomainResource {
-  /// Primary constructor for [DocumentReference]
+  /// Primary constructor for
+  /// [DocumentReference]
 
   DocumentReference({
     super.id,
@@ -198,13 +199,15 @@ class DocumentReference extends DomainResource {
               )
               .toList()
           : null,
-      content: ensureNonNullList((json['content'] as List<dynamic>)
-          .map<DocumentReferenceContent>(
-            (v) => DocumentReferenceContent.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      content: ensureNonNullList(
+        (json['content'] as List<dynamic>)
+            .map<DocumentReferenceContent>(
+              (v) => DocumentReferenceContent.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       context: json['context'] != null
           ? DocumentReferenceContext.fromJson(
               json['context'] as Map<String, dynamic>,
@@ -213,8 +216,8 @@ class DocumentReference extends DomainResource {
     );
   }
 
-  /// Deserialize [DocumentReference] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DocumentReference]
+  /// from a [String] or [YamlMap] object
   factory DocumentReference.fromYaml(
     dynamic yaml,
   ) =>
@@ -227,8 +230,9 @@ class DocumentReference extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DocumentReference cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DocumentReference '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DocumentReference]
@@ -518,7 +522,8 @@ class DocumentReference extends DomainResource {
 /// Relationships that this document has with other document references
 /// that already exist.
 class DocumentReferenceRelatesTo extends BackboneElement {
-  /// Primary constructor for [DocumentReferenceRelatesTo]
+  /// Primary constructor for
+  /// [DocumentReferenceRelatesTo]
 
   DocumentReferenceRelatesTo({
     super.id,
@@ -572,8 +577,8 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     );
   }
 
-  /// Deserialize [DocumentReferenceRelatesTo] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DocumentReferenceRelatesTo]
+  /// from a [String] or [YamlMap] object
   factory DocumentReferenceRelatesTo.fromYaml(
     dynamic yaml,
   ) =>
@@ -586,8 +591,9 @@ class DocumentReferenceRelatesTo extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DocumentReferenceRelatesTo cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DocumentReferenceRelatesTo '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DocumentReferenceRelatesTo]
@@ -675,7 +681,8 @@ class DocumentReferenceRelatesTo extends BackboneElement {
 /// The document and format referenced. There may be multiple content
 /// element repetitions, each with a different format.
 class DocumentReferenceContent extends BackboneElement {
-  /// Primary constructor for [DocumentReferenceContent]
+  /// Primary constructor for
+  /// [DocumentReferenceContent]
 
   DocumentReferenceContent({
     super.id,
@@ -730,8 +737,8 @@ class DocumentReferenceContent extends BackboneElement {
     );
   }
 
-  /// Deserialize [DocumentReferenceContent] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DocumentReferenceContent]
+  /// from a [String] or [YamlMap] object
   factory DocumentReferenceContent.fromYaml(
     dynamic yaml,
   ) =>
@@ -744,8 +751,9 @@ class DocumentReferenceContent extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DocumentReferenceContent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DocumentReferenceContent '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DocumentReferenceContent]
@@ -837,7 +845,8 @@ class DocumentReferenceContent extends BackboneElement {
 /// [DocumentReferenceContext]
 /// The clinical context in which the document was prepared.
 class DocumentReferenceContext extends BackboneElement {
-  /// Primary constructor for [DocumentReferenceContext]
+  /// Primary constructor for
+  /// [DocumentReferenceContext]
 
   DocumentReferenceContext({
     super.id,
@@ -936,8 +945,8 @@ class DocumentReferenceContext extends BackboneElement {
     );
   }
 
-  /// Deserialize [DocumentReferenceContext] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DocumentReferenceContext]
+  /// from a [String] or [YamlMap] object
   factory DocumentReferenceContext.fromYaml(
     dynamic yaml,
   ) =>
@@ -950,8 +959,9 @@ class DocumentReferenceContext extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DocumentReferenceContext cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DocumentReferenceContext '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DocumentReferenceContext]

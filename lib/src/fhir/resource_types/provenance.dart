@@ -15,7 +15,8 @@ import 'package:yaml/yaml.dart';
 /// authenticated), all of which may impact security, privacy, and trust
 /// policies.
 class Provenance extends DomainResource {
-  /// Primary constructor for [Provenance]
+  /// Primary constructor for
+  /// [Provenance]
 
   Provenance({
     super.id,
@@ -106,13 +107,15 @@ class Provenance extends DomainResource {
               )
               .toList()
           : null,
-      target: ensureNonNullList((json['target'] as List<dynamic>)
-          .map<Reference>(
-            (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      target: ensureNonNullList(
+        (json['target'] as List<dynamic>)
+            .map<Reference>(
+              (v) => Reference.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       occurredPeriod: json['occurredPeriod'] != null
           ? Period.fromJson(
               json['occurredPeriod'] as Map<String, dynamic>,
@@ -152,13 +155,15 @@ class Provenance extends DomainResource {
               json['activity'] as Map<String, dynamic>,
             )
           : null,
-      agent: ensureNonNullList((json['agent'] as List<dynamic>)
-          .map<ProvenanceAgent>(
-            (v) => ProvenanceAgent.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      agent: ensureNonNullList(
+        (json['agent'] as List<dynamic>)
+            .map<ProvenanceAgent>(
+              (v) => ProvenanceAgent.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       entity: json['entity'] != null
           ? (json['entity'] as List<dynamic>)
               .map<ProvenanceEntity>(
@@ -180,8 +185,8 @@ class Provenance extends DomainResource {
     );
   }
 
-  /// Deserialize [Provenance] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Provenance]
+  /// from a [String] or [YamlMap] object
   factory Provenance.fromYaml(
     dynamic yaml,
   ) =>
@@ -194,8 +199,9 @@ class Provenance extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Provenance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Provenance '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Provenance]
@@ -426,7 +432,8 @@ class Provenance extends DomainResource {
 /// An actor taking a role in an activity for which it can be assigned some
 /// degree of responsibility for the activity taking place.
 class ProvenanceAgent extends BackboneElement {
-  /// Primary constructor for [ProvenanceAgent]
+  /// Primary constructor for
+  /// [ProvenanceAgent]
 
   ProvenanceAgent({
     super.id,
@@ -497,8 +504,8 @@ class ProvenanceAgent extends BackboneElement {
     );
   }
 
-  /// Deserialize [ProvenanceAgent] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ProvenanceAgent]
+  /// from a [String] or [YamlMap] object
   factory ProvenanceAgent.fromYaml(
     dynamic yaml,
   ) =>
@@ -511,8 +518,9 @@ class ProvenanceAgent extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ProvenanceAgent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ProvenanceAgent '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ProvenanceAgent]
@@ -622,7 +630,8 @@ class ProvenanceAgent extends BackboneElement {
 /// [ProvenanceEntity]
 /// An entity used in this activity.
 class ProvenanceEntity extends BackboneElement {
-  /// Primary constructor for [ProvenanceEntity]
+  /// Primary constructor for
+  /// [ProvenanceEntity]
 
   ProvenanceEntity({
     super.id,
@@ -686,8 +695,8 @@ class ProvenanceEntity extends BackboneElement {
     );
   }
 
-  /// Deserialize [ProvenanceEntity] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ProvenanceEntity]
+  /// from a [String] or [YamlMap] object
   factory ProvenanceEntity.fromYaml(
     dynamic yaml,
   ) =>
@@ -700,8 +709,9 @@ class ProvenanceEntity extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ProvenanceEntity cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ProvenanceEntity '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ProvenanceEntity]

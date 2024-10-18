@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [SupplyDelivery]
 /// Record of delivery of what is supplied.
 class SupplyDelivery extends DomainResource {
-  /// Primary constructor for [SupplyDelivery]
+  /// Primary constructor for
+  /// [SupplyDelivery]
 
   SupplyDelivery({
     super.id,
@@ -184,8 +185,8 @@ class SupplyDelivery extends DomainResource {
     );
   }
 
-  /// Deserialize [SupplyDelivery] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SupplyDelivery]
+  /// from a [String] or [YamlMap] object
   factory SupplyDelivery.fromYaml(
     dynamic yaml,
   ) =>
@@ -198,8 +199,9 @@ class SupplyDelivery extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SupplyDelivery cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SupplyDelivery '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SupplyDelivery]
@@ -446,7 +448,8 @@ class SupplyDelivery extends DomainResource {
 /// [SupplyDeliverySuppliedItem]
 /// The item that is being delivered or has been supplied.
 class SupplyDeliverySuppliedItem extends BackboneElement {
-  /// Primary constructor for [SupplyDeliverySuppliedItem]
+  /// Primary constructor for
+  /// [SupplyDeliverySuppliedItem]
 
   SupplyDeliverySuppliedItem({
     super.id,
@@ -509,8 +512,8 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [SupplyDeliverySuppliedItem] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SupplyDeliverySuppliedItem]
+  /// from a [String] or [YamlMap] object
   factory SupplyDeliverySuppliedItem.fromYaml(
     dynamic yaml,
   ) =>
@@ -523,8 +526,9 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SupplyDeliverySuppliedItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SupplyDeliverySuppliedItem '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SupplyDeliverySuppliedItem]

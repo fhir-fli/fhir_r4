@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// oganizations, that is not a part-of relationship/sub-division
 /// relationship.
 class OrganizationAffiliation extends DomainResource {
-  /// Primary constructor for [OrganizationAffiliation]
+  /// Primary constructor for
+  /// [OrganizationAffiliation]
 
   OrganizationAffiliation({
     super.id,
@@ -195,8 +196,8 @@ class OrganizationAffiliation extends DomainResource {
     );
   }
 
-  /// Deserialize [OrganizationAffiliation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [OrganizationAffiliation]
+  /// from a [String] or [YamlMap] object
   factory OrganizationAffiliation.fromYaml(
     dynamic yaml,
   ) =>
@@ -209,8 +210,9 @@ class OrganizationAffiliation extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'OrganizationAffiliation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'OrganizationAffiliation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [OrganizationAffiliation]

@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// are provided and resources and participants may be stored, found,
 /// contained, or accommodated.
 class Location extends DomainResource {
-  /// Primary constructor for [Location]
+  /// Primary constructor for
+  /// [Location]
 
   Location({
     super.id,
@@ -217,8 +218,8 @@ class Location extends DomainResource {
     );
   }
 
-  /// Deserialize [Location] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Location]
+  /// from a [String] or [YamlMap] object
   factory Location.fromYaml(
     dynamic yaml,
   ) =>
@@ -231,8 +232,9 @@ class Location extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Location cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Location '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Location]
@@ -543,7 +545,8 @@ class Location extends DomainResource {
 /// The absolute geographic location of the Location, expressed using the
 /// WGS84 datum (This is the same co-ordinate system used in KML).
 class LocationPosition extends BackboneElement {
-  /// Primary constructor for [LocationPosition]
+  /// Primary constructor for
+  /// [LocationPosition]
 
   LocationPosition({
     super.id,
@@ -605,8 +608,8 @@ class LocationPosition extends BackboneElement {
     );
   }
 
-  /// Deserialize [LocationPosition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [LocationPosition]
+  /// from a [String] or [YamlMap] object
   factory LocationPosition.fromYaml(
     dynamic yaml,
   ) =>
@@ -619,8 +622,9 @@ class LocationPosition extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'LocationPosition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'LocationPosition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [LocationPosition]
@@ -732,7 +736,8 @@ class LocationPosition extends BackboneElement {
 /// [LocationHoursOfOperation]
 /// What days/times during a week is this location usually open.
 class LocationHoursOfOperation extends BackboneElement {
-  /// Primary constructor for [LocationHoursOfOperation]
+  /// Primary constructor for
+  /// [LocationHoursOfOperation]
 
   LocationHoursOfOperation({
     super.id,
@@ -804,8 +809,8 @@ class LocationHoursOfOperation extends BackboneElement {
     );
   }
 
-  /// Deserialize [LocationHoursOfOperation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [LocationHoursOfOperation]
+  /// from a [String] or [YamlMap] object
   factory LocationHoursOfOperation.fromYaml(
     dynamic yaml,
   ) =>
@@ -818,8 +823,9 @@ class LocationHoursOfOperation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'LocationHoursOfOperation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'LocationHoursOfOperation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [LocationHoursOfOperation]

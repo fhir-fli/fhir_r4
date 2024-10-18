@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// systems, including the type of event that initiates the message, the
 /// content to be transmitted and what response(s), if any, are permitted.
 class MessageDefinition extends DomainResource {
-  /// Primary constructor for [MessageDefinition]
+  /// Primary constructor for
+  /// [MessageDefinition]
 
   MessageDefinition({
     super.id,
@@ -275,8 +276,8 @@ class MessageDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [MessageDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MessageDefinition]
+  /// from a [String] or [YamlMap] object
   factory MessageDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -289,8 +290,9 @@ class MessageDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MessageDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MessageDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MessageDefinition]
@@ -743,7 +745,8 @@ class MessageDefinition extends DomainResource {
 /// event. For example, the Encounter for an admit message or two Account
 /// records for a merge.
 class MessageDefinitionFocus extends BackboneElement {
-  /// Primary constructor for [MessageDefinitionFocus]
+  /// Primary constructor for
+  /// [MessageDefinitionFocus]
 
   MessageDefinitionFocus({
     super.id,
@@ -812,8 +815,8 @@ class MessageDefinitionFocus extends BackboneElement {
     );
   }
 
-  /// Deserialize [MessageDefinitionFocus] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MessageDefinitionFocus]
+  /// from a [String] or [YamlMap] object
   factory MessageDefinitionFocus.fromYaml(
     dynamic yaml,
   ) =>
@@ -826,8 +829,9 @@ class MessageDefinitionFocus extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MessageDefinitionFocus cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MessageDefinitionFocus '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MessageDefinitionFocus]
@@ -956,7 +960,8 @@ class MessageDefinitionFocus extends BackboneElement {
 /// Indicates what types of messages may be sent as an application-level
 /// response to this message.
 class MessageDefinitionAllowedResponse extends BackboneElement {
-  /// Primary constructor for [MessageDefinitionAllowedResponse]
+  /// Primary constructor for
+  /// [MessageDefinitionAllowedResponse]
 
   MessageDefinitionAllowedResponse({
     super.id,
@@ -1013,8 +1018,8 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
     );
   }
 
-  /// Deserialize [MessageDefinitionAllowedResponse] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MessageDefinitionAllowedResponse]
+  /// from a [String] or [YamlMap] object
   factory MessageDefinitionAllowedResponse.fromYaml(
     dynamic yaml,
   ) =>
@@ -1027,8 +1032,9 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MessageDefinitionAllowedResponse cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MessageDefinitionAllowedResponse '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MessageDefinitionAllowedResponse]

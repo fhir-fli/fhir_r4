@@ -9,7 +9,8 @@ import 'package:yaml/yaml.dart';
 /// transmitted in a bundle in which the MessageHeader resource instance is
 /// the first resource in the bundle.
 class MessageHeader extends DomainResource {
-  /// Primary constructor for [MessageHeader]
+  /// Primary constructor for
+  /// [MessageHeader]
 
   MessageHeader({
     super.id,
@@ -172,8 +173,8 @@ class MessageHeader extends DomainResource {
     );
   }
 
-  /// Deserialize [MessageHeader] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MessageHeader]
+  /// from a [String] or [YamlMap] object
   factory MessageHeader.fromYaml(
     dynamic yaml,
   ) =>
@@ -186,8 +187,9 @@ class MessageHeader extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MessageHeader cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MessageHeader '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MessageHeader]
@@ -437,7 +439,8 @@ class MessageHeader extends DomainResource {
 /// [MessageHeaderDestination]
 /// The destination application which the message is intended for.
 class MessageHeaderDestination extends BackboneElement {
-  /// Primary constructor for [MessageHeaderDestination]
+  /// Primary constructor for
+  /// [MessageHeaderDestination]
 
   MessageHeaderDestination({
     super.id,
@@ -506,8 +509,8 @@ class MessageHeaderDestination extends BackboneElement {
     );
   }
 
-  /// Deserialize [MessageHeaderDestination] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MessageHeaderDestination]
+  /// from a [String] or [YamlMap] object
   factory MessageHeaderDestination.fromYaml(
     dynamic yaml,
   ) =>
@@ -520,8 +523,9 @@ class MessageHeaderDestination extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MessageHeaderDestination cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MessageHeaderDestination '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MessageHeaderDestination]
@@ -641,7 +645,8 @@ class MessageHeaderDestination extends BackboneElement {
 /// [MessageHeaderSource]
 /// The source application from which this message originated.
 class MessageHeaderSource extends BackboneElement {
-  /// Primary constructor for [MessageHeaderSource]
+  /// Primary constructor for
+  /// [MessageHeaderSource]
 
   MessageHeaderSource({
     super.id,
@@ -718,8 +723,8 @@ class MessageHeaderSource extends BackboneElement {
     );
   }
 
-  /// Deserialize [MessageHeaderSource] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MessageHeaderSource]
+  /// from a [String] or [YamlMap] object
   factory MessageHeaderSource.fromYaml(
     dynamic yaml,
   ) =>
@@ -732,8 +737,9 @@ class MessageHeaderSource extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MessageHeaderSource cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MessageHeaderSource '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MessageHeaderSource]
@@ -871,7 +877,8 @@ class MessageHeaderSource extends BackboneElement {
 /// Information about the message that this message is a response to. Only
 /// present if this message is a response.
 class MessageHeaderResponse extends BackboneElement {
-  /// Primary constructor for [MessageHeaderResponse]
+  /// Primary constructor for
+  /// [MessageHeaderResponse]
 
   MessageHeaderResponse({
     super.id,
@@ -932,8 +939,8 @@ class MessageHeaderResponse extends BackboneElement {
     );
   }
 
-  /// Deserialize [MessageHeaderResponse] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MessageHeaderResponse]
+  /// from a [String] or [YamlMap] object
   factory MessageHeaderResponse.fromYaml(
     dynamic yaml,
   ) =>
@@ -946,8 +953,9 @@ class MessageHeaderResponse extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MessageHeaderResponse cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MessageHeaderResponse '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MessageHeaderResponse]

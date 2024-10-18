@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// measure; and optionally a reference to the resources involved in that
 /// calculation.
 class MeasureReport extends DomainResource {
-  /// Primary constructor for [MeasureReport]
+  /// Primary constructor for
+  /// [MeasureReport]
 
   MeasureReport({
     super.id,
@@ -164,8 +165,8 @@ class MeasureReport extends DomainResource {
     );
   }
 
-  /// Deserialize [MeasureReport] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MeasureReport]
+  /// from a [String] or [YamlMap] object
   factory MeasureReport.fromYaml(
     dynamic yaml,
   ) =>
@@ -178,8 +179,9 @@ class MeasureReport extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MeasureReport cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MeasureReport '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MeasureReport]
@@ -410,7 +412,8 @@ class MeasureReport extends DomainResource {
 /// The results of the calculation, one for each population group in the
 /// measure.
 class MeasureReportGroup extends BackboneElement {
-  /// Primary constructor for [MeasureReportGroup]
+  /// Primary constructor for
+  /// [MeasureReportGroup]
 
   MeasureReportGroup({
     super.id,
@@ -487,8 +490,8 @@ class MeasureReportGroup extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureReportGroup] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MeasureReportGroup]
+  /// from a [String] or [YamlMap] object
   factory MeasureReportGroup.fromYaml(
     dynamic yaml,
   ) =>
@@ -501,8 +504,9 @@ class MeasureReportGroup extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MeasureReportGroup cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MeasureReportGroup '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MeasureReportGroup]
@@ -619,7 +623,8 @@ class MeasureReportGroup extends BackboneElement {
 /// The populations that make up the population group, one for each type of
 /// population appropriate for the measure.
 class MeasureReportPopulation extends BackboneElement {
-  /// Primary constructor for [MeasureReportPopulation]
+  /// Primary constructor for
+  /// [MeasureReportPopulation]
 
   MeasureReportPopulation({
     super.id,
@@ -683,8 +688,8 @@ class MeasureReportPopulation extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureReportPopulation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MeasureReportPopulation]
+  /// from a [String] or [YamlMap] object
   factory MeasureReportPopulation.fromYaml(
     dynamic yaml,
   ) =>
@@ -697,8 +702,9 @@ class MeasureReportPopulation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MeasureReportPopulation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MeasureReportPopulation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MeasureReportPopulation]
@@ -805,7 +811,8 @@ class MeasureReportPopulation extends BackboneElement {
 /// When a measure includes multiple stratifiers, there will be a
 /// stratifier group for each stratifier defined by the measure.
 class MeasureReportStratifier extends BackboneElement {
-  /// Primary constructor for [MeasureReportStratifier]
+  /// Primary constructor for
+  /// [MeasureReportStratifier]
 
   MeasureReportStratifier({
     super.id,
@@ -870,8 +877,8 @@ class MeasureReportStratifier extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureReportStratifier] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MeasureReportStratifier]
+  /// from a [String] or [YamlMap] object
   factory MeasureReportStratifier.fromYaml(
     dynamic yaml,
   ) =>
@@ -884,8 +891,9 @@ class MeasureReportStratifier extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MeasureReportStratifier cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MeasureReportStratifier '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MeasureReportStratifier]
@@ -980,7 +988,8 @@ class MeasureReportStratifier extends BackboneElement {
 /// stratifier. For example, when stratifying on administrative gender,
 /// there will be four strata, one for each possible gender value.
 class MeasureReportStratum extends BackboneElement {
-  /// Primary constructor for [MeasureReportStratum]
+  /// Primary constructor for
+  /// [MeasureReportStratum]
 
   MeasureReportStratum({
     super.id,
@@ -1057,8 +1066,8 @@ class MeasureReportStratum extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureReportStratum] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MeasureReportStratum]
+  /// from a [String] or [YamlMap] object
   factory MeasureReportStratum.fromYaml(
     dynamic yaml,
   ) =>
@@ -1071,8 +1080,9 @@ class MeasureReportStratum extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MeasureReportStratum cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MeasureReportStratum '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MeasureReportStratum]
@@ -1188,7 +1198,8 @@ class MeasureReportStratum extends BackboneElement {
 /// [MeasureReportComponent]
 /// A stratifier component value.
 class MeasureReportComponent extends BackboneElement {
-  /// Primary constructor for [MeasureReportComponent]
+  /// Primary constructor for
+  /// [MeasureReportComponent]
 
   MeasureReportComponent({
     super.id,
@@ -1241,8 +1252,8 @@ class MeasureReportComponent extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureReportComponent] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MeasureReportComponent]
+  /// from a [String] or [YamlMap] object
   factory MeasureReportComponent.fromYaml(
     dynamic yaml,
   ) =>
@@ -1255,8 +1266,9 @@ class MeasureReportComponent extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MeasureReportComponent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MeasureReportComponent '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MeasureReportComponent]
@@ -1344,7 +1356,8 @@ class MeasureReportComponent extends BackboneElement {
 /// The populations that make up the stratum, one for each type of
 /// population appropriate to the measure.
 class MeasureReportPopulation1 extends BackboneElement {
-  /// Primary constructor for [MeasureReportPopulation1]
+  /// Primary constructor for
+  /// [MeasureReportPopulation1]
 
   MeasureReportPopulation1({
     super.id,
@@ -1408,8 +1421,8 @@ class MeasureReportPopulation1 extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureReportPopulation1] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MeasureReportPopulation1]
+  /// from a [String] or [YamlMap] object
   factory MeasureReportPopulation1.fromYaml(
     dynamic yaml,
   ) =>
@@ -1422,8 +1435,9 @@ class MeasureReportPopulation1 extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MeasureReportPopulation1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MeasureReportPopulation1 '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MeasureReportPopulation1]

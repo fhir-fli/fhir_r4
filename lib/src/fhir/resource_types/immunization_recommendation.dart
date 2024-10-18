@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// according to a published schedule with optional supporting
 /// justification.
 class ImmunizationRecommendation extends DomainResource {
-  /// Primary constructor for [ImmunizationRecommendation]
+  /// Primary constructor for
+  /// [ImmunizationRecommendation]
 
   ImmunizationRecommendation({
     super.id,
@@ -113,19 +114,20 @@ class ImmunizationRecommendation extends DomainResource {
               json['authority'] as Map<String, dynamic>,
             )
           : null,
-      recommendation:
-          ensureNonNullList((json['recommendation'] as List<dynamic>)
-              .map<ImmunizationRecommendationRecommendation>(
-                (v) => ImmunizationRecommendationRecommendation.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()),
+      recommendation: ensureNonNullList(
+        (json['recommendation'] as List<dynamic>)
+            .map<ImmunizationRecommendationRecommendation>(
+              (v) => ImmunizationRecommendationRecommendation.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [ImmunizationRecommendation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImmunizationRecommendation]
+  /// from a [String] or [YamlMap] object
   factory ImmunizationRecommendation.fromYaml(
     dynamic yaml,
   ) =>
@@ -138,8 +140,9 @@ class ImmunizationRecommendation extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImmunizationRecommendation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImmunizationRecommendation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImmunizationRecommendation]
@@ -293,7 +296,8 @@ class ImmunizationRecommendation extends DomainResource {
 /// [ImmunizationRecommendationRecommendation]
 /// Vaccine administration recommendations.
 class ImmunizationRecommendationRecommendation extends BackboneElement {
-  /// Primary constructor for [ImmunizationRecommendationRecommendation]
+  /// Primary constructor for
+  /// [ImmunizationRecommendationRecommendation]
 
   ImmunizationRecommendationRecommendation({
     super.id,
@@ -450,8 +454,8 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImmunizationRecommendationRecommendation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImmunizationRecommendationRecommendation]
+  /// from a [String] or [YamlMap] object
   factory ImmunizationRecommendationRecommendation.fromYaml(
     dynamic yaml,
   ) =>
@@ -464,8 +468,9 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImmunizationRecommendationRecommendation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImmunizationRecommendationRecommendation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImmunizationRecommendationRecommendation]
@@ -719,7 +724,8 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
 /// Vaccine date recommendations. For example, earliest date to administer,
 /// latest date to administer, etc.
 class ImmunizationRecommendationDateCriterion extends BackboneElement {
-  /// Primary constructor for [ImmunizationRecommendationDateCriterion]
+  /// Primary constructor for
+  /// [ImmunizationRecommendationDateCriterion]
 
   ImmunizationRecommendationDateCriterion({
     super.id,
@@ -773,8 +779,8 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImmunizationRecommendationDateCriterion] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImmunizationRecommendationDateCriterion]
+  /// from a [String] or [YamlMap] object
   factory ImmunizationRecommendationDateCriterion.fromYaml(
     dynamic yaml,
   ) =>
@@ -787,8 +793,9 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImmunizationRecommendationDateCriterion cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImmunizationRecommendationDateCriterion '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImmunizationRecommendationDateCriterion]

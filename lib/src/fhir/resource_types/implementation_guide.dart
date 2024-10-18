@@ -9,7 +9,8 @@ import 'package:yaml/yaml.dart';
 /// into a logical whole and to publish a computable definition of all the
 /// parts.
 class ImplementationGuide extends DomainResource {
-  /// Primary constructor for [ImplementationGuide]
+  /// Primary constructor for
+  /// [ImplementationGuide]
 
   ImplementationGuide({
     super.id,
@@ -200,11 +201,13 @@ class ImplementationGuide extends DomainResource {
               '_value': json['_license'],
             })
           : null,
-      fhirVersion: ensureNonNullList(parsePrimitiveList<FHIRVersion>(
-        json['fhirVersion'] as List<dynamic>?,
-        json['_fhirVersion'] as List<dynamic>?,
-        fromJson: FHIRVersion.fromJson,
-      )),
+      fhirVersion: ensureNonNullList(
+        parsePrimitiveList<FHIRVersion>(
+          json['fhirVersion'] as List<dynamic>?,
+          json['_fhirVersion'] as List<dynamic>?,
+          fromJson: FHIRVersion.fromJson,
+        ),
+      ),
       dependsOn: json['dependsOn'] != null
           ? (json['dependsOn'] as List<dynamic>)
               .map<ImplementationGuideDependsOn>(
@@ -236,8 +239,8 @@ class ImplementationGuide extends DomainResource {
     );
   }
 
-  /// Deserialize [ImplementationGuide] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImplementationGuide]
+  /// from a [String] or [YamlMap] object
   factory ImplementationGuide.fromYaml(
     dynamic yaml,
   ) =>
@@ -250,8 +253,9 @@ class ImplementationGuide extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImplementationGuide cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImplementationGuide '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImplementationGuide]
@@ -632,7 +636,8 @@ class ImplementationGuide extends DomainResource {
 /// Typically, an implementation guide uses value sets, profiles
 /// etc.defined in other implementation guides.
 class ImplementationGuideDependsOn extends BackboneElement {
-  /// Primary constructor for [ImplementationGuideDependsOn]
+  /// Primary constructor for
+  /// [ImplementationGuideDependsOn]
 
   ImplementationGuideDependsOn({
     super.id,
@@ -696,8 +701,8 @@ class ImplementationGuideDependsOn extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImplementationGuideDependsOn] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImplementationGuideDependsOn]
+  /// from a [String] or [YamlMap] object
   factory ImplementationGuideDependsOn.fromYaml(
     dynamic yaml,
   ) =>
@@ -710,8 +715,9 @@ class ImplementationGuideDependsOn extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImplementationGuideDependsOn cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImplementationGuideDependsOn '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImplementationGuideDependsOn]
@@ -825,7 +831,8 @@ class ImplementationGuideDependsOn extends BackboneElement {
 /// A set of profiles that all resources covered by this implementation
 /// guide must conform to.
 class ImplementationGuideGlobal extends BackboneElement {
-  /// Primary constructor for [ImplementationGuideGlobal]
+  /// Primary constructor for
+  /// [ImplementationGuideGlobal]
 
   ImplementationGuideGlobal({
     super.id,
@@ -880,8 +887,8 @@ class ImplementationGuideGlobal extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImplementationGuideGlobal] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImplementationGuideGlobal]
+  /// from a [String] or [YamlMap] object
   factory ImplementationGuideGlobal.fromYaml(
     dynamic yaml,
   ) =>
@@ -894,8 +901,9 @@ class ImplementationGuideGlobal extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImplementationGuideGlobal cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImplementationGuideGlobal '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImplementationGuideGlobal]
@@ -991,7 +999,8 @@ class ImplementationGuideGlobal extends BackboneElement {
 /// The information needed by an IG publisher tool to publish the whole
 /// implementation guide.
 class ImplementationGuideDefinition extends BackboneElement {
-  /// Primary constructor for [ImplementationGuideDefinition]
+  /// Primary constructor for
+  /// [ImplementationGuideDefinition]
 
   ImplementationGuideDefinition({
     super.id,
@@ -1047,13 +1056,15 @@ class ImplementationGuideDefinition extends BackboneElement {
               )
               .toList()
           : null,
-      resource: ensureNonNullList((json['resource'] as List<dynamic>)
-          .map<ImplementationGuideResource>(
-            (v) => ImplementationGuideResource.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      resource: ensureNonNullList(
+        (json['resource'] as List<dynamic>)
+            .map<ImplementationGuideResource>(
+              (v) => ImplementationGuideResource.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       page: json['page'] != null
           ? ImplementationGuidePage.fromJson(
               json['page'] as Map<String, dynamic>,
@@ -1080,8 +1091,8 @@ class ImplementationGuideDefinition extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImplementationGuideDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImplementationGuideDefinition]
+  /// from a [String] or [YamlMap] object
   factory ImplementationGuideDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -1094,8 +1105,9 @@ class ImplementationGuideDefinition extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImplementationGuideDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImplementationGuideDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImplementationGuideDefinition]
@@ -1220,7 +1232,8 @@ class ImplementationGuideDefinition extends BackboneElement {
 /// A logical group of resources. Logical groups can be used when building
 /// pages.
 class ImplementationGuideGrouping extends BackboneElement {
-  /// Primary constructor for [ImplementationGuideGrouping]
+  /// Primary constructor for
+  /// [ImplementationGuideGrouping]
 
   ImplementationGuideGrouping({
     super.id,
@@ -1277,8 +1290,8 @@ class ImplementationGuideGrouping extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImplementationGuideGrouping] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImplementationGuideGrouping]
+  /// from a [String] or [YamlMap] object
   factory ImplementationGuideGrouping.fromYaml(
     dynamic yaml,
   ) =>
@@ -1291,8 +1304,9 @@ class ImplementationGuideGrouping extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImplementationGuideGrouping cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImplementationGuideGrouping '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImplementationGuideGrouping]
@@ -1393,7 +1407,8 @@ class ImplementationGuideGrouping extends BackboneElement {
 /// are obvious candidates for inclusion, but any kind of resource can be
 /// included as an example resource.
 class ImplementationGuideResource extends BackboneElement {
-  /// Primary constructor for [ImplementationGuideResource]
+  /// Primary constructor for
+  /// [ImplementationGuideResource]
 
   ImplementationGuideResource({
     super.id,
@@ -1483,8 +1498,8 @@ class ImplementationGuideResource extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImplementationGuideResource] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImplementationGuideResource]
+  /// from a [String] or [YamlMap] object
   factory ImplementationGuideResource.fromYaml(
     dynamic yaml,
   ) =>
@@ -1497,8 +1512,9 @@ class ImplementationGuideResource extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImplementationGuideResource cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImplementationGuideResource '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImplementationGuideResource]
@@ -1667,7 +1683,8 @@ class ImplementationGuideResource extends BackboneElement {
 /// A page / section in the implementation guide. The root page is the
 /// implementation guide home page.
 class ImplementationGuidePage extends BackboneElement {
-  /// Primary constructor for [ImplementationGuidePage]
+  /// Primary constructor for
+  /// [ImplementationGuidePage]
 
   ImplementationGuidePage({
     super.id,
@@ -1735,8 +1752,8 @@ class ImplementationGuidePage extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImplementationGuidePage] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImplementationGuidePage]
+  /// from a [String] or [YamlMap] object
   factory ImplementationGuidePage.fromYaml(
     dynamic yaml,
   ) =>
@@ -1749,8 +1766,9 @@ class ImplementationGuidePage extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImplementationGuidePage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImplementationGuidePage '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImplementationGuidePage]
@@ -1866,7 +1884,8 @@ class ImplementationGuidePage extends BackboneElement {
 /// [ImplementationGuideParameter]
 /// Defines how IG is built by tools.
 class ImplementationGuideParameter extends BackboneElement {
-  /// Primary constructor for [ImplementationGuideParameter]
+  /// Primary constructor for
+  /// [ImplementationGuideParameter]
 
   ImplementationGuideParameter({
     super.id,
@@ -1921,8 +1940,8 @@ class ImplementationGuideParameter extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImplementationGuideParameter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImplementationGuideParameter]
+  /// from a [String] or [YamlMap] object
   factory ImplementationGuideParameter.fromYaml(
     dynamic yaml,
   ) =>
@@ -1935,8 +1954,9 @@ class ImplementationGuideParameter extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImplementationGuideParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImplementationGuideParameter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImplementationGuideParameter]
@@ -2029,7 +2049,8 @@ class ImplementationGuideParameter extends BackboneElement {
 /// [ImplementationGuideTemplate]
 /// A template for building resources.
 class ImplementationGuideTemplate extends BackboneElement {
-  /// Primary constructor for [ImplementationGuideTemplate]
+  /// Primary constructor for
+  /// [ImplementationGuideTemplate]
 
   ImplementationGuideTemplate({
     super.id,
@@ -2091,8 +2112,8 @@ class ImplementationGuideTemplate extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImplementationGuideTemplate] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImplementationGuideTemplate]
+  /// from a [String] or [YamlMap] object
   factory ImplementationGuideTemplate.fromYaml(
     dynamic yaml,
   ) =>
@@ -2105,8 +2126,9 @@ class ImplementationGuideTemplate extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImplementationGuideTemplate cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImplementationGuideTemplate '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImplementationGuideTemplate]
@@ -2216,7 +2238,8 @@ class ImplementationGuideTemplate extends BackboneElement {
 /// Information about an assembled implementation guide, created by the
 /// publication tooling.
 class ImplementationGuideManifest extends BackboneElement {
-  /// Primary constructor for [ImplementationGuideManifest]
+  /// Primary constructor for
+  /// [ImplementationGuideManifest]
 
   ImplementationGuideManifest({
     super.id,
@@ -2269,13 +2292,15 @@ class ImplementationGuideManifest extends BackboneElement {
               '_value': json['_rendering'],
             })
           : null,
-      resource: ensureNonNullList((json['resource'] as List<dynamic>)
-          .map<ImplementationGuideResource>(
-            (v) => ImplementationGuideResource.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      resource: ensureNonNullList(
+        (json['resource'] as List<dynamic>)
+            .map<ImplementationGuideResource>(
+              (v) => ImplementationGuideResource.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       page: json['page'] != null
           ? (json['page'] as List<dynamic>)
               .map<ImplementationGuidePage>(
@@ -2298,8 +2323,8 @@ class ImplementationGuideManifest extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImplementationGuideManifest] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImplementationGuideManifest]
+  /// from a [String] or [YamlMap] object
   factory ImplementationGuideManifest.fromYaml(
     dynamic yaml,
   ) =>
@@ -2312,8 +2337,9 @@ class ImplementationGuideManifest extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImplementationGuideManifest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImplementationGuideManifest '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImplementationGuideManifest]
@@ -2453,7 +2479,8 @@ class ImplementationGuideManifest extends BackboneElement {
 /// are obvious candidates for inclusion, but any kind of resource can be
 /// included as an example resource.
 class ImplementationGuideResource1 extends BackboneElement {
-  /// Primary constructor for [ImplementationGuideResource1]
+  /// Primary constructor for
+  /// [ImplementationGuideResource1]
 
   ImplementationGuideResource1({
     super.id,
@@ -2523,8 +2550,8 @@ class ImplementationGuideResource1 extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImplementationGuideResource1] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImplementationGuideResource1]
+  /// from a [String] or [YamlMap] object
   factory ImplementationGuideResource1.fromYaml(
     dynamic yaml,
   ) =>
@@ -2537,8 +2564,9 @@ class ImplementationGuideResource1 extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImplementationGuideResource1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImplementationGuideResource1 '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImplementationGuideResource1]
@@ -2663,7 +2691,8 @@ class ImplementationGuideResource1 extends BackboneElement {
 /// [ImplementationGuidePage1]
 /// Information about a page within the IG.
 class ImplementationGuidePage1 extends BackboneElement {
-  /// Primary constructor for [ImplementationGuidePage1]
+  /// Primary constructor for
+  /// [ImplementationGuidePage1]
 
   ImplementationGuidePage1({
     super.id,
@@ -2726,8 +2755,8 @@ class ImplementationGuidePage1 extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImplementationGuidePage1] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImplementationGuidePage1]
+  /// from a [String] or [YamlMap] object
   factory ImplementationGuidePage1.fromYaml(
     dynamic yaml,
   ) =>
@@ -2740,8 +2769,9 @@ class ImplementationGuidePage1 extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImplementationGuidePage1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImplementationGuidePage1 '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImplementationGuidePage1]

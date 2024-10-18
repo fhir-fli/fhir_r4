@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// describe a code system or code system supplement and its key
 /// properties, and optionally define a part or all of its content.
 class CodeSystem extends DomainResource {
-  /// Primary constructor for [CodeSystem]
+  /// Primary constructor for
+  /// [CodeSystem]
 
   CodeSystem({
     super.id,
@@ -289,8 +290,8 @@ class CodeSystem extends DomainResource {
     );
   }
 
-  /// Deserialize [CodeSystem] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CodeSystem]
+  /// from a [String] or [YamlMap] object
   factory CodeSystem.fromYaml(
     dynamic yaml,
   ) =>
@@ -303,8 +304,9 @@ class CodeSystem extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CodeSystem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CodeSystem '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CodeSystem]
@@ -778,7 +780,8 @@ class CodeSystem extends DomainResource {
 /// A filter that can be used in a value set compose statement when
 /// selecting concepts using a filter.
 class CodeSystemFilter extends BackboneElement {
-  /// Primary constructor for [CodeSystemFilter]
+  /// Primary constructor for
+  /// [CodeSystemFilter]
 
   CodeSystemFilter({
     super.id,
@@ -834,11 +837,13 @@ class CodeSystemFilter extends BackboneElement {
               '_value': json['_description'],
             })
           : null,
-      operator_: ensureNonNullList(parsePrimitiveList<FilterOperator>(
-        json['operator'] as List<dynamic>?,
-        json['_operator'] as List<dynamic>?,
-        fromJson: FilterOperator.fromJson,
-      )),
+      operator_: ensureNonNullList(
+        parsePrimitiveList<FilterOperator>(
+          json['operator'] as List<dynamic>?,
+          json['_operator'] as List<dynamic>?,
+          fromJson: FilterOperator.fromJson,
+        ),
+      ),
       value: FhirString.fromJson({
         'value': json['value'],
         '_value': json['_value'],
@@ -846,8 +851,8 @@ class CodeSystemFilter extends BackboneElement {
     );
   }
 
-  /// Deserialize [CodeSystemFilter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CodeSystemFilter]
+  /// from a [String] or [YamlMap] object
   factory CodeSystemFilter.fromYaml(
     dynamic yaml,
   ) =>
@@ -860,8 +865,9 @@ class CodeSystemFilter extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CodeSystemFilter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CodeSystemFilter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CodeSystemFilter]
@@ -980,7 +986,8 @@ class CodeSystemFilter extends BackboneElement {
 /// A property defines an additional slot through which additional
 /// information can be provided about a concept.
 class CodeSystemProperty extends BackboneElement {
-  /// Primary constructor for [CodeSystemProperty]
+  /// Primary constructor for
+  /// [CodeSystemProperty]
 
   CodeSystemProperty({
     super.id,
@@ -1049,8 +1056,8 @@ class CodeSystemProperty extends BackboneElement {
     );
   }
 
-  /// Deserialize [CodeSystemProperty] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CodeSystemProperty]
+  /// from a [String] or [YamlMap] object
   factory CodeSystemProperty.fromYaml(
     dynamic yaml,
   ) =>
@@ -1063,8 +1070,9 @@ class CodeSystemProperty extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CodeSystemProperty cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CodeSystemProperty '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CodeSystemProperty]
@@ -1192,7 +1200,8 @@ class CodeSystemProperty extends BackboneElement {
 /// inherently hierarchical, but the definitions must be consulted to
 /// determine what the meanings of the hierarchical relationships are.
 class CodeSystemConcept extends BackboneElement {
-  /// Primary constructor for [CodeSystemConcept]
+  /// Primary constructor for
+  /// [CodeSystemConcept]
 
   CodeSystemConcept({
     super.id,
@@ -1286,8 +1295,8 @@ class CodeSystemConcept extends BackboneElement {
     );
   }
 
-  /// Deserialize [CodeSystemConcept] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CodeSystemConcept]
+  /// from a [String] or [YamlMap] object
   factory CodeSystemConcept.fromYaml(
     dynamic yaml,
   ) =>
@@ -1300,8 +1309,9 @@ class CodeSystemConcept extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CodeSystemConcept cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CodeSystemConcept '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CodeSystemConcept]
@@ -1451,7 +1461,8 @@ class CodeSystemConcept extends BackboneElement {
 /// Additional representations for the concept - other languages, aliases,
 /// specialized purposes, used for particular purposes, etc.
 class CodeSystemDesignation extends BackboneElement {
-  /// Primary constructor for [CodeSystemDesignation]
+  /// Primary constructor for
+  /// [CodeSystemDesignation]
 
   CodeSystemDesignation({
     super.id,
@@ -1514,8 +1525,8 @@ class CodeSystemDesignation extends BackboneElement {
     );
   }
 
-  /// Deserialize [CodeSystemDesignation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CodeSystemDesignation]
+  /// from a [String] or [YamlMap] object
   factory CodeSystemDesignation.fromYaml(
     dynamic yaml,
   ) =>
@@ -1528,8 +1539,9 @@ class CodeSystemDesignation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CodeSystemDesignation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CodeSystemDesignation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CodeSystemDesignation]
@@ -1632,7 +1644,8 @@ class CodeSystemDesignation extends BackboneElement {
 /// [CodeSystemProperty1]
 /// A property value for this concept.
 class CodeSystemProperty1 extends BackboneElement {
-  /// Primary constructor for [CodeSystemProperty1]
+  /// Primary constructor for
+  /// [CodeSystemProperty1]
 
   CodeSystemProperty1({
     super.id,
@@ -1730,8 +1743,8 @@ class CodeSystemProperty1 extends BackboneElement {
     );
   }
 
-  /// Deserialize [CodeSystemProperty1] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CodeSystemProperty1]
+  /// from a [String] or [YamlMap] object
   factory CodeSystemProperty1.fromYaml(
     dynamic yaml,
   ) =>
@@ -1744,8 +1757,9 @@ class CodeSystemProperty1 extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CodeSystemProperty1 cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CodeSystemProperty1 '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CodeSystemProperty1]

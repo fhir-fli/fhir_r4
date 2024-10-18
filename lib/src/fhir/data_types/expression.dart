@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// which the expression is evaluated, and how the result of the expression
 /// is used.
 class FhirExpression extends DataType {
-  /// Primary constructor for [FhirExpression]
+  /// Primary constructor for
+  /// [FhirExpression]
 
   FhirExpression({
     super.id,
@@ -76,8 +77,8 @@ class FhirExpression extends DataType {
     );
   }
 
-  /// Deserialize [FhirExpression] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [FhirExpression]
+  /// from a [String] or [YamlMap] object
   factory FhirExpression.fromYaml(
     dynamic yaml,
   ) =>
@@ -90,8 +91,9 @@ class FhirExpression extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'FhirExpression cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'FhirExpression '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [FhirExpression]

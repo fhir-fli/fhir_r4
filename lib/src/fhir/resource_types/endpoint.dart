@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// for another FHIR server. This may include any security context
 /// information.
 class FhirEndpoint extends DomainResource {
-  /// Primary constructor for [FhirEndpoint]
+  /// Primary constructor for
+  /// [FhirEndpoint]
 
   FhirEndpoint({
     super.id,
@@ -140,13 +141,15 @@ class FhirEndpoint extends DomainResource {
               json['period'] as Map<String, dynamic>,
             )
           : null,
-      payloadType: ensureNonNullList((json['payloadType'] as List<dynamic>)
-          .map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      payloadType: ensureNonNullList(
+        (json['payloadType'] as List<dynamic>)
+            .map<CodeableConcept>(
+              (v) => CodeableConcept.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       payloadMimeType: parsePrimitiveList<FhirCode>(
         json['payloadMimeType'] as List<dynamic>?,
         json['_payloadMimeType'] as List<dynamic>?,
@@ -164,8 +167,8 @@ class FhirEndpoint extends DomainResource {
     );
   }
 
-  /// Deserialize [FhirEndpoint] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [FhirEndpoint]
+  /// from a [String] or [YamlMap] object
   factory FhirEndpoint.fromYaml(
     dynamic yaml,
   ) =>
@@ -178,8 +181,9 @@ class FhirEndpoint extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'FhirEndpoint cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'FhirEndpoint '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [FhirEndpoint]

@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// An authorization for the provision of glasses and/or contact lenses to
 /// a patient.
 class VisionPrescription extends DomainResource {
-  /// Primary constructor for [VisionPrescription]
+  /// Primary constructor for
+  /// [VisionPrescription]
 
   VisionPrescription({
     super.id,
@@ -126,19 +127,20 @@ class VisionPrescription extends DomainResource {
       prescriber: Reference.fromJson(
         json['prescriber'] as Map<String, dynamic>,
       ),
-      lensSpecification:
-          ensureNonNullList((json['lensSpecification'] as List<dynamic>)
-              .map<VisionPrescriptionLensSpecification>(
-                (v) => VisionPrescriptionLensSpecification.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()),
+      lensSpecification: ensureNonNullList(
+        (json['lensSpecification'] as List<dynamic>)
+            .map<VisionPrescriptionLensSpecification>(
+              (v) => VisionPrescriptionLensSpecification.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [VisionPrescription] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [VisionPrescription]
+  /// from a [String] or [YamlMap] object
   factory VisionPrescription.fromYaml(
     dynamic yaml,
   ) =>
@@ -151,8 +153,9 @@ class VisionPrescription extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'VisionPrescription cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'VisionPrescription '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [VisionPrescription]
@@ -341,7 +344,8 @@ class VisionPrescription extends DomainResource {
 /// Contain the details of the individual lens specifications and serves as
 /// the authorization for the fullfillment by certified professionals.
 class VisionPrescriptionLensSpecification extends BackboneElement {
-  /// Primary constructor for [VisionPrescriptionLensSpecification]
+  /// Primary constructor for
+  /// [VisionPrescriptionLensSpecification]
 
   VisionPrescriptionLensSpecification({
     super.id,
@@ -484,8 +488,8 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     );
   }
 
-  /// Deserialize [VisionPrescriptionLensSpecification] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [VisionPrescriptionLensSpecification]
+  /// from a [String] or [YamlMap] object
   factory VisionPrescriptionLensSpecification.fromYaml(
     dynamic yaml,
   ) =>
@@ -498,8 +502,9 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'VisionPrescriptionLensSpecification cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'VisionPrescriptionLensSpecification '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [VisionPrescriptionLensSpecification]
@@ -744,7 +749,8 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
 /// [VisionPrescriptionPrism]
 /// Allows for adjustment on two axis.
 class VisionPrescriptionPrism extends BackboneElement {
-  /// Primary constructor for [VisionPrescriptionPrism]
+  /// Primary constructor for
+  /// [VisionPrescriptionPrism]
 
   VisionPrescriptionPrism({
     super.id,
@@ -799,8 +805,8 @@ class VisionPrescriptionPrism extends BackboneElement {
     );
   }
 
-  /// Deserialize [VisionPrescriptionPrism] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [VisionPrescriptionPrism]
+  /// from a [String] or [YamlMap] object
   factory VisionPrescriptionPrism.fromYaml(
     dynamic yaml,
   ) =>
@@ -813,8 +819,9 @@ class VisionPrescriptionPrism extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'VisionPrescriptionPrism cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'VisionPrescriptionPrism '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [VisionPrescriptionPrism]

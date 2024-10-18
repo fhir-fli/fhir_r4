@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// part of the $evaluate operation. Output parameters are included in the
 /// GuidanceResponse.
 class ParameterDefinition extends DataType {
-  /// Primary constructor for [ParameterDefinition]
+  /// Primary constructor for
+  /// [ParameterDefinition]
 
   ParameterDefinition({
     super.id,
@@ -88,8 +89,8 @@ class ParameterDefinition extends DataType {
     );
   }
 
-  /// Deserialize [ParameterDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ParameterDefinition]
+  /// from a [String] or [YamlMap] object
   factory ParameterDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -102,8 +103,9 @@ class ParameterDefinition extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ParameterDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ParameterDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ParameterDefinition]

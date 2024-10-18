@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [Coding]
 /// A reference to a code defined by a terminology system.
 class Coding extends DataType {
-  /// Primary constructor for [Coding]
+  /// Primary constructor for
+  /// [Coding]
 
   Coding({
     super.id,
@@ -75,8 +76,8 @@ class Coding extends DataType {
     );
   }
 
-  /// Deserialize [Coding] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Coding]
+  /// from a [String] or [YamlMap] object
   factory Coding.fromYaml(
     dynamic yaml,
   ) =>
@@ -89,8 +90,9 @@ class Coding extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Coding cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Coding '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Coding]

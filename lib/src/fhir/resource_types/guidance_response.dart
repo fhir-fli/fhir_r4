@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// including any output parameters returned by the evaluation, as well as
 /// the description of any proposed actions to be taken.
 class GuidanceResponse extends DomainResource {
-  /// Primary constructor for [GuidanceResponse]
+  /// Primary constructor for
+  /// [GuidanceResponse]
 
   GuidanceResponse({
     super.id,
@@ -218,8 +219,8 @@ class GuidanceResponse extends DomainResource {
     );
   }
 
-  /// Deserialize [GuidanceResponse] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [GuidanceResponse]
+  /// from a [String] or [YamlMap] object
   factory GuidanceResponse.fromYaml(
     dynamic yaml,
   ) =>
@@ -232,8 +233,9 @@ class GuidanceResponse extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'GuidanceResponse cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'GuidanceResponse '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [GuidanceResponse]

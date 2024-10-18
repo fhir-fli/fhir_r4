@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A compartment definition that defines how resources are accessed on a
 /// server.
 class CompartmentDefinition extends DomainResource {
-  /// Primary constructor for [CompartmentDefinition]
+  /// Primary constructor for
+  /// [CompartmentDefinition]
 
   CompartmentDefinition({
     super.id,
@@ -186,8 +187,8 @@ class CompartmentDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [CompartmentDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CompartmentDefinition]
+  /// from a [String] or [YamlMap] object
   factory CompartmentDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -200,8 +201,9 @@ class CompartmentDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CompartmentDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CompartmentDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CompartmentDefinition]
@@ -502,7 +504,8 @@ class CompartmentDefinition extends DomainResource {
 /// [CompartmentDefinitionResource]
 /// Information about how a resource is related to the compartment.
 class CompartmentDefinitionResource extends BackboneElement {
-  /// Primary constructor for [CompartmentDefinitionResource]
+  /// Primary constructor for
+  /// [CompartmentDefinitionResource]
 
   CompartmentDefinitionResource({
     super.id,
@@ -565,8 +568,8 @@ class CompartmentDefinitionResource extends BackboneElement {
     );
   }
 
-  /// Deserialize [CompartmentDefinitionResource] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CompartmentDefinitionResource]
+  /// from a [String] or [YamlMap] object
   factory CompartmentDefinitionResource.fromYaml(
     dynamic yaml,
   ) =>
@@ -579,8 +582,9 @@ class CompartmentDefinitionResource extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CompartmentDefinitionResource cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CompartmentDefinitionResource '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CompartmentDefinitionResource]

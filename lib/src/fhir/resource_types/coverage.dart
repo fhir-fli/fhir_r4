@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Financial instrument which may be used to reimburse or pay for health
 /// care products and services. Includes both insurance and self-payment.
 class Coverage extends DomainResource {
-  /// Primary constructor for [Coverage]
+  /// Primary constructor for
+  /// [Coverage]
 
   Coverage({
     super.id,
@@ -156,13 +157,15 @@ class Coverage extends DomainResource {
               json['period'] as Map<String, dynamic>,
             )
           : null,
-      payor: ensureNonNullList((json['payor'] as List<dynamic>)
-          .map<Reference>(
-            (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      payor: ensureNonNullList(
+        (json['payor'] as List<dynamic>)
+            .map<Reference>(
+              (v) => Reference.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       class_: json['class'] != null
           ? (json['class'] as List<dynamic>)
               .map<CoverageClass>(
@@ -211,8 +214,8 @@ class Coverage extends DomainResource {
     );
   }
 
-  /// Deserialize [Coverage] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Coverage]
+  /// from a [String] or [YamlMap] object
   factory Coverage.fromYaml(
     dynamic yaml,
   ) =>
@@ -225,8 +228,9 @@ class Coverage extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Coverage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Coverage '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Coverage]
@@ -535,7 +539,8 @@ class Coverage extends DomainResource {
 /// [CoverageClass]
 /// A suite of underwriter specific classifiers.
 class CoverageClass extends BackboneElement {
-  /// Primary constructor for [CoverageClass]
+  /// Primary constructor for
+  /// [CoverageClass]
 
   CoverageClass({
     super.id,
@@ -596,8 +601,8 @@ class CoverageClass extends BackboneElement {
     );
   }
 
-  /// Deserialize [CoverageClass] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CoverageClass]
+  /// from a [String] or [YamlMap] object
   factory CoverageClass.fromYaml(
     dynamic yaml,
   ) =>
@@ -610,8 +615,9 @@ class CoverageClass extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CoverageClass cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CoverageClass '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CoverageClass]
@@ -720,7 +726,8 @@ class CoverageClass extends BackboneElement {
 /// which have been detailed in the policy and may have been included on
 /// the health card.
 class CoverageCostToBeneficiary extends BackboneElement {
-  /// Primary constructor for [CoverageCostToBeneficiary]
+  /// Primary constructor for
+  /// [CoverageCostToBeneficiary]
 
   CoverageCostToBeneficiary({
     super.id,
@@ -793,8 +800,8 @@ class CoverageCostToBeneficiary extends BackboneElement {
     );
   }
 
-  /// Deserialize [CoverageCostToBeneficiary] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CoverageCostToBeneficiary]
+  /// from a [String] or [YamlMap] object
   factory CoverageCostToBeneficiary.fromYaml(
     dynamic yaml,
   ) =>
@@ -807,8 +814,9 @@ class CoverageCostToBeneficiary extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CoverageCostToBeneficiary cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CoverageCostToBeneficiary '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CoverageCostToBeneficiary]
@@ -921,7 +929,8 @@ class CoverageCostToBeneficiary extends BackboneElement {
 /// A suite of codes indicating exceptions or reductions to patient costs
 /// and their effective periods.
 class CoverageException extends BackboneElement {
-  /// Primary constructor for [CoverageException]
+  /// Primary constructor for
+  /// [CoverageException]
 
   CoverageException({
     super.id,
@@ -976,8 +985,8 @@ class CoverageException extends BackboneElement {
     );
   }
 
-  /// Deserialize [CoverageException] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CoverageException]
+  /// from a [String] or [YamlMap] object
   factory CoverageException.fromYaml(
     dynamic yaml,
   ) =>
@@ -990,8 +999,9 @@ class CoverageException extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CoverageException cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CoverageException '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CoverageException]

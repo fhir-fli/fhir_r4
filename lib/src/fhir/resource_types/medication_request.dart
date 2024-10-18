@@ -10,7 +10,8 @@ import 'package:yaml/yaml.dart';
 /// across inpatient and outpatient settings, including care plans, etc.,
 /// and to harmonize with workflow patterns.
 class MedicationRequest extends DomainResource {
-  /// Primary constructor for [MedicationRequest]
+  /// Primary constructor for
+  /// [MedicationRequest]
 
   MedicationRequest({
     super.id,
@@ -341,8 +342,8 @@ class MedicationRequest extends DomainResource {
     );
   }
 
-  /// Deserialize [MedicationRequest] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicationRequest]
+  /// from a [String] or [YamlMap] object
   factory MedicationRequest.fromYaml(
     dynamic yaml,
   ) =>
@@ -355,8 +356,9 @@ class MedicationRequest extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicationRequest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicationRequest '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicationRequest]
@@ -884,7 +886,8 @@ class MedicationRequest extends DomainResource {
 /// institutional or system support for completing the dispense details in
 /// the pharmacy department.
 class MedicationRequestDispenseRequest extends BackboneElement {
-  /// Primary constructor for [MedicationRequestDispenseRequest]
+  /// Primary constructor for
+  /// [MedicationRequestDispenseRequest]
 
   MedicationRequestDispenseRequest({
     super.id,
@@ -972,8 +975,8 @@ class MedicationRequestDispenseRequest extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicationRequestDispenseRequest] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicationRequestDispenseRequest]
+  /// from a [String] or [YamlMap] object
   factory MedicationRequestDispenseRequest.fromYaml(
     dynamic yaml,
   ) =>
@@ -986,8 +989,9 @@ class MedicationRequestDispenseRequest extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicationRequestDispenseRequest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicationRequestDispenseRequest '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicationRequestDispenseRequest]
@@ -1147,7 +1151,8 @@ class MedicationRequestDispenseRequest extends BackboneElement {
 /// Indicates the quantity or duration for the first dispense of the
 /// medication.
 class MedicationRequestInitialFill extends BackboneElement {
-  /// Primary constructor for [MedicationRequestInitialFill]
+  /// Primary constructor for
+  /// [MedicationRequestInitialFill]
 
   MedicationRequestInitialFill({
     super.id,
@@ -1204,8 +1209,8 @@ class MedicationRequestInitialFill extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicationRequestInitialFill] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicationRequestInitialFill]
+  /// from a [String] or [YamlMap] object
   factory MedicationRequestInitialFill.fromYaml(
     dynamic yaml,
   ) =>
@@ -1218,8 +1223,9 @@ class MedicationRequestInitialFill extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicationRequestInitialFill cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicationRequestInitialFill '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicationRequestInitialFill]
@@ -1313,7 +1319,8 @@ class MedicationRequestInitialFill extends BackboneElement {
 /// substitution must not happen. This block explains the prescriber's
 /// intent. If nothing is specified substitution may be done.
 class MedicationRequestSubstitution extends BackboneElement {
-  /// Primary constructor for [MedicationRequestSubstitution]
+  /// Primary constructor for
+  /// [MedicationRequestSubstitution]
 
   MedicationRequestSubstitution({
     super.id,
@@ -1377,8 +1384,8 @@ class MedicationRequestSubstitution extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicationRequestSubstitution] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicationRequestSubstitution]
+  /// from a [String] or [YamlMap] object
   factory MedicationRequestSubstitution.fromYaml(
     dynamic yaml,
   ) =>
@@ -1391,8 +1398,9 @@ class MedicationRequestSubstitution extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicationRequestSubstitution cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicationRequestSubstitution '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicationRequestSubstitution]

@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [Distance]
 /// A length - a value with a unit that is a physical distance.
 class Distance extends Quantity {
-  /// Primary constructor for [Distance]
+  /// Primary constructor for
+  /// [Distance]
 
   Distance({
     super.id,
@@ -75,8 +76,8 @@ class Distance extends Quantity {
     );
   }
 
-  /// Deserialize [Distance] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Distance]
+  /// from a [String] or [YamlMap] object
   factory Distance.fromYaml(
     dynamic yaml,
   ) =>
@@ -89,8 +90,9 @@ class Distance extends Quantity {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Distance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Distance '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Distance]

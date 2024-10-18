@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A photo, video, or audio recording acquired or used in healthcare. The
 /// actual content may be inline or provided by direct reference.
 class Media extends DomainResource {
-  /// Primary constructor for [Media]
+  /// Primary constructor for
+  /// [Media]
 
   Media({
     super.id,
@@ -251,8 +252,8 @@ class Media extends DomainResource {
     );
   }
 
-  /// Deserialize [Media] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Media]
+  /// from a [String] or [YamlMap] object
   factory Media.fromYaml(
     dynamic yaml,
   ) =>
@@ -265,8 +266,9 @@ class Media extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Media cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Media '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Media]

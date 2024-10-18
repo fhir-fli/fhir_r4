@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// interaction, Ineffective treatment frequency, Procedure-condition
 /// conflict, etc.
 class DetectedIssue extends DomainResource {
-  /// Primary constructor for [DetectedIssue]
+  /// Primary constructor for
+  /// [DetectedIssue]
 
   DetectedIssue({
     super.id,
@@ -188,8 +189,8 @@ class DetectedIssue extends DomainResource {
     );
   }
 
-  /// Deserialize [DetectedIssue] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DetectedIssue]
+  /// from a [String] or [YamlMap] object
   factory DetectedIssue.fromYaml(
     dynamic yaml,
   ) =>
@@ -202,8 +203,9 @@ class DetectedIssue extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DetectedIssue cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DetectedIssue '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DetectedIssue]
@@ -462,7 +464,8 @@ class DetectedIssue extends DomainResource {
 /// identifying the detected issue such as a GuidanceResponse or
 /// MeasureReport.
 class DetectedIssueEvidence extends BackboneElement {
-  /// Primary constructor for [DetectedIssueEvidence]
+  /// Primary constructor for
+  /// [DetectedIssueEvidence]
 
   DetectedIssueEvidence({
     super.id,
@@ -527,8 +530,8 @@ class DetectedIssueEvidence extends BackboneElement {
     );
   }
 
-  /// Deserialize [DetectedIssueEvidence] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DetectedIssueEvidence]
+  /// from a [String] or [YamlMap] object
   factory DetectedIssueEvidence.fromYaml(
     dynamic yaml,
   ) =>
@@ -541,8 +544,9 @@ class DetectedIssueEvidence extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DetectedIssueEvidence cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DetectedIssueEvidence '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DetectedIssueEvidence]
@@ -637,7 +641,8 @@ class DetectedIssueEvidence extends BackboneElement {
 /// from manifesting. Can also reflect an observation of known mitigating
 /// factors that may reduce/eliminate the need for any action.
 class DetectedIssueMitigation extends BackboneElement {
-  /// Primary constructor for [DetectedIssueMitigation]
+  /// Primary constructor for
+  /// [DetectedIssueMitigation]
 
   DetectedIssueMitigation({
     super.id,
@@ -699,8 +704,8 @@ class DetectedIssueMitigation extends BackboneElement {
     );
   }
 
-  /// Deserialize [DetectedIssueMitigation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DetectedIssueMitigation]
+  /// from a [String] or [YamlMap] object
   factory DetectedIssueMitigation.fromYaml(
     dynamic yaml,
   ) =>
@@ -713,8 +718,9 @@ class DetectedIssueMitigation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DetectedIssueMitigation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DetectedIssueMitigation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DetectedIssueMitigation]

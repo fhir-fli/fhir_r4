@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// link between [CodeSystem](codesystem.html) definitions and their use in
 /// [coded elements](terminologies.html).
 class ValueSet extends DomainResource {
-  /// Primary constructor for [ValueSet]
+  /// Primary constructor for
+  /// [ValueSet]
 
   ValueSet({
     super.id,
@@ -225,8 +226,8 @@ class ValueSet extends DomainResource {
     );
   }
 
-  /// Deserialize [ValueSet] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ValueSet]
+  /// from a [String] or [YamlMap] object
   factory ValueSet.fromYaml(
     dynamic yaml,
   ) =>
@@ -239,8 +240,9 @@ class ValueSet extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ValueSet cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ValueSet '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ValueSet]
@@ -611,7 +613,8 @@ class ValueSet extends DomainResource {
 /// that the value set draws from. This is also known as the Content
 /// Logical Definition (CLD).
 class ValueSetCompose extends BackboneElement {
-  /// Primary constructor for [ValueSetCompose]
+  /// Primary constructor for
+  /// [ValueSetCompose]
 
   ValueSetCompose({
     super.id,
@@ -668,18 +671,20 @@ class ValueSetCompose extends BackboneElement {
               '_value': json['_inactive'],
             })
           : null,
-      include: ensureNonNullList((json['include'] as List<dynamic>)
-          .map<ValueSetInclude>(
-            (v) => ValueSetInclude.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      include: ensureNonNullList(
+        (json['include'] as List<dynamic>)
+            .map<ValueSetInclude>(
+              (v) => ValueSetInclude.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [ValueSetCompose] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ValueSetCompose]
+  /// from a [String] or [YamlMap] object
   factory ValueSetCompose.fromYaml(
     dynamic yaml,
   ) =>
@@ -692,8 +697,9 @@ class ValueSetCompose extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ValueSetCompose cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ValueSetCompose '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ValueSetCompose]
@@ -808,7 +814,8 @@ class ValueSetCompose extends BackboneElement {
 /// [ValueSetInclude]
 /// Include one or more codes from a code system or other value set(s).
 class ValueSetInclude extends BackboneElement {
-  /// Primary constructor for [ValueSetInclude]
+  /// Primary constructor for
+  /// [ValueSetInclude]
 
   ValueSetInclude({
     super.id,
@@ -893,8 +900,8 @@ class ValueSetInclude extends BackboneElement {
     );
   }
 
-  /// Deserialize [ValueSetInclude] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ValueSetInclude]
+  /// from a [String] or [YamlMap] object
   factory ValueSetInclude.fromYaml(
     dynamic yaml,
   ) =>
@@ -907,8 +914,9 @@ class ValueSetInclude extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ValueSetInclude cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ValueSetInclude '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ValueSetInclude]
@@ -1049,7 +1057,8 @@ class ValueSetInclude extends BackboneElement {
 /// [ValueSetConcept]
 /// Specifies a concept to be included or excluded.
 class ValueSetConcept extends BackboneElement {
-  /// Primary constructor for [ValueSetConcept]
+  /// Primary constructor for
+  /// [ValueSetConcept]
 
   ValueSetConcept({
     super.id,
@@ -1116,8 +1125,8 @@ class ValueSetConcept extends BackboneElement {
     );
   }
 
-  /// Deserialize [ValueSetConcept] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ValueSetConcept]
+  /// from a [String] or [YamlMap] object
   factory ValueSetConcept.fromYaml(
     dynamic yaml,
   ) =>
@@ -1130,8 +1139,9 @@ class ValueSetConcept extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ValueSetConcept cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ValueSetConcept '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ValueSetConcept]
@@ -1244,7 +1254,8 @@ class ValueSetConcept extends BackboneElement {
 /// - other languages, aliases, specialized purposes, used for particular
 /// purposes, etc.
 class ValueSetDesignation extends BackboneElement {
-  /// Primary constructor for [ValueSetDesignation]
+  /// Primary constructor for
+  /// [ValueSetDesignation]
 
   ValueSetDesignation({
     super.id,
@@ -1307,8 +1318,8 @@ class ValueSetDesignation extends BackboneElement {
     );
   }
 
-  /// Deserialize [ValueSetDesignation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ValueSetDesignation]
+  /// from a [String] or [YamlMap] object
   factory ValueSetDesignation.fromYaml(
     dynamic yaml,
   ) =>
@@ -1321,8 +1332,9 @@ class ValueSetDesignation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ValueSetDesignation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ValueSetDesignation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ValueSetDesignation]
@@ -1428,7 +1440,8 @@ class ValueSetDesignation extends BackboneElement {
 /// by the system. If multiple filters are specified, they SHALL all be
 /// true.
 class ValueSetFilter extends BackboneElement {
-  /// Primary constructor for [ValueSetFilter]
+  /// Primary constructor for
+  /// [ValueSetFilter]
 
   ValueSetFilter({
     super.id,
@@ -1488,8 +1501,8 @@ class ValueSetFilter extends BackboneElement {
     );
   }
 
-  /// Deserialize [ValueSetFilter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ValueSetFilter]
+  /// from a [String] or [YamlMap] object
   factory ValueSetFilter.fromYaml(
     dynamic yaml,
   ) =>
@@ -1502,8 +1515,9 @@ class ValueSetFilter extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ValueSetFilter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ValueSetFilter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ValueSetFilter]
@@ -1614,7 +1628,8 @@ class ValueSetFilter extends BackboneElement {
 /// a simple collection of enumerated codes. This element holds the
 /// expansion, if it has been performed.
 class ValueSetExpansion extends BackboneElement {
-  /// Primary constructor for [ValueSetExpansion]
+  /// Primary constructor for
+  /// [ValueSetExpansion]
 
   ValueSetExpansion({
     super.id,
@@ -1705,8 +1720,8 @@ class ValueSetExpansion extends BackboneElement {
     );
   }
 
-  /// Deserialize [ValueSetExpansion] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ValueSetExpansion]
+  /// from a [String] or [YamlMap] object
   factory ValueSetExpansion.fromYaml(
     dynamic yaml,
   ) =>
@@ -1719,8 +1734,9 @@ class ValueSetExpansion extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ValueSetExpansion cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ValueSetExpansion '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ValueSetExpansion]
@@ -1878,7 +1894,8 @@ class ValueSetExpansion extends BackboneElement {
 /// be used by users of expanded value sets to check whether the expansion
 /// is suitable for a particular purpose, or to pick the correct expansion.
 class ValueSetParameter extends BackboneElement {
-  /// Primary constructor for [ValueSetParameter]
+  /// Primary constructor for
+  /// [ValueSetParameter]
 
   ValueSetParameter({
     super.id,
@@ -1977,8 +1994,8 @@ class ValueSetParameter extends BackboneElement {
     );
   }
 
-  /// Deserialize [ValueSetParameter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ValueSetParameter]
+  /// from a [String] or [YamlMap] object
   factory ValueSetParameter.fromYaml(
     dynamic yaml,
   ) =>
@@ -1991,8 +2008,9 @@ class ValueSetParameter extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ValueSetParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ValueSetParameter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ValueSetParameter]
@@ -2175,7 +2193,8 @@ class ValueSetParameter extends BackboneElement {
 /// [ValueSetContains]
 /// The codes that are contained in the value set expansion.
 class ValueSetContains extends BackboneElement {
-  /// Primary constructor for [ValueSetContains]
+  /// Primary constructor for
+  /// [ValueSetContains]
 
   ValueSetContains({
     super.id,
@@ -2262,8 +2281,8 @@ class ValueSetContains extends BackboneElement {
     );
   }
 
-  /// Deserialize [ValueSetContains] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ValueSetContains]
+  /// from a [String] or [YamlMap] object
   factory ValueSetContains.fromYaml(
     dynamic yaml,
   ) =>
@@ -2276,8 +2295,9 @@ class ValueSetContains extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ValueSetContains cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ValueSetContains '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ValueSetContains]

@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Describes a required data item for evaluation in terms of the type of
 /// data, and optional code or date-based filters of the data.
 class DataRequirement extends DataType {
-  /// Primary constructor for [DataRequirement]
+  /// Primary constructor for
+  /// [DataRequirement]
 
   DataRequirement({
     super.id,
@@ -107,8 +108,8 @@ class DataRequirement extends DataType {
     );
   }
 
-  /// Deserialize [DataRequirement] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DataRequirement]
+  /// from a [String] or [YamlMap] object
   factory DataRequirement.fromYaml(
     dynamic yaml,
   ) =>
@@ -121,8 +122,9 @@ class DataRequirement extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DataRequirement cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DataRequirement '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DataRequirement]
@@ -312,7 +314,8 @@ class DataRequirement extends DataType {
 /// filter defines an additional constraint on the data, i.e. code filters
 /// are AND'ed, not OR'ed.
 class DataRequirementCodeFilter extends Element {
-  /// Primary constructor for [DataRequirementCodeFilter]
+  /// Primary constructor for
+  /// [DataRequirementCodeFilter]
 
   DataRequirementCodeFilter({
     super.id,
@@ -378,8 +381,8 @@ class DataRequirementCodeFilter extends Element {
     );
   }
 
-  /// Deserialize [DataRequirementCodeFilter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DataRequirementCodeFilter]
+  /// from a [String] or [YamlMap] object
   factory DataRequirementCodeFilter.fromYaml(
     dynamic yaml,
   ) =>
@@ -392,8 +395,9 @@ class DataRequirementCodeFilter extends Element {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DataRequirementCodeFilter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DataRequirementCodeFilter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DataRequirementCodeFilter]
@@ -528,7 +532,8 @@ class DataRequirementCodeFilter extends Element {
 /// an additional constraint on the data, i.e. date filters are AND'ed, not
 /// OR'ed.
 class DataRequirementDateFilter extends Element {
-  /// Primary constructor for [DataRequirementDateFilter]
+  /// Primary constructor for
+  /// [DataRequirementDateFilter]
 
   DataRequirementDateFilter({
     super.id,
@@ -596,8 +601,8 @@ class DataRequirementDateFilter extends Element {
     );
   }
 
-  /// Deserialize [DataRequirementDateFilter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DataRequirementDateFilter]
+  /// from a [String] or [YamlMap] object
   factory DataRequirementDateFilter.fromYaml(
     dynamic yaml,
   ) =>
@@ -610,8 +615,9 @@ class DataRequirementDateFilter extends Element {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DataRequirementDateFilter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DataRequirementDateFilter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DataRequirementDateFilter]
@@ -762,7 +768,8 @@ class DataRequirementDateFilter extends Element {
 /// [DataRequirementSort]
 /// Specifies the order of the results to be returned.
 class DataRequirementSort extends Element {
-  /// Primary constructor for [DataRequirementSort]
+  /// Primary constructor for
+  /// [DataRequirementSort]
 
   DataRequirementSort({
     super.id,
@@ -807,8 +814,8 @@ class DataRequirementSort extends Element {
     );
   }
 
-  /// Deserialize [DataRequirementSort] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DataRequirementSort]
+  /// from a [String] or [YamlMap] object
   factory DataRequirementSort.fromYaml(
     dynamic yaml,
   ) =>
@@ -821,8 +828,9 @@ class DataRequirementSort extends Element {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DataRequirementSort cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DataRequirementSort '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DataRequirementSort]

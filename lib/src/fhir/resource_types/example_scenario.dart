@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [ExampleScenario]
 /// Example of workflow instance.
 class ExampleScenario extends DomainResource {
-  /// Primary constructor for [ExampleScenario]
+  /// Primary constructor for
+  /// [ExampleScenario]
 
   ExampleScenario({
     super.id,
@@ -225,8 +226,8 @@ class ExampleScenario extends DomainResource {
     );
   }
 
-  /// Deserialize [ExampleScenario] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ExampleScenario]
+  /// from a [String] or [YamlMap] object
   factory ExampleScenario.fromYaml(
     dynamic yaml,
   ) =>
@@ -239,8 +240,9 @@ class ExampleScenario extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ExampleScenario cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ExampleScenario '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ExampleScenario]
@@ -584,7 +586,8 @@ class ExampleScenario extends DomainResource {
 /// [ExampleScenarioActor]
 /// Actor participating in the resource.
 class ExampleScenarioActor extends BackboneElement {
-  /// Primary constructor for [ExampleScenarioActor]
+  /// Primary constructor for
+  /// [ExampleScenarioActor]
 
   ExampleScenarioActor({
     super.id,
@@ -653,8 +656,8 @@ class ExampleScenarioActor extends BackboneElement {
     );
   }
 
-  /// Deserialize [ExampleScenarioActor] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ExampleScenarioActor]
+  /// from a [String] or [YamlMap] object
   factory ExampleScenarioActor.fromYaml(
     dynamic yaml,
   ) =>
@@ -667,8 +670,9 @@ class ExampleScenarioActor extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ExampleScenarioActor cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ExampleScenarioActor '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ExampleScenarioActor]
@@ -787,7 +791,8 @@ class ExampleScenarioActor extends BackboneElement {
 /// [ExampleScenarioInstance]
 /// Each resource and each version that is present in the workflow.
 class ExampleScenarioInstance extends BackboneElement {
-  /// Primary constructor for [ExampleScenarioInstance]
+  /// Primary constructor for
+  /// [ExampleScenarioInstance]
 
   ExampleScenarioInstance({
     super.id,
@@ -876,8 +881,8 @@ class ExampleScenarioInstance extends BackboneElement {
     );
   }
 
-  /// Deserialize [ExampleScenarioInstance] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ExampleScenarioInstance]
+  /// from a [String] or [YamlMap] object
   factory ExampleScenarioInstance.fromYaml(
     dynamic yaml,
   ) =>
@@ -890,8 +895,9 @@ class ExampleScenarioInstance extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ExampleScenarioInstance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ExampleScenarioInstance '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ExampleScenarioInstance]
@@ -1036,7 +1042,8 @@ class ExampleScenarioInstance extends BackboneElement {
 /// [ExampleScenarioVersion]
 /// A specific version of the resource.
 class ExampleScenarioVersion extends BackboneElement {
-  /// Primary constructor for [ExampleScenarioVersion]
+  /// Primary constructor for
+  /// [ExampleScenarioVersion]
 
   ExampleScenarioVersion({
     super.id,
@@ -1091,8 +1098,8 @@ class ExampleScenarioVersion extends BackboneElement {
     );
   }
 
-  /// Deserialize [ExampleScenarioVersion] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ExampleScenarioVersion]
+  /// from a [String] or [YamlMap] object
   factory ExampleScenarioVersion.fromYaml(
     dynamic yaml,
   ) =>
@@ -1105,8 +1112,9 @@ class ExampleScenarioVersion extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ExampleScenarioVersion cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ExampleScenarioVersion '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ExampleScenarioVersion]
@@ -1202,7 +1210,8 @@ class ExampleScenarioVersion extends BackboneElement {
 /// Resources contained in the instance (e.g. the observations contained in
 /// a bundle).
 class ExampleScenarioContainedInstance extends BackboneElement {
-  /// Primary constructor for [ExampleScenarioContainedInstance]
+  /// Primary constructor for
+  /// [ExampleScenarioContainedInstance]
 
   ExampleScenarioContainedInstance({
     super.id,
@@ -1259,8 +1268,8 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     );
   }
 
-  /// Deserialize [ExampleScenarioContainedInstance] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ExampleScenarioContainedInstance]
+  /// from a [String] or [YamlMap] object
   factory ExampleScenarioContainedInstance.fromYaml(
     dynamic yaml,
   ) =>
@@ -1273,8 +1282,9 @@ class ExampleScenarioContainedInstance extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ExampleScenarioContainedInstance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ExampleScenarioContainedInstance '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ExampleScenarioContainedInstance]
@@ -1371,7 +1381,8 @@ class ExampleScenarioContainedInstance extends BackboneElement {
 /// [ExampleScenarioProcess]
 /// Each major process - a group of operations.
 class ExampleScenarioProcess extends BackboneElement {
-  /// Primary constructor for [ExampleScenarioProcess]
+  /// Primary constructor for
+  /// [ExampleScenarioProcess]
 
   ExampleScenarioProcess({
     super.id,
@@ -1452,8 +1463,8 @@ class ExampleScenarioProcess extends BackboneElement {
     );
   }
 
-  /// Deserialize [ExampleScenarioProcess] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ExampleScenarioProcess]
+  /// from a [String] or [YamlMap] object
   factory ExampleScenarioProcess.fromYaml(
     dynamic yaml,
   ) =>
@@ -1466,8 +1477,9 @@ class ExampleScenarioProcess extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ExampleScenarioProcess cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ExampleScenarioProcess '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ExampleScenarioProcess]
@@ -1602,7 +1614,8 @@ class ExampleScenarioProcess extends BackboneElement {
 /// [ExampleScenarioStep]
 /// Each step of the process.
 class ExampleScenarioStep extends BackboneElement {
-  /// Primary constructor for [ExampleScenarioStep]
+  /// Primary constructor for
+  /// [ExampleScenarioStep]
 
   ExampleScenarioStep({
     super.id,
@@ -1680,8 +1693,8 @@ class ExampleScenarioStep extends BackboneElement {
     );
   }
 
-  /// Deserialize [ExampleScenarioStep] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ExampleScenarioStep]
+  /// from a [String] or [YamlMap] object
   factory ExampleScenarioStep.fromYaml(
     dynamic yaml,
   ) =>
@@ -1694,8 +1707,9 @@ class ExampleScenarioStep extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ExampleScenarioStep cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ExampleScenarioStep '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ExampleScenarioStep]
@@ -1811,7 +1825,8 @@ class ExampleScenarioStep extends BackboneElement {
 /// [ExampleScenarioOperation]
 /// Each interaction or action.
 class ExampleScenarioOperation extends BackboneElement {
-  /// Primary constructor for [ExampleScenarioOperation]
+  /// Primary constructor for
+  /// [ExampleScenarioOperation]
 
   ExampleScenarioOperation({
     super.id,
@@ -1910,8 +1925,8 @@ class ExampleScenarioOperation extends BackboneElement {
     );
   }
 
-  /// Deserialize [ExampleScenarioOperation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ExampleScenarioOperation]
+  /// from a [String] or [YamlMap] object
   factory ExampleScenarioOperation.fromYaml(
     dynamic yaml,
   ) =>
@@ -1924,8 +1939,9 @@ class ExampleScenarioOperation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ExampleScenarioOperation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ExampleScenarioOperation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ExampleScenarioOperation]
@@ -2107,7 +2123,8 @@ class ExampleScenarioOperation extends BackboneElement {
 /// Indicates an alternative step that can be taken instead of the
 /// operations on the base step in exceptional/atypical circumstances.
 class ExampleScenarioAlternative extends BackboneElement {
-  /// Primary constructor for [ExampleScenarioAlternative]
+  /// Primary constructor for
+  /// [ExampleScenarioAlternative]
 
   ExampleScenarioAlternative({
     super.id,
@@ -2164,8 +2181,8 @@ class ExampleScenarioAlternative extends BackboneElement {
     );
   }
 
-  /// Deserialize [ExampleScenarioAlternative] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ExampleScenarioAlternative]
+  /// from a [String] or [YamlMap] object
   factory ExampleScenarioAlternative.fromYaml(
     dynamic yaml,
   ) =>
@@ -2178,8 +2195,9 @@ class ExampleScenarioAlternative extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ExampleScenarioAlternative cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ExampleScenarioAlternative '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ExampleScenarioAlternative]

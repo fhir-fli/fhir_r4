@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// quantified, including amounts involving arbitrary units and floating
 /// currencies.
 class Count extends Quantity {
-  /// Primary constructor for [Count]
+  /// Primary constructor for
+  /// [Count]
 
   Count({
     super.id,
@@ -78,8 +79,8 @@ class Count extends Quantity {
     );
   }
 
-  /// Deserialize [Count] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Count]
+  /// from a [String] or [YamlMap] object
   factory Count.fromYaml(
     dynamic yaml,
   ) =>
@@ -92,8 +93,9 @@ class Count extends Quantity {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Count cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Count '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Count]

@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A reference to a resource (by instance), or instead, a reference to a
 /// concept defined in a terminology or ontology (by class).
 class CodeableReference extends DataType {
-  /// Primary constructor for [CodeableReference]
+  /// Primary constructor for
+  /// [CodeableReference]
 
   CodeableReference({
     super.id,
@@ -53,8 +54,8 @@ class CodeableReference extends DataType {
     );
   }
 
-  /// Deserialize [CodeableReference] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CodeableReference]
+  /// from a [String] or [YamlMap] object
   factory CodeableReference.fromYaml(
     dynamic yaml,
   ) =>
@@ -67,8 +68,9 @@ class CodeableReference extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CodeableReference cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CodeableReference '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CodeableReference]

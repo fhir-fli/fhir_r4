@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// organization assumes a level of responsibility for the patient during
 /// this time.
 class EpisodeOfCare extends DomainResource {
-  /// Primary constructor for [EpisodeOfCare]
+  /// Primary constructor for
+  /// [EpisodeOfCare]
 
   EpisodeOfCare({
     super.id,
@@ -188,8 +189,8 @@ class EpisodeOfCare extends DomainResource {
     );
   }
 
-  /// Deserialize [EpisodeOfCare] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EpisodeOfCare]
+  /// from a [String] or [YamlMap] object
   factory EpisodeOfCare.fromYaml(
     dynamic yaml,
   ) =>
@@ -202,8 +203,9 @@ class EpisodeOfCare extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EpisodeOfCare cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EpisodeOfCare '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EpisodeOfCare]
@@ -437,7 +439,8 @@ class EpisodeOfCare extends DomainResource {
 /// The history of statuses that the EpisodeOfCare has been through
 /// (without requiring processing the history of the resource).
 class EpisodeOfCareStatusHistory extends BackboneElement {
-  /// Primary constructor for [EpisodeOfCareStatusHistory]
+  /// Primary constructor for
+  /// [EpisodeOfCareStatusHistory]
 
   EpisodeOfCareStatusHistory({
     super.id,
@@ -491,8 +494,8 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     );
   }
 
-  /// Deserialize [EpisodeOfCareStatusHistory] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EpisodeOfCareStatusHistory]
+  /// from a [String] or [YamlMap] object
   factory EpisodeOfCareStatusHistory.fromYaml(
     dynamic yaml,
   ) =>
@@ -505,8 +508,9 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EpisodeOfCareStatusHistory cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EpisodeOfCareStatusHistory '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EpisodeOfCareStatusHistory]
@@ -593,7 +597,8 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
 /// [EpisodeOfCareDiagnosis]
 /// The list of diagnosis relevant to this episode of care.
 class EpisodeOfCareDiagnosis extends BackboneElement {
-  /// Primary constructor for [EpisodeOfCareDiagnosis]
+  /// Primary constructor for
+  /// [EpisodeOfCareDiagnosis]
 
   EpisodeOfCareDiagnosis({
     super.id,
@@ -655,8 +660,8 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
     );
   }
 
-  /// Deserialize [EpisodeOfCareDiagnosis] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EpisodeOfCareDiagnosis]
+  /// from a [String] or [YamlMap] object
   factory EpisodeOfCareDiagnosis.fromYaml(
     dynamic yaml,
   ) =>
@@ -669,8 +674,9 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EpisodeOfCareDiagnosis cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EpisodeOfCareDiagnosis '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EpisodeOfCareDiagnosis]

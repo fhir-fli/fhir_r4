@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// performed, independent of a particular patient, practitioner, or other
 /// performance context.
 class ActivityDefinition extends DomainResource {
-  /// Primary constructor for [ActivityDefinition]
+  /// Primary constructor for
+  /// [ActivityDefinition]
 
   ActivityDefinition({
     super.id,
@@ -503,8 +504,8 @@ class ActivityDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [ActivityDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ActivityDefinition]
+  /// from a [String] or [YamlMap] object
   factory ActivityDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -517,8 +518,9 @@ class ActivityDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ActivityDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ActivityDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ActivityDefinition]
@@ -1349,7 +1351,8 @@ class ActivityDefinition extends DomainResource {
 /// [ActivityDefinitionParticipant]
 /// Indicates who should participate in performing the action described.
 class ActivityDefinitionParticipant extends BackboneElement {
-  /// Primary constructor for [ActivityDefinitionParticipant]
+  /// Primary constructor for
+  /// [ActivityDefinitionParticipant]
 
   ActivityDefinitionParticipant({
     super.id,
@@ -1405,8 +1408,8 @@ class ActivityDefinitionParticipant extends BackboneElement {
     );
   }
 
-  /// Deserialize [ActivityDefinitionParticipant] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ActivityDefinitionParticipant]
+  /// from a [String] or [YamlMap] object
   factory ActivityDefinitionParticipant.fromYaml(
     dynamic yaml,
   ) =>
@@ -1419,8 +1422,9 @@ class ActivityDefinitionParticipant extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ActivityDefinitionParticipant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ActivityDefinitionParticipant '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ActivityDefinitionParticipant]
@@ -1514,7 +1518,8 @@ class ActivityDefinitionParticipant extends BackboneElement {
 /// used to specify an expression that calculated the weight, and the path
 /// on the request resource that would contain the result.
 class ActivityDefinitionDynamicValue extends BackboneElement {
-  /// Primary constructor for [ActivityDefinitionDynamicValue]
+  /// Primary constructor for
+  /// [ActivityDefinitionDynamicValue]
 
   ActivityDefinitionDynamicValue({
     super.id,
@@ -1568,8 +1573,8 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
     );
   }
 
-  /// Deserialize [ActivityDefinitionDynamicValue] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ActivityDefinitionDynamicValue]
+  /// from a [String] or [YamlMap] object
   factory ActivityDefinitionDynamicValue.fromYaml(
     dynamic yaml,
   ) =>
@@ -1582,8 +1587,9 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ActivityDefinitionDynamicValue cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ActivityDefinitionDynamicValue '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ActivityDefinitionDynamicValue]

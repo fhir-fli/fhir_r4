@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A search parameter that defines a named search item that can be used to
 /// search/filter on a resource.
 class SearchParameter extends DomainResource {
-  /// Primary constructor for [SearchParameter]
+  /// Primary constructor for
+  /// [SearchParameter]
 
   SearchParameter({
     super.id,
@@ -195,11 +196,13 @@ class SearchParameter extends DomainResource {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      base: ensureNonNullList(parsePrimitiveList<FhirCode>(
-        json['base'] as List<dynamic>?,
-        json['_base'] as List<dynamic>?,
-        fromJson: FhirCode.fromJson,
-      )),
+      base: ensureNonNullList(
+        parsePrimitiveList<FhirCode>(
+          json['base'] as List<dynamic>?,
+          json['_base'] as List<dynamic>?,
+          fromJson: FhirCode.fromJson,
+        ),
+      ),
       type: SearchParamType.fromJson({
         'value': json['type'],
         '_value': json['_type'],
@@ -266,8 +269,8 @@ class SearchParameter extends DomainResource {
     );
   }
 
-  /// Deserialize [SearchParameter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SearchParameter]
+  /// from a [String] or [YamlMap] object
   factory SearchParameter.fromYaml(
     dynamic yaml,
   ) =>
@@ -280,8 +283,9 @@ class SearchParameter extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SearchParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SearchParameter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SearchParameter]
@@ -747,7 +751,8 @@ class SearchParameter extends DomainResource {
 /// [SearchParameterComponent]
 /// Used to define the parts of a composite search parameter.
 class SearchParameterComponent extends BackboneElement {
-  /// Primary constructor for [SearchParameterComponent]
+  /// Primary constructor for
+  /// [SearchParameterComponent]
 
   SearchParameterComponent({
     super.id,
@@ -802,8 +807,8 @@ class SearchParameterComponent extends BackboneElement {
     );
   }
 
-  /// Deserialize [SearchParameterComponent] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SearchParameterComponent]
+  /// from a [String] or [YamlMap] object
   factory SearchParameterComponent.fromYaml(
     dynamic yaml,
   ) =>
@@ -816,8 +821,9 @@ class SearchParameterComponent extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SearchParameterComponent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SearchParameterComponent '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SearchParameterComponent]

@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Measurements and simple assertions made about a patient, device or
 /// other subject.
 class Observation extends DomainResource {
-  /// Primary constructor for [Observation]
+  /// Primary constructor for
+  /// [Observation]
 
   Observation({
     super.id,
@@ -364,8 +365,8 @@ class Observation extends DomainResource {
     );
   }
 
-  /// Deserialize [Observation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Observation]
+  /// from a [String] or [YamlMap] object
   factory Observation.fromYaml(
     dynamic yaml,
   ) =>
@@ -378,8 +379,9 @@ class Observation extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Observation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Observation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Observation]
@@ -946,7 +948,8 @@ class Observation extends DomainResource {
 /// "OR". In other words, to represent two distinct target populations, two
 /// `referenceRange` elements would be used.
 class ObservationReferenceRange extends BackboneElement {
-  /// Primary constructor for [ObservationReferenceRange]
+  /// Primary constructor for
+  /// [ObservationReferenceRange]
 
   ObservationReferenceRange({
     super.id,
@@ -1032,8 +1035,8 @@ class ObservationReferenceRange extends BackboneElement {
     );
   }
 
-  /// Deserialize [ObservationReferenceRange] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ObservationReferenceRange]
+  /// from a [String] or [YamlMap] object
   factory ObservationReferenceRange.fromYaml(
     dynamic yaml,
   ) =>
@@ -1046,8 +1049,9 @@ class ObservationReferenceRange extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ObservationReferenceRange cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ObservationReferenceRange '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ObservationReferenceRange]
@@ -1202,7 +1206,8 @@ class ObservationReferenceRange extends BackboneElement {
 /// observations for blood pressure measurement and multiple component
 /// observations for genetics observations.
 class ObservationComponent extends BackboneElement {
-  /// Primary constructor for [ObservationComponent]
+  /// Primary constructor for
+  /// [ObservationComponent]
 
   ObservationComponent({
     super.id,
@@ -1348,8 +1353,8 @@ class ObservationComponent extends BackboneElement {
     );
   }
 
-  /// Deserialize [ObservationComponent] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ObservationComponent]
+  /// from a [String] or [YamlMap] object
   factory ObservationComponent.fromYaml(
     dynamic yaml,
   ) =>
@@ -1362,8 +1367,9 @@ class ObservationComponent extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ObservationComponent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ObservationComponent '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ObservationComponent]

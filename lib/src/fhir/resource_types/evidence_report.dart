@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// Evidence, EvidenceVariable, and Citation resources and related
 /// concepts.
 class EvidenceReport extends DomainResource {
-  /// Primary constructor for [EvidenceReport]
+  /// Primary constructor for
+  /// [EvidenceReport]
 
   EvidenceReport({
     super.id,
@@ -253,8 +254,8 @@ class EvidenceReport extends DomainResource {
     );
   }
 
-  /// Deserialize [EvidenceReport] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceReport]
+  /// from a [String] or [YamlMap] object
   factory EvidenceReport.fromYaml(
     dynamic yaml,
   ) =>
@@ -267,8 +268,9 @@ class EvidenceReport extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceReport cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceReport '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceReport]
@@ -598,7 +600,8 @@ class EvidenceReport extends DomainResource {
 /// Specifies the subject or focus of the report. Answers "What is this
 /// report about?".
 class EvidenceReportSubject extends BackboneElement {
-  /// Primary constructor for [EvidenceReportSubject]
+  /// Primary constructor for
+  /// [EvidenceReportSubject]
 
   EvidenceReportSubject({
     super.id,
@@ -663,8 +666,8 @@ class EvidenceReportSubject extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceReportSubject] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceReportSubject]
+  /// from a [String] or [YamlMap] object
   factory EvidenceReportSubject.fromYaml(
     dynamic yaml,
   ) =>
@@ -677,8 +680,9 @@ class EvidenceReportSubject extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceReportSubject cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceReportSubject '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceReportSubject]
@@ -769,7 +773,8 @@ class EvidenceReportSubject extends BackboneElement {
 /// [EvidenceReportCharacteristic]
 /// Characteristic.
 class EvidenceReportCharacteristic extends BackboneElement {
-  /// Primary constructor for [EvidenceReportCharacteristic]
+  /// Primary constructor for
+  /// [EvidenceReportCharacteristic]
 
   EvidenceReportCharacteristic({
     super.id,
@@ -862,8 +867,8 @@ class EvidenceReportCharacteristic extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceReportCharacteristic] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceReportCharacteristic]
+  /// from a [String] or [YamlMap] object
   factory EvidenceReportCharacteristic.fromYaml(
     dynamic yaml,
   ) =>
@@ -876,8 +881,9 @@ class EvidenceReportCharacteristic extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceReportCharacteristic cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceReportCharacteristic '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceReportCharacteristic]
@@ -1035,7 +1041,8 @@ class EvidenceReportCharacteristic extends BackboneElement {
 /// Relationships that this composition has with other compositions or
 /// documents that already exist.
 class EvidenceReportRelatesTo extends BackboneElement {
-  /// Primary constructor for [EvidenceReportRelatesTo]
+  /// Primary constructor for
+  /// [EvidenceReportRelatesTo]
 
   EvidenceReportRelatesTo({
     super.id,
@@ -1097,8 +1104,8 @@ class EvidenceReportRelatesTo extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceReportRelatesTo] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceReportRelatesTo]
+  /// from a [String] or [YamlMap] object
   factory EvidenceReportRelatesTo.fromYaml(
     dynamic yaml,
   ) =>
@@ -1111,8 +1118,9 @@ class EvidenceReportRelatesTo extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceReportRelatesTo cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceReportRelatesTo '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceReportRelatesTo]
@@ -1212,7 +1220,8 @@ class EvidenceReportRelatesTo extends BackboneElement {
 /// [EvidenceReportSection]
 /// The root of the sections that make up the composition.
 class EvidenceReportSection extends BackboneElement {
-  /// Primary constructor for [EvidenceReportSection]
+  /// Primary constructor for
+  /// [EvidenceReportSection]
 
   EvidenceReportSection({
     super.id,
@@ -1351,8 +1360,8 @@ class EvidenceReportSection extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceReportSection] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceReportSection]
+  /// from a [String] or [YamlMap] object
   factory EvidenceReportSection.fromYaml(
     dynamic yaml,
   ) =>
@@ -1365,8 +1374,9 @@ class EvidenceReportSection extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceReportSection cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceReportSection '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceReportSection]

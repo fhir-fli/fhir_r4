@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [HumanName]
 /// A human's name with the ability to identify parts and usage.
 class HumanName extends DataType {
-  /// Primary constructor for [HumanName]
+  /// Primary constructor for
+  /// [HumanName]
 
   HumanName({
     super.id,
@@ -85,8 +86,8 @@ class HumanName extends DataType {
     );
   }
 
-  /// Deserialize [HumanName] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [HumanName]
+  /// from a [String] or [YamlMap] object
   factory HumanName.fromYaml(
     dynamic yaml,
   ) =>
@@ -99,8 +100,9 @@ class HumanName extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'HumanName cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'HumanName '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [HumanName]

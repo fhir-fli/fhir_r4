@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [Ingredient]
 /// An ingredient of a manufactured item or pharmaceutical product.
 class Ingredient extends DomainResource {
-  /// Primary constructor for [Ingredient]
+  /// Primary constructor for
+  /// [Ingredient]
 
   Ingredient({
     super.id,
@@ -144,8 +145,8 @@ class Ingredient extends DomainResource {
     );
   }
 
-  /// Deserialize [Ingredient] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Ingredient]
+  /// from a [String] or [YamlMap] object
   factory Ingredient.fromYaml(
     dynamic yaml,
   ) =>
@@ -158,8 +159,9 @@ class Ingredient extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Ingredient cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Ingredient '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Ingredient]
@@ -362,7 +364,8 @@ class Ingredient extends DomainResource {
 /// Users must be clear on the application of context relevant to their use
 /// case.
 class IngredientManufacturer extends BackboneElement {
-  /// Primary constructor for [IngredientManufacturer]
+  /// Primary constructor for
+  /// [IngredientManufacturer]
 
   IngredientManufacturer({
     super.id,
@@ -418,8 +421,8 @@ class IngredientManufacturer extends BackboneElement {
     );
   }
 
-  /// Deserialize [IngredientManufacturer] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [IngredientManufacturer]
+  /// from a [String] or [YamlMap] object
   factory IngredientManufacturer.fromYaml(
     dynamic yaml,
   ) =>
@@ -432,8 +435,9 @@ class IngredientManufacturer extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'IngredientManufacturer cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'IngredientManufacturer '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [IngredientManufacturer]
@@ -525,7 +529,8 @@ class IngredientManufacturer extends BackboneElement {
 /// [IngredientSubstance]
 /// The substance that comprises this ingredient.
 class IngredientSubstance extends BackboneElement {
-  /// Primary constructor for [IngredientSubstance]
+  /// Primary constructor for
+  /// [IngredientSubstance]
 
   IngredientSubstance({
     super.id,
@@ -584,8 +589,8 @@ class IngredientSubstance extends BackboneElement {
     );
   }
 
-  /// Deserialize [IngredientSubstance] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [IngredientSubstance]
+  /// from a [String] or [YamlMap] object
   factory IngredientSubstance.fromYaml(
     dynamic yaml,
   ) =>
@@ -598,8 +603,9 @@ class IngredientSubstance extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'IngredientSubstance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'IngredientSubstance '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [IngredientSubstance]
@@ -696,7 +702,8 @@ class IngredientSubstance extends BackboneElement {
 /// different representations - mathematically equivalent - of a single
 /// strength.
 class IngredientStrength extends BackboneElement {
-  /// Primary constructor for [IngredientStrength]
+  /// Primary constructor for
+  /// [IngredientStrength]
 
   IngredientStrength({
     super.id,
@@ -806,8 +813,8 @@ class IngredientStrength extends BackboneElement {
     );
   }
 
-  /// Deserialize [IngredientStrength] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [IngredientStrength]
+  /// from a [String] or [YamlMap] object
   factory IngredientStrength.fromYaml(
     dynamic yaml,
   ) =>
@@ -820,8 +827,9 @@ class IngredientStrength extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'IngredientStrength cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'IngredientStrength '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [IngredientStrength]
@@ -1026,7 +1034,8 @@ class IngredientStrength extends BackboneElement {
 /// the active substance and active moiety are different, therefore both a
 /// strength and a reference strength are needed.
 class IngredientReferenceStrength extends BackboneElement {
-  /// Primary constructor for [IngredientReferenceStrength]
+  /// Primary constructor for
+  /// [IngredientReferenceStrength]
 
   IngredientReferenceStrength({
     super.id,
@@ -1106,8 +1115,8 @@ class IngredientReferenceStrength extends BackboneElement {
     );
   }
 
-  /// Deserialize [IngredientReferenceStrength] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [IngredientReferenceStrength]
+  /// from a [String] or [YamlMap] object
   factory IngredientReferenceStrength.fromYaml(
     dynamic yaml,
   ) =>
@@ -1120,8 +1129,9 @@ class IngredientReferenceStrength extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'IngredientReferenceStrength cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'IngredientReferenceStrength '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [IngredientReferenceStrength]

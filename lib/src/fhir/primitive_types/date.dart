@@ -67,9 +67,11 @@ class FhirDate extends FhirDateTimeBase {
       return FhirDate.fromString(value, element);
     } else if (value is DateTime) {
       return FhirDate.fromDateTime(value, element);
+    } else if (value == null) {
+      return FhirDate.fromString(null, element);
     } else {
       throw const FormatException(
-        'Invalid input for FhirDate: Input must be a String',
+        'Invalid input for FhirInstant: Input must be a String?',
       );
     }
   }
@@ -170,13 +172,14 @@ class FhirDate extends FhirDateTimeBase {
   }) {
     return FhirDate.fromDateTime(
       value,
-      element?.copyWith(
-        userData: userData,
-        formatCommentsPre: formatCommentsPre,
-        formatCommentsPost: formatCommentsPost,
-        annotations: annotations,
-        children: children,
-        namedChildren: namedChildren,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
       ),
     );
   }

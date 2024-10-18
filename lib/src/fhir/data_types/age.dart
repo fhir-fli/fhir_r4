@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [Age]
 /// A duration of time during which an organism (or a process) has existed.
 class Age extends Quantity {
-  /// Primary constructor for [Age]
+  /// Primary constructor for
+  /// [Age]
 
   Age({
     super.id,
@@ -75,8 +76,8 @@ class Age extends Quantity {
     );
   }
 
-  /// Deserialize [Age] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Age]
+  /// from a [String] or [YamlMap] object
   factory Age.fromYaml(
     dynamic yaml,
   ) =>
@@ -89,8 +90,9 @@ class Age extends Quantity {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Age cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Age '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Age]

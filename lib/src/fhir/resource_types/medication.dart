@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// administering a medication as well as for making statements about
 /// medication use.
 class Medication extends DomainResource {
-  /// Primary constructor for [Medication]
+  /// Primary constructor for
+  /// [Medication]
 
   Medication({
     super.id,
@@ -148,8 +149,8 @@ class Medication extends DomainResource {
     );
   }
 
-  /// Deserialize [Medication] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Medication]
+  /// from a [String] or [YamlMap] object
   factory Medication.fromYaml(
     dynamic yaml,
   ) =>
@@ -162,8 +163,9 @@ class Medication extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Medication cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Medication '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Medication]
@@ -359,7 +361,8 @@ class Medication extends DomainResource {
 /// [MedicationIngredient]
 /// Identifies a particular constituent of interest in the product.
 class MedicationIngredient extends BackboneElement {
-  /// Primary constructor for [MedicationIngredient]
+  /// Primary constructor for
+  /// [MedicationIngredient]
 
   MedicationIngredient({
     super.id,
@@ -429,8 +432,8 @@ class MedicationIngredient extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicationIngredient] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicationIngredient]
+  /// from a [String] or [YamlMap] object
   factory MedicationIngredient.fromYaml(
     dynamic yaml,
   ) =>
@@ -443,8 +446,9 @@ class MedicationIngredient extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicationIngredient cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicationIngredient '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicationIngredient]
@@ -564,7 +568,8 @@ class MedicationIngredient extends BackboneElement {
 /// [MedicationBatch]
 /// Information that only applies to packages (not products).
 class MedicationBatch extends BackboneElement {
-  /// Primary constructor for [MedicationBatch]
+  /// Primary constructor for
+  /// [MedicationBatch]
 
   MedicationBatch({
     super.id,
@@ -623,8 +628,8 @@ class MedicationBatch extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicationBatch] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicationBatch]
+  /// from a [String] or [YamlMap] object
   factory MedicationBatch.fromYaml(
     dynamic yaml,
   ) =>
@@ -637,8 +642,9 @@ class MedicationBatch extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicationBatch cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicationBatch '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicationBatch]

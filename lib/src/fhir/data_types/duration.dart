@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [FhirDuration]
 /// A length of time.
 class FhirDuration extends Quantity {
-  /// Primary constructor for [FhirDuration]
+  /// Primary constructor for
+  /// [FhirDuration]
 
   FhirDuration({
     super.id,
@@ -75,8 +76,8 @@ class FhirDuration extends Quantity {
     );
   }
 
-  /// Deserialize [FhirDuration] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [FhirDuration]
+  /// from a [String] or [YamlMap] object
   factory FhirDuration.fromYaml(
     dynamic yaml,
   ) =>
@@ -89,8 +90,9 @@ class FhirDuration extends Quantity {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'FhirDuration cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'FhirDuration '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [FhirDuration]

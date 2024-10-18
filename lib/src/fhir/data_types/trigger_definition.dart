@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A description of a triggering event. Triggering events can be named
 /// events, data events, or periodic, as determined by the type element.
 class TriggerDefinition extends DataType {
-  /// Primary constructor for [TriggerDefinition]
+  /// Primary constructor for
+  /// [TriggerDefinition]
 
   TriggerDefinition({
     super.id,
@@ -95,8 +96,8 @@ class TriggerDefinition extends DataType {
     );
   }
 
-  /// Deserialize [TriggerDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TriggerDefinition]
+  /// from a [String] or [YamlMap] object
   factory TriggerDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -109,8 +110,9 @@ class TriggerDefinition extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TriggerDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TriggerDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TriggerDefinition]

@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// maintained by the infrastructure. Changes to the content might not
 /// always be associated with version changes to the resource.
 class FhirMeta extends DataType {
-  /// Primary constructor for [FhirMeta]
+  /// Primary constructor for
+  /// [FhirMeta]
 
   FhirMeta({
     super.id,
@@ -89,8 +90,8 @@ class FhirMeta extends DataType {
     );
   }
 
-  /// Deserialize [FhirMeta] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [FhirMeta]
+  /// from a [String] or [YamlMap] object
   factory FhirMeta.fromYaml(
     dynamic yaml,
   ) =>
@@ -103,8 +104,9 @@ class FhirMeta extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'FhirMeta cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'FhirMeta '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [FhirMeta]

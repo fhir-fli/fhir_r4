@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// assets such as logic libraries and information model descriptions, as
 /// well as to describe a collection of knowledge assets.
 class Library extends DomainResource {
-  /// Primary constructor for [Library]
+  /// Primary constructor for
+  /// [Library]
 
   Library({
     super.id,
@@ -346,8 +347,8 @@ class Library extends DomainResource {
     );
   }
 
-  /// Deserialize [Library] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Library]
+  /// from a [String] or [YamlMap] object
   factory Library.fromYaml(
     dynamic yaml,
   ) =>
@@ -360,8 +361,9 @@ class Library extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Library cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Library '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Library]

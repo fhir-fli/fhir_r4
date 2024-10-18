@@ -11,7 +11,8 @@ import 'package:yaml/yaml.dart';
 /// uses other than direct patient care (e.g. regulatory use, or drug
 /// catalogs).
 class MedicinalProductDefinition extends DomainResource {
-  /// Primary constructor for [MedicinalProductDefinition]
+  /// Primary constructor for
+  /// [MedicinalProductDefinition]
 
   MedicinalProductDefinition({
     super.id,
@@ -297,13 +298,15 @@ class MedicinalProductDefinition extends DomainResource {
               )
               .toList()
           : null,
-      name: ensureNonNullList((json['name'] as List<dynamic>)
-          .map<MedicinalProductDefinitionName>(
-            (v) => MedicinalProductDefinitionName.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      name: ensureNonNullList(
+        (json['name'] as List<dynamic>)
+            .map<MedicinalProductDefinitionName>(
+              (v) => MedicinalProductDefinitionName.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       crossReference: json['crossReference'] != null
           ? (json['crossReference'] as List<dynamic>)
               .map<MedicinalProductDefinitionCrossReference>(
@@ -334,8 +337,8 @@ class MedicinalProductDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [MedicinalProductDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicinalProductDefinition]
+  /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -348,8 +351,9 @@ class MedicinalProductDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicinalProductDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicinalProductDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicinalProductDefinition]
@@ -813,7 +817,8 @@ class MedicinalProductDefinition extends DomainResource {
 /// [MedicinalProductDefinitionContact]
 /// A product specific contact, person (in a role), or an organization.
 class MedicinalProductDefinitionContact extends BackboneElement {
-  /// Primary constructor for [MedicinalProductDefinitionContact]
+  /// Primary constructor for
+  /// [MedicinalProductDefinitionContact]
 
   MedicinalProductDefinitionContact({
     super.id,
@@ -868,8 +873,8 @@ class MedicinalProductDefinitionContact extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicinalProductDefinitionContact] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicinalProductDefinitionContact]
+  /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinitionContact.fromYaml(
     dynamic yaml,
   ) =>
@@ -882,8 +887,9 @@ class MedicinalProductDefinitionContact extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicinalProductDefinitionContact cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicinalProductDefinitionContact '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicinalProductDefinitionContact]
@@ -973,7 +979,8 @@ class MedicinalProductDefinitionContact extends BackboneElement {
 /// [MedicinalProductDefinitionName]
 /// The product's name, including full name and possibly coded parts.
 class MedicinalProductDefinitionName extends BackboneElement {
-  /// Primary constructor for [MedicinalProductDefinitionName]
+  /// Primary constructor for
+  /// [MedicinalProductDefinitionName]
 
   MedicinalProductDefinitionName({
     super.id,
@@ -1049,8 +1056,8 @@ class MedicinalProductDefinitionName extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicinalProductDefinitionName] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicinalProductDefinitionName]
+  /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinitionName.fromYaml(
     dynamic yaml,
   ) =>
@@ -1063,8 +1070,9 @@ class MedicinalProductDefinitionName extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicinalProductDefinitionName cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicinalProductDefinitionName '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicinalProductDefinitionName]
@@ -1179,7 +1187,8 @@ class MedicinalProductDefinitionName extends BackboneElement {
 /// [MedicinalProductDefinitionNamePart]
 /// Coding words or phrases of the name.
 class MedicinalProductDefinitionNamePart extends BackboneElement {
-  /// Primary constructor for [MedicinalProductDefinitionNamePart]
+  /// Primary constructor for
+  /// [MedicinalProductDefinitionNamePart]
 
   MedicinalProductDefinitionNamePart({
     super.id,
@@ -1233,8 +1242,8 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicinalProductDefinitionNamePart] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicinalProductDefinitionNamePart]
+  /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinitionNamePart.fromYaml(
     dynamic yaml,
   ) =>
@@ -1247,8 +1256,9 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicinalProductDefinitionNamePart cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicinalProductDefinitionNamePart '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicinalProductDefinitionNamePart]
@@ -1340,7 +1350,8 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
 /// Country and jurisdiction where the name applies, and associated
 /// language.
 class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
-  /// Primary constructor for [MedicinalProductDefinitionCountryLanguage]
+  /// Primary constructor for
+  /// [MedicinalProductDefinitionCountryLanguage]
 
   MedicinalProductDefinitionCountryLanguage({
     super.id,
@@ -1399,8 +1410,8 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicinalProductDefinitionCountryLanguage] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicinalProductDefinitionCountryLanguage]
+  /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinitionCountryLanguage.fromYaml(
     dynamic yaml,
   ) =>
@@ -1413,8 +1424,9 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicinalProductDefinitionCountryLanguage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicinalProductDefinitionCountryLanguage '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicinalProductDefinitionCountryLanguage]
@@ -1514,7 +1526,8 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
 /// Reference to another product, e.g. for linking authorised to
 /// investigational product, or a virtual product.
 class MedicinalProductDefinitionCrossReference extends BackboneElement {
-  /// Primary constructor for [MedicinalProductDefinitionCrossReference]
+  /// Primary constructor for
+  /// [MedicinalProductDefinitionCrossReference]
 
   MedicinalProductDefinitionCrossReference({
     super.id,
@@ -1569,8 +1582,8 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicinalProductDefinitionCrossReference] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicinalProductDefinitionCrossReference]
+  /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinitionCrossReference.fromYaml(
     dynamic yaml,
   ) =>
@@ -1583,8 +1596,9 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicinalProductDefinitionCrossReference cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicinalProductDefinitionCrossReference '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicinalProductDefinitionCrossReference]
@@ -1678,7 +1692,8 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
 /// A manufacturing or administrative process or step associated with (or
 /// performed on) the medicinal product.
 class MedicinalProductDefinitionOperation extends BackboneElement {
-  /// Primary constructor for [MedicinalProductDefinitionOperation]
+  /// Primary constructor for
+  /// [MedicinalProductDefinitionOperation]
 
   MedicinalProductDefinitionOperation({
     super.id,
@@ -1751,8 +1766,8 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicinalProductDefinitionOperation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicinalProductDefinitionOperation]
+  /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinitionOperation.fromYaml(
     dynamic yaml,
   ) =>
@@ -1765,8 +1780,9 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicinalProductDefinitionOperation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicinalProductDefinitionOperation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicinalProductDefinitionOperation]
@@ -1884,7 +1900,8 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
 /// Allows the key product features to be recorded, such as "sugar free",
 /// "modified release", "parallel import".
 class MedicinalProductDefinitionCharacteristic extends BackboneElement {
-  /// Primary constructor for [MedicinalProductDefinitionCharacteristic]
+  /// Primary constructor for
+  /// [MedicinalProductDefinitionCharacteristic]
 
   MedicinalProductDefinitionCharacteristic({
     super.id,
@@ -1965,8 +1982,8 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicinalProductDefinitionCharacteristic] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [MedicinalProductDefinitionCharacteristic]
+  /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinitionCharacteristic.fromYaml(
     dynamic yaml,
   ) =>
@@ -1979,8 +1996,9 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'MedicinalProductDefinitionCharacteristic cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'MedicinalProductDefinitionCharacteristic '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [MedicinalProductDefinitionCharacteristic]

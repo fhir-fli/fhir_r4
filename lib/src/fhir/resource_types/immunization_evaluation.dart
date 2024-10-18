@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// recommendations to determine if the administration is "valid" in
 /// relation to those recommendations.
 class ImmunizationEvaluation extends DomainResource {
-  /// Primary constructor for [ImmunizationEvaluation]
+  /// Primary constructor for
+  /// [ImmunizationEvaluation]
 
   ImmunizationEvaluation({
     super.id,
@@ -186,8 +187,8 @@ class ImmunizationEvaluation extends DomainResource {
     );
   }
 
-  /// Deserialize [ImmunizationEvaluation] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ImmunizationEvaluation]
+  /// from a [String] or [YamlMap] object
   factory ImmunizationEvaluation.fromYaml(
     dynamic yaml,
   ) =>
@@ -200,8 +201,9 @@ class ImmunizationEvaluation extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ImmunizationEvaluation cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ImmunizationEvaluation '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ImmunizationEvaluation]

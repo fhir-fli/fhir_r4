@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [Bundle]
 /// A container for a collection of resources.
 class Bundle extends Resource {
-  /// Primary constructor for [Bundle]
+  /// Primary constructor for
+  /// [Bundle]
 
   Bundle({
     super.id,
@@ -103,8 +104,8 @@ class Bundle extends Resource {
     );
   }
 
-  /// Deserialize [Bundle] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Bundle]
+  /// from a [String] or [YamlMap] object
   factory Bundle.fromYaml(
     dynamic yaml,
   ) =>
@@ -117,8 +118,9 @@ class Bundle extends Resource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Bundle cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Bundle '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Bundle]
@@ -281,7 +283,8 @@ class Bundle extends Resource {
 /// [BundleLink]
 /// A series of links that provide context to this bundle.
 class BundleLink extends BackboneElement {
-  /// Primary constructor for [BundleLink]
+  /// Primary constructor for
+  /// [BundleLink]
 
   BundleLink({
     super.id,
@@ -336,8 +339,8 @@ class BundleLink extends BackboneElement {
     );
   }
 
-  /// Deserialize [BundleLink] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [BundleLink]
+  /// from a [String] or [YamlMap] object
   factory BundleLink.fromYaml(
     dynamic yaml,
   ) =>
@@ -350,8 +353,9 @@ class BundleLink extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'BundleLink cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'BundleLink '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [BundleLink]
@@ -448,7 +452,8 @@ class BundleLink extends BackboneElement {
 /// An entry in a bundle resource - will either contain a resource or
 /// information about a resource (transactions and history only).
 class BundleEntry extends BackboneElement {
-  /// Primary constructor for [BundleEntry]
+  /// Primary constructor for
+  /// [BundleEntry]
 
   BundleEntry({
     super.id,
@@ -534,8 +539,8 @@ class BundleEntry extends BackboneElement {
     );
   }
 
-  /// Deserialize [BundleEntry] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [BundleEntry]
+  /// from a [String] or [YamlMap] object
   factory BundleEntry.fromYaml(
     dynamic yaml,
   ) =>
@@ -548,8 +553,9 @@ class BundleEntry extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'BundleEntry cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'BundleEntry '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [BundleEntry]
@@ -699,7 +705,8 @@ class BundleEntry extends BackboneElement {
 /// Information about the search process that lead to the creation of this
 /// entry.
 class BundleSearch extends BackboneElement {
-  /// Primary constructor for [BundleSearch]
+  /// Primary constructor for
+  /// [BundleSearch]
 
   BundleSearch({
     super.id,
@@ -758,8 +765,8 @@ class BundleSearch extends BackboneElement {
     );
   }
 
-  /// Deserialize [BundleSearch] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [BundleSearch]
+  /// from a [String] or [YamlMap] object
   factory BundleSearch.fromYaml(
     dynamic yaml,
   ) =>
@@ -772,8 +779,9 @@ class BundleSearch extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'BundleSearch cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'BundleSearch '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [BundleSearch]
@@ -872,7 +880,8 @@ class BundleSearch extends BackboneElement {
 /// of a transaction or batch. For history, it shows how the entry was
 /// processed to create the version contained in the entry.
 class BundleRequest extends BackboneElement {
-  /// Primary constructor for [BundleRequest]
+  /// Primary constructor for
+  /// [BundleRequest]
 
   BundleRequest({
     super.id,
@@ -955,8 +964,8 @@ class BundleRequest extends BackboneElement {
     );
   }
 
-  /// Deserialize [BundleRequest] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [BundleRequest]
+  /// from a [String] or [YamlMap] object
   factory BundleRequest.fromYaml(
     dynamic yaml,
   ) =>
@@ -969,8 +978,9 @@ class BundleRequest extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'BundleRequest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'BundleRequest '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [BundleRequest]
@@ -1129,7 +1139,8 @@ class BundleRequest extends BackboneElement {
 /// in the batch or transaction being responded to or what the results of
 /// an operation where when returning history.
 class BundleResponse extends BackboneElement {
-  /// Primary constructor for [BundleResponse]
+  /// Primary constructor for
+  /// [BundleResponse]
 
   BundleResponse({
     super.id,
@@ -1206,8 +1217,8 @@ class BundleResponse extends BackboneElement {
     );
   }
 
-  /// Deserialize [BundleResponse] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [BundleResponse]
+  /// from a [String] or [YamlMap] object
   factory BundleResponse.fromYaml(
     dynamic yaml,
   ) =>
@@ -1220,8 +1231,9 @@ class BundleResponse extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'BundleResponse cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'BundleResponse '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [BundleResponse]

@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// In the healthcare field, used to track charges for a patient, cost
 /// centers, etc.
 class Account extends DomainResource {
-  /// Primary constructor for [Account]
+  /// Primary constructor for
+  /// [Account]
 
   Account({
     super.id,
@@ -173,8 +174,8 @@ class Account extends DomainResource {
     );
   }
 
-  /// Deserialize [Account] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Account]
+  /// from a [String] or [YamlMap] object
   factory Account.fromYaml(
     dynamic yaml,
   ) =>
@@ -187,8 +188,9 @@ class Account extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Account cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Account '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Account]
@@ -419,7 +421,8 @@ class Account extends DomainResource {
 /// The party(s) that are responsible for covering the payment of this
 /// account, and what order should they be applied to the account.
 class AccountCoverage extends BackboneElement {
-  /// Primary constructor for [AccountCoverage]
+  /// Primary constructor for
+  /// [AccountCoverage]
 
   AccountCoverage({
     super.id,
@@ -475,8 +478,8 @@ class AccountCoverage extends BackboneElement {
     );
   }
 
-  /// Deserialize [AccountCoverage] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [AccountCoverage]
+  /// from a [String] or [YamlMap] object
   factory AccountCoverage.fromYaml(
     dynamic yaml,
   ) =>
@@ -489,8 +492,9 @@ class AccountCoverage extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'AccountCoverage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'AccountCoverage '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [AccountCoverage]
@@ -589,7 +593,8 @@ class AccountCoverage extends BackboneElement {
 /// The parties responsible for balancing the account if other payment
 /// options fall short.
 class AccountGuarantor extends BackboneElement {
-  /// Primary constructor for [AccountGuarantor]
+  /// Primary constructor for
+  /// [AccountGuarantor]
 
   AccountGuarantor({
     super.id,
@@ -651,8 +656,8 @@ class AccountGuarantor extends BackboneElement {
     );
   }
 
-  /// Deserialize [AccountGuarantor] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [AccountGuarantor]
+  /// from a [String] or [YamlMap] object
   factory AccountGuarantor.fromYaml(
     dynamic yaml,
   ) =>
@@ -665,8 +670,9 @@ class AccountGuarantor extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'AccountGuarantor cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'AccountGuarantor '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [AccountGuarantor]

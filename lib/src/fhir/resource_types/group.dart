@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// and are not formally or legally recognized; i.e. a collection of
 /// entities that isn't an Organization.
 class FhirGroup extends DomainResource {
-  /// Primary constructor for [FhirGroup]
+  /// Primary constructor for
+  /// [FhirGroup]
 
   FhirGroup({
     super.id,
@@ -164,8 +165,8 @@ class FhirGroup extends DomainResource {
     );
   }
 
-  /// Deserialize [FhirGroup] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [FhirGroup]
+  /// from a [String] or [YamlMap] object
   factory FhirGroup.fromYaml(
     dynamic yaml,
   ) =>
@@ -178,8 +179,9 @@ class FhirGroup extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'FhirGroup cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'FhirGroup '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [FhirGroup]
@@ -405,7 +407,8 @@ class FhirGroup extends DomainResource {
 /// Identifies traits whose presence r absence is shared by members of the
 /// group.
 class GroupCharacteristic extends BackboneElement {
-  /// Primary constructor for [GroupCharacteristic]
+  /// Primary constructor for
+  /// [GroupCharacteristic]
 
   GroupCharacteristic({
     super.id,
@@ -496,8 +499,8 @@ class GroupCharacteristic extends BackboneElement {
     );
   }
 
-  /// Deserialize [GroupCharacteristic] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [GroupCharacteristic]
+  /// from a [String] or [YamlMap] object
   factory GroupCharacteristic.fromYaml(
     dynamic yaml,
   ) =>
@@ -510,8 +513,9 @@ class GroupCharacteristic extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'GroupCharacteristic cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'GroupCharacteristic '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [GroupCharacteristic]
@@ -673,7 +677,8 @@ class GroupCharacteristic extends BackboneElement {
 /// [GroupMember]
 /// Identifies the resource instances that are members of the group.
 class GroupMember extends BackboneElement {
-  /// Primary constructor for [GroupMember]
+  /// Primary constructor for
+  /// [GroupMember]
 
   GroupMember({
     super.id,
@@ -735,8 +740,8 @@ class GroupMember extends BackboneElement {
     );
   }
 
-  /// Deserialize [GroupMember] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [GroupMember]
+  /// from a [String] or [YamlMap] object
   factory GroupMember.fromYaml(
     dynamic yaml,
   ) =>
@@ -749,8 +754,9 @@ class GroupMember extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'GroupMember cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'GroupMember '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [GroupMember]

@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// An identifier - identifies some entity uniquely and unambiguously.
 /// Typically this is used for business identifiers.
 class Identifier extends DataType {
-  /// Primary constructor for [Identifier]
+  /// Primary constructor for
+  /// [Identifier]
 
   Identifier({
     super.id,
@@ -80,8 +81,8 @@ class Identifier extends DataType {
     );
   }
 
-  /// Deserialize [Identifier] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Identifier]
+  /// from a [String] or [YamlMap] object
   factory Identifier.fromYaml(
     dynamic yaml,
   ) =>
@@ -94,8 +95,9 @@ class Identifier extends DataType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Identifier cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Identifier '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Identifier]

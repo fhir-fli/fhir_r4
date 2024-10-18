@@ -10,7 +10,8 @@ import 'package:yaml/yaml.dart';
 /// reporting the schedule to which past regular activities were carried
 /// out.
 class Timing extends BackboneType {
-  /// Primary constructor for [Timing]
+  /// Primary constructor for
+  /// [Timing]
 
   Timing({
     super.id,
@@ -73,8 +74,8 @@ class Timing extends BackboneType {
     );
   }
 
-  /// Deserialize [Timing] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Timing]
+  /// from a [String] or [YamlMap] object
   factory Timing.fromYaml(
     dynamic yaml,
   ) =>
@@ -87,8 +88,9 @@ class Timing extends BackboneType {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Timing cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Timing '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Timing]
@@ -199,7 +201,8 @@ class Timing extends BackboneType {
 /// [TimingRepeat]
 /// A set of rules that describe when the event is scheduled.
 class TimingRepeat extends Element {
-  /// Primary constructor for [TimingRepeat]
+  /// Primary constructor for
+  /// [TimingRepeat]
 
   TimingRepeat({
     super.id,
@@ -347,8 +350,8 @@ class TimingRepeat extends Element {
     );
   }
 
-  /// Deserialize [TimingRepeat] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [TimingRepeat]
+  /// from a [String] or [YamlMap] object
   factory TimingRepeat.fromYaml(
     dynamic yaml,
   ) =>
@@ -361,8 +364,9 @@ class TimingRepeat extends Element {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'TimingRepeat cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'TimingRepeat '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [TimingRepeat]

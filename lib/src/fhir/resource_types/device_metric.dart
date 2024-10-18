@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Describes a measurement, calculation or setting capability of a medical
 /// device.
 class DeviceMetric extends DomainResource {
-  /// Primary constructor for [DeviceMetric]
+  /// Primary constructor for
+  /// [DeviceMetric]
 
   DeviceMetric({
     super.id,
@@ -156,8 +157,8 @@ class DeviceMetric extends DomainResource {
     );
   }
 
-  /// Deserialize [DeviceMetric] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DeviceMetric]
+  /// from a [String] or [YamlMap] object
   factory DeviceMetric.fromYaml(
     dynamic yaml,
   ) =>
@@ -170,8 +171,9 @@ class DeviceMetric extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DeviceMetric cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DeviceMetric '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DeviceMetric]
@@ -400,7 +402,8 @@ class DeviceMetric extends DomainResource {
 /// Describes the calibrations that have been performed or that are
 /// required to be performed.
 class DeviceMetricCalibration extends BackboneElement {
-  /// Primary constructor for [DeviceMetricCalibration]
+  /// Primary constructor for
+  /// [DeviceMetricCalibration]
 
   DeviceMetricCalibration({
     super.id,
@@ -466,8 +469,8 @@ class DeviceMetricCalibration extends BackboneElement {
     );
   }
 
-  /// Deserialize [DeviceMetricCalibration] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [DeviceMetricCalibration]
+  /// from a [String] or [YamlMap] object
   factory DeviceMetricCalibration.fromYaml(
     dynamic yaml,
   ) =>
@@ -480,8 +483,9 @@ class DeviceMetricCalibration extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'DeviceMetricCalibration cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'DeviceMetricCalibration '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [DeviceMetricCalibration]

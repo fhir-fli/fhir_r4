@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// administering to a patient (after any mixing of multiple components,
 /// dissolution etc. has been performed).
 class AdministrableProductDefinition extends DomainResource {
-  /// Primary constructor for [AdministrableProductDefinition]
+  /// Primary constructor for
+  /// [AdministrableProductDefinition]
 
   AdministrableProductDefinition({
     super.id,
@@ -161,19 +162,21 @@ class AdministrableProductDefinition extends DomainResource {
               )
               .toList()
           : null,
-      routeOfAdministration: ensureNonNullList((json['routeOfAdministration']
-              as List<dynamic>)
-          .map<AdministrableProductDefinitionRouteOfAdministration>(
-            (v) => AdministrableProductDefinitionRouteOfAdministration.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      routeOfAdministration: ensureNonNullList(
+        (json['routeOfAdministration'] as List<dynamic>)
+            .map<AdministrableProductDefinitionRouteOfAdministration>(
+              (v) =>
+                  AdministrableProductDefinitionRouteOfAdministration.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 
-  /// Deserialize [AdministrableProductDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [AdministrableProductDefinition]
+  /// from a [String] or [YamlMap] object
   factory AdministrableProductDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -186,8 +189,9 @@ class AdministrableProductDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'AdministrableProductDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'AdministrableProductDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [AdministrableProductDefinition]
@@ -427,7 +431,8 @@ class AdministrableProductDefinition extends DomainResource {
 /// [AdministrableProductDefinitionProperty]
 /// Characteristics e.g. a product's onset of action.
 class AdministrableProductDefinitionProperty extends BackboneElement {
-  /// Primary constructor for [AdministrableProductDefinitionProperty]
+  /// Primary constructor for
+  /// [AdministrableProductDefinitionProperty]
 
   AdministrableProductDefinitionProperty({
     super.id,
@@ -514,8 +519,8 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     );
   }
 
-  /// Deserialize [AdministrableProductDefinitionProperty] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [AdministrableProductDefinitionProperty]
+  /// from a [String] or [YamlMap] object
   factory AdministrableProductDefinitionProperty.fromYaml(
     dynamic yaml,
   ) =>
@@ -528,8 +533,9 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'AdministrableProductDefinitionProperty cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'AdministrableProductDefinitionProperty '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [AdministrableProductDefinitionProperty]
@@ -680,7 +686,8 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
 /// already uses MedicinalProductDefinition.route (and vice versa).
 class AdministrableProductDefinitionRouteOfAdministration
     extends BackboneElement {
-  /// Primary constructor for [AdministrableProductDefinitionRouteOfAdministration]
+  /// Primary constructor for
+  /// [AdministrableProductDefinitionRouteOfAdministration]
 
   AdministrableProductDefinitionRouteOfAdministration({
     super.id,
@@ -769,8 +776,8 @@ class AdministrableProductDefinitionRouteOfAdministration
     );
   }
 
-  /// Deserialize [AdministrableProductDefinitionRouteOfAdministration] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [AdministrableProductDefinitionRouteOfAdministration]
+  /// from a [String] or [YamlMap] object
   factory AdministrableProductDefinitionRouteOfAdministration.fromYaml(
     dynamic yaml,
   ) =>
@@ -783,8 +790,9 @@ class AdministrableProductDefinitionRouteOfAdministration
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'AdministrableProductDefinitionRouteOfAdministration cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'AdministrableProductDefinitionRouteOfAdministration '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [AdministrableProductDefinitionRouteOfAdministration]
@@ -929,7 +937,8 @@ class AdministrableProductDefinitionRouteOfAdministration
 /// [AdministrableProductDefinitionTargetSpecies]
 /// A species for which this route applies.
 class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
-  /// Primary constructor for [AdministrableProductDefinitionTargetSpecies]
+  /// Primary constructor for
+  /// [AdministrableProductDefinitionTargetSpecies]
 
   AdministrableProductDefinitionTargetSpecies({
     super.id,
@@ -988,8 +997,8 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     );
   }
 
-  /// Deserialize [AdministrableProductDefinitionTargetSpecies] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [AdministrableProductDefinitionTargetSpecies]
+  /// from a [String] or [YamlMap] object
   factory AdministrableProductDefinitionTargetSpecies.fromYaml(
     dynamic yaml,
   ) =>
@@ -1002,8 +1011,9 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'AdministrableProductDefinitionTargetSpecies cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'AdministrableProductDefinitionTargetSpecies '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [AdministrableProductDefinitionTargetSpecies]
@@ -1096,7 +1106,8 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
 /// A species specific time during which consumption of animal product is
 /// not appropriate.
 class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
-  /// Primary constructor for [AdministrableProductDefinitionWithdrawalPeriod]
+  /// Primary constructor for
+  /// [AdministrableProductDefinitionWithdrawalPeriod]
 
   AdministrableProductDefinitionWithdrawalPeriod({
     super.id,
@@ -1156,8 +1167,8 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     );
   }
 
-  /// Deserialize [AdministrableProductDefinitionWithdrawalPeriod] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [AdministrableProductDefinitionWithdrawalPeriod]
+  /// from a [String] or [YamlMap] object
   factory AdministrableProductDefinitionWithdrawalPeriod.fromYaml(
     dynamic yaml,
   ) =>
@@ -1170,8 +1181,9 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'AdministrableProductDefinitionWithdrawalPeriod cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'AdministrableProductDefinitionWithdrawalPeriod '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [AdministrableProductDefinitionWithdrawalPeriod]

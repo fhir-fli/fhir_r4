@@ -9,7 +9,8 @@ import 'package:yaml/yaml.dart';
 /// this resource gives only a rough structure and requires profiling for
 /// each type of billing code system.
 class ChargeItemDefinition extends DomainResource {
-  /// Primary constructor for [ChargeItemDefinition]
+  /// Primary constructor for
+  /// [ChargeItemDefinition]
 
   ChargeItemDefinition({
     super.id,
@@ -265,8 +266,8 @@ class ChargeItemDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [ChargeItemDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ChargeItemDefinition]
+  /// from a [String] or [YamlMap] object
   factory ChargeItemDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -279,8 +280,9 @@ class ChargeItemDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ChargeItemDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ChargeItemDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ChargeItemDefinition]
@@ -711,7 +713,8 @@ class ChargeItemDefinition extends DomainResource {
 /// [ChargeItemDefinitionApplicability]
 /// Expressions that describe applicability criteria for the billing code.
 class ChargeItemDefinitionApplicability extends BackboneElement {
-  /// Primary constructor for [ChargeItemDefinitionApplicability]
+  /// Primary constructor for
+  /// [ChargeItemDefinitionApplicability]
 
   ChargeItemDefinitionApplicability({
     super.id,
@@ -777,8 +780,8 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
     );
   }
 
-  /// Deserialize [ChargeItemDefinitionApplicability] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ChargeItemDefinitionApplicability]
+  /// from a [String] or [YamlMap] object
   factory ChargeItemDefinitionApplicability.fromYaml(
     dynamic yaml,
   ) =>
@@ -791,8 +794,9 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ChargeItemDefinitionApplicability cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ChargeItemDefinitionApplicability '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ChargeItemDefinitionApplicability]
@@ -913,7 +917,8 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
 /// no applicability rules are established for the group, then all
 /// properties always apply.
 class ChargeItemDefinitionPropertyGroup extends BackboneElement {
-  /// Primary constructor for [ChargeItemDefinitionPropertyGroup]
+  /// Primary constructor for
+  /// [ChargeItemDefinitionPropertyGroup]
 
   ChargeItemDefinitionPropertyGroup({
     super.id,
@@ -978,8 +983,8 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
     );
   }
 
-  /// Deserialize [ChargeItemDefinitionPropertyGroup] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ChargeItemDefinitionPropertyGroup]
+  /// from a [String] or [YamlMap] object
   factory ChargeItemDefinitionPropertyGroup.fromYaml(
     dynamic yaml,
   ) =>
@@ -992,8 +997,9 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ChargeItemDefinitionPropertyGroup cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ChargeItemDefinitionPropertyGroup '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ChargeItemDefinitionPropertyGroup]
@@ -1095,7 +1101,8 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
 /// The priceComponent element can be used to offer transparency to the
 /// recipient of the Invoice of how the prices have been calculated.
 class ChargeItemDefinitionPriceComponent extends BackboneElement {
-  /// Primary constructor for [ChargeItemDefinitionPriceComponent]
+  /// Primary constructor for
+  /// [ChargeItemDefinitionPriceComponent]
 
   ChargeItemDefinitionPriceComponent({
     super.id,
@@ -1164,8 +1171,8 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
     );
   }
 
-  /// Deserialize [ChargeItemDefinitionPriceComponent] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ChargeItemDefinitionPriceComponent]
+  /// from a [String] or [YamlMap] object
   factory ChargeItemDefinitionPriceComponent.fromYaml(
     dynamic yaml,
   ) =>
@@ -1178,8 +1185,9 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ChargeItemDefinitionPriceComponent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ChargeItemDefinitionPriceComponent '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ChargeItemDefinitionPriceComponent]

@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// daily living, obtaining herd immunity via immunization, meeting a
 /// process improvement objective, etc.
 class Goal extends DomainResource {
-  /// Primary constructor for [Goal]
+  /// Primary constructor for
+  /// [Goal]
 
   Goal({
     super.id,
@@ -219,8 +220,8 @@ class Goal extends DomainResource {
     );
   }
 
-  /// Deserialize [Goal] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Goal]
+  /// from a [String] or [YamlMap] object
   factory Goal.fromYaml(
     dynamic yaml,
   ) =>
@@ -233,8 +234,9 @@ class Goal extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Goal cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Goal '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Goal]
@@ -523,7 +525,8 @@ class Goal extends DomainResource {
 /// [GoalTarget]
 /// Indicates what should be done by when.
 class GoalTarget extends BackboneElement {
-  /// Primary constructor for [GoalTarget]
+  /// Primary constructor for
+  /// [GoalTarget]
 
   GoalTarget({
     super.id,
@@ -632,8 +635,8 @@ class GoalTarget extends BackboneElement {
     );
   }
 
-  /// Deserialize [GoalTarget] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [GoalTarget]
+  /// from a [String] or [YamlMap] object
   factory GoalTarget.fromYaml(
     dynamic yaml,
   ) =>
@@ -646,8 +649,9 @@ class GoalTarget extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'GoalTarget cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'GoalTarget '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [GoalTarget]

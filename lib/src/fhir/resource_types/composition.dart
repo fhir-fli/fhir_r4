@@ -14,7 +14,8 @@ import 'package:yaml/yaml.dart';
 /// Composition must be included as subsequent entries in the Bundle (for
 /// example Patient, Practitioner, Encounter, etc.).
 class Composition extends DomainResource {
-  /// Primary constructor for [Composition]
+  /// Primary constructor for
+  /// [Composition]
 
   Composition({
     super.id,
@@ -144,13 +145,15 @@ class Composition extends DomainResource {
         'value': json['date'],
         '_value': json['_date'],
       }),
-      author: ensureNonNullList((json['author'] as List<dynamic>)
-          .map<Reference>(
-            (v) => Reference.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      author: ensureNonNullList(
+        (json['author'] as List<dynamic>)
+            .map<Reference>(
+              (v) => Reference.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       title: FhirString.fromJson({
         'value': json['title'],
         '_value': json['_title'],
@@ -205,8 +208,8 @@ class Composition extends DomainResource {
     );
   }
 
-  /// Deserialize [Composition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Composition]
+  /// from a [String] or [YamlMap] object
   factory Composition.fromYaml(
     dynamic yaml,
   ) =>
@@ -219,8 +222,9 @@ class Composition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Composition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Composition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Composition]
@@ -495,7 +499,8 @@ class Composition extends DomainResource {
 /// A participant who has attested to the accuracy of the
 /// composition/document.
 class CompositionAttester extends BackboneElement {
-  /// Primary constructor for [CompositionAttester]
+  /// Primary constructor for
+  /// [CompositionAttester]
 
   CompositionAttester({
     super.id,
@@ -558,8 +563,8 @@ class CompositionAttester extends BackboneElement {
     );
   }
 
-  /// Deserialize [CompositionAttester] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CompositionAttester]
+  /// from a [String] or [YamlMap] object
   factory CompositionAttester.fromYaml(
     dynamic yaml,
   ) =>
@@ -572,8 +577,9 @@ class CompositionAttester extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CompositionAttester cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CompositionAttester '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CompositionAttester]
@@ -677,7 +683,8 @@ class CompositionAttester extends BackboneElement {
 /// Relationships that this composition has with other compositions or
 /// documents that already exist.
 class CompositionRelatesTo extends BackboneElement {
-  /// Primary constructor for [CompositionRelatesTo]
+  /// Primary constructor for
+  /// [CompositionRelatesTo]
 
   CompositionRelatesTo({
     super.id,
@@ -739,8 +746,8 @@ class CompositionRelatesTo extends BackboneElement {
     );
   }
 
-  /// Deserialize [CompositionRelatesTo] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CompositionRelatesTo]
+  /// from a [String] or [YamlMap] object
   factory CompositionRelatesTo.fromYaml(
     dynamic yaml,
   ) =>
@@ -753,8 +760,9 @@ class CompositionRelatesTo extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CompositionRelatesTo cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CompositionRelatesTo '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CompositionRelatesTo]
@@ -855,7 +863,8 @@ class CompositionRelatesTo extends BackboneElement {
 /// The clinical service, such as a colonoscopy or an appendectomy, being
 /// documented.
 class CompositionEvent extends BackboneElement {
-  /// Primary constructor for [CompositionEvent]
+  /// Primary constructor for
+  /// [CompositionEvent]
 
   CompositionEvent({
     super.id,
@@ -926,8 +935,8 @@ class CompositionEvent extends BackboneElement {
     );
   }
 
-  /// Deserialize [CompositionEvent] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CompositionEvent]
+  /// from a [String] or [YamlMap] object
   factory CompositionEvent.fromYaml(
     dynamic yaml,
   ) =>
@@ -940,8 +949,9 @@ class CompositionEvent extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CompositionEvent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CompositionEvent '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CompositionEvent]
@@ -1050,7 +1060,8 @@ class CompositionEvent extends BackboneElement {
 /// [CompositionSection]
 /// The root of the sections that make up the composition.
 class CompositionSection extends BackboneElement {
-  /// Primary constructor for [CompositionSection]
+  /// Primary constructor for
+  /// [CompositionSection]
 
   CompositionSection({
     super.id,
@@ -1169,8 +1180,8 @@ class CompositionSection extends BackboneElement {
     );
   }
 
-  /// Deserialize [CompositionSection] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CompositionSection]
+  /// from a [String] or [YamlMap] object
   factory CompositionSection.fromYaml(
     dynamic yaml,
   ) =>
@@ -1183,8 +1194,9 @@ class CompositionSection extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CompositionSection cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CompositionSection '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CompositionSection]

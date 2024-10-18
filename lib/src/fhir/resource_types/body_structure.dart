@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// when a coded concept does not provide the necessary detail needed for
 /// the use case.
 class BodyStructure extends DomainResource {
-  /// Primary constructor for [BodyStructure]
+  /// Primary constructor for
+  /// [BodyStructure]
 
   BodyStructure({
     super.id,
@@ -150,8 +151,8 @@ class BodyStructure extends DomainResource {
     );
   }
 
-  /// Deserialize [BodyStructure] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [BodyStructure]
+  /// from a [String] or [YamlMap] object
   factory BodyStructure.fromYaml(
     dynamic yaml,
   ) =>
@@ -164,8 +165,9 @@ class BodyStructure extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'BodyStructure cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'BodyStructure '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [BodyStructure]

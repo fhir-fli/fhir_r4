@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [Substance]
 /// A homogeneous material with a definite composition.
 class Substance extends DomainResource {
-  /// Primary constructor for [Substance]
+  /// Primary constructor for
+  /// [Substance]
 
   Substance({
     super.id,
@@ -146,8 +147,8 @@ class Substance extends DomainResource {
     );
   }
 
-  /// Deserialize [Substance] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Substance]
+  /// from a [String] or [YamlMap] object
   factory Substance.fromYaml(
     dynamic yaml,
   ) =>
@@ -160,8 +161,9 @@ class Substance extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Substance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Substance '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Substance]
@@ -343,7 +345,8 @@ class Substance extends DomainResource {
 /// Substance may be used to describe a kind of substance, or a specific
 /// package/container of the substance: an instance.
 class SubstanceInstance extends BackboneElement {
-  /// Primary constructor for [SubstanceInstance]
+  /// Primary constructor for
+  /// [SubstanceInstance]
 
   SubstanceInstance({
     super.id,
@@ -407,8 +410,8 @@ class SubstanceInstance extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceInstance] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubstanceInstance]
+  /// from a [String] or [YamlMap] object
   factory SubstanceInstance.fromYaml(
     dynamic yaml,
   ) =>
@@ -421,8 +424,9 @@ class SubstanceInstance extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubstanceInstance cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubstanceInstance '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubstanceInstance]
@@ -529,7 +533,8 @@ class SubstanceInstance extends BackboneElement {
 /// [SubstanceIngredient]
 /// A substance can be composed of other substances.
 class SubstanceIngredient extends BackboneElement {
-  /// Primary constructor for [SubstanceIngredient]
+  /// Primary constructor for
+  /// [SubstanceIngredient]
 
   SubstanceIngredient({
     super.id,
@@ -592,8 +597,8 @@ class SubstanceIngredient extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceIngredient] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [SubstanceIngredient]
+  /// from a [String] or [YamlMap] object
   factory SubstanceIngredient.fromYaml(
     dynamic yaml,
   ) =>
@@ -606,8 +611,9 @@ class SubstanceIngredient extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'SubstanceIngredient cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'SubstanceIngredient '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [SubstanceIngredient]

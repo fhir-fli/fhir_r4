@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// sent to a responsible provider, a public health agency that was
 /// notified about a reportable condition.
 class Communication extends DomainResource {
-  /// Primary constructor for [Communication]
+  /// Primary constructor for
+  /// [Communication]
 
   Communication({
     super.id,
@@ -278,8 +279,8 @@ class Communication extends DomainResource {
     );
   }
 
-  /// Deserialize [Communication] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Communication]
+  /// from a [String] or [YamlMap] object
   factory Communication.fromYaml(
     dynamic yaml,
   ) =>
@@ -292,8 +293,9 @@ class Communication extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Communication cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Communication '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Communication]
@@ -670,7 +672,8 @@ class Communication extends DomainResource {
 /// Text, attachment(s), or resource(s) that was communicated to the
 /// recipient.
 class CommunicationPayload extends BackboneElement {
-  /// Primary constructor for [CommunicationPayload]
+  /// Primary constructor for
+  /// [CommunicationPayload]
 
   CommunicationPayload({
     super.id,
@@ -734,8 +737,8 @@ class CommunicationPayload extends BackboneElement {
     );
   }
 
-  /// Deserialize [CommunicationPayload] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CommunicationPayload]
+  /// from a [String] or [YamlMap] object
   factory CommunicationPayload.fromYaml(
     dynamic yaml,
   ) =>
@@ -748,8 +751,9 @@ class CommunicationPayload extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CommunicationPayload cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CommunicationPayload '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CommunicationPayload]

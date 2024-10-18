@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Invoice containing collected ChargeItems from an Account with
 /// calculated individual and total price for Billing purpose.
 class Invoice extends DomainResource {
-  /// Primary constructor for [Invoice]
+  /// Primary constructor for
+  /// [Invoice]
 
   Invoice({
     super.id,
@@ -197,8 +198,8 @@ class Invoice extends DomainResource {
     );
   }
 
-  /// Deserialize [Invoice] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Invoice]
+  /// from a [String] or [YamlMap] object
   factory Invoice.fromYaml(
     dynamic yaml,
   ) =>
@@ -211,8 +212,9 @@ class Invoice extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Invoice cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Invoice '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Invoice]
@@ -487,7 +489,8 @@ class Invoice extends DomainResource {
 /// [InvoiceParticipant]
 /// Indicates who or what performed or participated in the charged service.
 class InvoiceParticipant extends BackboneElement {
-  /// Primary constructor for [InvoiceParticipant]
+  /// Primary constructor for
+  /// [InvoiceParticipant]
 
   InvoiceParticipant({
     super.id,
@@ -542,8 +545,8 @@ class InvoiceParticipant extends BackboneElement {
     );
   }
 
-  /// Deserialize [InvoiceParticipant] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [InvoiceParticipant]
+  /// from a [String] or [YamlMap] object
   factory InvoiceParticipant.fromYaml(
     dynamic yaml,
   ) =>
@@ -556,8 +559,9 @@ class InvoiceParticipant extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'InvoiceParticipant cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'InvoiceParticipant '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [InvoiceParticipant]
@@ -651,7 +655,8 @@ class InvoiceParticipant extends BackboneElement {
 /// Details such as date, code and amount are found in the referenced
 /// ChargeItem resource.
 class InvoiceLineItem extends BackboneElement {
-  /// Primary constructor for [InvoiceLineItem]
+  /// Primary constructor for
+  /// [InvoiceLineItem]
 
   InvoiceLineItem({
     super.id,
@@ -725,8 +730,8 @@ class InvoiceLineItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [InvoiceLineItem] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [InvoiceLineItem]
+  /// from a [String] or [YamlMap] object
   factory InvoiceLineItem.fromYaml(
     dynamic yaml,
   ) =>
@@ -739,8 +744,9 @@ class InvoiceLineItem extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'InvoiceLineItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'InvoiceLineItem '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [InvoiceLineItem]
@@ -872,7 +878,8 @@ class InvoiceLineItem extends BackboneElement {
 /// The priceComponent element can be used to offer transparency to the
 /// recipient of the Invoice as to how the prices have been calculated.
 class InvoicePriceComponent extends BackboneElement {
-  /// Primary constructor for [InvoicePriceComponent]
+  /// Primary constructor for
+  /// [InvoicePriceComponent]
 
   InvoicePriceComponent({
     super.id,
@@ -941,8 +948,8 @@ class InvoicePriceComponent extends BackboneElement {
     );
   }
 
-  /// Deserialize [InvoicePriceComponent] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [InvoicePriceComponent]
+  /// from a [String] or [YamlMap] object
   factory InvoicePriceComponent.fromYaml(
     dynamic yaml,
   ) =>
@@ -955,8 +962,9 @@ class InvoicePriceComponent extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'InvoicePriceComponent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'InvoicePriceComponent '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [InvoicePriceComponent]

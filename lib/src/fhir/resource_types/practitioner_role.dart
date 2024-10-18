@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// A specific set of Roles/Locations/specialties/services that a
 /// practitioner may perform at an organization for a period of time.
 class PractitionerRole extends DomainResource {
-  /// Primary constructor for [PractitionerRole]
+  /// Primary constructor for
+  /// [PractitionerRole]
 
   PractitionerRole({
     super.id,
@@ -211,8 +212,8 @@ class PractitionerRole extends DomainResource {
     );
   }
 
-  /// Deserialize [PractitionerRole] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PractitionerRole]
+  /// from a [String] or [YamlMap] object
   factory PractitionerRole.fromYaml(
     dynamic yaml,
   ) =>
@@ -225,8 +226,9 @@ class PractitionerRole extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PractitionerRole cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PractitionerRole '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PractitionerRole]
@@ -493,7 +495,8 @@ class PractitionerRole extends DomainResource {
 /// A collection of times the practitioner is available or performing this
 /// role at the location and/or healthcareservice.
 class PractitionerRoleAvailableTime extends BackboneElement {
-  /// Primary constructor for [PractitionerRoleAvailableTime]
+  /// Primary constructor for
+  /// [PractitionerRoleAvailableTime]
 
   PractitionerRoleAvailableTime({
     super.id,
@@ -565,8 +568,8 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     );
   }
 
-  /// Deserialize [PractitionerRoleAvailableTime] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PractitionerRoleAvailableTime]
+  /// from a [String] or [YamlMap] object
   factory PractitionerRoleAvailableTime.fromYaml(
     dynamic yaml,
   ) =>
@@ -579,8 +582,9 @@ class PractitionerRoleAvailableTime extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PractitionerRoleAvailableTime cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PractitionerRoleAvailableTime '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PractitionerRoleAvailableTime]
@@ -708,7 +712,8 @@ class PractitionerRoleAvailableTime extends BackboneElement {
 /// The practitioner is not available or performing this role during this
 /// period of time due to the provided reason.
 class PractitionerRoleNotAvailable extends BackboneElement {
-  /// Primary constructor for [PractitionerRoleNotAvailable]
+  /// Primary constructor for
+  /// [PractitionerRoleNotAvailable]
 
   PractitionerRoleNotAvailable({
     super.id,
@@ -764,8 +769,8 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     );
   }
 
-  /// Deserialize [PractitionerRoleNotAvailable] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PractitionerRoleNotAvailable]
+  /// from a [String] or [YamlMap] object
   factory PractitionerRoleNotAvailable.fromYaml(
     dynamic yaml,
   ) =>
@@ -778,8 +783,9 @@ class PractitionerRoleNotAvailable extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PractitionerRoleNotAvailable cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PractitionerRoleNotAvailable '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PractitionerRoleNotAvailable]

@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// other healthcare setting factors that requires additional monitoring,
 /// treatment, or hospitalization, or that results in death.
 class AdverseEvent extends DomainResource {
-  /// Primary constructor for [AdverseEvent]
+  /// Primary constructor for
+  /// [AdverseEvent]
 
   AdverseEvent({
     super.id,
@@ -239,8 +240,8 @@ class AdverseEvent extends DomainResource {
     );
   }
 
-  /// Deserialize [AdverseEvent] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [AdverseEvent]
+  /// from a [String] or [YamlMap] object
   factory AdverseEvent.fromYaml(
     dynamic yaml,
   ) =>
@@ -253,8 +254,9 @@ class AdverseEvent extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'AdverseEvent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'AdverseEvent '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [AdverseEvent]
@@ -591,7 +593,8 @@ class AdverseEvent extends DomainResource {
 /// Describes the entity that is suspected to have caused the adverse
 /// event.
 class AdverseEventSuspectEntity extends BackboneElement {
-  /// Primary constructor for [AdverseEventSuspectEntity]
+  /// Primary constructor for
+  /// [AdverseEventSuspectEntity]
 
   AdverseEventSuspectEntity({
     super.id,
@@ -650,8 +653,8 @@ class AdverseEventSuspectEntity extends BackboneElement {
     );
   }
 
-  /// Deserialize [AdverseEventSuspectEntity] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [AdverseEventSuspectEntity]
+  /// from a [String] or [YamlMap] object
   factory AdverseEventSuspectEntity.fromYaml(
     dynamic yaml,
   ) =>
@@ -664,8 +667,9 @@ class AdverseEventSuspectEntity extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'AdverseEventSuspectEntity cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'AdverseEventSuspectEntity '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [AdverseEventSuspectEntity]
@@ -756,7 +760,8 @@ class AdverseEventSuspectEntity extends BackboneElement {
 /// [AdverseEventCausality]
 /// Information on the possible cause of the event.
 class AdverseEventCausality extends BackboneElement {
-  /// Primary constructor for [AdverseEventCausality]
+  /// Primary constructor for
+  /// [AdverseEventCausality]
 
   AdverseEventCausality({
     super.id,
@@ -826,8 +831,8 @@ class AdverseEventCausality extends BackboneElement {
     );
   }
 
-  /// Deserialize [AdverseEventCausality] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [AdverseEventCausality]
+  /// from a [String] or [YamlMap] object
   factory AdverseEventCausality.fromYaml(
     dynamic yaml,
   ) =>
@@ -840,8 +845,9 @@ class AdverseEventCausality extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'AdverseEventCausality cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'AdverseEventCausality '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [AdverseEventCausality]

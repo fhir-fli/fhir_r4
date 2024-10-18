@@ -5,7 +5,8 @@ import 'package:yaml/yaml.dart';
 /// [PackagedProductDefinition]
 /// A medically related item or items, in a container or package.
 class PackagedProductDefinition extends DomainResource {
-  /// Primary constructor for [PackagedProductDefinition]
+  /// Primary constructor for
+  /// [PackagedProductDefinition]
 
   PackagedProductDefinition({
     super.id,
@@ -204,8 +205,8 @@ class PackagedProductDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [PackagedProductDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PackagedProductDefinition]
+  /// from a [String] or [YamlMap] object
   factory PackagedProductDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -218,8 +219,9 @@ class PackagedProductDefinition extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PackagedProductDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PackagedProductDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PackagedProductDefinition]
@@ -513,7 +515,8 @@ class PackagedProductDefinition extends DomainResource {
 /// The legal status of supply of the packaged item as classified by the
 /// regulator.
 class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
-  /// Primary constructor for [PackagedProductDefinitionLegalStatusOfSupply]
+  /// Primary constructor for
+  /// [PackagedProductDefinitionLegalStatusOfSupply]
 
   PackagedProductDefinitionLegalStatusOfSupply({
     super.id,
@@ -570,8 +573,8 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     );
   }
 
-  /// Deserialize [PackagedProductDefinitionLegalStatusOfSupply] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PackagedProductDefinitionLegalStatusOfSupply]
+  /// from a [String] or [YamlMap] object
   factory PackagedProductDefinitionLegalStatusOfSupply.fromYaml(
     dynamic yaml,
   ) =>
@@ -584,8 +587,9 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PackagedProductDefinitionLegalStatusOfSupply cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PackagedProductDefinitionLegalStatusOfSupply '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PackagedProductDefinitionLegalStatusOfSupply]
@@ -681,7 +685,8 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
 /// with other packaging items within, or a packaging component, such as
 /// bottle cap (which is not a device or a medication manufactured item).
 class PackagedProductDefinitionPackage extends BackboneElement {
-  /// Primary constructor for [PackagedProductDefinitionPackage]
+  /// Primary constructor for
+  /// [PackagedProductDefinitionPackage]
 
   PackagedProductDefinitionPackage({
     super.id,
@@ -819,8 +824,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     );
   }
 
-  /// Deserialize [PackagedProductDefinitionPackage] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PackagedProductDefinitionPackage]
+  /// from a [String] or [YamlMap] object
   factory PackagedProductDefinitionPackage.fromYaml(
     dynamic yaml,
   ) =>
@@ -833,8 +838,9 @@ class PackagedProductDefinitionPackage extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PackagedProductDefinitionPackage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PackagedProductDefinitionPackage '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PackagedProductDefinitionPackage]
@@ -1018,7 +1024,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
 /// [PackagedProductDefinitionShelfLifeStorage]
 /// Shelf Life and storage information.
 class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
-  /// Primary constructor for [PackagedProductDefinitionShelfLifeStorage]
+  /// Primary constructor for
+  /// [PackagedProductDefinitionShelfLifeStorage]
 
   PackagedProductDefinitionShelfLifeStorage({
     super.id,
@@ -1092,8 +1099,8 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     );
   }
 
-  /// Deserialize [PackagedProductDefinitionShelfLifeStorage] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PackagedProductDefinitionShelfLifeStorage]
+  /// from a [String] or [YamlMap] object
   factory PackagedProductDefinitionShelfLifeStorage.fromYaml(
     dynamic yaml,
   ) =>
@@ -1106,8 +1113,9 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PackagedProductDefinitionShelfLifeStorage cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PackagedProductDefinitionShelfLifeStorage '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PackagedProductDefinitionShelfLifeStorage]
@@ -1241,7 +1249,8 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
 /// [PackagedProductDefinitionProperty]
 /// General characteristics of this item.
 class PackagedProductDefinitionProperty extends BackboneElement {
-  /// Primary constructor for [PackagedProductDefinitionProperty]
+  /// Primary constructor for
+  /// [PackagedProductDefinitionProperty]
 
   PackagedProductDefinitionProperty({
     super.id,
@@ -1322,8 +1331,8 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     );
   }
 
-  /// Deserialize [PackagedProductDefinitionProperty] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PackagedProductDefinitionProperty]
+  /// from a [String] or [YamlMap] object
   factory PackagedProductDefinitionProperty.fromYaml(
     dynamic yaml,
   ) =>
@@ -1336,8 +1345,9 @@ class PackagedProductDefinitionProperty extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PackagedProductDefinitionProperty cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PackagedProductDefinitionProperty '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PackagedProductDefinitionProperty]
@@ -1474,7 +1484,8 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 /// [PackagedProductDefinitionContainedItem]
 /// The item(s) within the packaging.
 class PackagedProductDefinitionContainedItem extends BackboneElement {
-  /// Primary constructor for [PackagedProductDefinitionContainedItem]
+  /// Primary constructor for
+  /// [PackagedProductDefinitionContainedItem]
 
   PackagedProductDefinitionContainedItem({
     super.id,
@@ -1529,8 +1540,8 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [PackagedProductDefinitionContainedItem] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [PackagedProductDefinitionContainedItem]
+  /// from a [String] or [YamlMap] object
   factory PackagedProductDefinitionContainedItem.fromYaml(
     dynamic yaml,
   ) =>
@@ -1543,8 +1554,9 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PackagedProductDefinitionContainedItem cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'PackagedProductDefinitionContainedItem '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [PackagedProductDefinitionContainedItem]

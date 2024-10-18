@@ -6,7 +6,8 @@ import 'package:yaml/yaml.dart';
 /// Prospective warnings of potential issues when providing care to the
 /// patient.
 class Flag extends DomainResource {
-  /// Primary constructor for [Flag]
+  /// Primary constructor for
+  /// [Flag]
 
   Flag({
     super.id,
@@ -140,8 +141,8 @@ class Flag extends DomainResource {
     );
   }
 
-  /// Deserialize [Flag] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Flag]
+  /// from a [String] or [YamlMap] object
   factory Flag.fromYaml(
     dynamic yaml,
   ) =>
@@ -154,8 +155,9 @@ class Flag extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Flag cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Flag '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Flag]

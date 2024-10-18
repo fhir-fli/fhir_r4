@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// alert be sent to a responsible provider, the CDS system proposes that
 /// the public health agency be notified about a reportable condition.
 class CommunicationRequest extends DomainResource {
-  /// Primary constructor for [CommunicationRequest]
+  /// Primary constructor for
+  /// [CommunicationRequest]
 
   CommunicationRequest({
     super.id,
@@ -275,8 +276,8 @@ class CommunicationRequest extends DomainResource {
     );
   }
 
-  /// Deserialize [CommunicationRequest] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CommunicationRequest]
+  /// from a [String] or [YamlMap] object
   factory CommunicationRequest.fromYaml(
     dynamic yaml,
   ) =>
@@ -289,8 +290,9 @@ class CommunicationRequest extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CommunicationRequest cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CommunicationRequest '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CommunicationRequest]
@@ -656,7 +658,8 @@ class CommunicationRequest extends DomainResource {
 /// Text, attachment(s), or resource(s) to be communicated to the
 /// recipient.
 class CommunicationRequestPayload extends BackboneElement {
-  /// Primary constructor for [CommunicationRequestPayload]
+  /// Primary constructor for
+  /// [CommunicationRequestPayload]
 
   CommunicationRequestPayload({
     super.id,
@@ -720,8 +723,8 @@ class CommunicationRequestPayload extends BackboneElement {
     );
   }
 
-  /// Deserialize [CommunicationRequestPayload] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CommunicationRequestPayload]
+  /// from a [String] or [YamlMap] object
   factory CommunicationRequestPayload.fromYaml(
     dynamic yaml,
   ) =>
@@ -734,8 +737,9 @@ class CommunicationRequestPayload extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CommunicationRequestPayload cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CommunicationRequestPayload '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CommunicationRequestPayload]

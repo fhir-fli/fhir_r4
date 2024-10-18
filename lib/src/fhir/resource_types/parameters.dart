@@ -7,7 +7,8 @@ import 'package:yaml/yaml.dart';
 /// and back from an [operation](operations.html). It has no other use, and
 /// there is no RESTful endpoint associated with it.
 class Parameters extends Resource {
-  /// Primary constructor for [Parameters]
+  /// Primary constructor for
+  /// [Parameters]
 
   Parameters({
     super.id,
@@ -64,8 +65,8 @@ class Parameters extends Resource {
     );
   }
 
-  /// Deserialize [Parameters] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Parameters]
+  /// from a [String] or [YamlMap] object
   factory Parameters.fromYaml(
     dynamic yaml,
   ) =>
@@ -78,8 +79,9 @@ class Parameters extends Resource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Parameters cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Parameters '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Parameters]
@@ -170,7 +172,8 @@ class Parameters extends Resource {
 /// [ParametersParameter]
 /// A parameter passed to or received from the operation.
 class ParametersParameter extends BackboneElement {
-  /// Primary constructor for [ParametersParameter]
+  /// Primary constructor for
+  /// [ParametersParameter]
 
   ParametersParameter({
     super.id,
@@ -555,8 +558,8 @@ class ParametersParameter extends BackboneElement {
     );
   }
 
-  /// Deserialize [ParametersParameter] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ParametersParameter]
+  /// from a [String] or [YamlMap] object
   factory ParametersParameter.fromYaml(
     dynamic yaml,
   ) =>
@@ -569,8 +572,9 @@ class ParametersParameter extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ParametersParameter cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ParametersParameter '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ParametersParameter]

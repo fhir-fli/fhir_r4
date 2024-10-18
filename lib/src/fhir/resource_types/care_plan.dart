@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// of time, possibly limited to care for a specific condition or set of
 /// conditions.
 class CarePlan extends DomainResource {
-  /// Primary constructor for [CarePlan]
+  /// Primary constructor for
+  /// [CarePlan]
 
   CarePlan({
     super.id,
@@ -276,8 +277,8 @@ class CarePlan extends DomainResource {
     );
   }
 
-  /// Deserialize [CarePlan] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CarePlan]
+  /// from a [String] or [YamlMap] object
   factory CarePlan.fromYaml(
     dynamic yaml,
   ) =>
@@ -290,8 +291,9 @@ class CarePlan extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CarePlan cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CarePlan '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CarePlan]
@@ -670,7 +672,8 @@ class CarePlan extends DomainResource {
 /// a medication to be used, lab tests to perform, self-monitoring,
 /// education, etc.
 class CarePlanActivity extends BackboneElement {
-  /// Primary constructor for [CarePlanActivity]
+  /// Primary constructor for
+  /// [CarePlanActivity]
 
   CarePlanActivity({
     super.id,
@@ -757,8 +760,8 @@ class CarePlanActivity extends BackboneElement {
     );
   }
 
-  /// Deserialize [CarePlanActivity] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CarePlanActivity]
+  /// from a [String] or [YamlMap] object
   factory CarePlanActivity.fromYaml(
     dynamic yaml,
   ) =>
@@ -771,8 +774,9 @@ class CarePlanActivity extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CarePlanActivity cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CarePlanActivity '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CarePlanActivity]
@@ -907,7 +911,8 @@ class CarePlanActivity extends BackboneElement {
 /// system (e.g. form driven) that doesn't know about specific resources
 /// such as procedure etc.
 class CarePlanDetail extends BackboneElement {
-  /// Primary constructor for [CarePlanDetail]
+  /// Primary constructor for
+  /// [CarePlanDetail]
 
   CarePlanDetail({
     super.id,
@@ -1091,8 +1096,8 @@ class CarePlanDetail extends BackboneElement {
     );
   }
 
-  /// Deserialize [CarePlanDetail] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [CarePlanDetail]
+  /// from a [String] or [YamlMap] object
   factory CarePlanDetail.fromYaml(
     dynamic yaml,
   ) =>
@@ -1105,8 +1110,9 @@ class CarePlanDetail extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'CarePlanDetail cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'CarePlanDetail '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [CarePlanDetail]

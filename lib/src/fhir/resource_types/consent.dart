@@ -8,7 +8,8 @@ import 'package:yaml/yaml.dart';
 /// actions within a given policy context, for specific purposes and
 /// periods of time.
 class Consent extends DomainResource {
-  /// Primary constructor for [Consent]
+  /// Primary constructor for
+  /// [Consent]
 
   Consent({
     super.id,
@@ -117,13 +118,15 @@ class Consent extends DomainResource {
       scope: CodeableConcept.fromJson(
         json['scope'] as Map<String, dynamic>,
       ),
-      category: ensureNonNullList((json['category'] as List<dynamic>)
-          .map<CodeableConcept>(
-            (v) => CodeableConcept.fromJson(
-              v as Map<String, dynamic>,
-            ),
-          )
-          .toList()),
+      category: ensureNonNullList(
+        (json['category'] as List<dynamic>)
+            .map<CodeableConcept>(
+              (v) => CodeableConcept.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       patient: json['patient'] != null
           ? Reference.fromJson(
               json['patient'] as Map<String, dynamic>,
@@ -189,8 +192,8 @@ class Consent extends DomainResource {
     );
   }
 
-  /// Deserialize [Consent] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Consent]
+  /// from a [String] or [YamlMap] object
   factory Consent.fromYaml(
     dynamic yaml,
   ) =>
@@ -203,8 +206,9 @@ class Consent extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Consent cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Consent '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Consent]
@@ -458,7 +462,8 @@ class Consent extends DomainResource {
 /// Policies may be organizational, but are often defined jurisdictionally,
 /// or in law.
 class ConsentPolicy extends BackboneElement {
-  /// Primary constructor for [ConsentPolicy]
+  /// Primary constructor for
+  /// [ConsentPolicy]
 
   ConsentPolicy({
     super.id,
@@ -523,8 +528,8 @@ class ConsentPolicy extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConsentPolicy] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ConsentPolicy]
+  /// from a [String] or [YamlMap] object
   factory ConsentPolicy.fromYaml(
     dynamic yaml,
   ) =>
@@ -537,8 +542,9 @@ class ConsentPolicy extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ConsentPolicy cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ConsentPolicy '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ConsentPolicy]
@@ -652,7 +658,8 @@ class ConsentPolicy extends BackboneElement {
 /// was verified with the patient, his/her family or another authorized
 /// person.
 class ConsentVerification extends BackboneElement {
-  /// Primary constructor for [ConsentVerification]
+  /// Primary constructor for
+  /// [ConsentVerification]
 
   ConsentVerification({
     super.id,
@@ -715,8 +722,8 @@ class ConsentVerification extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConsentVerification] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ConsentVerification]
+  /// from a [String] or [YamlMap] object
   factory ConsentVerification.fromYaml(
     dynamic yaml,
   ) =>
@@ -729,8 +736,9 @@ class ConsentVerification extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ConsentVerification cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ConsentVerification '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ConsentVerification]
@@ -839,7 +847,8 @@ class ConsentVerification extends BackboneElement {
 /// An exception to the base policy of this consent. An exception can be an
 /// addition or removal of access permissions.
 class ConsentProvision extends BackboneElement {
-  /// Primary constructor for [ConsentProvision]
+  /// Primary constructor for
+  /// [ConsentProvision]
 
   ConsentProvision({
     super.id,
@@ -983,8 +992,8 @@ class ConsentProvision extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConsentProvision] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ConsentProvision]
+  /// from a [String] or [YamlMap] object
   factory ConsentProvision.fromYaml(
     dynamic yaml,
   ) =>
@@ -997,8 +1006,9 @@ class ConsentProvision extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ConsentProvision cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ConsentProvision '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ConsentProvision]
@@ -1188,7 +1198,8 @@ class ConsentProvision extends BackboneElement {
 /// Who or what is controlled by this rule. Use group to identify a set of
 /// actors by some property they share (e.g. 'admitting officers').
 class ConsentActor extends BackboneElement {
-  /// Primary constructor for [ConsentActor]
+  /// Primary constructor for
+  /// [ConsentActor]
 
   ConsentActor({
     super.id,
@@ -1241,8 +1252,8 @@ class ConsentActor extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConsentActor] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ConsentActor]
+  /// from a [String] or [YamlMap] object
   factory ConsentActor.fromYaml(
     dynamic yaml,
   ) =>
@@ -1255,8 +1266,9 @@ class ConsentActor extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ConsentActor cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ConsentActor '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ConsentActor]
@@ -1347,7 +1359,8 @@ class ConsentActor extends BackboneElement {
 /// The resources controlled by this rule if specific resources are
 /// referenced.
 class ConsentData extends BackboneElement {
-  /// Primary constructor for [ConsentData]
+  /// Primary constructor for
+  /// [ConsentData]
 
   ConsentData({
     super.id,
@@ -1401,8 +1414,8 @@ class ConsentData extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConsentData] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [ConsentData]
+  /// from a [String] or [YamlMap] object
   factory ConsentData.fromYaml(
     dynamic yaml,
   ) =>
@@ -1415,8 +1428,9 @@ class ConsentData extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'ConsentData cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'ConsentData '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [ConsentData]

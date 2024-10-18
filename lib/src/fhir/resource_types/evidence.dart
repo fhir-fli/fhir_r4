@@ -9,7 +9,8 @@ import 'package:yaml/yaml.dart';
 /// confounding variables), the statistics, and the certainty of this
 /// evidence.
 class Evidence extends DomainResource {
-  /// Primary constructor for [Evidence]
+  /// Primary constructor for
+  /// [Evidence]
 
   Evidence({
     super.id,
@@ -265,14 +266,15 @@ class Evidence extends DomainResource {
               )
               .toList()
           : null,
-      variableDefinition:
-          ensureNonNullList((json['variableDefinition'] as List<dynamic>)
-              .map<EvidenceVariableDefinition>(
-                (v) => EvidenceVariableDefinition.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()),
+      variableDefinition: ensureNonNullList(
+        (json['variableDefinition'] as List<dynamic>)
+            .map<EvidenceVariableDefinition>(
+              (v) => EvidenceVariableDefinition.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
       synthesisType: json['synthesisType'] != null
           ? CodeableConcept.fromJson(
               json['synthesisType'] as Map<String, dynamic>,
@@ -304,8 +306,8 @@ class Evidence extends DomainResource {
     );
   }
 
-  /// Deserialize [Evidence] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [Evidence]
+  /// from a [String] or [YamlMap] object
   factory Evidence.fromYaml(
     dynamic yaml,
   ) =>
@@ -318,8 +320,9 @@ class Evidence extends DomainResource {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'Evidence cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'Evidence '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [Evidence]
@@ -755,7 +758,8 @@ class Evidence extends DomainResource {
 /// [EvidenceVariableDefinition]
 /// Evidence variable such as population, exposure, or outcome.
 class EvidenceVariableDefinition extends BackboneElement {
-  /// Primary constructor for [EvidenceVariableDefinition]
+  /// Primary constructor for
+  /// [EvidenceVariableDefinition]
 
   EvidenceVariableDefinition({
     super.id,
@@ -839,8 +843,8 @@ class EvidenceVariableDefinition extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceVariableDefinition] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceVariableDefinition]
+  /// from a [String] or [YamlMap] object
   factory EvidenceVariableDefinition.fromYaml(
     dynamic yaml,
   ) =>
@@ -853,8 +857,9 @@ class EvidenceVariableDefinition extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceVariableDefinition cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceVariableDefinition '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceVariableDefinition]
@@ -989,7 +994,8 @@ class EvidenceVariableDefinition extends BackboneElement {
 /// [EvidenceStatistic]
 /// Values and parameters for a single statistic.
 class EvidenceStatistic extends BackboneElement {
-  /// Primary constructor for [EvidenceStatistic]
+  /// Primary constructor for
+  /// [EvidenceStatistic]
 
   EvidenceStatistic({
     super.id,
@@ -1109,8 +1115,8 @@ class EvidenceStatistic extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceStatistic] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceStatistic]
+  /// from a [String] or [YamlMap] object
   factory EvidenceStatistic.fromYaml(
     dynamic yaml,
   ) =>
@@ -1123,8 +1129,9 @@ class EvidenceStatistic extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceStatistic cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceStatistic '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceStatistic]
@@ -1314,7 +1321,8 @@ class EvidenceStatistic extends BackboneElement {
 /// [EvidenceSampleSize]
 /// Number of samples in the statistic.
 class EvidenceSampleSize extends BackboneElement {
-  /// Primary constructor for [EvidenceSampleSize]
+  /// Primary constructor for
+  /// [EvidenceSampleSize]
 
   EvidenceSampleSize({
     super.id,
@@ -1397,8 +1405,8 @@ class EvidenceSampleSize extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceSampleSize] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceSampleSize]
+  /// from a [String] or [YamlMap] object
   factory EvidenceSampleSize.fromYaml(
     dynamic yaml,
   ) =>
@@ -1411,8 +1419,9 @@ class EvidenceSampleSize extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceSampleSize cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceSampleSize '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceSampleSize]
@@ -1551,7 +1560,8 @@ class EvidenceSampleSize extends BackboneElement {
 /// A statistical attribute of the statistic such as a measure of
 /// heterogeneity.
 class EvidenceAttributeEstimate extends BackboneElement {
-  /// Primary constructor for [EvidenceAttributeEstimate]
+  /// Primary constructor for
+  /// [EvidenceAttributeEstimate]
 
   EvidenceAttributeEstimate({
     super.id,
@@ -1638,8 +1648,8 @@ class EvidenceAttributeEstimate extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceAttributeEstimate] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceAttributeEstimate]
+  /// from a [String] or [YamlMap] object
   factory EvidenceAttributeEstimate.fromYaml(
     dynamic yaml,
   ) =>
@@ -1652,8 +1662,9 @@ class EvidenceAttributeEstimate extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceAttributeEstimate cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceAttributeEstimate '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceAttributeEstimate]
@@ -1794,7 +1805,8 @@ class EvidenceAttributeEstimate extends BackboneElement {
 /// [EvidenceModelCharacteristic]
 /// A component of the method to generate the statistic.
 class EvidenceModelCharacteristic extends BackboneElement {
-  /// Primary constructor for [EvidenceModelCharacteristic]
+  /// Primary constructor for
+  /// [EvidenceModelCharacteristic]
 
   EvidenceModelCharacteristic({
     super.id,
@@ -1859,8 +1871,8 @@ class EvidenceModelCharacteristic extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceModelCharacteristic] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceModelCharacteristic]
+  /// from a [String] or [YamlMap] object
   factory EvidenceModelCharacteristic.fromYaml(
     dynamic yaml,
   ) =>
@@ -1873,8 +1885,9 @@ class EvidenceModelCharacteristic extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceModelCharacteristic cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceModelCharacteristic '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceModelCharacteristic]
@@ -1974,7 +1987,8 @@ class EvidenceModelCharacteristic extends BackboneElement {
 /// [EvidenceModelCharacteristicVariable]
 /// A variable adjusted for in the adjusted analysis.
 class EvidenceModelCharacteristicVariable extends BackboneElement {
-  /// Primary constructor for [EvidenceModelCharacteristicVariable]
+  /// Primary constructor for
+  /// [EvidenceModelCharacteristicVariable]
 
   EvidenceModelCharacteristicVariable({
     super.id,
@@ -2060,8 +2074,8 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceModelCharacteristicVariable] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceModelCharacteristicVariable]
+  /// from a [String] or [YamlMap] object
   factory EvidenceModelCharacteristicVariable.fromYaml(
     dynamic yaml,
   ) =>
@@ -2074,8 +2088,9 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceModelCharacteristicVariable cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceModelCharacteristicVariable '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceModelCharacteristicVariable]
@@ -2195,7 +2210,8 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
 /// Assessment of certainty, confidence in the estimates, or quality of the
 /// evidence.
 class EvidenceCertainty extends BackboneElement {
-  /// Primary constructor for [EvidenceCertainty]
+  /// Primary constructor for
+  /// [EvidenceCertainty]
 
   EvidenceCertainty({
     super.id,
@@ -2286,8 +2302,8 @@ class EvidenceCertainty extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceCertainty] from a [String]
-  /// or [YamlMap] object
+  /// Deserialize [EvidenceCertainty]
+  /// from a [String] or [YamlMap] object
   factory EvidenceCertainty.fromYaml(
     dynamic yaml,
   ) =>
@@ -2300,8 +2316,9 @@ class EvidenceCertainty extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'EvidenceCertainty cannot be constructed from '
-                  'input provided, it is neither a yaml string nor a yaml map.',
+                  'EvidenceCertainty '
+                  'cannot be constructed from input provided, '
+                  'it is neither a yaml string nor a yaml map.',
                 );
 
   /// Factory constructor for [EvidenceCertainty]
