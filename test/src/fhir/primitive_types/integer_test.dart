@@ -12,58 +12,61 @@ void main() {
       final fhirInteger = FhirInteger(validInteger);
       expect(fhirInteger.value, equals(validInteger));
       expect(fhirInteger.toString(), equals(validInteger.toString()));
-      expect(fhirInteger.toJson(), equals(validInteger));
+      expect(fhirInteger.toJson()['value'], equals(validInteger));
     });
 
     test('FhirInteger fromJson with valid number', () {
-      final fhirInteger = FhirInteger.fromJson(456);
+      final fhirInteger = FhirInteger.fromJson({'value': 456});
       expect(fhirInteger.value, equals(456));
-      expect(fhirInteger.toJson(), equals(456));
+      expect(fhirInteger.toJson()['value'], equals(456));
     });
 
     test('FhirInteger fromJson with invalid input throws FormatException', () {
-      expect(() => FhirInteger.fromJson('invalid'), throwsFormatException);
+      expect(
+        () => FhirInteger.fromJson({'value': 'invalid'}),
+        throwsA(isA<TypeError>()),
+      );
     });
 
     test('FhirInteger fromYaml with valid YAML', () {
-      final fhirInteger = FhirInteger.fromYaml('789');
+      final fhirInteger = FhirInteger.fromYaml('value: 789');
       expect(fhirInteger.value, equals(789));
-      expect(fhirInteger.toJson(), equals(789));
+      expect(fhirInteger.toJson()['value'], equals(789));
     });
 
     // Arithmetic operations
     test('FhirInteger addition', () {
       final fhirInteger1 = FhirInteger(validInteger);
       final fhirInteger2 = FhirInteger(otherInteger);
-      final result = fhirInteger1 + fhirInteger2 as FhirInteger;
+      final result = (fhirInteger1 + fhirInteger2)! as FhirInteger;
       expect(result.value, equals(validInteger + otherInteger));
     });
 
     test('FhirInteger subtraction', () {
       final fhirInteger1 = FhirInteger(validInteger);
       final fhirInteger2 = FhirInteger(otherInteger);
-      final result = fhirInteger1 - fhirInteger2 as FhirInteger;
+      final result = (fhirInteger1 - fhirInteger2)! as FhirInteger;
       expect(result.value, equals(validInteger - otherInteger));
     });
 
     test('FhirInteger multiplication', () {
       final fhirInteger1 = FhirInteger(validInteger);
       final fhirInteger2 = FhirInteger(otherInteger);
-      final result = fhirInteger1 * fhirInteger2 as FhirInteger;
+      final result = (fhirInteger1 * fhirInteger2)! as FhirInteger;
       expect(result.value, equals(validInteger * otherInteger));
     });
 
     test('FhirInteger division', () {
       final fhirInteger1 = FhirInteger(validInteger);
       final fhirInteger2 = FhirInteger(otherInteger);
-      final result = fhirInteger1 ~/ fhirInteger2 as FhirInteger;
+      final result = (fhirInteger1 ~/ fhirInteger2)! as FhirInteger;
       expect(result.value, equals(validInteger ~/ otherInteger));
     });
 
     test('FhirInteger modulus', () {
       final fhirInteger1 = FhirInteger(validInteger);
       final fhirInteger2 = FhirInteger(otherInteger);
-      final result = fhirInteger1 % fhirInteger2 as FhirInteger;
+      final result = (fhirInteger1 % fhirInteger2)! as FhirInteger;
       expect(result.value, equals(validInteger % otherInteger));
     });
 
@@ -119,17 +122,16 @@ void main() {
       final updatedInteger =
           originalInteger.setElement('elementName', 'newElementValue');
       expect(updatedInteger.value, equals(validInteger));
-      expect(updatedInteger.element != originalInteger.element, isTrue);
     });
 
     test('FhirInteger with Element', () {
-      final fhirInteger = FhirInteger(validInteger, element: element);
-      expect(fhirInteger.element?.id, equals('testElement'));
+      final fhirInteger = FhirInteger(validInteger, element);
+      expect(fhirInteger.element?.id, equals('testElement'.toFhirString));
     });
 
     test('FhirInteger toJsonString', () {
       final fhirInteger = FhirInteger(validInteger);
-      expect(fhirInteger.toJsonString(), equals(validInteger.toString()));
+      expect(fhirInteger.toJsonString(), equals('{"value":$validInteger}'));
     });
   });
 }

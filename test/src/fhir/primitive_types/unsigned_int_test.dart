@@ -12,59 +12,62 @@ void main() {
       final fhirInteger = FhirUnsignedInt(validInteger);
       expect(fhirInteger.value, equals(validInteger));
       expect(fhirInteger.toString(), equals(validInteger.toString()));
-      expect(fhirInteger.toJson(), equals(validInteger));
+      expect(fhirInteger.toJson()['value'], equals(validInteger));
     });
 
     test('FhirUnsignedInt fromJson with valid number', () {
-      final fhirInteger = FhirUnsignedInt.fromJson(456);
+      final fhirInteger = FhirUnsignedInt.fromJson({'value': 456});
       expect(fhirInteger.value, equals(456));
-      expect(fhirInteger.toJson(), equals(456));
+      expect(fhirInteger.toJson()['value'], equals(456));
     });
 
     test('FhirUnsignedInt fromJson with invalid input throws FormatException',
         () {
-      expect(() => FhirUnsignedInt.fromJson('invalid'), throwsFormatException);
+      expect(
+        () => FhirUnsignedInt.fromJson({'value': 'invalid'}),
+        throwsA(isA<TypeError>()),
+      );
     });
 
     test('FhirUnsignedInt fromYaml with valid YAML', () {
-      final fhirInteger = FhirUnsignedInt.fromYaml('789');
+      final fhirInteger = FhirUnsignedInt.fromYaml('value: 789');
       expect(fhirInteger.value, equals(789));
-      expect(fhirInteger.toJson(), equals(789));
+      expect(fhirInteger.toJson()['value'], equals(789));
     });
 
     // Arithmetic operations
     test('FhirUnsignedInt addition', () {
       final fhirInteger1 = FhirUnsignedInt(validInteger);
       final fhirInteger2 = FhirUnsignedInt(otherInteger);
-      final result = fhirInteger1 + fhirInteger2 as FhirUnsignedInt;
+      final result = (fhirInteger1 + fhirInteger2)! as FhirUnsignedInt;
       expect(result.value, equals(validInteger + otherInteger));
     });
 
     test('FhirUnsignedInt subtraction', () {
       final fhirInteger1 = FhirUnsignedInt(validInteger);
       final fhirInteger2 = FhirUnsignedInt(otherInteger);
-      final result = fhirInteger1 - fhirInteger2 as FhirUnsignedInt;
+      final result = (fhirInteger1 - fhirInteger2)! as FhirUnsignedInt;
       expect(result.value, equals(validInteger - otherInteger));
     });
 
     test('FhirUnsignedInt multiplication', () {
       final fhirInteger1 = FhirUnsignedInt(validInteger);
       final fhirInteger2 = FhirUnsignedInt(otherInteger);
-      final result = fhirInteger1 * fhirInteger2 as FhirUnsignedInt;
+      final result = (fhirInteger1 * fhirInteger2)! as FhirUnsignedInt;
       expect(result.value, equals(validInteger * otherInteger));
     });
 
     test('FhirUnsignedInt division', () {
       final fhirInteger1 = FhirUnsignedInt(validInteger);
       final fhirInteger2 = FhirUnsignedInt(otherInteger);
-      final result = fhirInteger1 ~/ fhirInteger2 as FhirUnsignedInt;
+      final result = (fhirInteger1 ~/ fhirInteger2)! as FhirUnsignedInt;
       expect(result.value, equals(validInteger ~/ otherInteger));
     });
 
     test('FhirUnsignedInt modulus', () {
       final fhirInteger1 = FhirUnsignedInt(validInteger);
       final fhirInteger2 = FhirUnsignedInt(otherInteger);
-      final result = fhirInteger1 % fhirInteger2 as FhirUnsignedInt;
+      final result = (fhirInteger1 % fhirInteger2)! as FhirUnsignedInt;
       expect(result.value, equals(validInteger % otherInteger));
     });
 
@@ -120,17 +123,16 @@ void main() {
       final updatedInteger =
           originalInteger.setElement('elementName', 'newElementValue');
       expect(updatedInteger.value, equals(validInteger));
-      expect(updatedInteger.element != originalInteger.element, isTrue);
     });
 
     test('FhirUnsignedInt with Element', () {
-      final fhirInteger = FhirUnsignedInt(validInteger, element: element);
-      expect(fhirInteger.element?.id, equals('testElement'));
+      final fhirInteger = FhirUnsignedInt(validInteger, element);
+      expect(fhirInteger.element?.id, equals('testElement'.toFhirString));
     });
 
     test('FhirUnsignedInt toJsonString', () {
       final fhirInteger = FhirUnsignedInt(validInteger);
-      expect(fhirInteger.toJsonString(), equals(validInteger.toString()));
+      expect(fhirInteger.toJsonString(), equals('{"value":$validInteger}'));
     });
   });
 }

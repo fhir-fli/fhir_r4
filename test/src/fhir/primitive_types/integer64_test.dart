@@ -51,14 +51,15 @@ void main() {
     });
 
     test('FhirInteger64 fromJson with valid input', () {
-      final fhirInteger64 = FhirInteger64.fromJson(validBigIntString);
+      final fhirInteger64 =
+          FhirInteger64.fromJson({'value': validBigIntString});
       expect(fhirInteger64.value, equals(validBigInt));
     });
 
     test('FhirInteger64 fromJson with invalid input throws FormatException',
         () {
       expect(
-        () => FhirInteger64.fromJson(invalidString),
+        () => FhirInteger64.fromJson({'value': invalidString}),
         throwsFormatException,
       );
     });

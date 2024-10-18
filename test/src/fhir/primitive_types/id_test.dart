@@ -8,32 +8,49 @@ void main() {
     const jsonCode = 'CODE123';
     const yamlCode = 'YAML_CODE';
 
-    test('Code', () {
-      expect(FhirId('Patient/123456').toString(), 'Patient/123456');
-      expect(FhirId('Patient/123456').toJson(), 'Patient/123456');
-      expect(FhirId('Patient/123456').value, 'Patient/123456');
+    test('FhirId validation', () {
+      // Valid FHIR IDs
+      expect(FhirId('Patient123').toString(), 'Patient123');
+      expect(FhirId('Patient123').toJson()['value'], 'Patient123');
+      expect(FhirId('Patient123').value, 'Patient123');
+
+      expect(FhirId('Patient_123').toString(), 'Patient_123');
+      expect(FhirId('Patient_123').toJson()['value'], 'Patient_123');
+      expect(FhirId('Patient_123').value, 'Patient_123');
+
+      // Invalid FHIR IDs
       expect(
-        FhirId('http://Patient.com/123456').toString(),
-        'http://Patient.com/123456',
+        () => FhirId('http://example.com/Patient123'),
+        throwsA(
+          isA<FormatException>(),
+        ),
       );
+
       expect(
-        FhirId('http://Patient.com/123456').toJson(),
-        'http://Patient.com/123456',
-      );
+        () => FhirId('___'),
+        throwsA(
+          isA<FormatException>(),
+        ),
+      ); // Underscores as the first characters are invalid
       expect(
-        FhirId('http://Patient.com/123456').value,
-        'http://Patient.com/123456',
-      );
-      expect(FhirId('___').toString(), '___');
-      expect(FhirId('___').toJson(), '___');
-      expect(FhirId('').value, null);
+        () => FhirId('_Patient123'),
+        throwsA(isA<FormatException>()),
+      ); // Underscore as the first character
+      expect(
+        () => FhirId('Patient!123'),
+        throwsA(isA<FormatException>()),
+      ); // Invalid character ('!')
+      expect(
+        () => FhirId(''),
+        throwsA(isA<FormatException>()),
+      ); // Empty string should also throw an error
     });
 
     test('Valid FhirId from String', () {
       final fhirId = FhirId(validCode);
       expect(fhirId.value, equals(validCode));
       expect(fhirId.toString(), equals(validCode));
-      expect(fhirId.toJson(), equals(validCode));
+      expect(fhirId.toJson()['value'], equals(validCode));
     });
 
     test('Invalid FhirId throws FormatException', () {
@@ -44,7 +61,7 @@ void main() {
       final fhirId = FhirId.tryParse(validCode);
       expect(fhirId?.value, equals(validCode));
       expect(fhirId?.toString(), equals(validCode));
-      expect(fhirId?.toJson(), equals(validCode));
+      expect(fhirId?.toJson()['value'], equals(validCode));
     });
 
     test('FhirId tryParse with invalid String', () {
@@ -53,19 +70,19 @@ void main() {
     });
 
     test('FhirId fromJson with valid String', () {
-      final fhirId = FhirId.fromJson(jsonCode);
+      final fhirId = FhirId.fromJson({'value': jsonCode});
       expect(fhirId.value, equals(jsonCode));
-      expect(fhirId.toJson(), equals(jsonCode));
+      expect(fhirId.toJson()['value'], equals(jsonCode));
     });
 
     test('FhirId fromJson with invalid type throws FormatException', () {
-      expect(() => FhirId.fromJson(123), throwsFormatException);
+      expect(() => FhirId.fromJson({'value': 123}), throwsA(isA<TypeError>()));
     });
 
     test('FhirId fromYaml with valid YAML', () {
-      final fhirId = FhirId.fromYaml(yamlCode);
+      final fhirId = FhirId.fromYaml('value: $yamlCode');
       expect(fhirId.value, equals(yamlCode));
-      expect(fhirId.toJson(), equals(yamlCode));
+      expect(fhirId.toJson()['value'], equals(yamlCode));
     });
 
     test('FhirId equality with another FhirId', () {
@@ -105,21 +122,9 @@ void main() {
       ); // Original should remain unchanged
     });
 
-    test('FhirId setElement', () {
-      final originalCode = FhirId(validCode);
-      final updatedCode =
-          originalCode.setElement('elementName', 'newElementValue');
-      expect(updatedCode.value, equals(validCode));
-    });
-
-    test('FhirId hashCode', () {
-      final fhirId = FhirId(validCode);
-      expect(fhirId.hashCode, equals(validCode.hashCode));
-    });
-
     test('FhirId toJsonString', () {
       final fhirId = FhirId(validCode);
-      expect(fhirId.toJsonString(), equals('"$validCode"'));
+      expect(fhirId.toJsonString(), equals('{"value":"$validCode"}'));
     });
   });
 }

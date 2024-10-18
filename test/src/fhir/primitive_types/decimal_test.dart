@@ -13,14 +13,14 @@ void main() {
       final fhirDecimal = FhirDecimal(validDecimal);
       expect(fhirDecimal.value, equals(validDecimal));
       expect(fhirDecimal.toString(), equals(validDecimal.toString()));
-      expect(fhirDecimal.toJson(), equals(validDecimal));
+      expect(fhirDecimal.toJson()['value'], equals(validDecimal));
     });
 
     test('FhirDecimal from int value', () {
       final fhirDecimal = FhirDecimal(validInteger);
       expect(fhirDecimal.value, equals(validInteger.toDouble()));
       expect(fhirDecimal.toString(), equals(validInteger.toString()));
-      expect(fhirDecimal.toJson(), equals(validInteger));
+      expect(fhirDecimal.toJson()['value'], equals(validInteger));
     });
 
     test('FhirDecimal from FhirInteger', () {
@@ -28,58 +28,61 @@ void main() {
       final fhirDecimal = FhirDecimal.fromFhirInteger(fhirInteger);
       expect(fhirDecimal.value, equals(validInteger.toDouble()));
       expect(fhirDecimal.toString(), equals(validInteger.toString()));
-      expect(fhirDecimal.toJson(), equals(validInteger));
+      expect(fhirDecimal.toJson()['value'], equals(validInteger));
     });
 
     test('FhirDecimal fromJson with valid number', () {
-      final fhirDecimal = FhirDecimal.fromJson(67.89);
+      final fhirDecimal = FhirDecimal.fromJson({'value': 67.89});
       expect(fhirDecimal.value, equals(67.89));
-      expect(fhirDecimal.toJson(), equals(67.89));
+      expect(fhirDecimal.toJson()['value'], equals(67.89));
     });
 
     test('FhirDecimal fromJson with invalid input throws FormatException', () {
-      expect(() => FhirDecimal.fromJson('invalid'), throwsFormatException);
+      expect(
+        () => FhirDecimal.fromJson({'value': 'invalid'}),
+        throwsA(isA<TypeError>()),
+      );
     });
 
     test('FhirDecimal fromYaml with valid YAML', () {
-      final fhirDecimal = FhirDecimal.fromYaml('200.50');
+      final fhirDecimal = FhirDecimal.fromYaml('value: 200.50');
       expect(fhirDecimal.value, equals(200.50));
-      expect(fhirDecimal.toJson(), equals(200.50));
+      expect(fhirDecimal.toJson()['value'], equals(200.50));
     });
 
     // Arithmetic operations
     test('FhirDecimal addition', () {
       final fhirDecimal1 = FhirDecimal(validDecimal);
       final fhirDecimal2 = FhirDecimal(otherDecimal);
-      final result = fhirDecimal1 + fhirDecimal2 as FhirDecimal;
-      expect(result.value, equals(validDecimal + otherDecimal));
+      final result = fhirDecimal1 + fhirDecimal2 as FhirDecimal?;
+      expect(result?.value, equals(validDecimal + otherDecimal));
     });
 
     test('FhirDecimal subtraction', () {
       final fhirDecimal1 = FhirDecimal(validDecimal);
       final fhirDecimal2 = FhirDecimal(otherDecimal);
-      final result = fhirDecimal1 - fhirDecimal2 as FhirDecimal;
-      expect(result.value, equals(validDecimal - otherDecimal));
+      final result = fhirDecimal1 - fhirDecimal2 as FhirDecimal?;
+      expect(result?.value, equals(validDecimal - otherDecimal));
     });
 
     test('FhirDecimal multiplication', () {
       final fhirDecimal1 = FhirDecimal(validDecimal);
       final fhirDecimal2 = FhirDecimal(otherDecimal);
-      final result = fhirDecimal1 * fhirDecimal2 as FhirDecimal;
+      final result = (fhirDecimal1 * fhirDecimal2)! as FhirDecimal;
       expect(result.value, equals(validDecimal * otherDecimal));
     });
 
     test('FhirDecimal division', () {
       final fhirDecimal1 = FhirDecimal(validDecimal);
       final fhirDecimal2 = FhirDecimal(otherDecimal);
-      final result = fhirDecimal1 / fhirDecimal2 as FhirDecimal;
+      final result = (fhirDecimal1 / fhirDecimal2)! as FhirDecimal;
       expect(result.value, equals(validDecimal / otherDecimal));
     });
 
     test('FhirDecimal modulus', () {
       final fhirDecimal1 = FhirDecimal(validDecimal);
       final fhirDecimal2 = FhirDecimal(otherDecimal);
-      final result = fhirDecimal1 % fhirDecimal2 as FhirDecimal;
+      final result = (fhirDecimal1 % fhirDecimal2)! as FhirDecimal;
       expect(result.value, equals(validDecimal % otherDecimal));
     });
 
@@ -141,13 +144,18 @@ void main() {
     });
 
     test('FhirDecimal with Element', () {
-      final fhirDecimal = FhirDecimal(validDecimal, element: element);
+      final fhirDecimal = FhirDecimal(validDecimal, element);
       expect(fhirDecimal.element?.id, equals(FhirString('testElement')));
     });
 
     test('FhirDecimal toJsonString', () {
       final fhirDecimal = FhirDecimal(validDecimal);
-      expect(fhirDecimal.toJsonString(), equals(validDecimal.toString()));
+      expect(
+        fhirDecimal.toJsonString(),
+        equals(
+          '{"value":$validDecimal}',
+        ),
+      );
     });
   });
 }
