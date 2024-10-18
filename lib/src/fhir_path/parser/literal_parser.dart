@@ -1,15 +1,11 @@
-// ignore_for_file: annotate_overrides, overridden_fields, avoid_dynamic_calls
-// ignore_for_file: avoid_bool_literals_in_conditional_expressions
-// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
-
 import 'package:collection/collection.dart';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:ucum/ucum.dart';
-
-import '../../../fhir_r4.dart';
 
 /// This includes all input that should be ignored, this includes pure white
 /// space, along with comments, it simply returns whatever has been passed to it
 class WhiteSpaceParser extends ValueParser<String> {
+  /// Constructor for [WhiteSpaceParser]
   WhiteSpaceParser(super.value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -41,6 +37,7 @@ class WhiteSpaceParser extends ValueParser<String> {
 
 /// Boolean Parser, it returns a FHIR Boolean value
 class BooleanParser extends ValueParser<bool> {
+  /// Constructor for [BooleanParser]
   BooleanParser(super.value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -63,13 +60,14 @@ class BooleanParser extends ValueParser<bool> {
 /// This allows the passing of a variable from the environment into the
 /// evaluation.
 class EnvVariableParser extends ValueParser<String> {
+  /// Constructor for [EnvVariableParser]
   EnvVariableParser(super.value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final String variableName = value.replaceAll('`', '');
+    final variableName = value.replaceAll('`', '');
 
     if (variableName == '%sct') {
       return <dynamic>['http://snomed.info/sct'];
@@ -84,20 +82,21 @@ class EnvVariableParser extends ValueParser<String> {
     }
 
     if (variableName.startsWith('%vs-')) {
-      final String valueSet = variableName.substring(4);
+      final valueSet = variableName.substring(4);
       return <dynamic>['http://hl7.org/fhir/ValueSet/$valueSet'];
     }
 
     if (variableName.startsWith('%ext-')) {
-      final String extension = variableName.substring(5);
+      final extension = variableName.substring(5);
       return <dynamic>['http://hl7.org/fhir/StructureDefinition/$extension'];
     }
 
     final dynamic passedValue = passed[variableName];
     if (passedValue == null) {
       throw FhirPathEvaluationException(
-          'Variable $variableName does not exist.',
-          variables: passed);
+        'Variable $variableName does not exist.',
+        variables: passed,
+      );
     }
 
     if (passedValue is! Function) {
@@ -111,8 +110,9 @@ class EnvVariableParser extends ValueParser<String> {
         return result is List<dynamic> ? result : <dynamic>[result];
       } catch (ex) {
         throw FhirPathEvaluationException(
-            'Variable $value could not be lazily evaluated.',
-            cause: ex);
+          'Variable $value could not be lazily evaluated.',
+          cause: ex,
+        );
       }
     }
   }
@@ -135,6 +135,7 @@ class EnvVariableParser extends ValueParser<String> {
 /// Code for Units of Measure (UCUM) unit or one of the calendar duration
 /// keywords, singular or plural.
 class QuantityParser extends ValueParser<ValidatedQuantity> {
+  /// Constructor for [QuantityParser]
   QuantityParser(super.value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -153,6 +154,7 @@ class QuantityParser extends ValueParser<ValidatedQuantity> {
   @override
   String prettyPrint([int indent = 2]) => '$value';
 
+  @override
   bool operator ==(Object other) {
     return other is QuantityParser
         ? value == other.value
@@ -175,6 +177,7 @@ class QuantityParser extends ValueParser<ValidatedQuantity> {
 /// The Integer type represents whole numbers in the range -2^31 to 2^31-1 in
 /// the FHIRPath spec, although we follow Dart's [int] which is +/- 2^53
 class IntegerParser extends ValueParser<int> {
+  /// Constructor for [IntegerParser]
   IntegerParser(super.value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -210,6 +213,7 @@ class IntegerParser extends ValueParser<int> {
 /// fixed-precision decimal formats to ensure that decimal values are
 /// accurately represented
 class DecimalParser extends ValueParser<double> {
+  /// Constructor for [DecimalParser]
   DecimalParser(super.value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -240,6 +244,7 @@ class DecimalParser extends ValueParser<double> {
 /// A simple identifier is any alphabetical character or an underscore,
 /// followed by any number of alpha-numeric characters or underscores
 class IdentifierParser extends ValueParser<String> {
+  /// Constructor for [IdentifierParser]
   IdentifierParser(this.identifier, super.value);
   final String identifier;
 
@@ -247,11 +252,10 @@ class IdentifierParser extends ValueParser<String> {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final String identifierName = value;
+    final identifierName = value;
 
-    final List<dynamic> finalResults = <dynamic>[];
-    final List<dynamic> finalPrimitiveExtensions =
-        List<dynamic>.filled(results.length, null);
+    final finalResults = <dynamic>[];
+    final finalPrimitiveExtensions = List<dynamic>.filled(results.length, null);
 
     final dynamic passedExtensions = passed[ExtensionParser.extensionKey];
     passed[ExtensionParser.extensionKey] = null;
@@ -264,7 +268,7 @@ class IdentifierParser extends ValueParser<String> {
     } else {
       results.forEachIndexed((int i, dynamic r) {
         if (r is Map) {
-          String jsonIdentifierName = identifierName;
+          var jsonIdentifierName = identifierName;
           dynamic rValue = r[identifierName];
           if (rValue == null) {
             // Support for polymorphism:
@@ -281,7 +285,7 @@ class IdentifierParser extends ValueParser<String> {
             });
           }
 
-          final Map<String, dynamic>? jsonPrimitiveExtension =
+          final jsonPrimitiveExtension =
               r['_$jsonIdentifierName'] as Map<String, dynamic>?;
           if (jsonPrimitiveExtension != null) {
             finalPrimitiveExtensions[i] = jsonPrimitiveExtension['extension'];
@@ -339,17 +343,17 @@ class IdentifierParser extends ValueParser<String> {
 /// reference models that have property or type names that are not valid
 /// simple identifiers.
 class DelimitedIdentifierParser extends ValueParser<String> {
+  /// Constructor for [DelimitedIdentifierParser]
   DelimitedIdentifierParser(super.value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final String identifierName = value;
+    final identifierName = value;
 
-    final List<dynamic> finalResults = <dynamic>[];
-    final List<dynamic> finalPrimitiveExtensions =
-        List<dynamic>.filled(results.length, null);
+    final finalResults = <dynamic>[];
+    final finalPrimitiveExtensions = List<dynamic>.filled(results.length, null);
 
     final dynamic passedExtensions = passed[ExtensionParser.extensionKey];
     passed[ExtensionParser.extensionKey] = null;
@@ -362,7 +366,7 @@ class DelimitedIdentifierParser extends ValueParser<String> {
     } else {
       results.forEachIndexed((int i, dynamic r) {
         if (r is Map) {
-          String jsonIdentifierName = identifierName;
+          var jsonIdentifierName = identifierName;
           dynamic rValue = r[identifierName];
           if (rValue == null) {
             // Support for polymorphism:
@@ -379,7 +383,7 @@ class DelimitedIdentifierParser extends ValueParser<String> {
             });
           }
 
-          final Map<String, dynamic>? jsonPrimitiveExtension =
+          final jsonPrimitiveExtension =
               r['_$jsonIdentifierName'] as Map<String, dynamic>?;
           if (jsonPrimitiveExtension != null) {
             finalPrimitiveExtensions[i] = jsonPrimitiveExtension['extension'];
@@ -430,6 +434,7 @@ class DelimitedIdentifierParser extends ValueParser<String> {
 /// String literals are surrounded by single-quotes and may use \-escapes to
 /// escape quotes and represent Unicode characters.
 class StringParser extends ValueParser<String> {
+  /// Constructor for [StringParser]
   StringParser(super.value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -457,6 +462,7 @@ class StringParser extends ValueParser<String> {
 /// Implementations can provide support for larger ranges and higher precision,
 /// but must provide at least the range and precision defined here.
 class DateTimeParser extends BaseDateTimeParser<FhirDateTime> {
+  /// Constructor for [DateTimeParser]
   DateTimeParser(super.value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -482,6 +488,7 @@ class DateTimeParser extends BaseDateTimeParser<FhirDateTime> {
 /// The Date type represents date and partial date values in the range
 /// @0001-01-01 to @9999-12-31 with a 1 day step size.
 class DateParser extends BaseDateTimeParser<FhirDate> {
+  /// Constructor for [DateParser]
   DateParser(super.value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -512,6 +519,7 @@ class DateParser extends BaseDateTimeParser<FhirDate> {
 /// and precision defined here. Time values in FHIRPath do not have a timezone
 /// or timezone offset.
 class TimeParser extends BaseDateTimeParser<FhirTime> {
+  /// Constructor for [TimeParser]
   TimeParser(super.value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath

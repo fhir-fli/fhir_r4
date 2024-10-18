@@ -1,8 +1,5 @@
-// ignore_for_file: annotate_overrides, overridden_fields, prefer_if_elements_to_conditional_expressions
-
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:ucum/ucum.dart';
-
-import '../../../../fhir_r4.dart';
 
 /// http://hl7.org/fhirpath/#iifcriterion-expression-true-result-collection-otherwise-result-collection-collection
 /// The iif function in FHIRPath is an immediate if, also known as a conditional
@@ -22,10 +19,13 @@ import '../../../../fhir_r4.dart';
 /// true, and otherwise-result should only be evaluated otherwise. For
 /// implementations, this means delaying evaluation of the arguments.
 class IifParser extends FunctionParser {
+  /// Constructor for a IifParser
   IifParser(super.value);
 
+  /// An empty IifParser
   IifParser.empty() : super(ParserList.empty());
 
+  /// Copy the IifParser
   IifParser copyWith(ParserList value) => IifParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -43,7 +43,7 @@ class IifParser extends FunctionParser {
       );
     }
 
-    final CommaParser criterionResultParser = value.first as CommaParser;
+    final criterionResultParser = value.first as CommaParser;
 
     FhirPathParser criterionExpressionParser;
     FhirPathParser trueResultParser;
@@ -60,16 +60,19 @@ class IifParser extends FunctionParser {
       trueResultParser = criterionResultParser.after;
     }
 
-    final List<dynamic> criterionCollection =
+    final criterionCollection =
         criterionExpressionParser.execute(results.toList(), passed);
 
-    final bool? criterion = SingletonEvaluation.toBool(criterionCollection,
-        name: 'criterion expression', operation: 'iif', collection: results);
+    final criterion = SingletonEvaluation.toBool(
+      criterionCollection,
+      name: 'criterion expression',
+      operation: 'iif',
+      collection: results,
+    );
 
     // Short-circuit: Only evaluate what matches the criterion.
     if (criterion ?? false) {
-      final List<dynamic> newResults =
-          trueResultParser.execute(results, passed);
+      final newResults = trueResultParser.execute(results, passed);
       return newResults;
     } else {
       if (otherwiseResultParser == null) {
@@ -105,13 +108,20 @@ class IifParser extends FunctionParser {
 }
 
 /// http://hl7.org/fhirpath/#toboolean-boolean
-/// If the input collection contains a single item, this function will return a single boolean if:
+/// If the input collection contains a single item, this function will return a
+/// single boolean if:
 /// the item is a Boolean
-/// the item is an Integer and is equal to one of the possible integer representations of Boolean values
-/// the item is a Decimal that is equal to one of the possible decimal representations of Boolean values
-/// the item is a String that is equal to one of the possible string representations of Boolean values
-/// If the item is not one the above types, or the item is a String, Integer, or Decimal, but is not equal to one of the possible values convertible to a Boolean, the result is empty.
+/// the item is an Integer and is equal to one of the possible integer
+///   representations of Boolean values
+/// the item is a Decimal that is equal to one of the possible decimal
+///   representations of Boolean values
+/// the item is a String that is equal to one of the possible string
+///   representations of Boolean values
+/// If the item is not one the above types, or the item is a String, Integer,
+///   or Decimal, but is not equal to one of the possible values convertible
+///   to a Boolean, the result is empty.
 class ToBooleanParser extends FhirPathParser {
+  /// Constructor for a ToBooleanParser
   ToBooleanParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -127,9 +137,11 @@ class ToBooleanParser extends FhirPathParser {
                   : results.first == true ||
                           results.first == 1 ||
                           <String>['true', 't', 'yes', 'y', '1', '1.0']
-                                  .indexWhere((String element) =>
-                                      element ==
-                                      results.first.toString().toLowerCase()) !=
+                                  .indexWhere(
+                                (String element) =>
+                                    element ==
+                                    results.first.toString().toLowerCase(),
+                              ) !=
                               -1
                       ? <dynamic>[true]
                       : results.first == false ||
@@ -140,10 +152,12 @@ class ToBooleanParser extends FhirPathParser {
                                     'no',
                                     'n',
                                     '0',
-                                    '0.0'
-                                  ].indexWhere((String element) =>
-                                      element ==
-                                      results.first.toString().toLowerCase()) !=
+                                    '0.0',
+                                  ].indexWhere(
+                                    (String element) =>
+                                        element ==
+                                        results.first.toString().toLowerCase(),
+                                  ) !=
                                   -1
                           ? <dynamic>[false]
                           : <dynamic>[];
@@ -167,12 +181,17 @@ class ToBooleanParser extends FhirPathParser {
 }
 
 /// http://hl7.org/fhirpath/#convertstoboolean-boolean
-/// If the input collection contains a single item, this function will return true if:
+/// If the input collection contains a single item, this function will return
+/// true if:
 /// the item is a Boolean
-/// the item is an Integer that is equal to one of the possible integer representations of Boolean values
-/// the item is a Decimal that is equal to one of the possible decimal representations of Boolean values
-/// the item is a String that is equal to one of the possible string representations of Boolean values
+/// the item is an Integer that is equal to one of the possible integer
+///   representations of Boolean values
+/// the item is a Decimal that is equal to one of the possible decimal
+///   representations of Boolean values
+/// the item is a String that is equal to one of the possible string
+///   representations of Boolean values
 class ConvertsToBooleanParser extends FhirPathParser {
+  /// Constructor for a ConvertsToBooleanParser
   ConvertsToBooleanParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -200,10 +219,12 @@ class ConvertsToBooleanParser extends FhirPathParser {
                                 'no',
                                 'n',
                                 '0',
-                                '0.0'
-                              ].indexWhere((String element) =>
-                                  element ==
-                                  results.first.toString().toLowerCase()) !=
+                                '0.0',
+                              ].indexWhere(
+                                (String element) =>
+                                    element ==
+                                    results.first.toString().toLowerCase(),
+                              ) !=
                               -1
                       ? <dynamic>[true]
                       : <dynamic>[false];
@@ -228,6 +249,7 @@ class ConvertsToBooleanParser extends FhirPathParser {
 
 /// Converts input to an [Integer] if possible
 class ToIntegerParser extends FhirPathParser {
+  /// Constructor for a ToIntegerParser
   ToIntegerParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -241,7 +263,7 @@ class ToIntegerParser extends FhirPathParser {
               : _isNotAcceptedType(results)
                   ? <dynamic>[false]
                   : results.first is bool
-                      ? <dynamic>[results.first == true ? 1 : 0]
+                      ? <dynamic>[if (results.first == true) 1 else 0]
                       : results.first is num
                           ? <dynamic>[(results.first as num).toInt()]
                           : int.tryParse(results.first as String) != null
@@ -268,6 +290,7 @@ class ToIntegerParser extends FhirPathParser {
 
 /// Checks if input can be converted to an [Integer]
 class ConvertsToIntegerParser extends FhirPathParser {
+  /// Constructor for [ConvertsToIntegerParser]
   ConvertsToIntegerParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -308,6 +331,7 @@ class ConvertsToIntegerParser extends FhirPathParser {
 
 /// Converts input to an [Date] if possible
 class ToDateParser extends FhirPathParser {
+  /// Constructor for [ToDateParser]
   ToDateParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -342,6 +366,7 @@ class ToDateParser extends FhirPathParser {
 
 /// Checks if input can be converted to a [Date]
 class ConvertsToDateParser extends FhirPathParser {
+  /// Constructor for [ConvertsToDateParser]
   ConvertsToDateParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -374,6 +399,7 @@ class ConvertsToDateParser extends FhirPathParser {
 
 /// Converts input to [FhirDateTime] if possible
 class ToDateTimeParser extends FhirPathParser {
+  /// Constructor for [ToDateTimeParser]
   ToDateTimeParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -408,6 +434,7 @@ class ToDateTimeParser extends FhirPathParser {
 
 /// Checks if input can be converted to a [FhirDateTime]
 class ConvertsToDateTimeParser extends FhirPathParser {
+  /// Constructor for [ConvertsToDateTimeParser]
   ConvertsToDateTimeParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -442,6 +469,7 @@ class ConvertsToDateTimeParser extends FhirPathParser {
 
 /// Converts input to a [Decimal] if possible
 class ToDecimalParser extends FhirPathParser {
+  /// Constructor for [ToDecimalParser]
   ToDecimalParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -455,7 +483,7 @@ class ToDecimalParser extends FhirPathParser {
               : _isNotAcceptedType(results)
                   ? <dynamic>[false]
                   : results.first is bool
-                      ? <dynamic>[results.first == true ? 1 : 0]
+                      ? <dynamic>[if (results.first == true) 1 else 0]
                       : results.first is num
                           ? <dynamic>[(results.first as num).toDouble()]
                           : double.tryParse(results.first as String) != null
@@ -482,6 +510,7 @@ class ToDecimalParser extends FhirPathParser {
 
 /// Checks if input can be converted into a [Decimal]
 class ConvertsToDecimalParser extends FhirPathParser {
+  /// Constructor for [ConvertsToDecimalParser]
   ConvertsToDecimalParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -522,6 +551,7 @@ class ConvertsToDecimalParser extends FhirPathParser {
 
 /// Converts input to a [String] if possible
 class ToStringParser extends FhirPathParser {
+  /// Constructor for [ToStringParser]
   ToStringParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -557,6 +587,7 @@ class ToStringParser extends FhirPathParser {
 
 /// Checks if input can be converted to a [String]
 class ConvertsToStringParser extends FhirPathParser {
+  /// Constructor for [ConvertsToStringParser]
   ConvertsToStringParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -591,6 +622,7 @@ class ConvertsToStringParser extends FhirPathParser {
 
 /// Converts input to a [Time] if possible
 class ToTimeParser extends FhirPathParser {
+  /// Constructor for [ToTimeParser]
   ToTimeParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -628,6 +660,7 @@ class ToTimeParser extends FhirPathParser {
 
 /// Checks if input can be converted to a [Time]
 class ConvertsToTimeParser extends FhirPathParser {
+  /// Constructor for [ConvertsToTimeParser]
   ConvertsToTimeParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -664,10 +697,13 @@ class ConvertsToTimeParser extends FhirPathParser {
 
 /// Converts input to a [ValidatedQuantity] if possible
 class ToQuantityParser extends FunctionParser {
+  /// Constructor for a ToQuantityParser
   ToQuantityParser(super.value);
 
+  /// An empty ToQuantityParser
   ToQuantityParser.empty() : super(ParserList.empty());
 
+  /// Copy the ToQuantityParser
   ToQuantityParser copyWith(ParserList value) => ToQuantityParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -683,14 +719,17 @@ class ToQuantityParser extends FunctionParser {
                   : results.first is num
                       ? <dynamic>[
                           ValidatedQuantity(
-                              value: UcumDecimal.fromString(
-                                  results.first.toString()),
-                              unit: '1')
+                            value: UcumDecimal.fromString(
+                              results.first.toString(),
+                            ),
+                            unit: '1',
+                          ),
                         ]
                       : results.first is String
                           ? <dynamic>[
                               ValidatedQuantity.fromString(
-                                  results.first as String)
+                                results.first as String,
+                              ),
                             ]
                           : <dynamic>[];
 
@@ -714,10 +753,13 @@ class ToQuantityParser extends FunctionParser {
 
 /// Checks if input can be converted to a [ValidatedQuantity]
 class ConvertsToQuantityParser extends FunctionParser {
+  /// Constructor for a ConvertsToQuantityParser
   ConvertsToQuantityParser(super.value);
 
+  /// An empty ConvertsToQuantityParser
   ConvertsToQuantityParser.empty() : super(ParserList.empty());
 
+  /// Copy the ConvertsToQuantityParser
   ConvertsToQuantityParser copyWith(ParserList value) =>
       ConvertsToQuantityParser(value);
 
@@ -785,6 +827,7 @@ bool _isAllTypes(List<dynamic> results) =>
 
 Exception _conversionException(String function, List<dynamic> results) =>
     FhirPathEvaluationException(
-        'The function $function only accepts lists with 0 or 1 items.',
-        operation: function,
-        collection: results);
+      'The function $function only accepts lists with 0 or 1 items.',
+      operation: function,
+      collection: results,
+    );

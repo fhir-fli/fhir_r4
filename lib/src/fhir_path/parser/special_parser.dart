@@ -2,9 +2,10 @@
 
 import 'package:collection/collection.dart';
 
-import '../../../fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart';
 
 class BracketsIndexParser extends ValueParser<int> {
+  /// Constructor for [BracketsIndexParser]
   BracketsIndexParser(super.value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -45,6 +46,7 @@ class BracketsIndexParser extends ValueParser<int> {
 /// collection (elements named given) and $this will be set to each item when
 /// the expression passed to where() is evaluated.
 class IndexParser extends FhirPathParser {
+  /// Constructor for [IndexParser]
   IndexParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -80,13 +82,14 @@ class IterationContext {
   static const String _iterationKey = r'$iteration';
 
   static List<dynamic> withIterationContext(
-      List<dynamic> Function(IterationContext) iteratedFunction,
-      Map<String, dynamic> passed) {
+    List<dynamic> Function(IterationContext) iteratedFunction,
+    Map<String, dynamic> passed,
+  ) {
     final dynamic topIterationContext = passed[_iterationKey];
-    final IterationContext thisIterationContext = IterationContext();
+    final thisIterationContext = IterationContext();
     passed[_iterationKey] = thisIterationContext;
 
-    final List<dynamic> result = iteratedFunction(thisIterationContext);
+    final result = iteratedFunction(thisIterationContext);
 
     passed[_iterationKey] = topIterationContext;
 
@@ -97,7 +100,8 @@ class IterationContext {
     final dynamic topRepeatContext = passed[_iterationKey];
     if (topRepeatContext == null) {
       throw FhirPathEvaluationException(
-          r'No context for $this, $total, or $index is available.');
+        r'No context for $this, $total, or $index is available.',
+      );
     }
 
     return topRepeatContext as IterationContext;
@@ -114,6 +118,7 @@ class IterationContext {
 /// collection (elements named given) and $this will be set to each item when
 /// the expression passed to where() is evaluated.
 class ThisParser extends FhirPathParser {
+  /// Constructor for [ThisParser]
   ThisParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -141,6 +146,7 @@ class ThisParser extends FhirPathParser {
 }
 
 class TotalParser extends FhirPathParser {
+  /// Constructor for [TotalParser]
   TotalParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -181,42 +187,48 @@ class TotalParser extends FhirPathParser {
 /// and average would be expressed as:
 ///   value.aggregate($total + $this, 0) / value.count()
 class AggregateParser extends FunctionParser {
+  /// Constructor for [AggregateParser]
   AggregateParser(super.value);
 
+  /// Empty constructor for [ AggregateParser]
   AggregateParser.empty() : super(ParserList.empty());
 
+  /// Copy the [AggregateParser]
   AggregateParser copyWith(ParserList value) => AggregateParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> finalTotal = IterationContext.withIterationContext(
-        (IterationContext iterationContext) {
-      List<dynamic> currentTotal = <dynamic>[];
+    final finalTotal = IterationContext.withIterationContext(
+      (IterationContext iterationContext) {
+        var currentTotal = <dynamic>[];
 
-      late FhirPathParser expression;
-      late dynamic initialValue;
-      if (value.value.first is CommaParser) {
-        initialValue = (value.value.first as CommaParser)
-            .after
-            .execute(results.toList(), passed);
-        expression = (value.value.first as CommaParser).before;
-      } else {
-        initialValue = <dynamic>[];
-        expression = value;
-      }
+        late FhirPathParser expression;
+        late dynamic initialValue;
+        if (value.value.first is CommaParser) {
+          initialValue = (value.value.first as CommaParser)
+              .after
+              .execute(results.toList(), passed);
+          expression = (value.value.first as CommaParser).before;
+        } else {
+          initialValue = <dynamic>[];
+          expression = value;
+        }
 
-      iterationContext.totalValue = initialValue as List<dynamic>;
-      results.forEachIndexed((int i, dynamic r) {
-        iterationContext.indexValue = i;
-        iterationContext.thisValue = r;
-        iterationContext.totalValue = expression.execute(<dynamic>[r], passed);
-        currentTotal = iterationContext.totalValue;
-      });
+        iterationContext.totalValue = initialValue as List<dynamic>;
+        results.forEachIndexed((int i, dynamic r) {
+          iterationContext.indexValue = i;
+          iterationContext.thisValue = r;
+          iterationContext.totalValue =
+              expression.execute(<dynamic>[r], passed);
+          currentTotal = iterationContext.totalValue;
+        });
 
-      return currentTotal;
-    }, passed);
+        return currentTotal;
+      },
+      passed,
+    );
 
     return finalTotal;
   }
@@ -249,6 +261,7 @@ class AggregateParser extends FunctionParser {
 /// name elements in the instance.
 /// In expressions, the empty collection is represented as { }.
 class EmptySetParser extends FhirPathParser {
+  /// Constructor for [EmptySetParser]
   EmptySetParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -276,6 +289,7 @@ class EmptySetParser extends FhirPathParser {
 }
 
 class DotParser extends FhirPathParser {
+  /// Constructor for [DotParser]
   DotParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath

@@ -1,28 +1,30 @@
-// ignore_for_file: annotate_overrides, overridden_fields
-
-import '../../r4.dart';
+import 'package:fhir_r4/fhir_r4.dart';
 
 /// Merge the two collections into a single collection,
 /// eliminating any duplicate values (using = (Equals) (=) to
 /// determine equality). There is no expectation of order in
 /// the resulting collection.
 class UnionFunctionParser extends FunctionParser {
+  /// Constructor for a UnionFunctionParser
   UnionFunctionParser(super.value);
 
+  /// An empty UnionFunctionParser
   UnionFunctionParser.empty() : super(ParserList.empty());
 
+  /// Copy the UnionFunctionParser
   UnionFunctionParser copyWith(ParserList value) => UnionFunctionParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedValue = value.execute(results.toList(), passed);
-    final List<dynamic> finalResults = <dynamic>[];
+    final executedValue = value.execute(results.toList(), passed);
+    final finalResults = <dynamic>[];
     finalResults
       ..addAll(results.where((dynamic r) => notFoundInList(finalResults, r)))
       ..addAll(
-          executedValue.where((dynamic v) => notFoundInList(finalResults, v)));
+        executedValue.where((dynamic v) => notFoundInList(finalResults, v)),
+      );
     return finalResults;
   }
 
@@ -53,10 +55,13 @@ class UnionFunctionParser extends FunctionParser {
 /// with a non-empty collection will return the non-empty collection.
 /// There is no expectation of order in the resulting collection.
 class CombineParser extends FunctionParser {
+  /// Constructor for a CombineParser
   CombineParser(super.value);
 
+  /// An empty CombineParser
   CombineParser.empty() : super(ParserList.empty());
 
+  /// Copy the CombineParser
   CombineParser copyWith(ParserList value) => CombineParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -66,10 +71,7 @@ class CombineParser extends FunctionParser {
     if (value.isEmpty) {
       return results;
     } else {
-      final List<dynamic> executedValue =
-          value.execute(results.toList(), passed);
-      executedValue.addAll(results);
-      return executedValue;
+      return value.execute(results.toList(), passed)..addAll(results);
     }
   }
 

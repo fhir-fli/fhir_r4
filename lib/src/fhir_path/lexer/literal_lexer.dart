@@ -1,12 +1,10 @@
 // ignore_for_file: avoid_dynamic_calls, non_constant_identifier_names
 
-// Dart imports:
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:petitparser/petitparser.dart';
 import 'package:ucum/ucum.dart';
-
-import '../../../fhir_r4.dart';
 
 /******************************************************************************
  *  Most of these Lexers specify basic literals as defined in the FHIRPath
@@ -22,16 +20,21 @@ final Parser<BooleanParser> booleanLiteral = (string('true') | string('false'))
 final Parser<EnvVariableParser> envVariableLexer =
     (char('%') & (IDENTIFIER | DELIMITEDIDENTIFIER | DOUBLEQUOTEDIDENTIFIER))
         .flatten()
-        .map((String value) => EnvVariableParser(value));
+        .map(EnvVariableParser.new);
 
 // TODO(Dokotela): unitLexer should be optional
+/// A Quantity is a number followed by a unit
 final Parser<QuantityParser> quantityLiteral =
     (NUMBER.flatten() & (char(' ') & unitLexer)).map((List<dynamic> value) {
-  return QuantityParser(ValidatedQuantity(
+  return QuantityParser(
+    ValidatedQuantity(
       value: UcumDecimal.fromString(value[0] as String),
-      unit: value.length > 1 ? value[1].last as String : null));
+      unit: value.length > 1 ? value[1].last as String : null,
+    ),
+  );
 });
 
+/// A unit is a string that is either a valid UCUM unit or a date/time precision
 final Parser<String> unitLexer = (pluralDateTimePrecision |
         dateTimePrecision |
         STRING
@@ -51,6 +54,7 @@ final Parser<String> unitLexer = (pluralDateTimePrecision |
   return value;
 });
 
+/// A date/time precision is a string that is one of the following:
 final Parser<String> dateTimePrecision = (string('year') |
         string('month') |
         string('week') |
@@ -61,6 +65,7 @@ final Parser<String> dateTimePrecision = (string('year') |
         string('millisecond'))
     .flatten();
 
+/// A plural date/time precision is a string that is one of the following:
 final Parser<String> pluralDateTimePrecision = (string('years') |
         string('months') |
         string('weeks') |
@@ -78,6 +83,7 @@ final Parser<DateParser> DATE =
   return DateParser(FhirDate.fromString(value.replaceFirst('@', '')));
 });
 
+/// Follows DateTime format specified in FHIRPath (I have also updated the FHIR)
 final Parser<DateTimeParser> DATETIME = (char('@') &
         DATEFORMAT &
         char('T') &
@@ -87,10 +93,12 @@ final Parser<DateTimeParser> DATETIME = (char('@') &
   return DateTimeParser(FhirDateTime.fromString(value.replaceFirst('@', '')));
 });
 
+/// Follows DateTime format specified in FHIRPath (I have also updated the FHIR)
 final Parser<TimeParser> TIME = (char('@') & char('T') & TIMEFORMAT)
     .flatten()
     .map((String value) => TimeParser(FhirTime(value.replaceFirst('@T', ''))));
 
+/// Follows DateTime format specified in FHIRPath (I have also updated the FHIR)
 final Parser<String> DATEFORMAT = (pattern('0-9').times(4) &
         (char('-') &
                 pattern('0-9').times(2) &
@@ -98,6 +106,7 @@ final Parser<String> DATEFORMAT = (pattern('0-9').times(4) &
             .optional())
     .flatten();
 
+/// Follows DateTime format specified in FHIRPath (I have also updated the FHIR)
 final Parser<String> TIMEFORMAT = (pattern('0-9').times(2) &
         (char(':') &
                 pattern('0-9').times(2) &
@@ -108,6 +117,7 @@ final Parser<String> TIMEFORMAT = (pattern('0-9').times(2) &
             .optional())
     .flatten();
 
+/// Follows DateTime format specified in FHIRPath (I have also updated the FHIR)
 final Parser<String> TIMEZONEOFFSETFORMAT = (char('Z') |
         (pattern('+-') &
             pattern('0-9').times(2) &
@@ -125,33 +135,38 @@ final Parser<IdentifierParser> IDENTIFIER = ((pattern('A-Za-z') | char('_')) &
 final Parser<IdentifierParser> DELIMITEDIDENTIFIER =
     (char('`') & (ESC | char('`').neg()).star() & char('`'))
         .map((List<dynamic> value) {
-  final String middleValue = value[1]
-      .map((dynamic e) => e is Token
-          ? e.value.contains('u') as bool
-              ? utf8.decode(<int>[
-                  int.parse(e.value.split('u').last as String, radix: 16)
-                ])
-              : e.value.replaceAll(r'\\', r'\')
-          : e == r'\'
-              ? ''
-              : e)
+  final middleValue = value[1]
+      .map(
+        (dynamic e) => e is Token
+            ? e.value.contains('u') as bool
+                ? utf8.decode(<int>[
+                    int.parse(e.value.split('u').last as String, radix: 16),
+                  ])
+                : e.value.replaceAll(r'\\', r'\')
+            : e == r'\'
+                ? ''
+                : e,
+      )
       .join('') as String;
   return IdentifierParser('`', middleValue);
 });
 
+/// DOUBLEQUOTEDIDENTIFIER is signified by double quotes (") on either end
 final Parser<IdentifierParser> DOUBLEQUOTEDIDENTIFIER =
     (char('"') & (ESC | char('"').neg()).star() & char('"'))
         .map((List<dynamic> value) {
-  final String middleValue = value[1]
-      .map((dynamic e) => e is Token
-          ? e.value.contains('u') as bool
-              ? utf8.decode(<int>[
-                  int.parse(e.value.split('u').last as String, radix: 16)
-                ])
-              : e.value.replaceAll(r'\\', r'\')
-          : e == r'\'
-              ? ''
-              : e)
+  final middleValue = value[1]
+      .map(
+        (dynamic e) => e is Token
+            ? e.value.contains('u') as bool
+                ? utf8.decode(<int>[
+                    int.parse(e.value.split('u').last as String, radix: 16),
+                  ])
+                : e.value.replaceAll(r'\\', r'\')
+            : e == r'\'
+                ? ''
+                : e,
+      )
       .join('') as String;
   return IdentifierParser('"', middleValue);
 });
@@ -166,38 +181,41 @@ final Parser<StringParser> STRING =
 /// Also allows leading zeroes now (just like CQL and XSD)
 final Parser NUMBER = DECIMAL.or(INTEGER);
 
+/// A Decimal is a number with a decimal point
 final Parser<DecimalParser> DECIMAL =
     (pattern('0-9').plus() & char('.') & pattern('0-9').plus())
         .flatten()
         .map((String value) => DecimalParser(double.parse(value)));
 
+/// An Integer is a number without a decimal point
 final Parser<IntegerParser> INTEGER = pattern('0-9')
     .plus()
     .flatten()
     .map((String value) => IntegerParser(int.parse(value)));
 
 /// No equivalent for piping whitespace to the HIDDEN channel in Dart
-final Parser<WhiteSpaceParser> WS = pattern(' \r\n\t')
-    .plus()
-    .flatten()
-    .map((String value) => WhiteSpaceParser(value));
+final Parser<WhiteSpaceParser> WS =
+    pattern(' \r\n\t').plus().flatten().map(WhiteSpaceParser.new);
 
+/// No equivalent for piping whitespace to the HIDDEN channel in Dart
 final Parser<WhiteSpaceParser> COMMENT = string('/*')
     .seq(pattern(r'^\*'))
     .star()
     .seq(string('*/'))
     .flatten()
-    .map((String value) => WhiteSpaceParser(value));
+    .map(WhiteSpaceParser.new);
 
+/// No equivalent for piping whitespace to the HIDDEN channel in Dart
 final Parser<WhiteSpaceParser> LINE_COMMENT =
     (string('//') & (string('\r') | string('\n')).neg().star())
         .flatten()
-        .map((String value) => WhiteSpaceParser(value));
+        .map(WhiteSpaceParser.new);
 
+/// No equivalent for piping whitespace to the HIDDEN channel in Dart
 final Parser<String> ESC = ((char(r'\') & pattern(r"`'\/fnrt")).flatten() |
         (char(r'\') & UNICODE).map((List<dynamic> value) {
           return String.fromCharCodes(<int>[
-            int.parse(value[1].replaceAll('u', '') as String, radix: 16)
+            int.parse(value[1].replaceAll('u', '') as String, radix: 16),
           ]);
         }))
     .map((dynamic value) {
@@ -208,6 +226,7 @@ final Parser<String> ESC = ((char(r'\') & pattern(r"`'\/fnrt")).flatten() |
           : jsonDecode('"$value"')) as String;
 });
 
+/// No equivalent for piping whitespace to the HIDDEN channel in Dart
 final Parser<String> UNICODE = string('u')
     .seq(HEX)
     .seq(HEX)
@@ -218,4 +237,5 @@ final Parser<String> UNICODE = string('u')
   return value;
 });
 
+/// No equivalent for piping whitespace to the HIDDEN channel in Dart
 final Parser<String> HEX = pattern('0-9a-fA-F').flatten();

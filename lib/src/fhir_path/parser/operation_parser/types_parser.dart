@@ -1,25 +1,19 @@
-// ignore_for_file: annotate_overrides, overridden_fields, avoid_dynamic_calls
-
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:ucum/ucum.dart';
 import 'package:xml/xml.dart';
 
-import '../../../../fhir_r4.dart';
-
 class IsParser extends OperatorParser {
+  /// Constructor for [IsParser]
   IsParser();
-  ParserList before = ParserList(<FhirPathParser>[]);
-  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedBefore =
-        before.execute(results.toList(), passed);
-    final List<dynamic> executedAfter =
-        after.length == 1 && after.first is IdentifierParser
-            ? <String>[(after.first as IdentifierParser).value]
-            : after.execute(results.toList(), passed);
+    final executedBefore = before.execute(results.toList(), passed);
+    final executedAfter = after.length == 1 && after.first is IdentifierParser
+        ? <String>[(after.first as IdentifierParser).value]
+        : after.execute(results.toList(), passed);
 
     return executedBefore.isEmpty ||
             executedBefore.length != 1 ||
@@ -30,7 +24,8 @@ class IsParser extends OperatorParser {
             'passed the following\n'
             'Operand1: $executedBefore\n'
             'Operand2: $executedAfter',
-            collection: results)
+            collection: results,
+          )
         : (R4ResourceType.typesAsStrings.contains(executedAfter.first)) &&
                 executedBefore.first is Map &&
                 executedBefore.first['resourceType'] == executedAfter.first
@@ -40,7 +35,7 @@ class IsParser extends OperatorParser {
                 : executedAfter.first == 'Boolean'
                     ? <dynamic>[
                         executedBefore.first is bool ||
-                            executedBefore.first is FhirBoolean
+                            executedBefore.first is FhirBoolean,
                       ]
                     : executedAfter.first == 'Integer'
                         ? <dynamic>[
@@ -48,7 +43,7 @@ class IsParser extends OperatorParser {
                                     executedBefore.first is FhirInteger) &&
 
                                 /// This is because of transpilation to javascript
-                                !executedBefore.first.toString().contains('.')
+                                !executedBefore.first.toString().contains('.'),
                           ]
                         : executedAfter.first == 'Decimal'
                             ? <dynamic>[
@@ -58,25 +53,27 @@ class IsParser extends OperatorParser {
                                     /// This is because of transpilation to javascript
                                     executedBefore.first
                                         .toString()
-                                        .contains('.')
+                                        .contains('.'),
                               ]
                             : executedAfter.first == 'Date'
                                 ? <dynamic>[executedBefore.first is FhirDate]
                                 : executedAfter.first == 'DateTime'
                                     ? <dynamic>[
                                         executedBefore.first is DateTime ||
-                                            executedBefore.first is FhirDateTime
+                                            executedBefore.first
+                                                is FhirDateTime,
                                       ]
                                     : executedAfter.first == 'Time'
                                         ? <dynamic>[
-                                            executedBefore.first is FhirTime
+                                            executedBefore.first is FhirTime,
                                           ]
                                         : executedAfter.first == 'Quantity'
                                             ? <dynamic>[
                                                 ValidatedQuantity
                                                     .isValidatedQuantity(
-                                                        executedBefore.first
-                                                            as Object)
+                                                  executedBefore.first
+                                                      as Object,
+                                                ),
                                               ]
                                             : <dynamic>[false];
   }
@@ -105,34 +102,34 @@ class IsParser extends OperatorParser {
 }
 
 class AsParser extends OperatorParser {
+  /// Constructor for [AsParser]
   AsParser();
-  ParserList before = ParserList(<FhirPathParser>[]);
-  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedBefore =
-        before.execute(results.toList(), passed);
+    final executedBefore = before.execute(results.toList(), passed);
     if (executedBefore.length != 1) {
       throw FhirPathEvaluationException(
-          'The "as" operation requires a left operand with 1 item, '
-          'but was passed the following\n'
-          'Operand 1: $before',
-          operation: 'as',
-          arguments: before,
-          collection: results);
+        'The "as" operation requires a left operand with 1 item, '
+        'but was passed the following\n'
+        'Operand 1: $before',
+        operation: 'as',
+        arguments: before,
+        collection: results,
+      );
     } else if (after.length != 1 || after.first is! IdentifierParser) {
       throw FhirPathEvaluationException(
-          'The "as" operation requires a right operand that '
-          'has a single item that resolves to an identifier, but was passed:\n'
-          'Operand 2: $after',
-          operation: 'as',
-          arguments: after,
-          collection: results);
+        'The "as" operation requires a right operand that '
+        'has a single item that resolves to an identifier, but was passed:\n'
+        'Operand 2: $after',
+        operation: 'as',
+        arguments: after,
+        collection: results,
+      );
     }
-    final String identifierValue = (after.first as IdentifierParser).value;
+    final identifierValue = (after.first as IdentifierParser).value;
     if (((R4ResourceType.typesAsStrings.contains(identifierValue)) &&
             executedBefore.first is Map &&
             executedBefore.first['resourceType'] == identifierValue) ||
@@ -160,10 +157,9 @@ class AsParser extends OperatorParser {
     }
 
     if (FhirDatatypes.contains(identifierValue)) {
-      final String polymorphicString = 'value$identifierValue';
-      final IdentifierParser polymorphicIdentifier =
-          IdentifierParser('', polymorphicString);
-      final ParserList polymorphicParserList =
+      final polymorphicString = 'value$identifierValue';
+      final polymorphicIdentifier = IdentifierParser('', polymorphicString);
+      final polymorphicParserList =
           ParserList(<FhirPathParser>[polymorphicIdentifier]);
       return polymorphicParserList.execute(results.toList(), passed);
     }
@@ -198,6 +194,7 @@ class AsParser extends OperatorParser {
 /// HTML usage are met, and false if they are not. The return value is empty
 /// on any other kind of element, or a collection of xhtml elements.
 class HtmlCheckerParser extends FhirPathParser {
+  /// Constructor for [HtmlCheckerParser]
   HtmlCheckerParser();
 
   @override
@@ -205,7 +202,7 @@ class HtmlCheckerParser extends FhirPathParser {
     if (results.length != 1) {
       return <dynamic>[];
     } else if (results.first is String || results.first is FhirMarkdown) {
-      final String result = results.first.toString();
+      final result = results.first.toString();
       return <dynamic>[validateXhtml(result)];
     } else {
       return <dynamic>[];
@@ -243,7 +240,7 @@ class HtmlCheckerParser extends FhirPathParser {
     'tbody',
     'tr',
     'th',
-    'td'
+    'td',
   ];
 
   final List<String> prohibitedElements = <String>[
@@ -263,14 +260,14 @@ class HtmlCheckerParser extends FhirPathParser {
     'button',
     'select',
     'option',
-    'style'
+    'style',
   ];
 
   bool validateXhtml(String xhtml) {
     try {
-      final XmlDocument document = XmlDocument.parse(xhtml);
+      final document = XmlDocument.parse(xhtml);
 
-      final XmlElement rootElement = document.rootElement;
+      final rootElement = document.rootElement;
       if (rootElement.name.local != 'div') {
         return false;
       }
@@ -293,7 +290,7 @@ class HtmlCheckerParser extends FhirPathParser {
       return false;
     }
 
-    for (final XmlAttribute attribute in element.attributes) {
+    for (final attribute in element.attributes) {
       if (attribute.name.local == 'style' || attribute.name.local == 'class') {
         continue;
       } else if (attribute.name.local == 'src' &&
@@ -313,7 +310,7 @@ class HtmlCheckerParser extends FhirPathParser {
       }
     }
 
-    for (final XmlNode child in element.children) {
+    for (final child in element.children) {
       if (child is XmlElement && !_validateElement(child)) {
         return false;
       }

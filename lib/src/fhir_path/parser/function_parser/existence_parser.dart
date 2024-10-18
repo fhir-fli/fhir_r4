@@ -1,11 +1,10 @@
-// ignore_for_file: annotate_overrides, overridden_fields, avoid_dynamic_calls
-
 import 'package:collection/collection.dart';
 
-import '../../r4.dart';
+import 'package:fhir_r4/src/fhir_path/r4.dart';
 
 /// Returns true if the input collection is empty ({ }) and false otherwise.
 class EmptyParser extends FhirPathParser {
+  /// Constructor for [EmptyParser]
   EmptyParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -32,15 +31,20 @@ class EmptyParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.empty()';
 }
 
+/// Returns true if the input collection is not empty and false otherwise.
 class HasValueParser extends FhirPathParser {
+  /// Constructor for [HasValueParser]
   HasValueParser();
+
+  /// The iterable, nested function that evaluates the entire FHIRPath
   late ParserList value;
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    // Returns true if the input collection contains a single value which is a FHIR primitive,...
+    // Returns true if the input collection contains a single value which is a
+    //FHIR primitive,...
     if (results.length != 1) {
       return <dynamic>[false];
     }
@@ -57,8 +61,10 @@ class HasValueParser extends FhirPathParser {
     if (element is Map<String, dynamic>) {
       // element is a Map, most likely an answer. Introspect further...
       return <dynamic>[
-        element.entries.any((MapEntry<String, dynamic> mapEntry) =>
-            mapEntry.key.startsWith('value') && mapEntry.value != null)
+        element.entries.any(
+          (MapEntry<String, dynamic> mapEntry) =>
+              mapEntry.key.startsWith('value') && mapEntry.value != null,
+        ),
       ];
     } else {
       // element is a Dart primitive
@@ -95,32 +101,36 @@ class HasValueParser extends FhirPathParser {
 /// function is shorthand for where(criteria).exists().
 /// Note that a common term for this function is any.
 class ExistsParser extends FunctionParser {
+  /// Constructor for [ExistsParser]
   ExistsParser(super.value);
 
+  /// Empty constructor for [ ExistsParser]
   ExistsParser.empty() : super(ParserList.empty());
 
+  /// Copy the [ExistsParser]
   ExistsParser copyWith(ParserList value) => ExistsParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> returnList = IterationContext.withIterationContext(
-        (IterationContext iterationContext) {
-      final List<dynamic> iterationResult = <dynamic>[];
-      results.forEachIndexed((int i, dynamic element) {
-        iterationContext.indexValue = i;
-        iterationContext.thisValue = element;
-        final List<dynamic> newResult =
-            value.execute(<dynamic>[element], passed);
-        if (newResult.isNotEmpty) {
-          if (!(newResult.length == 1 && newResult.first == false)) {
-            iterationResult.add(element);
+    final returnList = IterationContext.withIterationContext(
+      (IterationContext iterationContext) {
+        final iterationResult = <dynamic>[];
+        results.forEachIndexed((int i, dynamic element) {
+          iterationContext.indexValue = i;
+          iterationContext.thisValue = element;
+          final newResult = value.execute(<dynamic>[element], passed);
+          if (newResult.isNotEmpty) {
+            if (!(newResult.length == 1 && newResult.first == false)) {
+              iterationResult.add(element);
+            }
           }
-        }
-      });
-      return iterationResult;
-    }, passed);
+        });
+        return iterationResult;
+      },
+      passed,
+    );
 
     return <dynamic>[returnList.isNotEmpty];
   }
@@ -146,11 +156,15 @@ class ExistsParser extends FunctionParser {
       '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
+/// Returns true if the input collection is not empty and false otherwise.
 class AllParser extends FunctionParser {
+  /// Constructor for [AllParser]
   AllParser(super.value);
 
+  /// Empty constructor for [AllParser]
   AllParser.empty() : super(ParserList.empty());
 
+  /// Copy the [AllParser]
   AllParser copyWith(ParserList value) => AllParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -161,21 +175,26 @@ class AllParser extends FunctionParser {
       return <dynamic>[true];
     }
     return IterationContext.withIterationContext(
-        (IterationContext iterationContext) {
-      bool allResult = true;
-      results.forEachIndexed((int i, dynamic r) {
-        iterationContext.thisValue = r;
-        iterationContext.indexValue = i;
-        final List<dynamic> executedValue = value.execute(<dynamic>[r], passed);
-        if (SingletonEvaluation.toBool(executedValue,
-                name: 'expression in all()', operation: 'all') !=
-            true) {
-          allResult = false;
-          return;
-        }
-      });
-      return <dynamic>[allResult];
-    }, passed);
+      (IterationContext iterationContext) {
+        var allResult = true;
+        results.forEachIndexed((int i, dynamic r) {
+          iterationContext.thisValue = r;
+          iterationContext.indexValue = i;
+          final executedValue = value.execute(<dynamic>[r], passed);
+          if (SingletonEvaluation.toBool(
+                executedValue,
+                name: 'expression in all()',
+                operation: 'all',
+              ) !=
+              true) {
+            allResult = false;
+            return;
+          }
+        });
+        return <dynamic>[allResult];
+      },
+      passed,
+    );
   }
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
@@ -203,9 +222,11 @@ class AllParser extends FunctionParser {
   }
 }
 
-/// Takes a collection of Boolean values and returns true if all the items are true.
-/// If any items are false, the result is false. If the input is empty ({ }), the result is true.
+/// Takes a collection of Boolean values and returns true if all the items are
+/// true. If any items are false, the result is false. If the input is empty
+/// ({ }), the result is true.
 class AllTrueParser extends FhirPathParser {
+  /// Constructor for [AllTrueParser]
   AllTrueParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -237,9 +258,11 @@ class AllTrueParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.allTrue()';
 }
 
-/// Takes a collection of Boolean values and returns true if any of the items are true.
-/// If all the items are false, or if the input is empty ({ }), the result is false.
+/// Takes a collection of Boolean values and returns true if any of the items
+/// are true. If all the items are false, or if the input is empty ({ }), the
+/// result is false.
 class AnyTrueParser extends FhirPathParser {
+  /// Constructor for [AnyTrueParser]
   AnyTrueParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -271,9 +294,11 @@ class AnyTrueParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.anyTrue()';
 }
 
-/// Takes a collection of Boolean values and returns true if all the items are false.
-/// If any items are true, the result is false. If the input is empty ({ }), the result is true.
+/// Takes a collection of Boolean values and returns true if all the items are
+/// false. If any items are true, the result is false. If the input is empty
+/// ({ }), the result is true.
 class AllFalseParser extends FhirPathParser {
+  /// Constructor for [AllFalseParser]
   AllFalseParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -305,9 +330,11 @@ class AllFalseParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.allFalse()';
 }
 
-/// Takes a collection of Boolean values and returns true if any of the items are false.
-/// If all the items are true, or if the input is empty ({ }), the result is false.
+/// Takes a collection of Boolean values and returns true if any of the items
+/// are false. If all the items are true, or if the input is empty ({ }), the
+/// result is false.
 class AnyFalseParser extends FhirPathParser {
+  /// Constructor for [AnyFalseParser]
   AnyFalseParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -339,11 +366,15 @@ class AnyFalseParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.anyFalse()';
 }
 
+/// Returns true if the input collection is empty ({ }) and false otherwise.
 class SubsetOfParser extends FunctionParser {
+  /// Constructor for [SubsetOfParser]
   SubsetOfParser(super.value);
 
+  /// Empty constructor for [ SubsetOfParser]
   SubsetOfParser.empty() : super(ParserList.empty());
 
+  /// Copy the [SubsetOfParser]
   SubsetOfParser copyWith(ParserList value) => SubsetOfParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -353,8 +384,7 @@ class SubsetOfParser extends FunctionParser {
     if (results.isEmpty) {
       return <dynamic>[true];
     } else {
-      final List<dynamic> executedValue =
-          value.execute(results.toList(), passed);
+      final executedValue = value.execute(results.toList(), passed);
       for (final dynamic r in results) {
         if (notFoundInList(executedValue, r)) {
           return <dynamic>[false];
@@ -385,11 +415,15 @@ class SubsetOfParser extends FunctionParser {
       '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
+/// Returns true if the input collection is not empty ({ }) and false otherwise.
 class SupersetOfParser extends FunctionParser {
+  /// Constructor for [SupersetOfParser]
   SupersetOfParser(super.value);
 
+  /// Empty constructor for [ SupersetOfParser]
   SupersetOfParser.empty() : super(ParserList.empty());
 
+  /// Copy the [SupersetOfParser]
   SupersetOfParser copyWith(ParserList value) => SupersetOfParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -399,8 +433,7 @@ class SupersetOfParser extends FunctionParser {
     if (results.isEmpty) {
       return <dynamic>[false];
     } else {
-      final List<dynamic> executedValue =
-          value.execute(results.toList(), passed);
+      final executedValue = value.execute(results.toList(), passed);
       for (final dynamic v in executedValue) {
         if (notFoundInList(results, v)) {
           return <dynamic>[false];
@@ -431,7 +464,9 @@ class SupersetOfParser extends FunctionParser {
       '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
+/// Returns the number of elements in the input collection.
 class CountParser extends FhirPathParser {
+  /// Constructor for [CountParser]
   CountParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -458,14 +493,16 @@ class CountParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.count()';
 }
 
+/// Returns the number of elements in the input collection.
 class DistinctParser extends FhirPathParser {
+  /// Constructor for [DistinctParser]
   DistinctParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> resultsList = <dynamic>[];
+    final resultsList = <dynamic>[];
     for (final dynamic r in results) {
       if (notFoundInList(resultsList, r)) {
         resultsList.add(r);
@@ -492,14 +529,16 @@ class DistinctParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.distinct()';
 }
 
+/// Returns true if the input collection is not empty ({ }) and false otherwise.
 class IsDistinctParser extends FhirPathParser {
+  /// Constructor for [IsDistinctParser]
   IsDistinctParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> resultsList = <dynamic>[];
+    final resultsList = <dynamic>[];
     for (final dynamic r in results) {
       if (notFoundInList(resultsList, r)) {
         resultsList.add(r);

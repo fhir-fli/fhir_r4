@@ -1,21 +1,18 @@
 // ignore_for_file: avoid_dynamic_calls
 
 import 'package:collection/collection.dart';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:petitparser/petitparser.dart';
-
-import '../../../fhir_r4.dart';
 
 /// Primary lexing function for this library
 Parser<FhirPathParser> lexer() {
-  final SettableParser<FhirPathParser> lexerFunctions =
-      undefined<FhirPathParser>();
-  final SettableParser<FhirPathParser> lexerParentheses =
-      undefined<FhirPathParser>();
+  final lexerFunctions = undefined<FhirPathParser>();
+  final lexerParentheses = undefined<FhirPathParser>();
 
   /// The order of lexing is important, and if/when updated, needs
   /// to be taken into account in order for petiteparser to find
   /// patterns in the correct order
-  final ChoiceParser<dynamic> tokenizer = simpleLexer |
+  final tokenizer = simpleLexer |
       lexerFunctions |
       lexerParentheses |
       wordOperationLexer |
@@ -27,26 +24,27 @@ Parser<FhirPathParser> lexer() {
   /// Calls the operatorValues function to check if any arguments need
   /// to be passed to the current Parser
   lexerFunctions.set(
-      (functionLexer & tokenizer.star() & char(')')).map((List<dynamic> val) {
-    return val[0].copyWith(operatorValues(val[1] as List<dynamic>))
-        as FhirPathParser;
-  }));
+    (functionLexer & tokenizer.star() & char(')')).map((List<dynamic> val) {
+      return val[0].copyWith(operatorValues(val[1] as List<dynamic>))
+          as FhirPathParser;
+    }),
+  );
 
   /// Calls the operatorValues function to check if any arguments need
   /// to be passed to the current ParenthesesParser
-  lexerParentheses.set((char('(') & tokenizer.star() & char(')')).map(
+  lexerParentheses.set(
+    (char('(') & tokenizer.star() & char(')')).map(
       (List<dynamic> value) =>
-          ParenthesesParser(operatorValues(value[1] as List<dynamic>))));
+          ParenthesesParser(operatorValues(value[1] as List<dynamic>)),
+    ),
+  );
 
   /// Complete the lexing and again, passes to operatorValues
-  return tokenizer
-      .plus()
-      .end()
-      .map((List<dynamic> value) => operatorValues(value));
+  return tokenizer.plus().end().map(operatorValues);
 }
 
-/// This ensures that any response is a ParserList (this allows easy recursion when
-/// evaluating the expression)
+/// This ensures that any response is a ParserList (this allows easy recursion
+/// when evaluating the expression)
 ParserList operatorValues(List<dynamic> fullList) {
   /// if not arguments passed, then it is an empty ParserList
   if (fullList.isEmpty) {
@@ -60,7 +58,8 @@ ParserList operatorValues(List<dynamic> fullList) {
       -1) {
     /// If there are no Operators, we just return the current elements
     return ParserList(
-        fullList.map((dynamic e) => e as FhirPathParser).toList());
+      fullList.map((dynamic e) => e as FhirPathParser).toList(),
+    );
   } else {
     // Replace +/- with unary representation based on simple rules
     fullList.forEachIndexed(
@@ -74,7 +73,7 @@ ParserList operatorValues(List<dynamic> fullList) {
       },
     );
 
-    int highest = -1;
+    var highest = -1;
     for (final dynamic entry in fullList) {
       if ((operatorOrderMap[entry.runtimeType] ?? -1) > highest &&
           entry is OperatorParser) {
@@ -82,8 +81,9 @@ ParserList operatorValues(List<dynamic> fullList) {
       }
     }
 
-    final int splitIndex = fullList.lastIndexWhere(
-        (dynamic e) => operatorOrderMap[e.runtimeType] == highest);
+    final splitIndex = fullList.lastIndexWhere(
+      (dynamic e) => operatorOrderMap[e.runtimeType] == highest,
+    );
 
     fullList[splitIndex].before =
         operatorValues(fullList.sublist(0, splitIndex));

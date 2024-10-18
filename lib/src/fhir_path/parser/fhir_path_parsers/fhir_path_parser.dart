@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes, avoid_function_literals_in_foreach_calls
-
 /// FhirPathParser: base parser
 abstract class FhirPathParser {
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -25,7 +23,10 @@ abstract class FhirPathParser {
 
 /// ValueParser: basic parser that holds a value
 abstract class ValueParser<T> extends FhirPathParser {
+  /// Constructor for a ValueParser
   ValueParser(this.value);
+
+  /// The value that the parser holds
   final T value;
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -39,8 +40,13 @@ abstract class ValueParser<T> extends FhirPathParser {
 
 /// OperatorParser: operators
 abstract class OperatorParser extends FhirPathParser {
+  /// Constructor for an OperatorParser
   OperatorParser();
+
+  /// The objects that are evaluated before the operator
   ParserList before = ParserList(<FhirPathParser>[]);
+
+  /// The objects that are evaluated after the operator
   ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -52,16 +58,20 @@ abstract class OperatorParser extends FhirPathParser {
   String toString();
 
   @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other);
 
   @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => toString().hashCode;
 }
 
 /// ParserList: anything that is a List of FhirPathParsers
 class ParserList extends ValueParser<List<FhirPathParser>> {
+  /// Constructor for a ParserList
   ParserList(super.value);
 
+  /// An empty ParserList
   ParserList.empty() : super(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -72,16 +82,25 @@ class ParserList extends ValueParser<List<FhirPathParser>> {
       ..clear()
       ..addAll(toAdd);
 
-    value.forEach((FhirPathParser v) {
+    for (final v in value) {
       addToList(v.execute(results, passed).toList());
-    });
+    }
     return results;
   }
 
+  /// If the list is empty
   bool get isEmpty => value.isEmpty;
+
+  /// Length of the list
   int get length => value.length;
+
+  /// Get the first element of the list
   FhirPathParser get first => value.first;
+
+  /// Get the last element of the list
   FhirPathParser get last => value.last;
+
+  /// Remove the last element of the list
   FhirPathParser removeAt(int i) => value.removeAt(i);
 
   @override
@@ -97,11 +116,12 @@ class ParserList extends ValueParser<List<FhirPathParser>> {
   /// that you use [prettyPrint] instead
   @override
   String verbosePrint(int indent) {
-    String returnString = '${"  " * indent}PL(${value.length})';
-    for (final FhirPathParser item in value) {
-      returnString += '\n${item.verbosePrint(indent + 1)}';
+    final buffer = StringBuffer()
+      ..writeln('${"  " * indent}PL(${value.length})');
+    for (final item in value) {
+      buffer.writeln('\n${item.verbosePrint(indent + 1)}');
     }
-    return returnString;
+    return buffer.toString();
   }
 
   /// Uses a rough approximation of reverse polish notation to render the
@@ -110,10 +130,10 @@ class ParserList extends ValueParser<List<FhirPathParser>> {
   /// and nested according to this package
   @override
   String prettyPrint([int indent = 2]) {
-    String returnString = '';
-    for (final FhirPathParser item in value) {
-      returnString += item.prettyPrint(indent + 1);
+    final buffer = StringBuffer();
+    for (final item in value) {
+      buffer.writeln(item.prettyPrint(indent + 1));
     }
-    return returnString;
+    return buffer.toString();
   }
 }

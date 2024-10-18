@@ -24,8 +24,10 @@ final Parser<DivStringParser> divStringLexer =
 /// identifies divMods
 final Parser<ModParser> modLexer = string(' mod ').map((_) => ModParser());
 
+/// identifies plusStrings
 final Parser<PlusParser> plusLexer = char('+').map((_) => PlusParser());
 
+/// identifies minusStrings
 final Parser<MinusParser> minusLexer = char('-').map((_) => MinusParser());
 
 /// identifies string concatenation ampersand (&)

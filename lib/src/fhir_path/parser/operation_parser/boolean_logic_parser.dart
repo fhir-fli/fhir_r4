@@ -1,24 +1,29 @@
-// ignore_for_file: overridden_fields, annotate_overrides
+import 'package:fhir_r4/src/fhir_path/r4.dart';
 
-import '../../r4.dart';
-
+/// The and() function returns the logical conjunction of the input parameters.
 class AndStringParser extends OperatorParser {
+  /// Constructor for [AndStringParser]
   AndStringParser();
-  ParserList before = ParserList(<FhirPathParser>[]);
-  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedBefore =
-        before.execute(results.toList(), passed);
-    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
+    final executedBefore = before.execute(results.toList(), passed);
+    final executedAfter = after.execute(results.toList(), passed);
 
-    final bool? beforeBool = SingletonEvaluation.toBool(executedBefore,
-        name: "parameter before 'and'", operation: 'and', collection: results);
-    final bool? afterBool = SingletonEvaluation.toBool(executedAfter,
-        name: "parameter after 'and'", operation: 'and', collection: results);
+    final beforeBool = SingletonEvaluation.toBool(
+      executedBefore,
+      name: "parameter before 'and'",
+      operation: 'and',
+      collection: results,
+    );
+    final afterBool = SingletonEvaluation.toBool(
+      executedAfter,
+      name: "parameter after 'and'",
+      operation: 'and',
+      collection: results,
+    );
 
     if ((beforeBool ?? false) && (afterBool ?? false)) {
       return <dynamic>[true];
@@ -53,23 +58,33 @@ class AndStringParser extends OperatorParser {
       '\n${"  " * indent}${after.prettyPrint(indent + 1)}';
 }
 
+/// The xor() function returns the logical exclusive disjunction of the input
+/// parameters. If exactly one of the input parameters is true, the result is
+/// true. If both or neither of the input parameters are true, the result is
+/// false.
 class XorParser extends OperatorParser {
+  /// Constructor for [XorParser]
   XorParser();
-  ParserList before = ParserList(<FhirPathParser>[]);
-  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedBefore =
-        before.execute(results.toList(), passed);
-    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
+    final executedBefore = before.execute(results.toList(), passed);
+    final executedAfter = after.execute(results.toList(), passed);
 
-    final bool? beforeBool = SingletonEvaluation.toBool(executedBefore,
-        name: "parameter before 'xor'", operation: 'xor', collection: results);
-    final bool? afterBool = SingletonEvaluation.toBool(executedAfter,
-        name: "parameter after 'xor'", operation: 'xor', collection: results);
+    final beforeBool = SingletonEvaluation.toBool(
+      executedBefore,
+      name: "parameter before 'xor'",
+      operation: 'xor',
+      collection: results,
+    );
+    final afterBool = SingletonEvaluation.toBool(
+      executedAfter,
+      name: "parameter after 'xor'",
+      operation: 'xor',
+      collection: results,
+    );
 
     if (beforeBool == null || afterBool == null) {
       return <dynamic>[];
@@ -108,23 +123,32 @@ class XorParser extends OperatorParser {
       '\n${"  " * indent}${after.prettyPrint(indent + 1)}';
 }
 
+/// The or() function returns the logical disjunction of the input parameters.
+/// If either of the input parameters is true, the result is true. If both input
+/// parameters are false, the result is false.
 class OrStringParser extends OperatorParser {
+  /// Constructor for [OrStringParser]
   OrStringParser();
-  ParserList before = ParserList(<FhirPathParser>[]);
-  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedBefore =
-        before.execute(results.toList(), passed);
-    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
+    final executedBefore = before.execute(results.toList(), passed);
+    final executedAfter = after.execute(results.toList(), passed);
 
-    final bool? beforeBool = SingletonEvaluation.toBool(executedBefore,
-        name: "parameter before 'or'", operation: 'or', collection: results);
-    final bool? afterBool = SingletonEvaluation.toBool(executedAfter,
-        name: "parameter after 'or'", operation: 'or', collection: results);
+    final beforeBool = SingletonEvaluation.toBool(
+      executedBefore,
+      name: "parameter before 'or'",
+      operation: 'or',
+      collection: results,
+    );
+    final afterBool = SingletonEvaluation.toBool(
+      executedAfter,
+      name: "parameter after 'or'",
+      operation: 'or',
+      collection: results,
+    );
 
     if ((beforeBool ?? false) || (afterBool ?? false)) {
       return <dynamic>[true];
@@ -159,27 +183,34 @@ class OrStringParser extends OperatorParser {
       '\n${"  " * indent}${after.prettyPrint(indent + 1)}';
 }
 
+/// The implies() function returns the logical implication of the input
+/// parameters. If the first input parameter is true and the second input
+/// parameter is false, the result is false. If the first input parameter is
+/// false, the result is true. If the first input parameter is true and the
+/// second input parameter is true, the result is true.
 class ImpliesParser extends OperatorParser {
+  /// Constructor for [ImpliesParser]
   ImpliesParser();
-  ParserList before = ParserList(<FhirPathParser>[]);
-  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedBefore =
-        before.execute(results.toList(), passed);
-    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
+    final executedBefore = before.execute(results.toList(), passed);
+    final executedAfter = after.execute(results.toList(), passed);
 
-    final bool? beforeBool = SingletonEvaluation.toBool(executedBefore,
-        name: "parameter before 'implies'",
-        operation: 'implies',
-        collection: results);
-    final bool? afterBool = SingletonEvaluation.toBool(executedAfter,
-        name: "parameter after 'implies'",
-        operation: 'implies',
-        collection: results);
+    final beforeBool = SingletonEvaluation.toBool(
+      executedBefore,
+      name: "parameter before 'implies'",
+      operation: 'implies',
+      collection: results,
+    );
+    final afterBool = SingletonEvaluation.toBool(
+      executedAfter,
+      name: "parameter after 'implies'",
+      operation: 'implies',
+      collection: results,
+    );
 
     if (beforeBool ?? false) {
       return afterBool != null ? <dynamic>[afterBool] : <dynamic>[];

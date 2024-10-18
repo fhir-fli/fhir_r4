@@ -1,16 +1,22 @@
-// ignore_for_file: annotate_overrides, overridden_fields, avoid_dynamic_calls
+import 'package:fhir_r4/fhir_r4.dart';
 
-import '../../../../fhir_r4.dart';
-
+/// The not() function returns the logical negation of the input. If the input
+/// is true, the result is false. If the input is false, the result is true. If
+/// the input is null, the result is null.
 class FpNotParser extends FhirPathParser {
+  /// Constructor for [FpNotParser]
   FpNotParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final bool? input = SingletonEvaluation.toBool(results,
-        name: 'input for .not()', operation: 'not()', collection: results);
+    final input = SingletonEvaluation.toBool(
+      results,
+      name: 'input for .not()',
+      operation: 'not()',
+      collection: results,
+    );
     return input != null ? <dynamic>[!input] : <dynamic>[];
   }
 
@@ -32,7 +38,9 @@ class FpNotParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.not()';
 }
 
+/// Returns the current date and time
 class NowParser extends FhirPathParser {
+  /// Constructor for [NowParser]
   NowParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -59,7 +67,9 @@ class NowParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.now()';
 }
 
+/// Returns the current time
 class TimeOfDayParser extends FhirPathParser {
+  /// Constructor for [TimeOfDayParser]
   TimeOfDayParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -68,7 +78,8 @@ class TimeOfDayParser extends FhirPathParser {
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) =>
       <dynamic>[
         FhirTime(
-            DateTime.now().toIso8601String().split('T').last.substring(0, 12))
+          DateTime.now().toIso8601String().split('T').last.substring(0, 12),
+        ),
       ];
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
@@ -89,7 +100,9 @@ class TimeOfDayParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.timeOfDay()';
 }
 
+/// Returns the current date
 class TodayParser extends FhirPathParser {
+  /// Constructor for [TodayParser]
   TodayParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -97,7 +110,7 @@ class TodayParser extends FhirPathParser {
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) =>
       <dynamic>[
-        FhirDate.fromString(DateTime.now().toIso8601String().split('T').first)
+        FhirDate.fromString(DateTime.now().toIso8601String().split('T').first),
       ];
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
@@ -118,11 +131,15 @@ class TodayParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.today()';
 }
 
+/// [TraceParser]
 class TraceParser extends FunctionParser {
+  /// Constructor for [TraceParser]
   TraceParser(super.value);
 
+  /// Empty constructor for [ TraceParser]
   TraceParser.empty() : super(ParserList.empty());
 
+  /// Copy the [TraceParser]
   TraceParser copyWith(ParserList value) => TraceParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath

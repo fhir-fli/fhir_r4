@@ -1,13 +1,12 @@
-// ignore_for_file: annotate_overrides, overridden_fields, avoid_dynamic_calls, avoid_bool_literals_in_conditional_expressions
-
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:ucum/ucum.dart';
 
-import 'package:fhir_r4/fhir_r4.dart';
-
+/// [GreaterParser] is a class that parses the FHIRPath syntax for the greater
+/// than operator (>). This is used to compare two values, and returns true if
+/// the left-hand side is greater than the right-hand side
 class GreaterParser extends OperatorParser {
+  /// Constructor for [GreaterParser]
   GreaterParser();
-  ParserList before = ParserList(<FhirPathParser>[]);
-  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
@@ -37,10 +36,10 @@ class GreaterParser extends OperatorParser {
       '\n${"  " * indent}${after.prettyPrint(indent + 1)}';
 }
 
+///
 class LessParser extends OperatorParser {
+  /// Constructor for [LessParser]
   LessParser();
-  ParserList before = ParserList(<FhirPathParser>[]);
-  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
@@ -70,10 +69,13 @@ class LessParser extends OperatorParser {
       '\n${"  " * indent}${after.prettyPrint(indent + 1)}';
 }
 
+/// [GreaterEqualParser] is a class that parses the FHIRPath syntax for the
+/// greater than or equal to operator (>=). This is used to compare two values,
+/// and returns true if the left-hand side is greater than or equal to the
+/// right-hand side
 class GreaterEqualParser extends OperatorParser {
+  /// Constructor for [GreaterEqualParser]
   GreaterEqualParser();
-  ParserList before = ParserList(<FhirPathParser>[]);
-  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
@@ -104,10 +106,13 @@ class GreaterEqualParser extends OperatorParser {
       '\n${"  " * indent}${after.prettyPrint(indent + 1)}';
 }
 
+/// [LessEqualParser] is a class that parses the FHIRPath syntax for the
+/// less than or equal to operator (<=). This is used to compare two values,
+/// and returns true if the left-hand side is less than or equal to the
+/// right-hand side
 class LessEqualParser extends OperatorParser {
+  /// Constructor for [LessEqualParser]
   LessEqualParser();
-  ParserList before = ParserList(<FhirPathParser>[]);
-  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time

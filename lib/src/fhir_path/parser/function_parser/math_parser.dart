@@ -1,13 +1,10 @@
-// ignore_for_file: annotate_overrides, overridden_fields, avoid_dynamic_calls, prefer_if_elements_to_conditional_expressions
-
-// Dart imports:
 import 'dart:math';
-
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:ucum/ucum.dart';
 
-import '../../r4.dart';
-
+/// The [AbsParser] is used to evaluate the absolute value of a number
 class AbsParser extends FhirPathParser {
+  /// Constructor for [AbsParser]
   AbsParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -44,7 +41,9 @@ class AbsParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.abs()';
 }
 
+/// The [CeilingParser] is used to evaluate the ceiling of a number
 class CeilingParser extends FhirPathParser {
+  /// Constructor for [CeilingParser]
   CeilingParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -77,7 +76,9 @@ class CeilingParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.ceiling()';
 }
 
+/// The [ExpParser] is used to evaluate the exponential value of a number
 class ExpParser extends FhirPathParser {
+  /// Constructor for [ExpParser]
   ExpParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -110,7 +111,9 @@ class ExpParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.exp()';
 }
 
+/// The [FloorParser] is used to evaluate the floor of a number
 class FloorParser extends FhirPathParser {
+  /// Constructor for [FloorParser]
   FloorParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -143,7 +146,9 @@ class FloorParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.floor()';
 }
 
+/// The [LnParser] is used to evaluate the natural logarithm of a number
 class LnParser extends FhirPathParser {
+  /// Constructor for [LnParser]
   LnParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -176,18 +181,22 @@ class LnParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.ln()';
 }
 
+/// The [LogParser] is used to evaluate the logarithm of a number
 class LogParser extends FunctionParser {
+  /// Constructor for [LogParser]
   LogParser(super.value);
 
+  /// Empty constructor for [ LogParser]
   LogParser.empty() : super(ParserList.empty());
 
+  /// Copy the [LogParser]
   LogParser copyWith(ParserList value) => LogParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedValue = value.execute(results.toList(), passed);
+    final executedValue = value.execute(results.toList(), passed);
     return results.isEmpty
         ? <dynamic>[]
         : results.length > 1
@@ -197,7 +206,7 @@ class LogParser extends FunctionParser {
                 : executedValue.first is num && results.first is num
                     ? <dynamic>[
                         log(results.first as num) /
-                            log(executedValue.first as num)
+                            log(executedValue.first as num),
                       ]
                     : throw _wrongTypes('log()', results, executedValue);
   }
@@ -223,18 +232,22 @@ class LogParser extends FunctionParser {
       '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
+/// The [PowerParser] is used to evaluate the power of a number
 class PowerParser extends FunctionParser {
+  /// Constructor for [PowerParser]
   PowerParser(super.value);
 
+  /// Empty constructor for [ PowerParser]
   PowerParser.empty() : super(ParserList.empty());
 
+  /// Copy the [PowerParser]
   PowerParser copyWith(ParserList value) => PowerParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedValue = value.execute(results.toList(), passed);
+    final executedValue = value.execute(results.toList(), passed);
     if (results.isEmpty || executedValue.isEmpty) {
       return <dynamic>[];
     } else if (results.length > 1) {
@@ -274,18 +287,22 @@ class PowerParser extends FunctionParser {
       '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
+/// The [RoundParser] is used to evaluate the rounded value of a number
 class RoundParser extends FunctionParser {
+  /// Constructor for [RoundParser]
   RoundParser(super.value);
 
+  /// Empty constructor for [ RoundParser]
   RoundParser.empty() : super(ParserList.empty());
 
+  /// Copy the [RoundParser]
   RoundParser copyWith(ParserList value) => RoundParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedValue = value.execute(results.toList(), passed);
+    final executedValue = value.execute(results.toList(), passed);
     return results.isEmpty
         ? <dynamic>[]
         : results.length > 1
@@ -297,10 +314,14 @@ class RoundParser extends FunctionParser {
                 : results.first is! num
                     ? throw _wrongTypes('.round()', results, executedValue)
                     : <dynamic>[
-                        executedValue.isEmpty
-                            ? (results.first as num).round()
-                            : double.parse((results.first as num)
-                                .toStringAsFixed(executedValue.first as int))
+                        if (executedValue.isEmpty)
+                          (results.first as num).round()
+                        else
+                          double.parse(
+                            (results.first as num).toStringAsFixed(
+                              executedValue.first as int,
+                            ),
+                          ),
                       ];
   }
 
@@ -326,7 +347,9 @@ class RoundParser extends FunctionParser {
           '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
+/// The [SqrtParser] is used to evaluate the square root of a number
 class SqrtParser extends FhirPathParser {
+  /// Constructor for [SqrtParser]
   SqrtParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -361,11 +384,15 @@ class SqrtParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.sqrt()';
 }
 
+/// The [TruncateParser] is used to evaluate the truncated value of a number
 class TruncateParser extends FunctionParser {
+  /// Constructor for [TruncateParser]
   TruncateParser(super.value);
 
+  /// Empty constructor for [ TruncateParser]
   TruncateParser.empty() : super(ParserList.empty());
 
+  /// Copy the [TruncateParser]
   TruncateParser copyWith(ParserList value) => TruncateParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -404,21 +431,27 @@ class TruncateParser extends FunctionParser {
 
 Exception _wrongLength(String functionName, List<dynamic> results) =>
     FhirPathEvaluationException(
-        'The function $functionName can only work on a collection'
-        ' with 0 or 1 item.',
-        collection: results);
+      'The function $functionName can only work on a collection'
+      ' with 0 or 1 item.',
+      collection: results,
+    );
 
 Exception _wrongArgLength(String functionName, List<dynamic> value) =>
     FhirPathEvaluationException(
-        'The function $functionName must have an argument that '
-        'evaluates to 0 or 1 item.',
-        operation: functionName,
-        arguments: value);
+      'The function $functionName must have an argument that '
+      'evaluates to 0 or 1 item.',
+      operation: functionName,
+      arguments: value,
+    );
 
 Exception _wrongTypes(
-        String functionName, List<dynamic> results, dynamic value) =>
+  String functionName,
+  List<dynamic> results,
+  dynamic value,
+) =>
     FhirPathEvaluationException(
-        'The function $functionName cannot work with the types '
-        'passed.',
-        collection: results,
-        arguments: value);
+      'The function $functionName cannot work with the types '
+      'passed.',
+      collection: results,
+      arguments: value,
+    );

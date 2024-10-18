@@ -10,9 +10,11 @@ import 'package:petitparser/petitparser.dart';
 final Parser<AsFunctionParser> asFunctionLexer =
     (string('as(') | string('.as(')).map((_) => AsFunctionParser.empty());
 
+/// identifies as
 final Parser<IsFunctionParser> isFunctionLexer =
     (string('as(') | string('.as(')).map((_) => IsFunctionParser.empty());
 
+/// identifies isInteger
 final Parser<IsIntegerParser> isIntegerLexer =
     (string('isInteger()') | string('.isInteger()'))
         .map((_) => IsIntegerParser());

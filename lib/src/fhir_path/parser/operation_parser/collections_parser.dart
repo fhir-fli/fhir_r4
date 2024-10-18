@@ -1,24 +1,24 @@
-// ignore_for_file: annotate_overrides, overridden_fields, avoid_function_literals_in_foreach_calls
+import 'package:fhir_r4/src/fhir_path/r4.dart';
 
-import '../../r4.dart';
-
+/// The union() function returns the union of the input parameters. The result
+/// is a collection containing all the elements that are in any of the input
+/// collections. The result is a collection with no duplicates. The order of the
+/// elements in the result is not guaranteed.
 class UnionOperatorParser extends OperatorParser {
+  /// Constructor for [UnionOperatorParser]
   UnionOperatorParser();
-  ParserList before = ParserList(<FhirPathParser>[]);
-  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedBefore =
-        before.execute(results.toList(), passed);
-    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
-    executedBefore.forEach((dynamic e) {
+    final executedBefore = before.execute(results.toList(), passed);
+    final executedAfter = after.execute(results.toList(), passed);
+    for (final e in executedBefore) {
       if (notFoundInList(executedAfter, e)) {
         executedAfter.add(e);
       }
-    });
+    }
     return executedAfter;
   }
 
@@ -45,18 +45,22 @@ class UnionOperatorParser extends OperatorParser {
       '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
-// http://hl7.org/fhirpath/#contains-containership
+/// http://hl7.org/fhirpath/#contains-containership
+/// The 'contains' operator is used to determine whether a collection contains
+/// a particular element. The left-hand side of the operator is a collection,
+/// and the right-hand side is a single element. The operator returns true if
+/// the element is in the collection, and false otherwise. If the collection
+/// is empty, the operator returns false.
 class ContainsOperatorParser extends OperatorParser {
+  /// Constructor for [ContainsOperatorParser]
   ContainsOperatorParser();
-  ParserList before = ParserList(<FhirPathParser>[]);
-  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> leftOperand = before.execute(results.toList(), passed);
-    final List<dynamic> rightOperand = after.execute(results.toList(), passed);
+    final leftOperand = before.execute(results.toList(), passed);
+    final rightOperand = after.execute(results.toList(), passed);
 
     if (leftOperand.isEmpty) {
       return <dynamic>[false];
@@ -68,18 +72,21 @@ class ContainsOperatorParser extends OperatorParser {
 
     if (rightOperand.length > 1) {
       throw FhirPathEvaluationException(
-          "The 'contains' operator is expecting a single item on its right side. Found $rightOperand",
-          operation: 'contains',
-          collection: results);
+        "The 'contains' operator is expecting a single item on its right side. "
+        'Found $rightOperand',
+        operation: 'contains',
+        collection: results,
+      );
     }
 
-    final String rightItem = rightOperand.first.toString();
+    final rightItem = rightOperand.first.toString();
 
     return <dynamic>[
       leftOperand.firstWhere(
-              (dynamic leftItem) => leftItem.toString() == rightItem,
-              orElse: () => null) !=
-          null
+            (dynamic leftItem) => leftItem.toString() == rightItem,
+            orElse: () => null,
+          ) !=
+          null,
     ];
   }
 
@@ -108,17 +115,15 @@ class ContainsOperatorParser extends OperatorParser {
 
 /// http://hl7.org/fhirpath/N1/#in-membership
 class InParser extends OperatorParser {
+  /// Constructor for [InParser]
   InParser();
-  ParserList before = ParserList(<FhirPathParser>[]);
-  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedBefore =
-        before.execute(results.toList(), passed);
-    final List<dynamic> executedAfter = after.execute(results.toList(), passed);
+    final executedBefore = before.execute(results.toList(), passed);
+    final executedAfter = after.execute(results.toList(), passed);
 
     if (executedBefore.isEmpty) {
       return (executedAfter.isEmpty) ? <dynamic>[] : <dynamic>[false];
@@ -126,17 +131,20 @@ class InParser extends OperatorParser {
 
     if (executedBefore.length > 1) {
       throw FhirPathEvaluationException(
-          "The 'in' operator is expecting a single item on its left side. Found $executedBefore",
-          operation: 'in',
-          collection: results);
+        "The 'in' operator is expecting a single item on its left side. Found "
+        '$executedBefore',
+        operation: 'in',
+        collection: results,
+      );
     }
 
-    final String leftItem = executedBefore.first.toString();
+    final leftItem = executedBefore.first.toString();
     return <dynamic>[
       executedAfter.firstWhere(
-              (dynamic rightItem) => rightItem.toString() == leftItem,
-              orElse: () => null) !=
-          null
+            (dynamic rightItem) => rightItem.toString() == leftItem,
+            orElse: () => null,
+          ) !=
+          null,
     ];
   }
 
@@ -163,21 +171,24 @@ class InParser extends OperatorParser {
       '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
+/// Combine the input and other collections into a single collection without
+/// eliminating duplicate values. Combining an empty collection with a non-empty
+/// collection will return the non-empty collection. There is no expectation of
+/// order in the resulting collection.
 class CommaParser extends OperatorParser {
+  /// Constructor for [CommaParser]
   CommaParser();
-  ParserList before = ParserList(<FhirPathParser>[]);
-  ParserList after = ParserList(<FhirPathParser>[]);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> beforeResults = results.toList();
-    final List<dynamic> afterResults = results.toList();
-    final List<dynamic> beforeList = before.execute(beforeResults, passed);
-    final List<dynamic> afterList = after.execute(afterResults, passed);
+    final beforeResults = results.toList();
+    final afterResults = results.toList();
+    final beforeList = before.execute(beforeResults, passed);
+    final afterList = after.execute(afterResults, passed);
 
-    final List<dynamic> outcome = <dynamic>[];
+    final outcome = <dynamic>[];
     if (beforeList.isEmpty) {
       outcome.add(<dynamic>[]);
     } else {

@@ -61,6 +61,7 @@ final Parser<RepeatParser> repeatLexer =
 final Parser<OfTypeParser> ofTypeLexer =
     (string('ofType(') | string('.ofType(')).map((_) => OfTypeParser.empty());
 
+/// identifies extensions
 final Parser<ExtensionParser> extensionLexer =
     (string('extension(') | string('.extension('))
         .map((_) => ExtensionParser.empty());

@@ -1,13 +1,18 @@
-import '../../r4.dart';
+import 'package:fhir_r4/src/fhir_path/r4.dart';
 
+/// The children() function returns the children of the context node, i.e. the
+/// immediate subordinates of the context node. If the context node is a
+/// collection, the result is a collection containing all the children of all
+/// the nodes in the collection.
 class ChildrenParser extends FhirPathParser {
+  /// Constructor for [ChildrenParser]
   ChildrenParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> finalResults = <dynamic>[];
+    final finalResults = <dynamic>[];
     for (final dynamic r in results) {
       if (r is Map) {
         r.forEach((dynamic key, dynamic value) {
@@ -40,7 +45,12 @@ class ChildrenParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.children()';
 }
 
+/// The descendants() function returns the descendants of the context node, i.e.
+/// the children, grandchildren, great-grandchildren, etc. of the context node.
+/// If the context node is a collection, the result is a collection containing
+/// all the descendants of all the nodes in the collection.
 class DescendantsParser extends FhirPathParser {
+  /// Constructor for [DescendantsParser]
   DescendantsParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -48,7 +58,7 @@ class DescendantsParser extends FhirPathParser {
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
     // According to spec, `descendants()` is shorthand for `repeat(children())`
-    final RepeatParser repeatParser =
+    final repeatParser =
         RepeatParser(ParserList(<FhirPathParser>[ChildrenParser()]));
     return repeatParser.execute(results, passed);
   }

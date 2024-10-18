@@ -1,16 +1,17 @@
-// ignore_for_file: annotate_overrides, overridden_fields
-
-import '../../../../fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart';
 
 /// DEPRECATED
-/// The as() function is defined for backwards compatibility with previous implementations
-/// of FHIRPath. However, we have chosen not to support it.
+/// The as() function is defined for backwards compatibility with previous
+/// implementations of FHIRPath. However, we have chosen not to support it.
 /// DEPRECATED
 class AsFunctionParser extends FunctionParser {
+  /// Constructor for [AsFunctionParser]
   AsFunctionParser(super.value);
 
+  /// Empty constructor for [AsFunctionParser]
   AsFunctionParser.empty() : super(ParserList.empty());
 
+  /// Copy the [AsFunctionParser]
   AsFunctionParser copyWith(ParserList value) => AsFunctionParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -18,9 +19,10 @@ class AsFunctionParser extends FunctionParser {
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
     throw FhirPathDeprecatedExpressionException(
-        'The FHIRPath expression that was supplied includes "as(type : type specifier)" '
-        ' which has been deprecated. Please instead use the "as type specifer". '
-        'Official explanation can be read here: https://hl7.org/fhirpath/#as-type-specifier');
+        'The FHIRPath expression that was supplied includes '
+        '"as(type : type specifier)" which has been deprecated. Please instead '
+        'use the "as type specifer". Official explanation can be read here: '
+        'https://hl7.org/fhirpath/#as-type-specifier');
   }
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
@@ -32,6 +34,7 @@ class AsFunctionParser extends FunctionParser {
   /// that you use [prettyPrint] instead
   @override
   String verbosePrint(int indent) =>
+      // ignore: lines_longer_than_80_chars
       '${"  " * indent}AsFunctionParser (Deprecated)\n${value.verbosePrint(indent + 1)}';
 
   /// Uses a rough approximation of reverse polish notation to render the
@@ -45,14 +48,17 @@ class AsFunctionParser extends FunctionParser {
 }
 
 /// DEPRECATED
-/// The as() function is defined for backwards compatibility with previous implementations
-/// of FHIRPath. However, we have chosen not to support it.
+/// The as() function is defined for backwards compatibility with previous
+/// implementations of FHIRPath. However, we have chosen not to support it.
 /// DEPRECATED
 class IsFunctionParser extends FunctionParser {
+  /// Constructor for [IsFunctionParser]
   IsFunctionParser(super.value);
 
+  /// Empty constructor for [IsFunctionParser]
   IsFunctionParser.empty() : super(ParserList.empty());
 
+  /// Copy the [IsFunctionParser]
   IsFunctionParser copyWith(ParserList value) => IsFunctionParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -60,9 +66,10 @@ class IsFunctionParser extends FunctionParser {
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
     throw FhirPathDeprecatedExpressionException(
-        'The FHIRPath expression that was supplied includes "is(type : type specifier)" '
-        ' which has been deprecated. Please instead use the "is type specifer". '
-        'Official explanation can be read here: https://hl7.org/fhirpath/#as-type-specifier');
+        'The FHIRPath expression that was supplied includes '
+        '"is(type : type specifier)" which has been deprecated. Please instead '
+        'use the "is type specifer". Official explanation can be read here: '
+        'https://hl7.org/fhirpath/#is-type-specifier');
   }
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
@@ -74,6 +81,7 @@ class IsFunctionParser extends FunctionParser {
   /// that you use [prettyPrint] instead
   @override
   String verbosePrint(int indent) =>
+      // ignore: lines_longer_than_80_chars
       '${"  " * indent}IsFunctionParser (Deprecated)\n${value.verbosePrint(indent + 1)}';
 
   /// Uses a rough approximation of reverse polish notation to render the
@@ -87,10 +95,11 @@ class IsFunctionParser extends FunctionParser {
 }
 
 /// DEPRECATED
-/// The as() function is defined for backwards compatibility with previous implementations
-/// of FHIRPath. However, we have chosen not to support it.
+/// The as() function is defined for backwards compatibility with previous
+/// implementations of FHIRPath. However, we have chosen not to support it.
 /// DEPRECATED
 class IsIntegerParser extends FhirPathParser {
+  /// Constructor for [IsIntegerParser]
   IsIntegerParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -102,12 +111,13 @@ class IsIntegerParser extends FhirPathParser {
             'the "isInteger" operation requires one operands, this was '
             'passed the following\n'
             'Operand1: $results\n',
-            collection: results)
+            collection: results,
+          )
         : <dynamic>[
             (results.first is int || results.first is FhirInteger) &&
 
                 /// This is because of transpilation to javascript
-                !results.first.toString().contains('.')
+                !results.first.toString().contains('.'),
           ];
   }
 

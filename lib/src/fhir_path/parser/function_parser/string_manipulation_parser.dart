@@ -1,12 +1,18 @@
-// ignore_for_file: annotate_overrides, overridden_fields
+import 'package:fhir_r4/src/fhir_path/r4.dart';
 
-import '../../r4.dart';
+/// The FHIRPath specification includes a number of functions that are
+/// used to manipulate strings. These are all of the functions that are
+/// used to manipulate strings in FHIRPath
 
+/// The [IndexOfParser] is used to find the index of a substring within
 class IndexOfParser extends FunctionParser {
+  /// Constructor for [IndexOfParser]
   IndexOfParser(super.value);
 
+  /// Empty constructor for [ IndexOfParser]
   IndexOfParser.empty() : super(ParserList.empty());
 
+  /// Copy the [IndexOfParser]
   IndexOfParser copyWith(ParserList value) => IndexOfParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -14,7 +20,7 @@ class IndexOfParser extends FunctionParser {
   @override
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedValue = value.execute(results.toList(), passed);
+    final executedValue = value.execute(results.toList(), passed);
     return results.isEmpty
         ? <dynamic>[]
         : results.length > 1
@@ -26,7 +32,7 @@ class IndexOfParser extends FunctionParser {
                     : <dynamic>[
                         results.first
                             .toString()
-                            .indexOf(executedValue.first as String)
+                            .indexOf(executedValue.first as String),
                       ];
   }
 
@@ -51,18 +57,22 @@ class IndexOfParser extends FunctionParser {
       '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
+/// The [SubstringParser] is used to extract a substring from a string
 class SubstringParser extends FunctionParser {
+  /// Constructor for [SubstringParser]
   SubstringParser(super.value);
 
+  /// Empty constructor for [ SubstringParser]
   SubstringParser.empty() : super(ParserList.empty());
 
+  /// Copy the [SubstringParser]
   SubstringParser copyWith(ParserList value) => SubstringParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedValue = value.execute(results.toList(), passed);
+    final executedValue = value.execute(results.toList(), passed);
     return results.isEmpty
         ? <dynamic>[]
         : results.length > 1
@@ -79,7 +89,7 @@ class SubstringParser extends FunctionParser {
                         ? <dynamic>[
                             results.first
                                 .toString()
-                                .substring(executedValue.first as int)
+                                .substring(executedValue.first as int),
                           ]
                         : executedValue.length == 2 &&
                                 executedValue.first is int &&
@@ -93,14 +103,15 @@ class SubstringParser extends FunctionParser {
                                           ? results.first.toString().length
                                           : ((executedValue.first as int) +
                                               (executedValue.last as int)),
-                                    )
+                                    ),
                               ]
                             : throw FhirPathEvaluationException(
                                 'The function .substring() was not provided the '
                                 ' proper parameters.',
                                 operation: '.substring()',
                                 collection: results,
-                                arguments: executedValue);
+                                arguments: executedValue,
+                              );
   }
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
@@ -124,18 +135,23 @@ class SubstringParser extends FunctionParser {
       '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
+/// The [StartsWithParser] is used to determine if a string starts with
+/// a certain substring
 class StartsWithParser extends FunctionParser {
+  /// Constructor for [StartsWithParser]
   StartsWithParser(super.value);
 
+  /// Empty constructor for [ StartsWithParser]
   StartsWithParser.empty() : super(ParserList.empty());
 
+  /// Copy the [StartsWithParser]
   StartsWithParser copyWith(ParserList value) => StartsWithParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedValue = value.execute(results.toList(), passed);
+    final executedValue = value.execute(results.toList(), passed);
     return results.isEmpty
         ? <dynamic>[]
         : results.length > 1
@@ -147,7 +163,7 @@ class StartsWithParser extends FunctionParser {
                     : <dynamic>[
                         results.first
                             .toString()
-                            .startsWith(executedValue.first as String)
+                            .startsWith(executedValue.first as String),
                       ];
   }
 
@@ -172,18 +188,22 @@ class StartsWithParser extends FunctionParser {
       '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
+/// The [EndsWithParser] is used to determine if a string ends with
 class EndsWithParser extends FunctionParser {
+  /// Constructor for [EndsWithParser]
   EndsWithParser(super.value);
 
+  /// Empty constructor for [ EndsWithParser]
   EndsWithParser.empty() : super(ParserList.empty());
 
+  /// Copy the [EndsWithParser]
   EndsWithParser copyWith(ParserList value) => EndsWithParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedValue = value.execute(results.toList(), passed);
+    final executedValue = value.execute(results.toList(), passed);
     return results.isEmpty
         ? <dynamic>[]
         : results.length > 1
@@ -195,7 +215,7 @@ class EndsWithParser extends FunctionParser {
                     : <dynamic>[
                         results.first
                             .toString()
-                            .endsWith(executedValue.first as String)
+                            .endsWith(executedValue.first as String),
                       ];
   }
 
@@ -220,12 +240,17 @@ class EndsWithParser extends FunctionParser {
       '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
-// http://hl7.org/fhirpath/#containssubstring-string-boolean
+/// http://hl7.org/fhirpath/#containssubstring-string-boolean
+/// The [ContainsFunctionParser] is used to determine if a string contains
+/// a certain substring
 class ContainsFunctionParser extends FunctionParser {
+  /// Constructor for [ContainsFunctionParser]
   ContainsFunctionParser(super.value);
 
+  /// Empty constructor for [ ContainsFunctionParser]
   ContainsFunctionParser.empty() : super(ParserList.empty());
 
+  /// Copy the [ContainsFunctionParser]
   ContainsFunctionParser copyWith(ParserList value) =>
       ContainsFunctionParser(value);
 
@@ -233,12 +258,14 @@ class ContainsFunctionParser extends FunctionParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedValue = value.execute(results.toList(), passed);
+    final executedValue = value.execute(results.toList(), passed);
     return results.isEmpty
         ? <dynamic>[]
         : results
-            .map((dynamic e) =>
-                e is String && e.contains(executedValue.first.toString()))
+            .map(
+              (dynamic e) =>
+                  e is String && e.contains(executedValue.first.toString()),
+            )
             .toList();
   }
 
@@ -263,7 +290,9 @@ class ContainsFunctionParser extends FunctionParser {
       '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
+/// The [UpperParser] is used to convert a string to all uppercase
 class UpperParser extends FhirPathParser {
+  /// Constructor for [UpperParser]
   UpperParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -294,7 +323,9 @@ class UpperParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.upper()';
 }
 
+/// The [LowerParser] is used to convert a string to all lowercase
 class LowerParser extends FhirPathParser {
+  /// Constructor for [LowerParser]
   LowerParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -325,18 +356,22 @@ class LowerParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.lower()';
 }
 
+/// The [ReplaceParser] is used to replace a substring with another substring
 class ReplaceParser extends FunctionParser {
+  /// Constructor for [ReplaceParser]
   ReplaceParser(super.value);
 
+  /// Empty constructor for [ ReplaceParser]
   ReplaceParser.empty() : super(ParserList.empty());
 
+  /// Copy the [ReplaceParser]
   ReplaceParser copyWith(ParserList value) => ReplaceParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedValue = value.execute(results.toList(), passed);
+    final executedValue = value.execute(results.toList(), passed);
     return results.isEmpty
         ? <dynamic>[]
         : results.length > 1
@@ -345,8 +380,9 @@ class ReplaceParser extends FunctionParser {
                 ? throw _requiresString('.replace()', results)
                 : <dynamic>[
                     results.first.toString().replaceAll(
-                        executedValue.first as String,
-                        executedValue.last as String)
+                          executedValue.first as String,
+                          executedValue.last as String,
+                        ),
                   ];
   }
 
@@ -371,18 +407,22 @@ class ReplaceParser extends FunctionParser {
           '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
+/// The [MatchesParser] is used to determine if a string matches a regular
 class FpMatchesParser extends FunctionParser {
+  /// Constructor for [FpMatchesParser]
   FpMatchesParser(super.value);
 
+  /// Empty constructor for [ FpMatchesParser]
   FpMatchesParser.empty() : super(ParserList.empty());
 
+  /// Copy the [FpMatchesParser]
   FpMatchesParser copyWith(ParserList value) => FpMatchesParser(value);
 
   /// The iterable, nested function that evaluates the entire FHIRPath
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedValue = value.execute(results.toList(), passed);
+    final executedValue = value.execute(results.toList(), passed);
     return results.isEmpty || value.isEmpty
         ? <dynamic>[]
         : results.length > 1
@@ -391,7 +431,7 @@ class FpMatchesParser extends FunctionParser {
                 ? throw _requiresString('.matches()', results)
                 : <dynamic>[
                     RegExp(executedValue.first as String)
-                        .hasMatch(results.first.toString())
+                        .hasMatch(results.first.toString()),
                   ];
   }
 
@@ -416,11 +456,15 @@ class FpMatchesParser extends FunctionParser {
       '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
+/// The [ReplaceMatchesParser] is used to replace all matches of a regular
 class ReplaceMatchesParser extends FunctionParser {
+  /// Constructor for [ReplaceMatchesParser]
   ReplaceMatchesParser(super.value);
 
+  /// Empty constructor for [ ReplaceMatchesParser]
   ReplaceMatchesParser.empty() : super(ParserList.empty());
 
+  /// Copy the [ReplaceMatchesParser]
   ReplaceMatchesParser copyWith(ParserList value) =>
       ReplaceMatchesParser(value);
 
@@ -428,7 +472,7 @@ class ReplaceMatchesParser extends FunctionParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    final List<dynamic> executedValue = value.execute(results.toList(), passed);
+    final executedValue = value.execute(results.toList(), passed);
     return results.isEmpty || value.isEmpty
         ? <dynamic>[]
         : results.length > 1
@@ -438,15 +482,17 @@ class ReplaceMatchesParser extends FunctionParser {
                     value.last is StringParser
                 ? <dynamic>[
                     results.first.toString().replaceAll(
-                        RegExp('${executedValue.first}'),
-                        '${executedValue.last}')
+                          RegExp('${executedValue.first}'),
+                          '${executedValue.last}',
+                        ),
                   ]
                 : throw FhirPathEvaluationException(
                     'The function .replace() was not provided the '
                     ' proper parameters.',
                     operation: '.replace()',
                     collection: results,
-                    arguments: value);
+                    arguments: value,
+                  );
   }
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
@@ -470,7 +516,9 @@ class ReplaceMatchesParser extends FunctionParser {
       '${indent <= 0 ? "" : "  " * (indent - 1)})';
 }
 
+/// The [LengthParser] is used to determine the length of a string
 class LengthParser extends FhirPathParser {
+  /// Constructor for [LengthParser]
   LengthParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
@@ -503,7 +551,9 @@ class LengthParser extends FhirPathParser {
   String prettyPrint([int indent = 2]) => '.length()';
 }
 
+/// The [ToCharsParser] is used to convert a string to a list of characters
 class ToCharsParser extends FhirPathParser {
+  /// Constructor for [ToCharsParser]
   ToCharsParser();
 
   /// The iterable, nested function that evaluates the entire FHIRPath
