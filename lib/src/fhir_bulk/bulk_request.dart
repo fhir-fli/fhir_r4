@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_dynamic_calls
 
-// Dart imports:
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';

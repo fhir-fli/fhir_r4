@@ -1,5 +1,9 @@
-// ignore_for_file: depend_on_referenced_packages, prefer_single_quotes, avoid_escaping_inner_quotes, always_specify_types
-// ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: depend_on_referenced_packages, prefer_const_constructors
+// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: prefer_single_quotes, unnecessary_string_escapes
+// ignore_for_file: leading_newlines_in_multiline_strings
+// ignore_for_file: unnecessary_statements, directives_ordering
+// ignore_for_file: always_specify_types, inference_failure_on_collection_literal
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -154,7 +158,7 @@ final faiadashuResponse = QuestionnaireResponse.fromJson({
   "text": {
     "status": "generated",
     "div":
-        "<div xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\" xml:lang=\"en\"><h3>Enter your birthdate (MM/DD/YYYY)</h3><p>8/22/2013</p><h3>Have you had mammogram before?(enableWhenExpression = only when gender is female and age > 40)</h3><p>- Don’t know</p><p>&nbsp;</p></div>",
+        '<div xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><h3>Enter your birthdate (MM/DD/YYYY)</h3><p>8/22/2013</p><h3>Have you had mammogram before?(enableWhenExpression = only when gender is female and age > 40)</h3><p>- Don’t know</p><p>&nbsp;</p></div>',
   },
   "contained": [
     {
@@ -297,7 +301,7 @@ final resource = QuestionnaireResponse.fromJson({
   "text": {
     "status": "generated",
     "div":
-        "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <pre>\n        Cathy Jones, female. Birth weight 3.25 kg at 44.3 cm. \n        Injection of Vitamin K given on 1972-11-30 (first dose) and 1972-12-11 (second dose)\n        Note: Was able to speak Chinese at birth.\n      </pre>\n    </div>",
+        '<div xmlns="http://www.w3.org/1999/xhtml">\n      <pre>\n        Cathy Jones, female. Birth weight 3.25 kg at 44.3 cm. \n        Injection of Vitamin K given on 1972-11-30 (first dose) and 1972-12-11 (second dose)\n        Note: Was able to speak Chinese at birth.\n      </pre>\n    </div>',
   },
   "status": "completed",
   "subject": {"reference": "http://hl7.org/fhir/Patient/1", "type": "Patient"},

@@ -152,7 +152,8 @@ void main() {
       );
     });
 
-    // Test for year, month, day, hour, minute, second, and millisecond precision
+    // Test for year, month, day, hour, minute, second, and millisecond
+    // precision
     const yyyyMMddTHHmmssSSS = '2012-01-31T12:30:45.123';
     final yyyyMMddTHHmmssSSSDateTime = DateTime(2012, 1, 31, 12, 30, 45, 123);
     test('dateyyyyMMddTHHmmssSSSFromString', () {
@@ -195,7 +196,8 @@ void main() {
       );
     });
 
-    // Test for year, month, day, hour, minute, second, millisecond, and microsecond precision
+    // Test for year, month, day, hour, minute, second, millisecond, and
+    //microsecond precision
     const yyyyMMddTHHmmssSSSmmm = '2012-01-31T12:30:45.123456';
     final yyyyMMddTHHmmssSSSmmmDateTime =
         DateTime(2012, 1, 31, 12, 30, 45, 123, 456);
@@ -514,7 +516,7 @@ void main() {
       test('Invalid FhirDate from string with Offset', () {
         expect(
           () => FhirDateTime.fromString('invalid_datetime'),
-          throwsA(isA<TypeError>()),
+          throwsA(isA<ArgumentError>()),
         );
       });
 

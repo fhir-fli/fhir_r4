@@ -70,7 +70,7 @@ void main() {
     test('Invalid FhirDate from string with Offset', () {
       expect(
         () => FhirDate.fromString(invalidDateString),
-        throwsA(isA<TypeError>()),
+        throwsA(isA<ArgumentError>()),
       );
     });
 
@@ -103,7 +103,7 @@ void main() {
     test('Invalid FhirDate String', () {
       expect(
         () => FhirDate.fromString('invalid_date'),
-        throwsA(isA<TypeError>()),
+        throwsA(isA<ArgumentError>()),
       );
     });
 

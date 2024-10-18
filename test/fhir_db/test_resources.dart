@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_single_quotes, always_specify_types, avoid_escaping_inner_quotes, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_single_quotes, always_specify_types, avoid_escaping_inner_quotes, prefer_const_literals_to_create_immutables, lines_longer_than_80_chars
 
 import 'package:fhir_r4/fhir_r4.dart';
 
@@ -10,7 +10,7 @@ final testCondition1 = Condition.fromJson({
     "lastUpdated": "2022-05-24T16:38:40.435-04:00",
     "source": "#KHY7300qppJKNt2a",
     "profile": [
-      "http://fhir.mimic.mit.edu/StructureDefinition/mimic-condition"
+      "http://fhir.mimic.mit.edu/StructureDefinition/mimic-condition",
     ],
   },
   "identifier": [

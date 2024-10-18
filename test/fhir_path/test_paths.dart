@@ -1,5 +1,9 @@
-// ignore_for_file: depend_on_referenced_packages, prefer_single_quotes, no_adjacent_strings_in_list, avoid_escaping_inner_quotes, always_specify_types
-// ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: depend_on_referenced_packages, prefer_const_constructors, no_adjacent_strings_in_list
+// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: prefer_single_quotes, unnecessary_string_escapes
+// ignore_for_file: leading_newlines_in_multiline_strings
+// ignore_for_file: unnecessary_statements, directives_ordering
+// ignore_for_file: always_specify_types, inference_failure_on_collection_literal
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -117,7 +121,7 @@ final patient = Patient.fromJson({
   "text": {
     "status": "generated",
     "div":
-        "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\t\t\t<table>\n\t\t\t\t<tbody>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Name</td>\n\t\t\t\t\t\t<td>Peter James \n              <b>Chalmers</b> (&quot;Jim&quot;)\n            </td>\n\t\t\t\t\t</tr>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Address</td>\n\t\t\t\t\t\t<td>534 Erewhon, Pleasantville, Vic, 3999</td>\n\t\t\t\t\t</tr>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Contacts</td>\n\t\t\t\t\t\t<td>Home: unknown. Work: (03) 5555 6473</td>\n\t\t\t\t\t</tr>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Id</td>\n\t\t\t\t\t\t<td>MRN: 12345 (Acme Healthcare)</td>\n\t\t\t\t\t</tr>\n\t\t\t\t</tbody>\n\t\t\t</table>\n\t\t</div>",
+        '<div xmlns="http://www.w3.org/1999/xhtml">\n\t\t\t<table>\n\t\t\t\t<tbody>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Name</td>\n\t\t\t\t\t\t<td>Peter James \n              <b>Chalmers</b> (&quot;Jim&quot;)\n            </td>\n\t\t\t\t\t</tr>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Address</td>\n\t\t\t\t\t\t<td>534 Erewhon, Pleasantville, Vic, 3999</td>\n\t\t\t\t\t</tr>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Contacts</td>\n\t\t\t\t\t\t<td>Home: unknown. Work: (03) 5555 6473</td>\n\t\t\t\t\t</tr>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Id</td>\n\t\t\t\t\t\t<td>MRN: 12345 (Acme Healthcare)</td>\n\t\t\t\t\t</tr>\n\t\t\t\t</tbody>\n\t\t\t</table>\n\t\t</div>',
   },
   "identifier": [
     {
@@ -240,22 +244,12 @@ final resource = Patient(
       period: Period(
         extension_: [
           FhirExtension(
-            valueCount: Count(unit: 'Mg'),
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'Mg'.toFhirString),
           ),
           FhirExtension(
-            valueCount: Count(unit: 'mL'),
-          ),
-        ],
-      ),
-    ),
-    Address(
-      period: Period(
-        extension_: [
-          FhirExtension(
-            valueCount: Count(unit: 'Kg'),
-          ),
-          FhirExtension(
-            valueCount: Count(unit: 'Km'),
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'mL'.toFhirString),
           ),
         ],
       ),
@@ -264,10 +258,26 @@ final resource = Patient(
       period: Period(
         extension_: [
           FhirExtension(
-            valueCount: Count(unit: 'Feet'),
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'Kg'.toFhirString),
           ),
           FhirExtension(
-            valueCount: Count(unit: 'inches'),
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'Km'.toFhirString),
+          ),
+        ],
+      ),
+    ),
+    Address(
+      period: Period(
+        extension_: [
+          FhirExtension(
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'Feet'.toFhirString),
+          ),
+          FhirExtension(
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'inches'.toFhirString),
           ),
         ],
       ),
@@ -276,24 +286,24 @@ final resource = Patient(
   deceasedBoolean: FhirBoolean(false),
   name: [
     HumanName(
-      family: 'Faulkenberry',
+      family: 'Faulkenberry'.toFhirString,
       given: [
-        'Jason',
-        'Grey',
+        'Jason'.toFhirString,
+        'Grey'.toFhirString,
       ],
     ),
     HumanName(
-      family: 'Niel',
+      family: 'Niel'.toFhirString,
       given: [
-        'Kristin',
+        'Kristin'.toFhirString,
       ],
     ),
     HumanName(
-      family: 'Smith',
+      family: 'Smith'.toFhirString,
       given: [
-        'John',
-        'Jacob',
-        'Jingleheimer',
+        'John'.toFhirString,
+        'Jacob'.toFhirString,
+        'Jingleheimer'.toFhirString,
       ],
     ),
   ],

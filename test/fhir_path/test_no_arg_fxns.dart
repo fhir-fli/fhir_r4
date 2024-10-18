@@ -1,4 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages, prefer_const_constructors
+// ignore_for_file: lines_longer_than_80_chars
 // ignore_for_file: prefer_single_quotes, unnecessary_string_escapes
 // ignore_for_file: leading_newlines_in_multiline_strings
 // ignore_for_file: unnecessary_statements, directives_ordering
@@ -766,14 +767,14 @@ void testNoArgFxns() {
           context: resource.toJson(),
           pathExpression: "@2021-01-01.toDate()",
         ),
-        [FhirDate('2021-01-01')],
+        [FhirDate.fromString('2021-01-01')],
       );
       expect(
         walkFhirPath(
           context: resource.toJson(),
           pathExpression: "'2021-01-01'.toDate()",
         ),
-        [FhirDate('2021-01-01')],
+        [FhirDate.fromString('2021-01-01')],
       );
     });
     test('convertsToDate', () {
@@ -798,28 +799,28 @@ void testNoArgFxns() {
           context: resource.toJson(),
           pathExpression: "@2021-01-01.toDateTime()",
         ),
-        [FhirDateTime('2021-01-01')],
+        [FhirDateTime.fromString('2021-01-01')],
       );
       expect(
         walkFhirPath(
           context: resource.toJson(),
           pathExpression: "'2021-01-01'.toDateTime()",
         ),
-        [FhirDateTime('2021-01-01')],
+        [FhirDateTime.fromString('2021-01-01')],
       );
       expect(
         walkFhirPath(
           context: resource.toJson(),
           pathExpression: "@2021-01-01T12:12.toDateTime()",
         ),
-        [FhirDateTime('2021-01-01T12:12')],
+        [FhirDateTime.fromString('2021-01-01T12:12')],
       );
       expect(
         walkFhirPath(
           context: resource.toJson(),
           pathExpression: "'2021-01-01T12:12'.toDateTime()",
         ),
-        [FhirDateTime('2021-01-01T12:12')],
+        [FhirDateTime.fromString('2021-01-01T12:12')],
       );
     });
     test('convertsToDateTime', () {
@@ -1811,15 +1812,15 @@ void testNoArgFxns() {
     });
 
     test('DateTimeFunctions', () {
-      final startNow = FhirDateTime(DateTime.now()).value;
+      final startNow = FhirDateTime.fromDateTime(DateTime.now()).value;
       final resultNow =
           walkFhirPath(context: resource.toJson(), pathExpression: "now()");
-      final endNow = FhirDateTime(DateTime.now()).value;
+      final endNow = FhirDateTime.fromDateTime(DateTime.now()).value;
       expect(
         (toDateTime(startNow).isBefore(toDateTime(resultNow.first)) ||
                 toDateTime(startNow)
                     .isAtSameMomentAs(toDateTime(resultNow.first))) &&
-            (endNow.isAfter(toDateTime(resultNow.first)) ||
+            ((endNow?.isAfter(toDateTime(resultNow.first)) ?? false) ||
                 toDateTime(endNow)
                     .isAtSameMomentAs(toDateTime(resultNow.first))),
         true,
@@ -1843,14 +1844,13 @@ void testNoArgFxns() {
       expect(
         walkFhirPath(context: resource.toJson(), pathExpression: "today()")
             .first,
-        FhirDate(DateTime.now().toIso8601String().split('T').first),
+        FhirDate.fromString(DateTime.now().toIso8601String().split('T').first),
       );
     });
   });
 }
 
 final resource = Patient(
-  active: FhirBoolean(true),
   telecom: [
     ContactPoint(
       system: ContactPointSystem.email,
@@ -1863,10 +1863,12 @@ final resource = Patient(
       period: Period(
         extension_: [
           FhirExtension(
-            valueCount: Count(unit: 'Mg'),
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'Mg'.toFhirString),
           ),
           FhirExtension(
-            valueCount: Count(unit: 'mL'),
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'mL'.toFhirString),
           ),
         ],
       ),
@@ -1875,34 +1877,42 @@ final resource = Patient(
       period: Period(
         extension_: [
           FhirExtension(
+            url: 'www.mayjuun.com'.toFhirString,
             extension_: [
               FhirExtension(
+                url: 'www.mayjuun.com'.toFhirString,
                 extension_: [
                   FhirExtension(
+                    url: 'www.mayjuun.com'.toFhirString,
                     extension_: [
                       FhirExtension(
-                        valueCount: Count(unit: 'Kg'),
+                        url: 'www.mayjuun.com'.toFhirString,
+                        valueCount: Count(unit: 'Kg'.toFhirString),
                       ),
                       FhirExtension(
-                        valueCount: Count(unit: 'Km'),
+                        url: 'www.mayjuun.com'.toFhirString,
+                        valueCount: Count(unit: 'Km'.toFhirString),
                       ),
                     ],
-                    valueCount: Count(unit: 'Kg'),
+                    valueCount: Count(unit: 'Kg'.toFhirString),
                   ),
                   FhirExtension(
-                    valueCount: Count(unit: 'Km'),
+                    url: 'www.mayjuun.com'.toFhirString,
+                    valueCount: Count(unit: 'Km'.toFhirString),
                   ),
                 ],
-                valueCount: Count(unit: 'Kg'),
+                valueCount: Count(unit: 'Kg'.toFhirString),
               ),
               FhirExtension(
-                valueCount: Count(unit: 'Km'),
+                url: 'www.mayjuun.com'.toFhirString,
+                valueCount: Count(unit: 'Km'.toFhirString),
               ),
             ],
-            valueCount: Count(unit: 'Kg'),
+            valueCount: Count(unit: 'Kg'.toFhirString),
           ),
           FhirExtension(
-            valueCount: Count(unit: 'Km'),
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'Km'.toFhirString),
           ),
         ],
       ),
@@ -1911,10 +1921,12 @@ final resource = Patient(
       period: Period(
         extension_: [
           FhirExtension(
-            valueCount: Count(unit: 'Feet'),
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'Feet'.toFhirString),
           ),
           FhirExtension(
-            valueCount: Count(unit: 'inches'),
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'inches'.toFhirString),
           ),
         ],
       ),
@@ -1923,33 +1935,33 @@ final resource = Patient(
   deceasedBoolean: FhirBoolean(false),
   name: [
     HumanName(
-      use: HumanNameUse.official,
-      family: 'Faulkenberry',
-      given: const [
-        'Jason',
-        'Grey',
+      use: NameUse.official,
+      family: 'Faulkenberry'.toFhirString,
+      given: [
+        'Jason'.toFhirString,
+        'Grey'.toFhirString,
       ],
     ),
     HumanName(
-      use: HumanNameUse.official,
-      family: 'Faulkenberry',
-      given: const [
-        'Jason',
-        'Grey',
+      use: NameUse.official,
+      family: 'Faulkenberry'.toFhirString,
+      given: [
+        'Jason'.toFhirString,
+        'Grey'.toFhirString,
       ],
     ),
     HumanName(
-      family: 'Niel',
-      given: const [
-        'Kristin',
+      family: 'Niel'.toFhirString,
+      given: [
+        'Kristin'.toFhirString,
       ],
     ),
     HumanName(
-      family: 'Smith',
-      given: const [
-        'John',
-        'Jacob',
-        'Jingleheimer',
+      family: 'Smith'.toFhirString,
+      given: [
+        'John'.toFhirString,
+        'Jacob'.toFhirString,
+        'Jingleheimer'.toFhirString,
       ],
     ),
   ],
@@ -1957,6 +1969,6 @@ final resource = Patient(
 
 DateTime toDateTime(dynamic dateTime) => dateTime is DateTime
     ? dateTime
-    : dateTime is FhirDateTime && dateTime.isValid
-        ? dateTime.value
+    : dateTime is FhirDateTime
+        ? dateTime.value!
         : DateTime.now();

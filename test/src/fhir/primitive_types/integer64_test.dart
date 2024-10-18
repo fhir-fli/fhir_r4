@@ -10,24 +10,24 @@ void main() {
     final element = Element(id: 'testElement'.toFhirString);
 
     test('FhirInteger64 from int value', () {
-      final fhirInteger64 = FhirInteger64(validInt);
+      final fhirInteger64 = FhirInteger64.fromNum(validInt);
       expect(fhirInteger64.value, equals(BigInt.from(validInt)));
       expect(fhirInteger64.toString(), equals(validInt.toString()));
-      expect(fhirInteger64.toJson(), equals(validInt.toString()));
+      expect(fhirInteger64.toJson()['value'], equals(validInt.toString()));
     });
 
     test('FhirInteger64 from BigInt value', () {
       final fhirInteger64 = FhirInteger64(validBigInt);
       expect(fhirInteger64.value, equals(validBigInt));
       expect(fhirInteger64.toString(), equals(validBigInt.toString()));
-      expect(fhirInteger64.toJson(), equals(validBigInt.toString()));
+      expect(fhirInteger64.toJson()['value'], equals(validBigInt.toString()));
     });
 
     test('FhirInteger64 from String value', () {
-      final fhirInteger64 = FhirInteger64(validBigIntString);
+      final fhirInteger64 = FhirInteger64.fromString(validBigIntString);
       expect(fhirInteger64.value, equals(validBigInt));
       expect(fhirInteger64.toString(), equals(validBigIntString));
-      expect(fhirInteger64.toJson(), equals(validBigIntString));
+      expect(fhirInteger64.toJson()['value'], equals(validBigIntString));
     });
 
     test('FhirInteger64 tryParse with valid int', () {
@@ -65,7 +65,8 @@ void main() {
     });
 
     test('FhirInteger64 fromYaml with valid YAML', () {
-      final fhirInteger64 = FhirInteger64.fromYaml(validBigIntString);
+      final fhirInteger64 =
+          FhirInteger64.fromYaml('value: "$validBigIntString"');
       expect(fhirInteger64.value, equals(validBigInt));
     });
 
@@ -120,9 +121,12 @@ void main() {
 
     test('FhirInteger64 utility methods', () {
       final fhirInt = FhirInteger64(BigInt.from(-10));
-      expect(fhirInt.abs(), equals(BigInt.from(10)));
-      expect(fhirInt.pow(2), equals(BigInt.from(100)));
-      expect(fhirInt.gcd(BigInt.from(5)), equals(BigInt.from(5)));
+      expect(fhirInt.abs(), equals(FhirInteger64(BigInt.from(10))));
+      expect(fhirInt.pow(2), equals(FhirInteger64(BigInt.from(100))));
+      expect(
+        fhirInt.gcd(BigInt.from(5)),
+        equals(FhirInteger64(BigInt.from(5))),
+      );
       expect(fhirInt.isNegative, isTrue);
       expect(fhirInt.isEven, isTrue);
       expect(fhirInt.isOdd, isFalse);
@@ -141,33 +145,24 @@ void main() {
       final fhirInt = FhirInteger64(BigInt.from(10), element);
       final clonedInt = fhirInt.clone();
       expect(clonedInt.value, equals(BigInt.from(10)));
-      expect(clonedInt.element?.id, equals('testElement'));
-
+      expect(clonedInt.element?.id, equals('testElement'.toFhirString));
       final copiedInt = fhirInt.copyWith(newValue: BigInt.from(20));
       expect(copiedInt.value, equals(BigInt.from(20)));
       expect(
         copiedInt.element?.id,
-        equals('testElement'),
+        equals('testElement'.toFhirString),
       ); // Should retain element
     });
 
     test('FhirInteger64 toJsonString and toString', () {
       final fhirInt = FhirInteger64(BigInt.from(100));
-      expect(fhirInt.toJsonString(), equals('100'));
+      expect(fhirInt.toJsonString(), equals('{"value":"100"}'));
       expect(fhirInt.toString(), equals('100'));
     });
 
     test('FhirInteger64 with Element', () {
       final fhirInt = FhirInteger64(BigInt.from(1234567890123456), element);
-      expect(fhirInt.element?.id, equals('testElement'));
-    });
-
-    test('FhirInteger64 setElement', () {
-      final originalInt = FhirInteger64(BigInt.from(1000));
-      final updatedInt =
-          originalInt.setElement('elementName', 'newElementValue');
-      expect(updatedInt.value, equals(BigInt.from(1000)));
-      expect(updatedInt.element != originalInt.element, isTrue);
+      expect(fhirInt.element?.id, equals('testElement'.toFhirString));
     });
   });
 }

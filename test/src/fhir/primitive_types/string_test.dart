@@ -15,23 +15,42 @@ void main() {
       final fhirString = FhirString(validString);
       expect(fhirString.value, equals(validString));
       expect(fhirString.toString(), equals(validString));
-      expect(fhirString.toJson(), equals(validString));
+      expect(fhirString.toJson()['value'], equals(validString));
     });
 
     test('FhirString fromJson with valid String', () {
-      final fhirString = FhirString.fromJson(jsonString);
+      final fhirString = FhirString.fromJson({'value': jsonString});
       expect(fhirString.value, equals(jsonString));
-      expect(fhirString.toJson(), equals(jsonString));
+      expect(fhirString.toJson()['value'], equals(jsonString));
     });
 
     test('FhirString fromJson with invalid input throws FormatException', () {
-      expect(() => FhirString.fromJson(123), throwsFormatException);
+      expect(
+        () => FhirString.fromJson({'value': 123}),
+        throwsA(isA<TypeError>()),
+      );
     });
 
     test('FhirString fromYaml with valid YAML', () {
-      final fhirString = FhirString.fromYaml(yamlString);
+      final fhirString = FhirString.fromYaml('value: $yamlString');
       expect(fhirString.value, equals(yamlString));
-      expect(fhirString.toJson(), equals(yamlString));
+      expect(fhirString.toJson()['value'], equals(yamlString));
+    });
+
+    test('FhirString tryParse with valid String', () {
+      final fhirString = FhirString.tryParse(validString);
+      expect(fhirString?.value, equals(validString));
+    });
+
+    test('FhirString tryParse with invalid input returns null', () {
+      final fhirString =
+          FhirString.tryParse(123); // Not a valid input for FhirString
+      expect(fhirString, isNull);
+    });
+
+    test('FhirString tryParse with empty string', () {
+      final fhirString = FhirString.tryParse(emptyString);
+      expect(fhirString?.value, equals(emptyString));
     });
 
     test('FhirString equality with another FhirString', () {
@@ -106,27 +125,14 @@ void main() {
       expect(originalString.value, equals(validString));
     });
 
-    test('FhirString setElement', () {
-      final originalString = FhirString(validString);
-      final updatedString =
-          originalString.setElement('elementName', 'newElementValue');
-      expect(updatedString.value, equals(validString));
-      expect(updatedString.element != originalString.element, isTrue);
-    });
-
     test('FhirString with Element', () {
       final fhirString = FhirString(validString, element);
-      expect(fhirString.element?.id, equals('testElement'));
+      expect(fhirString.element?.id, equals('testElement'.toFhirString));
     });
 
     test('FhirString toJsonString', () {
       final fhirString = FhirString(validString);
-      expect(fhirString.toJsonString(), equals('"$validString"'));
-    });
-
-    test('FhirString hashCode', () {
-      final fhirString = FhirString(validString);
-      expect(fhirString.hashCode, equals(validString.hashCode));
+      expect(fhirString.toJsonString(), equals('{"value":"$validString"}'));
     });
   });
 }

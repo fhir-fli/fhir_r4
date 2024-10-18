@@ -1,9 +1,10 @@
 // ignore_for_file: depend_on_referenced_packages, prefer_const_constructors
+// ignore_for_file: lines_longer_than_80_chars
 // ignore_for_file: prefer_single_quotes, unnecessary_string_escapes
 // ignore_for_file: leading_newlines_in_multiline_strings
 // ignore_for_file: unnecessary_statements, directives_ordering
 // ignore_for_file: always_specify_types, inference_failure_on_collection_literal
-// Dart imports:
+
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';

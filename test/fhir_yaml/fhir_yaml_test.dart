@@ -1,6 +1,6 @@
-// ignore_for_file: use_raw_strings, ignore_for_file: invalid_annotation_target, directives_ordering
+// ignore_for_file: use_raw_strings, ignore_for_file: invalid_annotation_target,
+// directives_ordering
 
-// Dart imports:
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';

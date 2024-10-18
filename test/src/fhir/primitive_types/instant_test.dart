@@ -76,8 +76,10 @@ void main() {
   test('dateyyyyFromDateTime', () {
     expect(dateyyyyFromDateTime.valueString, equals(yyyyEmptyTimeZoneString));
     expect(dateyyyyFromDateTime.valueDateTime, equals(yyyyDateTime));
-    expect(dateyyyyFromDateTime.toJson()['value'],
-        equals(yyyyEmptyTimeZoneString));
+    expect(
+      dateyyyyFromDateTime.toJson()['value'],
+      equals(yyyyEmptyTimeZoneString),
+    );
   });
 
   final yyyyMMddTHHmmssSSSEmptyString = '2012-01-31T12:30:59.123$offset';

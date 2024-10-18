@@ -1,9 +1,9 @@
 // ignore_for_file: depend_on_referenced_packages, prefer_const_constructors
+// ignore_for_file: lines_longer_than_80_chars
 // ignore_for_file: prefer_single_quotes, unnecessary_string_escapes
 // ignore_for_file: leading_newlines_in_multiline_strings
 // ignore_for_file: unnecessary_statements, directives_ordering
 // ignore_for_file: always_specify_types, inference_failure_on_collection_literal
-// ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
@@ -1345,10 +1345,12 @@ final resource = Patient(
       period: Period(
         extension_: [
           FhirExtension(
-            valueCount: Count(unit: 'Mg'),
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'Mg'.toFhirString),
           ),
           FhirExtension(
-            valueCount: Count(unit: 'mL'),
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'mL'.toFhirString),
           ),
         ],
       ),
@@ -1357,34 +1359,42 @@ final resource = Patient(
       period: Period(
         extension_: [
           FhirExtension(
+            url: 'www.mayjuun.com'.toFhirString,
             extension_: [
               FhirExtension(
+                url: 'www.mayjuun.com'.toFhirString,
                 extension_: [
                   FhirExtension(
+                    url: 'www.mayjuun.com'.toFhirString,
                     extension_: [
                       FhirExtension(
-                        valueCount: Count(unit: 'Kg'),
+                        url: 'www.mayjuun.com'.toFhirString,
+                        valueCount: Count(unit: 'Kg'.toFhirString),
                       ),
                       FhirExtension(
-                        valueCount: Count(unit: 'Km'),
+                        url: 'www.mayjuun.com'.toFhirString,
+                        valueCount: Count(unit: 'Km'.toFhirString),
                       ),
                     ],
-                    valueCount: Count(unit: 'Kg'),
+                    valueCount: Count(unit: 'Kg'.toFhirString),
                   ),
                   FhirExtension(
-                    valueCount: Count(unit: 'Km'),
+                    url: 'www.mayjuun.com'.toFhirString,
+                    valueCount: Count(unit: 'Km'.toFhirString),
                   ),
                 ],
-                valueCount: Count(unit: 'Kg'),
+                valueCount: Count(unit: 'Kg'.toFhirString),
               ),
               FhirExtension(
-                valueCount: Count(unit: 'Km'),
+                url: 'www.mayjuun.com'.toFhirString,
+                valueCount: Count(unit: 'Km'.toFhirString),
               ),
             ],
-            valueCount: Count(unit: 'Kg'),
+            valueCount: Count(unit: 'Kg'.toFhirString),
           ),
           FhirExtension(
-            valueCount: Count(unit: 'Km'),
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'Km'.toFhirString),
           ),
         ],
       ),
@@ -1393,10 +1403,12 @@ final resource = Patient(
       period: Period(
         extension_: [
           FhirExtension(
-            valueCount: Count(unit: 'Feet'),
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'Feet'.toFhirString),
           ),
           FhirExtension(
-            valueCount: Count(unit: 'inches'),
+            url: 'www.mayjuun.com'.toFhirString,
+            valueCount: Count(unit: 'inches'.toFhirString),
           ),
         ],
       ),
@@ -1405,33 +1417,33 @@ final resource = Patient(
   deceasedBoolean: FhirBoolean(false),
   name: [
     HumanName(
-      use: HumanNameUse.official,
-      family: 'Faulkenberry',
+      use: NameUse.official,
+      family: 'Faulkenberry'.toFhirString,
       given: [
-        'Jason',
-        'Grey',
+        'Jason'.toFhirString,
+        'Grey'.toFhirString,
       ],
     ),
     HumanName(
-      use: HumanNameUse.official,
-      family: 'Faulkenberry',
+      use: NameUse.official,
+      family: 'Faulkenberry'.toFhirString,
       given: [
-        'Jason',
-        'Grey',
+        'Jason'.toFhirString,
+        'Grey'.toFhirString,
       ],
     ),
     HumanName(
-      family: 'Niel',
+      family: 'Niel'.toFhirString,
       given: [
-        'Kristin',
+        'Kristin'.toFhirString,
       ],
     ),
     HumanName(
-      family: 'Smith',
+      family: 'Smith'.toFhirString,
       given: [
-        'John',
-        'Jacob',
-        'Jingleheimer',
+        'John'.toFhirString,
+        'Jacob'.toFhirString,
+        'Jingleheimer'.toFhirString,
       ],
     ),
   ],

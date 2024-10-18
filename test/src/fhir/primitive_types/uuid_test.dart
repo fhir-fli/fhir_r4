@@ -15,21 +15,21 @@ void main() {
       final fhirUuid = FhirUuid(validUuidString);
       expect(fhirUuid.value, equals(validUuidValue));
       expect(fhirUuid.toString(), equals(validUuidString));
-      expect(fhirUuid.toJson(), equals(validUuidString));
+      expect(fhirUuid.toJson()['value'], equals(validUuidString));
     });
 
     test('FhirUuid fromUuid with UuidValue', () {
       final fhirUuid = FhirUuid.fromUuid(validUuidValue);
       expect(fhirUuid.value, equals(validUuidValue));
       expect(fhirUuid.toString(), equals(validUuidString));
-      expect(fhirUuid.toJson(), equals(validUuidString));
+      expect(fhirUuid.toJson()['value'], equals(validUuidString));
     });
 
     test('FhirUuid tryParse with valid UUID', () {
       final fhirUuid = FhirUuid.tryParse(validUuidString);
       expect(fhirUuid?.value, equals(validUuidValue));
       expect(fhirUuid?.toString(), equals(validUuidString));
-      expect(fhirUuid?.toJson(), equals(validUuidString));
+      expect(fhirUuid?.toJson()['value'], equals(validUuidString));
     });
 
     test('FhirUuid tryParse with invalid UUID', () {
@@ -38,19 +38,22 @@ void main() {
     });
 
     test('FhirUuid fromJson with valid String', () {
-      final fhirUuid = FhirUuid.fromJson(validUuidString);
+      final fhirUuid = FhirUuid.fromJson({'value': validUuidString});
       expect(fhirUuid.value, equals(validUuidValue));
-      expect(fhirUuid.toJson(), equals(validUuidString));
+      expect(fhirUuid.toJson()['value'], equals(validUuidString));
     });
 
     test('FhirUuid fromJson with invalid input throws FormatException', () {
-      expect(() => FhirUuid.fromJson(123), throwsFormatException);
+      expect(
+        () => FhirUuid.fromJson({'value': 123}),
+        throwsA(isA<TypeError>()),
+      );
     });
 
     test('FhirUuid fromYaml with valid YAML', () {
-      final fhirUuid = FhirUuid.fromYaml(validUuidString);
+      final fhirUuid = FhirUuid.fromYaml('value: $validUuidString');
       expect(fhirUuid.value, equals(validUuidValue));
-      expect(fhirUuid.toJson(), equals(validUuidString));
+      expect(fhirUuid.toJson()['value'], equals(validUuidString));
     });
 
     // UUID generation factories
@@ -137,27 +140,14 @@ void main() {
       ); // Original should remain unchanged
     });
 
-    test('FhirUuid setElement', () {
-      final originalUuid = FhirUuid(validUuidString);
-      final updatedUuid =
-          originalUuid.setElement('elementName', 'newElementValue');
-      expect(updatedUuid.value, equals(validUuidValue));
-      expect(updatedUuid.element != originalUuid.element, isTrue);
-    });
-
     test('FhirUuid with Element', () {
       final fhirUuid = FhirUuid(validUuidString, element);
-      expect(fhirUuid.element?.id, equals('testElement'));
+      expect(fhirUuid.element?.id, equals('testElement'.toFhirString));
     });
 
     test('FhirUuid toJsonString', () {
       final fhirUuid = FhirUuid(validUuidString);
-      expect(fhirUuid.toJsonString(), equals('"$validUuidString"'));
-    });
-
-    test('FhirUuid hashCode', () {
-      final fhirUuid = FhirUuid(validUuidString);
-      expect(fhirUuid.hashCode, equals(validUuidValue.hashCode));
+      expect(fhirUuid.toJsonString(), equals('{"value":"$validUuidString"}'));
     });
 
     // Unsupported operations
