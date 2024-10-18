@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 
 export 'package:hive/hive.dart' show HiveCipher;
 
+// ignore: public_member_api_docs
 const String nonRandomSalt = '±¾³½÷×¼ƒ¢ª¤®£°¥º';
 
 /// Generates the cipher directly from a key (password)

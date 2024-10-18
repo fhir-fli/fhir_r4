@@ -9,18 +9,17 @@ import 'package:mime/mime.dart';
 import 'package:universal_io/io.dart';
 
 /// Class doing the lifting for transforming regular FHIR json into formats more
-/// conducive to be transferred, and also accepting these formats and turning them
-/// back into normal json to be used with the base FHIR package
+/// conducive to be transferred, and also accepting these formats and turning
+/// them back into normal json to be used with the base FHIR package
 abstract class FhirBulk {
-  /// Accepts a list of resoures and returns them as a single String (which could
-  /// be put into a file) which follows the ndJson format
+  /// Accepts a list of resoures and returns them as a single String (which
+  /// could be put into a file) which follows the ndJson format
   static String toNdJson(List<Resource> resources) {
-    var stringList = '';
+    final buffer = StringBuffer();
     for (final resource in resources) {
-      stringList += '\n${jsonEncode(resource.toJson())}';
+      buffer.writeln('\n${jsonEncode(resource.toJson())}');
     }
-    stringList = stringList.replaceFirst('\n', '');
-    return stringList;
+    return buffer.toString().replaceFirst('\n', '');
   }
 
   /// Accepts a String in ndJson format and converts it into a list of resources
@@ -37,15 +36,15 @@ abstract class FhirBulk {
     return resourceList;
   }
 
-  /// Accepts a path to a file in ndjson format. It opens the file and then calls the
-  /// from NdJson function
+  /// Accepts a path to a file in ndjson format. It opens the file and then
+  /// calls the from NdJson function
   static Future<List<Resource>> fromFile(String path) async {
     final file = await File(path).readAsString();
     return fromNdJson(file);
   }
 
-  /// Accepts data that is zipped, x-zip-compressed, tar, or gz. Note, this function
-  /// assumes that all uncompressed data is in ndjson format
+  /// Accepts data that is zipped, x-zip-compressed, tar, or gz. Note, this
+  /// function assumes that all uncompressed data is in ndjson format
   static Future<List<Resource>> fromCompressedData(
     String contentType,
     dynamic content,

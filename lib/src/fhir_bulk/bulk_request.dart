@@ -6,54 +6,77 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:http/http.dart';
 
+/// A class to handle FHIR Bulk requests
 class BulkRequestPatient extends BulkRequest {
+  /// Constructor for a patient bulk request
   const BulkRequestPatient({
     required super.base,
     super.since,
     super.types,
+    super.headers,
     super.client,
   });
 }
 
+/// A class to handle FHIR Bulk requests
 class BulkRequestGroup extends BulkRequest {
+  /// Constructor for a group bulk request
   const BulkRequestGroup({
     required super.base,
     required this.id,
     super.since,
     super.types,
+    super.headers,
     super.client,
   });
 
+  /// The id of the group to request
   final FhirId id;
 }
 
+/// A class to handle FHIR Bulk requests
 class BulkRequestSystem extends BulkRequest {
+  /// Constructor for a system bulk request
   const BulkRequestSystem({
     required super.base,
     super.since,
     super.types,
+    super.headers,
     super.client,
   });
 }
 
+/// A class to handle FHIR Bulk requests
 abstract class BulkRequest {
+  /// Constructor for a bulk request
   const BulkRequest({
     required this.base,
     this.since,
     this.types,
+    this.headers,
     this.client,
   });
 
+  /// The base url for the request
   final Uri base;
+
+  /// The date to request resources since
   final FhirDateTime? since;
+
+  /// The types of resources to request
   final List<WhichResource>? types;
+
+  /// The headers to use for the request
+  final Map<String, String>? headers;
+
+  /// The client to use for the request
   final Client? client;
 
   /// Actually perform the request by type
   Future<List<Resource?>> request() async {
-    final headers = <String, String>{};
-    headers['accept'] = 'application/fhir+json';
-    headers['prefer'] = 'respond-async';
+    final requestHeaders = headers ?? <String, String>{};
+    requestHeaders['accept'] = 'application/fhir+json';
+    requestHeaders['prefer'] = 'respond-async';
     String baseUrl;
     if (this is BulkRequestPatient) {
       baseUrl = '$base/Patient/\$export${_parameters(since, types)}';
@@ -63,7 +86,7 @@ abstract class BulkRequest {
     } else {
       baseUrl = '$base/\$export${_parameters(since, types)}';
     }
-    return _request(baseUrl, headers, client);
+    return _request(baseUrl, requestHeaders, client);
   }
 
   /// Returns the string of parameters allowed in the request
@@ -89,23 +112,20 @@ abstract class BulkRequest {
     return '$sinceString$typeString';
   }
 
-  /// Actual request (private class) after all formatting and parameters have been added
+  /// Actual request (private class) after all formatting and parameters have
+  /// been added
   Future<List<Resource?>> _request(
     String uri,
     Map<String, String> headers,
     Client? client,
   ) async {
-    client ??= Client();
+    final newClient = client ?? Client();
     final returnList = <Resource?>[];
     String? currentLocation;
 
-    if (kTestMode) {
-      return _operationOutcome(uri);
-    }
-
     try {
       final resultWithLocation =
-          await client.get(Uri.parse(uri), headers: headers);
+          await newClient.get(Uri.parse(uri), headers: headers);
       if (_errorCodes.keys.contains(resultWithLocation.statusCode)) {
         return _failedHttp(resultWithLocation.statusCode, resultWithLocation);
       }
@@ -123,7 +143,7 @@ abstract class BulkRequest {
       try {
         if (currentLocation != null) {
           responseLinks =
-              await client.get(Uri.parse(currentLocation), headers: headers);
+              await newClient.get(Uri.parse(currentLocation), headers: headers);
           retryAfter =
               int.tryParse(responseLinks.headers['retry-after'] ?? '-1') ?? -1;
         }
@@ -152,7 +172,7 @@ abstract class BulkRequest {
         );
       } else {
         try {
-          final ndjsonList = await client.get(newLink, headers: headers);
+          final ndjsonList = await newClient.get(newLink, headers: headers);
           returnList.addAll(FhirBulk.fromNdJson(ndjsonList.body));
         } catch (e) {
           return _operationOutcome(
@@ -165,7 +185,8 @@ abstract class BulkRequest {
     return returnList;
   }
 
-  /// Creates and returns an OperationOutcome if the http request is unsuccessful
+  /// Creates and returns an OperationOutcome if the http request is
+  /// unsuccessful
   List<OperationOutcome> _failedHttp(int statusCode, Response result) {
     return <OperationOutcome>[
       OperationOutcome(
@@ -204,7 +225,8 @@ abstract class BulkRequest {
         ),
       ];
 
-  /// Map of error codes to be able to return more useful information than just a number
+  /// Map of error codes to be able to return more useful information than just
+  /// a number
   static const Map<int, String> _errorCodes = <int, String>{
     400: 'Bad Request',
     401: 'Not Authorized',
@@ -215,5 +237,3 @@ abstract class BulkRequest {
     422: 'Unprocessable Entity',
   };
 }
-
-bool kTestMode = false;
