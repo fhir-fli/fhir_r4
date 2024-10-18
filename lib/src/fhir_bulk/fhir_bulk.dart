@@ -27,6 +27,9 @@ abstract class FhirBulk {
     final resourceList = <Resource>[];
     for (final resource in resourceStrings) {
       if (resource.isNotEmpty) {
+        print(resource);
+        final map = jsonDecode(resource);
+        print(map is Map<String, dynamic>);
         resourceList.add(
           Resource.fromJson(jsonDecode(resource) as Map<String, dynamic>),
         );

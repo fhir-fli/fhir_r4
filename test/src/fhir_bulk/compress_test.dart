@@ -12,11 +12,11 @@ void main() {
     test('From Accounts ndjson file', () async {
       final resources =
           await FhirBulk.fromFile('./test/fhir_bulk/ndjson/Account.ndjson');
-      var stringList = '';
+      final buffer = StringBuffer();
       for (final resource in resources) {
-        stringList += '\n${jsonEncode(resource.toJson())}';
+        buffer.writeln(jsonEncode(resource.toJson()));
       }
-      stringList = stringList.replaceFirst('\n', '');
+      final stringList = buffer.toString().trim();
       expect(stringList, account);
     });
 
@@ -24,11 +24,11 @@ void main() {
       final resources = await FhirBulk.fromFile(
         './test/fhir_bulk/ndjson/MedicationRequest.ndjson',
       );
-      var stringList = '';
+      final buffer = StringBuffer();
       for (final resource in resources) {
-        stringList += '\n${jsonEncode(resource.toJson())}';
+        buffer.writeln(jsonEncode(resource.toJson()));
       }
-      stringList = stringList.replaceFirst('\n', '');
+      final stringList = buffer.toString().trim();
       expect(stringList, medicationRequest);
     });
   });
@@ -38,11 +38,11 @@ void main() {
       final resources = await FhirBulk.fromCompressedFile(
         './test/fhir_bulk/ndjson/account.zip',
       );
-      var stringList = '';
+      final buffer = StringBuffer();
       for (final resource in resources) {
-        stringList += '\n${jsonEncode(resource.toJson())}';
+        buffer.writeln(jsonEncode(resource.toJson()));
       }
-      stringList = stringList.replaceFirst('\n', '');
+      final stringList = buffer.toString().trim();
       expect(stringList, account);
     });
 
@@ -50,11 +50,11 @@ void main() {
       final resources = await FhirBulk.fromCompressedFile(
         './test/fhir_bulk/ndjson/medicationRequest.zip',
       );
-      var stringList = '';
+      final buffer = StringBuffer();
       for (final resource in resources) {
-        stringList += '\n${jsonEncode(resource.toJson())}';
+        buffer.writeln(jsonEncode(resource.toJson()));
       }
-      stringList = stringList.replaceFirst('\n', '');
+      final stringList = buffer.toString().trim();
       expect(stringList, medicationRequest);
     });
 
@@ -62,11 +62,11 @@ void main() {
       final resources = await FhirBulk.fromCompressedFile(
         './test/fhir_bulk/ndjson/accountMedRequest.zip',
       );
-      var stringList = '';
+      final buffer = StringBuffer();
       for (final resource in resources) {
-        stringList += '\n${jsonEncode(resource.toJson())}';
+        buffer.writeln(jsonEncode(resource.toJson()));
       }
-      stringList = stringList.replaceFirst('\n', '');
+      final stringList = buffer.toString().trim();
       expect(stringList, accountMedRequest);
     });
 
@@ -74,11 +74,11 @@ void main() {
       final resources = await FhirBulk.fromCompressedFile(
         './test/fhir_bulk/ndjson/Account.ndjson.gz',
       );
-      var stringList = '';
+      final buffer = StringBuffer();
       for (final resource in resources) {
-        stringList += '\n${jsonEncode(resource.toJson())}';
+        buffer.writeln(jsonEncode(resource.toJson()));
       }
-      stringList = stringList.replaceFirst('\n', '');
+      final stringList = buffer.toString().trim();
       expect(stringList, account);
     });
 
@@ -86,11 +86,11 @@ void main() {
       final resources = await FhirBulk.fromCompressedFile(
         './test/fhir_bulk/ndjson/MedicationRequest.ndjson.gz',
       );
-      var stringList = '';
+      final buffer = StringBuffer();
       for (final resource in resources) {
-        stringList += '\n${jsonEncode(resource.toJson())}';
+        buffer.writeln(jsonEncode(resource.toJson()));
       }
-      stringList = stringList.replaceFirst('\n', '');
+      final stringList = buffer.toString().trim();
       expect(stringList, medicationRequest);
     });
 
@@ -98,11 +98,11 @@ void main() {
       final resources = await FhirBulk.fromCompressedFile(
         './test/fhir_bulk/ndjson/tarGzip.tar.gz',
       );
-      var stringList = '';
+      final buffer = StringBuffer();
       for (final resource in resources) {
-        stringList += '\n${jsonEncode(resource.toJson())}';
+        buffer.writeln(jsonEncode(resource.toJson()));
       }
-      stringList = stringList.replaceFirst('\n', '');
+      final stringList = buffer.toString().trim();
       expect(stringList, medRequestAccount);
     });
   });
