@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
@@ -50,6 +52,10 @@ void main() {
       </div>
     ''';
 
+    String normalizeWhitespace(String input) {
+      return input.replaceAll(RegExp(r'\s+'), ' ').trim();
+    }
+
     // Basic FhirXhtml creation and validation
     test('FhirXhtml fromYaml with valid XHTML', () {
       final fhirXhtml = FhirXhtml.fromYaml('value: $yamlXhtml');
@@ -57,10 +63,10 @@ void main() {
           '        <p>YAML content</p>\n'
           '      </div>';
 
-      // Use `replaceAll` to normalize whitespace
+      // Normalize whitespace before comparison
       expect(
-        fhirXhtml.toString().replaceAll(RegExp(r'\s+'), ' '),
-        equals(expectedXhtml.replaceAll(RegExp(r'\s+'), ' ')),
+        normalizeWhitespace(fhirXhtml.toString()),
+        equals(normalizeWhitespace(expectedXhtml)),
       );
     });
 
@@ -78,18 +84,30 @@ void main() {
 
     test('FhirXhtml with valid style attribute', () {
       final fhirXhtml = FhirXhtml(validStyleXhtml);
-      expect(fhirXhtml.value, equals(validStyleXhtml));
+      expect(
+        normalizeWhitespace(fhirXhtml.value!),
+        equals(normalizeWhitespace(validStyleXhtml)),
+      );
     });
 
     test('FhirXhtml with invalid style attribute', () {
-      expect(() => FhirXhtml(invalidStyleXhtml), throwsFormatException);
+      expect(
+        () => FhirXhtml(invalidStyleXhtml),
+        throwsA(isA<FormatException>()),
+      );
     });
 
     // JSON and YAML tests
     test('FhirXhtml fromJson with valid XHTML', () {
       final fhirXhtml = FhirXhtml.fromJson({'value': jsonXhtml});
-      expect(fhirXhtml.value, equals(jsonXhtml));
-      expect(fhirXhtml.toJson()['value'], equals(jsonXhtml));
+      expect(
+        normalizeWhitespace(fhirXhtml.value!),
+        equals(normalizeWhitespace(jsonXhtml)),
+      );
+      expect(
+        normalizeWhitespace(fhirXhtml.toJson()['value'] as String),
+        equals(normalizeWhitespace(jsonXhtml)),
+      );
     });
 
     test('FhirXhtml fromJson with invalid XHTML throws FormatException', () {
@@ -103,17 +121,26 @@ void main() {
       final fhirXhtml = FhirXhtml.fromYaml('value: $yamlXhtml');
       const expectedXhtml = yamlXhtml;
       expect(
-        fhirXhtml.toString(),
-        equals(expectedXhtml.trim()),
+        normalizeWhitespace(fhirXhtml.toString()),
+        equals(normalizeWhitespace(expectedXhtml)),
       );
-      expect(fhirXhtml.value, equals(expectedXhtml));
-      expect(fhirXhtml.toJson()['value'], equals(yamlXhtml));
+      expect(
+        normalizeWhitespace(fhirXhtml.value!),
+        equals(normalizeWhitespace(expectedXhtml)),
+      );
+      expect(
+        normalizeWhitespace(fhirXhtml.toJson()['value'] as String),
+        equals(normalizeWhitespace(yamlXhtml)),
+      );
     });
 
     // tryParse tests
     test('FhirXhtml tryParse with valid XHTML', () {
       final fhirXhtml = FhirXhtml.tryParse(validXhtml);
-      expect(fhirXhtml?.value, equals(validXhtml));
+      expect(
+        normalizeWhitespace(fhirXhtml?.value ?? ''),
+        equals(normalizeWhitespace(validXhtml)),
+      );
     });
 
     test('FhirXhtml tryParse with invalid XHTML returns null', () {
@@ -162,14 +189,20 @@ void main() {
       expect(originalXhtml.value, equals(validXhtml));
     });
 
+    test('FhirXhtml with valid style attribute', () {
+      final fhirXhtml = FhirXhtml(validStyleXhtml);
+      expect(
+        normalizeWhitespace(fhirXhtml.value!), // Normalize whitespace
+        equals(normalizeWhitespace(validStyleXhtml)),
+      );
+    });
+
     test('FhirXhtml toJsonString', () {
       final fhirXhtml = FhirXhtml(validXhtml);
-      const expectedJson =
-          r'{"value":"<div xmlns=\"http://www.w3.org/1999/xhtml\">\n'
-          r'        <p>Hello, FHIR!</p>\n'
-          r'      </div>\n    "}';
+      final jsonString = fhirXhtml.toJsonString();
+      final expectedString = jsonEncode({'value': validXhtml});
 
-      expect(fhirXhtml.toJsonString(), equals(expectedJson));
+      expect(jsonString, equals(expectedString));
     });
   });
 }

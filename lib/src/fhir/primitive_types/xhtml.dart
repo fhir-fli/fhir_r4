@@ -135,7 +135,8 @@ class FhirXhtml extends PrimitiveType<String?> {
       'white-space',
     ];
 
-    // Split the style attribute on semicolons and remove any empty or malformed entries
+    // Split the style attribute on semicolons and remove any empty or
+    // malformed entries
     final styles = style.split(';').where((s) => s.trim().isNotEmpty);
 
     for (final styleProperty in styles) {

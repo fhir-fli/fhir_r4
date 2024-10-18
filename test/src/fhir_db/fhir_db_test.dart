@@ -492,7 +492,7 @@ Future<void> main() async {
       '(& Resources)',
       () async {
         var output = '';
-        final dir = Directory('assets');
+        final dir = Directory('test/src/fhir_db/assets');
         final subscription =
             fhirDb.subject(resourceType: R4ResourceType.Observation).listen(
           (Resource? resource) {
@@ -570,6 +570,9 @@ Future<void> main() async {
     );
   });
   await Hive.close();
+  if (Directory(directory).existsSync()) {
+    await Directory(directory).delete(recursive: true);
+  }
 }
 
 Future<bool> compareTwoResources(

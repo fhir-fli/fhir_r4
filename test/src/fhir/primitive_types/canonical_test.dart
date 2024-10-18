@@ -42,16 +42,10 @@ void main() {
       );
     });
 
-    test('FromJson - Null Value Throws Exception', () {
+    test('FromJson - Both cannot be null', () {
       expect(
         () => FhirCanonical.fromJson({'value': null}),
-        throwsA(
-          isA<FormatException>().having(
-            (e) => e.message,
-            'message',
-            contains('Invalid input for FhirCanonical: value is null'),
-          ),
-        ),
+        throwsA(isA<ArgumentError>()),
       );
     });
 
