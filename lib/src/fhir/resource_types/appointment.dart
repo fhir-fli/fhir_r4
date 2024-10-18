@@ -57,22 +57,21 @@ class Appointment extends DomainResource {
   ) {
     return Appointment(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -178,13 +177,13 @@ class Appointment extends DomainResource {
               )
               .toList()
           : null,
-      priority: json['priority'] != null
+      priority: (json['priority'] != null || json['_priority'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['priority'],
               '_value': json['_priority'],
             })
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -199,24 +198,25 @@ class Appointment extends DomainResource {
               )
               .toList()
           : null,
-      start: json['start'] != null
+      start: (json['start'] != null || json['_start'] != null)
           ? FhirInstant.fromJson({
               'value': json['start'],
               '_value': json['_start'],
             })
           : null,
-      end: json['end'] != null
+      end: (json['end'] != null || json['_end'] != null)
           ? FhirInstant.fromJson({
               'value': json['end'],
               '_value': json['_end'],
             })
           : null,
-      minutesDuration: json['minutesDuration'] != null
-          ? FhirPositiveInt.fromJson({
-              'value': json['minutesDuration'],
-              '_value': json['_minutesDuration'],
-            })
-          : null,
+      minutesDuration:
+          (json['minutesDuration'] != null || json['_minutesDuration'] != null)
+              ? FhirPositiveInt.fromJson({
+                  'value': json['minutesDuration'],
+                  '_value': json['_minutesDuration'],
+                })
+              : null,
       slot: json['slot'] != null
           ? (json['slot'] as List<dynamic>)
               .map<Reference>(
@@ -226,19 +226,20 @@ class Appointment extends DomainResource {
               )
               .toList()
           : null,
-      created: json['created'] != null
+      created: (json['created'] != null || json['_created'] != null)
           ? FhirDateTime.fromJson({
               'value': json['created'],
               '_value': json['_created'],
             })
           : null,
-      comment: json['comment'] != null
+      comment: (json['comment'] != null || json['_comment'] != null)
           ? FhirString.fromJson({
               'value': json['comment'],
               '_value': json['_comment'],
             })
           : null,
-      patientInstruction: json['patientInstruction'] != null
+      patientInstruction: (json['patientInstruction'] != null ||
+              json['_patientInstruction'] != null)
           ? FhirString.fromJson({
               'value': json['patientInstruction'],
               '_value': json['_patientInstruction'],
@@ -460,7 +461,11 @@ class Appointment extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -484,7 +489,11 @@ class Appointment extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     if (cancelationReason != null) {
       json['cancelationReason'] = cancelationReason!.toJson();
@@ -715,9 +724,7 @@ class AppointmentParticipant extends BackboneElement {
   ) {
     return AppointmentParticipant(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -751,7 +758,7 @@ class AppointmentParticipant extends BackboneElement {
               json['actor'] as Map<String, dynamic>,
             )
           : null,
-      required_: json['required'] != null
+      required_: (json['required'] != null || json['_required'] != null)
           ? ParticipantRequired.fromJson({
               'value': json['required'],
               '_value': json['_required'],
@@ -854,10 +861,18 @@ class AppointmentParticipant extends BackboneElement {
     }
 
     if (required_ != null) {
-      json['required'] = required_!.toJson();
+      final fieldJson4 = required_!.toJson();
+      json['required'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_required'] = fieldJson4['_value'];
+      }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson5 = status.toJson();
+    json['status'] = fieldJson5['value'];
+    if (fieldJson5['_value'] != null) {
+      json['_status'] = fieldJson5['_value'];
+    }
 
     if (period != null) {
       json['period'] = period!.toJson();

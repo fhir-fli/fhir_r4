@@ -72,22 +72,21 @@ class MedicationRequest extends DomainResource {
   ) {
     return MedicationRequest(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -156,24 +155,26 @@ class MedicationRequest extends DomainResource {
               )
               .toList()
           : null,
-      priority: json['priority'] != null
+      priority: (json['priority'] != null || json['_priority'] != null)
           ? RequestPriority.fromJson({
               'value': json['priority'],
               '_value': json['_priority'],
             })
           : null,
-      doNotPerform: json['doNotPerform'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['doNotPerform'],
-              '_value': json['_doNotPerform'],
-            })
-          : null,
-      reportedBoolean: json['reportedBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['reportedBoolean'],
-              '_value': json['_reportedBoolean'],
-            })
-          : null,
+      doNotPerform:
+          (json['doNotPerform'] != null || json['_doNotPerform'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['doNotPerform'],
+                  '_value': json['_doNotPerform'],
+                })
+              : null,
+      reportedBoolean:
+          (json['reportedBoolean'] != null || json['_reportedBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['reportedBoolean'],
+                  '_value': json['_reportedBoolean'],
+                })
+              : null,
       reportedReference: json['reportedReference'] != null
           ? Reference.fromJson(
               json['reportedReference'] as Map<String, dynamic>,
@@ -206,7 +207,7 @@ class MedicationRequest extends DomainResource {
               )
               .toList()
           : null,
-      authoredOn: json['authoredOn'] != null
+      authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({
               'value': json['authoredOn'],
               '_value': json['_authoredOn'],
@@ -590,7 +591,11 @@ class MedicationRequest extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -614,20 +619,32 @@ class MedicationRequest extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     if (statusReason != null) {
       json['statusReason'] = statusReason!.toJson();
     }
 
-    json['intent'] = intent.toJson();
+    final fieldJson10 = intent.toJson();
+    json['intent'] = fieldJson10['value'];
+    if (fieldJson10['_value'] != null) {
+      json['_intent'] = fieldJson10['_value'];
+    }
 
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
 
     if (priority != null) {
-      json['priority'] = priority!.toJson();
+      final fieldJson12 = priority!.toJson();
+      json['priority'] = fieldJson12['value'];
+      if (fieldJson12['_value'] != null) {
+        json['_priority'] = fieldJson12['_value'];
+      }
     }
 
     if (doNotPerform != null) {
@@ -914,9 +931,7 @@ class MedicationRequestDispenseRequest extends BackboneElement {
   ) {
     return MedicationRequestDispenseRequest(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -951,7 +966,8 @@ class MedicationRequestDispenseRequest extends BackboneElement {
               json['validityPeriod'] as Map<String, dynamic>,
             )
           : null,
-      numberOfRepeatsAllowed: json['numberOfRepeatsAllowed'] != null
+      numberOfRepeatsAllowed: (json['numberOfRepeatsAllowed'] != null ||
+              json['_numberOfRepeatsAllowed'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['numberOfRepeatsAllowed'],
               '_value': json['_numberOfRepeatsAllowed'],
@@ -1174,9 +1190,7 @@ class MedicationRequestInitialFill extends BackboneElement {
   ) {
     return MedicationRequestInitialFill(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1343,9 +1357,7 @@ class MedicationRequestSubstitution extends BackboneElement {
   ) {
     return MedicationRequestSubstitution(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1365,12 +1377,13 @@ class MedicationRequestSubstitution extends BackboneElement {
               )
               .toList()
           : null,
-      allowedBoolean: json['allowedBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['allowedBoolean'],
-              '_value': json['_allowedBoolean'],
-            })
-          : null,
+      allowedBoolean:
+          (json['allowedBoolean'] != null || json['_allowedBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['allowedBoolean'],
+                  '_value': json['_allowedBoolean'],
+                })
+              : null,
       allowedCodeableConcept: json['allowedCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['allowedCodeableConcept'] as Map<String, dynamic>,

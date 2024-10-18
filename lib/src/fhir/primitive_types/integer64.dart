@@ -25,7 +25,11 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
     implements Comparable<FhirInteger64> {
   /// Constructor that allows nullable BigInt input.
   FhirInteger64(BigInt? input, [Element? element])
-      : super(input != null ? _validateInteger64(input) : null, element);
+      : super(input != null ? _validateInteger64(input) : null, element) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Named constructor to create a [FhirInteger64] from an [int].
   FhirInteger64.fromNum(num input, [Element? element])

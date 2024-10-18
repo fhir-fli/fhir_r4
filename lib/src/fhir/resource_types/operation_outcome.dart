@@ -35,22 +35,21 @@ class OperationOutcome extends DomainResource {
   ) {
     return OperationOutcome(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -163,7 +162,11 @@ class OperationOutcome extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -259,9 +262,7 @@ class OperationOutcomeIssue extends BackboneElement {
   ) {
     return OperationOutcomeIssue(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -294,7 +295,7 @@ class OperationOutcomeIssue extends BackboneElement {
               json['details'] as Map<String, dynamic>,
             )
           : null,
-      diagnostics: json['diagnostics'] != null
+      diagnostics: (json['diagnostics'] != null || json['_diagnostics'] != null)
           ? FhirString.fromJson({
               'value': json['diagnostics'],
               '_value': json['_diagnostics'],
@@ -405,9 +406,17 @@ class OperationOutcomeIssue extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['severity'] = severity.toJson();
+    final fieldJson2 = severity.toJson();
+    json['severity'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_severity'] = fieldJson2['_value'];
+    }
 
-    json['code'] = code.toJson();
+    final fieldJson3 = code.toJson();
+    json['code'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_code'] = fieldJson3['_value'];
+    }
 
     if (details != null) {
       json['details'] = details!.toJson();

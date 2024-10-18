@@ -7,7 +7,11 @@ import 'package:yaml/yaml.dart';
 abstract class FhirNumber extends PrimitiveType<num?>
     implements Comparable<FhirNumber> {
   /// Constructor accepting a [num] value and an optional [element].
-  FhirNumber(super.value, [super.element]);
+  FhirNumber(super.input, [super.element]) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Factory to create either a [FhirInteger] or [FhirDecimal] based on input.
   factory FhirNumber.fromNum(num? value, [Element? element]) {

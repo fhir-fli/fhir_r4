@@ -37,9 +37,7 @@ class Signature extends DataType {
   ) {
     return Signature(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -71,19 +69,20 @@ class Signature extends DataType {
               json['onBehalfOf'] as Map<String, dynamic>,
             )
           : null,
-      targetFormat: json['targetFormat'] != null
-          ? FhirCode.fromJson({
-              'value': json['targetFormat'],
-              '_value': json['_targetFormat'],
-            })
-          : null,
-      sigFormat: json['sigFormat'] != null
+      targetFormat:
+          (json['targetFormat'] != null || json['_targetFormat'] != null)
+              ? FhirCode.fromJson({
+                  'value': json['targetFormat'],
+                  '_value': json['_targetFormat'],
+                })
+              : null,
+      sigFormat: (json['sigFormat'] != null || json['_sigFormat'] != null)
           ? FhirCode.fromJson({
               'value': json['sigFormat'],
               '_value': json['_sigFormat'],
             })
           : null,
-      data: json['data'] != null
+      data: (json['data'] != null || json['_data'] != null)
           ? FhirBase64Binary.fromJson({
               'value': json['data'],
               '_value': json['_data'],

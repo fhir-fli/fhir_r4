@@ -45,22 +45,21 @@ class Subscription extends DomainResource {
   ) {
     return Subscription(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -111,7 +110,7 @@ class Subscription extends DomainResource {
               )
               .toList()
           : null,
-      end: json['end'] != null
+      end: (json['end'] != null || json['_end'] != null)
           ? FhirInstant.fromJson({
               'value': json['end'],
               '_value': json['_end'],
@@ -125,7 +124,7 @@ class Subscription extends DomainResource {
         'value': json['criteria'],
         '_value': json['_criteria'],
       }),
-      error: json['error'] != null
+      error: (json['error'] != null || json['_error'] != null)
           ? FhirString.fromJson({
               'value': json['error'],
               '_value': json['_error'],
@@ -228,7 +227,11 @@ class Subscription extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -248,7 +251,11 @@ class Subscription extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson7 = status.toJson();
+    json['status'] = fieldJson7['value'];
+    if (fieldJson7['_value'] != null) {
+      json['_status'] = fieldJson7['_value'];
+    }
 
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
@@ -368,9 +375,7 @@ class SubscriptionChannel extends BackboneElement {
   ) {
     return SubscriptionChannel(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -394,13 +399,13 @@ class SubscriptionChannel extends BackboneElement {
         'value': json['type'],
         '_value': json['_type'],
       }),
-      endpoint: json['endpoint'] != null
+      endpoint: (json['endpoint'] != null || json['_endpoint'] != null)
           ? FhirUrl.fromJson({
               'value': json['endpoint'],
               '_value': json['_endpoint'],
             })
           : null,
-      payload: json['payload'] != null
+      payload: (json['payload'] != null || json['_payload'] != null)
           ? FhirCode.fromJson({
               'value': json['payload'],
               '_value': json['_payload'],
@@ -486,7 +491,11 @@ class SubscriptionChannel extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['type'] = type.toJson();
+    final fieldJson2 = type.toJson();
+    json['type'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_type'] = fieldJson2['_value'];
+    }
 
     if (endpoint != null) {
       final fieldJson3 = endpoint!.toJson();

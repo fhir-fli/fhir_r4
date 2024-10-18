@@ -60,22 +60,21 @@ class FamilyMemberHistory extends DomainResource {
   ) {
     return FamilyMemberHistory(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -144,13 +143,13 @@ class FamilyMemberHistory extends DomainResource {
       patient: Reference.fromJson(
         json['patient'] as Map<String, dynamic>,
       ),
-      date: json['date'] != null
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
             })
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
@@ -169,13 +168,13 @@ class FamilyMemberHistory extends DomainResource {
               json['bornPeriod'] as Map<String, dynamic>,
             )
           : null,
-      bornDate: json['bornDate'] != null
+      bornDate: (json['bornDate'] != null || json['_bornDate'] != null)
           ? FhirDate.fromJson({
               'value': json['bornDate'],
               '_value': json['_bornDate'],
             })
           : null,
-      bornString: json['bornString'] != null
+      bornString: (json['bornString'] != null || json['_bornString'] != null)
           ? FhirString.fromJson({
               'value': json['bornString'],
               '_value': json['_bornString'],
@@ -191,24 +190,26 @@ class FamilyMemberHistory extends DomainResource {
               json['ageRange'] as Map<String, dynamic>,
             )
           : null,
-      ageString: json['ageString'] != null
+      ageString: (json['ageString'] != null || json['_ageString'] != null)
           ? FhirString.fromJson({
               'value': json['ageString'],
               '_value': json['_ageString'],
             })
           : null,
-      estimatedAge: json['estimatedAge'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['estimatedAge'],
-              '_value': json['_estimatedAge'],
-            })
-          : null,
-      deceasedBoolean: json['deceasedBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['deceasedBoolean'],
-              '_value': json['_deceasedBoolean'],
-            })
-          : null,
+      estimatedAge:
+          (json['estimatedAge'] != null || json['_estimatedAge'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['estimatedAge'],
+                  '_value': json['_estimatedAge'],
+                })
+              : null,
+      deceasedBoolean:
+          (json['deceasedBoolean'] != null || json['_deceasedBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['deceasedBoolean'],
+                  '_value': json['_deceasedBoolean'],
+                })
+              : null,
       deceasedAge: json['deceasedAge'] != null
           ? Age.fromJson(
               json['deceasedAge'] as Map<String, dynamic>,
@@ -219,18 +220,20 @@ class FamilyMemberHistory extends DomainResource {
               json['deceasedRange'] as Map<String, dynamic>,
             )
           : null,
-      deceasedDate: json['deceasedDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['deceasedDate'],
-              '_value': json['_deceasedDate'],
-            })
-          : null,
-      deceasedString: json['deceasedString'] != null
-          ? FhirString.fromJson({
-              'value': json['deceasedString'],
-              '_value': json['_deceasedString'],
-            })
-          : null,
+      deceasedDate:
+          (json['deceasedDate'] != null || json['_deceasedDate'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['deceasedDate'],
+                  '_value': json['_deceasedDate'],
+                })
+              : null,
+      deceasedString:
+          (json['deceasedString'] != null || json['_deceasedString'] != null)
+              ? FhirString.fromJson({
+                  'value': json['deceasedString'],
+                  '_value': json['_deceasedString'],
+                })
+              : null,
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
@@ -457,7 +460,11 @@ class FamilyMemberHistory extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -499,7 +506,11 @@ class FamilyMemberHistory extends DomainResource {
       }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson10 = status.toJson();
+    json['status'] = fieldJson10['value'];
+    if (fieldJson10['_value'] != null) {
+      json['_status'] = fieldJson10['_value'];
+    }
 
     if (dataAbsentReason != null) {
       json['dataAbsentReason'] = dataAbsentReason!.toJson();
@@ -751,9 +762,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   ) {
     return FamilyMemberHistoryCondition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -781,7 +790,8 @@ class FamilyMemberHistoryCondition extends BackboneElement {
               json['outcome'] as Map<String, dynamic>,
             )
           : null,
-      contributedToDeath: json['contributedToDeath'] != null
+      contributedToDeath: (json['contributedToDeath'] != null ||
+              json['_contributedToDeath'] != null)
           ? FhirBoolean.fromJson({
               'value': json['contributedToDeath'],
               '_value': json['_contributedToDeath'],
@@ -802,7 +812,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
               json['onsetPeriod'] as Map<String, dynamic>,
             )
           : null,
-      onsetString: json['onsetString'] != null
+      onsetString: (json['onsetString'] != null || json['_onsetString'] != null)
           ? FhirString.fromJson({
               'value': json['onsetString'],
               '_value': json['_onsetString'],

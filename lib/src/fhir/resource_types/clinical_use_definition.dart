@@ -46,22 +46,21 @@ class ClinicalUseDefinition extends DomainResource {
   ) {
     return ClinicalUseDefinition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -281,7 +280,11 @@ class ClinicalUseDefinition extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -305,7 +308,11 @@ class ClinicalUseDefinition extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['type'] = type.toJson();
+    final fieldJson8 = type.toJson();
+    json['type'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_type'] = fieldJson8['_value'];
+    }
 
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((e) => e.toJson()).toList();
@@ -435,9 +442,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
   ) {
     return ClinicalUseDefinitionContraindication(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -662,9 +667,7 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   ) {
     return ClinicalUseDefinitionOtherTherapy(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -826,9 +829,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   ) {
     return ClinicalUseDefinitionIndication(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -877,12 +878,13 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
               json['durationRange'] as Map<String, dynamic>,
             )
           : null,
-      durationString: json['durationString'] != null
-          ? FhirString.fromJson({
-              'value': json['durationString'],
-              '_value': json['_durationString'],
-            })
-          : null,
+      durationString:
+          (json['durationString'] != null || json['_durationString'] != null)
+              ? FhirString.fromJson({
+                  'value': json['durationString'],
+                  '_value': json['_durationString'],
+                })
+              : null,
       undesirableEffect: json['undesirableEffect'] != null
           ? (json['undesirableEffect'] as List<dynamic>)
               .map<Reference>(
@@ -1093,9 +1095,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
   ) {
     return ClinicalUseDefinitionInteraction(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1315,9 +1315,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
   ) {
     return ClinicalUseDefinitionInteractant(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1482,9 +1480,7 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
   ) {
     return ClinicalUseDefinitionUndesirableEffect(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1667,9 +1663,7 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
   ) {
     return ClinicalUseDefinitionWarning(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1689,7 +1683,7 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],

@@ -39,9 +39,7 @@ class Address extends DataType {
   ) {
     return Address(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -52,19 +50,19 @@ class Address extends DataType {
               )
               .toList()
           : null,
-      use: json['use'] != null
+      use: (json['use'] != null || json['_use'] != null)
           ? AddressUse.fromJson({
               'value': json['use'],
               '_value': json['_use'],
             })
           : null,
-      type: json['type'] != null
+      type: (json['type'] != null || json['_type'] != null)
           ? AddressType.fromJson({
               'value': json['type'],
               '_value': json['_type'],
             })
           : null,
-      text: json['text'] != null
+      text: (json['text'] != null || json['_text'] != null)
           ? FhirString.fromJson({
               'value': json['text'],
               '_value': json['_text'],
@@ -75,31 +73,31 @@ class Address extends DataType {
         json['_line'] as List<dynamic>?,
         fromJson: FhirString.fromJson,
       ),
-      city: json['city'] != null
+      city: (json['city'] != null || json['_city'] != null)
           ? FhirString.fromJson({
               'value': json['city'],
               '_value': json['_city'],
             })
           : null,
-      district: json['district'] != null
+      district: (json['district'] != null || json['_district'] != null)
           ? FhirString.fromJson({
               'value': json['district'],
               '_value': json['_district'],
             })
           : null,
-      state: json['state'] != null
+      state: (json['state'] != null || json['_state'] != null)
           ? FhirString.fromJson({
               'value': json['state'],
               '_value': json['_state'],
             })
           : null,
-      postalCode: json['postalCode'] != null
+      postalCode: (json['postalCode'] != null || json['_postalCode'] != null)
           ? FhirString.fromJson({
               'value': json['postalCode'],
               '_value': json['_postalCode'],
             })
           : null,
-      country: json['country'] != null
+      country: (json['country'] != null || json['_country'] != null)
           ? FhirString.fromJson({
               'value': json['country'],
               '_value': json['_country'],
@@ -211,11 +209,19 @@ class Address extends DataType {
     }
 
     if (use != null) {
-      json['use'] = use!.toJson();
+      final fieldJson1 = use!.toJson();
+      json['use'] = fieldJson1['value'];
+      if (fieldJson1['_value'] != null) {
+        json['_use'] = fieldJson1['_value'];
+      }
     }
 
     if (type != null) {
-      json['type'] = type!.toJson();
+      final fieldJson2 = type!.toJson();
+      json['type'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_type'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {

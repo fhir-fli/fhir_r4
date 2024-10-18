@@ -61,22 +61,21 @@ class CodeSystem extends DomainResource {
   ) {
     return CodeSystem(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -114,7 +113,7 @@ class CodeSystem extends DomainResource {
               )
               .toList()
           : null,
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUri.fromJson({
               'value': json['url'],
               '_value': json['_url'],
@@ -129,19 +128,19 @@ class CodeSystem extends DomainResource {
               )
               .toList()
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
             })
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
             })
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
@@ -151,19 +150,20 @@ class CodeSystem extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['experimental'],
-              '_value': json['_experimental'],
-            })
-          : null,
-      date: json['date'] != null
+      experimental:
+          (json['experimental'] != null || json['_experimental'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['experimental'],
+                  '_value': json['_experimental'],
+                })
+              : null,
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
             })
           : null,
-      publisher: json['publisher'] != null
+      publisher: (json['publisher'] != null || json['_publisher'] != null)
           ? FhirString.fromJson({
               'value': json['publisher'],
               '_value': json['_publisher'],
@@ -178,7 +178,7 @@ class CodeSystem extends DomainResource {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -202,59 +202,63 @@ class CodeSystem extends DomainResource {
               )
               .toList()
           : null,
-      purpose: json['purpose'] != null
+      purpose: (json['purpose'] != null || json['_purpose'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['purpose'],
               '_value': json['_purpose'],
             })
           : null,
-      copyright: json['copyright'] != null
+      copyright: (json['copyright'] != null || json['_copyright'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['copyright'],
               '_value': json['_copyright'],
             })
           : null,
-      caseSensitive: json['caseSensitive'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['caseSensitive'],
-              '_value': json['_caseSensitive'],
-            })
-          : null,
-      valueSet: json['valueSet'] != null
+      caseSensitive:
+          (json['caseSensitive'] != null || json['_caseSensitive'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['caseSensitive'],
+                  '_value': json['_caseSensitive'],
+                })
+              : null,
+      valueSet: (json['valueSet'] != null || json['_valueSet'] != null)
           ? FhirCanonical.fromJson({
               'value': json['valueSet'],
               '_value': json['_valueSet'],
             })
           : null,
-      hierarchyMeaning: json['hierarchyMeaning'] != null
+      hierarchyMeaning: (json['hierarchyMeaning'] != null ||
+              json['_hierarchyMeaning'] != null)
           ? CodeSystemHierarchyMeaning.fromJson({
               'value': json['hierarchyMeaning'],
               '_value': json['_hierarchyMeaning'],
             })
           : null,
-      compositional: json['compositional'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['compositional'],
-              '_value': json['_compositional'],
-            })
-          : null,
-      versionNeeded: json['versionNeeded'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['versionNeeded'],
-              '_value': json['_versionNeeded'],
-            })
-          : null,
+      compositional:
+          (json['compositional'] != null || json['_compositional'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['compositional'],
+                  '_value': json['_compositional'],
+                })
+              : null,
+      versionNeeded:
+          (json['versionNeeded'] != null || json['_versionNeeded'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['versionNeeded'],
+                  '_value': json['_versionNeeded'],
+                })
+              : null,
       content: CodeSystemContentMode.fromJson({
         'value': json['content'],
         '_value': json['_content'],
       }),
-      supplements: json['supplements'] != null
+      supplements: (json['supplements'] != null || json['_supplements'] != null)
           ? FhirCanonical.fromJson({
               'value': json['supplements'],
               '_value': json['_supplements'],
             })
           : null,
-      count: json['count'] != null
+      count: (json['count'] != null || json['_count'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['count'],
               '_value': json['_count'],
@@ -499,7 +503,11 @@ class CodeSystem extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -555,7 +563,11 @@ class CodeSystem extends DomainResource {
       }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson12 = status.toJson();
+    json['status'] = fieldJson12['value'];
+    if (fieldJson12['_value'] != null) {
+      json['_status'] = fieldJson12['_value'];
+    }
 
     if (experimental != null) {
       final fieldJson13 = experimental!.toJson();
@@ -634,7 +646,11 @@ class CodeSystem extends DomainResource {
     }
 
     if (hierarchyMeaning != null) {
-      json['hierarchyMeaning'] = hierarchyMeaning!.toJson();
+      final fieldJson24 = hierarchyMeaning!.toJson();
+      json['hierarchyMeaning'] = fieldJson24['value'];
+      if (fieldJson24['_value'] != null) {
+        json['_hierarchyMeaning'] = fieldJson24['_value'];
+      }
     }
 
     if (compositional != null) {
@@ -653,7 +669,11 @@ class CodeSystem extends DomainResource {
       }
     }
 
-    json['content'] = content.toJson();
+    final fieldJson27 = content.toJson();
+    json['content'] = fieldJson27['value'];
+    if (fieldJson27['_value'] != null) {
+      json['_content'] = fieldJson27['_value'];
+    }
 
     if (supplements != null) {
       final fieldJson28 = supplements!.toJson();
@@ -805,9 +825,7 @@ class CodeSystemFilter extends BackboneElement {
   ) {
     return CodeSystemFilter(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -831,7 +849,7 @@ class CodeSystemFilter extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -935,7 +953,11 @@ class CodeSystemFilter extends BackboneElement {
       }
     }
 
-    json['operator'] = operator_.map((e) => e.toJson()).toList();
+    final fieldJson4 = operator_.map((e) => e.toJson()).toList();
+    json['operator'] = fieldJson4.map((e) => e['value']).toList();
+    if (fieldJson4.any((e) => e['_value'] != null)) {
+      json['_operator'] = fieldJson4.map((e) => e['_value']).toList();
+    }
 
     final fieldJson5 = value.toJson();
     json['value'] = fieldJson5['value'];
@@ -1011,9 +1033,7 @@ class CodeSystemProperty extends BackboneElement {
   ) {
     return CodeSystemProperty(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1037,13 +1057,13 @@ class CodeSystemProperty extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      uri: json['uri'] != null
+      uri: (json['uri'] != null || json['_uri'] != null)
           ? FhirUri.fromJson({
               'value': json['uri'],
               '_value': json['_uri'],
             })
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -1154,7 +1174,11 @@ class CodeSystemProperty extends BackboneElement {
       }
     }
 
-    json['type'] = type.toJson();
+    final fieldJson5 = type.toJson();
+    json['type'] = fieldJson5['value'];
+    if (fieldJson5['_value'] != null) {
+      json['_type'] = fieldJson5['_value'];
+    }
 
     return json;
   }
@@ -1227,9 +1251,7 @@ class CodeSystemConcept extends BackboneElement {
   ) {
     return CodeSystemConcept(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1253,13 +1275,13 @@ class CodeSystemConcept extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      display: json['display'] != null
+      display: (json['display'] != null || json['_display'] != null)
           ? FhirString.fromJson({
               'value': json['display'],
               '_value': json['_display'],
             })
           : null,
-      definition: json['definition'] != null
+      definition: (json['definition'] != null || json['_definition'] != null)
           ? FhirString.fromJson({
               'value': json['definition'],
               '_value': json['_definition'],
@@ -1485,9 +1507,7 @@ class CodeSystemDesignation extends BackboneElement {
   ) {
     return CodeSystemDesignation(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1507,7 +1527,7 @@ class CodeSystemDesignation extends BackboneElement {
               )
               .toList()
           : null,
-      language: json['language'] != null
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -1591,7 +1611,11 @@ class CodeSystemDesignation extends BackboneElement {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (use != null) {
@@ -1673,9 +1697,7 @@ class CodeSystemProperty1 extends BackboneElement {
   ) {
     return CodeSystemProperty1(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1699,7 +1721,7 @@ class CodeSystemProperty1 extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      valueCode: json['valueCode'] != null
+      valueCode: (json['valueCode'] != null || json['_valueCode'] != null)
           ? FhirCode.fromJson({
               'value': json['valueCode'],
               '_value': json['_valueCode'],
@@ -1710,36 +1732,40 @@ class CodeSystemProperty1 extends BackboneElement {
               json['valueCoding'] as Map<String, dynamic>,
             )
           : null,
-      valueString: json['valueString'] != null
+      valueString: (json['valueString'] != null || json['_valueString'] != null)
           ? FhirString.fromJson({
               'value': json['valueString'],
               '_value': json['_valueString'],
             })
           : null,
-      valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson({
-              'value': json['valueInteger'],
-              '_value': json['_valueInteger'],
-            })
-          : null,
-      valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['valueBoolean'],
-              '_value': json['_valueBoolean'],
-            })
-          : null,
-      valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['valueDateTime'],
-              '_value': json['_valueDateTime'],
-            })
-          : null,
-      valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson({
-              'value': json['valueDecimal'],
-              '_value': json['_valueDecimal'],
-            })
-          : null,
+      valueInteger:
+          (json['valueInteger'] != null || json['_valueInteger'] != null)
+              ? FhirInteger.fromJson({
+                  'value': json['valueInteger'],
+                  '_value': json['_valueInteger'],
+                })
+              : null,
+      valueBoolean:
+          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['valueBoolean'],
+                  '_value': json['_valueBoolean'],
+                })
+              : null,
+      valueDateTime:
+          (json['valueDateTime'] != null || json['_valueDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['valueDateTime'],
+                  '_value': json['_valueDateTime'],
+                })
+              : null,
+      valueDecimal:
+          (json['valueDecimal'] != null || json['_valueDecimal'] != null)
+              ? FhirDecimal.fromJson({
+                  'value': json['valueDecimal'],
+                  '_value': json['_valueDecimal'],
+                })
+              : null,
     );
   }
 

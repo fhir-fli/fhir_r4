@@ -53,22 +53,21 @@ class RequestGroup extends DomainResource {
   ) {
     return RequestGroup(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -156,7 +155,7 @@ class RequestGroup extends DomainResource {
         'value': json['intent'],
         '_value': json['_intent'],
       }),
-      priority: json['priority'] != null
+      priority: (json['priority'] != null || json['_priority'] != null)
           ? RequestPriority.fromJson({
               'value': json['priority'],
               '_value': json['_priority'],
@@ -177,7 +176,7 @@ class RequestGroup extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      authoredOn: json['authoredOn'] != null
+      authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({
               'value': json['authoredOn'],
               '_value': json['_authoredOn'],
@@ -371,7 +370,11 @@ class RequestGroup extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -425,12 +428,24 @@ class RequestGroup extends DomainResource {
       json['groupIdentifier'] = groupIdentifier!.toJson();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson13 = status.toJson();
+    json['status'] = fieldJson13['value'];
+    if (fieldJson13['_value'] != null) {
+      json['_status'] = fieldJson13['_value'];
+    }
 
-    json['intent'] = intent.toJson();
+    final fieldJson14 = intent.toJson();
+    json['intent'] = fieldJson14['value'];
+    if (fieldJson14['_value'] != null) {
+      json['_intent'] = fieldJson14['_value'];
+    }
 
     if (priority != null) {
-      json['priority'] = priority!.toJson();
+      final fieldJson15 = priority!.toJson();
+      json['priority'] = fieldJson15['value'];
+      if (fieldJson15['_value'] != null) {
+        json['_priority'] = fieldJson15['_value'];
+      }
     }
 
     if (code != null) {
@@ -600,9 +615,7 @@ class RequestGroupAction extends BackboneElement {
   ) {
     return RequestGroupAction(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -622,31 +635,32 @@ class RequestGroupAction extends BackboneElement {
               )
               .toList()
           : null,
-      prefix: json['prefix'] != null
+      prefix: (json['prefix'] != null || json['_prefix'] != null)
           ? FhirString.fromJson({
               'value': json['prefix'],
               '_value': json['_prefix'],
             })
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
             })
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
             })
           : null,
-      textEquivalent: json['textEquivalent'] != null
-          ? FhirString.fromJson({
-              'value': json['textEquivalent'],
-              '_value': json['_textEquivalent'],
-            })
-          : null,
-      priority: json['priority'] != null
+      textEquivalent:
+          (json['textEquivalent'] != null || json['_textEquivalent'] != null)
+              ? FhirString.fromJson({
+                  'value': json['textEquivalent'],
+                  '_value': json['_textEquivalent'],
+                })
+              : null,
+      priority: (json['priority'] != null || json['_priority'] != null)
           ? RequestPriority.fromJson({
               'value': json['priority'],
               '_value': json['_priority'],
@@ -688,12 +702,13 @@ class RequestGroupAction extends BackboneElement {
               )
               .toList()
           : null,
-      timingDateTime: json['timingDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['timingDateTime'],
-              '_value': json['_timingDateTime'],
-            })
-          : null,
+      timingDateTime:
+          (json['timingDateTime'] != null || json['_timingDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['timingDateTime'],
+                  '_value': json['_timingDateTime'],
+                })
+              : null,
       timingAge: json['timingAge'] != null
           ? Age.fromJson(
               json['timingAge'] as Map<String, dynamic>,
@@ -733,31 +748,36 @@ class RequestGroupAction extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      groupingBehavior: json['groupingBehavior'] != null
+      groupingBehavior: (json['groupingBehavior'] != null ||
+              json['_groupingBehavior'] != null)
           ? ActionGroupingBehavior.fromJson({
               'value': json['groupingBehavior'],
               '_value': json['_groupingBehavior'],
             })
           : null,
-      selectionBehavior: json['selectionBehavior'] != null
+      selectionBehavior: (json['selectionBehavior'] != null ||
+              json['_selectionBehavior'] != null)
           ? ActionSelectionBehavior.fromJson({
               'value': json['selectionBehavior'],
               '_value': json['_selectionBehavior'],
             })
           : null,
-      requiredBehavior: json['requiredBehavior'] != null
+      requiredBehavior: (json['requiredBehavior'] != null ||
+              json['_requiredBehavior'] != null)
           ? ActionRequiredBehavior.fromJson({
               'value': json['requiredBehavior'],
               '_value': json['_requiredBehavior'],
             })
           : null,
-      precheckBehavior: json['precheckBehavior'] != null
+      precheckBehavior: (json['precheckBehavior'] != null ||
+              json['_precheckBehavior'] != null)
           ? ActionPrecheckBehavior.fromJson({
               'value': json['precheckBehavior'],
               '_value': json['_precheckBehavior'],
             })
           : null,
-      cardinalityBehavior: json['cardinalityBehavior'] != null
+      cardinalityBehavior: (json['cardinalityBehavior'] != null ||
+              json['_cardinalityBehavior'] != null)
           ? ActionCardinalityBehavior.fromJson({
               'value': json['cardinalityBehavior'],
               '_value': json['_cardinalityBehavior'],
@@ -974,7 +994,11 @@ class RequestGroupAction extends BackboneElement {
     }
 
     if (priority != null) {
-      json['priority'] = priority!.toJson();
+      final fieldJson6 = priority!.toJson();
+      json['priority'] = fieldJson6['value'];
+      if (fieldJson6['_value'] != null) {
+        json['_priority'] = fieldJson6['_value'];
+      }
     }
 
     if (code != null && code!.isNotEmpty) {
@@ -1030,23 +1054,43 @@ class RequestGroupAction extends BackboneElement {
     }
 
     if (groupingBehavior != null) {
-      json['groupingBehavior'] = groupingBehavior!.toJson();
+      final fieldJson19 = groupingBehavior!.toJson();
+      json['groupingBehavior'] = fieldJson19['value'];
+      if (fieldJson19['_value'] != null) {
+        json['_groupingBehavior'] = fieldJson19['_value'];
+      }
     }
 
     if (selectionBehavior != null) {
-      json['selectionBehavior'] = selectionBehavior!.toJson();
+      final fieldJson20 = selectionBehavior!.toJson();
+      json['selectionBehavior'] = fieldJson20['value'];
+      if (fieldJson20['_value'] != null) {
+        json['_selectionBehavior'] = fieldJson20['_value'];
+      }
     }
 
     if (requiredBehavior != null) {
-      json['requiredBehavior'] = requiredBehavior!.toJson();
+      final fieldJson21 = requiredBehavior!.toJson();
+      json['requiredBehavior'] = fieldJson21['value'];
+      if (fieldJson21['_value'] != null) {
+        json['_requiredBehavior'] = fieldJson21['_value'];
+      }
     }
 
     if (precheckBehavior != null) {
-      json['precheckBehavior'] = precheckBehavior!.toJson();
+      final fieldJson22 = precheckBehavior!.toJson();
+      json['precheckBehavior'] = fieldJson22['value'];
+      if (fieldJson22['_value'] != null) {
+        json['_precheckBehavior'] = fieldJson22['_value'];
+      }
     }
 
     if (cardinalityBehavior != null) {
-      json['cardinalityBehavior'] = cardinalityBehavior!.toJson();
+      final fieldJson23 = cardinalityBehavior!.toJson();
+      json['cardinalityBehavior'] = fieldJson23['value'];
+      if (fieldJson23['_value'] != null) {
+        json['_cardinalityBehavior'] = fieldJson23['_value'];
+      }
     }
 
     if (resource != null) {
@@ -1163,9 +1207,7 @@ class RequestGroupCondition extends BackboneElement {
   ) {
     return RequestGroupCondition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1259,7 +1301,11 @@ class RequestGroupCondition extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['kind'] = kind.toJson();
+    final fieldJson2 = kind.toJson();
+    json['kind'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_kind'] = fieldJson2['_value'];
+    }
 
     if (expression != null) {
       json['expression'] = expression!.toJson();
@@ -1329,9 +1375,7 @@ class RequestGroupRelatedAction extends BackboneElement {
   ) {
     return RequestGroupRelatedAction(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1449,7 +1493,11 @@ class RequestGroupRelatedAction extends BackboneElement {
       json['_actionId'] = fieldJson2['_value'];
     }
 
-    json['relationship'] = relationship.toJson();
+    final fieldJson3 = relationship.toJson();
+    json['relationship'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_relationship'] = fieldJson3['_value'];
+    }
 
     if (offsetDuration != null) {
       json['offsetDuration'] = offsetDuration!.toJson();

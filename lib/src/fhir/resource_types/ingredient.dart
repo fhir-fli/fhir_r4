@@ -41,22 +41,21 @@ class Ingredient extends DomainResource {
   ) {
     return Ingredient(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -124,7 +123,8 @@ class Ingredient extends DomainResource {
               )
               .toList()
           : null,
-      allergenicIndicator: json['allergenicIndicator'] != null
+      allergenicIndicator: (json['allergenicIndicator'] != null ||
+              json['_allergenicIndicator'] != null)
           ? FhirBoolean.fromJson({
               'value': json['allergenicIndicator'],
               '_value': json['_allergenicIndicator'],
@@ -249,7 +249,11 @@ class Ingredient extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -273,7 +277,11 @@ class Ingredient extends DomainResource {
       json['identifier'] = identifier!.toJson();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     if (for_ != null && for_!.isNotEmpty) {
       json['for'] = for_!.map((e) => e.toJson()).toList();
@@ -387,9 +395,7 @@ class IngredientManufacturer extends BackboneElement {
   ) {
     return IngredientManufacturer(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -409,7 +415,7 @@ class IngredientManufacturer extends BackboneElement {
               )
               .toList()
           : null,
-      role: json['role'] != null
+      role: (json['role'] != null || json['_role'] != null)
           ? IngredientManufacturerRole.fromJson({
               'value': json['role'],
               '_value': json['_role'],
@@ -486,7 +492,11 @@ class IngredientManufacturer extends BackboneElement {
     }
 
     if (role != null) {
-      json['role'] = role!.toJson();
+      final fieldJson2 = role!.toJson();
+      json['role'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_role'] = fieldJson2['_value'];
+      }
     }
 
     json['manufacturer'] = manufacturer.toJson();
@@ -552,9 +562,7 @@ class IngredientSubstance extends BackboneElement {
   ) {
     return IngredientSubstance(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -732,9 +740,7 @@ class IngredientStrength extends BackboneElement {
   ) {
     return IngredientStrength(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -764,7 +770,8 @@ class IngredientStrength extends BackboneElement {
               json['presentationRatioRange'] as Map<String, dynamic>,
             )
           : null,
-      textPresentation: json['textPresentation'] != null
+      textPresentation: (json['textPresentation'] != null ||
+              json['_textPresentation'] != null)
           ? FhirString.fromJson({
               'value': json['textPresentation'],
               '_value': json['_textPresentation'],
@@ -780,13 +787,15 @@ class IngredientStrength extends BackboneElement {
               json['concentrationRatioRange'] as Map<String, dynamic>,
             )
           : null,
-      textConcentration: json['textConcentration'] != null
+      textConcentration: (json['textConcentration'] != null ||
+              json['_textConcentration'] != null)
           ? FhirString.fromJson({
               'value': json['textConcentration'],
               '_value': json['_textConcentration'],
             })
           : null,
-      measurementPoint: json['measurementPoint'] != null
+      measurementPoint: (json['measurementPoint'] != null ||
+              json['_measurementPoint'] != null)
           ? FhirString.fromJson({
               'value': json['measurementPoint'],
               '_value': json['_measurementPoint'],
@@ -1060,9 +1069,7 @@ class IngredientReferenceStrength extends BackboneElement {
   ) {
     return IngredientReferenceStrength(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1097,7 +1104,8 @@ class IngredientReferenceStrength extends BackboneElement {
               json['strengthRatioRange'] as Map<String, dynamic>,
             )
           : null,
-      measurementPoint: json['measurementPoint'] != null
+      measurementPoint: (json['measurementPoint'] != null ||
+              json['_measurementPoint'] != null)
           ? FhirString.fromJson({
               'value': json['measurementPoint'],
               '_value': json['_measurementPoint'],

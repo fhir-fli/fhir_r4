@@ -29,9 +29,7 @@ class Contributor extends DataType {
   ) {
     return Contributor(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -124,7 +122,11 @@ class Contributor extends DataType {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    json['type'] = type.toJson();
+    final fieldJson1 = type.toJson();
+    json['type'] = fieldJson1['value'];
+    if (fieldJson1['_value'] != null) {
+      json['_type'] = fieldJson1['_value'];
+    }
 
     final fieldJson2 = name.toJson();
     json['name'] = fieldJson2['value'];

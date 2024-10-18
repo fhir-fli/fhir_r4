@@ -61,22 +61,21 @@ class ClinicalImpression extends DomainResource {
   ) {
     return ClinicalImpression(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -137,7 +136,7 @@ class ClinicalImpression extends DomainResource {
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -151,7 +150,8 @@ class ClinicalImpression extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      effectiveDateTime: json['effectiveDateTime'] != null
+      effectiveDateTime: (json['effectiveDateTime'] != null ||
+              json['_effectiveDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['effectiveDateTime'],
               '_value': json['_effectiveDateTime'],
@@ -162,7 +162,7 @@ class ClinicalImpression extends DomainResource {
               json['effectivePeriod'] as Map<String, dynamic>,
             )
           : null,
-      date: json['date'] != null
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
@@ -201,7 +201,7 @@ class ClinicalImpression extends DomainResource {
         json['_protocol'] as List<dynamic>?,
         fromJson: FhirUri.fromJson,
       ),
-      summary: json['summary'] != null
+      summary: (json['summary'] != null || json['_summary'] != null)
           ? FhirString.fromJson({
               'value': json['summary'],
               '_value': json['_summary'],
@@ -413,7 +413,11 @@ class ClinicalImpression extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -437,7 +441,11 @@ class ClinicalImpression extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     if (statusReason != null) {
       json['statusReason'] = statusReason!.toJson();
@@ -650,9 +658,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
   ) {
     return ClinicalImpressionInvestigation(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -820,9 +826,7 @@ class ClinicalImpressionFinding extends BackboneElement {
   ) {
     return ClinicalImpressionFinding(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -852,7 +856,7 @@ class ClinicalImpressionFinding extends BackboneElement {
               json['itemReference'] as Map<String, dynamic>,
             )
           : null,
-      basis: json['basis'] != null
+      basis: (json['basis'] != null || json['_basis'] != null)
           ? FhirString.fromJson({
               'value': json['basis'],
               '_value': json['_basis'],

@@ -55,22 +55,21 @@ class MedicationKnowledge extends DomainResource {
   ) {
     return MedicationKnowledge(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -113,7 +112,7 @@ class MedicationKnowledge extends DomainResource {
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      status: json['status'] != null
+      status: (json['status'] != null || json['_status'] != null)
           ? MedicationKnowledgeStatusCodes.fromJson({
               'value': json['status'],
               '_value': json['_status'],
@@ -184,7 +183,8 @@ class MedicationKnowledge extends DomainResource {
               )
               .toList()
           : null,
-      preparationInstruction: json['preparationInstruction'] != null
+      preparationInstruction: (json['preparationInstruction'] != null ||
+              json['_preparationInstruction'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['preparationInstruction'],
               '_value': json['_preparationInstruction'],
@@ -450,7 +450,11 @@ class MedicationKnowledge extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -475,7 +479,11 @@ class MedicationKnowledge extends DomainResource {
     }
 
     if (status != null) {
-      json['status'] = status!.toJson();
+      final fieldJson8 = status!.toJson();
+      json['status'] = fieldJson8['value'];
+      if (fieldJson8['_value'] != null) {
+        json['_status'] = fieldJson8['_value'];
+      }
     }
 
     if (manufacturer != null) {
@@ -691,9 +699,7 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
   ) {
     return MedicationKnowledgeRelatedMedicationKnowledge(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -855,9 +861,7 @@ class MedicationKnowledgeMonograph extends BackboneElement {
   ) {
     return MedicationKnowledgeMonograph(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1023,9 +1027,7 @@ class MedicationKnowledgeIngredient extends BackboneElement {
   ) {
     return MedicationKnowledgeIngredient(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1055,7 +1057,7 @@ class MedicationKnowledgeIngredient extends BackboneElement {
               json['itemReference'] as Map<String, dynamic>,
             )
           : null,
-      isActive: json['isActive'] != null
+      isActive: (json['isActive'] != null || json['_isActive'] != null)
           ? FhirBoolean.fromJson({
               'value': json['isActive'],
               '_value': json['_isActive'],
@@ -1229,9 +1231,7 @@ class MedicationKnowledgeCost extends BackboneElement {
   ) {
     return MedicationKnowledgeCost(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1254,7 +1254,7 @@ class MedicationKnowledgeCost extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      source: json['source'] != null
+      source: (json['source'] != null || json['_source'] != null)
           ? FhirString.fromJson({
               'value': json['source'],
               '_value': json['_source'],
@@ -1407,9 +1407,7 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
   ) {
     return MedicationKnowledgeMonitoringProgram(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1434,7 +1432,7 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
@@ -1579,9 +1577,7 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
   ) {
     return MedicationKnowledgeAdministrationGuidelines(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1789,9 +1785,7 @@ class MedicationKnowledgeDosage extends BackboneElement {
   ) {
     return MedicationKnowledgeDosage(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1955,9 +1949,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
   ) {
     return MedicationKnowledgePatientCharacteristics(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2147,9 +2139,7 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
   ) {
     return MedicationKnowledgeMedicineClassification(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2315,9 +2305,7 @@ class MedicationKnowledgePackaging extends BackboneElement {
   ) {
     return MedicationKnowledgePackaging(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2485,9 +2473,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   ) {
     return MedicationKnowledgeDrugCharacteristic(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2517,7 +2503,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
               json['valueCodeableConcept'] as Map<String, dynamic>,
             )
           : null,
-      valueString: json['valueString'] != null
+      valueString: (json['valueString'] != null || json['_valueString'] != null)
           ? FhirString.fromJson({
               'value': json['valueString'],
               '_value': json['_valueString'],
@@ -2528,7 +2514,8 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
               json['valueQuantity'] as Map<String, dynamic>,
             )
           : null,
-      valueBase64Binary: json['valueBase64Binary'] != null
+      valueBase64Binary: (json['valueBase64Binary'] != null ||
+              json['_valueBase64Binary'] != null)
           ? FhirBase64Binary.fromJson({
               'value': json['valueBase64Binary'],
               '_value': json['_valueBase64Binary'],
@@ -2708,9 +2695,7 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
   ) {
     return MedicationKnowledgeRegulatory(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2910,9 +2895,7 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
   ) {
     return MedicationKnowledgeSubstitution(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -3072,9 +3055,7 @@ class MedicationKnowledgeSchedule extends BackboneElement {
   ) {
     return MedicationKnowledgeSchedule(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -3219,9 +3200,7 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
   ) {
     return MedicationKnowledgeMaxDispense(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -3382,9 +3361,7 @@ class MedicationKnowledgeKinetics extends BackboneElement {
   ) {
     return MedicationKnowledgeKinetics(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)

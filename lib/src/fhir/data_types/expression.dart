@@ -33,9 +33,7 @@ class FhirExpression extends DataType {
   ) {
     return FhirExpression(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -46,13 +44,13 @@ class FhirExpression extends DataType {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
             })
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirId.fromJson({
               'value': json['name'],
               '_value': json['_name'],
@@ -62,13 +60,13 @@ class FhirExpression extends DataType {
         'value': json['language'],
         '_value': json['_language'],
       }),
-      expression: json['expression'] != null
+      expression: (json['expression'] != null || json['_expression'] != null)
           ? FhirString.fromJson({
               'value': json['expression'],
               '_value': json['_expression'],
             })
           : null,
-      reference: json['reference'] != null
+      reference: (json['reference'] != null || json['_reference'] != null)
           ? FhirUri.fromJson({
               'value': json['reference'],
               '_value': json['_reference'],
@@ -163,7 +161,11 @@ class FhirExpression extends DataType {
       }
     }
 
-    json['language'] = language.toJson();
+    final fieldJson3 = language.toJson();
+    json['language'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_language'] = fieldJson3['_value'];
+    }
 
     if (expression != null) {
       final fieldJson4 = expression!.toJson();

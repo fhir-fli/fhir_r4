@@ -59,22 +59,21 @@ class Condition extends DomainResource {
   ) {
     return Condition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -167,12 +166,13 @@ class Condition extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      onsetDateTime: json['onsetDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['onsetDateTime'],
-              '_value': json['_onsetDateTime'],
-            })
-          : null,
+      onsetDateTime:
+          (json['onsetDateTime'] != null || json['_onsetDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['onsetDateTime'],
+                  '_value': json['_onsetDateTime'],
+                })
+              : null,
       onsetAge: json['onsetAge'] != null
           ? Age.fromJson(
               json['onsetAge'] as Map<String, dynamic>,
@@ -188,13 +188,14 @@ class Condition extends DomainResource {
               json['onsetRange'] as Map<String, dynamic>,
             )
           : null,
-      onsetString: json['onsetString'] != null
+      onsetString: (json['onsetString'] != null || json['_onsetString'] != null)
           ? FhirString.fromJson({
               'value': json['onsetString'],
               '_value': json['_onsetString'],
             })
           : null,
-      abatementDateTime: json['abatementDateTime'] != null
+      abatementDateTime: (json['abatementDateTime'] != null ||
+              json['_abatementDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['abatementDateTime'],
               '_value': json['_abatementDateTime'],
@@ -215,18 +216,20 @@ class Condition extends DomainResource {
               json['abatementRange'] as Map<String, dynamic>,
             )
           : null,
-      abatementString: json['abatementString'] != null
-          ? FhirString.fromJson({
-              'value': json['abatementString'],
-              '_value': json['_abatementString'],
-            })
-          : null,
-      recordedDate: json['recordedDate'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['recordedDate'],
-              '_value': json['_recordedDate'],
-            })
-          : null,
+      abatementString:
+          (json['abatementString'] != null || json['_abatementString'] != null)
+              ? FhirString.fromJson({
+                  'value': json['abatementString'],
+                  '_value': json['_abatementString'],
+                })
+              : null,
+      recordedDate:
+          (json['recordedDate'] != null || json['_recordedDate'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['recordedDate'],
+                  '_value': json['_recordedDate'],
+                })
+              : null,
       recorder: json['recorder'] != null
           ? Reference.fromJson(
               json['recorder'] as Map<String, dynamic>,
@@ -458,7 +461,11 @@ class Condition extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -715,9 +722,7 @@ class ConditionStage extends BackboneElement {
   ) {
     return ConditionStage(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -903,9 +908,7 @@ class ConditionEvidence extends BackboneElement {
   ) {
     return ConditionEvidence(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)

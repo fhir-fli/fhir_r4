@@ -15,7 +15,11 @@ extension FhirPositiveIntExtension on num {
 /// Represents the FHIR primitive type `integer`.
 class FhirPositiveInt extends FhirNumber {
   /// Constructor that ensures valid input.
-  FhirPositiveInt(int? super.input, [super.element]);
+  FhirPositiveInt(int? super.input, [super.element]) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Factory constructor to create [FhirPositiveInt] from JSON input.
   factory FhirPositiveInt.fromJson(Map<String, dynamic> json) {

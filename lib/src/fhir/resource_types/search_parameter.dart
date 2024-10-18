@@ -60,22 +60,21 @@ class SearchParameter extends DomainResource {
   ) {
     return SearchParameter(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -117,7 +116,7 @@ class SearchParameter extends DomainResource {
         'value': json['url'],
         '_value': json['_url'],
       }),
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
@@ -127,7 +126,7 @@ class SearchParameter extends DomainResource {
         'value': json['name'],
         '_value': json['_name'],
       }),
-      derivedFrom: json['derivedFrom'] != null
+      derivedFrom: (json['derivedFrom'] != null || json['_derivedFrom'] != null)
           ? FhirCanonical.fromJson({
               'value': json['derivedFrom'],
               '_value': json['_derivedFrom'],
@@ -137,19 +136,20 @@ class SearchParameter extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['experimental'],
-              '_value': json['_experimental'],
-            })
-          : null,
-      date: json['date'] != null
+      experimental:
+          (json['experimental'] != null || json['_experimental'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['experimental'],
+                  '_value': json['_experimental'],
+                })
+              : null,
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
             })
           : null,
-      publisher: json['publisher'] != null
+      publisher: (json['publisher'] != null || json['_publisher'] != null)
           ? FhirString.fromJson({
               'value': json['publisher'],
               '_value': json['_publisher'],
@@ -186,7 +186,7 @@ class SearchParameter extends DomainResource {
               )
               .toList()
           : null,
-      purpose: json['purpose'] != null
+      purpose: (json['purpose'] != null || json['_purpose'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['purpose'],
               '_value': json['_purpose'],
@@ -207,19 +207,19 @@ class SearchParameter extends DomainResource {
         'value': json['type'],
         '_value': json['_type'],
       }),
-      expression: json['expression'] != null
+      expression: (json['expression'] != null || json['_expression'] != null)
           ? FhirString.fromJson({
               'value': json['expression'],
               '_value': json['_expression'],
             })
           : null,
-      xpath: json['xpath'] != null
+      xpath: (json['xpath'] != null || json['_xpath'] != null)
           ? FhirString.fromJson({
               'value': json['xpath'],
               '_value': json['_xpath'],
             })
           : null,
-      xpathUsage: json['xpathUsage'] != null
+      xpathUsage: (json['xpathUsage'] != null || json['_xpathUsage'] != null)
           ? XPathUsageType.fromJson({
               'value': json['xpathUsage'],
               '_value': json['_xpathUsage'],
@@ -230,13 +230,13 @@ class SearchParameter extends DomainResource {
         json['_target'] as List<dynamic>?,
         fromJson: FhirCode.fromJson,
       ),
-      multipleOr: json['multipleOr'] != null
+      multipleOr: (json['multipleOr'] != null || json['_multipleOr'] != null)
           ? FhirBoolean.fromJson({
               'value': json['multipleOr'],
               '_value': json['_multipleOr'],
             })
           : null,
-      multipleAnd: json['multipleAnd'] != null
+      multipleAnd: (json['multipleAnd'] != null || json['_multipleAnd'] != null)
           ? FhirBoolean.fromJson({
               'value': json['multipleAnd'],
               '_value': json['_multipleAnd'],
@@ -477,7 +477,11 @@ class SearchParameter extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -525,7 +529,11 @@ class SearchParameter extends DomainResource {
       }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson11 = status.toJson();
+    json['status'] = fieldJson11['value'];
+    if (fieldJson11['_value'] != null) {
+      json['_status'] = fieldJson11['_value'];
+    }
 
     if (experimental != null) {
       final fieldJson12 = experimental!.toJson();
@@ -589,7 +597,11 @@ class SearchParameter extends DomainResource {
       json['_base'] = fieldJson21.map((e) => e['_value']).toList();
     }
 
-    json['type'] = type.toJson();
+    final fieldJson22 = type.toJson();
+    json['type'] = fieldJson22['value'];
+    if (fieldJson22['_value'] != null) {
+      json['_type'] = fieldJson22['_value'];
+    }
 
     if (expression != null) {
       final fieldJson23 = expression!.toJson();
@@ -608,7 +620,11 @@ class SearchParameter extends DomainResource {
     }
 
     if (xpathUsage != null) {
-      json['xpathUsage'] = xpathUsage!.toJson();
+      final fieldJson25 = xpathUsage!.toJson();
+      json['xpathUsage'] = fieldJson25['value'];
+      if (fieldJson25['_value'] != null) {
+        json['_xpathUsage'] = fieldJson25['_value'];
+      }
     }
 
     if (target != null && target!.isNotEmpty) {
@@ -636,11 +652,19 @@ class SearchParameter extends DomainResource {
     }
 
     if (comparator != null && comparator!.isNotEmpty) {
-      json['comparator'] = comparator!.map((e) => e.toJson()).toList();
+      final fieldJson29 = comparator!.map((e) => e.toJson()).toList();
+      json['comparator'] = fieldJson29.map((e) => e['value']).toList();
+      if (fieldJson29.any((e) => e['_value'] != null)) {
+        json['_comparator'] = fieldJson29.map((e) => e['_value']).toList();
+      }
     }
 
     if (modifier != null && modifier!.isNotEmpty) {
-      json['modifier'] = modifier!.map((e) => e.toJson()).toList();
+      final fieldJson30 = modifier!.map((e) => e.toJson()).toList();
+      json['modifier'] = fieldJson30.map((e) => e['value']).toList();
+      if (fieldJson30.any((e) => e['_value'] != null)) {
+        json['_modifier'] = fieldJson30.map((e) => e['_value']).toList();
+      }
     }
 
     if (chain != null && chain!.isNotEmpty) {
@@ -774,9 +798,7 @@ class SearchParameterComponent extends BackboneElement {
   ) {
     return SearchParameterComponent(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)

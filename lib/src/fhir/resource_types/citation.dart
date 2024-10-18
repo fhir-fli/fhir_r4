@@ -66,22 +66,21 @@ class Citation extends DomainResource {
   ) {
     return Citation(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -119,7 +118,7 @@ class Citation extends DomainResource {
               )
               .toList()
           : null,
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUri.fromJson({
               'value': json['url'],
               '_value': json['_url'],
@@ -134,19 +133,19 @@ class Citation extends DomainResource {
               )
               .toList()
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
             })
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
             })
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
@@ -156,19 +155,20 @@ class Citation extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['experimental'],
-              '_value': json['_experimental'],
-            })
-          : null,
-      date: json['date'] != null
+      experimental:
+          (json['experimental'] != null || json['_experimental'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['experimental'],
+                  '_value': json['_experimental'],
+                })
+              : null,
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
             })
           : null,
-      publisher: json['publisher'] != null
+      publisher: (json['publisher'] != null || json['_publisher'] != null)
           ? FhirString.fromJson({
               'value': json['publisher'],
               '_value': json['_publisher'],
@@ -183,7 +183,7 @@ class Citation extends DomainResource {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -207,30 +207,32 @@ class Citation extends DomainResource {
               )
               .toList()
           : null,
-      purpose: json['purpose'] != null
+      purpose: (json['purpose'] != null || json['_purpose'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['purpose'],
               '_value': json['_purpose'],
             })
           : null,
-      copyright: json['copyright'] != null
+      copyright: (json['copyright'] != null || json['_copyright'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['copyright'],
               '_value': json['_copyright'],
             })
           : null,
-      approvalDate: json['approvalDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['approvalDate'],
-              '_value': json['_approvalDate'],
-            })
-          : null,
-      lastReviewDate: json['lastReviewDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['lastReviewDate'],
-              '_value': json['_lastReviewDate'],
-            })
-          : null,
+      approvalDate:
+          (json['approvalDate'] != null || json['_approvalDate'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['approvalDate'],
+                  '_value': json['_approvalDate'],
+                })
+              : null,
+      lastReviewDate:
+          (json['lastReviewDate'] != null || json['_lastReviewDate'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['lastReviewDate'],
+                  '_value': json['_lastReviewDate'],
+                })
+              : null,
       effectivePeriod: json['effectivePeriod'] != null
           ? Period.fromJson(
               json['effectivePeriod'] as Map<String, dynamic>,
@@ -543,7 +545,11 @@ class Citation extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -599,7 +605,11 @@ class Citation extends DomainResource {
       }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson12 = status.toJson();
+    json['status'] = fieldJson12['value'];
+    if (fieldJson12['_value'] != null) {
+      json['_status'] = fieldJson12['_value'];
+    }
 
     if (experimental != null) {
       final fieldJson13 = experimental!.toJson();
@@ -850,9 +860,7 @@ class CitationSummary extends BackboneElement {
   ) {
     return CitationSummary(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1016,9 +1024,7 @@ class CitationClassification extends BackboneElement {
   ) {
     return CitationClassification(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1186,9 +1192,7 @@ class CitationStatusDate extends BackboneElement {
   ) {
     return CitationStatusDate(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1211,7 +1215,7 @@ class CitationStatusDate extends BackboneElement {
       activity: CodeableConcept.fromJson(
         json['activity'] as Map<String, dynamic>,
       ),
-      actual: json['actual'] != null
+      actual: (json['actual'] != null || json['_actual'] != null)
           ? FhirBoolean.fromJson({
               'value': json['actual'],
               '_value': json['_actual'],
@@ -1367,9 +1371,7 @@ class CitationRelatesTo extends BackboneElement {
   ) {
     return CitationRelatesTo(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1401,7 +1403,7 @@ class CitationRelatesTo extends BackboneElement {
               )
               .toList()
           : null,
-      targetUri: json['targetUri'] != null
+      targetUri: (json['targetUri'] != null || json['_targetUri'] != null)
           ? FhirUri.fromJson({
               'value': json['targetUri'],
               '_value': json['_targetUri'],
@@ -1611,9 +1613,7 @@ class CitationCitedArtifact extends BackboneElement {
   ) {
     return CitationCitedArtifact(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1651,12 +1651,13 @@ class CitationCitedArtifact extends BackboneElement {
               )
               .toList()
           : null,
-      dateAccessed: json['dateAccessed'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['dateAccessed'],
-              '_value': json['_dateAccessed'],
-            })
-          : null,
+      dateAccessed:
+          (json['dateAccessed'] != null || json['_dateAccessed'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['dateAccessed'],
+                  '_value': json['_dateAccessed'],
+                })
+              : null,
       version: json['version'] != null
           ? CitationVersion.fromJson(
               json['version'] as Map<String, dynamic>,
@@ -2027,9 +2028,7 @@ class CitationVersion extends BackboneElement {
   ) {
     return CitationVersion(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2194,9 +2193,7 @@ class CitationStatusDate1 extends BackboneElement {
   ) {
     return CitationStatusDate1(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2219,7 +2216,7 @@ class CitationStatusDate1 extends BackboneElement {
       activity: CodeableConcept.fromJson(
         json['activity'] as Map<String, dynamic>,
       ),
-      actual: json['actual'] != null
+      actual: (json['actual'] != null || json['_actual'] != null)
           ? FhirBoolean.fromJson({
               'value': json['actual'],
               '_value': json['_actual'],
@@ -2372,9 +2369,7 @@ class CitationTitle extends BackboneElement {
   ) {
     return CitationTitle(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2559,9 +2554,7 @@ class CitationAbstract extends BackboneElement {
   ) {
     return CitationAbstract(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2595,7 +2588,7 @@ class CitationAbstract extends BackboneElement {
         'value': json['text'],
         '_value': json['_text'],
       }),
-      copyright: json['copyright'] != null
+      copyright: (json['copyright'] != null || json['_copyright'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['copyright'],
               '_value': json['_copyright'],
@@ -2761,9 +2754,7 @@ class CitationPart extends BackboneElement {
   ) {
     return CitationPart(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2788,7 +2779,7 @@ class CitationPart extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      value: json['value'] != null
+      value: (json['value'] != null || json['_value'] != null)
           ? FhirString.fromJson({
               'value': json['value'],
               '_value': json['_value'],
@@ -2950,9 +2941,7 @@ class CitationRelatesTo1 extends BackboneElement {
   ) {
     return CitationRelatesTo1(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2984,7 +2973,7 @@ class CitationRelatesTo1 extends BackboneElement {
               )
               .toList()
           : null,
-      targetUri: json['targetUri'] != null
+      targetUri: (json['targetUri'] != null || json['_targetUri'] != null)
           ? FhirUri.fromJson({
               'value': json['targetUri'],
               '_value': json['_targetUri'],
@@ -3191,9 +3180,7 @@ class CitationPublicationForm extends BackboneElement {
   ) {
     return CitationPublicationForm(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -3223,13 +3210,14 @@ class CitationPublicationForm extends BackboneElement {
               json['periodicRelease'] as Map<String, dynamic>,
             )
           : null,
-      articleDate: json['articleDate'] != null
+      articleDate: (json['articleDate'] != null || json['_articleDate'] != null)
           ? FhirDateTime.fromJson({
               'value': json['articleDate'],
               '_value': json['_articleDate'],
             })
           : null,
-      lastRevisionDate: json['lastRevisionDate'] != null
+      lastRevisionDate: (json['lastRevisionDate'] != null ||
+              json['_lastRevisionDate'] != null)
           ? FhirDateTime.fromJson({
               'value': json['lastRevisionDate'],
               '_value': json['_lastRevisionDate'],
@@ -3244,37 +3232,38 @@ class CitationPublicationForm extends BackboneElement {
               )
               .toList()
           : null,
-      accessionNumber: json['accessionNumber'] != null
-          ? FhirString.fromJson({
-              'value': json['accessionNumber'],
-              '_value': json['_accessionNumber'],
-            })
-          : null,
-      pageString: json['pageString'] != null
+      accessionNumber:
+          (json['accessionNumber'] != null || json['_accessionNumber'] != null)
+              ? FhirString.fromJson({
+                  'value': json['accessionNumber'],
+                  '_value': json['_accessionNumber'],
+                })
+              : null,
+      pageString: (json['pageString'] != null || json['_pageString'] != null)
           ? FhirString.fromJson({
               'value': json['pageString'],
               '_value': json['_pageString'],
             })
           : null,
-      firstPage: json['firstPage'] != null
+      firstPage: (json['firstPage'] != null || json['_firstPage'] != null)
           ? FhirString.fromJson({
               'value': json['firstPage'],
               '_value': json['_firstPage'],
             })
           : null,
-      lastPage: json['lastPage'] != null
+      lastPage: (json['lastPage'] != null || json['_lastPage'] != null)
           ? FhirString.fromJson({
               'value': json['lastPage'],
               '_value': json['_lastPage'],
             })
           : null,
-      pageCount: json['pageCount'] != null
+      pageCount: (json['pageCount'] != null || json['_pageCount'] != null)
           ? FhirString.fromJson({
               'value': json['pageCount'],
               '_value': json['_pageCount'],
             })
           : null,
-      copyright: json['copyright'] != null
+      copyright: (json['copyright'] != null || json['_copyright'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['copyright'],
               '_value': json['_copyright'],
@@ -3540,9 +3529,7 @@ class CitationPublishedIn extends BackboneElement {
   ) {
     return CitationPublishedIn(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -3576,7 +3563,7 @@ class CitationPublishedIn extends BackboneElement {
               )
               .toList()
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
@@ -3587,7 +3574,8 @@ class CitationPublishedIn extends BackboneElement {
               json['publisher'] as Map<String, dynamic>,
             )
           : null,
-      publisherLocation: json['publisherLocation'] != null
+      publisherLocation: (json['publisherLocation'] != null ||
+              json['_publisherLocation'] != null)
           ? FhirString.fromJson({
               'value': json['publisherLocation'],
               '_value': json['_publisherLocation'],
@@ -3767,9 +3755,7 @@ class CitationPeriodicRelease extends BackboneElement {
   ) {
     return CitationPeriodicRelease(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -3794,13 +3780,13 @@ class CitationPeriodicRelease extends BackboneElement {
               json['citedMedium'] as Map<String, dynamic>,
             )
           : null,
-      volume: json['volume'] != null
+      volume: (json['volume'] != null || json['_volume'] != null)
           ? FhirString.fromJson({
               'value': json['volume'],
               '_value': json['_volume'],
             })
           : null,
-      issue: json['issue'] != null
+      issue: (json['issue'] != null || json['_issue'] != null)
           ? FhirString.fromJson({
               'value': json['issue'],
               '_value': json['_issue'],
@@ -3977,9 +3963,7 @@ class CitationDateOfPublication extends BackboneElement {
   ) {
     return CitationDateOfPublication(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -3999,37 +3983,37 @@ class CitationDateOfPublication extends BackboneElement {
               )
               .toList()
           : null,
-      date: json['date'] != null
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDate.fromJson({
               'value': json['date'],
               '_value': json['_date'],
             })
           : null,
-      year: json['year'] != null
+      year: (json['year'] != null || json['_year'] != null)
           ? FhirString.fromJson({
               'value': json['year'],
               '_value': json['_year'],
             })
           : null,
-      month: json['month'] != null
+      month: (json['month'] != null || json['_month'] != null)
           ? FhirString.fromJson({
               'value': json['month'],
               '_value': json['_month'],
             })
           : null,
-      day: json['day'] != null
+      day: (json['day'] != null || json['_day'] != null)
           ? FhirString.fromJson({
               'value': json['day'],
               '_value': json['_day'],
             })
           : null,
-      season: json['season'] != null
+      season: (json['season'] != null || json['_season'] != null)
           ? FhirString.fromJson({
               'value': json['season'],
               '_value': json['_season'],
             })
           : null,
-      text: json['text'] != null
+      text: (json['text'] != null || json['_text'] != null)
           ? FhirString.fromJson({
               'value': json['text'],
               '_value': json['_text'],
@@ -4233,9 +4217,7 @@ class CitationWebLocation extends BackboneElement {
   ) {
     return CitationWebLocation(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -4260,7 +4242,7 @@ class CitationWebLocation extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUri.fromJson({
               'value': json['url'],
               '_value': json['_url'],
@@ -4404,9 +4386,7 @@ class CitationClassification1 extends BackboneElement {
   ) {
     return CitationClassification1(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -4591,9 +4571,7 @@ class CitationWhoClassified extends BackboneElement {
   ) {
     return CitationWhoClassified(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -4628,13 +4606,14 @@ class CitationWhoClassified extends BackboneElement {
               json['publisher'] as Map<String, dynamic>,
             )
           : null,
-      classifierCopyright: json['classifierCopyright'] != null
+      classifierCopyright: (json['classifierCopyright'] != null ||
+              json['_classifierCopyright'] != null)
           ? FhirString.fromJson({
               'value': json['classifierCopyright'],
               '_value': json['_classifierCopyright'],
             })
           : null,
-      freeToShare: json['freeToShare'] != null
+      freeToShare: (json['freeToShare'] != null || json['_freeToShare'] != null)
           ? FhirBoolean.fromJson({
               'value': json['freeToShare'],
               '_value': json['_freeToShare'],
@@ -4814,9 +4793,7 @@ class CitationContributorship extends BackboneElement {
   ) {
     return CitationContributorship(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -4836,7 +4813,7 @@ class CitationContributorship extends BackboneElement {
               )
               .toList()
           : null,
-      complete: json['complete'] != null
+      complete: (json['complete'] != null || json['_complete'] != null)
           ? FhirBoolean.fromJson({
               'value': json['complete'],
               '_value': json['_complete'],
@@ -5018,9 +4995,7 @@ class CitationEntry extends BackboneElement {
   ) {
     return CitationEntry(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -5045,18 +5020,19 @@ class CitationEntry extends BackboneElement {
               json['name'] as Map<String, dynamic>,
             )
           : null,
-      initials: json['initials'] != null
+      initials: (json['initials'] != null || json['_initials'] != null)
           ? FhirString.fromJson({
               'value': json['initials'],
               '_value': json['_initials'],
             })
           : null,
-      collectiveName: json['collectiveName'] != null
-          ? FhirString.fromJson({
-              'value': json['collectiveName'],
-              '_value': json['_collectiveName'],
-            })
-          : null,
+      collectiveName:
+          (json['collectiveName'] != null || json['_collectiveName'] != null)
+              ? FhirString.fromJson({
+                  'value': json['collectiveName'],
+                  '_value': json['_collectiveName'],
+                })
+              : null,
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
@@ -5116,13 +5092,14 @@ class CitationEntry extends BackboneElement {
               )
               .toList()
           : null,
-      correspondingContact: json['correspondingContact'] != null
+      correspondingContact: (json['correspondingContact'] != null ||
+              json['_correspondingContact'] != null)
           ? FhirBoolean.fromJson({
               'value': json['correspondingContact'],
               '_value': json['_correspondingContact'],
             })
           : null,
-      listOrder: json['listOrder'] != null
+      listOrder: (json['listOrder'] != null || json['_listOrder'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['listOrder'],
               '_value': json['_listOrder'],
@@ -5383,9 +5360,7 @@ class CitationAffiliationInfo extends BackboneElement {
   ) {
     return CitationAffiliationInfo(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -5405,13 +5380,13 @@ class CitationAffiliationInfo extends BackboneElement {
               )
               .toList()
           : null,
-      affiliation: json['affiliation'] != null
+      affiliation: (json['affiliation'] != null || json['_affiliation'] != null)
           ? FhirString.fromJson({
               'value': json['affiliation'],
               '_value': json['_affiliation'],
             })
           : null,
-      role: json['role'] != null
+      role: (json['role'] != null || json['_role'] != null)
           ? FhirString.fromJson({
               'value': json['role'],
               '_value': json['_role'],
@@ -5577,9 +5552,7 @@ class CitationContributionInstance extends BackboneElement {
   ) {
     return CitationContributionInstance(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -5602,7 +5575,7 @@ class CitationContributionInstance extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      time: json['time'] != null
+      time: (json['time'] != null || json['_time'] != null)
           ? FhirDateTime.fromJson({
               'value': json['time'],
               '_value': json['_time'],
@@ -5746,9 +5719,7 @@ class CitationSummary1 extends BackboneElement {
   ) {
     return CitationSummary1(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)

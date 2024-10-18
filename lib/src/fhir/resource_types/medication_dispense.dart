@@ -63,22 +63,21 @@ class MedicationDispense extends DomainResource {
   ) {
     return MedicationDispense(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -220,18 +219,20 @@ class MedicationDispense extends DomainResource {
               json['daysSupply'] as Map<String, dynamic>,
             )
           : null,
-      whenPrepared: json['whenPrepared'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['whenPrepared'],
-              '_value': json['_whenPrepared'],
-            })
-          : null,
-      whenHandedOver: json['whenHandedOver'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['whenHandedOver'],
-              '_value': json['_whenHandedOver'],
-            })
-          : null,
+      whenPrepared:
+          (json['whenPrepared'] != null || json['_whenPrepared'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['whenPrepared'],
+                  '_value': json['_whenPrepared'],
+                })
+              : null,
+      whenHandedOver:
+          (json['whenHandedOver'] != null || json['_whenHandedOver'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['whenHandedOver'],
+                  '_value': json['_whenHandedOver'],
+                })
+              : null,
       destination: json['destination'] != null
           ? Reference.fromJson(
               json['destination'] as Map<String, dynamic>,
@@ -482,7 +483,11 @@ class MedicationDispense extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -510,7 +515,11 @@ class MedicationDispense extends DomainResource {
       json['partOf'] = partOf!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson9 = status.toJson();
+    json['status'] = fieldJson9['value'];
+    if (fieldJson9['_value'] != null) {
+      json['_status'] = fieldJson9['_value'];
+    }
 
     if (statusReasonCodeableConcept != null) {
       json['statusReasonCodeableConcept'] =
@@ -741,9 +750,7 @@ class MedicationDispensePerformer extends BackboneElement {
   ) {
     return MedicationDispensePerformer(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -910,9 +917,7 @@ class MedicationDispenseSubstitution extends BackboneElement {
   ) {
     return MedicationDispenseSubstitution(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)

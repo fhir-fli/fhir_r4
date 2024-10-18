@@ -49,22 +49,21 @@ class DetectedIssue extends DomainResource {
   ) {
     return DetectedIssue(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -120,7 +119,7 @@ class DetectedIssue extends DomainResource {
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      severity: json['severity'] != null
+      severity: (json['severity'] != null || json['_severity'] != null)
           ? DetectedIssueSeverity.fromJson({
               'value': json['severity'],
               '_value': json['_severity'],
@@ -131,7 +130,8 @@ class DetectedIssue extends DomainResource {
               json['patient'] as Map<String, dynamic>,
             )
           : null,
-      identifiedDateTime: json['identifiedDateTime'] != null
+      identifiedDateTime: (json['identifiedDateTime'] != null ||
+              json['_identifiedDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['identifiedDateTime'],
               '_value': json['_identifiedDateTime'],
@@ -165,13 +165,13 @@ class DetectedIssue extends DomainResource {
               )
               .toList()
           : null,
-      detail: json['detail'] != null
+      detail: (json['detail'] != null || json['_detail'] != null)
           ? FhirString.fromJson({
               'value': json['detail'],
               '_value': json['_detail'],
             })
           : null,
-      reference: json['reference'] != null
+      reference: (json['reference'] != null || json['_reference'] != null)
           ? FhirUri.fromJson({
               'value': json['reference'],
               '_value': json['_reference'],
@@ -310,7 +310,11 @@ class DetectedIssue extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -334,14 +338,22 @@ class DetectedIssue extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     if (code != null) {
       json['code'] = code!.toJson();
     }
 
     if (severity != null) {
-      json['severity'] = severity!.toJson();
+      final fieldJson10 = severity!.toJson();
+      json['severity'] = fieldJson10['value'];
+      if (fieldJson10['_value'] != null) {
+        json['_severity'] = fieldJson10['_value'];
+      }
     }
 
     if (patient != null) {
@@ -487,9 +499,7 @@ class DetectedIssueEvidence extends BackboneElement {
   ) {
     return DetectedIssueEvidence(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -665,9 +675,7 @@ class DetectedIssueMitigation extends BackboneElement {
   ) {
     return DetectedIssueMitigation(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -690,7 +698,7 @@ class DetectedIssueMitigation extends BackboneElement {
       action: CodeableConcept.fromJson(
         json['action'] as Map<String, dynamic>,
       ),
-      date: json['date'] != null
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],

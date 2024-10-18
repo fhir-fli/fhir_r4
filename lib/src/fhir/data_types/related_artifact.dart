@@ -33,9 +33,7 @@ class RelatedArtifact extends DataType {
   ) {
     return RelatedArtifact(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -50,25 +48,25 @@ class RelatedArtifact extends DataType {
         'value': json['type'],
         '_value': json['_type'],
       }),
-      label: json['label'] != null
+      label: (json['label'] != null || json['_label'] != null)
           ? FhirString.fromJson({
               'value': json['label'],
               '_value': json['_label'],
             })
           : null,
-      display: json['display'] != null
+      display: (json['display'] != null || json['_display'] != null)
           ? FhirString.fromJson({
               'value': json['display'],
               '_value': json['_display'],
             })
           : null,
-      citation: json['citation'] != null
+      citation: (json['citation'] != null || json['_citation'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['citation'],
               '_value': json['_citation'],
             })
           : null,
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUrl.fromJson({
               'value': json['url'],
               '_value': json['_url'],
@@ -79,7 +77,7 @@ class RelatedArtifact extends DataType {
               json['document'] as Map<String, dynamic>,
             )
           : null,
-      resource: json['resource'] != null
+      resource: (json['resource'] != null || json['_resource'] != null)
           ? FhirCanonical.fromJson({
               'value': json['resource'],
               '_value': json['_resource'],
@@ -170,7 +168,11 @@ class RelatedArtifact extends DataType {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    json['type'] = type.toJson();
+    final fieldJson1 = type.toJson();
+    json['type'] = fieldJson1['value'];
+    if (fieldJson1['_value'] != null) {
+      json['_type'] = fieldJson1['_value'];
+    }
 
     if (label != null) {
       final fieldJson2 = label!.toJson();

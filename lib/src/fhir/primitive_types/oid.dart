@@ -12,7 +12,11 @@ extension FhirOidExtension on String {
 class FhirOid extends PrimitiveType<String> {
   /// Constructs a [FhirOid] from a String input with validation.
   FhirOid(String? input, [Element? element])
-      : super(_validateOid(input), element);
+      : super(_validateOid(input), element) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Factory constructor to create [FhirOid] from JSON.
   factory FhirOid.fromJson(Map<String, dynamic> json) {

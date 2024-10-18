@@ -39,9 +39,7 @@ class ProdCharacteristic extends BackboneType {
   ) {
     return ProdCharacteristic(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -91,7 +89,7 @@ class ProdCharacteristic extends BackboneType {
               json['externalDiameter'] as Map<String, dynamic>,
             )
           : null,
-      shape: json['shape'] != null
+      shape: (json['shape'] != null || json['_shape'] != null)
           ? FhirString.fromJson({
               'value': json['shape'],
               '_value': json['_shape'],

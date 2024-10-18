@@ -52,22 +52,21 @@ class RiskAssessment extends DomainResource {
   ) {
     return RiskAssessment(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -146,7 +145,8 @@ class RiskAssessment extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceDateTime: json['occurrenceDateTime'] != null
+      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
+              json['_occurrenceDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
               '_value': json['_occurrenceDateTime'],
@@ -203,7 +203,7 @@ class RiskAssessment extends DomainResource {
               )
               .toList()
           : null,
-      mitigation: json['mitigation'] != null
+      mitigation: (json['mitigation'] != null || json['_mitigation'] != null)
           ? FhirString.fromJson({
               'value': json['mitigation'],
               '_value': json['_mitigation'],
@@ -356,7 +356,11 @@ class RiskAssessment extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -388,7 +392,11 @@ class RiskAssessment extends DomainResource {
       json['parent'] = parent!.toJson();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson10 = status.toJson();
+    json['status'] = fieldJson10['value'];
+    if (fieldJson10['_value'] != null) {
+      json['_status'] = fieldJson10['_value'];
+    }
 
     if (method != null) {
       json['method'] = method!.toJson();
@@ -562,9 +570,7 @@ class RiskAssessmentPrediction extends BackboneElement {
   ) {
     return RiskAssessmentPrediction(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -589,7 +595,8 @@ class RiskAssessmentPrediction extends BackboneElement {
               json['outcome'] as Map<String, dynamic>,
             )
           : null,
-      probabilityDecimal: json['probabilityDecimal'] != null
+      probabilityDecimal: (json['probabilityDecimal'] != null ||
+              json['_probabilityDecimal'] != null)
           ? FhirDecimal.fromJson({
               'value': json['probabilityDecimal'],
               '_value': json['_probabilityDecimal'],
@@ -605,12 +612,13 @@ class RiskAssessmentPrediction extends BackboneElement {
               json['qualitativeRisk'] as Map<String, dynamic>,
             )
           : null,
-      relativeRisk: json['relativeRisk'] != null
-          ? FhirDecimal.fromJson({
-              'value': json['relativeRisk'],
-              '_value': json['_relativeRisk'],
-            })
-          : null,
+      relativeRisk:
+          (json['relativeRisk'] != null || json['_relativeRisk'] != null)
+              ? FhirDecimal.fromJson({
+                  'value': json['relativeRisk'],
+                  '_value': json['_relativeRisk'],
+                })
+              : null,
       whenPeriod: json['whenPeriod'] != null
           ? Period.fromJson(
               json['whenPeriod'] as Map<String, dynamic>,
@@ -621,7 +629,7 @@ class RiskAssessmentPrediction extends BackboneElement {
               json['whenRange'] as Map<String, dynamic>,
             )
           : null,
-      rationale: json['rationale'] != null
+      rationale: (json['rationale'] != null || json['_rationale'] != null)
           ? FhirString.fromJson({
               'value': json['rationale'],
               '_value': json['_rationale'],

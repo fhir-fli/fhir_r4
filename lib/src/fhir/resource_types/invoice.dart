@@ -49,22 +49,21 @@ class Invoice extends DomainResource {
   ) {
     return Invoice(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -115,12 +114,13 @@ class Invoice extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      cancelledReason: json['cancelledReason'] != null
-          ? FhirString.fromJson({
-              'value': json['cancelledReason'],
-              '_value': json['_cancelledReason'],
-            })
-          : null,
+      cancelledReason:
+          (json['cancelledReason'] != null || json['_cancelledReason'] != null)
+              ? FhirString.fromJson({
+                  'value': json['cancelledReason'],
+                  '_value': json['_cancelledReason'],
+                })
+              : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
@@ -136,7 +136,7 @@ class Invoice extends DomainResource {
               json['recipient'] as Map<String, dynamic>,
             )
           : null,
-      date: json['date'] != null
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
@@ -180,12 +180,13 @@ class Invoice extends DomainResource {
               json['totalGross'] as Map<String, dynamic>,
             )
           : null,
-      paymentTerms: json['paymentTerms'] != null
-          ? FhirMarkdown.fromJson({
-              'value': json['paymentTerms'],
-              '_value': json['_paymentTerms'],
-            })
-          : null,
+      paymentTerms:
+          (json['paymentTerms'] != null || json['_paymentTerms'] != null)
+              ? FhirMarkdown.fromJson({
+                  'value': json['paymentTerms'],
+                  '_value': json['_paymentTerms'],
+                })
+              : null,
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
@@ -325,7 +326,11 @@ class Invoice extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -349,7 +354,11 @@ class Invoice extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     if (cancelledReason != null) {
       final fieldJson9 = cancelledReason!.toJson();
@@ -512,9 +521,7 @@ class InvoiceParticipant extends BackboneElement {
   ) {
     return InvoiceParticipant(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -680,9 +687,7 @@ class InvoiceLineItem extends BackboneElement {
   ) {
     return InvoiceLineItem(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -702,7 +707,7 @@ class InvoiceLineItem extends BackboneElement {
               )
               .toList()
           : null,
-      sequence: json['sequence'] != null
+      sequence: (json['sequence'] != null || json['_sequence'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['sequence'],
               '_value': json['_sequence'],
@@ -903,9 +908,7 @@ class InvoicePriceComponent extends BackboneElement {
   ) {
     return InvoicePriceComponent(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -934,7 +937,7 @@ class InvoicePriceComponent extends BackboneElement {
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      factor: json['factor'] != null
+      factor: (json['factor'] != null || json['_factor'] != null)
           ? FhirDecimal.fromJson({
               'value': json['factor'],
               '_value': json['_factor'],
@@ -1019,7 +1022,11 @@ class InvoicePriceComponent extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['type'] = type.toJson();
+    final fieldJson2 = type.toJson();
+    json['type'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_type'] = fieldJson2['_value'];
+    }
 
     if (code != null) {
       json['code'] = code!.toJson();

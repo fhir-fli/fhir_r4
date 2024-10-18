@@ -58,22 +58,21 @@ class CommunicationRequest extends DomainResource {
   ) {
     return CommunicationRequest(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -161,18 +160,19 @@ class CommunicationRequest extends DomainResource {
               )
               .toList()
           : null,
-      priority: json['priority'] != null
+      priority: (json['priority'] != null || json['_priority'] != null)
           ? RequestPriority.fromJson({
               'value': json['priority'],
               '_value': json['_priority'],
             })
           : null,
-      doNotPerform: json['doNotPerform'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['doNotPerform'],
-              '_value': json['_doNotPerform'],
-            })
-          : null,
+      doNotPerform:
+          (json['doNotPerform'] != null || json['_doNotPerform'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['doNotPerform'],
+                  '_value': json['_doNotPerform'],
+                })
+              : null,
       medium: json['medium'] != null
           ? (json['medium'] as List<dynamic>)
               .map<CodeableConcept>(
@@ -210,7 +210,8 @@ class CommunicationRequest extends DomainResource {
               )
               .toList()
           : null,
-      occurrenceDateTime: json['occurrenceDateTime'] != null
+      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
+              json['_occurrenceDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
               '_value': json['_occurrenceDateTime'],
@@ -221,7 +222,7 @@ class CommunicationRequest extends DomainResource {
               json['occurrencePeriod'] as Map<String, dynamic>,
             )
           : null,
-      authoredOn: json['authoredOn'] != null
+      authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({
               'value': json['authoredOn'],
               '_value': json['_authoredOn'],
@@ -444,7 +445,11 @@ class CommunicationRequest extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -480,7 +485,11 @@ class CommunicationRequest extends DomainResource {
       json['groupIdentifier'] = groupIdentifier!.toJson();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson11 = status.toJson();
+    json['status'] = fieldJson11['value'];
+    if (fieldJson11['_value'] != null) {
+      json['_status'] = fieldJson11['_value'];
+    }
 
     if (statusReason != null) {
       json['statusReason'] = statusReason!.toJson();
@@ -491,7 +500,11 @@ class CommunicationRequest extends DomainResource {
     }
 
     if (priority != null) {
-      json['priority'] = priority!.toJson();
+      final fieldJson14 = priority!.toJson();
+      json['priority'] = fieldJson14['value'];
+      if (fieldJson14['_value'] != null) {
+        json['_priority'] = fieldJson14['_value'];
+      }
     }
 
     if (doNotPerform != null) {
@@ -682,9 +695,7 @@ class CommunicationRequestPayload extends BackboneElement {
   ) {
     return CommunicationRequestPayload(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -704,12 +715,13 @@ class CommunicationRequestPayload extends BackboneElement {
               )
               .toList()
           : null,
-      contentString: json['contentString'] != null
-          ? FhirString.fromJson({
-              'value': json['contentString'],
-              '_value': json['_contentString'],
-            })
-          : null,
+      contentString:
+          (json['contentString'] != null || json['_contentString'] != null)
+              ? FhirString.fromJson({
+                  'value': json['contentString'],
+                  '_value': json['_contentString'],
+                })
+              : null,
       contentAttachment: json['contentAttachment'] != null
           ? Attachment.fromJson(
               json['contentAttachment'] as Map<String, dynamic>,

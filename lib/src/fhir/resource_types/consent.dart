@@ -49,22 +49,21 @@ class Consent extends DomainResource {
   ) {
     return Consent(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -132,7 +131,7 @@ class Consent extends DomainResource {
               json['patient'] as Map<String, dynamic>,
             )
           : null,
-      dateTime: json['dateTime'] != null
+      dateTime: (json['dateTime'] != null || json['_dateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['dateTime'],
               '_value': json['_dateTime'],
@@ -320,7 +319,11 @@ class Consent extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -344,7 +347,11 @@ class Consent extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     json['scope'] = scope.toJson();
 
@@ -486,9 +493,7 @@ class ConsentPolicy extends BackboneElement {
   ) {
     return ConsentPolicy(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -508,13 +513,13 @@ class ConsentPolicy extends BackboneElement {
               )
               .toList()
           : null,
-      authority: json['authority'] != null
+      authority: (json['authority'] != null || json['_authority'] != null)
           ? FhirUri.fromJson({
               'value': json['authority'],
               '_value': json['_authority'],
             })
           : null,
-      uri: json['uri'] != null
+      uri: (json['uri'] != null || json['_uri'] != null)
           ? FhirUri.fromJson({
               'value': json['uri'],
               '_value': json['_uri'],
@@ -682,9 +687,7 @@ class ConsentVerification extends BackboneElement {
   ) {
     return ConsentVerification(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -713,7 +716,8 @@ class ConsentVerification extends BackboneElement {
               json['verifiedWith'] as Map<String, dynamic>,
             )
           : null,
-      verificationDate: json['verificationDate'] != null
+      verificationDate: (json['verificationDate'] != null ||
+              json['_verificationDate'] != null)
           ? FhirDateTime.fromJson({
               'value': json['verificationDate'],
               '_value': json['_verificationDate'],
@@ -879,9 +883,7 @@ class ConsentProvision extends BackboneElement {
   ) {
     return ConsentProvision(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -901,7 +903,7 @@ class ConsentProvision extends BackboneElement {
               )
               .toList()
           : null,
-      type: json['type'] != null
+      type: (json['type'] != null || json['_type'] != null)
           ? ConsentProvisionType.fromJson({
               'value': json['type'],
               '_value': json['_type'],
@@ -1098,7 +1100,11 @@ class ConsentProvision extends BackboneElement {
     }
 
     if (type != null) {
-      json['type'] = type!.toJson();
+      final fieldJson2 = type!.toJson();
+      json['type'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_type'] = fieldJson2['_value'];
+      }
     }
 
     if (period != null) {
@@ -1221,9 +1227,7 @@ class ConsentActor extends BackboneElement {
   ) {
     return ConsentActor(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1382,9 +1386,7 @@ class ConsentData extends BackboneElement {
   ) {
     return ConsentData(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1477,7 +1479,11 @@ class ConsentData extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['meaning'] = meaning.toJson();
+    final fieldJson2 = meaning.toJson();
+    json['meaning'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_meaning'] = fieldJson2['_value'];
+    }
 
     json['reference'] = reference.toJson();
 

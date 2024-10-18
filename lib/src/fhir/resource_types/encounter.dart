@@ -58,22 +58,21 @@ class Encounter extends DomainResource {
   ) {
     return Encounter(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -458,7 +457,11 @@ class Encounter extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -482,7 +485,11 @@ class Encounter extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     if (statusHistory != null && statusHistory!.isNotEmpty) {
       json['statusHistory'] = statusHistory!.map((e) => e.toJson()).toList();
@@ -682,9 +689,7 @@ class EncounterStatusHistory extends BackboneElement {
   ) {
     return EncounterStatusHistory(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -776,7 +781,11 @@ class EncounterStatusHistory extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson2 = status.toJson();
+    json['status'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_status'] = fieldJson2['_value'];
+    }
 
     json['period'] = period.toJson();
 
@@ -847,9 +856,7 @@ class EncounterClassHistory extends BackboneElement {
   ) {
     return EncounterClassHistory(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1005,9 +1012,7 @@ class EncounterParticipant extends BackboneElement {
   ) {
     return EncounterParticipant(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1192,9 +1197,7 @@ class EncounterDiagnosis extends BackboneElement {
   ) {
     return EncounterDiagnosis(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1222,7 +1225,7 @@ class EncounterDiagnosis extends BackboneElement {
               json['use'] as Map<String, dynamic>,
             )
           : null,
-      rank: json['rank'] != null
+      rank: (json['rank'] != null || json['_rank'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['rank'],
               '_value': json['_rank'],
@@ -1384,9 +1387,7 @@ class EncounterHospitalization extends BackboneElement {
   ) {
     return EncounterHospitalization(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1672,9 +1673,7 @@ class EncounterLocation extends BackboneElement {
   ) {
     return EncounterLocation(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1697,7 +1696,7 @@ class EncounterLocation extends BackboneElement {
       location: Reference.fromJson(
         json['location'] as Map<String, dynamic>,
       ),
-      status: json['status'] != null
+      status: (json['status'] != null || json['_status'] != null)
           ? EncounterLocationStatus.fromJson({
               'value': json['status'],
               '_value': json['_status'],
@@ -1791,7 +1790,11 @@ class EncounterLocation extends BackboneElement {
     json['location'] = location.toJson();
 
     if (status != null) {
-      json['status'] = status!.toJson();
+      final fieldJson3 = status!.toJson();
+      json['status'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_status'] = fieldJson3['_value'];
+      }
     }
 
     if (physicalType != null) {

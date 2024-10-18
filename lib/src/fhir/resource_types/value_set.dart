@@ -54,22 +54,21 @@ class ValueSet extends DomainResource {
   ) {
     return ValueSet(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -107,7 +106,7 @@ class ValueSet extends DomainResource {
               )
               .toList()
           : null,
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUri.fromJson({
               'value': json['url'],
               '_value': json['_url'],
@@ -122,19 +121,19 @@ class ValueSet extends DomainResource {
               )
               .toList()
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
             })
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
             })
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
@@ -144,19 +143,20 @@ class ValueSet extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['experimental'],
-              '_value': json['_experimental'],
-            })
-          : null,
-      date: json['date'] != null
+      experimental:
+          (json['experimental'] != null || json['_experimental'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['experimental'],
+                  '_value': json['_experimental'],
+                })
+              : null,
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
             })
           : null,
-      publisher: json['publisher'] != null
+      publisher: (json['publisher'] != null || json['_publisher'] != null)
           ? FhirString.fromJson({
               'value': json['publisher'],
               '_value': json['_publisher'],
@@ -171,7 +171,7 @@ class ValueSet extends DomainResource {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -195,19 +195,19 @@ class ValueSet extends DomainResource {
               )
               .toList()
           : null,
-      immutable: json['immutable'] != null
+      immutable: (json['immutable'] != null || json['_immutable'] != null)
           ? FhirBoolean.fromJson({
               'value': json['immutable'],
               '_value': json['_immutable'],
             })
           : null,
-      purpose: json['purpose'] != null
+      purpose: (json['purpose'] != null || json['_purpose'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['purpose'],
               '_value': json['_purpose'],
             })
           : null,
-      copyright: json['copyright'] != null
+      copyright: (json['copyright'] != null || json['_copyright'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['copyright'],
               '_value': json['_copyright'],
@@ -396,7 +396,11 @@ class ValueSet extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -452,7 +456,11 @@ class ValueSet extends DomainResource {
       }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson12 = status.toJson();
+    json['status'] = fieldJson12['value'];
+    if (fieldJson12['_value'] != null) {
+      json['_status'] = fieldJson12['_value'];
+    }
 
     if (experimental != null) {
       final fieldJson13 = experimental!.toJson();
@@ -637,9 +645,7 @@ class ValueSetCompose extends BackboneElement {
   ) {
     return ValueSetCompose(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -659,13 +665,13 @@ class ValueSetCompose extends BackboneElement {
               )
               .toList()
           : null,
-      lockedDate: json['lockedDate'] != null
+      lockedDate: (json['lockedDate'] != null || json['_lockedDate'] != null)
           ? FhirDate.fromJson({
               'value': json['lockedDate'],
               '_value': json['_lockedDate'],
             })
           : null,
-      inactive: json['inactive'] != null
+      inactive: (json['inactive'] != null || json['_inactive'] != null)
           ? FhirBoolean.fromJson({
               'value': json['inactive'],
               '_value': json['_inactive'],
@@ -840,9 +846,7 @@ class ValueSetInclude extends BackboneElement {
   ) {
     return ValueSetInclude(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -862,13 +866,13 @@ class ValueSetInclude extends BackboneElement {
               )
               .toList()
           : null,
-      system: json['system'] != null
+      system: (json['system'] != null || json['_system'] != null)
           ? FhirUri.fromJson({
               'value': json['system'],
               '_value': json['_system'],
             })
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
@@ -1081,9 +1085,7 @@ class ValueSetConcept extends BackboneElement {
   ) {
     return ValueSetConcept(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1107,7 +1109,7 @@ class ValueSetConcept extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      display: json['display'] != null
+      display: (json['display'] != null || json['_display'] != null)
           ? FhirString.fromJson({
               'value': json['display'],
               '_value': json['_display'],
@@ -1278,9 +1280,7 @@ class ValueSetDesignation extends BackboneElement {
   ) {
     return ValueSetDesignation(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1300,7 +1300,7 @@ class ValueSetDesignation extends BackboneElement {
               )
               .toList()
           : null,
-      language: json['language'] != null
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -1384,7 +1384,11 @@ class ValueSetDesignation extends BackboneElement {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (use != null) {
@@ -1464,9 +1468,7 @@ class ValueSetFilter extends BackboneElement {
   ) {
     return ValueSetFilter(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1578,7 +1580,11 @@ class ValueSetFilter extends BackboneElement {
       json['_property'] = fieldJson2['_value'];
     }
 
-    json['op'] = op.toJson();
+    final fieldJson3 = op.toJson();
+    json['op'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_op'] = fieldJson3['_value'];
+    }
 
     final fieldJson4 = value.toJson();
     json['value'] = fieldJson4['value'];
@@ -1655,9 +1661,7 @@ class ValueSetExpansion extends BackboneElement {
   ) {
     return ValueSetExpansion(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1677,7 +1681,7 @@ class ValueSetExpansion extends BackboneElement {
               )
               .toList()
           : null,
-      identifier: json['identifier'] != null
+      identifier: (json['identifier'] != null || json['_identifier'] != null)
           ? FhirUri.fromJson({
               'value': json['identifier'],
               '_value': json['_identifier'],
@@ -1687,13 +1691,13 @@ class ValueSetExpansion extends BackboneElement {
         'value': json['timestamp'],
         '_value': json['_timestamp'],
       }),
-      total: json['total'] != null
+      total: (json['total'] != null || json['_total'] != null)
           ? FhirInteger.fromJson({
               'value': json['total'],
               '_value': json['_total'],
             })
           : null,
-      offset: json['offset'] != null
+      offset: (json['offset'] != null || json['_offset'] != null)
           ? FhirInteger.fromJson({
               'value': json['offset'],
               '_value': json['_offset'],
@@ -1923,9 +1927,7 @@ class ValueSetParameter extends BackboneElement {
   ) {
     return ValueSetParameter(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1949,48 +1951,52 @@ class ValueSetParameter extends BackboneElement {
         'value': json['name'],
         '_value': json['_name'],
       }),
-      valueString: json['valueString'] != null
+      valueString: (json['valueString'] != null || json['_valueString'] != null)
           ? FhirString.fromJson({
               'value': json['valueString'],
               '_value': json['_valueString'],
             })
           : null,
-      valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['valueBoolean'],
-              '_value': json['_valueBoolean'],
-            })
-          : null,
-      valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson({
-              'value': json['valueInteger'],
-              '_value': json['_valueInteger'],
-            })
-          : null,
-      valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson({
-              'value': json['valueDecimal'],
-              '_value': json['_valueDecimal'],
-            })
-          : null,
-      valueUri: json['valueUri'] != null
+      valueBoolean:
+          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['valueBoolean'],
+                  '_value': json['_valueBoolean'],
+                })
+              : null,
+      valueInteger:
+          (json['valueInteger'] != null || json['_valueInteger'] != null)
+              ? FhirInteger.fromJson({
+                  'value': json['valueInteger'],
+                  '_value': json['_valueInteger'],
+                })
+              : null,
+      valueDecimal:
+          (json['valueDecimal'] != null || json['_valueDecimal'] != null)
+              ? FhirDecimal.fromJson({
+                  'value': json['valueDecimal'],
+                  '_value': json['_valueDecimal'],
+                })
+              : null,
+      valueUri: (json['valueUri'] != null || json['_valueUri'] != null)
           ? FhirUri.fromJson({
               'value': json['valueUri'],
               '_value': json['_valueUri'],
             })
           : null,
-      valueCode: json['valueCode'] != null
+      valueCode: (json['valueCode'] != null || json['_valueCode'] != null)
           ? FhirCode.fromJson({
               'value': json['valueCode'],
               '_value': json['_valueCode'],
             })
           : null,
-      valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['valueDateTime'],
-              '_value': json['_valueDateTime'],
-            })
-          : null,
+      valueDateTime:
+          (json['valueDateTime'] != null || json['_valueDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['valueDateTime'],
+                  '_value': json['_valueDateTime'],
+                })
+              : null,
     );
   }
 
@@ -2220,9 +2226,7 @@ class ValueSetContains extends BackboneElement {
   ) {
     return ValueSetContains(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2242,37 +2246,37 @@ class ValueSetContains extends BackboneElement {
               )
               .toList()
           : null,
-      system: json['system'] != null
+      system: (json['system'] != null || json['_system'] != null)
           ? FhirUri.fromJson({
               'value': json['system'],
               '_value': json['_system'],
             })
           : null,
-      abstract_: json['abstract'] != null
+      abstract_: (json['abstract'] != null || json['_abstract'] != null)
           ? FhirBoolean.fromJson({
               'value': json['abstract'],
               '_value': json['_abstract'],
             })
           : null,
-      inactive: json['inactive'] != null
+      inactive: (json['inactive'] != null || json['_inactive'] != null)
           ? FhirBoolean.fromJson({
               'value': json['inactive'],
               '_value': json['_inactive'],
             })
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
             })
           : null,
-      code: json['code'] != null
+      code: (json['code'] != null || json['_code'] != null)
           ? FhirCode.fromJson({
               'value': json['code'],
               '_value': json['_code'],
             })
           : null,
-      display: json['display'] != null
+      display: (json['display'] != null || json['_display'] != null)
           ? FhirString.fromJson({
               'value': json['display'],
               '_value': json['_display'],

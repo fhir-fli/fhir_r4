@@ -15,7 +15,11 @@ class FhirId extends PrimitiveType<String> {
       : super(
           input != null ? _validateId(input) : null,
           element,
-        );
+        ) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Factory constructor to create [FhirId] from JSON input.
   factory FhirId.fromJson(Map<String, dynamic> json) {

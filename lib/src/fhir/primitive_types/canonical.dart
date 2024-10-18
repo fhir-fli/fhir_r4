@@ -21,7 +21,11 @@ class FhirCanonical extends PrimitiveType<Uri> {
       : super(
           input == null ? null : _validateCanonical(input),
           element,
-        );
+        ) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Constructs a [FhirCanonical] from a [Uri] object
   FhirCanonical.fromUri(super.input, [super.element]);
@@ -31,6 +35,9 @@ class FhirCanonical extends PrimitiveType<Uri> {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    print('value: $value, element: $element');
+    print(value == null);
+    print(element == null);
     return FhirCanonical(value, element);
   }
 

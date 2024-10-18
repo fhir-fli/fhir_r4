@@ -30,9 +30,7 @@ class Annotation extends DataType {
   ) {
     return Annotation(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -48,13 +46,14 @@ class Annotation extends DataType {
               json['authorReference'] as Map<String, dynamic>,
             )
           : null,
-      authorString: json['authorString'] != null
-          ? FhirString.fromJson({
-              'value': json['authorString'],
-              '_value': json['_authorString'],
-            })
-          : null,
-      time: json['time'] != null
+      authorString:
+          (json['authorString'] != null || json['_authorString'] != null)
+              ? FhirString.fromJson({
+                  'value': json['authorString'],
+                  '_value': json['_authorString'],
+                })
+              : null,
+      time: (json['time'] != null || json['_time'] != null)
           ? FhirDateTime.fromJson({
               'value': json['time'],
               '_value': json['_time'],

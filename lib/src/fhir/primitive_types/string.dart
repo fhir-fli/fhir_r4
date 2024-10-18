@@ -11,7 +11,11 @@ extension FhirStringExtension on String {
 /// [FhirString] represents a string used in FHIR resources.
 class FhirString extends PrimitiveType<String> {
   /// Constructs a [FhirString] with validation.
-  FhirString(super.input, [super.element]);
+  FhirString(super.input, [super.element]) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Factory constructor to create [FhirString] from JSON.
   factory FhirString.fromJson(Map<String, dynamic> json) {

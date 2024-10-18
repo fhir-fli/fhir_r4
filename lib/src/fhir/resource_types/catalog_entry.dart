@@ -47,22 +47,21 @@ class CatalogEntry extends DomainResource {
   ) {
     return CatalogEntry(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -139,7 +138,7 @@ class CatalogEntry extends DomainResource {
               )
               .toList()
           : null,
-      status: json['status'] != null
+      status: (json['status'] != null || json['_status'] != null)
           ? PublicationStatus.fromJson({
               'value': json['status'],
               '_value': json['_status'],
@@ -150,13 +149,13 @@ class CatalogEntry extends DomainResource {
               json['validityPeriod'] as Map<String, dynamic>,
             )
           : null,
-      validTo: json['validTo'] != null
+      validTo: (json['validTo'] != null || json['_validTo'] != null)
           ? FhirDateTime.fromJson({
               'value': json['validTo'],
               '_value': json['_validTo'],
             })
           : null,
-      lastUpdated: json['lastUpdated'] != null
+      lastUpdated: (json['lastUpdated'] != null || json['_lastUpdated'] != null)
           ? FhirDateTime.fromJson({
               'value': json['lastUpdated'],
               '_value': json['_lastUpdated'],
@@ -306,7 +305,11 @@ class CatalogEntry extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -352,7 +355,11 @@ class CatalogEntry extends DomainResource {
     }
 
     if (status != null) {
-      json['status'] = status!.toJson();
+      final fieldJson13 = status!.toJson();
+      json['status'] = fieldJson13['value'];
+      if (fieldJson13['_value'] != null) {
+        json['_status'] = fieldJson13['_value'];
+      }
     }
 
     if (validityPeriod != null) {
@@ -487,9 +494,7 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   ) {
     return CatalogEntryRelatedEntry(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -581,7 +586,11 @@ class CatalogEntryRelatedEntry extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['relationtype'] = relationtype.toJson();
+    final fieldJson2 = relationtype.toJson();
+    json['relationtype'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_relationtype'] = fieldJson2['_value'];
+    }
 
     json['item'] = item.toJson();
 

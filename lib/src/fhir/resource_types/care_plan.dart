@@ -59,22 +59,21 @@ class CarePlan extends DomainResource {
   ) {
     return CarePlan(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -175,13 +174,13 @@ class CarePlan extends DomainResource {
               )
               .toList()
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
             })
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -200,7 +199,7 @@ class CarePlan extends DomainResource {
               json['period'] as Map<String, dynamic>,
             )
           : null,
-      created: json['created'] != null
+      created: (json['created'] != null || json['_created'] != null)
           ? FhirDateTime.fromJson({
               'value': json['created'],
               '_value': json['_created'],
@@ -451,7 +450,11 @@ class CarePlan extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -505,9 +508,17 @@ class CarePlan extends DomainResource {
       json['partOf'] = partOf!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson13 = status.toJson();
+    json['status'] = fieldJson13['value'];
+    if (fieldJson13['_value'] != null) {
+      json['_status'] = fieldJson13['_value'];
+    }
 
-    json['intent'] = intent.toJson();
+    final fieldJson14 = intent.toJson();
+    json['intent'] = fieldJson14['value'];
+    if (fieldJson14['_value'] != null) {
+      json['_intent'] = fieldJson14['_value'];
+    }
 
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((e) => e.toJson()).toList();
@@ -698,9 +709,7 @@ class CarePlanActivity extends BackboneElement {
   ) {
     return CarePlanActivity(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -952,9 +961,7 @@ class CarePlanDetail extends BackboneElement {
   ) {
     return CarePlanDetail(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -974,7 +981,7 @@ class CarePlanDetail extends BackboneElement {
               )
               .toList()
           : null,
-      kind: json['kind'] != null
+      kind: (json['kind'] != null || json['_kind'] != null)
           ? CarePlanActivityKind.fromJson({
               'value': json['kind'],
               '_value': json['_kind'],
@@ -1031,12 +1038,13 @@ class CarePlanDetail extends BackboneElement {
               json['statusReason'] as Map<String, dynamic>,
             )
           : null,
-      doNotPerform: json['doNotPerform'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['doNotPerform'],
-              '_value': json['_doNotPerform'],
-            })
-          : null,
+      doNotPerform:
+          (json['doNotPerform'] != null || json['_doNotPerform'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['doNotPerform'],
+                  '_value': json['_doNotPerform'],
+                })
+              : null,
       scheduledTiming: json['scheduledTiming'] != null
           ? Timing.fromJson(
               json['scheduledTiming'] as Map<String, dynamic>,
@@ -1047,12 +1055,13 @@ class CarePlanDetail extends BackboneElement {
               json['scheduledPeriod'] as Map<String, dynamic>,
             )
           : null,
-      scheduledString: json['scheduledString'] != null
-          ? FhirString.fromJson({
-              'value': json['scheduledString'],
-              '_value': json['_scheduledString'],
-            })
-          : null,
+      scheduledString:
+          (json['scheduledString'] != null || json['_scheduledString'] != null)
+              ? FhirString.fromJson({
+                  'value': json['scheduledString'],
+                  '_value': json['_scheduledString'],
+                })
+              : null,
       location: json['location'] != null
           ? Reference.fromJson(
               json['location'] as Map<String, dynamic>,
@@ -1087,7 +1096,7 @@ class CarePlanDetail extends BackboneElement {
               json['quantity'] as Map<String, dynamic>,
             )
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -1259,7 +1268,11 @@ class CarePlanDetail extends BackboneElement {
     }
 
     if (kind != null) {
-      json['kind'] = kind!.toJson();
+      final fieldJson2 = kind!.toJson();
+      json['kind'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_kind'] = fieldJson2['_value'];
+      }
     }
 
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
@@ -1297,7 +1310,11 @@ class CarePlanDetail extends BackboneElement {
       json['goal'] = goal!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson9 = status.toJson();
+    json['status'] = fieldJson9['value'];
+    if (fieldJson9['_value'] != null) {
+      json['_status'] = fieldJson9['_value'];
+    }
 
     if (statusReason != null) {
       json['statusReason'] = statusReason!.toJson();

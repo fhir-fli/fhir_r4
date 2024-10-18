@@ -58,22 +58,21 @@ class MedicationAdministration extends DomainResource {
   ) {
     return MedicationAdministration(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -179,7 +178,8 @@ class MedicationAdministration extends DomainResource {
               )
               .toList()
           : null,
-      effectiveDateTime: json['effectiveDateTime'] != null
+      effectiveDateTime: (json['effectiveDateTime'] != null ||
+              json['_effectiveDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['effectiveDateTime'],
               '_value': json['_effectiveDateTime'],
@@ -430,7 +430,11 @@ class MedicationAdministration extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -466,7 +470,11 @@ class MedicationAdministration extends DomainResource {
       json['partOf'] = partOf!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson10 = status.toJson();
+    json['status'] = fieldJson10['value'];
+    if (fieldJson10['_value'] != null) {
+      json['_status'] = fieldJson10['_value'];
+    }
 
     if (statusReason != null && statusReason!.isNotEmpty) {
       json['statusReason'] = statusReason!.map((e) => e.toJson()).toList();
@@ -652,9 +660,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
   ) {
     return MedicationAdministrationPerformer(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -820,9 +826,7 @@ class MedicationAdministrationDosage extends BackboneElement {
   ) {
     return MedicationAdministrationDosage(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -842,7 +846,7 @@ class MedicationAdministrationDosage extends BackboneElement {
               )
               .toList()
           : null,
-      text: json['text'] != null
+      text: (json['text'] != null || json['_text'] != null)
           ? FhirString.fromJson({
               'value': json['text'],
               '_value': json['_text'],

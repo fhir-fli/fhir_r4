@@ -67,22 +67,21 @@ class Procedure extends DomainResource {
   ) {
     return Procedure(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -184,7 +183,8 @@ class Procedure extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      performedDateTime: json['performedDateTime'] != null
+      performedDateTime: (json['performedDateTime'] != null ||
+              json['_performedDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['performedDateTime'],
               '_value': json['_performedDateTime'],
@@ -195,12 +195,13 @@ class Procedure extends DomainResource {
               json['performedPeriod'] as Map<String, dynamic>,
             )
           : null,
-      performedString: json['performedString'] != null
-          ? FhirString.fromJson({
-              'value': json['performedString'],
-              '_value': json['_performedString'],
-            })
-          : null,
+      performedString:
+          (json['performedString'] != null || json['_performedString'] != null)
+              ? FhirString.fromJson({
+                  'value': json['performedString'],
+                  '_value': json['_performedString'],
+                })
+              : null,
       performedAge: json['performedAge'] != null
           ? Age.fromJson(
               json['performedAge'] as Map<String, dynamic>,
@@ -570,7 +571,11 @@ class Procedure extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -620,7 +625,11 @@ class Procedure extends DomainResource {
       json['partOf'] = partOf!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson12 = status.toJson();
+    json['status'] = fieldJson12['value'];
+    if (fieldJson12['_value'] != null) {
+      json['_status'] = fieldJson12['_value'];
+    }
 
     if (statusReason != null) {
       json['statusReason'] = statusReason!.toJson();
@@ -867,9 +876,7 @@ class ProcedurePerformer extends BackboneElement {
   ) {
     return ProcedurePerformer(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1046,9 +1053,7 @@ class ProcedureFocalDevice extends BackboneElement {
   ) {
     return ProcedureFocalDevice(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)

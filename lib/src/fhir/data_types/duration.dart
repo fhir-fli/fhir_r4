@@ -30,9 +30,7 @@ class FhirDuration extends Quantity {
   ) {
     return FhirDuration(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -43,31 +41,31 @@ class FhirDuration extends Quantity {
               )
               .toList()
           : null,
-      value: json['value'] != null
+      value: (json['value'] != null || json['_value'] != null)
           ? FhirDecimal.fromJson({
               'value': json['value'],
               '_value': json['_value'],
             })
           : null,
-      comparator: json['comparator'] != null
+      comparator: (json['comparator'] != null || json['_comparator'] != null)
           ? QuantityComparator.fromJson({
               'value': json['comparator'],
               '_value': json['_comparator'],
             })
           : null,
-      unit: json['unit'] != null
+      unit: (json['unit'] != null || json['_unit'] != null)
           ? FhirString.fromJson({
               'value': json['unit'],
               '_value': json['_unit'],
             })
           : null,
-      system: json['system'] != null
+      system: (json['system'] != null || json['_system'] != null)
           ? FhirUri.fromJson({
               'value': json['system'],
               '_value': json['_system'],
             })
           : null,
-      code: json['code'] != null
+      code: (json['code'] != null || json['_code'] != null)
           ? FhirCode.fromJson({
               'value': json['code'],
               '_value': json['_code'],
@@ -134,7 +132,11 @@ class FhirDuration extends Quantity {
     }
 
     if (comparator != null) {
-      json['comparator'] = comparator!.toJson();
+      final fieldJson2 = comparator!.toJson();
+      json['comparator'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_comparator'] = fieldJson2['_value'];
+      }
     }
 
     if (unit != null) {

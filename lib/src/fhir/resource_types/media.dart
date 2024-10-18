@@ -57,22 +57,21 @@ class Media extends DomainResource {
   ) {
     return Media(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -166,18 +165,19 @@ class Media extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      createdDateTime: json['createdDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['createdDateTime'],
-              '_value': json['_createdDateTime'],
-            })
-          : null,
+      createdDateTime:
+          (json['createdDateTime'] != null || json['_createdDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['createdDateTime'],
+                  '_value': json['_createdDateTime'],
+                })
+              : null,
       createdPeriod: json['createdPeriod'] != null
           ? Period.fromJson(
               json['createdPeriod'] as Map<String, dynamic>,
             )
           : null,
-      issued: json['issued'] != null
+      issued: (json['issued'] != null || json['_issued'] != null)
           ? FhirInstant.fromJson({
               'value': json['issued'],
               '_value': json['_issued'],
@@ -202,7 +202,7 @@ class Media extends DomainResource {
               json['bodySite'] as Map<String, dynamic>,
             )
           : null,
-      deviceName: json['deviceName'] != null
+      deviceName: (json['deviceName'] != null || json['_deviceName'] != null)
           ? FhirString.fromJson({
               'value': json['deviceName'],
               '_value': json['_deviceName'],
@@ -213,25 +213,25 @@ class Media extends DomainResource {
               json['device'] as Map<String, dynamic>,
             )
           : null,
-      height: json['height'] != null
+      height: (json['height'] != null || json['_height'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['height'],
               '_value': json['_height'],
             })
           : null,
-      width: json['width'] != null
+      width: (json['width'] != null || json['_width'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['width'],
               '_value': json['_width'],
             })
           : null,
-      frames: json['frames'] != null
+      frames: (json['frames'] != null || json['_frames'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['frames'],
               '_value': json['_frames'],
             })
           : null,
-      duration: json['duration'] != null
+      duration: (json['duration'] != null || json['_duration'] != null)
           ? FhirDecimal.fromJson({
               'value': json['duration'],
               '_value': json['_duration'],
@@ -418,7 +418,11 @@ class Media extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -450,7 +454,11 @@ class Media extends DomainResource {
       json['partOf'] = partOf!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson10 = status.toJson();
+    json['status'] = fieldJson10['value'];
+    if (fieldJson10['_value'] != null) {
+      json['_status'] = fieldJson10['_value'];
+    }
 
     if (type != null) {
       json['type'] = type!.toJson();

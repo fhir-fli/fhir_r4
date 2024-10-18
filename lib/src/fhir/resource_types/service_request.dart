@@ -72,22 +72,21 @@ class ServiceRequest extends DomainResource {
   ) {
     return ServiceRequest(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -184,18 +183,19 @@ class ServiceRequest extends DomainResource {
               )
               .toList()
           : null,
-      priority: json['priority'] != null
+      priority: (json['priority'] != null || json['_priority'] != null)
           ? RequestPriority.fromJson({
               'value': json['priority'],
               '_value': json['_priority'],
             })
           : null,
-      doNotPerform: json['doNotPerform'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['doNotPerform'],
-              '_value': json['_doNotPerform'],
-            })
-          : null,
+      doNotPerform:
+          (json['doNotPerform'] != null || json['_doNotPerform'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['doNotPerform'],
+                  '_value': json['_doNotPerform'],
+                })
+              : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(
               json['code'] as Map<String, dynamic>,
@@ -233,7 +233,8 @@ class ServiceRequest extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceDateTime: json['occurrenceDateTime'] != null
+      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
+              json['_occurrenceDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
               '_value': json['_occurrenceDateTime'],
@@ -249,18 +250,19 @@ class ServiceRequest extends DomainResource {
               json['occurrenceTiming'] as Map<String, dynamic>,
             )
           : null,
-      asNeededBoolean: json['asNeededBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['asNeededBoolean'],
-              '_value': json['_asNeededBoolean'],
-            })
-          : null,
+      asNeededBoolean:
+          (json['asNeededBoolean'] != null || json['_asNeededBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['asNeededBoolean'],
+                  '_value': json['_asNeededBoolean'],
+                })
+              : null,
       asNeededCodeableConcept: json['asNeededCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['asNeededCodeableConcept'] as Map<String, dynamic>,
             )
           : null,
-      authoredOn: json['authoredOn'] != null
+      authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({
               'value': json['authoredOn'],
               '_value': json['_authoredOn'],
@@ -366,7 +368,8 @@ class ServiceRequest extends DomainResource {
               )
               .toList()
           : null,
-      patientInstruction: json['patientInstruction'] != null
+      patientInstruction: (json['patientInstruction'] != null ||
+              json['_patientInstruction'] != null)
           ? FhirString.fromJson({
               'value': json['patientInstruction'],
               '_value': json['_patientInstruction'],
@@ -643,7 +646,11 @@ class ServiceRequest extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -697,16 +704,28 @@ class ServiceRequest extends DomainResource {
       json['requisition'] = requisition!.toJson();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson13 = status.toJson();
+    json['status'] = fieldJson13['value'];
+    if (fieldJson13['_value'] != null) {
+      json['_status'] = fieldJson13['_value'];
+    }
 
-    json['intent'] = intent.toJson();
+    final fieldJson14 = intent.toJson();
+    json['intent'] = fieldJson14['value'];
+    if (fieldJson14['_value'] != null) {
+      json['_intent'] = fieldJson14['_value'];
+    }
 
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
 
     if (priority != null) {
-      json['priority'] = priority!.toJson();
+      final fieldJson16 = priority!.toJson();
+      json['priority'] = fieldJson16['value'];
+      if (fieldJson16['_value'] != null) {
+        json['_priority'] = fieldJson16['_value'];
+      }
     }
 
     if (doNotPerform != null) {

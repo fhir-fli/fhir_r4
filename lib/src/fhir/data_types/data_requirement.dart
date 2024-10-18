@@ -35,9 +35,7 @@ class DataRequirement extends DataType {
   ) {
     return DataRequirement(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -90,7 +88,7 @@ class DataRequirement extends DataType {
               )
               .toList()
           : null,
-      limit: json['limit'] != null
+      limit: (json['limit'] != null || json['_limit'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['limit'],
               '_value': json['_limit'],
@@ -214,7 +212,11 @@ class DataRequirement extends DataType {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    json['type'] = type.toJson();
+    final fieldJson1 = type.toJson();
+    json['type'] = fieldJson1['value'];
+    if (fieldJson1['_value'] != null) {
+      json['_type'] = fieldJson1['_value'];
+    }
 
     if (profile != null && profile!.isNotEmpty) {
       final fieldJson2 = profile!.map((e) => e.toJson()).toList();
@@ -338,9 +340,7 @@ class DataRequirementCodeFilter extends Element {
   ) {
     return DataRequirementCodeFilter(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -351,19 +351,19 @@ class DataRequirementCodeFilter extends Element {
               )
               .toList()
           : null,
-      path: json['path'] != null
+      path: (json['path'] != null || json['_path'] != null)
           ? FhirString.fromJson({
               'value': json['path'],
               '_value': json['_path'],
             })
           : null,
-      searchParam: json['searchParam'] != null
+      searchParam: (json['searchParam'] != null || json['_searchParam'] != null)
           ? FhirString.fromJson({
               'value': json['searchParam'],
               '_value': json['_searchParam'],
             })
           : null,
-      valueSet: json['valueSet'] != null
+      valueSet: (json['valueSet'] != null || json['_valueSet'] != null)
           ? FhirCanonical.fromJson({
               'value': json['valueSet'],
               '_value': json['_valueSet'],
@@ -557,9 +557,7 @@ class DataRequirementDateFilter extends Element {
   ) {
     return DataRequirementDateFilter(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -570,24 +568,25 @@ class DataRequirementDateFilter extends Element {
               )
               .toList()
           : null,
-      path: json['path'] != null
+      path: (json['path'] != null || json['_path'] != null)
           ? FhirString.fromJson({
               'value': json['path'],
               '_value': json['_path'],
             })
           : null,
-      searchParam: json['searchParam'] != null
+      searchParam: (json['searchParam'] != null || json['_searchParam'] != null)
           ? FhirString.fromJson({
               'value': json['searchParam'],
               '_value': json['_searchParam'],
             })
           : null,
-      valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['valueDateTime'],
-              '_value': json['_valueDateTime'],
-            })
-          : null,
+      valueDateTime:
+          (json['valueDateTime'] != null || json['_valueDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['valueDateTime'],
+                  '_value': json['_valueDateTime'],
+                })
+              : null,
       valuePeriod: json['valuePeriod'] != null
           ? Period.fromJson(
               json['valuePeriod'] as Map<String, dynamic>,
@@ -790,9 +789,7 @@ class DataRequirementSort extends Element {
   ) {
     return DataRequirementSort(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -880,7 +877,11 @@ class DataRequirementSort extends Element {
       json['_path'] = fieldJson1['_value'];
     }
 
-    json['direction'] = direction.toJson();
+    final fieldJson2 = direction.toJson();
+    json['direction'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_direction'] = fieldJson2['_value'];
+    }
 
     return json;
   }

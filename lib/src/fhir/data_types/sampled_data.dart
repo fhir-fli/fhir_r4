@@ -33,9 +33,7 @@ class SampledData extends DataType {
   ) {
     return SampledData(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -53,19 +51,19 @@ class SampledData extends DataType {
         'value': json['period'],
         '_value': json['_period'],
       }),
-      factor: json['factor'] != null
+      factor: (json['factor'] != null || json['_factor'] != null)
           ? FhirDecimal.fromJson({
               'value': json['factor'],
               '_value': json['_factor'],
             })
           : null,
-      lowerLimit: json['lowerLimit'] != null
+      lowerLimit: (json['lowerLimit'] != null || json['_lowerLimit'] != null)
           ? FhirDecimal.fromJson({
               'value': json['lowerLimit'],
               '_value': json['_lowerLimit'],
             })
           : null,
-      upperLimit: json['upperLimit'] != null
+      upperLimit: (json['upperLimit'] != null || json['_upperLimit'] != null)
           ? FhirDecimal.fromJson({
               'value': json['upperLimit'],
               '_value': json['_upperLimit'],
@@ -75,7 +73,7 @@ class SampledData extends DataType {
         'value': json['dimensions'],
         '_value': json['_dimensions'],
       }),
-      data: json['data'] != null
+      data: (json['data'] != null || json['_data'] != null)
           ? FhirString.fromJson({
               'value': json['data'],
               '_value': json['_data'],

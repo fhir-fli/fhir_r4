@@ -44,22 +44,21 @@ class DeviceMetric extends DomainResource {
   ) {
     return DeviceMetric(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -124,13 +123,14 @@ class DeviceMetric extends DomainResource {
               json['parent'] as Map<String, dynamic>,
             )
           : null,
-      operationalStatus: json['operationalStatus'] != null
+      operationalStatus: (json['operationalStatus'] != null ||
+              json['_operationalStatus'] != null)
           ? DeviceMetricOperationalStatus.fromJson({
               'value': json['operationalStatus'],
               '_value': json['_operationalStatus'],
             })
           : null,
-      color: json['color'] != null
+      color: (json['color'] != null || json['_color'] != null)
           ? DeviceMetricColor.fromJson({
               'value': json['color'],
               '_value': json['_color'],
@@ -281,7 +281,11 @@ class DeviceMetric extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -320,14 +324,26 @@ class DeviceMetric extends DomainResource {
     }
 
     if (operationalStatus != null) {
-      json['operationalStatus'] = operationalStatus!.toJson();
+      final fieldJson12 = operationalStatus!.toJson();
+      json['operationalStatus'] = fieldJson12['value'];
+      if (fieldJson12['_value'] != null) {
+        json['_operationalStatus'] = fieldJson12['_value'];
+      }
     }
 
     if (color != null) {
-      json['color'] = color!.toJson();
+      final fieldJson13 = color!.toJson();
+      json['color'] = fieldJson13['value'];
+      if (fieldJson13['_value'] != null) {
+        json['_color'] = fieldJson13['_value'];
+      }
     }
 
-    json['category'] = category.toJson();
+    final fieldJson14 = category.toJson();
+    json['category'] = fieldJson14['value'];
+    if (fieldJson14['_value'] != null) {
+      json['_category'] = fieldJson14['_value'];
+    }
 
     if (measurementPeriod != null) {
       json['measurementPeriod'] = measurementPeriod!.toJson();
@@ -426,9 +442,7 @@ class DeviceMetricCalibration extends BackboneElement {
   ) {
     return DeviceMetricCalibration(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -448,19 +462,19 @@ class DeviceMetricCalibration extends BackboneElement {
               )
               .toList()
           : null,
-      type: json['type'] != null
+      type: (json['type'] != null || json['_type'] != null)
           ? DeviceMetricCalibrationType.fromJson({
               'value': json['type'],
               '_value': json['_type'],
             })
           : null,
-      state: json['state'] != null
+      state: (json['state'] != null || json['_state'] != null)
           ? DeviceMetricCalibrationState.fromJson({
               'value': json['state'],
               '_value': json['_state'],
             })
           : null,
-      time: json['time'] != null
+      time: (json['time'] != null || json['_time'] != null)
           ? FhirInstant.fromJson({
               'value': json['time'],
               '_value': json['_time'],
@@ -535,11 +549,19 @@ class DeviceMetricCalibration extends BackboneElement {
     }
 
     if (type != null) {
-      json['type'] = type!.toJson();
+      final fieldJson2 = type!.toJson();
+      json['type'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_type'] = fieldJson2['_value'];
+      }
     }
 
     if (state != null) {
-      json['state'] = state!.toJson();
+      final fieldJson3 = state!.toJson();
+      json['state'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_state'] = fieldJson3['_value'];
+      }
     }
 
     if (time != null) {

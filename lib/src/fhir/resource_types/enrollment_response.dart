@@ -42,22 +42,21 @@ class EnrollmentResponse extends DomainResource {
   ) {
     return EnrollmentResponse(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -104,7 +103,7 @@ class EnrollmentResponse extends DomainResource {
               )
               .toList()
           : null,
-      status: json['status'] != null
+      status: (json['status'] != null || json['_status'] != null)
           ? FinancialResourceStatusCodes.fromJson({
               'value': json['status'],
               '_value': json['_status'],
@@ -115,19 +114,19 @@ class EnrollmentResponse extends DomainResource {
               json['request'] as Map<String, dynamic>,
             )
           : null,
-      outcome: json['outcome'] != null
+      outcome: (json['outcome'] != null || json['_outcome'] != null)
           ? RemittanceOutcome.fromJson({
               'value': json['outcome'],
               '_value': json['_outcome'],
             })
           : null,
-      disposition: json['disposition'] != null
+      disposition: (json['disposition'] != null || json['_disposition'] != null)
           ? FhirString.fromJson({
               'value': json['disposition'],
               '_value': json['_disposition'],
             })
           : null,
-      created: json['created'] != null
+      created: (json['created'] != null || json['_created'] != null)
           ? FhirDateTime.fromJson({
               'value': json['created'],
               '_value': json['_created'],
@@ -238,7 +237,11 @@ class EnrollmentResponse extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -263,7 +266,11 @@ class EnrollmentResponse extends DomainResource {
     }
 
     if (status != null) {
-      json['status'] = status!.toJson();
+      final fieldJson8 = status!.toJson();
+      json['status'] = fieldJson8['value'];
+      if (fieldJson8['_value'] != null) {
+        json['_status'] = fieldJson8['_value'];
+      }
     }
 
     if (request != null) {
@@ -271,7 +278,11 @@ class EnrollmentResponse extends DomainResource {
     }
 
     if (outcome != null) {
-      json['outcome'] = outcome!.toJson();
+      final fieldJson10 = outcome!.toJson();
+      json['outcome'] = fieldJson10['value'];
+      if (fieldJson10['_value'] != null) {
+        json['_outcome'] = fieldJson10['_value'];
+      }
     }
 
     if (disposition != null) {

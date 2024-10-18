@@ -67,22 +67,21 @@ class ChargeItem extends DomainResource {
   ) {
     return ChargeItem(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -163,7 +162,8 @@ class ChargeItem extends DomainResource {
               json['context'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceDateTime: json['occurrenceDateTime'] != null
+      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
+              json['_occurrenceDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
               '_value': json['_occurrenceDateTime'],
@@ -217,29 +217,31 @@ class ChargeItem extends DomainResource {
               )
               .toList()
           : null,
-      factorOverride: json['factorOverride'] != null
-          ? FhirDecimal.fromJson({
-              'value': json['factorOverride'],
-              '_value': json['_factorOverride'],
-            })
-          : null,
+      factorOverride:
+          (json['factorOverride'] != null || json['_factorOverride'] != null)
+              ? FhirDecimal.fromJson({
+                  'value': json['factorOverride'],
+                  '_value': json['_factorOverride'],
+                })
+              : null,
       priceOverride: json['priceOverride'] != null
           ? Money.fromJson(
               json['priceOverride'] as Map<String, dynamic>,
             )
           : null,
-      overrideReason: json['overrideReason'] != null
-          ? FhirString.fromJson({
-              'value': json['overrideReason'],
-              '_value': json['_overrideReason'],
-            })
-          : null,
+      overrideReason:
+          (json['overrideReason'] != null || json['_overrideReason'] != null)
+              ? FhirString.fromJson({
+                  'value': json['overrideReason'],
+                  '_value': json['_overrideReason'],
+                })
+              : null,
       enterer: json['enterer'] != null
           ? Reference.fromJson(
               json['enterer'] as Map<String, dynamic>,
             )
           : null,
-      enteredDate: json['enteredDate'] != null
+      enteredDate: (json['enteredDate'] != null || json['_enteredDate'] != null)
           ? FhirDateTime.fromJson({
               'value': json['enteredDate'],
               '_value': json['_enteredDate'],
@@ -489,7 +491,11 @@ class ChargeItem extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -530,7 +536,11 @@ class ChargeItem extends DomainResource {
       }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson10 = status.toJson();
+    json['status'] = fieldJson10['value'];
+    if (fieldJson10['_value'] != null) {
+      json['_status'] = fieldJson10['_value'];
+    }
 
     if (partOf != null && partOf!.isNotEmpty) {
       json['partOf'] = partOf!.map((e) => e.toJson()).toList();
@@ -774,9 +784,7 @@ class ChargeItemPerformer extends BackboneElement {
   ) {
     return ChargeItemPerformer(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)

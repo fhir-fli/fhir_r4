@@ -48,22 +48,21 @@ class EpisodeOfCare extends DomainResource {
   ) {
     return EpisodeOfCare(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -305,7 +304,11 @@ class EpisodeOfCare extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -329,7 +332,11 @@ class EpisodeOfCare extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     if (statusHistory != null && statusHistory!.isNotEmpty) {
       json['statusHistory'] = statusHistory!.map((e) => e.toJson()).toList();
@@ -462,9 +469,7 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
   ) {
     return EpisodeOfCareStatusHistory(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -555,7 +560,11 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson2 = status.toJson();
+    json['status'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_status'] = fieldJson2['_value'];
+    }
 
     json['period'] = period.toJson();
 
@@ -621,9 +630,7 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
   ) {
     return EpisodeOfCareDiagnosis(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -651,7 +658,7 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
               json['role'] as Map<String, dynamic>,
             )
           : null,
-      rank: json['rank'] != null
+      rank: (json['rank'] != null || json['_rank'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['rank'],
               '_value': json['_rank'],

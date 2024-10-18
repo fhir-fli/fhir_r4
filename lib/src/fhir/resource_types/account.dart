@@ -46,22 +46,21 @@ class Account extends DomainResource {
   ) {
     return Account(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -117,7 +116,7 @@ class Account extends DomainResource {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
@@ -151,7 +150,7 @@ class Account extends DomainResource {
               json['owner'] as Map<String, dynamic>,
             )
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -284,7 +283,11 @@ class Account extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -308,7 +311,11 @@ class Account extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     if (type != null) {
       json['type'] = type!.toJson();
@@ -444,9 +451,7 @@ class AccountCoverage extends BackboneElement {
   ) {
     return AccountCoverage(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -469,7 +474,7 @@ class AccountCoverage extends BackboneElement {
       coverage: Reference.fromJson(
         json['coverage'] as Map<String, dynamic>,
       ),
-      priority: json['priority'] != null
+      priority: (json['priority'] != null || json['_priority'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['priority'],
               '_value': json['_priority'],
@@ -617,9 +622,7 @@ class AccountGuarantor extends BackboneElement {
   ) {
     return AccountGuarantor(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -642,7 +645,7 @@ class AccountGuarantor extends BackboneElement {
       party: Reference.fromJson(
         json['party'] as Map<String, dynamic>,
       ),
-      onHold: json['onHold'] != null
+      onHold: (json['onHold'] != null || json['_onHold'] != null)
           ? FhirBoolean.fromJson({
               'value': json['onHold'],
               '_value': json['_onHold'],

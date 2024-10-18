@@ -48,22 +48,21 @@ class NamingSystem extends DomainResource {
   ) {
     return NamingSystem(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -117,7 +116,7 @@ class NamingSystem extends DomainResource {
         'value': json['date'],
         '_value': json['_date'],
       }),
-      publisher: json['publisher'] != null
+      publisher: (json['publisher'] != null || json['_publisher'] != null)
           ? FhirString.fromJson({
               'value': json['publisher'],
               '_value': json['_publisher'],
@@ -132,7 +131,7 @@ class NamingSystem extends DomainResource {
               )
               .toList()
           : null,
-      responsible: json['responsible'] != null
+      responsible: (json['responsible'] != null || json['_responsible'] != null)
           ? FhirString.fromJson({
               'value': json['responsible'],
               '_value': json['_responsible'],
@@ -143,7 +142,7 @@ class NamingSystem extends DomainResource {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -167,7 +166,7 @@ class NamingSystem extends DomainResource {
               )
               .toList()
           : null,
-      usage: json['usage'] != null
+      usage: (json['usage'] != null || json['_usage'] != null)
           ? FhirString.fromJson({
               'value': json['usage'],
               '_value': json['_usage'],
@@ -316,7 +315,11 @@ class NamingSystem extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -342,9 +345,17 @@ class NamingSystem extends DomainResource {
       json['_name'] = fieldJson7['_value'];
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
-    json['kind'] = kind.toJson();
+    final fieldJson9 = kind.toJson();
+    json['kind'] = fieldJson9['value'];
+    if (fieldJson9['_value'] != null) {
+      json['_kind'] = fieldJson9['_value'];
+    }
 
     final fieldJson10 = date.toJson();
     json['date'] = fieldJson10['value'];
@@ -499,9 +510,7 @@ class NamingSystemUniqueId extends BackboneElement {
   ) {
     return NamingSystemUniqueId(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -529,13 +538,13 @@ class NamingSystemUniqueId extends BackboneElement {
         'value': json['value'],
         '_value': json['_value'],
       }),
-      preferred: json['preferred'] != null
+      preferred: (json['preferred'] != null || json['_preferred'] != null)
           ? FhirBoolean.fromJson({
               'value': json['preferred'],
               '_value': json['_preferred'],
             })
           : null,
-      comment: json['comment'] != null
+      comment: (json['comment'] != null || json['_comment'] != null)
           ? FhirString.fromJson({
               'value': json['comment'],
               '_value': json['_comment'],
@@ -627,7 +636,11 @@ class NamingSystemUniqueId extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['type'] = type.toJson();
+    final fieldJson2 = type.toJson();
+    json['type'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_type'] = fieldJson2['_value'];
+    }
 
     final fieldJson3 = value.toJson();
     json['value'] = fieldJson3['value'];

@@ -64,22 +64,21 @@ class Immunization extends DomainResource {
   ) {
     return Immunization(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -146,30 +145,33 @@ class Immunization extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceDateTime: json['occurrenceDateTime'] != null
+      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
+              json['_occurrenceDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
               '_value': json['_occurrenceDateTime'],
             })
           : null,
-      occurrenceString: json['occurrenceString'] != null
+      occurrenceString: (json['occurrenceString'] != null ||
+              json['_occurrenceString'] != null)
           ? FhirString.fromJson({
               'value': json['occurrenceString'],
               '_value': json['_occurrenceString'],
             })
           : null,
-      recorded: json['recorded'] != null
+      recorded: (json['recorded'] != null || json['_recorded'] != null)
           ? FhirDateTime.fromJson({
               'value': json['recorded'],
               '_value': json['_recorded'],
             })
           : null,
-      primarySource: json['primarySource'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['primarySource'],
-              '_value': json['_primarySource'],
-            })
-          : null,
+      primarySource:
+          (json['primarySource'] != null || json['_primarySource'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['primarySource'],
+                  '_value': json['_primarySource'],
+                })
+              : null,
       reportOrigin: json['reportOrigin'] != null
           ? CodeableConcept.fromJson(
               json['reportOrigin'] as Map<String, dynamic>,
@@ -185,18 +187,19 @@ class Immunization extends DomainResource {
               json['manufacturer'] as Map<String, dynamic>,
             )
           : null,
-      lotNumber: json['lotNumber'] != null
+      lotNumber: (json['lotNumber'] != null || json['_lotNumber'] != null)
           ? FhirString.fromJson({
               'value': json['lotNumber'],
               '_value': json['_lotNumber'],
             })
           : null,
-      expirationDate: json['expirationDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['expirationDate'],
-              '_value': json['_expirationDate'],
-            })
-          : null,
+      expirationDate:
+          (json['expirationDate'] != null || json['_expirationDate'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['expirationDate'],
+                  '_value': json['_expirationDate'],
+                })
+              : null,
       site: json['site'] != null
           ? CodeableConcept.fromJson(
               json['site'] as Map<String, dynamic>,
@@ -248,7 +251,7 @@ class Immunization extends DomainResource {
               )
               .toList()
           : null,
-      isSubpotent: json['isSubpotent'] != null
+      isSubpotent: (json['isSubpotent'] != null || json['_isSubpotent'] != null)
           ? FhirBoolean.fromJson({
               'value': json['isSubpotent'],
               '_value': json['_isSubpotent'],
@@ -497,7 +500,11 @@ class Immunization extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -521,7 +528,11 @@ class Immunization extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     if (statusReason != null) {
       json['statusReason'] = statusReason!.toJson();
@@ -784,9 +795,7 @@ class ImmunizationPerformer extends BackboneElement {
   ) {
     return ImmunizationPerformer(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -949,9 +958,7 @@ class ImmunizationEducation extends BackboneElement {
   ) {
     return ImmunizationEducation(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -971,25 +978,28 @@ class ImmunizationEducation extends BackboneElement {
               )
               .toList()
           : null,
-      documentType: json['documentType'] != null
-          ? FhirString.fromJson({
-              'value': json['documentType'],
-              '_value': json['_documentType'],
-            })
-          : null,
-      reference: json['reference'] != null
+      documentType:
+          (json['documentType'] != null || json['_documentType'] != null)
+              ? FhirString.fromJson({
+                  'value': json['documentType'],
+                  '_value': json['_documentType'],
+                })
+              : null,
+      reference: (json['reference'] != null || json['_reference'] != null)
           ? FhirUri.fromJson({
               'value': json['reference'],
               '_value': json['_reference'],
             })
           : null,
-      publicationDate: json['publicationDate'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['publicationDate'],
-              '_value': json['_publicationDate'],
-            })
-          : null,
-      presentationDate: json['presentationDate'] != null
+      publicationDate:
+          (json['publicationDate'] != null || json['_publicationDate'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['publicationDate'],
+                  '_value': json['_publicationDate'],
+                })
+              : null,
+      presentationDate: (json['presentationDate'] != null ||
+              json['_presentationDate'] != null)
           ? FhirDateTime.fromJson({
               'value': json['presentationDate'],
               '_value': json['_presentationDate'],
@@ -1167,9 +1177,7 @@ class ImmunizationReaction extends BackboneElement {
   ) {
     return ImmunizationReaction(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1189,7 +1197,7 @@ class ImmunizationReaction extends BackboneElement {
               )
               .toList()
           : null,
-      date: json['date'] != null
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
@@ -1200,7 +1208,7 @@ class ImmunizationReaction extends BackboneElement {
               json['detail'] as Map<String, dynamic>,
             )
           : null,
-      reported: json['reported'] != null
+      reported: (json['reported'] != null || json['_reported'] != null)
           ? FhirBoolean.fromJson({
               'value': json['reported'],
               '_value': json['_reported'],
@@ -1363,9 +1371,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
   ) {
     return ImmunizationProtocolApplied(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1385,7 +1391,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
               )
               .toList()
           : null,
-      series: json['series'] != null
+      series: (json['series'] != null || json['_series'] != null)
           ? FhirString.fromJson({
               'value': json['series'],
               '_value': json['_series'],
@@ -1405,25 +1411,29 @@ class ImmunizationProtocolApplied extends BackboneElement {
               )
               .toList()
           : null,
-      doseNumberPositiveInt: json['doseNumberPositiveInt'] != null
+      doseNumberPositiveInt: (json['doseNumberPositiveInt'] != null ||
+              json['_doseNumberPositiveInt'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['doseNumberPositiveInt'],
               '_value': json['_doseNumberPositiveInt'],
             })
           : null,
-      doseNumberString: json['doseNumberString'] != null
+      doseNumberString: (json['doseNumberString'] != null ||
+              json['_doseNumberString'] != null)
           ? FhirString.fromJson({
               'value': json['doseNumberString'],
               '_value': json['_doseNumberString'],
             })
           : null,
-      seriesDosesPositiveInt: json['seriesDosesPositiveInt'] != null
+      seriesDosesPositiveInt: (json['seriesDosesPositiveInt'] != null ||
+              json['_seriesDosesPositiveInt'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['seriesDosesPositiveInt'],
               '_value': json['_seriesDosesPositiveInt'],
             })
           : null,
-      seriesDosesString: json['seriesDosesString'] != null
+      seriesDosesString: (json['seriesDosesString'] != null ||
+              json['_seriesDosesString'] != null)
           ? FhirString.fromJson({
               'value': json['seriesDosesString'],
               '_value': json['_seriesDosesString'],

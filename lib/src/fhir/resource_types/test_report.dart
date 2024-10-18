@@ -46,22 +46,21 @@ class TestReport extends DomainResource {
   ) {
     return TestReport(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -104,7 +103,7 @@ class TestReport extends DomainResource {
               json['identifier'] as Map<String, dynamic>,
             )
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
@@ -121,19 +120,19 @@ class TestReport extends DomainResource {
         'value': json['result'],
         '_value': json['_result'],
       }),
-      score: json['score'] != null
+      score: (json['score'] != null || json['_score'] != null)
           ? FhirDecimal.fromJson({
               'value': json['score'],
               '_value': json['_score'],
             })
           : null,
-      tester: json['tester'] != null
+      tester: (json['tester'] != null || json['_tester'] != null)
           ? FhirString.fromJson({
               'value': json['tester'],
               '_value': json['_tester'],
             })
           : null,
-      issued: json['issued'] != null
+      issued: (json['issued'] != null || json['_issued'] != null)
           ? FhirDateTime.fromJson({
               'value': json['issued'],
               '_value': json['_issued'],
@@ -283,7 +282,11 @@ class TestReport extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -315,11 +318,19 @@ class TestReport extends DomainResource {
       }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson9 = status.toJson();
+    json['status'] = fieldJson9['value'];
+    if (fieldJson9['_value'] != null) {
+      json['_status'] = fieldJson9['_value'];
+    }
 
     json['testScript'] = testScript.toJson();
 
-    json['result'] = result.toJson();
+    final fieldJson11 = result.toJson();
+    json['result'] = fieldJson11['value'];
+    if (fieldJson11['_value'] != null) {
+      json['_result'] = fieldJson11['_value'];
+    }
 
     if (score != null) {
       final fieldJson12 = score!.toJson();
@@ -454,9 +465,7 @@ class TestReportParticipant extends BackboneElement {
   ) {
     return TestReportParticipant(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -484,7 +493,7 @@ class TestReportParticipant extends BackboneElement {
         'value': json['uri'],
         '_value': json['_uri'],
       }),
-      display: json['display'] != null
+      display: (json['display'] != null || json['_display'] != null)
           ? FhirString.fromJson({
               'value': json['display'],
               '_value': json['_display'],
@@ -558,7 +567,11 @@ class TestReportParticipant extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['type'] = type.toJson();
+    final fieldJson2 = type.toJson();
+    json['type'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_type'] = fieldJson2['_value'];
+    }
 
     final fieldJson3 = uri.toJson();
     json['uri'] = fieldJson3['value'];
@@ -637,9 +650,7 @@ class TestReportSetup extends BackboneElement {
   ) {
     return TestReportSetup(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -789,9 +800,7 @@ class TestReportAction extends BackboneElement {
   ) {
     return TestReportAction(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -955,9 +964,7 @@ class TestReportOperation extends BackboneElement {
   ) {
     return TestReportOperation(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -981,13 +988,13 @@ class TestReportOperation extends BackboneElement {
         'value': json['result'],
         '_value': json['_result'],
       }),
-      message: json['message'] != null
+      message: (json['message'] != null || json['_message'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['message'],
               '_value': json['_message'],
             })
           : null,
-      detail: json['detail'] != null
+      detail: (json['detail'] != null || json['_detail'] != null)
           ? FhirUri.fromJson({
               'value': json['detail'],
               '_value': json['_detail'],
@@ -1061,7 +1068,11 @@ class TestReportOperation extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['result'] = result.toJson();
+    final fieldJson2 = result.toJson();
+    json['result'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_result'] = fieldJson2['_value'];
+    }
 
     if (message != null) {
       final fieldJson3 = message!.toJson();
@@ -1143,9 +1154,7 @@ class TestReportAssert extends BackboneElement {
   ) {
     return TestReportAssert(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1169,13 +1178,13 @@ class TestReportAssert extends BackboneElement {
         'value': json['result'],
         '_value': json['_result'],
       }),
-      message: json['message'] != null
+      message: (json['message'] != null || json['_message'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['message'],
               '_value': json['_message'],
             })
           : null,
-      detail: json['detail'] != null
+      detail: (json['detail'] != null || json['_detail'] != null)
           ? FhirString.fromJson({
               'value': json['detail'],
               '_value': json['_detail'],
@@ -1249,7 +1258,11 @@ class TestReportAssert extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['result'] = result.toJson();
+    final fieldJson2 = result.toJson();
+    json['result'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_result'] = fieldJson2['_value'];
+    }
 
     if (message != null) {
       final fieldJson3 = message!.toJson();
@@ -1331,9 +1344,7 @@ class TestReportTest extends BackboneElement {
   ) {
     return TestReportTest(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1353,13 +1364,13 @@ class TestReportTest extends BackboneElement {
               )
               .toList()
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
             })
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -1523,9 +1534,7 @@ class TestReportAction1 extends BackboneElement {
   ) {
     return TestReportAction1(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1659,9 +1668,7 @@ class TestReportTeardown extends BackboneElement {
   ) {
     return TestReportTeardown(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1809,9 +1816,7 @@ class TestReportAction2 extends BackboneElement {
   ) {
     return TestReportAction2(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)

@@ -52,22 +52,21 @@ class GuidanceResponse extends DomainResource {
   ) {
     return GuidanceResponse(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -119,18 +118,19 @@ class GuidanceResponse extends DomainResource {
               )
               .toList()
           : null,
-      moduleUri: json['moduleUri'] != null
+      moduleUri: (json['moduleUri'] != null || json['_moduleUri'] != null)
           ? FhirUri.fromJson({
               'value': json['moduleUri'],
               '_value': json['_moduleUri'],
             })
           : null,
-      moduleCanonical: json['moduleCanonical'] != null
-          ? FhirCanonical.fromJson({
-              'value': json['moduleCanonical'],
-              '_value': json['_moduleCanonical'],
-            })
-          : null,
+      moduleCanonical:
+          (json['moduleCanonical'] != null || json['_moduleCanonical'] != null)
+              ? FhirCanonical.fromJson({
+                  'value': json['moduleCanonical'],
+                  '_value': json['_moduleCanonical'],
+                })
+              : null,
       moduleCodeableConcept: json['moduleCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['moduleCodeableConcept'] as Map<String, dynamic>,
@@ -150,7 +150,8 @@ class GuidanceResponse extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceDateTime: json['occurrenceDateTime'] != null
+      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
+              json['_occurrenceDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
               '_value': json['_occurrenceDateTime'],
@@ -377,7 +378,11 @@ class GuidanceResponse extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -425,7 +430,11 @@ class GuidanceResponse extends DomainResource {
       json['moduleCodeableConcept'] = moduleCodeableConcept!.toJson();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson12 = status.toJson();
+    json['status'] = fieldJson12['value'];
+    if (fieldJson12['_value'] != null) {
+      json['_status'] = fieldJson12['_value'];
+    }
 
     if (subject != null) {
       json['subject'] = subject!.toJson();

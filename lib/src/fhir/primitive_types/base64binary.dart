@@ -15,7 +15,11 @@ class FhirBase64Binary extends PrimitiveType<String?> {
       : super(
           input != null ? _validateBase64(input) : null,
           element,
-        );
+        ) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Factory constructor to create from JSON with standardized keys
   factory FhirBase64Binary.fromJson(Map<String, dynamic> json) {

@@ -33,9 +33,7 @@ class FhirMeta extends DataType {
   ) {
     return FhirMeta(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -46,19 +44,19 @@ class FhirMeta extends DataType {
               )
               .toList()
           : null,
-      versionId: json['versionId'] != null
+      versionId: (json['versionId'] != null || json['_versionId'] != null)
           ? FhirId.fromJson({
               'value': json['versionId'],
               '_value': json['_versionId'],
             })
           : null,
-      lastUpdated: json['lastUpdated'] != null
+      lastUpdated: (json['lastUpdated'] != null || json['_lastUpdated'] != null)
           ? FhirInstant.fromJson({
               'value': json['lastUpdated'],
               '_value': json['_lastUpdated'],
             })
           : null,
-      source: json['source'] != null
+      source: (json['source'] != null || json['_source'] != null)
           ? FhirUri.fromJson({
               'value': json['source'],
               '_value': json['_source'],

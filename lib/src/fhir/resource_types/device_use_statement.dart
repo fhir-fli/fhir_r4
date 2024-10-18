@@ -49,22 +49,21 @@ class DeviceUseStatement extends DomainResource {
   ) {
     return DeviceUseStatement(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -146,13 +145,14 @@ class DeviceUseStatement extends DomainResource {
               json['timingPeriod'] as Map<String, dynamic>,
             )
           : null,
-      timingDateTime: json['timingDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['timingDateTime'],
-              '_value': json['_timingDateTime'],
-            })
-          : null,
-      recordedOn: json['recordedOn'] != null
+      timingDateTime:
+          (json['timingDateTime'] != null || json['_timingDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['timingDateTime'],
+                  '_value': json['_timingDateTime'],
+                })
+              : null,
+      recordedOn: (json['recordedOn'] != null || json['_recordedOn'] != null)
           ? FhirDateTime.fromJson({
               'value': json['recordedOn'],
               '_value': json['_recordedOn'],
@@ -329,7 +329,11 @@ class DeviceUseStatement extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -357,7 +361,11 @@ class DeviceUseStatement extends DomainResource {
       json['basedOn'] = basedOn!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson9 = status.toJson();
+    json['status'] = fieldJson9['value'];
+    if (fieldJson9['_value'] != null) {
+      json['_status'] = fieldJson9['_value'];
+    }
 
     json['subject'] = subject.toJson();
 

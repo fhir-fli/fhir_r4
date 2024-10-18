@@ -67,22 +67,21 @@ class Contract extends DomainResource {
   ) {
     return Contract(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -129,19 +128,19 @@ class Contract extends DomainResource {
               )
               .toList()
           : null,
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUri.fromJson({
               'value': json['url'],
               '_value': json['_url'],
             })
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
             })
           : null,
-      status: json['status'] != null
+      status: (json['status'] != null || json['_status'] != null)
           ? ContractResourceStatusCodes.fromJson({
               'value': json['status'],
               '_value': json['_status'],
@@ -157,18 +156,19 @@ class Contract extends DomainResource {
               json['instantiatesCanonical'] as Map<String, dynamic>,
             )
           : null,
-      instantiatesUri: json['instantiatesUri'] != null
-          ? FhirUri.fromJson({
-              'value': json['instantiatesUri'],
-              '_value': json['_instantiatesUri'],
-            })
-          : null,
+      instantiatesUri:
+          (json['instantiatesUri'] != null || json['_instantiatesUri'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['instantiatesUri'],
+                  '_value': json['_instantiatesUri'],
+                })
+              : null,
       contentDerivative: json['contentDerivative'] != null
           ? CodeableConcept.fromJson(
               json['contentDerivative'] as Map<String, dynamic>,
             )
           : null,
-      issued: json['issued'] != null
+      issued: (json['issued'] != null || json['_issued'] != null)
           ? FhirDateTime.fromJson({
               'value': json['issued'],
               '_value': json['_issued'],
@@ -220,19 +220,19 @@ class Contract extends DomainResource {
               )
               .toList()
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
             })
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
             })
           : null,
-      subtitle: json['subtitle'] != null
+      subtitle: (json['subtitle'] != null || json['_subtitle'] != null)
           ? FhirString.fromJson({
               'value': json['subtitle'],
               '_value': json['_subtitle'],
@@ -595,7 +595,11 @@ class Contract extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -636,7 +640,11 @@ class Contract extends DomainResource {
     }
 
     if (status != null) {
-      json['status'] = status!.toJson();
+      final fieldJson10 = status!.toJson();
+      json['status'] = fieldJson10['value'];
+      if (fieldJson10['_value'] != null) {
+        json['_status'] = fieldJson10['_value'];
+      }
     }
 
     if (legalState != null) {
@@ -920,9 +928,7 @@ class ContractContentDefinition extends BackboneElement {
   ) {
     return ContractContentDefinition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -955,17 +961,18 @@ class ContractContentDefinition extends BackboneElement {
               json['publisher'] as Map<String, dynamic>,
             )
           : null,
-      publicationDate: json['publicationDate'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['publicationDate'],
-              '_value': json['_publicationDate'],
-            })
-          : null,
+      publicationDate:
+          (json['publicationDate'] != null || json['_publicationDate'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['publicationDate'],
+                  '_value': json['_publicationDate'],
+                })
+              : null,
       publicationStatus: ContractResourcePublicationStatusCodes.fromJson({
         'value': json['publicationStatus'],
         '_value': json['_publicationStatus'],
       }),
-      copyright: json['copyright'] != null
+      copyright: (json['copyright'] != null || json['_copyright'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['copyright'],
               '_value': json['_copyright'],
@@ -1079,7 +1086,11 @@ class ContractContentDefinition extends BackboneElement {
       }
     }
 
-    json['publicationStatus'] = publicationStatus.toJson();
+    final fieldJson6 = publicationStatus.toJson();
+    json['publicationStatus'] = fieldJson6['value'];
+    if (fieldJson6['_value'] != null) {
+      json['_publicationStatus'] = fieldJson6['_value'];
+    }
 
     if (copyright != null) {
       final fieldJson7 = copyright!.toJson();
@@ -1170,9 +1181,7 @@ class ContractTerm extends BackboneElement {
   ) {
     return ContractTerm(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1197,7 +1206,7 @@ class ContractTerm extends BackboneElement {
               json['identifier'] as Map<String, dynamic>,
             )
           : null,
-      issued: json['issued'] != null
+      issued: (json['issued'] != null || json['_issued'] != null)
           ? FhirDateTime.fromJson({
               'value': json['issued'],
               '_value': json['_issued'],
@@ -1228,7 +1237,7 @@ class ContractTerm extends BackboneElement {
               json['subType'] as Map<String, dynamic>,
             )
           : null,
-      text: json['text'] != null
+      text: (json['text'] != null || json['_text'] != null)
           ? FhirString.fromJson({
               'value': json['text'],
               '_value': json['_text'],
@@ -1532,9 +1541,7 @@ class ContractSecurityLabel extends BackboneElement {
   ) {
     return ContractSecurityLabel(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1747,9 +1754,7 @@ class ContractOffer extends BackboneElement {
   ) {
     return ContractOffer(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1820,7 +1825,7 @@ class ContractOffer extends BackboneElement {
               )
               .toList()
           : null,
-      text: json['text'] != null
+      text: (json['text'] != null || json['_text'] != null)
           ? FhirString.fromJson({
               'value': json['text'],
               '_value': json['_text'],
@@ -2067,9 +2072,7 @@ class ContractParty extends BackboneElement {
   ) {
     return ContractParty(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2240,9 +2243,7 @@ class ContractAnswer extends BackboneElement {
   ) {
     return ContractAnswer(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2262,49 +2263,53 @@ class ContractAnswer extends BackboneElement {
               )
               .toList()
           : null,
-      valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['valueBoolean'],
-              '_value': json['_valueBoolean'],
-            })
-          : null,
-      valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson({
-              'value': json['valueDecimal'],
-              '_value': json['_valueDecimal'],
-            })
-          : null,
-      valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson({
-              'value': json['valueInteger'],
-              '_value': json['_valueInteger'],
-            })
-          : null,
-      valueDate: json['valueDate'] != null
+      valueBoolean:
+          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['valueBoolean'],
+                  '_value': json['_valueBoolean'],
+                })
+              : null,
+      valueDecimal:
+          (json['valueDecimal'] != null || json['_valueDecimal'] != null)
+              ? FhirDecimal.fromJson({
+                  'value': json['valueDecimal'],
+                  '_value': json['_valueDecimal'],
+                })
+              : null,
+      valueInteger:
+          (json['valueInteger'] != null || json['_valueInteger'] != null)
+              ? FhirInteger.fromJson({
+                  'value': json['valueInteger'],
+                  '_value': json['_valueInteger'],
+                })
+              : null,
+      valueDate: (json['valueDate'] != null || json['_valueDate'] != null)
           ? FhirDate.fromJson({
               'value': json['valueDate'],
               '_value': json['_valueDate'],
             })
           : null,
-      valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['valueDateTime'],
-              '_value': json['_valueDateTime'],
-            })
-          : null,
-      valueTime: json['valueTime'] != null
+      valueDateTime:
+          (json['valueDateTime'] != null || json['_valueDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['valueDateTime'],
+                  '_value': json['_valueDateTime'],
+                })
+              : null,
+      valueTime: (json['valueTime'] != null || json['_valueTime'] != null)
           ? FhirTime.fromJson({
               'value': json['valueTime'],
               '_value': json['_valueTime'],
             })
           : null,
-      valueString: json['valueString'] != null
+      valueString: (json['valueString'] != null || json['_valueString'] != null)
           ? FhirString.fromJson({
               'value': json['valueString'],
               '_value': json['_valueString'],
             })
           : null,
-      valueUri: json['valueUri'] != null
+      valueUri: (json['valueUri'] != null || json['_valueUri'] != null)
           ? FhirUri.fromJson({
               'value': json['valueUri'],
               '_value': json['_valueUri'],
@@ -2643,9 +2648,7 @@ class ContractAsset extends BackboneElement {
   ) {
     return ContractAsset(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2711,7 +2714,7 @@ class ContractAsset extends BackboneElement {
               )
               .toList()
           : null,
-      condition: json['condition'] != null
+      condition: (json['condition'] != null || json['_condition'] != null)
           ? FhirString.fromJson({
               'value': json['condition'],
               '_value': json['_condition'],
@@ -2744,7 +2747,7 @@ class ContractAsset extends BackboneElement {
               )
               .toList()
           : null,
-      text: json['text'] != null
+      text: (json['text'] != null || json['_text'] != null)
           ? FhirString.fromJson({
               'value': json['text'],
               '_value': json['_text'],
@@ -3046,9 +3049,7 @@ class ContractContext extends BackboneElement {
   ) {
     return ContractContext(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -3082,7 +3083,7 @@ class ContractContext extends BackboneElement {
               )
               .toList()
           : null,
-      text: json['text'] != null
+      text: (json['text'] != null || json['_text'] != null)
           ? FhirString.fromJson({
               'value': json['text'],
               '_value': json['_text'],
@@ -3251,9 +3252,7 @@ class ContractValuedItem extends BackboneElement {
   ) {
     return ContractValuedItem(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -3288,12 +3287,13 @@ class ContractValuedItem extends BackboneElement {
               json['identifier'] as Map<String, dynamic>,
             )
           : null,
-      effectiveTime: json['effectiveTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['effectiveTime'],
-              '_value': json['_effectiveTime'],
-            })
-          : null,
+      effectiveTime:
+          (json['effectiveTime'] != null || json['_effectiveTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['effectiveTime'],
+                  '_value': json['_effectiveTime'],
+                })
+              : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
               json['quantity'] as Map<String, dynamic>,
@@ -3304,13 +3304,13 @@ class ContractValuedItem extends BackboneElement {
               json['unitPrice'] as Map<String, dynamic>,
             )
           : null,
-      factor: json['factor'] != null
+      factor: (json['factor'] != null || json['_factor'] != null)
           ? FhirDecimal.fromJson({
               'value': json['factor'],
               '_value': json['_factor'],
             })
           : null,
-      points: json['points'] != null
+      points: (json['points'] != null || json['_points'] != null)
           ? FhirDecimal.fromJson({
               'value': json['points'],
               '_value': json['_points'],
@@ -3321,13 +3321,13 @@ class ContractValuedItem extends BackboneElement {
               json['net'] as Map<String, dynamic>,
             )
           : null,
-      payment: json['payment'] != null
+      payment: (json['payment'] != null || json['_payment'] != null)
           ? FhirString.fromJson({
               'value': json['payment'],
               '_value': json['_payment'],
             })
           : null,
-      paymentDate: json['paymentDate'] != null
+      paymentDate: (json['paymentDate'] != null || json['_paymentDate'] != null)
           ? FhirDateTime.fromJson({
               'value': json['paymentDate'],
               '_value': json['_paymentDate'],
@@ -3683,9 +3683,7 @@ class ContractAction extends BackboneElement {
   ) {
     return ContractAction(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -3705,12 +3703,13 @@ class ContractAction extends BackboneElement {
               )
               .toList()
           : null,
-      doNotPerform: json['doNotPerform'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['doNotPerform'],
-              '_value': json['_doNotPerform'],
-            })
-          : null,
+      doNotPerform:
+          (json['doNotPerform'] != null || json['_doNotPerform'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['doNotPerform'],
+                  '_value': json['_doNotPerform'],
+                })
+              : null,
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
@@ -3744,7 +3743,8 @@ class ContractAction extends BackboneElement {
         json['_contextLinkId'] as List<dynamic>?,
         fromJson: FhirString.fromJson,
       ),
-      occurrenceDateTime: json['occurrenceDateTime'] != null
+      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
+              json['_occurrenceDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
               '_value': json['_occurrenceDateTime'],
@@ -4234,9 +4234,7 @@ class ContractSubject extends BackboneElement {
   ) {
     return ContractSubject(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -4405,9 +4403,7 @@ class ContractSigner extends BackboneElement {
   ) {
     return ContractSigner(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -4585,9 +4581,7 @@ class ContractFriendly extends BackboneElement {
   ) {
     return ContractFriendly(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -4756,9 +4750,7 @@ class ContractLegal extends BackboneElement {
   ) {
     return ContractLegal(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -4960,9 +4952,7 @@ class ContractRule extends BackboneElement {
   ) {
     return ContractRule(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)

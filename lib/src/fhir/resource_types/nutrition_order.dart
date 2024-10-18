@@ -51,22 +51,21 @@ class NutritionOrder extends DomainResource {
   ) {
     return NutritionOrder(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -364,7 +363,11 @@ class NutritionOrder extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -414,9 +417,17 @@ class NutritionOrder extends DomainResource {
       }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson11 = status.toJson();
+    json['status'] = fieldJson11['value'];
+    if (fieldJson11['_value'] != null) {
+      json['_status'] = fieldJson11['_value'];
+    }
 
-    json['intent'] = intent.toJson();
+    final fieldJson12 = intent.toJson();
+    json['intent'] = fieldJson12['value'];
+    if (fieldJson12['_value'] != null) {
+      json['_intent'] = fieldJson12['_value'];
+    }
 
     json['patient'] = patient.toJson();
 
@@ -572,9 +583,7 @@ class NutritionOrderOralDiet extends BackboneElement {
   ) {
     return NutritionOrderOralDiet(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -639,7 +648,7 @@ class NutritionOrderOralDiet extends BackboneElement {
               )
               .toList()
           : null,
-      instruction: json['instruction'] != null
+      instruction: (json['instruction'] != null || json['_instruction'] != null)
           ? FhirString.fromJson({
               'value': json['instruction'],
               '_value': json['_instruction'],
@@ -831,9 +840,7 @@ class NutritionOrderNutrient extends BackboneElement {
   ) {
     return NutritionOrderNutrient(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -997,9 +1004,7 @@ class NutritionOrderTexture extends BackboneElement {
   ) {
     return NutritionOrderTexture(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1168,9 +1173,7 @@ class NutritionOrderSupplement extends BackboneElement {
   ) {
     return NutritionOrderSupplement(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1195,7 +1198,7 @@ class NutritionOrderSupplement extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      productName: json['productName'] != null
+      productName: (json['productName'] != null || json['_productName'] != null)
           ? FhirString.fromJson({
               'value': json['productName'],
               '_value': json['_productName'],
@@ -1215,7 +1218,7 @@ class NutritionOrderSupplement extends BackboneElement {
               json['quantity'] as Map<String, dynamic>,
             )
           : null,
-      instruction: json['instruction'] != null
+      instruction: (json['instruction'] != null || json['_instruction'] != null)
           ? FhirString.fromJson({
               'value': json['instruction'],
               '_value': json['_instruction'],
@@ -1404,9 +1407,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
   ) {
     return NutritionOrderEnteralFormula(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1431,7 +1432,8 @@ class NutritionOrderEnteralFormula extends BackboneElement {
               json['baseFormulaType'] as Map<String, dynamic>,
             )
           : null,
-      baseFormulaProductName: json['baseFormulaProductName'] != null
+      baseFormulaProductName: (json['baseFormulaProductName'] != null ||
+              json['_baseFormulaProductName'] != null)
           ? FhirString.fromJson({
               'value': json['baseFormulaProductName'],
               '_value': json['_baseFormulaProductName'],
@@ -1442,7 +1444,8 @@ class NutritionOrderEnteralFormula extends BackboneElement {
               json['additiveType'] as Map<String, dynamic>,
             )
           : null,
-      additiveProductName: json['additiveProductName'] != null
+      additiveProductName: (json['additiveProductName'] != null ||
+              json['_additiveProductName'] != null)
           ? FhirString.fromJson({
               'value': json['additiveProductName'],
               '_value': json['_additiveProductName'],
@@ -1697,9 +1700,7 @@ class NutritionOrderAdministration extends BackboneElement {
   ) {
     return NutritionOrderAdministration(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1739,7 +1740,8 @@ class NutritionOrderAdministration extends BackboneElement {
               json['rateRatio'] as Map<String, dynamic>,
             )
           : null,
-      administrationInstruction: json['administrationInstruction'] != null
+      administrationInstruction: (json['administrationInstruction'] != null ||
+              json['_administrationInstruction'] != null)
           ? FhirString.fromJson({
               'value': json['administrationInstruction'],
               '_value': json['_administrationInstruction'],

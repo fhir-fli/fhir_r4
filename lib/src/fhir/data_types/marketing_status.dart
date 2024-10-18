@@ -33,9 +33,7 @@ class MarketingStatus extends BackboneType {
   ) {
     return MarketingStatus(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -73,7 +71,7 @@ class MarketingStatus extends BackboneType {
               json['dateRange'] as Map<String, dynamic>,
             )
           : null,
-      restoreDate: json['restoreDate'] != null
+      restoreDate: (json['restoreDate'] != null || json['_restoreDate'] != null)
           ? FhirDateTime.fromJson({
               'value': json['restoreDate'],
               '_value': json['_restoreDate'],

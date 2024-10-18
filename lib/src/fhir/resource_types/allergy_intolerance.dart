@@ -54,22 +54,21 @@ class AllergyIntolerance extends DomainResource {
   ) {
     return AllergyIntolerance(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -126,7 +125,7 @@ class AllergyIntolerance extends DomainResource {
               json['verificationStatus'] as Map<String, dynamic>,
             )
           : null,
-      type: json['type'] != null
+      type: (json['type'] != null || json['_type'] != null)
           ? AllergyIntoleranceType.fromJson({
               'value': json['type'],
               '_value': json['_type'],
@@ -137,7 +136,7 @@ class AllergyIntolerance extends DomainResource {
         json['_category'] as List<dynamic>?,
         fromJson: AllergyIntoleranceCategory.fromJson,
       ),
-      criticality: json['criticality'] != null
+      criticality: (json['criticality'] != null || json['_criticality'] != null)
           ? AllergyIntoleranceCriticality.fromJson({
               'value': json['criticality'],
               '_value': json['_criticality'],
@@ -156,12 +155,13 @@ class AllergyIntolerance extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      onsetDateTime: json['onsetDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['onsetDateTime'],
-              '_value': json['_onsetDateTime'],
-            })
-          : null,
+      onsetDateTime:
+          (json['onsetDateTime'] != null || json['_onsetDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['onsetDateTime'],
+                  '_value': json['_onsetDateTime'],
+                })
+              : null,
       onsetAge: json['onsetAge'] != null
           ? Age.fromJson(
               json['onsetAge'] as Map<String, dynamic>,
@@ -177,18 +177,19 @@ class AllergyIntolerance extends DomainResource {
               json['onsetRange'] as Map<String, dynamic>,
             )
           : null,
-      onsetString: json['onsetString'] != null
+      onsetString: (json['onsetString'] != null || json['_onsetString'] != null)
           ? FhirString.fromJson({
               'value': json['onsetString'],
               '_value': json['_onsetString'],
             })
           : null,
-      recordedDate: json['recordedDate'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['recordedDate'],
-              '_value': json['_recordedDate'],
-            })
-          : null,
+      recordedDate:
+          (json['recordedDate'] != null || json['_recordedDate'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['recordedDate'],
+                  '_value': json['_recordedDate'],
+                })
+              : null,
       recorder: json['recorder'] != null
           ? Reference.fromJson(
               json['recorder'] as Map<String, dynamic>,
@@ -199,12 +200,13 @@ class AllergyIntolerance extends DomainResource {
               json['asserter'] as Map<String, dynamic>,
             )
           : null,
-      lastOccurrence: json['lastOccurrence'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['lastOccurrence'],
-              '_value': json['_lastOccurrence'],
-            })
-          : null,
+      lastOccurrence:
+          (json['lastOccurrence'] != null || json['_lastOccurrence'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['lastOccurrence'],
+                  '_value': json['_lastOccurrence'],
+                })
+              : null,
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
@@ -396,7 +398,11 @@ class AllergyIntolerance extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -429,15 +435,27 @@ class AllergyIntolerance extends DomainResource {
     }
 
     if (type != null) {
-      json['type'] = type!.toJson();
+      final fieldJson10 = type!.toJson();
+      json['type'] = fieldJson10['value'];
+      if (fieldJson10['_value'] != null) {
+        json['_type'] = fieldJson10['_value'];
+      }
     }
 
     if (category != null && category!.isNotEmpty) {
-      json['category'] = category!.map((e) => e.toJson()).toList();
+      final fieldJson11 = category!.map((e) => e.toJson()).toList();
+      json['category'] = fieldJson11.map((e) => e['value']).toList();
+      if (fieldJson11.any((e) => e['_value'] != null)) {
+        json['_category'] = fieldJson11.map((e) => e['_value']).toList();
+      }
     }
 
     if (criticality != null) {
-      json['criticality'] = criticality!.toJson();
+      final fieldJson12 = criticality!.toJson();
+      json['criticality'] = fieldJson12['value'];
+      if (fieldJson12['_value'] != null) {
+        json['_criticality'] = fieldJson12['_value'];
+      }
     }
 
     if (code != null) {
@@ -623,9 +641,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
   ) {
     return AllergyIntoleranceReaction(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -659,19 +675,19 @@ class AllergyIntoleranceReaction extends BackboneElement {
             )
             .toList(),
       ),
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
             })
           : null,
-      onset: json['onset'] != null
+      onset: (json['onset'] != null || json['_onset'] != null)
           ? FhirDateTime.fromJson({
               'value': json['onset'],
               '_value': json['_onset'],
             })
           : null,
-      severity: json['severity'] != null
+      severity: (json['severity'] != null || json['_severity'] != null)
           ? AllergyIntoleranceSeverity.fromJson({
               'value': json['severity'],
               '_value': json['_severity'],
@@ -813,7 +829,11 @@ class AllergyIntoleranceReaction extends BackboneElement {
     }
 
     if (severity != null) {
-      json['severity'] = severity!.toJson();
+      final fieldJson6 = severity!.toJson();
+      json['severity'] = fieldJson6['value'];
+      if (fieldJson6['_value'] != null) {
+        json['_severity'] = fieldJson6['_value'];
+      }
     }
 
     if (exposureRoute != null) {

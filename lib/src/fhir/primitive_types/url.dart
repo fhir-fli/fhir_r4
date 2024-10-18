@@ -21,7 +21,11 @@ class FhirUrl extends PrimitiveType<Uri> {
       : super(
           input == null ? null : _validateCanonical(input),
           element,
-        );
+        ) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Constructs a [FhirUrl] from a [Uri] object
   FhirUrl.fromUri(super.input, [super.element]);

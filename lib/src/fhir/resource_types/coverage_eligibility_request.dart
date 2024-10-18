@@ -52,22 +52,21 @@ class CoverageEligibilityRequest extends DomainResource {
   ) {
     return CoverageEligibilityRequest(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -133,12 +132,13 @@ class CoverageEligibilityRequest extends DomainResource {
       patient: Reference.fromJson(
         json['patient'] as Map<String, dynamic>,
       ),
-      servicedDate: json['servicedDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['servicedDate'],
-              '_value': json['_servicedDate'],
-            })
-          : null,
+      servicedDate:
+          (json['servicedDate'] != null || json['_servicedDate'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['servicedDate'],
+                  '_value': json['_servicedDate'],
+                })
+              : null,
       servicedPeriod: json['servicedPeriod'] != null
           ? Period.fromJson(
               json['servicedPeriod'] as Map<String, dynamic>,
@@ -326,7 +326,11 @@ class CoverageEligibilityRequest extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -350,13 +354,21 @@ class CoverageEligibilityRequest extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     if (priority != null) {
       json['priority'] = priority!.toJson();
     }
 
-    json['purpose'] = purpose.map((e) => e.toJson()).toList();
+    final fieldJson10 = purpose.map((e) => e.toJson()).toList();
+    json['purpose'] = fieldJson10.map((e) => e['value']).toList();
+    if (fieldJson10.any((e) => e['_value'] != null)) {
+      json['_purpose'] = fieldJson10.map((e) => e['_value']).toList();
+    }
 
     json['patient'] = patient.toJson();
 
@@ -503,9 +515,7 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   ) {
     return CoverageEligibilityRequestSupportingInfo(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -532,12 +542,13 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
       information: Reference.fromJson(
         json['information'] as Map<String, dynamic>,
       ),
-      appliesToAll: json['appliesToAll'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['appliesToAll'],
-              '_value': json['_appliesToAll'],
-            })
-          : null,
+      appliesToAll:
+          (json['appliesToAll'] != null || json['_appliesToAll'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['appliesToAll'],
+                  '_value': json['_appliesToAll'],
+                })
+              : null,
     );
   }
 
@@ -691,9 +702,7 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
   ) {
     return CoverageEligibilityRequestInsurance(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -713,7 +722,7 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
               )
               .toList()
           : null,
-      focal: json['focal'] != null
+      focal: (json['focal'] != null || json['_focal'] != null)
           ? FhirBoolean.fromJson({
               'value': json['focal'],
               '_value': json['_focal'],
@@ -722,7 +731,8 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
       coverage: Reference.fromJson(
         json['coverage'] as Map<String, dynamic>,
       ),
-      businessArrangement: json['businessArrangement'] != null
+      businessArrangement: (json['businessArrangement'] != null ||
+              json['_businessArrangement'] != null)
           ? FhirString.fromJson({
               'value': json['businessArrangement'],
               '_value': json['_businessArrangement'],
@@ -892,9 +902,7 @@ class CoverageEligibilityRequestItem extends BackboneElement {
   ) {
     return CoverageEligibilityRequestItem(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1202,9 +1210,7 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   ) {
     return CoverageEligibilityRequestDiagnosis(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)

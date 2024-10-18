@@ -51,22 +51,21 @@ class Coverage extends DomainResource {
   ) {
     return Coverage(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -132,16 +131,17 @@ class Coverage extends DomainResource {
               json['subscriber'] as Map<String, dynamic>,
             )
           : null,
-      subscriberId: json['subscriberId'] != null
-          ? FhirString.fromJson({
-              'value': json['subscriberId'],
-              '_value': json['_subscriberId'],
-            })
-          : null,
+      subscriberId:
+          (json['subscriberId'] != null || json['_subscriberId'] != null)
+              ? FhirString.fromJson({
+                  'value': json['subscriberId'],
+                  '_value': json['_subscriberId'],
+                })
+              : null,
       beneficiary: Reference.fromJson(
         json['beneficiary'] as Map<String, dynamic>,
       ),
-      dependent: json['dependent'] != null
+      dependent: (json['dependent'] != null || json['_dependent'] != null)
           ? FhirString.fromJson({
               'value': json['dependent'],
               '_value': json['_dependent'],
@@ -175,13 +175,13 @@ class Coverage extends DomainResource {
               )
               .toList()
           : null,
-      order: json['order'] != null
+      order: (json['order'] != null || json['_order'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['order'],
               '_value': json['_order'],
             })
           : null,
-      network: json['network'] != null
+      network: (json['network'] != null || json['_network'] != null)
           ? FhirString.fromJson({
               'value': json['network'],
               '_value': json['_network'],
@@ -196,7 +196,7 @@ class Coverage extends DomainResource {
               )
               .toList()
           : null,
-      subrogation: json['subrogation'] != null
+      subrogation: (json['subrogation'] != null || json['_subrogation'] != null)
           ? FhirBoolean.fromJson({
               'value': json['subrogation'],
               '_value': json['_subrogation'],
@@ -358,7 +358,11 @@ class Coverage extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -382,7 +386,11 @@ class Coverage extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     if (type != null) {
       json['type'] = type!.toJson();
@@ -563,9 +571,7 @@ class CoverageClass extends BackboneElement {
   ) {
     return CoverageClass(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -592,7 +598,7 @@ class CoverageClass extends BackboneElement {
         'value': json['value'],
         '_value': json['_value'],
       }),
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
@@ -751,9 +757,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
   ) {
     return CoverageCostToBeneficiary(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -952,9 +956,7 @@ class CoverageException extends BackboneElement {
   ) {
     return CoverageException(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)

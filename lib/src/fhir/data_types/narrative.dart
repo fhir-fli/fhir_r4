@@ -28,9 +28,7 @@ class Narrative extends DataType {
   ) {
     return Narrative(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -110,7 +108,11 @@ class Narrative extends DataType {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson1 = status.toJson();
+    json['status'] = fieldJson1['value'];
+    if (fieldJson1['_value'] != null) {
+      json['_status'] = fieldJson1['_value'];
+    }
 
     final fieldJson2 = div.toJson();
     json['div'] = fieldJson2['value'];

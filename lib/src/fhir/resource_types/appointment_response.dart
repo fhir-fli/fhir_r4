@@ -42,22 +42,21 @@ class AppointmentResponse extends DomainResource {
   ) {
     return AppointmentResponse(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -107,13 +106,13 @@ class AppointmentResponse extends DomainResource {
       appointment: Reference.fromJson(
         json['appointment'] as Map<String, dynamic>,
       ),
-      start: json['start'] != null
+      start: (json['start'] != null || json['_start'] != null)
           ? FhirInstant.fromJson({
               'value': json['start'],
               '_value': json['_start'],
             })
           : null,
-      end: json['end'] != null
+      end: (json['end'] != null || json['_end'] != null)
           ? FhirInstant.fromJson({
               'value': json['end'],
               '_value': json['_end'],
@@ -137,7 +136,7 @@ class AppointmentResponse extends DomainResource {
         'value': json['participantStatus'],
         '_value': json['_participantStatus'],
       }),
-      comment: json['comment'] != null
+      comment: (json['comment'] != null || json['_comment'] != null)
           ? FhirString.fromJson({
               'value': json['comment'],
               '_value': json['_comment'],
@@ -247,7 +246,11 @@ class AppointmentResponse extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -298,7 +301,11 @@ class AppointmentResponse extends DomainResource {
       json['actor'] = actor!.toJson();
     }
 
-    json['participantStatus'] = participantStatus.toJson();
+    final fieldJson13 = participantStatus.toJson();
+    json['participantStatus'] = fieldJson13['value'];
+    if (fieldJson13['_value'] != null) {
+      json['_participantStatus'] = fieldJson13['_value'];
+    }
 
     if (comment != null) {
       final fieldJson14 = comment!.toJson();

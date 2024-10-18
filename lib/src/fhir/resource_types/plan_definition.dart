@@ -70,22 +70,21 @@ class PlanDefinition extends DomainResource {
   ) {
     return PlanDefinition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -123,7 +122,7 @@ class PlanDefinition extends DomainResource {
               )
               .toList()
           : null,
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUri.fromJson({
               'value': json['url'],
               '_value': json['_url'],
@@ -138,25 +137,25 @@ class PlanDefinition extends DomainResource {
               )
               .toList()
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
             })
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
             })
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
             })
           : null,
-      subtitle: json['subtitle'] != null
+      subtitle: (json['subtitle'] != null || json['_subtitle'] != null)
           ? FhirString.fromJson({
               'value': json['subtitle'],
               '_value': json['_subtitle'],
@@ -171,12 +170,13 @@ class PlanDefinition extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['experimental'],
-              '_value': json['_experimental'],
-            })
-          : null,
+      experimental:
+          (json['experimental'] != null || json['_experimental'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['experimental'],
+                  '_value': json['_experimental'],
+                })
+              : null,
       subjectCodeableConcept: json['subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['subjectCodeableConcept'] as Map<String, dynamic>,
@@ -187,19 +187,20 @@ class PlanDefinition extends DomainResource {
               json['subjectReference'] as Map<String, dynamic>,
             )
           : null,
-      subjectCanonical: json['subjectCanonical'] != null
+      subjectCanonical: (json['subjectCanonical'] != null ||
+              json['_subjectCanonical'] != null)
           ? SubjectType.fromJson({
               'value': json['subjectCanonical'],
               '_value': json['_subjectCanonical'],
             })
           : null,
-      date: json['date'] != null
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
             })
           : null,
-      publisher: json['publisher'] != null
+      publisher: (json['publisher'] != null || json['_publisher'] != null)
           ? FhirString.fromJson({
               'value': json['publisher'],
               '_value': json['_publisher'],
@@ -214,7 +215,7 @@ class PlanDefinition extends DomainResource {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -238,36 +239,38 @@ class PlanDefinition extends DomainResource {
               )
               .toList()
           : null,
-      purpose: json['purpose'] != null
+      purpose: (json['purpose'] != null || json['_purpose'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['purpose'],
               '_value': json['_purpose'],
             })
           : null,
-      usage: json['usage'] != null
+      usage: (json['usage'] != null || json['_usage'] != null)
           ? FhirString.fromJson({
               'value': json['usage'],
               '_value': json['_usage'],
             })
           : null,
-      copyright: json['copyright'] != null
+      copyright: (json['copyright'] != null || json['_copyright'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['copyright'],
               '_value': json['_copyright'],
             })
           : null,
-      approvalDate: json['approvalDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['approvalDate'],
-              '_value': json['_approvalDate'],
-            })
-          : null,
-      lastReviewDate: json['lastReviewDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['lastReviewDate'],
-              '_value': json['_lastReviewDate'],
-            })
-          : null,
+      approvalDate:
+          (json['approvalDate'] != null || json['_approvalDate'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['approvalDate'],
+                  '_value': json['_approvalDate'],
+                })
+              : null,
+      lastReviewDate:
+          (json['lastReviewDate'] != null || json['_lastReviewDate'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['lastReviewDate'],
+                  '_value': json['_lastReviewDate'],
+                })
+              : null,
       effectivePeriod: json['effectivePeriod'] != null
           ? Period.fromJson(
               json['effectivePeriod'] as Map<String, dynamic>,
@@ -622,7 +625,11 @@ class PlanDefinition extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -690,7 +697,11 @@ class PlanDefinition extends DomainResource {
       json['type'] = type!.toJson();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson14 = status.toJson();
+    json['status'] = fieldJson14['value'];
+    if (fieldJson14['_value'] != null) {
+      json['_status'] = fieldJson14['_value'];
+    }
 
     if (experimental != null) {
       final fieldJson15 = experimental!.toJson();
@@ -709,7 +720,11 @@ class PlanDefinition extends DomainResource {
     }
 
     if (subjectCanonical != null) {
-      json['subjectCanonical'] = subjectCanonical!.toJson();
+      final fieldJson18 = subjectCanonical!.toJson();
+      json['subjectCanonical'] = fieldJson18['value'];
+      if (fieldJson18['_value'] != null) {
+        json['_subjectCanonical'] = fieldJson18['_value'];
+      }
     }
 
     if (date != null) {
@@ -976,9 +991,7 @@ class PlanDefinitionGoal extends BackboneElement {
   ) {
     return PlanDefinitionGoal(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1234,9 +1247,7 @@ class PlanDefinitionTarget extends BackboneElement {
   ) {
     return PlanDefinitionTarget(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1502,9 +1513,7 @@ class PlanDefinitionAction extends BackboneElement {
   ) {
     return PlanDefinitionAction(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1524,31 +1533,32 @@ class PlanDefinitionAction extends BackboneElement {
               )
               .toList()
           : null,
-      prefix: json['prefix'] != null
+      prefix: (json['prefix'] != null || json['_prefix'] != null)
           ? FhirString.fromJson({
               'value': json['prefix'],
               '_value': json['_prefix'],
             })
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
             })
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
             })
           : null,
-      textEquivalent: json['textEquivalent'] != null
-          ? FhirString.fromJson({
-              'value': json['textEquivalent'],
-              '_value': json['_textEquivalent'],
-            })
-          : null,
-      priority: json['priority'] != null
+      textEquivalent:
+          (json['textEquivalent'] != null || json['_textEquivalent'] != null)
+              ? FhirString.fromJson({
+                  'value': json['textEquivalent'],
+                  '_value': json['_textEquivalent'],
+                })
+              : null,
+      priority: (json['priority'] != null || json['_priority'] != null)
           ? RequestPriority.fromJson({
               'value': json['priority'],
               '_value': json['_priority'],
@@ -1596,7 +1606,8 @@ class PlanDefinitionAction extends BackboneElement {
               json['subjectReference'] as Map<String, dynamic>,
             )
           : null,
-      subjectCanonical: json['subjectCanonical'] != null
+      subjectCanonical: (json['subjectCanonical'] != null ||
+              json['_subjectCanonical'] != null)
           ? SubjectType.fromJson({
               'value': json['subjectCanonical'],
               '_value': json['_subjectCanonical'],
@@ -1647,12 +1658,13 @@ class PlanDefinitionAction extends BackboneElement {
               )
               .toList()
           : null,
-      timingDateTime: json['timingDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['timingDateTime'],
-              '_value': json['_timingDateTime'],
-            })
-          : null,
+      timingDateTime:
+          (json['timingDateTime'] != null || json['_timingDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['timingDateTime'],
+                  '_value': json['_timingDateTime'],
+                })
+              : null,
       timingAge: json['timingAge'] != null
           ? Age.fromJson(
               json['timingAge'] as Map<String, dynamic>,
@@ -1692,49 +1704,56 @@ class PlanDefinitionAction extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      groupingBehavior: json['groupingBehavior'] != null
+      groupingBehavior: (json['groupingBehavior'] != null ||
+              json['_groupingBehavior'] != null)
           ? ActionGroupingBehavior.fromJson({
               'value': json['groupingBehavior'],
               '_value': json['_groupingBehavior'],
             })
           : null,
-      selectionBehavior: json['selectionBehavior'] != null
+      selectionBehavior: (json['selectionBehavior'] != null ||
+              json['_selectionBehavior'] != null)
           ? ActionSelectionBehavior.fromJson({
               'value': json['selectionBehavior'],
               '_value': json['_selectionBehavior'],
             })
           : null,
-      requiredBehavior: json['requiredBehavior'] != null
+      requiredBehavior: (json['requiredBehavior'] != null ||
+              json['_requiredBehavior'] != null)
           ? ActionRequiredBehavior.fromJson({
               'value': json['requiredBehavior'],
               '_value': json['_requiredBehavior'],
             })
           : null,
-      precheckBehavior: json['precheckBehavior'] != null
+      precheckBehavior: (json['precheckBehavior'] != null ||
+              json['_precheckBehavior'] != null)
           ? ActionPrecheckBehavior.fromJson({
               'value': json['precheckBehavior'],
               '_value': json['_precheckBehavior'],
             })
           : null,
-      cardinalityBehavior: json['cardinalityBehavior'] != null
+      cardinalityBehavior: (json['cardinalityBehavior'] != null ||
+              json['_cardinalityBehavior'] != null)
           ? ActionCardinalityBehavior.fromJson({
               'value': json['cardinalityBehavior'],
               '_value': json['_cardinalityBehavior'],
             })
           : null,
-      definitionCanonical: json['definitionCanonical'] != null
+      definitionCanonical: (json['definitionCanonical'] != null ||
+              json['_definitionCanonical'] != null)
           ? FhirCanonical.fromJson({
               'value': json['definitionCanonical'],
               '_value': json['_definitionCanonical'],
             })
           : null,
-      definitionUri: json['definitionUri'] != null
-          ? FhirUri.fromJson({
-              'value': json['definitionUri'],
-              '_value': json['_definitionUri'],
-            })
-          : null,
-      transform: json['transform'] != null
+      definitionUri:
+          (json['definitionUri'] != null || json['_definitionUri'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['definitionUri'],
+                  '_value': json['_definitionUri'],
+                })
+              : null,
+      transform: (json['transform'] != null || json['_transform'] != null)
           ? FhirCanonical.fromJson({
               'value': json['transform'],
               '_value': json['_transform'],
@@ -2036,7 +2055,11 @@ class PlanDefinitionAction extends BackboneElement {
     }
 
     if (priority != null) {
-      json['priority'] = priority!.toJson();
+      final fieldJson6 = priority!.toJson();
+      json['priority'] = fieldJson6['value'];
+      if (fieldJson6['_value'] != null) {
+        json['_priority'] = fieldJson6['_value'];
+      }
     }
 
     if (code != null && code!.isNotEmpty) {
@@ -2068,7 +2091,11 @@ class PlanDefinitionAction extends BackboneElement {
     }
 
     if (subjectCanonical != null) {
-      json['subjectCanonical'] = subjectCanonical!.toJson();
+      final fieldJson13 = subjectCanonical!.toJson();
+      json['subjectCanonical'] = fieldJson13['value'];
+      if (fieldJson13['_value'] != null) {
+        json['_subjectCanonical'] = fieldJson13['_value'];
+      }
     }
 
     if (trigger != null && trigger!.isNotEmpty) {
@@ -2128,23 +2155,43 @@ class PlanDefinitionAction extends BackboneElement {
     }
 
     if (groupingBehavior != null) {
-      json['groupingBehavior'] = groupingBehavior!.toJson();
+      final fieldJson27 = groupingBehavior!.toJson();
+      json['groupingBehavior'] = fieldJson27['value'];
+      if (fieldJson27['_value'] != null) {
+        json['_groupingBehavior'] = fieldJson27['_value'];
+      }
     }
 
     if (selectionBehavior != null) {
-      json['selectionBehavior'] = selectionBehavior!.toJson();
+      final fieldJson28 = selectionBehavior!.toJson();
+      json['selectionBehavior'] = fieldJson28['value'];
+      if (fieldJson28['_value'] != null) {
+        json['_selectionBehavior'] = fieldJson28['_value'];
+      }
     }
 
     if (requiredBehavior != null) {
-      json['requiredBehavior'] = requiredBehavior!.toJson();
+      final fieldJson29 = requiredBehavior!.toJson();
+      json['requiredBehavior'] = fieldJson29['value'];
+      if (fieldJson29['_value'] != null) {
+        json['_requiredBehavior'] = fieldJson29['_value'];
+      }
     }
 
     if (precheckBehavior != null) {
-      json['precheckBehavior'] = precheckBehavior!.toJson();
+      final fieldJson30 = precheckBehavior!.toJson();
+      json['precheckBehavior'] = fieldJson30['value'];
+      if (fieldJson30['_value'] != null) {
+        json['_precheckBehavior'] = fieldJson30['_value'];
+      }
     }
 
     if (cardinalityBehavior != null) {
-      json['cardinalityBehavior'] = cardinalityBehavior!.toJson();
+      final fieldJson31 = cardinalityBehavior!.toJson();
+      json['cardinalityBehavior'] = fieldJson31['value'];
+      if (fieldJson31['_value'] != null) {
+        json['_cardinalityBehavior'] = fieldJson31['_value'];
+      }
     }
 
     if (definitionCanonical != null) {
@@ -2308,9 +2355,7 @@ class PlanDefinitionCondition extends BackboneElement {
   ) {
     return PlanDefinitionCondition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2404,7 +2449,11 @@ class PlanDefinitionCondition extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['kind'] = kind.toJson();
+    final fieldJson2 = kind.toJson();
+    json['kind'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_kind'] = fieldJson2['_value'];
+    }
 
     if (expression != null) {
       json['expression'] = expression!.toJson();
@@ -2474,9 +2523,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
   ) {
     return PlanDefinitionRelatedAction(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2594,7 +2641,11 @@ class PlanDefinitionRelatedAction extends BackboneElement {
       json['_actionId'] = fieldJson2['_value'];
     }
 
-    json['relationship'] = relationship.toJson();
+    final fieldJson3 = relationship.toJson();
+    json['relationship'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_relationship'] = fieldJson3['_value'];
+    }
 
     if (offsetDuration != null) {
       json['offsetDuration'] = offsetDuration!.toJson();
@@ -2669,9 +2720,7 @@ class PlanDefinitionParticipant extends BackboneElement {
   ) {
     return PlanDefinitionParticipant(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2765,7 +2814,11 @@ class PlanDefinitionParticipant extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['type'] = type.toJson();
+    final fieldJson2 = type.toJson();
+    json['type'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_type'] = fieldJson2['_value'];
+    }
 
     if (role != null) {
       json['role'] = role!.toJson();
@@ -2836,9 +2889,7 @@ class PlanDefinitionDynamicValue extends BackboneElement {
   ) {
     return PlanDefinitionDynamicValue(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2858,7 +2909,7 @@ class PlanDefinitionDynamicValue extends BackboneElement {
               )
               .toList()
           : null,
-      path: json['path'] != null
+      path: (json['path'] != null || json['_path'] != null)
           ? FhirString.fromJson({
               'value': json['path'],
               '_value': json['_path'],

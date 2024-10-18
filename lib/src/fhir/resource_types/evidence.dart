@@ -63,22 +63,21 @@ class Evidence extends DomainResource {
   ) {
     return Evidence(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -116,7 +115,7 @@ class Evidence extends DomainResource {
               )
               .toList()
           : null,
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUri.fromJson({
               'value': json['url'],
               '_value': json['_url'],
@@ -131,13 +130,13 @@ class Evidence extends DomainResource {
               )
               .toList()
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
             })
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
@@ -148,17 +147,18 @@ class Evidence extends DomainResource {
               json['citeAsReference'] as Map<String, dynamic>,
             )
           : null,
-      citeAsMarkdown: json['citeAsMarkdown'] != null
-          ? FhirMarkdown.fromJson({
-              'value': json['citeAsMarkdown'],
-              '_value': json['_citeAsMarkdown'],
-            })
-          : null,
+      citeAsMarkdown:
+          (json['citeAsMarkdown'] != null || json['_citeAsMarkdown'] != null)
+              ? FhirMarkdown.fromJson({
+                  'value': json['citeAsMarkdown'],
+                  '_value': json['_citeAsMarkdown'],
+                })
+              : null,
       status: PublicationStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
       }),
-      date: json['date'] != null
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
@@ -173,19 +173,21 @@ class Evidence extends DomainResource {
               )
               .toList()
           : null,
-      approvalDate: json['approvalDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['approvalDate'],
-              '_value': json['_approvalDate'],
-            })
-          : null,
-      lastReviewDate: json['lastReviewDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['lastReviewDate'],
-              '_value': json['_lastReviewDate'],
-            })
-          : null,
-      publisher: json['publisher'] != null
+      approvalDate:
+          (json['approvalDate'] != null || json['_approvalDate'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['approvalDate'],
+                  '_value': json['_approvalDate'],
+                })
+              : null,
+      lastReviewDate:
+          (json['lastReviewDate'] != null || json['_lastReviewDate'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['lastReviewDate'],
+                  '_value': json['_lastReviewDate'],
+                })
+              : null,
+      publisher: (json['publisher'] != null || json['_publisher'] != null)
           ? FhirString.fromJson({
               'value': json['publisher'],
               '_value': json['_publisher'],
@@ -245,13 +247,13 @@ class Evidence extends DomainResource {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
             })
           : null,
-      assertion: json['assertion'] != null
+      assertion: (json['assertion'] != null || json['_assertion'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['assertion'],
               '_value': json['_assertion'],
@@ -500,7 +502,11 @@ class Evidence extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -560,7 +566,11 @@ class Evidence extends DomainResource {
       }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson13 = status.toJson();
+    json['status'] = fieldJson13['value'];
+    if (fieldJson13['_value'] != null) {
+      json['_status'] = fieldJson13['_value'];
+    }
 
     if (date != null) {
       final fieldJson14 = date!.toJson();
@@ -785,9 +795,7 @@ class EvidenceVariableDefinition extends BackboneElement {
   ) {
     return EvidenceVariableDefinition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -807,7 +815,7 @@ class EvidenceVariableDefinition extends BackboneElement {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -1025,9 +1033,7 @@ class EvidenceStatistic extends BackboneElement {
   ) {
     return EvidenceStatistic(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1047,7 +1053,7 @@ class EvidenceStatistic extends BackboneElement {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -1077,18 +1083,20 @@ class EvidenceStatistic extends BackboneElement {
               json['quantity'] as Map<String, dynamic>,
             )
           : null,
-      numberOfEvents: json['numberOfEvents'] != null
-          ? FhirUnsignedInt.fromJson({
-              'value': json['numberOfEvents'],
-              '_value': json['_numberOfEvents'],
-            })
-          : null,
-      numberAffected: json['numberAffected'] != null
-          ? FhirUnsignedInt.fromJson({
-              'value': json['numberAffected'],
-              '_value': json['_numberAffected'],
-            })
-          : null,
+      numberOfEvents:
+          (json['numberOfEvents'] != null || json['_numberOfEvents'] != null)
+              ? FhirUnsignedInt.fromJson({
+                  'value': json['numberOfEvents'],
+                  '_value': json['_numberOfEvents'],
+                })
+              : null,
+      numberAffected:
+          (json['numberAffected'] != null || json['_numberAffected'] != null)
+              ? FhirUnsignedInt.fromJson({
+                  'value': json['numberAffected'],
+                  '_value': json['_numberAffected'],
+                })
+              : null,
       sampleSize: json['sampleSize'] != null
           ? EvidenceSampleSize.fromJson(
               json['sampleSize'] as Map<String, dynamic>,
@@ -1347,9 +1355,7 @@ class EvidenceSampleSize extends BackboneElement {
   ) {
     return EvidenceSampleSize(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1369,7 +1375,7 @@ class EvidenceSampleSize extends BackboneElement {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -1384,24 +1390,27 @@ class EvidenceSampleSize extends BackboneElement {
               )
               .toList()
           : null,
-      numberOfStudies: json['numberOfStudies'] != null
-          ? FhirUnsignedInt.fromJson({
-              'value': json['numberOfStudies'],
-              '_value': json['_numberOfStudies'],
-            })
-          : null,
-      numberOfParticipants: json['numberOfParticipants'] != null
+      numberOfStudies:
+          (json['numberOfStudies'] != null || json['_numberOfStudies'] != null)
+              ? FhirUnsignedInt.fromJson({
+                  'value': json['numberOfStudies'],
+                  '_value': json['_numberOfStudies'],
+                })
+              : null,
+      numberOfParticipants: (json['numberOfParticipants'] != null ||
+              json['_numberOfParticipants'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['numberOfParticipants'],
               '_value': json['_numberOfParticipants'],
             })
           : null,
-      knownDataCount: json['knownDataCount'] != null
-          ? FhirUnsignedInt.fromJson({
-              'value': json['knownDataCount'],
-              '_value': json['_knownDataCount'],
-            })
-          : null,
+      knownDataCount:
+          (json['knownDataCount'] != null || json['_knownDataCount'] != null)
+              ? FhirUnsignedInt.fromJson({
+                  'value': json['knownDataCount'],
+                  '_value': json['_knownDataCount'],
+                })
+              : null,
     );
   }
 
@@ -1587,9 +1596,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
   ) {
     return EvidenceAttributeEstimate(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1609,7 +1616,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -1634,7 +1641,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
               json['quantity'] as Map<String, dynamic>,
             )
           : null,
-      level: json['level'] != null
+      level: (json['level'] != null || json['_level'] != null)
           ? FhirDecimal.fromJson({
               'value': json['level'],
               '_value': json['_level'],
@@ -1829,9 +1836,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
   ) {
     return EvidenceModelCharacteristic(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2013,9 +2018,7 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
   ) {
     return EvidenceModelCharacteristicVariable(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2038,7 +2041,7 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
       variableDefinition: Reference.fromJson(
         json['variableDefinition'] as Map<String, dynamic>,
       ),
-      handling: json['handling'] != null
+      handling: (json['handling'] != null || json['_handling'] != null)
           ? EvidenceVariableHandling.fromJson({
               'value': json['handling'],
               '_value': json['_handling'],
@@ -2150,7 +2153,11 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
     json['variableDefinition'] = variableDefinition.toJson();
 
     if (handling != null) {
-      json['handling'] = handling!.toJson();
+      final fieldJson3 = handling!.toJson();
+      json['handling'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_handling'] = fieldJson3['_value'];
+      }
     }
 
     if (valueCategory != null && valueCategory!.isNotEmpty) {
@@ -2237,9 +2244,7 @@ class EvidenceCertainty extends BackboneElement {
   ) {
     return EvidenceCertainty(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2259,7 +2264,7 @@ class EvidenceCertainty extends BackboneElement {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -2284,7 +2289,7 @@ class EvidenceCertainty extends BackboneElement {
               json['rating'] as Map<String, dynamic>,
             )
           : null,
-      rater: json['rater'] != null
+      rater: (json['rater'] != null || json['_rater'] != null)
           ? FhirString.fromJson({
               'value': json['rater'],
               '_value': json['_rater'],

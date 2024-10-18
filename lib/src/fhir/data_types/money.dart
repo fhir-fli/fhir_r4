@@ -27,9 +27,7 @@ class Money extends DataType {
   ) {
     return Money(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -40,13 +38,13 @@ class Money extends DataType {
               )
               .toList()
           : null,
-      value: json['value'] != null
+      value: (json['value'] != null || json['_value'] != null)
           ? FhirDecimal.fromJson({
               'value': json['value'],
               '_value': json['_value'],
             })
           : null,
-      currency: json['currency'] != null
+      currency: (json['currency'] != null || json['_currency'] != null)
           ? FhirCode.fromJson({
               'value': json['currency'],
               '_value': json['_currency'],

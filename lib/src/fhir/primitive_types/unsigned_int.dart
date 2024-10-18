@@ -15,7 +15,11 @@ extension FhirUnsignedIntExtension on num {
 /// Represents the FHIR primitive type `integer`.
 class FhirUnsignedInt extends FhirNumber {
   /// Constructor that ensures valid input.
-  FhirUnsignedInt(int? super.input, [super.element]);
+  FhirUnsignedInt(int? super.input, [super.element]) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Factory constructor to create [FhirUnsignedInt] from JSON input.
   factory FhirUnsignedInt.fromJson(Map<String, dynamic> json) {
@@ -36,7 +40,8 @@ class FhirUnsignedInt extends FhirNumber {
                 jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
               )
             : throw const FormatException(
-                'Invalid input for FhirUnsignedInt: not a valid YAML string or map.',
+                'Invalid input for FhirUnsignedInt: '
+                'not a valid YAML string or map.',
               );
   }
 

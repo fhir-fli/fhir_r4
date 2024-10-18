@@ -19,7 +19,11 @@ extension FhirUuidValueExtension on UuidValue {
 class FhirUuid extends PrimitiveType<UuidValue?> {
   /// Constructs a [FhirUuid] from a String input, allowing null values.
   FhirUuid(String? input, [Element? element])
-      : super(input != null ? _validateUuid(input) : null, element);
+      : super(input != null ? _validateUuid(input) : null, element) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Constructs a [FhirUuid] from a [UuidValue], allowing null values.
   FhirUuid.fromUuid(super.input, [super.element]);

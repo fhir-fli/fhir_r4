@@ -29,9 +29,7 @@ class Reference extends DataType {
   ) {
     return Reference(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -42,13 +40,13 @@ class Reference extends DataType {
               )
               .toList()
           : null,
-      reference: json['reference'] != null
+      reference: (json['reference'] != null || json['_reference'] != null)
           ? FhirString.fromJson({
               'value': json['reference'],
               '_value': json['_reference'],
             })
           : null,
-      type: json['type'] != null
+      type: (json['type'] != null || json['_type'] != null)
           ? FhirUri.fromJson({
               'value': json['type'],
               '_value': json['_type'],
@@ -59,7 +57,7 @@ class Reference extends DataType {
               json['identifier'] as Map<String, dynamic>,
             )
           : null,
-      display: json['display'] != null
+      display: (json['display'] != null || json['_display'] != null)
           ? FhirString.fromJson({
               'value': json['display'],
               '_value': json['_display'],

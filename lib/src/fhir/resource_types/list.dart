@@ -46,22 +46,21 @@ class FhirList extends DomainResource {
   ) {
     return FhirList(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -116,7 +115,7 @@ class FhirList extends DomainResource {
         'value': json['mode'],
         '_value': json['_mode'],
       }),
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
@@ -137,7 +136,7 @@ class FhirList extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      date: json['date'] != null
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
@@ -296,7 +295,11 @@ class FhirList extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -320,9 +323,17 @@ class FhirList extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
-    json['mode'] = mode.toJson();
+    final fieldJson9 = mode.toJson();
+    json['mode'] = fieldJson9['value'];
+    if (fieldJson9['_value'] != null) {
+      json['_mode'] = fieldJson9['_value'];
+    }
 
     if (title != null) {
       final fieldJson10 = title!.toJson();
@@ -467,9 +478,7 @@ class ListEntry extends BackboneElement {
   ) {
     return ListEntry(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -494,13 +503,13 @@ class ListEntry extends BackboneElement {
               json['flag'] as Map<String, dynamic>,
             )
           : null,
-      deleted: json['deleted'] != null
+      deleted: (json['deleted'] != null || json['_deleted'] != null)
           ? FhirBoolean.fromJson({
               'value': json['deleted'],
               '_value': json['_deleted'],
             })
           : null,
-      date: json['date'] != null
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],

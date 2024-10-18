@@ -31,9 +31,7 @@ class ContactPoint extends DataType {
   ) {
     return ContactPoint(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -44,25 +42,25 @@ class ContactPoint extends DataType {
               )
               .toList()
           : null,
-      system: json['system'] != null
+      system: (json['system'] != null || json['_system'] != null)
           ? ContactPointSystem.fromJson({
               'value': json['system'],
               '_value': json['_system'],
             })
           : null,
-      value: json['value'] != null
+      value: (json['value'] != null || json['_value'] != null)
           ? FhirString.fromJson({
               'value': json['value'],
               '_value': json['_value'],
             })
           : null,
-      use: json['use'] != null
+      use: (json['use'] != null || json['_use'] != null)
           ? ContactPointUse.fromJson({
               'value': json['use'],
               '_value': json['_use'],
             })
           : null,
-      rank: json['rank'] != null
+      rank: (json['rank'] != null || json['_rank'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['rank'],
               '_value': json['_rank'],
@@ -149,7 +147,11 @@ class ContactPoint extends DataType {
     }
 
     if (system != null) {
-      json['system'] = system!.toJson();
+      final fieldJson1 = system!.toJson();
+      json['system'] = fieldJson1['value'];
+      if (fieldJson1['_value'] != null) {
+        json['_system'] = fieldJson1['_value'];
+      }
     }
 
     if (value != null) {
@@ -161,7 +163,11 @@ class ContactPoint extends DataType {
     }
 
     if (use != null) {
-      json['use'] = use!.toJson();
+      final fieldJson3 = use!.toJson();
+      json['use'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_use'] = fieldJson3['_value'];
+      }
     }
 
     if (rank != null) {

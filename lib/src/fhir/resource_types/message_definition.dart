@@ -60,22 +60,21 @@ class MessageDefinition extends DomainResource {
   ) {
     return MessageDefinition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -113,7 +112,7 @@ class MessageDefinition extends DomainResource {
               )
               .toList()
           : null,
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUri.fromJson({
               'value': json['url'],
               '_value': json['_url'],
@@ -128,19 +127,19 @@ class MessageDefinition extends DomainResource {
               )
               .toList()
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
             })
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
             })
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
@@ -155,17 +154,18 @@ class MessageDefinition extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['experimental'],
-              '_value': json['_experimental'],
-            })
-          : null,
+      experimental:
+          (json['experimental'] != null || json['_experimental'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['experimental'],
+                  '_value': json['_experimental'],
+                })
+              : null,
       date: FhirDateTime.fromJson({
         'value': json['date'],
         '_value': json['_date'],
       }),
-      publisher: json['publisher'] != null
+      publisher: (json['publisher'] != null || json['_publisher'] != null)
           ? FhirString.fromJson({
               'value': json['publisher'],
               '_value': json['_publisher'],
@@ -180,7 +180,7 @@ class MessageDefinition extends DomainResource {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -204,19 +204,19 @@ class MessageDefinition extends DomainResource {
               )
               .toList()
           : null,
-      purpose: json['purpose'] != null
+      purpose: (json['purpose'] != null || json['_purpose'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['purpose'],
               '_value': json['_purpose'],
             })
           : null,
-      copyright: json['copyright'] != null
+      copyright: (json['copyright'] != null || json['_copyright'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['copyright'],
               '_value': json['_copyright'],
             })
           : null,
-      base: json['base'] != null
+      base: (json['base'] != null || json['_base'] != null)
           ? FhirCanonical.fromJson({
               'value': json['base'],
               '_value': json['_base'],
@@ -232,13 +232,13 @@ class MessageDefinition extends DomainResource {
               json['eventCoding'] as Map<String, dynamic>,
             )
           : null,
-      eventUri: json['eventUri'] != null
+      eventUri: (json['eventUri'] != null || json['_eventUri'] != null)
           ? FhirUri.fromJson({
               'value': json['eventUri'],
               '_value': json['_eventUri'],
             })
           : null,
-      category: json['category'] != null
+      category: (json['category'] != null || json['_category'] != null)
           ? MessageSignificanceCategory.fromJson({
               'value': json['category'],
               '_value': json['_category'],
@@ -253,7 +253,8 @@ class MessageDefinition extends DomainResource {
               )
               .toList()
           : null,
-      responseRequired: json['responseRequired'] != null
+      responseRequired: (json['responseRequired'] != null ||
+              json['_responseRequired'] != null)
           ? MessageheaderResponseRequest.fromJson({
               'value': json['responseRequired'],
               '_value': json['_responseRequired'],
@@ -472,7 +473,11 @@ class MessageDefinition extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -536,7 +541,11 @@ class MessageDefinition extends DomainResource {
       }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson13 = status.toJson();
+    json['status'] = fieldJson13['value'];
+    if (fieldJson13['_value'] != null) {
+      json['_status'] = fieldJson13['_value'];
+    }
 
     if (experimental != null) {
       final fieldJson14 = experimental!.toJson();
@@ -625,7 +634,11 @@ class MessageDefinition extends DomainResource {
     }
 
     if (category != null) {
-      json['category'] = category!.toJson();
+      final fieldJson27 = category!.toJson();
+      json['category'] = fieldJson27['value'];
+      if (fieldJson27['_value'] != null) {
+        json['_category'] = fieldJson27['_value'];
+      }
     }
 
     if (focus != null && focus!.isNotEmpty) {
@@ -633,7 +646,11 @@ class MessageDefinition extends DomainResource {
     }
 
     if (responseRequired != null) {
-      json['responseRequired'] = responseRequired!.toJson();
+      final fieldJson29 = responseRequired!.toJson();
+      json['responseRequired'] = fieldJson29['value'];
+      if (fieldJson29['_value'] != null) {
+        json['_responseRequired'] = fieldJson29['_value'];
+      }
     }
 
     if (allowedResponse != null && allowedResponse!.isNotEmpty) {
@@ -770,9 +787,7 @@ class MessageDefinitionFocus extends BackboneElement {
   ) {
     return MessageDefinitionFocus(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -796,7 +811,7 @@ class MessageDefinitionFocus extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      profile: json['profile'] != null
+      profile: (json['profile'] != null || json['_profile'] != null)
           ? FhirCanonical.fromJson({
               'value': json['profile'],
               '_value': json['_profile'],
@@ -806,7 +821,7 @@ class MessageDefinitionFocus extends BackboneElement {
         'value': json['min'],
         '_value': json['_min'],
       }),
-      max: json['max'] != null
+      max: (json['max'] != null || json['_max'] != null)
           ? FhirString.fromJson({
               'value': json['max'],
               '_value': json['_max'],
@@ -983,9 +998,7 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
   ) {
     return MessageDefinitionAllowedResponse(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1009,7 +1022,7 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
         'value': json['message'],
         '_value': json['_message'],
       }),
-      situation: json['situation'] != null
+      situation: (json['situation'] != null || json['_situation'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['situation'],
               '_value': json['_situation'],

@@ -60,22 +60,21 @@ class TerminologyCapabilities extends DomainResource {
   ) {
     return TerminologyCapabilities(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -113,25 +112,25 @@ class TerminologyCapabilities extends DomainResource {
               )
               .toList()
           : null,
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUri.fromJson({
               'value': json['url'],
               '_value': json['_url'],
             })
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
             })
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
             })
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
@@ -141,17 +140,18 @@ class TerminologyCapabilities extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['experimental'],
-              '_value': json['_experimental'],
-            })
-          : null,
+      experimental:
+          (json['experimental'] != null || json['_experimental'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['experimental'],
+                  '_value': json['_experimental'],
+                })
+              : null,
       date: FhirDateTime.fromJson({
         'value': json['date'],
         '_value': json['_date'],
       }),
-      publisher: json['publisher'] != null
+      publisher: (json['publisher'] != null || json['_publisher'] != null)
           ? FhirString.fromJson({
               'value': json['publisher'],
               '_value': json['_publisher'],
@@ -166,7 +166,7 @@ class TerminologyCapabilities extends DomainResource {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -190,13 +190,13 @@ class TerminologyCapabilities extends DomainResource {
               )
               .toList()
           : null,
-      purpose: json['purpose'] != null
+      purpose: (json['purpose'] != null || json['_purpose'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['purpose'],
               '_value': json['_purpose'],
             })
           : null,
-      copyright: json['copyright'] != null
+      copyright: (json['copyright'] != null || json['_copyright'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['copyright'],
               '_value': json['_copyright'],
@@ -216,7 +216,7 @@ class TerminologyCapabilities extends DomainResource {
               json['implementation'] as Map<String, dynamic>,
             )
           : null,
-      lockedDate: json['lockedDate'] != null
+      lockedDate: (json['lockedDate'] != null || json['_lockedDate'] != null)
           ? FhirBoolean.fromJson({
               'value': json['lockedDate'],
               '_value': json['_lockedDate'],
@@ -236,7 +236,7 @@ class TerminologyCapabilities extends DomainResource {
               json['expansion'] as Map<String, dynamic>,
             )
           : null,
-      codeSearch: json['codeSearch'] != null
+      codeSearch: (json['codeSearch'] != null || json['_codeSearch'] != null)
           ? CodeSearchSupport.fromJson({
               'value': json['codeSearch'],
               '_value': json['_codeSearch'],
@@ -465,7 +465,11 @@ class TerminologyCapabilities extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -517,7 +521,11 @@ class TerminologyCapabilities extends DomainResource {
       }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson11 = status.toJson();
+    json['status'] = fieldJson11['value'];
+    if (fieldJson11['_value'] != null) {
+      json['_status'] = fieldJson11['_value'];
+    }
 
     if (experimental != null) {
       final fieldJson12 = experimental!.toJson();
@@ -577,7 +585,11 @@ class TerminologyCapabilities extends DomainResource {
       }
     }
 
-    json['kind'] = kind.toJson();
+    final fieldJson21 = kind.toJson();
+    json['kind'] = fieldJson21['value'];
+    if (fieldJson21['_value'] != null) {
+      json['_kind'] = fieldJson21['_value'];
+    }
 
     if (software != null) {
       json['software'] = software!.toJson();
@@ -604,7 +616,11 @@ class TerminologyCapabilities extends DomainResource {
     }
 
     if (codeSearch != null) {
-      json['codeSearch'] = codeSearch!.toJson();
+      final fieldJson27 = codeSearch!.toJson();
+      json['codeSearch'] = fieldJson27['value'];
+      if (fieldJson27['_value'] != null) {
+        json['_codeSearch'] = fieldJson27['_value'];
+      }
     }
 
     if (validateCode != null) {
@@ -736,9 +752,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
   ) {
     return TerminologyCapabilitiesSoftware(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -762,7 +776,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
         'value': json['name'],
         '_value': json['_name'],
       }),
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
@@ -909,9 +923,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
   ) {
     return TerminologyCapabilitiesImplementation(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -935,7 +947,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
         'value': json['description'],
         '_value': json['_description'],
       }),
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUrl.fromJson({
               'value': json['url'],
               '_value': json['_url'],
@@ -1084,9 +1096,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   ) {
     return TerminologyCapabilitiesCodeSystem(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1106,7 +1116,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
               )
               .toList()
           : null,
-      uri: json['uri'] != null
+      uri: (json['uri'] != null || json['_uri'] != null)
           ? FhirCanonical.fromJson({
               'value': json['uri'],
               '_value': json['_uri'],
@@ -1121,7 +1131,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
               )
               .toList()
           : null,
-      subsumption: json['subsumption'] != null
+      subsumption: (json['subsumption'] != null || json['_subsumption'] != null)
           ? FhirBoolean.fromJson({
               'value': json['subsumption'],
               '_value': json['_subsumption'],
@@ -1284,9 +1294,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
   ) {
     return TerminologyCapabilitiesVersion(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1306,24 +1314,25 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
               )
               .toList()
           : null,
-      code: json['code'] != null
+      code: (json['code'] != null || json['_code'] != null)
           ? FhirString.fromJson({
               'value': json['code'],
               '_value': json['_code'],
             })
           : null,
-      isDefault: json['isDefault'] != null
+      isDefault: (json['isDefault'] != null || json['_isDefault'] != null)
           ? FhirBoolean.fromJson({
               'value': json['isDefault'],
               '_value': json['_isDefault'],
             })
           : null,
-      compositional: json['compositional'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['compositional'],
-              '_value': json['_compositional'],
-            })
-          : null,
+      compositional:
+          (json['compositional'] != null || json['_compositional'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['compositional'],
+                  '_value': json['_compositional'],
+                })
+              : null,
       language: parsePrimitiveList<FhirCode>(
         json['language'] as List<dynamic>?,
         json['_language'] as List<dynamic>?,
@@ -1537,9 +1546,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
   ) {
     return TerminologyCapabilitiesFilter(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1711,9 +1718,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
   ) {
     return TerminologyCapabilitiesExpansion(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1733,19 +1738,20 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
               )
               .toList()
           : null,
-      hierarchical: json['hierarchical'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['hierarchical'],
-              '_value': json['_hierarchical'],
-            })
-          : null,
-      paging: json['paging'] != null
+      hierarchical:
+          (json['hierarchical'] != null || json['_hierarchical'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['hierarchical'],
+                  '_value': json['_hierarchical'],
+                })
+              : null,
+      paging: (json['paging'] != null || json['_paging'] != null)
           ? FhirBoolean.fromJson({
               'value': json['paging'],
               '_value': json['_paging'],
             })
           : null,
-      incomplete: json['incomplete'] != null
+      incomplete: (json['incomplete'] != null || json['_incomplete'] != null)
           ? FhirBoolean.fromJson({
               'value': json['incomplete'],
               '_value': json['_incomplete'],
@@ -1760,7 +1766,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
               )
               .toList()
           : null,
-      textFilter: json['textFilter'] != null
+      textFilter: (json['textFilter'] != null || json['_textFilter'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['textFilter'],
               '_value': json['_textFilter'],
@@ -1945,9 +1951,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
   ) {
     return TerminologyCapabilitiesParameter(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1971,12 +1975,13 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
         'value': json['name'],
         '_value': json['_name'],
       }),
-      documentation: json['documentation'] != null
-          ? FhirString.fromJson({
-              'value': json['documentation'],
-              '_value': json['_documentation'],
-            })
-          : null,
+      documentation:
+          (json['documentation'] != null || json['_documentation'] != null)
+              ? FhirString.fromJson({
+                  'value': json['documentation'],
+                  '_value': json['_documentation'],
+                })
+              : null,
     );
   }
 
@@ -2117,9 +2122,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
   ) {
     return TerminologyCapabilitiesValidateCode(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2268,9 +2271,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
   ) {
     return TerminologyCapabilitiesTranslation(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2418,9 +2419,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
   ) {
     return TerminologyCapabilitiesClosure(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2440,7 +2439,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
               )
               .toList()
           : null,
-      translation: json['translation'] != null
+      translation: (json['translation'] != null || json['_translation'] != null)
           ? FhirBoolean.fromJson({
               'value': json['translation'],
               '_value': json['_translation'],

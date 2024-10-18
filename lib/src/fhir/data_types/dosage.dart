@@ -41,9 +41,7 @@ class Dosage extends BackboneType {
   ) {
     return Dosage(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -63,13 +61,13 @@ class Dosage extends BackboneType {
               )
               .toList()
           : null,
-      sequence: json['sequence'] != null
+      sequence: (json['sequence'] != null || json['_sequence'] != null)
           ? FhirInteger.fromJson({
               'value': json['sequence'],
               '_value': json['_sequence'],
             })
           : null,
-      text: json['text'] != null
+      text: (json['text'] != null || json['_text'] != null)
           ? FhirString.fromJson({
               'value': json['text'],
               '_value': json['_text'],
@@ -84,7 +82,8 @@ class Dosage extends BackboneType {
               )
               .toList()
           : null,
-      patientInstruction: json['patientInstruction'] != null
+      patientInstruction: (json['patientInstruction'] != null ||
+              json['_patientInstruction'] != null)
           ? FhirString.fromJson({
               'value': json['patientInstruction'],
               '_value': json['_patientInstruction'],
@@ -95,12 +94,13 @@ class Dosage extends BackboneType {
               json['timing'] as Map<String, dynamic>,
             )
           : null,
-      asNeededBoolean: json['asNeededBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['asNeededBoolean'],
-              '_value': json['_asNeededBoolean'],
-            })
-          : null,
+      asNeededBoolean:
+          (json['asNeededBoolean'] != null || json['_asNeededBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['asNeededBoolean'],
+                  '_value': json['_asNeededBoolean'],
+                })
+              : null,
       asNeededCodeableConcept: json['asNeededCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['asNeededCodeableConcept'] as Map<String, dynamic>,
@@ -429,9 +429,7 @@ class DosageDoseAndRate extends Element {
   ) {
     return DosageDoseAndRate(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)

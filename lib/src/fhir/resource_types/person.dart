@@ -44,22 +44,21 @@ class Person extends DomainResource {
   ) {
     return Person(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -124,13 +123,13 @@ class Person extends DomainResource {
               )
               .toList()
           : null,
-      gender: json['gender'] != null
+      gender: (json['gender'] != null || json['_gender'] != null)
           ? AdministrativeGender.fromJson({
               'value': json['gender'],
               '_value': json['_gender'],
             })
           : null,
-      birthDate: json['birthDate'] != null
+      birthDate: (json['birthDate'] != null || json['_birthDate'] != null)
           ? FhirDate.fromJson({
               'value': json['birthDate'],
               '_value': json['_birthDate'],
@@ -155,7 +154,7 @@ class Person extends DomainResource {
               json['managingOrganization'] as Map<String, dynamic>,
             )
           : null,
-      active: json['active'] != null
+      active: (json['active'] != null || json['_active'] != null)
           ? FhirBoolean.fromJson({
               'value': json['active'],
               '_value': json['_active'],
@@ -273,7 +272,11 @@ class Person extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -306,7 +309,11 @@ class Person extends DomainResource {
     }
 
     if (gender != null) {
-      json['gender'] = gender!.toJson();
+      final fieldJson10 = gender!.toJson();
+      json['gender'] = fieldJson10['value'];
+      if (fieldJson10['_value'] != null) {
+        json['_gender'] = fieldJson10['_value'];
+      }
     }
 
     if (birthDate != null) {
@@ -428,9 +435,7 @@ class PersonLink extends BackboneElement {
   ) {
     return PersonLink(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -453,7 +458,7 @@ class PersonLink extends BackboneElement {
       target: Reference.fromJson(
         json['target'] as Map<String, dynamic>,
       ),
-      assurance: json['assurance'] != null
+      assurance: (json['assurance'] != null || json['_assurance'] != null)
           ? IdentityAssuranceLevel.fromJson({
               'value': json['assurance'],
               '_value': json['_assurance'],
@@ -527,7 +532,11 @@ class PersonLink extends BackboneElement {
     json['target'] = target.toJson();
 
     if (assurance != null) {
-      json['assurance'] = assurance!.toJson();
+      final fieldJson3 = assurance!.toJson();
+      json['assurance'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_assurance'] = fieldJson3['_value'];
+      }
     }
 
     return json;

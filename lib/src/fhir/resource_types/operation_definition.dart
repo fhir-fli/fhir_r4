@@ -60,22 +60,21 @@ class OperationDefinition extends DomainResource {
   ) {
     return OperationDefinition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -113,13 +112,13 @@ class OperationDefinition extends DomainResource {
               )
               .toList()
           : null,
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUri.fromJson({
               'value': json['url'],
               '_value': json['_url'],
             })
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
@@ -129,7 +128,7 @@ class OperationDefinition extends DomainResource {
         'value': json['name'],
         '_value': json['_name'],
       }),
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
@@ -143,19 +142,20 @@ class OperationDefinition extends DomainResource {
         'value': json['kind'],
         '_value': json['_kind'],
       }),
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['experimental'],
-              '_value': json['_experimental'],
-            })
-          : null,
-      date: json['date'] != null
+      experimental:
+          (json['experimental'] != null || json['_experimental'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['experimental'],
+                  '_value': json['_experimental'],
+                })
+              : null,
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
             })
           : null,
-      publisher: json['publisher'] != null
+      publisher: (json['publisher'] != null || json['_publisher'] != null)
           ? FhirString.fromJson({
               'value': json['publisher'],
               '_value': json['_publisher'],
@@ -170,7 +170,7 @@ class OperationDefinition extends DomainResource {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -194,29 +194,30 @@ class OperationDefinition extends DomainResource {
               )
               .toList()
           : null,
-      purpose: json['purpose'] != null
+      purpose: (json['purpose'] != null || json['_purpose'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['purpose'],
               '_value': json['_purpose'],
             })
           : null,
-      affectsState: json['affectsState'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['affectsState'],
-              '_value': json['_affectsState'],
-            })
-          : null,
+      affectsState:
+          (json['affectsState'] != null || json['_affectsState'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['affectsState'],
+                  '_value': json['_affectsState'],
+                })
+              : null,
       code: FhirCode.fromJson({
         'value': json['code'],
         '_value': json['_code'],
       }),
-      comment: json['comment'] != null
+      comment: (json['comment'] != null || json['_comment'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['comment'],
               '_value': json['_comment'],
             })
           : null,
-      base: json['base'] != null
+      base: (json['base'] != null || json['_base'] != null)
           ? FhirCanonical.fromJson({
               'value': json['base'],
               '_value': json['_base'],
@@ -239,18 +240,20 @@ class OperationDefinition extends DomainResource {
         'value': json['instance'],
         '_value': json['_instance'],
       }),
-      inputProfile: json['inputProfile'] != null
-          ? FhirCanonical.fromJson({
-              'value': json['inputProfile'],
-              '_value': json['_inputProfile'],
-            })
-          : null,
-      outputProfile: json['outputProfile'] != null
-          ? FhirCanonical.fromJson({
-              'value': json['outputProfile'],
-              '_value': json['_outputProfile'],
-            })
-          : null,
+      inputProfile:
+          (json['inputProfile'] != null || json['_inputProfile'] != null)
+              ? FhirCanonical.fromJson({
+                  'value': json['inputProfile'],
+                  '_value': json['_inputProfile'],
+                })
+              : null,
+      outputProfile:
+          (json['outputProfile'] != null || json['_outputProfile'] != null)
+              ? FhirCanonical.fromJson({
+                  'value': json['outputProfile'],
+                  '_value': json['_outputProfile'],
+                })
+              : null,
       parameter: json['parameter'] != null
           ? (json['parameter'] as List<dynamic>)
               .map<OperationDefinitionParameter>(
@@ -477,7 +480,11 @@ class OperationDefinition extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -527,9 +534,17 @@ class OperationDefinition extends DomainResource {
       }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson11 = status.toJson();
+    json['status'] = fieldJson11['value'];
+    if (fieldJson11['_value'] != null) {
+      json['_status'] = fieldJson11['_value'];
+    }
 
-    json['kind'] = kind.toJson();
+    final fieldJson12 = kind.toJson();
+    json['kind'] = fieldJson12['value'];
+    if (fieldJson12['_value'] != null) {
+      json['_kind'] = fieldJson12['_value'];
+    }
 
     if (experimental != null) {
       final fieldJson13 = experimental!.toJson();
@@ -791,9 +806,7 @@ class OperationDefinitionParameter extends BackboneElement {
   ) {
     return OperationDefinitionParameter(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -829,13 +842,14 @@ class OperationDefinitionParameter extends BackboneElement {
         'value': json['max'],
         '_value': json['_max'],
       }),
-      documentation: json['documentation'] != null
-          ? FhirString.fromJson({
-              'value': json['documentation'],
-              '_value': json['_documentation'],
-            })
-          : null,
-      type: json['type'] != null
+      documentation:
+          (json['documentation'] != null || json['_documentation'] != null)
+              ? FhirString.fromJson({
+                  'value': json['documentation'],
+                  '_value': json['_documentation'],
+                })
+              : null,
+      type: (json['type'] != null || json['_type'] != null)
           ? FHIRAllTypes.fromJson({
               'value': json['type'],
               '_value': json['_type'],
@@ -846,7 +860,7 @@ class OperationDefinitionParameter extends BackboneElement {
         json['_targetProfile'] as List<dynamic>?,
         fromJson: FhirCanonical.fromJson,
       ),
-      searchType: json['searchType'] != null
+      searchType: (json['searchType'] != null || json['_searchType'] != null)
           ? SearchParamType.fromJson({
               'value': json['searchType'],
               '_value': json['_searchType'],
@@ -993,7 +1007,11 @@ class OperationDefinitionParameter extends BackboneElement {
       json['_name'] = fieldJson2['_value'];
     }
 
-    json['use'] = use.toJson();
+    final fieldJson3 = use.toJson();
+    json['use'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_use'] = fieldJson3['_value'];
+    }
 
     final fieldJson4 = min.toJson();
     json['min'] = fieldJson4['value'];
@@ -1016,7 +1034,11 @@ class OperationDefinitionParameter extends BackboneElement {
     }
 
     if (type != null) {
-      json['type'] = type!.toJson();
+      final fieldJson7 = type!.toJson();
+      json['type'] = fieldJson7['value'];
+      if (fieldJson7['_value'] != null) {
+        json['_type'] = fieldJson7['_value'];
+      }
     }
 
     if (targetProfile != null && targetProfile!.isNotEmpty) {
@@ -1028,7 +1050,11 @@ class OperationDefinitionParameter extends BackboneElement {
     }
 
     if (searchType != null) {
-      json['searchType'] = searchType!.toJson();
+      final fieldJson9 = searchType!.toJson();
+      json['searchType'] = fieldJson9['value'];
+      if (fieldJson9['_value'] != null) {
+        json['_searchType'] = fieldJson9['_value'];
+      }
     }
 
     if (binding != null) {
@@ -1123,9 +1149,7 @@ class OperationDefinitionBinding extends BackboneElement {
   ) {
     return OperationDefinitionBinding(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1220,7 +1244,11 @@ class OperationDefinitionBinding extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['strength'] = strength.toJson();
+    final fieldJson2 = strength.toJson();
+    json['strength'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_strength'] = fieldJson2['_value'];
+    }
 
     final fieldJson3 = valueSet.toJson();
     json['valueSet'] = fieldJson3['value'];
@@ -1290,9 +1318,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
   ) {
     return OperationDefinitionReferencedFrom(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1316,7 +1342,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
         'value': json['source'],
         '_value': json['_source'],
       }),
-      sourceId: json['sourceId'] != null
+      sourceId: (json['sourceId'] != null || json['_sourceId'] != null)
           ? FhirString.fromJson({
               'value': json['sourceId'],
               '_value': json['_sourceId'],
@@ -1466,9 +1492,7 @@ class OperationDefinitionOverload extends BackboneElement {
   ) {
     return OperationDefinitionOverload(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1493,7 +1517,7 @@ class OperationDefinitionOverload extends BackboneElement {
         json['_parameterName'] as List<dynamic>?,
         fromJson: FhirString.fromJson,
       ),
-      comment: json['comment'] != null
+      comment: (json['comment'] != null || json['_comment'] != null)
           ? FhirString.fromJson({
               'value': json['comment'],
               '_value': json['_comment'],

@@ -48,22 +48,21 @@ class CompartmentDefinition extends DomainResource {
   ) {
     return CompartmentDefinition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -105,7 +104,7 @@ class CompartmentDefinition extends DomainResource {
         'value': json['url'],
         '_value': json['_url'],
       }),
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
@@ -119,19 +118,20 @@ class CompartmentDefinition extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['experimental'],
-              '_value': json['_experimental'],
-            })
-          : null,
-      date: json['date'] != null
+      experimental:
+          (json['experimental'] != null || json['_experimental'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['experimental'],
+                  '_value': json['_experimental'],
+                })
+              : null,
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
             })
           : null,
-      publisher: json['publisher'] != null
+      publisher: (json['publisher'] != null || json['_publisher'] != null)
           ? FhirString.fromJson({
               'value': json['publisher'],
               '_value': json['_publisher'],
@@ -146,7 +146,7 @@ class CompartmentDefinition extends DomainResource {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -161,7 +161,7 @@ class CompartmentDefinition extends DomainResource {
               )
               .toList()
           : null,
-      purpose: json['purpose'] != null
+      purpose: (json['purpose'] != null || json['_purpose'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['purpose'],
               '_value': json['_purpose'],
@@ -330,7 +330,11 @@ class CompartmentDefinition extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -370,7 +374,11 @@ class CompartmentDefinition extends DomainResource {
       json['_name'] = fieldJson9['_value'];
     }
 
-    json['status'] = status.toJson();
+    final fieldJson10 = status.toJson();
+    json['status'] = fieldJson10['value'];
+    if (fieldJson10['_value'] != null) {
+      json['_status'] = fieldJson10['_value'];
+    }
 
     if (experimental != null) {
       final fieldJson11 = experimental!.toJson();
@@ -420,7 +428,11 @@ class CompartmentDefinition extends DomainResource {
       }
     }
 
-    json['code'] = code.toJson();
+    final fieldJson18 = code.toJson();
+    json['code'] = fieldJson18['value'];
+    if (fieldJson18['_value'] != null) {
+      json['_code'] = fieldJson18['_value'];
+    }
 
     final fieldJson19 = search.toJson();
     json['search'] = fieldJson19['value'];
@@ -528,9 +540,7 @@ class CompartmentDefinitionResource extends BackboneElement {
   ) {
     return CompartmentDefinitionResource(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -559,12 +569,13 @@ class CompartmentDefinitionResource extends BackboneElement {
         json['_param'] as List<dynamic>?,
         fromJson: FhirString.fromJson,
       ),
-      documentation: json['documentation'] != null
-          ? FhirString.fromJson({
-              'value': json['documentation'],
-              '_value': json['_documentation'],
-            })
-          : null,
+      documentation:
+          (json['documentation'] != null || json['_documentation'] != null)
+              ? FhirString.fromJson({
+                  'value': json['documentation'],
+                  '_value': json['_documentation'],
+                })
+              : null,
     );
   }
 

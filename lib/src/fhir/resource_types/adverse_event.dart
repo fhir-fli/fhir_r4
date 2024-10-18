@@ -56,22 +56,21 @@ class AdverseEvent extends DomainResource {
   ) {
     return AdverseEvent(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -140,24 +139,25 @@ class AdverseEvent extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      date: json['date'] != null
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
             })
           : null,
-      detected: json['detected'] != null
+      detected: (json['detected'] != null || json['_detected'] != null)
           ? FhirDateTime.fromJson({
               'value': json['detected'],
               '_value': json['_detected'],
             })
           : null,
-      recordedDate: json['recordedDate'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['recordedDate'],
-              '_value': json['_recordedDate'],
-            })
-          : null,
+      recordedDate:
+          (json['recordedDate'] != null || json['_recordedDate'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['recordedDate'],
+                  '_value': json['_recordedDate'],
+                })
+              : null,
       resultingCondition: json['resultingCondition'] != null
           ? (json['resultingCondition'] as List<dynamic>)
               .map<Reference>(
@@ -396,7 +396,11 @@ class AdverseEvent extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -420,7 +424,11 @@ class AdverseEvent extends DomainResource {
       json['identifier'] = identifier!.toJson();
     }
 
-    json['actuality'] = actuality.toJson();
+    final fieldJson8 = actuality.toJson();
+    json['actuality'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_actuality'] = fieldJson8['_value'];
+    }
 
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((e) => e.toJson()).toList();
@@ -616,9 +624,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
   ) {
     return AdverseEventSuspectEntity(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -785,9 +791,7 @@ class AdverseEventCausality extends BackboneElement {
   ) {
     return AdverseEventCausality(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -812,7 +816,8 @@ class AdverseEventCausality extends BackboneElement {
               json['assessment'] as Map<String, dynamic>,
             )
           : null,
-      productRelatedness: json['productRelatedness'] != null
+      productRelatedness: (json['productRelatedness'] != null ||
+              json['_productRelatedness'] != null)
           ? FhirString.fromJson({
               'value': json['productRelatedness'],
               '_value': json['_productRelatedness'],

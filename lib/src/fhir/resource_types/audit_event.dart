@@ -46,22 +46,21 @@ class AuditEvent extends DomainResource {
   ) {
     return AuditEvent(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -111,7 +110,7 @@ class AuditEvent extends DomainResource {
               )
               .toList()
           : null,
-      action: json['action'] != null
+      action: (json['action'] != null || json['_action'] != null)
           ? AuditEventAction.fromJson({
               'value': json['action'],
               '_value': json['_action'],
@@ -126,13 +125,13 @@ class AuditEvent extends DomainResource {
         'value': json['recorded'],
         '_value': json['_recorded'],
       }),
-      outcome: json['outcome'] != null
+      outcome: (json['outcome'] != null || json['_outcome'] != null)
           ? AuditEventOutcome.fromJson({
               'value': json['outcome'],
               '_value': json['_outcome'],
             })
           : null,
-      outcomeDesc: json['outcomeDesc'] != null
+      outcomeDesc: (json['outcomeDesc'] != null || json['_outcomeDesc'] != null)
           ? FhirString.fromJson({
               'value': json['outcomeDesc'],
               '_value': json['_outcomeDesc'],
@@ -277,7 +276,11 @@ class AuditEvent extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -304,7 +307,11 @@ class AuditEvent extends DomainResource {
     }
 
     if (action != null) {
-      json['action'] = action!.toJson();
+      final fieldJson9 = action!.toJson();
+      json['action'] = fieldJson9['value'];
+      if (fieldJson9['_value'] != null) {
+        json['_action'] = fieldJson9['_value'];
+      }
     }
 
     if (period != null) {
@@ -318,7 +325,11 @@ class AuditEvent extends DomainResource {
     }
 
     if (outcome != null) {
-      json['outcome'] = outcome!.toJson();
+      final fieldJson12 = outcome!.toJson();
+      json['outcome'] = fieldJson12['value'];
+      if (fieldJson12['_value'] != null) {
+        json['_outcome'] = fieldJson12['_value'];
+      }
     }
 
     if (outcomeDesc != null) {
@@ -439,9 +450,7 @@ class AuditEventAgent extends BackboneElement {
   ) {
     return AuditEventAgent(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -480,13 +489,13 @@ class AuditEventAgent extends BackboneElement {
               json['who'] as Map<String, dynamic>,
             )
           : null,
-      altId: json['altId'] != null
+      altId: (json['altId'] != null || json['_altId'] != null)
           ? FhirString.fromJson({
               'value': json['altId'],
               '_value': json['_altId'],
             })
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
@@ -776,9 +785,7 @@ class AuditEventNetwork extends BackboneElement {
   ) {
     return AuditEventNetwork(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -798,13 +805,13 @@ class AuditEventNetwork extends BackboneElement {
               )
               .toList()
           : null,
-      address: json['address'] != null
+      address: (json['address'] != null || json['_address'] != null)
           ? FhirString.fromJson({
               'value': json['address'],
               '_value': json['_address'],
             })
           : null,
-      type: json['type'] != null
+      type: (json['type'] != null || json['_type'] != null)
           ? AuditEventAgentNetworkType.fromJson({
               'value': json['type'],
               '_value': json['_type'],
@@ -885,7 +892,11 @@ class AuditEventNetwork extends BackboneElement {
     }
 
     if (type != null) {
-      json['type'] = type!.toJson();
+      final fieldJson3 = type!.toJson();
+      json['type'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_type'] = fieldJson3['_value'];
+      }
     }
 
     return json;
@@ -950,9 +961,7 @@ class AuditEventSource extends BackboneElement {
   ) {
     return AuditEventSource(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -972,7 +981,7 @@ class AuditEventSource extends BackboneElement {
               )
               .toList()
           : null,
-      site: json['site'] != null
+      site: (json['site'] != null || json['_site'] != null)
           ? FhirString.fromJson({
               'value': json['site'],
               '_value': json['_site'],
@@ -1144,9 +1153,7 @@ class AuditEventEntity extends BackboneElement {
   ) {
     return AuditEventEntity(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1195,19 +1202,19 @@ class AuditEventEntity extends BackboneElement {
               )
               .toList()
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
             })
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
             })
           : null,
-      query: json['query'] != null
+      query: (json['query'] != null || json['_query'] != null)
           ? FhirBase64Binary.fromJson({
               'value': json['query'],
               '_value': json['_query'],
@@ -1442,9 +1449,7 @@ class AuditEventDetail extends BackboneElement {
   ) {
     return AuditEventDetail(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1468,13 +1473,14 @@ class AuditEventDetail extends BackboneElement {
         'value': json['type'],
         '_value': json['_type'],
       }),
-      valueString: json['valueString'] != null
+      valueString: (json['valueString'] != null || json['_valueString'] != null)
           ? FhirString.fromJson({
               'value': json['valueString'],
               '_value': json['_valueString'],
             })
           : null,
-      valueBase64Binary: json['valueBase64Binary'] != null
+      valueBase64Binary: (json['valueBase64Binary'] != null ||
+              json['_valueBase64Binary'] != null)
           ? FhirBase64Binary.fromJson({
               'value': json['valueBase64Binary'],
               '_value': json['_valueBase64Binary'],

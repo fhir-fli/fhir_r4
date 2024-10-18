@@ -47,22 +47,21 @@ class ObservationDefinition extends DomainResource {
   ) {
     return ObservationDefinition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -126,7 +125,8 @@ class ObservationDefinition extends DomainResource {
         json['_permittedDataType'] as List<dynamic>?,
         fromJson: ObservationDataType.fromJson,
       ),
-      multipleResultsAllowed: json['multipleResultsAllowed'] != null
+      multipleResultsAllowed: (json['multipleResultsAllowed'] != null ||
+              json['_multipleResultsAllowed'] != null)
           ? FhirBoolean.fromJson({
               'value': json['multipleResultsAllowed'],
               '_value': json['_multipleResultsAllowed'],
@@ -137,7 +137,8 @@ class ObservationDefinition extends DomainResource {
               json['method'] as Map<String, dynamic>,
             )
           : null,
-      preferredReportName: json['preferredReportName'] != null
+      preferredReportName: (json['preferredReportName'] != null ||
+              json['_preferredReportName'] != null)
           ? FhirString.fromJson({
               'value': json['preferredReportName'],
               '_value': json['_preferredReportName'],
@@ -299,7 +300,11 @@ class ObservationDefinition extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -330,8 +335,12 @@ class ObservationDefinition extends DomainResource {
     }
 
     if (permittedDataType != null && permittedDataType!.isNotEmpty) {
-      json['permittedDataType'] =
-          permittedDataType!.map((e) => e.toJson()).toList();
+      final fieldJson10 = permittedDataType!.map((e) => e.toJson()).toList();
+      json['permittedDataType'] = fieldJson10.map((e) => e['value']).toList();
+      if (fieldJson10.any((e) => e['_value'] != null)) {
+        json['_permittedDataType'] =
+            fieldJson10.map((e) => e['_value']).toList();
+      }
     }
 
     if (multipleResultsAllowed != null) {
@@ -477,9 +486,7 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   ) {
     return ObservationDefinitionQuantitativeDetails(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -509,13 +516,15 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
               json['unit'] as Map<String, dynamic>,
             )
           : null,
-      conversionFactor: json['conversionFactor'] != null
+      conversionFactor: (json['conversionFactor'] != null ||
+              json['_conversionFactor'] != null)
           ? FhirDecimal.fromJson({
               'value': json['conversionFactor'],
               '_value': json['_conversionFactor'],
             })
           : null,
-      decimalPrecision: json['decimalPrecision'] != null
+      decimalPrecision: (json['decimalPrecision'] != null ||
+              json['_decimalPrecision'] != null)
           ? FhirInteger.fromJson({
               'value': json['decimalPrecision'],
               '_value': json['_decimalPrecision'],
@@ -694,9 +703,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   ) {
     return ObservationDefinitionQualifiedInterval(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -716,7 +723,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
               )
               .toList()
           : null,
-      category: json['category'] != null
+      category: (json['category'] != null || json['_category'] != null)
           ? ObservationRangeCategory.fromJson({
               'value': json['category'],
               '_value': json['_category'],
@@ -741,7 +748,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
               )
               .toList()
           : null,
-      gender: json['gender'] != null
+      gender: (json['gender'] != null || json['_gender'] != null)
           ? AdministrativeGender.fromJson({
               'value': json['gender'],
               '_value': json['_gender'],
@@ -757,7 +764,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
               json['gestationalAge'] as Map<String, dynamic>,
             )
           : null,
-      condition: json['condition'] != null
+      condition: (json['condition'] != null || json['_condition'] != null)
           ? FhirString.fromJson({
               'value': json['condition'],
               '_value': json['_condition'],
@@ -858,7 +865,11 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     }
 
     if (category != null) {
-      json['category'] = category!.toJson();
+      final fieldJson2 = category!.toJson();
+      json['category'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_category'] = fieldJson2['_value'];
+      }
     }
 
     if (range != null) {
@@ -874,7 +885,11 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     }
 
     if (gender != null) {
-      json['gender'] = gender!.toJson();
+      final fieldJson6 = gender!.toJson();
+      json['gender'] = fieldJson6['value'];
+      if (fieldJson6['_value'] != null) {
+        json['_gender'] = fieldJson6['_value'];
+      }
     }
 
     if (age != null) {

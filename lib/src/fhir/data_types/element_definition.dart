@@ -227,9 +227,7 @@ class ElementDefinition extends BackboneType {
   ) {
     return ElementDefinition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -258,19 +256,20 @@ class ElementDefinition extends BackboneType {
         json['_representation'] as List<dynamic>?,
         fromJson: PropertyRepresentation.fromJson,
       ),
-      sliceName: json['sliceName'] != null
+      sliceName: (json['sliceName'] != null || json['_sliceName'] != null)
           ? FhirString.fromJson({
               'value': json['sliceName'],
               '_value': json['_sliceName'],
             })
           : null,
-      sliceIsConstraining: json['sliceIsConstraining'] != null
+      sliceIsConstraining: (json['sliceIsConstraining'] != null ||
+              json['_sliceIsConstraining'] != null)
           ? FhirBoolean.fromJson({
               'value': json['sliceIsConstraining'],
               '_value': json['_sliceIsConstraining'],
             })
           : null,
-      label: json['label'] != null
+      label: (json['label'] != null || json['_label'] != null)
           ? FhirString.fromJson({
               'value': json['label'],
               '_value': json['_label'],
@@ -290,42 +289,43 @@ class ElementDefinition extends BackboneType {
               json['slicing'] as Map<String, dynamic>,
             )
           : null,
-      short: json['short'] != null
+      short: (json['short'] != null || json['_short'] != null)
           ? FhirString.fromJson({
               'value': json['short'],
               '_value': json['_short'],
             })
           : null,
-      definition: json['definition'] != null
+      definition: (json['definition'] != null || json['_definition'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['definition'],
               '_value': json['_definition'],
             })
           : null,
-      comment: json['comment'] != null
+      comment: (json['comment'] != null || json['_comment'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['comment'],
               '_value': json['_comment'],
             })
           : null,
-      requirements: json['requirements'] != null
-          ? FhirMarkdown.fromJson({
-              'value': json['requirements'],
-              '_value': json['_requirements'],
-            })
-          : null,
+      requirements:
+          (json['requirements'] != null || json['_requirements'] != null)
+              ? FhirMarkdown.fromJson({
+                  'value': json['requirements'],
+                  '_value': json['_requirements'],
+                })
+              : null,
       alias: parsePrimitiveList<FhirString>(
         json['alias'] as List<dynamic>?,
         json['_alias'] as List<dynamic>?,
         fromJson: FhirString.fromJson,
       ),
-      min: json['min'] != null
+      min: (json['min'] != null || json['_min'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['min'],
               '_value': json['_min'],
             })
           : null,
-      max: json['max'] != null
+      max: (json['max'] != null || json['_max'] != null)
           ? FhirString.fromJson({
               'value': json['max'],
               '_value': json['_max'],
@@ -336,7 +336,8 @@ class ElementDefinition extends BackboneType {
               json['base'] as Map<String, dynamic>,
             )
           : null,
-      contentReference: json['contentReference'] != null
+      contentReference: (json['contentReference'] != null ||
+              json['_contentReference'] != null)
           ? FhirUri.fromJson({
               'value': json['contentReference'],
               '_value': json['_contentReference'],
@@ -351,115 +352,134 @@ class ElementDefinition extends BackboneType {
               )
               .toList()
           : null,
-      defaultValueBase64Binary: json['defaultValueBase64Binary'] != null
+      defaultValueBase64Binary: (json['defaultValueBase64Binary'] != null ||
+              json['_defaultValueBase64Binary'] != null)
           ? FhirBase64Binary.fromJson({
               'value': json['defaultValueBase64Binary'],
               '_value': json['_defaultValueBase64Binary'],
             })
           : null,
-      defaultValueBoolean: json['defaultValueBoolean'] != null
+      defaultValueBoolean: (json['defaultValueBoolean'] != null ||
+              json['_defaultValueBoolean'] != null)
           ? FhirBoolean.fromJson({
               'value': json['defaultValueBoolean'],
               '_value': json['_defaultValueBoolean'],
             })
           : null,
-      defaultValueCanonical: json['defaultValueCanonical'] != null
+      defaultValueCanonical: (json['defaultValueCanonical'] != null ||
+              json['_defaultValueCanonical'] != null)
           ? FhirCanonical.fromJson({
               'value': json['defaultValueCanonical'],
               '_value': json['_defaultValueCanonical'],
             })
           : null,
-      defaultValueCode: json['defaultValueCode'] != null
+      defaultValueCode: (json['defaultValueCode'] != null ||
+              json['_defaultValueCode'] != null)
           ? FhirCode.fromJson({
               'value': json['defaultValueCode'],
               '_value': json['_defaultValueCode'],
             })
           : null,
-      defaultValueDate: json['defaultValueDate'] != null
+      defaultValueDate: (json['defaultValueDate'] != null ||
+              json['_defaultValueDate'] != null)
           ? FhirDate.fromJson({
               'value': json['defaultValueDate'],
               '_value': json['_defaultValueDate'],
             })
           : null,
-      defaultValueDateTime: json['defaultValueDateTime'] != null
+      defaultValueDateTime: (json['defaultValueDateTime'] != null ||
+              json['_defaultValueDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['defaultValueDateTime'],
               '_value': json['_defaultValueDateTime'],
             })
           : null,
-      defaultValueDecimal: json['defaultValueDecimal'] != null
+      defaultValueDecimal: (json['defaultValueDecimal'] != null ||
+              json['_defaultValueDecimal'] != null)
           ? FhirDecimal.fromJson({
               'value': json['defaultValueDecimal'],
               '_value': json['_defaultValueDecimal'],
             })
           : null,
-      defaultValueId: json['defaultValueId'] != null
-          ? FhirId.fromJson({
-              'value': json['defaultValueId'],
-              '_value': json['_defaultValueId'],
-            })
-          : null,
-      defaultValueInstant: json['defaultValueInstant'] != null
+      defaultValueId:
+          (json['defaultValueId'] != null || json['_defaultValueId'] != null)
+              ? FhirId.fromJson({
+                  'value': json['defaultValueId'],
+                  '_value': json['_defaultValueId'],
+                })
+              : null,
+      defaultValueInstant: (json['defaultValueInstant'] != null ||
+              json['_defaultValueInstant'] != null)
           ? FhirInstant.fromJson({
               'value': json['defaultValueInstant'],
               '_value': json['_defaultValueInstant'],
             })
           : null,
-      defaultValueInteger: json['defaultValueInteger'] != null
+      defaultValueInteger: (json['defaultValueInteger'] != null ||
+              json['_defaultValueInteger'] != null)
           ? FhirInteger.fromJson({
               'value': json['defaultValueInteger'],
               '_value': json['_defaultValueInteger'],
             })
           : null,
-      defaultValueMarkdown: json['defaultValueMarkdown'] != null
+      defaultValueMarkdown: (json['defaultValueMarkdown'] != null ||
+              json['_defaultValueMarkdown'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['defaultValueMarkdown'],
               '_value': json['_defaultValueMarkdown'],
             })
           : null,
-      defaultValueOid: json['defaultValueOid'] != null
-          ? FhirOid.fromJson({
-              'value': json['defaultValueOid'],
-              '_value': json['_defaultValueOid'],
-            })
-          : null,
-      defaultValuePositiveInt: json['defaultValuePositiveInt'] != null
+      defaultValueOid:
+          (json['defaultValueOid'] != null || json['_defaultValueOid'] != null)
+              ? FhirOid.fromJson({
+                  'value': json['defaultValueOid'],
+                  '_value': json['_defaultValueOid'],
+                })
+              : null,
+      defaultValuePositiveInt: (json['defaultValuePositiveInt'] != null ||
+              json['_defaultValuePositiveInt'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['defaultValuePositiveInt'],
               '_value': json['_defaultValuePositiveInt'],
             })
           : null,
-      defaultValueString: json['defaultValueString'] != null
+      defaultValueString: (json['defaultValueString'] != null ||
+              json['_defaultValueString'] != null)
           ? FhirString.fromJson({
               'value': json['defaultValueString'],
               '_value': json['_defaultValueString'],
             })
           : null,
-      defaultValueTime: json['defaultValueTime'] != null
+      defaultValueTime: (json['defaultValueTime'] != null ||
+              json['_defaultValueTime'] != null)
           ? FhirTime.fromJson({
               'value': json['defaultValueTime'],
               '_value': json['_defaultValueTime'],
             })
           : null,
-      defaultValueUnsignedInt: json['defaultValueUnsignedInt'] != null
+      defaultValueUnsignedInt: (json['defaultValueUnsignedInt'] != null ||
+              json['_defaultValueUnsignedInt'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['defaultValueUnsignedInt'],
               '_value': json['_defaultValueUnsignedInt'],
             })
           : null,
-      defaultValueUri: json['defaultValueUri'] != null
-          ? FhirUri.fromJson({
-              'value': json['defaultValueUri'],
-              '_value': json['_defaultValueUri'],
-            })
-          : null,
-      defaultValueUrl: json['defaultValueUrl'] != null
-          ? FhirUrl.fromJson({
-              'value': json['defaultValueUrl'],
-              '_value': json['_defaultValueUrl'],
-            })
-          : null,
-      defaultValueUuid: json['defaultValueUuid'] != null
+      defaultValueUri:
+          (json['defaultValueUri'] != null || json['_defaultValueUri'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['defaultValueUri'],
+                  '_value': json['_defaultValueUri'],
+                })
+              : null,
+      defaultValueUrl:
+          (json['defaultValueUrl'] != null || json['_defaultValueUrl'] != null)
+              ? FhirUrl.fromJson({
+                  'value': json['defaultValueUrl'],
+                  '_value': json['_defaultValueUrl'],
+                })
+              : null,
+      defaultValueUuid: (json['defaultValueUuid'] != null ||
+              json['_defaultValueUuid'] != null)
           ? FhirUuid.fromJson({
               'value': json['defaultValueUuid'],
               '_value': json['_defaultValueUuid'],
@@ -629,127 +649,139 @@ class ElementDefinition extends BackboneType {
               json['defaultValueDosage'] as Map<String, dynamic>,
             )
           : null,
-      meaningWhenMissing: json['meaningWhenMissing'] != null
+      meaningWhenMissing: (json['meaningWhenMissing'] != null ||
+              json['_meaningWhenMissing'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['meaningWhenMissing'],
               '_value': json['_meaningWhenMissing'],
             })
           : null,
-      orderMeaning: json['orderMeaning'] != null
-          ? FhirString.fromJson({
-              'value': json['orderMeaning'],
-              '_value': json['_orderMeaning'],
-            })
-          : null,
-      fixedBase64Binary: json['fixedBase64Binary'] != null
+      orderMeaning:
+          (json['orderMeaning'] != null || json['_orderMeaning'] != null)
+              ? FhirString.fromJson({
+                  'value': json['orderMeaning'],
+                  '_value': json['_orderMeaning'],
+                })
+              : null,
+      fixedBase64Binary: (json['fixedBase64Binary'] != null ||
+              json['_fixedBase64Binary'] != null)
           ? FhirBase64Binary.fromJson({
               'value': json['fixedBase64Binary'],
               '_value': json['_fixedBase64Binary'],
             })
           : null,
-      fixedBoolean: json['fixedBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['fixedBoolean'],
-              '_value': json['_fixedBoolean'],
-            })
-          : null,
-      fixedCanonical: json['fixedCanonical'] != null
-          ? FhirCanonical.fromJson({
-              'value': json['fixedCanonical'],
-              '_value': json['_fixedCanonical'],
-            })
-          : null,
-      fixedCode: json['fixedCode'] != null
+      fixedBoolean:
+          (json['fixedBoolean'] != null || json['_fixedBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['fixedBoolean'],
+                  '_value': json['_fixedBoolean'],
+                })
+              : null,
+      fixedCanonical:
+          (json['fixedCanonical'] != null || json['_fixedCanonical'] != null)
+              ? FhirCanonical.fromJson({
+                  'value': json['fixedCanonical'],
+                  '_value': json['_fixedCanonical'],
+                })
+              : null,
+      fixedCode: (json['fixedCode'] != null || json['_fixedCode'] != null)
           ? FhirCode.fromJson({
               'value': json['fixedCode'],
               '_value': json['_fixedCode'],
             })
           : null,
-      fixedDate: json['fixedDate'] != null
+      fixedDate: (json['fixedDate'] != null || json['_fixedDate'] != null)
           ? FhirDate.fromJson({
               'value': json['fixedDate'],
               '_value': json['_fixedDate'],
             })
           : null,
-      fixedDateTime: json['fixedDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['fixedDateTime'],
-              '_value': json['_fixedDateTime'],
-            })
-          : null,
-      fixedDecimal: json['fixedDecimal'] != null
-          ? FhirDecimal.fromJson({
-              'value': json['fixedDecimal'],
-              '_value': json['_fixedDecimal'],
-            })
-          : null,
-      fixedId: json['fixedId'] != null
+      fixedDateTime:
+          (json['fixedDateTime'] != null || json['_fixedDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['fixedDateTime'],
+                  '_value': json['_fixedDateTime'],
+                })
+              : null,
+      fixedDecimal:
+          (json['fixedDecimal'] != null || json['_fixedDecimal'] != null)
+              ? FhirDecimal.fromJson({
+                  'value': json['fixedDecimal'],
+                  '_value': json['_fixedDecimal'],
+                })
+              : null,
+      fixedId: (json['fixedId'] != null || json['_fixedId'] != null)
           ? FhirId.fromJson({
               'value': json['fixedId'],
               '_value': json['_fixedId'],
             })
           : null,
-      fixedInstant: json['fixedInstant'] != null
-          ? FhirInstant.fromJson({
-              'value': json['fixedInstant'],
-              '_value': json['_fixedInstant'],
-            })
-          : null,
-      fixedInteger: json['fixedInteger'] != null
-          ? FhirInteger.fromJson({
-              'value': json['fixedInteger'],
-              '_value': json['_fixedInteger'],
-            })
-          : null,
-      fixedMarkdown: json['fixedMarkdown'] != null
-          ? FhirMarkdown.fromJson({
-              'value': json['fixedMarkdown'],
-              '_value': json['_fixedMarkdown'],
-            })
-          : null,
-      fixedOid: json['fixedOid'] != null
+      fixedInstant:
+          (json['fixedInstant'] != null || json['_fixedInstant'] != null)
+              ? FhirInstant.fromJson({
+                  'value': json['fixedInstant'],
+                  '_value': json['_fixedInstant'],
+                })
+              : null,
+      fixedInteger:
+          (json['fixedInteger'] != null || json['_fixedInteger'] != null)
+              ? FhirInteger.fromJson({
+                  'value': json['fixedInteger'],
+                  '_value': json['_fixedInteger'],
+                })
+              : null,
+      fixedMarkdown:
+          (json['fixedMarkdown'] != null || json['_fixedMarkdown'] != null)
+              ? FhirMarkdown.fromJson({
+                  'value': json['fixedMarkdown'],
+                  '_value': json['_fixedMarkdown'],
+                })
+              : null,
+      fixedOid: (json['fixedOid'] != null || json['_fixedOid'] != null)
           ? FhirOid.fromJson({
               'value': json['fixedOid'],
               '_value': json['_fixedOid'],
             })
           : null,
-      fixedPositiveInt: json['fixedPositiveInt'] != null
+      fixedPositiveInt: (json['fixedPositiveInt'] != null ||
+              json['_fixedPositiveInt'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['fixedPositiveInt'],
               '_value': json['_fixedPositiveInt'],
             })
           : null,
-      fixedString: json['fixedString'] != null
+      fixedString: (json['fixedString'] != null || json['_fixedString'] != null)
           ? FhirString.fromJson({
               'value': json['fixedString'],
               '_value': json['_fixedString'],
             })
           : null,
-      fixedTime: json['fixedTime'] != null
+      fixedTime: (json['fixedTime'] != null || json['_fixedTime'] != null)
           ? FhirTime.fromJson({
               'value': json['fixedTime'],
               '_value': json['_fixedTime'],
             })
           : null,
-      fixedUnsignedInt: json['fixedUnsignedInt'] != null
+      fixedUnsignedInt: (json['fixedUnsignedInt'] != null ||
+              json['_fixedUnsignedInt'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['fixedUnsignedInt'],
               '_value': json['_fixedUnsignedInt'],
             })
           : null,
-      fixedUri: json['fixedUri'] != null
+      fixedUri: (json['fixedUri'] != null || json['_fixedUri'] != null)
           ? FhirUri.fromJson({
               'value': json['fixedUri'],
               '_value': json['_fixedUri'],
             })
           : null,
-      fixedUrl: json['fixedUrl'] != null
+      fixedUrl: (json['fixedUrl'] != null || json['_fixedUrl'] != null)
           ? FhirUrl.fromJson({
               'value': json['fixedUrl'],
               '_value': json['_fixedUrl'],
             })
           : null,
-      fixedUuid: json['fixedUuid'] != null
+      fixedUuid: (json['fixedUuid'] != null || json['_fixedUuid'] != null)
           ? FhirUuid.fromJson({
               'value': json['fixedUuid'],
               '_value': json['_fixedUuid'],
@@ -915,115 +947,126 @@ class ElementDefinition extends BackboneType {
               json['fixedDosage'] as Map<String, dynamic>,
             )
           : null,
-      patternBase64Binary: json['patternBase64Binary'] != null
+      patternBase64Binary: (json['patternBase64Binary'] != null ||
+              json['_patternBase64Binary'] != null)
           ? FhirBase64Binary.fromJson({
               'value': json['patternBase64Binary'],
               '_value': json['_patternBase64Binary'],
             })
           : null,
-      patternBoolean: json['patternBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['patternBoolean'],
-              '_value': json['_patternBoolean'],
-            })
-          : null,
-      patternCanonical: json['patternCanonical'] != null
+      patternBoolean:
+          (json['patternBoolean'] != null || json['_patternBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['patternBoolean'],
+                  '_value': json['_patternBoolean'],
+                })
+              : null,
+      patternCanonical: (json['patternCanonical'] != null ||
+              json['_patternCanonical'] != null)
           ? FhirCanonical.fromJson({
               'value': json['patternCanonical'],
               '_value': json['_patternCanonical'],
             })
           : null,
-      patternCode: json['patternCode'] != null
+      patternCode: (json['patternCode'] != null || json['_patternCode'] != null)
           ? FhirCode.fromJson({
               'value': json['patternCode'],
               '_value': json['_patternCode'],
             })
           : null,
-      patternDate: json['patternDate'] != null
+      patternDate: (json['patternDate'] != null || json['_patternDate'] != null)
           ? FhirDate.fromJson({
               'value': json['patternDate'],
               '_value': json['_patternDate'],
             })
           : null,
-      patternDateTime: json['patternDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['patternDateTime'],
-              '_value': json['_patternDateTime'],
-            })
-          : null,
-      patternDecimal: json['patternDecimal'] != null
-          ? FhirDecimal.fromJson({
-              'value': json['patternDecimal'],
-              '_value': json['_patternDecimal'],
-            })
-          : null,
-      patternId: json['patternId'] != null
+      patternDateTime:
+          (json['patternDateTime'] != null || json['_patternDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['patternDateTime'],
+                  '_value': json['_patternDateTime'],
+                })
+              : null,
+      patternDecimal:
+          (json['patternDecimal'] != null || json['_patternDecimal'] != null)
+              ? FhirDecimal.fromJson({
+                  'value': json['patternDecimal'],
+                  '_value': json['_patternDecimal'],
+                })
+              : null,
+      patternId: (json['patternId'] != null || json['_patternId'] != null)
           ? FhirId.fromJson({
               'value': json['patternId'],
               '_value': json['_patternId'],
             })
           : null,
-      patternInstant: json['patternInstant'] != null
-          ? FhirInstant.fromJson({
-              'value': json['patternInstant'],
-              '_value': json['_patternInstant'],
-            })
-          : null,
-      patternInteger: json['patternInteger'] != null
-          ? FhirInteger.fromJson({
-              'value': json['patternInteger'],
-              '_value': json['_patternInteger'],
-            })
-          : null,
-      patternMarkdown: json['patternMarkdown'] != null
-          ? FhirMarkdown.fromJson({
-              'value': json['patternMarkdown'],
-              '_value': json['_patternMarkdown'],
-            })
-          : null,
-      patternOid: json['patternOid'] != null
+      patternInstant:
+          (json['patternInstant'] != null || json['_patternInstant'] != null)
+              ? FhirInstant.fromJson({
+                  'value': json['patternInstant'],
+                  '_value': json['_patternInstant'],
+                })
+              : null,
+      patternInteger:
+          (json['patternInteger'] != null || json['_patternInteger'] != null)
+              ? FhirInteger.fromJson({
+                  'value': json['patternInteger'],
+                  '_value': json['_patternInteger'],
+                })
+              : null,
+      patternMarkdown:
+          (json['patternMarkdown'] != null || json['_patternMarkdown'] != null)
+              ? FhirMarkdown.fromJson({
+                  'value': json['patternMarkdown'],
+                  '_value': json['_patternMarkdown'],
+                })
+              : null,
+      patternOid: (json['patternOid'] != null || json['_patternOid'] != null)
           ? FhirOid.fromJson({
               'value': json['patternOid'],
               '_value': json['_patternOid'],
             })
           : null,
-      patternPositiveInt: json['patternPositiveInt'] != null
+      patternPositiveInt: (json['patternPositiveInt'] != null ||
+              json['_patternPositiveInt'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['patternPositiveInt'],
               '_value': json['_patternPositiveInt'],
             })
           : null,
-      patternString: json['patternString'] != null
-          ? FhirString.fromJson({
-              'value': json['patternString'],
-              '_value': json['_patternString'],
-            })
-          : null,
-      patternTime: json['patternTime'] != null
+      patternString:
+          (json['patternString'] != null || json['_patternString'] != null)
+              ? FhirString.fromJson({
+                  'value': json['patternString'],
+                  '_value': json['_patternString'],
+                })
+              : null,
+      patternTime: (json['patternTime'] != null || json['_patternTime'] != null)
           ? FhirTime.fromJson({
               'value': json['patternTime'],
               '_value': json['_patternTime'],
             })
           : null,
-      patternUnsignedInt: json['patternUnsignedInt'] != null
+      patternUnsignedInt: (json['patternUnsignedInt'] != null ||
+              json['_patternUnsignedInt'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['patternUnsignedInt'],
               '_value': json['_patternUnsignedInt'],
             })
           : null,
-      patternUri: json['patternUri'] != null
+      patternUri: (json['patternUri'] != null || json['_patternUri'] != null)
           ? FhirUri.fromJson({
               'value': json['patternUri'],
               '_value': json['_patternUri'],
             })
           : null,
-      patternUrl: json['patternUrl'] != null
+      patternUrl: (json['patternUrl'] != null || json['_patternUrl'] != null)
           ? FhirUrl.fromJson({
               'value': json['patternUrl'],
               '_value': json['_patternUrl'],
             })
           : null,
-      patternUuid: json['patternUuid'] != null
+      patternUuid: (json['patternUuid'] != null || json['_patternUuid'] != null)
           ? FhirUuid.fromJson({
               'value': json['patternUuid'],
               '_value': json['_patternUuid'],
@@ -1198,49 +1241,57 @@ class ElementDefinition extends BackboneType {
               )
               .toList()
           : null,
-      minValueDate: json['minValueDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['minValueDate'],
-              '_value': json['_minValueDate'],
-            })
-          : null,
-      minValueDateTime: json['minValueDateTime'] != null
+      minValueDate:
+          (json['minValueDate'] != null || json['_minValueDate'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['minValueDate'],
+                  '_value': json['_minValueDate'],
+                })
+              : null,
+      minValueDateTime: (json['minValueDateTime'] != null ||
+              json['_minValueDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['minValueDateTime'],
               '_value': json['_minValueDateTime'],
             })
           : null,
-      minValueInstant: json['minValueInstant'] != null
-          ? FhirInstant.fromJson({
-              'value': json['minValueInstant'],
-              '_value': json['_minValueInstant'],
-            })
-          : null,
-      minValueTime: json['minValueTime'] != null
-          ? FhirTime.fromJson({
-              'value': json['minValueTime'],
-              '_value': json['_minValueTime'],
-            })
-          : null,
-      minValueDecimal: json['minValueDecimal'] != null
-          ? FhirDecimal.fromJson({
-              'value': json['minValueDecimal'],
-              '_value': json['_minValueDecimal'],
-            })
-          : null,
-      minValueInteger: json['minValueInteger'] != null
-          ? FhirInteger.fromJson({
-              'value': json['minValueInteger'],
-              '_value': json['_minValueInteger'],
-            })
-          : null,
-      minValuePositiveInt: json['minValuePositiveInt'] != null
+      minValueInstant:
+          (json['minValueInstant'] != null || json['_minValueInstant'] != null)
+              ? FhirInstant.fromJson({
+                  'value': json['minValueInstant'],
+                  '_value': json['_minValueInstant'],
+                })
+              : null,
+      minValueTime:
+          (json['minValueTime'] != null || json['_minValueTime'] != null)
+              ? FhirTime.fromJson({
+                  'value': json['minValueTime'],
+                  '_value': json['_minValueTime'],
+                })
+              : null,
+      minValueDecimal:
+          (json['minValueDecimal'] != null || json['_minValueDecimal'] != null)
+              ? FhirDecimal.fromJson({
+                  'value': json['minValueDecimal'],
+                  '_value': json['_minValueDecimal'],
+                })
+              : null,
+      minValueInteger:
+          (json['minValueInteger'] != null || json['_minValueInteger'] != null)
+              ? FhirInteger.fromJson({
+                  'value': json['minValueInteger'],
+                  '_value': json['_minValueInteger'],
+                })
+              : null,
+      minValuePositiveInt: (json['minValuePositiveInt'] != null ||
+              json['_minValuePositiveInt'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['minValuePositiveInt'],
               '_value': json['_minValuePositiveInt'],
             })
           : null,
-      minValueUnsignedInt: json['minValueUnsignedInt'] != null
+      minValueUnsignedInt: (json['minValueUnsignedInt'] != null ||
+              json['_minValueUnsignedInt'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['minValueUnsignedInt'],
               '_value': json['_minValueUnsignedInt'],
@@ -1251,49 +1302,57 @@ class ElementDefinition extends BackboneType {
               json['minValueQuantity'] as Map<String, dynamic>,
             )
           : null,
-      maxValueDate: json['maxValueDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['maxValueDate'],
-              '_value': json['_maxValueDate'],
-            })
-          : null,
-      maxValueDateTime: json['maxValueDateTime'] != null
+      maxValueDate:
+          (json['maxValueDate'] != null || json['_maxValueDate'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['maxValueDate'],
+                  '_value': json['_maxValueDate'],
+                })
+              : null,
+      maxValueDateTime: (json['maxValueDateTime'] != null ||
+              json['_maxValueDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['maxValueDateTime'],
               '_value': json['_maxValueDateTime'],
             })
           : null,
-      maxValueInstant: json['maxValueInstant'] != null
-          ? FhirInstant.fromJson({
-              'value': json['maxValueInstant'],
-              '_value': json['_maxValueInstant'],
-            })
-          : null,
-      maxValueTime: json['maxValueTime'] != null
-          ? FhirTime.fromJson({
-              'value': json['maxValueTime'],
-              '_value': json['_maxValueTime'],
-            })
-          : null,
-      maxValueDecimal: json['maxValueDecimal'] != null
-          ? FhirDecimal.fromJson({
-              'value': json['maxValueDecimal'],
-              '_value': json['_maxValueDecimal'],
-            })
-          : null,
-      maxValueInteger: json['maxValueInteger'] != null
-          ? FhirInteger.fromJson({
-              'value': json['maxValueInteger'],
-              '_value': json['_maxValueInteger'],
-            })
-          : null,
-      maxValuePositiveInt: json['maxValuePositiveInt'] != null
+      maxValueInstant:
+          (json['maxValueInstant'] != null || json['_maxValueInstant'] != null)
+              ? FhirInstant.fromJson({
+                  'value': json['maxValueInstant'],
+                  '_value': json['_maxValueInstant'],
+                })
+              : null,
+      maxValueTime:
+          (json['maxValueTime'] != null || json['_maxValueTime'] != null)
+              ? FhirTime.fromJson({
+                  'value': json['maxValueTime'],
+                  '_value': json['_maxValueTime'],
+                })
+              : null,
+      maxValueDecimal:
+          (json['maxValueDecimal'] != null || json['_maxValueDecimal'] != null)
+              ? FhirDecimal.fromJson({
+                  'value': json['maxValueDecimal'],
+                  '_value': json['_maxValueDecimal'],
+                })
+              : null,
+      maxValueInteger:
+          (json['maxValueInteger'] != null || json['_maxValueInteger'] != null)
+              ? FhirInteger.fromJson({
+                  'value': json['maxValueInteger'],
+                  '_value': json['_maxValueInteger'],
+                })
+              : null,
+      maxValuePositiveInt: (json['maxValuePositiveInt'] != null ||
+              json['_maxValuePositiveInt'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['maxValuePositiveInt'],
               '_value': json['_maxValuePositiveInt'],
             })
           : null,
-      maxValueUnsignedInt: json['maxValueUnsignedInt'] != null
+      maxValueUnsignedInt: (json['maxValueUnsignedInt'] != null ||
+              json['_maxValueUnsignedInt'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['maxValueUnsignedInt'],
               '_value': json['_maxValueUnsignedInt'],
@@ -1304,7 +1363,7 @@ class ElementDefinition extends BackboneType {
               json['maxValueQuantity'] as Map<String, dynamic>,
             )
           : null,
-      maxLength: json['maxLength'] != null
+      maxLength: (json['maxLength'] != null || json['_maxLength'] != null)
           ? FhirInteger.fromJson({
               'value': json['maxLength'],
               '_value': json['_maxLength'],
@@ -1324,25 +1383,26 @@ class ElementDefinition extends BackboneType {
               )
               .toList()
           : null,
-      mustSupport: json['mustSupport'] != null
+      mustSupport: (json['mustSupport'] != null || json['_mustSupport'] != null)
           ? FhirBoolean.fromJson({
               'value': json['mustSupport'],
               '_value': json['_mustSupport'],
             })
           : null,
-      isModifier: json['isModifier'] != null
+      isModifier: (json['isModifier'] != null || json['_isModifier'] != null)
           ? FhirBoolean.fromJson({
               'value': json['isModifier'],
               '_value': json['_isModifier'],
             })
           : null,
-      isModifierReason: json['isModifierReason'] != null
+      isModifierReason: (json['isModifierReason'] != null ||
+              json['_isModifierReason'] != null)
           ? FhirString.fromJson({
               'value': json['isModifierReason'],
               '_value': json['_isModifierReason'],
             })
           : null,
-      isSummary: json['isSummary'] != null
+      isSummary: (json['isSummary'] != null || json['_isSummary'] != null)
           ? FhirBoolean.fromJson({
               'value': json['isSummary'],
               '_value': json['_isSummary'],
@@ -3449,7 +3509,11 @@ class ElementDefinition extends BackboneType {
     }
 
     if (representation != null && representation!.isNotEmpty) {
-      json['representation'] = representation!.map((e) => e.toJson()).toList();
+      final fieldJson3 = representation!.map((e) => e.toJson()).toList();
+      json['representation'] = fieldJson3.map((e) => e['value']).toList();
+      if (fieldJson3.any((e) => e['_value'] != null)) {
+        json['_representation'] = fieldJson3.map((e) => e['_value']).toList();
+      }
     }
 
     if (sliceName != null) {
@@ -5115,9 +5179,7 @@ class ElementDefinitionSlicing extends Element {
   ) {
     return ElementDefinitionSlicing(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -5137,13 +5199,13 @@ class ElementDefinitionSlicing extends Element {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
             })
           : null,
-      ordered: json['ordered'] != null
+      ordered: (json['ordered'] != null || json['_ordered'] != null)
           ? FhirBoolean.fromJson({
               'value': json['ordered'],
               '_value': json['_ordered'],
@@ -5249,7 +5311,11 @@ class ElementDefinitionSlicing extends Element {
       }
     }
 
-    json['rules'] = rules.toJson();
+    final fieldJson4 = rules.toJson();
+    json['rules'] = fieldJson4['value'];
+    if (fieldJson4['_value'] != null) {
+      json['_rules'] = fieldJson4['_value'];
+    }
 
     return json;
   }
@@ -5317,9 +5383,7 @@ class ElementDefinitionDiscriminator extends Element {
   ) {
     return ElementDefinitionDiscriminator(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -5399,7 +5463,11 @@ class ElementDefinitionDiscriminator extends Element {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    json['type'] = type.toJson();
+    final fieldJson1 = type.toJson();
+    json['type'] = fieldJson1['value'];
+    if (fieldJson1['_value'] != null) {
+      json['_type'] = fieldJson1['_value'];
+    }
 
     final fieldJson2 = path.toJson();
     json['path'] = fieldJson2['value'];
@@ -5473,9 +5541,7 @@ class ElementDefinitionBase extends Element {
   ) {
     return ElementDefinitionBase(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -5647,9 +5713,7 @@ class ElementDefinitionType extends Element {
   ) {
     return ElementDefinitionType(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -5679,7 +5743,7 @@ class ElementDefinitionType extends Element {
         json['_aggregation'] as List<dynamic>?,
         fromJson: AggregationMode.fromJson,
       ),
-      versioning: json['versioning'] != null
+      versioning: (json['versioning'] != null || json['_versioning'] != null)
           ? ReferenceVersionRules.fromJson({
               'value': json['versioning'],
               '_value': json['_versioning'],
@@ -5799,11 +5863,19 @@ class ElementDefinitionType extends Element {
     }
 
     if (aggregation != null && aggregation!.isNotEmpty) {
-      json['aggregation'] = aggregation!.map((e) => e.toJson()).toList();
+      final fieldJson4 = aggregation!.map((e) => e.toJson()).toList();
+      json['aggregation'] = fieldJson4.map((e) => e['value']).toList();
+      if (fieldJson4.any((e) => e['_value'] != null)) {
+        json['_aggregation'] = fieldJson4.map((e) => e['_value']).toList();
+      }
     }
 
     if (versioning != null) {
-      json['versioning'] = versioning!.toJson();
+      final fieldJson5 = versioning!.toJson();
+      json['versioning'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_versioning'] = fieldJson5['_value'];
+      }
     }
 
     return json;
@@ -5921,9 +5993,7 @@ class ElementDefinitionExample extends Element {
   ) {
     return ElementDefinitionExample(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -5938,115 +6008,125 @@ class ElementDefinitionExample extends Element {
         'value': json['label'],
         '_value': json['_label'],
       }),
-      valueBase64Binary: json['valueBase64Binary'] != null
+      valueBase64Binary: (json['valueBase64Binary'] != null ||
+              json['_valueBase64Binary'] != null)
           ? FhirBase64Binary.fromJson({
               'value': json['valueBase64Binary'],
               '_value': json['_valueBase64Binary'],
             })
           : null,
-      valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['valueBoolean'],
-              '_value': json['_valueBoolean'],
-            })
-          : null,
-      valueCanonical: json['valueCanonical'] != null
-          ? FhirCanonical.fromJson({
-              'value': json['valueCanonical'],
-              '_value': json['_valueCanonical'],
-            })
-          : null,
-      valueCode: json['valueCode'] != null
+      valueBoolean:
+          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['valueBoolean'],
+                  '_value': json['_valueBoolean'],
+                })
+              : null,
+      valueCanonical:
+          (json['valueCanonical'] != null || json['_valueCanonical'] != null)
+              ? FhirCanonical.fromJson({
+                  'value': json['valueCanonical'],
+                  '_value': json['_valueCanonical'],
+                })
+              : null,
+      valueCode: (json['valueCode'] != null || json['_valueCode'] != null)
           ? FhirCode.fromJson({
               'value': json['valueCode'],
               '_value': json['_valueCode'],
             })
           : null,
-      valueDate: json['valueDate'] != null
+      valueDate: (json['valueDate'] != null || json['_valueDate'] != null)
           ? FhirDate.fromJson({
               'value': json['valueDate'],
               '_value': json['_valueDate'],
             })
           : null,
-      valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['valueDateTime'],
-              '_value': json['_valueDateTime'],
-            })
-          : null,
-      valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson({
-              'value': json['valueDecimal'],
-              '_value': json['_valueDecimal'],
-            })
-          : null,
-      valueId: json['valueId'] != null
+      valueDateTime:
+          (json['valueDateTime'] != null || json['_valueDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['valueDateTime'],
+                  '_value': json['_valueDateTime'],
+                })
+              : null,
+      valueDecimal:
+          (json['valueDecimal'] != null || json['_valueDecimal'] != null)
+              ? FhirDecimal.fromJson({
+                  'value': json['valueDecimal'],
+                  '_value': json['_valueDecimal'],
+                })
+              : null,
+      valueId: (json['valueId'] != null || json['_valueId'] != null)
           ? FhirId.fromJson({
               'value': json['valueId'],
               '_value': json['_valueId'],
             })
           : null,
-      valueInstant: json['valueInstant'] != null
-          ? FhirInstant.fromJson({
-              'value': json['valueInstant'],
-              '_value': json['_valueInstant'],
-            })
-          : null,
-      valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson({
-              'value': json['valueInteger'],
-              '_value': json['_valueInteger'],
-            })
-          : null,
-      valueMarkdown: json['valueMarkdown'] != null
-          ? FhirMarkdown.fromJson({
-              'value': json['valueMarkdown'],
-              '_value': json['_valueMarkdown'],
-            })
-          : null,
-      valueOid: json['valueOid'] != null
+      valueInstant:
+          (json['valueInstant'] != null || json['_valueInstant'] != null)
+              ? FhirInstant.fromJson({
+                  'value': json['valueInstant'],
+                  '_value': json['_valueInstant'],
+                })
+              : null,
+      valueInteger:
+          (json['valueInteger'] != null || json['_valueInteger'] != null)
+              ? FhirInteger.fromJson({
+                  'value': json['valueInteger'],
+                  '_value': json['_valueInteger'],
+                })
+              : null,
+      valueMarkdown:
+          (json['valueMarkdown'] != null || json['_valueMarkdown'] != null)
+              ? FhirMarkdown.fromJson({
+                  'value': json['valueMarkdown'],
+                  '_value': json['_valueMarkdown'],
+                })
+              : null,
+      valueOid: (json['valueOid'] != null || json['_valueOid'] != null)
           ? FhirOid.fromJson({
               'value': json['valueOid'],
               '_value': json['_valueOid'],
             })
           : null,
-      valuePositiveInt: json['valuePositiveInt'] != null
+      valuePositiveInt: (json['valuePositiveInt'] != null ||
+              json['_valuePositiveInt'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['valuePositiveInt'],
               '_value': json['_valuePositiveInt'],
             })
           : null,
-      valueString: json['valueString'] != null
+      valueString: (json['valueString'] != null || json['_valueString'] != null)
           ? FhirString.fromJson({
               'value': json['valueString'],
               '_value': json['_valueString'],
             })
           : null,
-      valueTime: json['valueTime'] != null
+      valueTime: (json['valueTime'] != null || json['_valueTime'] != null)
           ? FhirTime.fromJson({
               'value': json['valueTime'],
               '_value': json['_valueTime'],
             })
           : null,
-      valueUnsignedInt: json['valueUnsignedInt'] != null
+      valueUnsignedInt: (json['valueUnsignedInt'] != null ||
+              json['_valueUnsignedInt'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['valueUnsignedInt'],
               '_value': json['_valueUnsignedInt'],
             })
           : null,
-      valueUri: json['valueUri'] != null
+      valueUri: (json['valueUri'] != null || json['_valueUri'] != null)
           ? FhirUri.fromJson({
               'value': json['valueUri'],
               '_value': json['_valueUri'],
             })
           : null,
-      valueUrl: json['valueUrl'] != null
+      valueUrl: (json['valueUrl'] != null || json['_valueUrl'] != null)
           ? FhirUrl.fromJson({
               'value': json['valueUrl'],
               '_value': json['_valueUrl'],
             })
           : null,
-      valueUuid: json['valueUuid'] != null
+      valueUuid: (json['valueUuid'] != null || json['_valueUuid'] != null)
           ? FhirUuid.fromJson({
               'value': json['valueUuid'],
               '_value': json['_valueUuid'],
@@ -6975,9 +7055,7 @@ class ElementDefinitionConstraint extends Element {
   ) {
     return ElementDefinitionConstraint(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -6992,12 +7070,13 @@ class ElementDefinitionConstraint extends Element {
         'value': json['key'],
         '_value': json['_key'],
       }),
-      requirements: json['requirements'] != null
-          ? FhirString.fromJson({
-              'value': json['requirements'],
-              '_value': json['_requirements'],
-            })
-          : null,
+      requirements:
+          (json['requirements'] != null || json['_requirements'] != null)
+              ? FhirString.fromJson({
+                  'value': json['requirements'],
+                  '_value': json['_requirements'],
+                })
+              : null,
       severity: ConstraintSeverity.fromJson({
         'value': json['severity'],
         '_value': json['_severity'],
@@ -7006,19 +7085,19 @@ class ElementDefinitionConstraint extends Element {
         'value': json['human'],
         '_value': json['_human'],
       }),
-      expression: json['expression'] != null
+      expression: (json['expression'] != null || json['_expression'] != null)
           ? FhirString.fromJson({
               'value': json['expression'],
               '_value': json['_expression'],
             })
           : null,
-      xpath: json['xpath'] != null
+      xpath: (json['xpath'] != null || json['_xpath'] != null)
           ? FhirString.fromJson({
               'value': json['xpath'],
               '_value': json['_xpath'],
             })
           : null,
-      source: json['source'] != null
+      source: (json['source'] != null || json['_source'] != null)
           ? FhirCanonical.fromJson({
               'value': json['source'],
               '_value': json['_source'],
@@ -7124,7 +7203,11 @@ class ElementDefinitionConstraint extends Element {
       }
     }
 
-    json['severity'] = severity.toJson();
+    final fieldJson3 = severity.toJson();
+    json['severity'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_severity'] = fieldJson3['_value'];
+    }
 
     final fieldJson4 = human.toJson();
     json['human'] = fieldJson4['value'];
@@ -7226,9 +7309,7 @@ class ElementDefinitionBinding extends Element {
   ) {
     return ElementDefinitionBinding(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -7243,13 +7324,13 @@ class ElementDefinitionBinding extends Element {
         'value': json['strength'],
         '_value': json['_strength'],
       }),
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
             })
           : null,
-      valueSet: json['valueSet'] != null
+      valueSet: (json['valueSet'] != null || json['_valueSet'] != null)
           ? FhirCanonical.fromJson({
               'value': json['valueSet'],
               '_value': json['_valueSet'],
@@ -7321,7 +7402,11 @@ class ElementDefinitionBinding extends Element {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    json['strength'] = strength.toJson();
+    final fieldJson1 = strength.toJson();
+    json['strength'] = fieldJson1['value'];
+    if (fieldJson1['_value'] != null) {
+      json['_strength'] = fieldJson1['_value'];
+    }
 
     if (description != null) {
       final fieldJson2 = description!.toJson();
@@ -7402,9 +7487,7 @@ class ElementDefinitionMapping extends Element {
   ) {
     return ElementDefinitionMapping(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -7419,7 +7502,7 @@ class ElementDefinitionMapping extends Element {
         'value': json['identity'],
         '_value': json['_identity'],
       }),
-      language: json['language'] != null
+      language: (json['language'] != null || json['_language'] != null)
           ? FhirCode.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -7429,7 +7512,7 @@ class ElementDefinitionMapping extends Element {
         'value': json['map'],
         '_value': json['_map'],
       }),
-      comment: json['comment'] != null
+      comment: (json['comment'] != null || json['_comment'] != null)
           ? FhirString.fromJson({
               'value': json['comment'],
               '_value': json['_comment'],

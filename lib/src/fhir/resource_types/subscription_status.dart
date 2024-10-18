@@ -41,22 +41,21 @@ class SubscriptionStatus extends DomainResource {
   ) {
     return SubscriptionStatus(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -94,7 +93,7 @@ class SubscriptionStatus extends DomainResource {
               )
               .toList()
           : null,
-      status: json['status'] != null
+      status: (json['status'] != null || json['_status'] != null)
           ? SubscriptionStatusCodes.fromJson({
               'value': json['status'],
               '_value': json['_status'],
@@ -104,12 +103,14 @@ class SubscriptionStatus extends DomainResource {
         'value': json['type'],
         '_value': json['_type'],
       }),
-      eventsSinceSubscriptionStart: json['eventsSinceSubscriptionStart'] != null
-          ? FhirString.fromJson({
-              'value': json['eventsSinceSubscriptionStart'],
-              '_value': json['_eventsSinceSubscriptionStart'],
-            })
-          : null,
+      eventsSinceSubscriptionStart:
+          (json['eventsSinceSubscriptionStart'] != null ||
+                  json['_eventsSinceSubscriptionStart'] != null)
+              ? FhirString.fromJson({
+                  'value': json['eventsSinceSubscriptionStart'],
+                  '_value': json['_eventsSinceSubscriptionStart'],
+                })
+              : null,
       notificationEvent: json['notificationEvent'] != null
           ? (json['notificationEvent'] as List<dynamic>)
               .map<SubscriptionStatusNotificationEvent>(
@@ -122,7 +123,7 @@ class SubscriptionStatus extends DomainResource {
       subscription: Reference.fromJson(
         json['subscription'] as Map<String, dynamic>,
       ),
-      topic: json['topic'] != null
+      topic: (json['topic'] != null || json['_topic'] != null)
           ? FhirCanonical.fromJson({
               'value': json['topic'],
               '_value': json['_topic'],
@@ -233,7 +234,11 @@ class SubscriptionStatus extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -254,10 +259,18 @@ class SubscriptionStatus extends DomainResource {
     }
 
     if (status != null) {
-      json['status'] = status!.toJson();
+      final fieldJson7 = status!.toJson();
+      json['status'] = fieldJson7['value'];
+      if (fieldJson7['_value'] != null) {
+        json['_status'] = fieldJson7['_value'];
+      }
     }
 
-    json['type'] = type.toJson();
+    final fieldJson8 = type.toJson();
+    json['type'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_type'] = fieldJson8['_value'];
+    }
 
     if (eventsSinceSubscriptionStart != null) {
       final fieldJson9 = eventsSinceSubscriptionStart!.toJson();
@@ -371,9 +384,7 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
   ) {
     return SubscriptionStatusNotificationEvent(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -397,7 +408,7 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
         'value': json['eventNumber'],
         '_value': json['_eventNumber'],
       }),
-      timestamp: json['timestamp'] != null
+      timestamp: (json['timestamp'] != null || json['_timestamp'] != null)
           ? FhirInstant.fromJson({
               'value': json['timestamp'],
               '_value': json['_timestamp'],

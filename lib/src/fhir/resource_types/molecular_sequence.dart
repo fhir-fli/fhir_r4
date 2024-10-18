@@ -49,22 +49,21 @@ class MolecularSequence extends DomainResource {
   ) {
     return MolecularSequence(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -111,7 +110,7 @@ class MolecularSequence extends DomainResource {
               )
               .toList()
           : null,
-      type: json['type'] != null
+      type: (json['type'] != null || json['_type'] != null)
           ? SequenceType.fromJson({
               'value': json['type'],
               '_value': json['_type'],
@@ -160,7 +159,7 @@ class MolecularSequence extends DomainResource {
               )
               .toList()
           : null,
-      observedSeq: json['observedSeq'] != null
+      observedSeq: (json['observedSeq'] != null || json['_observedSeq'] != null)
           ? FhirString.fromJson({
               'value': json['observedSeq'],
               '_value': json['_observedSeq'],
@@ -175,12 +174,13 @@ class MolecularSequence extends DomainResource {
               )
               .toList()
           : null,
-      readCoverage: json['readCoverage'] != null
-          ? FhirInteger.fromJson({
-              'value': json['readCoverage'],
-              '_value': json['_readCoverage'],
-            })
-          : null,
+      readCoverage:
+          (json['readCoverage'] != null || json['_readCoverage'] != null)
+              ? FhirInteger.fromJson({
+                  'value': json['readCoverage'],
+                  '_value': json['_readCoverage'],
+                })
+              : null,
       repository: json['repository'] != null
           ? (json['repository'] as List<dynamic>)
               .map<MolecularSequenceRepository>(
@@ -347,7 +347,11 @@ class MolecularSequence extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -372,7 +376,11 @@ class MolecularSequence extends DomainResource {
     }
 
     if (type != null) {
-      json['type'] = type!.toJson();
+      final fieldJson8 = type!.toJson();
+      json['type'] = fieldJson8['value'];
+      if (fieldJson8['_value'] != null) {
+        json['_type'] = fieldJson8['_value'];
+      }
     }
 
     final fieldJson9 = coordinateSystem.toJson();
@@ -549,9 +557,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   ) {
     return MolecularSequenceReferenceSeq(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -576,13 +582,13 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
               json['chromosome'] as Map<String, dynamic>,
             )
           : null,
-      genomeBuild: json['genomeBuild'] != null
+      genomeBuild: (json['genomeBuild'] != null || json['_genomeBuild'] != null)
           ? FhirString.fromJson({
               'value': json['genomeBuild'],
               '_value': json['_genomeBuild'],
             })
           : null,
-      orientation: json['orientation'] != null
+      orientation: (json['orientation'] != null || json['_orientation'] != null)
           ? OrientationType.fromJson({
               'value': json['orientation'],
               '_value': json['_orientation'],
@@ -598,25 +604,26 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
               json['referenceSeqPointer'] as Map<String, dynamic>,
             )
           : null,
-      referenceSeqString: json['referenceSeqString'] != null
+      referenceSeqString: (json['referenceSeqString'] != null ||
+              json['_referenceSeqString'] != null)
           ? FhirString.fromJson({
               'value': json['referenceSeqString'],
               '_value': json['_referenceSeqString'],
             })
           : null,
-      strand: json['strand'] != null
+      strand: (json['strand'] != null || json['_strand'] != null)
           ? StrandType.fromJson({
               'value': json['strand'],
               '_value': json['_strand'],
             })
           : null,
-      windowStart: json['windowStart'] != null
+      windowStart: (json['windowStart'] != null || json['_windowStart'] != null)
           ? FhirInteger.fromJson({
               'value': json['windowStart'],
               '_value': json['_windowStart'],
             })
           : null,
-      windowEnd: json['windowEnd'] != null
+      windowEnd: (json['windowEnd'] != null || json['_windowEnd'] != null)
           ? FhirInteger.fromJson({
               'value': json['windowEnd'],
               '_value': json['_windowEnd'],
@@ -745,7 +752,11 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     }
 
     if (orientation != null) {
-      json['orientation'] = orientation!.toJson();
+      final fieldJson4 = orientation!.toJson();
+      json['orientation'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_orientation'] = fieldJson4['_value'];
+      }
     }
 
     if (referenceSeqId != null) {
@@ -765,7 +776,11 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     }
 
     if (strand != null) {
-      json['strand'] = strand!.toJson();
+      final fieldJson8 = strand!.toJson();
+      json['strand'] = fieldJson8['value'];
+      if (fieldJson8['_value'] != null) {
+        json['_strand'] = fieldJson8['_value'];
+      }
     }
 
     if (windowStart != null) {
@@ -867,9 +882,7 @@ class MolecularSequenceVariant extends BackboneElement {
   ) {
     return MolecularSequenceVariant(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -889,31 +902,33 @@ class MolecularSequenceVariant extends BackboneElement {
               )
               .toList()
           : null,
-      start: json['start'] != null
+      start: (json['start'] != null || json['_start'] != null)
           ? FhirInteger.fromJson({
               'value': json['start'],
               '_value': json['_start'],
             })
           : null,
-      end: json['end'] != null
+      end: (json['end'] != null || json['_end'] != null)
           ? FhirInteger.fromJson({
               'value': json['end'],
               '_value': json['_end'],
             })
           : null,
-      observedAllele: json['observedAllele'] != null
-          ? FhirString.fromJson({
-              'value': json['observedAllele'],
-              '_value': json['_observedAllele'],
-            })
-          : null,
-      referenceAllele: json['referenceAllele'] != null
-          ? FhirString.fromJson({
-              'value': json['referenceAllele'],
-              '_value': json['_referenceAllele'],
-            })
-          : null,
-      cigar: json['cigar'] != null
+      observedAllele:
+          (json['observedAllele'] != null || json['_observedAllele'] != null)
+              ? FhirString.fromJson({
+                  'value': json['observedAllele'],
+                  '_value': json['_observedAllele'],
+                })
+              : null,
+      referenceAllele:
+          (json['referenceAllele'] != null || json['_referenceAllele'] != null)
+              ? FhirString.fromJson({
+                  'value': json['referenceAllele'],
+                  '_value': json['_referenceAllele'],
+                })
+              : null,
+      cigar: (json['cigar'] != null || json['_cigar'] != null)
           ? FhirString.fromJson({
               'value': json['cigar'],
               '_value': json['_cigar'],
@@ -1151,9 +1166,7 @@ class MolecularSequenceQuality extends BackboneElement {
   ) {
     return MolecularSequenceQuality(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1182,13 +1195,13 @@ class MolecularSequenceQuality extends BackboneElement {
               json['standardSequence'] as Map<String, dynamic>,
             )
           : null,
-      start: json['start'] != null
+      start: (json['start'] != null || json['_start'] != null)
           ? FhirInteger.fromJson({
               'value': json['start'],
               '_value': json['_start'],
             })
           : null,
-      end: json['end'] != null
+      end: (json['end'] != null || json['_end'] != null)
           ? FhirInteger.fromJson({
               'value': json['end'],
               '_value': json['_end'],
@@ -1204,49 +1217,49 @@ class MolecularSequenceQuality extends BackboneElement {
               json['method'] as Map<String, dynamic>,
             )
           : null,
-      truthTP: json['truthTP'] != null
+      truthTP: (json['truthTP'] != null || json['_truthTP'] != null)
           ? FhirDecimal.fromJson({
               'value': json['truthTP'],
               '_value': json['_truthTP'],
             })
           : null,
-      queryTP: json['queryTP'] != null
+      queryTP: (json['queryTP'] != null || json['_queryTP'] != null)
           ? FhirDecimal.fromJson({
               'value': json['queryTP'],
               '_value': json['_queryTP'],
             })
           : null,
-      truthFN: json['truthFN'] != null
+      truthFN: (json['truthFN'] != null || json['_truthFN'] != null)
           ? FhirDecimal.fromJson({
               'value': json['truthFN'],
               '_value': json['_truthFN'],
             })
           : null,
-      queryFP: json['queryFP'] != null
+      queryFP: (json['queryFP'] != null || json['_queryFP'] != null)
           ? FhirDecimal.fromJson({
               'value': json['queryFP'],
               '_value': json['_queryFP'],
             })
           : null,
-      gtFP: json['gtFP'] != null
+      gtFP: (json['gtFP'] != null || json['_gtFP'] != null)
           ? FhirDecimal.fromJson({
               'value': json['gtFP'],
               '_value': json['_gtFP'],
             })
           : null,
-      precision: json['precision'] != null
+      precision: (json['precision'] != null || json['_precision'] != null)
           ? FhirDecimal.fromJson({
               'value': json['precision'],
               '_value': json['_precision'],
             })
           : null,
-      recall: json['recall'] != null
+      recall: (json['recall'] != null || json['_recall'] != null)
           ? FhirDecimal.fromJson({
               'value': json['recall'],
               '_value': json['_recall'],
             })
           : null,
-      fScore: json['fScore'] != null
+      fScore: (json['fScore'] != null || json['_fScore'] != null)
           ? FhirDecimal.fromJson({
               'value': json['fScore'],
               '_value': json['_fScore'],
@@ -1395,7 +1408,11 @@ class MolecularSequenceQuality extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['type'] = type.toJson();
+    final fieldJson2 = type.toJson();
+    json['type'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_type'] = fieldJson2['_value'];
+    }
 
     if (standardSequence != null) {
       json['standardSequence'] = standardSequence!.toJson();
@@ -1586,9 +1603,7 @@ class MolecularSequenceRoc extends BackboneElement {
   ) {
     return MolecularSequenceRoc(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1866,9 +1881,7 @@ class MolecularSequenceRepository extends BackboneElement {
   ) {
     return MolecularSequenceRepository(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1892,31 +1905,32 @@ class MolecularSequenceRepository extends BackboneElement {
         'value': json['type'],
         '_value': json['_type'],
       }),
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUri.fromJson({
               'value': json['url'],
               '_value': json['_url'],
             })
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
             })
           : null,
-      datasetId: json['datasetId'] != null
+      datasetId: (json['datasetId'] != null || json['_datasetId'] != null)
           ? FhirString.fromJson({
               'value': json['datasetId'],
               '_value': json['_datasetId'],
             })
           : null,
-      variantsetId: json['variantsetId'] != null
-          ? FhirString.fromJson({
-              'value': json['variantsetId'],
-              '_value': json['_variantsetId'],
-            })
-          : null,
-      readsetId: json['readsetId'] != null
+      variantsetId:
+          (json['variantsetId'] != null || json['_variantsetId'] != null)
+              ? FhirString.fromJson({
+                  'value': json['variantsetId'],
+                  '_value': json['_variantsetId'],
+                })
+              : null,
+      readsetId: (json['readsetId'] != null || json['_readsetId'] != null)
           ? FhirString.fromJson({
               'value': json['readsetId'],
               '_value': json['_readsetId'],
@@ -2009,7 +2023,11 @@ class MolecularSequenceRepository extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['type'] = type.toJson();
+    final fieldJson2 = type.toJson();
+    json['type'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_type'] = fieldJson2['_value'];
+    }
 
     if (url != null) {
       final fieldJson3 = url!.toJson();
@@ -2123,9 +2141,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   ) {
     return MolecularSequenceStructureVariant(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2150,13 +2166,13 @@ class MolecularSequenceStructureVariant extends BackboneElement {
               json['variantType'] as Map<String, dynamic>,
             )
           : null,
-      exact: json['exact'] != null
+      exact: (json['exact'] != null || json['_exact'] != null)
           ? FhirBoolean.fromJson({
               'value': json['exact'],
               '_value': json['_exact'],
             })
           : null,
-      length: json['length'] != null
+      length: (json['length'] != null || json['_length'] != null)
           ? FhirInteger.fromJson({
               'value': json['length'],
               '_value': json['_length'],
@@ -2344,9 +2360,7 @@ class MolecularSequenceOuter extends BackboneElement {
   ) {
     return MolecularSequenceOuter(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2366,13 +2380,13 @@ class MolecularSequenceOuter extends BackboneElement {
               )
               .toList()
           : null,
-      start: json['start'] != null
+      start: (json['start'] != null || json['_start'] != null)
           ? FhirInteger.fromJson({
               'value': json['start'],
               '_value': json['_start'],
             })
           : null,
-      end: json['end'] != null
+      end: (json['end'] != null || json['_end'] != null)
           ? FhirInteger.fromJson({
               'value': json['end'],
               '_value': json['_end'],
@@ -2523,9 +2537,7 @@ class MolecularSequenceInner extends BackboneElement {
   ) {
     return MolecularSequenceInner(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2545,13 +2557,13 @@ class MolecularSequenceInner extends BackboneElement {
               )
               .toList()
           : null,
-      start: json['start'] != null
+      start: (json['start'] != null || json['_start'] != null)
           ? FhirInteger.fromJson({
               'value': json['start'],
               '_value': json['_start'],
             })
           : null,
-      end: json['end'] != null
+      end: (json['end'] != null || json['_end'] != null)
           ? FhirInteger.fromJson({
               'value': json['end'],
               '_value': json['_end'],

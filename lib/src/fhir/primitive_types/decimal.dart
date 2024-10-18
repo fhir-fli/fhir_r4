@@ -13,7 +13,11 @@ class FhirDecimal extends FhirNumber {
   /// Public constructor that enforces valid input.
   FhirDecimal(num? input, [Element? element])
       : isInt = input is int,
-        super(input?.toDouble(), element);
+        super(input?.toDouble(), element) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Factory constructor to create a [FhirDecimal] from a [FhirInteger].
   factory FhirDecimal.fromFhirInteger(FhirInteger integer, [Element? element]) {

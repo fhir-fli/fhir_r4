@@ -30,9 +30,7 @@ class Coding extends DataType {
   ) {
     return Coding(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -43,36 +41,37 @@ class Coding extends DataType {
               )
               .toList()
           : null,
-      system: json['system'] != null
+      system: (json['system'] != null || json['_system'] != null)
           ? FhirUri.fromJson({
               'value': json['system'],
               '_value': json['_system'],
             })
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
             })
           : null,
-      code: json['code'] != null
+      code: (json['code'] != null || json['_code'] != null)
           ? FhirCode.fromJson({
               'value': json['code'],
               '_value': json['_code'],
             })
           : null,
-      display: json['display'] != null
+      display: (json['display'] != null || json['_display'] != null)
           ? FhirString.fromJson({
               'value': json['display'],
               '_value': json['_display'],
             })
           : null,
-      userSelected: json['userSelected'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['userSelected'],
-              '_value': json['_userSelected'],
-            })
-          : null,
+      userSelected:
+          (json['userSelected'] != null || json['_userSelected'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['userSelected'],
+                  '_value': json['_userSelected'],
+                })
+              : null,
     );
   }
 

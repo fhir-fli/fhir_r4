@@ -34,9 +34,7 @@ class TriggerDefinition extends DataType {
   ) {
     return TriggerDefinition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -51,7 +49,7 @@ class TriggerDefinition extends DataType {
         'value': json['type'],
         '_value': json['_type'],
       }),
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
@@ -67,18 +65,19 @@ class TriggerDefinition extends DataType {
               json['timingReference'] as Map<String, dynamic>,
             )
           : null,
-      timingDate: json['timingDate'] != null
+      timingDate: (json['timingDate'] != null || json['_timingDate'] != null)
           ? FhirDate.fromJson({
               'value': json['timingDate'],
               '_value': json['_timingDate'],
             })
           : null,
-      timingDateTime: json['timingDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['timingDateTime'],
-              '_value': json['_timingDateTime'],
-            })
-          : null,
+      timingDateTime:
+          (json['timingDateTime'] != null || json['_timingDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['timingDateTime'],
+                  '_value': json['_timingDateTime'],
+                })
+              : null,
       data: json['data'] != null
           ? (json['data'] as List<dynamic>)
               .map<DataRequirement>(
@@ -182,7 +181,11 @@ class TriggerDefinition extends DataType {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    json['type'] = type.toJson();
+    final fieldJson1 = type.toJson();
+    json['type'] = fieldJson1['value'];
+    if (fieldJson1['_value'] != null) {
+      json['_type'] = fieldJson1['_value'];
+    }
 
     if (name != null) {
       final fieldJson2 = name!.toJson();

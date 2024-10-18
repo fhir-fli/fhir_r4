@@ -52,22 +52,21 @@ class SupplyRequest extends DomainResource {
   ) {
     return SupplyRequest(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -114,7 +113,7 @@ class SupplyRequest extends DomainResource {
               )
               .toList()
           : null,
-      status: json['status'] != null
+      status: (json['status'] != null || json['_status'] != null)
           ? SupplyRequestStatus.fromJson({
               'value': json['status'],
               '_value': json['_status'],
@@ -125,7 +124,7 @@ class SupplyRequest extends DomainResource {
               json['category'] as Map<String, dynamic>,
             )
           : null,
-      priority: json['priority'] != null
+      priority: (json['priority'] != null || json['_priority'] != null)
           ? RequestPriority.fromJson({
               'value': json['priority'],
               '_value': json['_priority'],
@@ -153,7 +152,8 @@ class SupplyRequest extends DomainResource {
               )
               .toList()
           : null,
-      occurrenceDateTime: json['occurrenceDateTime'] != null
+      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
+              json['_occurrenceDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
               '_value': json['_occurrenceDateTime'],
@@ -169,7 +169,7 @@ class SupplyRequest extends DomainResource {
               json['occurrenceTiming'] as Map<String, dynamic>,
             )
           : null,
-      authoredOn: json['authoredOn'] != null
+      authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({
               'value': json['authoredOn'],
               '_value': json['_authoredOn'],
@@ -359,7 +359,11 @@ class SupplyRequest extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -384,7 +388,11 @@ class SupplyRequest extends DomainResource {
     }
 
     if (status != null) {
-      json['status'] = status!.toJson();
+      final fieldJson8 = status!.toJson();
+      json['status'] = fieldJson8['value'];
+      if (fieldJson8['_value'] != null) {
+        json['_status'] = fieldJson8['_value'];
+      }
     }
 
     if (category != null) {
@@ -392,7 +400,11 @@ class SupplyRequest extends DomainResource {
     }
 
     if (priority != null) {
-      json['priority'] = priority!.toJson();
+      final fieldJson10 = priority!.toJson();
+      json['priority'] = fieldJson10['value'];
+      if (fieldJson10['_value'] != null) {
+        json['_priority'] = fieldJson10['_value'];
+      }
     }
 
     if (itemCodeableConcept != null) {
@@ -565,9 +577,7 @@ class SupplyRequestParameter extends BackboneElement {
   ) {
     return SupplyRequestParameter(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -607,12 +617,13 @@ class SupplyRequestParameter extends BackboneElement {
               json['valueRange'] as Map<String, dynamic>,
             )
           : null,
-      valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['valueBoolean'],
-              '_value': json['_valueBoolean'],
-            })
-          : null,
+      valueBoolean:
+          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['valueBoolean'],
+                  '_value': json['_valueBoolean'],
+                })
+              : null,
     );
   }
 

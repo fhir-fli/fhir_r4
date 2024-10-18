@@ -12,7 +12,11 @@ extension FhirMarkdownExtension on String {
 class FhirMarkdown extends PrimitiveType<String> {
   /// Constructor enforcing input validation.
   FhirMarkdown(String? input, [Element? element])
-      : super(_validateMarkdown(input), element);
+      : super(_validateMarkdown(input), element) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Factory constructor to create a [FhirMarkdown] from JSON input.
   factory FhirMarkdown.fromJson(Map<String, dynamic> json) {

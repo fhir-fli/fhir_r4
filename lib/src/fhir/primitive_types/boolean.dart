@@ -12,7 +12,11 @@ extension FhirBooleanExtension on bool {
 class FhirBoolean extends PrimitiveType<bool> {
   /// Public generative constructor
   // ignore: avoid_positional_boolean_parameters
-  FhirBoolean(super.input, [super.element]);
+  FhirBoolean(super.input, [super.element]) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Factory constructor to create a [FhirBoolean] from JSON
   factory FhirBoolean.fromJson(Map<String, dynamic> json) {

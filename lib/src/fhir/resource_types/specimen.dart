@@ -46,22 +46,21 @@ class Specimen extends DomainResource {
   ) {
     return Specimen(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -113,7 +112,7 @@ class Specimen extends DomainResource {
               json['accessionIdentifier'] as Map<String, dynamic>,
             )
           : null,
-      status: json['status'] != null
+      status: (json['status'] != null || json['_status'] != null)
           ? SpecimenStatus.fromJson({
               'value': json['status'],
               '_value': json['_status'],
@@ -129,12 +128,13 @@ class Specimen extends DomainResource {
               json['subject'] as Map<String, dynamic>,
             )
           : null,
-      receivedTime: json['receivedTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['receivedTime'],
-              '_value': json['_receivedTime'],
-            })
-          : null,
+      receivedTime:
+          (json['receivedTime'] != null || json['_receivedTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['receivedTime'],
+                  '_value': json['_receivedTime'],
+                })
+              : null,
       parent: json['parent'] != null
           ? (json['parent'] as List<dynamic>)
               .map<Reference>(
@@ -316,7 +316,11 @@ class Specimen extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -345,7 +349,11 @@ class Specimen extends DomainResource {
     }
 
     if (status != null) {
-      json['status'] = status!.toJson();
+      final fieldJson9 = status!.toJson();
+      json['status'] = fieldJson9['value'];
+      if (fieldJson9['_value'] != null) {
+        json['_status'] = fieldJson9['_value'];
+      }
     }
 
     if (type != null) {
@@ -492,9 +500,7 @@ class SpecimenCollection extends BackboneElement {
   ) {
     return SpecimenCollection(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -519,7 +525,8 @@ class SpecimenCollection extends BackboneElement {
               json['collector'] as Map<String, dynamic>,
             )
           : null,
-      collectedDateTime: json['collectedDateTime'] != null
+      collectedDateTime: (json['collectedDateTime'] != null ||
+              json['_collectedDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['collectedDateTime'],
               '_value': json['_collectedDateTime'],
@@ -781,9 +788,7 @@ class SpecimenProcessing extends BackboneElement {
   ) {
     return SpecimenProcessing(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -803,7 +808,7 @@ class SpecimenProcessing extends BackboneElement {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -823,12 +828,13 @@ class SpecimenProcessing extends BackboneElement {
               )
               .toList()
           : null,
-      timeDateTime: json['timeDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['timeDateTime'],
-              '_value': json['_timeDateTime'],
-            })
-          : null,
+      timeDateTime:
+          (json['timeDateTime'] != null || json['_timeDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['timeDateTime'],
+                  '_value': json['_timeDateTime'],
+                })
+              : null,
       timePeriod: json['timePeriod'] != null
           ? Period.fromJson(
               json['timePeriod'] as Map<String, dynamic>,
@@ -1015,9 +1021,7 @@ class SpecimenContainer extends BackboneElement {
   ) {
     return SpecimenContainer(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1046,7 +1050,7 @@ class SpecimenContainer extends BackboneElement {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],

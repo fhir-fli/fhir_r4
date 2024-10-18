@@ -42,22 +42,21 @@ class VisionPrescription extends DomainResource {
   ) {
     return VisionPrescription(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -234,7 +233,11 @@ class VisionPrescription extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -258,7 +261,11 @@ class VisionPrescription extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     final fieldJson9 = created.toJson();
     json['created'] = fieldJson9['value'];
@@ -379,9 +386,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   ) {
     return VisionPrescriptionLensSpecification(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -408,19 +413,19 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
         'value': json['eye'],
         '_value': json['_eye'],
       }),
-      sphere: json['sphere'] != null
+      sphere: (json['sphere'] != null || json['_sphere'] != null)
           ? FhirDecimal.fromJson({
               'value': json['sphere'],
               '_value': json['_sphere'],
             })
           : null,
-      cylinder: json['cylinder'] != null
+      cylinder: (json['cylinder'] != null || json['_cylinder'] != null)
           ? FhirDecimal.fromJson({
               'value': json['cylinder'],
               '_value': json['_cylinder'],
             })
           : null,
-      axis: json['axis'] != null
+      axis: (json['axis'] != null || json['_axis'] != null)
           ? FhirInteger.fromJson({
               'value': json['axis'],
               '_value': json['_axis'],
@@ -435,25 +440,25 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
               )
               .toList()
           : null,
-      add: json['add'] != null
+      add: (json['add'] != null || json['_add'] != null)
           ? FhirDecimal.fromJson({
               'value': json['add'],
               '_value': json['_add'],
             })
           : null,
-      power: json['power'] != null
+      power: (json['power'] != null || json['_power'] != null)
           ? FhirDecimal.fromJson({
               'value': json['power'],
               '_value': json['_power'],
             })
           : null,
-      backCurve: json['backCurve'] != null
+      backCurve: (json['backCurve'] != null || json['_backCurve'] != null)
           ? FhirDecimal.fromJson({
               'value': json['backCurve'],
               '_value': json['_backCurve'],
             })
           : null,
-      diameter: json['diameter'] != null
+      diameter: (json['diameter'] != null || json['_diameter'] != null)
           ? FhirDecimal.fromJson({
               'value': json['diameter'],
               '_value': json['_diameter'],
@@ -464,13 +469,13 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
               json['duration'] as Map<String, dynamic>,
             )
           : null,
-      color: json['color'] != null
+      color: (json['color'] != null || json['_color'] != null)
           ? FhirString.fromJson({
               'value': json['color'],
               '_value': json['_color'],
             })
           : null,
-      brand: json['brand'] != null
+      brand: (json['brand'] != null || json['_brand'] != null)
           ? FhirString.fromJson({
               'value': json['brand'],
               '_value': json['_brand'],
@@ -601,7 +606,11 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
 
     json['product'] = product.toJson();
 
-    json['eye'] = eye.toJson();
+    final fieldJson3 = eye.toJson();
+    json['eye'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_eye'] = fieldJson3['_value'];
+    }
 
     if (sphere != null) {
       final fieldJson4 = sphere!.toJson();
@@ -772,9 +781,7 @@ class VisionPrescriptionPrism extends BackboneElement {
   ) {
     return VisionPrescriptionPrism(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -872,7 +879,11 @@ class VisionPrescriptionPrism extends BackboneElement {
       json['_amount'] = fieldJson2['_value'];
     }
 
-    json['base'] = base.toJson();
+    final fieldJson3 = base.toJson();
+    json['base'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_base'] = fieldJson3['_value'];
+    }
 
     return json;
   }

@@ -53,22 +53,21 @@ class Goal extends DomainResource {
   ) {
     return Goal(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -144,7 +143,7 @@ class Goal extends DomainResource {
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
-      startDate: json['startDate'] != null
+      startDate: (json['startDate'] != null || json['_startDate'] != null)
           ? GoalStartEvent.fromJson({
               'value': json['startDate'],
               '_value': json['_startDate'],
@@ -164,18 +163,19 @@ class Goal extends DomainResource {
               )
               .toList()
           : null,
-      statusDate: json['statusDate'] != null
+      statusDate: (json['statusDate'] != null || json['_statusDate'] != null)
           ? FhirDate.fromJson({
               'value': json['statusDate'],
               '_value': json['_statusDate'],
             })
           : null,
-      statusReason: json['statusReason'] != null
-          ? FhirString.fromJson({
-              'value': json['statusReason'],
-              '_value': json['_statusReason'],
-            })
-          : null,
+      statusReason:
+          (json['statusReason'] != null || json['_statusReason'] != null)
+              ? FhirString.fromJson({
+                  'value': json['statusReason'],
+                  '_value': json['_statusReason'],
+                })
+              : null,
       expressedBy: json['expressedBy'] != null
           ? Reference.fromJson(
               json['expressedBy'] as Map<String, dynamic>,
@@ -356,7 +356,11 @@ class Goal extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -380,7 +384,11 @@ class Goal extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['lifecycleStatus'] = lifecycleStatus.toJson();
+    final fieldJson8 = lifecycleStatus.toJson();
+    json['lifecycleStatus'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_lifecycleStatus'] = fieldJson8['_value'];
+    }
 
     if (achievementStatus != null) {
       json['achievementStatus'] = achievementStatus!.toJson();
@@ -399,7 +407,11 @@ class Goal extends DomainResource {
     json['subject'] = subject.toJson();
 
     if (startDate != null) {
-      json['startDate'] = startDate!.toJson();
+      final fieldJson14 = startDate!.toJson();
+      json['startDate'] = fieldJson14['value'];
+      if (fieldJson14['_value'] != null) {
+        json['_startDate'] = fieldJson14['_value'];
+      }
     }
 
     if (startCodeableConcept != null) {
@@ -556,9 +568,7 @@ class GoalTarget extends BackboneElement {
   ) {
     return GoalTarget(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -598,30 +608,33 @@ class GoalTarget extends BackboneElement {
               json['detailCodeableConcept'] as Map<String, dynamic>,
             )
           : null,
-      detailString: json['detailString'] != null
-          ? FhirString.fromJson({
-              'value': json['detailString'],
-              '_value': json['_detailString'],
-            })
-          : null,
-      detailBoolean: json['detailBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['detailBoolean'],
-              '_value': json['_detailBoolean'],
-            })
-          : null,
-      detailInteger: json['detailInteger'] != null
-          ? FhirInteger.fromJson({
-              'value': json['detailInteger'],
-              '_value': json['_detailInteger'],
-            })
-          : null,
+      detailString:
+          (json['detailString'] != null || json['_detailString'] != null)
+              ? FhirString.fromJson({
+                  'value': json['detailString'],
+                  '_value': json['_detailString'],
+                })
+              : null,
+      detailBoolean:
+          (json['detailBoolean'] != null || json['_detailBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['detailBoolean'],
+                  '_value': json['_detailBoolean'],
+                })
+              : null,
+      detailInteger:
+          (json['detailInteger'] != null || json['_detailInteger'] != null)
+              ? FhirInteger.fromJson({
+                  'value': json['detailInteger'],
+                  '_value': json['_detailInteger'],
+                })
+              : null,
       detailRatio: json['detailRatio'] != null
           ? Ratio.fromJson(
               json['detailRatio'] as Map<String, dynamic>,
             )
           : null,
-      dueDate: json['dueDate'] != null
+      dueDate: (json['dueDate'] != null || json['_dueDate'] != null)
           ? FhirDate.fromJson({
               'value': json['dueDate'],
               '_value': json['_dueDate'],

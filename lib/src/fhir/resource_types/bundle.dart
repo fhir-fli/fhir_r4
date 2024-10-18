@@ -36,22 +36,21 @@ class Bundle extends Resource {
   ) {
     return Bundle(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -66,13 +65,13 @@ class Bundle extends Resource {
         'value': json['type'],
         '_value': json['_type'],
       }),
-      timestamp: json['timestamp'] != null
+      timestamp: (json['timestamp'] != null || json['_timestamp'] != null)
           ? FhirInstant.fromJson({
               'value': json['timestamp'],
               '_value': json['_timestamp'],
             })
           : null,
-      total: json['total'] != null
+      total: (json['total'] != null || json['_total'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['total'],
               '_value': json['_total'],
@@ -196,14 +195,22 @@ class Bundle extends Resource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (identifier != null) {
       json['identifier'] = identifier!.toJson();
     }
 
-    json['type'] = type.toJson();
+    final fieldJson4 = type.toJson();
+    json['type'] = fieldJson4['value'];
+    if (fieldJson4['_value'] != null) {
+      json['_type'] = fieldJson4['_value'];
+    }
 
     if (timestamp != null) {
       final fieldJson5 = timestamp!.toJson();
@@ -306,9 +313,7 @@ class BundleLink extends BackboneElement {
   ) {
     return BundleLink(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -479,9 +484,7 @@ class BundleEntry extends BackboneElement {
   ) {
     return BundleEntry(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -510,7 +513,7 @@ class BundleEntry extends BackboneElement {
               )
               .toList()
           : null,
-      fullUrl: json['fullUrl'] != null
+      fullUrl: (json['fullUrl'] != null || json['_fullUrl'] != null)
           ? FhirUri.fromJson({
               'value': json['fullUrl'],
               '_value': json['_fullUrl'],
@@ -728,9 +731,7 @@ class BundleSearch extends BackboneElement {
   ) {
     return BundleSearch(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -750,13 +751,13 @@ class BundleSearch extends BackboneElement {
               )
               .toList()
           : null,
-      mode: json['mode'] != null
+      mode: (json['mode'] != null || json['_mode'] != null)
           ? SearchEntryMode.fromJson({
               'value': json['mode'],
               '_value': json['_mode'],
             })
           : null,
-      score: json['score'] != null
+      score: (json['score'] != null || json['_score'] != null)
           ? FhirDecimal.fromJson({
               'value': json['score'],
               '_value': json['_score'],
@@ -829,7 +830,11 @@ class BundleSearch extends BackboneElement {
     }
 
     if (mode != null) {
-      json['mode'] = mode!.toJson();
+      final fieldJson2 = mode!.toJson();
+      json['mode'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_mode'] = fieldJson2['_value'];
+      }
     }
 
     if (score != null) {
@@ -907,9 +912,7 @@ class BundleRequest extends BackboneElement {
   ) {
     return BundleRequest(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -937,25 +940,26 @@ class BundleRequest extends BackboneElement {
         'value': json['url'],
         '_value': json['_url'],
       }),
-      ifNoneMatch: json['ifNoneMatch'] != null
+      ifNoneMatch: (json['ifNoneMatch'] != null || json['_ifNoneMatch'] != null)
           ? FhirString.fromJson({
               'value': json['ifNoneMatch'],
               '_value': json['_ifNoneMatch'],
             })
           : null,
-      ifModifiedSince: json['ifModifiedSince'] != null
-          ? FhirInstant.fromJson({
-              'value': json['ifModifiedSince'],
-              '_value': json['_ifModifiedSince'],
-            })
-          : null,
-      ifMatch: json['ifMatch'] != null
+      ifModifiedSince:
+          (json['ifModifiedSince'] != null || json['_ifModifiedSince'] != null)
+              ? FhirInstant.fromJson({
+                  'value': json['ifModifiedSince'],
+                  '_value': json['_ifModifiedSince'],
+                })
+              : null,
+      ifMatch: (json['ifMatch'] != null || json['_ifMatch'] != null)
           ? FhirString.fromJson({
               'value': json['ifMatch'],
               '_value': json['_ifMatch'],
             })
           : null,
-      ifNoneExist: json['ifNoneExist'] != null
+      ifNoneExist: (json['ifNoneExist'] != null || json['_ifNoneExist'] != null)
           ? FhirString.fromJson({
               'value': json['ifNoneExist'],
               '_value': json['_ifNoneExist'],
@@ -1051,7 +1055,11 @@ class BundleRequest extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['method'] = method.toJson();
+    final fieldJson2 = method.toJson();
+    json['method'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_method'] = fieldJson2['_value'];
+    }
 
     final fieldJson3 = url.toJson();
     json['url'] = fieldJson3['value'];
@@ -1165,9 +1173,7 @@ class BundleResponse extends BackboneElement {
   ) {
     return BundleResponse(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1191,24 +1197,25 @@ class BundleResponse extends BackboneElement {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      location: json['location'] != null
+      location: (json['location'] != null || json['_location'] != null)
           ? FhirUri.fromJson({
               'value': json['location'],
               '_value': json['_location'],
             })
           : null,
-      etag: json['etag'] != null
+      etag: (json['etag'] != null || json['_etag'] != null)
           ? FhirString.fromJson({
               'value': json['etag'],
               '_value': json['_etag'],
             })
           : null,
-      lastModified: json['lastModified'] != null
-          ? FhirInstant.fromJson({
-              'value': json['lastModified'],
-              '_value': json['_lastModified'],
-            })
-          : null,
+      lastModified:
+          (json['lastModified'] != null || json['_lastModified'] != null)
+              ? FhirInstant.fromJson({
+                  'value': json['lastModified'],
+                  '_value': json['_lastModified'],
+                })
+              : null,
       outcome: json['outcome'] != null
           ? Resource.fromJson(
               json['outcome'] as Map<String, dynamic>,

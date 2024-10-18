@@ -27,9 +27,7 @@ class Period extends DataType {
   ) {
     return Period(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -40,13 +38,13 @@ class Period extends DataType {
               )
               .toList()
           : null,
-      start: json['start'] != null
+      start: (json['start'] != null || json['_start'] != null)
           ? FhirDateTime.fromJson({
               'value': json['start'],
               '_value': json['_start'],
             })
           : null,
-      end: json['end'] != null
+      end: (json['end'] != null || json['_end'] != null)
           ? FhirDateTime.fromJson({
               'value': json['end'],
               '_value': json['_end'],

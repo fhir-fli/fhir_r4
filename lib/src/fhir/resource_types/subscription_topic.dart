@@ -56,22 +56,21 @@ class SubscriptionTopic extends DomainResource {
   ) {
     return SubscriptionTopic(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -122,13 +121,13 @@ class SubscriptionTopic extends DomainResource {
               )
               .toList()
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
             })
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
@@ -143,19 +142,20 @@ class SubscriptionTopic extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['experimental'],
-              '_value': json['_experimental'],
-            })
-          : null,
-      date: json['date'] != null
+      experimental:
+          (json['experimental'] != null || json['_experimental'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['experimental'],
+                  '_value': json['_experimental'],
+                })
+              : null,
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
             })
           : null,
-      publisher: json['publisher'] != null
+      publisher: (json['publisher'] != null || json['_publisher'] != null)
           ? FhirString.fromJson({
               'value': json['publisher'],
               '_value': json['_publisher'],
@@ -170,7 +170,7 @@ class SubscriptionTopic extends DomainResource {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -194,30 +194,32 @@ class SubscriptionTopic extends DomainResource {
               )
               .toList()
           : null,
-      purpose: json['purpose'] != null
+      purpose: (json['purpose'] != null || json['_purpose'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['purpose'],
               '_value': json['_purpose'],
             })
           : null,
-      copyright: json['copyright'] != null
+      copyright: (json['copyright'] != null || json['_copyright'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['copyright'],
               '_value': json['_copyright'],
             })
           : null,
-      approvalDate: json['approvalDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['approvalDate'],
-              '_value': json['_approvalDate'],
-            })
-          : null,
-      lastReviewDate: json['lastReviewDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['lastReviewDate'],
-              '_value': json['_lastReviewDate'],
-            })
-          : null,
+      approvalDate:
+          (json['approvalDate'] != null || json['_approvalDate'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['approvalDate'],
+                  '_value': json['_approvalDate'],
+                })
+              : null,
+      lastReviewDate:
+          (json['lastReviewDate'] != null || json['_lastReviewDate'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['lastReviewDate'],
+                  '_value': json['_lastReviewDate'],
+                })
+              : null,
       effectivePeriod: json['effectivePeriod'] != null
           ? Period.fromJson(
               json['effectivePeriod'] as Map<String, dynamic>,
@@ -448,7 +450,11 @@ class SubscriptionTopic extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -502,7 +508,11 @@ class SubscriptionTopic extends DomainResource {
       }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson12 = status.toJson();
+    json['status'] = fieldJson12['value'];
+    if (fieldJson12['_value'] != null) {
+      json['_status'] = fieldJson12['_value'];
+    }
 
     if (experimental != null) {
       final fieldJson13 = experimental!.toJson();
@@ -721,9 +731,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   ) {
     return SubscriptionTopicResourceTrigger(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -743,7 +751,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -763,7 +771,8 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
               json['queryCriteria'] as Map<String, dynamic>,
             )
           : null,
-      fhirPathCriteria: json['fhirPathCriteria'] != null
+      fhirPathCriteria: (json['fhirPathCriteria'] != null ||
+              json['_fhirPathCriteria'] != null)
           ? FhirString.fromJson({
               'value': json['fhirPathCriteria'],
               '_value': json['_fhirPathCriteria'],
@@ -865,11 +874,19 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
       }
     }
 
-    json['resource'] = resource.toJson();
+    final fieldJson3 = resource.toJson();
+    json['resource'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_resource'] = fieldJson3['_value'];
+    }
 
     if (supportedInteraction != null && supportedInteraction!.isNotEmpty) {
-      json['supportedInteraction'] =
-          supportedInteraction!.map((e) => e.toJson()).toList();
+      final fieldJson4 = supportedInteraction!.map((e) => e.toJson()).toList();
+      json['supportedInteraction'] = fieldJson4.map((e) => e['value']).toList();
+      if (fieldJson4.any((e) => e['_value'] != null)) {
+        json['_supportedInteraction'] =
+            fieldJson4.map((e) => e['_value']).toList();
+      }
     }
 
     if (queryCriteria != null) {
@@ -955,9 +972,7 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
   ) {
     return SubscriptionTopicQueryCriteria(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -977,31 +992,33 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
               )
               .toList()
           : null,
-      previous: json['previous'] != null
+      previous: (json['previous'] != null || json['_previous'] != null)
           ? FhirString.fromJson({
               'value': json['previous'],
               '_value': json['_previous'],
             })
           : null,
-      resultForCreate: json['resultForCreate'] != null
-          ? CriteriaNotExistsBehavior.fromJson({
-              'value': json['resultForCreate'],
-              '_value': json['_resultForCreate'],
-            })
-          : null,
-      current: json['current'] != null
+      resultForCreate:
+          (json['resultForCreate'] != null || json['_resultForCreate'] != null)
+              ? CriteriaNotExistsBehavior.fromJson({
+                  'value': json['resultForCreate'],
+                  '_value': json['_resultForCreate'],
+                })
+              : null,
+      current: (json['current'] != null || json['_current'] != null)
           ? FhirString.fromJson({
               'value': json['current'],
               '_value': json['_current'],
             })
           : null,
-      resultForDelete: json['resultForDelete'] != null
-          ? CriteriaNotExistsBehavior.fromJson({
-              'value': json['resultForDelete'],
-              '_value': json['_resultForDelete'],
-            })
-          : null,
-      requireBoth: json['requireBoth'] != null
+      resultForDelete:
+          (json['resultForDelete'] != null || json['_resultForDelete'] != null)
+              ? CriteriaNotExistsBehavior.fromJson({
+                  'value': json['resultForDelete'],
+                  '_value': json['_resultForDelete'],
+                })
+              : null,
+      requireBoth: (json['requireBoth'] != null || json['_requireBoth'] != null)
           ? FhirBoolean.fromJson({
               'value': json['requireBoth'],
               '_value': json['_requireBoth'],
@@ -1098,7 +1115,11 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     }
 
     if (resultForCreate != null) {
-      json['resultForCreate'] = resultForCreate!.toJson();
+      final fieldJson3 = resultForCreate!.toJson();
+      json['resultForCreate'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_resultForCreate'] = fieldJson3['_value'];
+      }
     }
 
     if (current != null) {
@@ -1110,7 +1131,11 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     }
 
     if (resultForDelete != null) {
-      json['resultForDelete'] = resultForDelete!.toJson();
+      final fieldJson5 = resultForDelete!.toJson();
+      json['resultForDelete'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_resultForDelete'] = fieldJson5['_value'];
+      }
     }
 
     if (requireBoth != null) {
@@ -1189,9 +1214,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   ) {
     return SubscriptionTopicEventTrigger(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1211,7 +1234,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -1312,7 +1335,11 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
 
     json['event'] = event.toJson();
 
-    json['resource'] = resource.toJson();
+    final fieldJson4 = resource.toJson();
+    json['resource'] = fieldJson4['value'];
+    if (fieldJson4['_value'] != null) {
+      json['_resource'] = fieldJson4['_value'];
+    }
 
     return json;
   }
@@ -1383,9 +1410,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   ) {
     return SubscriptionTopicCanFilterBy(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1405,13 +1430,13 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
             })
           : null,
-      resource: json['resource'] != null
+      resource: (json['resource'] != null || json['_resource'] != null)
           ? FHIRDefinedType.fromJson({
               'value': json['resource'],
               '_value': json['_resource'],
@@ -1421,7 +1446,8 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
         'value': json['filterParameter'],
         '_value': json['_filterParameter'],
       }),
-      filterDefinition: json['filterDefinition'] != null
+      filterDefinition: (json['filterDefinition'] != null ||
+              json['_filterDefinition'] != null)
           ? FhirUri.fromJson({
               'value': json['filterDefinition'],
               '_value': json['_filterDefinition'],
@@ -1530,7 +1556,11 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     }
 
     if (resource != null) {
-      json['resource'] = resource!.toJson();
+      final fieldJson3 = resource!.toJson();
+      json['resource'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_resource'] = fieldJson3['_value'];
+      }
     }
 
     final fieldJson4 = filterParameter.toJson();
@@ -1548,7 +1578,11 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     }
 
     if (modifier != null && modifier!.isNotEmpty) {
-      json['modifier'] = modifier!.map((e) => e.toJson()).toList();
+      final fieldJson6 = modifier!.map((e) => e.toJson()).toList();
+      json['modifier'] = fieldJson6.map((e) => e['value']).toList();
+      if (fieldJson6.any((e) => e['_value'] != null)) {
+        json['_modifier'] = fieldJson6.map((e) => e['_value']).toList();
+      }
     }
 
     return json;
@@ -1620,9 +1654,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   ) {
     return SubscriptionTopicNotificationShape(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1737,7 +1769,11 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['resource'] = resource.toJson();
+    final fieldJson2 = resource.toJson();
+    json['resource'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_resource'] = fieldJson2['_value'];
+    }
 
     if (include != null && include!.isNotEmpty) {
       final fieldJson3 = include!.map((e) => e.toJson()).toList();

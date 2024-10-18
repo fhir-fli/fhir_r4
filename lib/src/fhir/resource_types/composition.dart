@@ -57,22 +57,21 @@ class Composition extends DomainResource {
   ) {
     return Composition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -158,12 +157,13 @@ class Composition extends DomainResource {
         'value': json['title'],
         '_value': json['_title'],
       }),
-      confidentiality: json['confidentiality'] != null
-          ? FhirCode.fromJson({
-              'value': json['confidentiality'],
-              '_value': json['_confidentiality'],
-            })
-          : null,
+      confidentiality:
+          (json['confidentiality'] != null || json['_confidentiality'] != null)
+              ? FhirCode.fromJson({
+                  'value': json['confidentiality'],
+                  '_value': json['_confidentiality'],
+                })
+              : null,
       attester: json['attester'] != null
           ? (json['attester'] as List<dynamic>)
               .map<CompositionAttester>(
@@ -342,7 +342,11 @@ class Composition extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -366,7 +370,11 @@ class Composition extends DomainResource {
       json['identifier'] = identifier!.toJson();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     json['type'] = type.toJson();
 
@@ -523,9 +531,7 @@ class CompositionAttester extends BackboneElement {
   ) {
     return CompositionAttester(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -549,7 +555,7 @@ class CompositionAttester extends BackboneElement {
         'value': json['mode'],
         '_value': json['_mode'],
       }),
-      time: json['time'] != null
+      time: (json['time'] != null || json['_time'] != null)
           ? FhirDateTime.fromJson({
               'value': json['time'],
               '_value': json['_time'],
@@ -628,7 +634,11 @@ class CompositionAttester extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['mode'] = mode.toJson();
+    final fieldJson2 = mode.toJson();
+    json['mode'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_mode'] = fieldJson2['_value'];
+    }
 
     if (time != null) {
       final fieldJson3 = time!.toJson();
@@ -707,9 +717,7 @@ class CompositionRelatesTo extends BackboneElement {
   ) {
     return CompositionRelatesTo(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -812,7 +820,11 @@ class CompositionRelatesTo extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['code'] = code.toJson();
+    final fieldJson2 = code.toJson();
+    json['code'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_code'] = fieldJson2['_value'];
+    }
 
     if (targetIdentifier != null) {
       json['targetIdentifier'] = targetIdentifier!.toJson();
@@ -887,9 +899,7 @@ class CompositionEvent extends BackboneElement {
   ) {
     return CompositionEvent(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1091,9 +1101,7 @@ class CompositionSection extends BackboneElement {
   ) {
     return CompositionSection(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1113,7 +1121,7 @@ class CompositionSection extends BackboneElement {
               )
               .toList()
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
@@ -1143,7 +1151,7 @@ class CompositionSection extends BackboneElement {
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      mode: json['mode'] != null
+      mode: (json['mode'] != null || json['_mode'] != null)
           ? ListMode.fromJson({
               'value': json['mode'],
               '_value': json['_mode'],
@@ -1319,7 +1327,11 @@ class CompositionSection extends BackboneElement {
     }
 
     if (mode != null) {
-      json['mode'] = mode!.toJson();
+      final fieldJson7 = mode!.toJson();
+      json['mode'] = fieldJson7['value'];
+      if (fieldJson7['_value'] != null) {
+        json['_mode'] = fieldJson7['_value'];
+      }
     }
 
     if (orderedBy != null) {

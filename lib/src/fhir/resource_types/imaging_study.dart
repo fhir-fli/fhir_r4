@@ -58,22 +58,21 @@ class ImagingStudy extends DomainResource {
   ) {
     return ImagingStudy(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -141,7 +140,7 @@ class ImagingStudy extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      started: json['started'] != null
+      started: (json['started'] != null || json['_started'] != null)
           ? FhirDateTime.fromJson({
               'value': json['started'],
               '_value': json['_started'],
@@ -179,13 +178,15 @@ class ImagingStudy extends DomainResource {
               )
               .toList()
           : null,
-      numberOfSeries: json['numberOfSeries'] != null
-          ? FhirUnsignedInt.fromJson({
-              'value': json['numberOfSeries'],
-              '_value': json['_numberOfSeries'],
-            })
-          : null,
-      numberOfInstances: json['numberOfInstances'] != null
+      numberOfSeries:
+          (json['numberOfSeries'] != null || json['_numberOfSeries'] != null)
+              ? FhirUnsignedInt.fromJson({
+                  'value': json['numberOfSeries'],
+                  '_value': json['_numberOfSeries'],
+                })
+              : null,
+      numberOfInstances: (json['numberOfInstances'] != null ||
+              json['_numberOfInstances'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['numberOfInstances'],
               '_value': json['_numberOfInstances'],
@@ -237,7 +238,7 @@ class ImagingStudy extends DomainResource {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -413,7 +414,11 @@ class ImagingStudy extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -437,7 +442,11 @@ class ImagingStudy extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson8 = status.toJson();
+    json['status'] = fieldJson8['value'];
+    if (fieldJson8['_value'] != null) {
+      json['_status'] = fieldJson8['_value'];
+    }
 
     if (modality != null && modality!.isNotEmpty) {
       json['modality'] = modality!.map((e) => e.toJson()).toList();
@@ -643,9 +652,7 @@ class ImagingStudySeries extends BackboneElement {
   ) {
     return ImagingStudySeries(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -669,7 +676,7 @@ class ImagingStudySeries extends BackboneElement {
         'value': json['uid'],
         '_value': json['_uid'],
       }),
-      number: json['number'] != null
+      number: (json['number'] != null || json['_number'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['number'],
               '_value': json['_number'],
@@ -678,13 +685,14 @@ class ImagingStudySeries extends BackboneElement {
       modality: Coding.fromJson(
         json['modality'] as Map<String, dynamic>,
       ),
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
             })
           : null,
-      numberOfInstances: json['numberOfInstances'] != null
+      numberOfInstances: (json['numberOfInstances'] != null ||
+              json['_numberOfInstances'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['numberOfInstances'],
               '_value': json['_numberOfInstances'],
@@ -718,7 +726,7 @@ class ImagingStudySeries extends BackboneElement {
               )
               .toList()
           : null,
-      started: json['started'] != null
+      started: (json['started'] != null || json['_started'] != null)
           ? FhirDateTime.fromJson({
               'value': json['started'],
               '_value': json['_started'],
@@ -1005,9 +1013,7 @@ class ImagingStudyPerformer extends BackboneElement {
   ) {
     return ImagingStudyPerformer(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1169,9 +1175,7 @@ class ImagingStudyInstance extends BackboneElement {
   ) {
     return ImagingStudyInstance(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1198,13 +1202,13 @@ class ImagingStudyInstance extends BackboneElement {
       sopClass: Coding.fromJson(
         json['sopClass'] as Map<String, dynamic>,
       ),
-      number: json['number'] != null
+      number: (json['number'] != null || json['_number'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['number'],
               '_value': json['_number'],
             })
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],

@@ -15,7 +15,11 @@ class FhirCode extends PrimitiveType<String> {
       : super(
           input == null ? null : _validateCode(input),
           element,
-        );
+        ) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Factory constructor to create [FhirCode] from JSON
   factory FhirCode.fromJson(Map<String, dynamic> json) {

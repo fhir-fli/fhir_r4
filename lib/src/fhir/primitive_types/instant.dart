@@ -62,13 +62,17 @@ class FhirInstant extends FhirDateTimeBase {
 
   /// Factory constructor restricted to String or DateTime inputs.
   factory FhirInstant.fromString(String? inValue, [Element? element]) =>
-      FhirDateTimeBase.constructor<FhirInstant>(inValue, element)
-          as FhirInstant;
+      inValue == null && element == null
+          ? throw ArgumentError('A value or element is required')
+          : FhirDateTimeBase.constructor<FhirInstant>(inValue, element)
+              as FhirInstant;
 
   /// Factory constructor to create a [FhirInstant] from a [DateTime].
   factory FhirInstant.fromDateTime(DateTime? inValue, [Element? element]) =>
-      FhirDateTimeBase.constructor<FhirInstant>(inValue, element)
-          as FhirInstant;
+      inValue == null && element == null
+          ? throw ArgumentError('A value or element is required')
+          : FhirDateTimeBase.constructor<FhirInstant>(inValue, element)
+              as FhirInstant;
 
   /// Factory constructor to create a [FhirInstantTime] from a JSON input.
   ///

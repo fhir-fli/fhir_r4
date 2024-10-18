@@ -46,22 +46,21 @@ class BiologicallyDerivedProduct extends DomainResource {
   ) {
     return BiologicallyDerivedProduct(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -108,18 +107,19 @@ class BiologicallyDerivedProduct extends DomainResource {
               )
               .toList()
           : null,
-      productCategory: json['productCategory'] != null
-          ? BiologicallyDerivedProductCategory.fromJson({
-              'value': json['productCategory'],
-              '_value': json['_productCategory'],
-            })
-          : null,
+      productCategory:
+          (json['productCategory'] != null || json['_productCategory'] != null)
+              ? BiologicallyDerivedProductCategory.fromJson({
+                  'value': json['productCategory'],
+                  '_value': json['_productCategory'],
+                })
+              : null,
       productCode: json['productCode'] != null
           ? CodeableConcept.fromJson(
               json['productCode'] as Map<String, dynamic>,
             )
           : null,
-      status: json['status'] != null
+      status: (json['status'] != null || json['_status'] != null)
           ? BiologicallyDerivedProductStatus.fromJson({
               'value': json['status'],
               '_value': json['_status'],
@@ -134,7 +134,7 @@ class BiologicallyDerivedProduct extends DomainResource {
               )
               .toList()
           : null,
-      quantity: json['quantity'] != null
+      quantity: (json['quantity'] != null || json['_quantity'] != null)
           ? FhirInteger.fromJson({
               'value': json['quantity'],
               '_value': json['_quantity'],
@@ -291,7 +291,11 @@ class BiologicallyDerivedProduct extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -316,7 +320,11 @@ class BiologicallyDerivedProduct extends DomainResource {
     }
 
     if (productCategory != null) {
-      json['productCategory'] = productCategory!.toJson();
+      final fieldJson8 = productCategory!.toJson();
+      json['productCategory'] = fieldJson8['value'];
+      if (fieldJson8['_value'] != null) {
+        json['_productCategory'] = fieldJson8['_value'];
+      }
     }
 
     if (productCode != null) {
@@ -324,7 +332,11 @@ class BiologicallyDerivedProduct extends DomainResource {
     }
 
     if (status != null) {
-      json['status'] = status!.toJson();
+      final fieldJson10 = status!.toJson();
+      json['status'] = fieldJson10['value'];
+      if (fieldJson10['_value'] != null) {
+        json['_status'] = fieldJson10['_value'];
+      }
     }
 
     if (request != null && request!.isNotEmpty) {
@@ -450,9 +462,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   ) {
     return BiologicallyDerivedProductCollection(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -482,7 +492,8 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
               json['source'] as Map<String, dynamic>,
             )
           : null,
-      collectedDateTime: json['collectedDateTime'] != null
+      collectedDateTime: (json['collectedDateTime'] != null ||
+              json['_collectedDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['collectedDateTime'],
               '_value': json['_collectedDateTime'],
@@ -656,9 +667,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   ) {
     return BiologicallyDerivedProductProcessing(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -678,7 +687,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -694,12 +703,13 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
               json['additive'] as Map<String, dynamic>,
             )
           : null,
-      timeDateTime: json['timeDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['timeDateTime'],
-              '_value': json['_timeDateTime'],
-            })
-          : null,
+      timeDateTime:
+          (json['timeDateTime'] != null || json['_timeDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['timeDateTime'],
+                  '_value': json['_timeDateTime'],
+                })
+              : null,
       timePeriod: json['timePeriod'] != null
           ? Period.fromJson(
               json['timePeriod'] as Map<String, dynamic>,
@@ -879,9 +889,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   ) {
     return BiologicallyDerivedProductManipulation(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -901,18 +909,19 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
             })
           : null,
-      timeDateTime: json['timeDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['timeDateTime'],
-              '_value': json['_timeDateTime'],
-            })
-          : null,
+      timeDateTime:
+          (json['timeDateTime'] != null || json['_timeDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['timeDateTime'],
+                  '_value': json['_timeDateTime'],
+                })
+              : null,
       timePeriod: json['timePeriod'] != null
           ? Period.fromJson(
               json['timePeriod'] as Map<String, dynamic>,
@@ -1071,9 +1080,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
   ) {
     return BiologicallyDerivedProductStorage(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1093,19 +1100,19 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
             })
           : null,
-      temperature: json['temperature'] != null
+      temperature: (json['temperature'] != null || json['_temperature'] != null)
           ? FhirDecimal.fromJson({
               'value': json['temperature'],
               '_value': json['_temperature'],
             })
           : null,
-      scale: json['scale'] != null
+      scale: (json['scale'] != null || json['_scale'] != null)
           ? BiologicallyDerivedProductStorageScale.fromJson({
               'value': json['scale'],
               '_value': json['_scale'],
@@ -1205,7 +1212,11 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     }
 
     if (scale != null) {
-      json['scale'] = scale!.toJson();
+      final fieldJson4 = scale!.toJson();
+      json['scale'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_scale'] = fieldJson4['_value'];
+      }
     }
 
     if (duration != null) {

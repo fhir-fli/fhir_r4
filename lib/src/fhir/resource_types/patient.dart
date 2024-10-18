@@ -52,22 +52,21 @@ class Patient extends DomainResource {
   ) {
     return Patient(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -114,7 +113,7 @@ class Patient extends DomainResource {
               )
               .toList()
           : null,
-      active: json['active'] != null
+      active: (json['active'] != null || json['_active'] != null)
           ? FhirBoolean.fromJson({
               'value': json['active'],
               '_value': json['_active'],
@@ -138,25 +137,27 @@ class Patient extends DomainResource {
               )
               .toList()
           : null,
-      gender: json['gender'] != null
+      gender: (json['gender'] != null || json['_gender'] != null)
           ? AdministrativeGender.fromJson({
               'value': json['gender'],
               '_value': json['_gender'],
             })
           : null,
-      birthDate: json['birthDate'] != null
+      birthDate: (json['birthDate'] != null || json['_birthDate'] != null)
           ? FhirDate.fromJson({
               'value': json['birthDate'],
               '_value': json['_birthDate'],
             })
           : null,
-      deceasedBoolean: json['deceasedBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['deceasedBoolean'],
-              '_value': json['_deceasedBoolean'],
-            })
-          : null,
-      deceasedDateTime: json['deceasedDateTime'] != null
+      deceasedBoolean:
+          (json['deceasedBoolean'] != null || json['_deceasedBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['deceasedBoolean'],
+                  '_value': json['_deceasedBoolean'],
+                })
+              : null,
+      deceasedDateTime: (json['deceasedDateTime'] != null ||
+              json['_deceasedDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['deceasedDateTime'],
               '_value': json['_deceasedDateTime'],
@@ -176,13 +177,15 @@ class Patient extends DomainResource {
               json['maritalStatus'] as Map<String, dynamic>,
             )
           : null,
-      multipleBirthBoolean: json['multipleBirthBoolean'] != null
+      multipleBirthBoolean: (json['multipleBirthBoolean'] != null ||
+              json['_multipleBirthBoolean'] != null)
           ? FhirBoolean.fromJson({
               'value': json['multipleBirthBoolean'],
               '_value': json['_multipleBirthBoolean'],
             })
           : null,
-      multipleBirthInteger: json['multipleBirthInteger'] != null
+      multipleBirthInteger: (json['multipleBirthInteger'] != null ||
+              json['_multipleBirthInteger'] != null)
           ? FhirInteger.fromJson({
               'value': json['multipleBirthInteger'],
               '_value': json['_multipleBirthInteger'],
@@ -384,7 +387,11 @@ class Patient extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -425,7 +432,11 @@ class Patient extends DomainResource {
     }
 
     if (gender != null) {
-      json['gender'] = gender!.toJson();
+      final fieldJson11 = gender!.toJson();
+      json['gender'] = fieldJson11['value'];
+      if (fieldJson11['_value'] != null) {
+        json['_gender'] = fieldJson11['_value'];
+      }
     }
 
     if (birthDate != null) {
@@ -609,9 +620,7 @@ class PatientContact extends BackboneElement {
   ) {
     return PatientContact(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -659,7 +668,7 @@ class PatientContact extends BackboneElement {
               json['address'] as Map<String, dynamic>,
             )
           : null,
-      gender: json['gender'] != null
+      gender: (json['gender'] != null || json['_gender'] != null)
           ? AdministrativeGender.fromJson({
               'value': json['gender'],
               '_value': json['_gender'],
@@ -781,7 +790,11 @@ class PatientContact extends BackboneElement {
     }
 
     if (gender != null) {
-      json['gender'] = gender!.toJson();
+      final fieldJson6 = gender!.toJson();
+      json['gender'] = fieldJson6['value'];
+      if (fieldJson6['_value'] != null) {
+        json['_gender'] = fieldJson6['_value'];
+      }
     }
 
     if (organization != null) {
@@ -864,9 +877,7 @@ class PatientCommunication extends BackboneElement {
   ) {
     return PatientCommunication(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -889,7 +900,7 @@ class PatientCommunication extends BackboneElement {
       language: CodeableConcept.fromJson(
         json['language'] as Map<String, dynamic>,
       ),
-      preferred: json['preferred'] != null
+      preferred: (json['preferred'] != null || json['_preferred'] != null)
           ? FhirBoolean.fromJson({
               'value': json['preferred'],
               '_value': json['_preferred'],
@@ -1034,9 +1045,7 @@ class PatientLink extends BackboneElement {
   ) {
     return PatientLink(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1130,7 +1139,11 @@ class PatientLink extends BackboneElement {
 
     json['other'] = other.toJson();
 
-    json['type'] = type.toJson();
+    final fieldJson3 = type.toJson();
+    json['type'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_type'] = fieldJson3['_value'];
+    }
 
     return json;
   }

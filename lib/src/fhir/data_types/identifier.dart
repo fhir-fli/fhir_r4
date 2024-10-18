@@ -32,9 +32,7 @@ class Identifier extends DataType {
   ) {
     return Identifier(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -45,7 +43,7 @@ class Identifier extends DataType {
               )
               .toList()
           : null,
-      use: json['use'] != null
+      use: (json['use'] != null || json['_use'] != null)
           ? IdentifierUse.fromJson({
               'value': json['use'],
               '_value': json['_use'],
@@ -56,13 +54,13 @@ class Identifier extends DataType {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      system: json['system'] != null
+      system: (json['system'] != null || json['_system'] != null)
           ? FhirUri.fromJson({
               'value': json['system'],
               '_value': json['_system'],
             })
           : null,
-      value: json['value'] != null
+      value: (json['value'] != null || json['_value'] != null)
           ? FhirString.fromJson({
               'value': json['value'],
               '_value': json['_value'],
@@ -157,7 +155,11 @@ class Identifier extends DataType {
     }
 
     if (use != null) {
-      json['use'] = use!.toJson();
+      final fieldJson1 = use!.toJson();
+      json['use'] = fieldJson1['value'];
+      if (fieldJson1['_value'] != null) {
+        json['_use'] = fieldJson1['_value'];
+      }
     }
 
     if (type != null) {

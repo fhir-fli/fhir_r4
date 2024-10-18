@@ -58,22 +58,21 @@ class Communication extends DomainResource {
   ) {
     return Communication(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -175,7 +174,7 @@ class Communication extends DomainResource {
               )
               .toList()
           : null,
-      priority: json['priority'] != null
+      priority: (json['priority'] != null || json['_priority'] != null)
           ? RequestPriority.fromJson({
               'value': json['priority'],
               '_value': json['_priority'],
@@ -214,13 +213,13 @@ class Communication extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      sent: json['sent'] != null
+      sent: (json['sent'] != null || json['_sent'] != null)
           ? FhirDateTime.fromJson({
               'value': json['sent'],
               '_value': json['_sent'],
             })
           : null,
-      received: json['received'] != null
+      received: (json['received'] != null || json['_received'] != null)
           ? FhirDateTime.fromJson({
               'value': json['received'],
               '_value': json['_received'],
@@ -451,7 +450,11 @@ class Communication extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -505,7 +508,11 @@ class Communication extends DomainResource {
       json['inResponseTo'] = inResponseTo!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson13 = status.toJson();
+    json['status'] = fieldJson13['value'];
+    if (fieldJson13['_value'] != null) {
+      json['_status'] = fieldJson13['_value'];
+    }
 
     if (statusReason != null) {
       json['statusReason'] = statusReason!.toJson();
@@ -516,7 +523,11 @@ class Communication extends DomainResource {
     }
 
     if (priority != null) {
-      json['priority'] = priority!.toJson();
+      final fieldJson16 = priority!.toJson();
+      json['priority'] = fieldJson16['value'];
+      if (fieldJson16['_value'] != null) {
+        json['_priority'] = fieldJson16['_value'];
+      }
     }
 
     if (medium != null && medium!.isNotEmpty) {
@@ -696,9 +707,7 @@ class CommunicationPayload extends BackboneElement {
   ) {
     return CommunicationPayload(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -718,12 +727,13 @@ class CommunicationPayload extends BackboneElement {
               )
               .toList()
           : null,
-      contentString: json['contentString'] != null
-          ? FhirString.fromJson({
-              'value': json['contentString'],
-              '_value': json['_contentString'],
-            })
-          : null,
+      contentString:
+          (json['contentString'] != null || json['_contentString'] != null)
+              ? FhirString.fromJson({
+                  'value': json['contentString'],
+                  '_value': json['_contentString'],
+                })
+              : null,
       contentAttachment: json['contentAttachment'] != null
           ? Attachment.fromJson(
               json['contentAttachment'] as Map<String, dynamic>,

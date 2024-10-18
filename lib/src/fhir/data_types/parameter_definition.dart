@@ -35,9 +35,7 @@ class ParameterDefinition extends DataType {
   ) {
     return ParameterDefinition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -48,7 +46,7 @@ class ParameterDefinition extends DataType {
               )
               .toList()
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirCode.fromJson({
               'value': json['name'],
               '_value': json['_name'],
@@ -58,29 +56,30 @@ class ParameterDefinition extends DataType {
         'value': json['use'],
         '_value': json['_use'],
       }),
-      min: json['min'] != null
+      min: (json['min'] != null || json['_min'] != null)
           ? FhirInteger.fromJson({
               'value': json['min'],
               '_value': json['_min'],
             })
           : null,
-      max: json['max'] != null
+      max: (json['max'] != null || json['_max'] != null)
           ? FhirString.fromJson({
               'value': json['max'],
               '_value': json['_max'],
             })
           : null,
-      documentation: json['documentation'] != null
-          ? FhirString.fromJson({
-              'value': json['documentation'],
-              '_value': json['_documentation'],
-            })
-          : null,
+      documentation:
+          (json['documentation'] != null || json['_documentation'] != null)
+              ? FhirString.fromJson({
+                  'value': json['documentation'],
+                  '_value': json['_documentation'],
+                })
+              : null,
       type: FHIRAllTypes.fromJson({
         'value': json['type'],
         '_value': json['_type'],
       }),
-      profile: json['profile'] != null
+      profile: (json['profile'] != null || json['_profile'] != null)
           ? FhirCanonical.fromJson({
               'value': json['profile'],
               '_value': json['_profile'],
@@ -178,7 +177,11 @@ class ParameterDefinition extends DataType {
       }
     }
 
-    json['use'] = use.toJson();
+    final fieldJson2 = use.toJson();
+    json['use'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_use'] = fieldJson2['_value'];
+    }
 
     if (min != null) {
       final fieldJson3 = min!.toJson();
@@ -204,7 +207,11 @@ class ParameterDefinition extends DataType {
       }
     }
 
-    json['type'] = type.toJson();
+    final fieldJson6 = type.toJson();
+    json['type'] = fieldJson6['value'];
+    if (fieldJson6['_value'] != null) {
+      json['_type'] = fieldJson6['_value'];
+    }
 
     if (profile != null) {
       final fieldJson7 = profile!.toJson();

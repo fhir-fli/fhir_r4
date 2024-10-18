@@ -33,9 +33,7 @@ class Attachment extends DataType {
   ) {
     return Attachment(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -46,49 +44,49 @@ class Attachment extends DataType {
               )
               .toList()
           : null,
-      contentType: json['contentType'] != null
+      contentType: (json['contentType'] != null || json['_contentType'] != null)
           ? FhirCode.fromJson({
               'value': json['contentType'],
               '_value': json['_contentType'],
             })
           : null,
-      language: json['language'] != null
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
             })
           : null,
-      data: json['data'] != null
+      data: (json['data'] != null || json['_data'] != null)
           ? FhirBase64Binary.fromJson({
               'value': json['data'],
               '_value': json['_data'],
             })
           : null,
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUrl.fromJson({
               'value': json['url'],
               '_value': json['_url'],
             })
           : null,
-      size: json['size'] != null
+      size: (json['size'] != null || json['_size'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['size'],
               '_value': json['_size'],
             })
           : null,
-      hash: json['hash'] != null
+      hash: (json['hash'] != null || json['_hash'] != null)
           ? FhirBase64Binary.fromJson({
               'value': json['hash'],
               '_value': json['_hash'],
             })
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
             })
           : null,
-      creation: json['creation'] != null
+      creation: (json['creation'] != null || json['_creation'] != null)
           ? FhirDateTime.fromJson({
               'value': json['creation'],
               '_value': json['_creation'],
@@ -191,7 +189,11 @@ class Attachment extends DataType {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (data != null) {

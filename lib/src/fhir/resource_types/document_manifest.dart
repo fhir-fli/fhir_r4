@@ -46,22 +46,21 @@ class DocumentManifest extends DomainResource {
   ) {
     return DocumentManifest(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -127,7 +126,7 @@ class DocumentManifest extends DomainResource {
               json['subject'] as Map<String, dynamic>,
             )
           : null,
-      created: json['created'] != null
+      created: (json['created'] != null || json['_created'] != null)
           ? FhirDateTime.fromJson({
               'value': json['created'],
               '_value': json['_created'],
@@ -151,13 +150,13 @@ class DocumentManifest extends DomainResource {
               )
               .toList()
           : null,
-      source: json['source'] != null
+      source: (json['source'] != null || json['_source'] != null)
           ? FhirUri.fromJson({
               'value': json['source'],
               '_value': json['_source'],
             })
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -304,7 +303,11 @@ class DocumentManifest extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -332,7 +335,11 @@ class DocumentManifest extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson9 = status.toJson();
+    json['status'] = fieldJson9['value'];
+    if (fieldJson9['_value'] != null) {
+      json['_status'] = fieldJson9['_value'];
+    }
 
     if (type != null) {
       json['type'] = type!.toJson();
@@ -471,9 +478,7 @@ class DocumentManifestRelated extends BackboneElement {
   ) {
     return DocumentManifestRelated(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)

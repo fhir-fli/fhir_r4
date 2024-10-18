@@ -68,22 +68,21 @@ class ResearchElementDefinition extends DomainResource {
   ) {
     return ResearchElementDefinition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -121,7 +120,7 @@ class ResearchElementDefinition extends DomainResource {
               )
               .toList()
           : null,
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUri.fromJson({
               'value': json['url'],
               '_value': json['_url'],
@@ -136,31 +135,31 @@ class ResearchElementDefinition extends DomainResource {
               )
               .toList()
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
             })
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
             })
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
             })
           : null,
-      shortTitle: json['shortTitle'] != null
+      shortTitle: (json['shortTitle'] != null || json['_shortTitle'] != null)
           ? FhirString.fromJson({
               'value': json['shortTitle'],
               '_value': json['_shortTitle'],
             })
           : null,
-      subtitle: json['subtitle'] != null
+      subtitle: (json['subtitle'] != null || json['_subtitle'] != null)
           ? FhirString.fromJson({
               'value': json['subtitle'],
               '_value': json['_subtitle'],
@@ -170,12 +169,13 @@ class ResearchElementDefinition extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['experimental'],
-              '_value': json['_experimental'],
-            })
-          : null,
+      experimental:
+          (json['experimental'] != null || json['_experimental'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['experimental'],
+                  '_value': json['_experimental'],
+                })
+              : null,
       subjectCodeableConcept: json['subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['subjectCodeableConcept'] as Map<String, dynamic>,
@@ -186,13 +186,13 @@ class ResearchElementDefinition extends DomainResource {
               json['subjectReference'] as Map<String, dynamic>,
             )
           : null,
-      date: json['date'] != null
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
             })
           : null,
-      publisher: json['publisher'] != null
+      publisher: (json['publisher'] != null || json['_publisher'] != null)
           ? FhirString.fromJson({
               'value': json['publisher'],
               '_value': json['_publisher'],
@@ -207,7 +207,7 @@ class ResearchElementDefinition extends DomainResource {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -236,36 +236,38 @@ class ResearchElementDefinition extends DomainResource {
               )
               .toList()
           : null,
-      purpose: json['purpose'] != null
+      purpose: (json['purpose'] != null || json['_purpose'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['purpose'],
               '_value': json['_purpose'],
             })
           : null,
-      usage: json['usage'] != null
+      usage: (json['usage'] != null || json['_usage'] != null)
           ? FhirString.fromJson({
               'value': json['usage'],
               '_value': json['_usage'],
             })
           : null,
-      copyright: json['copyright'] != null
+      copyright: (json['copyright'] != null || json['_copyright'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['copyright'],
               '_value': json['_copyright'],
             })
           : null,
-      approvalDate: json['approvalDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['approvalDate'],
-              '_value': json['_approvalDate'],
-            })
-          : null,
-      lastReviewDate: json['lastReviewDate'] != null
-          ? FhirDate.fromJson({
-              'value': json['lastReviewDate'],
-              '_value': json['_lastReviewDate'],
-            })
-          : null,
+      approvalDate:
+          (json['approvalDate'] != null || json['_approvalDate'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['approvalDate'],
+                  '_value': json['_approvalDate'],
+                })
+              : null,
+      lastReviewDate:
+          (json['lastReviewDate'] != null || json['_lastReviewDate'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['lastReviewDate'],
+                  '_value': json['_lastReviewDate'],
+                })
+              : null,
       effectivePeriod: json['effectivePeriod'] != null
           ? Period.fromJson(
               json['effectivePeriod'] as Map<String, dynamic>,
@@ -334,12 +336,13 @@ class ResearchElementDefinition extends DomainResource {
         'value': json['type'],
         '_value': json['_type'],
       }),
-      variableType: json['variableType'] != null
-          ? VariableType.fromJson({
-              'value': json['variableType'],
-              '_value': json['_variableType'],
-            })
-          : null,
+      variableType:
+          (json['variableType'] != null || json['_variableType'] != null)
+              ? VariableType.fromJson({
+                  'value': json['variableType'],
+                  '_value': json['_variableType'],
+                })
+              : null,
       characteristic: ensureNonNullList(
         (json['characteristic'] as List<dynamic>)
             .map<ResearchElementDefinitionCharacteristic>(
@@ -611,7 +614,11 @@ class ResearchElementDefinition extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -683,7 +690,11 @@ class ResearchElementDefinition extends DomainResource {
       }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson14 = status.toJson();
+    json['status'] = fieldJson14['value'];
+    if (fieldJson14['_value'] != null) {
+      json['_status'] = fieldJson14['_value'];
+    }
 
     if (experimental != null) {
       final fieldJson15 = experimental!.toJson();
@@ -822,10 +833,18 @@ class ResearchElementDefinition extends DomainResource {
       }
     }
 
-    json['type'] = type.toJson();
+    final fieldJson38 = type.toJson();
+    json['type'] = fieldJson38['value'];
+    if (fieldJson38['_value'] != null) {
+      json['_type'] = fieldJson38['_value'];
+    }
 
     if (variableType != null) {
-      json['variableType'] = variableType!.toJson();
+      final fieldJson39 = variableType!.toJson();
+      json['variableType'] = fieldJson39['value'];
+      if (fieldJson39['_value'] != null) {
+        json['_variableType'] = fieldJson39['_value'];
+      }
     }
 
     json['characteristic'] = characteristic.map((e) => e.toJson()).toList();
@@ -986,9 +1005,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   ) {
     return ResearchElementDefinitionCharacteristic(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1013,7 +1030,8 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
               json['definitionCodeableConcept'] as Map<String, dynamic>,
             )
           : null,
-      definitionCanonical: json['definitionCanonical'] != null
+      definitionCanonical: (json['definitionCanonical'] != null ||
+              json['_definitionCanonical'] != null)
           ? FhirCanonical.fromJson({
               'value': json['definitionCanonical'],
               '_value': json['_definitionCanonical'],
@@ -1038,7 +1056,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
               )
               .toList()
           : null,
-      exclude: json['exclude'] != null
+      exclude: (json['exclude'] != null || json['_exclude'] != null)
           ? FhirBoolean.fromJson({
               'value': json['exclude'],
               '_value': json['_exclude'],
@@ -1049,13 +1067,15 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
               json['unitOfMeasure'] as Map<String, dynamic>,
             )
           : null,
-      studyEffectiveDescription: json['studyEffectiveDescription'] != null
+      studyEffectiveDescription: (json['studyEffectiveDescription'] != null ||
+              json['_studyEffectiveDescription'] != null)
           ? FhirString.fromJson({
               'value': json['studyEffectiveDescription'],
               '_value': json['_studyEffectiveDescription'],
             })
           : null,
-      studyEffectiveDateTime: json['studyEffectiveDateTime'] != null
+      studyEffectiveDateTime: (json['studyEffectiveDateTime'] != null ||
+              json['_studyEffectiveDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['studyEffectiveDateTime'],
               '_value': json['_studyEffectiveDateTime'],
@@ -1081,25 +1101,29 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
               json['studyEffectiveTimeFromStart'] as Map<String, dynamic>,
             )
           : null,
-      studyEffectiveGroupMeasure: json['studyEffectiveGroupMeasure'] != null
+      studyEffectiveGroupMeasure: (json['studyEffectiveGroupMeasure'] != null ||
+              json['_studyEffectiveGroupMeasure'] != null)
           ? GroupMeasure.fromJson({
               'value': json['studyEffectiveGroupMeasure'],
               '_value': json['_studyEffectiveGroupMeasure'],
             })
           : null,
       participantEffectiveDescription:
-          json['participantEffectiveDescription'] != null
+          (json['participantEffectiveDescription'] != null ||
+                  json['_participantEffectiveDescription'] != null)
               ? FhirString.fromJson({
                   'value': json['participantEffectiveDescription'],
                   '_value': json['_participantEffectiveDescription'],
                 })
               : null,
-      participantEffectiveDateTime: json['participantEffectiveDateTime'] != null
-          ? FhirDateTime.fromJson({
-              'value': json['participantEffectiveDateTime'],
-              '_value': json['_participantEffectiveDateTime'],
-            })
-          : null,
+      participantEffectiveDateTime:
+          (json['participantEffectiveDateTime'] != null ||
+                  json['_participantEffectiveDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['participantEffectiveDateTime'],
+                  '_value': json['_participantEffectiveDateTime'],
+                })
+              : null,
       participantEffectivePeriod: json['participantEffectivePeriod'] != null
           ? Period.fromJson(
               json['participantEffectivePeriod'] as Map<String, dynamic>,
@@ -1123,7 +1147,8 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
                 )
               : null,
       participantEffectiveGroupMeasure:
-          json['participantEffectiveGroupMeasure'] != null
+          (json['participantEffectiveGroupMeasure'] != null ||
+                  json['_participantEffectiveGroupMeasure'] != null)
               ? GroupMeasure.fromJson({
                   'value': json['participantEffectiveGroupMeasure'],
                   '_value': json['_participantEffectiveGroupMeasure'],
@@ -1355,7 +1380,11 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     }
 
     if (studyEffectiveGroupMeasure != null) {
-      json['studyEffectiveGroupMeasure'] = studyEffectiveGroupMeasure!.toJson();
+      final fieldJson15 = studyEffectiveGroupMeasure!.toJson();
+      json['studyEffectiveGroupMeasure'] = fieldJson15['value'];
+      if (fieldJson15['_value'] != null) {
+        json['_studyEffectiveGroupMeasure'] = fieldJson15['_value'];
+      }
     }
 
     if (participantEffectiveDescription != null) {
@@ -1393,8 +1422,11 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     }
 
     if (participantEffectiveGroupMeasure != null) {
-      json['participantEffectiveGroupMeasure'] =
-          participantEffectiveGroupMeasure!.toJson();
+      final fieldJson22 = participantEffectiveGroupMeasure!.toJson();
+      json['participantEffectiveGroupMeasure'] = fieldJson22['value'];
+      if (fieldJson22['_value'] != null) {
+        json['_participantEffectiveGroupMeasure'] = fieldJson22['_value'];
+      }
     }
 
     return json;

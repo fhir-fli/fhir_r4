@@ -61,22 +61,21 @@ class CapabilityStatement extends DomainResource {
   ) {
     return CapabilityStatement(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -114,25 +113,25 @@ class CapabilityStatement extends DomainResource {
               )
               .toList()
           : null,
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUri.fromJson({
               'value': json['url'],
               '_value': json['_url'],
             })
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
             })
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
             })
           : null,
-      title: json['title'] != null
+      title: (json['title'] != null || json['_title'] != null)
           ? FhirString.fromJson({
               'value': json['title'],
               '_value': json['_title'],
@@ -142,17 +141,18 @@ class CapabilityStatement extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['experimental'],
-              '_value': json['_experimental'],
-            })
-          : null,
+      experimental:
+          (json['experimental'] != null || json['_experimental'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['experimental'],
+                  '_value': json['_experimental'],
+                })
+              : null,
       date: FhirDateTime.fromJson({
         'value': json['date'],
         '_value': json['_date'],
       }),
-      publisher: json['publisher'] != null
+      publisher: (json['publisher'] != null || json['_publisher'] != null)
           ? FhirString.fromJson({
               'value': json['publisher'],
               '_value': json['_publisher'],
@@ -167,7 +167,7 @@ class CapabilityStatement extends DomainResource {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -191,13 +191,13 @@ class CapabilityStatement extends DomainResource {
               )
               .toList()
           : null,
-      purpose: json['purpose'] != null
+      purpose: (json['purpose'] != null || json['_purpose'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['purpose'],
               '_value': json['_purpose'],
             })
           : null,
-      copyright: json['copyright'] != null
+      copyright: (json['copyright'] != null || json['_copyright'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['copyright'],
               '_value': json['_copyright'],
@@ -486,7 +486,11 @@ class CapabilityStatement extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -538,7 +542,11 @@ class CapabilityStatement extends DomainResource {
       }
     }
 
-    json['status'] = status.toJson();
+    final fieldJson11 = status.toJson();
+    json['status'] = fieldJson11['value'];
+    if (fieldJson11['_value'] != null) {
+      json['_status'] = fieldJson11['_value'];
+    }
 
     if (experimental != null) {
       final fieldJson12 = experimental!.toJson();
@@ -598,7 +606,11 @@ class CapabilityStatement extends DomainResource {
       }
     }
 
-    json['kind'] = kind.toJson();
+    final fieldJson21 = kind.toJson();
+    json['kind'] = fieldJson21['value'];
+    if (fieldJson21['_value'] != null) {
+      json['_kind'] = fieldJson21['_value'];
+    }
 
     if (instantiates != null && instantiates!.isNotEmpty) {
       final fieldJson22 = instantiates!.map((e) => e.toJson()).toList();
@@ -624,7 +636,11 @@ class CapabilityStatement extends DomainResource {
       json['implementation'] = implementation!.toJson();
     }
 
-    json['fhirVersion'] = fhirVersion.toJson();
+    final fieldJson26 = fhirVersion.toJson();
+    json['fhirVersion'] = fieldJson26['value'];
+    if (fieldJson26['_value'] != null) {
+      json['_fhirVersion'] = fieldJson26['_value'];
+    }
 
     final fieldJson27 = format.map((e) => e.toJson()).toList();
     json['format'] = fieldJson27.map((e) => e['value']).toList();
@@ -772,9 +788,7 @@ class CapabilityStatementSoftware extends BackboneElement {
   ) {
     return CapabilityStatementSoftware(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -798,13 +812,13 @@ class CapabilityStatementSoftware extends BackboneElement {
         'value': json['name'],
         '_value': json['_name'],
       }),
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
             })
           : null,
-      releaseDate: json['releaseDate'] != null
+      releaseDate: (json['releaseDate'] != null || json['_releaseDate'] != null)
           ? FhirDateTime.fromJson({
               'value': json['releaseDate'],
               '_value': json['_releaseDate'],
@@ -967,9 +981,7 @@ class CapabilityStatementImplementation extends BackboneElement {
   ) {
     return CapabilityStatementImplementation(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -993,7 +1005,7 @@ class CapabilityStatementImplementation extends BackboneElement {
         'value': json['description'],
         '_value': json['_description'],
       }),
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUrl.fromJson({
               'value': json['url'],
               '_value': json['_url'],
@@ -1181,9 +1193,7 @@ class CapabilityStatementRest extends BackboneElement {
   ) {
     return CapabilityStatementRest(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1207,12 +1217,13 @@ class CapabilityStatementRest extends BackboneElement {
         'value': json['mode'],
         '_value': json['_mode'],
       }),
-      documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson({
-              'value': json['documentation'],
-              '_value': json['_documentation'],
-            })
-          : null,
+      documentation:
+          (json['documentation'] != null || json['_documentation'] != null)
+              ? FhirMarkdown.fromJson({
+                  'value': json['documentation'],
+                  '_value': json['_documentation'],
+                })
+              : null,
       security: json['security'] != null
           ? CapabilityStatementSecurity.fromJson(
               json['security'] as Map<String, dynamic>,
@@ -1327,7 +1338,11 @@ class CapabilityStatementRest extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['mode'] = mode.toJson();
+    final fieldJson2 = mode.toJson();
+    json['mode'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_mode'] = fieldJson2['_value'];
+    }
 
     if (documentation != null) {
       final fieldJson3 = documentation!.toJson();
@@ -1428,9 +1443,7 @@ class CapabilityStatementSecurity extends BackboneElement {
   ) {
     return CapabilityStatementSecurity(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1450,7 +1463,7 @@ class CapabilityStatementSecurity extends BackboneElement {
               )
               .toList()
           : null,
-      cors: json['cors'] != null
+      cors: (json['cors'] != null || json['_cors'] != null)
           ? FhirBoolean.fromJson({
               'value': json['cors'],
               '_value': json['_cors'],
@@ -1465,7 +1478,7 @@ class CapabilityStatementSecurity extends BackboneElement {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -1639,9 +1652,7 @@ class CapabilityStatementResource extends BackboneElement {
   ) {
     return CapabilityStatementResource(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1665,7 +1676,7 @@ class CapabilityStatementResource extends BackboneElement {
         'value': json['type'],
         '_value': json['_type'],
       }),
-      profile: json['profile'] != null
+      profile: (json['profile'] != null || json['_profile'] != null)
           ? FhirCanonical.fromJson({
               'value': json['profile'],
               '_value': json['_profile'],
@@ -1676,12 +1687,13 @@ class CapabilityStatementResource extends BackboneElement {
         json['_supportedProfile'] as List<dynamic>?,
         fromJson: FhirCanonical.fromJson,
       ),
-      documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson({
-              'value': json['documentation'],
-              '_value': json['_documentation'],
-            })
-          : null,
+      documentation:
+          (json['documentation'] != null || json['_documentation'] != null)
+              ? FhirMarkdown.fromJson({
+                  'value': json['documentation'],
+                  '_value': json['_documentation'],
+                })
+              : null,
       interaction: json['interaction'] != null
           ? (json['interaction'] as List<dynamic>)
               .map<CapabilityStatementInteraction>(
@@ -1691,43 +1703,48 @@ class CapabilityStatementResource extends BackboneElement {
               )
               .toList()
           : null,
-      versioning: json['versioning'] != null
+      versioning: (json['versioning'] != null || json['_versioning'] != null)
           ? ResourceVersionPolicy.fromJson({
               'value': json['versioning'],
               '_value': json['_versioning'],
             })
           : null,
-      readHistory: json['readHistory'] != null
+      readHistory: (json['readHistory'] != null || json['_readHistory'] != null)
           ? FhirBoolean.fromJson({
               'value': json['readHistory'],
               '_value': json['_readHistory'],
             })
           : null,
-      updateCreate: json['updateCreate'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['updateCreate'],
-              '_value': json['_updateCreate'],
-            })
-          : null,
-      conditionalCreate: json['conditionalCreate'] != null
+      updateCreate:
+          (json['updateCreate'] != null || json['_updateCreate'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['updateCreate'],
+                  '_value': json['_updateCreate'],
+                })
+              : null,
+      conditionalCreate: (json['conditionalCreate'] != null ||
+              json['_conditionalCreate'] != null)
           ? FhirBoolean.fromJson({
               'value': json['conditionalCreate'],
               '_value': json['_conditionalCreate'],
             })
           : null,
-      conditionalRead: json['conditionalRead'] != null
-          ? ConditionalReadStatus.fromJson({
-              'value': json['conditionalRead'],
-              '_value': json['_conditionalRead'],
-            })
-          : null,
-      conditionalUpdate: json['conditionalUpdate'] != null
+      conditionalRead:
+          (json['conditionalRead'] != null || json['_conditionalRead'] != null)
+              ? ConditionalReadStatus.fromJson({
+                  'value': json['conditionalRead'],
+                  '_value': json['_conditionalRead'],
+                })
+              : null,
+      conditionalUpdate: (json['conditionalUpdate'] != null ||
+              json['_conditionalUpdate'] != null)
           ? FhirBoolean.fromJson({
               'value': json['conditionalUpdate'],
               '_value': json['_conditionalUpdate'],
             })
           : null,
-      conditionalDelete: json['conditionalDelete'] != null
+      conditionalDelete: (json['conditionalDelete'] != null ||
+              json['_conditionalDelete'] != null)
           ? ConditionalDeleteStatus.fromJson({
               'value': json['conditionalDelete'],
               '_value': json['_conditionalDelete'],
@@ -1950,7 +1967,11 @@ class CapabilityStatementResource extends BackboneElement {
     }
 
     if (versioning != null) {
-      json['versioning'] = versioning!.toJson();
+      final fieldJson7 = versioning!.toJson();
+      json['versioning'] = fieldJson7['value'];
+      if (fieldJson7['_value'] != null) {
+        json['_versioning'] = fieldJson7['_value'];
+      }
     }
 
     if (readHistory != null) {
@@ -1978,7 +1999,11 @@ class CapabilityStatementResource extends BackboneElement {
     }
 
     if (conditionalRead != null) {
-      json['conditionalRead'] = conditionalRead!.toJson();
+      final fieldJson11 = conditionalRead!.toJson();
+      json['conditionalRead'] = fieldJson11['value'];
+      if (fieldJson11['_value'] != null) {
+        json['_conditionalRead'] = fieldJson11['_value'];
+      }
     }
 
     if (conditionalUpdate != null) {
@@ -1990,12 +2015,19 @@ class CapabilityStatementResource extends BackboneElement {
     }
 
     if (conditionalDelete != null) {
-      json['conditionalDelete'] = conditionalDelete!.toJson();
+      final fieldJson13 = conditionalDelete!.toJson();
+      json['conditionalDelete'] = fieldJson13['value'];
+      if (fieldJson13['_value'] != null) {
+        json['_conditionalDelete'] = fieldJson13['_value'];
+      }
     }
 
     if (referencePolicy != null && referencePolicy!.isNotEmpty) {
-      json['referencePolicy'] =
-          referencePolicy!.map((e) => e.toJson()).toList();
+      final fieldJson14 = referencePolicy!.map((e) => e.toJson()).toList();
+      json['referencePolicy'] = fieldJson14.map((e) => e['value']).toList();
+      if (fieldJson14.any((e) => e['_value'] != null)) {
+        json['_referencePolicy'] = fieldJson14.map((e) => e['_value']).toList();
+      }
     }
 
     if (searchInclude != null && searchInclude!.isNotEmpty) {
@@ -2114,9 +2146,7 @@ class CapabilityStatementInteraction extends BackboneElement {
   ) {
     return CapabilityStatementInteraction(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2140,12 +2170,13 @@ class CapabilityStatementInteraction extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson({
-              'value': json['documentation'],
-              '_value': json['_documentation'],
-            })
-          : null,
+      documentation:
+          (json['documentation'] != null || json['_documentation'] != null)
+              ? FhirMarkdown.fromJson({
+                  'value': json['documentation'],
+                  '_value': json['_documentation'],
+                })
+              : null,
     );
   }
 
@@ -2212,7 +2243,11 @@ class CapabilityStatementInteraction extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['code'] = code.toJson();
+    final fieldJson2 = code.toJson();
+    json['code'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_code'] = fieldJson2['_value'];
+    }
 
     if (documentation != null) {
       final fieldJson3 = documentation!.toJson();
@@ -2287,9 +2322,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
   ) {
     return CapabilityStatementSearchParam(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2313,7 +2346,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
         'value': json['name'],
         '_value': json['_name'],
       }),
-      definition: json['definition'] != null
+      definition: (json['definition'] != null || json['_definition'] != null)
           ? FhirCanonical.fromJson({
               'value': json['definition'],
               '_value': json['_definition'],
@@ -2323,12 +2356,13 @@ class CapabilityStatementSearchParam extends BackboneElement {
         'value': json['type'],
         '_value': json['_type'],
       }),
-      documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson({
-              'value': json['documentation'],
-              '_value': json['_documentation'],
-            })
-          : null,
+      documentation:
+          (json['documentation'] != null || json['_documentation'] != null)
+              ? FhirMarkdown.fromJson({
+                  'value': json['documentation'],
+                  '_value': json['_documentation'],
+                })
+              : null,
     );
   }
 
@@ -2423,7 +2457,11 @@ class CapabilityStatementSearchParam extends BackboneElement {
       }
     }
 
-    json['type'] = type.toJson();
+    final fieldJson4 = type.toJson();
+    json['type'] = fieldJson4['value'];
+    if (fieldJson4['_value'] != null) {
+      json['_type'] = fieldJson4['_value'];
+    }
 
     if (documentation != null) {
       final fieldJson5 = documentation!.toJson();
@@ -2502,9 +2540,7 @@ class CapabilityStatementOperation extends BackboneElement {
   ) {
     return CapabilityStatementOperation(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2532,12 +2568,13 @@ class CapabilityStatementOperation extends BackboneElement {
         'value': json['definition'],
         '_value': json['_definition'],
       }),
-      documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson({
-              'value': json['documentation'],
-              '_value': json['_documentation'],
-            })
-          : null,
+      documentation:
+          (json['documentation'] != null || json['_documentation'] != null)
+              ? FhirMarkdown.fromJson({
+                  'value': json['documentation'],
+                  '_value': json['_documentation'],
+                })
+              : null,
     );
   }
 
@@ -2701,9 +2738,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
   ) {
     return CapabilityStatementInteraction1(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2727,12 +2762,13 @@ class CapabilityStatementInteraction1 extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson({
-              'value': json['documentation'],
-              '_value': json['_documentation'],
-            })
-          : null,
+      documentation:
+          (json['documentation'] != null || json['_documentation'] != null)
+              ? FhirMarkdown.fromJson({
+                  'value': json['documentation'],
+                  '_value': json['_documentation'],
+                })
+              : null,
     );
   }
 
@@ -2799,7 +2835,11 @@ class CapabilityStatementInteraction1 extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['code'] = code.toJson();
+    final fieldJson2 = code.toJson();
+    json['code'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_code'] = fieldJson2['_value'];
+    }
 
     if (documentation != null) {
       final fieldJson3 = documentation!.toJson();
@@ -2872,9 +2912,7 @@ class CapabilityStatementMessaging extends BackboneElement {
   ) {
     return CapabilityStatementMessaging(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2903,18 +2941,20 @@ class CapabilityStatementMessaging extends BackboneElement {
               )
               .toList()
           : null,
-      reliableCache: json['reliableCache'] != null
-          ? FhirUnsignedInt.fromJson({
-              'value': json['reliableCache'],
-              '_value': json['_reliableCache'],
-            })
-          : null,
-      documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson({
-              'value': json['documentation'],
-              '_value': json['_documentation'],
-            })
-          : null,
+      reliableCache:
+          (json['reliableCache'] != null || json['_reliableCache'] != null)
+              ? FhirUnsignedInt.fromJson({
+                  'value': json['reliableCache'],
+                  '_value': json['_reliableCache'],
+                })
+              : null,
+      documentation:
+          (json['documentation'] != null || json['_documentation'] != null)
+              ? FhirMarkdown.fromJson({
+                  'value': json['documentation'],
+                  '_value': json['_documentation'],
+                })
+              : null,
       supportedMessage: json['supportedMessage'] != null
           ? (json['supportedMessage'] as List<dynamic>)
               .map<CapabilityStatementSupportedMessage>(
@@ -3094,9 +3134,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
   ) {
     return CapabilityStatementEndpoint(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -3259,9 +3297,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
   ) {
     return CapabilityStatementSupportedMessage(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -3355,7 +3391,11 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['mode'] = mode.toJson();
+    final fieldJson2 = mode.toJson();
+    json['mode'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_mode'] = fieldJson2['_value'];
+    }
 
     final fieldJson3 = definition.toJson();
     json['definition'] = fieldJson3['value'];
@@ -3425,9 +3465,7 @@ class CapabilityStatementDocument extends BackboneElement {
   ) {
     return CapabilityStatementDocument(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -3451,12 +3489,13 @@ class CapabilityStatementDocument extends BackboneElement {
         'value': json['mode'],
         '_value': json['_mode'],
       }),
-      documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson({
-              'value': json['documentation'],
-              '_value': json['_documentation'],
-            })
-          : null,
+      documentation:
+          (json['documentation'] != null || json['_documentation'] != null)
+              ? FhirMarkdown.fromJson({
+                  'value': json['documentation'],
+                  '_value': json['_documentation'],
+                })
+              : null,
       profile: FhirCanonical.fromJson({
         'value': json['profile'],
         '_value': json['_profile'],
@@ -3533,7 +3572,11 @@ class CapabilityStatementDocument extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['mode'] = mode.toJson();
+    final fieldJson2 = mode.toJson();
+    json['mode'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_mode'] = fieldJson2['_value'];
+    }
 
     if (documentation != null) {
       final fieldJson3 = documentation!.toJson();

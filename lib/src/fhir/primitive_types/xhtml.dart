@@ -13,7 +13,11 @@ extension FhirXhtmlExtension on String {
 class FhirXhtml extends PrimitiveType<String?> {
   /// Constructor that accepts and validates an XHTML string, or allows `null`.
   FhirXhtml(String? input, [Element? element])
-      : super(input != null ? _validateXhtml(input) : null, element);
+      : super(input != null ? _validateXhtml(input) : null, element) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Constructor that accepts already validated XHTML string, or `null`.
   FhirXhtml.fromValidatedXhtml(super.validatedInput, [super.element]);
@@ -131,16 +135,28 @@ class FhirXhtml extends PrimitiveType<String?> {
       'white-space',
     ];
 
-    final styles = style.split(';');
-    for (final styleProperty in styles) {
-      final property = styleProperty.split(':').first.trim();
+    // Split the style attribute on semicolons and remove any empty or malformed entries
+    final styles = style.split(';').where((s) => s.trim().isNotEmpty);
 
-      if (!allowedStyles.contains(property)) {
-        return false;
+    for (final styleProperty in styles) {
+      // Split each style into property and value
+      final parts = styleProperty.split(':');
+
+      if (parts.length != 2) {
+        return false; // Invalid style format (no property or value)
+      }
+
+      final property =
+          parts[0].trim(); // Normalize property name by trimming whitespace
+      final value = parts[1].trim(); // Normalize value by trimming whitespace
+
+      // Ensure the style property is in the allowed list and has a valid value
+      if (!allowedStyles.contains(property) || value.isEmpty) {
+        return false; // Disallowed or improperly formatted style
       }
     }
 
-    return true;
+    return true; // All styles are valid
   }
 
   /// Allowed XHTML elements based on FHIR's specification

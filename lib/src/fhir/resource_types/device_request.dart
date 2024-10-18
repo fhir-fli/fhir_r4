@@ -62,22 +62,21 @@ class DeviceRequest extends DomainResource {
   ) {
     return DeviceRequest(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -157,7 +156,7 @@ class DeviceRequest extends DomainResource {
               json['groupIdentifier'] as Map<String, dynamic>,
             )
           : null,
-      status: json['status'] != null
+      status: (json['status'] != null || json['_status'] != null)
           ? RequestStatus.fromJson({
               'value': json['status'],
               '_value': json['_status'],
@@ -167,7 +166,7 @@ class DeviceRequest extends DomainResource {
         'value': json['intent'],
         '_value': json['_intent'],
       }),
-      priority: json['priority'] != null
+      priority: (json['priority'] != null || json['_priority'] != null)
           ? RequestPriority.fromJson({
               'value': json['priority'],
               '_value': json['_priority'],
@@ -200,7 +199,8 @@ class DeviceRequest extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceDateTime: json['occurrenceDateTime'] != null
+      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
+              json['_occurrenceDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
               '_value': json['_occurrenceDateTime'],
@@ -216,7 +216,7 @@ class DeviceRequest extends DomainResource {
               json['occurrenceTiming'] as Map<String, dynamic>,
             )
           : null,
-      authoredOn: json['authoredOn'] != null
+      authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({
               'value': json['authoredOn'],
               '_value': json['_authoredOn'],
@@ -486,7 +486,11 @@ class DeviceRequest extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -541,13 +545,25 @@ class DeviceRequest extends DomainResource {
     }
 
     if (status != null) {
-      json['status'] = status!.toJson();
+      final fieldJson13 = status!.toJson();
+      json['status'] = fieldJson13['value'];
+      if (fieldJson13['_value'] != null) {
+        json['_status'] = fieldJson13['_value'];
+      }
     }
 
-    json['intent'] = intent.toJson();
+    final fieldJson14 = intent.toJson();
+    json['intent'] = fieldJson14['value'];
+    if (fieldJson14['_value'] != null) {
+      json['_intent'] = fieldJson14['_value'];
+    }
 
     if (priority != null) {
-      json['priority'] = priority!.toJson();
+      final fieldJson15 = priority!.toJson();
+      json['priority'] = fieldJson15['value'];
+      if (fieldJson15['_value'] != null) {
+        json['_priority'] = fieldJson15['_value'];
+      }
     }
 
     if (codeReference != null) {
@@ -756,9 +772,7 @@ class DeviceRequestParameter extends BackboneElement {
   ) {
     return DeviceRequestParameter(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -798,12 +812,13 @@ class DeviceRequestParameter extends BackboneElement {
               json['valueRange'] as Map<String, dynamic>,
             )
           : null,
-      valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['valueBoolean'],
-              '_value': json['_valueBoolean'],
-            })
-          : null,
+      valueBoolean:
+          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['valueBoolean'],
+                  '_value': json['_valueBoolean'],
+                })
+              : null,
     );
   }
 

@@ -34,9 +34,7 @@ class Timing extends BackboneType {
   ) {
     return Timing(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -238,9 +236,7 @@ class TimingRepeat extends Element {
   ) {
     return TimingRepeat(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -266,61 +262,63 @@ class TimingRepeat extends Element {
               json['boundsPeriod'] as Map<String, dynamic>,
             )
           : null,
-      count: json['count'] != null
+      count: (json['count'] != null || json['_count'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['count'],
               '_value': json['_count'],
             })
           : null,
-      countMax: json['countMax'] != null
+      countMax: (json['countMax'] != null || json['_countMax'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['countMax'],
               '_value': json['_countMax'],
             })
           : null,
-      duration: json['duration'] != null
+      duration: (json['duration'] != null || json['_duration'] != null)
           ? FhirDecimal.fromJson({
               'value': json['duration'],
               '_value': json['_duration'],
             })
           : null,
-      durationMax: json['durationMax'] != null
+      durationMax: (json['durationMax'] != null || json['_durationMax'] != null)
           ? FhirDecimal.fromJson({
               'value': json['durationMax'],
               '_value': json['_durationMax'],
             })
           : null,
-      durationUnit: json['durationUnit'] != null
-          ? UnitsOfTime.fromJson({
-              'value': json['durationUnit'],
-              '_value': json['_durationUnit'],
-            })
-          : null,
-      frequency: json['frequency'] != null
+      durationUnit:
+          (json['durationUnit'] != null || json['_durationUnit'] != null)
+              ? UnitsOfTime.fromJson({
+                  'value': json['durationUnit'],
+                  '_value': json['_durationUnit'],
+                })
+              : null,
+      frequency: (json['frequency'] != null || json['_frequency'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['frequency'],
               '_value': json['_frequency'],
             })
           : null,
-      frequencyMax: json['frequencyMax'] != null
-          ? FhirPositiveInt.fromJson({
-              'value': json['frequencyMax'],
-              '_value': json['_frequencyMax'],
-            })
-          : null,
-      period: json['period'] != null
+      frequencyMax:
+          (json['frequencyMax'] != null || json['_frequencyMax'] != null)
+              ? FhirPositiveInt.fromJson({
+                  'value': json['frequencyMax'],
+                  '_value': json['_frequencyMax'],
+                })
+              : null,
+      period: (json['period'] != null || json['_period'] != null)
           ? FhirDecimal.fromJson({
               'value': json['period'],
               '_value': json['_period'],
             })
           : null,
-      periodMax: json['periodMax'] != null
+      periodMax: (json['periodMax'] != null || json['_periodMax'] != null)
           ? FhirDecimal.fromJson({
               'value': json['periodMax'],
               '_value': json['_periodMax'],
             })
           : null,
-      periodUnit: json['periodUnit'] != null
+      periodUnit: (json['periodUnit'] != null || json['_periodUnit'] != null)
           ? UnitsOfTime.fromJson({
               'value': json['periodUnit'],
               '_value': json['_periodUnit'],
@@ -341,7 +339,7 @@ class TimingRepeat extends Element {
         json['_when'] as List<dynamic>?,
         fromJson: EventTiming.fromJson,
       ),
-      offset: json['offset'] != null
+      offset: (json['offset'] != null || json['_offset'] != null)
           ? FhirUnsignedInt.fromJson({
               'value': json['offset'],
               '_value': json['_offset'],
@@ -536,7 +534,11 @@ class TimingRepeat extends Element {
     }
 
     if (durationUnit != null) {
-      json['durationUnit'] = durationUnit!.toJson();
+      final fieldJson8 = durationUnit!.toJson();
+      json['durationUnit'] = fieldJson8['value'];
+      if (fieldJson8['_value'] != null) {
+        json['_durationUnit'] = fieldJson8['_value'];
+      }
     }
 
     if (frequency != null) {
@@ -572,11 +574,19 @@ class TimingRepeat extends Element {
     }
 
     if (periodUnit != null) {
-      json['periodUnit'] = periodUnit!.toJson();
+      final fieldJson13 = periodUnit!.toJson();
+      json['periodUnit'] = fieldJson13['value'];
+      if (fieldJson13['_value'] != null) {
+        json['_periodUnit'] = fieldJson13['_value'];
+      }
     }
 
     if (dayOfWeek != null && dayOfWeek!.isNotEmpty) {
-      json['dayOfWeek'] = dayOfWeek!.map((e) => e.toJson()).toList();
+      final fieldJson14 = dayOfWeek!.map((e) => e.toJson()).toList();
+      json['dayOfWeek'] = fieldJson14.map((e) => e['value']).toList();
+      if (fieldJson14.any((e) => e['_value'] != null)) {
+        json['_dayOfWeek'] = fieldJson14.map((e) => e['_value']).toList();
+      }
     }
 
     if (timeOfDay != null && timeOfDay!.isNotEmpty) {
@@ -588,7 +598,11 @@ class TimingRepeat extends Element {
     }
 
     if (when != null && when!.isNotEmpty) {
-      json['when'] = when!.map((e) => e.toJson()).toList();
+      final fieldJson16 = when!.map((e) => e.toJson()).toList();
+      json['when'] = fieldJson16.map((e) => e['value']).toList();
+      if (fieldJson16.any((e) => e['_value'] != null)) {
+        json['_when'] = fieldJson16.map((e) => e['_value']).toList();
+      }
     }
 
     if (offset != null) {

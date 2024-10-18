@@ -14,7 +14,11 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   /// Constructor that accepts a valid [String] input representing a time and
   /// validates the input. Optionally takes an [Element].
   FhirTime(String? input, [Element? element])
-      : super(_validateTime(input), element);
+      : super(_validateTime(input), element) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Factory method to construct [FhirTime] from time units (hour, minute,
   /// second, millisecond).
@@ -50,7 +54,8 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
 
   /// Factory method to construct [FhirTime] from YAML input.
   factory FhirTime.fromYaml(String yaml) => FhirTime.fromJson(
-      jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>);
+        jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+      );
 
   /// Method to attempt parsing the input into a [FhirTime]. Returns [null] if
   /// parsing fails.

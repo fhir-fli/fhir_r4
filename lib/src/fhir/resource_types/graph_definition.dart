@@ -51,22 +51,21 @@ class GraphDefinition extends DomainResource {
   ) {
     return GraphDefinition(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -104,13 +103,13 @@ class GraphDefinition extends DomainResource {
               )
               .toList()
           : null,
-      url: json['url'] != null
+      url: (json['url'] != null || json['_url'] != null)
           ? FhirUri.fromJson({
               'value': json['url'],
               '_value': json['_url'],
             })
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
@@ -124,19 +123,20 @@ class GraphDefinition extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson({
-              'value': json['experimental'],
-              '_value': json['_experimental'],
-            })
-          : null,
-      date: json['date'] != null
+      experimental:
+          (json['experimental'] != null || json['_experimental'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['experimental'],
+                  '_value': json['_experimental'],
+                })
+              : null,
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
               '_value': json['_date'],
             })
           : null,
-      publisher: json['publisher'] != null
+      publisher: (json['publisher'] != null || json['_publisher'] != null)
           ? FhirString.fromJson({
               'value': json['publisher'],
               '_value': json['_publisher'],
@@ -151,7 +151,7 @@ class GraphDefinition extends DomainResource {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -175,7 +175,7 @@ class GraphDefinition extends DomainResource {
               )
               .toList()
           : null,
-      purpose: json['purpose'] != null
+      purpose: (json['purpose'] != null || json['_purpose'] != null)
           ? FhirMarkdown.fromJson({
               'value': json['purpose'],
               '_value': json['_purpose'],
@@ -185,7 +185,7 @@ class GraphDefinition extends DomainResource {
         'value': json['start'],
         '_value': json['_start'],
       }),
-      profile: json['profile'] != null
+      profile: (json['profile'] != null || json['_profile'] != null)
           ? FhirCanonical.fromJson({
               'value': json['profile'],
               '_value': json['_profile'],
@@ -350,7 +350,11 @@ class GraphDefinition extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -392,7 +396,11 @@ class GraphDefinition extends DomainResource {
       json['_name'] = fieldJson9['_value'];
     }
 
-    json['status'] = status.toJson();
+    final fieldJson10 = status.toJson();
+    json['status'] = fieldJson10['value'];
+    if (fieldJson10['_value'] != null) {
+      json['_status'] = fieldJson10['_value'];
+    }
 
     if (experimental != null) {
       final fieldJson11 = experimental!.toJson();
@@ -565,9 +573,7 @@ class GraphDefinitionLink extends BackboneElement {
   ) {
     return GraphDefinitionLink(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -587,31 +593,31 @@ class GraphDefinitionLink extends BackboneElement {
               )
               .toList()
           : null,
-      path: json['path'] != null
+      path: (json['path'] != null || json['_path'] != null)
           ? FhirString.fromJson({
               'value': json['path'],
               '_value': json['_path'],
             })
           : null,
-      sliceName: json['sliceName'] != null
+      sliceName: (json['sliceName'] != null || json['_sliceName'] != null)
           ? FhirString.fromJson({
               'value': json['sliceName'],
               '_value': json['_sliceName'],
             })
           : null,
-      min: json['min'] != null
+      min: (json['min'] != null || json['_min'] != null)
           ? FhirInteger.fromJson({
               'value': json['min'],
               '_value': json['_min'],
             })
           : null,
-      max: json['max'] != null
+      max: (json['max'] != null || json['_max'] != null)
           ? FhirString.fromJson({
               'value': json['max'],
               '_value': json['_max'],
             })
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -824,9 +830,7 @@ class GraphDefinitionTarget extends BackboneElement {
   ) {
     return GraphDefinitionTarget(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -850,13 +854,13 @@ class GraphDefinitionTarget extends BackboneElement {
         'value': json['type'],
         '_value': json['_type'],
       }),
-      params: json['params'] != null
+      params: (json['params'] != null || json['_params'] != null)
           ? FhirString.fromJson({
               'value': json['params'],
               '_value': json['_params'],
             })
           : null,
-      profile: json['profile'] != null
+      profile: (json['profile'] != null || json['_profile'] != null)
           ? FhirCanonical.fromJson({
               'value': json['profile'],
               '_value': json['_profile'],
@@ -1056,9 +1060,7 @@ class GraphDefinitionCompartment extends BackboneElement {
   ) {
     return GraphDefinitionCompartment(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1090,13 +1092,13 @@ class GraphDefinitionCompartment extends BackboneElement {
         'value': json['rule'],
         '_value': json['_rule'],
       }),
-      expression: json['expression'] != null
+      expression: (json['expression'] != null || json['_expression'] != null)
           ? FhirString.fromJson({
               'value': json['expression'],
               '_value': json['_expression'],
             })
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -1180,11 +1182,23 @@ class GraphDefinitionCompartment extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['use'] = use.toJson();
+    final fieldJson2 = use.toJson();
+    json['use'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_use'] = fieldJson2['_value'];
+    }
 
-    json['code'] = code.toJson();
+    final fieldJson3 = code.toJson();
+    json['code'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_code'] = fieldJson3['_value'];
+    }
 
-    json['rule'] = rule.toJson();
+    final fieldJson4 = rule.toJson();
+    json['rule'] = fieldJson4['value'];
+    if (fieldJson4['_value'] != null) {
+      json['_rule'] = fieldJson4['_value'];
+    }
 
     if (expression != null) {
       final fieldJson5 = expression!.toJson();

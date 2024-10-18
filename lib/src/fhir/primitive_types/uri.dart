@@ -21,7 +21,11 @@ class FhirUri extends PrimitiveType<Uri> {
       : super(
           input == null ? null : _validateCanonical(input),
           element,
-        );
+        ) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Constructs a [FhirUri] from a [Uri] object
   FhirUri.fromUri(super.input, [super.element]);

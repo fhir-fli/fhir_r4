@@ -49,22 +49,21 @@ class MessageHeader extends DomainResource {
   ) {
     return MessageHeader(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -107,7 +106,7 @@ class MessageHeader extends DomainResource {
               json['eventCoding'] as Map<String, dynamic>,
             )
           : null,
-      eventUri: json['eventUri'] != null
+      eventUri: (json['eventUri'] != null || json['_eventUri'] != null)
           ? FhirUri.fromJson({
               'value': json['eventUri'],
               '_value': json['_eventUri'],
@@ -164,7 +163,7 @@ class MessageHeader extends DomainResource {
               )
               .toList()
           : null,
-      definition: json['definition'] != null
+      definition: (json['definition'] != null || json['_definition'] != null)
           ? FhirCanonical.fromJson({
               'value': json['definition'],
               '_value': json['_definition'],
@@ -297,7 +296,11 @@ class MessageHeader extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -464,9 +467,7 @@ class MessageHeaderDestination extends BackboneElement {
   ) {
     return MessageHeaderDestination(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -486,7 +487,7 @@ class MessageHeaderDestination extends BackboneElement {
               )
               .toList()
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
@@ -671,9 +672,7 @@ class MessageHeaderSource extends BackboneElement {
   ) {
     return MessageHeaderSource(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -693,19 +692,19 @@ class MessageHeaderSource extends BackboneElement {
               )
               .toList()
           : null,
-      name: json['name'] != null
+      name: (json['name'] != null || json['_name'] != null)
           ? FhirString.fromJson({
               'value': json['name'],
               '_value': json['_name'],
             })
           : null,
-      software: json['software'] != null
+      software: (json['software'] != null || json['_software'] != null)
           ? FhirString.fromJson({
               'value': json['software'],
               '_value': json['_software'],
             })
           : null,
-      version: json['version'] != null
+      version: (json['version'] != null || json['_version'] != null)
           ? FhirString.fromJson({
               'value': json['version'],
               '_value': json['_version'],
@@ -901,9 +900,7 @@ class MessageHeaderResponse extends BackboneElement {
   ) {
     return MessageHeaderResponse(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -1012,7 +1009,11 @@ class MessageHeaderResponse extends BackboneElement {
       json['_identifier'] = fieldJson2['_value'];
     }
 
-    json['code'] = code.toJson();
+    final fieldJson3 = code.toJson();
+    json['code'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_code'] = fieldJson3['_value'];
+    }
 
     if (details != null) {
       json['details'] = details!.toJson();

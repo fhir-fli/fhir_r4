@@ -15,7 +15,11 @@ extension FhirIntegerExtension on num {
 /// Represents the FHIR primitive type `integer`.
 class FhirInteger extends FhirNumber {
   /// Constructor that ensures valid input.
-  FhirInteger(int? super.input, [super.element]);
+  FhirInteger(int? super.input, [super.element]) {
+    if (value == null && element == null) {
+      throw ArgumentError('A value or element is required');
+    }
+  }
 
   /// Factory constructor to create [FhirInteger] from JSON input.
   factory FhirInteger.fromJson(Map<String, dynamic> json) {

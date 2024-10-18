@@ -57,22 +57,21 @@ class DiagnosticReport extends DomainResource {
   ) {
     return DiagnosticReport(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -154,7 +153,8 @@ class DiagnosticReport extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      effectiveDateTime: json['effectiveDateTime'] != null
+      effectiveDateTime: (json['effectiveDateTime'] != null ||
+              json['_effectiveDateTime'] != null)
           ? FhirDateTime.fromJson({
               'value': json['effectiveDateTime'],
               '_value': json['_effectiveDateTime'],
@@ -165,7 +165,7 @@ class DiagnosticReport extends DomainResource {
               json['effectivePeriod'] as Map<String, dynamic>,
             )
           : null,
-      issued: json['issued'] != null
+      issued: (json['issued'] != null || json['_issued'] != null)
           ? FhirInstant.fromJson({
               'value': json['issued'],
               '_value': json['_issued'],
@@ -225,7 +225,7 @@ class DiagnosticReport extends DomainResource {
               )
               .toList()
           : null,
-      conclusion: json['conclusion'] != null
+      conclusion: (json['conclusion'] != null || json['_conclusion'] != null)
           ? FhirString.fromJson({
               'value': json['conclusion'],
               '_value': json['_conclusion'],
@@ -410,7 +410,11 @@ class DiagnosticReport extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -438,7 +442,11 @@ class DiagnosticReport extends DomainResource {
       json['basedOn'] = basedOn!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson9 = status.toJson();
+    json['status'] = fieldJson9['value'];
+    if (fieldJson9['_value'] != null) {
+      json['_status'] = fieldJson9['_value'];
+    }
 
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((e) => e.toJson()).toList();
@@ -622,9 +630,7 @@ class DiagnosticReportMedia extends BackboneElement {
   ) {
     return DiagnosticReportMedia(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -644,7 +650,7 @@ class DiagnosticReportMedia extends BackboneElement {
               )
               .toList()
           : null,
-      comment: json['comment'] != null
+      comment: (json['comment'] != null || json['_comment'] != null)
           ? FhirString.fromJson({
               'value': json['comment'],
               '_value': json['_comment'],

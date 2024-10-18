@@ -54,22 +54,21 @@ class DocumentReference extends DomainResource {
   ) {
     return DocumentReference(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson({
-              'value': json['implicitRules'],
-              '_value': json['_implicitRules'],
-            })
-          : null,
-      language: json['language'] != null
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
           ? CommonLanguages.fromJson({
               'value': json['language'],
               '_value': json['_language'],
@@ -125,7 +124,7 @@ class DocumentReference extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      docStatus: json['docStatus'] != null
+      docStatus: (json['docStatus'] != null || json['_docStatus'] != null)
           ? CompositionStatus.fromJson({
               'value': json['docStatus'],
               '_value': json['_docStatus'],
@@ -150,7 +149,7 @@ class DocumentReference extends DomainResource {
               json['subject'] as Map<String, dynamic>,
             )
           : null,
-      date: json['date'] != null
+      date: (json['date'] != null || json['_date'] != null)
           ? FhirInstant.fromJson({
               'value': json['date'],
               '_value': json['_date'],
@@ -184,7 +183,7 @@ class DocumentReference extends DomainResource {
               )
               .toList()
           : null,
-      description: json['description'] != null
+      description: (json['description'] != null || json['_description'] != null)
           ? FhirString.fromJson({
               'value': json['description'],
               '_value': json['_description'],
@@ -357,7 +356,11 @@ class DocumentReference extends DomainResource {
     }
 
     if (language != null) {
-      json['language'] = language!.toJson();
+      final fieldJson2 = language!.toJson();
+      json['language'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_language'] = fieldJson2['_value'];
+      }
     }
 
     if (text != null) {
@@ -385,10 +388,18 @@ class DocumentReference extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    json['status'] = status.toJson();
+    final fieldJson9 = status.toJson();
+    json['status'] = fieldJson9['value'];
+    if (fieldJson9['_value'] != null) {
+      json['_status'] = fieldJson9['_value'];
+    }
 
     if (docStatus != null) {
-      json['docStatus'] = docStatus!.toJson();
+      final fieldJson10 = docStatus!.toJson();
+      json['docStatus'] = fieldJson10['value'];
+      if (fieldJson10['_value'] != null) {
+        json['_docStatus'] = fieldJson10['_value'];
+      }
     }
 
     if (type != null) {
@@ -545,9 +556,7 @@ class DocumentReferenceRelatesTo extends BackboneElement {
   ) {
     return DocumentReferenceRelatesTo(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -638,7 +647,11 @@ class DocumentReferenceRelatesTo extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['code'] = code.toJson();
+    final fieldJson2 = code.toJson();
+    json['code'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_code'] = fieldJson2['_value'];
+    }
 
     json['target'] = target.toJson();
 
@@ -704,9 +717,7 @@ class DocumentReferenceContent extends BackboneElement {
   ) {
     return DocumentReferenceContent(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -873,9 +884,7 @@ class DocumentReferenceContext extends BackboneElement {
   ) {
     return DocumentReferenceContext(
       id: json['id'] != null
-          ? FhirString.fromJson(
-              json['id'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({'value': json['id']})
           : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
