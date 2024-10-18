@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the ChargeItemDefinition resource.
+/// A class to build query parameters for RESTful requests for
+/// the [ChargeItemDefinition] resource.
 class SearchChargeItemDefinition extends SearchResource {
-  /// a token search for [context] in the reosurce ChargeItemDefinition
+  /// a token search for [context] in the resource
+  /// [ChargeItemDefinition]
   SearchChargeItemDefinition context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchChargeItemDefinition extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce ChargeItemDefinition
+  /// a quantity search for [contextQuantity] in the resource
+  /// [ChargeItemDefinition]
   SearchChargeItemDefinition contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchChargeItemDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce ChargeItemDefinition
+  /// a token search for [contextType] in the resource
+  /// [ChargeItemDefinition]
   SearchChargeItemDefinition contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchChargeItemDefinition extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce ChargeItemDefinition
+  /// a date search for [date] in the resource
+  /// [ChargeItemDefinition]
   SearchChargeItemDefinition date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchChargeItemDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce ChargeItemDefinition
+  /// a string search for [description] in the resource
+  /// [ChargeItemDefinition]
   SearchChargeItemDefinition description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchChargeItemDefinition extends SearchResource {
     return this;
   }
 
-  /// a date search for [effective] in the reosurce ChargeItemDefinition
+  /// a date search for [effective] in the resource
+  /// [ChargeItemDefinition]
   SearchChargeItemDefinition effective(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -76,7 +83,8 @@ class SearchChargeItemDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce ChargeItemDefinition
+  /// a token search for [identifier] in the resource
+  /// [ChargeItemDefinition]
   SearchChargeItemDefinition identifier(
     FhirString value, {
     FhirUri? system,
@@ -87,7 +95,8 @@ class SearchChargeItemDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce ChargeItemDefinition
+  /// a token search for [jurisdiction] in the resource
+  /// [ChargeItemDefinition]
   SearchChargeItemDefinition jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -98,7 +107,8 @@ class SearchChargeItemDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce ChargeItemDefinition
+  /// a string search for [publisher] in the resource
+  /// [ChargeItemDefinition]
   SearchChargeItemDefinition publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -111,7 +121,8 @@ class SearchChargeItemDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce ChargeItemDefinition
+  /// a token search for [status] in the resource
+  /// [ChargeItemDefinition]
   SearchChargeItemDefinition status(
     FhirString value, {
     FhirUri? system,
@@ -122,7 +133,8 @@ class SearchChargeItemDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce ChargeItemDefinition
+  /// a string search for [title] in the resource
+  /// [ChargeItemDefinition]
   SearchChargeItemDefinition title(
     FhirString value, {
     SearchModifier? modifier,
@@ -135,13 +147,18 @@ class SearchChargeItemDefinition extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce ChargeItemDefinition
-  SearchChargeItemDefinition url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [ChargeItemDefinition]
+  SearchChargeItemDefinition url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce ChargeItemDefinition
+  /// a token search for [version] in the resource
+  /// [ChargeItemDefinition]
   SearchChargeItemDefinition version(
     FhirString value, {
     FhirUri? system,

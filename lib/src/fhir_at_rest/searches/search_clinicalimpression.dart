@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the ClinicalImpression resource.
+/// A class to build query parameters for RESTful requests for
+/// the [ClinicalImpression] resource.
 class SearchClinicalImpression extends SearchResource {
-  /// a date search for [date] in the reosurce ClinicalImpression
+  /// a date search for [date] in the resource
+  /// [ClinicalImpression]
   SearchClinicalImpression date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -15,7 +17,8 @@ class SearchClinicalImpression extends SearchResource {
     return this;
   }
 
-  /// a token search for [findingCode] in the reosurce ClinicalImpression
+  /// a token search for [findingCode] in the resource
+  /// [ClinicalImpression]
   SearchClinicalImpression findingCode(
     FhirString value, {
     FhirUri? system,
@@ -26,7 +29,8 @@ class SearchClinicalImpression extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce ClinicalImpression
+  /// a token search for [identifier] in the resource
+  /// [ClinicalImpression]
   SearchClinicalImpression identifier(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchClinicalImpression extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce ClinicalImpression
+  /// a token search for [status] in the resource
+  /// [ClinicalImpression]
   SearchClinicalImpression status(
     FhirString value, {
     FhirUri? system,

@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the PaymentReconciliation resource.
+/// A class to build query parameters for RESTful requests for
+/// the [PaymentReconciliation] resource.
 class SearchPaymentReconciliation extends SearchResource {
-  /// a date search for [created] in the reosurce PaymentReconciliation
+  /// a date search for [created] in the resource
+  /// [PaymentReconciliation]
   SearchPaymentReconciliation created(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -16,7 +18,8 @@ class SearchPaymentReconciliation extends SearchResource {
     return this;
   }
 
-  /// a string search for [disposition] in the reosurce PaymentReconciliation
+  /// a string search for [disposition] in the resource
+  /// [PaymentReconciliation]
   SearchPaymentReconciliation disposition(
     FhirString value, {
     SearchModifier? modifier,
@@ -29,7 +32,8 @@ class SearchPaymentReconciliation extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce PaymentReconciliation
+  /// a token search for [identifier] in the resource
+  /// [PaymentReconciliation]
   SearchPaymentReconciliation identifier(
     FhirString value, {
     FhirUri? system,
@@ -40,7 +44,8 @@ class SearchPaymentReconciliation extends SearchResource {
     return this;
   }
 
-  /// a token search for [outcome] in the reosurce PaymentReconciliation
+  /// a token search for [outcome] in the resource
+  /// [PaymentReconciliation]
   SearchPaymentReconciliation outcome(
     FhirString value, {
     FhirUri? system,
@@ -51,7 +56,8 @@ class SearchPaymentReconciliation extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce PaymentReconciliation
+  /// a token search for [status] in the resource
+  /// [PaymentReconciliation]
   SearchPaymentReconciliation status(
     FhirString value, {
     FhirUri? system,

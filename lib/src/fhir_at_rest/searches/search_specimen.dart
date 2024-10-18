@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Specimen resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Specimen] resource.
 class SearchSpecimen extends SearchResource {
-  /// a token search for [accession] in the reosurce Specimen
+  /// a token search for [accession] in the resource
+  /// [Specimen]
   SearchSpecimen accession(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchSpecimen extends SearchResource {
     return this;
   }
 
-  /// a token search for [bodysite] in the reosurce Specimen
+  /// a token search for [bodysite] in the resource
+  /// [Specimen]
   SearchSpecimen bodysite(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchSpecimen extends SearchResource {
     return this;
   }
 
-  /// a date search for [collected] in the reosurce Specimen
+  /// a date search for [collected] in the resource
+  /// [Specimen]
   SearchSpecimen collected(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -38,7 +42,8 @@ class SearchSpecimen extends SearchResource {
     return this;
   }
 
-  /// a token search for [container] in the reosurce Specimen
+  /// a token search for [container] in the resource
+  /// [Specimen]
   SearchSpecimen container(
     FhirString value, {
     FhirUri? system,
@@ -49,7 +54,8 @@ class SearchSpecimen extends SearchResource {
     return this;
   }
 
-  /// a token search for [containerId] in the reosurce Specimen
+  /// a token search for [containerId] in the resource
+  /// [Specimen]
   SearchSpecimen containerId(
     FhirString value, {
     FhirUri? system,
@@ -60,7 +66,8 @@ class SearchSpecimen extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Specimen
+  /// a token search for [identifier] in the resource
+  /// [Specimen]
   SearchSpecimen identifier(
     FhirString value, {
     FhirUri? system,
@@ -71,7 +78,8 @@ class SearchSpecimen extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Specimen
+  /// a token search for [status] in the resource
+  /// [Specimen]
   SearchSpecimen status(
     FhirString value, {
     FhirUri? system,
@@ -82,7 +90,8 @@ class SearchSpecimen extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce Specimen
+  /// a token search for [type] in the resource
+  /// [Specimen]
   SearchSpecimen type(
     FhirString value, {
     FhirUri? system,

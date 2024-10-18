@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the MessageDefinition resource.
+/// A class to build query parameters for RESTful requests for
+/// the [MessageDefinition] resource.
 class SearchMessageDefinition extends SearchResource {
-  /// a token search for [context] in the reosurce MessageDefinition
+  /// a token search for [context] in the resource
+  /// [MessageDefinition]
   SearchMessageDefinition context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce MessageDefinition
+  /// a quantity search for [contextQuantity] in the resource
+  /// [MessageDefinition]
   SearchMessageDefinition contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce MessageDefinition
+  /// a token search for [contextType] in the resource
+  /// [MessageDefinition]
   SearchMessageDefinition contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce MessageDefinition
+  /// a date search for [date] in the resource
+  /// [MessageDefinition]
   SearchMessageDefinition date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce MessageDefinition
+  /// a string search for [description] in the resource
+  /// [MessageDefinition]
   SearchMessageDefinition description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce MessageDefinition
+  /// a token search for [jurisdiction] in the resource
+  /// [MessageDefinition]
   SearchMessageDefinition jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -77,7 +84,8 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce MessageDefinition
+  /// a string search for [name] in the resource
+  /// [MessageDefinition]
   SearchMessageDefinition name(
     FhirString value, {
     SearchModifier? modifier,
@@ -89,7 +97,8 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce MessageDefinition
+  /// a string search for [publisher] in the resource
+  /// [MessageDefinition]
   SearchMessageDefinition publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -102,7 +111,8 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce MessageDefinition
+  /// a token search for [status] in the resource
+  /// [MessageDefinition]
   SearchMessageDefinition status(
     FhirString value, {
     FhirUri? system,
@@ -113,7 +123,8 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce MessageDefinition
+  /// a string search for [title] in the resource
+  /// [MessageDefinition]
   SearchMessageDefinition title(
     FhirString value, {
     SearchModifier? modifier,
@@ -126,13 +137,18 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce MessageDefinition
-  SearchMessageDefinition url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [MessageDefinition]
+  SearchMessageDefinition url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce MessageDefinition
+  /// a token search for [version] in the resource
+  /// [MessageDefinition]
   SearchMessageDefinition version(
     FhirString value, {
     FhirUri? system,
@@ -143,7 +159,8 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce MessageDefinition
+  /// a token search for [identifier] in the resource
+  /// [MessageDefinition]
   SearchMessageDefinition identifier(
     FhirString value, {
     FhirUri? system,
@@ -154,7 +171,8 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [category] in the reosurce MessageDefinition
+  /// a token search for [category] in the resource
+  /// [MessageDefinition]
   SearchMessageDefinition category(
     FhirString value, {
     FhirUri? system,
@@ -165,7 +183,8 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [event] in the reosurce MessageDefinition
+  /// a token search for [event] in the resource
+  /// [MessageDefinition]
   SearchMessageDefinition event(
     FhirString value, {
     FhirUri? system,
@@ -176,7 +195,8 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [focus] in the reosurce MessageDefinition
+  /// a token search for [focus] in the resource
+  /// [MessageDefinition]
   SearchMessageDefinition focus(
     FhirString value, {
     FhirUri? system,

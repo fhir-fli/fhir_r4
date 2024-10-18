@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the TestScript resource.
+/// A class to build query parameters for RESTful requests for
+/// the [TestScript] resource.
 class SearchTestScript extends SearchResource {
-  /// a token search for [context] in the reosurce TestScript
+  /// a token search for [context] in the resource
+  /// [TestScript]
   SearchTestScript context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchTestScript extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce TestScript
+  /// a quantity search for [contextQuantity] in the resource
+  /// [TestScript]
   SearchTestScript contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchTestScript extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce TestScript
+  /// a token search for [contextType] in the resource
+  /// [TestScript]
   SearchTestScript contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchTestScript extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce TestScript
+  /// a date search for [date] in the resource
+  /// [TestScript]
   SearchTestScript date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchTestScript extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce TestScript
+  /// a string search for [description] in the resource
+  /// [TestScript]
   SearchTestScript description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchTestScript extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce TestScript
+  /// a token search for [identifier] in the resource
+  /// [TestScript]
   SearchTestScript identifier(
     FhirString value, {
     FhirUri? system,
@@ -77,7 +84,8 @@ class SearchTestScript extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce TestScript
+  /// a token search for [jurisdiction] in the resource
+  /// [TestScript]
   SearchTestScript jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -88,7 +96,8 @@ class SearchTestScript extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce TestScript
+  /// a string search for [name] in the resource
+  /// [TestScript]
   SearchTestScript name(
     FhirString value, {
     SearchModifier? modifier,
@@ -100,7 +109,8 @@ class SearchTestScript extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce TestScript
+  /// a string search for [publisher] in the resource
+  /// [TestScript]
   SearchTestScript publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -113,7 +123,8 @@ class SearchTestScript extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce TestScript
+  /// a token search for [status] in the resource
+  /// [TestScript]
   SearchTestScript status(
     FhirString value, {
     FhirUri? system,
@@ -124,7 +135,8 @@ class SearchTestScript extends SearchResource {
     return this;
   }
 
-  /// a string search for [testscriptCapability] in the reosurce TestScript
+  /// a string search for [testscriptCapability] in the resource
+  /// [TestScript]
   SearchTestScript testscriptCapability(
     FhirString value, {
     SearchModifier? modifier,
@@ -137,7 +149,8 @@ class SearchTestScript extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce TestScript
+  /// a string search for [title] in the resource
+  /// [TestScript]
   SearchTestScript title(
     FhirString value, {
     SearchModifier? modifier,
@@ -150,13 +163,18 @@ class SearchTestScript extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce TestScript
-  SearchTestScript url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [TestScript]
+  SearchTestScript url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce TestScript
+  /// a token search for [version] in the resource
+  /// [TestScript]
   SearchTestScript version(
     FhirString value, {
     FhirUri? system,

@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the RequestGroup resource.
+/// A class to build query parameters for RESTful requests for
+/// the [RequestGroup] resource.
 class SearchRequestGroup extends SearchResource {
-  /// a date search for [authored] in the reosurce RequestGroup
+  /// a date search for [authored] in the resource
+  /// [RequestGroup]
   SearchRequestGroup authored(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -16,7 +18,8 @@ class SearchRequestGroup extends SearchResource {
     return this;
   }
 
-  /// a token search for [code] in the reosurce RequestGroup
+  /// a token search for [code] in the resource
+  /// [RequestGroup]
   SearchRequestGroup code(
     FhirString value, {
     FhirUri? system,
@@ -27,7 +30,8 @@ class SearchRequestGroup extends SearchResource {
     return this;
   }
 
-  /// a token search for [groupIdentifier] in the reosurce RequestGroup
+  /// a token search for [groupIdentifier] in the resource
+  /// [RequestGroup]
   SearchRequestGroup groupIdentifier(
     FhirString value, {
     FhirUri? system,
@@ -38,7 +42,8 @@ class SearchRequestGroup extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce RequestGroup
+  /// a token search for [identifier] in the resource
+  /// [RequestGroup]
   SearchRequestGroup identifier(
     FhirString value, {
     FhirUri? system,
@@ -49,15 +54,19 @@ class SearchRequestGroup extends SearchResource {
     return this;
   }
 
-  /// a uri search for [instantiatesUri] in the reosurce RequestGroup
-  SearchRequestGroup instantiatesUri(FhirUri value,
-      {SearchModifier? modifier}) {
+  /// a uri search for [instantiatesUri] in the resource
+  /// [RequestGroup]
+  SearchRequestGroup instantiatesUri(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}instantiates_uri'] =
         value.toString();
     return this;
   }
 
-  /// a token search for [intent] in the reosurce RequestGroup
+  /// a token search for [intent] in the resource
+  /// [RequestGroup]
   SearchRequestGroup intent(
     FhirString value, {
     FhirUri? system,
@@ -68,7 +77,8 @@ class SearchRequestGroup extends SearchResource {
     return this;
   }
 
-  /// a token search for [priority] in the reosurce RequestGroup
+  /// a token search for [priority] in the resource
+  /// [RequestGroup]
   SearchRequestGroup priority(
     FhirString value, {
     FhirUri? system,
@@ -79,7 +89,8 @@ class SearchRequestGroup extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce RequestGroup
+  /// a token search for [status] in the resource
+  /// [RequestGroup]
   SearchRequestGroup status(
     FhirString value, {
     FhirUri? system,

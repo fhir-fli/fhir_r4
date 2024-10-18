@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Group resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Group] resource.
 class SearchGroup extends SearchResource {
-  /// a token search for [actual] in the reosurce Group
+  /// a token search for [actual] in the resource
+  /// [Group]
   SearchGroup actual(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchGroup extends SearchResource {
     return this;
   }
 
-  /// a token search for [characteristic] in the reosurce Group
+  /// a token search for [characteristic] in the resource
+  /// [Group]
   SearchGroup characteristic(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchGroup extends SearchResource {
     return this;
   }
 
-  /// a token search for [code] in the reosurce Group
+  /// a token search for [code] in the resource
+  /// [Group]
   SearchGroup code(
     FhirString value, {
     FhirUri? system,
@@ -39,7 +43,8 @@ class SearchGroup extends SearchResource {
     return this;
   }
 
-  /// a token search for [exclude] in the reosurce Group
+  /// a token search for [exclude] in the resource
+  /// [Group]
   SearchGroup exclude(
     FhirString value, {
     FhirUri? system,
@@ -50,7 +55,8 @@ class SearchGroup extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Group
+  /// a token search for [identifier] in the resource
+  /// [Group]
   SearchGroup identifier(
     FhirString value, {
     FhirUri? system,
@@ -61,7 +67,8 @@ class SearchGroup extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce Group
+  /// a token search for [type] in the resource
+  /// [Group]
   SearchGroup type(
     FhirString value, {
     FhirUri? system,
@@ -72,7 +79,8 @@ class SearchGroup extends SearchResource {
     return this;
   }
 
-  /// a token search for [value] in the reosurce Group
+  /// a token search for [value] in the resource
+  /// [Group]
   SearchGroup value(
     FhirString value, {
     FhirUri? system,

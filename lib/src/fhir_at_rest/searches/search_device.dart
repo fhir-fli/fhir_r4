@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Device resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Device] resource.
 class SearchDevice extends SearchResource {
-  /// a string search for [deviceName] in the reosurce Device
+  /// a string search for [deviceName] in the resource
+  /// [Device]
   SearchDevice deviceName(
     FhirString value, {
     SearchModifier? modifier,
@@ -19,7 +21,8 @@ class SearchDevice extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Device
+  /// a token search for [identifier] in the resource
+  /// [Device]
   SearchDevice identifier(
     FhirString value, {
     FhirUri? system,
@@ -30,7 +33,8 @@ class SearchDevice extends SearchResource {
     return this;
   }
 
-  /// a string search for [manufacturer] in the reosurce Device
+  /// a string search for [manufacturer] in the resource
+  /// [Device]
   SearchDevice manufacturer(
     FhirString value, {
     SearchModifier? modifier,
@@ -43,7 +47,8 @@ class SearchDevice extends SearchResource {
     return this;
   }
 
-  /// a string search for [model] in the reosurce Device
+  /// a string search for [model] in the resource
+  /// [Device]
   SearchDevice model(
     FhirString value, {
     SearchModifier? modifier,
@@ -56,7 +61,8 @@ class SearchDevice extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Device
+  /// a token search for [status] in the resource
+  /// [Device]
   SearchDevice status(
     FhirString value, {
     FhirUri? system,
@@ -67,7 +73,8 @@ class SearchDevice extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce Device
+  /// a token search for [type] in the resource
+  /// [Device]
   SearchDevice type(
     FhirString value, {
     FhirUri? system,
@@ -78,7 +85,8 @@ class SearchDevice extends SearchResource {
     return this;
   }
 
-  /// a string search for [udiCarrier] in the reosurce Device
+  /// a string search for [udiCarrier] in the resource
+  /// [Device]
   SearchDevice udiCarrier(
     FhirString value, {
     SearchModifier? modifier,
@@ -91,7 +99,8 @@ class SearchDevice extends SearchResource {
     return this;
   }
 
-  /// a string search for [udiDi] in the reosurce Device
+  /// a string search for [udiDi] in the resource
+  /// [Device]
   SearchDevice udiDi(
     FhirString value, {
     SearchModifier? modifier,
@@ -104,8 +113,12 @@ class SearchDevice extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce Device
-  SearchDevice url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [Device]
+  SearchDevice url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }

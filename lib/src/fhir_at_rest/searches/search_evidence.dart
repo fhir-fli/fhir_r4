@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Evidence resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Evidence] resource.
 class SearchEvidence extends SearchResource {
-  /// a token search for [context] in the reosurce Evidence
+  /// a token search for [context] in the resource
+  /// [Evidence]
   SearchEvidence context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchEvidence extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce Evidence
+  /// a quantity search for [contextQuantity] in the resource
+  /// [Evidence]
   SearchEvidence contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchEvidence extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce Evidence
+  /// a token search for [contextType] in the resource
+  /// [Evidence]
   SearchEvidence contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchEvidence extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce Evidence
+  /// a date search for [date] in the resource
+  /// [Evidence]
   SearchEvidence date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchEvidence extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce Evidence
+  /// a string search for [description] in the resource
+  /// [Evidence]
   SearchEvidence description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchEvidence extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Evidence
+  /// a token search for [identifier] in the resource
+  /// [Evidence]
   SearchEvidence identifier(
     FhirString value, {
     FhirUri? system,
@@ -77,7 +84,8 @@ class SearchEvidence extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce Evidence
+  /// a string search for [publisher] in the resource
+  /// [Evidence]
   SearchEvidence publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -90,7 +98,8 @@ class SearchEvidence extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Evidence
+  /// a token search for [status] in the resource
+  /// [Evidence]
   SearchEvidence status(
     FhirString value, {
     FhirUri? system,
@@ -101,7 +110,8 @@ class SearchEvidence extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce Evidence
+  /// a string search for [title] in the resource
+  /// [Evidence]
   SearchEvidence title(
     FhirString value, {
     SearchModifier? modifier,
@@ -114,13 +124,18 @@ class SearchEvidence extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce Evidence
-  SearchEvidence url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [Evidence]
+  SearchEvidence url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce Evidence
+  /// a token search for [version] in the resource
+  /// [Evidence]
   SearchEvidence version(
     FhirString value, {
     FhirUri? system,

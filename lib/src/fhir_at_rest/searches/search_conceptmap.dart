@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the ConceptMap resource.
+/// A class to build query parameters for RESTful requests for
+/// the [ConceptMap] resource.
 class SearchConceptMap extends SearchResource {
-  /// a token search for [context] in the reosurce ConceptMap
+  /// a token search for [context] in the resource
+  /// [ConceptMap]
   SearchConceptMap context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce ConceptMap
+  /// a quantity search for [contextQuantity] in the resource
+  /// [ConceptMap]
   SearchConceptMap contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce ConceptMap
+  /// a token search for [contextType] in the resource
+  /// [ConceptMap]
   SearchConceptMap contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce ConceptMap
+  /// a date search for [date] in the resource
+  /// [ConceptMap]
   SearchConceptMap date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce ConceptMap
+  /// a string search for [description] in the resource
+  /// [ConceptMap]
   SearchConceptMap description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce ConceptMap
+  /// a token search for [jurisdiction] in the resource
+  /// [ConceptMap]
   SearchConceptMap jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -77,7 +84,8 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce ConceptMap
+  /// a string search for [name] in the resource
+  /// [ConceptMap]
   SearchConceptMap name(
     FhirString value, {
     SearchModifier? modifier,
@@ -89,7 +97,8 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce ConceptMap
+  /// a string search for [publisher] in the resource
+  /// [ConceptMap]
   SearchConceptMap publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -102,7 +111,8 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce ConceptMap
+  /// a token search for [status] in the resource
+  /// [ConceptMap]
   SearchConceptMap status(
     FhirString value, {
     FhirUri? system,
@@ -113,7 +123,8 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce ConceptMap
+  /// a string search for [title] in the resource
+  /// [ConceptMap]
   SearchConceptMap title(
     FhirString value, {
     SearchModifier? modifier,
@@ -126,13 +137,18 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce ConceptMap
-  SearchConceptMap url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [ConceptMap]
+  SearchConceptMap url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce ConceptMap
+  /// a token search for [version] in the resource
+  /// [ConceptMap]
   SearchConceptMap version(
     FhirString value, {
     FhirUri? system,
@@ -143,7 +159,8 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce ConceptMap
+  /// a token search for [identifier] in the resource
+  /// [ConceptMap]
   SearchConceptMap identifier(
     FhirString value, {
     FhirUri? system,
@@ -154,21 +171,30 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
-  /// a uri search for [dependson] in the reosurce ConceptMap
-  SearchConceptMap dependson(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [dependson] in the resource
+  /// [ConceptMap]
+  SearchConceptMap dependson(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}dependson'] =
         value.toString();
     return this;
   }
 
-  /// a uri search for [product] in the reosurce ConceptMap
-  SearchConceptMap product(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [product] in the resource
+  /// [ConceptMap]
+  SearchConceptMap product(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}product'] =
         value.toString();
     return this;
   }
 
-  /// a token search for [sourceCode] in the reosurce ConceptMap
+  /// a token search for [sourceCode] in the resource
+  /// [ConceptMap]
   SearchConceptMap sourceCode(
     FhirString value, {
     FhirUri? system,
@@ -179,14 +205,19 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
-  /// a uri search for [sourceSystem] in the reosurce ConceptMap
-  SearchConceptMap sourceSystem(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [sourceSystem] in the resource
+  /// [ConceptMap]
+  SearchConceptMap sourceSystem(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}source_system'] =
         value.toString();
     return this;
   }
 
-  /// a token search for [targetCode] in the reosurce ConceptMap
+  /// a token search for [targetCode] in the resource
+  /// [ConceptMap]
   SearchConceptMap targetCode(
     FhirString value, {
     FhirUri? system,
@@ -197,8 +228,12 @@ class SearchConceptMap extends SearchResource {
     return this;
   }
 
-  /// a uri search for [targetSystem] in the reosurce ConceptMap
-  SearchConceptMap targetSystem(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [targetSystem] in the resource
+  /// [ConceptMap]
+  SearchConceptMap targetSystem(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}target_system'] =
         value.toString();
     return this;

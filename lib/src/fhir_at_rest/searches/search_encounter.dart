@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Encounter resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Encounter] resource.
 class SearchEncounter extends SearchResource {
-  /// a date search for [date] in the reosurce Encounter
+  /// a date search for [date] in the resource
+  /// [Encounter]
   SearchEncounter date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -15,7 +17,8 @@ class SearchEncounter extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Encounter
+  /// a token search for [identifier] in the resource
+  /// [Encounter]
   SearchEncounter identifier(
     FhirString value, {
     FhirUri? system,
@@ -26,7 +29,8 @@ class SearchEncounter extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce Encounter
+  /// a token search for [type] in the resource
+  /// [Encounter]
   SearchEncounter type(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchEncounter extends SearchResource {
     return this;
   }
 
-  /// a token search for [class_] in the reosurce Encounter
+  /// a token search for [class_] in the resource
+  /// [Encounter]
   SearchEncounter class_(
     FhirString value, {
     FhirUri? system,
@@ -48,7 +53,8 @@ class SearchEncounter extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [length] in the reosurce Encounter
+  /// a quantity search for [length] in the resource
+  /// [Encounter]
   SearchEncounter length(
     FhirDecimal value, {
     FhirString? unit,
@@ -64,7 +70,8 @@ class SearchEncounter extends SearchResource {
     return this;
   }
 
-  /// a date search for [locationPeriod] in the reosurce Encounter
+  /// a date search for [locationPeriod] in the resource
+  /// [Encounter]
   SearchEncounter locationPeriod(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -74,7 +81,8 @@ class SearchEncounter extends SearchResource {
     return this;
   }
 
-  /// a token search for [participantType] in the reosurce Encounter
+  /// a token search for [participantType] in the resource
+  /// [Encounter]
   SearchEncounter participantType(
     FhirString value, {
     FhirUri? system,
@@ -85,7 +93,8 @@ class SearchEncounter extends SearchResource {
     return this;
   }
 
-  /// a token search for [reasonCode] in the reosurce Encounter
+  /// a token search for [reasonCode] in the resource
+  /// [Encounter]
   SearchEncounter reasonCode(
     FhirString value, {
     FhirUri? system,
@@ -96,7 +105,8 @@ class SearchEncounter extends SearchResource {
     return this;
   }
 
-  /// a token search for [specialArrangement] in the reosurce Encounter
+  /// a token search for [specialArrangement] in the resource
+  /// [Encounter]
   SearchEncounter specialArrangement(
     FhirString value, {
     FhirUri? system,
@@ -107,7 +117,8 @@ class SearchEncounter extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Encounter
+  /// a token search for [status] in the resource
+  /// [Encounter]
   SearchEncounter status(
     FhirString value, {
     FhirUri? system,

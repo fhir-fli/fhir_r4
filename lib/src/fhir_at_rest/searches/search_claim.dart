@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Claim resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Claim] resource.
 class SearchClaim extends SearchResource {
-  /// a date search for [created] in the reosurce Claim
+  /// a date search for [created] in the resource
+  /// [Claim]
   SearchClaim created(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -16,7 +18,8 @@ class SearchClaim extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Claim
+  /// a token search for [identifier] in the resource
+  /// [Claim]
   SearchClaim identifier(
     FhirString value, {
     FhirUri? system,
@@ -27,7 +30,8 @@ class SearchClaim extends SearchResource {
     return this;
   }
 
-  /// a token search for [priority] in the reosurce Claim
+  /// a token search for [priority] in the resource
+  /// [Claim]
   SearchClaim priority(
     FhirString value, {
     FhirUri? system,
@@ -38,7 +42,8 @@ class SearchClaim extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Claim
+  /// a token search for [status] in the resource
+  /// [Claim]
   SearchClaim status(
     FhirString value, {
     FhirUri? system,
@@ -49,7 +54,8 @@ class SearchClaim extends SearchResource {
     return this;
   }
 
-  /// a token search for [use] in the reosurce Claim
+  /// a token search for [use] in the resource
+  /// [Claim]
   SearchClaim use(
     FhirString value, {
     FhirUri? system,

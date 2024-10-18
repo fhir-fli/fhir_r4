@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the DeviceUseStatement resource.
+/// A class to build query parameters for RESTful requests for
+/// the [DeviceUseStatement] resource.
 class SearchDeviceUseStatement extends SearchResource {
-  /// a token search for [identifier] in the reosurce DeviceUseStatement
+  /// a token search for [identifier] in the resource
+  /// [DeviceUseStatement]
   SearchDeviceUseStatement identifier(
     FhirString value, {
     FhirUri? system,

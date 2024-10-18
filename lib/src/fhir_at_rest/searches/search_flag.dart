@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Flag resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Flag] resource.
 class SearchFlag extends SearchResource {
-  /// a date search for [date] in the reosurce Flag
+  /// a date search for [date] in the resource
+  /// [Flag]
   SearchFlag date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -15,7 +17,8 @@ class SearchFlag extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Flag
+  /// a token search for [identifier] in the resource
+  /// [Flag]
   SearchFlag identifier(
     FhirString value, {
     FhirUri? system,

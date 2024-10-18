@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the FamilyMemberHistory resource.
+/// A class to build query parameters for RESTful requests for
+/// the [FamilyMemberHistory] resource.
 class SearchFamilyMemberHistory extends SearchResource {
-  /// a token search for [code] in the reosurce FamilyMemberHistory
+  /// a token search for [code] in the resource
+  /// [FamilyMemberHistory]
   SearchFamilyMemberHistory code(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchFamilyMemberHistory extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce FamilyMemberHistory
+  /// a date search for [date] in the resource
+  /// [FamilyMemberHistory]
   SearchFamilyMemberHistory date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -26,7 +29,8 @@ class SearchFamilyMemberHistory extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce FamilyMemberHistory
+  /// a token search for [identifier] in the resource
+  /// [FamilyMemberHistory]
   SearchFamilyMemberHistory identifier(
     FhirString value, {
     FhirUri? system,
@@ -37,15 +41,19 @@ class SearchFamilyMemberHistory extends SearchResource {
     return this;
   }
 
-  /// a uri search for [instantiatesUri] in the reosurce FamilyMemberHistory
-  SearchFamilyMemberHistory instantiatesUri(FhirUri value,
-      {SearchModifier? modifier}) {
+  /// a uri search for [instantiatesUri] in the resource
+  /// [FamilyMemberHistory]
+  SearchFamilyMemberHistory instantiatesUri(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}instantiates_uri'] =
         value.toString();
     return this;
   }
 
-  /// a token search for [relationship] in the reosurce FamilyMemberHistory
+  /// a token search for [relationship] in the resource
+  /// [FamilyMemberHistory]
   SearchFamilyMemberHistory relationship(
     FhirString value, {
     FhirUri? system,
@@ -56,7 +64,8 @@ class SearchFamilyMemberHistory extends SearchResource {
     return this;
   }
 
-  /// a token search for [sex] in the reosurce FamilyMemberHistory
+  /// a token search for [sex] in the resource
+  /// [FamilyMemberHistory]
   SearchFamilyMemberHistory sex(
     FhirString value, {
     FhirUri? system,
@@ -67,7 +76,8 @@ class SearchFamilyMemberHistory extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce FamilyMemberHistory
+  /// a token search for [status] in the resource
+  /// [FamilyMemberHistory]
   SearchFamilyMemberHistory status(
     FhirString value, {
     FhirUri? system,

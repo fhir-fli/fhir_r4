@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Coverage resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Coverage] resource.
 class SearchCoverage extends SearchResource {
-  /// a token search for [classType] in the reosurce Coverage
+  /// a token search for [classType] in the resource
+  /// [Coverage]
   SearchCoverage classType(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchCoverage extends SearchResource {
     return this;
   }
 
-  /// a string search for [classValue] in the reosurce Coverage
+  /// a string search for [classValue] in the resource
+  /// [Coverage]
   SearchCoverage classValue(
     FhirString value, {
     SearchModifier? modifier,
@@ -30,7 +33,8 @@ class SearchCoverage extends SearchResource {
     return this;
   }
 
-  /// a string search for [dependent] in the reosurce Coverage
+  /// a string search for [dependent] in the resource
+  /// [Coverage]
   SearchCoverage dependent(
     FhirString value, {
     SearchModifier? modifier,
@@ -43,7 +47,8 @@ class SearchCoverage extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Coverage
+  /// a token search for [identifier] in the resource
+  /// [Coverage]
   SearchCoverage identifier(
     FhirString value, {
     FhirUri? system,
@@ -54,7 +59,8 @@ class SearchCoverage extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Coverage
+  /// a token search for [status] in the resource
+  /// [Coverage]
   SearchCoverage status(
     FhirString value, {
     FhirUri? system,
@@ -65,7 +71,8 @@ class SearchCoverage extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce Coverage
+  /// a token search for [type] in the resource
+  /// [Coverage]
   SearchCoverage type(
     FhirString value, {
     FhirUri? system,

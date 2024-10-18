@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the GuidanceResponse resource.
+/// A class to build query parameters for RESTful requests for
+/// the [GuidanceResponse] resource.
 class SearchGuidanceResponse extends SearchResource {
-  /// a token search for [identifier] in the reosurce GuidanceResponse
+  /// a token search for [identifier] in the resource
+  /// [GuidanceResponse]
   SearchGuidanceResponse identifier(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchGuidanceResponse extends SearchResource {
     return this;
   }
 
-  /// a token search for [request] in the reosurce GuidanceResponse
+  /// a token search for [request] in the resource
+  /// [GuidanceResponse]
   SearchGuidanceResponse request(
     FhirString value, {
     FhirUri? system,

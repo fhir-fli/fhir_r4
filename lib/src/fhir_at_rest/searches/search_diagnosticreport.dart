@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the DiagnosticReport resource.
+/// A class to build query parameters for RESTful requests for
+/// the [DiagnosticReport] resource.
 class SearchDiagnosticReport extends SearchResource {
-  /// a token search for [code] in the reosurce DiagnosticReport
+  /// a token search for [code] in the resource
+  /// [DiagnosticReport]
   SearchDiagnosticReport code(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchDiagnosticReport extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce DiagnosticReport
+  /// a date search for [date] in the resource
+  /// [DiagnosticReport]
   SearchDiagnosticReport date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -26,7 +29,8 @@ class SearchDiagnosticReport extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce DiagnosticReport
+  /// a token search for [identifier] in the resource
+  /// [DiagnosticReport]
   SearchDiagnosticReport identifier(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchDiagnosticReport extends SearchResource {
     return this;
   }
 
-  /// a token search for [category] in the reosurce DiagnosticReport
+  /// a token search for [category] in the resource
+  /// [DiagnosticReport]
   SearchDiagnosticReport category(
     FhirString value, {
     FhirUri? system,
@@ -48,7 +53,8 @@ class SearchDiagnosticReport extends SearchResource {
     return this;
   }
 
-  /// a token search for [conclusion] in the reosurce DiagnosticReport
+  /// a token search for [conclusion] in the resource
+  /// [DiagnosticReport]
   SearchDiagnosticReport conclusion(
     FhirString value, {
     FhirUri? system,
@@ -59,7 +65,8 @@ class SearchDiagnosticReport extends SearchResource {
     return this;
   }
 
-  /// a date search for [issued] in the reosurce DiagnosticReport
+  /// a date search for [issued] in the resource
+  /// [DiagnosticReport]
   SearchDiagnosticReport issued(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -69,7 +76,8 @@ class SearchDiagnosticReport extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce DiagnosticReport
+  /// a token search for [status] in the resource
+  /// [DiagnosticReport]
   SearchDiagnosticReport status(
     FhirString value, {
     FhirUri? system,

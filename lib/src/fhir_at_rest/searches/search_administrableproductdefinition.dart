@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the AdministrableProductDefinition resource.
+/// A class to build query parameters for RESTful requests for
+/// the [AdministrableProductDefinition] resource.
 class SearchAdministrableProductDefinition extends SearchResource {
-  /// a token search for [doseForm] in the reosurce AdministrableProductDefinition
+  /// a token search for [doseForm] in the resource
+  /// [AdministrableProductDefinition]
   SearchAdministrableProductDefinition doseForm(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchAdministrableProductDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce AdministrableProductDefinition
+  /// a token search for [identifier] in the resource
+  /// [AdministrableProductDefinition]
   SearchAdministrableProductDefinition identifier(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchAdministrableProductDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [ingredient] in the reosurce AdministrableProductDefinition
+  /// a token search for [ingredient] in the resource
+  /// [AdministrableProductDefinition]
   SearchAdministrableProductDefinition ingredient(
     FhirString value, {
     FhirUri? system,
@@ -39,7 +43,8 @@ class SearchAdministrableProductDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [route] in the reosurce AdministrableProductDefinition
+  /// a token search for [route] in the resource
+  /// [AdministrableProductDefinition]
   SearchAdministrableProductDefinition route(
     FhirString value, {
     FhirUri? system,
@@ -50,7 +55,8 @@ class SearchAdministrableProductDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [targetSpecies] in the reosurce AdministrableProductDefinition
+  /// a token search for [targetSpecies] in the resource
+  /// [AdministrableProductDefinition]
   SearchAdministrableProductDefinition targetSpecies(
     FhirString value, {
     FhirUri? system,

@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the EventDefinition resource.
+/// A class to build query parameters for RESTful requests for
+/// the [EventDefinition] resource.
 class SearchEventDefinition extends SearchResource {
-  /// a token search for [context] in the reosurce EventDefinition
+  /// a token search for [context] in the resource
+  /// [EventDefinition]
   SearchEventDefinition context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchEventDefinition extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce EventDefinition
+  /// a quantity search for [contextQuantity] in the resource
+  /// [EventDefinition]
   SearchEventDefinition contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchEventDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce EventDefinition
+  /// a token search for [contextType] in the resource
+  /// [EventDefinition]
   SearchEventDefinition contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchEventDefinition extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce EventDefinition
+  /// a date search for [date] in the resource
+  /// [EventDefinition]
   SearchEventDefinition date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchEventDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce EventDefinition
+  /// a string search for [description] in the resource
+  /// [EventDefinition]
   SearchEventDefinition description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchEventDefinition extends SearchResource {
     return this;
   }
 
-  /// a date search for [effective] in the reosurce EventDefinition
+  /// a date search for [effective] in the resource
+  /// [EventDefinition]
   SearchEventDefinition effective(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -76,7 +83,8 @@ class SearchEventDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce EventDefinition
+  /// a token search for [identifier] in the resource
+  /// [EventDefinition]
   SearchEventDefinition identifier(
     FhirString value, {
     FhirUri? system,
@@ -87,7 +95,8 @@ class SearchEventDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce EventDefinition
+  /// a token search for [jurisdiction] in the resource
+  /// [EventDefinition]
   SearchEventDefinition jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -98,7 +107,8 @@ class SearchEventDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce EventDefinition
+  /// a string search for [name] in the resource
+  /// [EventDefinition]
   SearchEventDefinition name(
     FhirString value, {
     SearchModifier? modifier,
@@ -110,7 +120,8 @@ class SearchEventDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce EventDefinition
+  /// a string search for [publisher] in the resource
+  /// [EventDefinition]
   SearchEventDefinition publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -123,7 +134,8 @@ class SearchEventDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce EventDefinition
+  /// a token search for [status] in the resource
+  /// [EventDefinition]
   SearchEventDefinition status(
     FhirString value, {
     FhirUri? system,
@@ -134,7 +146,8 @@ class SearchEventDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce EventDefinition
+  /// a string search for [title] in the resource
+  /// [EventDefinition]
   SearchEventDefinition title(
     FhirString value, {
     SearchModifier? modifier,
@@ -147,7 +160,8 @@ class SearchEventDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [topic] in the reosurce EventDefinition
+  /// a token search for [topic] in the resource
+  /// [EventDefinition]
   SearchEventDefinition topic(
     FhirString value, {
     FhirUri? system,
@@ -158,13 +172,18 @@ class SearchEventDefinition extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce EventDefinition
-  SearchEventDefinition url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [EventDefinition]
+  SearchEventDefinition url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce EventDefinition
+  /// a token search for [version] in the resource
+  /// [EventDefinition]
   SearchEventDefinition version(
     FhirString value, {
     FhirUri? system,

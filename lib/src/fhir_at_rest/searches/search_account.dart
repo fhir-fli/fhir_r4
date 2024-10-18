@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Account resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Account] resource.
 class SearchAccount extends SearchResource {
-  /// a token search for [identifier] in the reosurce Account
+  /// a token search for [identifier] in the resource
+  /// [Account]
   SearchAccount identifier(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchAccount extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce Account
+  /// a string search for [name] in the resource
+  /// [Account]
   SearchAccount name(
     FhirString value, {
     SearchModifier? modifier,
@@ -29,7 +32,8 @@ class SearchAccount extends SearchResource {
     return this;
   }
 
-  /// a date search for [period] in the reosurce Account
+  /// a date search for [period] in the resource
+  /// [Account]
   SearchAccount period(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -39,7 +43,8 @@ class SearchAccount extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Account
+  /// a token search for [status] in the resource
+  /// [Account]
   SearchAccount status(
     FhirString value, {
     FhirUri? system,
@@ -50,7 +55,8 @@ class SearchAccount extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce Account
+  /// a token search for [type] in the resource
+  /// [Account]
   SearchAccount type(
     FhirString value, {
     FhirUri? system,

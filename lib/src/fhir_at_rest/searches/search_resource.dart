@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Resource resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Resource] resource.
 class SearchResource extends RestfulParameters {
-  /// a string search for [content] in the reosurce Resource
+  /// a string search for [content] in the resource
+  /// [Resource]
   SearchResource content(
     FhirString value, {
     SearchModifier? modifier,
@@ -19,7 +21,8 @@ class SearchResource extends RestfulParameters {
     return this;
   }
 
-  /// a token search for [filter] in the reosurce Resource
+  /// a token search for [filter] in the resource
+  /// [Resource]
   SearchResource filter(
     FhirString value, {
     FhirUri? system,
@@ -30,7 +33,8 @@ class SearchResource extends RestfulParameters {
     return this;
   }
 
-  /// a string search for [has] in the reosurce Resource
+  /// a string search for [has] in the resource
+  /// [Resource]
   SearchResource has(
     FhirString value, {
     SearchModifier? modifier,
@@ -42,7 +46,8 @@ class SearchResource extends RestfulParameters {
     return this;
   }
 
-  /// a token search for [id] in the reosurce Resource
+  /// a token search for [id] in the resource
+  /// [Resource]
   SearchResource id(
     FhirString value, {
     FhirUri? system,
@@ -53,7 +58,8 @@ class SearchResource extends RestfulParameters {
     return this;
   }
 
-  /// a date search for [lastUpdated] in the reosurce Resource
+  /// a date search for [lastUpdated] in the resource
+  /// [Resource]
   SearchResource lastUpdated(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -63,7 +69,8 @@ class SearchResource extends RestfulParameters {
     return this;
   }
 
-  /// a string search for [list] in the reosurce Resource
+  /// a string search for [list] in the resource
+  /// [Resource]
   SearchResource list(
     FhirString value, {
     SearchModifier? modifier,
@@ -76,14 +83,19 @@ class SearchResource extends RestfulParameters {
     return this;
   }
 
-  /// a uri search for [profile] in the reosurce Resource
-  SearchResource profile(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [profile] in the resource
+  /// [Resource]
+  SearchResource profile(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}_profile'] =
         value.toString();
     return this;
   }
 
-  /// a token search for [query] in the reosurce Resource
+  /// a token search for [query] in the resource
+  /// [Resource]
   SearchResource query(
     FhirString value, {
     FhirUri? system,
@@ -94,7 +106,8 @@ class SearchResource extends RestfulParameters {
     return this;
   }
 
-  /// a token search for [security] in the reosurce Resource
+  /// a token search for [security] in the resource
+  /// [Resource]
   SearchResource security(
     FhirString value, {
     FhirUri? system,
@@ -105,14 +118,19 @@ class SearchResource extends RestfulParameters {
     return this;
   }
 
-  /// a uri search for [resourceSource] in the reosurce Resource
-  SearchResource resourceSource(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [resourceSource] in the resource
+  /// [Resource]
+  SearchResource resourceSource(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}_source'] =
         value.toString();
     return this;
   }
 
-  /// a token search for [tag] in the reosurce Resource
+  /// a token search for [tag] in the resource
+  /// [Resource]
   SearchResource tag(
     FhirString value, {
     FhirUri? system,
@@ -123,7 +141,8 @@ class SearchResource extends RestfulParameters {
     return this;
   }
 
-  /// a string search for [text] in the reosurce Resource
+  /// a string search for [text] in the resource
+  /// [Resource]
   SearchResource text(
     FhirString value, {
     SearchModifier? modifier,
@@ -136,7 +155,8 @@ class SearchResource extends RestfulParameters {
     return this;
   }
 
-  /// a token search for [resourceType] in the reosurce Resource
+  /// a token search for [resourceType] in the resource
+  /// [Resource]
   SearchResource resourceType(
     FhirString value, {
     FhirUri? system,

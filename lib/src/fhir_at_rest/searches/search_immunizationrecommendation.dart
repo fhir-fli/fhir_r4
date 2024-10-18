@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the ImmunizationRecommendation resource.
+/// A class to build query parameters for RESTful requests for
+/// the [ImmunizationRecommendation] resource.
 class SearchImmunizationRecommendation extends SearchResource {
-  /// a date search for [date] in the reosurce ImmunizationRecommendation
+  /// a date search for [date] in the resource
+  /// [ImmunizationRecommendation]
   SearchImmunizationRecommendation date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -15,7 +17,8 @@ class SearchImmunizationRecommendation extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce ImmunizationRecommendation
+  /// a token search for [identifier] in the resource
+  /// [ImmunizationRecommendation]
   SearchImmunizationRecommendation identifier(
     FhirString value, {
     FhirUri? system,
@@ -26,7 +29,8 @@ class SearchImmunizationRecommendation extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce ImmunizationRecommendation
+  /// a token search for [status] in the resource
+  /// [ImmunizationRecommendation]
   SearchImmunizationRecommendation status(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchImmunizationRecommendation extends SearchResource {
     return this;
   }
 
-  /// a token search for [targetDisease] in the reosurce ImmunizationRecommendation
+  /// a token search for [targetDisease] in the resource
+  /// [ImmunizationRecommendation]
   SearchImmunizationRecommendation targetDisease(
     FhirString value, {
     FhirUri? system,
@@ -48,7 +53,8 @@ class SearchImmunizationRecommendation extends SearchResource {
     return this;
   }
 
-  /// a token search for [vaccineType] in the reosurce ImmunizationRecommendation
+  /// a token search for [vaccineType] in the resource
+  /// [ImmunizationRecommendation]
   SearchImmunizationRecommendation vaccineType(
     FhirString value, {
     FhirUri? system,

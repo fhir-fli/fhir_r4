@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the BodyStructure resource.
+/// A class to build query parameters for RESTful requests for
+/// the [BodyStructure] resource.
 class SearchBodyStructure extends SearchResource {
-  /// a token search for [identifier] in the reosurce BodyStructure
+  /// a token search for [identifier] in the resource
+  /// [BodyStructure]
   SearchBodyStructure identifier(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchBodyStructure extends SearchResource {
     return this;
   }
 
-  /// a token search for [location] in the reosurce BodyStructure
+  /// a token search for [location] in the resource
+  /// [BodyStructure]
   SearchBodyStructure location(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchBodyStructure extends SearchResource {
     return this;
   }
 
-  /// a token search for [morphology] in the reosurce BodyStructure
+  /// a token search for [morphology] in the resource
+  /// [BodyStructure]
   SearchBodyStructure morphology(
     FhirString value, {
     FhirUri? system,

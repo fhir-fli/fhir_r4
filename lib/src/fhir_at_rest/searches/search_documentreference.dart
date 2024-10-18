@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the DocumentReference resource.
+/// A class to build query parameters for RESTful requests for
+/// the [DocumentReference] resource.
 class SearchDocumentReference extends SearchResource {
-  /// a token search for [identifier] in the reosurce DocumentReference
+  /// a token search for [identifier] in the resource
+  /// [DocumentReference]
   SearchDocumentReference identifier(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce DocumentReference
+  /// a token search for [type] in the resource
+  /// [DocumentReference]
   SearchDocumentReference type(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
-  /// a token search for [category] in the reosurce DocumentReference
+  /// a token search for [category] in the resource
+  /// [DocumentReference]
   SearchDocumentReference category(
     FhirString value, {
     FhirUri? system,
@@ -39,7 +43,8 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
-  /// a token search for [contenttype] in the reosurce DocumentReference
+  /// a token search for [contenttype] in the resource
+  /// [DocumentReference]
   SearchDocumentReference contenttype(
     FhirString value, {
     FhirUri? system,
@@ -50,7 +55,8 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce DocumentReference
+  /// a date search for [date] in the resource
+  /// [DocumentReference]
   SearchDocumentReference date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -59,7 +65,8 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce DocumentReference
+  /// a string search for [description] in the resource
+  /// [DocumentReference]
   SearchDocumentReference description(
     FhirString value, {
     SearchModifier? modifier,
@@ -72,7 +79,8 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
-  /// a token search for [event] in the reosurce DocumentReference
+  /// a token search for [event] in the resource
+  /// [DocumentReference]
   SearchDocumentReference event(
     FhirString value, {
     FhirUri? system,
@@ -83,7 +91,8 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
-  /// a token search for [facility] in the reosurce DocumentReference
+  /// a token search for [facility] in the resource
+  /// [DocumentReference]
   SearchDocumentReference facility(
     FhirString value, {
     FhirUri? system,
@@ -94,7 +103,8 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
-  /// a token search for [format] in the reosurce DocumentReference
+  /// a token search for [format] in the resource
+  /// [DocumentReference]
   SearchDocumentReference format(
     FhirString value, {
     FhirUri? system,
@@ -105,7 +115,8 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
-  /// a token search for [language] in the reosurce DocumentReference
+  /// a token search for [language] in the resource
+  /// [DocumentReference]
   SearchDocumentReference language(
     FhirString value, {
     FhirUri? system,
@@ -116,14 +127,19 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
-  /// a uri search for [location] in the reosurce DocumentReference
-  SearchDocumentReference location(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [location] in the resource
+  /// [DocumentReference]
+  SearchDocumentReference location(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}location'] =
         value.toString();
     return this;
   }
 
-  /// a date search for [period] in the reosurce DocumentReference
+  /// a date search for [period] in the resource
+  /// [DocumentReference]
   SearchDocumentReference period(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -133,7 +149,8 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
-  /// a token search for [relation] in the reosurce DocumentReference
+  /// a token search for [relation] in the resource
+  /// [DocumentReference]
   SearchDocumentReference relation(
     FhirString value, {
     FhirUri? system,
@@ -144,7 +161,8 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
-  /// a token search for [securityLabel] in the reosurce DocumentReference
+  /// a token search for [securityLabel] in the resource
+  /// [DocumentReference]
   SearchDocumentReference securityLabel(
     FhirString value, {
     FhirUri? system,
@@ -155,7 +173,8 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
-  /// a token search for [setting] in the reosurce DocumentReference
+  /// a token search for [setting] in the resource
+  /// [DocumentReference]
   SearchDocumentReference setting(
     FhirString value, {
     FhirUri? system,
@@ -166,7 +185,8 @@ class SearchDocumentReference extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce DocumentReference
+  /// a token search for [status] in the resource
+  /// [DocumentReference]
   SearchDocumentReference status(
     FhirString value, {
     FhirUri? system,

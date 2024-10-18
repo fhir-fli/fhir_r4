@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the TerminologyCapabilities resource.
+/// A class to build query parameters for RESTful requests for
+/// the [TerminologyCapabilities] resource.
 class SearchTerminologyCapabilities extends SearchResource {
-  /// a token search for [context] in the reosurce TerminologyCapabilities
+  /// a token search for [context] in the resource
+  /// [TerminologyCapabilities]
   SearchTerminologyCapabilities context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchTerminologyCapabilities extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce TerminologyCapabilities
+  /// a quantity search for [contextQuantity] in the resource
+  /// [TerminologyCapabilities]
   SearchTerminologyCapabilities contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchTerminologyCapabilities extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce TerminologyCapabilities
+  /// a token search for [contextType] in the resource
+  /// [TerminologyCapabilities]
   SearchTerminologyCapabilities contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchTerminologyCapabilities extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce TerminologyCapabilities
+  /// a date search for [date] in the resource
+  /// [TerminologyCapabilities]
   SearchTerminologyCapabilities date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchTerminologyCapabilities extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce TerminologyCapabilities
+  /// a string search for [description] in the resource
+  /// [TerminologyCapabilities]
   SearchTerminologyCapabilities description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchTerminologyCapabilities extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce TerminologyCapabilities
+  /// a token search for [jurisdiction] in the resource
+  /// [TerminologyCapabilities]
   SearchTerminologyCapabilities jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -77,7 +84,8 @@ class SearchTerminologyCapabilities extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce TerminologyCapabilities
+  /// a string search for [name] in the resource
+  /// [TerminologyCapabilities]
   SearchTerminologyCapabilities name(
     FhirString value, {
     SearchModifier? modifier,
@@ -89,7 +97,8 @@ class SearchTerminologyCapabilities extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce TerminologyCapabilities
+  /// a string search for [publisher] in the resource
+  /// [TerminologyCapabilities]
   SearchTerminologyCapabilities publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -102,7 +111,8 @@ class SearchTerminologyCapabilities extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce TerminologyCapabilities
+  /// a token search for [status] in the resource
+  /// [TerminologyCapabilities]
   SearchTerminologyCapabilities status(
     FhirString value, {
     FhirUri? system,
@@ -113,7 +123,8 @@ class SearchTerminologyCapabilities extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce TerminologyCapabilities
+  /// a string search for [title] in the resource
+  /// [TerminologyCapabilities]
   SearchTerminologyCapabilities title(
     FhirString value, {
     SearchModifier? modifier,
@@ -126,13 +137,18 @@ class SearchTerminologyCapabilities extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce TerminologyCapabilities
-  SearchTerminologyCapabilities url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [TerminologyCapabilities]
+  SearchTerminologyCapabilities url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce TerminologyCapabilities
+  /// a token search for [version] in the resource
+  /// [TerminologyCapabilities]
   SearchTerminologyCapabilities version(
     FhirString value, {
     FhirUri? system,

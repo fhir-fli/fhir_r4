@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the AllergyIntolerance resource.
+/// A class to build query parameters for RESTful requests for
+/// the [AllergyIntolerance] resource.
 class SearchAllergyIntolerance extends SearchResource {
-  /// a token search for [category] in the reosurce AllergyIntolerance
+  /// a token search for [category] in the resource
+  /// [AllergyIntolerance]
   SearchAllergyIntolerance category(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchAllergyIntolerance extends SearchResource {
     return this;
   }
 
-  /// a token search for [clinicalStatus] in the reosurce AllergyIntolerance
+  /// a token search for [clinicalStatus] in the resource
+  /// [AllergyIntolerance]
   SearchAllergyIntolerance clinicalStatus(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchAllergyIntolerance extends SearchResource {
     return this;
   }
 
-  /// a token search for [code] in the reosurce AllergyIntolerance
+  /// a token search for [code] in the resource
+  /// [AllergyIntolerance]
   SearchAllergyIntolerance code(
     FhirString value, {
     FhirUri? system,
@@ -39,7 +43,8 @@ class SearchAllergyIntolerance extends SearchResource {
     return this;
   }
 
-  /// a token search for [criticality] in the reosurce AllergyIntolerance
+  /// a token search for [criticality] in the resource
+  /// [AllergyIntolerance]
   SearchAllergyIntolerance criticality(
     FhirString value, {
     FhirUri? system,
@@ -50,7 +55,8 @@ class SearchAllergyIntolerance extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce AllergyIntolerance
+  /// a date search for [date] in the resource
+  /// [AllergyIntolerance]
   SearchAllergyIntolerance date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -59,7 +65,8 @@ class SearchAllergyIntolerance extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce AllergyIntolerance
+  /// a token search for [identifier] in the resource
+  /// [AllergyIntolerance]
   SearchAllergyIntolerance identifier(
     FhirString value, {
     FhirUri? system,
@@ -70,7 +77,8 @@ class SearchAllergyIntolerance extends SearchResource {
     return this;
   }
 
-  /// a date search for [lastDate] in the reosurce AllergyIntolerance
+  /// a date search for [lastDate] in the resource
+  /// [AllergyIntolerance]
   SearchAllergyIntolerance lastDate(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -80,7 +88,8 @@ class SearchAllergyIntolerance extends SearchResource {
     return this;
   }
 
-  /// a token search for [manifestation] in the reosurce AllergyIntolerance
+  /// a token search for [manifestation] in the resource
+  /// [AllergyIntolerance]
   SearchAllergyIntolerance manifestation(
     FhirString value, {
     FhirUri? system,
@@ -91,7 +100,8 @@ class SearchAllergyIntolerance extends SearchResource {
     return this;
   }
 
-  /// a date search for [onset] in the reosurce AllergyIntolerance
+  /// a date search for [onset] in the resource
+  /// [AllergyIntolerance]
   SearchAllergyIntolerance onset(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -101,7 +111,8 @@ class SearchAllergyIntolerance extends SearchResource {
     return this;
   }
 
-  /// a token search for [route] in the reosurce AllergyIntolerance
+  /// a token search for [route] in the resource
+  /// [AllergyIntolerance]
   SearchAllergyIntolerance route(
     FhirString value, {
     FhirUri? system,
@@ -112,7 +123,8 @@ class SearchAllergyIntolerance extends SearchResource {
     return this;
   }
 
-  /// a token search for [severity] in the reosurce AllergyIntolerance
+  /// a token search for [severity] in the resource
+  /// [AllergyIntolerance]
   SearchAllergyIntolerance severity(
     FhirString value, {
     FhirUri? system,
@@ -123,7 +135,8 @@ class SearchAllergyIntolerance extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce AllergyIntolerance
+  /// a token search for [type] in the resource
+  /// [AllergyIntolerance]
   SearchAllergyIntolerance type(
     FhirString value, {
     FhirUri? system,
@@ -134,7 +147,8 @@ class SearchAllergyIntolerance extends SearchResource {
     return this;
   }
 
-  /// a token search for [verificationStatus] in the reosurce AllergyIntolerance
+  /// a token search for [verificationStatus] in the resource
+  /// [AllergyIntolerance]
   SearchAllergyIntolerance verificationStatus(
     FhirString value, {
     FhirUri? system,

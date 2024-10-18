@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Immunization resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Immunization] resource.
 class SearchImmunization extends SearchResource {
-  /// a date search for [date] in the reosurce Immunization
+  /// a date search for [date] in the resource
+  /// [Immunization]
   SearchImmunization date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -15,7 +17,8 @@ class SearchImmunization extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Immunization
+  /// a token search for [identifier] in the resource
+  /// [Immunization]
   SearchImmunization identifier(
     FhirString value, {
     FhirUri? system,
@@ -26,7 +29,8 @@ class SearchImmunization extends SearchResource {
     return this;
   }
 
-  /// a string search for [lotNumber] in the reosurce Immunization
+  /// a string search for [lotNumber] in the resource
+  /// [Immunization]
   SearchImmunization lotNumber(
     FhirString value, {
     SearchModifier? modifier,
@@ -39,7 +43,8 @@ class SearchImmunization extends SearchResource {
     return this;
   }
 
-  /// a date search for [reactionDate] in the reosurce Immunization
+  /// a date search for [reactionDate] in the resource
+  /// [Immunization]
   SearchImmunization reactionDate(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -49,7 +54,8 @@ class SearchImmunization extends SearchResource {
     return this;
   }
 
-  /// a token search for [reasonCode] in the reosurce Immunization
+  /// a token search for [reasonCode] in the resource
+  /// [Immunization]
   SearchImmunization reasonCode(
     FhirString value, {
     FhirUri? system,
@@ -60,7 +66,8 @@ class SearchImmunization extends SearchResource {
     return this;
   }
 
-  /// a string search for [series] in the reosurce Immunization
+  /// a string search for [series] in the resource
+  /// [Immunization]
   SearchImmunization series(
     FhirString value, {
     SearchModifier? modifier,
@@ -73,7 +80,8 @@ class SearchImmunization extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Immunization
+  /// a token search for [status] in the resource
+  /// [Immunization]
   SearchImmunization status(
     FhirString value, {
     FhirUri? system,
@@ -84,7 +92,8 @@ class SearchImmunization extends SearchResource {
     return this;
   }
 
-  /// a token search for [statusReason] in the reosurce Immunization
+  /// a token search for [statusReason] in the resource
+  /// [Immunization]
   SearchImmunization statusReason(
     FhirString value, {
     FhirUri? system,
@@ -95,7 +104,8 @@ class SearchImmunization extends SearchResource {
     return this;
   }
 
-  /// a token search for [targetDisease] in the reosurce Immunization
+  /// a token search for [targetDisease] in the resource
+  /// [Immunization]
   SearchImmunization targetDisease(
     FhirString value, {
     FhirUri? system,
@@ -106,7 +116,8 @@ class SearchImmunization extends SearchResource {
     return this;
   }
 
-  /// a token search for [vaccineCode] in the reosurce Immunization
+  /// a token search for [vaccineCode] in the resource
+  /// [Immunization]
   SearchImmunization vaccineCode(
     FhirString value, {
     FhirUri? system,

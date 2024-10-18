@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the MeasureReport resource.
+/// A class to build query parameters for RESTful requests for
+/// the [MeasureReport] resource.
 class SearchMeasureReport extends SearchResource {
-  /// a date search for [date] in the reosurce MeasureReport
+  /// a date search for [date] in the resource
+  /// [MeasureReport]
   SearchMeasureReport date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -15,7 +17,8 @@ class SearchMeasureReport extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce MeasureReport
+  /// a token search for [identifier] in the resource
+  /// [MeasureReport]
   SearchMeasureReport identifier(
     FhirString value, {
     FhirUri? system,
@@ -26,7 +29,8 @@ class SearchMeasureReport extends SearchResource {
     return this;
   }
 
-  /// a date search for [period] in the reosurce MeasureReport
+  /// a date search for [period] in the resource
+  /// [MeasureReport]
   SearchMeasureReport period(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -36,7 +40,8 @@ class SearchMeasureReport extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce MeasureReport
+  /// a token search for [status] in the resource
+  /// [MeasureReport]
   SearchMeasureReport status(
     FhirString value, {
     FhirUri? system,

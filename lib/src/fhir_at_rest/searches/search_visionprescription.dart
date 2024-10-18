@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the VisionPrescription resource.
+/// A class to build query parameters for RESTful requests for
+/// the [VisionPrescription] resource.
 class SearchVisionPrescription extends SearchResource {
-  /// a token search for [identifier] in the reosurce VisionPrescription
+  /// a token search for [identifier] in the resource
+  /// [VisionPrescription]
   SearchVisionPrescription identifier(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchVisionPrescription extends SearchResource {
     return this;
   }
 
-  /// a date search for [datewritten] in the reosurce VisionPrescription
+  /// a date search for [datewritten] in the resource
+  /// [VisionPrescription]
   SearchVisionPrescription datewritten(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -27,7 +30,8 @@ class SearchVisionPrescription extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce VisionPrescription
+  /// a token search for [status] in the resource
+  /// [VisionPrescription]
   SearchVisionPrescription status(
     FhirString value, {
     FhirUri? system,

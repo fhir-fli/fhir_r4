@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the SupplyRequest resource.
+/// A class to build query parameters for RESTful requests for
+/// the [SupplyRequest] resource.
 class SearchSupplyRequest extends SearchResource {
-  /// a date search for [date] in the reosurce SupplyRequest
+  /// a date search for [date] in the resource
+  /// [SupplyRequest]
   SearchSupplyRequest date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -15,7 +17,8 @@ class SearchSupplyRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce SupplyRequest
+  /// a token search for [identifier] in the resource
+  /// [SupplyRequest]
   SearchSupplyRequest identifier(
     FhirString value, {
     FhirUri? system,
@@ -26,7 +29,8 @@ class SearchSupplyRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [category] in the reosurce SupplyRequest
+  /// a token search for [category] in the resource
+  /// [SupplyRequest]
   SearchSupplyRequest category(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchSupplyRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce SupplyRequest
+  /// a token search for [status] in the resource
+  /// [SupplyRequest]
   SearchSupplyRequest status(
     FhirString value, {
     FhirUri? system,

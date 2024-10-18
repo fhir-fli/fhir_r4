@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the ImagingStudy resource.
+/// A class to build query parameters for RESTful requests for
+/// the [ImagingStudy] resource.
 class SearchImagingStudy extends SearchResource {
-  /// a token search for [identifier] in the reosurce ImagingStudy
+  /// a token search for [identifier] in the resource
+  /// [ImagingStudy]
   SearchImagingStudy identifier(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchImagingStudy extends SearchResource {
     return this;
   }
 
-  /// a token search for [bodysite] in the reosurce ImagingStudy
+  /// a token search for [bodysite] in the resource
+  /// [ImagingStudy]
   SearchImagingStudy bodysite(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchImagingStudy extends SearchResource {
     return this;
   }
 
-  /// a token search for [dicomClass] in the reosurce ImagingStudy
+  /// a token search for [dicomClass] in the resource
+  /// [ImagingStudy]
   SearchImagingStudy dicomClass(
     FhirString value, {
     FhirUri? system,
@@ -39,7 +43,8 @@ class SearchImagingStudy extends SearchResource {
     return this;
   }
 
-  /// a token search for [instance] in the reosurce ImagingStudy
+  /// a token search for [instance] in the resource
+  /// [ImagingStudy]
   SearchImagingStudy instance(
     FhirString value, {
     FhirUri? system,
@@ -50,7 +55,8 @@ class SearchImagingStudy extends SearchResource {
     return this;
   }
 
-  /// a token search for [modality] in the reosurce ImagingStudy
+  /// a token search for [modality] in the resource
+  /// [ImagingStudy]
   SearchImagingStudy modality(
     FhirString value, {
     FhirUri? system,
@@ -61,7 +67,8 @@ class SearchImagingStudy extends SearchResource {
     return this;
   }
 
-  /// a token search for [reason] in the reosurce ImagingStudy
+  /// a token search for [reason] in the resource
+  /// [ImagingStudy]
   SearchImagingStudy reason(
     FhirString value, {
     FhirUri? system,
@@ -72,7 +79,8 @@ class SearchImagingStudy extends SearchResource {
     return this;
   }
 
-  /// a token search for [series] in the reosurce ImagingStudy
+  /// a token search for [series] in the resource
+  /// [ImagingStudy]
   SearchImagingStudy series(
     FhirString value, {
     FhirUri? system,
@@ -83,7 +91,8 @@ class SearchImagingStudy extends SearchResource {
     return this;
   }
 
-  /// a date search for [started] in the reosurce ImagingStudy
+  /// a date search for [started] in the resource
+  /// [ImagingStudy]
   SearchImagingStudy started(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -93,7 +102,8 @@ class SearchImagingStudy extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce ImagingStudy
+  /// a token search for [status] in the resource
+  /// [ImagingStudy]
   SearchImagingStudy status(
     FhirString value, {
     FhirUri? system,

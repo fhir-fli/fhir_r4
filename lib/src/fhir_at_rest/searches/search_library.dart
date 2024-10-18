@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Library resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Library] resource.
 class SearchLibrary extends SearchResource {
-  /// a token search for [contentType] in the reosurce Library
+  /// a token search for [contentType] in the resource
+  /// [Library]
   SearchLibrary contentType(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchLibrary extends SearchResource {
     return this;
   }
 
-  /// a token search for [context] in the reosurce Library
+  /// a token search for [context] in the resource
+  /// [Library]
   SearchLibrary context(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchLibrary extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce Library
+  /// a quantity search for [contextQuantity] in the resource
+  /// [Library]
   SearchLibrary contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -44,7 +48,8 @@ class SearchLibrary extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce Library
+  /// a token search for [contextType] in the resource
+  /// [Library]
   SearchLibrary contextType(
     FhirString value, {
     FhirUri? system,
@@ -55,7 +60,8 @@ class SearchLibrary extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce Library
+  /// a date search for [date] in the resource
+  /// [Library]
   SearchLibrary date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -64,7 +70,8 @@ class SearchLibrary extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce Library
+  /// a string search for [description] in the resource
+  /// [Library]
   SearchLibrary description(
     FhirString value, {
     SearchModifier? modifier,
@@ -77,7 +84,8 @@ class SearchLibrary extends SearchResource {
     return this;
   }
 
-  /// a date search for [effective] in the reosurce Library
+  /// a date search for [effective] in the resource
+  /// [Library]
   SearchLibrary effective(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -87,7 +95,8 @@ class SearchLibrary extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Library
+  /// a token search for [identifier] in the resource
+  /// [Library]
   SearchLibrary identifier(
     FhirString value, {
     FhirUri? system,
@@ -98,7 +107,8 @@ class SearchLibrary extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce Library
+  /// a token search for [jurisdiction] in the resource
+  /// [Library]
   SearchLibrary jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -109,7 +119,8 @@ class SearchLibrary extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce Library
+  /// a string search for [name] in the resource
+  /// [Library]
   SearchLibrary name(
     FhirString value, {
     SearchModifier? modifier,
@@ -121,7 +132,8 @@ class SearchLibrary extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce Library
+  /// a string search for [publisher] in the resource
+  /// [Library]
   SearchLibrary publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -134,7 +146,8 @@ class SearchLibrary extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Library
+  /// a token search for [status] in the resource
+  /// [Library]
   SearchLibrary status(
     FhirString value, {
     FhirUri? system,
@@ -145,7 +158,8 @@ class SearchLibrary extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce Library
+  /// a string search for [title] in the resource
+  /// [Library]
   SearchLibrary title(
     FhirString value, {
     SearchModifier? modifier,
@@ -158,7 +172,8 @@ class SearchLibrary extends SearchResource {
     return this;
   }
 
-  /// a token search for [topic] in the reosurce Library
+  /// a token search for [topic] in the resource
+  /// [Library]
   SearchLibrary topic(
     FhirString value, {
     FhirUri? system,
@@ -169,7 +184,8 @@ class SearchLibrary extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce Library
+  /// a token search for [type] in the resource
+  /// [Library]
   SearchLibrary type(
     FhirString value, {
     FhirUri? system,
@@ -180,13 +196,18 @@ class SearchLibrary extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce Library
-  SearchLibrary url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [Library]
+  SearchLibrary url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce Library
+  /// a token search for [version] in the resource
+  /// [Library]
   SearchLibrary version(
     FhirString value, {
     FhirUri? system,

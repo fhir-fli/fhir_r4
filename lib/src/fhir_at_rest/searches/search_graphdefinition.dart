@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the GraphDefinition resource.
+/// A class to build query parameters for RESTful requests for
+/// the [GraphDefinition] resource.
 class SearchGraphDefinition extends SearchResource {
-  /// a token search for [context] in the reosurce GraphDefinition
+  /// a token search for [context] in the resource
+  /// [GraphDefinition]
   SearchGraphDefinition context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchGraphDefinition extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce GraphDefinition
+  /// a quantity search for [contextQuantity] in the resource
+  /// [GraphDefinition]
   SearchGraphDefinition contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchGraphDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce GraphDefinition
+  /// a token search for [contextType] in the resource
+  /// [GraphDefinition]
   SearchGraphDefinition contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchGraphDefinition extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce GraphDefinition
+  /// a date search for [date] in the resource
+  /// [GraphDefinition]
   SearchGraphDefinition date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchGraphDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce GraphDefinition
+  /// a string search for [description] in the resource
+  /// [GraphDefinition]
   SearchGraphDefinition description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchGraphDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce GraphDefinition
+  /// a token search for [jurisdiction] in the resource
+  /// [GraphDefinition]
   SearchGraphDefinition jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -77,7 +84,8 @@ class SearchGraphDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce GraphDefinition
+  /// a string search for [name] in the resource
+  /// [GraphDefinition]
   SearchGraphDefinition name(
     FhirString value, {
     SearchModifier? modifier,
@@ -89,7 +97,8 @@ class SearchGraphDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce GraphDefinition
+  /// a string search for [publisher] in the resource
+  /// [GraphDefinition]
   SearchGraphDefinition publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -102,7 +111,8 @@ class SearchGraphDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce GraphDefinition
+  /// a token search for [status] in the resource
+  /// [GraphDefinition]
   SearchGraphDefinition status(
     FhirString value, {
     FhirUri? system,
@@ -113,13 +123,18 @@ class SearchGraphDefinition extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce GraphDefinition
-  SearchGraphDefinition url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [GraphDefinition]
+  SearchGraphDefinition url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce GraphDefinition
+  /// a token search for [version] in the resource
+  /// [GraphDefinition]
   SearchGraphDefinition version(
     FhirString value, {
     FhirUri? system,
@@ -130,7 +145,8 @@ class SearchGraphDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [start] in the reosurce GraphDefinition
+  /// a token search for [start] in the resource
+  /// [GraphDefinition]
   SearchGraphDefinition start(
     FhirString value, {
     FhirUri? system,

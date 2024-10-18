@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the CoverageEligibilityRequest resource.
+/// A class to build query parameters for RESTful requests for
+/// the [CoverageEligibilityRequest] resource.
 class SearchCoverageEligibilityRequest extends SearchResource {
-  /// a date search for [created] in the reosurce CoverageEligibilityRequest
+  /// a date search for [created] in the resource
+  /// [CoverageEligibilityRequest]
   SearchCoverageEligibilityRequest created(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -16,7 +18,8 @@ class SearchCoverageEligibilityRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce CoverageEligibilityRequest
+  /// a token search for [identifier] in the resource
+  /// [CoverageEligibilityRequest]
   SearchCoverageEligibilityRequest identifier(
     FhirString value, {
     FhirUri? system,
@@ -27,7 +30,8 @@ class SearchCoverageEligibilityRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce CoverageEligibilityRequest
+  /// a token search for [status] in the resource
+  /// [CoverageEligibilityRequest]
   SearchCoverageEligibilityRequest status(
     FhirString value, {
     FhirUri? system,

@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Subscription resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Subscription] resource.
 class SearchSubscription extends SearchResource {
-  /// a token search for [contact] in the reosurce Subscription
+  /// a token search for [contact] in the resource
+  /// [Subscription]
   SearchSubscription contact(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchSubscription extends SearchResource {
     return this;
   }
 
-  /// a string search for [criteria] in the reosurce Subscription
+  /// a string search for [criteria] in the resource
+  /// [Subscription]
   SearchSubscription criteria(
     FhirString value, {
     SearchModifier? modifier,
@@ -30,7 +33,8 @@ class SearchSubscription extends SearchResource {
     return this;
   }
 
-  /// a token search for [payload] in the reosurce Subscription
+  /// a token search for [payload] in the resource
+  /// [Subscription]
   SearchSubscription payload(
     FhirString value, {
     FhirUri? system,
@@ -41,7 +45,8 @@ class SearchSubscription extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Subscription
+  /// a token search for [status] in the resource
+  /// [Subscription]
   SearchSubscription status(
     FhirString value, {
     FhirUri? system,
@@ -52,7 +57,8 @@ class SearchSubscription extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce Subscription
+  /// a token search for [type] in the resource
+  /// [Subscription]
   SearchSubscription type(
     FhirString value, {
     FhirUri? system,
@@ -63,8 +69,12 @@ class SearchSubscription extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce Subscription
-  SearchSubscription url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [Subscription]
+  SearchSubscription url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }

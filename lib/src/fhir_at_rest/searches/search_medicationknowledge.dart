@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the MedicationKnowledge resource.
+/// A class to build query parameters for RESTful requests for
+/// the [MedicationKnowledge] resource.
 class SearchMedicationKnowledge extends SearchResource {
-  /// a token search for [classification] in the reosurce MedicationKnowledge
+  /// a token search for [classification] in the resource
+  /// [MedicationKnowledge]
   SearchMedicationKnowledge classification(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchMedicationKnowledge extends SearchResource {
     return this;
   }
 
-  /// a token search for [classificationType] in the reosurce MedicationKnowledge
+  /// a token search for [classificationType] in the resource
+  /// [MedicationKnowledge]
   SearchMedicationKnowledge classificationType(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchMedicationKnowledge extends SearchResource {
     return this;
   }
 
-  /// a token search for [code] in the reosurce MedicationKnowledge
+  /// a token search for [code] in the resource
+  /// [MedicationKnowledge]
   SearchMedicationKnowledge code(
     FhirString value, {
     FhirUri? system,
@@ -39,7 +43,8 @@ class SearchMedicationKnowledge extends SearchResource {
     return this;
   }
 
-  /// a token search for [doseform] in the reosurce MedicationKnowledge
+  /// a token search for [doseform] in the resource
+  /// [MedicationKnowledge]
   SearchMedicationKnowledge doseform(
     FhirString value, {
     FhirUri? system,
@@ -50,7 +55,8 @@ class SearchMedicationKnowledge extends SearchResource {
     return this;
   }
 
-  /// a token search for [ingredientCode] in the reosurce MedicationKnowledge
+  /// a token search for [ingredientCode] in the resource
+  /// [MedicationKnowledge]
   SearchMedicationKnowledge ingredientCode(
     FhirString value, {
     FhirUri? system,
@@ -61,7 +67,8 @@ class SearchMedicationKnowledge extends SearchResource {
     return this;
   }
 
-  /// a token search for [monitoringProgramName] in the reosurce MedicationKnowledge
+  /// a token search for [monitoringProgramName] in the resource
+  /// [MedicationKnowledge]
   SearchMedicationKnowledge monitoringProgramName(
     FhirString value, {
     FhirUri? system,
@@ -73,7 +80,8 @@ class SearchMedicationKnowledge extends SearchResource {
     return this;
   }
 
-  /// a token search for [monitoringProgramType] in the reosurce MedicationKnowledge
+  /// a token search for [monitoringProgramType] in the resource
+  /// [MedicationKnowledge]
   SearchMedicationKnowledge monitoringProgramType(
     FhirString value, {
     FhirUri? system,
@@ -85,7 +93,8 @@ class SearchMedicationKnowledge extends SearchResource {
     return this;
   }
 
-  /// a token search for [monographType] in the reosurce MedicationKnowledge
+  /// a token search for [monographType] in the resource
+  /// [MedicationKnowledge]
   SearchMedicationKnowledge monographType(
     FhirString value, {
     FhirUri? system,
@@ -96,7 +105,8 @@ class SearchMedicationKnowledge extends SearchResource {
     return this;
   }
 
-  /// a token search for [sourceCost] in the reosurce MedicationKnowledge
+  /// a token search for [sourceCost] in the resource
+  /// [MedicationKnowledge]
   SearchMedicationKnowledge sourceCost(
     FhirString value, {
     FhirUri? system,
@@ -107,7 +117,8 @@ class SearchMedicationKnowledge extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce MedicationKnowledge
+  /// a token search for [status] in the resource
+  /// [MedicationKnowledge]
   SearchMedicationKnowledge status(
     FhirString value, {
     FhirUri? system,

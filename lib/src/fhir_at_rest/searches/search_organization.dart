@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Organization resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Organization] resource.
 class SearchOrganization extends SearchResource {
-  /// a token search for [active] in the reosurce Organization
+  /// a token search for [active] in the resource
+  /// [Organization]
   SearchOrganization active(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchOrganization extends SearchResource {
     return this;
   }
 
-  /// a string search for [address] in the reosurce Organization
+  /// a string search for [address] in the resource
+  /// [Organization]
   SearchOrganization address(
     FhirString value, {
     SearchModifier? modifier,
@@ -30,7 +33,8 @@ class SearchOrganization extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressCity] in the reosurce Organization
+  /// a string search for [addressCity] in the resource
+  /// [Organization]
   SearchOrganization addressCity(
     FhirString value, {
     SearchModifier? modifier,
@@ -43,7 +47,8 @@ class SearchOrganization extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressCountry] in the reosurce Organization
+  /// a string search for [addressCountry] in the resource
+  /// [Organization]
   SearchOrganization addressCountry(
     FhirString value, {
     SearchModifier? modifier,
@@ -56,7 +61,8 @@ class SearchOrganization extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressPostalcode] in the reosurce Organization
+  /// a string search for [addressPostalcode] in the resource
+  /// [Organization]
   SearchOrganization addressPostalcode(
     FhirString value, {
     SearchModifier? modifier,
@@ -69,7 +75,8 @@ class SearchOrganization extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressState] in the reosurce Organization
+  /// a string search for [addressState] in the resource
+  /// [Organization]
   SearchOrganization addressState(
     FhirString value, {
     SearchModifier? modifier,
@@ -82,7 +89,8 @@ class SearchOrganization extends SearchResource {
     return this;
   }
 
-  /// a token search for [addressUse] in the reosurce Organization
+  /// a token search for [addressUse] in the resource
+  /// [Organization]
   SearchOrganization addressUse(
     FhirString value, {
     FhirUri? system,
@@ -93,7 +101,8 @@ class SearchOrganization extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Organization
+  /// a token search for [identifier] in the resource
+  /// [Organization]
   SearchOrganization identifier(
     FhirString value, {
     FhirUri? system,
@@ -104,7 +113,8 @@ class SearchOrganization extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce Organization
+  /// a string search for [name] in the resource
+  /// [Organization]
   SearchOrganization name(
     FhirString value, {
     SearchModifier? modifier,
@@ -116,7 +126,8 @@ class SearchOrganization extends SearchResource {
     return this;
   }
 
-  /// a string search for [phonetic] in the reosurce Organization
+  /// a string search for [phonetic] in the resource
+  /// [Organization]
   SearchOrganization phonetic(
     FhirString value, {
     SearchModifier? modifier,
@@ -129,7 +140,8 @@ class SearchOrganization extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce Organization
+  /// a token search for [type] in the resource
+  /// [Organization]
   SearchOrganization type(
     FhirString value, {
     FhirUri? system,

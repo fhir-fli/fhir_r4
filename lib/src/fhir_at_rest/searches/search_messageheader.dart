@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the MessageHeader resource.
+/// A class to build query parameters for RESTful requests for
+/// the [MessageHeader] resource.
 class SearchMessageHeader extends SearchResource {
-  /// a token search for [code] in the reosurce MessageHeader
+  /// a token search for [code] in the resource
+  /// [MessageHeader]
   SearchMessageHeader code(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchMessageHeader extends SearchResource {
     return this;
   }
 
-  /// a string search for [destination] in the reosurce MessageHeader
+  /// a string search for [destination] in the resource
+  /// [MessageHeader]
   SearchMessageHeader destination(
     FhirString value, {
     SearchModifier? modifier,
@@ -30,15 +33,19 @@ class SearchMessageHeader extends SearchResource {
     return this;
   }
 
-  /// a uri search for [destinationUri] in the reosurce MessageHeader
-  SearchMessageHeader destinationUri(FhirUri value,
-      {SearchModifier? modifier}) {
+  /// a uri search for [destinationUri] in the resource
+  /// [MessageHeader]
+  SearchMessageHeader destinationUri(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}destination_uri'] =
         value.toString();
     return this;
   }
 
-  /// a token search for [event] in the reosurce MessageHeader
+  /// a token search for [event] in the resource
+  /// [MessageHeader]
   SearchMessageHeader event(
     FhirString value, {
     FhirUri? system,
@@ -49,7 +56,8 @@ class SearchMessageHeader extends SearchResource {
     return this;
   }
 
-  /// a token search for [responseId] in the reosurce MessageHeader
+  /// a token search for [responseId] in the resource
+  /// [MessageHeader]
   SearchMessageHeader responseId(
     FhirString value, {
     FhirUri? system,
@@ -60,7 +68,8 @@ class SearchMessageHeader extends SearchResource {
     return this;
   }
 
-  /// a string search for [source] in the reosurce MessageHeader
+  /// a string search for [source] in the resource
+  /// [MessageHeader]
   SearchMessageHeader source(
     FhirString value, {
     SearchModifier? modifier,
@@ -73,8 +82,12 @@ class SearchMessageHeader extends SearchResource {
     return this;
   }
 
-  /// a uri search for [sourceUri] in the reosurce MessageHeader
-  SearchMessageHeader sourceUri(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [sourceUri] in the resource
+  /// [MessageHeader]
+  SearchMessageHeader sourceUri(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}source_uri'] =
         value.toString();
     return this;

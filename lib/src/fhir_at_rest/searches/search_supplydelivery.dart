@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the SupplyDelivery resource.
+/// A class to build query parameters for RESTful requests for
+/// the [SupplyDelivery] resource.
 class SearchSupplyDelivery extends SearchResource {
-  /// a token search for [identifier] in the reosurce SupplyDelivery
+  /// a token search for [identifier] in the resource
+  /// [SupplyDelivery]
   SearchSupplyDelivery identifier(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchSupplyDelivery extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce SupplyDelivery
+  /// a token search for [status] in the resource
+  /// [SupplyDelivery]
   SearchSupplyDelivery status(
     FhirString value, {
     FhirUri? system,

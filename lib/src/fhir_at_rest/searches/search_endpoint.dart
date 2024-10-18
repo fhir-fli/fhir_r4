@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Endpoint resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Endpoint] resource.
 class SearchEndpoint extends SearchResource {
-  /// a token search for [connectionType] in the reosurce Endpoint
+  /// a token search for [connectionType] in the resource
+  /// [Endpoint]
   SearchEndpoint connectionType(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchEndpoint extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Endpoint
+  /// a token search for [identifier] in the resource
+  /// [Endpoint]
   SearchEndpoint identifier(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchEndpoint extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce Endpoint
+  /// a string search for [name] in the resource
+  /// [Endpoint]
   SearchEndpoint name(
     FhirString value, {
     SearchModifier? modifier,
@@ -40,7 +44,8 @@ class SearchEndpoint extends SearchResource {
     return this;
   }
 
-  /// a token search for [payloadType] in the reosurce Endpoint
+  /// a token search for [payloadType] in the resource
+  /// [Endpoint]
   SearchEndpoint payloadType(
     FhirString value, {
     FhirUri? system,
@@ -51,7 +56,8 @@ class SearchEndpoint extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Endpoint
+  /// a token search for [status] in the resource
+  /// [Endpoint]
   SearchEndpoint status(
     FhirString value, {
     FhirUri? system,

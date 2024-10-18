@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the ServiceRequest resource.
+/// A class to build query parameters for RESTful requests for
+/// the [ServiceRequest] resource.
 class SearchServiceRequest extends SearchResource {
-  /// a token search for [code] in the reosurce ServiceRequest
+  /// a token search for [code] in the resource
+  /// [ServiceRequest]
   SearchServiceRequest code(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchServiceRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce ServiceRequest
+  /// a token search for [identifier] in the resource
+  /// [ServiceRequest]
   SearchServiceRequest identifier(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchServiceRequest extends SearchResource {
     return this;
   }
 
-  /// a date search for [authored] in the reosurce ServiceRequest
+  /// a date search for [authored] in the resource
+  /// [ServiceRequest]
   SearchServiceRequest authored(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -38,7 +42,8 @@ class SearchServiceRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [bodySite] in the reosurce ServiceRequest
+  /// a token search for [bodySite] in the resource
+  /// [ServiceRequest]
   SearchServiceRequest bodySite(
     FhirString value, {
     FhirUri? system,
@@ -49,7 +54,8 @@ class SearchServiceRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [category] in the reosurce ServiceRequest
+  /// a token search for [category] in the resource
+  /// [ServiceRequest]
   SearchServiceRequest category(
     FhirString value, {
     FhirUri? system,
@@ -60,15 +66,19 @@ class SearchServiceRequest extends SearchResource {
     return this;
   }
 
-  /// a uri search for [instantiatesUri] in the reosurce ServiceRequest
-  SearchServiceRequest instantiatesUri(FhirUri value,
-      {SearchModifier? modifier}) {
+  /// a uri search for [instantiatesUri] in the resource
+  /// [ServiceRequest]
+  SearchServiceRequest instantiatesUri(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}instantiates_uri'] =
         value.toString();
     return this;
   }
 
-  /// a token search for [intent] in the reosurce ServiceRequest
+  /// a token search for [intent] in the resource
+  /// [ServiceRequest]
   SearchServiceRequest intent(
     FhirString value, {
     FhirUri? system,
@@ -79,7 +89,8 @@ class SearchServiceRequest extends SearchResource {
     return this;
   }
 
-  /// a date search for [occurrence] in the reosurce ServiceRequest
+  /// a date search for [occurrence] in the resource
+  /// [ServiceRequest]
   SearchServiceRequest occurrence(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -89,7 +100,8 @@ class SearchServiceRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [performerType] in the reosurce ServiceRequest
+  /// a token search for [performerType] in the resource
+  /// [ServiceRequest]
   SearchServiceRequest performerType(
     FhirString value, {
     FhirUri? system,
@@ -100,7 +112,8 @@ class SearchServiceRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [priority] in the reosurce ServiceRequest
+  /// a token search for [priority] in the resource
+  /// [ServiceRequest]
   SearchServiceRequest priority(
     FhirString value, {
     FhirUri? system,
@@ -111,7 +124,8 @@ class SearchServiceRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [requisition] in the reosurce ServiceRequest
+  /// a token search for [requisition] in the resource
+  /// [ServiceRequest]
   SearchServiceRequest requisition(
     FhirString value, {
     FhirUri? system,
@@ -122,7 +136,8 @@ class SearchServiceRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce ServiceRequest
+  /// a token search for [status] in the resource
+  /// [ServiceRequest]
   SearchServiceRequest status(
     FhirString value, {
     FhirUri? system,

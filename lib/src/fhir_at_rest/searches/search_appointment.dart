@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Appointment resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Appointment] resource.
 class SearchAppointment extends SearchResource {
-  /// a token search for [appointmentType] in the reosurce Appointment
+  /// a token search for [appointmentType] in the resource
+  /// [Appointment]
   SearchAppointment appointmentType(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchAppointment extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce Appointment
+  /// a date search for [date] in the resource
+  /// [Appointment]
   SearchAppointment date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -26,7 +29,8 @@ class SearchAppointment extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Appointment
+  /// a token search for [identifier] in the resource
+  /// [Appointment]
   SearchAppointment identifier(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchAppointment extends SearchResource {
     return this;
   }
 
-  /// a token search for [partStatus] in the reosurce Appointment
+  /// a token search for [partStatus] in the resource
+  /// [Appointment]
   SearchAppointment partStatus(
     FhirString value, {
     FhirUri? system,
@@ -48,7 +53,8 @@ class SearchAppointment extends SearchResource {
     return this;
   }
 
-  /// a token search for [reasonCode] in the reosurce Appointment
+  /// a token search for [reasonCode] in the resource
+  /// [Appointment]
   SearchAppointment reasonCode(
     FhirString value, {
     FhirUri? system,
@@ -59,7 +65,8 @@ class SearchAppointment extends SearchResource {
     return this;
   }
 
-  /// a token search for [serviceCategory] in the reosurce Appointment
+  /// a token search for [serviceCategory] in the resource
+  /// [Appointment]
   SearchAppointment serviceCategory(
     FhirString value, {
     FhirUri? system,
@@ -70,7 +77,8 @@ class SearchAppointment extends SearchResource {
     return this;
   }
 
-  /// a token search for [serviceType] in the reosurce Appointment
+  /// a token search for [serviceType] in the resource
+  /// [Appointment]
   SearchAppointment serviceType(
     FhirString value, {
     FhirUri? system,
@@ -81,7 +89,8 @@ class SearchAppointment extends SearchResource {
     return this;
   }
 
-  /// a token search for [specialty] in the reosurce Appointment
+  /// a token search for [specialty] in the resource
+  /// [Appointment]
   SearchAppointment specialty(
     FhirString value, {
     FhirUri? system,
@@ -92,7 +101,8 @@ class SearchAppointment extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Appointment
+  /// a token search for [status] in the resource
+  /// [Appointment]
   SearchAppointment status(
     FhirString value, {
     FhirUri? system,

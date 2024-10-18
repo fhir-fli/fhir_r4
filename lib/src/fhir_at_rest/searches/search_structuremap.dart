@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the StructureMap resource.
+/// A class to build query parameters for RESTful requests for
+/// the [StructureMap] resource.
 class SearchStructureMap extends SearchResource {
-  /// a token search for [context] in the reosurce StructureMap
+  /// a token search for [context] in the resource
+  /// [StructureMap]
   SearchStructureMap context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchStructureMap extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce StructureMap
+  /// a quantity search for [contextQuantity] in the resource
+  /// [StructureMap]
   SearchStructureMap contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchStructureMap extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce StructureMap
+  /// a token search for [contextType] in the resource
+  /// [StructureMap]
   SearchStructureMap contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchStructureMap extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce StructureMap
+  /// a date search for [date] in the resource
+  /// [StructureMap]
   SearchStructureMap date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchStructureMap extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce StructureMap
+  /// a string search for [description] in the resource
+  /// [StructureMap]
   SearchStructureMap description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchStructureMap extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce StructureMap
+  /// a token search for [jurisdiction] in the resource
+  /// [StructureMap]
   SearchStructureMap jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -77,7 +84,8 @@ class SearchStructureMap extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce StructureMap
+  /// a string search for [name] in the resource
+  /// [StructureMap]
   SearchStructureMap name(
     FhirString value, {
     SearchModifier? modifier,
@@ -89,7 +97,8 @@ class SearchStructureMap extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce StructureMap
+  /// a string search for [publisher] in the resource
+  /// [StructureMap]
   SearchStructureMap publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -102,7 +111,8 @@ class SearchStructureMap extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce StructureMap
+  /// a token search for [status] in the resource
+  /// [StructureMap]
   SearchStructureMap status(
     FhirString value, {
     FhirUri? system,
@@ -113,7 +123,8 @@ class SearchStructureMap extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce StructureMap
+  /// a string search for [title] in the resource
+  /// [StructureMap]
   SearchStructureMap title(
     FhirString value, {
     SearchModifier? modifier,
@@ -126,13 +137,18 @@ class SearchStructureMap extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce StructureMap
-  SearchStructureMap url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [StructureMap]
+  SearchStructureMap url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce StructureMap
+  /// a token search for [version] in the resource
+  /// [StructureMap]
   SearchStructureMap version(
     FhirString value, {
     FhirUri? system,
@@ -143,7 +159,8 @@ class SearchStructureMap extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce StructureMap
+  /// a token search for [identifier] in the resource
+  /// [StructureMap]
   SearchStructureMap identifier(
     FhirString value, {
     FhirUri? system,

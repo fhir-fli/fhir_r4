@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the EnrollmentRequest resource.
+/// A class to build query parameters for RESTful requests for
+/// the [EnrollmentRequest] resource.
 class SearchEnrollmentRequest extends SearchResource {
-  /// a token search for [identifier] in the reosurce EnrollmentRequest
+  /// a token search for [identifier] in the resource
+  /// [EnrollmentRequest]
   SearchEnrollmentRequest identifier(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchEnrollmentRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce EnrollmentRequest
+  /// a token search for [status] in the resource
+  /// [EnrollmentRequest]
   SearchEnrollmentRequest status(
     FhirString value, {
     FhirUri? system,

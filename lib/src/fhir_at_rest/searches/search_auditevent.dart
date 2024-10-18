@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the AuditEvent resource.
+/// A class to build query parameters for RESTful requests for
+/// the [AuditEvent] resource.
 class SearchAuditEvent extends SearchResource {
-  /// a token search for [action] in the reosurce AuditEvent
+  /// a token search for [action] in the resource
+  /// [AuditEvent]
   SearchAuditEvent action(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchAuditEvent extends SearchResource {
     return this;
   }
 
-  /// a string search for [address] in the reosurce AuditEvent
+  /// a string search for [address] in the resource
+  /// [AuditEvent]
   SearchAuditEvent address(
     FhirString value, {
     SearchModifier? modifier,
@@ -30,7 +33,8 @@ class SearchAuditEvent extends SearchResource {
     return this;
   }
 
-  /// a string search for [agentName] in the reosurce AuditEvent
+  /// a string search for [agentName] in the resource
+  /// [AuditEvent]
   SearchAuditEvent agentName(
     FhirString value, {
     SearchModifier? modifier,
@@ -43,7 +47,8 @@ class SearchAuditEvent extends SearchResource {
     return this;
   }
 
-  /// a token search for [agentRole] in the reosurce AuditEvent
+  /// a token search for [agentRole] in the resource
+  /// [AuditEvent]
   SearchAuditEvent agentRole(
     FhirString value, {
     FhirUri? system,
@@ -54,7 +59,8 @@ class SearchAuditEvent extends SearchResource {
     return this;
   }
 
-  /// a token search for [altid] in the reosurce AuditEvent
+  /// a token search for [altid] in the resource
+  /// [AuditEvent]
   SearchAuditEvent altid(
     FhirString value, {
     FhirUri? system,
@@ -65,7 +71,8 @@ class SearchAuditEvent extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce AuditEvent
+  /// a date search for [date] in the resource
+  /// [AuditEvent]
   SearchAuditEvent date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -74,7 +81,8 @@ class SearchAuditEvent extends SearchResource {
     return this;
   }
 
-  /// a string search for [entityName] in the reosurce AuditEvent
+  /// a string search for [entityName] in the resource
+  /// [AuditEvent]
   SearchAuditEvent entityName(
     FhirString value, {
     SearchModifier? modifier,
@@ -87,7 +95,8 @@ class SearchAuditEvent extends SearchResource {
     return this;
   }
 
-  /// a token search for [entityRole] in the reosurce AuditEvent
+  /// a token search for [entityRole] in the resource
+  /// [AuditEvent]
   SearchAuditEvent entityRole(
     FhirString value, {
     FhirUri? system,
@@ -98,7 +107,8 @@ class SearchAuditEvent extends SearchResource {
     return this;
   }
 
-  /// a token search for [entityType] in the reosurce AuditEvent
+  /// a token search for [entityType] in the resource
+  /// [AuditEvent]
   SearchAuditEvent entityType(
     FhirString value, {
     FhirUri? system,
@@ -109,7 +119,8 @@ class SearchAuditEvent extends SearchResource {
     return this;
   }
 
-  /// a token search for [outcome] in the reosurce AuditEvent
+  /// a token search for [outcome] in the resource
+  /// [AuditEvent]
   SearchAuditEvent outcome(
     FhirString value, {
     FhirUri? system,
@@ -120,14 +131,19 @@ class SearchAuditEvent extends SearchResource {
     return this;
   }
 
-  /// a uri search for [policy] in the reosurce AuditEvent
-  SearchAuditEvent policy(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [policy] in the resource
+  /// [AuditEvent]
+  SearchAuditEvent policy(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}policy'] =
         value.toString();
     return this;
   }
 
-  /// a token search for [site] in the reosurce AuditEvent
+  /// a token search for [site] in the resource
+  /// [AuditEvent]
   SearchAuditEvent site(
     FhirString value, {
     FhirUri? system,
@@ -138,7 +154,8 @@ class SearchAuditEvent extends SearchResource {
     return this;
   }
 
-  /// a token search for [subtype] in the reosurce AuditEvent
+  /// a token search for [subtype] in the resource
+  /// [AuditEvent]
   SearchAuditEvent subtype(
     FhirString value, {
     FhirUri? system,
@@ -149,7 +166,8 @@ class SearchAuditEvent extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce AuditEvent
+  /// a token search for [type] in the resource
+  /// [AuditEvent]
   SearchAuditEvent type(
     FhirString value, {
     FhirUri? system,

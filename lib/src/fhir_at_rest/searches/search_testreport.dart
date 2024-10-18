@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the TestReport resource.
+/// A class to build query parameters for RESTful requests for
+/// the [TestReport] resource.
 class SearchTestReport extends SearchResource {
-  /// a token search for [identifier] in the reosurce TestReport
+  /// a token search for [identifier] in the resource
+  /// [TestReport]
   SearchTestReport identifier(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchTestReport extends SearchResource {
     return this;
   }
 
-  /// a date search for [issued] in the reosurce TestReport
+  /// a date search for [issued] in the resource
+  /// [TestReport]
   SearchTestReport issued(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -27,14 +30,19 @@ class SearchTestReport extends SearchResource {
     return this;
   }
 
-  /// a uri search for [participant] in the reosurce TestReport
-  SearchTestReport participant(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [participant] in the resource
+  /// [TestReport]
+  SearchTestReport participant(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}participant'] =
         value.toString();
     return this;
   }
 
-  /// a token search for [result] in the reosurce TestReport
+  /// a token search for [result] in the resource
+  /// [TestReport]
   SearchTestReport result(
     FhirString value, {
     FhirUri? system,
@@ -45,7 +53,8 @@ class SearchTestReport extends SearchResource {
     return this;
   }
 
-  /// a string search for [tester] in the reosurce TestReport
+  /// a string search for [tester] in the resource
+  /// [TestReport]
   SearchTestReport tester(
     FhirString value, {
     SearchModifier? modifier,

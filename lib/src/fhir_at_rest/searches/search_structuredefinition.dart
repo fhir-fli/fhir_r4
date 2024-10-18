@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the StructureDefinition resource.
+/// A class to build query parameters for RESTful requests for
+/// the [StructureDefinition] resource.
 class SearchStructureDefinition extends SearchResource {
-  /// a token search for [context] in the reosurce StructureDefinition
+  /// a token search for [context] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce StructureDefinition
+  /// a quantity search for [contextQuantity] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce StructureDefinition
+  /// a token search for [contextType] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce StructureDefinition
+  /// a date search for [date] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce StructureDefinition
+  /// a string search for [description] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce StructureDefinition
+  /// a token search for [jurisdiction] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -77,7 +84,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce StructureDefinition
+  /// a string search for [name] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition name(
     FhirString value, {
     SearchModifier? modifier,
@@ -89,7 +97,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce StructureDefinition
+  /// a string search for [publisher] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -102,7 +111,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce StructureDefinition
+  /// a token search for [status] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition status(
     FhirString value, {
     FhirUri? system,
@@ -113,7 +123,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce StructureDefinition
+  /// a string search for [title] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition title(
     FhirString value, {
     SearchModifier? modifier,
@@ -126,13 +137,18 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce StructureDefinition
-  SearchStructureDefinition url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [StructureDefinition]
+  SearchStructureDefinition url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce StructureDefinition
+  /// a token search for [version] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition version(
     FhirString value, {
     FhirUri? system,
@@ -143,7 +159,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce StructureDefinition
+  /// a token search for [identifier] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition identifier(
     FhirString value, {
     FhirUri? system,
@@ -154,7 +171,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [abstract] in the reosurce StructureDefinition
+  /// a token search for [abstract] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition abstract(
     FhirString value, {
     FhirUri? system,
@@ -165,7 +183,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [basePath] in the reosurce StructureDefinition
+  /// a token search for [basePath] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition basePath(
     FhirString value, {
     FhirUri? system,
@@ -176,7 +195,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [derivation] in the reosurce StructureDefinition
+  /// a token search for [derivation] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition derivation(
     FhirString value, {
     FhirUri? system,
@@ -187,7 +207,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [experimental] in the reosurce StructureDefinition
+  /// a token search for [experimental] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition experimental(
     FhirString value, {
     FhirUri? system,
@@ -198,7 +219,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [extContext] in the reosurce StructureDefinition
+  /// a token search for [extContext] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition extContext(
     FhirString value, {
     FhirUri? system,
@@ -209,7 +231,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [keyword] in the reosurce StructureDefinition
+  /// a token search for [keyword] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition keyword(
     FhirString value, {
     FhirUri? system,
@@ -220,7 +243,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [kind] in the reosurce StructureDefinition
+  /// a token search for [kind] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition kind(
     FhirString value, {
     FhirUri? system,
@@ -231,7 +255,8 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [path] in the reosurce StructureDefinition
+  /// a token search for [path] in the resource
+  /// [StructureDefinition]
   SearchStructureDefinition path(
     FhirString value, {
     FhirUri? system,
@@ -242,8 +267,12 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  /// a uri search for [type] in the reosurce StructureDefinition
-  SearchStructureDefinition type(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [type] in the resource
+  /// [StructureDefinition]
+  SearchStructureDefinition type(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}type'] = value.toString();
     return this;
   }

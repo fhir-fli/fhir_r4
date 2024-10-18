@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the ImplementationGuide resource.
+/// A class to build query parameters for RESTful requests for
+/// the [ImplementationGuide] resource.
 class SearchImplementationGuide extends SearchResource {
-  /// a token search for [context] in the reosurce ImplementationGuide
+  /// a token search for [context] in the resource
+  /// [ImplementationGuide]
   SearchImplementationGuide context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchImplementationGuide extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce ImplementationGuide
+  /// a quantity search for [contextQuantity] in the resource
+  /// [ImplementationGuide]
   SearchImplementationGuide contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchImplementationGuide extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce ImplementationGuide
+  /// a token search for [contextType] in the resource
+  /// [ImplementationGuide]
   SearchImplementationGuide contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchImplementationGuide extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce ImplementationGuide
+  /// a date search for [date] in the resource
+  /// [ImplementationGuide]
   SearchImplementationGuide date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchImplementationGuide extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce ImplementationGuide
+  /// a string search for [description] in the resource
+  /// [ImplementationGuide]
   SearchImplementationGuide description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchImplementationGuide extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce ImplementationGuide
+  /// a token search for [jurisdiction] in the resource
+  /// [ImplementationGuide]
   SearchImplementationGuide jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -77,7 +84,8 @@ class SearchImplementationGuide extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce ImplementationGuide
+  /// a string search for [name] in the resource
+  /// [ImplementationGuide]
   SearchImplementationGuide name(
     FhirString value, {
     SearchModifier? modifier,
@@ -89,7 +97,8 @@ class SearchImplementationGuide extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce ImplementationGuide
+  /// a string search for [publisher] in the resource
+  /// [ImplementationGuide]
   SearchImplementationGuide publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -102,7 +111,8 @@ class SearchImplementationGuide extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce ImplementationGuide
+  /// a token search for [status] in the resource
+  /// [ImplementationGuide]
   SearchImplementationGuide status(
     FhirString value, {
     FhirUri? system,
@@ -113,7 +123,8 @@ class SearchImplementationGuide extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce ImplementationGuide
+  /// a string search for [title] in the resource
+  /// [ImplementationGuide]
   SearchImplementationGuide title(
     FhirString value, {
     SearchModifier? modifier,
@@ -126,13 +137,18 @@ class SearchImplementationGuide extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce ImplementationGuide
-  SearchImplementationGuide url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [ImplementationGuide]
+  SearchImplementationGuide url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce ImplementationGuide
+  /// a token search for [version] in the resource
+  /// [ImplementationGuide]
   SearchImplementationGuide version(
     FhirString value, {
     FhirUri? system,
@@ -143,7 +159,8 @@ class SearchImplementationGuide extends SearchResource {
     return this;
   }
 
-  /// a token search for [experimental] in the reosurce ImplementationGuide
+  /// a token search for [experimental] in the resource
+  /// [ImplementationGuide]
   SearchImplementationGuide experimental(
     FhirString value, {
     FhirUri? system,

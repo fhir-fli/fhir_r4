@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the CarePlan resource.
+/// A class to build query parameters for RESTful requests for
+/// the [CarePlan] resource.
 class SearchCarePlan extends SearchResource {
-  /// a date search for [date] in the reosurce CarePlan
+  /// a date search for [date] in the resource
+  /// [CarePlan]
   SearchCarePlan date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -15,7 +17,8 @@ class SearchCarePlan extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce CarePlan
+  /// a token search for [identifier] in the resource
+  /// [CarePlan]
   SearchCarePlan identifier(
     FhirString value, {
     FhirUri? system,
@@ -26,7 +29,8 @@ class SearchCarePlan extends SearchResource {
     return this;
   }
 
-  /// a token search for [activityCode] in the reosurce CarePlan
+  /// a token search for [activityCode] in the resource
+  /// [CarePlan]
   SearchCarePlan activityCode(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchCarePlan extends SearchResource {
     return this;
   }
 
-  /// a date search for [activityDate] in the reosurce CarePlan
+  /// a date search for [activityDate] in the resource
+  /// [CarePlan]
   SearchCarePlan activityDate(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -47,7 +52,8 @@ class SearchCarePlan extends SearchResource {
     return this;
   }
 
-  /// a token search for [category] in the reosurce CarePlan
+  /// a token search for [category] in the resource
+  /// [CarePlan]
   SearchCarePlan category(
     FhirString value, {
     FhirUri? system,
@@ -58,14 +64,19 @@ class SearchCarePlan extends SearchResource {
     return this;
   }
 
-  /// a uri search for [instantiatesUri] in the reosurce CarePlan
-  SearchCarePlan instantiatesUri(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [instantiatesUri] in the resource
+  /// [CarePlan]
+  SearchCarePlan instantiatesUri(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}instantiates_uri'] =
         value.toString();
     return this;
   }
 
-  /// a token search for [intent] in the reosurce CarePlan
+  /// a token search for [intent] in the resource
+  /// [CarePlan]
   SearchCarePlan intent(
     FhirString value, {
     FhirUri? system,
@@ -76,7 +87,8 @@ class SearchCarePlan extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce CarePlan
+  /// a token search for [status] in the resource
+  /// [CarePlan]
   SearchCarePlan status(
     FhirString value, {
     FhirUri? system,

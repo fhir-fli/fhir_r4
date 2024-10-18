@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Provenance resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Provenance] resource.
 class SearchProvenance extends SearchResource {
-  /// a token search for [agentRole] in the reosurce Provenance
+  /// a token search for [agentRole] in the resource
+  /// [Provenance]
   SearchProvenance agentRole(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchProvenance extends SearchResource {
     return this;
   }
 
-  /// a token search for [agentType] in the reosurce Provenance
+  /// a token search for [agentType] in the resource
+  /// [Provenance]
   SearchProvenance agentType(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchProvenance extends SearchResource {
     return this;
   }
 
-  /// a date search for [recorded] in the reosurce Provenance
+  /// a date search for [recorded] in the resource
+  /// [Provenance]
   SearchProvenance recorded(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -38,7 +42,8 @@ class SearchProvenance extends SearchResource {
     return this;
   }
 
-  /// a token search for [signatureType] in the reosurce Provenance
+  /// a token search for [signatureType] in the resource
+  /// [Provenance]
   SearchProvenance signatureType(
     FhirString value, {
     FhirUri? system,
@@ -49,7 +54,8 @@ class SearchProvenance extends SearchResource {
     return this;
   }
 
-  /// a date search for [when] in the reosurce Provenance
+  /// a date search for [when] in the resource
+  /// [Provenance]
   SearchProvenance when(
     FhirDateTime value, {
     SearchModifier? modifier,

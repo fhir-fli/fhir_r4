@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the ResearchDefinition resource.
+/// A class to build query parameters for RESTful requests for
+/// the [ResearchDefinition] resource.
 class SearchResearchDefinition extends SearchResource {
-  /// a token search for [context] in the reosurce ResearchDefinition
+  /// a token search for [context] in the resource
+  /// [ResearchDefinition]
   SearchResearchDefinition context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchResearchDefinition extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce ResearchDefinition
+  /// a quantity search for [contextQuantity] in the resource
+  /// [ResearchDefinition]
   SearchResearchDefinition contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchResearchDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce ResearchDefinition
+  /// a token search for [contextType] in the resource
+  /// [ResearchDefinition]
   SearchResearchDefinition contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchResearchDefinition extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce ResearchDefinition
+  /// a date search for [date] in the resource
+  /// [ResearchDefinition]
   SearchResearchDefinition date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchResearchDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce ResearchDefinition
+  /// a string search for [description] in the resource
+  /// [ResearchDefinition]
   SearchResearchDefinition description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchResearchDefinition extends SearchResource {
     return this;
   }
 
-  /// a date search for [effective] in the reosurce ResearchDefinition
+  /// a date search for [effective] in the resource
+  /// [ResearchDefinition]
   SearchResearchDefinition effective(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -76,7 +83,8 @@ class SearchResearchDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce ResearchDefinition
+  /// a token search for [identifier] in the resource
+  /// [ResearchDefinition]
   SearchResearchDefinition identifier(
     FhirString value, {
     FhirUri? system,
@@ -87,7 +95,8 @@ class SearchResearchDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce ResearchDefinition
+  /// a token search for [jurisdiction] in the resource
+  /// [ResearchDefinition]
   SearchResearchDefinition jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -98,7 +107,8 @@ class SearchResearchDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce ResearchDefinition
+  /// a string search for [name] in the resource
+  /// [ResearchDefinition]
   SearchResearchDefinition name(
     FhirString value, {
     SearchModifier? modifier,
@@ -110,7 +120,8 @@ class SearchResearchDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce ResearchDefinition
+  /// a string search for [publisher] in the resource
+  /// [ResearchDefinition]
   SearchResearchDefinition publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -123,7 +134,8 @@ class SearchResearchDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce ResearchDefinition
+  /// a token search for [status] in the resource
+  /// [ResearchDefinition]
   SearchResearchDefinition status(
     FhirString value, {
     FhirUri? system,
@@ -134,7 +146,8 @@ class SearchResearchDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce ResearchDefinition
+  /// a string search for [title] in the resource
+  /// [ResearchDefinition]
   SearchResearchDefinition title(
     FhirString value, {
     SearchModifier? modifier,
@@ -147,7 +160,8 @@ class SearchResearchDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [topic] in the reosurce ResearchDefinition
+  /// a token search for [topic] in the resource
+  /// [ResearchDefinition]
   SearchResearchDefinition topic(
     FhirString value, {
     FhirUri? system,
@@ -158,13 +172,18 @@ class SearchResearchDefinition extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce ResearchDefinition
-  SearchResearchDefinition url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [ResearchDefinition]
+  SearchResearchDefinition url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce ResearchDefinition
+  /// a token search for [version] in the resource
+  /// [ResearchDefinition]
   SearchResearchDefinition version(
     FhirString value, {
     FhirUri? system,

@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the PaymentNotice resource.
+/// A class to build query parameters for RESTful requests for
+/// the [PaymentNotice] resource.
 class SearchPaymentNotice extends SearchResource {
-  /// a date search for [created] in the reosurce PaymentNotice
+  /// a date search for [created] in the resource
+  /// [PaymentNotice]
   SearchPaymentNotice created(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -16,7 +18,8 @@ class SearchPaymentNotice extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce PaymentNotice
+  /// a token search for [identifier] in the resource
+  /// [PaymentNotice]
   SearchPaymentNotice identifier(
     FhirString value, {
     FhirUri? system,
@@ -27,7 +30,8 @@ class SearchPaymentNotice extends SearchResource {
     return this;
   }
 
-  /// a token search for [paymentStatus] in the reosurce PaymentNotice
+  /// a token search for [paymentStatus] in the resource
+  /// [PaymentNotice]
   SearchPaymentNotice paymentStatus(
     FhirString value, {
     FhirUri? system,
@@ -38,7 +42,8 @@ class SearchPaymentNotice extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce PaymentNotice
+  /// a token search for [status] in the resource
+  /// [PaymentNotice]
   SearchPaymentNotice status(
     FhirString value, {
     FhirUri? system,

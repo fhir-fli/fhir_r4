@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Condition resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Condition] resource.
 class SearchCondition extends SearchResource {
-  /// a token search for [code] in the reosurce Condition
+  /// a token search for [code] in the resource
+  /// [Condition]
   SearchCondition code(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchCondition extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Condition
+  /// a token search for [identifier] in the resource
+  /// [Condition]
   SearchCondition identifier(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchCondition extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [abatementAge] in the reosurce Condition
+  /// a quantity search for [abatementAge] in the resource
+  /// [Condition]
   SearchCondition abatementAge(
     FhirDecimal value, {
     FhirString? unit,
@@ -44,7 +48,8 @@ class SearchCondition extends SearchResource {
     return this;
   }
 
-  /// a date search for [abatementDate] in the reosurce Condition
+  /// a date search for [abatementDate] in the resource
+  /// [Condition]
   SearchCondition abatementDate(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -54,7 +59,8 @@ class SearchCondition extends SearchResource {
     return this;
   }
 
-  /// a string search for [abatementString] in the reosurce Condition
+  /// a string search for [abatementString] in the resource
+  /// [Condition]
   SearchCondition abatementString(
     FhirString value, {
     SearchModifier? modifier,
@@ -67,7 +73,8 @@ class SearchCondition extends SearchResource {
     return this;
   }
 
-  /// a token search for [bodySite] in the reosurce Condition
+  /// a token search for [bodySite] in the resource
+  /// [Condition]
   SearchCondition bodySite(
     FhirString value, {
     FhirUri? system,
@@ -78,7 +85,8 @@ class SearchCondition extends SearchResource {
     return this;
   }
 
-  /// a token search for [category] in the reosurce Condition
+  /// a token search for [category] in the resource
+  /// [Condition]
   SearchCondition category(
     FhirString value, {
     FhirUri? system,
@@ -89,7 +97,8 @@ class SearchCondition extends SearchResource {
     return this;
   }
 
-  /// a token search for [clinicalStatus] in the reosurce Condition
+  /// a token search for [clinicalStatus] in the resource
+  /// [Condition]
   SearchCondition clinicalStatus(
     FhirString value, {
     FhirUri? system,
@@ -100,7 +109,8 @@ class SearchCondition extends SearchResource {
     return this;
   }
 
-  /// a token search for [evidence] in the reosurce Condition
+  /// a token search for [evidence] in the resource
+  /// [Condition]
   SearchCondition evidence(
     FhirString value, {
     FhirUri? system,
@@ -111,7 +121,8 @@ class SearchCondition extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [onsetAge] in the reosurce Condition
+  /// a quantity search for [onsetAge] in the resource
+  /// [Condition]
   SearchCondition onsetAge(
     FhirDecimal value, {
     FhirString? unit,
@@ -127,7 +138,8 @@ class SearchCondition extends SearchResource {
     return this;
   }
 
-  /// a date search for [onsetDate] in the reosurce Condition
+  /// a date search for [onsetDate] in the resource
+  /// [Condition]
   SearchCondition onsetDate(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -137,7 +149,8 @@ class SearchCondition extends SearchResource {
     return this;
   }
 
-  /// a string search for [onsetInfo] in the reosurce Condition
+  /// a string search for [onsetInfo] in the resource
+  /// [Condition]
   SearchCondition onsetInfo(
     FhirString value, {
     SearchModifier? modifier,
@@ -150,7 +163,8 @@ class SearchCondition extends SearchResource {
     return this;
   }
 
-  /// a date search for [recordedDate] in the reosurce Condition
+  /// a date search for [recordedDate] in the resource
+  /// [Condition]
   SearchCondition recordedDate(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -160,7 +174,8 @@ class SearchCondition extends SearchResource {
     return this;
   }
 
-  /// a token search for [severity] in the reosurce Condition
+  /// a token search for [severity] in the resource
+  /// [Condition]
   SearchCondition severity(
     FhirString value, {
     FhirUri? system,
@@ -171,7 +186,8 @@ class SearchCondition extends SearchResource {
     return this;
   }
 
-  /// a token search for [stage] in the reosurce Condition
+  /// a token search for [stage] in the resource
+  /// [Condition]
   SearchCondition stage(
     FhirString value, {
     FhirUri? system,
@@ -182,7 +198,8 @@ class SearchCondition extends SearchResource {
     return this;
   }
 
-  /// a token search for [verificationStatus] in the reosurce Condition
+  /// a token search for [verificationStatus] in the resource
+  /// [Condition]
   SearchCondition verificationStatus(
     FhirString value, {
     FhirUri? system,

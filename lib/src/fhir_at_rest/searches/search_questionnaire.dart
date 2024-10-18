@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Questionnaire resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Questionnaire] resource.
 class SearchQuestionnaire extends SearchResource {
-  /// a token search for [code] in the reosurce Questionnaire
+  /// a token search for [code] in the resource
+  /// [Questionnaire]
   SearchQuestionnaire code(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  /// a token search for [context] in the reosurce Questionnaire
+  /// a token search for [context] in the resource
+  /// [Questionnaire]
   SearchQuestionnaire context(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce Questionnaire
+  /// a quantity search for [contextQuantity] in the resource
+  /// [Questionnaire]
   SearchQuestionnaire contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -44,7 +48,8 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce Questionnaire
+  /// a token search for [contextType] in the resource
+  /// [Questionnaire]
   SearchQuestionnaire contextType(
     FhirString value, {
     FhirUri? system,
@@ -55,7 +60,8 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce Questionnaire
+  /// a date search for [date] in the resource
+  /// [Questionnaire]
   SearchQuestionnaire date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -64,14 +70,19 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  /// a uri search for [definition] in the reosurce Questionnaire
-  SearchQuestionnaire definition(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [definition] in the resource
+  /// [Questionnaire]
+  SearchQuestionnaire definition(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}definition'] =
         value.toString();
     return this;
   }
 
-  /// a string search for [description] in the reosurce Questionnaire
+  /// a string search for [description] in the resource
+  /// [Questionnaire]
   SearchQuestionnaire description(
     FhirString value, {
     SearchModifier? modifier,
@@ -84,7 +95,8 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  /// a date search for [effective] in the reosurce Questionnaire
+  /// a date search for [effective] in the resource
+  /// [Questionnaire]
   SearchQuestionnaire effective(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -94,7 +106,8 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Questionnaire
+  /// a token search for [identifier] in the resource
+  /// [Questionnaire]
   SearchQuestionnaire identifier(
     FhirString value, {
     FhirUri? system,
@@ -105,7 +118,8 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce Questionnaire
+  /// a token search for [jurisdiction] in the resource
+  /// [Questionnaire]
   SearchQuestionnaire jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -116,7 +130,8 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce Questionnaire
+  /// a string search for [name] in the resource
+  /// [Questionnaire]
   SearchQuestionnaire name(
     FhirString value, {
     SearchModifier? modifier,
@@ -128,7 +143,8 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce Questionnaire
+  /// a string search for [publisher] in the resource
+  /// [Questionnaire]
   SearchQuestionnaire publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -141,7 +157,8 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Questionnaire
+  /// a token search for [status] in the resource
+  /// [Questionnaire]
   SearchQuestionnaire status(
     FhirString value, {
     FhirUri? system,
@@ -152,7 +169,8 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  /// a token search for [subjectType] in the reosurce Questionnaire
+  /// a token search for [subjectType] in the resource
+  /// [Questionnaire]
   SearchQuestionnaire subjectType(
     FhirString value, {
     FhirUri? system,
@@ -163,7 +181,8 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce Questionnaire
+  /// a string search for [title] in the resource
+  /// [Questionnaire]
   SearchQuestionnaire title(
     FhirString value, {
     SearchModifier? modifier,
@@ -176,13 +195,18 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce Questionnaire
-  SearchQuestionnaire url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [Questionnaire]
+  SearchQuestionnaire url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce Questionnaire
+  /// a token search for [version] in the resource
+  /// [Questionnaire]
   SearchQuestionnaire version(
     FhirString value, {
     FhirUri? system,

@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the EvidenceVariable resource.
+/// A class to build query parameters for RESTful requests for
+/// the [EvidenceVariable] resource.
 class SearchEvidenceVariable extends SearchResource {
-  /// a token search for [context] in the reosurce EvidenceVariable
+  /// a token search for [context] in the resource
+  /// [EvidenceVariable]
   SearchEvidenceVariable context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchEvidenceVariable extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce EvidenceVariable
+  /// a quantity search for [contextQuantity] in the resource
+  /// [EvidenceVariable]
   SearchEvidenceVariable contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchEvidenceVariable extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce EvidenceVariable
+  /// a token search for [contextType] in the resource
+  /// [EvidenceVariable]
   SearchEvidenceVariable contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchEvidenceVariable extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce EvidenceVariable
+  /// a date search for [date] in the resource
+  /// [EvidenceVariable]
   SearchEvidenceVariable date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchEvidenceVariable extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce EvidenceVariable
+  /// a string search for [description] in the resource
+  /// [EvidenceVariable]
   SearchEvidenceVariable description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchEvidenceVariable extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce EvidenceVariable
+  /// a token search for [identifier] in the resource
+  /// [EvidenceVariable]
   SearchEvidenceVariable identifier(
     FhirString value, {
     FhirUri? system,
@@ -77,7 +84,8 @@ class SearchEvidenceVariable extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce EvidenceVariable
+  /// a string search for [name] in the resource
+  /// [EvidenceVariable]
   SearchEvidenceVariable name(
     FhirString value, {
     SearchModifier? modifier,
@@ -89,7 +97,8 @@ class SearchEvidenceVariable extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce EvidenceVariable
+  /// a string search for [publisher] in the resource
+  /// [EvidenceVariable]
   SearchEvidenceVariable publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -102,7 +111,8 @@ class SearchEvidenceVariable extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce EvidenceVariable
+  /// a token search for [status] in the resource
+  /// [EvidenceVariable]
   SearchEvidenceVariable status(
     FhirString value, {
     FhirUri? system,
@@ -113,7 +123,8 @@ class SearchEvidenceVariable extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce EvidenceVariable
+  /// a string search for [title] in the resource
+  /// [EvidenceVariable]
   SearchEvidenceVariable title(
     FhirString value, {
     SearchModifier? modifier,
@@ -126,13 +137,18 @@ class SearchEvidenceVariable extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce EvidenceVariable
-  SearchEvidenceVariable url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [EvidenceVariable]
+  SearchEvidenceVariable url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce EvidenceVariable
+  /// a token search for [version] in the resource
+  /// [EvidenceVariable]
   SearchEvidenceVariable version(
     FhirString value, {
     FhirUri? system,

@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Invoice resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Invoice] resource.
 class SearchInvoice extends SearchResource {
-  /// a date search for [date] in the reosurce Invoice
+  /// a date search for [date] in the resource
+  /// [Invoice]
   SearchInvoice date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -15,7 +17,8 @@ class SearchInvoice extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Invoice
+  /// a token search for [identifier] in the resource
+  /// [Invoice]
   SearchInvoice identifier(
     FhirString value, {
     FhirUri? system,
@@ -26,7 +29,8 @@ class SearchInvoice extends SearchResource {
     return this;
   }
 
-  /// a token search for [participantRole] in the reosurce Invoice
+  /// a token search for [participantRole] in the resource
+  /// [Invoice]
   SearchInvoice participantRole(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchInvoice extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Invoice
+  /// a token search for [status] in the resource
+  /// [Invoice]
   SearchInvoice status(
     FhirString value, {
     FhirUri? system,
@@ -48,7 +53,8 @@ class SearchInvoice extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [totalgross] in the reosurce Invoice
+  /// a quantity search for [totalgross] in the resource
+  /// [Invoice]
   SearchInvoice totalgross(
     FhirDecimal value, {
     FhirString? unit,
@@ -64,7 +70,8 @@ class SearchInvoice extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [totalnet] in the reosurce Invoice
+  /// a quantity search for [totalnet] in the resource
+  /// [Invoice]
   SearchInvoice totalnet(
     FhirDecimal value, {
     FhirString? unit,
@@ -80,7 +87,8 @@ class SearchInvoice extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce Invoice
+  /// a token search for [type] in the resource
+  /// [Invoice]
   SearchInvoice type(
     FhirString value, {
     FhirUri? system,

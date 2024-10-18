@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Substance resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Substance] resource.
 class SearchSubstance extends SearchResource {
-  /// a token search for [category] in the reosurce Substance
+  /// a token search for [category] in the resource
+  /// [Substance]
   SearchSubstance category(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchSubstance extends SearchResource {
     return this;
   }
 
-  /// a token search for [code] in the reosurce Substance
+  /// a token search for [code] in the resource
+  /// [Substance]
   SearchSubstance code(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchSubstance extends SearchResource {
     return this;
   }
 
-  /// a token search for [containerIdentifier] in the reosurce Substance
+  /// a token search for [containerIdentifier] in the resource
+  /// [Substance]
   SearchSubstance containerIdentifier(
     FhirString value, {
     FhirUri? system,
@@ -39,7 +43,8 @@ class SearchSubstance extends SearchResource {
     return this;
   }
 
-  /// a date search for [expiry] in the reosurce Substance
+  /// a date search for [expiry] in the resource
+  /// [Substance]
   SearchSubstance expiry(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -49,7 +54,8 @@ class SearchSubstance extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Substance
+  /// a token search for [identifier] in the resource
+  /// [Substance]
   SearchSubstance identifier(
     FhirString value, {
     FhirUri? system,
@@ -60,7 +66,8 @@ class SearchSubstance extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [quantity] in the reosurce Substance
+  /// a quantity search for [quantity] in the resource
+  /// [Substance]
   SearchSubstance quantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -76,7 +83,8 @@ class SearchSubstance extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Substance
+  /// a token search for [status] in the resource
+  /// [Substance]
   SearchSubstance status(
     FhirString value, {
     FhirUri? system,

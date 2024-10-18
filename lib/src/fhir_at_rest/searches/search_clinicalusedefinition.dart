@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the ClinicalUseDefinition resource.
+/// A class to build query parameters for RESTful requests for
+/// the [ClinicalUseDefinition] resource.
 class SearchClinicalUseDefinition extends SearchResource {
-  /// a token search for [contraindication] in the reosurce ClinicalUseDefinition
+  /// a token search for [contraindication] in the resource
+  /// [ClinicalUseDefinition]
   SearchClinicalUseDefinition contraindication(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchClinicalUseDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [effect] in the reosurce ClinicalUseDefinition
+  /// a token search for [effect] in the resource
+  /// [ClinicalUseDefinition]
   SearchClinicalUseDefinition effect(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchClinicalUseDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce ClinicalUseDefinition
+  /// a token search for [identifier] in the resource
+  /// [ClinicalUseDefinition]
   SearchClinicalUseDefinition identifier(
     FhirString value, {
     FhirUri? system,
@@ -39,7 +43,8 @@ class SearchClinicalUseDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [indication] in the reosurce ClinicalUseDefinition
+  /// a token search for [indication] in the resource
+  /// [ClinicalUseDefinition]
   SearchClinicalUseDefinition indication(
     FhirString value, {
     FhirUri? system,
@@ -50,7 +55,8 @@ class SearchClinicalUseDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [interaction] in the reosurce ClinicalUseDefinition
+  /// a token search for [interaction] in the resource
+  /// [ClinicalUseDefinition]
   SearchClinicalUseDefinition interaction(
     FhirString value, {
     FhirUri? system,
@@ -61,7 +67,8 @@ class SearchClinicalUseDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce ClinicalUseDefinition
+  /// a token search for [type] in the resource
+  /// [ClinicalUseDefinition]
   SearchClinicalUseDefinition type(
     FhirString value, {
     FhirUri? system,

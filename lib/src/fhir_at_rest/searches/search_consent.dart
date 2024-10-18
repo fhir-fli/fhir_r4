@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Consent resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Consent] resource.
 class SearchConsent extends SearchResource {
-  /// a date search for [date] in the reosurce Consent
+  /// a date search for [date] in the resource
+  /// [Consent]
   SearchConsent date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -15,7 +17,8 @@ class SearchConsent extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Consent
+  /// a token search for [identifier] in the resource
+  /// [Consent]
   SearchConsent identifier(
     FhirString value, {
     FhirUri? system,
@@ -26,7 +29,8 @@ class SearchConsent extends SearchResource {
     return this;
   }
 
-  /// a token search for [action] in the reosurce Consent
+  /// a token search for [action] in the resource
+  /// [Consent]
   SearchConsent action(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchConsent extends SearchResource {
     return this;
   }
 
-  /// a token search for [category] in the reosurce Consent
+  /// a token search for [category] in the resource
+  /// [Consent]
   SearchConsent category(
     FhirString value, {
     FhirUri? system,
@@ -48,7 +53,8 @@ class SearchConsent extends SearchResource {
     return this;
   }
 
-  /// a date search for [period] in the reosurce Consent
+  /// a date search for [period] in the resource
+  /// [Consent]
   SearchConsent period(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -58,7 +64,8 @@ class SearchConsent extends SearchResource {
     return this;
   }
 
-  /// a token search for [purpose] in the reosurce Consent
+  /// a token search for [purpose] in the resource
+  /// [Consent]
   SearchConsent purpose(
     FhirString value, {
     FhirUri? system,
@@ -69,7 +76,8 @@ class SearchConsent extends SearchResource {
     return this;
   }
 
-  /// a token search for [scope] in the reosurce Consent
+  /// a token search for [scope] in the resource
+  /// [Consent]
   SearchConsent scope(
     FhirString value, {
     FhirUri? system,
@@ -80,7 +88,8 @@ class SearchConsent extends SearchResource {
     return this;
   }
 
-  /// a token search for [securityLabel] in the reosurce Consent
+  /// a token search for [securityLabel] in the resource
+  /// [Consent]
   SearchConsent securityLabel(
     FhirString value, {
     FhirUri? system,
@@ -91,7 +100,8 @@ class SearchConsent extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Consent
+  /// a token search for [status] in the resource
+  /// [Consent]
   SearchConsent status(
     FhirString value, {
     FhirUri? system,

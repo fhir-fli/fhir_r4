@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Composition resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Composition] resource.
 class SearchComposition extends SearchResource {
-  /// a date search for [date] in the reosurce Composition
+  /// a date search for [date] in the resource
+  /// [Composition]
   SearchComposition date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -15,7 +17,8 @@ class SearchComposition extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Composition
+  /// a token search for [identifier] in the resource
+  /// [Composition]
   SearchComposition identifier(
     FhirString value, {
     FhirUri? system,
@@ -26,7 +29,8 @@ class SearchComposition extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce Composition
+  /// a token search for [type] in the resource
+  /// [Composition]
   SearchComposition type(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchComposition extends SearchResource {
     return this;
   }
 
-  /// a token search for [category] in the reosurce Composition
+  /// a token search for [category] in the resource
+  /// [Composition]
   SearchComposition category(
     FhirString value, {
     FhirUri? system,
@@ -48,7 +53,8 @@ class SearchComposition extends SearchResource {
     return this;
   }
 
-  /// a token search for [confidentiality] in the reosurce Composition
+  /// a token search for [confidentiality] in the resource
+  /// [Composition]
   SearchComposition confidentiality(
     FhirString value, {
     FhirUri? system,
@@ -59,7 +65,8 @@ class SearchComposition extends SearchResource {
     return this;
   }
 
-  /// a token search for [context] in the reosurce Composition
+  /// a token search for [context] in the resource
+  /// [Composition]
   SearchComposition context(
     FhirString value, {
     FhirUri? system,
@@ -70,7 +77,8 @@ class SearchComposition extends SearchResource {
     return this;
   }
 
-  /// a date search for [period] in the reosurce Composition
+  /// a date search for [period] in the resource
+  /// [Composition]
   SearchComposition period(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -80,7 +88,8 @@ class SearchComposition extends SearchResource {
     return this;
   }
 
-  /// a token search for [relatedId] in the reosurce Composition
+  /// a token search for [relatedId] in the resource
+  /// [Composition]
   SearchComposition relatedId(
     FhirString value, {
     FhirUri? system,
@@ -91,7 +100,8 @@ class SearchComposition extends SearchResource {
     return this;
   }
 
-  /// a token search for [section] in the reosurce Composition
+  /// a token search for [section] in the resource
+  /// [Composition]
   SearchComposition section(
     FhirString value, {
     FhirUri? system,
@@ -102,7 +112,8 @@ class SearchComposition extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Composition
+  /// a token search for [status] in the resource
+  /// [Composition]
   SearchComposition status(
     FhirString value, {
     FhirUri? system,
@@ -113,7 +124,8 @@ class SearchComposition extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce Composition
+  /// a string search for [title] in the resource
+  /// [Composition]
   SearchComposition title(
     FhirString value, {
     SearchModifier? modifier,

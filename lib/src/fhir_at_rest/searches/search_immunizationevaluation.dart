@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the ImmunizationEvaluation resource.
+/// A class to build query parameters for RESTful requests for
+/// the [ImmunizationEvaluation] resource.
 class SearchImmunizationEvaluation extends SearchResource {
-  /// a date search for [date] in the reosurce ImmunizationEvaluation
+  /// a date search for [date] in the resource
+  /// [ImmunizationEvaluation]
   SearchImmunizationEvaluation date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -15,7 +17,8 @@ class SearchImmunizationEvaluation extends SearchResource {
     return this;
   }
 
-  /// a token search for [doseStatus] in the reosurce ImmunizationEvaluation
+  /// a token search for [doseStatus] in the resource
+  /// [ImmunizationEvaluation]
   SearchImmunizationEvaluation doseStatus(
     FhirString value, {
     FhirUri? system,
@@ -26,7 +29,8 @@ class SearchImmunizationEvaluation extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce ImmunizationEvaluation
+  /// a token search for [identifier] in the resource
+  /// [ImmunizationEvaluation]
   SearchImmunizationEvaluation identifier(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchImmunizationEvaluation extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce ImmunizationEvaluation
+  /// a token search for [status] in the resource
+  /// [ImmunizationEvaluation]
   SearchImmunizationEvaluation status(
     FhirString value, {
     FhirUri? system,
@@ -48,7 +53,8 @@ class SearchImmunizationEvaluation extends SearchResource {
     return this;
   }
 
-  /// a token search for [targetDisease] in the reosurce ImmunizationEvaluation
+  /// a token search for [targetDisease] in the resource
+  /// [ImmunizationEvaluation]
   SearchImmunizationEvaluation targetDisease(
     FhirString value, {
     FhirUri? system,

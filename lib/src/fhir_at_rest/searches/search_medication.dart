@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Medication resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Medication] resource.
 class SearchMedication extends SearchResource {
-  /// a token search for [code] in the reosurce Medication
+  /// a token search for [code] in the resource
+  /// [Medication]
   SearchMedication code(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchMedication extends SearchResource {
     return this;
   }
 
-  /// a date search for [expirationDate] in the reosurce Medication
+  /// a date search for [expirationDate] in the resource
+  /// [Medication]
   SearchMedication expirationDate(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -27,7 +30,8 @@ class SearchMedication extends SearchResource {
     return this;
   }
 
-  /// a token search for [form] in the reosurce Medication
+  /// a token search for [form] in the resource
+  /// [Medication]
   SearchMedication form(
     FhirString value, {
     FhirUri? system,
@@ -38,7 +42,8 @@ class SearchMedication extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Medication
+  /// a token search for [identifier] in the resource
+  /// [Medication]
   SearchMedication identifier(
     FhirString value, {
     FhirUri? system,
@@ -49,7 +54,8 @@ class SearchMedication extends SearchResource {
     return this;
   }
 
-  /// a token search for [ingredientCode] in the reosurce Medication
+  /// a token search for [ingredientCode] in the resource
+  /// [Medication]
   SearchMedication ingredientCode(
     FhirString value, {
     FhirUri? system,
@@ -60,7 +66,8 @@ class SearchMedication extends SearchResource {
     return this;
   }
 
-  /// a token search for [lotNumber] in the reosurce Medication
+  /// a token search for [lotNumber] in the resource
+  /// [Medication]
   SearchMedication lotNumber(
     FhirString value, {
     FhirUri? system,
@@ -71,7 +78,8 @@ class SearchMedication extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Medication
+  /// a token search for [status] in the resource
+  /// [Medication]
   SearchMedication status(
     FhirString value, {
     FhirUri? system,

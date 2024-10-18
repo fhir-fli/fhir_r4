@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Slot resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Slot] resource.
 class SearchSlot extends SearchResource {
-  /// a token search for [appointmentType] in the reosurce Slot
+  /// a token search for [appointmentType] in the resource
+  /// [Slot]
   SearchSlot appointmentType(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchSlot extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Slot
+  /// a token search for [identifier] in the resource
+  /// [Slot]
   SearchSlot identifier(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchSlot extends SearchResource {
     return this;
   }
 
-  /// a token search for [serviceCategory] in the reosurce Slot
+  /// a token search for [serviceCategory] in the resource
+  /// [Slot]
   SearchSlot serviceCategory(
     FhirString value, {
     FhirUri? system,
@@ -39,7 +43,8 @@ class SearchSlot extends SearchResource {
     return this;
   }
 
-  /// a token search for [serviceType] in the reosurce Slot
+  /// a token search for [serviceType] in the resource
+  /// [Slot]
   SearchSlot serviceType(
     FhirString value, {
     FhirUri? system,
@@ -50,7 +55,8 @@ class SearchSlot extends SearchResource {
     return this;
   }
 
-  /// a token search for [specialty] in the reosurce Slot
+  /// a token search for [specialty] in the resource
+  /// [Slot]
   SearchSlot specialty(
     FhirString value, {
     FhirUri? system,
@@ -61,7 +67,8 @@ class SearchSlot extends SearchResource {
     return this;
   }
 
-  /// a date search for [start] in the reosurce Slot
+  /// a date search for [start] in the resource
+  /// [Slot]
   SearchSlot start(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -71,7 +78,8 @@ class SearchSlot extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Slot
+  /// a token search for [status] in the resource
+  /// [Slot]
   SearchSlot status(
     FhirString value, {
     FhirUri? system,

@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the RiskAssessment resource.
+/// A class to build query parameters for RESTful requests for
+/// the [RiskAssessment] resource.
 class SearchRiskAssessment extends SearchResource {
-  /// a date search for [date] in the reosurce RiskAssessment
+  /// a date search for [date] in the resource
+  /// [RiskAssessment]
   SearchRiskAssessment date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -15,7 +17,8 @@ class SearchRiskAssessment extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce RiskAssessment
+  /// a token search for [identifier] in the resource
+  /// [RiskAssessment]
   SearchRiskAssessment identifier(
     FhirString value, {
     FhirUri? system,
@@ -26,7 +29,8 @@ class SearchRiskAssessment extends SearchResource {
     return this;
   }
 
-  /// a token search for [method] in the reosurce RiskAssessment
+  /// a token search for [method] in the resource
+  /// [RiskAssessment]
   SearchRiskAssessment method(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchRiskAssessment extends SearchResource {
     return this;
   }
 
-  /// a numerical search for [probability] in the reosurce RiskAssessment
+  /// a numerical search for [probability] in the resource
+  /// [RiskAssessment]
   SearchRiskAssessment probability(
     FhirDecimal value, {
     FhirString? unit,
@@ -53,7 +58,8 @@ class SearchRiskAssessment extends SearchResource {
     return this;
   }
 
-  /// a token search for [risk] in the reosurce RiskAssessment
+  /// a token search for [risk] in the resource
+  /// [RiskAssessment]
   SearchRiskAssessment risk(
     FhirString value, {
     FhirUri? system,

@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the DeviceRequest resource.
+/// A class to build query parameters for RESTful requests for
+/// the [DeviceRequest] resource.
 class SearchDeviceRequest extends SearchResource {
-  /// a token search for [code] in the reosurce DeviceRequest
+  /// a token search for [code] in the resource
+  /// [DeviceRequest]
   SearchDeviceRequest code(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchDeviceRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce DeviceRequest
+  /// a token search for [identifier] in the resource
+  /// [DeviceRequest]
   SearchDeviceRequest identifier(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchDeviceRequest extends SearchResource {
     return this;
   }
 
-  /// a date search for [authoredOn] in the reosurce DeviceRequest
+  /// a date search for [authoredOn] in the resource
+  /// [DeviceRequest]
   SearchDeviceRequest authoredOn(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -38,7 +42,8 @@ class SearchDeviceRequest extends SearchResource {
     return this;
   }
 
-  /// a date search for [eventDate] in the reosurce DeviceRequest
+  /// a date search for [eventDate] in the resource
+  /// [DeviceRequest]
   SearchDeviceRequest eventDate(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -48,7 +53,8 @@ class SearchDeviceRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [groupIdentifier] in the reosurce DeviceRequest
+  /// a token search for [groupIdentifier] in the resource
+  /// [DeviceRequest]
   SearchDeviceRequest groupIdentifier(
     FhirString value, {
     FhirUri? system,
@@ -59,15 +65,19 @@ class SearchDeviceRequest extends SearchResource {
     return this;
   }
 
-  /// a uri search for [instantiatesUri] in the reosurce DeviceRequest
-  SearchDeviceRequest instantiatesUri(FhirUri value,
-      {SearchModifier? modifier}) {
+  /// a uri search for [instantiatesUri] in the resource
+  /// [DeviceRequest]
+  SearchDeviceRequest instantiatesUri(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}instantiates_uri'] =
         value.toString();
     return this;
   }
 
-  /// a token search for [intent] in the reosurce DeviceRequest
+  /// a token search for [intent] in the resource
+  /// [DeviceRequest]
   SearchDeviceRequest intent(
     FhirString value, {
     FhirUri? system,
@@ -78,7 +88,8 @@ class SearchDeviceRequest extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce DeviceRequest
+  /// a token search for [status] in the resource
+  /// [DeviceRequest]
   SearchDeviceRequest status(
     FhirString value, {
     FhirUri? system,

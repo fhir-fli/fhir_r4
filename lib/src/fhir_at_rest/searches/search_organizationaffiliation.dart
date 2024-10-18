@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the OrganizationAffiliation resource.
+/// A class to build query parameters for RESTful requests for
+/// the [OrganizationAffiliation] resource.
 class SearchOrganizationAffiliation extends SearchResource {
-  /// a token search for [active] in the reosurce OrganizationAffiliation
+  /// a token search for [active] in the resource
+  /// [OrganizationAffiliation]
   SearchOrganizationAffiliation active(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchOrganizationAffiliation extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce OrganizationAffiliation
+  /// a date search for [date] in the resource
+  /// [OrganizationAffiliation]
   SearchOrganizationAffiliation date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -26,7 +29,8 @@ class SearchOrganizationAffiliation extends SearchResource {
     return this;
   }
 
-  /// a token search for [email] in the reosurce OrganizationAffiliation
+  /// a token search for [email] in the resource
+  /// [OrganizationAffiliation]
   SearchOrganizationAffiliation email(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchOrganizationAffiliation extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce OrganizationAffiliation
+  /// a token search for [identifier] in the resource
+  /// [OrganizationAffiliation]
   SearchOrganizationAffiliation identifier(
     FhirString value, {
     FhirUri? system,
@@ -48,7 +53,8 @@ class SearchOrganizationAffiliation extends SearchResource {
     return this;
   }
 
-  /// a token search for [phone] in the reosurce OrganizationAffiliation
+  /// a token search for [phone] in the resource
+  /// [OrganizationAffiliation]
   SearchOrganizationAffiliation phone(
     FhirString value, {
     FhirUri? system,
@@ -59,7 +65,8 @@ class SearchOrganizationAffiliation extends SearchResource {
     return this;
   }
 
-  /// a token search for [role] in the reosurce OrganizationAffiliation
+  /// a token search for [role] in the resource
+  /// [OrganizationAffiliation]
   SearchOrganizationAffiliation role(
     FhirString value, {
     FhirUri? system,
@@ -70,7 +77,8 @@ class SearchOrganizationAffiliation extends SearchResource {
     return this;
   }
 
-  /// a token search for [specialty] in the reosurce OrganizationAffiliation
+  /// a token search for [specialty] in the resource
+  /// [OrganizationAffiliation]
   SearchOrganizationAffiliation specialty(
     FhirString value, {
     FhirUri? system,
@@ -81,7 +89,8 @@ class SearchOrganizationAffiliation extends SearchResource {
     return this;
   }
 
-  /// a token search for [telecom] in the reosurce OrganizationAffiliation
+  /// a token search for [telecom] in the resource
+  /// [OrganizationAffiliation]
   SearchOrganizationAffiliation telecom(
     FhirString value, {
     FhirUri? system,

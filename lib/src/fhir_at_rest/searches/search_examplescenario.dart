@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the ExampleScenario resource.
+/// A class to build query parameters for RESTful requests for
+/// the [ExampleScenario] resource.
 class SearchExampleScenario extends SearchResource {
-  /// a token search for [context] in the reosurce ExampleScenario
+  /// a token search for [context] in the resource
+  /// [ExampleScenario]
   SearchExampleScenario context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchExampleScenario extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce ExampleScenario
+  /// a quantity search for [contextQuantity] in the resource
+  /// [ExampleScenario]
   SearchExampleScenario contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchExampleScenario extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce ExampleScenario
+  /// a token search for [contextType] in the resource
+  /// [ExampleScenario]
   SearchExampleScenario contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchExampleScenario extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce ExampleScenario
+  /// a date search for [date] in the resource
+  /// [ExampleScenario]
   SearchExampleScenario date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchExampleScenario extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce ExampleScenario
+  /// a token search for [identifier] in the resource
+  /// [ExampleScenario]
   SearchExampleScenario identifier(
     FhirString value, {
     FhirUri? system,
@@ -64,7 +70,8 @@ class SearchExampleScenario extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce ExampleScenario
+  /// a token search for [jurisdiction] in the resource
+  /// [ExampleScenario]
   SearchExampleScenario jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -75,7 +82,8 @@ class SearchExampleScenario extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce ExampleScenario
+  /// a string search for [name] in the resource
+  /// [ExampleScenario]
   SearchExampleScenario name(
     FhirString value, {
     SearchModifier? modifier,
@@ -87,7 +95,8 @@ class SearchExampleScenario extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce ExampleScenario
+  /// a string search for [publisher] in the resource
+  /// [ExampleScenario]
   SearchExampleScenario publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -100,7 +109,8 @@ class SearchExampleScenario extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce ExampleScenario
+  /// a token search for [status] in the resource
+  /// [ExampleScenario]
   SearchExampleScenario status(
     FhirString value, {
     FhirUri? system,
@@ -111,13 +121,18 @@ class SearchExampleScenario extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce ExampleScenario
-  SearchExampleScenario url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [ExampleScenario]
+  SearchExampleScenario url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce ExampleScenario
+  /// a token search for [version] in the resource
+  /// [ExampleScenario]
   SearchExampleScenario version(
     FhirString value, {
     FhirUri? system,

@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the CapabilityStatement resource.
+/// A class to build query parameters for RESTful requests for
+/// the [CapabilityStatement] resource.
 class SearchCapabilityStatement extends SearchResource {
-  /// a token search for [context] in the reosurce CapabilityStatement
+  /// a token search for [context] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce CapabilityStatement
+  /// a quantity search for [contextQuantity] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce CapabilityStatement
+  /// a token search for [contextType] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce CapabilityStatement
+  /// a date search for [date] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce CapabilityStatement
+  /// a string search for [description] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a token search for [fhirversion] in the reosurce CapabilityStatement
+  /// a token search for [fhirversion] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement fhirversion(
     FhirString value, {
     FhirUri? system,
@@ -77,7 +84,8 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a token search for [format] in the reosurce CapabilityStatement
+  /// a token search for [format] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement format(
     FhirString value, {
     FhirUri? system,
@@ -88,7 +96,8 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce CapabilityStatement
+  /// a token search for [jurisdiction] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -99,7 +108,8 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a token search for [mode] in the reosurce CapabilityStatement
+  /// a token search for [mode] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement mode(
     FhirString value, {
     FhirUri? system,
@@ -110,7 +120,8 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce CapabilityStatement
+  /// a string search for [name] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement name(
     FhirString value, {
     SearchModifier? modifier,
@@ -122,7 +133,8 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce CapabilityStatement
+  /// a string search for [publisher] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -135,7 +147,8 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a token search for [resource] in the reosurce CapabilityStatement
+  /// a token search for [resource] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement resource(
     FhirString value, {
     FhirUri? system,
@@ -146,7 +159,8 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a token search for [securityService] in the reosurce CapabilityStatement
+  /// a token search for [securityService] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement securityService(
     FhirString value, {
     FhirUri? system,
@@ -157,7 +171,8 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a string search for [software] in the reosurce CapabilityStatement
+  /// a string search for [software] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement software(
     FhirString value, {
     SearchModifier? modifier,
@@ -170,7 +185,8 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce CapabilityStatement
+  /// a token search for [status] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement status(
     FhirString value, {
     FhirUri? system,
@@ -181,7 +197,8 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce CapabilityStatement
+  /// a string search for [title] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement title(
     FhirString value, {
     SearchModifier? modifier,
@@ -194,13 +211,18 @@ class SearchCapabilityStatement extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce CapabilityStatement
-  SearchCapabilityStatement url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [CapabilityStatement]
+  SearchCapabilityStatement url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce CapabilityStatement
+  /// a token search for [version] in the resource
+  /// [CapabilityStatement]
   SearchCapabilityStatement version(
     FhirString value, {
     FhirUri? system,

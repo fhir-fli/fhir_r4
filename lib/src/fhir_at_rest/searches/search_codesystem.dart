@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the CodeSystem resource.
+/// A class to build query parameters for RESTful requests for
+/// the [CodeSystem] resource.
 class SearchCodeSystem extends SearchResource {
-  /// a token search for [context] in the reosurce CodeSystem
+  /// a token search for [context] in the resource
+  /// [CodeSystem]
   SearchCodeSystem context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce CodeSystem
+  /// a quantity search for [contextQuantity] in the resource
+  /// [CodeSystem]
   SearchCodeSystem contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce CodeSystem
+  /// a token search for [contextType] in the resource
+  /// [CodeSystem]
   SearchCodeSystem contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce CodeSystem
+  /// a date search for [date] in the resource
+  /// [CodeSystem]
   SearchCodeSystem date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce CodeSystem
+  /// a string search for [description] in the resource
+  /// [CodeSystem]
   SearchCodeSystem description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce CodeSystem
+  /// a token search for [jurisdiction] in the resource
+  /// [CodeSystem]
   SearchCodeSystem jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -77,7 +84,8 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce CodeSystem
+  /// a string search for [name] in the resource
+  /// [CodeSystem]
   SearchCodeSystem name(
     FhirString value, {
     SearchModifier? modifier,
@@ -89,7 +97,8 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce CodeSystem
+  /// a string search for [publisher] in the resource
+  /// [CodeSystem]
   SearchCodeSystem publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -102,7 +111,8 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce CodeSystem
+  /// a token search for [status] in the resource
+  /// [CodeSystem]
   SearchCodeSystem status(
     FhirString value, {
     FhirUri? system,
@@ -113,7 +123,8 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce CodeSystem
+  /// a string search for [title] in the resource
+  /// [CodeSystem]
   SearchCodeSystem title(
     FhirString value, {
     SearchModifier? modifier,
@@ -126,13 +137,18 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce CodeSystem
-  SearchCodeSystem url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [CodeSystem]
+  SearchCodeSystem url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce CodeSystem
+  /// a token search for [version] in the resource
+  /// [CodeSystem]
   SearchCodeSystem version(
     FhirString value, {
     FhirUri? system,
@@ -143,7 +159,8 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
-  /// a token search for [code] in the reosurce CodeSystem
+  /// a token search for [code] in the resource
+  /// [CodeSystem]
   SearchCodeSystem code(
     FhirString value, {
     FhirUri? system,
@@ -154,7 +171,8 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
-  /// a token search for [contentMode] in the reosurce CodeSystem
+  /// a token search for [contentMode] in the resource
+  /// [CodeSystem]
   SearchCodeSystem contentMode(
     FhirString value, {
     FhirUri? system,
@@ -165,7 +183,8 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce CodeSystem
+  /// a token search for [identifier] in the resource
+  /// [CodeSystem]
   SearchCodeSystem identifier(
     FhirString value, {
     FhirUri? system,
@@ -176,7 +195,8 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
-  /// a token search for [language] in the reosurce CodeSystem
+  /// a token search for [language] in the resource
+  /// [CodeSystem]
   SearchCodeSystem language(
     FhirString value, {
     FhirUri? system,
@@ -187,8 +207,12 @@ class SearchCodeSystem extends SearchResource {
     return this;
   }
 
-  /// a uri search for [system] in the reosurce CodeSystem
-  SearchCodeSystem system(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [system] in the resource
+  /// [CodeSystem]
+  SearchCodeSystem system(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}system'] =
         value.toString();
     return this;

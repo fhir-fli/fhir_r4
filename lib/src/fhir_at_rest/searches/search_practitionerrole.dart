@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the PractitionerRole resource.
+/// A class to build query parameters for RESTful requests for
+/// the [PractitionerRole] resource.
 class SearchPractitionerRole extends SearchResource {
-  /// a token search for [email] in the reosurce PractitionerRole
+  /// a token search for [email] in the resource
+  /// [PractitionerRole]
   SearchPractitionerRole email(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchPractitionerRole extends SearchResource {
     return this;
   }
 
-  /// a token search for [phone] in the reosurce PractitionerRole
+  /// a token search for [phone] in the resource
+  /// [PractitionerRole]
   SearchPractitionerRole phone(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchPractitionerRole extends SearchResource {
     return this;
   }
 
-  /// a token search for [telecom] in the reosurce PractitionerRole
+  /// a token search for [telecom] in the resource
+  /// [PractitionerRole]
   SearchPractitionerRole telecom(
     FhirString value, {
     FhirUri? system,
@@ -39,7 +43,8 @@ class SearchPractitionerRole extends SearchResource {
     return this;
   }
 
-  /// a token search for [active] in the reosurce PractitionerRole
+  /// a token search for [active] in the resource
+  /// [PractitionerRole]
   SearchPractitionerRole active(
     FhirString value, {
     FhirUri? system,
@@ -50,7 +55,8 @@ class SearchPractitionerRole extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce PractitionerRole
+  /// a date search for [date] in the resource
+  /// [PractitionerRole]
   SearchPractitionerRole date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -59,7 +65,8 @@ class SearchPractitionerRole extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce PractitionerRole
+  /// a token search for [identifier] in the resource
+  /// [PractitionerRole]
   SearchPractitionerRole identifier(
     FhirString value, {
     FhirUri? system,
@@ -70,7 +77,8 @@ class SearchPractitionerRole extends SearchResource {
     return this;
   }
 
-  /// a token search for [role] in the reosurce PractitionerRole
+  /// a token search for [role] in the resource
+  /// [PractitionerRole]
   SearchPractitionerRole role(
     FhirString value, {
     FhirUri? system,
@@ -81,7 +89,8 @@ class SearchPractitionerRole extends SearchResource {
     return this;
   }
 
-  /// a token search for [specialty] in the reosurce PractitionerRole
+  /// a token search for [specialty] in the resource
+  /// [PractitionerRole]
   SearchPractitionerRole specialty(
     FhirString value, {
     FhirUri? system,

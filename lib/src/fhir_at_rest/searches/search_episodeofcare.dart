@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the EpisodeOfCare resource.
+/// A class to build query parameters for RESTful requests for
+/// the [EpisodeOfCare] resource.
 class SearchEpisodeOfCare extends SearchResource {
-  /// a date search for [date] in the reosurce EpisodeOfCare
+  /// a date search for [date] in the resource
+  /// [EpisodeOfCare]
   SearchEpisodeOfCare date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -15,7 +17,8 @@ class SearchEpisodeOfCare extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce EpisodeOfCare
+  /// a token search for [identifier] in the resource
+  /// [EpisodeOfCare]
   SearchEpisodeOfCare identifier(
     FhirString value, {
     FhirUri? system,
@@ -26,7 +29,8 @@ class SearchEpisodeOfCare extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce EpisodeOfCare
+  /// a token search for [type] in the resource
+  /// [EpisodeOfCare]
   SearchEpisodeOfCare type(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchEpisodeOfCare extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce EpisodeOfCare
+  /// a token search for [status] in the resource
+  /// [EpisodeOfCare]
   SearchEpisodeOfCare status(
     FhirString value, {
     FhirUri? system,

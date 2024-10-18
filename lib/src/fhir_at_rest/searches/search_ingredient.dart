@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Ingredient resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Ingredient] resource.
 class SearchIngredient extends SearchResource {
-  /// a token search for [function] in the reosurce Ingredient
+  /// a token search for [function] in the resource
+  /// [Ingredient]
   SearchIngredient function(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchIngredient extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Ingredient
+  /// a token search for [identifier] in the resource
+  /// [Ingredient]
   SearchIngredient identifier(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchIngredient extends SearchResource {
     return this;
   }
 
-  /// a token search for [role] in the reosurce Ingredient
+  /// a token search for [role] in the resource
+  /// [Ingredient]
   SearchIngredient role(
     FhirString value, {
     FhirUri? system,
@@ -39,7 +43,8 @@ class SearchIngredient extends SearchResource {
     return this;
   }
 
-  /// a token search for [substanceCode] in the reosurce Ingredient
+  /// a token search for [substanceCode] in the resource
+  /// [Ingredient]
   SearchIngredient substanceCode(
     FhirString value, {
     FhirUri? system,

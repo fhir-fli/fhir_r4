@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the CoverageEligibilityResponse resource.
+/// A class to build query parameters for RESTful requests for
+/// the [CoverageEligibilityResponse] resource.
 class SearchCoverageEligibilityResponse extends SearchResource {
-  /// a date search for [created] in the reosurce CoverageEligibilityResponse
+  /// a date search for [created] in the resource
+  /// [CoverageEligibilityResponse]
   SearchCoverageEligibilityResponse created(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -16,7 +18,8 @@ class SearchCoverageEligibilityResponse extends SearchResource {
     return this;
   }
 
-  /// a string search for [disposition] in the reosurce CoverageEligibilityResponse
+  /// a string search for [disposition] in the resource
+  /// [CoverageEligibilityResponse]
   SearchCoverageEligibilityResponse disposition(
     FhirString value, {
     SearchModifier? modifier,
@@ -29,7 +32,8 @@ class SearchCoverageEligibilityResponse extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce CoverageEligibilityResponse
+  /// a token search for [identifier] in the resource
+  /// [CoverageEligibilityResponse]
   SearchCoverageEligibilityResponse identifier(
     FhirString value, {
     FhirUri? system,
@@ -40,7 +44,8 @@ class SearchCoverageEligibilityResponse extends SearchResource {
     return this;
   }
 
-  /// a token search for [outcome] in the reosurce CoverageEligibilityResponse
+  /// a token search for [outcome] in the resource
+  /// [CoverageEligibilityResponse]
   SearchCoverageEligibilityResponse outcome(
     FhirString value, {
     FhirUri? system,
@@ -51,7 +56,8 @@ class SearchCoverageEligibilityResponse extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce CoverageEligibilityResponse
+  /// a token search for [status] in the resource
+  /// [CoverageEligibilityResponse]
   SearchCoverageEligibilityResponse status(
     FhirString value, {
     FhirUri? system,

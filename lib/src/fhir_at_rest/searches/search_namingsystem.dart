@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the NamingSystem resource.
+/// A class to build query parameters for RESTful requests for
+/// the [NamingSystem] resource.
 class SearchNamingSystem extends SearchResource {
-  /// a token search for [context] in the reosurce NamingSystem
+  /// a token search for [context] in the resource
+  /// [NamingSystem]
   SearchNamingSystem context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce NamingSystem
+  /// a quantity search for [contextQuantity] in the resource
+  /// [NamingSystem]
   SearchNamingSystem contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce NamingSystem
+  /// a token search for [contextType] in the resource
+  /// [NamingSystem]
   SearchNamingSystem contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce NamingSystem
+  /// a date search for [date] in the resource
+  /// [NamingSystem]
   SearchNamingSystem date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce NamingSystem
+  /// a string search for [description] in the resource
+  /// [NamingSystem]
   SearchNamingSystem description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce NamingSystem
+  /// a token search for [jurisdiction] in the resource
+  /// [NamingSystem]
   SearchNamingSystem jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -77,7 +84,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce NamingSystem
+  /// a string search for [name] in the resource
+  /// [NamingSystem]
   SearchNamingSystem name(
     FhirString value, {
     SearchModifier? modifier,
@@ -89,7 +97,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce NamingSystem
+  /// a string search for [publisher] in the resource
+  /// [NamingSystem]
   SearchNamingSystem publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -102,7 +111,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce NamingSystem
+  /// a token search for [status] in the resource
+  /// [NamingSystem]
   SearchNamingSystem status(
     FhirString value, {
     FhirUri? system,
@@ -113,7 +123,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a string search for [contact] in the reosurce NamingSystem
+  /// a string search for [contact] in the resource
+  /// [NamingSystem]
   SearchNamingSystem contact(
     FhirString value, {
     SearchModifier? modifier,
@@ -126,7 +137,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a token search for [idType] in the reosurce NamingSystem
+  /// a token search for [idType] in the resource
+  /// [NamingSystem]
   SearchNamingSystem idType(
     FhirString value, {
     FhirUri? system,
@@ -137,7 +149,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a token search for [kind] in the reosurce NamingSystem
+  /// a token search for [kind] in the resource
+  /// [NamingSystem]
   SearchNamingSystem kind(
     FhirString value, {
     FhirUri? system,
@@ -148,7 +161,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a date search for [period] in the reosurce NamingSystem
+  /// a date search for [period] in the resource
+  /// [NamingSystem]
   SearchNamingSystem period(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -158,7 +172,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a string search for [responsible] in the reosurce NamingSystem
+  /// a string search for [responsible] in the resource
+  /// [NamingSystem]
   SearchNamingSystem responsible(
     FhirString value, {
     SearchModifier? modifier,
@@ -171,7 +186,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a token search for [telecom] in the reosurce NamingSystem
+  /// a token search for [telecom] in the resource
+  /// [NamingSystem]
   SearchNamingSystem telecom(
     FhirString value, {
     FhirUri? system,
@@ -182,7 +198,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce NamingSystem
+  /// a token search for [type] in the resource
+  /// [NamingSystem]
   SearchNamingSystem type(
     FhirString value, {
     FhirUri? system,
@@ -193,7 +210,8 @@ class SearchNamingSystem extends SearchResource {
     return this;
   }
 
-  /// a string search for [value] in the reosurce NamingSystem
+  /// a string search for [value] in the resource
+  /// [NamingSystem]
   SearchNamingSystem value(
     FhirString value, {
     SearchModifier? modifier,

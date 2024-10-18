@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Communication resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Communication] resource.
 class SearchCommunication extends SearchResource {
-  /// a token search for [category] in the reosurce Communication
+  /// a token search for [category] in the resource
+  /// [Communication]
   SearchCommunication category(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchCommunication extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Communication
+  /// a token search for [identifier] in the resource
+  /// [Communication]
   SearchCommunication identifier(
     FhirString value, {
     FhirUri? system,
@@ -28,15 +31,19 @@ class SearchCommunication extends SearchResource {
     return this;
   }
 
-  /// a uri search for [instantiatesUri] in the reosurce Communication
-  SearchCommunication instantiatesUri(FhirUri value,
-      {SearchModifier? modifier}) {
+  /// a uri search for [instantiatesUri] in the resource
+  /// [Communication]
+  SearchCommunication instantiatesUri(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}instantiates_uri'] =
         value.toString();
     return this;
   }
 
-  /// a token search for [medium] in the reosurce Communication
+  /// a token search for [medium] in the resource
+  /// [Communication]
   SearchCommunication medium(
     FhirString value, {
     FhirUri? system,
@@ -47,7 +54,8 @@ class SearchCommunication extends SearchResource {
     return this;
   }
 
-  /// a date search for [received] in the reosurce Communication
+  /// a date search for [received] in the resource
+  /// [Communication]
   SearchCommunication received(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -57,7 +65,8 @@ class SearchCommunication extends SearchResource {
     return this;
   }
 
-  /// a date search for [sent] in the reosurce Communication
+  /// a date search for [sent] in the resource
+  /// [Communication]
   SearchCommunication sent(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -66,7 +75,8 @@ class SearchCommunication extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Communication
+  /// a token search for [status] in the resource
+  /// [Communication]
   SearchCommunication status(
     FhirString value, {
     FhirUri? system,

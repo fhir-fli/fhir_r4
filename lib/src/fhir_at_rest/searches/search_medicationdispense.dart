@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the MedicationDispense resource.
+/// A class to build query parameters for RESTful requests for
+/// the [MedicationDispense] resource.
 class SearchMedicationDispense extends SearchResource {
-  /// a token search for [code] in the reosurce MedicationDispense
+  /// a token search for [code] in the resource
+  /// [MedicationDispense]
   SearchMedicationDispense code(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchMedicationDispense extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce MedicationDispense
+  /// a token search for [identifier] in the resource
+  /// [MedicationDispense]
   SearchMedicationDispense identifier(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchMedicationDispense extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce MedicationDispense
+  /// a token search for [status] in the resource
+  /// [MedicationDispense]
   SearchMedicationDispense status(
     FhirString value, {
     FhirUri? system,
@@ -39,7 +43,8 @@ class SearchMedicationDispense extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce MedicationDispense
+  /// a token search for [type] in the resource
+  /// [MedicationDispense]
   SearchMedicationDispense type(
     FhirString value, {
     FhirUri? system,
@@ -50,7 +55,8 @@ class SearchMedicationDispense extends SearchResource {
     return this;
   }
 
-  /// a date search for [whenhandedover] in the reosurce MedicationDispense
+  /// a date search for [whenhandedover] in the resource
+  /// [MedicationDispense]
   SearchMedicationDispense whenhandedover(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -60,7 +66,8 @@ class SearchMedicationDispense extends SearchResource {
     return this;
   }
 
-  /// a date search for [whenprepared] in the reosurce MedicationDispense
+  /// a date search for [whenprepared] in the resource
+  /// [MedicationDispense]
   SearchMedicationDispense whenprepared(
     FhirDateTime value, {
     SearchModifier? modifier,

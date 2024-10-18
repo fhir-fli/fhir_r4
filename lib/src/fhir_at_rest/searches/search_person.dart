@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Person resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Person] resource.
 class SearchPerson extends SearchResource {
-  /// a string search for [address] in the reosurce Person
+  /// a string search for [address] in the resource
+  /// [Person]
   SearchPerson address(
     FhirString value, {
     SearchModifier? modifier,
@@ -19,7 +21,8 @@ class SearchPerson extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressCity] in the reosurce Person
+  /// a string search for [addressCity] in the resource
+  /// [Person]
   SearchPerson addressCity(
     FhirString value, {
     SearchModifier? modifier,
@@ -32,7 +35,8 @@ class SearchPerson extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressCountry] in the reosurce Person
+  /// a string search for [addressCountry] in the resource
+  /// [Person]
   SearchPerson addressCountry(
     FhirString value, {
     SearchModifier? modifier,
@@ -45,7 +49,8 @@ class SearchPerson extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressPostalcode] in the reosurce Person
+  /// a string search for [addressPostalcode] in the resource
+  /// [Person]
   SearchPerson addressPostalcode(
     FhirString value, {
     SearchModifier? modifier,
@@ -58,7 +63,8 @@ class SearchPerson extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressState] in the reosurce Person
+  /// a string search for [addressState] in the resource
+  /// [Person]
   SearchPerson addressState(
     FhirString value, {
     SearchModifier? modifier,
@@ -71,7 +77,8 @@ class SearchPerson extends SearchResource {
     return this;
   }
 
-  /// a token search for [addressUse] in the reosurce Person
+  /// a token search for [addressUse] in the resource
+  /// [Person]
   SearchPerson addressUse(
     FhirString value, {
     FhirUri? system,
@@ -82,7 +89,8 @@ class SearchPerson extends SearchResource {
     return this;
   }
 
-  /// a date search for [birthdate] in the reosurce Person
+  /// a date search for [birthdate] in the resource
+  /// [Person]
   SearchPerson birthdate(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -92,7 +100,8 @@ class SearchPerson extends SearchResource {
     return this;
   }
 
-  /// a token search for [email] in the reosurce Person
+  /// a token search for [email] in the resource
+  /// [Person]
   SearchPerson email(
     FhirString value, {
     FhirUri? system,
@@ -103,7 +112,8 @@ class SearchPerson extends SearchResource {
     return this;
   }
 
-  /// a token search for [gender] in the reosurce Person
+  /// a token search for [gender] in the resource
+  /// [Person]
   SearchPerson gender(
     FhirString value, {
     FhirUri? system,
@@ -114,7 +124,8 @@ class SearchPerson extends SearchResource {
     return this;
   }
 
-  /// a token search for [phone] in the reosurce Person
+  /// a token search for [phone] in the resource
+  /// [Person]
   SearchPerson phone(
     FhirString value, {
     FhirUri? system,
@@ -125,7 +136,8 @@ class SearchPerson extends SearchResource {
     return this;
   }
 
-  /// a string search for [phonetic] in the reosurce Person
+  /// a string search for [phonetic] in the resource
+  /// [Person]
   SearchPerson phonetic(
     FhirString value, {
     SearchModifier? modifier,
@@ -138,7 +150,8 @@ class SearchPerson extends SearchResource {
     return this;
   }
 
-  /// a token search for [telecom] in the reosurce Person
+  /// a token search for [telecom] in the resource
+  /// [Person]
   SearchPerson telecom(
     FhirString value, {
     FhirUri? system,
@@ -149,7 +162,8 @@ class SearchPerson extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Person
+  /// a token search for [identifier] in the resource
+  /// [Person]
   SearchPerson identifier(
     FhirString value, {
     FhirUri? system,
@@ -160,7 +174,8 @@ class SearchPerson extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce Person
+  /// a string search for [name] in the resource
+  /// [Person]
   SearchPerson name(
     FhirString value, {
     SearchModifier? modifier,

@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the InsurancePlan resource.
+/// A class to build query parameters for RESTful requests for
+/// the [InsurancePlan] resource.
 class SearchInsurancePlan extends SearchResource {
-  /// a string search for [address] in the reosurce InsurancePlan
+  /// a string search for [address] in the resource
+  /// [InsurancePlan]
   SearchInsurancePlan address(
     FhirString value, {
     SearchModifier? modifier,
@@ -19,7 +21,8 @@ class SearchInsurancePlan extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressCity] in the reosurce InsurancePlan
+  /// a string search for [addressCity] in the resource
+  /// [InsurancePlan]
   SearchInsurancePlan addressCity(
     FhirString value, {
     SearchModifier? modifier,
@@ -32,7 +35,8 @@ class SearchInsurancePlan extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressCountry] in the reosurce InsurancePlan
+  /// a string search for [addressCountry] in the resource
+  /// [InsurancePlan]
   SearchInsurancePlan addressCountry(
     FhirString value, {
     SearchModifier? modifier,
@@ -45,7 +49,8 @@ class SearchInsurancePlan extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressPostalcode] in the reosurce InsurancePlan
+  /// a string search for [addressPostalcode] in the resource
+  /// [InsurancePlan]
   SearchInsurancePlan addressPostalcode(
     FhirString value, {
     SearchModifier? modifier,
@@ -58,7 +63,8 @@ class SearchInsurancePlan extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressState] in the reosurce InsurancePlan
+  /// a string search for [addressState] in the resource
+  /// [InsurancePlan]
   SearchInsurancePlan addressState(
     FhirString value, {
     SearchModifier? modifier,
@@ -71,7 +77,8 @@ class SearchInsurancePlan extends SearchResource {
     return this;
   }
 
-  /// a token search for [addressUse] in the reosurce InsurancePlan
+  /// a token search for [addressUse] in the resource
+  /// [InsurancePlan]
   SearchInsurancePlan addressUse(
     FhirString value, {
     FhirUri? system,
@@ -82,7 +89,8 @@ class SearchInsurancePlan extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce InsurancePlan
+  /// a token search for [identifier] in the resource
+  /// [InsurancePlan]
   SearchInsurancePlan identifier(
     FhirString value, {
     FhirUri? system,
@@ -93,7 +101,8 @@ class SearchInsurancePlan extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce InsurancePlan
+  /// a string search for [name] in the resource
+  /// [InsurancePlan]
   SearchInsurancePlan name(
     FhirString value, {
     SearchModifier? modifier,
@@ -105,7 +114,8 @@ class SearchInsurancePlan extends SearchResource {
     return this;
   }
 
-  /// a string search for [phonetic] in the reosurce InsurancePlan
+  /// a string search for [phonetic] in the resource
+  /// [InsurancePlan]
   SearchInsurancePlan phonetic(
     FhirString value, {
     SearchModifier? modifier,
@@ -118,7 +128,8 @@ class SearchInsurancePlan extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce InsurancePlan
+  /// a token search for [status] in the resource
+  /// [InsurancePlan]
   SearchInsurancePlan status(
     FhirString value, {
     FhirUri? system,
@@ -129,7 +140,8 @@ class SearchInsurancePlan extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce InsurancePlan
+  /// a token search for [type] in the resource
+  /// [InsurancePlan]
   SearchInsurancePlan type(
     FhirString value, {
     FhirUri? system,

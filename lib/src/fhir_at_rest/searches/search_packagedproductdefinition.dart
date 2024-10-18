@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the PackagedProductDefinition resource.
+/// A class to build query parameters for RESTful requests for
+/// the [PackagedProductDefinition] resource.
 class SearchPackagedProductDefinition extends SearchResource {
-  /// a token search for [identifier] in the reosurce PackagedProductDefinition
+  /// a token search for [identifier] in the resource
+  /// [PackagedProductDefinition]
   SearchPackagedProductDefinition identifier(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchPackagedProductDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [name] in the reosurce PackagedProductDefinition
+  /// a token search for [name] in the resource
+  /// [PackagedProductDefinition]
   SearchPackagedProductDefinition name(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchPackagedProductDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce PackagedProductDefinition
+  /// a token search for [status] in the resource
+  /// [PackagedProductDefinition]
   SearchPackagedProductDefinition status(
     FhirString value, {
     FhirUri? system,

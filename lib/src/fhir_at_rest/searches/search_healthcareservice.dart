@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the HealthcareService resource.
+/// A class to build query parameters for RESTful requests for
+/// the [HealthcareService] resource.
 class SearchHealthcareService extends SearchResource {
-  /// a token search for [active] in the reosurce HealthcareService
+  /// a token search for [active] in the resource
+  /// [HealthcareService]
   SearchHealthcareService active(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchHealthcareService extends SearchResource {
     return this;
   }
 
-  /// a token search for [characteristic] in the reosurce HealthcareService
+  /// a token search for [characteristic] in the resource
+  /// [HealthcareService]
   SearchHealthcareService characteristic(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchHealthcareService extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce HealthcareService
+  /// a token search for [identifier] in the resource
+  /// [HealthcareService]
   SearchHealthcareService identifier(
     FhirString value, {
     FhirUri? system,
@@ -39,7 +43,8 @@ class SearchHealthcareService extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce HealthcareService
+  /// a string search for [name] in the resource
+  /// [HealthcareService]
   SearchHealthcareService name(
     FhirString value, {
     SearchModifier? modifier,
@@ -51,7 +56,8 @@ class SearchHealthcareService extends SearchResource {
     return this;
   }
 
-  /// a token search for [program] in the reosurce HealthcareService
+  /// a token search for [program] in the resource
+  /// [HealthcareService]
   SearchHealthcareService program(
     FhirString value, {
     FhirUri? system,
@@ -62,7 +68,8 @@ class SearchHealthcareService extends SearchResource {
     return this;
   }
 
-  /// a token search for [serviceCategory] in the reosurce HealthcareService
+  /// a token search for [serviceCategory] in the resource
+  /// [HealthcareService]
   SearchHealthcareService serviceCategory(
     FhirString value, {
     FhirUri? system,
@@ -73,7 +80,8 @@ class SearchHealthcareService extends SearchResource {
     return this;
   }
 
-  /// a token search for [serviceType] in the reosurce HealthcareService
+  /// a token search for [serviceType] in the resource
+  /// [HealthcareService]
   SearchHealthcareService serviceType(
     FhirString value, {
     FhirUri? system,
@@ -84,7 +92,8 @@ class SearchHealthcareService extends SearchResource {
     return this;
   }
 
-  /// a token search for [specialty] in the reosurce HealthcareService
+  /// a token search for [specialty] in the resource
+  /// [HealthcareService]
   SearchHealthcareService specialty(
     FhirString value, {
     FhirUri? system,

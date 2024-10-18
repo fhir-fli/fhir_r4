@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Procedure resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Procedure] resource.
 class SearchProcedure extends SearchResource {
-  /// a token search for [code] in the reosurce Procedure
+  /// a token search for [code] in the resource
+  /// [Procedure]
   SearchProcedure code(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchProcedure extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce Procedure
+  /// a date search for [date] in the resource
+  /// [Procedure]
   SearchProcedure date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -26,7 +29,8 @@ class SearchProcedure extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Procedure
+  /// a token search for [identifier] in the resource
+  /// [Procedure]
   SearchProcedure identifier(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchProcedure extends SearchResource {
     return this;
   }
 
-  /// a token search for [category] in the reosurce Procedure
+  /// a token search for [category] in the resource
+  /// [Procedure]
   SearchProcedure category(
     FhirString value, {
     FhirUri? system,
@@ -48,14 +53,19 @@ class SearchProcedure extends SearchResource {
     return this;
   }
 
-  /// a uri search for [instantiatesUri] in the reosurce Procedure
-  SearchProcedure instantiatesUri(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [instantiatesUri] in the resource
+  /// [Procedure]
+  SearchProcedure instantiatesUri(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}instantiates_uri'] =
         value.toString();
     return this;
   }
 
-  /// a token search for [reasonCode] in the reosurce Procedure
+  /// a token search for [reasonCode] in the resource
+  /// [Procedure]
   SearchProcedure reasonCode(
     FhirString value, {
     FhirUri? system,
@@ -66,7 +76,8 @@ class SearchProcedure extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Procedure
+  /// a token search for [status] in the resource
+  /// [Procedure]
   SearchProcedure status(
     FhirString value, {
     FhirUri? system,

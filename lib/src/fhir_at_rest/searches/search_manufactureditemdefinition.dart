@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the ManufacturedItemDefinition resource.
+/// A class to build query parameters for RESTful requests for
+/// the [ManufacturedItemDefinition] resource.
 class SearchManufacturedItemDefinition extends SearchResource {
-  /// a token search for [doseForm] in the reosurce ManufacturedItemDefinition
+  /// a token search for [doseForm] in the resource
+  /// [ManufacturedItemDefinition]
   SearchManufacturedItemDefinition doseForm(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchManufacturedItemDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce ManufacturedItemDefinition
+  /// a token search for [identifier] in the resource
+  /// [ManufacturedItemDefinition]
   SearchManufacturedItemDefinition identifier(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchManufacturedItemDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [ingredient] in the reosurce ManufacturedItemDefinition
+  /// a token search for [ingredient] in the resource
+  /// [ManufacturedItemDefinition]
   SearchManufacturedItemDefinition ingredient(
     FhirString value, {
     FhirUri? system,

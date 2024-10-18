@@ -4,5 +4,6 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the VerificationResult resource.
+/// A class to build query parameters for RESTful requests for
+/// the [VerificationResult] resource.
 class SearchVerificationResult extends SearchResource {}

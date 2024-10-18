@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Schedule resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Schedule] resource.
 class SearchSchedule extends SearchResource {
-  /// a token search for [active] in the reosurce Schedule
+  /// a token search for [active] in the resource
+  /// [Schedule]
   SearchSchedule active(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchSchedule extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce Schedule
+  /// a date search for [date] in the resource
+  /// [Schedule]
   SearchSchedule date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -26,7 +29,8 @@ class SearchSchedule extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Schedule
+  /// a token search for [identifier] in the resource
+  /// [Schedule]
   SearchSchedule identifier(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchSchedule extends SearchResource {
     return this;
   }
 
-  /// a token search for [serviceCategory] in the reosurce Schedule
+  /// a token search for [serviceCategory] in the resource
+  /// [Schedule]
   SearchSchedule serviceCategory(
     FhirString value, {
     FhirUri? system,
@@ -48,7 +53,8 @@ class SearchSchedule extends SearchResource {
     return this;
   }
 
-  /// a token search for [serviceType] in the reosurce Schedule
+  /// a token search for [serviceType] in the resource
+  /// [Schedule]
   SearchSchedule serviceType(
     FhirString value, {
     FhirUri? system,
@@ -59,7 +65,8 @@ class SearchSchedule extends SearchResource {
     return this;
   }
 
-  /// a token search for [specialty] in the reosurce Schedule
+  /// a token search for [specialty] in the resource
+  /// [Schedule]
   SearchSchedule specialty(
     FhirString value, {
     FhirUri? system,

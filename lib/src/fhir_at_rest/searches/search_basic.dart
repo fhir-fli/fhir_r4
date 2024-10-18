@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Basic resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Basic] resource.
 class SearchBasic extends SearchResource {
-  /// a token search for [code] in the reosurce Basic
+  /// a token search for [code] in the resource
+  /// [Basic]
   SearchBasic code(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchBasic extends SearchResource {
     return this;
   }
 
-  /// a date search for [created] in the reosurce Basic
+  /// a date search for [created] in the resource
+  /// [Basic]
   SearchBasic created(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -27,7 +30,8 @@ class SearchBasic extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Basic
+  /// a token search for [identifier] in the resource
+  /// [Basic]
   SearchBasic identifier(
     FhirString value, {
     FhirUri? system,

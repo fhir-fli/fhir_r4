@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Bundle resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Bundle] resource.
 class SearchBundle extends SearchResource {
-  /// a token search for [identifier] in the reosurce Bundle
+  /// a token search for [identifier] in the resource
+  /// [Bundle]
   SearchBundle identifier(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchBundle extends SearchResource {
     return this;
   }
 
-  /// a date search for [timestamp] in the reosurce Bundle
+  /// a date search for [timestamp] in the resource
+  /// [Bundle]
   SearchBundle timestamp(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -27,7 +30,8 @@ class SearchBundle extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce Bundle
+  /// a token search for [type] in the resource
+  /// [Bundle]
   SearchBundle type(
     FhirString value, {
     FhirUri? system,

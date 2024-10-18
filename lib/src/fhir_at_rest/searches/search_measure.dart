@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Measure resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Measure] resource.
 class SearchMeasure extends SearchResource {
-  /// a token search for [context] in the reosurce Measure
+  /// a token search for [context] in the resource
+  /// [Measure]
   SearchMeasure context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce Measure
+  /// a quantity search for [contextQuantity] in the resource
+  /// [Measure]
   SearchMeasure contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce Measure
+  /// a token search for [contextType] in the resource
+  /// [Measure]
   SearchMeasure contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce Measure
+  /// a date search for [date] in the resource
+  /// [Measure]
   SearchMeasure date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce Measure
+  /// a string search for [description] in the resource
+  /// [Measure]
   SearchMeasure description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  /// a date search for [effective] in the reosurce Measure
+  /// a date search for [effective] in the resource
+  /// [Measure]
   SearchMeasure effective(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -76,7 +83,8 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Measure
+  /// a token search for [identifier] in the resource
+  /// [Measure]
   SearchMeasure identifier(
     FhirString value, {
     FhirUri? system,
@@ -87,7 +95,8 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce Measure
+  /// a token search for [jurisdiction] in the resource
+  /// [Measure]
   SearchMeasure jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -98,7 +107,8 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce Measure
+  /// a string search for [name] in the resource
+  /// [Measure]
   SearchMeasure name(
     FhirString value, {
     SearchModifier? modifier,
@@ -110,7 +120,8 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce Measure
+  /// a string search for [publisher] in the resource
+  /// [Measure]
   SearchMeasure publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -123,7 +134,8 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Measure
+  /// a token search for [status] in the resource
+  /// [Measure]
   SearchMeasure status(
     FhirString value, {
     FhirUri? system,
@@ -134,7 +146,8 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce Measure
+  /// a string search for [title] in the resource
+  /// [Measure]
   SearchMeasure title(
     FhirString value, {
     SearchModifier? modifier,
@@ -147,7 +160,8 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  /// a token search for [topic] in the reosurce Measure
+  /// a token search for [topic] in the resource
+  /// [Measure]
   SearchMeasure topic(
     FhirString value, {
     FhirUri? system,
@@ -158,13 +172,18 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce Measure
-  SearchMeasure url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [Measure]
+  SearchMeasure url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce Measure
+  /// a token search for [version] in the resource
+  /// [Measure]
   SearchMeasure version(
     FhirString value, {
     FhirUri? system,

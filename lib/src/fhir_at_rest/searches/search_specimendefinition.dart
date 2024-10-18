@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the SpecimenDefinition resource.
+/// A class to build query parameters for RESTful requests for
+/// the [SpecimenDefinition] resource.
 class SearchSpecimenDefinition extends SearchResource {
-  /// a token search for [container] in the reosurce SpecimenDefinition
+  /// a token search for [container] in the resource
+  /// [SpecimenDefinition]
   SearchSpecimenDefinition container(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchSpecimenDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce SpecimenDefinition
+  /// a token search for [identifier] in the resource
+  /// [SpecimenDefinition]
   SearchSpecimenDefinition identifier(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchSpecimenDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce SpecimenDefinition
+  /// a token search for [type] in the resource
+  /// [SpecimenDefinition]
   SearchSpecimenDefinition type(
     FhirString value, {
     FhirUri? system,

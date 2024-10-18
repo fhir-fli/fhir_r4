@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the MedicinalProductDefinition resource.
+/// A class to build query parameters for RESTful requests for
+/// the [MedicinalProductDefinition] resource.
 class SearchMedicinalProductDefinition extends SearchResource {
-  /// a token search for [characteristic] in the reosurce MedicinalProductDefinition
+  /// a token search for [characteristic] in the resource
+  /// [MedicinalProductDefinition]
   SearchMedicinalProductDefinition characteristic(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchMedicinalProductDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [characteristicType] in the reosurce MedicinalProductDefinition
+  /// a token search for [characteristicType] in the resource
+  /// [MedicinalProductDefinition]
   SearchMedicinalProductDefinition characteristicType(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchMedicinalProductDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [domain] in the reosurce MedicinalProductDefinition
+  /// a token search for [domain] in the resource
+  /// [MedicinalProductDefinition]
   SearchMedicinalProductDefinition domain(
     FhirString value, {
     FhirUri? system,
@@ -39,7 +43,8 @@ class SearchMedicinalProductDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce MedicinalProductDefinition
+  /// a token search for [identifier] in the resource
+  /// [MedicinalProductDefinition]
   SearchMedicinalProductDefinition identifier(
     FhirString value, {
     FhirUri? system,
@@ -50,7 +55,8 @@ class SearchMedicinalProductDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [ingredient] in the reosurce MedicinalProductDefinition
+  /// a token search for [ingredient] in the resource
+  /// [MedicinalProductDefinition]
   SearchMedicinalProductDefinition ingredient(
     FhirString value, {
     FhirUri? system,
@@ -61,7 +67,8 @@ class SearchMedicinalProductDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce MedicinalProductDefinition
+  /// a string search for [name] in the resource
+  /// [MedicinalProductDefinition]
   SearchMedicinalProductDefinition name(
     FhirString value, {
     SearchModifier? modifier,
@@ -73,7 +80,8 @@ class SearchMedicinalProductDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [nameLanguage] in the reosurce MedicinalProductDefinition
+  /// a token search for [nameLanguage] in the resource
+  /// [MedicinalProductDefinition]
   SearchMedicinalProductDefinition nameLanguage(
     FhirString value, {
     FhirUri? system,
@@ -84,7 +92,8 @@ class SearchMedicinalProductDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [productClassification] in the reosurce MedicinalProductDefinition
+  /// a token search for [productClassification] in the resource
+  /// [MedicinalProductDefinition]
   SearchMedicinalProductDefinition productClassification(
     FhirString value, {
     FhirUri? system,
@@ -95,7 +104,8 @@ class SearchMedicinalProductDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce MedicinalProductDefinition
+  /// a token search for [status] in the resource
+  /// [MedicinalProductDefinition]
   SearchMedicinalProductDefinition status(
     FhirString value, {
     FhirUri? system,
@@ -106,7 +116,8 @@ class SearchMedicinalProductDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce MedicinalProductDefinition
+  /// a token search for [type] in the resource
+  /// [MedicinalProductDefinition]
   SearchMedicinalProductDefinition type(
     FhirString value, {
     FhirUri? system,

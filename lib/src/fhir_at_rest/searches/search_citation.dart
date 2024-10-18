@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Citation resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Citation] resource.
 class SearchCitation extends SearchResource {
-  /// a token search for [context] in the reosurce Citation
+  /// a token search for [context] in the resource
+  /// [Citation]
   SearchCitation context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchCitation extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce Citation
+  /// a quantity search for [contextQuantity] in the resource
+  /// [Citation]
   SearchCitation contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchCitation extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce Citation
+  /// a token search for [contextType] in the resource
+  /// [Citation]
   SearchCitation contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchCitation extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce Citation
+  /// a date search for [date] in the resource
+  /// [Citation]
   SearchCitation date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchCitation extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce Citation
+  /// a string search for [description] in the resource
+  /// [Citation]
   SearchCitation description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchCitation extends SearchResource {
     return this;
   }
 
-  /// a date search for [effective] in the reosurce Citation
+  /// a date search for [effective] in the resource
+  /// [Citation]
   SearchCitation effective(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -76,7 +83,8 @@ class SearchCitation extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Citation
+  /// a token search for [identifier] in the resource
+  /// [Citation]
   SearchCitation identifier(
     FhirString value, {
     FhirUri? system,
@@ -87,7 +95,8 @@ class SearchCitation extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce Citation
+  /// a token search for [jurisdiction] in the resource
+  /// [Citation]
   SearchCitation jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -98,7 +107,8 @@ class SearchCitation extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce Citation
+  /// a string search for [name] in the resource
+  /// [Citation]
   SearchCitation name(
     FhirString value, {
     SearchModifier? modifier,
@@ -110,7 +120,8 @@ class SearchCitation extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce Citation
+  /// a string search for [publisher] in the resource
+  /// [Citation]
   SearchCitation publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -123,7 +134,8 @@ class SearchCitation extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Citation
+  /// a token search for [status] in the resource
+  /// [Citation]
   SearchCitation status(
     FhirString value, {
     FhirUri? system,
@@ -134,7 +146,8 @@ class SearchCitation extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce Citation
+  /// a string search for [title] in the resource
+  /// [Citation]
   SearchCitation title(
     FhirString value, {
     SearchModifier? modifier,
@@ -147,13 +160,18 @@ class SearchCitation extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce Citation
-  SearchCitation url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [Citation]
+  SearchCitation url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce Citation
+  /// a token search for [version] in the resource
+  /// [Citation]
   SearchCitation version(
     FhirString value, {
     FhirUri? system,

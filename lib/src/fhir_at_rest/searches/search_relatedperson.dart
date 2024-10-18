@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the RelatedPerson resource.
+/// A class to build query parameters for RESTful requests for
+/// the [RelatedPerson] resource.
 class SearchRelatedPerson extends SearchResource {
-  /// a string search for [address] in the reosurce RelatedPerson
+  /// a string search for [address] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson address(
     FhirString value, {
     SearchModifier? modifier,
@@ -19,7 +21,8 @@ class SearchRelatedPerson extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressCity] in the reosurce RelatedPerson
+  /// a string search for [addressCity] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson addressCity(
     FhirString value, {
     SearchModifier? modifier,
@@ -32,7 +35,8 @@ class SearchRelatedPerson extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressCountry] in the reosurce RelatedPerson
+  /// a string search for [addressCountry] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson addressCountry(
     FhirString value, {
     SearchModifier? modifier,
@@ -45,7 +49,8 @@ class SearchRelatedPerson extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressPostalcode] in the reosurce RelatedPerson
+  /// a string search for [addressPostalcode] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson addressPostalcode(
     FhirString value, {
     SearchModifier? modifier,
@@ -58,7 +63,8 @@ class SearchRelatedPerson extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressState] in the reosurce RelatedPerson
+  /// a string search for [addressState] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson addressState(
     FhirString value, {
     SearchModifier? modifier,
@@ -71,7 +77,8 @@ class SearchRelatedPerson extends SearchResource {
     return this;
   }
 
-  /// a token search for [addressUse] in the reosurce RelatedPerson
+  /// a token search for [addressUse] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson addressUse(
     FhirString value, {
     FhirUri? system,
@@ -82,7 +89,8 @@ class SearchRelatedPerson extends SearchResource {
     return this;
   }
 
-  /// a date search for [birthdate] in the reosurce RelatedPerson
+  /// a date search for [birthdate] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson birthdate(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -92,7 +100,8 @@ class SearchRelatedPerson extends SearchResource {
     return this;
   }
 
-  /// a token search for [email] in the reosurce RelatedPerson
+  /// a token search for [email] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson email(
     FhirString value, {
     FhirUri? system,
@@ -103,7 +112,8 @@ class SearchRelatedPerson extends SearchResource {
     return this;
   }
 
-  /// a token search for [gender] in the reosurce RelatedPerson
+  /// a token search for [gender] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson gender(
     FhirString value, {
     FhirUri? system,
@@ -114,7 +124,8 @@ class SearchRelatedPerson extends SearchResource {
     return this;
   }
 
-  /// a token search for [phone] in the reosurce RelatedPerson
+  /// a token search for [phone] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson phone(
     FhirString value, {
     FhirUri? system,
@@ -125,7 +136,8 @@ class SearchRelatedPerson extends SearchResource {
     return this;
   }
 
-  /// a string search for [phonetic] in the reosurce RelatedPerson
+  /// a string search for [phonetic] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson phonetic(
     FhirString value, {
     SearchModifier? modifier,
@@ -138,7 +150,8 @@ class SearchRelatedPerson extends SearchResource {
     return this;
   }
 
-  /// a token search for [telecom] in the reosurce RelatedPerson
+  /// a token search for [telecom] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson telecom(
     FhirString value, {
     FhirUri? system,
@@ -149,7 +162,8 @@ class SearchRelatedPerson extends SearchResource {
     return this;
   }
 
-  /// a token search for [active] in the reosurce RelatedPerson
+  /// a token search for [active] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson active(
     FhirString value, {
     FhirUri? system,
@@ -160,7 +174,8 @@ class SearchRelatedPerson extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce RelatedPerson
+  /// a token search for [identifier] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson identifier(
     FhirString value, {
     FhirUri? system,
@@ -171,7 +186,8 @@ class SearchRelatedPerson extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce RelatedPerson
+  /// a string search for [name] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson name(
     FhirString value, {
     SearchModifier? modifier,
@@ -183,7 +199,8 @@ class SearchRelatedPerson extends SearchResource {
     return this;
   }
 
-  /// a token search for [relationship] in the reosurce RelatedPerson
+  /// a token search for [relationship] in the resource
+  /// [RelatedPerson]
   SearchRelatedPerson relationship(
     FhirString value, {
     FhirUri? system,

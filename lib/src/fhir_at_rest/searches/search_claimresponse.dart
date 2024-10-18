@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the ClaimResponse resource.
+/// A class to build query parameters for RESTful requests for
+/// the [ClaimResponse] resource.
 class SearchClaimResponse extends SearchResource {
-  /// a date search for [created] in the reosurce ClaimResponse
+  /// a date search for [created] in the resource
+  /// [ClaimResponse]
   SearchClaimResponse created(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -16,7 +18,8 @@ class SearchClaimResponse extends SearchResource {
     return this;
   }
 
-  /// a string search for [disposition] in the reosurce ClaimResponse
+  /// a string search for [disposition] in the resource
+  /// [ClaimResponse]
   SearchClaimResponse disposition(
     FhirString value, {
     SearchModifier? modifier,
@@ -29,7 +32,8 @@ class SearchClaimResponse extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce ClaimResponse
+  /// a token search for [identifier] in the resource
+  /// [ClaimResponse]
   SearchClaimResponse identifier(
     FhirString value, {
     FhirUri? system,
@@ -40,7 +44,8 @@ class SearchClaimResponse extends SearchResource {
     return this;
   }
 
-  /// a token search for [outcome] in the reosurce ClaimResponse
+  /// a token search for [outcome] in the resource
+  /// [ClaimResponse]
   SearchClaimResponse outcome(
     FhirString value, {
     FhirUri? system,
@@ -51,7 +56,8 @@ class SearchClaimResponse extends SearchResource {
     return this;
   }
 
-  /// a date search for [paymentDate] in the reosurce ClaimResponse
+  /// a date search for [paymentDate] in the resource
+  /// [ClaimResponse]
   SearchClaimResponse paymentDate(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -61,7 +67,8 @@ class SearchClaimResponse extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce ClaimResponse
+  /// a token search for [status] in the resource
+  /// [ClaimResponse]
   SearchClaimResponse status(
     FhirString value, {
     FhirUri? system,
@@ -72,7 +79,8 @@ class SearchClaimResponse extends SearchResource {
     return this;
   }
 
-  /// a token search for [use] in the reosurce ClaimResponse
+  /// a token search for [use] in the resource
+  /// [ClaimResponse]
   SearchClaimResponse use(
     FhirString value, {
     FhirUri? system,

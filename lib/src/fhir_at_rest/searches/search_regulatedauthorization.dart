@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the RegulatedAuthorization resource.
+/// A class to build query parameters for RESTful requests for
+/// the [RegulatedAuthorization] resource.
 class SearchRegulatedAuthorization extends SearchResource {
-  /// a token search for [case_] in the reosurce RegulatedAuthorization
+  /// a token search for [case_] in the resource
+  /// [RegulatedAuthorization]
   SearchRegulatedAuthorization case_(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchRegulatedAuthorization extends SearchResource {
     return this;
   }
 
-  /// a token search for [caseType] in the reosurce RegulatedAuthorization
+  /// a token search for [caseType] in the resource
+  /// [RegulatedAuthorization]
   SearchRegulatedAuthorization caseType(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchRegulatedAuthorization extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce RegulatedAuthorization
+  /// a token search for [identifier] in the resource
+  /// [RegulatedAuthorization]
   SearchRegulatedAuthorization identifier(
     FhirString value, {
     FhirUri? system,
@@ -39,7 +43,8 @@ class SearchRegulatedAuthorization extends SearchResource {
     return this;
   }
 
-  /// a token search for [region] in the reosurce RegulatedAuthorization
+  /// a token search for [region] in the resource
+  /// [RegulatedAuthorization]
   SearchRegulatedAuthorization region(
     FhirString value, {
     FhirUri? system,
@@ -50,7 +55,8 @@ class SearchRegulatedAuthorization extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce RegulatedAuthorization
+  /// a token search for [status] in the resource
+  /// [RegulatedAuthorization]
   SearchRegulatedAuthorization status(
     FhirString value, {
     FhirUri? system,

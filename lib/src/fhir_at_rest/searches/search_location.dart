@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Location resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Location] resource.
 class SearchLocation extends SearchResource {
-  /// a string search for [address] in the reosurce Location
+  /// a string search for [address] in the resource
+  /// [Location]
   SearchLocation address(
     FhirString value, {
     SearchModifier? modifier,
@@ -19,7 +21,8 @@ class SearchLocation extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressCity] in the reosurce Location
+  /// a string search for [addressCity] in the resource
+  /// [Location]
   SearchLocation addressCity(
     FhirString value, {
     SearchModifier? modifier,
@@ -32,7 +35,8 @@ class SearchLocation extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressCountry] in the reosurce Location
+  /// a string search for [addressCountry] in the resource
+  /// [Location]
   SearchLocation addressCountry(
     FhirString value, {
     SearchModifier? modifier,
@@ -45,7 +49,8 @@ class SearchLocation extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressPostalcode] in the reosurce Location
+  /// a string search for [addressPostalcode] in the resource
+  /// [Location]
   SearchLocation addressPostalcode(
     FhirString value, {
     SearchModifier? modifier,
@@ -58,7 +63,8 @@ class SearchLocation extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressState] in the reosurce Location
+  /// a string search for [addressState] in the resource
+  /// [Location]
   SearchLocation addressState(
     FhirString value, {
     SearchModifier? modifier,
@@ -71,7 +77,8 @@ class SearchLocation extends SearchResource {
     return this;
   }
 
-  /// a token search for [addressUse] in the reosurce Location
+  /// a token search for [addressUse] in the resource
+  /// [Location]
   SearchLocation addressUse(
     FhirString value, {
     FhirUri? system,
@@ -82,7 +89,8 @@ class SearchLocation extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Location
+  /// a token search for [identifier] in the resource
+  /// [Location]
   SearchLocation identifier(
     FhirString value, {
     FhirUri? system,
@@ -93,7 +101,8 @@ class SearchLocation extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce Location
+  /// a string search for [name] in the resource
+  /// [Location]
   SearchLocation name(
     FhirString value, {
     SearchModifier? modifier,
@@ -105,7 +114,8 @@ class SearchLocation extends SearchResource {
     return this;
   }
 
-  /// a token search for [operationalStatus] in the reosurce Location
+  /// a token search for [operationalStatus] in the resource
+  /// [Location]
   SearchLocation operationalStatus(
     FhirString value, {
     FhirUri? system,
@@ -116,7 +126,8 @@ class SearchLocation extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Location
+  /// a token search for [status] in the resource
+  /// [Location]
   SearchLocation status(
     FhirString value, {
     FhirUri? system,
@@ -127,7 +138,8 @@ class SearchLocation extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce Location
+  /// a token search for [type] in the resource
+  /// [Location]
   SearchLocation type(
     FhirString value, {
     FhirUri? system,

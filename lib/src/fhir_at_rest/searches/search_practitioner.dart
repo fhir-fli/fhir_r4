@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Practitioner resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Practitioner] resource.
 class SearchPractitioner extends SearchResource {
-  /// a string search for [address] in the reosurce Practitioner
+  /// a string search for [address] in the resource
+  /// [Practitioner]
   SearchPractitioner address(
     FhirString value, {
     SearchModifier? modifier,
@@ -19,7 +21,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressCity] in the reosurce Practitioner
+  /// a string search for [addressCity] in the resource
+  /// [Practitioner]
   SearchPractitioner addressCity(
     FhirString value, {
     SearchModifier? modifier,
@@ -32,7 +35,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressCountry] in the reosurce Practitioner
+  /// a string search for [addressCountry] in the resource
+  /// [Practitioner]
   SearchPractitioner addressCountry(
     FhirString value, {
     SearchModifier? modifier,
@@ -45,7 +49,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressPostalcode] in the reosurce Practitioner
+  /// a string search for [addressPostalcode] in the resource
+  /// [Practitioner]
   SearchPractitioner addressPostalcode(
     FhirString value, {
     SearchModifier? modifier,
@@ -58,7 +63,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a string search for [addressState] in the reosurce Practitioner
+  /// a string search for [addressState] in the resource
+  /// [Practitioner]
   SearchPractitioner addressState(
     FhirString value, {
     SearchModifier? modifier,
@@ -71,7 +77,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a token search for [addressUse] in the reosurce Practitioner
+  /// a token search for [addressUse] in the resource
+  /// [Practitioner]
   SearchPractitioner addressUse(
     FhirString value, {
     FhirUri? system,
@@ -82,7 +89,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a token search for [email] in the reosurce Practitioner
+  /// a token search for [email] in the resource
+  /// [Practitioner]
   SearchPractitioner email(
     FhirString value, {
     FhirUri? system,
@@ -93,7 +101,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a string search for [family] in the reosurce Practitioner
+  /// a string search for [family] in the resource
+  /// [Practitioner]
   SearchPractitioner family(
     FhirString value, {
     SearchModifier? modifier,
@@ -106,7 +115,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a token search for [gender] in the reosurce Practitioner
+  /// a token search for [gender] in the resource
+  /// [Practitioner]
   SearchPractitioner gender(
     FhirString value, {
     FhirUri? system,
@@ -117,7 +127,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a string search for [given] in the reosurce Practitioner
+  /// a string search for [given] in the resource
+  /// [Practitioner]
   SearchPractitioner given(
     FhirString value, {
     SearchModifier? modifier,
@@ -130,7 +141,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a token search for [phone] in the reosurce Practitioner
+  /// a token search for [phone] in the resource
+  /// [Practitioner]
   SearchPractitioner phone(
     FhirString value, {
     FhirUri? system,
@@ -141,7 +153,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a string search for [phonetic] in the reosurce Practitioner
+  /// a string search for [phonetic] in the resource
+  /// [Practitioner]
   SearchPractitioner phonetic(
     FhirString value, {
     SearchModifier? modifier,
@@ -154,7 +167,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a token search for [telecom] in the reosurce Practitioner
+  /// a token search for [telecom] in the resource
+  /// [Practitioner]
   SearchPractitioner telecom(
     FhirString value, {
     FhirUri? system,
@@ -165,7 +179,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a token search for [active] in the reosurce Practitioner
+  /// a token search for [active] in the resource
+  /// [Practitioner]
   SearchPractitioner active(
     FhirString value, {
     FhirUri? system,
@@ -176,7 +191,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a token search for [communication] in the reosurce Practitioner
+  /// a token search for [communication] in the resource
+  /// [Practitioner]
   SearchPractitioner communication(
     FhirString value, {
     FhirUri? system,
@@ -187,7 +203,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce Practitioner
+  /// a token search for [identifier] in the resource
+  /// [Practitioner]
   SearchPractitioner identifier(
     FhirString value, {
     FhirUri? system,
@@ -198,7 +215,8 @@ class SearchPractitioner extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce Practitioner
+  /// a string search for [name] in the resource
+  /// [Practitioner]
   SearchPractitioner name(
     FhirString value, {
     SearchModifier? modifier,

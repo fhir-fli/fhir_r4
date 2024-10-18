@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the ActivityDefinition resource.
+/// A class to build query parameters for RESTful requests for
+/// the [ActivityDefinition] resource.
 class SearchActivityDefinition extends SearchResource {
-  /// a token search for [context] in the reosurce ActivityDefinition
+  /// a token search for [context] in the resource
+  /// [ActivityDefinition]
   SearchActivityDefinition context(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchActivityDefinition extends SearchResource {
     return this;
   }
 
-  /// a quantity search for [contextQuantity] in the reosurce ActivityDefinition
+  /// a quantity search for [contextQuantity] in the resource
+  /// [ActivityDefinition]
   SearchActivityDefinition contextQuantity(
     FhirDecimal value, {
     FhirString? unit,
@@ -33,7 +36,8 @@ class SearchActivityDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [contextType] in the reosurce ActivityDefinition
+  /// a token search for [contextType] in the resource
+  /// [ActivityDefinition]
   SearchActivityDefinition contextType(
     FhirString value, {
     FhirUri? system,
@@ -44,7 +48,8 @@ class SearchActivityDefinition extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce ActivityDefinition
+  /// a date search for [date] in the resource
+  /// [ActivityDefinition]
   SearchActivityDefinition date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -53,7 +58,8 @@ class SearchActivityDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [description] in the reosurce ActivityDefinition
+  /// a string search for [description] in the resource
+  /// [ActivityDefinition]
   SearchActivityDefinition description(
     FhirString value, {
     SearchModifier? modifier,
@@ -66,7 +72,8 @@ class SearchActivityDefinition extends SearchResource {
     return this;
   }
 
-  /// a date search for [effective] in the reosurce ActivityDefinition
+  /// a date search for [effective] in the resource
+  /// [ActivityDefinition]
   SearchActivityDefinition effective(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -76,7 +83,8 @@ class SearchActivityDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce ActivityDefinition
+  /// a token search for [identifier] in the resource
+  /// [ActivityDefinition]
   SearchActivityDefinition identifier(
     FhirString value, {
     FhirUri? system,
@@ -87,7 +95,8 @@ class SearchActivityDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [jurisdiction] in the reosurce ActivityDefinition
+  /// a token search for [jurisdiction] in the resource
+  /// [ActivityDefinition]
   SearchActivityDefinition jurisdiction(
     FhirString value, {
     FhirUri? system,
@@ -98,7 +107,8 @@ class SearchActivityDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [name] in the reosurce ActivityDefinition
+  /// a string search for [name] in the resource
+  /// [ActivityDefinition]
   SearchActivityDefinition name(
     FhirString value, {
     SearchModifier? modifier,
@@ -110,7 +120,8 @@ class SearchActivityDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [publisher] in the reosurce ActivityDefinition
+  /// a string search for [publisher] in the resource
+  /// [ActivityDefinition]
   SearchActivityDefinition publisher(
     FhirString value, {
     SearchModifier? modifier,
@@ -123,7 +134,8 @@ class SearchActivityDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce ActivityDefinition
+  /// a token search for [status] in the resource
+  /// [ActivityDefinition]
   SearchActivityDefinition status(
     FhirString value, {
     FhirUri? system,
@@ -134,7 +146,8 @@ class SearchActivityDefinition extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce ActivityDefinition
+  /// a string search for [title] in the resource
+  /// [ActivityDefinition]
   SearchActivityDefinition title(
     FhirString value, {
     SearchModifier? modifier,
@@ -147,7 +160,8 @@ class SearchActivityDefinition extends SearchResource {
     return this;
   }
 
-  /// a token search for [topic] in the reosurce ActivityDefinition
+  /// a token search for [topic] in the resource
+  /// [ActivityDefinition]
   SearchActivityDefinition topic(
     FhirString value, {
     FhirUri? system,
@@ -158,13 +172,18 @@ class SearchActivityDefinition extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce ActivityDefinition
-  SearchActivityDefinition url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [ActivityDefinition]
+  SearchActivityDefinition url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  /// a token search for [version] in the reosurce ActivityDefinition
+  /// a token search for [version] in the resource
+  /// [ActivityDefinition]
   SearchActivityDefinition version(
     FhirString value, {
     FhirUri? system,

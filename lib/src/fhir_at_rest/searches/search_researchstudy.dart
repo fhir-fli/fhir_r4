@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the ResearchStudy resource.
+/// A class to build query parameters for RESTful requests for
+/// the [ResearchStudy] resource.
 class SearchResearchStudy extends SearchResource {
-  /// a token search for [category] in the reosurce ResearchStudy
+  /// a token search for [category] in the resource
+  /// [ResearchStudy]
   SearchResearchStudy category(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchResearchStudy extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce ResearchStudy
+  /// a date search for [date] in the resource
+  /// [ResearchStudy]
   SearchResearchStudy date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -26,7 +29,8 @@ class SearchResearchStudy extends SearchResource {
     return this;
   }
 
-  /// a token search for [focus] in the reosurce ResearchStudy
+  /// a token search for [focus] in the resource
+  /// [ResearchStudy]
   SearchResearchStudy focus(
     FhirString value, {
     FhirUri? system,
@@ -37,7 +41,8 @@ class SearchResearchStudy extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce ResearchStudy
+  /// a token search for [identifier] in the resource
+  /// [ResearchStudy]
   SearchResearchStudy identifier(
     FhirString value, {
     FhirUri? system,
@@ -48,7 +53,8 @@ class SearchResearchStudy extends SearchResource {
     return this;
   }
 
-  /// a token search for [keyword] in the reosurce ResearchStudy
+  /// a token search for [keyword] in the resource
+  /// [ResearchStudy]
   SearchResearchStudy keyword(
     FhirString value, {
     FhirUri? system,
@@ -59,7 +65,8 @@ class SearchResearchStudy extends SearchResource {
     return this;
   }
 
-  /// a token search for [location] in the reosurce ResearchStudy
+  /// a token search for [location] in the resource
+  /// [ResearchStudy]
   SearchResearchStudy location(
     FhirString value, {
     FhirUri? system,
@@ -70,7 +77,8 @@ class SearchResearchStudy extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce ResearchStudy
+  /// a token search for [status] in the resource
+  /// [ResearchStudy]
   SearchResearchStudy status(
     FhirString value, {
     FhirUri? system,
@@ -81,7 +89,8 @@ class SearchResearchStudy extends SearchResource {
     return this;
   }
 
-  /// a string search for [title] in the reosurce ResearchStudy
+  /// a string search for [title] in the resource
+  /// [ResearchStudy]
   SearchResearchStudy title(
     FhirString value, {
     SearchModifier? modifier,

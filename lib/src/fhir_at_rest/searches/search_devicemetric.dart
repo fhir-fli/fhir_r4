@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the DeviceMetric resource.
+/// A class to build query parameters for RESTful requests for
+/// the [DeviceMetric] resource.
 class SearchDeviceMetric extends SearchResource {
-  /// a token search for [category] in the reosurce DeviceMetric
+  /// a token search for [category] in the resource
+  /// [DeviceMetric]
   SearchDeviceMetric category(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchDeviceMetric extends SearchResource {
     return this;
   }
 
-  /// a token search for [identifier] in the reosurce DeviceMetric
+  /// a token search for [identifier] in the resource
+  /// [DeviceMetric]
   SearchDeviceMetric identifier(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchDeviceMetric extends SearchResource {
     return this;
   }
 
-  /// a token search for [type] in the reosurce DeviceMetric
+  /// a token search for [type] in the resource
+  /// [DeviceMetric]
   SearchDeviceMetric type(
     FhirString value, {
     FhirUri? system,

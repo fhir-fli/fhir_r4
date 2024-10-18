@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the AdverseEvent resource.
+/// A class to build query parameters for RESTful requests for
+/// the [AdverseEvent] resource.
 class SearchAdverseEvent extends SearchResource {
-  /// a token search for [actuality] in the reosurce AdverseEvent
+  /// a token search for [actuality] in the resource
+  /// [AdverseEvent]
   SearchAdverseEvent actuality(
     FhirString value, {
     FhirUri? system,
@@ -17,7 +19,8 @@ class SearchAdverseEvent extends SearchResource {
     return this;
   }
 
-  /// a token search for [category] in the reosurce AdverseEvent
+  /// a token search for [category] in the resource
+  /// [AdverseEvent]
   SearchAdverseEvent category(
     FhirString value, {
     FhirUri? system,
@@ -28,7 +31,8 @@ class SearchAdverseEvent extends SearchResource {
     return this;
   }
 
-  /// a date search for [date] in the reosurce AdverseEvent
+  /// a date search for [date] in the resource
+  /// [AdverseEvent]
   SearchAdverseEvent date(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -37,7 +41,8 @@ class SearchAdverseEvent extends SearchResource {
     return this;
   }
 
-  /// a token search for [event] in the reosurce AdverseEvent
+  /// a token search for [event] in the resource
+  /// [AdverseEvent]
   SearchAdverseEvent event(
     FhirString value, {
     FhirUri? system,
@@ -48,7 +53,8 @@ class SearchAdverseEvent extends SearchResource {
     return this;
   }
 
-  /// a token search for [seriousness] in the reosurce AdverseEvent
+  /// a token search for [seriousness] in the resource
+  /// [AdverseEvent]
   SearchAdverseEvent seriousness(
     FhirString value, {
     FhirUri? system,
@@ -59,7 +65,8 @@ class SearchAdverseEvent extends SearchResource {
     return this;
   }
 
-  /// a token search for [severity] in the reosurce AdverseEvent
+  /// a token search for [severity] in the resource
+  /// [AdverseEvent]
   SearchAdverseEvent severity(
     FhirString value, {
     FhirUri? system,

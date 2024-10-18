@@ -4,9 +4,11 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// A class to build query parameters for RESTful requests for the Contract resource.
+/// A class to build query parameters for RESTful requests for
+/// the [Contract] resource.
 class SearchContract extends SearchResource {
-  /// a token search for [identifier] in the reosurce Contract
+  /// a token search for [identifier] in the resource
+  /// [Contract]
   SearchContract identifier(
     FhirString value, {
     FhirUri? system,
@@ -17,14 +19,19 @@ class SearchContract extends SearchResource {
     return this;
   }
 
-  /// a uri search for [instantiates] in the reosurce Contract
-  SearchContract instantiates(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [instantiates] in the resource
+  /// [Contract]
+  SearchContract instantiates(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}instantiates'] =
         value.toString();
     return this;
   }
 
-  /// a date search for [issued] in the reosurce Contract
+  /// a date search for [issued] in the resource
+  /// [Contract]
   SearchContract issued(
     FhirDateTime value, {
     SearchModifier? modifier,
@@ -34,7 +41,8 @@ class SearchContract extends SearchResource {
     return this;
   }
 
-  /// a token search for [status] in the reosurce Contract
+  /// a token search for [status] in the resource
+  /// [Contract]
   SearchContract status(
     FhirString value, {
     FhirUri? system,
@@ -45,8 +53,12 @@ class SearchContract extends SearchResource {
     return this;
   }
 
-  /// a uri search for [url] in the reosurce Contract
-  SearchContract url(FhirUri value, {SearchModifier? modifier}) {
+  /// a uri search for [url] in the resource
+  /// [Contract]
+  SearchContract url(
+    FhirUri value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
