@@ -91,22 +91,27 @@ class Signature extends DataType {
 
   /// Deserialize [Signature] from a [String]
   /// or [YamlMap] object
-  factory Signature.fromYaml(dynamic yaml) => yaml is String
-      ? Signature.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Signature.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Signature.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Signature cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Signature.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Signature cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Signature]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Signature.fromJsonString(String source) {
+  factory Signature.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Signature.fromJson(json);

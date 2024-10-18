@@ -63,22 +63,27 @@ class Contributor extends DataType {
 
   /// Deserialize [Contributor] from a [String]
   /// or [YamlMap] object
-  factory Contributor.fromYaml(dynamic yaml) => yaml is String
-      ? Contributor.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Contributor.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Contributor.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Contributor cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Contributor.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Contributor cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Contributor]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Contributor.fromJsonString(String source) {
+  factory Contributor.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Contributor.fromJson(json);

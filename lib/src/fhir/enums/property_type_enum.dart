@@ -59,7 +59,9 @@ enum PropertyTypeEnum {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PropertyTypeEnum.elementOnly.withElement(element);
+      return PropertyTypeEnum.elementOnly.withElement(
+        element,
+      );
     }
     return PropertyTypeEnum.values.firstWhere(
       (e) => e.fhirCode == value,

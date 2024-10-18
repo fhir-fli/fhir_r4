@@ -43,7 +43,9 @@ enum ClaimPayeeTypeCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ClaimPayeeTypeCodes.elementOnly.withElement(element);
+      return ClaimPayeeTypeCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ClaimPayeeTypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -119,8 +119,9 @@ enum MedicationKnowledgePackageTypeCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationKnowledgePackageTypeCodes.elementOnly
-          .withElement(element);
+      return MedicationKnowledgePackageTypeCodes.elementOnly.withElement(
+        element,
+      );
     }
     return MedicationKnowledgePackageTypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,

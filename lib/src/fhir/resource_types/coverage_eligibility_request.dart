@@ -195,23 +195,28 @@ class CoverageEligibilityRequest extends DomainResource {
 
   /// Deserialize [CoverageEligibilityRequest] from a [String]
   /// or [YamlMap] object
-  factory CoverageEligibilityRequest.fromYaml(dynamic yaml) => yaml is String
-      ? CoverageEligibilityRequest.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CoverageEligibilityRequest.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CoverageEligibilityRequest.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CoverageEligibilityRequest cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CoverageEligibilityRequest.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CoverageEligibilityRequest cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CoverageEligibilityRequest]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CoverageEligibilityRequest.fromJsonString(String source) {
+  factory CoverageEligibilityRequest.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CoverageEligibilityRequest.fromJson(json);
@@ -541,25 +546,28 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
 
   /// Deserialize [CoverageEligibilityRequestSupportingInfo] from a [String]
   /// or [YamlMap] object
-  factory CoverageEligibilityRequestSupportingInfo.fromYaml(dynamic yaml) => yaml
-          is String
-      ? CoverageEligibilityRequestSupportingInfo.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CoverageEligibilityRequestSupportingInfo.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CoverageEligibilityRequestSupportingInfo.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CoverageEligibilityRequestSupportingInfo cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CoverageEligibilityRequestSupportingInfo.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CoverageEligibilityRequestSupportingInfo cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CoverageEligibilityRequestSupportingInfo]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CoverageEligibilityRequestSupportingInfo.fromJsonString(
-      String source) {
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CoverageEligibilityRequestSupportingInfo.fromJson(json);
@@ -734,24 +742,28 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
 
   /// Deserialize [CoverageEligibilityRequestInsurance] from a [String]
   /// or [YamlMap] object
-  factory CoverageEligibilityRequestInsurance.fromYaml(dynamic yaml) => yaml
-          is String
-      ? CoverageEligibilityRequestInsurance.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CoverageEligibilityRequestInsurance.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CoverageEligibilityRequestInsurance.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CoverageEligibilityRequestInsurance cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CoverageEligibilityRequestInsurance.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CoverageEligibilityRequestInsurance cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CoverageEligibilityRequestInsurance]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CoverageEligibilityRequestInsurance.fromJsonString(String source) {
+  factory CoverageEligibilityRequestInsurance.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CoverageEligibilityRequestInsurance.fromJson(json);
@@ -984,24 +996,28 @@ class CoverageEligibilityRequestItem extends BackboneElement {
 
   /// Deserialize [CoverageEligibilityRequestItem] from a [String]
   /// or [YamlMap] object
-  factory CoverageEligibilityRequestItem.fromYaml(dynamic yaml) => yaml
-          is String
-      ? CoverageEligibilityRequestItem.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CoverageEligibilityRequestItem.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CoverageEligibilityRequestItem.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CoverageEligibilityRequestItem cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CoverageEligibilityRequestItem.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CoverageEligibilityRequestItem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CoverageEligibilityRequestItem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CoverageEligibilityRequestItem.fromJsonString(String source) {
+  factory CoverageEligibilityRequestItem.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CoverageEligibilityRequestItem.fromJson(json);
@@ -1244,24 +1260,28 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
 
   /// Deserialize [CoverageEligibilityRequestDiagnosis] from a [String]
   /// or [YamlMap] object
-  factory CoverageEligibilityRequestDiagnosis.fromYaml(dynamic yaml) => yaml
-          is String
-      ? CoverageEligibilityRequestDiagnosis.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CoverageEligibilityRequestDiagnosis.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CoverageEligibilityRequestDiagnosis.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CoverageEligibilityRequestDiagnosis cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CoverageEligibilityRequestDiagnosis.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CoverageEligibilityRequestDiagnosis cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CoverageEligibilityRequestDiagnosis]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CoverageEligibilityRequestDiagnosis.fromJsonString(String source) {
+  factory CoverageEligibilityRequestDiagnosis.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CoverageEligibilityRequestDiagnosis.fromJson(json);

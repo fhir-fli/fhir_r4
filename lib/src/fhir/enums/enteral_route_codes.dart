@@ -67,7 +67,9 @@ enum EnteralRouteCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EnteralRouteCodes.elementOnly.withElement(element);
+      return EnteralRouteCodes.elementOnly.withElement(
+        element,
+      );
     }
     return EnteralRouteCodes.values.firstWhere(
       (e) => e.fhirCode == value,

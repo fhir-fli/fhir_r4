@@ -91,7 +91,9 @@ enum CitedArtifactStatusType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CitedArtifactStatusType.elementOnly.withElement(element);
+      return CitedArtifactStatusType.elementOnly.withElement(
+        element,
+      );
     }
     return CitedArtifactStatusType.values.firstWhere(
       (e) => e.fhirCode == value,

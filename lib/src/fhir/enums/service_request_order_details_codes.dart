@@ -51,7 +51,9 @@ enum ServiceRequestOrderDetailsCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ServiceRequestOrderDetailsCodes.elementOnly.withElement(element);
+      return ServiceRequestOrderDetailsCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ServiceRequestOrderDetailsCodes.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -55,7 +55,9 @@ enum CommunicationNotDoneReason {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CommunicationNotDoneReason.elementOnly.withElement(element);
+      return CommunicationNotDoneReason.elementOnly.withElement(
+        element,
+      );
     }
     return CommunicationNotDoneReason.values.firstWhere(
       (e) => e.fhirCode == value,

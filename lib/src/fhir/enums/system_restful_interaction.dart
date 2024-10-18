@@ -115,7 +115,9 @@ enum SystemRestfulInteraction {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SystemRestfulInteraction.elementOnly.withElement(element);
+      return SystemRestfulInteraction.elementOnly.withElement(
+        element,
+      );
     }
     return SystemRestfulInteraction.values.firstWhere(
       (e) => e.fhirCode == value,

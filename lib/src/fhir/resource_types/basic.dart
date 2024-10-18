@@ -126,22 +126,27 @@ class Basic extends DomainResource {
 
   /// Deserialize [Basic] from a [String]
   /// or [YamlMap] object
-  factory Basic.fromYaml(dynamic yaml) => yaml is String
-      ? Basic.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Basic.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Basic.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Basic cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Basic.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Basic cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Basic]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Basic.fromJsonString(String source) {
+  factory Basic.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Basic.fromJson(json);

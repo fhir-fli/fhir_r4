@@ -43,7 +43,9 @@ enum Laterality {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return Laterality.elementOnly.withElement(element);
+      return Laterality.elementOnly.withElement(
+        element,
+      );
     }
     return Laterality.values.firstWhere(
       (e) => e.fhirCode == value,

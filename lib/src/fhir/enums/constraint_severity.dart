@@ -39,7 +39,9 @@ enum ConstraintSeverity {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConstraintSeverity.elementOnly.withElement(element);
+      return ConstraintSeverity.elementOnly.withElement(
+        element,
+      );
     }
     return ConstraintSeverity.values.firstWhere(
       (e) => e.fhirCode == value,

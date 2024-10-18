@@ -87,7 +87,9 @@ enum ArtifactContributionType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ArtifactContributionType.elementOnly.withElement(element);
+      return ArtifactContributionType.elementOnly.withElement(
+        element,
+      );
     }
     return ArtifactContributionType.values.firstWhere(
       (e) => e.fhirCode == value,

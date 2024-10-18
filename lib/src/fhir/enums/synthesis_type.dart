@@ -59,7 +59,9 @@ enum SynthesisType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SynthesisType.elementOnly.withElement(element);
+      return SynthesisType.elementOnly.withElement(
+        element,
+      );
     }
     return SynthesisType.values.firstWhere(
       (e) => e.fhirCode == value,

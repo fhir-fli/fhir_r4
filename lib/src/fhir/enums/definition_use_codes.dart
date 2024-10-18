@@ -55,7 +55,9 @@ enum DefinitionUseCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DefinitionUseCodes.elementOnly.withElement(element);
+      return DefinitionUseCodes.elementOnly.withElement(
+        element,
+      );
     }
     return DefinitionUseCodes.values.firstWhere(
       (e) => e.fhirCode == value,

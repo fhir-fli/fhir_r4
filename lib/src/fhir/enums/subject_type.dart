@@ -623,7 +623,9 @@ enum SubjectType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubjectType.elementOnly.withElement(element);
+      return SubjectType.elementOnly.withElement(
+        element,
+      );
     }
     return SubjectType.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -385,22 +385,27 @@ class ServiceRequest extends DomainResource {
 
   /// Deserialize [ServiceRequest] from a [String]
   /// or [YamlMap] object
-  factory ServiceRequest.fromYaml(dynamic yaml) => yaml is String
-      ? ServiceRequest.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ServiceRequest.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ServiceRequest.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ServiceRequest cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ServiceRequest.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ServiceRequest cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ServiceRequest]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ServiceRequest.fromJsonString(String source) {
+  factory ServiceRequest.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ServiceRequest.fromJson(json);

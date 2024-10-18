@@ -63,7 +63,9 @@ enum MediaModality {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MediaModality.elementOnly.withElement(element);
+      return MediaModality.elementOnly.withElement(
+        element,
+      );
     }
     return MediaModality.values.firstWhere(
       (e) => e.fhirCode == value,

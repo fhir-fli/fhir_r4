@@ -65,7 +65,9 @@ enum CoverageEligibilityResponseAuthSupportCodes {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CoverageEligibilityResponseAuthSupportCodes.elementOnly
-          .withElement(element);
+          .withElement(
+        element,
+      );
     }
     return CoverageEligibilityResponseAuthSupportCodes.values.firstWhere(
       (e) => e.fhirCode == value,

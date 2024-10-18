@@ -43,7 +43,9 @@ enum SourceMaterialGenus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SourceMaterialGenus.elementOnly.withElement(element);
+      return SourceMaterialGenus.elementOnly.withElement(
+        element,
+      );
     }
     return SourceMaterialGenus.values.firstWhere(
       (e) => e.fhirCode == value,

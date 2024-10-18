@@ -47,7 +47,9 @@ enum TestScriptProfileDestinationType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestScriptProfileDestinationType.elementOnly.withElement(element);
+      return TestScriptProfileDestinationType.elementOnly.withElement(
+        element,
+      );
     }
     return TestScriptProfileDestinationType.values.firstWhere(
       (e) => e.fhirCode == value,

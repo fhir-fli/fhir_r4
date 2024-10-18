@@ -67,7 +67,9 @@ enum ExampleUseCodesForList {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleUseCodesForList.elementOnly.withElement(element);
+      return ExampleUseCodesForList.elementOnly.withElement(
+        element,
+      );
     }
     return ExampleUseCodesForList.values.firstWhere(
       (e) => e.fhirCode == value,

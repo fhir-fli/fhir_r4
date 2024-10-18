@@ -139,22 +139,28 @@ class VisionPrescription extends DomainResource {
 
   /// Deserialize [VisionPrescription] from a [String]
   /// or [YamlMap] object
-  factory VisionPrescription.fromYaml(dynamic yaml) => yaml is String
-      ? VisionPrescription.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory VisionPrescription.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? VisionPrescription.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('VisionPrescription cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? VisionPrescription.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'VisionPrescription cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [VisionPrescription]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory VisionPrescription.fromJsonString(String source) {
+  factory VisionPrescription.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return VisionPrescription.fromJson(json);
@@ -488,24 +494,28 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
 
   /// Deserialize [VisionPrescriptionLensSpecification] from a [String]
   /// or [YamlMap] object
-  factory VisionPrescriptionLensSpecification.fromYaml(dynamic yaml) => yaml
-          is String
-      ? VisionPrescriptionLensSpecification.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory VisionPrescriptionLensSpecification.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? VisionPrescriptionLensSpecification.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'VisionPrescriptionLensSpecification cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? VisionPrescriptionLensSpecification.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'VisionPrescriptionLensSpecification cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [VisionPrescriptionLensSpecification]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory VisionPrescriptionLensSpecification.fromJsonString(String source) {
+  factory VisionPrescriptionLensSpecification.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return VisionPrescriptionLensSpecification.fromJson(json);
@@ -807,23 +817,28 @@ class VisionPrescriptionPrism extends BackboneElement {
 
   /// Deserialize [VisionPrescriptionPrism] from a [String]
   /// or [YamlMap] object
-  factory VisionPrescriptionPrism.fromYaml(dynamic yaml) => yaml is String
-      ? VisionPrescriptionPrism.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory VisionPrescriptionPrism.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? VisionPrescriptionPrism.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'VisionPrescriptionPrism cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? VisionPrescriptionPrism.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'VisionPrescriptionPrism cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [VisionPrescriptionPrism]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory VisionPrescriptionPrism.fromJsonString(String source) {
+  factory VisionPrescriptionPrism.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return VisionPrescriptionPrism.fromJson(json);

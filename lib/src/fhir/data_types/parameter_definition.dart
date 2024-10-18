@@ -90,23 +90,28 @@ class ParameterDefinition extends DataType {
 
   /// Deserialize [ParameterDefinition] from a [String]
   /// or [YamlMap] object
-  factory ParameterDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? ParameterDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ParameterDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ParameterDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ParameterDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ParameterDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ParameterDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ParameterDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ParameterDefinition.fromJsonString(String source) {
+  factory ParameterDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ParameterDefinition.fromJson(json);

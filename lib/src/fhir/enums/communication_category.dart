@@ -47,7 +47,9 @@ enum CommunicationCategory {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CommunicationCategory.elementOnly.withElement(element);
+      return CommunicationCategory.elementOnly.withElement(
+        element,
+      );
     }
     return CommunicationCategory.values.firstWhere(
       (e) => e.fhirCode == value,

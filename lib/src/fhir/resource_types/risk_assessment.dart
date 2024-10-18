@@ -222,22 +222,27 @@ class RiskAssessment extends DomainResource {
 
   /// Deserialize [RiskAssessment] from a [String]
   /// or [YamlMap] object
-  factory RiskAssessment.fromYaml(dynamic yaml) => yaml is String
-      ? RiskAssessment.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory RiskAssessment.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? RiskAssessment.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('RiskAssessment cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? RiskAssessment.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('RiskAssessment cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [RiskAssessment]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RiskAssessment.fromJsonString(String source) {
+  factory RiskAssessment.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return RiskAssessment.fromJson(json);
@@ -631,23 +636,28 @@ class RiskAssessmentPrediction extends BackboneElement {
 
   /// Deserialize [RiskAssessmentPrediction] from a [String]
   /// or [YamlMap] object
-  factory RiskAssessmentPrediction.fromYaml(dynamic yaml) => yaml is String
-      ? RiskAssessmentPrediction.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory RiskAssessmentPrediction.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? RiskAssessmentPrediction.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'RiskAssessmentPrediction cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? RiskAssessmentPrediction.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'RiskAssessmentPrediction cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [RiskAssessmentPrediction]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RiskAssessmentPrediction.fromJsonString(String source) {
+  factory RiskAssessmentPrediction.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return RiskAssessmentPrediction.fromJson(json);

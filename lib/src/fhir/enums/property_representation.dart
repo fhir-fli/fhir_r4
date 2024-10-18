@@ -51,7 +51,9 @@ enum PropertyRepresentation {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PropertyRepresentation.elementOnly.withElement(element);
+      return PropertyRepresentation.elementOnly.withElement(
+        element,
+      );
     }
     return PropertyRepresentation.values.firstWhere(
       (e) => e.fhirCode == value,

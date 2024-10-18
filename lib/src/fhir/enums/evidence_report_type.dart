@@ -47,7 +47,9 @@ enum EvidenceReportType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EvidenceReportType.elementOnly.withElement(element);
+      return EvidenceReportType.elementOnly.withElement(
+        element,
+      );
     }
     return EvidenceReportType.values.firstWhere(
       (e) => e.fhirCode == value,

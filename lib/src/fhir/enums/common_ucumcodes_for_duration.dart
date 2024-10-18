@@ -63,7 +63,9 @@ enum CommonUCUMCodesForDuration {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CommonUCUMCodesForDuration.elementOnly.withElement(element);
+      return CommonUCUMCodesForDuration.elementOnly.withElement(
+        element,
+      );
     }
     return CommonUCUMCodesForDuration.values.firstWhere(
       (e) => e.fhirCode == value,

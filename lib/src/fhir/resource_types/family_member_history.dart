@@ -271,23 +271,28 @@ class FamilyMemberHistory extends DomainResource {
 
   /// Deserialize [FamilyMemberHistory] from a [String]
   /// or [YamlMap] object
-  factory FamilyMemberHistory.fromYaml(dynamic yaml) => yaml is String
-      ? FamilyMemberHistory.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory FamilyMemberHistory.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? FamilyMemberHistory.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'FamilyMemberHistory cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? FamilyMemberHistory.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'FamilyMemberHistory cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [FamilyMemberHistory]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory FamilyMemberHistory.fromJsonString(String source) {
+  factory FamilyMemberHistory.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return FamilyMemberHistory.fromJson(json);
@@ -822,23 +827,28 @@ class FamilyMemberHistoryCondition extends BackboneElement {
 
   /// Deserialize [FamilyMemberHistoryCondition] from a [String]
   /// or [YamlMap] object
-  factory FamilyMemberHistoryCondition.fromYaml(dynamic yaml) => yaml is String
-      ? FamilyMemberHistoryCondition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory FamilyMemberHistoryCondition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? FamilyMemberHistoryCondition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'FamilyMemberHistoryCondition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? FamilyMemberHistoryCondition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'FamilyMemberHistoryCondition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [FamilyMemberHistoryCondition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory FamilyMemberHistoryCondition.fromJsonString(String source) {
+  factory FamilyMemberHistoryCondition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return FamilyMemberHistoryCondition.fromJson(json);

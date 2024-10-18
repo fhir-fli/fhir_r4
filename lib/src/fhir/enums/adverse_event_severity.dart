@@ -43,7 +43,9 @@ enum AdverseEventSeverity {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdverseEventSeverity.elementOnly.withElement(element);
+      return AdverseEventSeverity.elementOnly.withElement(
+        element,
+      );
     }
     return AdverseEventSeverity.values.firstWhere(
       (e) => e.fhirCode == value,

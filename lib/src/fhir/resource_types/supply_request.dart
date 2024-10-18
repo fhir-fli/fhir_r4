@@ -221,22 +221,27 @@ class SupplyRequest extends DomainResource {
 
   /// Deserialize [SupplyRequest] from a [String]
   /// or [YamlMap] object
-  factory SupplyRequest.fromYaml(dynamic yaml) => yaml is String
-      ? SupplyRequest.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SupplyRequest.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SupplyRequest.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('SupplyRequest cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SupplyRequest.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('SupplyRequest cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SupplyRequest]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SupplyRequest.fromJsonString(String source) {
+  factory SupplyRequest.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SupplyRequest.fromJson(json);
@@ -617,23 +622,28 @@ class SupplyRequestParameter extends BackboneElement {
 
   /// Deserialize [SupplyRequestParameter] from a [String]
   /// or [YamlMap] object
-  factory SupplyRequestParameter.fromYaml(dynamic yaml) => yaml is String
-      ? SupplyRequestParameter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SupplyRequestParameter.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SupplyRequestParameter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SupplyRequestParameter cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SupplyRequestParameter.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SupplyRequestParameter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SupplyRequestParameter]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SupplyRequestParameter.fromJsonString(String source) {
+  factory SupplyRequestParameter.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SupplyRequestParameter.fromJson(json);

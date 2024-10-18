@@ -55,22 +55,28 @@ class CodeableReference extends DataType {
 
   /// Deserialize [CodeableReference] from a [String]
   /// or [YamlMap] object
-  factory CodeableReference.fromYaml(dynamic yaml) => yaml is String
-      ? CodeableReference.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CodeableReference.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CodeableReference.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CodeableReference cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CodeableReference.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CodeableReference cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CodeableReference]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CodeableReference.fromJsonString(String source) {
+  factory CodeableReference.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CodeableReference.fromJson(json);

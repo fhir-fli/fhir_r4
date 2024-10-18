@@ -835,7 +835,9 @@ enum AdministrableDoseForm {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdministrableDoseForm.elementOnly.withElement(element);
+      return AdministrableDoseForm.elementOnly.withElement(
+        element,
+      );
     }
     return AdministrableDoseForm.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -51,7 +51,9 @@ enum RejectionCriterion {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RejectionCriterion.elementOnly.withElement(element);
+      return RejectionCriterion.elementOnly.withElement(
+        element,
+      );
     }
     return RejectionCriterion.values.firstWhere(
       (e) => e.fhirCode == value,

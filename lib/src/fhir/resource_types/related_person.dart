@@ -193,22 +193,27 @@ class RelatedPerson extends DomainResource {
 
   /// Deserialize [RelatedPerson] from a [String]
   /// or [YamlMap] object
-  factory RelatedPerson.fromYaml(dynamic yaml) => yaml is String
-      ? RelatedPerson.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory RelatedPerson.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? RelatedPerson.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('RelatedPerson cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? RelatedPerson.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('RelatedPerson cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [RelatedPerson]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RelatedPerson.fromJsonString(String source) {
+  factory RelatedPerson.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return RelatedPerson.fromJson(json);
@@ -504,23 +509,28 @@ class RelatedPersonCommunication extends BackboneElement {
 
   /// Deserialize [RelatedPersonCommunication] from a [String]
   /// or [YamlMap] object
-  factory RelatedPersonCommunication.fromYaml(dynamic yaml) => yaml is String
-      ? RelatedPersonCommunication.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory RelatedPersonCommunication.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? RelatedPersonCommunication.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'RelatedPersonCommunication cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? RelatedPersonCommunication.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'RelatedPersonCommunication cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [RelatedPersonCommunication]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RelatedPersonCommunication.fromJsonString(String source) {
+  factory RelatedPersonCommunication.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return RelatedPersonCommunication.fromJson(json);

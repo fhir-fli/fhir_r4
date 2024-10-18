@@ -1366,22 +1366,28 @@ class ElementDefinition extends BackboneType {
 
   /// Deserialize [ElementDefinition] from a [String]
   /// or [YamlMap] object
-  factory ElementDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? ElementDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ElementDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ElementDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ElementDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ElementDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ElementDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ElementDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinition.fromJsonString(String source) {
+  factory ElementDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ElementDefinition.fromJson(json);
@@ -5157,23 +5163,28 @@ class ElementDefinitionSlicing extends Element {
 
   /// Deserialize [ElementDefinitionSlicing] from a [String]
   /// or [YamlMap] object
-  factory ElementDefinitionSlicing.fromYaml(dynamic yaml) => yaml is String
-      ? ElementDefinitionSlicing.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ElementDefinitionSlicing.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ElementDefinitionSlicing.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ElementDefinitionSlicing cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ElementDefinitionSlicing.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ElementDefinitionSlicing cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ElementDefinitionSlicing]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionSlicing.fromJsonString(String source) {
+  factory ElementDefinitionSlicing.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ElementDefinitionSlicing.fromJson(json);
@@ -5343,24 +5354,28 @@ class ElementDefinitionDiscriminator extends Element {
 
   /// Deserialize [ElementDefinitionDiscriminator] from a [String]
   /// or [YamlMap] object
-  factory ElementDefinitionDiscriminator.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ElementDefinitionDiscriminator.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ElementDefinitionDiscriminator.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ElementDefinitionDiscriminator.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ElementDefinitionDiscriminator cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ElementDefinitionDiscriminator.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ElementDefinitionDiscriminator cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ElementDefinitionDiscriminator]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionDiscriminator.fromJsonString(String source) {
+  factory ElementDefinitionDiscriminator.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ElementDefinitionDiscriminator.fromJson(json);
@@ -5505,23 +5520,28 @@ class ElementDefinitionBase extends Element {
 
   /// Deserialize [ElementDefinitionBase] from a [String]
   /// or [YamlMap] object
-  factory ElementDefinitionBase.fromYaml(dynamic yaml) => yaml is String
-      ? ElementDefinitionBase.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ElementDefinitionBase.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ElementDefinitionBase.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ElementDefinitionBase cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ElementDefinitionBase.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ElementDefinitionBase cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ElementDefinitionBase]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionBase.fromJsonString(String source) {
+  factory ElementDefinitionBase.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ElementDefinitionBase.fromJson(json);
@@ -5693,23 +5713,28 @@ class ElementDefinitionType extends Element {
 
   /// Deserialize [ElementDefinitionType] from a [String]
   /// or [YamlMap] object
-  factory ElementDefinitionType.fromYaml(dynamic yaml) => yaml is String
-      ? ElementDefinitionType.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ElementDefinitionType.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ElementDefinitionType.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ElementDefinitionType cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ElementDefinitionType.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ElementDefinitionType cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ElementDefinitionType]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionType.fromJsonString(String source) {
+  factory ElementDefinitionType.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ElementDefinitionType.fromJson(json);
@@ -6221,23 +6246,28 @@ class ElementDefinitionExample extends Element {
 
   /// Deserialize [ElementDefinitionExample] from a [String]
   /// or [YamlMap] object
-  factory ElementDefinitionExample.fromYaml(dynamic yaml) => yaml is String
-      ? ElementDefinitionExample.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ElementDefinitionExample.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ElementDefinitionExample.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ElementDefinitionExample cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ElementDefinitionExample.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ElementDefinitionExample cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ElementDefinitionExample]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionExample.fromJsonString(String source) {
+  factory ElementDefinitionExample.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ElementDefinitionExample.fromJson(json);
@@ -7034,23 +7064,28 @@ class ElementDefinitionConstraint extends Element {
 
   /// Deserialize [ElementDefinitionConstraint] from a [String]
   /// or [YamlMap] object
-  factory ElementDefinitionConstraint.fromYaml(dynamic yaml) => yaml is String
-      ? ElementDefinitionConstraint.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ElementDefinitionConstraint.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ElementDefinitionConstraint.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ElementDefinitionConstraint cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ElementDefinitionConstraint.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ElementDefinitionConstraint cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ElementDefinitionConstraint]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionConstraint.fromJsonString(String source) {
+  factory ElementDefinitionConstraint.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ElementDefinitionConstraint.fromJson(json);
@@ -7266,23 +7301,28 @@ class ElementDefinitionBinding extends Element {
 
   /// Deserialize [ElementDefinitionBinding] from a [String]
   /// or [YamlMap] object
-  factory ElementDefinitionBinding.fromYaml(dynamic yaml) => yaml is String
-      ? ElementDefinitionBinding.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ElementDefinitionBinding.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ElementDefinitionBinding.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ElementDefinitionBinding cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ElementDefinitionBinding.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ElementDefinitionBinding cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ElementDefinitionBinding]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionBinding.fromJsonString(String source) {
+  factory ElementDefinitionBinding.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ElementDefinitionBinding.fromJson(json);
@@ -7447,23 +7487,28 @@ class ElementDefinitionMapping extends Element {
 
   /// Deserialize [ElementDefinitionMapping] from a [String]
   /// or [YamlMap] object
-  factory ElementDefinitionMapping.fromYaml(dynamic yaml) => yaml is String
-      ? ElementDefinitionMapping.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ElementDefinitionMapping.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ElementDefinitionMapping.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ElementDefinitionMapping cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ElementDefinitionMapping.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ElementDefinitionMapping cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ElementDefinitionMapping]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ElementDefinitionMapping.fromJsonString(String source) {
+  factory ElementDefinitionMapping.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ElementDefinitionMapping.fromJson(json);

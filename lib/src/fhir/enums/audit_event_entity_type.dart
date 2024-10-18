@@ -619,7 +619,9 @@ enum AuditEventEntityType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AuditEventEntityType.elementOnly.withElement(element);
+      return AuditEventEntityType.elementOnly.withElement(
+        element,
+      );
     }
     return AuditEventEntityType.values.firstWhere(
       (e) => e.fhirCode == value,

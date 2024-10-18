@@ -603,7 +603,9 @@ enum ResourceType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResourceType.elementOnly.withElement(element);
+      return ResourceType.elementOnly.withElement(
+        element,
+      );
     }
     return ResourceType.values.firstWhere(
       (e) => e.fhirCode == value,

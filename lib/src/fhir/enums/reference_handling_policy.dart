@@ -51,7 +51,9 @@ enum ReferenceHandlingPolicy {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ReferenceHandlingPolicy.elementOnly.withElement(element);
+      return ReferenceHandlingPolicy.elementOnly.withElement(
+        element,
+      );
     }
     return ReferenceHandlingPolicy.values.firstWhere(
       (e) => e.fhirCode == value,

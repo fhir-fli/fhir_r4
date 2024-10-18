@@ -43,7 +43,9 @@ enum VariableType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return VariableType.elementOnly.withElement(element);
+      return VariableType.elementOnly.withElement(
+        element,
+      );
     }
     return VariableType.values.firstWhere(
       (e) => e.fhirCode == value,

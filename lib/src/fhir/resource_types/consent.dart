@@ -191,22 +191,27 @@ class Consent extends DomainResource {
 
   /// Deserialize [Consent] from a [String]
   /// or [YamlMap] object
-  factory Consent.fromYaml(dynamic yaml) => yaml is String
-      ? Consent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Consent.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Consent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Consent cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Consent.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Consent cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Consent]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Consent.fromJsonString(String source) {
+  factory Consent.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Consent.fromJson(json);
@@ -527,22 +532,27 @@ class ConsentPolicy extends BackboneElement {
 
   /// Deserialize [ConsentPolicy] from a [String]
   /// or [YamlMap] object
-  factory ConsentPolicy.fromYaml(dynamic yaml) => yaml is String
-      ? ConsentPolicy.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ConsentPolicy.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ConsentPolicy.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ConsentPolicy cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ConsentPolicy.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ConsentPolicy cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ConsentPolicy]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConsentPolicy.fromJsonString(String source) {
+  factory ConsentPolicy.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ConsentPolicy.fromJson(json);
@@ -721,23 +731,28 @@ class ConsentVerification extends BackboneElement {
 
   /// Deserialize [ConsentVerification] from a [String]
   /// or [YamlMap] object
-  factory ConsentVerification.fromYaml(dynamic yaml) => yaml is String
-      ? ConsentVerification.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ConsentVerification.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ConsentVerification.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ConsentVerification cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ConsentVerification.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ConsentVerification cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ConsentVerification]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConsentVerification.fromJsonString(String source) {
+  factory ConsentVerification.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ConsentVerification.fromJson(json);
@@ -992,22 +1007,28 @@ class ConsentProvision extends BackboneElement {
 
   /// Deserialize [ConsentProvision] from a [String]
   /// or [YamlMap] object
-  factory ConsentProvision.fromYaml(dynamic yaml) => yaml is String
-      ? ConsentProvision.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ConsentProvision.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ConsentProvision.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ConsentProvision cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ConsentProvision.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ConsentProvision cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ConsentProvision]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConsentProvision.fromJsonString(String source) {
+  factory ConsentProvision.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ConsentProvision.fromJson(json);
@@ -1252,22 +1273,27 @@ class ConsentActor extends BackboneElement {
 
   /// Deserialize [ConsentActor] from a [String]
   /// or [YamlMap] object
-  factory ConsentActor.fromYaml(dynamic yaml) => yaml is String
-      ? ConsentActor.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ConsentActor.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ConsentActor.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ConsentActor cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ConsentActor.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ConsentActor cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ConsentActor]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConsentActor.fromJsonString(String source) {
+  factory ConsentActor.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ConsentActor.fromJson(json);
@@ -1414,22 +1440,27 @@ class ConsentData extends BackboneElement {
 
   /// Deserialize [ConsentData] from a [String]
   /// or [YamlMap] object
-  factory ConsentData.fromYaml(dynamic yaml) => yaml is String
-      ? ConsentData.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ConsentData.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ConsentData.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ConsentData cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ConsentData.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ConsentData cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ConsentData]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConsentData.fromJsonString(String source) {
+  factory ConsentData.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ConsentData.fromJson(json);

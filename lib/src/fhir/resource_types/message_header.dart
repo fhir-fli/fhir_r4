@@ -174,22 +174,27 @@ class MessageHeader extends DomainResource {
 
   /// Deserialize [MessageHeader] from a [String]
   /// or [YamlMap] object
-  factory MessageHeader.fromYaml(dynamic yaml) => yaml is String
-      ? MessageHeader.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MessageHeader.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MessageHeader.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('MessageHeader cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MessageHeader.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('MessageHeader cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MessageHeader]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MessageHeader.fromJsonString(String source) {
+  factory MessageHeader.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MessageHeader.fromJson(json);
@@ -510,23 +515,28 @@ class MessageHeaderDestination extends BackboneElement {
 
   /// Deserialize [MessageHeaderDestination] from a [String]
   /// or [YamlMap] object
-  factory MessageHeaderDestination.fromYaml(dynamic yaml) => yaml is String
-      ? MessageHeaderDestination.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MessageHeaderDestination.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MessageHeaderDestination.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MessageHeaderDestination cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MessageHeaderDestination.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MessageHeaderDestination cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MessageHeaderDestination]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MessageHeaderDestination.fromJsonString(String source) {
+  factory MessageHeaderDestination.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MessageHeaderDestination.fromJson(json);
@@ -725,23 +735,28 @@ class MessageHeaderSource extends BackboneElement {
 
   /// Deserialize [MessageHeaderSource] from a [String]
   /// or [YamlMap] object
-  factory MessageHeaderSource.fromYaml(dynamic yaml) => yaml is String
-      ? MessageHeaderSource.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MessageHeaderSource.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MessageHeaderSource.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MessageHeaderSource cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MessageHeaderSource.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MessageHeaderSource cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MessageHeaderSource]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MessageHeaderSource.fromJsonString(String source) {
+  factory MessageHeaderSource.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MessageHeaderSource.fromJson(json);
@@ -942,23 +957,28 @@ class MessageHeaderResponse extends BackboneElement {
 
   /// Deserialize [MessageHeaderResponse] from a [String]
   /// or [YamlMap] object
-  factory MessageHeaderResponse.fromYaml(dynamic yaml) => yaml is String
-      ? MessageHeaderResponse.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MessageHeaderResponse.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MessageHeaderResponse.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MessageHeaderResponse cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MessageHeaderResponse.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MessageHeaderResponse cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MessageHeaderResponse]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MessageHeaderResponse.fromJsonString(String source) {
+  factory MessageHeaderResponse.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MessageHeaderResponse.fromJson(json);

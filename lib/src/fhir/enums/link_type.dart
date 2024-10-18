@@ -47,7 +47,9 @@ enum LinkType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return LinkType.elementOnly.withElement(element);
+      return LinkType.elementOnly.withElement(
+        element,
+      );
     }
     return LinkType.values.firstWhere(
       (e) => e.fhirCode == value,

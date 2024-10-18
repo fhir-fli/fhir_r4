@@ -43,7 +43,9 @@ enum ConditionalDeleteStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConditionalDeleteStatus.elementOnly.withElement(element);
+      return ConditionalDeleteStatus.elementOnly.withElement(
+        element,
+      );
     }
     return ConditionalDeleteStatus.values.firstWhere(
       (e) => e.fhirCode == value,

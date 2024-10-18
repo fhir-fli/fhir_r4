@@ -206,23 +206,28 @@ class PackagedProductDefinition extends DomainResource {
 
   /// Deserialize [PackagedProductDefinition] from a [String]
   /// or [YamlMap] object
-  factory PackagedProductDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? PackagedProductDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PackagedProductDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PackagedProductDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PackagedProductDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PackagedProductDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PackagedProductDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PackagedProductDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PackagedProductDefinition.fromJsonString(String source) {
+  factory PackagedProductDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PackagedProductDefinition.fromJson(json);
@@ -575,7 +580,9 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
 
   /// Deserialize [PackagedProductDefinitionLegalStatusOfSupply] from a [String]
   /// or [YamlMap] object
-  factory PackagedProductDefinitionLegalStatusOfSupply.fromYaml(dynamic yaml) =>
+  factory PackagedProductDefinitionLegalStatusOfSupply.fromYaml(
+    dynamic yaml,
+  ) =>
       yaml is String
           ? PackagedProductDefinitionLegalStatusOfSupply.fromJson(
               jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -593,7 +600,8 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PackagedProductDefinitionLegalStatusOfSupply.fromJsonString(
-      String source) {
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PackagedProductDefinitionLegalStatusOfSupply.fromJson(json);
@@ -829,24 +837,28 @@ class PackagedProductDefinitionPackage extends BackboneElement {
 
   /// Deserialize [PackagedProductDefinitionPackage] from a [String]
   /// or [YamlMap] object
-  factory PackagedProductDefinitionPackage.fromYaml(dynamic yaml) => yaml
-          is String
-      ? PackagedProductDefinitionPackage.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PackagedProductDefinitionPackage.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PackagedProductDefinitionPackage.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PackagedProductDefinitionPackage cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PackagedProductDefinitionPackage.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PackagedProductDefinitionPackage cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PackagedProductDefinitionPackage]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PackagedProductDefinitionPackage.fromJsonString(String source) {
+  factory PackagedProductDefinitionPackage.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PackagedProductDefinitionPackage.fromJson(json);
@@ -1106,25 +1118,28 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
 
   /// Deserialize [PackagedProductDefinitionShelfLifeStorage] from a [String]
   /// or [YamlMap] object
-  factory PackagedProductDefinitionShelfLifeStorage.fromYaml(dynamic yaml) => yaml
-          is String
-      ? PackagedProductDefinitionShelfLifeStorage.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PackagedProductDefinitionShelfLifeStorage.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PackagedProductDefinitionShelfLifeStorage.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PackagedProductDefinitionShelfLifeStorage cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PackagedProductDefinitionShelfLifeStorage.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PackagedProductDefinitionShelfLifeStorage cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PackagedProductDefinitionShelfLifeStorage]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PackagedProductDefinitionShelfLifeStorage.fromJsonString(
-      String source) {
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PackagedProductDefinitionShelfLifeStorage.fromJson(json);
@@ -1341,24 +1356,28 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 
   /// Deserialize [PackagedProductDefinitionProperty] from a [String]
   /// or [YamlMap] object
-  factory PackagedProductDefinitionProperty.fromYaml(dynamic yaml) => yaml
-          is String
-      ? PackagedProductDefinitionProperty.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PackagedProductDefinitionProperty.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PackagedProductDefinitionProperty.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PackagedProductDefinitionProperty cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PackagedProductDefinitionProperty.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PackagedProductDefinitionProperty cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PackagedProductDefinitionProperty]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PackagedProductDefinitionProperty.fromJsonString(String source) {
+  factory PackagedProductDefinitionProperty.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PackagedProductDefinitionProperty.fromJson(json);
@@ -1552,24 +1571,28 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
 
   /// Deserialize [PackagedProductDefinitionContainedItem] from a [String]
   /// or [YamlMap] object
-  factory PackagedProductDefinitionContainedItem.fromYaml(dynamic yaml) => yaml
-          is String
-      ? PackagedProductDefinitionContainedItem.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PackagedProductDefinitionContainedItem.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PackagedProductDefinitionContainedItem.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PackagedProductDefinitionContainedItem cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PackagedProductDefinitionContainedItem.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PackagedProductDefinitionContainedItem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PackagedProductDefinitionContainedItem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PackagedProductDefinitionContainedItem.fromJsonString(String source) {
+  factory PackagedProductDefinitionContainedItem.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PackagedProductDefinitionContainedItem.fromJson(json);

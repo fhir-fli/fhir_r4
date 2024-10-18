@@ -35,7 +35,9 @@ enum AdditionalMonitoring {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdditionalMonitoring.elementOnly.withElement(element);
+      return AdditionalMonitoring.elementOnly.withElement(
+        element,
+      );
     }
     return AdditionalMonitoring.values.firstWhere(
       (e) => e.fhirCode == value,

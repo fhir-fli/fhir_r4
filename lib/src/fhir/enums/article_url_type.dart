@@ -95,7 +95,9 @@ enum ArticleUrlType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ArticleUrlType.elementOnly.withElement(element);
+      return ArticleUrlType.elementOnly.withElement(
+        element,
+      );
     }
     return ArticleUrlType.values.firstWhere(
       (e) => e.fhirCode == value,

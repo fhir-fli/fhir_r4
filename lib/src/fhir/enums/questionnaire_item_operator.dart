@@ -59,7 +59,9 @@ enum QuestionnaireItemOperator {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QuestionnaireItemOperator.elementOnly.withElement(element);
+      return QuestionnaireItemOperator.elementOnly.withElement(
+        element,
+      );
     }
     return QuestionnaireItemOperator.values.firstWhere(
       (e) => e.fhirCode == value,

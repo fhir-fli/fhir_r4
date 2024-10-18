@@ -55,7 +55,9 @@ enum EndpointStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EndpointStatus.elementOnly.withElement(element);
+      return EndpointStatus.elementOnly.withElement(
+        element,
+      );
     }
     return EndpointStatus.values.firstWhere(
       (e) => e.fhirCode == value,

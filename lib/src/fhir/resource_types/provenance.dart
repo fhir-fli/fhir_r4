@@ -182,22 +182,27 @@ class Provenance extends DomainResource {
 
   /// Deserialize [Provenance] from a [String]
   /// or [YamlMap] object
-  factory Provenance.fromYaml(dynamic yaml) => yaml is String
-      ? Provenance.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Provenance.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Provenance.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Provenance cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Provenance.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Provenance cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Provenance]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Provenance.fromJsonString(String source) {
+  factory Provenance.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Provenance.fromJson(json);
@@ -501,22 +506,28 @@ class ProvenanceAgent extends BackboneElement {
 
   /// Deserialize [ProvenanceAgent] from a [String]
   /// or [YamlMap] object
-  factory ProvenanceAgent.fromYaml(dynamic yaml) => yaml is String
-      ? ProvenanceAgent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ProvenanceAgent.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ProvenanceAgent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ProvenanceAgent cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ProvenanceAgent.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ProvenanceAgent cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ProvenanceAgent]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ProvenanceAgent.fromJsonString(String source) {
+  factory ProvenanceAgent.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ProvenanceAgent.fromJson(json);
@@ -692,22 +703,28 @@ class ProvenanceEntity extends BackboneElement {
 
   /// Deserialize [ProvenanceEntity] from a [String]
   /// or [YamlMap] object
-  factory ProvenanceEntity.fromYaml(dynamic yaml) => yaml is String
-      ? ProvenanceEntity.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ProvenanceEntity.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ProvenanceEntity.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ProvenanceEntity cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ProvenanceEntity.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ProvenanceEntity cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ProvenanceEntity]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ProvenanceEntity.fromJsonString(String source) {
+  factory ProvenanceEntity.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ProvenanceEntity.fromJson(json);

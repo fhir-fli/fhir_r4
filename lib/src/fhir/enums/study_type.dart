@@ -59,7 +59,9 @@ enum StudyType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StudyType.elementOnly.withElement(element);
+      return StudyType.elementOnly.withElement(
+        element,
+      );
     }
     return StudyType.values.firstWhere(
       (e) => e.fhirCode == value,

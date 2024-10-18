@@ -89,22 +89,28 @@ class RelatedArtifact extends DataType {
 
   /// Deserialize [RelatedArtifact] from a [String]
   /// or [YamlMap] object
-  factory RelatedArtifact.fromYaml(dynamic yaml) => yaml is String
-      ? RelatedArtifact.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory RelatedArtifact.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? RelatedArtifact.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('RelatedArtifact cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? RelatedArtifact.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'RelatedArtifact cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [RelatedArtifact]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RelatedArtifact.fromJsonString(String source) {
+  factory RelatedArtifact.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return RelatedArtifact.fromJson(json);

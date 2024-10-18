@@ -63,7 +63,9 @@ enum ResearchStudyPrimaryPurposeType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResearchStudyPrimaryPurposeType.elementOnly.withElement(element);
+      return ResearchStudyPrimaryPurposeType.elementOnly.withElement(
+        element,
+      );
     }
     return ResearchStudyPrimaryPurposeType.values.firstWhere(
       (e) => e.fhirCode == value,

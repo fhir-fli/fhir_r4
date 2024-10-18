@@ -51,7 +51,9 @@ enum XPathUsageType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return XPathUsageType.elementOnly.withElement(element);
+      return XPathUsageType.elementOnly.withElement(
+        element,
+      );
     }
     return XPathUsageType.values.firstWhere(
       (e) => e.fhirCode == value,

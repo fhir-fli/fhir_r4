@@ -241,22 +241,27 @@ class AdverseEvent extends DomainResource {
 
   /// Deserialize [AdverseEvent] from a [String]
   /// or [YamlMap] object
-  factory AdverseEvent.fromYaml(dynamic yaml) => yaml is String
-      ? AdverseEvent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory AdverseEvent.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? AdverseEvent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('AdverseEvent cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? AdverseEvent.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('AdverseEvent cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [AdverseEvent]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AdverseEvent.fromJsonString(String source) {
+  factory AdverseEvent.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AdverseEvent.fromJson(json);
@@ -654,23 +659,28 @@ class AdverseEventSuspectEntity extends BackboneElement {
 
   /// Deserialize [AdverseEventSuspectEntity] from a [String]
   /// or [YamlMap] object
-  factory AdverseEventSuspectEntity.fromYaml(dynamic yaml) => yaml is String
-      ? AdverseEventSuspectEntity.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory AdverseEventSuspectEntity.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? AdverseEventSuspectEntity.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'AdverseEventSuspectEntity cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? AdverseEventSuspectEntity.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'AdverseEventSuspectEntity cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [AdverseEventSuspectEntity]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AdverseEventSuspectEntity.fromJsonString(String source) {
+  factory AdverseEventSuspectEntity.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AdverseEventSuspectEntity.fromJson(json);
@@ -833,23 +843,28 @@ class AdverseEventCausality extends BackboneElement {
 
   /// Deserialize [AdverseEventCausality] from a [String]
   /// or [YamlMap] object
-  factory AdverseEventCausality.fromYaml(dynamic yaml) => yaml is String
-      ? AdverseEventCausality.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory AdverseEventCausality.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? AdverseEventCausality.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'AdverseEventCausality cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? AdverseEventCausality.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'AdverseEventCausality cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [AdverseEventCausality]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AdverseEventCausality.fromJsonString(String source) {
+  factory AdverseEventCausality.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AdverseEventCausality.fromJson(json);

@@ -159,22 +159,27 @@ class Schedule extends DomainResource {
 
   /// Deserialize [Schedule] from a [String]
   /// or [YamlMap] object
-  factory Schedule.fromYaml(dynamic yaml) => yaml is String
-      ? Schedule.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Schedule.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Schedule.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Schedule cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Schedule.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Schedule cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Schedule]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Schedule.fromJsonString(String source) {
+  factory Schedule.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Schedule.fromJson(json);

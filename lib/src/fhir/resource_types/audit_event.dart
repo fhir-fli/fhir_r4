@@ -170,22 +170,27 @@ class AuditEvent extends DomainResource {
 
   /// Deserialize [AuditEvent] from a [String]
   /// or [YamlMap] object
-  factory AuditEvent.fromYaml(dynamic yaml) => yaml is String
-      ? AuditEvent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory AuditEvent.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? AuditEvent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('AuditEvent cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? AuditEvent.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('AuditEvent cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [AuditEvent]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AuditEvent.fromJsonString(String source) {
+  factory AuditEvent.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AuditEvent.fromJson(json);
@@ -527,22 +532,28 @@ class AuditEventAgent extends BackboneElement {
 
   /// Deserialize [AuditEventAgent] from a [String]
   /// or [YamlMap] object
-  factory AuditEventAgent.fromYaml(dynamic yaml) => yaml is String
-      ? AuditEventAgent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory AuditEventAgent.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? AuditEventAgent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('AuditEventAgent cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? AuditEventAgent.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'AuditEventAgent cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [AuditEventAgent]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AuditEventAgent.fromJsonString(String source) {
+  factory AuditEventAgent.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AuditEventAgent.fromJson(json);
@@ -812,22 +823,28 @@ class AuditEventNetwork extends BackboneElement {
 
   /// Deserialize [AuditEventNetwork] from a [String]
   /// or [YamlMap] object
-  factory AuditEventNetwork.fromYaml(dynamic yaml) => yaml is String
-      ? AuditEventNetwork.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory AuditEventNetwork.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? AuditEventNetwork.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('AuditEventNetwork cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? AuditEventNetwork.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'AuditEventNetwork cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [AuditEventNetwork]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AuditEventNetwork.fromJsonString(String source) {
+  factory AuditEventNetwork.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AuditEventNetwork.fromJson(json);
@@ -992,22 +1009,28 @@ class AuditEventSource extends BackboneElement {
 
   /// Deserialize [AuditEventSource] from a [String]
   /// or [YamlMap] object
-  factory AuditEventSource.fromYaml(dynamic yaml) => yaml is String
-      ? AuditEventSource.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory AuditEventSource.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? AuditEventSource.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('AuditEventSource cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? AuditEventSource.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'AuditEventSource cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [AuditEventSource]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AuditEventSource.fromJsonString(String source) {
+  factory AuditEventSource.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AuditEventSource.fromJson(json);
@@ -1224,22 +1247,28 @@ class AuditEventEntity extends BackboneElement {
 
   /// Deserialize [AuditEventEntity] from a [String]
   /// or [YamlMap] object
-  factory AuditEventEntity.fromYaml(dynamic yaml) => yaml is String
-      ? AuditEventEntity.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory AuditEventEntity.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? AuditEventEntity.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('AuditEventEntity cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? AuditEventEntity.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'AuditEventEntity cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [AuditEventEntity]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AuditEventEntity.fromJsonString(String source) {
+  factory AuditEventEntity.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AuditEventEntity.fromJson(json);
@@ -1482,22 +1511,28 @@ class AuditEventDetail extends BackboneElement {
 
   /// Deserialize [AuditEventDetail] from a [String]
   /// or [YamlMap] object
-  factory AuditEventDetail.fromYaml(dynamic yaml) => yaml is String
-      ? AuditEventDetail.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory AuditEventDetail.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? AuditEventDetail.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('AuditEventDetail cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? AuditEventDetail.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'AuditEventDetail cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [AuditEventDetail]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AuditEventDetail.fromJsonString(String source) {
+  factory AuditEventDetail.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AuditEventDetail.fromJson(json);

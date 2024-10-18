@@ -55,7 +55,9 @@ enum ActionSelectionBehavior {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionSelectionBehavior.elementOnly.withElement(element);
+      return ActionSelectionBehavior.elementOnly.withElement(
+        element,
+      );
     }
     return ActionSelectionBehavior.values.firstWhere(
       (e) => e.fhirCode == value,

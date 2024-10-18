@@ -51,7 +51,9 @@ enum ActionReasonCode {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionReasonCode.elementOnly.withElement(element);
+      return ActionReasonCode.elementOnly.withElement(
+        element,
+      );
     }
     return ActionReasonCode.values.firstWhere(
       (e) => e.fhirCode == value,

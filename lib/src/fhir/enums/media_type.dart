@@ -43,7 +43,9 @@ enum MediaType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MediaType.elementOnly.withElement(element);
+      return MediaType.elementOnly.withElement(
+        element,
+      );
     }
     return MediaType.values.firstWhere(
       (e) => e.fhirCode == value,

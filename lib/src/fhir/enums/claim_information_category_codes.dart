@@ -87,7 +87,9 @@ enum ClaimInformationCategoryCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ClaimInformationCategoryCodes.elementOnly.withElement(element);
+      return ClaimInformationCategoryCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ClaimInformationCategoryCodes.values.firstWhere(
       (e) => e.fhirCode == value,

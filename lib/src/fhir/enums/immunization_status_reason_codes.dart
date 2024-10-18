@@ -47,7 +47,9 @@ enum ImmunizationStatusReasonCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImmunizationStatusReasonCodes.elementOnly.withElement(element);
+      return ImmunizationStatusReasonCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ImmunizationStatusReasonCodes.values.firstWhere(
       (e) => e.fhirCode == value,

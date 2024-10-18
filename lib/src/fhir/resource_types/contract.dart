@@ -349,22 +349,27 @@ class Contract extends DomainResource {
 
   /// Deserialize [Contract] from a [String]
   /// or [YamlMap] object
-  factory Contract.fromYaml(dynamic yaml) => yaml is String
-      ? Contract.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Contract.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Contract.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Contract cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Contract.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Contract cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Contract]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Contract.fromJsonString(String source) {
+  factory Contract.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Contract.fromJson(json);
@@ -975,23 +980,28 @@ class ContractContentDefinition extends BackboneElement {
 
   /// Deserialize [ContractContentDefinition] from a [String]
   /// or [YamlMap] object
-  factory ContractContentDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? ContractContentDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ContractContentDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ContractContentDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ContractContentDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ContractContentDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ContractContentDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ContractContentDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractContentDefinition.fromJsonString(String source) {
+  factory ContractContentDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ContractContentDefinition.fromJson(json);
@@ -1278,22 +1288,27 @@ class ContractTerm extends BackboneElement {
 
   /// Deserialize [ContractTerm] from a [String]
   /// or [YamlMap] object
-  factory ContractTerm.fromYaml(dynamic yaml) => yaml is String
-      ? ContractTerm.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ContractTerm.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ContractTerm.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ContractTerm cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ContractTerm.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ContractTerm cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ContractTerm]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractTerm.fromJsonString(String source) {
+  factory ContractTerm.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ContractTerm.fromJson(json);
@@ -1585,23 +1600,28 @@ class ContractSecurityLabel extends BackboneElement {
 
   /// Deserialize [ContractSecurityLabel] from a [String]
   /// or [YamlMap] object
-  factory ContractSecurityLabel.fromYaml(dynamic yaml) => yaml is String
-      ? ContractSecurityLabel.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ContractSecurityLabel.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ContractSecurityLabel.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ContractSecurityLabel cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ContractSecurityLabel.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ContractSecurityLabel cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ContractSecurityLabel]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractSecurityLabel.fromJsonString(String source) {
+  factory ContractSecurityLabel.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ContractSecurityLabel.fromJson(json);
@@ -1842,22 +1862,27 @@ class ContractOffer extends BackboneElement {
 
   /// Deserialize [ContractOffer] from a [String]
   /// or [YamlMap] object
-  factory ContractOffer.fromYaml(dynamic yaml) => yaml is String
-      ? ContractOffer.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ContractOffer.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ContractOffer.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ContractOffer cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ContractOffer.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ContractOffer cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ContractOffer]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractOffer.fromJsonString(String source) {
+  factory ContractOffer.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ContractOffer.fromJson(json);
@@ -2105,22 +2130,27 @@ class ContractParty extends BackboneElement {
 
   /// Deserialize [ContractParty] from a [String]
   /// or [YamlMap] object
-  factory ContractParty.fromYaml(dynamic yaml) => yaml is String
-      ? ContractParty.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ContractParty.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ContractParty.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ContractParty cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ContractParty.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ContractParty cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ContractParty]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractParty.fromJsonString(String source) {
+  factory ContractParty.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ContractParty.fromJson(json);
@@ -2334,22 +2364,27 @@ class ContractAnswer extends BackboneElement {
 
   /// Deserialize [ContractAnswer] from a [String]
   /// or [YamlMap] object
-  factory ContractAnswer.fromYaml(dynamic yaml) => yaml is String
-      ? ContractAnswer.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ContractAnswer.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ContractAnswer.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ContractAnswer cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ContractAnswer.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ContractAnswer cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ContractAnswer]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractAnswer.fromJsonString(String source) {
+  factory ContractAnswer.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ContractAnswer.fromJson(json);
@@ -2773,22 +2808,27 @@ class ContractAsset extends BackboneElement {
 
   /// Deserialize [ContractAsset] from a [String]
   /// or [YamlMap] object
-  factory ContractAsset.fromYaml(dynamic yaml) => yaml is String
-      ? ContractAsset.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ContractAsset.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ContractAsset.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ContractAsset cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ContractAsset.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ContractAsset cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ContractAsset]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractAsset.fromJsonString(String source) {
+  factory ContractAsset.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ContractAsset.fromJson(json);
@@ -3092,22 +3132,28 @@ class ContractContext extends BackboneElement {
 
   /// Deserialize [ContractContext] from a [String]
   /// or [YamlMap] object
-  factory ContractContext.fromYaml(dynamic yaml) => yaml is String
-      ? ContractContext.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ContractContext.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ContractContext.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ContractContext cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ContractContext.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ContractContext cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ContractContext]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractContext.fromJsonString(String source) {
+  factory ContractContext.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ContractContext.fromJson(json);
@@ -3357,22 +3403,28 @@ class ContractValuedItem extends BackboneElement {
 
   /// Deserialize [ContractValuedItem] from a [String]
   /// or [YamlMap] object
-  factory ContractValuedItem.fromYaml(dynamic yaml) => yaml is String
-      ? ContractValuedItem.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ContractValuedItem.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ContractValuedItem.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ContractValuedItem cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ContractValuedItem.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ContractValuedItem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ContractValuedItem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractValuedItem.fromJsonString(String source) {
+  factory ContractValuedItem.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ContractValuedItem.fromJson(json);
@@ -3844,22 +3896,27 @@ class ContractAction extends BackboneElement {
 
   /// Deserialize [ContractAction] from a [String]
   /// or [YamlMap] object
-  factory ContractAction.fromYaml(dynamic yaml) => yaml is String
-      ? ContractAction.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ContractAction.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ContractAction.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ContractAction cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ContractAction.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ContractAction cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ContractAction]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractAction.fromJsonString(String source) {
+  factory ContractAction.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ContractAction.fromJson(json);
@@ -4272,22 +4329,28 @@ class ContractSubject extends BackboneElement {
 
   /// Deserialize [ContractSubject] from a [String]
   /// or [YamlMap] object
-  factory ContractSubject.fromYaml(dynamic yaml) => yaml is String
-      ? ContractSubject.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ContractSubject.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ContractSubject.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ContractSubject cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ContractSubject.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ContractSubject cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ContractSubject]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractSubject.fromJsonString(String source) {
+  factory ContractSubject.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ContractSubject.fromJson(json);
@@ -4442,22 +4505,27 @@ class ContractSigner extends BackboneElement {
 
   /// Deserialize [ContractSigner] from a [String]
   /// or [YamlMap] object
-  factory ContractSigner.fromYaml(dynamic yaml) => yaml is String
-      ? ContractSigner.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ContractSigner.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ContractSigner.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ContractSigner cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ContractSigner.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ContractSigner cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ContractSigner]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractSigner.fromJsonString(String source) {
+  factory ContractSigner.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ContractSigner.fromJson(json);
@@ -4617,22 +4685,28 @@ class ContractFriendly extends BackboneElement {
 
   /// Deserialize [ContractFriendly] from a [String]
   /// or [YamlMap] object
-  factory ContractFriendly.fromYaml(dynamic yaml) => yaml is String
-      ? ContractFriendly.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ContractFriendly.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ContractFriendly.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ContractFriendly cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ContractFriendly.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ContractFriendly cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ContractFriendly]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractFriendly.fromJsonString(String source) {
+  factory ContractFriendly.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ContractFriendly.fromJson(json);
@@ -4798,22 +4872,27 @@ class ContractLegal extends BackboneElement {
 
   /// Deserialize [ContractLegal] from a [String]
   /// or [YamlMap] object
-  factory ContractLegal.fromYaml(dynamic yaml) => yaml is String
-      ? ContractLegal.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ContractLegal.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ContractLegal.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ContractLegal cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ContractLegal.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ContractLegal cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ContractLegal]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractLegal.fromJsonString(String source) {
+  factory ContractLegal.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ContractLegal.fromJson(json);
@@ -4992,22 +5071,27 @@ class ContractRule extends BackboneElement {
 
   /// Deserialize [ContractRule] from a [String]
   /// or [YamlMap] object
-  factory ContractRule.fromYaml(dynamic yaml) => yaml is String
-      ? ContractRule.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ContractRule.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ContractRule.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ContractRule cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ContractRule.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ContractRule cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ContractRule]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ContractRule.fromJsonString(String source) {
+  factory ContractRule.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ContractRule.fromJson(json);

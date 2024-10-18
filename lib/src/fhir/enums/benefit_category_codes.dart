@@ -143,7 +143,9 @@ enum BenefitCategoryCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return BenefitCategoryCodes.elementOnly.withElement(element);
+      return BenefitCategoryCodes.elementOnly.withElement(
+        element,
+      );
     }
     return BenefitCategoryCodes.values.firstWhere(
       (e) => e.fhirCode == value,

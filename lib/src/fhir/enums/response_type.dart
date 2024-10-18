@@ -43,7 +43,9 @@ enum ResponseType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResponseType.elementOnly.withElement(element);
+      return ResponseType.elementOnly.withElement(
+        element,
+      );
     }
     return ResponseType.values.firstWhere(
       (e) => e.fhirCode == value,

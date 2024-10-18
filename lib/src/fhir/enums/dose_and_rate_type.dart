@@ -39,7 +39,9 @@ enum DoseAndRateType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DoseAndRateType.elementOnly.withElement(element);
+      return DoseAndRateType.elementOnly.withElement(
+        element,
+      );
     }
     return DoseAndRateType.values.firstWhere(
       (e) => e.fhirCode == value,

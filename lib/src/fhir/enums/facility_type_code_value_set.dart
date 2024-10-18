@@ -347,7 +347,9 @@ enum FacilityTypeCodeValueSet {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FacilityTypeCodeValueSet.elementOnly.withElement(element);
+      return FacilityTypeCodeValueSet.elementOnly.withElement(
+        element,
+      );
     }
     return FacilityTypeCodeValueSet.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -47,8 +47,9 @@ enum MedicationDispensePerformerFunctionCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationDispensePerformerFunctionCodes.elementOnly
-          .withElement(element);
+      return MedicationDispensePerformerFunctionCodes.elementOnly.withElement(
+        element,
+      );
     }
     return MedicationDispensePerformerFunctionCodes.values.firstWhere(
       (e) => e.fhirCode == value,

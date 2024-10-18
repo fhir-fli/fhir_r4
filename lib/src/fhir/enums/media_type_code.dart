@@ -12695,7 +12695,9 @@ enum MediaTypeCode {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MediaTypeCode.elementOnly.withElement(element);
+      return MediaTypeCode.elementOnly.withElement(
+        element,
+      );
     }
     return MediaTypeCode.values.firstWhere(
       (e) => e.fhirCode == value,

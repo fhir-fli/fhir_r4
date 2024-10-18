@@ -203,22 +203,27 @@ class CareTeam extends DomainResource {
 
   /// Deserialize [CareTeam] from a [String]
   /// or [YamlMap] object
-  factory CareTeam.fromYaml(dynamic yaml) => yaml is String
-      ? CareTeam.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CareTeam.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CareTeam.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CareTeam cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CareTeam.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('CareTeam cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CareTeam]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CareTeam.fromJsonString(String source) {
+  factory CareTeam.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CareTeam.fromJson(json);
@@ -546,23 +551,28 @@ class CareTeamParticipant extends BackboneElement {
 
   /// Deserialize [CareTeamParticipant] from a [String]
   /// or [YamlMap] object
-  factory CareTeamParticipant.fromYaml(dynamic yaml) => yaml is String
-      ? CareTeamParticipant.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CareTeamParticipant.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CareTeamParticipant.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CareTeamParticipant cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CareTeamParticipant.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CareTeamParticipant cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CareTeamParticipant]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CareTeamParticipant.fromJsonString(String source) {
+  factory CareTeamParticipant.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CareTeamParticipant.fromJson(json);

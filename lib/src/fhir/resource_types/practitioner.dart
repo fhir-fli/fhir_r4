@@ -182,22 +182,27 @@ class Practitioner extends DomainResource {
 
   /// Deserialize [Practitioner] from a [String]
   /// or [YamlMap] object
-  factory Practitioner.fromYaml(dynamic yaml) => yaml is String
-      ? Practitioner.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Practitioner.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Practitioner.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Practitioner cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Practitioner.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Practitioner cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Practitioner]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Practitioner.fromJsonString(String source) {
+  factory Practitioner.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Practitioner.fromJson(json);
@@ -494,23 +499,28 @@ class PractitionerQualification extends BackboneElement {
 
   /// Deserialize [PractitionerQualification] from a [String]
   /// or [YamlMap] object
-  factory PractitionerQualification.fromYaml(dynamic yaml) => yaml is String
-      ? PractitionerQualification.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PractitionerQualification.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PractitionerQualification.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PractitionerQualification cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PractitionerQualification.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PractitionerQualification cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PractitionerQualification]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PractitionerQualification.fromJsonString(String source) {
+  factory PractitionerQualification.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PractitionerQualification.fromJson(json);

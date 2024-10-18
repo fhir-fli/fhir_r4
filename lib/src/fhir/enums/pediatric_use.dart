@@ -87,7 +87,9 @@ enum PediatricUse {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PediatricUse.elementOnly.withElement(element);
+      return PediatricUse.elementOnly.withElement(
+        element,
+      );
     }
     return PediatricUse.values.firstWhere(
       (e) => e.fhirCode == value,

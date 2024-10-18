@@ -277,22 +277,28 @@ class MessageDefinition extends DomainResource {
 
   /// Deserialize [MessageDefinition] from a [String]
   /// or [YamlMap] object
-  factory MessageDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? MessageDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MessageDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MessageDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('MessageDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MessageDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MessageDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MessageDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MessageDefinition.fromJsonString(String source) {
+  factory MessageDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MessageDefinition.fromJson(json);
@@ -816,23 +822,28 @@ class MessageDefinitionFocus extends BackboneElement {
 
   /// Deserialize [MessageDefinitionFocus] from a [String]
   /// or [YamlMap] object
-  factory MessageDefinitionFocus.fromYaml(dynamic yaml) => yaml is String
-      ? MessageDefinitionFocus.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MessageDefinitionFocus.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MessageDefinitionFocus.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MessageDefinitionFocus cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MessageDefinitionFocus.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MessageDefinitionFocus cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MessageDefinitionFocus]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MessageDefinitionFocus.fromJsonString(String source) {
+  factory MessageDefinitionFocus.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MessageDefinitionFocus.fromJson(json);
@@ -1020,24 +1031,28 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
 
   /// Deserialize [MessageDefinitionAllowedResponse] from a [String]
   /// or [YamlMap] object
-  factory MessageDefinitionAllowedResponse.fromYaml(dynamic yaml) => yaml
-          is String
-      ? MessageDefinitionAllowedResponse.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MessageDefinitionAllowedResponse.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MessageDefinitionAllowedResponse.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MessageDefinitionAllowedResponse cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MessageDefinitionAllowedResponse.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MessageDefinitionAllowedResponse cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MessageDefinitionAllowedResponse]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MessageDefinitionAllowedResponse.fromJsonString(String source) {
+  factory MessageDefinitionAllowedResponse.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MessageDefinitionAllowedResponse.fromJson(json);

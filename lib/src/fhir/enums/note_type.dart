@@ -43,7 +43,9 @@ enum NoteType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NoteType.elementOnly.withElement(element);
+      return NoteType.elementOnly.withElement(
+        element,
+      );
     }
     return NoteType.values.firstWhere(
       (e) => e.fhirCode == value,

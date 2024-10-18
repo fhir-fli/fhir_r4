@@ -158,22 +158,27 @@ class DeviceMetric extends DomainResource {
 
   /// Deserialize [DeviceMetric] from a [String]
   /// or [YamlMap] object
-  factory DeviceMetric.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceMetric.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DeviceMetric.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DeviceMetric.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('DeviceMetric cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DeviceMetric.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('DeviceMetric cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DeviceMetric]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceMetric.fromJsonString(String source) {
+  factory DeviceMetric.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DeviceMetric.fromJson(json);
@@ -470,23 +475,28 @@ class DeviceMetricCalibration extends BackboneElement {
 
   /// Deserialize [DeviceMetricCalibration] from a [String]
   /// or [YamlMap] object
-  factory DeviceMetricCalibration.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceMetricCalibration.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DeviceMetricCalibration.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DeviceMetricCalibration.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DeviceMetricCalibration cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DeviceMetricCalibration.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DeviceMetricCalibration cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DeviceMetricCalibration]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceMetricCalibration.fromJsonString(String source) {
+  factory DeviceMetricCalibration.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DeviceMetricCalibration.fromJson(json);

@@ -35,7 +35,9 @@ enum ContractResourcePartyRoleCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContractResourcePartyRoleCodes.elementOnly.withElement(element);
+      return ContractResourcePartyRoleCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ContractResourcePartyRoleCodes.values.firstWhere(
       (e) => e.fhirCode == value,

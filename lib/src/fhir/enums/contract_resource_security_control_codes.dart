@@ -35,8 +35,9 @@ enum ContractResourceSecurityControlCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContractResourceSecurityControlCodes.elementOnly
-          .withElement(element);
+      return ContractResourceSecurityControlCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ContractResourceSecurityControlCodes.values.firstWhere(
       (e) => e.fhirCode == value,

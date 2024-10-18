@@ -43,7 +43,9 @@ enum StructureMapGroupTypeMode {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureMapGroupTypeMode.elementOnly.withElement(element);
+      return StructureMapGroupTypeMode.elementOnly.withElement(
+        element,
+      );
     }
     return StructureMapGroupTypeMode.values.firstWhere(
       (e) => e.fhirCode == value,

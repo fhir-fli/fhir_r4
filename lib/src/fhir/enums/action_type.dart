@@ -47,7 +47,9 @@ enum ActionType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionType.elementOnly.withElement(element);
+      return ActionType.elementOnly.withElement(
+        element,
+      );
     }
     return ActionType.values.firstWhere(
       (e) => e.fhirCode == value,

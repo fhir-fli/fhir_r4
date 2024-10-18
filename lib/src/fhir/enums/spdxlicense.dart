@@ -1415,7 +1415,9 @@ enum SPDXLicense {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SPDXLicense.elementOnly.withElement(element);
+      return SPDXLicense.elementOnly.withElement(
+        element,
+      );
     }
     return SPDXLicense.values.firstWhere(
       (e) => e.fhirCode == value,

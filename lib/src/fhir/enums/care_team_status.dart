@@ -51,7 +51,9 @@ enum CareTeamStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CareTeamStatus.elementOnly.withElement(element);
+      return CareTeamStatus.elementOnly.withElement(
+        element,
+      );
     }
     return CareTeamStatus.values.firstWhere(
       (e) => e.fhirCode == value,

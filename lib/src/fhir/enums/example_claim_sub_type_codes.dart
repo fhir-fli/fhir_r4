@@ -39,7 +39,9 @@ enum ExampleClaimSubTypeCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleClaimSubTypeCodes.elementOnly.withElement(element);
+      return ExampleClaimSubTypeCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ExampleClaimSubTypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,

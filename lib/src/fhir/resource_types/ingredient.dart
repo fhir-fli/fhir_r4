@@ -146,22 +146,27 @@ class Ingredient extends DomainResource {
 
   /// Deserialize [Ingredient] from a [String]
   /// or [YamlMap] object
-  factory Ingredient.fromYaml(dynamic yaml) => yaml is String
-      ? Ingredient.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Ingredient.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Ingredient.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Ingredient cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Ingredient.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Ingredient cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Ingredient]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Ingredient.fromJsonString(String source) {
+  factory Ingredient.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Ingredient.fromJson(json);
@@ -422,23 +427,28 @@ class IngredientManufacturer extends BackboneElement {
 
   /// Deserialize [IngredientManufacturer] from a [String]
   /// or [YamlMap] object
-  factory IngredientManufacturer.fromYaml(dynamic yaml) => yaml is String
-      ? IngredientManufacturer.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory IngredientManufacturer.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? IngredientManufacturer.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'IngredientManufacturer cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? IngredientManufacturer.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'IngredientManufacturer cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [IngredientManufacturer]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory IngredientManufacturer.fromJsonString(String source) {
+  factory IngredientManufacturer.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return IngredientManufacturer.fromJson(json);
@@ -591,23 +601,28 @@ class IngredientSubstance extends BackboneElement {
 
   /// Deserialize [IngredientSubstance] from a [String]
   /// or [YamlMap] object
-  factory IngredientSubstance.fromYaml(dynamic yaml) => yaml is String
-      ? IngredientSubstance.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory IngredientSubstance.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? IngredientSubstance.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'IngredientSubstance cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? IngredientSubstance.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'IngredientSubstance cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [IngredientSubstance]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory IngredientSubstance.fromJsonString(String source) {
+  factory IngredientSubstance.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return IngredientSubstance.fromJson(json);
@@ -816,22 +831,28 @@ class IngredientStrength extends BackboneElement {
 
   /// Deserialize [IngredientStrength] from a [String]
   /// or [YamlMap] object
-  factory IngredientStrength.fromYaml(dynamic yaml) => yaml is String
-      ? IngredientStrength.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory IngredientStrength.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? IngredientStrength.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('IngredientStrength cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? IngredientStrength.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'IngredientStrength cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [IngredientStrength]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory IngredientStrength.fromJsonString(String source) {
+  factory IngredientStrength.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return IngredientStrength.fromJson(json);
@@ -1118,23 +1139,28 @@ class IngredientReferenceStrength extends BackboneElement {
 
   /// Deserialize [IngredientReferenceStrength] from a [String]
   /// or [YamlMap] object
-  factory IngredientReferenceStrength.fromYaml(dynamic yaml) => yaml is String
-      ? IngredientReferenceStrength.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory IngredientReferenceStrength.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? IngredientReferenceStrength.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'IngredientReferenceStrength cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? IngredientReferenceStrength.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'IngredientReferenceStrength cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [IngredientReferenceStrength]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory IngredientReferenceStrength.fromJsonString(String source) {
+  factory IngredientReferenceStrength.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return IngredientReferenceStrength.fromJson(json);

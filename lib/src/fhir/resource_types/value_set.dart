@@ -227,22 +227,27 @@ class ValueSet extends DomainResource {
 
   /// Deserialize [ValueSet] from a [String]
   /// or [YamlMap] object
-  factory ValueSet.fromYaml(dynamic yaml) => yaml is String
-      ? ValueSet.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ValueSet.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ValueSet.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ValueSet cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ValueSet.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ValueSet cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ValueSet]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSet.fromJsonString(String source) {
+  factory ValueSet.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ValueSet.fromJson(json);
@@ -682,22 +687,28 @@ class ValueSetCompose extends BackboneElement {
 
   /// Deserialize [ValueSetCompose] from a [String]
   /// or [YamlMap] object
-  factory ValueSetCompose.fromYaml(dynamic yaml) => yaml is String
-      ? ValueSetCompose.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ValueSetCompose.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ValueSetCompose.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ValueSetCompose cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ValueSetCompose.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ValueSetCompose cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ValueSetCompose]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetCompose.fromJsonString(String source) {
+  factory ValueSetCompose.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ValueSetCompose.fromJson(json);
@@ -899,22 +910,28 @@ class ValueSetInclude extends BackboneElement {
 
   /// Deserialize [ValueSetInclude] from a [String]
   /// or [YamlMap] object
-  factory ValueSetInclude.fromYaml(dynamic yaml) => yaml is String
-      ? ValueSetInclude.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ValueSetInclude.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ValueSetInclude.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ValueSetInclude cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ValueSetInclude.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ValueSetInclude cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ValueSetInclude]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetInclude.fromJsonString(String source) {
+  factory ValueSetInclude.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ValueSetInclude.fromJson(json);
@@ -1124,22 +1141,28 @@ class ValueSetConcept extends BackboneElement {
 
   /// Deserialize [ValueSetConcept] from a [String]
   /// or [YamlMap] object
-  factory ValueSetConcept.fromYaml(dynamic yaml) => yaml is String
-      ? ValueSetConcept.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ValueSetConcept.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ValueSetConcept.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ValueSetConcept cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ValueSetConcept.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ValueSetConcept cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ValueSetConcept]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetConcept.fromJsonString(String source) {
+  factory ValueSetConcept.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ValueSetConcept.fromJson(json);
@@ -1317,23 +1340,28 @@ class ValueSetDesignation extends BackboneElement {
 
   /// Deserialize [ValueSetDesignation] from a [String]
   /// or [YamlMap] object
-  factory ValueSetDesignation.fromYaml(dynamic yaml) => yaml is String
-      ? ValueSetDesignation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ValueSetDesignation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ValueSetDesignation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ValueSetDesignation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ValueSetDesignation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ValueSetDesignation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ValueSetDesignation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetDesignation.fromJsonString(String source) {
+  factory ValueSetDesignation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ValueSetDesignation.fromJson(json);
@@ -1501,22 +1529,27 @@ class ValueSetFilter extends BackboneElement {
 
   /// Deserialize [ValueSetFilter] from a [String]
   /// or [YamlMap] object
-  factory ValueSetFilter.fromYaml(dynamic yaml) => yaml is String
-      ? ValueSetFilter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ValueSetFilter.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ValueSetFilter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ValueSetFilter cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ValueSetFilter.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ValueSetFilter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ValueSetFilter]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetFilter.fromJsonString(String source) {
+  factory ValueSetFilter.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ValueSetFilter.fromJson(json);
@@ -1720,22 +1753,28 @@ class ValueSetExpansion extends BackboneElement {
 
   /// Deserialize [ValueSetExpansion] from a [String]
   /// or [YamlMap] object
-  factory ValueSetExpansion.fromYaml(dynamic yaml) => yaml is String
-      ? ValueSetExpansion.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ValueSetExpansion.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ValueSetExpansion.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ValueSetExpansion cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ValueSetExpansion.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ValueSetExpansion cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ValueSetExpansion]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetExpansion.fromJsonString(String source) {
+  factory ValueSetExpansion.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ValueSetExpansion.fromJson(json);
@@ -1994,22 +2033,28 @@ class ValueSetParameter extends BackboneElement {
 
   /// Deserialize [ValueSetParameter] from a [String]
   /// or [YamlMap] object
-  factory ValueSetParameter.fromYaml(dynamic yaml) => yaml is String
-      ? ValueSetParameter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ValueSetParameter.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ValueSetParameter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ValueSetParameter cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ValueSetParameter.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ValueSetParameter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ValueSetParameter]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetParameter.fromJsonString(String source) {
+  factory ValueSetParameter.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ValueSetParameter.fromJson(json);
@@ -2281,22 +2326,28 @@ class ValueSetContains extends BackboneElement {
 
   /// Deserialize [ValueSetContains] from a [String]
   /// or [YamlMap] object
-  factory ValueSetContains.fromYaml(dynamic yaml) => yaml is String
-      ? ValueSetContains.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ValueSetContains.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ValueSetContains.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ValueSetContains cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ValueSetContains.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ValueSetContains cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ValueSetContains]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ValueSetContains.fromJsonString(String source) {
+  factory ValueSetContains.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ValueSetContains.fromJson(json);

@@ -281,22 +281,28 @@ class DeviceDefinition extends DomainResource {
 
   /// Deserialize [DeviceDefinition] from a [String]
   /// or [YamlMap] object
-  factory DeviceDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DeviceDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DeviceDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('DeviceDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DeviceDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DeviceDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DeviceDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceDefinition.fromJsonString(String source) {
+  factory DeviceDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DeviceDefinition.fromJson(json);
@@ -734,24 +740,28 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
 
   /// Deserialize [DeviceDefinitionUdiDeviceIdentifier] from a [String]
   /// or [YamlMap] object
-  factory DeviceDefinitionUdiDeviceIdentifier.fromYaml(dynamic yaml) => yaml
-          is String
-      ? DeviceDefinitionUdiDeviceIdentifier.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DeviceDefinitionUdiDeviceIdentifier.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DeviceDefinitionUdiDeviceIdentifier.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DeviceDefinitionUdiDeviceIdentifier cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DeviceDefinitionUdiDeviceIdentifier.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DeviceDefinitionUdiDeviceIdentifier cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DeviceDefinitionUdiDeviceIdentifier]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceDefinitionUdiDeviceIdentifier.fromJsonString(String source) {
+  factory DeviceDefinitionUdiDeviceIdentifier.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DeviceDefinitionUdiDeviceIdentifier.fromJson(json);
@@ -917,23 +927,28 @@ class DeviceDefinitionDeviceName extends BackboneElement {
 
   /// Deserialize [DeviceDefinitionDeviceName] from a [String]
   /// or [YamlMap] object
-  factory DeviceDefinitionDeviceName.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceDefinitionDeviceName.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DeviceDefinitionDeviceName.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DeviceDefinitionDeviceName.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DeviceDefinitionDeviceName cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DeviceDefinitionDeviceName.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DeviceDefinitionDeviceName cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DeviceDefinitionDeviceName]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceDefinitionDeviceName.fromJsonString(String source) {
+  factory DeviceDefinitionDeviceName.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DeviceDefinitionDeviceName.fromJson(json);
@@ -1087,24 +1102,28 @@ class DeviceDefinitionSpecialization extends BackboneElement {
 
   /// Deserialize [DeviceDefinitionSpecialization] from a [String]
   /// or [YamlMap] object
-  factory DeviceDefinitionSpecialization.fromYaml(dynamic yaml) => yaml
-          is String
-      ? DeviceDefinitionSpecialization.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DeviceDefinitionSpecialization.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DeviceDefinitionSpecialization.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DeviceDefinitionSpecialization cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DeviceDefinitionSpecialization.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DeviceDefinitionSpecialization cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DeviceDefinitionSpecialization]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceDefinitionSpecialization.fromJsonString(String source) {
+  factory DeviceDefinitionSpecialization.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DeviceDefinitionSpecialization.fromJson(json);
@@ -1262,23 +1281,28 @@ class DeviceDefinitionCapability extends BackboneElement {
 
   /// Deserialize [DeviceDefinitionCapability] from a [String]
   /// or [YamlMap] object
-  factory DeviceDefinitionCapability.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceDefinitionCapability.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DeviceDefinitionCapability.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DeviceDefinitionCapability.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DeviceDefinitionCapability cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DeviceDefinitionCapability.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DeviceDefinitionCapability cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DeviceDefinitionCapability]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceDefinitionCapability.fromJsonString(String source) {
+  factory DeviceDefinitionCapability.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DeviceDefinitionCapability.fromJson(json);
@@ -1439,23 +1463,28 @@ class DeviceDefinitionProperty extends BackboneElement {
 
   /// Deserialize [DeviceDefinitionProperty] from a [String]
   /// or [YamlMap] object
-  factory DeviceDefinitionProperty.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceDefinitionProperty.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DeviceDefinitionProperty.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DeviceDefinitionProperty.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DeviceDefinitionProperty cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DeviceDefinitionProperty.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DeviceDefinitionProperty cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DeviceDefinitionProperty]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceDefinitionProperty.fromJsonString(String source) {
+  factory DeviceDefinitionProperty.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DeviceDefinitionProperty.fromJson(json);
@@ -1620,23 +1649,28 @@ class DeviceDefinitionMaterial extends BackboneElement {
 
   /// Deserialize [DeviceDefinitionMaterial] from a [String]
   /// or [YamlMap] object
-  factory DeviceDefinitionMaterial.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceDefinitionMaterial.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DeviceDefinitionMaterial.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DeviceDefinitionMaterial.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DeviceDefinitionMaterial cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DeviceDefinitionMaterial.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DeviceDefinitionMaterial cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DeviceDefinitionMaterial]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceDefinitionMaterial.fromJsonString(String source) {
+  factory DeviceDefinitionMaterial.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DeviceDefinitionMaterial.fromJson(json);

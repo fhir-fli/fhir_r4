@@ -39,7 +39,9 @@ enum ConditionCategoryCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConditionCategoryCodes.elementOnly.withElement(element);
+      return ConditionCategoryCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ConditionCategoryCodes.values.firstWhere(
       (e) => e.fhirCode == value,

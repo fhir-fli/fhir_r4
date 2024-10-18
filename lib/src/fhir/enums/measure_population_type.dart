@@ -67,7 +67,9 @@ enum MeasurePopulationType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasurePopulationType.elementOnly.withElement(element);
+      return MeasurePopulationType.elementOnly.withElement(
+        element,
+      );
     }
     return MeasurePopulationType.values.firstWhere(
       (e) => e.fhirCode == value,

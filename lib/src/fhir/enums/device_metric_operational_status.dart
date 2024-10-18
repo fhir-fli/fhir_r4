@@ -47,7 +47,9 @@ enum DeviceMetricOperationalStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceMetricOperationalStatus.elementOnly.withElement(element);
+      return DeviceMetricOperationalStatus.elementOnly.withElement(
+        element,
+      );
     }
     return DeviceMetricOperationalStatus.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -47,7 +47,9 @@ enum ResearchStudyReasonStopped {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResearchStudyReasonStopped.elementOnly.withElement(element);
+      return ResearchStudyReasonStopped.elementOnly.withElement(
+        element,
+      );
     }
     return ResearchStudyReasonStopped.values.firstWhere(
       (e) => e.fhirCode == value,

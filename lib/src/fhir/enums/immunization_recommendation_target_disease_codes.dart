@@ -69,7 +69,9 @@ enum ImmunizationRecommendationTargetDiseaseCodes {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ImmunizationRecommendationTargetDiseaseCodes.elementOnly
-          .withElement(element);
+          .withElement(
+        element,
+      );
     }
     return ImmunizationRecommendationTargetDiseaseCodes.values.firstWhere(
       (e) => e.fhirCode == value,

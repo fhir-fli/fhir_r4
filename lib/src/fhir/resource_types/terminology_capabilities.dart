@@ -261,23 +261,28 @@ class TerminologyCapabilities extends DomainResource {
 
   /// Deserialize [TerminologyCapabilities] from a [String]
   /// or [YamlMap] object
-  factory TerminologyCapabilities.fromYaml(dynamic yaml) => yaml is String
-      ? TerminologyCapabilities.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TerminologyCapabilities.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TerminologyCapabilities.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TerminologyCapabilities cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TerminologyCapabilities.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TerminologyCapabilities cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TerminologyCapabilities]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TerminologyCapabilities.fromJsonString(String source) {
+  factory TerminologyCapabilities.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TerminologyCapabilities.fromJson(json);
@@ -773,24 +778,28 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
 
   /// Deserialize [TerminologyCapabilitiesSoftware] from a [String]
   /// or [YamlMap] object
-  factory TerminologyCapabilitiesSoftware.fromYaml(dynamic yaml) => yaml
-          is String
-      ? TerminologyCapabilitiesSoftware.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TerminologyCapabilitiesSoftware.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TerminologyCapabilitiesSoftware.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TerminologyCapabilitiesSoftware cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TerminologyCapabilitiesSoftware.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TerminologyCapabilitiesSoftware cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TerminologyCapabilitiesSoftware]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TerminologyCapabilitiesSoftware.fromJsonString(String source) {
+  factory TerminologyCapabilitiesSoftware.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TerminologyCapabilitiesSoftware.fromJson(json);
@@ -948,24 +957,28 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
 
   /// Deserialize [TerminologyCapabilitiesImplementation] from a [String]
   /// or [YamlMap] object
-  factory TerminologyCapabilitiesImplementation.fromYaml(dynamic yaml) => yaml
-          is String
-      ? TerminologyCapabilitiesImplementation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TerminologyCapabilitiesImplementation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TerminologyCapabilitiesImplementation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TerminologyCapabilitiesImplementation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TerminologyCapabilitiesImplementation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TerminologyCapabilitiesImplementation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TerminologyCapabilitiesImplementation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TerminologyCapabilitiesImplementation.fromJsonString(String source) {
+  factory TerminologyCapabilitiesImplementation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TerminologyCapabilitiesImplementation.fromJson(json);
@@ -1136,24 +1149,28 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
 
   /// Deserialize [TerminologyCapabilitiesCodeSystem] from a [String]
   /// or [YamlMap] object
-  factory TerminologyCapabilitiesCodeSystem.fromYaml(dynamic yaml) => yaml
-          is String
-      ? TerminologyCapabilitiesCodeSystem.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TerminologyCapabilitiesCodeSystem.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TerminologyCapabilitiesCodeSystem.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TerminologyCapabilitiesCodeSystem cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TerminologyCapabilitiesCodeSystem.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TerminologyCapabilitiesCodeSystem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TerminologyCapabilitiesCodeSystem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TerminologyCapabilitiesCodeSystem.fromJsonString(String source) {
+  factory TerminologyCapabilitiesCodeSystem.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TerminologyCapabilitiesCodeSystem.fromJson(json);
@@ -1354,24 +1371,28 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
 
   /// Deserialize [TerminologyCapabilitiesVersion] from a [String]
   /// or [YamlMap] object
-  factory TerminologyCapabilitiesVersion.fromYaml(dynamic yaml) => yaml
-          is String
-      ? TerminologyCapabilitiesVersion.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TerminologyCapabilitiesVersion.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TerminologyCapabilitiesVersion.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TerminologyCapabilitiesVersion cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TerminologyCapabilitiesVersion.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TerminologyCapabilitiesVersion cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TerminologyCapabilitiesVersion]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TerminologyCapabilitiesVersion.fromJsonString(String source) {
+  factory TerminologyCapabilitiesVersion.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TerminologyCapabilitiesVersion.fromJson(json);
@@ -1581,23 +1602,28 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
 
   /// Deserialize [TerminologyCapabilitiesFilter] from a [String]
   /// or [YamlMap] object
-  factory TerminologyCapabilitiesFilter.fromYaml(dynamic yaml) => yaml is String
-      ? TerminologyCapabilitiesFilter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TerminologyCapabilitiesFilter.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TerminologyCapabilitiesFilter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TerminologyCapabilitiesFilter cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TerminologyCapabilitiesFilter.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TerminologyCapabilitiesFilter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TerminologyCapabilitiesFilter]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TerminologyCapabilitiesFilter.fromJsonString(String source) {
+  factory TerminologyCapabilitiesFilter.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TerminologyCapabilitiesFilter.fromJson(json);
@@ -1778,24 +1804,28 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
 
   /// Deserialize [TerminologyCapabilitiesExpansion] from a [String]
   /// or [YamlMap] object
-  factory TerminologyCapabilitiesExpansion.fromYaml(dynamic yaml) => yaml
-          is String
-      ? TerminologyCapabilitiesExpansion.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TerminologyCapabilitiesExpansion.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TerminologyCapabilitiesExpansion.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TerminologyCapabilitiesExpansion cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TerminologyCapabilitiesExpansion.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TerminologyCapabilitiesExpansion cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TerminologyCapabilitiesExpansion]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TerminologyCapabilitiesExpansion.fromJsonString(String source) {
+  factory TerminologyCapabilitiesExpansion.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TerminologyCapabilitiesExpansion.fromJson(json);
@@ -1991,24 +2021,28 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
 
   /// Deserialize [TerminologyCapabilitiesParameter] from a [String]
   /// or [YamlMap] object
-  factory TerminologyCapabilitiesParameter.fromYaml(dynamic yaml) => yaml
-          is String
-      ? TerminologyCapabilitiesParameter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TerminologyCapabilitiesParameter.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TerminologyCapabilitiesParameter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TerminologyCapabilitiesParameter cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TerminologyCapabilitiesParameter.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TerminologyCapabilitiesParameter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TerminologyCapabilitiesParameter]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TerminologyCapabilitiesParameter.fromJsonString(String source) {
+  factory TerminologyCapabilitiesParameter.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TerminologyCapabilitiesParameter.fromJson(json);
@@ -2159,24 +2193,28 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
 
   /// Deserialize [TerminologyCapabilitiesValidateCode] from a [String]
   /// or [YamlMap] object
-  factory TerminologyCapabilitiesValidateCode.fromYaml(dynamic yaml) => yaml
-          is String
-      ? TerminologyCapabilitiesValidateCode.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TerminologyCapabilitiesValidateCode.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TerminologyCapabilitiesValidateCode.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TerminologyCapabilitiesValidateCode cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TerminologyCapabilitiesValidateCode.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TerminologyCapabilitiesValidateCode cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TerminologyCapabilitiesValidateCode]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TerminologyCapabilitiesValidateCode.fromJsonString(String source) {
+  factory TerminologyCapabilitiesValidateCode.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TerminologyCapabilitiesValidateCode.fromJson(json);
@@ -2312,24 +2350,28 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
 
   /// Deserialize [TerminologyCapabilitiesTranslation] from a [String]
   /// or [YamlMap] object
-  factory TerminologyCapabilitiesTranslation.fromYaml(dynamic yaml) => yaml
-          is String
-      ? TerminologyCapabilitiesTranslation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TerminologyCapabilitiesTranslation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TerminologyCapabilitiesTranslation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TerminologyCapabilitiesTranslation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TerminologyCapabilitiesTranslation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TerminologyCapabilitiesTranslation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TerminologyCapabilitiesTranslation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TerminologyCapabilitiesTranslation.fromJsonString(String source) {
+  factory TerminologyCapabilitiesTranslation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TerminologyCapabilitiesTranslation.fromJson(json);
@@ -2466,24 +2508,28 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
 
   /// Deserialize [TerminologyCapabilitiesClosure] from a [String]
   /// or [YamlMap] object
-  factory TerminologyCapabilitiesClosure.fromYaml(dynamic yaml) => yaml
-          is String
-      ? TerminologyCapabilitiesClosure.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TerminologyCapabilitiesClosure.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TerminologyCapabilitiesClosure.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TerminologyCapabilitiesClosure cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TerminologyCapabilitiesClosure.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TerminologyCapabilitiesClosure cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TerminologyCapabilitiesClosure]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TerminologyCapabilitiesClosure.fromJsonString(String source) {
+  factory TerminologyCapabilitiesClosure.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TerminologyCapabilitiesClosure.fromJson(json);

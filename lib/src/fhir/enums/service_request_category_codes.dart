@@ -51,7 +51,9 @@ enum ServiceRequestCategoryCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ServiceRequestCategoryCodes.elementOnly.withElement(element);
+      return ServiceRequestCategoryCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ServiceRequestCategoryCodes.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -262,23 +262,28 @@ class MedicationStatement extends DomainResource {
 
   /// Deserialize [MedicationStatement] from a [String]
   /// or [YamlMap] object
-  factory MedicationStatement.fromYaml(dynamic yaml) => yaml is String
-      ? MedicationStatement.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MedicationStatement.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MedicationStatement.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MedicationStatement cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MedicationStatement.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MedicationStatement cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MedicationStatement]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MedicationStatement.fromJsonString(String source) {
+  factory MedicationStatement.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MedicationStatement.fromJson(json);

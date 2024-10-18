@@ -47,7 +47,9 @@ enum DeviceMetricCalibrationState {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceMetricCalibrationState.elementOnly.withElement(element);
+      return DeviceMetricCalibrationState.elementOnly.withElement(
+        element,
+      );
     }
     return DeviceMetricCalibrationState.values.firstWhere(
       (e) => e.fhirCode == value,

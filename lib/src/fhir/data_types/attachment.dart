@@ -98,22 +98,27 @@ class Attachment extends DataType {
 
   /// Deserialize [Attachment] from a [String]
   /// or [YamlMap] object
-  factory Attachment.fromYaml(dynamic yaml) => yaml is String
-      ? Attachment.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Attachment.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Attachment.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Attachment cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Attachment.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Attachment cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Attachment]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Attachment.fromJsonString(String source) {
+  factory Attachment.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Attachment.fromJson(json);

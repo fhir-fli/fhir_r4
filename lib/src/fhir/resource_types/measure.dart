@@ -414,22 +414,27 @@ class Measure extends DomainResource {
 
   /// Deserialize [Measure] from a [String]
   /// or [YamlMap] object
-  factory Measure.fromYaml(dynamic yaml) => yaml is String
-      ? Measure.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Measure.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Measure.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Measure cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Measure.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Measure cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Measure]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Measure.fromJsonString(String source) {
+  factory Measure.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Measure.fromJson(json);
@@ -1198,22 +1203,27 @@ class MeasureGroup extends BackboneElement {
 
   /// Deserialize [MeasureGroup] from a [String]
   /// or [YamlMap] object
-  factory MeasureGroup.fromYaml(dynamic yaml) => yaml is String
-      ? MeasureGroup.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MeasureGroup.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MeasureGroup.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('MeasureGroup cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MeasureGroup.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('MeasureGroup cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MeasureGroup]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MeasureGroup.fromJsonString(String source) {
+  factory MeasureGroup.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MeasureGroup.fromJson(json);
@@ -1396,22 +1406,28 @@ class MeasurePopulation extends BackboneElement {
 
   /// Deserialize [MeasurePopulation] from a [String]
   /// or [YamlMap] object
-  factory MeasurePopulation.fromYaml(dynamic yaml) => yaml is String
-      ? MeasurePopulation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MeasurePopulation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MeasurePopulation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('MeasurePopulation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MeasurePopulation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MeasurePopulation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MeasurePopulation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MeasurePopulation.fromJsonString(String source) {
+  factory MeasurePopulation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MeasurePopulation.fromJson(json);
@@ -1593,22 +1609,28 @@ class MeasureStratifier extends BackboneElement {
 
   /// Deserialize [MeasureStratifier] from a [String]
   /// or [YamlMap] object
-  factory MeasureStratifier.fromYaml(dynamic yaml) => yaml is String
-      ? MeasureStratifier.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MeasureStratifier.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MeasureStratifier.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('MeasureStratifier cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MeasureStratifier.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MeasureStratifier cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MeasureStratifier]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MeasureStratifier.fromJsonString(String source) {
+  factory MeasureStratifier.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MeasureStratifier.fromJson(json);
@@ -1796,22 +1818,28 @@ class MeasureComponent extends BackboneElement {
 
   /// Deserialize [MeasureComponent] from a [String]
   /// or [YamlMap] object
-  factory MeasureComponent.fromYaml(dynamic yaml) => yaml is String
-      ? MeasureComponent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MeasureComponent.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MeasureComponent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('MeasureComponent cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MeasureComponent.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MeasureComponent cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MeasureComponent]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MeasureComponent.fromJsonString(String source) {
+  factory MeasureComponent.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MeasureComponent.fromJson(json);
@@ -1996,23 +2024,28 @@ class MeasureSupplementalData extends BackboneElement {
 
   /// Deserialize [MeasureSupplementalData] from a [String]
   /// or [YamlMap] object
-  factory MeasureSupplementalData.fromYaml(dynamic yaml) => yaml is String
-      ? MeasureSupplementalData.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MeasureSupplementalData.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MeasureSupplementalData.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MeasureSupplementalData cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MeasureSupplementalData.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MeasureSupplementalData cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MeasureSupplementalData]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MeasureSupplementalData.fromJsonString(String source) {
+  factory MeasureSupplementalData.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MeasureSupplementalData.fromJson(json);

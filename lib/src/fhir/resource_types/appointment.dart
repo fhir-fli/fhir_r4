@@ -273,22 +273,27 @@ class Appointment extends DomainResource {
 
   /// Deserialize [Appointment] from a [String]
   /// or [YamlMap] object
-  factory Appointment.fromYaml(dynamic yaml) => yaml is String
-      ? Appointment.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Appointment.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Appointment.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Appointment cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Appointment.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Appointment cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Appointment]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Appointment.fromJsonString(String source) {
+  factory Appointment.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Appointment.fromJson(json);
@@ -768,23 +773,28 @@ class AppointmentParticipant extends BackboneElement {
 
   /// Deserialize [AppointmentParticipant] from a [String]
   /// or [YamlMap] object
-  factory AppointmentParticipant.fromYaml(dynamic yaml) => yaml is String
-      ? AppointmentParticipant.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory AppointmentParticipant.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? AppointmentParticipant.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'AppointmentParticipant cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? AppointmentParticipant.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'AppointmentParticipant cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [AppointmentParticipant]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AppointmentParticipant.fromJsonString(String source) {
+  factory AppointmentParticipant.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AppointmentParticipant.fromJson(json);

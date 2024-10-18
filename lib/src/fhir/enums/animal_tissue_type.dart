@@ -787,7 +787,9 @@ enum AnimalTissueType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AnimalTissueType.elementOnly.withElement(element);
+      return AnimalTissueType.elementOnly.withElement(
+        element,
+      );
     }
     return AnimalTissueType.values.firstWhere(
       (e) => e.fhirCode == value,

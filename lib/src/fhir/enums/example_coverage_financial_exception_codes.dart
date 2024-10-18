@@ -39,8 +39,9 @@ enum ExampleCoverageFinancialExceptionCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleCoverageFinancialExceptionCodes.elementOnly
-          .withElement(element);
+      return ExampleCoverageFinancialExceptionCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ExampleCoverageFinancialExceptionCodes.values.firstWhere(
       (e) => e.fhirCode == value,

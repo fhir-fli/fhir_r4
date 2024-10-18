@@ -43,7 +43,9 @@ enum UndesirablEffectFrequency {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return UndesirablEffectFrequency.elementOnly.withElement(element);
+      return UndesirablEffectFrequency.elementOnly.withElement(
+        element,
+      );
     }
     return UndesirablEffectFrequency.values.firstWhere(
       (e) => e.fhirCode == value,

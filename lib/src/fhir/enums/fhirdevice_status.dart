@@ -47,7 +47,9 @@ enum FHIRDeviceStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FHIRDeviceStatus.elementOnly.withElement(element);
+      return FHIRDeviceStatus.elementOnly.withElement(
+        element,
+      );
     }
     return FHIRDeviceStatus.values.firstWhere(
       (e) => e.fhirCode == value,

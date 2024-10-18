@@ -67,7 +67,9 @@ enum EncounterStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EncounterStatus.elementOnly.withElement(element);
+      return EncounterStatus.elementOnly.withElement(
+        element,
+      );
     }
     return EncounterStatus.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -39,7 +39,9 @@ enum CodeSearchSupport {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CodeSearchSupport.elementOnly.withElement(element);
+      return CodeSearchSupport.elementOnly.withElement(
+        element,
+      );
     }
     return CodeSearchSupport.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -55,7 +55,9 @@ enum PatientMedicineChangeTypes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PatientMedicineChangeTypes.elementOnly.withElement(element);
+      return PatientMedicineChangeTypes.elementOnly.withElement(
+        element,
+      );
     }
     return PatientMedicineChangeTypes.values.firstWhere(
       (e) => e.fhirCode == value,

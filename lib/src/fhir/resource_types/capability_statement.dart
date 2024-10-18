@@ -272,23 +272,28 @@ class CapabilityStatement extends DomainResource {
 
   /// Deserialize [CapabilityStatement] from a [String]
   /// or [YamlMap] object
-  factory CapabilityStatement.fromYaml(dynamic yaml) => yaml is String
-      ? CapabilityStatement.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CapabilityStatement.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CapabilityStatement.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CapabilityStatement cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CapabilityStatement.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CapabilityStatement cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CapabilityStatement]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CapabilityStatement.fromJsonString(String source) {
+  factory CapabilityStatement.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CapabilityStatement.fromJson(json);
@@ -813,23 +818,28 @@ class CapabilityStatementSoftware extends BackboneElement {
 
   /// Deserialize [CapabilityStatementSoftware] from a [String]
   /// or [YamlMap] object
-  factory CapabilityStatementSoftware.fromYaml(dynamic yaml) => yaml is String
-      ? CapabilityStatementSoftware.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CapabilityStatementSoftware.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CapabilityStatementSoftware.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CapabilityStatementSoftware cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CapabilityStatementSoftware.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CapabilityStatementSoftware cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CapabilityStatementSoftware]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CapabilityStatementSoftware.fromJsonString(String source) {
+  factory CapabilityStatementSoftware.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CapabilityStatementSoftware.fromJson(json);
@@ -1013,24 +1023,28 @@ class CapabilityStatementImplementation extends BackboneElement {
 
   /// Deserialize [CapabilityStatementImplementation] from a [String]
   /// or [YamlMap] object
-  factory CapabilityStatementImplementation.fromYaml(dynamic yaml) => yaml
-          is String
-      ? CapabilityStatementImplementation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CapabilityStatementImplementation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CapabilityStatementImplementation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CapabilityStatementImplementation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CapabilityStatementImplementation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CapabilityStatementImplementation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CapabilityStatementImplementation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CapabilityStatementImplementation.fromJsonString(String source) {
+  factory CapabilityStatementImplementation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CapabilityStatementImplementation.fromJson(json);
@@ -1247,23 +1261,28 @@ class CapabilityStatementRest extends BackboneElement {
 
   /// Deserialize [CapabilityStatementRest] from a [String]
   /// or [YamlMap] object
-  factory CapabilityStatementRest.fromYaml(dynamic yaml) => yaml is String
-      ? CapabilityStatementRest.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CapabilityStatementRest.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CapabilityStatementRest.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CapabilityStatementRest cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CapabilityStatementRest.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CapabilityStatementRest cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CapabilityStatementRest]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CapabilityStatementRest.fromJsonString(String source) {
+  factory CapabilityStatementRest.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CapabilityStatementRest.fromJson(json);
@@ -1478,23 +1497,28 @@ class CapabilityStatementSecurity extends BackboneElement {
 
   /// Deserialize [CapabilityStatementSecurity] from a [String]
   /// or [YamlMap] object
-  factory CapabilityStatementSecurity.fromYaml(dynamic yaml) => yaml is String
-      ? CapabilityStatementSecurity.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CapabilityStatementSecurity.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CapabilityStatementSecurity.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CapabilityStatementSecurity cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CapabilityStatementSecurity.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CapabilityStatementSecurity cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CapabilityStatementSecurity]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CapabilityStatementSecurity.fromJsonString(String source) {
+  factory CapabilityStatementSecurity.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CapabilityStatementSecurity.fromJson(json);
@@ -1774,23 +1798,28 @@ class CapabilityStatementResource extends BackboneElement {
 
   /// Deserialize [CapabilityStatementResource] from a [String]
   /// or [YamlMap] object
-  factory CapabilityStatementResource.fromYaml(dynamic yaml) => yaml is String
-      ? CapabilityStatementResource.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CapabilityStatementResource.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CapabilityStatementResource.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CapabilityStatementResource cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CapabilityStatementResource.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CapabilityStatementResource cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CapabilityStatementResource]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CapabilityStatementResource.fromJsonString(String source) {
+  factory CapabilityStatementResource.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CapabilityStatementResource.fromJson(json);
@@ -2155,24 +2184,28 @@ class CapabilityStatementInteraction extends BackboneElement {
 
   /// Deserialize [CapabilityStatementInteraction] from a [String]
   /// or [YamlMap] object
-  factory CapabilityStatementInteraction.fromYaml(dynamic yaml) => yaml
-          is String
-      ? CapabilityStatementInteraction.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CapabilityStatementInteraction.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CapabilityStatementInteraction.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CapabilityStatementInteraction cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CapabilityStatementInteraction.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CapabilityStatementInteraction cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CapabilityStatementInteraction]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CapabilityStatementInteraction.fromJsonString(String source) {
+  factory CapabilityStatementInteraction.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CapabilityStatementInteraction.fromJson(json);
@@ -2340,24 +2373,28 @@ class CapabilityStatementSearchParam extends BackboneElement {
 
   /// Deserialize [CapabilityStatementSearchParam] from a [String]
   /// or [YamlMap] object
-  factory CapabilityStatementSearchParam.fromYaml(dynamic yaml) => yaml
-          is String
-      ? CapabilityStatementSearchParam.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CapabilityStatementSearchParam.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CapabilityStatementSearchParam.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CapabilityStatementSearchParam cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CapabilityStatementSearchParam.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CapabilityStatementSearchParam cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CapabilityStatementSearchParam]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CapabilityStatementSearchParam.fromJsonString(String source) {
+  factory CapabilityStatementSearchParam.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CapabilityStatementSearchParam.fromJson(json);
@@ -2551,23 +2588,28 @@ class CapabilityStatementOperation extends BackboneElement {
 
   /// Deserialize [CapabilityStatementOperation] from a [String]
   /// or [YamlMap] object
-  factory CapabilityStatementOperation.fromYaml(dynamic yaml) => yaml is String
-      ? CapabilityStatementOperation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CapabilityStatementOperation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CapabilityStatementOperation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CapabilityStatementOperation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CapabilityStatementOperation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CapabilityStatementOperation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CapabilityStatementOperation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CapabilityStatementOperation.fromJsonString(String source) {
+  factory CapabilityStatementOperation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CapabilityStatementOperation.fromJson(json);
@@ -2747,24 +2789,28 @@ class CapabilityStatementInteraction1 extends BackboneElement {
 
   /// Deserialize [CapabilityStatementInteraction1] from a [String]
   /// or [YamlMap] object
-  factory CapabilityStatementInteraction1.fromYaml(dynamic yaml) => yaml
-          is String
-      ? CapabilityStatementInteraction1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CapabilityStatementInteraction1.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CapabilityStatementInteraction1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CapabilityStatementInteraction1 cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CapabilityStatementInteraction1.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CapabilityStatementInteraction1 cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CapabilityStatementInteraction1]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CapabilityStatementInteraction1.fromJsonString(String source) {
+  factory CapabilityStatementInteraction1.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CapabilityStatementInteraction1.fromJson(json);
@@ -2940,23 +2986,28 @@ class CapabilityStatementMessaging extends BackboneElement {
 
   /// Deserialize [CapabilityStatementMessaging] from a [String]
   /// or [YamlMap] object
-  factory CapabilityStatementMessaging.fromYaml(dynamic yaml) => yaml is String
-      ? CapabilityStatementMessaging.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CapabilityStatementMessaging.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CapabilityStatementMessaging.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CapabilityStatementMessaging cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CapabilityStatementMessaging.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CapabilityStatementMessaging cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CapabilityStatementMessaging]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CapabilityStatementMessaging.fromJsonString(String source) {
+  factory CapabilityStatementMessaging.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CapabilityStatementMessaging.fromJson(json);
@@ -3140,23 +3191,28 @@ class CapabilityStatementEndpoint extends BackboneElement {
 
   /// Deserialize [CapabilityStatementEndpoint] from a [String]
   /// or [YamlMap] object
-  factory CapabilityStatementEndpoint.fromYaml(dynamic yaml) => yaml is String
-      ? CapabilityStatementEndpoint.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CapabilityStatementEndpoint.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CapabilityStatementEndpoint.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CapabilityStatementEndpoint cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CapabilityStatementEndpoint.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CapabilityStatementEndpoint cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CapabilityStatementEndpoint]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CapabilityStatementEndpoint.fromJsonString(String source) {
+  factory CapabilityStatementEndpoint.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CapabilityStatementEndpoint.fromJson(json);
@@ -3307,24 +3363,28 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
 
   /// Deserialize [CapabilityStatementSupportedMessage] from a [String]
   /// or [YamlMap] object
-  factory CapabilityStatementSupportedMessage.fromYaml(dynamic yaml) => yaml
-          is String
-      ? CapabilityStatementSupportedMessage.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CapabilityStatementSupportedMessage.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CapabilityStatementSupportedMessage.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CapabilityStatementSupportedMessage cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CapabilityStatementSupportedMessage.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CapabilityStatementSupportedMessage cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CapabilityStatementSupportedMessage]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CapabilityStatementSupportedMessage.fromJsonString(String source) {
+  factory CapabilityStatementSupportedMessage.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CapabilityStatementSupportedMessage.fromJson(json);
@@ -3481,23 +3541,28 @@ class CapabilityStatementDocument extends BackboneElement {
 
   /// Deserialize [CapabilityStatementDocument] from a [String]
   /// or [YamlMap] object
-  factory CapabilityStatementDocument.fromYaml(dynamic yaml) => yaml is String
-      ? CapabilityStatementDocument.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CapabilityStatementDocument.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CapabilityStatementDocument.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CapabilityStatementDocument cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CapabilityStatementDocument.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CapabilityStatementDocument cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CapabilityStatementDocument]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CapabilityStatementDocument.fromJsonString(String source) {
+  factory CapabilityStatementDocument.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CapabilityStatementDocument.fromJson(json);

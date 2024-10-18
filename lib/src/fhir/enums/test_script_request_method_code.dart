@@ -59,7 +59,9 @@ enum TestScriptRequestMethodCode {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestScriptRequestMethodCode.elementOnly.withElement(element);
+      return TestScriptRequestMethodCode.elementOnly.withElement(
+        element,
+      );
     }
     return TestScriptRequestMethodCode.values.firstWhere(
       (e) => e.fhirCode == value,

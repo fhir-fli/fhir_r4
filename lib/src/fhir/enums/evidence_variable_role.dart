@@ -55,7 +55,9 @@ enum EvidenceVariableRole {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EvidenceVariableRole.elementOnly.withElement(element);
+      return EvidenceVariableRole.elementOnly.withElement(
+        element,
+      );
     }
     return EvidenceVariableRole.values.firstWhere(
       (e) => e.fhirCode == value,

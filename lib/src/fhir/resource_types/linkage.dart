@@ -112,22 +112,27 @@ class Linkage extends DomainResource {
 
   /// Deserialize [Linkage] from a [String]
   /// or [YamlMap] object
-  factory Linkage.fromYaml(dynamic yaml) => yaml is String
-      ? Linkage.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Linkage.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Linkage.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Linkage cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Linkage.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Linkage cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Linkage]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Linkage.fromJsonString(String source) {
+  factory Linkage.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Linkage.fromJson(json);
@@ -328,22 +333,27 @@ class LinkageItem extends BackboneElement {
 
   /// Deserialize [LinkageItem] from a [String]
   /// or [YamlMap] object
-  factory LinkageItem.fromYaml(dynamic yaml) => yaml is String
-      ? LinkageItem.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory LinkageItem.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? LinkageItem.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('LinkageItem cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? LinkageItem.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('LinkageItem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [LinkageItem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory LinkageItem.fromJsonString(String source) {
+  factory LinkageItem.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return LinkageItem.fromJson(json);

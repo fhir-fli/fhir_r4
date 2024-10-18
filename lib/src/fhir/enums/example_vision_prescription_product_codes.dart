@@ -39,8 +39,9 @@ enum ExampleVisionPrescriptionProductCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleVisionPrescriptionProductCodes.elementOnly
-          .withElement(element);
+      return ExampleVisionPrescriptionProductCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ExampleVisionPrescriptionProductCodes.values.firstWhere(
       (e) => e.fhirCode == value,

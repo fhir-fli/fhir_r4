@@ -63,7 +63,9 @@ enum RelatedArtifactType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RelatedArtifactType.elementOnly.withElement(element);
+      return RelatedArtifactType.elementOnly.withElement(
+        element,
+      );
     }
     return RelatedArtifactType.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -55,7 +55,9 @@ enum AdverseEventCausalityAssessment {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdverseEventCausalityAssessment.elementOnly.withElement(element);
+      return AdverseEventCausalityAssessment.elementOnly.withElement(
+        element,
+      );
     }
     return AdverseEventCausalityAssessment.values.firstWhere(
       (e) => e.fhirCode == value,

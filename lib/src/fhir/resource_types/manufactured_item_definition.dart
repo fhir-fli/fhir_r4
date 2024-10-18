@@ -147,23 +147,28 @@ class ManufacturedItemDefinition extends DomainResource {
 
   /// Deserialize [ManufacturedItemDefinition] from a [String]
   /// or [YamlMap] object
-  factory ManufacturedItemDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? ManufacturedItemDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ManufacturedItemDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ManufacturedItemDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ManufacturedItemDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ManufacturedItemDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ManufacturedItemDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ManufacturedItemDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ManufacturedItemDefinition.fromJsonString(String source) {
+  factory ManufacturedItemDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ManufacturedItemDefinition.fromJson(json);
@@ -424,24 +429,28 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
 
   /// Deserialize [ManufacturedItemDefinitionProperty] from a [String]
   /// or [YamlMap] object
-  factory ManufacturedItemDefinitionProperty.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ManufacturedItemDefinitionProperty.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ManufacturedItemDefinitionProperty.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ManufacturedItemDefinitionProperty.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ManufacturedItemDefinitionProperty cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ManufacturedItemDefinitionProperty.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ManufacturedItemDefinitionProperty cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ManufacturedItemDefinitionProperty]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ManufacturedItemDefinitionProperty.fromJsonString(String source) {
+  factory ManufacturedItemDefinitionProperty.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ManufacturedItemDefinitionProperty.fromJson(json);

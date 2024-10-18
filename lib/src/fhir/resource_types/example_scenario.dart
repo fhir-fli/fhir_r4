@@ -227,22 +227,28 @@ class ExampleScenario extends DomainResource {
 
   /// Deserialize [ExampleScenario] from a [String]
   /// or [YamlMap] object
-  factory ExampleScenario.fromYaml(dynamic yaml) => yaml is String
-      ? ExampleScenario.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ExampleScenario.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ExampleScenario.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ExampleScenario cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ExampleScenario.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ExampleScenario cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ExampleScenario]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ExampleScenario.fromJsonString(String source) {
+  factory ExampleScenario.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ExampleScenario.fromJson(json);
@@ -657,23 +663,28 @@ class ExampleScenarioActor extends BackboneElement {
 
   /// Deserialize [ExampleScenarioActor] from a [String]
   /// or [YamlMap] object
-  factory ExampleScenarioActor.fromYaml(dynamic yaml) => yaml is String
-      ? ExampleScenarioActor.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ExampleScenarioActor.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ExampleScenarioActor.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ExampleScenarioActor cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ExampleScenarioActor.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ExampleScenarioActor cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ExampleScenarioActor]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ExampleScenarioActor.fromJsonString(String source) {
+  factory ExampleScenarioActor.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ExampleScenarioActor.fromJson(json);
@@ -883,23 +894,28 @@ class ExampleScenarioInstance extends BackboneElement {
 
   /// Deserialize [ExampleScenarioInstance] from a [String]
   /// or [YamlMap] object
-  factory ExampleScenarioInstance.fromYaml(dynamic yaml) => yaml is String
-      ? ExampleScenarioInstance.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ExampleScenarioInstance.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ExampleScenarioInstance.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ExampleScenarioInstance cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ExampleScenarioInstance.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ExampleScenarioInstance cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ExampleScenarioInstance]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ExampleScenarioInstance.fromJsonString(String source) {
+  factory ExampleScenarioInstance.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ExampleScenarioInstance.fromJson(json);
@@ -1101,23 +1117,28 @@ class ExampleScenarioVersion extends BackboneElement {
 
   /// Deserialize [ExampleScenarioVersion] from a [String]
   /// or [YamlMap] object
-  factory ExampleScenarioVersion.fromYaml(dynamic yaml) => yaml is String
-      ? ExampleScenarioVersion.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ExampleScenarioVersion.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ExampleScenarioVersion.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ExampleScenarioVersion cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ExampleScenarioVersion.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ExampleScenarioVersion cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ExampleScenarioVersion]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ExampleScenarioVersion.fromJsonString(String source) {
+  factory ExampleScenarioVersion.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ExampleScenarioVersion.fromJson(json);
@@ -1272,24 +1293,28 @@ class ExampleScenarioContainedInstance extends BackboneElement {
 
   /// Deserialize [ExampleScenarioContainedInstance] from a [String]
   /// or [YamlMap] object
-  factory ExampleScenarioContainedInstance.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ExampleScenarioContainedInstance.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ExampleScenarioContainedInstance.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ExampleScenarioContainedInstance.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ExampleScenarioContainedInstance cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ExampleScenarioContainedInstance.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ExampleScenarioContainedInstance cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ExampleScenarioContainedInstance]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ExampleScenarioContainedInstance.fromJsonString(String source) {
+  factory ExampleScenarioContainedInstance.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ExampleScenarioContainedInstance.fromJson(json);
@@ -1469,23 +1494,28 @@ class ExampleScenarioProcess extends BackboneElement {
 
   /// Deserialize [ExampleScenarioProcess] from a [String]
   /// or [YamlMap] object
-  factory ExampleScenarioProcess.fromYaml(dynamic yaml) => yaml is String
-      ? ExampleScenarioProcess.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ExampleScenarioProcess.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ExampleScenarioProcess.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ExampleScenarioProcess cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ExampleScenarioProcess.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ExampleScenarioProcess cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ExampleScenarioProcess]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ExampleScenarioProcess.fromJsonString(String source) {
+  factory ExampleScenarioProcess.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ExampleScenarioProcess.fromJson(json);
@@ -1700,23 +1730,28 @@ class ExampleScenarioStep extends BackboneElement {
 
   /// Deserialize [ExampleScenarioStep] from a [String]
   /// or [YamlMap] object
-  factory ExampleScenarioStep.fromYaml(dynamic yaml) => yaml is String
-      ? ExampleScenarioStep.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ExampleScenarioStep.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ExampleScenarioStep.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ExampleScenarioStep cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ExampleScenarioStep.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ExampleScenarioStep cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ExampleScenarioStep]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ExampleScenarioStep.fromJsonString(String source) {
+  factory ExampleScenarioStep.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ExampleScenarioStep.fromJson(json);
@@ -1933,23 +1968,28 @@ class ExampleScenarioOperation extends BackboneElement {
 
   /// Deserialize [ExampleScenarioOperation] from a [String]
   /// or [YamlMap] object
-  factory ExampleScenarioOperation.fromYaml(dynamic yaml) => yaml is String
-      ? ExampleScenarioOperation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ExampleScenarioOperation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ExampleScenarioOperation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ExampleScenarioOperation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ExampleScenarioOperation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ExampleScenarioOperation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ExampleScenarioOperation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ExampleScenarioOperation.fromJsonString(String source) {
+  factory ExampleScenarioOperation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ExampleScenarioOperation.fromJson(json);
@@ -2190,23 +2230,28 @@ class ExampleScenarioAlternative extends BackboneElement {
 
   /// Deserialize [ExampleScenarioAlternative] from a [String]
   /// or [YamlMap] object
-  factory ExampleScenarioAlternative.fromYaml(dynamic yaml) => yaml is String
-      ? ExampleScenarioAlternative.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ExampleScenarioAlternative.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ExampleScenarioAlternative.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ExampleScenarioAlternative cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ExampleScenarioAlternative.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ExampleScenarioAlternative cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ExampleScenarioAlternative]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ExampleScenarioAlternative.fromJsonString(String source) {
+  factory ExampleScenarioAlternative.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ExampleScenarioAlternative.fromJson(json);

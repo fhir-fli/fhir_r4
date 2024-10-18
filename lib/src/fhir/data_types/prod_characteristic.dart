@@ -125,22 +125,28 @@ class ProdCharacteristic extends BackboneType {
 
   /// Deserialize [ProdCharacteristic] from a [String]
   /// or [YamlMap] object
-  factory ProdCharacteristic.fromYaml(dynamic yaml) => yaml is String
-      ? ProdCharacteristic.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ProdCharacteristic.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ProdCharacteristic.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ProdCharacteristic cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ProdCharacteristic.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ProdCharacteristic cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ProdCharacteristic]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ProdCharacteristic.fromJsonString(String source) {
+  factory ProdCharacteristic.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ProdCharacteristic.fromJson(json);

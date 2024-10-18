@@ -171,22 +171,27 @@ class TestReport extends DomainResource {
 
   /// Deserialize [TestReport] from a [String]
   /// or [YamlMap] object
-  factory TestReport.fromYaml(dynamic yaml) => yaml is String
-      ? TestReport.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TestReport.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TestReport.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('TestReport cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TestReport.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('TestReport cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TestReport]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReport.fromJsonString(String source) {
+  factory TestReport.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TestReport.fromJson(json);
@@ -494,23 +499,28 @@ class TestReportParticipant extends BackboneElement {
 
   /// Deserialize [TestReportParticipant] from a [String]
   /// or [YamlMap] object
-  factory TestReportParticipant.fromYaml(dynamic yaml) => yaml is String
-      ? TestReportParticipant.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TestReportParticipant.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TestReportParticipant.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TestReportParticipant cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TestReportParticipant.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TestReportParticipant cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TestReportParticipant]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportParticipant.fromJsonString(String source) {
+  factory TestReportParticipant.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TestReportParticipant.fromJson(json);
@@ -671,22 +681,28 @@ class TestReportSetup extends BackboneElement {
 
   /// Deserialize [TestReportSetup] from a [String]
   /// or [YamlMap] object
-  factory TestReportSetup.fromYaml(dynamic yaml) => yaml is String
-      ? TestReportSetup.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TestReportSetup.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TestReportSetup.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('TestReportSetup cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TestReportSetup.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TestReportSetup cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TestReportSetup]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportSetup.fromJsonString(String source) {
+  factory TestReportSetup.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TestReportSetup.fromJson(json);
@@ -824,22 +840,28 @@ class TestReportAction extends BackboneElement {
 
   /// Deserialize [TestReportAction] from a [String]
   /// or [YamlMap] object
-  factory TestReportAction.fromYaml(dynamic yaml) => yaml is String
-      ? TestReportAction.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TestReportAction.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TestReportAction.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('TestReportAction cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TestReportAction.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TestReportAction cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TestReportAction]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportAction.fromJsonString(String source) {
+  factory TestReportAction.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TestReportAction.fromJson(json);
@@ -996,23 +1018,28 @@ class TestReportOperation extends BackboneElement {
 
   /// Deserialize [TestReportOperation] from a [String]
   /// or [YamlMap] object
-  factory TestReportOperation.fromYaml(dynamic yaml) => yaml is String
-      ? TestReportOperation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TestReportOperation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TestReportOperation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TestReportOperation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TestReportOperation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TestReportOperation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TestReportOperation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportOperation.fromJsonString(String source) {
+  factory TestReportOperation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TestReportOperation.fromJson(json);
@@ -1185,22 +1212,28 @@ class TestReportAssert extends BackboneElement {
 
   /// Deserialize [TestReportAssert] from a [String]
   /// or [YamlMap] object
-  factory TestReportAssert.fromYaml(dynamic yaml) => yaml is String
-      ? TestReportAssert.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TestReportAssert.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TestReportAssert.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('TestReportAssert cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TestReportAssert.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TestReportAssert cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TestReportAssert]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportAssert.fromJsonString(String source) {
+  factory TestReportAssert.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TestReportAssert.fromJson(json);
@@ -1376,22 +1409,27 @@ class TestReportTest extends BackboneElement {
 
   /// Deserialize [TestReportTest] from a [String]
   /// or [YamlMap] object
-  factory TestReportTest.fromYaml(dynamic yaml) => yaml is String
-      ? TestReportTest.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TestReportTest.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TestReportTest.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('TestReportTest cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TestReportTest.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('TestReportTest cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TestReportTest]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportTest.fromJsonString(String source) {
+  factory TestReportTest.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TestReportTest.fromJson(json);
@@ -1547,22 +1585,28 @@ class TestReportAction1 extends BackboneElement {
 
   /// Deserialize [TestReportAction1] from a [String]
   /// or [YamlMap] object
-  factory TestReportAction1.fromYaml(dynamic yaml) => yaml is String
-      ? TestReportAction1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TestReportAction1.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TestReportAction1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('TestReportAction1 cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TestReportAction1.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TestReportAction1 cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TestReportAction1]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportAction1.fromJsonString(String source) {
+  factory TestReportAction1.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TestReportAction1.fromJson(json);
@@ -1689,22 +1733,28 @@ class TestReportTeardown extends BackboneElement {
 
   /// Deserialize [TestReportTeardown] from a [String]
   /// or [YamlMap] object
-  factory TestReportTeardown.fromYaml(dynamic yaml) => yaml is String
-      ? TestReportTeardown.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TestReportTeardown.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TestReportTeardown.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('TestReportTeardown cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TestReportTeardown.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TestReportTeardown cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TestReportTeardown]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportTeardown.fromJsonString(String source) {
+  factory TestReportTeardown.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TestReportTeardown.fromJson(json);
@@ -1830,22 +1880,28 @@ class TestReportAction2 extends BackboneElement {
 
   /// Deserialize [TestReportAction2] from a [String]
   /// or [YamlMap] object
-  factory TestReportAction2.fromYaml(dynamic yaml) => yaml is String
-      ? TestReportAction2.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TestReportAction2.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TestReportAction2.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('TestReportAction2 cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TestReportAction2.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TestReportAction2 cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TestReportAction2]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TestReportAction2.fromJsonString(String source) {
+  factory TestReportAction2.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TestReportAction2.fromJson(json);

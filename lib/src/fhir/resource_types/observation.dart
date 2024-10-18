@@ -366,22 +366,27 @@ class Observation extends DomainResource {
 
   /// Deserialize [Observation] from a [String]
   /// or [YamlMap] object
-  factory Observation.fromYaml(dynamic yaml) => yaml is String
-      ? Observation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Observation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Observation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Observation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Observation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Observation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Observation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Observation.fromJsonString(String source) {
+  factory Observation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Observation.fromJson(json);
@@ -1036,23 +1041,28 @@ class ObservationReferenceRange extends BackboneElement {
 
   /// Deserialize [ObservationReferenceRange] from a [String]
   /// or [YamlMap] object
-  factory ObservationReferenceRange.fromYaml(dynamic yaml) => yaml is String
-      ? ObservationReferenceRange.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ObservationReferenceRange.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ObservationReferenceRange.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ObservationReferenceRange cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ObservationReferenceRange.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ObservationReferenceRange cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ObservationReferenceRange]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ObservationReferenceRange.fromJsonString(String source) {
+  factory ObservationReferenceRange.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ObservationReferenceRange.fromJson(json);
@@ -1355,23 +1365,28 @@ class ObservationComponent extends BackboneElement {
 
   /// Deserialize [ObservationComponent] from a [String]
   /// or [YamlMap] object
-  factory ObservationComponent.fromYaml(dynamic yaml) => yaml is String
-      ? ObservationComponent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ObservationComponent.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ObservationComponent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ObservationComponent cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ObservationComponent.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ObservationComponent cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ObservationComponent]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ObservationComponent.fromJsonString(String source) {
+  factory ObservationComponent.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ObservationComponent.fromJson(json);

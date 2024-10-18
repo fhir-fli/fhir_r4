@@ -99,7 +99,9 @@ enum StructureMapTransform {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureMapTransform.elementOnly.withElement(element);
+      return StructureMapTransform.elementOnly.withElement(
+        element,
+      );
     }
     return StructureMapTransform.values.firstWhere(
       (e) => e.fhirCode == value,

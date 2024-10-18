@@ -174,24 +174,28 @@ class AdministrableProductDefinition extends DomainResource {
 
   /// Deserialize [AdministrableProductDefinition] from a [String]
   /// or [YamlMap] object
-  factory AdministrableProductDefinition.fromYaml(dynamic yaml) => yaml
-          is String
-      ? AdministrableProductDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory AdministrableProductDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? AdministrableProductDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'AdministrableProductDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? AdministrableProductDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'AdministrableProductDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [AdministrableProductDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AdministrableProductDefinition.fromJsonString(String source) {
+  factory AdministrableProductDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AdministrableProductDefinition.fromJson(json);
@@ -520,24 +524,28 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
 
   /// Deserialize [AdministrableProductDefinitionProperty] from a [String]
   /// or [YamlMap] object
-  factory AdministrableProductDefinitionProperty.fromYaml(dynamic yaml) => yaml
-          is String
-      ? AdministrableProductDefinitionProperty.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory AdministrableProductDefinitionProperty.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? AdministrableProductDefinitionProperty.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'AdministrableProductDefinitionProperty cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? AdministrableProductDefinitionProperty.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'AdministrableProductDefinitionProperty cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [AdministrableProductDefinitionProperty]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AdministrableProductDefinitionProperty.fromJsonString(String source) {
+  factory AdministrableProductDefinitionProperty.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AdministrableProductDefinitionProperty.fromJson(json);
@@ -780,7 +788,8 @@ class AdministrableProductDefinitionRouteOfAdministration
   /// Deserialize [AdministrableProductDefinitionRouteOfAdministration] from a [String]
   /// or [YamlMap] object
   factory AdministrableProductDefinitionRouteOfAdministration.fromYaml(
-          dynamic yaml) =>
+    dynamic yaml,
+  ) =>
       yaml is String
           ? AdministrableProductDefinitionRouteOfAdministration.fromJson(
               jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -798,7 +807,8 @@ class AdministrableProductDefinitionRouteOfAdministration
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AdministrableProductDefinitionRouteOfAdministration.fromJsonString(
-      String source) {
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AdministrableProductDefinitionRouteOfAdministration.fromJson(json);
@@ -1004,25 +1014,28 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
 
   /// Deserialize [AdministrableProductDefinitionTargetSpecies] from a [String]
   /// or [YamlMap] object
-  factory AdministrableProductDefinitionTargetSpecies.fromYaml(dynamic yaml) => yaml
-          is String
-      ? AdministrableProductDefinitionTargetSpecies.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory AdministrableProductDefinitionTargetSpecies.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? AdministrableProductDefinitionTargetSpecies.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'AdministrableProductDefinitionTargetSpecies cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? AdministrableProductDefinitionTargetSpecies.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'AdministrableProductDefinitionTargetSpecies cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [AdministrableProductDefinitionTargetSpecies]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AdministrableProductDefinitionTargetSpecies.fromJsonString(
-      String source) {
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AdministrableProductDefinitionTargetSpecies.fromJson(json);
@@ -1178,7 +1191,8 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
   /// Deserialize [AdministrableProductDefinitionWithdrawalPeriod] from a [String]
   /// or [YamlMap] object
   factory AdministrableProductDefinitionWithdrawalPeriod.fromYaml(
-          dynamic yaml) =>
+    dynamic yaml,
+  ) =>
       yaml is String
           ? AdministrableProductDefinitionWithdrawalPeriod.fromJson(
               jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1196,7 +1210,8 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AdministrableProductDefinitionWithdrawalPeriod.fromJsonString(
-      String source) {
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AdministrableProductDefinitionWithdrawalPeriod.fromJson(json);

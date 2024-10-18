@@ -91,7 +91,9 @@ enum SubstanceNameAuthority {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubstanceNameAuthority.elementOnly.withElement(element);
+      return SubstanceNameAuthority.elementOnly.withElement(
+        element,
+      );
     }
     return SubstanceNameAuthority.values.firstWhere(
       (e) => e.fhirCode == value,

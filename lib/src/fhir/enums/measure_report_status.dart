@@ -43,7 +43,9 @@ enum MeasureReportStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureReportStatus.elementOnly.withElement(element);
+      return MeasureReportStatus.elementOnly.withElement(
+        element,
+      );
     }
     return MeasureReportStatus.values.firstWhere(
       (e) => e.fhirCode == value,

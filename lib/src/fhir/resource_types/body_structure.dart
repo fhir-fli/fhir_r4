@@ -152,22 +152,27 @@ class BodyStructure extends DomainResource {
 
   /// Deserialize [BodyStructure] from a [String]
   /// or [YamlMap] object
-  factory BodyStructure.fromYaml(dynamic yaml) => yaml is String
-      ? BodyStructure.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory BodyStructure.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? BodyStructure.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('BodyStructure cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? BodyStructure.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('BodyStructure cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [BodyStructure]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory BodyStructure.fromJsonString(String source) {
+  factory BodyStructure.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return BodyStructure.fromJson(json);

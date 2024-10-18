@@ -67,7 +67,9 @@ enum CarePlanActivityStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CarePlanActivityStatus.elementOnly.withElement(element);
+      return CarePlanActivityStatus.elementOnly.withElement(
+        element,
+      );
     }
     return CarePlanActivityStatus.values.firstWhere(
       (e) => e.fhirCode == value,

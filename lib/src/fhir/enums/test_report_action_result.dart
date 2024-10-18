@@ -51,7 +51,9 @@ enum TestReportActionResult {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestReportActionResult.elementOnly.withElement(element);
+      return TestReportActionResult.elementOnly.withElement(
+        element,
+      );
     }
     return TestReportActionResult.values.firstWhere(
       (e) => e.fhirCode == value,

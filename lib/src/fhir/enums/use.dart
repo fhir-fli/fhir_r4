@@ -43,7 +43,9 @@ enum Use {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return Use.elementOnly.withElement(element);
+      return Use.elementOnly.withElement(
+        element,
+      );
     }
     return Use.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -39,7 +39,9 @@ enum TestScriptProfileOriginType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestScriptProfileOriginType.elementOnly.withElement(element);
+      return TestScriptProfileOriginType.elementOnly.withElement(
+        element,
+      );
     }
     return TestScriptProfileOriginType.values.firstWhere(
       (e) => e.fhirCode == value,

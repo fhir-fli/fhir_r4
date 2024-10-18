@@ -39,7 +39,9 @@ enum StrandType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StrandType.elementOnly.withElement(element);
+      return StrandType.elementOnly.withElement(
+        element,
+      );
     }
     return StrandType.values.firstWhere(
       (e) => e.fhirCode == value,

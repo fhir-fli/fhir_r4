@@ -43,7 +43,9 @@ enum SlicingRules {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SlicingRules.elementOnly.withElement(element);
+      return SlicingRules.elementOnly.withElement(
+        element,
+      );
     }
     return SlicingRules.values.firstWhere(
       (e) => e.fhirCode == value,

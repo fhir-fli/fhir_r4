@@ -301,22 +301,27 @@ class ResearchStudy extends DomainResource {
 
   /// Deserialize [ResearchStudy] from a [String]
   /// or [YamlMap] object
-  factory ResearchStudy.fromYaml(dynamic yaml) => yaml is String
-      ? ResearchStudy.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ResearchStudy.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ResearchStudy.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ResearchStudy cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ResearchStudy.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ResearchStudy cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ResearchStudy]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ResearchStudy.fromJsonString(String source) {
+  factory ResearchStudy.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ResearchStudy.fromJson(json);
@@ -764,22 +769,28 @@ class ResearchStudyArm extends BackboneElement {
 
   /// Deserialize [ResearchStudyArm] from a [String]
   /// or [YamlMap] object
-  factory ResearchStudyArm.fromYaml(dynamic yaml) => yaml is String
-      ? ResearchStudyArm.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ResearchStudyArm.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ResearchStudyArm.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ResearchStudyArm cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ResearchStudyArm.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ResearchStudyArm cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ResearchStudyArm]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ResearchStudyArm.fromJsonString(String source) {
+  factory ResearchStudyArm.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ResearchStudyArm.fromJson(json);
@@ -950,23 +961,28 @@ class ResearchStudyObjective extends BackboneElement {
 
   /// Deserialize [ResearchStudyObjective] from a [String]
   /// or [YamlMap] object
-  factory ResearchStudyObjective.fromYaml(dynamic yaml) => yaml is String
-      ? ResearchStudyObjective.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ResearchStudyObjective.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ResearchStudyObjective.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ResearchStudyObjective cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ResearchStudyObjective.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ResearchStudyObjective cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ResearchStudyObjective]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ResearchStudyObjective.fromJsonString(String source) {
+  factory ResearchStudyObjective.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ResearchStudyObjective.fromJson(json);

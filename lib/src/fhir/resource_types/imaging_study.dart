@@ -256,22 +256,27 @@ class ImagingStudy extends DomainResource {
 
   /// Deserialize [ImagingStudy] from a [String]
   /// or [YamlMap] object
-  factory ImagingStudy.fromYaml(dynamic yaml) => yaml is String
-      ? ImagingStudy.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImagingStudy.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImagingStudy.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ImagingStudy cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImagingStudy.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ImagingStudy cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImagingStudy]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImagingStudy.fromJsonString(String source) {
+  factory ImagingStudy.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImagingStudy.fromJson(json);
@@ -746,22 +751,28 @@ class ImagingStudySeries extends BackboneElement {
 
   /// Deserialize [ImagingStudySeries] from a [String]
   /// or [YamlMap] object
-  factory ImagingStudySeries.fromYaml(dynamic yaml) => yaml is String
-      ? ImagingStudySeries.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImagingStudySeries.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImagingStudySeries.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ImagingStudySeries cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImagingStudySeries.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImagingStudySeries cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImagingStudySeries]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImagingStudySeries.fromJsonString(String source) {
+  factory ImagingStudySeries.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImagingStudySeries.fromJson(json);
@@ -1039,23 +1050,28 @@ class ImagingStudyPerformer extends BackboneElement {
 
   /// Deserialize [ImagingStudyPerformer] from a [String]
   /// or [YamlMap] object
-  factory ImagingStudyPerformer.fromYaml(dynamic yaml) => yaml is String
-      ? ImagingStudyPerformer.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImagingStudyPerformer.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImagingStudyPerformer.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImagingStudyPerformer cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImagingStudyPerformer.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImagingStudyPerformer cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImagingStudyPerformer]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImagingStudyPerformer.fromJsonString(String source) {
+  factory ImagingStudyPerformer.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImagingStudyPerformer.fromJson(json);
@@ -1215,23 +1231,28 @@ class ImagingStudyInstance extends BackboneElement {
 
   /// Deserialize [ImagingStudyInstance] from a [String]
   /// or [YamlMap] object
-  factory ImagingStudyInstance.fromYaml(dynamic yaml) => yaml is String
-      ? ImagingStudyInstance.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImagingStudyInstance.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImagingStudyInstance.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImagingStudyInstance cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImagingStudyInstance.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImagingStudyInstance cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImagingStudyInstance]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImagingStudyInstance.fromJsonString(String source) {
+  factory ImagingStudyInstance.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImagingStudyInstance.fromJson(json);

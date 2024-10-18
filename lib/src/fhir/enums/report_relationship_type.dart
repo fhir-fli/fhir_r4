@@ -63,7 +63,9 @@ enum ReportRelationshipType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ReportRelationshipType.elementOnly.withElement(element);
+      return ReportRelationshipType.elementOnly.withElement(
+        element,
+      );
     }
     return ReportRelationshipType.values.firstWhere(
       (e) => e.fhirCode == value,

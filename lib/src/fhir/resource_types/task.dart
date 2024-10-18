@@ -316,22 +316,27 @@ class Task extends DomainResource {
 
   /// Deserialize [Task] from a [String]
   /// or [YamlMap] object
-  factory Task.fromYaml(dynamic yaml) => yaml is String
-      ? Task.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Task.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Task.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Task cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Task.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Task cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Task]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Task.fromJsonString(String source) {
+  factory Task.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Task.fromJson(json);
@@ -862,22 +867,28 @@ class TaskRestriction extends BackboneElement {
 
   /// Deserialize [TaskRestriction] from a [String]
   /// or [YamlMap] object
-  factory TaskRestriction.fromYaml(dynamic yaml) => yaml is String
-      ? TaskRestriction.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TaskRestriction.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TaskRestriction.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('TaskRestriction cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TaskRestriction.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'TaskRestriction cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TaskRestriction]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TaskRestriction.fromJsonString(String source) {
+  factory TaskRestriction.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TaskRestriction.fromJson(json);
@@ -1353,22 +1364,27 @@ class TaskInput extends BackboneElement {
 
   /// Deserialize [TaskInput] from a [String]
   /// or [YamlMap] object
-  factory TaskInput.fromYaml(dynamic yaml) => yaml is String
-      ? TaskInput.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TaskInput.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TaskInput.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('TaskInput cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TaskInput.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('TaskInput cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TaskInput]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TaskInput.fromJsonString(String source) {
+  factory TaskInput.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TaskInput.fromJson(json);
@@ -2396,22 +2412,27 @@ class TaskOutput extends BackboneElement {
 
   /// Deserialize [TaskOutput] from a [String]
   /// or [YamlMap] object
-  factory TaskOutput.fromYaml(dynamic yaml) => yaml is String
-      ? TaskOutput.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TaskOutput.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TaskOutput.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('TaskOutput cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TaskOutput.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('TaskOutput cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TaskOutput]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TaskOutput.fromJsonString(String source) {
+  factory TaskOutput.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TaskOutput.fromJson(json);

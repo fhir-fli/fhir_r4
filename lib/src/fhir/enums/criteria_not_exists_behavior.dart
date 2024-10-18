@@ -39,7 +39,9 @@ enum CriteriaNotExistsBehavior {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CriteriaNotExistsBehavior.elementOnly.withElement(element);
+      return CriteriaNotExistsBehavior.elementOnly.withElement(
+        element,
+      );
     }
     return CriteriaNotExistsBehavior.values.firstWhere(
       (e) => e.fhirCode == value,

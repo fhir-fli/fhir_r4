@@ -241,22 +241,27 @@ class ConceptMap extends DomainResource {
 
   /// Deserialize [ConceptMap] from a [String]
   /// or [YamlMap] object
-  factory ConceptMap.fromYaml(dynamic yaml) => yaml is String
-      ? ConceptMap.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ConceptMap.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ConceptMap.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ConceptMap cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ConceptMap.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ConceptMap cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ConceptMap]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConceptMap.fromJsonString(String source) {
+  factory ConceptMap.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ConceptMap.fromJson(json);
@@ -745,22 +750,28 @@ class ConceptMapGroup extends BackboneElement {
 
   /// Deserialize [ConceptMapGroup] from a [String]
   /// or [YamlMap] object
-  factory ConceptMapGroup.fromYaml(dynamic yaml) => yaml is String
-      ? ConceptMapGroup.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ConceptMapGroup.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ConceptMapGroup.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ConceptMapGroup cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ConceptMapGroup.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ConceptMapGroup cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ConceptMapGroup]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConceptMapGroup.fromJsonString(String source) {
+  factory ConceptMapGroup.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ConceptMapGroup.fromJson(json);
@@ -984,22 +995,28 @@ class ConceptMapElement extends BackboneElement {
 
   /// Deserialize [ConceptMapElement] from a [String]
   /// or [YamlMap] object
-  factory ConceptMapElement.fromYaml(dynamic yaml) => yaml is String
-      ? ConceptMapElement.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ConceptMapElement.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ConceptMapElement.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ConceptMapElement cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ConceptMapElement.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ConceptMapElement cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ConceptMapElement]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConceptMapElement.fromJsonString(String source) {
+  factory ConceptMapElement.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ConceptMapElement.fromJson(json);
@@ -1192,22 +1209,28 @@ class ConceptMapTarget extends BackboneElement {
 
   /// Deserialize [ConceptMapTarget] from a [String]
   /// or [YamlMap] object
-  factory ConceptMapTarget.fromYaml(dynamic yaml) => yaml is String
-      ? ConceptMapTarget.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ConceptMapTarget.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ConceptMapTarget.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ConceptMapTarget cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ConceptMapTarget.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ConceptMapTarget cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ConceptMapTarget]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConceptMapTarget.fromJsonString(String source) {
+  factory ConceptMapTarget.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ConceptMapTarget.fromJson(json);
@@ -1417,23 +1440,28 @@ class ConceptMapDependsOn extends BackboneElement {
 
   /// Deserialize [ConceptMapDependsOn] from a [String]
   /// or [YamlMap] object
-  factory ConceptMapDependsOn.fromYaml(dynamic yaml) => yaml is String
-      ? ConceptMapDependsOn.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ConceptMapDependsOn.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ConceptMapDependsOn.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ConceptMapDependsOn cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ConceptMapDependsOn.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ConceptMapDependsOn cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ConceptMapDependsOn]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConceptMapDependsOn.fromJsonString(String source) {
+  factory ConceptMapDependsOn.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ConceptMapDependsOn.fromJson(json);
@@ -1637,22 +1665,28 @@ class ConceptMapUnmapped extends BackboneElement {
 
   /// Deserialize [ConceptMapUnmapped] from a [String]
   /// or [YamlMap] object
-  factory ConceptMapUnmapped.fromYaml(dynamic yaml) => yaml is String
-      ? ConceptMapUnmapped.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ConceptMapUnmapped.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ConceptMapUnmapped.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ConceptMapUnmapped cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ConceptMapUnmapped.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ConceptMapUnmapped cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ConceptMapUnmapped]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ConceptMapUnmapped.fromJsonString(String source) {
+  factory ConceptMapUnmapped.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ConceptMapUnmapped.fromJson(json);

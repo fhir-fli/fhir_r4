@@ -66,22 +66,27 @@ class Parameters extends Resource {
 
   /// Deserialize [Parameters] from a [String]
   /// or [YamlMap] object
-  factory Parameters.fromYaml(dynamic yaml) => yaml is String
-      ? Parameters.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Parameters.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Parameters.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Parameters cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Parameters.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Parameters cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Parameters]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Parameters.fromJsonString(String source) {
+  factory Parameters.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Parameters.fromJson(json);
@@ -550,23 +555,28 @@ class ParametersParameter extends BackboneElement {
 
   /// Deserialize [ParametersParameter] from a [String]
   /// or [YamlMap] object
-  factory ParametersParameter.fromYaml(dynamic yaml) => yaml is String
-      ? ParametersParameter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ParametersParameter.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ParametersParameter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ParametersParameter cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ParametersParameter.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ParametersParameter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ParametersParameter]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ParametersParameter.fromJsonString(String source) {
+  factory ParametersParameter.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ParametersParameter.fromJson(json);

@@ -51,7 +51,9 @@ enum EnteralFormulaAdditiveTypeCode {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EnteralFormulaAdditiveTypeCode.elementOnly.withElement(element);
+      return EnteralFormulaAdditiveTypeCode.elementOnly.withElement(
+        element,
+      );
     }
     return EnteralFormulaAdditiveTypeCode.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -55,7 +55,9 @@ enum DeviceNameType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceNameType.elementOnly.withElement(element);
+      return DeviceNameType.elementOnly.withElement(
+        element,
+      );
     }
     return DeviceNameType.values.firstWhere(
       (e) => e.fhirCode == value,

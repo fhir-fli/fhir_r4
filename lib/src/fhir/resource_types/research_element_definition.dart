@@ -352,23 +352,28 @@ class ResearchElementDefinition extends DomainResource {
 
   /// Deserialize [ResearchElementDefinition] from a [String]
   /// or [YamlMap] object
-  factory ResearchElementDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? ResearchElementDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ResearchElementDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ResearchElementDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ResearchElementDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ResearchElementDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ResearchElementDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ResearchElementDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ResearchElementDefinition.fromJsonString(String source) {
+  factory ResearchElementDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ResearchElementDefinition.fromJson(json);
@@ -1133,25 +1138,28 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
 
   /// Deserialize [ResearchElementDefinitionCharacteristic] from a [String]
   /// or [YamlMap] object
-  factory ResearchElementDefinitionCharacteristic.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ResearchElementDefinitionCharacteristic.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ResearchElementDefinitionCharacteristic.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ResearchElementDefinitionCharacteristic.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ResearchElementDefinitionCharacteristic cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ResearchElementDefinitionCharacteristic.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ResearchElementDefinitionCharacteristic cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ResearchElementDefinitionCharacteristic]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ResearchElementDefinitionCharacteristic.fromJsonString(
-      String source) {
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ResearchElementDefinitionCharacteristic.fromJson(json);

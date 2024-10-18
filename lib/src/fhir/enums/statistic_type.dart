@@ -119,7 +119,9 @@ enum StatisticType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StatisticType.elementOnly.withElement(element);
+      return StatisticType.elementOnly.withElement(
+        element,
+      );
     }
     return StatisticType.values.firstWhere(
       (e) => e.fhirCode == value,

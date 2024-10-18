@@ -67,7 +67,9 @@ enum CitedArtifactPartType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CitedArtifactPartType.elementOnly.withElement(element);
+      return CitedArtifactPartType.elementOnly.withElement(
+        element,
+      );
     }
     return CitedArtifactPartType.values.firstWhere(
       (e) => e.fhirCode == value,

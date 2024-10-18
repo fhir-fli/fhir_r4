@@ -35,7 +35,9 @@ enum CharacteristicMethod {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CharacteristicMethod.elementOnly.withElement(element);
+      return CharacteristicMethod.elementOnly.withElement(
+        element,
+      );
     }
     return CharacteristicMethod.values.firstWhere(
       (e) => e.fhirCode == value,

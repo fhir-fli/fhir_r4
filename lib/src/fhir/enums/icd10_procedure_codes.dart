@@ -43,7 +43,9 @@ enum ICD10ProcedureCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ICD10ProcedureCodes.elementOnly.withElement(element);
+      return ICD10ProcedureCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ICD10ProcedureCodes.values.firstWhere(
       (e) => e.fhirCode == value,

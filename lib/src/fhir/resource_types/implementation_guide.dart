@@ -238,23 +238,28 @@ class ImplementationGuide extends DomainResource {
 
   /// Deserialize [ImplementationGuide] from a [String]
   /// or [YamlMap] object
-  factory ImplementationGuide.fromYaml(dynamic yaml) => yaml is String
-      ? ImplementationGuide.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImplementationGuide.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImplementationGuide.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImplementationGuide cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImplementationGuide.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImplementationGuide cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImplementationGuide]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImplementationGuide.fromJsonString(String source) {
+  factory ImplementationGuide.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImplementationGuide.fromJson(json);
@@ -701,23 +706,28 @@ class ImplementationGuideDependsOn extends BackboneElement {
 
   /// Deserialize [ImplementationGuideDependsOn] from a [String]
   /// or [YamlMap] object
-  factory ImplementationGuideDependsOn.fromYaml(dynamic yaml) => yaml is String
-      ? ImplementationGuideDependsOn.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImplementationGuideDependsOn.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImplementationGuideDependsOn.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImplementationGuideDependsOn cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImplementationGuideDependsOn.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImplementationGuideDependsOn cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImplementationGuideDependsOn]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImplementationGuideDependsOn.fromJsonString(String source) {
+  factory ImplementationGuideDependsOn.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImplementationGuideDependsOn.fromJson(json);
@@ -888,23 +898,28 @@ class ImplementationGuideGlobal extends BackboneElement {
 
   /// Deserialize [ImplementationGuideGlobal] from a [String]
   /// or [YamlMap] object
-  factory ImplementationGuideGlobal.fromYaml(dynamic yaml) => yaml is String
-      ? ImplementationGuideGlobal.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImplementationGuideGlobal.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImplementationGuideGlobal.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImplementationGuideGlobal cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImplementationGuideGlobal.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImplementationGuideGlobal cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImplementationGuideGlobal]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImplementationGuideGlobal.fromJsonString(String source) {
+  factory ImplementationGuideGlobal.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImplementationGuideGlobal.fromJson(json);
@@ -1091,23 +1106,28 @@ class ImplementationGuideDefinition extends BackboneElement {
 
   /// Deserialize [ImplementationGuideDefinition] from a [String]
   /// or [YamlMap] object
-  factory ImplementationGuideDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? ImplementationGuideDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImplementationGuideDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImplementationGuideDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImplementationGuideDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImplementationGuideDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImplementationGuideDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImplementationGuideDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImplementationGuideDefinition.fromJsonString(String source) {
+  factory ImplementationGuideDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImplementationGuideDefinition.fromJson(json);
@@ -1291,23 +1311,28 @@ class ImplementationGuideGrouping extends BackboneElement {
 
   /// Deserialize [ImplementationGuideGrouping] from a [String]
   /// or [YamlMap] object
-  factory ImplementationGuideGrouping.fromYaml(dynamic yaml) => yaml is String
-      ? ImplementationGuideGrouping.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImplementationGuideGrouping.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImplementationGuideGrouping.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImplementationGuideGrouping cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImplementationGuideGrouping.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImplementationGuideGrouping cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImplementationGuideGrouping]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImplementationGuideGrouping.fromJsonString(String source) {
+  factory ImplementationGuideGrouping.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImplementationGuideGrouping.fromJson(json);
@@ -1500,23 +1525,28 @@ class ImplementationGuideResource extends BackboneElement {
 
   /// Deserialize [ImplementationGuideResource] from a [String]
   /// or [YamlMap] object
-  factory ImplementationGuideResource.fromYaml(dynamic yaml) => yaml is String
-      ? ImplementationGuideResource.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImplementationGuideResource.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImplementationGuideResource.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImplementationGuideResource cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImplementationGuideResource.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImplementationGuideResource cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImplementationGuideResource]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImplementationGuideResource.fromJsonString(String source) {
+  factory ImplementationGuideResource.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImplementationGuideResource.fromJson(json);
@@ -1755,23 +1785,28 @@ class ImplementationGuidePage extends BackboneElement {
 
   /// Deserialize [ImplementationGuidePage] from a [String]
   /// or [YamlMap] object
-  factory ImplementationGuidePage.fromYaml(dynamic yaml) => yaml is String
-      ? ImplementationGuidePage.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImplementationGuidePage.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImplementationGuidePage.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImplementationGuidePage cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImplementationGuidePage.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImplementationGuidePage cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImplementationGuidePage]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImplementationGuidePage.fromJsonString(String source) {
+  factory ImplementationGuidePage.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImplementationGuidePage.fromJson(json);
@@ -1944,23 +1979,28 @@ class ImplementationGuideParameter extends BackboneElement {
 
   /// Deserialize [ImplementationGuideParameter] from a [String]
   /// or [YamlMap] object
-  factory ImplementationGuideParameter.fromYaml(dynamic yaml) => yaml is String
-      ? ImplementationGuideParameter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImplementationGuideParameter.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImplementationGuideParameter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImplementationGuideParameter cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImplementationGuideParameter.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImplementationGuideParameter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImplementationGuideParameter]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImplementationGuideParameter.fromJsonString(String source) {
+  factory ImplementationGuideParameter.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImplementationGuideParameter.fromJson(json);
@@ -2117,23 +2157,28 @@ class ImplementationGuideTemplate extends BackboneElement {
 
   /// Deserialize [ImplementationGuideTemplate] from a [String]
   /// or [YamlMap] object
-  factory ImplementationGuideTemplate.fromYaml(dynamic yaml) => yaml is String
-      ? ImplementationGuideTemplate.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImplementationGuideTemplate.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImplementationGuideTemplate.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImplementationGuideTemplate cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImplementationGuideTemplate.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImplementationGuideTemplate cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImplementationGuideTemplate]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImplementationGuideTemplate.fromJsonString(String source) {
+  factory ImplementationGuideTemplate.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImplementationGuideTemplate.fromJson(json);
@@ -2327,23 +2372,28 @@ class ImplementationGuideManifest extends BackboneElement {
 
   /// Deserialize [ImplementationGuideManifest] from a [String]
   /// or [YamlMap] object
-  factory ImplementationGuideManifest.fromYaml(dynamic yaml) => yaml is String
-      ? ImplementationGuideManifest.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImplementationGuideManifest.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImplementationGuideManifest.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImplementationGuideManifest cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImplementationGuideManifest.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImplementationGuideManifest cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImplementationGuideManifest]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImplementationGuideManifest.fromJsonString(String source) {
+  factory ImplementationGuideManifest.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImplementationGuideManifest.fromJson(json);
@@ -2555,23 +2605,28 @@ class ImplementationGuideResource1 extends BackboneElement {
 
   /// Deserialize [ImplementationGuideResource1] from a [String]
   /// or [YamlMap] object
-  factory ImplementationGuideResource1.fromYaml(dynamic yaml) => yaml is String
-      ? ImplementationGuideResource1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImplementationGuideResource1.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImplementationGuideResource1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImplementationGuideResource1 cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImplementationGuideResource1.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImplementationGuideResource1 cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImplementationGuideResource1]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImplementationGuideResource1.fromJsonString(String source) {
+  factory ImplementationGuideResource1.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImplementationGuideResource1.fromJson(json);
@@ -2761,23 +2816,28 @@ class ImplementationGuidePage1 extends BackboneElement {
 
   /// Deserialize [ImplementationGuidePage1] from a [String]
   /// or [YamlMap] object
-  factory ImplementationGuidePage1.fromYaml(dynamic yaml) => yaml is String
-      ? ImplementationGuidePage1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImplementationGuidePage1.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImplementationGuidePage1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImplementationGuidePage1 cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImplementationGuidePage1.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImplementationGuidePage1 cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImplementationGuidePage1]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImplementationGuidePage1.fromJsonString(String source) {
+  factory ImplementationGuidePage1.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImplementationGuidePage1.fromJson(json);

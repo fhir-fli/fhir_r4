@@ -190,23 +190,28 @@ class PaymentReconciliation extends DomainResource {
 
   /// Deserialize [PaymentReconciliation] from a [String]
   /// or [YamlMap] object
-  factory PaymentReconciliation.fromYaml(dynamic yaml) => yaml is String
-      ? PaymentReconciliation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PaymentReconciliation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PaymentReconciliation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PaymentReconciliation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PaymentReconciliation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PaymentReconciliation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PaymentReconciliation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PaymentReconciliation.fromJsonString(String source) {
+  factory PaymentReconciliation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PaymentReconciliation.fromJson(json);
@@ -578,23 +583,28 @@ class PaymentReconciliationDetail extends BackboneElement {
 
   /// Deserialize [PaymentReconciliationDetail] from a [String]
   /// or [YamlMap] object
-  factory PaymentReconciliationDetail.fromYaml(dynamic yaml) => yaml is String
-      ? PaymentReconciliationDetail.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PaymentReconciliationDetail.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PaymentReconciliationDetail.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PaymentReconciliationDetail cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PaymentReconciliationDetail.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PaymentReconciliationDetail cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PaymentReconciliationDetail]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PaymentReconciliationDetail.fromJsonString(String source) {
+  factory PaymentReconciliationDetail.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PaymentReconciliationDetail.fromJson(json);
@@ -834,24 +844,28 @@ class PaymentReconciliationProcessNote extends BackboneElement {
 
   /// Deserialize [PaymentReconciliationProcessNote] from a [String]
   /// or [YamlMap] object
-  factory PaymentReconciliationProcessNote.fromYaml(dynamic yaml) => yaml
-          is String
-      ? PaymentReconciliationProcessNote.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PaymentReconciliationProcessNote.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PaymentReconciliationProcessNote.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PaymentReconciliationProcessNote cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PaymentReconciliationProcessNote.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PaymentReconciliationProcessNote cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PaymentReconciliationProcessNote]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PaymentReconciliationProcessNote.fromJsonString(String source) {
+  factory PaymentReconciliationProcessNote.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PaymentReconciliationProcessNote.fromJson(json);

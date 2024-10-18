@@ -211,7 +211,9 @@ enum Program {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return Program.elementOnly.withElement(element);
+      return Program.elementOnly.withElement(
+        element,
+      );
     }
     return Program.values.firstWhere(
       (e) => e.fhirCode == value,

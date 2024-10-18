@@ -242,22 +242,27 @@ class Patient extends DomainResource {
 
   /// Deserialize [Patient] from a [String]
   /// or [YamlMap] object
-  factory Patient.fromYaml(dynamic yaml) => yaml is String
-      ? Patient.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Patient.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Patient.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Patient cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Patient.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Patient cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Patient]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Patient.fromJsonString(String source) {
+  factory Patient.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Patient.fromJson(json);
@@ -679,22 +684,27 @@ class PatientContact extends BackboneElement {
 
   /// Deserialize [PatientContact] from a [String]
   /// or [YamlMap] object
-  factory PatientContact.fromYaml(dynamic yaml) => yaml is String
-      ? PatientContact.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PatientContact.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PatientContact.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('PatientContact cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PatientContact.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('PatientContact cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PatientContact]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PatientContact.fromJsonString(String source) {
+  factory PatientContact.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PatientContact.fromJson(json);
@@ -899,23 +909,28 @@ class PatientCommunication extends BackboneElement {
 
   /// Deserialize [PatientCommunication] from a [String]
   /// or [YamlMap] object
-  factory PatientCommunication.fromYaml(dynamic yaml) => yaml is String
-      ? PatientCommunication.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PatientCommunication.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PatientCommunication.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PatientCommunication cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PatientCommunication.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PatientCommunication cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PatientCommunication]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PatientCommunication.fromJsonString(String source) {
+  factory PatientCommunication.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PatientCommunication.fromJson(json);
@@ -1068,22 +1083,27 @@ class PatientLink extends BackboneElement {
 
   /// Deserialize [PatientLink] from a [String]
   /// or [YamlMap] object
-  factory PatientLink.fromYaml(dynamic yaml) => yaml is String
-      ? PatientLink.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PatientLink.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PatientLink.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('PatientLink cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PatientLink.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('PatientLink cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PatientLink]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PatientLink.fromJsonString(String source) {
+  factory PatientLink.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PatientLink.fromJson(json);

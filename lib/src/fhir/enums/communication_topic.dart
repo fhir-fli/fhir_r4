@@ -55,7 +55,9 @@ enum CommunicationTopic {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CommunicationTopic.elementOnly.withElement(element);
+      return CommunicationTopic.elementOnly.withElement(
+        element,
+      );
     }
     return CommunicationTopic.values.firstWhere(
       (e) => e.fhirCode == value,

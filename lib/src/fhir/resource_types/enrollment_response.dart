@@ -147,22 +147,28 @@ class EnrollmentResponse extends DomainResource {
 
   /// Deserialize [EnrollmentResponse] from a [String]
   /// or [YamlMap] object
-  factory EnrollmentResponse.fromYaml(dynamic yaml) => yaml is String
-      ? EnrollmentResponse.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory EnrollmentResponse.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? EnrollmentResponse.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('EnrollmentResponse cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? EnrollmentResponse.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'EnrollmentResponse cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [EnrollmentResponse]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EnrollmentResponse.fromJsonString(String source) {
+  factory EnrollmentResponse.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return EnrollmentResponse.fromJson(json);

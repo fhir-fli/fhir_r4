@@ -51,7 +51,9 @@ enum ExpressionLanguage {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExpressionLanguage.elementOnly.withElement(element);
+      return ExpressionLanguage.elementOnly.withElement(
+        element,
+      );
     }
     return ExpressionLanguage.values.firstWhere(
       (e) => e.fhirCode == value,

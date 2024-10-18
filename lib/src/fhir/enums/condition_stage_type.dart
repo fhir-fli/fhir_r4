@@ -39,7 +39,9 @@ enum ConditionStageType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConditionStageType.elementOnly.withElement(element);
+      return ConditionStageType.elementOnly.withElement(
+        element,
+      );
     }
     return ConditionStageType.values.firstWhere(
       (e) => e.fhirCode == value,

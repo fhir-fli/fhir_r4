@@ -335,22 +335,27 @@ class Citation extends DomainResource {
 
   /// Deserialize [Citation] from a [String]
   /// or [YamlMap] object
-  factory Citation.fromYaml(dynamic yaml) => yaml is String
-      ? Citation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Citation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Citation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Citation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Citation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Citation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Citation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Citation.fromJsonString(String source) {
+  factory Citation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Citation.fromJson(json);
@@ -885,22 +890,28 @@ class CitationSummary extends BackboneElement {
 
   /// Deserialize [CitationSummary] from a [String]
   /// or [YamlMap] object
-  factory CitationSummary.fromYaml(dynamic yaml) => yaml is String
-      ? CitationSummary.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationSummary.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationSummary.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CitationSummary cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationSummary.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationSummary cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationSummary]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationSummary.fromJsonString(String source) {
+  factory CitationSummary.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationSummary.fromJson(json);
@@ -1056,23 +1067,28 @@ class CitationClassification extends BackboneElement {
 
   /// Deserialize [CitationClassification] from a [String]
   /// or [YamlMap] object
-  factory CitationClassification.fromYaml(dynamic yaml) => yaml is String
-      ? CitationClassification.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationClassification.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationClassification.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CitationClassification cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationClassification.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationClassification cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationClassification]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationClassification.fromJsonString(String source) {
+  factory CitationClassification.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationClassification.fromJson(json);
@@ -1225,22 +1241,28 @@ class CitationStatusDate extends BackboneElement {
 
   /// Deserialize [CitationStatusDate] from a [String]
   /// or [YamlMap] object
-  factory CitationStatusDate.fromYaml(dynamic yaml) => yaml is String
-      ? CitationStatusDate.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationStatusDate.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationStatusDate.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CitationStatusDate cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationStatusDate.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationStatusDate cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationStatusDate]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationStatusDate.fromJsonString(String source) {
+  factory CitationStatusDate.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationStatusDate.fromJson(json);
@@ -1427,22 +1449,28 @@ class CitationRelatesTo extends BackboneElement {
 
   /// Deserialize [CitationRelatesTo] from a [String]
   /// or [YamlMap] object
-  factory CitationRelatesTo.fromYaml(dynamic yaml) => yaml is String
-      ? CitationRelatesTo.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationRelatesTo.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationRelatesTo.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CitationRelatesTo cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationRelatesTo.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationRelatesTo cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationRelatesTo]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationRelatesTo.fromJsonString(String source) {
+  factory CitationRelatesTo.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationRelatesTo.fromJson(json);
@@ -1758,23 +1786,28 @@ class CitationCitedArtifact extends BackboneElement {
 
   /// Deserialize [CitationCitedArtifact] from a [String]
   /// or [YamlMap] object
-  factory CitationCitedArtifact.fromYaml(dynamic yaml) => yaml is String
-      ? CitationCitedArtifact.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationCitedArtifact.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationCitedArtifact.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CitationCitedArtifact cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationCitedArtifact.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationCitedArtifact cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationCitedArtifact]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationCitedArtifact.fromJsonString(String source) {
+  factory CitationCitedArtifact.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationCitedArtifact.fromJson(json);
@@ -2064,22 +2097,28 @@ class CitationVersion extends BackboneElement {
 
   /// Deserialize [CitationVersion] from a [String]
   /// or [YamlMap] object
-  factory CitationVersion.fromYaml(dynamic yaml) => yaml is String
-      ? CitationVersion.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationVersion.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationVersion.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CitationVersion cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationVersion.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationVersion cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationVersion]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationVersion.fromJsonString(String source) {
+  factory CitationVersion.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationVersion.fromJson(json);
@@ -2234,23 +2273,28 @@ class CitationStatusDate1 extends BackboneElement {
 
   /// Deserialize [CitationStatusDate1] from a [String]
   /// or [YamlMap] object
-  factory CitationStatusDate1.fromYaml(dynamic yaml) => yaml is String
-      ? CitationStatusDate1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationStatusDate1.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationStatusDate1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CitationStatusDate1 cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationStatusDate1.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationStatusDate1 cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationStatusDate1]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationStatusDate1.fromJsonString(String source) {
+  factory CitationStatusDate1.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationStatusDate1.fromJson(json);
@@ -2419,22 +2463,27 @@ class CitationTitle extends BackboneElement {
 
   /// Deserialize [CitationTitle] from a [String]
   /// or [YamlMap] object
-  factory CitationTitle.fromYaml(dynamic yaml) => yaml is String
-      ? CitationTitle.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationTitle.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationTitle.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CitationTitle cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationTitle.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('CitationTitle cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationTitle]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationTitle.fromJsonString(String source) {
+  factory CitationTitle.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationTitle.fromJson(json);
@@ -2608,22 +2657,28 @@ class CitationAbstract extends BackboneElement {
 
   /// Deserialize [CitationAbstract] from a [String]
   /// or [YamlMap] object
-  factory CitationAbstract.fromYaml(dynamic yaml) => yaml is String
-      ? CitationAbstract.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationAbstract.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationAbstract.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CitationAbstract cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationAbstract.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationAbstract cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationAbstract]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationAbstract.fromJsonString(String source) {
+  factory CitationAbstract.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationAbstract.fromJson(json);
@@ -2806,22 +2861,27 @@ class CitationPart extends BackboneElement {
 
   /// Deserialize [CitationPart] from a [String]
   /// or [YamlMap] object
-  factory CitationPart.fromYaml(dynamic yaml) => yaml is String
-      ? CitationPart.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationPart.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationPart.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CitationPart cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationPart.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('CitationPart cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationPart]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationPart.fromJsonString(String source) {
+  factory CitationPart.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationPart.fromJson(json);
@@ -3012,22 +3072,28 @@ class CitationRelatesTo1 extends BackboneElement {
 
   /// Deserialize [CitationRelatesTo1] from a [String]
   /// or [YamlMap] object
-  factory CitationRelatesTo1.fromYaml(dynamic yaml) => yaml is String
-      ? CitationRelatesTo1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationRelatesTo1.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationRelatesTo1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CitationRelatesTo1 cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationRelatesTo1.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationRelatesTo1 cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationRelatesTo1]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationRelatesTo1.fromJsonString(String source) {
+  factory CitationRelatesTo1.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationRelatesTo1.fromJson(json);
@@ -3287,23 +3353,28 @@ class CitationPublicationForm extends BackboneElement {
 
   /// Deserialize [CitationPublicationForm] from a [String]
   /// or [YamlMap] object
-  factory CitationPublicationForm.fromYaml(dynamic yaml) => yaml is String
-      ? CitationPublicationForm.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationPublicationForm.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationPublicationForm.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CitationPublicationForm cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationPublicationForm.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationPublicationForm cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationPublicationForm]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationPublicationForm.fromJsonString(String source) {
+  factory CitationPublicationForm.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationPublicationForm.fromJson(json);
@@ -3601,23 +3672,28 @@ class CitationPublishedIn extends BackboneElement {
 
   /// Deserialize [CitationPublishedIn] from a [String]
   /// or [YamlMap] object
-  factory CitationPublishedIn.fromYaml(dynamic yaml) => yaml is String
-      ? CitationPublishedIn.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationPublishedIn.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationPublishedIn.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CitationPublishedIn cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationPublishedIn.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationPublishedIn cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationPublishedIn]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationPublishedIn.fromJsonString(String source) {
+  factory CitationPublishedIn.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationPublishedIn.fromJson(json);
@@ -3820,23 +3896,28 @@ class CitationPeriodicRelease extends BackboneElement {
 
   /// Deserialize [CitationPeriodicRelease] from a [String]
   /// or [YamlMap] object
-  factory CitationPeriodicRelease.fromYaml(dynamic yaml) => yaml is String
-      ? CitationPeriodicRelease.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationPeriodicRelease.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationPeriodicRelease.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CitationPeriodicRelease cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationPeriodicRelease.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationPeriodicRelease cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationPeriodicRelease]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationPeriodicRelease.fromJsonString(String source) {
+  factory CitationPeriodicRelease.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationPeriodicRelease.fromJson(json);
@@ -4045,23 +4126,28 @@ class CitationDateOfPublication extends BackboneElement {
 
   /// Deserialize [CitationDateOfPublication] from a [String]
   /// or [YamlMap] object
-  factory CitationDateOfPublication.fromYaml(dynamic yaml) => yaml is String
-      ? CitationDateOfPublication.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationDateOfPublication.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationDateOfPublication.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CitationDateOfPublication cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationDateOfPublication.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationDateOfPublication cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationDateOfPublication]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationDateOfPublication.fromJsonString(String source) {
+  factory CitationDateOfPublication.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationDateOfPublication.fromJson(json);
@@ -4277,23 +4363,28 @@ class CitationWebLocation extends BackboneElement {
 
   /// Deserialize [CitationWebLocation] from a [String]
   /// or [YamlMap] object
-  factory CitationWebLocation.fromYaml(dynamic yaml) => yaml is String
-      ? CitationWebLocation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationWebLocation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationWebLocation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CitationWebLocation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationWebLocation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationWebLocation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationWebLocation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationWebLocation.fromJsonString(String source) {
+  factory CitationWebLocation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationWebLocation.fromJson(json);
@@ -4457,23 +4548,28 @@ class CitationClassification1 extends BackboneElement {
 
   /// Deserialize [CitationClassification1] from a [String]
   /// or [YamlMap] object
-  factory CitationClassification1.fromYaml(dynamic yaml) => yaml is String
-      ? CitationClassification1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationClassification1.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationClassification1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CitationClassification1 cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationClassification1.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationClassification1 cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationClassification1]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationClassification1.fromJsonString(String source) {
+  factory CitationClassification1.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationClassification1.fromJson(json);
@@ -4653,23 +4749,28 @@ class CitationWhoClassified extends BackboneElement {
 
   /// Deserialize [CitationWhoClassified] from a [String]
   /// or [YamlMap] object
-  factory CitationWhoClassified.fromYaml(dynamic yaml) => yaml is String
-      ? CitationWhoClassified.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationWhoClassified.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationWhoClassified.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CitationWhoClassified cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationWhoClassified.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationWhoClassified cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationWhoClassified]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationWhoClassified.fromJsonString(String source) {
+  factory CitationWhoClassified.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationWhoClassified.fromJson(json);
@@ -4874,23 +4975,28 @@ class CitationContributorship extends BackboneElement {
 
   /// Deserialize [CitationContributorship] from a [String]
   /// or [YamlMap] object
-  factory CitationContributorship.fromYaml(dynamic yaml) => yaml is String
-      ? CitationContributorship.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationContributorship.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationContributorship.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CitationContributorship cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationContributorship.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationContributorship cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationContributorship]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationContributorship.fromJsonString(String source) {
+  factory CitationContributorship.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationContributorship.fromJson(json);
@@ -5143,22 +5249,27 @@ class CitationEntry extends BackboneElement {
 
   /// Deserialize [CitationEntry] from a [String]
   /// or [YamlMap] object
-  factory CitationEntry.fromYaml(dynamic yaml) => yaml is String
-      ? CitationEntry.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationEntry.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationEntry.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CitationEntry cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationEntry.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('CitationEntry cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationEntry]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationEntry.fromJsonString(String source) {
+  factory CitationEntry.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationEntry.fromJson(json);
@@ -5441,23 +5552,28 @@ class CitationAffiliationInfo extends BackboneElement {
 
   /// Deserialize [CitationAffiliationInfo] from a [String]
   /// or [YamlMap] object
-  factory CitationAffiliationInfo.fromYaml(dynamic yaml) => yaml is String
-      ? CitationAffiliationInfo.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationAffiliationInfo.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationAffiliationInfo.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CitationAffiliationInfo cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationAffiliationInfo.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationAffiliationInfo cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationAffiliationInfo]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationAffiliationInfo.fromJsonString(String source) {
+  factory CitationAffiliationInfo.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationAffiliationInfo.fromJson(json);
@@ -5624,23 +5740,28 @@ class CitationContributionInstance extends BackboneElement {
 
   /// Deserialize [CitationContributionInstance] from a [String]
   /// or [YamlMap] object
-  factory CitationContributionInstance.fromYaml(dynamic yaml) => yaml is String
-      ? CitationContributionInstance.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationContributionInstance.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationContributionInstance.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CitationContributionInstance cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationContributionInstance.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationContributionInstance cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationContributionInstance]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationContributionInstance.fromJsonString(String source) {
+  factory CitationContributionInstance.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationContributionInstance.fromJson(json);
@@ -5804,22 +5925,28 @@ class CitationSummary1 extends BackboneElement {
 
   /// Deserialize [CitationSummary1] from a [String]
   /// or [YamlMap] object
-  factory CitationSummary1.fromYaml(dynamic yaml) => yaml is String
-      ? CitationSummary1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CitationSummary1.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CitationSummary1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CitationSummary1 cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CitationSummary1.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CitationSummary1 cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CitationSummary1]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CitationSummary1.fromJsonString(String source) {
+  factory CitationSummary1.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CitationSummary1.fromJson(json);

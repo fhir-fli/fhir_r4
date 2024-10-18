@@ -259,23 +259,28 @@ class SubstanceDefinition extends DomainResource {
 
   /// Deserialize [SubstanceDefinition] from a [String]
   /// or [YamlMap] object
-  factory SubstanceDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? SubstanceDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubstanceDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubstanceDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubstanceDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubstanceDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubstanceDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubstanceDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinition.fromJsonString(String source) {
+  factory SubstanceDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubstanceDefinition.fromJson(json);
@@ -694,23 +699,28 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 
   /// Deserialize [SubstanceDefinitionMoiety] from a [String]
   /// or [YamlMap] object
-  factory SubstanceDefinitionMoiety.fromYaml(dynamic yaml) => yaml is String
-      ? SubstanceDefinitionMoiety.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubstanceDefinitionMoiety.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubstanceDefinitionMoiety.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubstanceDefinitionMoiety cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubstanceDefinitionMoiety.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubstanceDefinitionMoiety cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubstanceDefinitionMoiety]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionMoiety.fromJsonString(String source) {
+  factory SubstanceDefinitionMoiety.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubstanceDefinitionMoiety.fromJson(json);
@@ -970,23 +980,28 @@ class SubstanceDefinitionProperty extends BackboneElement {
 
   /// Deserialize [SubstanceDefinitionProperty] from a [String]
   /// or [YamlMap] object
-  factory SubstanceDefinitionProperty.fromYaml(dynamic yaml) => yaml is String
-      ? SubstanceDefinitionProperty.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubstanceDefinitionProperty.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubstanceDefinitionProperty.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubstanceDefinitionProperty cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubstanceDefinitionProperty.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubstanceDefinitionProperty cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubstanceDefinitionProperty]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionProperty.fromJsonString(String source) {
+  factory SubstanceDefinitionProperty.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubstanceDefinitionProperty.fromJson(json);
@@ -1187,24 +1202,28 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
 
   /// Deserialize [SubstanceDefinitionMolecularWeight] from a [String]
   /// or [YamlMap] object
-  factory SubstanceDefinitionMolecularWeight.fromYaml(dynamic yaml) => yaml
-          is String
-      ? SubstanceDefinitionMolecularWeight.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubstanceDefinitionMolecularWeight.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubstanceDefinitionMolecularWeight.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubstanceDefinitionMolecularWeight cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubstanceDefinitionMolecularWeight.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubstanceDefinitionMolecularWeight cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubstanceDefinitionMolecularWeight]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionMolecularWeight.fromJsonString(String source) {
+  factory SubstanceDefinitionMolecularWeight.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubstanceDefinitionMolecularWeight.fromJson(json);
@@ -1416,23 +1435,28 @@ class SubstanceDefinitionStructure extends BackboneElement {
 
   /// Deserialize [SubstanceDefinitionStructure] from a [String]
   /// or [YamlMap] object
-  factory SubstanceDefinitionStructure.fromYaml(dynamic yaml) => yaml is String
-      ? SubstanceDefinitionStructure.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubstanceDefinitionStructure.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubstanceDefinitionStructure.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubstanceDefinitionStructure cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubstanceDefinitionStructure.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubstanceDefinitionStructure cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubstanceDefinitionStructure]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionStructure.fromJsonString(String source) {
+  factory SubstanceDefinitionStructure.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubstanceDefinitionStructure.fromJson(json);
@@ -1668,24 +1692,28 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
 
   /// Deserialize [SubstanceDefinitionRepresentation] from a [String]
   /// or [YamlMap] object
-  factory SubstanceDefinitionRepresentation.fromYaml(dynamic yaml) => yaml
-          is String
-      ? SubstanceDefinitionRepresentation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubstanceDefinitionRepresentation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubstanceDefinitionRepresentation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubstanceDefinitionRepresentation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubstanceDefinitionRepresentation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubstanceDefinitionRepresentation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubstanceDefinitionRepresentation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionRepresentation.fromJsonString(String source) {
+  factory SubstanceDefinitionRepresentation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubstanceDefinitionRepresentation.fromJson(json);
@@ -1891,23 +1919,28 @@ class SubstanceDefinitionCode extends BackboneElement {
 
   /// Deserialize [SubstanceDefinitionCode] from a [String]
   /// or [YamlMap] object
-  factory SubstanceDefinitionCode.fromYaml(dynamic yaml) => yaml is String
-      ? SubstanceDefinitionCode.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubstanceDefinitionCode.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubstanceDefinitionCode.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubstanceDefinitionCode cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubstanceDefinitionCode.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubstanceDefinitionCode cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubstanceDefinitionCode]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionCode.fromJsonString(String source) {
+  factory SubstanceDefinitionCode.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubstanceDefinitionCode.fromJson(json);
@@ -2174,23 +2207,28 @@ class SubstanceDefinitionName extends BackboneElement {
 
   /// Deserialize [SubstanceDefinitionName] from a [String]
   /// or [YamlMap] object
-  factory SubstanceDefinitionName.fromYaml(dynamic yaml) => yaml is String
-      ? SubstanceDefinitionName.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubstanceDefinitionName.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubstanceDefinitionName.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubstanceDefinitionName cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubstanceDefinitionName.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubstanceDefinitionName cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubstanceDefinitionName]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionName.fromJsonString(String source) {
+  factory SubstanceDefinitionName.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubstanceDefinitionName.fromJson(json);
@@ -2445,23 +2483,28 @@ class SubstanceDefinitionOfficial extends BackboneElement {
 
   /// Deserialize [SubstanceDefinitionOfficial] from a [String]
   /// or [YamlMap] object
-  factory SubstanceDefinitionOfficial.fromYaml(dynamic yaml) => yaml is String
-      ? SubstanceDefinitionOfficial.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubstanceDefinitionOfficial.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubstanceDefinitionOfficial.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubstanceDefinitionOfficial cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubstanceDefinitionOfficial.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubstanceDefinitionOfficial cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubstanceDefinitionOfficial]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionOfficial.fromJsonString(String source) {
+  factory SubstanceDefinitionOfficial.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubstanceDefinitionOfficial.fromJson(json);
@@ -2681,24 +2724,28 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 
   /// Deserialize [SubstanceDefinitionRelationship] from a [String]
   /// or [YamlMap] object
-  factory SubstanceDefinitionRelationship.fromYaml(dynamic yaml) => yaml
-          is String
-      ? SubstanceDefinitionRelationship.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubstanceDefinitionRelationship.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubstanceDefinitionRelationship.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubstanceDefinitionRelationship cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubstanceDefinitionRelationship.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubstanceDefinitionRelationship cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubstanceDefinitionRelationship]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionRelationship.fromJsonString(String source) {
+  factory SubstanceDefinitionRelationship.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubstanceDefinitionRelationship.fromJson(json);
@@ -2972,24 +3019,28 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
 
   /// Deserialize [SubstanceDefinitionSourceMaterial] from a [String]
   /// or [YamlMap] object
-  factory SubstanceDefinitionSourceMaterial.fromYaml(dynamic yaml) => yaml
-          is String
-      ? SubstanceDefinitionSourceMaterial.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubstanceDefinitionSourceMaterial.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubstanceDefinitionSourceMaterial.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubstanceDefinitionSourceMaterial cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubstanceDefinitionSourceMaterial.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubstanceDefinitionSourceMaterial cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubstanceDefinitionSourceMaterial]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubstanceDefinitionSourceMaterial.fromJsonString(String source) {
+  factory SubstanceDefinitionSourceMaterial.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubstanceDefinitionSourceMaterial.fromJson(json);

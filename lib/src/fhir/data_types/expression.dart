@@ -78,22 +78,27 @@ class FhirExpression extends DataType {
 
   /// Deserialize [FhirExpression] from a [String]
   /// or [YamlMap] object
-  factory FhirExpression.fromYaml(dynamic yaml) => yaml is String
-      ? FhirExpression.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory FhirExpression.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? FhirExpression.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('FhirExpression cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? FhirExpression.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('FhirExpression cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [FhirExpression]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory FhirExpression.fromJsonString(String source) {
+  factory FhirExpression.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return FhirExpression.fromJson(json);

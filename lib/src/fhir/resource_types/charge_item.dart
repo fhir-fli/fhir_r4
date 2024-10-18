@@ -304,22 +304,27 @@ class ChargeItem extends DomainResource {
 
   /// Deserialize [ChargeItem] from a [String]
   /// or [YamlMap] object
-  factory ChargeItem.fromYaml(dynamic yaml) => yaml is String
-      ? ChargeItem.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ChargeItem.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ChargeItem.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ChargeItem cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ChargeItem.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ChargeItem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ChargeItem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ChargeItem.fromJsonString(String source) {
+  factory ChargeItem.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ChargeItem.fromJson(json);
@@ -808,23 +813,28 @@ class ChargeItemPerformer extends BackboneElement {
 
   /// Deserialize [ChargeItemPerformer] from a [String]
   /// or [YamlMap] object
-  factory ChargeItemPerformer.fromYaml(dynamic yaml) => yaml is String
-      ? ChargeItemPerformer.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ChargeItemPerformer.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ChargeItemPerformer.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ChargeItemPerformer cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ChargeItemPerformer.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ChargeItemPerformer cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ChargeItemPerformer]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ChargeItemPerformer.fromJsonString(String source) {
+  factory ChargeItemPerformer.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ChargeItemPerformer.fromJson(json);

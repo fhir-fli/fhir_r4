@@ -138,22 +138,27 @@ class Subscription extends DomainResource {
 
   /// Deserialize [Subscription] from a [String]
   /// or [YamlMap] object
-  factory Subscription.fromYaml(dynamic yaml) => yaml is String
-      ? Subscription.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Subscription.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Subscription.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Subscription cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Subscription.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Subscription cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Subscription]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Subscription.fromJsonString(String source) {
+  factory Subscription.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Subscription.fromJson(json);
@@ -415,23 +420,28 @@ class SubscriptionChannel extends BackboneElement {
 
   /// Deserialize [SubscriptionChannel] from a [String]
   /// or [YamlMap] object
-  factory SubscriptionChannel.fromYaml(dynamic yaml) => yaml is String
-      ? SubscriptionChannel.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubscriptionChannel.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubscriptionChannel.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubscriptionChannel cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubscriptionChannel.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubscriptionChannel cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubscriptionChannel]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubscriptionChannel.fromJsonString(String source) {
+  factory SubscriptionChannel.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubscriptionChannel.fromJson(json);

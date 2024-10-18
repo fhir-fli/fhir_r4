@@ -39,7 +39,9 @@ enum EnableWhenBehavior {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EnableWhenBehavior.elementOnly.withElement(element);
+      return EnableWhenBehavior.elementOnly.withElement(
+        element,
+      );
     }
     return EnableWhenBehavior.values.firstWhere(
       (e) => e.fhirCode == value,

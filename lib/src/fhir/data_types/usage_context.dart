@@ -73,22 +73,27 @@ class UsageContext extends DataType {
 
   /// Deserialize [UsageContext] from a [String]
   /// or [YamlMap] object
-  factory UsageContext.fromYaml(dynamic yaml) => yaml is String
-      ? UsageContext.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory UsageContext.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? UsageContext.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('UsageContext cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? UsageContext.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('UsageContext cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [UsageContext]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory UsageContext.fromJsonString(String source) {
+  factory UsageContext.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return UsageContext.fromJson(json);

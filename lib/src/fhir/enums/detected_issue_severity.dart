@@ -43,7 +43,9 @@ enum DetectedIssueSeverity {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DetectedIssueSeverity.elementOnly.withElement(element);
+      return DetectedIssueSeverity.elementOnly.withElement(
+        element,
+      );
     }
     return DetectedIssueSeverity.values.firstWhere(
       (e) => e.fhirCode == value,

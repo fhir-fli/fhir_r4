@@ -59,7 +59,9 @@ enum ContactPointSystem {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContactPointSystem.elementOnly.withElement(element);
+      return ContactPointSystem.elementOnly.withElement(
+        element,
+      );
     }
     return ContactPointSystem.values.firstWhere(
       (e) => e.fhirCode == value,

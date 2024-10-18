@@ -85,22 +85,27 @@ class SampledData extends DataType {
 
   /// Deserialize [SampledData] from a [String]
   /// or [YamlMap] object
-  factory SampledData.fromYaml(dynamic yaml) => yaml is String
-      ? SampledData.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SampledData.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SampledData.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('SampledData cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SampledData.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('SampledData cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SampledData]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SampledData.fromJsonString(String source) {
+  factory SampledData.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SampledData.fromJson(json);

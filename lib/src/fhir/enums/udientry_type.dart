@@ -55,7 +55,9 @@ enum UDIEntryType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return UDIEntryType.elementOnly.withElement(element);
+      return UDIEntryType.elementOnly.withElement(
+        element,
+      );
     }
     return UDIEntryType.values.firstWhere(
       (e) => e.fhirCode == value,

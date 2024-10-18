@@ -268,22 +268,28 @@ class SearchParameter extends DomainResource {
 
   /// Deserialize [SearchParameter] from a [String]
   /// or [YamlMap] object
-  factory SearchParameter.fromYaml(dynamic yaml) => yaml is String
-      ? SearchParameter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SearchParameter.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SearchParameter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('SearchParameter cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SearchParameter.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SearchParameter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SearchParameter]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SearchParameter.fromJsonString(String source) {
+  factory SearchParameter.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SearchParameter.fromJson(json);
@@ -806,23 +812,28 @@ class SearchParameterComponent extends BackboneElement {
 
   /// Deserialize [SearchParameterComponent] from a [String]
   /// or [YamlMap] object
-  factory SearchParameterComponent.fromYaml(dynamic yaml) => yaml is String
-      ? SearchParameterComponent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SearchParameterComponent.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SearchParameterComponent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SearchParameterComponent cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SearchParameterComponent.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SearchParameterComponent cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SearchParameterComponent]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SearchParameterComponent.fromJsonString(String source) {
+  factory SearchParameterComponent.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SearchParameterComponent.fromJson(json);

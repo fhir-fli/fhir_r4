@@ -253,22 +253,28 @@ class DiagnosticReport extends DomainResource {
 
   /// Deserialize [DiagnosticReport] from a [String]
   /// or [YamlMap] object
-  factory DiagnosticReport.fromYaml(dynamic yaml) => yaml is String
-      ? DiagnosticReport.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DiagnosticReport.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DiagnosticReport.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('DiagnosticReport cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DiagnosticReport.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DiagnosticReport cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DiagnosticReport]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DiagnosticReport.fromJsonString(String source) {
+  factory DiagnosticReport.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DiagnosticReport.fromJson(json);
@@ -657,23 +663,28 @@ class DiagnosticReportMedia extends BackboneElement {
 
   /// Deserialize [DiagnosticReportMedia] from a [String]
   /// or [YamlMap] object
-  factory DiagnosticReportMedia.fromYaml(dynamic yaml) => yaml is String
-      ? DiagnosticReportMedia.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DiagnosticReportMedia.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DiagnosticReportMedia.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DiagnosticReportMedia cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DiagnosticReportMedia.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DiagnosticReportMedia cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DiagnosticReportMedia]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DiagnosticReportMedia.fromJsonString(String source) {
+  factory DiagnosticReportMedia.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DiagnosticReportMedia.fromJson(json);

@@ -43,7 +43,9 @@ enum AdverseEventCausalityMethod {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdverseEventCausalityMethod.elementOnly.withElement(element);
+      return AdverseEventCausalityMethod.elementOnly.withElement(
+        element,
+      );
     }
     return AdverseEventCausalityMethod.values.firstWhere(
       (e) => e.fhirCode == value,

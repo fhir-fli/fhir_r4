@@ -43,7 +43,9 @@ enum ResourceVersionPolicy {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResourceVersionPolicy.elementOnly.withElement(element);
+      return ResourceVersionPolicy.elementOnly.withElement(
+        element,
+      );
     }
     return ResourceVersionPolicy.values.firstWhere(
       (e) => e.fhirCode == value,

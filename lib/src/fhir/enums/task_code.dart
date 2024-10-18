@@ -59,7 +59,9 @@ enum TaskCode {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TaskCode.elementOnly.withElement(element);
+      return TaskCode.elementOnly.withElement(
+        element,
+      );
     }
     return TaskCode.values.firstWhere(
       (e) => e.fhirCode == value,

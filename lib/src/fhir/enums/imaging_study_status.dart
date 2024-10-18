@@ -51,7 +51,9 @@ enum ImagingStudyStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImagingStudyStatus.elementOnly.withElement(element);
+      return ImagingStudyStatus.elementOnly.withElement(
+        element,
+      );
     }
     return ImagingStudyStatus.values.firstWhere(
       (e) => e.fhirCode == value,

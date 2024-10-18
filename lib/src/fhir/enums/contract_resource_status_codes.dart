@@ -91,7 +91,9 @@ enum ContractResourceStatusCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContractResourceStatusCodes.elementOnly.withElement(element);
+      return ContractResourceStatusCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ContractResourceStatusCodes.values.firstWhere(
       (e) => e.fhirCode == value,

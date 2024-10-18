@@ -279,22 +279,27 @@ class Encounter extends DomainResource {
 
   /// Deserialize [Encounter] from a [String]
   /// or [YamlMap] object
-  factory Encounter.fromYaml(dynamic yaml) => yaml is String
-      ? Encounter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Encounter.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Encounter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Encounter cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Encounter.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Encounter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Encounter]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Encounter.fromJsonString(String source) {
+  factory Encounter.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Encounter.fromJson(json);
@@ -715,23 +720,28 @@ class EncounterStatusHistory extends BackboneElement {
 
   /// Deserialize [EncounterStatusHistory] from a [String]
   /// or [YamlMap] object
-  factory EncounterStatusHistory.fromYaml(dynamic yaml) => yaml is String
-      ? EncounterStatusHistory.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory EncounterStatusHistory.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? EncounterStatusHistory.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'EncounterStatusHistory cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? EncounterStatusHistory.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'EncounterStatusHistory cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [EncounterStatusHistory]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EncounterStatusHistory.fromJsonString(String source) {
+  factory EncounterStatusHistory.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return EncounterStatusHistory.fromJson(json);
@@ -880,23 +890,28 @@ class EncounterClassHistory extends BackboneElement {
 
   /// Deserialize [EncounterClassHistory] from a [String]
   /// or [YamlMap] object
-  factory EncounterClassHistory.fromYaml(dynamic yaml) => yaml is String
-      ? EncounterClassHistory.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory EncounterClassHistory.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? EncounterClassHistory.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'EncounterClassHistory cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? EncounterClassHistory.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'EncounterClassHistory cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [EncounterClassHistory]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EncounterClassHistory.fromJsonString(String source) {
+  factory EncounterClassHistory.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return EncounterClassHistory.fromJson(json);
@@ -1052,23 +1067,28 @@ class EncounterParticipant extends BackboneElement {
 
   /// Deserialize [EncounterParticipant] from a [String]
   /// or [YamlMap] object
-  factory EncounterParticipant.fromYaml(dynamic yaml) => yaml is String
-      ? EncounterParticipant.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory EncounterParticipant.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? EncounterParticipant.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'EncounterParticipant cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? EncounterParticipant.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'EncounterParticipant cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [EncounterParticipant]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EncounterParticipant.fromJsonString(String source) {
+  factory EncounterParticipant.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return EncounterParticipant.fromJson(json);
@@ -1235,22 +1255,28 @@ class EncounterDiagnosis extends BackboneElement {
 
   /// Deserialize [EncounterDiagnosis] from a [String]
   /// or [YamlMap] object
-  factory EncounterDiagnosis.fromYaml(dynamic yaml) => yaml is String
-      ? EncounterDiagnosis.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory EncounterDiagnosis.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? EncounterDiagnosis.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('EncounterDiagnosis cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? EncounterDiagnosis.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'EncounterDiagnosis cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [EncounterDiagnosis]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EncounterDiagnosis.fromJsonString(String source) {
+  factory EncounterDiagnosis.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return EncounterDiagnosis.fromJson(json);
@@ -1470,23 +1496,28 @@ class EncounterHospitalization extends BackboneElement {
 
   /// Deserialize [EncounterHospitalization] from a [String]
   /// or [YamlMap] object
-  factory EncounterHospitalization.fromYaml(dynamic yaml) => yaml is String
-      ? EncounterHospitalization.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory EncounterHospitalization.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? EncounterHospitalization.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'EncounterHospitalization cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? EncounterHospitalization.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'EncounterHospitalization cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [EncounterHospitalization]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EncounterHospitalization.fromJsonString(String source) {
+  factory EncounterHospitalization.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return EncounterHospitalization.fromJson(json);
@@ -1721,22 +1752,28 @@ class EncounterLocation extends BackboneElement {
 
   /// Deserialize [EncounterLocation] from a [String]
   /// or [YamlMap] object
-  factory EncounterLocation.fromYaml(dynamic yaml) => yaml is String
-      ? EncounterLocation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory EncounterLocation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? EncounterLocation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('EncounterLocation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? EncounterLocation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'EncounterLocation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [EncounterLocation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EncounterLocation.fromJsonString(String source) {
+  factory EncounterLocation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return EncounterLocation.fromJson(json);

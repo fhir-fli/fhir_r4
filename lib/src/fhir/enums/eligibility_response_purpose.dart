@@ -47,7 +47,9 @@ enum EligibilityResponsePurpose {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EligibilityResponsePurpose.elementOnly.withElement(element);
+      return EligibilityResponsePurpose.elementOnly.withElement(
+        element,
+      );
     }
     return EligibilityResponsePurpose.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -109,22 +109,28 @@ class DataRequirement extends DataType {
 
   /// Deserialize [DataRequirement] from a [String]
   /// or [YamlMap] object
-  factory DataRequirement.fromYaml(dynamic yaml) => yaml is String
-      ? DataRequirement.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DataRequirement.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DataRequirement.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('DataRequirement cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DataRequirement.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DataRequirement cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DataRequirement]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DataRequirement.fromJsonString(String source) {
+  factory DataRequirement.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DataRequirement.fromJson(json);
@@ -382,23 +388,28 @@ class DataRequirementCodeFilter extends Element {
 
   /// Deserialize [DataRequirementCodeFilter] from a [String]
   /// or [YamlMap] object
-  factory DataRequirementCodeFilter.fromYaml(dynamic yaml) => yaml is String
-      ? DataRequirementCodeFilter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DataRequirementCodeFilter.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DataRequirementCodeFilter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DataRequirementCodeFilter cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DataRequirementCodeFilter.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DataRequirementCodeFilter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DataRequirementCodeFilter]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DataRequirementCodeFilter.fromJsonString(String source) {
+  factory DataRequirementCodeFilter.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DataRequirementCodeFilter.fromJson(json);
@@ -603,23 +614,28 @@ class DataRequirementDateFilter extends Element {
 
   /// Deserialize [DataRequirementDateFilter] from a [String]
   /// or [YamlMap] object
-  factory DataRequirementDateFilter.fromYaml(dynamic yaml) => yaml is String
-      ? DataRequirementDateFilter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DataRequirementDateFilter.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DataRequirementDateFilter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DataRequirementDateFilter cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DataRequirementDateFilter.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DataRequirementDateFilter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DataRequirementDateFilter]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DataRequirementDateFilter.fromJsonString(String source) {
+  factory DataRequirementDateFilter.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DataRequirementDateFilter.fromJson(json);
@@ -817,23 +833,28 @@ class DataRequirementSort extends Element {
 
   /// Deserialize [DataRequirementSort] from a [String]
   /// or [YamlMap] object
-  factory DataRequirementSort.fromYaml(dynamic yaml) => yaml is String
-      ? DataRequirementSort.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DataRequirementSort.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DataRequirementSort.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DataRequirementSort cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DataRequirementSort.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DataRequirementSort cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DataRequirementSort]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DataRequirementSort.fromJsonString(String source) {
+  factory DataRequirementSort.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DataRequirementSort.fromJson(json);

@@ -71,7 +71,9 @@ enum SpecimenCollectionEnum {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SpecimenCollectionEnum.elementOnly.withElement(element);
+      return SpecimenCollectionEnum.elementOnly.withElement(
+        element,
+      );
     }
     return SpecimenCollectionEnum.values.firstWhere(
       (e) => e.fhirCode == value,

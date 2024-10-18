@@ -51,7 +51,9 @@ enum InvoiceStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return InvoiceStatus.elementOnly.withElement(element);
+      return InvoiceStatus.elementOnly.withElement(
+        element,
+      );
     }
     return InvoiceStatus.values.firstWhere(
       (e) => e.fhirCode == value,

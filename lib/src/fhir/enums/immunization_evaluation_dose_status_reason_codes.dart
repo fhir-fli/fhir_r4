@@ -53,7 +53,9 @@ enum ImmunizationEvaluationDoseStatusReasonCodes {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ImmunizationEvaluationDoseStatusReasonCodes.elementOnly
-          .withElement(element);
+          .withElement(
+        element,
+      );
     }
     return ImmunizationEvaluationDoseStatusReasonCodes.values.firstWhere(
       (e) => e.fhirCode == value,

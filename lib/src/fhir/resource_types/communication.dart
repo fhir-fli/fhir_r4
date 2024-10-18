@@ -280,22 +280,27 @@ class Communication extends DomainResource {
 
   /// Deserialize [Communication] from a [String]
   /// or [YamlMap] object
-  factory Communication.fromYaml(dynamic yaml) => yaml is String
-      ? Communication.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Communication.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Communication.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Communication cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Communication.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Communication cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Communication]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Communication.fromJsonString(String source) {
+  factory Communication.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Communication.fromJson(json);
@@ -738,23 +743,28 @@ class CommunicationPayload extends BackboneElement {
 
   /// Deserialize [CommunicationPayload] from a [String]
   /// or [YamlMap] object
-  factory CommunicationPayload.fromYaml(dynamic yaml) => yaml is String
-      ? CommunicationPayload.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CommunicationPayload.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CommunicationPayload.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CommunicationPayload cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CommunicationPayload.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CommunicationPayload cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CommunicationPayload]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CommunicationPayload.fromJsonString(String source) {
+  factory CommunicationPayload.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CommunicationPayload.fromJson(json);

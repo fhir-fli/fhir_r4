@@ -47,7 +47,9 @@ enum ClaimCareTeamRoleCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ClaimCareTeamRoleCodes.elementOnly.withElement(element);
+      return ClaimCareTeamRoleCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ClaimCareTeamRoleCodes.values.firstWhere(
       (e) => e.fhirCode == value,

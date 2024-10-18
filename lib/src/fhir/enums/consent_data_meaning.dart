@@ -47,7 +47,9 @@ enum ConsentDataMeaning {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConsentDataMeaning.elementOnly.withElement(element);
+      return ConsentDataMeaning.elementOnly.withElement(
+        element,
+      );
     }
     return ConsentDataMeaning.values.firstWhere(
       (e) => e.fhirCode == value,

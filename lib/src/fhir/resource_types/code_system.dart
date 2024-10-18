@@ -291,22 +291,27 @@ class CodeSystem extends DomainResource {
 
   /// Deserialize [CodeSystem] from a [String]
   /// or [YamlMap] object
-  factory CodeSystem.fromYaml(dynamic yaml) => yaml is String
-      ? CodeSystem.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CodeSystem.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CodeSystem.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CodeSystem cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CodeSystem.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('CodeSystem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CodeSystem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CodeSystem.fromJsonString(String source) {
+  factory CodeSystem.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CodeSystem.fromJson(json);
@@ -850,22 +855,28 @@ class CodeSystemFilter extends BackboneElement {
 
   /// Deserialize [CodeSystemFilter] from a [String]
   /// or [YamlMap] object
-  factory CodeSystemFilter.fromYaml(dynamic yaml) => yaml is String
-      ? CodeSystemFilter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CodeSystemFilter.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CodeSystemFilter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CodeSystemFilter cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CodeSystemFilter.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CodeSystemFilter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CodeSystemFilter]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CodeSystemFilter.fromJsonString(String source) {
+  factory CodeSystemFilter.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CodeSystemFilter.fromJson(json);
@@ -1055,22 +1066,28 @@ class CodeSystemProperty extends BackboneElement {
 
   /// Deserialize [CodeSystemProperty] from a [String]
   /// or [YamlMap] object
-  factory CodeSystemProperty.fromYaml(dynamic yaml) => yaml is String
-      ? CodeSystemProperty.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CodeSystemProperty.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CodeSystemProperty.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CodeSystemProperty cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CodeSystemProperty.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CodeSystemProperty cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CodeSystemProperty]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CodeSystemProperty.fromJsonString(String source) {
+  factory CodeSystemProperty.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CodeSystemProperty.fromJson(json);
@@ -1294,22 +1311,28 @@ class CodeSystemConcept extends BackboneElement {
 
   /// Deserialize [CodeSystemConcept] from a [String]
   /// or [YamlMap] object
-  factory CodeSystemConcept.fromYaml(dynamic yaml) => yaml is String
-      ? CodeSystemConcept.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CodeSystemConcept.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CodeSystemConcept.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CodeSystemConcept cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CodeSystemConcept.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CodeSystemConcept cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CodeSystemConcept]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CodeSystemConcept.fromJsonString(String source) {
+  factory CodeSystemConcept.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CodeSystemConcept.fromJson(json);
@@ -1524,23 +1547,28 @@ class CodeSystemDesignation extends BackboneElement {
 
   /// Deserialize [CodeSystemDesignation] from a [String]
   /// or [YamlMap] object
-  factory CodeSystemDesignation.fromYaml(dynamic yaml) => yaml is String
-      ? CodeSystemDesignation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CodeSystemDesignation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CodeSystemDesignation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CodeSystemDesignation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CodeSystemDesignation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CodeSystemDesignation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CodeSystemDesignation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CodeSystemDesignation.fromJsonString(String source) {
+  factory CodeSystemDesignation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CodeSystemDesignation.fromJson(json);
@@ -1743,23 +1771,28 @@ class CodeSystemProperty1 extends BackboneElement {
 
   /// Deserialize [CodeSystemProperty1] from a [String]
   /// or [YamlMap] object
-  factory CodeSystemProperty1.fromYaml(dynamic yaml) => yaml is String
-      ? CodeSystemProperty1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CodeSystemProperty1.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CodeSystemProperty1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CodeSystemProperty1 cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CodeSystemProperty1.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CodeSystemProperty1 cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CodeSystemProperty1]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CodeSystemProperty1.fromJsonString(String source) {
+  factory CodeSystemProperty1.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CodeSystemProperty1.fromJson(json);

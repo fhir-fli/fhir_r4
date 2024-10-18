@@ -173,23 +173,28 @@ class ClinicalUseDefinition extends DomainResource {
 
   /// Deserialize [ClinicalUseDefinition] from a [String]
   /// or [YamlMap] object
-  factory ClinicalUseDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? ClinicalUseDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClinicalUseDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClinicalUseDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClinicalUseDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClinicalUseDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClinicalUseDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClinicalUseDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClinicalUseDefinition.fromJsonString(String source) {
+  factory ClinicalUseDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClinicalUseDefinition.fromJson(json);
@@ -499,24 +504,28 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
 
   /// Deserialize [ClinicalUseDefinitionContraindication] from a [String]
   /// or [YamlMap] object
-  factory ClinicalUseDefinitionContraindication.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ClinicalUseDefinitionContraindication.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClinicalUseDefinitionContraindication.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClinicalUseDefinitionContraindication.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClinicalUseDefinitionContraindication cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClinicalUseDefinitionContraindication.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClinicalUseDefinitionContraindication cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClinicalUseDefinitionContraindication]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClinicalUseDefinitionContraindication.fromJsonString(String source) {
+  factory ClinicalUseDefinitionContraindication.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClinicalUseDefinitionContraindication.fromJson(json);
@@ -697,24 +706,28 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
 
   /// Deserialize [ClinicalUseDefinitionOtherTherapy] from a [String]
   /// or [YamlMap] object
-  factory ClinicalUseDefinitionOtherTherapy.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ClinicalUseDefinitionOtherTherapy.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClinicalUseDefinitionOtherTherapy.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClinicalUseDefinitionOtherTherapy.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClinicalUseDefinitionOtherTherapy cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClinicalUseDefinitionOtherTherapy.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClinicalUseDefinitionOtherTherapy cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClinicalUseDefinitionOtherTherapy]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClinicalUseDefinitionOtherTherapy.fromJsonString(String source) {
+  factory ClinicalUseDefinitionOtherTherapy.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClinicalUseDefinitionOtherTherapy.fromJson(json);
@@ -901,24 +914,28 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
 
   /// Deserialize [ClinicalUseDefinitionIndication] from a [String]
   /// or [YamlMap] object
-  factory ClinicalUseDefinitionIndication.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ClinicalUseDefinitionIndication.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClinicalUseDefinitionIndication.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClinicalUseDefinitionIndication.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClinicalUseDefinitionIndication cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClinicalUseDefinitionIndication.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClinicalUseDefinitionIndication cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClinicalUseDefinitionIndication]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClinicalUseDefinitionIndication.fromJsonString(String source) {
+  factory ClinicalUseDefinitionIndication.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClinicalUseDefinitionIndication.fromJson(json);
@@ -1159,24 +1176,28 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
 
   /// Deserialize [ClinicalUseDefinitionInteraction] from a [String]
   /// or [YamlMap] object
-  factory ClinicalUseDefinitionInteraction.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ClinicalUseDefinitionInteraction.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClinicalUseDefinitionInteraction.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClinicalUseDefinitionInteraction.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClinicalUseDefinitionInteraction cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClinicalUseDefinitionInteraction.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClinicalUseDefinitionInteraction cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClinicalUseDefinitionInteraction]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClinicalUseDefinitionInteraction.fromJsonString(String source) {
+  factory ClinicalUseDefinitionInteraction.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClinicalUseDefinitionInteraction.fromJson(json);
@@ -1360,24 +1381,28 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
 
   /// Deserialize [ClinicalUseDefinitionInteractant] from a [String]
   /// or [YamlMap] object
-  factory ClinicalUseDefinitionInteractant.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ClinicalUseDefinitionInteractant.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClinicalUseDefinitionInteractant.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClinicalUseDefinitionInteractant.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClinicalUseDefinitionInteractant cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClinicalUseDefinitionInteractant.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClinicalUseDefinitionInteractant cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClinicalUseDefinitionInteractant]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClinicalUseDefinitionInteractant.fromJsonString(String source) {
+  factory ClinicalUseDefinitionInteractant.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClinicalUseDefinitionInteractant.fromJson(json);
@@ -1534,24 +1559,28 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
 
   /// Deserialize [ClinicalUseDefinitionUndesirableEffect] from a [String]
   /// or [YamlMap] object
-  factory ClinicalUseDefinitionUndesirableEffect.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ClinicalUseDefinitionUndesirableEffect.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClinicalUseDefinitionUndesirableEffect.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClinicalUseDefinitionUndesirableEffect.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClinicalUseDefinitionUndesirableEffect cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClinicalUseDefinitionUndesirableEffect.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClinicalUseDefinitionUndesirableEffect cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClinicalUseDefinitionUndesirableEffect]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClinicalUseDefinitionUndesirableEffect.fromJsonString(String source) {
+  factory ClinicalUseDefinitionUndesirableEffect.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClinicalUseDefinitionUndesirableEffect.fromJson(json);
@@ -1717,23 +1746,28 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
 
   /// Deserialize [ClinicalUseDefinitionWarning] from a [String]
   /// or [YamlMap] object
-  factory ClinicalUseDefinitionWarning.fromYaml(dynamic yaml) => yaml is String
-      ? ClinicalUseDefinitionWarning.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClinicalUseDefinitionWarning.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClinicalUseDefinitionWarning.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClinicalUseDefinitionWarning cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClinicalUseDefinitionWarning.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClinicalUseDefinitionWarning cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClinicalUseDefinitionWarning]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClinicalUseDefinitionWarning.fromJsonString(String source) {
+  factory ClinicalUseDefinitionWarning.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClinicalUseDefinitionWarning.fromJson(json);

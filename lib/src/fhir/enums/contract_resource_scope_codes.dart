@@ -35,7 +35,9 @@ enum ContractResourceScopeCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContractResourceScopeCodes.elementOnly.withElement(element);
+      return ContractResourceScopeCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ContractResourceScopeCodes.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -171,23 +171,28 @@ class QuestionnaireResponse extends DomainResource {
 
   /// Deserialize [QuestionnaireResponse] from a [String]
   /// or [YamlMap] object
-  factory QuestionnaireResponse.fromYaml(dynamic yaml) => yaml is String
-      ? QuestionnaireResponse.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory QuestionnaireResponse.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? QuestionnaireResponse.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'QuestionnaireResponse cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? QuestionnaireResponse.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'QuestionnaireResponse cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [QuestionnaireResponse]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory QuestionnaireResponse.fromJsonString(String source) {
+  factory QuestionnaireResponse.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return QuestionnaireResponse.fromJson(json);
@@ -509,23 +514,28 @@ class QuestionnaireResponseItem extends BackboneElement {
 
   /// Deserialize [QuestionnaireResponseItem] from a [String]
   /// or [YamlMap] object
-  factory QuestionnaireResponseItem.fromYaml(dynamic yaml) => yaml is String
-      ? QuestionnaireResponseItem.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory QuestionnaireResponseItem.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? QuestionnaireResponseItem.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'QuestionnaireResponseItem cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? QuestionnaireResponseItem.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'QuestionnaireResponseItem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [QuestionnaireResponseItem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory QuestionnaireResponseItem.fromJsonString(String source) {
+  factory QuestionnaireResponseItem.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return QuestionnaireResponseItem.fromJson(json);
@@ -796,23 +806,28 @@ class QuestionnaireResponseAnswer extends BackboneElement {
 
   /// Deserialize [QuestionnaireResponseAnswer] from a [String]
   /// or [YamlMap] object
-  factory QuestionnaireResponseAnswer.fromYaml(dynamic yaml) => yaml is String
-      ? QuestionnaireResponseAnswer.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory QuestionnaireResponseAnswer.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? QuestionnaireResponseAnswer.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'QuestionnaireResponseAnswer cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? QuestionnaireResponseAnswer.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'QuestionnaireResponseAnswer cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [QuestionnaireResponseAnswer]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory QuestionnaireResponseAnswer.fromJsonString(String source) {
+  factory QuestionnaireResponseAnswer.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return QuestionnaireResponseAnswer.fromJson(json);

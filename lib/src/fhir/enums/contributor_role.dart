@@ -59,7 +59,9 @@ enum ContributorRole {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContributorRole.elementOnly.withElement(element);
+      return ContributorRole.elementOnly.withElement(
+        element,
+      );
     }
     return ContributorRole.values.firstWhere(
       (e) => e.fhirCode == value,

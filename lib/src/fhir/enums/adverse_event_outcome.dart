@@ -55,7 +55,9 @@ enum AdverseEventOutcome {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdverseEventOutcome.elementOnly.withElement(element);
+      return AdverseEventOutcome.elementOnly.withElement(
+        element,
+      );
     }
     return AdverseEventOutcome.values.firstWhere(
       (e) => e.fhirCode == value,

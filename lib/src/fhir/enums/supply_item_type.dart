@@ -39,7 +39,9 @@ enum SupplyItemType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SupplyItemType.elementOnly.withElement(element);
+      return SupplyItemType.elementOnly.withElement(
+        element,
+      );
     }
     return SupplyItemType.values.firstWhere(
       (e) => e.fhirCode == value,

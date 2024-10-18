@@ -55,7 +55,9 @@ enum ListEmptyReasons {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ListEmptyReasons.elementOnly.withElement(element);
+      return ListEmptyReasons.elementOnly.withElement(
+        element,
+      );
     }
     return ListEmptyReasons.values.firstWhere(
       (e) => e.fhirCode == value,

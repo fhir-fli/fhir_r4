@@ -59,7 +59,9 @@ enum SubscriberRelationshipCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubscriberRelationshipCodes.elementOnly.withElement(element);
+      return SubscriberRelationshipCodes.elementOnly.withElement(
+        element,
+      );
     }
     return SubscriberRelationshipCodes.values.firstWhere(
       (e) => e.fhirCode == value,

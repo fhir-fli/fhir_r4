@@ -343,22 +343,27 @@ class Procedure extends DomainResource {
 
   /// Deserialize [Procedure] from a [String]
   /// or [YamlMap] object
-  factory Procedure.fromYaml(dynamic yaml) => yaml is String
-      ? Procedure.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Procedure.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Procedure.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Procedure cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Procedure.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Procedure cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Procedure]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Procedure.fromJsonString(String source) {
+  factory Procedure.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Procedure.fromJson(json);
@@ -906,22 +911,28 @@ class ProcedurePerformer extends BackboneElement {
 
   /// Deserialize [ProcedurePerformer] from a [String]
   /// or [YamlMap] object
-  factory ProcedurePerformer.fromYaml(dynamic yaml) => yaml is String
-      ? ProcedurePerformer.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ProcedurePerformer.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ProcedurePerformer.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ProcedurePerformer cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ProcedurePerformer.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ProcedurePerformer cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ProcedurePerformer]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ProcedurePerformer.fromJsonString(String source) {
+  factory ProcedurePerformer.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ProcedurePerformer.fromJson(json);
@@ -1080,23 +1091,28 @@ class ProcedureFocalDevice extends BackboneElement {
 
   /// Deserialize [ProcedureFocalDevice] from a [String]
   /// or [YamlMap] object
-  factory ProcedureFocalDevice.fromYaml(dynamic yaml) => yaml is String
-      ? ProcedureFocalDevice.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ProcedureFocalDevice.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ProcedureFocalDevice.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ProcedureFocalDevice cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ProcedureFocalDevice.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ProcedureFocalDevice cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ProcedureFocalDevice]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ProcedureFocalDevice.fromJsonString(String source) {
+  factory ProcedureFocalDevice.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ProcedureFocalDevice.fromJson(json);

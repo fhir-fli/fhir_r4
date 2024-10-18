@@ -47,7 +47,9 @@ enum RequestPriority {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RequestPriority.elementOnly.withElement(element);
+      return RequestPriority.elementOnly.withElement(
+        element,
+      );
     }
     return RequestPriority.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -343,22 +343,28 @@ class MedicationRequest extends DomainResource {
 
   /// Deserialize [MedicationRequest] from a [String]
   /// or [YamlMap] object
-  factory MedicationRequest.fromYaml(dynamic yaml) => yaml is String
-      ? MedicationRequest.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MedicationRequest.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MedicationRequest.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('MedicationRequest cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MedicationRequest.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MedicationRequest cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MedicationRequest]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MedicationRequest.fromJsonString(String source) {
+  factory MedicationRequest.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MedicationRequest.fromJson(json);
@@ -976,24 +982,28 @@ class MedicationRequestDispenseRequest extends BackboneElement {
 
   /// Deserialize [MedicationRequestDispenseRequest] from a [String]
   /// or [YamlMap] object
-  factory MedicationRequestDispenseRequest.fromYaml(dynamic yaml) => yaml
-          is String
-      ? MedicationRequestDispenseRequest.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MedicationRequestDispenseRequest.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MedicationRequestDispenseRequest.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MedicationRequestDispenseRequest cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MedicationRequestDispenseRequest.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MedicationRequestDispenseRequest cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MedicationRequestDispenseRequest]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MedicationRequestDispenseRequest.fromJsonString(String source) {
+  factory MedicationRequestDispenseRequest.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MedicationRequestDispenseRequest.fromJson(json);
@@ -1212,23 +1222,28 @@ class MedicationRequestInitialFill extends BackboneElement {
 
   /// Deserialize [MedicationRequestInitialFill] from a [String]
   /// or [YamlMap] object
-  factory MedicationRequestInitialFill.fromYaml(dynamic yaml) => yaml is String
-      ? MedicationRequestInitialFill.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MedicationRequestInitialFill.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MedicationRequestInitialFill.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MedicationRequestInitialFill cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MedicationRequestInitialFill.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MedicationRequestInitialFill cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MedicationRequestInitialFill]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MedicationRequestInitialFill.fromJsonString(String source) {
+  factory MedicationRequestInitialFill.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MedicationRequestInitialFill.fromJson(json);
@@ -1388,23 +1403,28 @@ class MedicationRequestSubstitution extends BackboneElement {
 
   /// Deserialize [MedicationRequestSubstitution] from a [String]
   /// or [YamlMap] object
-  factory MedicationRequestSubstitution.fromYaml(dynamic yaml) => yaml is String
-      ? MedicationRequestSubstitution.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MedicationRequestSubstitution.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MedicationRequestSubstitution.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MedicationRequestSubstitution cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MedicationRequestSubstitution.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MedicationRequestSubstitution cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MedicationRequestSubstitution]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MedicationRequestSubstitution.fromJsonString(String source) {
+  factory MedicationRequestSubstitution.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MedicationRequestSubstitution.fromJson(json);

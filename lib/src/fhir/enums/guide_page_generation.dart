@@ -47,7 +47,9 @@ enum GuidePageGeneration {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GuidePageGeneration.elementOnly.withElement(element);
+      return GuidePageGeneration.elementOnly.withElement(
+        element,
+      );
     }
     return GuidePageGeneration.values.firstWhere(
       (e) => e.fhirCode == value,

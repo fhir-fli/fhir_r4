@@ -181,23 +181,28 @@ class ObservationDefinition extends DomainResource {
 
   /// Deserialize [ObservationDefinition] from a [String]
   /// or [YamlMap] object
-  factory ObservationDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? ObservationDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ObservationDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ObservationDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ObservationDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ObservationDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ObservationDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ObservationDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ObservationDefinition.fromJsonString(String source) {
+  factory ObservationDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ObservationDefinition.fromJson(json);
@@ -526,25 +531,28 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
 
   /// Deserialize [ObservationDefinitionQuantitativeDetails] from a [String]
   /// or [YamlMap] object
-  factory ObservationDefinitionQuantitativeDetails.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ObservationDefinitionQuantitativeDetails.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ObservationDefinitionQuantitativeDetails.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ObservationDefinitionQuantitativeDetails.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ObservationDefinitionQuantitativeDetails cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ObservationDefinitionQuantitativeDetails.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ObservationDefinitionQuantitativeDetails cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ObservationDefinitionQuantitativeDetails]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ObservationDefinitionQuantitativeDetails.fromJsonString(
-      String source) {
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ObservationDefinitionQuantitativeDetails.fromJson(json);
@@ -771,24 +779,28 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
 
   /// Deserialize [ObservationDefinitionQualifiedInterval] from a [String]
   /// or [YamlMap] object
-  factory ObservationDefinitionQualifiedInterval.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ObservationDefinitionQualifiedInterval.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ObservationDefinitionQualifiedInterval.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ObservationDefinitionQualifiedInterval.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ObservationDefinitionQualifiedInterval cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ObservationDefinitionQualifiedInterval.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ObservationDefinitionQualifiedInterval cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ObservationDefinitionQualifiedInterval]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ObservationDefinitionQualifiedInterval.fromJsonString(String source) {
+  factory ObservationDefinitionQualifiedInterval.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ObservationDefinitionQualifiedInterval.fromJson(json);

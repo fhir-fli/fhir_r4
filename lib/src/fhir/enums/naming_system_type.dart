@@ -43,7 +43,9 @@ enum NamingSystemType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NamingSystemType.elementOnly.withElement(element);
+      return NamingSystemType.elementOnly.withElement(
+        element,
+      );
     }
     return NamingSystemType.values.firstWhere(
       (e) => e.fhirCode == value,

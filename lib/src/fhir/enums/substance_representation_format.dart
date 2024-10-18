@@ -59,7 +59,9 @@ enum SubstanceRepresentationFormat {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubstanceRepresentationFormat.elementOnly.withElement(element);
+      return SubstanceRepresentationFormat.elementOnly.withElement(
+        element,
+      );
     }
     return SubstanceRepresentationFormat.values.firstWhere(
       (e) => e.fhirCode == value,

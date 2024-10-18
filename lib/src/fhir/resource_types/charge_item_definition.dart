@@ -267,23 +267,28 @@ class ChargeItemDefinition extends DomainResource {
 
   /// Deserialize [ChargeItemDefinition] from a [String]
   /// or [YamlMap] object
-  factory ChargeItemDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? ChargeItemDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ChargeItemDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ChargeItemDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ChargeItemDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ChargeItemDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ChargeItemDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ChargeItemDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ChargeItemDefinition.fromJsonString(String source) {
+  factory ChargeItemDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ChargeItemDefinition.fromJson(json);
@@ -782,24 +787,28 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
 
   /// Deserialize [ChargeItemDefinitionApplicability] from a [String]
   /// or [YamlMap] object
-  factory ChargeItemDefinitionApplicability.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ChargeItemDefinitionApplicability.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ChargeItemDefinitionApplicability.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ChargeItemDefinitionApplicability.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ChargeItemDefinitionApplicability cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ChargeItemDefinitionApplicability.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ChargeItemDefinitionApplicability cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ChargeItemDefinitionApplicability]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ChargeItemDefinitionApplicability.fromJsonString(String source) {
+  factory ChargeItemDefinitionApplicability.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ChargeItemDefinitionApplicability.fromJson(json);
@@ -987,24 +996,28 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
 
   /// Deserialize [ChargeItemDefinitionPropertyGroup] from a [String]
   /// or [YamlMap] object
-  factory ChargeItemDefinitionPropertyGroup.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ChargeItemDefinitionPropertyGroup.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ChargeItemDefinitionPropertyGroup.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ChargeItemDefinitionPropertyGroup.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ChargeItemDefinitionPropertyGroup cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ChargeItemDefinitionPropertyGroup.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ChargeItemDefinitionPropertyGroup cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ChargeItemDefinitionPropertyGroup]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ChargeItemDefinitionPropertyGroup.fromJsonString(String source) {
+  factory ChargeItemDefinitionPropertyGroup.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ChargeItemDefinitionPropertyGroup.fromJson(json);
@@ -1177,24 +1190,28 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
 
   /// Deserialize [ChargeItemDefinitionPriceComponent] from a [String]
   /// or [YamlMap] object
-  factory ChargeItemDefinitionPriceComponent.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ChargeItemDefinitionPriceComponent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ChargeItemDefinitionPriceComponent.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ChargeItemDefinitionPriceComponent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ChargeItemDefinitionPriceComponent cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ChargeItemDefinitionPriceComponent.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ChargeItemDefinitionPriceComponent cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ChargeItemDefinitionPriceComponent]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ChargeItemDefinitionPriceComponent.fromJsonString(String source) {
+  factory ChargeItemDefinitionPriceComponent.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ChargeItemDefinitionPriceComponent.fromJson(json);

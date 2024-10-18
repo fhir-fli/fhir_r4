@@ -39,7 +39,9 @@ enum RestfulCapabilityMode {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RestfulCapabilityMode.elementOnly.withElement(element);
+      return RestfulCapabilityMode.elementOnly.withElement(
+        element,
+      );
     }
     return RestfulCapabilityMode.values.firstWhere(
       (e) => e.fhirCode == value,

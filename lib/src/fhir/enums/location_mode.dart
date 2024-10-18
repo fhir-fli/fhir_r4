@@ -39,7 +39,9 @@ enum LocationMode {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return LocationMode.elementOnly.withElement(element);
+      return LocationMode.elementOnly.withElement(
+        element,
+      );
     }
     return LocationMode.values.firstWhere(
       (e) => e.fhirCode == value,

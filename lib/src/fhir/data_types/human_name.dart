@@ -87,22 +87,27 @@ class HumanName extends DataType {
 
   /// Deserialize [HumanName] from a [String]
   /// or [YamlMap] object
-  factory HumanName.fromYaml(dynamic yaml) => yaml is String
-      ? HumanName.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory HumanName.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? HumanName.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('HumanName cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? HumanName.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('HumanName cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [HumanName]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory HumanName.fromJsonString(String source) {
+  factory HumanName.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return HumanName.fromJson(json);

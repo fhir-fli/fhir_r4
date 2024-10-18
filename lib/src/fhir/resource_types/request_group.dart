@@ -228,22 +228,27 @@ class RequestGroup extends DomainResource {
 
   /// Deserialize [RequestGroup] from a [String]
   /// or [YamlMap] object
-  factory RequestGroup.fromYaml(dynamic yaml) => yaml is String
-      ? RequestGroup.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory RequestGroup.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? RequestGroup.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('RequestGroup cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? RequestGroup.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('RequestGroup cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [RequestGroup]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RequestGroup.fromJsonString(String source) {
+  factory RequestGroup.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return RequestGroup.fromJson(json);
@@ -781,22 +786,28 @@ class RequestGroupAction extends BackboneElement {
 
   /// Deserialize [RequestGroupAction] from a [String]
   /// or [YamlMap] object
-  factory RequestGroupAction.fromYaml(dynamic yaml) => yaml is String
-      ? RequestGroupAction.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory RequestGroupAction.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? RequestGroupAction.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('RequestGroupAction cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? RequestGroupAction.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'RequestGroupAction cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [RequestGroupAction]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RequestGroupAction.fromJsonString(String source) {
+  factory RequestGroupAction.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return RequestGroupAction.fromJson(json);
@@ -1198,23 +1209,28 @@ class RequestGroupCondition extends BackboneElement {
 
   /// Deserialize [RequestGroupCondition] from a [String]
   /// or [YamlMap] object
-  factory RequestGroupCondition.fromYaml(dynamic yaml) => yaml is String
-      ? RequestGroupCondition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory RequestGroupCondition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? RequestGroupCondition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'RequestGroupCondition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? RequestGroupCondition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'RequestGroupCondition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [RequestGroupCondition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RequestGroupCondition.fromJsonString(String source) {
+  factory RequestGroupCondition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return RequestGroupCondition.fromJson(json);
@@ -1374,23 +1390,28 @@ class RequestGroupRelatedAction extends BackboneElement {
 
   /// Deserialize [RequestGroupRelatedAction] from a [String]
   /// or [YamlMap] object
-  factory RequestGroupRelatedAction.fromYaml(dynamic yaml) => yaml is String
-      ? RequestGroupRelatedAction.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory RequestGroupRelatedAction.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? RequestGroupRelatedAction.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'RequestGroupRelatedAction cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? RequestGroupRelatedAction.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'RequestGroupRelatedAction cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [RequestGroupRelatedAction]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RequestGroupRelatedAction.fromJsonString(String source) {
+  factory RequestGroupRelatedAction.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return RequestGroupRelatedAction.fromJson(json);

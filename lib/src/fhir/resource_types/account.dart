@@ -175,22 +175,27 @@ class Account extends DomainResource {
 
   /// Deserialize [Account] from a [String]
   /// or [YamlMap] object
-  factory Account.fromYaml(dynamic yaml) => yaml is String
-      ? Account.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Account.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Account.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Account cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Account.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Account cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Account]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Account.fromJsonString(String source) {
+  factory Account.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Account.fromJson(json);
@@ -479,22 +484,28 @@ class AccountCoverage extends BackboneElement {
 
   /// Deserialize [AccountCoverage] from a [String]
   /// or [YamlMap] object
-  factory AccountCoverage.fromYaml(dynamic yaml) => yaml is String
-      ? AccountCoverage.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory AccountCoverage.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? AccountCoverage.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('AccountCoverage cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? AccountCoverage.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'AccountCoverage cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [AccountCoverage]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AccountCoverage.fromJsonString(String source) {
+  factory AccountCoverage.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AccountCoverage.fromJson(json);
@@ -657,22 +668,28 @@ class AccountGuarantor extends BackboneElement {
 
   /// Deserialize [AccountGuarantor] from a [String]
   /// or [YamlMap] object
-  factory AccountGuarantor.fromYaml(dynamic yaml) => yaml is String
-      ? AccountGuarantor.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory AccountGuarantor.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? AccountGuarantor.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('AccountGuarantor cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? AccountGuarantor.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'AccountGuarantor cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [AccountGuarantor]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory AccountGuarantor.fromJsonString(String source) {
+  factory AccountGuarantor.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return AccountGuarantor.fromJson(json);

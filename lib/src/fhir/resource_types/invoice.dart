@@ -199,22 +199,27 @@ class Invoice extends DomainResource {
 
   /// Deserialize [Invoice] from a [String]
   /// or [YamlMap] object
-  factory Invoice.fromYaml(dynamic yaml) => yaml is String
-      ? Invoice.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Invoice.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Invoice.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Invoice cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Invoice.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Invoice cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Invoice]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Invoice.fromJsonString(String source) {
+  factory Invoice.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Invoice.fromJson(json);
@@ -546,22 +551,28 @@ class InvoiceParticipant extends BackboneElement {
 
   /// Deserialize [InvoiceParticipant] from a [String]
   /// or [YamlMap] object
-  factory InvoiceParticipant.fromYaml(dynamic yaml) => yaml is String
-      ? InvoiceParticipant.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory InvoiceParticipant.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? InvoiceParticipant.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('InvoiceParticipant cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? InvoiceParticipant.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'InvoiceParticipant cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [InvoiceParticipant]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory InvoiceParticipant.fromJsonString(String source) {
+  factory InvoiceParticipant.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return InvoiceParticipant.fromJson(json);
@@ -731,22 +742,28 @@ class InvoiceLineItem extends BackboneElement {
 
   /// Deserialize [InvoiceLineItem] from a [String]
   /// or [YamlMap] object
-  factory InvoiceLineItem.fromYaml(dynamic yaml) => yaml is String
-      ? InvoiceLineItem.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory InvoiceLineItem.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? InvoiceLineItem.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('InvoiceLineItem cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? InvoiceLineItem.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'InvoiceLineItem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [InvoiceLineItem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory InvoiceLineItem.fromJsonString(String source) {
+  factory InvoiceLineItem.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return InvoiceLineItem.fromJson(json);
@@ -949,23 +966,28 @@ class InvoicePriceComponent extends BackboneElement {
 
   /// Deserialize [InvoicePriceComponent] from a [String]
   /// or [YamlMap] object
-  factory InvoicePriceComponent.fromYaml(dynamic yaml) => yaml is String
-      ? InvoicePriceComponent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory InvoicePriceComponent.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? InvoicePriceComponent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'InvoicePriceComponent cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? InvoicePriceComponent.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'InvoicePriceComponent cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [InvoicePriceComponent]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory InvoicePriceComponent.fromJsonString(String source) {
+  factory InvoicePriceComponent.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return InvoicePriceComponent.fromJson(json);

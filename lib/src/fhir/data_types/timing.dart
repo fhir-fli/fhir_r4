@@ -75,22 +75,27 @@ class Timing extends BackboneType {
 
   /// Deserialize [Timing] from a [String]
   /// or [YamlMap] object
-  factory Timing.fromYaml(dynamic yaml) => yaml is String
-      ? Timing.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Timing.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Timing.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Timing cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Timing.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Timing cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Timing]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Timing.fromJsonString(String source) {
+  factory Timing.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Timing.fromJson(json);
@@ -351,22 +356,27 @@ class TimingRepeat extends Element {
 
   /// Deserialize [TimingRepeat] from a [String]
   /// or [YamlMap] object
-  factory TimingRepeat.fromYaml(dynamic yaml) => yaml is String
-      ? TimingRepeat.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory TimingRepeat.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? TimingRepeat.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('TimingRepeat cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? TimingRepeat.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('TimingRepeat cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [TimingRepeat]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory TimingRepeat.fromJsonString(String source) {
+  factory TimingRepeat.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return TimingRepeat.fromJson(json);

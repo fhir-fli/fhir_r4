@@ -87,7 +87,9 @@ enum TextureModifierCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TextureModifierCodes.elementOnly.withElement(element);
+      return TextureModifierCodes.elementOnly.withElement(
+        element,
+      );
     }
     return TextureModifierCodes.values.firstWhere(
       (e) => e.fhirCode == value,

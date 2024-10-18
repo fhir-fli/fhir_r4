@@ -77,22 +77,27 @@ class FhirDuration extends Quantity {
 
   /// Deserialize [FhirDuration] from a [String]
   /// or [YamlMap] object
-  factory FhirDuration.fromYaml(dynamic yaml) => yaml is String
-      ? FhirDuration.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory FhirDuration.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? FhirDuration.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('FhirDuration cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? FhirDuration.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('FhirDuration cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [FhirDuration]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory FhirDuration.fromJsonString(String source) {
+  factory FhirDuration.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return FhirDuration.fromJson(json);

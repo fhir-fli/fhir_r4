@@ -59,7 +59,9 @@ enum RequestStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RequestStatus.elementOnly.withElement(element);
+      return RequestStatus.elementOnly.withElement(
+        element,
+      );
     }
     return RequestStatus.values.firstWhere(
       (e) => e.fhirCode == value,

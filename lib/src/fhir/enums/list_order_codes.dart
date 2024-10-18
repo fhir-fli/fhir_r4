@@ -63,7 +63,9 @@ enum ListOrderCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ListOrderCodes.elementOnly.withElement(element);
+      return ListOrderCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ListOrderCodes.values.firstWhere(
       (e) => e.fhirCode == value,

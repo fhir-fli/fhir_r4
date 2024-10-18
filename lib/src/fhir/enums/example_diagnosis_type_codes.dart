@@ -79,7 +79,9 @@ enum ExampleDiagnosisTypeCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleDiagnosisTypeCodes.elementOnly.withElement(element);
+      return ExampleDiagnosisTypeCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ExampleDiagnosisTypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,

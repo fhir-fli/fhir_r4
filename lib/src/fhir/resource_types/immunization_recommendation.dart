@@ -126,23 +126,28 @@ class ImmunizationRecommendation extends DomainResource {
 
   /// Deserialize [ImmunizationRecommendation] from a [String]
   /// or [YamlMap] object
-  factory ImmunizationRecommendation.fromYaml(dynamic yaml) => yaml is String
-      ? ImmunizationRecommendation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImmunizationRecommendation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImmunizationRecommendation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImmunizationRecommendation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImmunizationRecommendation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImmunizationRecommendation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImmunizationRecommendation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImmunizationRecommendation.fromJsonString(String source) {
+  factory ImmunizationRecommendation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImmunizationRecommendation.fromJson(json);
@@ -455,25 +460,28 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
 
   /// Deserialize [ImmunizationRecommendationRecommendation] from a [String]
   /// or [YamlMap] object
-  factory ImmunizationRecommendationRecommendation.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ImmunizationRecommendationRecommendation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImmunizationRecommendationRecommendation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImmunizationRecommendationRecommendation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImmunizationRecommendationRecommendation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImmunizationRecommendationRecommendation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImmunizationRecommendationRecommendation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImmunizationRecommendationRecommendation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImmunizationRecommendationRecommendation.fromJsonString(
-      String source) {
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImmunizationRecommendationRecommendation.fromJson(json);
@@ -783,25 +791,28 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
 
   /// Deserialize [ImmunizationRecommendationDateCriterion] from a [String]
   /// or [YamlMap] object
-  factory ImmunizationRecommendationDateCriterion.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ImmunizationRecommendationDateCriterion.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImmunizationRecommendationDateCriterion.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImmunizationRecommendationDateCriterion.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImmunizationRecommendationDateCriterion cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImmunizationRecommendationDateCriterion.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImmunizationRecommendationDateCriterion cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImmunizationRecommendationDateCriterion]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImmunizationRecommendationDateCriterion.fromJsonString(
-      String source) {
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImmunizationRecommendationDateCriterion.fromJson(json);

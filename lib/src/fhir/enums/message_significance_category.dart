@@ -43,7 +43,9 @@ enum MessageSignificanceCategory {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MessageSignificanceCategory.elementOnly.withElement(element);
+      return MessageSignificanceCategory.elementOnly.withElement(
+        element,
+      );
     }
     return MessageSignificanceCategory.values.firstWhere(
       (e) => e.fhirCode == value,

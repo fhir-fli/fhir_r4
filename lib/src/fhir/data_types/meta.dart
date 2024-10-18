@@ -91,22 +91,27 @@ class FhirMeta extends DataType {
 
   /// Deserialize [FhirMeta] from a [String]
   /// or [YamlMap] object
-  factory FhirMeta.fromYaml(dynamic yaml) => yaml is String
-      ? FhirMeta.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory FhirMeta.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? FhirMeta.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('FhirMeta cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? FhirMeta.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('FhirMeta cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [FhirMeta]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory FhirMeta.fromJsonString(String source) {
+  factory FhirMeta.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return FhirMeta.fromJson(json);

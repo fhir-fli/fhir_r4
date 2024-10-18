@@ -35,7 +35,9 @@ enum CommonTags {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CommonTags.elementOnly.withElement(element);
+      return CommonTags.elementOnly.withElement(
+        element,
+      );
     }
     return CommonTags.values.firstWhere(
       (e) => e.fhirCode == value,

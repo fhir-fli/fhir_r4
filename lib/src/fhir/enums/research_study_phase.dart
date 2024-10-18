@@ -63,7 +63,9 @@ enum ResearchStudyPhase {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResearchStudyPhase.elementOnly.withElement(element);
+      return ResearchStudyPhase.elementOnly.withElement(
+        element,
+      );
     }
     return ResearchStudyPhase.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -195,23 +195,28 @@ class RegulatedAuthorization extends DomainResource {
 
   /// Deserialize [RegulatedAuthorization] from a [String]
   /// or [YamlMap] object
-  factory RegulatedAuthorization.fromYaml(dynamic yaml) => yaml is String
-      ? RegulatedAuthorization.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory RegulatedAuthorization.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? RegulatedAuthorization.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'RegulatedAuthorization cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? RegulatedAuthorization.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'RegulatedAuthorization cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [RegulatedAuthorization]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RegulatedAuthorization.fromJsonString(String source) {
+  factory RegulatedAuthorization.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return RegulatedAuthorization.fromJson(json);
@@ -576,23 +581,28 @@ class RegulatedAuthorizationCase extends BackboneElement {
 
   /// Deserialize [RegulatedAuthorizationCase] from a [String]
   /// or [YamlMap] object
-  factory RegulatedAuthorizationCase.fromYaml(dynamic yaml) => yaml is String
-      ? RegulatedAuthorizationCase.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory RegulatedAuthorizationCase.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? RegulatedAuthorizationCase.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'RegulatedAuthorizationCase cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? RegulatedAuthorizationCase.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'RegulatedAuthorizationCase cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [RegulatedAuthorizationCase]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory RegulatedAuthorizationCase.fromJsonString(String source) {
+  factory RegulatedAuthorizationCase.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return RegulatedAuthorizationCase.fromJson(json);

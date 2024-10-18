@@ -63,7 +63,9 @@ enum OrganizationAffiliationRole {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return OrganizationAffiliationRole.elementOnly.withElement(element);
+      return OrganizationAffiliationRole.elementOnly.withElement(
+        element,
+      );
     }
     return OrganizationAffiliationRole.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -47,7 +47,9 @@ enum EvidenceVariableHandling {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EvidenceVariableHandling.elementOnly.withElement(element);
+      return EvidenceVariableHandling.elementOnly.withElement(
+        element,
+      );
     }
     return EvidenceVariableHandling.values.firstWhere(
       (e) => e.fhirCode == value,

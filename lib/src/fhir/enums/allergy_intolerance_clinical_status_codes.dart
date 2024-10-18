@@ -43,8 +43,9 @@ enum AllergyIntoleranceClinicalStatusCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AllergyIntoleranceClinicalStatusCodes.elementOnly
-          .withElement(element);
+      return AllergyIntoleranceClinicalStatusCodes.elementOnly.withElement(
+        element,
+      );
     }
     return AllergyIntoleranceClinicalStatusCodes.values.firstWhere(
       (e) => e.fhirCode == value,

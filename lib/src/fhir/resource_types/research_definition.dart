@@ -355,22 +355,28 @@ class ResearchDefinition extends DomainResource {
 
   /// Deserialize [ResearchDefinition] from a [String]
   /// or [YamlMap] object
-  factory ResearchDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? ResearchDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ResearchDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ResearchDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ResearchDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ResearchDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ResearchDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ResearchDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ResearchDefinition.fromJsonString(String source) {
+  factory ResearchDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ResearchDefinition.fromJson(json);

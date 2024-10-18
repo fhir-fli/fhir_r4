@@ -12827,7 +12827,9 @@ enum AuditEventID {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AuditEventID.elementOnly.withElement(element);
+      return AuditEventID.elementOnly.withElement(
+        element,
+      );
     }
     return AuditEventID.values.firstWhere(
       (e) => e.fhirCode == value,

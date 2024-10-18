@@ -338,7 +338,9 @@ enum EndpointPayloadType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EndpointPayloadType.elementOnly.withElement(element);
+      return EndpointPayloadType.elementOnly.withElement(
+        element,
+      );
     }
     return EndpointPayloadType.values.firstWhere(
       (e) => e.fhirCode == value,

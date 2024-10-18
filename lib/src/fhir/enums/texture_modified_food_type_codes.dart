@@ -87,7 +87,9 @@ enum TextureModifiedFoodTypeCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TextureModifiedFoodTypeCodes.elementOnly.withElement(element);
+      return TextureModifiedFoodTypeCodes.elementOnly.withElement(
+        element,
+      );
     }
     return TextureModifiedFoodTypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,

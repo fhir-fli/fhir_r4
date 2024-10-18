@@ -59,7 +59,9 @@ enum ContributorSummaryType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContributorSummaryType.elementOnly.withElement(element);
+      return ContributorSummaryType.elementOnly.withElement(
+        element,
+      );
     }
     return ContributorSummaryType.values.firstWhere(
       (e) => e.fhirCode == value,

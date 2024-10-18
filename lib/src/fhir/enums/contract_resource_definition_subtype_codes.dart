@@ -35,8 +35,9 @@ enum ContractResourceDefinitionSubtypeCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContractResourceDefinitionSubtypeCodes.elementOnly
-          .withElement(element);
+      return ContractResourceDefinitionSubtypeCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ContractResourceDefinitionSubtypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,

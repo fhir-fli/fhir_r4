@@ -35,8 +35,9 @@ enum ContractResourceAssetAvailiabilityCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContractResourceAssetAvailiabilityCodes.elementOnly
-          .withElement(element);
+      return ContractResourceAssetAvailiabilityCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ContractResourceAssetAvailiabilityCodes.values.firstWhere(
       (e) => e.fhirCode == value,

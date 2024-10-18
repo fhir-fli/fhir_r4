@@ -39,7 +39,9 @@ enum ExamplePaymentTypeCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExamplePaymentTypeCodes.elementOnly.withElement(element);
+      return ExamplePaymentTypeCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ExamplePaymentTypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,

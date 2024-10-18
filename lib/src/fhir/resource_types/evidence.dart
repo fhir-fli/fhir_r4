@@ -306,22 +306,27 @@ class Evidence extends DomainResource {
 
   /// Deserialize [Evidence] from a [String]
   /// or [YamlMap] object
-  factory Evidence.fromYaml(dynamic yaml) => yaml is String
-      ? Evidence.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Evidence.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Evidence.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Evidence cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Evidence.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Evidence cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Evidence]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Evidence.fromJsonString(String source) {
+  factory Evidence.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Evidence.fromJson(json);
@@ -843,23 +848,28 @@ class EvidenceVariableDefinition extends BackboneElement {
 
   /// Deserialize [EvidenceVariableDefinition] from a [String]
   /// or [YamlMap] object
-  factory EvidenceVariableDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? EvidenceVariableDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory EvidenceVariableDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? EvidenceVariableDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'EvidenceVariableDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? EvidenceVariableDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'EvidenceVariableDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [EvidenceVariableDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EvidenceVariableDefinition.fromJsonString(String source) {
+  factory EvidenceVariableDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return EvidenceVariableDefinition.fromJson(json);
@@ -1116,22 +1126,28 @@ class EvidenceStatistic extends BackboneElement {
 
   /// Deserialize [EvidenceStatistic] from a [String]
   /// or [YamlMap] object
-  factory EvidenceStatistic.fromYaml(dynamic yaml) => yaml is String
-      ? EvidenceStatistic.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory EvidenceStatistic.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? EvidenceStatistic.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('EvidenceStatistic cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? EvidenceStatistic.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'EvidenceStatistic cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [EvidenceStatistic]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EvidenceStatistic.fromJsonString(String source) {
+  factory EvidenceStatistic.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return EvidenceStatistic.fromJson(json);
@@ -1406,22 +1422,28 @@ class EvidenceSampleSize extends BackboneElement {
 
   /// Deserialize [EvidenceSampleSize] from a [String]
   /// or [YamlMap] object
-  factory EvidenceSampleSize.fromYaml(dynamic yaml) => yaml is String
-      ? EvidenceSampleSize.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory EvidenceSampleSize.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? EvidenceSampleSize.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('EvidenceSampleSize cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? EvidenceSampleSize.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'EvidenceSampleSize cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [EvidenceSampleSize]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EvidenceSampleSize.fromJsonString(String source) {
+  factory EvidenceSampleSize.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return EvidenceSampleSize.fromJson(json);
@@ -1649,23 +1671,28 @@ class EvidenceAttributeEstimate extends BackboneElement {
 
   /// Deserialize [EvidenceAttributeEstimate] from a [String]
   /// or [YamlMap] object
-  factory EvidenceAttributeEstimate.fromYaml(dynamic yaml) => yaml is String
-      ? EvidenceAttributeEstimate.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory EvidenceAttributeEstimate.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? EvidenceAttributeEstimate.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'EvidenceAttributeEstimate cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? EvidenceAttributeEstimate.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'EvidenceAttributeEstimate cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [EvidenceAttributeEstimate]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EvidenceAttributeEstimate.fromJsonString(String source) {
+  factory EvidenceAttributeEstimate.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return EvidenceAttributeEstimate.fromJson(json);
@@ -1873,23 +1900,28 @@ class EvidenceModelCharacteristic extends BackboneElement {
 
   /// Deserialize [EvidenceModelCharacteristic] from a [String]
   /// or [YamlMap] object
-  factory EvidenceModelCharacteristic.fromYaml(dynamic yaml) => yaml is String
-      ? EvidenceModelCharacteristic.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory EvidenceModelCharacteristic.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? EvidenceModelCharacteristic.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'EvidenceModelCharacteristic cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? EvidenceModelCharacteristic.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'EvidenceModelCharacteristic cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [EvidenceModelCharacteristic]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EvidenceModelCharacteristic.fromJsonString(String source) {
+  factory EvidenceModelCharacteristic.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return EvidenceModelCharacteristic.fromJson(json);
@@ -2077,24 +2109,28 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
 
   /// Deserialize [EvidenceModelCharacteristicVariable] from a [String]
   /// or [YamlMap] object
-  factory EvidenceModelCharacteristicVariable.fromYaml(dynamic yaml) => yaml
-          is String
-      ? EvidenceModelCharacteristicVariable.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory EvidenceModelCharacteristicVariable.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? EvidenceModelCharacteristicVariable.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'EvidenceModelCharacteristicVariable cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? EvidenceModelCharacteristicVariable.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'EvidenceModelCharacteristicVariable cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [EvidenceModelCharacteristicVariable]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EvidenceModelCharacteristicVariable.fromJsonString(String source) {
+  factory EvidenceModelCharacteristicVariable.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return EvidenceModelCharacteristicVariable.fromJson(json);
@@ -2307,22 +2343,28 @@ class EvidenceCertainty extends BackboneElement {
 
   /// Deserialize [EvidenceCertainty] from a [String]
   /// or [YamlMap] object
-  factory EvidenceCertainty.fromYaml(dynamic yaml) => yaml is String
-      ? EvidenceCertainty.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory EvidenceCertainty.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? EvidenceCertainty.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('EvidenceCertainty cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? EvidenceCertainty.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'EvidenceCertainty cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [EvidenceCertainty]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory EvidenceCertainty.fromJsonString(String source) {
+  factory EvidenceCertainty.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return EvidenceCertainty.fromJson(json);

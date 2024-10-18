@@ -103,7 +103,9 @@ enum IdentifierTypeCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return IdentifierTypeCodes.elementOnly.withElement(element);
+      return IdentifierTypeCodes.elementOnly.withElement(
+        element,
+      );
     }
     return IdentifierTypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,

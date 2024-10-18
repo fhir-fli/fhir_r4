@@ -43,7 +43,9 @@ enum ImmunizationSubpotentReason {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImmunizationSubpotentReason.elementOnly.withElement(element);
+      return ImmunizationSubpotentReason.elementOnly.withElement(
+        element,
+      );
     }
     return ImmunizationSubpotentReason.values.firstWhere(
       (e) => e.fhirCode == value,

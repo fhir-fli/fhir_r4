@@ -51,7 +51,9 @@ enum SubstanceGrade {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubstanceGrade.elementOnly.withElement(element);
+      return SubstanceGrade.elementOnly.withElement(
+        element,
+      );
     }
     return SubstanceGrade.values.firstWhere(
       (e) => e.fhirCode == value,

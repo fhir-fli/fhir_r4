@@ -59,7 +59,9 @@ enum SupplyRequestStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SupplyRequestStatus.elementOnly.withElement(element);
+      return SupplyRequestStatus.elementOnly.withElement(
+        element,
+      );
     }
     return SupplyRequestStatus.values.firstWhere(
       (e) => e.fhirCode == value,

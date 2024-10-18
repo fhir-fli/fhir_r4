@@ -43,7 +43,9 @@ enum MedicationKnowledgeStatusCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationKnowledgeStatusCodes.elementOnly.withElement(element);
+      return MedicationKnowledgeStatusCodes.elementOnly.withElement(
+        element,
+      );
     }
     return MedicationKnowledgeStatusCodes.values.firstWhere(
       (e) => e.fhirCode == value,

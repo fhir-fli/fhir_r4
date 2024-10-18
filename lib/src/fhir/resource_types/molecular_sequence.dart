@@ -212,22 +212,28 @@ class MolecularSequence extends DomainResource {
 
   /// Deserialize [MolecularSequence] from a [String]
   /// or [YamlMap] object
-  factory MolecularSequence.fromYaml(dynamic yaml) => yaml is String
-      ? MolecularSequence.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MolecularSequence.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MolecularSequence.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('MolecularSequence cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MolecularSequence.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MolecularSequence cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MolecularSequence]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MolecularSequence.fromJsonString(String source) {
+  factory MolecularSequence.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MolecularSequence.fromJson(json);
@@ -626,23 +632,28 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
 
   /// Deserialize [MolecularSequenceReferenceSeq] from a [String]
   /// or [YamlMap] object
-  factory MolecularSequenceReferenceSeq.fromYaml(dynamic yaml) => yaml is String
-      ? MolecularSequenceReferenceSeq.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MolecularSequenceReferenceSeq.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MolecularSequenceReferenceSeq.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MolecularSequenceReferenceSeq cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MolecularSequenceReferenceSeq.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MolecularSequenceReferenceSeq cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MolecularSequenceReferenceSeq]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MolecularSequenceReferenceSeq.fromJsonString(String source) {
+  factory MolecularSequenceReferenceSeq.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MolecularSequenceReferenceSeq.fromJson(json);
@@ -929,23 +940,28 @@ class MolecularSequenceVariant extends BackboneElement {
 
   /// Deserialize [MolecularSequenceVariant] from a [String]
   /// or [YamlMap] object
-  factory MolecularSequenceVariant.fromYaml(dynamic yaml) => yaml is String
-      ? MolecularSequenceVariant.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MolecularSequenceVariant.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MolecularSequenceVariant.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MolecularSequenceVariant cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MolecularSequenceVariant.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MolecularSequenceVariant cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MolecularSequenceVariant]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MolecularSequenceVariant.fromJsonString(String source) {
+  factory MolecularSequenceVariant.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MolecularSequenceVariant.fromJson(json);
@@ -1263,23 +1279,28 @@ class MolecularSequenceQuality extends BackboneElement {
 
   /// Deserialize [MolecularSequenceQuality] from a [String]
   /// or [YamlMap] object
-  factory MolecularSequenceQuality.fromYaml(dynamic yaml) => yaml is String
-      ? MolecularSequenceQuality.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MolecularSequenceQuality.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MolecularSequenceQuality.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MolecularSequenceQuality cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MolecularSequenceQuality.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MolecularSequenceQuality cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MolecularSequenceQuality]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MolecularSequenceQuality.fromJsonString(String source) {
+  factory MolecularSequenceQuality.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MolecularSequenceQuality.fromJson(json);
@@ -1650,23 +1671,28 @@ class MolecularSequenceRoc extends BackboneElement {
 
   /// Deserialize [MolecularSequenceRoc] from a [String]
   /// or [YamlMap] object
-  factory MolecularSequenceRoc.fromYaml(dynamic yaml) => yaml is String
-      ? MolecularSequenceRoc.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MolecularSequenceRoc.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MolecularSequenceRoc.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MolecularSequenceRoc cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MolecularSequenceRoc.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MolecularSequenceRoc cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MolecularSequenceRoc]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MolecularSequenceRoc.fromJsonString(String source) {
+  factory MolecularSequenceRoc.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MolecularSequenceRoc.fromJson(json);
@@ -1930,23 +1956,28 @@ class MolecularSequenceRepository extends BackboneElement {
 
   /// Deserialize [MolecularSequenceRepository] from a [String]
   /// or [YamlMap] object
-  factory MolecularSequenceRepository.fromYaml(dynamic yaml) => yaml is String
-      ? MolecularSequenceRepository.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MolecularSequenceRepository.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MolecularSequenceRepository.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MolecularSequenceRepository cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MolecularSequenceRepository.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MolecularSequenceRepository cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MolecularSequenceRepository]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MolecularSequenceRepository.fromJsonString(String source) {
+  factory MolecularSequenceRepository.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MolecularSequenceRepository.fromJson(json);
@@ -2181,24 +2212,28 @@ class MolecularSequenceStructureVariant extends BackboneElement {
 
   /// Deserialize [MolecularSequenceStructureVariant] from a [String]
   /// or [YamlMap] object
-  factory MolecularSequenceStructureVariant.fromYaml(dynamic yaml) => yaml
-          is String
-      ? MolecularSequenceStructureVariant.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MolecularSequenceStructureVariant.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MolecularSequenceStructureVariant.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MolecularSequenceStructureVariant cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MolecularSequenceStructureVariant.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MolecularSequenceStructureVariant cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MolecularSequenceStructureVariant]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MolecularSequenceStructureVariant.fromJsonString(String source) {
+  factory MolecularSequenceStructureVariant.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MolecularSequenceStructureVariant.fromJson(json);
@@ -2389,23 +2424,28 @@ class MolecularSequenceOuter extends BackboneElement {
 
   /// Deserialize [MolecularSequenceOuter] from a [String]
   /// or [YamlMap] object
-  factory MolecularSequenceOuter.fromYaml(dynamic yaml) => yaml is String
-      ? MolecularSequenceOuter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MolecularSequenceOuter.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MolecularSequenceOuter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MolecularSequenceOuter cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MolecularSequenceOuter.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MolecularSequenceOuter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MolecularSequenceOuter]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MolecularSequenceOuter.fromJsonString(String source) {
+  factory MolecularSequenceOuter.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MolecularSequenceOuter.fromJson(json);
@@ -2569,23 +2609,28 @@ class MolecularSequenceInner extends BackboneElement {
 
   /// Deserialize [MolecularSequenceInner] from a [String]
   /// or [YamlMap] object
-  factory MolecularSequenceInner.fromYaml(dynamic yaml) => yaml is String
-      ? MolecularSequenceInner.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MolecularSequenceInner.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MolecularSequenceInner.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MolecularSequenceInner cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MolecularSequenceInner.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MolecularSequenceInner cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MolecularSequenceInner]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MolecularSequenceInner.fromJsonString(String source) {
+  factory MolecularSequenceInner.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MolecularSequenceInner.fromJson(json);

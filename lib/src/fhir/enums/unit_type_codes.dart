@@ -39,7 +39,9 @@ enum UnitTypeCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return UnitTypeCodes.elementOnly.withElement(element);
+      return UnitTypeCodes.elementOnly.withElement(
+        element,
+      );
     }
     return UnitTypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,

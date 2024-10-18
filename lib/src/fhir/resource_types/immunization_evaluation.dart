@@ -188,23 +188,28 @@ class ImmunizationEvaluation extends DomainResource {
 
   /// Deserialize [ImmunizationEvaluation] from a [String]
   /// or [YamlMap] object
-  factory ImmunizationEvaluation.fromYaml(dynamic yaml) => yaml is String
-      ? ImmunizationEvaluation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ImmunizationEvaluation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ImmunizationEvaluation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImmunizationEvaluation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ImmunizationEvaluation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ImmunizationEvaluation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ImmunizationEvaluation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ImmunizationEvaluation.fromJsonString(String source) {
+  factory ImmunizationEvaluation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ImmunizationEvaluation.fromJson(json);

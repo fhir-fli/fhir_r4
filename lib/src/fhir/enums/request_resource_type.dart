@@ -91,7 +91,9 @@ enum RequestResourceType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RequestResourceType.elementOnly.withElement(element);
+      return RequestResourceType.elementOnly.withElement(
+        element,
+      );
     }
     return RequestResourceType.values.firstWhere(
       (e) => e.fhirCode == value,

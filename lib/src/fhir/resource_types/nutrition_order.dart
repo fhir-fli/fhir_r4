@@ -212,22 +212,27 @@ class NutritionOrder extends DomainResource {
 
   /// Deserialize [NutritionOrder] from a [String]
   /// or [YamlMap] object
-  factory NutritionOrder.fromYaml(dynamic yaml) => yaml is String
-      ? NutritionOrder.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory NutritionOrder.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? NutritionOrder.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('NutritionOrder cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? NutritionOrder.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('NutritionOrder cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [NutritionOrder]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory NutritionOrder.fromJsonString(String source) {
+  factory NutritionOrder.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return NutritionOrder.fromJson(json);
@@ -649,23 +654,28 @@ class NutritionOrderOralDiet extends BackboneElement {
 
   /// Deserialize [NutritionOrderOralDiet] from a [String]
   /// or [YamlMap] object
-  factory NutritionOrderOralDiet.fromYaml(dynamic yaml) => yaml is String
-      ? NutritionOrderOralDiet.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory NutritionOrderOralDiet.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? NutritionOrderOralDiet.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'NutritionOrderOralDiet cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? NutritionOrderOralDiet.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'NutritionOrderOralDiet cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [NutritionOrderOralDiet]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory NutritionOrderOralDiet.fromJsonString(String source) {
+  factory NutritionOrderOralDiet.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return NutritionOrderOralDiet.fromJson(json);
@@ -868,23 +878,28 @@ class NutritionOrderNutrient extends BackboneElement {
 
   /// Deserialize [NutritionOrderNutrient] from a [String]
   /// or [YamlMap] object
-  factory NutritionOrderNutrient.fromYaml(dynamic yaml) => yaml is String
-      ? NutritionOrderNutrient.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory NutritionOrderNutrient.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? NutritionOrderNutrient.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'NutritionOrderNutrient cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? NutritionOrderNutrient.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'NutritionOrderNutrient cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [NutritionOrderNutrient]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory NutritionOrderNutrient.fromJsonString(String source) {
+  factory NutritionOrderNutrient.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return NutritionOrderNutrient.fromJson(json);
@@ -1035,23 +1050,28 @@ class NutritionOrderTexture extends BackboneElement {
 
   /// Deserialize [NutritionOrderTexture] from a [String]
   /// or [YamlMap] object
-  factory NutritionOrderTexture.fromYaml(dynamic yaml) => yaml is String
-      ? NutritionOrderTexture.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory NutritionOrderTexture.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? NutritionOrderTexture.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'NutritionOrderTexture cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? NutritionOrderTexture.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'NutritionOrderTexture cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [NutritionOrderTexture]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory NutritionOrderTexture.fromJsonString(String source) {
+  factory NutritionOrderTexture.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return NutritionOrderTexture.fromJson(json);
@@ -1228,23 +1248,28 @@ class NutritionOrderSupplement extends BackboneElement {
 
   /// Deserialize [NutritionOrderSupplement] from a [String]
   /// or [YamlMap] object
-  factory NutritionOrderSupplement.fromYaml(dynamic yaml) => yaml is String
-      ? NutritionOrderSupplement.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory NutritionOrderSupplement.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? NutritionOrderSupplement.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'NutritionOrderSupplement cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? NutritionOrderSupplement.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'NutritionOrderSupplement cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [NutritionOrderSupplement]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory NutritionOrderSupplement.fromJsonString(String source) {
+  factory NutritionOrderSupplement.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return NutritionOrderSupplement.fromJson(json);
@@ -1480,23 +1505,28 @@ class NutritionOrderEnteralFormula extends BackboneElement {
 
   /// Deserialize [NutritionOrderEnteralFormula] from a [String]
   /// or [YamlMap] object
-  factory NutritionOrderEnteralFormula.fromYaml(dynamic yaml) => yaml is String
-      ? NutritionOrderEnteralFormula.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory NutritionOrderEnteralFormula.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? NutritionOrderEnteralFormula.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'NutritionOrderEnteralFormula cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? NutritionOrderEnteralFormula.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'NutritionOrderEnteralFormula cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [NutritionOrderEnteralFormula]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory NutritionOrderEnteralFormula.fromJsonString(String source) {
+  factory NutritionOrderEnteralFormula.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return NutritionOrderEnteralFormula.fromJson(json);
@@ -1754,23 +1784,28 @@ class NutritionOrderAdministration extends BackboneElement {
 
   /// Deserialize [NutritionOrderAdministration] from a [String]
   /// or [YamlMap] object
-  factory NutritionOrderAdministration.fromYaml(dynamic yaml) => yaml is String
-      ? NutritionOrderAdministration.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory NutritionOrderAdministration.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? NutritionOrderAdministration.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'NutritionOrderAdministration cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? NutritionOrderAdministration.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'NutritionOrderAdministration cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [NutritionOrderAdministration]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory NutritionOrderAdministration.fromJsonString(String source) {
+  factory NutritionOrderAdministration.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return NutritionOrderAdministration.fromJson(json);

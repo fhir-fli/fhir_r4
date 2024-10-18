@@ -51,7 +51,9 @@ enum GoalCategory {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GoalCategory.elementOnly.withElement(element);
+      return GoalCategory.elementOnly.withElement(
+        element,
+      );
     }
     return GoalCategory.values.firstWhere(
       (e) => e.fhirCode == value,

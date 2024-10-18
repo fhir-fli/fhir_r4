@@ -188,23 +188,28 @@ class CompartmentDefinition extends DomainResource {
 
   /// Deserialize [CompartmentDefinition] from a [String]
   /// or [YamlMap] object
-  factory CompartmentDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? CompartmentDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CompartmentDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CompartmentDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CompartmentDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CompartmentDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CompartmentDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CompartmentDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CompartmentDefinition.fromJsonString(String source) {
+  factory CompartmentDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CompartmentDefinition.fromJson(json);
@@ -570,23 +575,28 @@ class CompartmentDefinitionResource extends BackboneElement {
 
   /// Deserialize [CompartmentDefinitionResource] from a [String]
   /// or [YamlMap] object
-  factory CompartmentDefinitionResource.fromYaml(dynamic yaml) => yaml is String
-      ? CompartmentDefinitionResource.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CompartmentDefinitionResource.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CompartmentDefinitionResource.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CompartmentDefinitionResource cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CompartmentDefinitionResource.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CompartmentDefinitionResource cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CompartmentDefinitionResource]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CompartmentDefinitionResource.fromJsonString(String source) {
+  factory CompartmentDefinitionResource.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CompartmentDefinitionResource.fromJson(json);

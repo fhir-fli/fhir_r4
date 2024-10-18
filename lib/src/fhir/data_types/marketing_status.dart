@@ -83,22 +83,28 @@ class MarketingStatus extends BackboneType {
 
   /// Deserialize [MarketingStatus] from a [String]
   /// or [YamlMap] object
-  factory MarketingStatus.fromYaml(dynamic yaml) => yaml is String
-      ? MarketingStatus.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory MarketingStatus.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? MarketingStatus.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('MarketingStatus cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? MarketingStatus.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MarketingStatus cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [MarketingStatus]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory MarketingStatus.fromJsonString(String source) {
+  factory MarketingStatus.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return MarketingStatus.fromJson(json);

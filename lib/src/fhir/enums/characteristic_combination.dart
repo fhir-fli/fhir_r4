@@ -39,7 +39,9 @@ enum CharacteristicCombination {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CharacteristicCombination.elementOnly.withElement(element);
+      return CharacteristicCombination.elementOnly.withElement(
+        element,
+      );
     }
     return CharacteristicCombination.values.firstWhere(
       (e) => e.fhirCode == value,

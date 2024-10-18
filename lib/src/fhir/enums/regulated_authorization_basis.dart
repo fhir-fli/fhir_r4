@@ -71,7 +71,9 @@ enum RegulatedAuthorizationBasis {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RegulatedAuthorizationBasis.elementOnly.withElement(element);
+      return RegulatedAuthorizationBasis.elementOnly.withElement(
+        element,
+      );
     }
     return RegulatedAuthorizationBasis.values.firstWhere(
       (e) => e.fhirCode == value,

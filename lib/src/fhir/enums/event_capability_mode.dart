@@ -39,7 +39,9 @@ enum EventCapabilityMode {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EventCapabilityMode.elementOnly.withElement(element);
+      return EventCapabilityMode.elementOnly.withElement(
+        element,
+      );
     }
     return EventCapabilityMode.values.firstWhere(
       (e) => e.fhirCode == value,

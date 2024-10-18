@@ -39,7 +39,9 @@ enum AdjudicationReasonCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdjudicationReasonCodes.elementOnly.withElement(element);
+      return AdjudicationReasonCodes.elementOnly.withElement(
+        element,
+      );
     }
     return AdjudicationReasonCodes.values.firstWhere(
       (e) => e.fhirCode == value,

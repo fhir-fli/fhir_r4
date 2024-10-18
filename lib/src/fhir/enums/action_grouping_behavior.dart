@@ -43,7 +43,9 @@ enum ActionGroupingBehavior {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionGroupingBehavior.elementOnly.withElement(element);
+      return ActionGroupingBehavior.elementOnly.withElement(
+        element,
+      );
     }
     return ActionGroupingBehavior.values.firstWhere(
       (e) => e.fhirCode == value,

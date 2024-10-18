@@ -71,7 +71,9 @@ enum GuideParameterCode {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GuideParameterCode.elementOnly.withElement(element);
+      return GuideParameterCode.elementOnly.withElement(
+        element,
+      );
     }
     return GuideParameterCode.values.firstWhere(
       (e) => e.fhirCode == value,

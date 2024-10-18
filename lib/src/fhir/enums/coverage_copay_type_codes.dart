@@ -71,7 +71,9 @@ enum CoverageCopayTypeCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CoverageCopayTypeCodes.elementOnly.withElement(element);
+      return CoverageCopayTypeCodes.elementOnly.withElement(
+        element,
+      );
     }
     return CoverageCopayTypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,

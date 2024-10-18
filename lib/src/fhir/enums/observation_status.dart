@@ -63,7 +63,9 @@ enum ObservationStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObservationStatus.elementOnly.withElement(element);
+      return ObservationStatus.elementOnly.withElement(
+        element,
+      );
     }
     return ObservationStatus.values.firstWhere(
       (e) => e.fhirCode == value,

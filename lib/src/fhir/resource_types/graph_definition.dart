@@ -204,22 +204,28 @@ class GraphDefinition extends DomainResource {
 
   /// Deserialize [GraphDefinition] from a [String]
   /// or [YamlMap] object
-  factory GraphDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? GraphDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory GraphDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? GraphDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('GraphDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? GraphDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'GraphDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [GraphDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory GraphDefinition.fromJsonString(String source) {
+  factory GraphDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return GraphDefinition.fromJson(json);
@@ -630,23 +636,28 @@ class GraphDefinitionLink extends BackboneElement {
 
   /// Deserialize [GraphDefinitionLink] from a [String]
   /// or [YamlMap] object
-  factory GraphDefinitionLink.fromYaml(dynamic yaml) => yaml is String
-      ? GraphDefinitionLink.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory GraphDefinitionLink.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? GraphDefinitionLink.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'GraphDefinitionLink cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? GraphDefinitionLink.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'GraphDefinitionLink cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [GraphDefinitionLink]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory GraphDefinitionLink.fromJsonString(String source) {
+  factory GraphDefinitionLink.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return GraphDefinitionLink.fromJson(json);
@@ -885,23 +896,28 @@ class GraphDefinitionTarget extends BackboneElement {
 
   /// Deserialize [GraphDefinitionTarget] from a [String]
   /// or [YamlMap] object
-  factory GraphDefinitionTarget.fromYaml(dynamic yaml) => yaml is String
-      ? GraphDefinitionTarget.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory GraphDefinitionTarget.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? GraphDefinitionTarget.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'GraphDefinitionTarget cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? GraphDefinitionTarget.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'GraphDefinitionTarget cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [GraphDefinitionTarget]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory GraphDefinitionTarget.fromJsonString(String source) {
+  factory GraphDefinitionTarget.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return GraphDefinitionTarget.fromJson(json);
@@ -1108,23 +1124,28 @@ class GraphDefinitionCompartment extends BackboneElement {
 
   /// Deserialize [GraphDefinitionCompartment] from a [String]
   /// or [YamlMap] object
-  factory GraphDefinitionCompartment.fromYaml(dynamic yaml) => yaml is String
-      ? GraphDefinitionCompartment.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory GraphDefinitionCompartment.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? GraphDefinitionCompartment.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'GraphDefinitionCompartment cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? GraphDefinitionCompartment.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'GraphDefinitionCompartment cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [GraphDefinitionCompartment]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory GraphDefinitionCompartment.fromJsonString(String source) {
+  factory GraphDefinitionCompartment.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return GraphDefinitionCompartment.fromJson(json);

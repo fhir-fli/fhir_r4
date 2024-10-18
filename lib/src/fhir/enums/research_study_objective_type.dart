@@ -43,7 +43,9 @@ enum ResearchStudyObjectiveType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResearchStudyObjectiveType.elementOnly.withElement(element);
+      return ResearchStudyObjectiveType.elementOnly.withElement(
+        element,
+      );
     }
     return ResearchStudyObjectiveType.values.firstWhere(
       (e) => e.fhirCode == value,

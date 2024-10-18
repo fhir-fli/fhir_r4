@@ -186,22 +186,27 @@ class SupplyDelivery extends DomainResource {
 
   /// Deserialize [SupplyDelivery] from a [String]
   /// or [YamlMap] object
-  factory SupplyDelivery.fromYaml(dynamic yaml) => yaml is String
-      ? SupplyDelivery.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SupplyDelivery.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SupplyDelivery.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('SupplyDelivery cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SupplyDelivery.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('SupplyDelivery cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SupplyDelivery]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SupplyDelivery.fromJsonString(String source) {
+  factory SupplyDelivery.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SupplyDelivery.fromJson(json);
@@ -513,23 +518,28 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
 
   /// Deserialize [SupplyDeliverySuppliedItem] from a [String]
   /// or [YamlMap] object
-  factory SupplyDeliverySuppliedItem.fromYaml(dynamic yaml) => yaml is String
-      ? SupplyDeliverySuppliedItem.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SupplyDeliverySuppliedItem.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SupplyDeliverySuppliedItem.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SupplyDeliverySuppliedItem cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SupplyDeliverySuppliedItem.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SupplyDeliverySuppliedItem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SupplyDeliverySuppliedItem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SupplyDeliverySuppliedItem.fromJsonString(String source) {
+  factory SupplyDeliverySuppliedItem.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SupplyDeliverySuppliedItem.fromJson(json);

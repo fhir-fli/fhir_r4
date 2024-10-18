@@ -143,7 +143,9 @@ enum ReportSectionType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ReportSectionType.elementOnly.withElement(element);
+      return ReportSectionType.elementOnly.withElement(
+        element,
+      );
     }
     return ReportSectionType.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -219,22 +219,27 @@ class Location extends DomainResource {
 
   /// Deserialize [Location] from a [String]
   /// or [YamlMap] object
-  factory Location.fromYaml(dynamic yaml) => yaml is String
-      ? Location.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Location.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Location.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Location cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Location.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Location cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Location]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Location.fromJsonString(String source) {
+  factory Location.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Location.fromJson(json);
@@ -609,22 +614,28 @@ class LocationPosition extends BackboneElement {
 
   /// Deserialize [LocationPosition] from a [String]
   /// or [YamlMap] object
-  factory LocationPosition.fromYaml(dynamic yaml) => yaml is String
-      ? LocationPosition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory LocationPosition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? LocationPosition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('LocationPosition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? LocationPosition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'LocationPosition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [LocationPosition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory LocationPosition.fromJsonString(String source) {
+  factory LocationPosition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return LocationPosition.fromJson(json);
@@ -810,23 +821,28 @@ class LocationHoursOfOperation extends BackboneElement {
 
   /// Deserialize [LocationHoursOfOperation] from a [String]
   /// or [YamlMap] object
-  factory LocationHoursOfOperation.fromYaml(dynamic yaml) => yaml is String
-      ? LocationHoursOfOperation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory LocationHoursOfOperation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? LocationHoursOfOperation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'LocationHoursOfOperation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? LocationHoursOfOperation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'LocationHoursOfOperation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [LocationHoursOfOperation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory LocationHoursOfOperation.fromJsonString(String source) {
+  factory LocationHoursOfOperation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return LocationHoursOfOperation.fromJson(json);

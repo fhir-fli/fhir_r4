@@ -39,7 +39,9 @@ enum ImmunizationFunctionCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImmunizationFunctionCodes.elementOnly.withElement(element);
+      return ImmunizationFunctionCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ImmunizationFunctionCodes.values.firstWhere(
       (e) => e.fhirCode == value,

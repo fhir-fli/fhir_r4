@@ -139,22 +139,28 @@ class SpecimenDefinition extends DomainResource {
 
   /// Deserialize [SpecimenDefinition] from a [String]
   /// or [YamlMap] object
-  factory SpecimenDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? SpecimenDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SpecimenDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SpecimenDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('SpecimenDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SpecimenDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SpecimenDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SpecimenDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SpecimenDefinition.fromJsonString(String source) {
+  factory SpecimenDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SpecimenDefinition.fromJson(json);
@@ -431,23 +437,28 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
 
   /// Deserialize [SpecimenDefinitionTypeTested] from a [String]
   /// or [YamlMap] object
-  factory SpecimenDefinitionTypeTested.fromYaml(dynamic yaml) => yaml is String
-      ? SpecimenDefinitionTypeTested.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SpecimenDefinitionTypeTested.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SpecimenDefinitionTypeTested.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SpecimenDefinitionTypeTested cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SpecimenDefinitionTypeTested.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SpecimenDefinitionTypeTested cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SpecimenDefinitionTypeTested]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SpecimenDefinitionTypeTested.fromJsonString(String source) {
+  factory SpecimenDefinitionTypeTested.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SpecimenDefinitionTypeTested.fromJson(json);
@@ -717,23 +728,28 @@ class SpecimenDefinitionContainer extends BackboneElement {
 
   /// Deserialize [SpecimenDefinitionContainer] from a [String]
   /// or [YamlMap] object
-  factory SpecimenDefinitionContainer.fromYaml(dynamic yaml) => yaml is String
-      ? SpecimenDefinitionContainer.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SpecimenDefinitionContainer.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SpecimenDefinitionContainer.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SpecimenDefinitionContainer cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SpecimenDefinitionContainer.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SpecimenDefinitionContainer cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SpecimenDefinitionContainer]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SpecimenDefinitionContainer.fromJsonString(String source) {
+  factory SpecimenDefinitionContainer.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SpecimenDefinitionContainer.fromJson(json);
@@ -969,23 +985,28 @@ class SpecimenDefinitionAdditive extends BackboneElement {
 
   /// Deserialize [SpecimenDefinitionAdditive] from a [String]
   /// or [YamlMap] object
-  factory SpecimenDefinitionAdditive.fromYaml(dynamic yaml) => yaml is String
-      ? SpecimenDefinitionAdditive.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SpecimenDefinitionAdditive.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SpecimenDefinitionAdditive.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SpecimenDefinitionAdditive cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SpecimenDefinitionAdditive.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SpecimenDefinitionAdditive cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SpecimenDefinitionAdditive]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SpecimenDefinitionAdditive.fromJsonString(String source) {
+  factory SpecimenDefinitionAdditive.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SpecimenDefinitionAdditive.fromJson(json);
@@ -1152,23 +1173,28 @@ class SpecimenDefinitionHandling extends BackboneElement {
 
   /// Deserialize [SpecimenDefinitionHandling] from a [String]
   /// or [YamlMap] object
-  factory SpecimenDefinitionHandling.fromYaml(dynamic yaml) => yaml is String
-      ? SpecimenDefinitionHandling.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SpecimenDefinitionHandling.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SpecimenDefinitionHandling.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SpecimenDefinitionHandling cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SpecimenDefinitionHandling.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SpecimenDefinitionHandling cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SpecimenDefinitionHandling]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SpecimenDefinitionHandling.fromJsonString(String source) {
+  factory SpecimenDefinitionHandling.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SpecimenDefinitionHandling.fromJson(json);

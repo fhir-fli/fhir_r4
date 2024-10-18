@@ -55,7 +55,9 @@ enum ConsentState {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConsentState.elementOnly.withElement(element);
+      return ConsentState.elementOnly.withElement(
+        element,
+      );
     }
     return ConsentState.values.firstWhere(
       (e) => e.fhirCode == value,

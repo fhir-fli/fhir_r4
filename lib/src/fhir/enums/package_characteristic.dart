@@ -43,7 +43,9 @@ enum PackageCharacteristic {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PackageCharacteristic.elementOnly.withElement(element);
+      return PackageCharacteristic.elementOnly.withElement(
+        element,
+      );
     }
     return PackageCharacteristic.values.firstWhere(
       (e) => e.fhirCode == value,

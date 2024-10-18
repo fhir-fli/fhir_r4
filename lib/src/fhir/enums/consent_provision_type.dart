@@ -39,7 +39,9 @@ enum ConsentProvisionType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConsentProvisionType.elementOnly.withElement(element);
+      return ConsentProvisionType.elementOnly.withElement(
+        element,
+      );
     }
     return ConsentProvisionType.values.firstWhere(
       (e) => e.fhirCode == value,

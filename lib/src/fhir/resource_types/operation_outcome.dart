@@ -99,22 +99,28 @@ class OperationOutcome extends DomainResource {
 
   /// Deserialize [OperationOutcome] from a [String]
   /// or [YamlMap] object
-  factory OperationOutcome.fromYaml(dynamic yaml) => yaml is String
-      ? OperationOutcome.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory OperationOutcome.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? OperationOutcome.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('OperationOutcome cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? OperationOutcome.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'OperationOutcome cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [OperationOutcome]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory OperationOutcome.fromJsonString(String source) {
+  factory OperationOutcome.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return OperationOutcome.fromJson(json);
@@ -312,23 +318,28 @@ class OperationOutcomeIssue extends BackboneElement {
 
   /// Deserialize [OperationOutcomeIssue] from a [String]
   /// or [YamlMap] object
-  factory OperationOutcomeIssue.fromYaml(dynamic yaml) => yaml is String
-      ? OperationOutcomeIssue.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory OperationOutcomeIssue.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? OperationOutcomeIssue.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'OperationOutcomeIssue cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? OperationOutcomeIssue.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'OperationOutcomeIssue cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [OperationOutcomeIssue]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory OperationOutcomeIssue.fromJsonString(String source) {
+  factory OperationOutcomeIssue.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return OperationOutcomeIssue.fromJson(json);

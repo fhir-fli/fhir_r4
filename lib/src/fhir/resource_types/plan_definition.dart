@@ -354,22 +354,27 @@ class PlanDefinition extends DomainResource {
 
   /// Deserialize [PlanDefinition] from a [String]
   /// or [YamlMap] object
-  factory PlanDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? PlanDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PlanDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PlanDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('PlanDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PlanDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('PlanDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PlanDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PlanDefinition.fromJsonString(String source) {
+  factory PlanDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PlanDefinition.fromJson(json);
@@ -1047,22 +1052,28 @@ class PlanDefinitionGoal extends BackboneElement {
 
   /// Deserialize [PlanDefinitionGoal] from a [String]
   /// or [YamlMap] object
-  factory PlanDefinitionGoal.fromYaml(dynamic yaml) => yaml is String
-      ? PlanDefinitionGoal.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PlanDefinitionGoal.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PlanDefinitionGoal.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('PlanDefinitionGoal cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PlanDefinitionGoal.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PlanDefinitionGoal cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PlanDefinitionGoal]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PlanDefinitionGoal.fromJsonString(String source) {
+  factory PlanDefinitionGoal.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PlanDefinitionGoal.fromJson(json);
@@ -1285,23 +1296,28 @@ class PlanDefinitionTarget extends BackboneElement {
 
   /// Deserialize [PlanDefinitionTarget] from a [String]
   /// or [YamlMap] object
-  factory PlanDefinitionTarget.fromYaml(dynamic yaml) => yaml is String
-      ? PlanDefinitionTarget.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PlanDefinitionTarget.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PlanDefinitionTarget.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PlanDefinitionTarget cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PlanDefinitionTarget.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PlanDefinitionTarget cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PlanDefinitionTarget]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PlanDefinitionTarget.fromJsonString(String source) {
+  factory PlanDefinitionTarget.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PlanDefinitionTarget.fromJson(json);
@@ -1763,23 +1779,28 @@ class PlanDefinitionAction extends BackboneElement {
 
   /// Deserialize [PlanDefinitionAction] from a [String]
   /// or [YamlMap] object
-  factory PlanDefinitionAction.fromYaml(dynamic yaml) => yaml is String
-      ? PlanDefinitionAction.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PlanDefinitionAction.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PlanDefinitionAction.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PlanDefinitionAction cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PlanDefinitionAction.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PlanDefinitionAction cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PlanDefinitionAction]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PlanDefinitionAction.fromJsonString(String source) {
+  factory PlanDefinitionAction.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PlanDefinitionAction.fromJson(json);
@@ -2345,23 +2366,28 @@ class PlanDefinitionCondition extends BackboneElement {
 
   /// Deserialize [PlanDefinitionCondition] from a [String]
   /// or [YamlMap] object
-  factory PlanDefinitionCondition.fromYaml(dynamic yaml) => yaml is String
-      ? PlanDefinitionCondition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PlanDefinitionCondition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PlanDefinitionCondition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PlanDefinitionCondition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PlanDefinitionCondition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PlanDefinitionCondition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PlanDefinitionCondition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PlanDefinitionCondition.fromJsonString(String source) {
+  factory PlanDefinitionCondition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PlanDefinitionCondition.fromJson(json);
@@ -2521,23 +2547,28 @@ class PlanDefinitionRelatedAction extends BackboneElement {
 
   /// Deserialize [PlanDefinitionRelatedAction] from a [String]
   /// or [YamlMap] object
-  factory PlanDefinitionRelatedAction.fromYaml(dynamic yaml) => yaml is String
-      ? PlanDefinitionRelatedAction.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PlanDefinitionRelatedAction.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PlanDefinitionRelatedAction.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PlanDefinitionRelatedAction cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PlanDefinitionRelatedAction.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PlanDefinitionRelatedAction cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PlanDefinitionRelatedAction]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PlanDefinitionRelatedAction.fromJsonString(String source) {
+  factory PlanDefinitionRelatedAction.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PlanDefinitionRelatedAction.fromJson(json);
@@ -2708,23 +2739,28 @@ class PlanDefinitionParticipant extends BackboneElement {
 
   /// Deserialize [PlanDefinitionParticipant] from a [String]
   /// or [YamlMap] object
-  factory PlanDefinitionParticipant.fromYaml(dynamic yaml) => yaml is String
-      ? PlanDefinitionParticipant.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PlanDefinitionParticipant.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PlanDefinitionParticipant.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PlanDefinitionParticipant cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PlanDefinitionParticipant.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PlanDefinitionParticipant cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PlanDefinitionParticipant]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PlanDefinitionParticipant.fromJsonString(String source) {
+  factory PlanDefinitionParticipant.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PlanDefinitionParticipant.fromJson(json);
@@ -2878,23 +2914,28 @@ class PlanDefinitionDynamicValue extends BackboneElement {
 
   /// Deserialize [PlanDefinitionDynamicValue] from a [String]
   /// or [YamlMap] object
-  factory PlanDefinitionDynamicValue.fromYaml(dynamic yaml) => yaml is String
-      ? PlanDefinitionDynamicValue.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory PlanDefinitionDynamicValue.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? PlanDefinitionDynamicValue.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PlanDefinitionDynamicValue cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? PlanDefinitionDynamicValue.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'PlanDefinitionDynamicValue cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [PlanDefinitionDynamicValue]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory PlanDefinitionDynamicValue.fromJsonString(String source) {
+  factory PlanDefinitionDynamicValue.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return PlanDefinitionDynamicValue.fromJson(json);

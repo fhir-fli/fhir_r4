@@ -75,7 +75,9 @@ enum CoverageClassCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CoverageClassCodes.elementOnly.withElement(element);
+      return CoverageClassCodes.elementOnly.withElement(
+        element,
+      );
     }
     return CoverageClassCodes.values.firstWhere(
       (e) => e.fhirCode == value,

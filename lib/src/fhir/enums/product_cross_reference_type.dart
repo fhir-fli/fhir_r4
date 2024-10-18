@@ -55,7 +55,9 @@ enum ProductCrossReferenceType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ProductCrossReferenceType.elementOnly.withElement(element);
+      return ProductCrossReferenceType.elementOnly.withElement(
+        element,
+      );
     }
     return ProductCrossReferenceType.values.firstWhere(
       (e) => e.fhirCode == value,

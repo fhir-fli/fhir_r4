@@ -35,7 +35,9 @@ enum MaritalStatusCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MaritalStatusCodes.elementOnly.withElement(element);
+      return MaritalStatusCodes.elementOnly.withElement(
+        element,
+      );
     }
     return MaritalStatusCodes.values.firstWhere(
       (e) => e.fhirCode == value,

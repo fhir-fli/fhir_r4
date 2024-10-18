@@ -63,7 +63,9 @@ enum MedicationRequestIntent {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationRequestIntent.elementOnly.withElement(element);
+      return MedicationRequestIntent.elementOnly.withElement(
+        element,
+      );
     }
     return MedicationRequestIntent.values.firstWhere(
       (e) => e.fhirCode == value,

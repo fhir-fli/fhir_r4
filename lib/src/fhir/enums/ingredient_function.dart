@@ -39,7 +39,9 @@ enum IngredientFunction {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return IngredientFunction.elementOnly.withElement(element);
+      return IngredientFunction.elementOnly.withElement(
+        element,
+      );
     }
     return IngredientFunction.values.firstWhere(
       (e) => e.fhirCode == value,

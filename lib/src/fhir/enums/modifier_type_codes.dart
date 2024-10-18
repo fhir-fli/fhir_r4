@@ -55,7 +55,9 @@ enum ModifierTypeCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ModifierTypeCodes.elementOnly.withElement(element);
+      return ModifierTypeCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ModifierTypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,

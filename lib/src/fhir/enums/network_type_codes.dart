@@ -39,7 +39,9 @@ enum NetworkTypeCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NetworkTypeCodes.elementOnly.withElement(element);
+      return NetworkTypeCodes.elementOnly.withElement(
+        element,
+      );
     }
     return NetworkTypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,

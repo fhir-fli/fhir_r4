@@ -51,7 +51,9 @@ enum EpisodeOfCareType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EpisodeOfCareType.elementOnly.withElement(element);
+      return EpisodeOfCareType.elementOnly.withElement(
+        element,
+      );
     }
     return EpisodeOfCareType.values.firstWhere(
       (e) => e.fhirCode == value,

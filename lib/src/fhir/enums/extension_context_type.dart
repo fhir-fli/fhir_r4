@@ -43,7 +43,9 @@ enum ExtensionContextType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExtensionContextType.elementOnly.withElement(element);
+      return ExtensionContextType.elementOnly.withElement(
+        element,
+      );
     }
     return ExtensionContextType.values.firstWhere(
       (e) => e.fhirCode == value,

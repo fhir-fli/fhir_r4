@@ -166,22 +166,27 @@ class FhirGroup extends DomainResource {
 
   /// Deserialize [FhirGroup] from a [String]
   /// or [YamlMap] object
-  factory FhirGroup.fromYaml(dynamic yaml) => yaml is String
-      ? FhirGroup.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory FhirGroup.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? FhirGroup.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('FhirGroup cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? FhirGroup.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('FhirGroup cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [FhirGroup]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory FhirGroup.fromJsonString(String source) {
+  factory FhirGroup.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return FhirGroup.fromJson(json);
@@ -500,23 +505,28 @@ class GroupCharacteristic extends BackboneElement {
 
   /// Deserialize [GroupCharacteristic] from a [String]
   /// or [YamlMap] object
-  factory GroupCharacteristic.fromYaml(dynamic yaml) => yaml is String
-      ? GroupCharacteristic.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory GroupCharacteristic.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? GroupCharacteristic.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'GroupCharacteristic cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? GroupCharacteristic.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'GroupCharacteristic cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [GroupCharacteristic]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory GroupCharacteristic.fromJsonString(String source) {
+  factory GroupCharacteristic.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return GroupCharacteristic.fromJson(json);
@@ -742,22 +752,27 @@ class GroupMember extends BackboneElement {
 
   /// Deserialize [GroupMember] from a [String]
   /// or [YamlMap] object
-  factory GroupMember.fromYaml(dynamic yaml) => yaml is String
-      ? GroupMember.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory GroupMember.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? GroupMember.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('GroupMember cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? GroupMember.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('GroupMember cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [GroupMember]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory GroupMember.fromJsonString(String source) {
+  factory GroupMember.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return GroupMember.fromJson(json);

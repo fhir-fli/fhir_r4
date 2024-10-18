@@ -51,7 +51,9 @@ enum ProductNameType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ProductNameType.elementOnly.withElement(element);
+      return ProductNameType.elementOnly.withElement(
+        element,
+      );
     }
     return ProductNameType.values.firstWhere(
       (e) => e.fhirCode == value,

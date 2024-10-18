@@ -43,7 +43,9 @@ enum SubstanceRepresentationType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubstanceRepresentationType.elementOnly.withElement(element);
+      return SubstanceRepresentationType.elementOnly.withElement(
+        element,
+      );
     }
     return SubstanceRepresentationType.values.firstWhere(
       (e) => e.fhirCode == value,

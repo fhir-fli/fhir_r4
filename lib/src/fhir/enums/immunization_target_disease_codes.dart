@@ -67,7 +67,9 @@ enum ImmunizationTargetDiseaseCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImmunizationTargetDiseaseCodes.elementOnly.withElement(element);
+      return ImmunizationTargetDiseaseCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ImmunizationTargetDiseaseCodes.values.firstWhere(
       (e) => e.fhirCode == value,

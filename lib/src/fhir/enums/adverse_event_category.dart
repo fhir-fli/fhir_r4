@@ -87,7 +87,9 @@ enum AdverseEventCategory {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdverseEventCategory.elementOnly.withElement(element);
+      return AdverseEventCategory.elementOnly.withElement(
+        element,
+      );
     }
     return AdverseEventCategory.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -43,8 +43,9 @@ enum ObservationReferenceRangeAppliesToCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObservationReferenceRangeAppliesToCodes.elementOnly
-          .withElement(element);
+      return ObservationReferenceRangeAppliesToCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ObservationReferenceRangeAppliesToCodes.values.firstWhere(
       (e) => e.fhirCode == value,

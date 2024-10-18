@@ -99,7 +99,9 @@ enum QuestionnaireItemType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QuestionnaireItemType.elementOnly.withElement(element);
+      return QuestionnaireItemType.elementOnly.withElement(
+        element,
+      );
     }
     return QuestionnaireItemType.values.firstWhere(
       (e) => e.fhirCode == value,

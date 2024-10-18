@@ -505,22 +505,28 @@ class ActivityDefinition extends DomainResource {
 
   /// Deserialize [ActivityDefinition] from a [String]
   /// or [YamlMap] object
-  factory ActivityDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? ActivityDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ActivityDefinition.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ActivityDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ActivityDefinition cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ActivityDefinition.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ActivityDefinition cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ActivityDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ActivityDefinition.fromJsonString(String source) {
+  factory ActivityDefinition.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ActivityDefinition.fromJson(json);
@@ -1409,23 +1415,28 @@ class ActivityDefinitionParticipant extends BackboneElement {
 
   /// Deserialize [ActivityDefinitionParticipant] from a [String]
   /// or [YamlMap] object
-  factory ActivityDefinitionParticipant.fromYaml(dynamic yaml) => yaml is String
-      ? ActivityDefinitionParticipant.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ActivityDefinitionParticipant.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ActivityDefinitionParticipant.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ActivityDefinitionParticipant cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ActivityDefinitionParticipant.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ActivityDefinitionParticipant cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ActivityDefinitionParticipant]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ActivityDefinitionParticipant.fromJsonString(String source) {
+  factory ActivityDefinitionParticipant.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ActivityDefinitionParticipant.fromJson(json);
@@ -1575,24 +1586,28 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
 
   /// Deserialize [ActivityDefinitionDynamicValue] from a [String]
   /// or [YamlMap] object
-  factory ActivityDefinitionDynamicValue.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ActivityDefinitionDynamicValue.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ActivityDefinitionDynamicValue.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ActivityDefinitionDynamicValue.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ActivityDefinitionDynamicValue cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ActivityDefinitionDynamicValue.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ActivityDefinitionDynamicValue cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ActivityDefinitionDynamicValue]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ActivityDefinitionDynamicValue.fromJsonString(String source) {
+  factory ActivityDefinitionDynamicValue.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ActivityDefinitionDynamicValue.fromJson(json);

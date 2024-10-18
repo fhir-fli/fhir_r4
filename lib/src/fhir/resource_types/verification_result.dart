@@ -193,22 +193,28 @@ class VerificationResult extends DomainResource {
 
   /// Deserialize [VerificationResult] from a [String]
   /// or [YamlMap] object
-  factory VerificationResult.fromYaml(dynamic yaml) => yaml is String
-      ? VerificationResult.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory VerificationResult.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? VerificationResult.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('VerificationResult cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? VerificationResult.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'VerificationResult cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [VerificationResult]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory VerificationResult.fromJsonString(String source) {
+  factory VerificationResult.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return VerificationResult.fromJson(json);
@@ -576,24 +582,28 @@ class VerificationResultPrimarySource extends BackboneElement {
 
   /// Deserialize [VerificationResultPrimarySource] from a [String]
   /// or [YamlMap] object
-  factory VerificationResultPrimarySource.fromYaml(dynamic yaml) => yaml
-          is String
-      ? VerificationResultPrimarySource.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory VerificationResultPrimarySource.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? VerificationResultPrimarySource.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'VerificationResultPrimarySource cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? VerificationResultPrimarySource.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'VerificationResultPrimarySource cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [VerificationResultPrimarySource]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory VerificationResultPrimarySource.fromJsonString(String source) {
+  factory VerificationResultPrimarySource.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return VerificationResultPrimarySource.fromJson(json);
@@ -843,23 +853,28 @@ class VerificationResultAttestation extends BackboneElement {
 
   /// Deserialize [VerificationResultAttestation] from a [String]
   /// or [YamlMap] object
-  factory VerificationResultAttestation.fromYaml(dynamic yaml) => yaml is String
-      ? VerificationResultAttestation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory VerificationResultAttestation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? VerificationResultAttestation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'VerificationResultAttestation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? VerificationResultAttestation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'VerificationResultAttestation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [VerificationResultAttestation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory VerificationResultAttestation.fromJsonString(String source) {
+  factory VerificationResultAttestation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return VerificationResultAttestation.fromJson(json);
@@ -1094,23 +1109,28 @@ class VerificationResultValidator extends BackboneElement {
 
   /// Deserialize [VerificationResultValidator] from a [String]
   /// or [YamlMap] object
-  factory VerificationResultValidator.fromYaml(dynamic yaml) => yaml is String
-      ? VerificationResultValidator.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory VerificationResultValidator.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? VerificationResultValidator.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'VerificationResultValidator cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? VerificationResultValidator.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'VerificationResultValidator cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [VerificationResultValidator]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory VerificationResultValidator.fromJsonString(String source) {
+  factory VerificationResultValidator.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return VerificationResultValidator.fromJson(json);

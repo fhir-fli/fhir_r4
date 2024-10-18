@@ -499,7 +499,9 @@ enum PracticeSettingCodeValueSet {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PracticeSettingCodeValueSet.elementOnly.withElement(element);
+      return PracticeSettingCodeValueSet.elementOnly.withElement(
+        element,
+      );
     }
     return PracticeSettingCodeValueSet.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -59,7 +59,9 @@ enum ChargeItemStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ChargeItemStatus.elementOnly.withElement(element);
+      return ChargeItemStatus.elementOnly.withElement(
+        element,
+      );
     }
     return ChargeItemStatus.values.firstWhere(
       (e) => e.fhirCode == value,

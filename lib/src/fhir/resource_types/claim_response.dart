@@ -271,22 +271,27 @@ class ClaimResponse extends DomainResource {
 
   /// Deserialize [ClaimResponse] from a [String]
   /// or [YamlMap] object
-  factory ClaimResponse.fromYaml(dynamic yaml) => yaml is String
-      ? ClaimResponse.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClaimResponse.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClaimResponse.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ClaimResponse cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClaimResponse.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('ClaimResponse cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClaimResponse]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClaimResponse.fromJsonString(String source) {
+  factory ClaimResponse.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClaimResponse.fromJson(json);
@@ -746,22 +751,28 @@ class ClaimResponseItem extends BackboneElement {
 
   /// Deserialize [ClaimResponseItem] from a [String]
   /// or [YamlMap] object
-  factory ClaimResponseItem.fromYaml(dynamic yaml) => yaml is String
-      ? ClaimResponseItem.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClaimResponseItem.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClaimResponseItem.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ClaimResponseItem cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClaimResponseItem.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClaimResponseItem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClaimResponseItem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClaimResponseItem.fromJsonString(String source) {
+  factory ClaimResponseItem.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClaimResponseItem.fromJson(json);
@@ -952,23 +963,28 @@ class ClaimResponseAdjudication extends BackboneElement {
 
   /// Deserialize [ClaimResponseAdjudication] from a [String]
   /// or [YamlMap] object
-  factory ClaimResponseAdjudication.fromYaml(dynamic yaml) => yaml is String
-      ? ClaimResponseAdjudication.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClaimResponseAdjudication.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClaimResponseAdjudication.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClaimResponseAdjudication cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClaimResponseAdjudication.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClaimResponseAdjudication cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClaimResponseAdjudication]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClaimResponseAdjudication.fromJsonString(String source) {
+  factory ClaimResponseAdjudication.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClaimResponseAdjudication.fromJson(json);
@@ -1157,23 +1173,28 @@ class ClaimResponseDetail extends BackboneElement {
 
   /// Deserialize [ClaimResponseDetail] from a [String]
   /// or [YamlMap] object
-  factory ClaimResponseDetail.fromYaml(dynamic yaml) => yaml is String
-      ? ClaimResponseDetail.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClaimResponseDetail.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClaimResponseDetail.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClaimResponseDetail cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClaimResponseDetail.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClaimResponseDetail cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClaimResponseDetail]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClaimResponseDetail.fromJsonString(String source) {
+  factory ClaimResponseDetail.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClaimResponseDetail.fromJson(json);
@@ -1339,23 +1360,28 @@ class ClaimResponseSubDetail extends BackboneElement {
 
   /// Deserialize [ClaimResponseSubDetail] from a [String]
   /// or [YamlMap] object
-  factory ClaimResponseSubDetail.fromYaml(dynamic yaml) => yaml is String
-      ? ClaimResponseSubDetail.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClaimResponseSubDetail.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClaimResponseSubDetail.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClaimResponseSubDetail cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClaimResponseSubDetail.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClaimResponseSubDetail cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClaimResponseSubDetail]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClaimResponseSubDetail.fromJsonString(String source) {
+  factory ClaimResponseSubDetail.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClaimResponseSubDetail.fromJson(json);
@@ -1641,23 +1667,28 @@ class ClaimResponseAddItem extends BackboneElement {
 
   /// Deserialize [ClaimResponseAddItem] from a [String]
   /// or [YamlMap] object
-  factory ClaimResponseAddItem.fromYaml(dynamic yaml) => yaml is String
-      ? ClaimResponseAddItem.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClaimResponseAddItem.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClaimResponseAddItem.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClaimResponseAddItem cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClaimResponseAddItem.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClaimResponseAddItem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClaimResponseAddItem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClaimResponseAddItem.fromJsonString(String source) {
+  factory ClaimResponseAddItem.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClaimResponseAddItem.fromJson(json);
@@ -2070,23 +2101,28 @@ class ClaimResponseDetail1 extends BackboneElement {
 
   /// Deserialize [ClaimResponseDetail1] from a [String]
   /// or [YamlMap] object
-  factory ClaimResponseDetail1.fromYaml(dynamic yaml) => yaml is String
-      ? ClaimResponseDetail1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClaimResponseDetail1.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClaimResponseDetail1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClaimResponseDetail1 cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClaimResponseDetail1.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClaimResponseDetail1 cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClaimResponseDetail1]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClaimResponseDetail1.fromJsonString(String source) {
+  factory ClaimResponseDetail1.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClaimResponseDetail1.fromJson(json);
@@ -2345,23 +2381,28 @@ class ClaimResponseSubDetail1 extends BackboneElement {
 
   /// Deserialize [ClaimResponseSubDetail1] from a [String]
   /// or [YamlMap] object
-  factory ClaimResponseSubDetail1.fromYaml(dynamic yaml) => yaml is String
-      ? ClaimResponseSubDetail1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClaimResponseSubDetail1.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClaimResponseSubDetail1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClaimResponseSubDetail1 cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClaimResponseSubDetail1.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClaimResponseSubDetail1 cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClaimResponseSubDetail1]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClaimResponseSubDetail1.fromJsonString(String source) {
+  factory ClaimResponseSubDetail1.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClaimResponseSubDetail1.fromJson(json);
@@ -2573,22 +2614,28 @@ class ClaimResponseTotal extends BackboneElement {
 
   /// Deserialize [ClaimResponseTotal] from a [String]
   /// or [YamlMap] object
-  factory ClaimResponseTotal.fromYaml(dynamic yaml) => yaml is String
-      ? ClaimResponseTotal.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClaimResponseTotal.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClaimResponseTotal.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ClaimResponseTotal cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClaimResponseTotal.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClaimResponseTotal cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClaimResponseTotal]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClaimResponseTotal.fromJsonString(String source) {
+  factory ClaimResponseTotal.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClaimResponseTotal.fromJson(json);
@@ -2759,23 +2806,28 @@ class ClaimResponsePayment extends BackboneElement {
 
   /// Deserialize [ClaimResponsePayment] from a [String]
   /// or [YamlMap] object
-  factory ClaimResponsePayment.fromYaml(dynamic yaml) => yaml is String
-      ? ClaimResponsePayment.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClaimResponsePayment.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClaimResponsePayment.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClaimResponsePayment cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClaimResponsePayment.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClaimResponsePayment cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClaimResponsePayment]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClaimResponsePayment.fromJsonString(String source) {
+  factory ClaimResponsePayment.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClaimResponsePayment.fromJson(json);
@@ -2982,23 +3034,28 @@ class ClaimResponseProcessNote extends BackboneElement {
 
   /// Deserialize [ClaimResponseProcessNote] from a [String]
   /// or [YamlMap] object
-  factory ClaimResponseProcessNote.fromYaml(dynamic yaml) => yaml is String
-      ? ClaimResponseProcessNote.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClaimResponseProcessNote.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClaimResponseProcessNote.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClaimResponseProcessNote cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClaimResponseProcessNote.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClaimResponseProcessNote cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClaimResponseProcessNote]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClaimResponseProcessNote.fromJsonString(String source) {
+  factory ClaimResponseProcessNote.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClaimResponseProcessNote.fromJson(json);
@@ -3190,23 +3247,28 @@ class ClaimResponseInsurance extends BackboneElement {
 
   /// Deserialize [ClaimResponseInsurance] from a [String]
   /// or [YamlMap] object
-  factory ClaimResponseInsurance.fromYaml(dynamic yaml) => yaml is String
-      ? ClaimResponseInsurance.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClaimResponseInsurance.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClaimResponseInsurance.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClaimResponseInsurance cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClaimResponseInsurance.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClaimResponseInsurance cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClaimResponseInsurance]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClaimResponseInsurance.fromJsonString(String source) {
+  factory ClaimResponseInsurance.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClaimResponseInsurance.fromJson(json);
@@ -3412,22 +3474,28 @@ class ClaimResponseError extends BackboneElement {
 
   /// Deserialize [ClaimResponseError] from a [String]
   /// or [YamlMap] object
-  factory ClaimResponseError.fromYaml(dynamic yaml) => yaml is String
-      ? ClaimResponseError.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClaimResponseError.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClaimResponseError.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ClaimResponseError cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClaimResponseError.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClaimResponseError cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClaimResponseError]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClaimResponseError.fromJsonString(String source) {
+  factory ClaimResponseError.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClaimResponseError.fromJson(json);

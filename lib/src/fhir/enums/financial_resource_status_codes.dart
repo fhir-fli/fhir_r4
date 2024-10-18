@@ -47,7 +47,9 @@ enum FinancialResourceStatusCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FinancialResourceStatusCodes.elementOnly.withElement(element);
+      return FinancialResourceStatusCodes.elementOnly.withElement(
+        element,
+      );
     }
     return FinancialResourceStatusCodes.values.firstWhere(
       (e) => e.fhirCode == value,

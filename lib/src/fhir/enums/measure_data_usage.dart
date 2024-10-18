@@ -39,7 +39,9 @@ enum MeasureDataUsage {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureDataUsage.elementOnly.withElement(element);
+      return MeasureDataUsage.elementOnly.withElement(
+        element,
+      );
     }
     return MeasureDataUsage.values.firstWhere(
       (e) => e.fhirCode == value,

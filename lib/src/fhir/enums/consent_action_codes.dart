@@ -51,7 +51,9 @@ enum ConsentActionCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConsentActionCodes.elementOnly.withElement(element);
+      return ConsentActionCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ConsentActionCodes.values.firstWhere(
       (e) => e.fhirCode == value,

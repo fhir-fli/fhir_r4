@@ -55,7 +55,9 @@ enum GuidanceResponseStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GuidanceResponseStatus.elementOnly.withElement(element);
+      return GuidanceResponseStatus.elementOnly.withElement(
+        element,
+      );
     }
     return GuidanceResponseStatus.values.firstWhere(
       (e) => e.fhirCode == value,

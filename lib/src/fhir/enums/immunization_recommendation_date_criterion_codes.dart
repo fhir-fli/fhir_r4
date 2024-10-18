@@ -49,7 +49,9 @@ enum ImmunizationRecommendationDateCriterionCodes {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ImmunizationRecommendationDateCriterionCodes.elementOnly
-          .withElement(element);
+          .withElement(
+        element,
+      );
     }
     return ImmunizationRecommendationDateCriterionCodes.values.firstWhere(
       (e) => e.fhirCode == value,

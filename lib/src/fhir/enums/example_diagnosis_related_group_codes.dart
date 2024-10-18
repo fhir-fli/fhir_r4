@@ -47,7 +47,9 @@ enum ExampleDiagnosisRelatedGroupCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleDiagnosisRelatedGroupCodes.elementOnly.withElement(element);
+      return ExampleDiagnosisRelatedGroupCodes.elementOnly.withElement(
+        element,
+      );
     }
     return ExampleDiagnosisRelatedGroupCodes.values.firstWhere(
       (e) => e.fhirCode == value,

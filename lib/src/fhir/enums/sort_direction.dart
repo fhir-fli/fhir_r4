@@ -39,7 +39,9 @@ enum SortDirection {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SortDirection.elementOnly.withElement(element);
+      return SortDirection.elementOnly.withElement(
+        element,
+      );
     }
     return SortDirection.values.firstWhere(
       (e) => e.fhirCode == value,

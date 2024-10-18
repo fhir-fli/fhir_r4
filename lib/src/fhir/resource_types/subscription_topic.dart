@@ -263,22 +263,28 @@ class SubscriptionTopic extends DomainResource {
 
   /// Deserialize [SubscriptionTopic] from a [String]
   /// or [YamlMap] object
-  factory SubscriptionTopic.fromYaml(dynamic yaml) => yaml is String
-      ? SubscriptionTopic.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubscriptionTopic.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubscriptionTopic.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('SubscriptionTopic cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubscriptionTopic.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubscriptionTopic cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubscriptionTopic]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubscriptionTopic.fromJsonString(String source) {
+  factory SubscriptionTopic.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubscriptionTopic.fromJson(json);
@@ -773,24 +779,28 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
 
   /// Deserialize [SubscriptionTopicResourceTrigger] from a [String]
   /// or [YamlMap] object
-  factory SubscriptionTopicResourceTrigger.fromYaml(dynamic yaml) => yaml
-          is String
-      ? SubscriptionTopicResourceTrigger.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubscriptionTopicResourceTrigger.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubscriptionTopicResourceTrigger.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubscriptionTopicResourceTrigger cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubscriptionTopicResourceTrigger.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubscriptionTopicResourceTrigger cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubscriptionTopicResourceTrigger]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubscriptionTopicResourceTrigger.fromJsonString(String source) {
+  factory SubscriptionTopicResourceTrigger.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubscriptionTopicResourceTrigger.fromJson(json);
@@ -1013,24 +1023,28 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
 
   /// Deserialize [SubscriptionTopicQueryCriteria] from a [String]
   /// or [YamlMap] object
-  factory SubscriptionTopicQueryCriteria.fromYaml(dynamic yaml) => yaml
-          is String
-      ? SubscriptionTopicQueryCriteria.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubscriptionTopicQueryCriteria.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubscriptionTopicQueryCriteria.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubscriptionTopicQueryCriteria cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubscriptionTopicQueryCriteria.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubscriptionTopicQueryCriteria cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubscriptionTopicQueryCriteria]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubscriptionTopicQueryCriteria.fromJsonString(String source) {
+  factory SubscriptionTopicQueryCriteria.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubscriptionTopicQueryCriteria.fromJson(json);
@@ -1232,23 +1246,28 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
 
   /// Deserialize [SubscriptionTopicEventTrigger] from a [String]
   /// or [YamlMap] object
-  factory SubscriptionTopicEventTrigger.fromYaml(dynamic yaml) => yaml is String
-      ? SubscriptionTopicEventTrigger.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubscriptionTopicEventTrigger.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubscriptionTopicEventTrigger.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubscriptionTopicEventTrigger cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubscriptionTopicEventTrigger.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubscriptionTopicEventTrigger cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubscriptionTopicEventTrigger]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubscriptionTopicEventTrigger.fromJsonString(String source) {
+  factory SubscriptionTopicEventTrigger.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubscriptionTopicEventTrigger.fromJson(json);
@@ -1441,23 +1460,28 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
 
   /// Deserialize [SubscriptionTopicCanFilterBy] from a [String]
   /// or [YamlMap] object
-  factory SubscriptionTopicCanFilterBy.fromYaml(dynamic yaml) => yaml is String
-      ? SubscriptionTopicCanFilterBy.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubscriptionTopicCanFilterBy.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubscriptionTopicCanFilterBy.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubscriptionTopicCanFilterBy cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubscriptionTopicCanFilterBy.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubscriptionTopicCanFilterBy cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubscriptionTopicCanFilterBy]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubscriptionTopicCanFilterBy.fromJsonString(String source) {
+  factory SubscriptionTopicCanFilterBy.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubscriptionTopicCanFilterBy.fromJson(json);
@@ -1666,24 +1690,28 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
 
   /// Deserialize [SubscriptionTopicNotificationShape] from a [String]
   /// or [YamlMap] object
-  factory SubscriptionTopicNotificationShape.fromYaml(dynamic yaml) => yaml
-          is String
-      ? SubscriptionTopicNotificationShape.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubscriptionTopicNotificationShape.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubscriptionTopicNotificationShape.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubscriptionTopicNotificationShape cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubscriptionTopicNotificationShape.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubscriptionTopicNotificationShape cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubscriptionTopicNotificationShape]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubscriptionTopicNotificationShape.fromJsonString(String source) {
+  factory SubscriptionTopicNotificationShape.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubscriptionTopicNotificationShape.fromJson(json);

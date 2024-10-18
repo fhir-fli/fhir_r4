@@ -75,7 +75,9 @@ enum CitedArtifactAbstractType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CitedArtifactAbstractType.elementOnly.withElement(element);
+      return CitedArtifactAbstractType.elementOnly.withElement(
+        element,
+      );
     }
     return CitedArtifactAbstractType.values.firstWhere(
       (e) => e.fhirCode == value,

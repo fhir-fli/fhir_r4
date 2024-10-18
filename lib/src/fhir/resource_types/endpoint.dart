@@ -166,22 +166,27 @@ class FhirEndpoint extends DomainResource {
 
   /// Deserialize [FhirEndpoint] from a [String]
   /// or [YamlMap] object
-  factory FhirEndpoint.fromYaml(dynamic yaml) => yaml is String
-      ? FhirEndpoint.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory FhirEndpoint.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? FhirEndpoint.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('FhirEndpoint cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? FhirEndpoint.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('FhirEndpoint cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [FhirEndpoint]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory FhirEndpoint.fromJsonString(String source) {
+  factory FhirEndpoint.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return FhirEndpoint.fromJson(json);

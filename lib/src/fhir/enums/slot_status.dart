@@ -51,7 +51,9 @@ enum SlotStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SlotStatus.elementOnly.withElement(element);
+      return SlotStatus.elementOnly.withElement(
+        element,
+      );
     }
     return SlotStatus.values.firstWhere(
       (e) => e.fhirCode == value,

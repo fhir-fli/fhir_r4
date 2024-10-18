@@ -63,7 +63,9 @@ enum LegalStatusOfSupply {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return LegalStatusOfSupply.elementOnly.withElement(element);
+      return LegalStatusOfSupply.elementOnly.withElement(
+        element,
+      );
     }
     return LegalStatusOfSupply.values.firstWhere(
       (e) => e.fhirCode == value,

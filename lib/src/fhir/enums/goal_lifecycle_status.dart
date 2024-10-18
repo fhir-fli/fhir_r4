@@ -67,7 +67,9 @@ enum GoalLifecycleStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GoalLifecycleStatus.elementOnly.withElement(element);
+      return GoalLifecycleStatus.elementOnly.withElement(
+        element,
+      );
     }
     return GoalLifecycleStatus.values.firstWhere(
       (e) => e.fhirCode == value,

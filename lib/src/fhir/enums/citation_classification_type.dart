@@ -43,7 +43,9 @@ enum CitationClassificationType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CitationClassificationType.elementOnly.withElement(element);
+      return CitationClassificationType.elementOnly.withElement(
+        element,
+      );
     }
     return CitationClassificationType.values.firstWhere(
       (e) => e.fhirCode == value,

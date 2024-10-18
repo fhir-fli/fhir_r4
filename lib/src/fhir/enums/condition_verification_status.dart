@@ -55,7 +55,9 @@ enum ConditionVerificationStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConditionVerificationStatus.elementOnly.withElement(element);
+      return ConditionVerificationStatus.elementOnly.withElement(
+        element,
+      );
     }
     return ConditionVerificationStatus.values.firstWhere(
       (e) => e.fhirCode == value,

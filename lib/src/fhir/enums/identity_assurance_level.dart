@@ -47,7 +47,9 @@ enum IdentityAssuranceLevel {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return IdentityAssuranceLevel.elementOnly.withElement(element);
+      return IdentityAssuranceLevel.elementOnly.withElement(
+        element,
+      );
     }
     return IdentityAssuranceLevel.values.firstWhere(
       (e) => e.fhirCode == value,

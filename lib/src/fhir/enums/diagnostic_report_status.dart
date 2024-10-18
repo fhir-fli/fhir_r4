@@ -71,7 +71,9 @@ enum DiagnosticReportStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DiagnosticReportStatus.elementOnly.withElement(element);
+      return DiagnosticReportStatus.elementOnly.withElement(
+        element,
+      );
     }
     return DiagnosticReportStatus.values.firstWhere(
       (e) => e.fhirCode == value,

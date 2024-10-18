@@ -43,7 +43,9 @@ enum AllergyIntoleranceSeverity {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AllergyIntoleranceSeverity.elementOnly.withElement(element);
+      return AllergyIntoleranceSeverity.elementOnly.withElement(
+        element,
+      );
     }
     return AllergyIntoleranceSeverity.values.firstWhere(
       (e) => e.fhirCode == value,

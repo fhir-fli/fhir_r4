@@ -39,7 +39,9 @@ enum OpticalActivity {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return OpticalActivity.elementOnly.withElement(element);
+      return OpticalActivity.elementOnly.withElement(
+        element,
+      );
     }
     return OpticalActivity.values.firstWhere(
       (e) => e.fhirCode == value,

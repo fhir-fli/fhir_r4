@@ -43,7 +43,9 @@ enum ActionConditionKind {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionConditionKind.elementOnly.withElement(element);
+      return ActionConditionKind.elementOnly.withElement(
+        element,
+      );
     }
     return ActionConditionKind.values.firstWhere(
       (e) => e.fhirCode == value,

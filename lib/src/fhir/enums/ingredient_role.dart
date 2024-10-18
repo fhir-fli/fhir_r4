@@ -67,7 +67,9 @@ enum IngredientRole {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return IngredientRole.elementOnly.withElement(element);
+      return IngredientRole.elementOnly.withElement(
+        element,
+      );
     }
     return IngredientRole.values.firstWhere(
       (e) => e.fhirCode == value,

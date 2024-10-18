@@ -203,7 +203,9 @@ enum PackageMaterial {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PackageMaterial.elementOnly.withElement(element);
+      return PackageMaterial.elementOnly.withElement(
+        element,
+      );
     }
     return PackageMaterial.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -39,7 +39,9 @@ enum MedicinalProductType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicinalProductType.elementOnly.withElement(element);
+      return MedicinalProductType.elementOnly.withElement(
+        element,
+      );
     }
     return MedicinalProductType.values.firstWhere(
       (e) => e.fhirCode == value,

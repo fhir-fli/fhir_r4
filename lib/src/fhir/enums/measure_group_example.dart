@@ -39,7 +39,9 @@ enum MeasureGroupExample {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureGroupExample.elementOnly.withElement(element);
+      return MeasureGroupExample.elementOnly.withElement(
+        element,
+      );
     }
     return MeasureGroupExample.values.firstWhere(
       (e) => e.fhirCode == value,

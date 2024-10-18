@@ -79,7 +79,9 @@ enum SearchModifierCode {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SearchModifierCode.elementOnly.withElement(element);
+      return SearchModifierCode.elementOnly.withElement(
+        element,
+      );
     }
     return SearchModifierCode.values.firstWhere(
       (e) => e.fhirCode == value,

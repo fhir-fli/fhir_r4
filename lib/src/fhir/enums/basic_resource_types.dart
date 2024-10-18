@@ -95,7 +95,9 @@ enum BasicResourceTypes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return BasicResourceTypes.elementOnly.withElement(element);
+      return BasicResourceTypes.elementOnly.withElement(
+        element,
+      );
     }
     return BasicResourceTypes.values.firstWhere(
       (e) => e.fhirCode == value,

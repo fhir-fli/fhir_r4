@@ -63,7 +63,9 @@ enum WeightMethod {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return WeightMethod.elementOnly.withElement(element);
+      return WeightMethod.elementOnly.withElement(
+        element,
+      );
     }
     return WeightMethod.values.firstWhere(
       (e) => e.fhirCode == value,

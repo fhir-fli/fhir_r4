@@ -39,7 +39,9 @@ enum SpecimenContainedPreference {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SpecimenContainedPreference.elementOnly.withElement(element);
+      return SpecimenContainedPreference.elementOnly.withElement(
+        element,
+      );
     }
     return SpecimenContainedPreference.values.firstWhere(
       (e) => e.fhirCode == value,

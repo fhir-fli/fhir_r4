@@ -63,7 +63,9 @@ enum DeviceMetricColor {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceMetricColor.elementOnly.withElement(element);
+      return DeviceMetricColor.elementOnly.withElement(
+        element,
+      );
     }
     return DeviceMetricColor.values.firstWhere(
       (e) => e.fhirCode == value,

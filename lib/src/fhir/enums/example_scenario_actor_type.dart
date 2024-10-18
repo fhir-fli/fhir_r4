@@ -39,7 +39,9 @@ enum ExampleScenarioActorType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleScenarioActorType.elementOnly.withElement(element);
+      return ExampleScenarioActorType.elementOnly.withElement(
+        element,
+      );
     }
     return ExampleScenarioActorType.values.firstWhere(
       (e) => e.fhirCode == value,

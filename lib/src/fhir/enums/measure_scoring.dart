@@ -47,7 +47,9 @@ enum MeasureScoring {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureScoring.elementOnly.withElement(element);
+      return MeasureScoring.elementOnly.withElement(
+        element,
+      );
     }
     return MeasureScoring.values.firstWhere(
       (e) => e.fhirCode == value,

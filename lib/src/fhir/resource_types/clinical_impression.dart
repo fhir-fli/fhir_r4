@@ -256,22 +256,28 @@ class ClinicalImpression extends DomainResource {
 
   /// Deserialize [ClinicalImpression] from a [String]
   /// or [YamlMap] object
-  factory ClinicalImpression.fromYaml(dynamic yaml) => yaml is String
-      ? ClinicalImpression.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClinicalImpression.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClinicalImpression.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('ClinicalImpression cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClinicalImpression.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClinicalImpression cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClinicalImpression]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClinicalImpression.fromJsonString(String source) {
+  factory ClinicalImpression.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClinicalImpression.fromJson(json);
@@ -688,24 +694,28 @@ class ClinicalImpressionInvestigation extends BackboneElement {
 
   /// Deserialize [ClinicalImpressionInvestigation] from a [String]
   /// or [YamlMap] object
-  factory ClinicalImpressionInvestigation.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ClinicalImpressionInvestigation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClinicalImpressionInvestigation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClinicalImpressionInvestigation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClinicalImpressionInvestigation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClinicalImpressionInvestigation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClinicalImpressionInvestigation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClinicalImpressionInvestigation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClinicalImpressionInvestigation.fromJsonString(String source) {
+  factory ClinicalImpressionInvestigation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClinicalImpressionInvestigation.fromJson(json);
@@ -864,23 +874,28 @@ class ClinicalImpressionFinding extends BackboneElement {
 
   /// Deserialize [ClinicalImpressionFinding] from a [String]
   /// or [YamlMap] object
-  factory ClinicalImpressionFinding.fromYaml(dynamic yaml) => yaml is String
-      ? ClinicalImpressionFinding.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory ClinicalImpressionFinding.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? ClinicalImpressionFinding.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClinicalImpressionFinding cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? ClinicalImpressionFinding.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'ClinicalImpressionFinding cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [ClinicalImpressionFinding]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory ClinicalImpressionFinding.fromJsonString(String source) {
+  factory ClinicalImpressionFinding.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return ClinicalImpressionFinding.fromJson(json);

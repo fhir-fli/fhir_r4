@@ -59,7 +59,9 @@ enum Diet {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return Diet.elementOnly.withElement(element);
+      return Diet.elementOnly.withElement(
+        element,
+      );
     }
     return Diet.values.firstWhere(
       (e) => e.fhirCode == value,

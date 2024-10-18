@@ -71,7 +71,9 @@ enum ProvenanceParticipantType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ProvenanceParticipantType.elementOnly.withElement(element);
+      return ProvenanceParticipantType.elementOnly.withElement(
+        element,
+      );
     }
     return ProvenanceParticipantType.values.firstWhere(
       (e) => e.fhirCode == value,

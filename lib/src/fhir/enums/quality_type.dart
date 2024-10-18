@@ -43,7 +43,9 @@ enum QualityType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QualityType.elementOnly.withElement(element);
+      return QualityType.elementOnly.withElement(
+        element,
+      );
     }
     return QualityType.values.firstWhere(
       (e) => e.fhirCode == value,

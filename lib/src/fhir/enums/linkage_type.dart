@@ -43,7 +43,9 @@ enum LinkageType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return LinkageType.elementOnly.withElement(element);
+      return LinkageType.elementOnly.withElement(
+        element,
+      );
     }
     return LinkageType.values.firstWhere(
       (e) => e.fhirCode == value,

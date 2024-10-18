@@ -55,7 +55,9 @@ enum GroupMeasure {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GroupMeasure.elementOnly.withElement(element);
+      return GroupMeasure.elementOnly.withElement(
+        element,
+      );
     }
     return GroupMeasure.values.firstWhere(
       (e) => e.fhirCode == value,

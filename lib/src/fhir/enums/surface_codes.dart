@@ -75,7 +75,9 @@ enum SurfaceCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SurfaceCodes.elementOnly.withElement(element);
+      return SurfaceCodes.elementOnly.withElement(
+        element,
+      );
     }
     return SurfaceCodes.values.firstWhere(
       (e) => e.fhirCode == value,

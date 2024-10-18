@@ -47,7 +47,9 @@ enum SubstanceAmountType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubstanceAmountType.elementOnly.withElement(element);
+      return SubstanceAmountType.elementOnly.withElement(
+        element,
+      );
     }
     return SubstanceAmountType.values.firstWhere(
       (e) => e.fhirCode == value,

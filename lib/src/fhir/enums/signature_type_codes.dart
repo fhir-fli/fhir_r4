@@ -103,7 +103,9 @@ enum SignatureTypeCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SignatureTypeCodes.elementOnly.withElement(element);
+      return SignatureTypeCodes.elementOnly.withElement(
+        element,
+      );
     }
     return SignatureTypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,

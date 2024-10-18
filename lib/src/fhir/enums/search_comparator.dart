@@ -67,7 +67,9 @@ enum SearchComparator {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SearchComparator.elementOnly.withElement(element);
+      return SearchComparator.elementOnly.withElement(
+        element,
+      );
     }
     return SearchComparator.values.firstWhere(
       (e) => e.fhirCode == value,

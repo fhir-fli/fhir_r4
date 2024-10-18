@@ -47,7 +47,9 @@ enum NarrativeStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NarrativeStatus.elementOnly.withElement(element);
+      return NarrativeStatus.elementOnly.withElement(
+        element,
+      );
     }
     return NarrativeStatus.values.firstWhere(
       (e) => e.fhirCode == value,

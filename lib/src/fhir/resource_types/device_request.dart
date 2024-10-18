@@ -295,22 +295,27 @@ class DeviceRequest extends DomainResource {
 
   /// Deserialize [DeviceRequest] from a [String]
   /// or [YamlMap] object
-  factory DeviceRequest.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceRequest.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DeviceRequest.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DeviceRequest.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('DeviceRequest cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DeviceRequest.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('DeviceRequest cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DeviceRequest]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceRequest.fromJsonString(String source) {
+  factory DeviceRequest.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DeviceRequest.fromJson(json);
@@ -808,23 +813,28 @@ class DeviceRequestParameter extends BackboneElement {
 
   /// Deserialize [DeviceRequestParameter] from a [String]
   /// or [YamlMap] object
-  factory DeviceRequestParameter.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceRequestParameter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DeviceRequestParameter.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DeviceRequestParameter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DeviceRequestParameter cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DeviceRequestParameter.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DeviceRequestParameter cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DeviceRequestParameter]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DeviceRequestParameter.fromJsonString(String source) {
+  factory DeviceRequestParameter.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DeviceRequestParameter.fromJson(json);

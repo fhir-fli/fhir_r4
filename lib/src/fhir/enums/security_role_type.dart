@@ -12927,7 +12927,9 @@ enum SecurityRoleType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SecurityRoleType.elementOnly.withElement(element);
+      return SecurityRoleType.elementOnly.withElement(
+        element,
+      );
     }
     return SecurityRoleType.values.firstWhere(
       (e) => e.fhirCode == value,

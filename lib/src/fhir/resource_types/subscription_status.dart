@@ -141,22 +141,28 @@ class SubscriptionStatus extends DomainResource {
 
   /// Deserialize [SubscriptionStatus] from a [String]
   /// or [YamlMap] object
-  factory SubscriptionStatus.fromYaml(dynamic yaml) => yaml is String
-      ? SubscriptionStatus.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubscriptionStatus.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubscriptionStatus.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('SubscriptionStatus cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubscriptionStatus.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubscriptionStatus cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubscriptionStatus]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubscriptionStatus.fromJsonString(String source) {
+  factory SubscriptionStatus.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubscriptionStatus.fromJson(json);
@@ -421,24 +427,28 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
 
   /// Deserialize [SubscriptionStatusNotificationEvent] from a [String]
   /// or [YamlMap] object
-  factory SubscriptionStatusNotificationEvent.fromYaml(dynamic yaml) => yaml
-          is String
-      ? SubscriptionStatusNotificationEvent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory SubscriptionStatusNotificationEvent.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? SubscriptionStatusNotificationEvent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubscriptionStatusNotificationEvent cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? SubscriptionStatusNotificationEvent.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'SubscriptionStatusNotificationEvent cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [SubscriptionStatusNotificationEvent]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory SubscriptionStatusNotificationEvent.fromJsonString(String source) {
+  factory SubscriptionStatusNotificationEvent.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return SubscriptionStatusNotificationEvent.fromJson(json);

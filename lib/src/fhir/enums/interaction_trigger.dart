@@ -111,7 +111,9 @@ enum InteractionTrigger {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return InteractionTrigger.elementOnly.withElement(element);
+      return InteractionTrigger.elementOnly.withElement(
+        element,
+      );
     }
     return InteractionTrigger.values.firstWhere(
       (e) => e.fhirCode == value,

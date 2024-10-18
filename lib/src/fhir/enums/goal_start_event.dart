@@ -47,7 +47,9 @@ enum GoalStartEvent {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GoalStartEvent.elementOnly.withElement(element);
+      return GoalStartEvent.elementOnly.withElement(
+        element,
+      );
     }
     return GoalStartEvent.values.firstWhere(
       (e) => e.fhirCode == value,

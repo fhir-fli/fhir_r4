@@ -111,7 +111,9 @@ enum USCLSCodes {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return USCLSCodes.elementOnly.withElement(element);
+      return USCLSCodes.elementOnly.withElement(
+        element,
+      );
     }
     return USCLSCodes.values.firstWhere(
       (e) => e.fhirCode == value,

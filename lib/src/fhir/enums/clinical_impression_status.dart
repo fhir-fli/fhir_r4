@@ -75,7 +75,9 @@ enum ClinicalImpressionStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ClinicalImpressionStatus.elementOnly.withElement(element);
+      return ClinicalImpressionStatus.elementOnly.withElement(
+        element,
+      );
     }
     return ClinicalImpressionStatus.values.firstWhere(
       (e) => e.fhirCode == value,

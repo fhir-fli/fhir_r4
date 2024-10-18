@@ -43,7 +43,9 @@ enum ListStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ListStatus.elementOnly.withElement(element);
+      return ListStatus.elementOnly.withElement(
+        element,
+      );
     }
     return ListStatus.values.firstWhere(
       (e) => e.fhirCode == value,

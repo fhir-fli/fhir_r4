@@ -190,22 +190,27 @@ class DetectedIssue extends DomainResource {
 
   /// Deserialize [DetectedIssue] from a [String]
   /// or [YamlMap] object
-  factory DetectedIssue.fromYaml(dynamic yaml) => yaml is String
-      ? DetectedIssue.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DetectedIssue.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DetectedIssue.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('DetectedIssue cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DetectedIssue.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('DetectedIssue cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DetectedIssue]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DetectedIssue.fromJsonString(String source) {
+  factory DetectedIssue.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DetectedIssue.fromJson(json);
@@ -531,23 +536,28 @@ class DetectedIssueEvidence extends BackboneElement {
 
   /// Deserialize [DetectedIssueEvidence] from a [String]
   /// or [YamlMap] object
-  factory DetectedIssueEvidence.fromYaml(dynamic yaml) => yaml is String
-      ? DetectedIssueEvidence.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DetectedIssueEvidence.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DetectedIssueEvidence.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DetectedIssueEvidence cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DetectedIssueEvidence.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DetectedIssueEvidence cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DetectedIssueEvidence]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DetectedIssueEvidence.fromJsonString(String source) {
+  factory DetectedIssueEvidence.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DetectedIssueEvidence.fromJson(json);
@@ -706,23 +716,28 @@ class DetectedIssueMitigation extends BackboneElement {
 
   /// Deserialize [DetectedIssueMitigation] from a [String]
   /// or [YamlMap] object
-  factory DetectedIssueMitigation.fromYaml(dynamic yaml) => yaml is String
-      ? DetectedIssueMitigation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DetectedIssueMitigation.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DetectedIssueMitigation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DetectedIssueMitigation cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DetectedIssueMitigation.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DetectedIssueMitigation cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DetectedIssueMitigation]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DetectedIssueMitigation.fromJsonString(String source) {
+  factory DetectedIssueMitigation.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DetectedIssueMitigation.fromJson(json);

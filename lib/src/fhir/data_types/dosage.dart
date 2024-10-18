@@ -149,22 +149,27 @@ class Dosage extends BackboneType {
 
   /// Deserialize [Dosage] from a [String]
   /// or [YamlMap] object
-  factory Dosage.fromYaml(dynamic yaml) => yaml is String
-      ? Dosage.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Dosage.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Dosage.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Dosage cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Dosage.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Dosage cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Dosage]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Dosage.fromJsonString(String source) {
+  factory Dosage.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Dosage.fromJson(json);
@@ -476,22 +481,28 @@ class DosageDoseAndRate extends Element {
 
   /// Deserialize [DosageDoseAndRate] from a [String]
   /// or [YamlMap] object
-  factory DosageDoseAndRate.fromYaml(dynamic yaml) => yaml is String
-      ? DosageDoseAndRate.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory DosageDoseAndRate.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? DosageDoseAndRate.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('DosageDoseAndRate cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? DosageDoseAndRate.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'DosageDoseAndRate cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [DosageDoseAndRate]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory DosageDoseAndRate.fromJsonString(String source) {
+  factory DosageDoseAndRate.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return DosageDoseAndRate.fromJson(json);

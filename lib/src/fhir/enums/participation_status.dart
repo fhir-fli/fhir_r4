@@ -47,7 +47,9 @@ enum ParticipationStatus {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ParticipationStatus.elementOnly.withElement(element);
+      return ParticipationStatus.elementOnly.withElement(
+        element,
+      );
     }
     return ParticipationStatus.values.firstWhere(
       (e) => e.fhirCode == value,

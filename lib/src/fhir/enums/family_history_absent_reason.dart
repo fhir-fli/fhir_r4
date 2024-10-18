@@ -47,7 +47,9 @@ enum FamilyHistoryAbsentReason {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FamilyHistoryAbsentReason.elementOnly.withElement(element);
+      return FamilyHistoryAbsentReason.elementOnly.withElement(
+        element,
+      );
     }
     return FamilyHistoryAbsentReason.values.firstWhere(
       (e) => e.fhirCode == value,

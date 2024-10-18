@@ -59,7 +59,9 @@ enum DaysOfWeek {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DaysOfWeek.elementOnly.withElement(element);
+      return DaysOfWeek.elementOnly.withElement(
+        element,
+      );
     }
     return DaysOfWeek.values.firstWhere(
       (e) => e.fhirCode == value,

@@ -105,22 +105,27 @@ class Bundle extends Resource {
 
   /// Deserialize [Bundle] from a [String]
   /// or [YamlMap] object
-  factory Bundle.fromYaml(dynamic yaml) => yaml is String
-      ? Bundle.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory Bundle.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? Bundle.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('Bundle cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? Bundle.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('Bundle cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [Bundle]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Bundle.fromJsonString(String source) {
+  factory Bundle.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return Bundle.fromJson(json);
@@ -331,22 +336,27 @@ class BundleLink extends BackboneElement {
 
   /// Deserialize [BundleLink] from a [String]
   /// or [YamlMap] object
-  factory BundleLink.fromYaml(dynamic yaml) => yaml is String
-      ? BundleLink.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory BundleLink.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? BundleLink.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('BundleLink cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? BundleLink.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('BundleLink cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [BundleLink]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory BundleLink.fromJsonString(String source) {
+  factory BundleLink.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return BundleLink.fromJson(json);
@@ -531,22 +541,27 @@ class BundleEntry extends BackboneElement {
 
   /// Deserialize [BundleEntry] from a [String]
   /// or [YamlMap] object
-  factory BundleEntry.fromYaml(dynamic yaml) => yaml is String
-      ? BundleEntry.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory BundleEntry.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? BundleEntry.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('BundleEntry cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? BundleEntry.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('BundleEntry cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [BundleEntry]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory BundleEntry.fromJsonString(String source) {
+  factory BundleEntry.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return BundleEntry.fromJson(json);
@@ -757,22 +772,27 @@ class BundleSearch extends BackboneElement {
 
   /// Deserialize [BundleSearch] from a [String]
   /// or [YamlMap] object
-  factory BundleSearch.fromYaml(dynamic yaml) => yaml is String
-      ? BundleSearch.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory BundleSearch.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? BundleSearch.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('BundleSearch cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? BundleSearch.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('BundleSearch cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [BundleSearch]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory BundleSearch.fromJsonString(String source) {
+  factory BundleSearch.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return BundleSearch.fromJson(json);
@@ -956,22 +976,27 @@ class BundleRequest extends BackboneElement {
 
   /// Deserialize [BundleRequest] from a [String]
   /// or [YamlMap] object
-  factory BundleRequest.fromYaml(dynamic yaml) => yaml is String
-      ? BundleRequest.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory BundleRequest.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? BundleRequest.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('BundleRequest cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? BundleRequest.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('BundleRequest cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [BundleRequest]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory BundleRequest.fromJsonString(String source) {
+  factory BundleRequest.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return BundleRequest.fromJson(json);
@@ -1209,22 +1234,27 @@ class BundleResponse extends BackboneElement {
 
   /// Deserialize [BundleResponse] from a [String]
   /// or [YamlMap] object
-  factory BundleResponse.fromYaml(dynamic yaml) => yaml is String
-      ? BundleResponse.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory BundleResponse.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? BundleResponse.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('BundleResponse cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? BundleResponse.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('BundleResponse cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [BundleResponse]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory BundleResponse.fromJsonString(String source) {
+  factory BundleResponse.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return BundleResponse.fromJson(json);

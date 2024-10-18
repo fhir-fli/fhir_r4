@@ -184,22 +184,27 @@ class NamingSystem extends DomainResource {
 
   /// Deserialize [NamingSystem] from a [String]
   /// or [YamlMap] object
-  factory NamingSystem.fromYaml(dynamic yaml) => yaml is String
-      ? NamingSystem.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory NamingSystem.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? NamingSystem.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('NamingSystem cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? NamingSystem.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('NamingSystem cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [NamingSystem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory NamingSystem.fromJsonString(String source) {
+  factory NamingSystem.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return NamingSystem.fromJson(json);
@@ -548,23 +553,28 @@ class NamingSystemUniqueId extends BackboneElement {
 
   /// Deserialize [NamingSystemUniqueId] from a [String]
   /// or [YamlMap] object
-  factory NamingSystemUniqueId.fromYaml(dynamic yaml) => yaml is String
-      ? NamingSystemUniqueId.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory NamingSystemUniqueId.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? NamingSystemUniqueId.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'NamingSystemUniqueId cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? NamingSystemUniqueId.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'NamingSystemUniqueId cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [NamingSystemUniqueId]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory NamingSystemUniqueId.fromJsonString(String source) {
+  factory NamingSystemUniqueId.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return NamingSystemUniqueId.fromJson(json);

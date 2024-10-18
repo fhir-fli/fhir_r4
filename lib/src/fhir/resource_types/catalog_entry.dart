@@ -193,22 +193,27 @@ class CatalogEntry extends DomainResource {
 
   /// Deserialize [CatalogEntry] from a [String]
   /// or [YamlMap] object
-  factory CatalogEntry.fromYaml(dynamic yaml) => yaml is String
-      ? CatalogEntry.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CatalogEntry.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CatalogEntry.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError('CatalogEntry cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CatalogEntry.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError('CatalogEntry cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CatalogEntry]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CatalogEntry.fromJsonString(String source) {
+  factory CatalogEntry.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CatalogEntry.fromJson(json);
@@ -520,23 +525,28 @@ class CatalogEntryRelatedEntry extends BackboneElement {
 
   /// Deserialize [CatalogEntryRelatedEntry] from a [String]
   /// or [YamlMap] object
-  factory CatalogEntryRelatedEntry.fromYaml(dynamic yaml) => yaml is String
-      ? CatalogEntryRelatedEntry.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-        )
-      : yaml is YamlMap
+  factory CatalogEntryRelatedEntry.fromYaml(
+    dynamic yaml,
+  ) =>
+      yaml is String
           ? CatalogEntryRelatedEntry.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CatalogEntryRelatedEntry cannot be constructed from '
-              'input provided, it is neither a yaml string nor a yaml map.');
+          : yaml is YamlMap
+              ? CatalogEntryRelatedEntry.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'CatalogEntryRelatedEntry cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
   /// Factory constructor for [CatalogEntryRelatedEntry]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory CatalogEntryRelatedEntry.fromJsonString(String source) {
+  factory CatalogEntryRelatedEntry.fromJsonString(
+    String source,
+  ) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
       return CatalogEntryRelatedEntry.fromJson(json);

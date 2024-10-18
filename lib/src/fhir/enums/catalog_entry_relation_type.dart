@@ -39,7 +39,9 @@ enum CatalogEntryRelationType {
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CatalogEntryRelationType.elementOnly.withElement(element);
+      return CatalogEntryRelationType.elementOnly.withElement(
+        element,
+      );
     }
     return CatalogEntryRelationType.values.firstWhere(
       (e) => e.fhirCode == value,
