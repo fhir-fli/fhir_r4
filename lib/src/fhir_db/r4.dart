@@ -1,5 +1,3 @@
-// ignore_for_file: always_specify_types, avoid_dynamic_calls
-
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
@@ -7,7 +5,7 @@ import 'dart:developer';
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_db/cipher_from_key.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 import 'package:rxdart/rxdart.dart';
 
 /// This class is a singleton that manages the local database for FHIR
@@ -104,10 +102,15 @@ class FhirDb {
       final types = typesBox.get('types') ?? <String>[];
       try {
         for (final type in [...types, 'sync', 'history']) {
-          final oldBox = await Hive.openBox<Map<dynamic, dynamic>>(
-            type,
-            encryptionCipher: cipherFromKey(key: oldPw),
-          );
+          final oldBox = type == 'history'
+              ? await Hive.openBox<Map<String, dynamic>>(
+                  type,
+                  encryptionCipher: cipherFromKey(key: oldPw),
+                )
+              : await Hive.openBox<Map<dynamic, dynamic>>(
+                  type,
+                  encryptionCipher: cipherFromKey(key: oldPw),
+                );
           final tempBox = await Hive.openBox<Map<dynamic, dynamic>>(
             'temp',
             encryptionCipher: cipherFromKey(key: newPw),
@@ -161,7 +164,7 @@ class FhirDb {
     String? pw,
   }) async {
     await _ensureInit(pw: pw);
-    final cipher = cipherFromKey(key: pw);
+    final HiveCipher? cipher = pw != null ? cipherFromKey(key: pw) : null;
     final resourceTypeString = Resource.resourceTypeToString(resourceType);
 
     try {
@@ -326,7 +329,7 @@ class FhirDb {
       return await _addType(
         resourceType: resourceType,
         pw: pw,
-      ); // Add type after successful save.
+      );
     } catch (e, s) {
       log('Error saving to DB: $e, Stack at time of Error: $s');
       return false;
@@ -346,6 +349,7 @@ class FhirDb {
             );
 
       final historyKey =
+          // ignore: avoid_dynamic_calls
           '${resource["resourceType"]}/${resource["id"]}/${resource["meta"]["versionId"]}';
       await box.put(historyKey, resource);
       return true;
@@ -421,7 +425,6 @@ class FhirDb {
         return null;
       }
 
-      // Assuming the map from the box is already in the correct format
       return Resource.fromJson(
         jsonDecode(jsonEncode(resourceMap)) as Map<String, dynamic>,
       );
@@ -497,6 +500,7 @@ class FhirDb {
     bool finder(Map<String, dynamic> finderResource) {
       dynamic result = finderResource;
       for (final key in field) {
+        // ignore: avoid_dynamic_calls
         result = result[key];
         if (result == null) {
           return false;
@@ -730,6 +734,7 @@ class FhirDb {
         box = Hive.box('sync');
       }
       final key =
+          // ignore: avoid_dynamic_calls
           '${resource['resourceType']}/${resource['id']}/${resource['meta']['versionId']}';
       await box.put(key, resource);
     } catch (e) {

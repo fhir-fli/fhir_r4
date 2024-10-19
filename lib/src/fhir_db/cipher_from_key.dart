@@ -1,8 +1,5 @@
 import 'dart:convert';
-
-import 'package:hive/hive.dart';
-
-export 'package:hive/hive.dart' show HiveCipher;
+import 'package:hive_ce/hive.dart';
 
 // ignore: public_member_api_docs
 const String nonRandomSalt = '±¾³½÷×¼ƒ¢ª¤®£°¥º';

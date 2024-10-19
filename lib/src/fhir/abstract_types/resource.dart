@@ -106,8 +106,7 @@ abstract class Resource extends FhirBase {
   String get path => '$fhirType/$id';
 
   /// returns the same resource with a new ID if there is no current ID
-  Resource newIdIfNoId() => throw UnimplementedError();
-  // id == null ? _newId(this) : this;
+  Resource newIdIfNoId() => id == null ? newId() : this;
 
   /// returns the same resource with a new ID (even if there is already an ID
   /// present)
