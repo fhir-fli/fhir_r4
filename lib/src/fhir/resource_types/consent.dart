@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'consent.g.dart';
 
 /// [Consent]
 /// A record of a healthcare consumer’s choices, which permits or denies
 /// identified recipient(s) or recipient role(s) to perform one or more
 /// actions within a given policy context, for specific purposes and
 /// periods of time.
+@collection
 class Consent extends DomainResource {
   /// Primary constructor for
   /// [Consent]
@@ -225,6 +229,9 @@ class Consent extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Consent';
@@ -468,6 +475,7 @@ class Consent extends DomainResource {
 /// The references to the policies that are included in this consent scope.
 /// Policies may be organizational, but are often defined jurisdictionally,
 /// or in law.
+@collection
 class ConsentPolicy extends BackboneElement {
   /// Primary constructor for
   /// [ConsentPolicy]
@@ -568,6 +576,9 @@ class ConsentPolicy extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ConsentPolicy';
 
@@ -662,6 +673,7 @@ class ConsentPolicy extends BackboneElement {
 /// Whether a treatment instruction (e.g. artificial respiration yes or no)
 /// was verified with the patient, his/her family or another authorized
 /// person.
+@collection
 class ConsentVerification extends BackboneElement {
   /// Primary constructor for
   /// [ConsentVerification]
@@ -761,6 +773,9 @@ class ConsentVerification extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ConsentVerification';
 
@@ -850,6 +865,7 @@ class ConsentVerification extends BackboneElement {
 /// [ConsentProvision]
 /// An exception to the base policy of this consent. An exception can be an
 /// addition or removal of access permissions.
+@collection
 class ConsentProvision extends BackboneElement {
   /// Primary constructor for
   /// [ConsentProvision]
@@ -1029,6 +1045,9 @@ class ConsentProvision extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ConsentProvision';
 
@@ -1203,6 +1222,7 @@ class ConsentProvision extends BackboneElement {
 /// [ConsentActor]
 /// Who or what is controlled by this rule. Use group to identify a set of
 /// actors by some property they share (e.g. 'admitting officers').
+@collection
 class ConsentActor extends BackboneElement {
   /// Primary constructor for
   /// [ConsentActor]
@@ -1291,6 +1311,9 @@ class ConsentActor extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ConsentActor';
 
@@ -1362,6 +1385,7 @@ class ConsentActor extends BackboneElement {
 /// [ConsentData]
 /// The resources controlled by this rule if specific resources are
 /// referenced.
+@collection
 class ConsentData extends BackboneElement {
   /// Primary constructor for
   /// [ConsentData]
@@ -1450,6 +1474,9 @@ class ConsentData extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ConsentData';

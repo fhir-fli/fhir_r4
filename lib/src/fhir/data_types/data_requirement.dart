@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'data_requirement.g.dart';
 
 /// [DataRequirement]
 /// Describes a required data item for evaluation in terms of the type of
 /// data, and optional code or date-based filters of the data.
+@collection
 class DataRequirement extends DataType {
   /// Primary constructor for
   /// [DataRequirement]
@@ -140,6 +144,9 @@ class DataRequirement extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DataRequirement';
@@ -315,7 +322,8 @@ class DataRequirement extends DataType {
 /// value set of interest for a particular element of the data. Each code
 /// filter defines an additional constraint on the data, i.e. code filters
 /// are AND'ed, not OR'ed.
-class DataRequirementCodeFilter extends Element {
+@collection
+class DataRequirementCodeFilter extends SimpleElement {
   /// Primary constructor for
   /// [DataRequirementCodeFilter]
 
@@ -415,6 +423,9 @@ class DataRequirementCodeFilter extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DataRequirementCodeFilter';
@@ -531,7 +542,8 @@ class DataRequirementCodeFilter extends Element {
 /// applicable date range for specific elements. Each date filter specifies
 /// an additional constraint on the data, i.e. date filters are AND'ed, not
 /// OR'ed.
-class DataRequirementDateFilter extends Element {
+@collection
+class DataRequirementDateFilter extends SimpleElement {
   /// Primary constructor for
   /// [DataRequirementDateFilter]
 
@@ -634,6 +646,9 @@ class DataRequirementDateFilter extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DataRequirementDateFilter';
@@ -766,7 +781,8 @@ class DataRequirementDateFilter extends Element {
 
 /// [DataRequirementSort]
 /// Specifies the order of the results to be returned.
-class DataRequirementSort extends Element {
+@collection
+class DataRequirementSort extends SimpleElement {
   /// Primary constructor for
   /// [DataRequirementSort]
 
@@ -845,6 +861,9 @@ class DataRequirementSort extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DataRequirementSort';

@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'explanation_of_benefit.g.dart';
 
 /// [ExplanationOfBenefit]
 /// This resource provides: the claim details; adjudication details from
 /// the processing of a Claim; and optionally account balance information,
 /// for informing the subscriber of the benefits provided.
+@collection
 class ExplanationOfBenefit extends DomainResource {
   /// Primary constructor for
   /// [ExplanationOfBenefit]
@@ -418,6 +422,9 @@ class ExplanationOfBenefit extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExplanationOfBenefit';
@@ -973,6 +980,7 @@ class ExplanationOfBenefit extends DomainResource {
 /// [ExplanationOfBenefitRelated]
 /// Other claims which are related to this claim such as prior submissions
 /// or claims for related services or for the same event.
+@collection
 class ExplanationOfBenefitRelated extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitRelated]
@@ -1071,6 +1079,9 @@ class ExplanationOfBenefitRelated extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ExplanationOfBenefitRelated';
 
@@ -1154,6 +1165,7 @@ class ExplanationOfBenefitRelated extends BackboneElement {
 /// [ExplanationOfBenefitPayee]
 /// The party to be reimbursed for cost of the products and services
 /// according to the terms of the policy.
+@collection
 class ExplanationOfBenefitPayee extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitPayee]
@@ -1246,6 +1258,9 @@ class ExplanationOfBenefitPayee extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ExplanationOfBenefitPayee';
 
@@ -1318,6 +1333,7 @@ class ExplanationOfBenefitPayee extends BackboneElement {
 
 /// [ExplanationOfBenefitCareTeam]
 /// The members of the team who provided the products and services.
+@collection
 class ExplanationOfBenefitCareTeam extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitCareTeam]
@@ -1425,6 +1441,9 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExplanationOfBenefitCareTeam';
@@ -1535,6 +1554,7 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
 /// [ExplanationOfBenefitSupportingInfo]
 /// Additional information codes regarding exceptions, special
 /// considerations, the condition, situation, prior or concurrent issues.
+@collection
 class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitSupportingInfo]
@@ -1681,6 +1701,9 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExplanationOfBenefitSupportingInfo';
@@ -1869,6 +1892,7 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
 
 /// [ExplanationOfBenefitDiagnosis]
 /// Information about diagnoses relevant to the claim items.
+@collection
 class ExplanationOfBenefitDiagnosis extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitDiagnosis]
@@ -1987,6 +2011,9 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExplanationOfBenefitDiagnosis';
@@ -2108,6 +2135,7 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
 /// [ExplanationOfBenefitProcedure]
 /// Procedures performed on the patient relevant to the billing items with
 /// the claim.
+@collection
 class ExplanationOfBenefitProcedure extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitProcedure]
@@ -2232,6 +2260,9 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ExplanationOfBenefitProcedure';
 
@@ -2353,6 +2384,7 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
 /// [ExplanationOfBenefitInsurance]
 /// Financial instruments for reimbursement for the health care products
 /// and services specified on the claim.
+@collection
 class ExplanationOfBenefitInsurance extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitInsurance]
@@ -2448,6 +2480,9 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ExplanationOfBenefitInsurance';
 
@@ -2540,6 +2575,7 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
 /// [ExplanationOfBenefitAccident]
 /// Details of a accident which resulted in injuries which required the
 /// products and services listed in the claim.
+@collection
 class ExplanationOfBenefitAccident extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitAccident]
@@ -2645,6 +2681,9 @@ class ExplanationOfBenefitAccident extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ExplanationOfBenefitAccident';
 
@@ -2744,6 +2783,7 @@ class ExplanationOfBenefitAccident extends BackboneElement {
 /// [ExplanationOfBenefitItem]
 /// A claim line. Either a simple (a product or service) or a 'group' of
 /// details which can also be a simple items or groups of sub-details.
+@collection
 class ExplanationOfBenefitItem extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitItem]
@@ -3007,6 +3047,9 @@ class ExplanationOfBenefitItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExplanationOfBenefitItem';
@@ -3372,6 +3415,7 @@ class ExplanationOfBenefitItem extends BackboneElement {
 /// If this item is a group then the values here are a summary of the
 /// adjudication of the detail items. If this item is a simple product or
 /// service then this is the result of the adjudication of this item.
+@collection
 class ExplanationOfBenefitAdjudication extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitAdjudication]
@@ -3475,6 +3519,9 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ExplanationOfBenefitAdjudication';
 
@@ -3574,6 +3621,7 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
 
 /// [ExplanationOfBenefitDetail]
 /// Second-tier of goods and services.
+@collection
 class ExplanationOfBenefitDetail extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitDetail]
@@ -3745,6 +3793,9 @@ class ExplanationOfBenefitDetail extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExplanationOfBenefitDetail';
@@ -3948,6 +3999,7 @@ class ExplanationOfBenefitDetail extends BackboneElement {
 
 /// [ExplanationOfBenefitSubDetail]
 /// Third-tier of goods and services.
+@collection
 class ExplanationOfBenefitSubDetail extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitSubDetail]
@@ -4109,6 +4161,9 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExplanationOfBenefitSubDetail';
@@ -4303,6 +4358,7 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
 /// [ExplanationOfBenefitAddItem]
 /// The first-tier service adjudications for payor added product or service
 /// lines.
+@collection
 class ExplanationOfBenefitAddItem extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitAddItem]
@@ -4523,6 +4579,9 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExplanationOfBenefitAddItem';
@@ -4815,6 +4874,7 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
 
 /// [ExplanationOfBenefitDetail1]
 /// The second-tier service adjudications for payor added services.
+@collection
 class ExplanationOfBenefitDetail1 extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitDetail1]
@@ -4949,6 +5009,9 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExplanationOfBenefitDetail1';
@@ -5097,6 +5160,7 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
 
 /// [ExplanationOfBenefitSubDetail1]
 /// The third-tier service adjudications for payor added services.
+@collection
 class ExplanationOfBenefitSubDetail1 extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitSubDetail1]
@@ -5221,6 +5285,9 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExplanationOfBenefitSubDetail1';
@@ -5359,6 +5426,7 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
 
 /// [ExplanationOfBenefitTotal]
 /// Categorized monetary totals for the adjudication.
+@collection
 class ExplanationOfBenefitTotal extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitTotal]
@@ -5447,6 +5515,9 @@ class ExplanationOfBenefitTotal extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ExplanationOfBenefitTotal';
 
@@ -5518,6 +5589,7 @@ class ExplanationOfBenefitTotal extends BackboneElement {
 
 /// [ExplanationOfBenefitPayment]
 /// Payment details for the adjudication of the claim.
+@collection
 class ExplanationOfBenefitPayment extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitPayment]
@@ -5634,6 +5706,9 @@ class ExplanationOfBenefitPayment extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExplanationOfBenefitPayment';
@@ -5754,6 +5829,7 @@ class ExplanationOfBenefitPayment extends BackboneElement {
 /// [ExplanationOfBenefitProcessNote]
 /// A note that describes or explains adjudication results in a human
 /// readable form.
+@collection
 class ExplanationOfBenefitProcessNote extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitProcessNote]
@@ -5861,6 +5937,9 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ExplanationOfBenefitProcessNote';
 
@@ -5964,6 +6043,7 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
 
 /// [ExplanationOfBenefitBenefitBalance]
 /// Balance by Benefit Category.
+@collection
 class ExplanationOfBenefitBenefitBalance extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitBenefitBalance]
@@ -6096,6 +6176,9 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExplanationOfBenefitBenefitBalance';
@@ -6243,6 +6326,7 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
 
 /// [ExplanationOfBenefitFinancial]
 /// Benefits Used to date.
+@collection
 class ExplanationOfBenefitFinancial extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitFinancial]
@@ -6362,6 +6446,9 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExplanationOfBenefitFinancial';

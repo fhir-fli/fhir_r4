@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'audit_event.g.dart';
 
 /// [AuditEvent]
 /// A record of an event made for purposes of maintaining a security log.
 /// Typical uses include detection of intrusion attempts and monitoring for
 /// inappropriate usage.
+@collection
 class AuditEvent extends DomainResource {
   /// Primary constructor for
   /// [AuditEvent]
@@ -204,6 +208,9 @@ class AuditEvent extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'AuditEvent';
@@ -417,6 +424,7 @@ class AuditEvent extends DomainResource {
 
 /// [AuditEventAgent]
 /// An actor taking an active role in the event or activity that is logged.
+@collection
 class AuditEventAgent extends BackboneElement {
   /// Primary constructor for
   /// [AuditEventAgent]
@@ -571,6 +579,9 @@ class AuditEventAgent extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'AuditEventAgent';
@@ -761,6 +772,7 @@ class AuditEventAgent extends BackboneElement {
 /// [AuditEventNetwork]
 /// Logical network location for application activity, if the activity has
 /// a network location.
+@collection
 class AuditEventNetwork extends BackboneElement {
   /// Primary constructor for
   /// [AuditEventNetwork]
@@ -855,6 +867,9 @@ class AuditEventNetwork extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'AuditEventNetwork';
 
@@ -936,6 +951,7 @@ class AuditEventNetwork extends BackboneElement {
 
 /// [AuditEventSource]
 /// The system that is reporting the event.
+@collection
 class AuditEventSource extends BackboneElement {
   /// Primary constructor for
   /// [AuditEventSource]
@@ -1037,6 +1053,9 @@ class AuditEventSource extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'AuditEventSource';
 
@@ -1122,6 +1141,7 @@ class AuditEventSource extends BackboneElement {
 
 /// [AuditEventEntity]
 /// Specific instances of data or objects that have been accessed.
+@collection
 class AuditEventEntity extends BackboneElement {
   /// Primary constructor for
   /// [AuditEventEntity]
@@ -1266,6 +1286,9 @@ class AuditEventEntity extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'AuditEventEntity';
@@ -1424,6 +1447,7 @@ class AuditEventEntity extends BackboneElement {
 /// [AuditEventDetail]
 /// Tagged value pairs for conveying additional information about the
 /// entity.
+@collection
 class AuditEventDetail extends BackboneElement {
   /// Primary constructor for
   /// [AuditEventDetail]
@@ -1523,6 +1547,9 @@ class AuditEventDetail extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'AuditEventDetail';

@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'patient.g.dart';
 
 /// [Patient]
 /// Demographics and other administrative information about an individual
 /// or animal receiving care or other health-related services.
+@collection
 class Patient extends DomainResource {
   /// Primary constructor for
   /// [Patient]
@@ -278,6 +282,9 @@ class Patient extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Patient';
@@ -591,6 +598,7 @@ class Patient extends DomainResource {
 
 /// [PatientContact]
 /// A contact party (e.g. guardian, partner, friend) for the patient.
+@collection
 class PatientContact extends BackboneElement {
   /// Primary constructor for
   /// [PatientContact]
@@ -721,6 +729,9 @@ class PatientContact extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PatientContact';
@@ -853,6 +864,7 @@ class PatientContact extends BackboneElement {
 /// [PatientCommunication]
 /// A language which may be used to communicate with the patient about his
 /// or her health.
+@collection
 class PatientCommunication extends BackboneElement {
   /// Primary constructor for
   /// [PatientCommunication]
@@ -944,6 +956,9 @@ class PatientCommunication extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'PatientCommunication';
 
@@ -1021,6 +1036,7 @@ class PatientCommunication extends BackboneElement {
 
 /// [PatientLink]
 /// Link to another patient resource that concerns the same actual patient.
+@collection
 class PatientLink extends BackboneElement {
   /// Primary constructor for
   /// [PatientLink]
@@ -1109,6 +1125,9 @@ class PatientLink extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PatientLink';

@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'parameters.g.dart';
 
 /// [Parameters]
 /// This resource is a non-persisted resource used to pass information into
 /// and back from an [operation](operations.html). It has no other use, and
 /// there is no RESTful endpoint associated with it.
+@collection
 class Parameters extends Resource {
   /// Primary constructor for
   /// [Parameters]
@@ -99,6 +103,9 @@ class Parameters extends Resource {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'Parameters';
 
@@ -174,6 +181,7 @@ class Parameters extends Resource {
 
 /// [ParametersParameter]
 /// A parameter passed to or received from the operation.
+@collection
 class ParametersParameter extends BackboneElement {
   /// Primary constructor for
   /// [ParametersParameter]
@@ -603,6 +611,9 @@ class ParametersParameter extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ParametersParameter';

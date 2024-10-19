@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'naming_system.g.dart';
 
 /// [NamingSystem]
 /// A curated namespace that issues unique symbols within that namespace
 /// for the identification of concepts, people, devices, etc. Represents a
 /// "System" used within the Identifier and Coding data types.
+@collection
 class NamingSystem extends DomainResource {
   /// Primary constructor for
   /// [NamingSystem]
@@ -218,6 +222,9 @@ class NamingSystem extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'NamingSystem';
@@ -483,6 +490,7 @@ class NamingSystem extends DomainResource {
 /// [NamingSystemUniqueId]
 /// Indicates how the system may be identified when referenced in
 /// electronic exchange.
+@collection
 class NamingSystemUniqueId extends BackboneElement {
   /// Primary constructor for
   /// [NamingSystemUniqueId]
@@ -592,6 +600,9 @@ class NamingSystemUniqueId extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'NamingSystemUniqueId';

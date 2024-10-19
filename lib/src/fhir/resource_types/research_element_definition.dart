@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'research_element_definition.g.dart';
 
 /// [ResearchElementDefinition]
 /// The ResearchElementDefinition resource describes a "PICO" element that
 /// knowledge (evidence, assertion, recommendation) is about.
+@collection
 class ResearchElementDefinition extends DomainResource {
   /// Primary constructor for
   /// [ResearchElementDefinition]
@@ -389,6 +393,9 @@ class ResearchElementDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ResearchElementDefinition';
@@ -962,6 +969,7 @@ class ResearchElementDefinition extends DomainResource {
 /// [ResearchElementDefinitionCharacteristic]
 /// A characteristic that defines the members of the research element.
 /// Multiple characteristics are applied with "and" semantics.
+@collection
 class ResearchElementDefinitionCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [ResearchElementDefinitionCharacteristic]
@@ -1191,6 +1199,9 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ResearchElementDefinitionCharacteristic';

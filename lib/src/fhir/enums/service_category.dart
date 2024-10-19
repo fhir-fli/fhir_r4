@@ -1,202 +1,368 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// This value set defines an example set of codes that can be used to classify groupings of service-types/specialties.
-enum ServiceCategory {
-  /// Display: Adoption
-  /// Definition: Adoption
-  value1('1'),
+@collection
+class ServiceCategory {
+  /// Constructor for internal use (like enum)
+  ServiceCategory({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Aged Care
-  /// Definition: Aged Care
-  value2('2'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Allied Health
-  /// Definition: Allied Health
-  value34('34'),
-
-  /// Display: Alternative/Complementary Therapies
-  /// Definition: Alternative & Complementary Therapies
-  value3('3'),
-
-  /// Display: Child Care /Kindergarten
-  /// Definition: Child Care and/or Kindergarten
-  value4('4'),
-
-  /// Display: Child Development
-  /// Definition: Child Development
-  value5('5'),
-
-  /// Display: Child Protection & Family Services
-  /// Definition: Child Protection & Family Services
-  value6('6'),
-
-  /// Display: Community Health Care
-  /// Definition: Community Health Care
-  value7('7'),
-
-  /// Display: Counselling
-  /// Definition: Counselling
-  value8('8'),
-
-  /// Display: Crisis Line (GPAH use only)
-  /// Definition: Crisis Line (GPAH use only)
-  value36('36'),
-
-  /// Display: Death Services
-  /// Definition: Death Services
-  value9('9'),
-
-  /// Display: Dental
-  /// Definition: Dental
-  value10('10'),
-
-  /// Display: Disability Support
-  /// Definition: Disability Support
-  value11('11'),
-
-  /// Display: Drug/Alcohol
-  /// Definition: Drug/Alcohol
-  value12('12'),
-
-  /// Display: Education & Learning
-  /// Definition: Education & Learning
-  value13('13'),
-
-  /// Display: Emergency Department
-  /// Definition: Emergency Department
-  value14('14'),
-
-  /// Display: Employment
-  /// Definition: Employment
-  value15('15'),
-
-  /// Display: Financial & Material Aid
-  /// Definition: Financial & Material aid
-  value16('16'),
-
-  /// Display: General Practice
-  /// Definition: General Practice/GP (doctor)
-  value17('17'),
-
-  /// Display: Hospital
-  /// Definition: Hospital
-  value35('35'),
-
-  /// Display: Housing/Homelessness
-  /// Definition: Housing/Homelessness
-  value18('18'),
-
-  /// Display: Interpreting
-  /// Definition: Interpreting
-  value19('19'),
-
-  /// Display: Justice
-  /// Definition: Justice
-  value20('20'),
-
-  /// Display: Legal
-  /// Definition: Legal
-  value21('21'),
-
-  /// Display: Mental Health
-  /// Definition: Mental Health
-  value22('22'),
-
-  /// Display: NDIA
-  /// Definition: NDIA
-  value38('38'),
-
-  /// Display: Physical Activity & Recreation
-  /// Definition: Physical Activity & Recreation
-  value23('23'),
-
-  /// Display: Regulation
-  /// Definition: Regulation
-  value24('24'),
-
-  /// Display: Respite/Carer Support
-  /// Definition: Respite/Carer Support
-  value25('25'),
-
-  /// Display: Specialist Clinical Pathology
-  /// Definition: Specialist Clinical Pathology - requires referral
-  value26('26'),
-
-  /// Display: Specialist Medical
-  /// Definition: Specialist Medical - requires referral
-  value27('27'),
-
-  /// Display: Specialist Obstetrics & Gynecology
-  /// Definition: Specialist Obstetrics & Gynecology - requires referral
-  value28('28'),
-
-  /// Display: Specialist Paediatric
-  /// Definition: Specialist Paediatric - requires referral
-  value29('29'),
-
-  /// Display: Specialist Radiology/Imaging
-  /// Definition: Specialist Radiology/Imaging - requires referral
-  value30('30'),
-
-  /// Display: Specialist Surgical
-  /// Definition: Specialist Surgical - requires referral
-  value31('31'),
-
-  /// Display: Support Group/s
-  /// Definition: Support group/s
-  value32('32'),
-
-  /// Display: Test Message (HSD admin)
-  /// Definition: Test Message (HSD admin use only)
-  value37('37'),
-
-  /// Display: Transport
-  /// Definition: Transport
-  value33('33'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ServiceCategory(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// ServiceCategory values
+  /// value1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value1 = ServiceCategory(
+    fhirCode: '1',
+  );
+
+  /// value2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value2 = ServiceCategory(
+    fhirCode: '2',
+  );
+
+  /// value34
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value34 = ServiceCategory(
+    fhirCode: '34',
+  );
+
+  /// value3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value3 = ServiceCategory(
+    fhirCode: '3',
+  );
+
+  /// value4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value4 = ServiceCategory(
+    fhirCode: '4',
+  );
+
+  /// value5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value5 = ServiceCategory(
+    fhirCode: '5',
+  );
+
+  /// value6
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value6 = ServiceCategory(
+    fhirCode: '6',
+  );
+
+  /// value7
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value7 = ServiceCategory(
+    fhirCode: '7',
+  );
+
+  /// value8
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value8 = ServiceCategory(
+    fhirCode: '8',
+  );
+
+  /// value36
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value36 = ServiceCategory(
+    fhirCode: '36',
+  );
+
+  /// value9
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value9 = ServiceCategory(
+    fhirCode: '9',
+  );
+
+  /// value10
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value10 = ServiceCategory(
+    fhirCode: '10',
+  );
+
+  /// value11
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value11 = ServiceCategory(
+    fhirCode: '11',
+  );
+
+  /// value12
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value12 = ServiceCategory(
+    fhirCode: '12',
+  );
+
+  /// value13
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value13 = ServiceCategory(
+    fhirCode: '13',
+  );
+
+  /// value14
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value14 = ServiceCategory(
+    fhirCode: '14',
+  );
+
+  /// value15
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value15 = ServiceCategory(
+    fhirCode: '15',
+  );
+
+  /// value16
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value16 = ServiceCategory(
+    fhirCode: '16',
+  );
+
+  /// value17
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value17 = ServiceCategory(
+    fhirCode: '17',
+  );
+
+  /// value35
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value35 = ServiceCategory(
+    fhirCode: '35',
+  );
+
+  /// value18
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value18 = ServiceCategory(
+    fhirCode: '18',
+  );
+
+  /// value19
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value19 = ServiceCategory(
+    fhirCode: '19',
+  );
+
+  /// value20
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value20 = ServiceCategory(
+    fhirCode: '20',
+  );
+
+  /// value21
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value21 = ServiceCategory(
+    fhirCode: '21',
+  );
+
+  /// value22
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value22 = ServiceCategory(
+    fhirCode: '22',
+  );
+
+  /// value38
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value38 = ServiceCategory(
+    fhirCode: '38',
+  );
+
+  /// value23
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value23 = ServiceCategory(
+    fhirCode: '23',
+  );
+
+  /// value24
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value24 = ServiceCategory(
+    fhirCode: '24',
+  );
+
+  /// value25
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value25 = ServiceCategory(
+    fhirCode: '25',
+  );
+
+  /// value26
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value26 = ServiceCategory(
+    fhirCode: '26',
+  );
+
+  /// value27
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value27 = ServiceCategory(
+    fhirCode: '27',
+  );
+
+  /// value28
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value28 = ServiceCategory(
+    fhirCode: '28',
+  );
+
+  /// value29
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value29 = ServiceCategory(
+    fhirCode: '29',
+  );
+
+  /// value30
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value30 = ServiceCategory(
+    fhirCode: '30',
+  );
+
+  /// value31
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value31 = ServiceCategory(
+    fhirCode: '31',
+  );
+
+  /// value32
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value32 = ServiceCategory(
+    fhirCode: '32',
+  );
+
+  /// value37
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value37 = ServiceCategory(
+    fhirCode: '37',
+  );
+
+  /// value33
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceCategory value33 = ServiceCategory(
+    fhirCode: '33',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ServiceCategory elementOnly = ServiceCategory();
+
+  /// List of all enum-like values
+  static final List<ServiceCategory> values = [
+    value1,
+    value2,
+    value34,
+    value3,
+    value4,
+    value5,
+    value6,
+    value7,
+    value8,
+    value36,
+    value9,
+    value10,
+    value11,
+    value12,
+    value13,
+    value14,
+    value15,
+    value16,
+    value17,
+    value35,
+    value18,
+    value19,
+    value20,
+    value21,
+    value22,
+    value38,
+    value23,
+    value24,
+    value25,
+    value26,
+    value27,
+    value28,
+    value29,
+    value30,
+    value31,
+    value32,
+    value37,
+    value33,
+  ];
+
+  /// Returns the enum value with an element attached
+  ServiceCategory withElement(Element? newElement) {
+    return ServiceCategory(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ServiceCategory] instances.
-  static ServiceCategory fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ServiceCategory] from JSON.
+  static ServiceCategory fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ServiceCategory.elementOnly.withElement(
-        element,
-      );
+      return ServiceCategory.elementOnly.withElement(element);
     }
     return ServiceCategory.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ServiceCategory withElement(Element? newElement) {
-    return ServiceCategory.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ServiceCategory.$fhirCode';
 }

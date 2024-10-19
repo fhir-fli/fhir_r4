@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'research_subject.g.dart';
 
 /// [ResearchSubject]
 /// A physical entity which is the primary unit of operational and/or
 /// administrative interest in a study.
+@collection
 class ResearchSubject extends DomainResource {
   /// Primary constructor for
   /// [ResearchSubject]
@@ -172,6 +176,9 @@ class ResearchSubject extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ResearchSubject';

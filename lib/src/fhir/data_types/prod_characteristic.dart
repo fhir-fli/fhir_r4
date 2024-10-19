@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'prod_characteristic.g.dart';
 
 /// [ProdCharacteristic]
 /// The marketing status describes the date when a medicinal product is
 /// actually put on the market or the date as of which it is no longer
 /// available.
+@collection
 class ProdCharacteristic extends BackboneType {
   /// Primary constructor for
   /// [ProdCharacteristic]
@@ -156,6 +160,9 @@ class ProdCharacteristic extends BackboneType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ProdCharacteristic';

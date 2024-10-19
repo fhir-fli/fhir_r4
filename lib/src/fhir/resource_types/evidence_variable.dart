@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'evidence_variable.g.dart';
 
 /// [EvidenceVariable]
 /// The EvidenceVariable resource describes an element that knowledge
 /// (Evidence) is about.
+@collection
 class EvidenceVariable extends DomainResource {
   /// Primary constructor for
   /// [EvidenceVariable]
@@ -323,6 +327,9 @@ class EvidenceVariable extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'EvidenceVariable';
@@ -750,6 +757,7 @@ class EvidenceVariable extends DomainResource {
 /// [EvidenceVariableCharacteristic]
 /// A characteristic that defines the members of the evidence element.
 /// Multiple characteristics are applied with "and" semantics.
+@collection
 class EvidenceVariableCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceVariableCharacteristic]
@@ -895,6 +903,9 @@ class EvidenceVariableCharacteristic extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'EvidenceVariableCharacteristic';
@@ -1081,6 +1092,7 @@ class EvidenceVariableCharacteristic extends BackboneElement {
 /// [EvidenceVariableTimeFromStart]
 /// Indicates duration, period, or point of observation from the
 /// participant's study entry.
+@collection
 class EvidenceVariableTimeFromStart extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceVariableTimeFromStart]
@@ -1190,6 +1202,9 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'EvidenceVariableTimeFromStart';
 
@@ -1288,6 +1303,7 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
 /// [EvidenceVariableCategory]
 /// A grouping (or set of values) described along with other groupings to
 /// specify the set of groupings allowed for the variable.
+@collection
 class EvidenceVariableCategory extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceVariableCategory]
@@ -1392,6 +1408,9 @@ class EvidenceVariableCategory extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'EvidenceVariableCategory';

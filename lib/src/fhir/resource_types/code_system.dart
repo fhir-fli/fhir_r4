@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'code_system.g.dart';
 
 /// [CodeSystem]
 /// The CodeSystem resource is used to declare the existence of and
 /// describe a code system or code system supplement and its key
 /// properties, and optionally define a part or all of its content.
+@collection
 class CodeSystem extends DomainResource {
   /// Primary constructor for
   /// [CodeSystem]
@@ -328,6 +332,9 @@ class CodeSystem extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CodeSystem';
@@ -799,6 +806,7 @@ class CodeSystem extends DomainResource {
 /// [CodeSystemFilter]
 /// A filter that can be used in a value set compose statement when
 /// selecting concepts using a filter.
+@collection
 class CodeSystemFilter extends BackboneElement {
   /// Primary constructor for
   /// [CodeSystemFilter]
@@ -904,6 +912,9 @@ class CodeSystemFilter extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CodeSystemFilter';
 
@@ -1007,6 +1018,7 @@ class CodeSystemFilter extends BackboneElement {
 /// [CodeSystemProperty]
 /// A property defines an additional slot through which additional
 /// information can be provided about a concept.
+@collection
 class CodeSystemProperty extends BackboneElement {
   /// Primary constructor for
   /// [CodeSystemProperty]
@@ -1110,6 +1122,9 @@ class CodeSystemProperty extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CodeSystemProperty';
@@ -1223,6 +1238,7 @@ class CodeSystemProperty extends BackboneElement {
 /// Concepts that are in the code system. The concept definitions are
 /// inherently hierarchical, but the definitions must be consulted to
 /// determine what the meanings of the hierarchical relationships are.
+@collection
 class CodeSystemConcept extends BackboneElement {
   /// Primary constructor for
   /// [CodeSystemConcept]
@@ -1351,6 +1367,9 @@ class CodeSystemConcept extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CodeSystemConcept';
@@ -1482,6 +1501,7 @@ class CodeSystemConcept extends BackboneElement {
 /// [CodeSystemDesignation]
 /// Additional representations for the concept - other languages, aliases,
 /// specialized purposes, used for particular purposes, etc.
+@collection
 class CodeSystemDesignation extends BackboneElement {
   /// Primary constructor for
   /// [CodeSystemDesignation]
@@ -1580,6 +1600,9 @@ class CodeSystemDesignation extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CodeSystemDesignation';
 
@@ -1667,6 +1690,7 @@ class CodeSystemDesignation extends BackboneElement {
 
 /// [CodeSystemProperty1]
 /// A property value for this concept.
+@collection
 class CodeSystemProperty1 extends BackboneElement {
   /// Primary constructor for
   /// [CodeSystemProperty1]
@@ -1803,6 +1827,9 @@ class CodeSystemProperty1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CodeSystemProperty1';

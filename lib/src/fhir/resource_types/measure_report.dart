@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'measure_report.g.dart';
 
 /// [MeasureReport]
 /// The MeasureReport resource contains the results of the calculation of a
 /// measure; and optionally a reference to the resources involved in that
 /// calculation.
+@collection
 class MeasureReport extends DomainResource {
   /// Primary constructor for
   /// [MeasureReport]
@@ -198,6 +202,9 @@ class MeasureReport extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MeasureReport';
@@ -422,6 +429,7 @@ class MeasureReport extends DomainResource {
 /// [MeasureReportGroup]
 /// The results of the calculation, one for each population group in the
 /// measure.
+@collection
 class MeasureReportGroup extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportGroup]
@@ -534,6 +542,9 @@ class MeasureReportGroup extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MeasureReportGroup';
 
@@ -631,6 +642,7 @@ class MeasureReportGroup extends BackboneElement {
 /// [MeasureReportPopulation]
 /// The populations that make up the population group, one for each type of
 /// population appropriate for the measure.
+@collection
 class MeasureReportPopulation extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportPopulation]
@@ -730,6 +742,9 @@ class MeasureReportPopulation extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MeasureReportPopulation';
 
@@ -817,6 +832,7 @@ class MeasureReportPopulation extends BackboneElement {
 /// [MeasureReportStratifier]
 /// When a measure includes multiple stratifiers, there will be a
 /// stratifier group for each stratifier defined by the measure.
+@collection
 class MeasureReportStratifier extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportStratifier]
@@ -917,6 +933,9 @@ class MeasureReportStratifier extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MeasureReportStratifier';
 
@@ -992,6 +1011,7 @@ class MeasureReportStratifier extends BackboneElement {
 /// This element contains the results for a single stratum within the
 /// stratifier. For example, when stratifying on administrative gender,
 /// there will be four strata, one for each possible gender value.
+@collection
 class MeasureReportStratum extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportStratum]
@@ -1104,6 +1124,9 @@ class MeasureReportStratum extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MeasureReportStratum';
 
@@ -1200,6 +1223,7 @@ class MeasureReportStratum extends BackboneElement {
 
 /// [MeasureReportComponent]
 /// A stratifier component value.
+@collection
 class MeasureReportComponent extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportComponent]
@@ -1288,6 +1312,9 @@ class MeasureReportComponent extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MeasureReportComponent';
 
@@ -1356,6 +1383,7 @@ class MeasureReportComponent extends BackboneElement {
 /// [MeasureReportPopulation1]
 /// The populations that make up the stratum, one for each type of
 /// population appropriate to the measure.
+@collection
 class MeasureReportPopulation1 extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportPopulation1]
@@ -1454,6 +1482,9 @@ class MeasureReportPopulation1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MeasureReportPopulation1';

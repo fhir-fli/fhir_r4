@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'subscription_status.g.dart';
 
 /// [SubscriptionStatus]
 /// The SubscriptionStatus resource describes the state of a Subscription
 /// during notifications.
+@collection
 class SubscriptionStatus extends DomainResource {
   /// Primary constructor for
   /// [SubscriptionStatus]
@@ -175,6 +179,9 @@ class SubscriptionStatus extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubscriptionStatus';
@@ -358,6 +365,7 @@ class SubscriptionStatus extends DomainResource {
 /// [SubscriptionStatusNotificationEvent]
 /// Detailed information about events relevant to this subscription
 /// notification.
+@collection
 class SubscriptionStatusNotificationEvent extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionStatusNotificationEvent]
@@ -465,6 +473,9 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubscriptionStatusNotificationEvent';

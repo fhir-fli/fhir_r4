@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'goal.g.dart';
 
 /// [Goal]
 /// Describes the intended objective(s) for a patient, group or
 /// organization care, for example, weight loss, restoring an activity of
 /// daily living, obtaining herd immunity via immunization, meeting a
 /// process improvement objective, etc.
+@collection
 class Goal extends DomainResource {
   /// Primary constructor for
   /// [Goal]
@@ -254,6 +258,9 @@ class Goal extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Goal';
@@ -536,6 +543,7 @@ class Goal extends DomainResource {
 
 /// [GoalTarget]
 /// Indicates what should be done by when.
+@collection
 class GoalTarget extends BackboneElement {
   /// Primary constructor for
   /// [GoalTarget]
@@ -682,6 +690,9 @@ class GoalTarget extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'GoalTarget';

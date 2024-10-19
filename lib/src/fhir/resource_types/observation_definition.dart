@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'observation_definition.g.dart';
 
 /// [ObservationDefinition]
 /// Set of definitional characteristics for a kind of observation or
 /// measurement produced or consumed by an orderable health care service.
+@collection
 class ObservationDefinition extends DomainResource {
   /// Primary constructor for
   /// [ObservationDefinition]
@@ -215,6 +219,9 @@ class ObservationDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ObservationDefinition';
@@ -460,6 +467,7 @@ class ObservationDefinition extends DomainResource {
 
 /// [ObservationDefinitionQuantitativeDetails]
 /// Characteristics for quantitative results of this observation.
+@collection
 class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   /// Primary constructor for
   /// [ObservationDefinitionQuantitativeDetails]
@@ -568,6 +576,9 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ObservationDefinitionQuantitativeDetails';
 
@@ -673,6 +684,7 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
 /// [ObservationDefinitionQualifiedInterval]
 /// Multiple ranges of results qualified by different contexts for ordinal
 /// or continuous observations conforming to this ObservationDefinition.
+@collection
 class ObservationDefinitionQualifiedInterval extends BackboneElement {
   /// Primary constructor for
   /// [ObservationDefinitionQualifiedInterval]
@@ -807,6 +819,9 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ObservationDefinitionQualifiedInterval';

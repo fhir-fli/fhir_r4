@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'document_reference.g.dart';
 
 /// [DocumentReference]
 /// A reference to a document of any kind for any purpose. Provides
@@ -9,6 +12,7 @@ import 'package:yaml/yaml.dart';
 /// mime-type, so includes formal patient centric documents (CDA), cliical
 /// notes, scanned paper, and non-patient specific documents like policy
 /// text.
+@collection
 class DocumentReference extends DomainResource {
   /// Primary constructor for
   /// [DocumentReference]
@@ -249,6 +253,9 @@ class DocumentReference extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DocumentReference';
@@ -532,6 +539,7 @@ class DocumentReference extends DomainResource {
 /// [DocumentReferenceRelatesTo]
 /// Relationships that this document has with other document references
 /// that already exist.
+@collection
 class DocumentReferenceRelatesTo extends BackboneElement {
   /// Primary constructor for
   /// [DocumentReferenceRelatesTo]
@@ -621,6 +629,9 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'DocumentReferenceRelatesTo';
 
@@ -693,6 +704,7 @@ class DocumentReferenceRelatesTo extends BackboneElement {
 /// [DocumentReferenceContent]
 /// The document and format referenced. There may be multiple content
 /// element repetitions, each with a different format.
+@collection
 class DocumentReferenceContent extends BackboneElement {
   /// Primary constructor for
   /// [DocumentReferenceContent]
@@ -783,6 +795,9 @@ class DocumentReferenceContent extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'DocumentReferenceContent';
 
@@ -855,6 +870,7 @@ class DocumentReferenceContent extends BackboneElement {
 
 /// [DocumentReferenceContext]
 /// The clinical context in which the document was prepared.
+@collection
 class DocumentReferenceContext extends BackboneElement {
   /// Primary constructor for
   /// [DocumentReferenceContext]
@@ -988,6 +1004,9 @@ class DocumentReferenceContext extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DocumentReferenceContext';

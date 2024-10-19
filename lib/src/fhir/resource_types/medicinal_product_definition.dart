@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'medicinal_product_definition.g.dart';
 
 /// [MedicinalProductDefinition]
 /// A medicinal product, being a substance or combination of substances
@@ -10,6 +13,7 @@ import 'package:yaml/yaml.dart';
 /// intended to define and detail such products and their properties, for
 /// uses other than direct patient care (e.g. regulatory use, or drug
 /// catalogs).
+@collection
 class MedicinalProductDefinition extends DomainResource {
   /// Primary constructor for
   /// [MedicinalProductDefinition]
@@ -370,6 +374,9 @@ class MedicinalProductDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MedicinalProductDefinition';
@@ -819,6 +826,7 @@ class MedicinalProductDefinition extends DomainResource {
 
 /// [MedicinalProductDefinitionContact]
 /// A product specific contact, person (in a role), or an organization.
+@collection
 class MedicinalProductDefinitionContact extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionContact]
@@ -909,6 +917,9 @@ class MedicinalProductDefinitionContact extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicinalProductDefinitionContact';
 
@@ -979,6 +990,7 @@ class MedicinalProductDefinitionContact extends BackboneElement {
 
 /// [MedicinalProductDefinitionName]
 /// The product's name, including full name and possibly coded parts.
+@collection
 class MedicinalProductDefinitionName extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionName]
@@ -1090,6 +1102,9 @@ class MedicinalProductDefinitionName extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicinalProductDefinitionName';
 
@@ -1185,6 +1200,7 @@ class MedicinalProductDefinitionName extends BackboneElement {
 
 /// [MedicinalProductDefinitionNamePart]
 /// Coding words or phrases of the name.
+@collection
 class MedicinalProductDefinitionNamePart extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionNamePart]
@@ -1274,6 +1290,9 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicinalProductDefinitionNamePart';
 
@@ -1346,6 +1365,7 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
 /// [MedicinalProductDefinitionCountryLanguage]
 /// Country and jurisdiction where the name applies, and associated
 /// language.
+@collection
 class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionCountryLanguage]
@@ -1440,6 +1460,9 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicinalProductDefinitionCountryLanguage';
 
@@ -1520,6 +1543,7 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
 /// [MedicinalProductDefinitionCrossReference]
 /// Reference to another product, e.g. for linking authorised to
 /// investigational product, or a virtual product.
+@collection
 class MedicinalProductDefinitionCrossReference extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionCrossReference]
@@ -1610,6 +1634,9 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicinalProductDefinitionCrossReference';
 
@@ -1684,6 +1711,7 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
 /// [MedicinalProductDefinitionOperation]
 /// A manufacturing or administrative process or step associated with (or
 /// performed on) the medicinal product.
+@collection
 class MedicinalProductDefinitionOperation extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionOperation]
@@ -1792,6 +1820,9 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicinalProductDefinitionOperation';
 
@@ -1890,6 +1921,7 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
 /// [MedicinalProductDefinitionCharacteristic]
 /// Allows the key product features to be recorded, such as "sugar free",
 /// "modified release", "parallel import".
+@collection
 class MedicinalProductDefinitionCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionCharacteristic]
@@ -2006,6 +2038,9 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MedicinalProductDefinitionCharacteristic';

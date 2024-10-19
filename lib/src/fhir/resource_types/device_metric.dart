@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'device_metric.g.dart';
 
 /// [DeviceMetric]
 /// Describes a measurement, calculation or setting capability of a medical
 /// device.
+@collection
 class DeviceMetric extends DomainResource {
   /// Primary constructor for
   /// [DeviceMetric]
@@ -191,6 +195,9 @@ class DeviceMetric extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DeviceMetric';
@@ -417,6 +424,7 @@ class DeviceMetric extends DomainResource {
 /// [DeviceMetricCalibration]
 /// Describes the calibrations that have been performed or that are
 /// required to be performed.
+@collection
 class DeviceMetricCalibration extends BackboneElement {
   /// Primary constructor for
   /// [DeviceMetricCalibration]
@@ -517,6 +525,9 @@ class DeviceMetricCalibration extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DeviceMetricCalibration';

@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'compartment_definition.g.dart';
 
 /// [CompartmentDefinition]
 /// A compartment definition that defines how resources are accessed on a
 /// server.
+@collection
 class CompartmentDefinition extends DomainResource {
   /// Primary constructor for
   /// [CompartmentDefinition]
@@ -221,6 +225,9 @@ class CompartmentDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CompartmentDefinition';
@@ -515,6 +522,7 @@ class CompartmentDefinition extends DomainResource {
 
 /// [CompartmentDefinitionResource]
 /// Information about how a resource is related to the compartment.
+@collection
 class CompartmentDefinitionResource extends BackboneElement {
   /// Primary constructor for
   /// [CompartmentDefinitionResource]
@@ -613,6 +621,9 @@ class CompartmentDefinitionResource extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CompartmentDefinitionResource';

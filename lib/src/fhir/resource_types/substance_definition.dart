@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'substance_definition.g.dart';
 
 /// [SubstanceDefinition]
 /// The detailed description of a substance, typically at a level beyond
 /// what is used for prescribing.
+@collection
 class SubstanceDefinition extends DomainResource {
   /// Primary constructor for
   /// [SubstanceDefinition]
@@ -291,6 +295,9 @@ class SubstanceDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubstanceDefinition';
@@ -591,6 +598,7 @@ class SubstanceDefinition extends DomainResource {
 
 /// [SubstanceDefinitionMoiety]
 /// Moiety, for structural modifications.
+@collection
 class SubstanceDefinitionMoiety extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionMoiety]
@@ -729,6 +737,9 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubstanceDefinitionMoiety';
@@ -887,6 +898,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 
 /// [SubstanceDefinitionProperty]
 /// General specifications for this substance.
+@collection
 class SubstanceDefinitionProperty extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionProperty]
@@ -1003,6 +1015,9 @@ class SubstanceDefinitionProperty extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubstanceDefinitionProperty';
@@ -1122,6 +1137,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
 /// [SubstanceDefinitionMolecularWeight]
 /// The molecular weight or weight range (for proteins, polymers or nucleic
 /// acids).
+@collection
 class SubstanceDefinitionMolecularWeight extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionMolecularWeight]
@@ -1218,6 +1234,9 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'SubstanceDefinitionMolecularWeight';
 
@@ -1301,6 +1320,7 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
 
 /// [SubstanceDefinitionStructure]
 /// Structural information.
+@collection
 class SubstanceDefinitionStructure extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionStructure]
@@ -1444,6 +1464,9 @@ class SubstanceDefinitionStructure extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubstanceDefinitionStructure';
@@ -1589,6 +1612,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
 
 /// [SubstanceDefinitionRepresentation]
 /// A depiction of the structure or characterization of the substance.
+@collection
 class SubstanceDefinitionRepresentation extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionRepresentation]
@@ -1695,6 +1719,9 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'SubstanceDefinitionRepresentation';
 
@@ -1795,6 +1822,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
 
 /// [SubstanceDefinitionCode]
 /// Codes associated with the substance.
+@collection
 class SubstanceDefinitionCode extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionCode]
@@ -1914,6 +1942,9 @@ class SubstanceDefinitionCode extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'SubstanceDefinitionCode';
 
@@ -2020,6 +2051,7 @@ class SubstanceDefinitionCode extends BackboneElement {
 
 /// [SubstanceDefinitionName]
 /// Names applicable to this substance.
+@collection
 class SubstanceDefinitionName extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionName]
@@ -2194,6 +2226,9 @@ class SubstanceDefinitionName extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'SubstanceDefinitionName';
 
@@ -2363,6 +2398,7 @@ class SubstanceDefinitionName extends BackboneElement {
 
 /// [SubstanceDefinitionOfficial]
 /// Details of the official nature of this name.
+@collection
 class SubstanceDefinitionOfficial extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionOfficial]
@@ -2462,6 +2498,9 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'SubstanceDefinitionOfficial';
 
@@ -2549,6 +2588,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
 /// [SubstanceDefinitionRelationship]
 /// A link between this substance and another, with details of the
 /// relationship.
+@collection
 class SubstanceDefinitionRelationship extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionRelationship]
@@ -2695,6 +2735,9 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubstanceDefinitionRelationship';
@@ -2869,6 +2912,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 
 /// [SubstanceDefinitionSourceMaterial]
 /// Material or taxonomic/anatomical source for the substance.
+@collection
 class SubstanceDefinitionSourceMaterial extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionSourceMaterial]
@@ -2982,6 +3026,9 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubstanceDefinitionSourceMaterial';

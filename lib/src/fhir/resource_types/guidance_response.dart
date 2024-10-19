@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'guidance_response.g.dart';
 
 /// [GuidanceResponse]
 /// A guidance response is the formal response to a guidance request,
 /// including any output parameters returned by the evaluation, as well as
 /// the description of any proposed actions to be taken.
+@collection
 class GuidanceResponse extends DomainResource {
   /// Primary constructor for
   /// [GuidanceResponse]
@@ -254,6 +258,9 @@ class GuidanceResponse extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'GuidanceResponse';

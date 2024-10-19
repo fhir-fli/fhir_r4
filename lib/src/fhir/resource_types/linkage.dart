@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'linkage.g.dart';
 
 /// [Linkage]
 /// Identifies two or more records (resource instances) that refer to the
 /// same real-world "occurrence".
+@collection
 class Linkage extends DomainResource {
   /// Primary constructor for
   /// [Linkage]
@@ -147,6 +151,9 @@ class Linkage extends DomainResource {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'Linkage';
 
@@ -276,6 +283,7 @@ class Linkage extends DomainResource {
 /// Identifies which record considered as the reference to the same
 /// real-world occurrence as well as how the items should be evaluated
 /// within the collection of linked items.
+@collection
 class LinkageItem extends BackboneElement {
   /// Primary constructor for
   /// [LinkageItem]
@@ -364,6 +372,9 @@ class LinkageItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'LinkageItem';

@@ -1,70 +1,107 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// The relationship between two substance types.
-enum SubstanceRelationshipType {
-  /// Display: Salt to parent
-  /// Definition:
-  Salt('Salt'),
+@collection
+class SubstanceRelationshipType {
+  /// Constructor for internal use (like enum)
+  SubstanceRelationshipType({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Active moiety
-  /// Definition:
-  ActiveMoiety('ActiveMoiety'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Starting material for
-  /// Definition:
-  StartingMaterial('StartingMaterial'),
-
-  /// Display: Polymorph of
-  /// Definition:
-  Polymorph('Polymorph'),
-
-  /// Display: Impurity of
-  /// Definition:
-  Impurity('Impurity'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const SubstanceRelationshipType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// SubstanceRelationshipType values
+  /// Salt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubstanceRelationshipType Salt = SubstanceRelationshipType(
+    fhirCode: 'Salt',
+  );
+
+  /// ActiveMoiety
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubstanceRelationshipType ActiveMoiety =
+      SubstanceRelationshipType(
+    fhirCode: 'ActiveMoiety',
+  );
+
+  /// StartingMaterial
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubstanceRelationshipType StartingMaterial =
+      SubstanceRelationshipType(
+    fhirCode: 'StartingMaterial',
+  );
+
+  /// Polymorph
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubstanceRelationshipType Polymorph = SubstanceRelationshipType(
+    fhirCode: 'Polymorph',
+  );
+
+  /// Impurity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubstanceRelationshipType Impurity = SubstanceRelationshipType(
+    fhirCode: 'Impurity',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final SubstanceRelationshipType elementOnly =
+      SubstanceRelationshipType();
+
+  /// List of all enum-like values
+  static final List<SubstanceRelationshipType> values = [
+    Salt,
+    ActiveMoiety,
+    StartingMaterial,
+    Polymorph,
+    Impurity,
+  ];
+
+  /// Returns the enum value with an element attached
+  SubstanceRelationshipType withElement(Element? newElement) {
+    return SubstanceRelationshipType(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [SubstanceRelationshipType] instances.
-  static SubstanceRelationshipType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [SubstanceRelationshipType] from JSON.
+  static SubstanceRelationshipType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubstanceRelationshipType.elementOnly.withElement(
-        element,
-      );
+      return SubstanceRelationshipType.elementOnly.withElement(element);
     }
     return SubstanceRelationshipType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  SubstanceRelationshipType withElement(Element? newElement) {
-    return SubstanceRelationshipType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'SubstanceRelationshipType.$fhirCode';
 }

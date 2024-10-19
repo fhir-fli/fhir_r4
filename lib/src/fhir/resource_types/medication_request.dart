@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'medication_request.g.dart';
 
 /// [MedicationRequest]
 /// An order or request for both supply of the medication and the
@@ -9,6 +12,7 @@ import 'package:yaml/yaml.dart';
 /// "MedicationPrescription" or "MedicationOrder" to generalize the use
 /// across inpatient and outpatient settings, including care plans, etc.,
 /// and to harmonize with workflow patterns.
+@collection
 class MedicationRequest extends DomainResource {
   /// Primary constructor for
   /// [MedicationRequest]
@@ -377,6 +381,9 @@ class MedicationRequest extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MedicationRequest';
@@ -902,6 +909,7 @@ class MedicationRequest extends DomainResource {
 /// with the order. There may be in some settings (e.g. hospitals)
 /// institutional or system support for completing the dispense details in
 /// the pharmacy department.
+@collection
 class MedicationRequestDispenseRequest extends BackboneElement {
   /// Primary constructor for
   /// [MedicationRequestDispenseRequest]
@@ -1025,6 +1033,9 @@ class MedicationRequestDispenseRequest extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MedicationRequestDispenseRequest';
@@ -1166,6 +1177,7 @@ class MedicationRequestDispenseRequest extends BackboneElement {
 /// [MedicationRequestInitialFill]
 /// Indicates the quantity or duration for the first dispense of the
 /// medication.
+@collection
 class MedicationRequestInitialFill extends BackboneElement {
   /// Primary constructor for
   /// [MedicationRequestInitialFill]
@@ -1258,6 +1270,9 @@ class MedicationRequestInitialFill extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationRequestInitialFill';
 
@@ -1332,6 +1347,7 @@ class MedicationRequestInitialFill extends BackboneElement {
 /// dispense. In some cases, substitution must happen, in other cases
 /// substitution must not happen. This block explains the prescriber's
 /// intent. If nothing is specified substitution may be done.
+@collection
 class MedicationRequestSubstitution extends BackboneElement {
   /// Primary constructor for
   /// [MedicationRequestSubstitution]
@@ -1431,6 +1447,9 @@ class MedicationRequestSubstitution extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MedicationRequestSubstitution';

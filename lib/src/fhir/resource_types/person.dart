@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'person.g.dart';
 
 /// [Person]
 /// Demographics and administrative information about a person independent
 /// of a specific health-related context.
+@collection
 class Person extends DomainResource {
   /// Primary constructor for
   /// [Person]
@@ -206,6 +210,9 @@ class Person extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Person';
@@ -411,6 +418,7 @@ class Person extends DomainResource {
 
 /// [PersonLink]
 /// Link to a resource that concerns the same actual person.
+@collection
 class PersonLink extends BackboneElement {
   /// Primary constructor for
   /// [PersonLink]
@@ -501,6 +509,9 @@ class PersonLink extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PersonLink';

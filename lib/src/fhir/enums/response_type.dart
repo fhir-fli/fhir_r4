@@ -1,62 +1,88 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// The kind of response to a message.
-enum ResponseType {
-  /// Display: OK
-  /// Definition: The message was accepted and processed without error.
-  ok('ok'),
+@collection
+class ResponseType {
+  /// Constructor for internal use (like enum)
+  ResponseType({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Transient Error
-  /// Definition: Some internal unexpected error occurred - wait and try again. Note - this is usually used for things like database unavailable, which may be expected to resolve, though human intervention may be required.
-  transient_error('transient-error'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Fatal Error
-  /// Definition: The message was rejected because of a problem with the content. There is no point in re-sending without change. The response narrative SHALL describe the issue.
-  fatal_error('fatal-error'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ResponseType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// ResponseType values
+  /// ok
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ResponseType ok = ResponseType(
+    fhirCode: 'ok',
+  );
+
+  /// transient_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ResponseType transient_error = ResponseType(
+    fhirCode: 'transient-error',
+  );
+
+  /// fatal_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ResponseType fatal_error = ResponseType(
+    fhirCode: 'fatal-error',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ResponseType elementOnly = ResponseType();
+
+  /// List of all enum-like values
+  static final List<ResponseType> values = [
+    ok,
+    transient_error,
+    fatal_error,
+  ];
+
+  /// Returns the enum value with an element attached
+  ResponseType withElement(Element? newElement) {
+    return ResponseType(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ResponseType] instances.
-  static ResponseType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ResponseType] from JSON.
+  static ResponseType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResponseType.elementOnly.withElement(
-        element,
-      );
+      return ResponseType.elementOnly.withElement(element);
     }
     return ResponseType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ResponseType withElement(Element? newElement) {
-    return ResponseType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ResponseType.$fhirCode';
 }

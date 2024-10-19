@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'subscription.g.dart';
 
 /// [Subscription]
 /// The subscription resource is used to define a push-based subscription
@@ -9,6 +12,7 @@ import 'package:yaml/yaml.dart';
 /// updated, and if the resource matches the given criteria, it sends a
 /// message on the defined "channel" so that another system can take an
 /// appropriate action.
+@collection
 class Subscription extends DomainResource {
   /// Primary constructor for
   /// [Subscription]
@@ -170,6 +174,9 @@ class Subscription extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Subscription';
@@ -349,6 +356,7 @@ class Subscription extends DomainResource {
 /// [SubscriptionChannel]
 /// Details where to send notifications when resources are received that
 /// meet the criteria.
+@collection
 class SubscriptionChannel extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionChannel]
@@ -453,6 +461,9 @@ class SubscriptionChannel extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubscriptionChannel';

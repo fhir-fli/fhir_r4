@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'composition.g.dart';
 
 /// [Composition]
 /// A set of healthcare-related information that is assembled together into
@@ -13,6 +16,7 @@ import 'package:yaml/yaml.dart';
 /// Bundle.type=document, and any other resources referenced from
 /// Composition must be included as subsequent entries in the Bundle (for
 /// example Patient, Practitioner, Encounter, etc.).
+@collection
 class Composition extends DomainResource {
   /// Primary constructor for
   /// [Composition]
@@ -242,6 +246,9 @@ class Composition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Composition';
@@ -506,6 +513,7 @@ class Composition extends DomainResource {
 /// [CompositionAttester]
 /// A participant who has attested to the accuracy of the
 /// composition/document.
+@collection
 class CompositionAttester extends BackboneElement {
   /// Primary constructor for
   /// [CompositionAttester]
@@ -604,6 +612,9 @@ class CompositionAttester extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CompositionAttester';
 
@@ -692,6 +703,7 @@ class CompositionAttester extends BackboneElement {
 /// [CompositionRelatesTo]
 /// Relationships that this composition has with other compositions or
 /// documents that already exist.
+@collection
 class CompositionRelatesTo extends BackboneElement {
   /// Primary constructor for
   /// [CompositionRelatesTo]
@@ -789,6 +801,9 @@ class CompositionRelatesTo extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CompositionRelatesTo';
 
@@ -874,6 +889,7 @@ class CompositionRelatesTo extends BackboneElement {
 /// [CompositionEvent]
 /// The clinical service, such as a colonoscopy or an appendectomy, being
 /// documented.
+@collection
 class CompositionEvent extends BackboneElement {
   /// Primary constructor for
   /// [CompositionEvent]
@@ -980,6 +996,9 @@ class CompositionEvent extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CompositionEvent';
 
@@ -1069,6 +1088,7 @@ class CompositionEvent extends BackboneElement {
 
 /// [CompositionSection]
 /// The root of the sections that make up the composition.
+@collection
 class CompositionSection extends BackboneElement {
   /// Primary constructor for
   /// [CompositionSection]
@@ -1222,6 +1242,9 @@ class CompositionSection extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CompositionSection';

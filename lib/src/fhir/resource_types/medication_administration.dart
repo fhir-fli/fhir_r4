@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'medication_administration.g.dart';
 
 /// [MedicationAdministration]
 /// Describes the event of a patient consuming or otherwise being
@@ -8,6 +11,7 @@ import 'package:yaml/yaml.dart';
 /// or it may be a long running infusion. Related resources tie this event
 /// to the authorizing prescription, and the specific encounter between
 /// patient and health care practitioner.
+@collection
 class MedicationAdministration extends DomainResource {
   /// Primary constructor for
   /// [MedicationAdministration]
@@ -291,6 +295,9 @@ class MedicationAdministration extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MedicationAdministration';
@@ -636,6 +643,7 @@ class MedicationAdministration extends DomainResource {
 /// [MedicationAdministrationPerformer]
 /// Indicates who or what performed the medication administration and how
 /// they were involved.
+@collection
 class MedicationAdministrationPerformer extends BackboneElement {
   /// Primary constructor for
   /// [MedicationAdministrationPerformer]
@@ -726,6 +734,9 @@ class MedicationAdministrationPerformer extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationAdministrationPerformer';
 
@@ -797,6 +808,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
 /// [MedicationAdministrationDosage]
 /// Describes the medication dosage information details e.g. dose, rate,
 /// site, route, etc.
+@collection
 class MedicationAdministrationDosage extends BackboneElement {
   /// Primary constructor for
   /// [MedicationAdministrationDosage]
@@ -919,6 +931,9 @@ class MedicationAdministrationDosage extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MedicationAdministrationDosage';

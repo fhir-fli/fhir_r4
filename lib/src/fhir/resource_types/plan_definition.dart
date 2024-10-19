@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'plan_definition.g.dart';
 
 /// [PlanDefinition]
 /// This resource allows for the definition of various types of plans as a
@@ -8,6 +11,7 @@ import 'package:yaml/yaml.dart';
 /// enough to support the description of a broad range of clinical and
 /// non-clinical artifacts such as clinical decision support rules, order
 /// sets, protocols, and drug quality specifications.
+@collection
 class PlanDefinition extends DomainResource {
   /// Primary constructor for
   /// [PlanDefinition]
@@ -390,6 +394,9 @@ class PlanDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PlanDefinition';
@@ -962,6 +969,7 @@ class PlanDefinition extends DomainResource {
 /// activity of daily living, obtaining herd immunity via immunization,
 /// meeting a process improvement objective, meeting the acceptance
 /// criteria for a test as specified by a quality specification, etc.
+@collection
 class PlanDefinitionGoal extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionGoal]
@@ -1094,6 +1102,9 @@ class PlanDefinitionGoal extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'PlanDefinitionGoal';
 
@@ -1220,6 +1231,7 @@ class PlanDefinitionGoal extends BackboneElement {
 
 /// [PlanDefinitionTarget]
 /// Indicates what should be done and within what timeframe.
+@collection
 class PlanDefinitionTarget extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionTarget]
@@ -1329,6 +1341,9 @@ class PlanDefinitionTarget extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PlanDefinitionTarget';
@@ -1456,6 +1471,7 @@ class PlanDefinitionTarget extends BackboneElement {
 /// indicated medication, or perform a particular test as appropriate. In
 /// pharmaceutical quality, an action would be the test that needs to be
 /// performed on a drug product as defined in the quality specification.
+@collection
 class PlanDefinitionAction extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionAction]
@@ -1814,6 +1830,9 @@ class PlanDefinitionAction extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PlanDefinitionAction';
@@ -2331,6 +2350,7 @@ class PlanDefinitionAction extends BackboneElement {
 /// [PlanDefinitionCondition]
 /// An expression that describes applicability criteria or start/stop
 /// conditions for the action.
+@collection
 class PlanDefinitionCondition extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionCondition]
@@ -2422,6 +2442,9 @@ class PlanDefinitionCondition extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'PlanDefinitionCondition';
 
@@ -2497,6 +2520,7 @@ class PlanDefinitionCondition extends BackboneElement {
 /// [PlanDefinitionRelatedAction]
 /// A relationship to another action such as "before" or "30-60 minutes
 /// after start of".
+@collection
 class PlanDefinitionRelatedAction extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionRelatedAction]
@@ -2599,6 +2623,9 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'PlanDefinitionRelatedAction';
 
@@ -2696,6 +2723,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
 
 /// [PlanDefinitionParticipant]
 /// Indicates who should participate in performing the action described.
+@collection
 class PlanDefinitionParticipant extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionParticipant]
@@ -2787,6 +2815,9 @@ class PlanDefinitionParticipant extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'PlanDefinitionParticipant';
 
@@ -2865,6 +2896,7 @@ class PlanDefinitionParticipant extends BackboneElement {
 /// based on the patient's weight, a customization would be used to specify
 /// an expression that calculated the weight, and the path on the resource
 /// that would contain the result.
+@collection
 class PlanDefinitionDynamicValue extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionDynamicValue]
@@ -2957,6 +2989,9 @@ class PlanDefinitionDynamicValue extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PlanDefinitionDynamicValue';

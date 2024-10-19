@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'boolean.g.dart';
 
 /// Extension to convert a [bool] to [FhirBoolean]
 extension FhirBooleanExtension on bool {
@@ -9,10 +12,11 @@ extension FhirBooleanExtension on bool {
 }
 
 /// [FhirBoolean] class representing the FHIR primitive type `boolean`
+@collection
 class FhirBoolean extends PrimitiveType<bool> {
   /// Public generative constructor
   // ignore: avoid_positional_boolean_parameters
-  FhirBoolean(super.input, [super.element]) {
+  FhirBoolean(super.input, [super.element]) : dbValue = input {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -112,6 +116,17 @@ class FhirBoolean extends PrimitiveType<bool> {
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(value, element);
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final bool? dbValue;
+
+  /// Returns the FHIR type as 'uuid'.
+  @override
+  String get fhirType => 'boolean';
 
   /// Creates a deep copy of the instance
   @override

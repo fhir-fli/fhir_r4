@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'clinical_use_definition.g.dart';
 
 /// [ClinicalUseDefinition]
 /// A single issue - either an indication, contraindication, interaction or
 /// an undesirable effect for a medicinal product, medication, device or
 /// procedure.
+@collection
 class ClinicalUseDefinition extends DomainResource {
   /// Primary constructor for
   /// [ClinicalUseDefinition]
@@ -205,6 +209,9 @@ class ClinicalUseDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClinicalUseDefinition';
@@ -415,6 +422,7 @@ class ClinicalUseDefinition extends DomainResource {
 
 /// [ClinicalUseDefinitionContraindication]
 /// Specifics for when this is a contraindication.
+@collection
 class ClinicalUseDefinitionContraindication extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionContraindication]
@@ -537,6 +545,9 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClinicalUseDefinitionContraindication';
 
@@ -643,6 +654,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
 /// [ClinicalUseDefinitionOtherTherapy]
 /// Information about the use of the medicinal product in relation to other
 /// therapies described as part of the contraindication.
+@collection
 class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionOtherTherapy]
@@ -731,6 +743,9 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClinicalUseDefinitionOtherTherapy';
 
@@ -800,6 +815,7 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
 
 /// [ClinicalUseDefinitionIndication]
 /// Specifics for when this is an indication.
+@collection
 class ClinicalUseDefinitionIndication extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionIndication]
@@ -931,6 +947,9 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClinicalUseDefinitionIndication';
@@ -1068,6 +1087,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
 
 /// [ClinicalUseDefinitionInteraction]
 /// Specifics for when this is an interaction.
+@collection
 class ClinicalUseDefinitionInteraction extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionInteraction]
@@ -1186,6 +1206,9 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClinicalUseDefinitionInteraction';
 
@@ -1291,6 +1314,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
 /// [ClinicalUseDefinitionInteractant]
 /// The specific medication, food, substance or laboratory test that
 /// interacts.
+@collection
 class ClinicalUseDefinitionInteractant extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionInteractant]
@@ -1383,6 +1407,9 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClinicalUseDefinitionInteractant';
 
@@ -1455,6 +1482,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
 /// [ClinicalUseDefinitionUndesirableEffect]
 /// Describe the possible undesirable effects (negative outcomes) from the
 /// use of the medicinal product as treatment.
+@collection
 class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionUndesirableEffect]
@@ -1553,6 +1581,9 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClinicalUseDefinitionUndesirableEffect';
 
@@ -1639,6 +1670,7 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
 /// risks or hazards that serve as caution to the user. For example 'Do not
 /// operate heavy machinery', 'May cause drowsiness', or 'Get medical
 /// advice/attention if you feel unwell'.
+@collection
 class ClinicalUseDefinitionWarning extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionWarning]
@@ -1731,6 +1763,9 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClinicalUseDefinitionWarning';

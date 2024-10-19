@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'graph_definition.g.dart';
 
 /// [GraphDefinition]
 /// A formal computable definition of a graph of resources - that is, a
 /// coherent set of resources that form a graph by following references.
 /// The Graph Definition resource defines a set and makes rules about the
 /// set.
+@collection
 class GraphDefinition extends DomainResource {
   /// Primary constructor for
   /// [GraphDefinition]
@@ -237,6 +241,9 @@ class GraphDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'GraphDefinition';
@@ -545,6 +552,7 @@ class GraphDefinition extends DomainResource {
 
 /// [GraphDefinitionLink]
 /// Links this graph makes rules about.
+@collection
 class GraphDefinitionLink extends BackboneElement {
   /// Primary constructor for
   /// [GraphDefinitionLink]
@@ -669,6 +677,9 @@ class GraphDefinitionLink extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'GraphDefinitionLink';
@@ -803,6 +814,7 @@ class GraphDefinitionLink extends BackboneElement {
 
 /// [GraphDefinitionTarget]
 /// Potential target for the link.
+@collection
 class GraphDefinitionTarget extends BackboneElement {
   /// Primary constructor for
   /// [GraphDefinitionTarget]
@@ -922,6 +934,9 @@ class GraphDefinitionTarget extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'GraphDefinitionTarget';
 
@@ -1033,6 +1048,7 @@ class GraphDefinitionTarget extends BackboneElement {
 
 /// [GraphDefinitionCompartment]
 /// Compartment Consistency Rules.
+@collection
 class GraphDefinitionCompartment extends BackboneElement {
   /// Primary constructor for
   /// [GraphDefinitionCompartment]
@@ -1141,6 +1157,9 @@ class GraphDefinitionCompartment extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'GraphDefinitionCompartment';

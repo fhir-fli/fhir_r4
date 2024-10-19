@@ -1,58 +1,80 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// A categorisation for incidence of occurence of an interaction.
-enum InteractionIncidence {
-  /// Display: Theoretical
-  /// Definition:
-  Theoretical('Theoretical'),
+@collection
+class InteractionIncidence {
+  /// Constructor for internal use (like enum)
+  InteractionIncidence({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Observed
-  /// Definition:
-  Observed('Observed'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const InteractionIncidence(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// InteractionIncidence values
+  /// Theoretical
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final InteractionIncidence Theoretical = InteractionIncidence(
+    fhirCode: 'Theoretical',
+  );
+
+  /// Observed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final InteractionIncidence Observed = InteractionIncidence(
+    fhirCode: 'Observed',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final InteractionIncidence elementOnly = InteractionIncidence();
+
+  /// List of all enum-like values
+  static final List<InteractionIncidence> values = [
+    Theoretical,
+    Observed,
+  ];
+
+  /// Returns the enum value with an element attached
+  InteractionIncidence withElement(Element? newElement) {
+    return InteractionIncidence(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [InteractionIncidence] instances.
-  static InteractionIncidence fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [InteractionIncidence] from JSON.
+  static InteractionIncidence fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return InteractionIncidence.elementOnly.withElement(
-        element,
-      );
+      return InteractionIncidence.elementOnly.withElement(element);
     }
     return InteractionIncidence.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  InteractionIncidence withElement(Element? newElement) {
-    return InteractionIncidence.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'InteractionIncidence.$fhirCode';
 }

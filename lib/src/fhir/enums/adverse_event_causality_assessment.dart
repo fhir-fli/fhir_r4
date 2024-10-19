@@ -1,74 +1,119 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// Codes for the assessment of whether the entity caused the event.
-enum AdverseEventCausalityAssessment {
-  /// Display: Certain
-  /// Definition: i) Event or laboratory test abnormality, with plausible time relationship to drug intake; ii) Cannot be explained by disease or other drugs; iii) Response to withdrawal plausible (pharmacologically, pathologically); iv) Event definitive pharmacologically or phenomenologically (i.e. an objective and specific medical disorder or a recognized pharmacological phenomenon); or v) Re-challenge satisfactory, if necessary.
-  Certain('Certain'),
+@collection
+class AdverseEventCausalityAssessment {
+  /// Constructor for internal use (like enum)
+  AdverseEventCausalityAssessment({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Probably/Likely
-  /// Definition: i) Event or laboratory test abnormality, with reasonable time relationship to drug intake; ii) Unlikely to be attributed to disease or other drugs; iii) Response to withdrawal clinically reasonable; or iv) Re-challenge not required.
-  Probably_Likely('Probably-Likely'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Possible
-  /// Definition: i) Event or laboratory test abnormality, with reasonable time relationship to drug intake; ii) Could also be explained by disease or other drugs; or iii) Information on drug withdrawal may be lacking or unclear.
-  Possible('Possible'),
-
-  /// Display: Unlikely
-  /// Definition: i) Event or laboratory test abnormality, with a time to drug intake that makes a relationship improbable (but not impossible); or ii) Disease or other drugs provide plausible explanations.
-  Unlikely('Unlikely'),
-
-  /// Display: Conditional/Classified
-  /// Definition: i) Event or laboratory test abnormality; ii) More data for proper assessment needed; or iii) Additional data under examination.
-  Conditional_Classified('Conditional-Classified'),
-
-  /// Display: Unassessable/Unclassifiable
-  /// Definition: i) Report suggesting an adverse reaction; ii) Cannot be judged because information is insufficient or contradictory; or iii) Data cannot be supplemented or verified.
-  Unassessable_Unclassifiable('Unassessable-Unclassifiable'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const AdverseEventCausalityAssessment(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// AdverseEventCausalityAssessment values
+  /// Certain
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdverseEventCausalityAssessment Certain =
+      AdverseEventCausalityAssessment(
+    fhirCode: 'Certain',
+  );
+
+  /// Probably_Likely
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdverseEventCausalityAssessment Probably_Likely =
+      AdverseEventCausalityAssessment(
+    fhirCode: 'Probably-Likely',
+  );
+
+  /// Possible
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdverseEventCausalityAssessment Possible =
+      AdverseEventCausalityAssessment(
+    fhirCode: 'Possible',
+  );
+
+  /// Unlikely
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdverseEventCausalityAssessment Unlikely =
+      AdverseEventCausalityAssessment(
+    fhirCode: 'Unlikely',
+  );
+
+  /// Conditional_Classified
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdverseEventCausalityAssessment Conditional_Classified =
+      AdverseEventCausalityAssessment(
+    fhirCode: 'Conditional-Classified',
+  );
+
+  /// Unassessable_Unclassifiable
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdverseEventCausalityAssessment Unassessable_Unclassifiable =
+      AdverseEventCausalityAssessment(
+    fhirCode: 'Unassessable-Unclassifiable',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final AdverseEventCausalityAssessment elementOnly =
+      AdverseEventCausalityAssessment();
+
+  /// List of all enum-like values
+  static final List<AdverseEventCausalityAssessment> values = [
+    Certain,
+    Probably_Likely,
+    Possible,
+    Unlikely,
+    Conditional_Classified,
+    Unassessable_Unclassifiable,
+  ];
+
+  /// Returns the enum value with an element attached
+  AdverseEventCausalityAssessment withElement(Element? newElement) {
+    return AdverseEventCausalityAssessment(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [AdverseEventCausalityAssessment] instances.
-  static AdverseEventCausalityAssessment fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [AdverseEventCausalityAssessment] from JSON.
+  static AdverseEventCausalityAssessment fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdverseEventCausalityAssessment.elementOnly.withElement(
-        element,
-      );
+      return AdverseEventCausalityAssessment.elementOnly.withElement(element);
     }
     return AdverseEventCausalityAssessment.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  AdverseEventCausalityAssessment withElement(Element? newElement) {
-    return AdverseEventCausalityAssessment.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'AdverseEventCausalityAssessment.$fhirCode';
 }

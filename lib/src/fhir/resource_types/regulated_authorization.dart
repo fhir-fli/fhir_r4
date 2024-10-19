@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'regulated_authorization.g.dart';
 
 /// [RegulatedAuthorization]
 /// Regulatory approval, clearance or licencing related to a regulated
 /// product, treatment, facility or activity that is cited in a guidance,
 /// regulation, rule or legislative act. An example is Market Authorization
 /// relating to a Medicinal Product.
+@collection
 class RegulatedAuthorization extends DomainResource {
   /// Primary constructor for
   /// [RegulatedAuthorization]
@@ -227,6 +231,9 @@ class RegulatedAuthorization extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'RegulatedAuthorization';
@@ -489,6 +496,7 @@ class RegulatedAuthorization extends DomainResource {
 /// to this and assesses them. Note: This area is subject to ongoing review
 /// and the workgroup is seeking implementer feedback on its use (see link
 /// at bottom of page).
+@collection
 class RegulatedAuthorizationCase extends BackboneElement {
   /// Primary constructor for
   /// [RegulatedAuthorizationCase]
@@ -610,6 +618,9 @@ class RegulatedAuthorizationCase extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'RegulatedAuthorizationCase';

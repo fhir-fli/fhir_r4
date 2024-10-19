@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'catalog_entry.g.dart';
 
 /// [CatalogEntry]
 /// Catalog entries are wrappers that contextualize items included in a
 /// catalog.
+@collection
 class CatalogEntry extends DomainResource {
   /// Primary constructor for
   /// [CatalogEntry]
@@ -225,6 +229,9 @@ class CatalogEntry extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CatalogEntry';
@@ -470,6 +477,7 @@ class CatalogEntry extends DomainResource {
 /// [CatalogEntryRelatedEntry]
 /// Used for example, to point to a substance, or to a device used to
 /// administer a medication.
+@collection
 class CatalogEntryRelatedEntry extends BackboneElement {
   /// Primary constructor for
   /// [CatalogEntryRelatedEntry]
@@ -558,6 +566,9 @@ class CatalogEntryRelatedEntry extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CatalogEntryRelatedEntry';

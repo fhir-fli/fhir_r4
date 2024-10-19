@@ -1,62 +1,89 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// This value set is provided as an example. The value set to instantiate this attribute should be drawn from a robust terminology code system that consists of or contains concepts to support the medication process.
-enum ReasonMedicationGivenCodes {
-  /// Display: None
-  /// Definition: No reason known.
-  a('a'),
+@collection
+class ReasonMedicationGivenCodes {
+  /// Constructor for internal use (like enum)
+  ReasonMedicationGivenCodes({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Given as Ordered
-  /// Definition: The administration was following an ordered protocol.
-  b('b'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Emergency
-  /// Definition: The administration was needed to treat an emergency.
-  c('c'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ReasonMedicationGivenCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// ReasonMedicationGivenCodes values
+  /// a
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReasonMedicationGivenCodes a = ReasonMedicationGivenCodes(
+    fhirCode: 'a',
+  );
+
+  /// b
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReasonMedicationGivenCodes b = ReasonMedicationGivenCodes(
+    fhirCode: 'b',
+  );
+
+  /// c
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReasonMedicationGivenCodes c = ReasonMedicationGivenCodes(
+    fhirCode: 'c',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ReasonMedicationGivenCodes elementOnly =
+      ReasonMedicationGivenCodes();
+
+  /// List of all enum-like values
+  static final List<ReasonMedicationGivenCodes> values = [
+    a,
+    b,
+    c,
+  ];
+
+  /// Returns the enum value with an element attached
+  ReasonMedicationGivenCodes withElement(Element? newElement) {
+    return ReasonMedicationGivenCodes(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ReasonMedicationGivenCodes] instances.
-  static ReasonMedicationGivenCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ReasonMedicationGivenCodes] from JSON.
+  static ReasonMedicationGivenCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ReasonMedicationGivenCodes.elementOnly.withElement(
-        element,
-      );
+      return ReasonMedicationGivenCodes.elementOnly.withElement(element);
     }
     return ReasonMedicationGivenCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ReasonMedicationGivenCodes withElement(Element? newElement) {
-    return ReasonMedicationGivenCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ReasonMedicationGivenCodes.$fhirCode';
 }

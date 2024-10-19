@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'manufactured_item_definition.g.dart';
 
 /// [ManufacturedItemDefinition]
 /// The definition and characteristics of a medicinal manufactured item,
 /// such as a tablet or capsule, as contained in a packaged medicinal
 /// product.
+@collection
 class ManufacturedItemDefinition extends DomainResource {
   /// Primary constructor for
   /// [ManufacturedItemDefinition]
@@ -180,6 +184,9 @@ class ManufacturedItemDefinition extends DomainResource {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ManufacturedItemDefinition';
 
@@ -346,6 +353,7 @@ class ManufacturedItemDefinition extends DomainResource {
 
 /// [ManufacturedItemDefinitionProperty]
 /// General characteristics of this item.
+@collection
 class ManufacturedItemDefinitionProperty extends BackboneElement {
   /// Primary constructor for
   /// [ManufacturedItemDefinitionProperty]
@@ -462,6 +470,9 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ManufacturedItemDefinitionProperty';

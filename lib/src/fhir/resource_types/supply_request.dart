@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'supply_request.g.dart';
 
 /// [SupplyRequest]
 /// A record of a request for a medication, substance or device used in the
 /// healthcare setting.
+@collection
 class SupplyRequest extends DomainResource {
   /// Primary constructor for
   /// [SupplyRequest]
@@ -254,6 +258,9 @@ class SupplyRequest extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SupplyRequest';
@@ -550,6 +557,7 @@ class SupplyRequest extends DomainResource {
 /// [SupplyRequestParameter]
 /// Specific parameters for the ordered item. For example, the size of the
 /// indicated item.
+@collection
 class SupplyRequestParameter extends BackboneElement {
   /// Primary constructor for
   /// [SupplyRequestParameter]
@@ -661,6 +669,9 @@ class SupplyRequestParameter extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SupplyRequestParameter';

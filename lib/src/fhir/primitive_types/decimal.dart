@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'decimal.g.dart';
 
 /// Extension to convert a Dart number to a [FhirDecimal].
 extension FhirDecimalExtension on num {
@@ -9,10 +12,12 @@ extension FhirDecimalExtension on num {
 }
 
 /// This class represents the FHIR primitive type `decimal`.
+@collection
 class FhirDecimal extends FhirNumber {
   /// Public constructor that enforces valid input.
   FhirDecimal(num? input, [Element? element])
       : isInt = input is int,
+        dbValue = input?.toDouble(),
         super(input?.toDouble(), element) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -71,6 +76,13 @@ class FhirDecimal extends FhirNumber {
 
   /// Boolean flag to track if the input was originally an integer.
   final bool isInt;
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final double? dbValue;
 
   /// Returns the FHIR type as 'decimal'.
   @override

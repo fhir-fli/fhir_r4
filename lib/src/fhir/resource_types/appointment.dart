@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'appointment.g.dart';
 
 /// [Appointment]
 /// A booking of a healthcare event among patient(s), practitioner(s),
 /// related person(s) and/or device(s) for a specific date/time. This may
 /// result in one or more Encounter(s).
+@collection
 class Appointment extends DomainResource {
   /// Primary constructor for
   /// [Appointment]
@@ -309,6 +313,9 @@ class Appointment extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Appointment';
@@ -697,6 +704,7 @@ class Appointment extends DomainResource {
 
 /// [AppointmentParticipant]
 /// List of participants involved in the appointment.
+@collection
 class AppointmentParticipant extends BackboneElement {
   /// Primary constructor for
   /// [AppointmentParticipant]
@@ -810,6 +818,9 @@ class AppointmentParticipant extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'AppointmentParticipant';

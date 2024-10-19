@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
 
 /// Abstract class representing a FHIR number type, which could be an
@@ -204,6 +205,7 @@ abstract class FhirNumber extends PrimitiveType<num?>
   num? abs() => value?.abs();
 
   /// Returns the sign of the number.
+  @ignore
   num? get sign => value?.sign;
 
   /// Returns the remainder of the division of this number by [other].

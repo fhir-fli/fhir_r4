@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'payment_notice.g.dart';
 
 /// [PaymentNotice]
 /// This resource provides the status of the payment for goods and services
 /// rendered, and the request and response resource references.
+@collection
 class PaymentNotice extends DomainResource {
   /// Primary constructor for
   /// [PaymentNotice]
@@ -192,6 +196,9 @@ class PaymentNotice extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PaymentNotice';

@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'imaging_study.g.dart';
 
 /// [ImagingStudy]
 /// Representation of the content produced in a DICOM imaging study. A
@@ -9,6 +12,7 @@ import 'package:yaml/yaml.dart';
 /// acquired or produced in a common context. A series is of only one
 /// modality (e.g. X-ray, CT, MR, ultrasound), but a study may have
 /// multiple series of different modalities.
+@collection
 class ImagingStudy extends DomainResource {
   /// Primary constructor for
   /// [ImagingStudy]
@@ -290,6 +294,9 @@ class ImagingStudy extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ImagingStudy';
@@ -618,6 +625,7 @@ class ImagingStudy extends DomainResource {
 
 /// [ImagingStudySeries]
 /// Each study has one or more series of images or other content.
+@collection
 class ImagingStudySeries extends BackboneElement {
   /// Primary constructor for
   /// [ImagingStudySeries]
@@ -787,6 +795,9 @@ class ImagingStudySeries extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ImagingStudySeries';
@@ -989,6 +1000,7 @@ class ImagingStudySeries extends BackboneElement {
 
 /// [ImagingStudyPerformer]
 /// Indicates who or what performed the series and how they were involved.
+@collection
 class ImagingStudyPerformer extends BackboneElement {
   /// Primary constructor for
   /// [ImagingStudyPerformer]
@@ -1079,6 +1091,9 @@ class ImagingStudyPerformer extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ImagingStudyPerformer';
 
@@ -1149,6 +1164,7 @@ class ImagingStudyPerformer extends BackboneElement {
 /// [ImagingStudyInstance]
 /// A single SOP instance within the series, e.g. an image, or presentation
 /// state.
+@collection
 class ImagingStudyInstance extends BackboneElement {
   /// Primary constructor for
   /// [ImagingStudyInstance]
@@ -1251,6 +1267,9 @@ class ImagingStudyInstance extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ImagingStudyInstance';

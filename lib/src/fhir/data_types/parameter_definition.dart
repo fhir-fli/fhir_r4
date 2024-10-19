@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'parameter_definition.g.dart';
 
 /// [ParameterDefinition]
 /// The parameters to the module. This collection specifies both the input
 /// and output parameters. Input parameters are provided by the caller as
 /// part of the $evaluate operation. Output parameters are included in the
 /// GuidanceResponse.
+@collection
 class ParameterDefinition extends DataType {
   /// Primary constructor for
   /// [ParameterDefinition]
@@ -122,6 +126,9 @@ class ParameterDefinition extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ParameterDefinition';

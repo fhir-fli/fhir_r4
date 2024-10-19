@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'population.g.dart';
 
 /// [Population]
 /// A populatioof people with some set of grouping criteria.
+@collection
 class Population extends BackboneType {
   /// Primary constructor for
   /// [Population]
@@ -113,6 +117,9 @@ class Population extends BackboneType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Population';

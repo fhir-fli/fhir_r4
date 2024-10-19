@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'related_artifact.g.dart';
 
 /// [RelatedArtifact]
 /// Related artifacts such as additional documentation, justification, or
 /// bibliographic references.
+@collection
 class RelatedArtifact extends DataType {
   /// Primary constructor for
   /// [RelatedArtifact]
@@ -120,6 +124,9 @@ class RelatedArtifact extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'RelatedArtifact';

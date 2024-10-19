@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'integer.g.dart';
 
 /// Extension to convert a [num] to a [FhirInteger].
 extension FhirIntegerExtension on num {
@@ -13,9 +16,10 @@ extension FhirIntegerExtension on num {
 }
 
 /// Represents the FHIR primitive type `integer`.
+@collection
 class FhirInteger extends FhirNumber {
   /// Constructor that ensures valid input.
-  FhirInteger(int? super.input, [super.element]) {
+  FhirInteger(int? super.input, [super.element]) : dbValue = input {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -40,7 +44,8 @@ class FhirInteger extends FhirNumber {
                 jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
               )
             : throw const FormatException(
-                'Invalid input for FhirInteger: not a valid YAML string or map.',
+                'Invalid input for FhirInteger: '
+                'not a valid YAML string or map.',
               );
   }
 
@@ -56,6 +61,13 @@ class FhirInteger extends FhirNumber {
     }
     return null;
   }
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final int? dbValue;
 
   /// Returns the FHIR type as a string.
   @override

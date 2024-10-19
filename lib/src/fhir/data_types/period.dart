@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'period.g.dart';
 
 /// [Period]
 /// A time period defined by a start and end date and optionally time.
+@collection
 class Period extends DataType {
   /// Primary constructor for
   /// [Period]
@@ -87,6 +91,9 @@ class Period extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Period';

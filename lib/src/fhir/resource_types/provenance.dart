@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'provenance.g.dart';
 
 /// [Provenance]
 /// Provenance of a resource is a record that describes entities and
@@ -14,6 +17,7 @@ import 'package:yaml/yaml.dart';
 /// (e.g. Document Completion - has the artifact been legally
 /// authenticated), all of which may impact security, privacy, and trust
 /// policies.
+@collection
 class Provenance extends DomainResource {
   /// Primary constructor for
   /// [Provenance]
@@ -219,6 +223,9 @@ class Provenance extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Provenance';
@@ -435,6 +442,7 @@ class Provenance extends DomainResource {
 /// [ProvenanceAgent]
 /// An actor taking a role in an activity for which it can be assigned some
 /// degree of responsibility for the activity taking place.
+@collection
 class ProvenanceAgent extends BackboneElement {
   /// Primary constructor for
   /// [ProvenanceAgent]
@@ -541,6 +549,9 @@ class ProvenanceAgent extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ProvenanceAgent';
 
@@ -631,6 +642,7 @@ class ProvenanceAgent extends BackboneElement {
 
 /// [ProvenanceEntity]
 /// An entity used in this activity.
+@collection
 class ProvenanceEntity extends BackboneElement {
   /// Primary constructor for
   /// [ProvenanceEntity]
@@ -729,6 +741,9 @@ class ProvenanceEntity extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ProvenanceEntity';

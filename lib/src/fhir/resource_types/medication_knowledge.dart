@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'medication_knowledge.g.dart';
 
 /// [MedicationKnowledge]
 /// Information about a medication that is used to support knowledge.
+@collection
 class MedicationKnowledge extends DomainResource {
   /// Primary constructor for
   /// [MedicationKnowledge]
@@ -313,6 +317,9 @@ class MedicationKnowledge extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MedicationKnowledge';
@@ -675,6 +682,7 @@ class MedicationKnowledge extends DomainResource {
 
 /// [MedicationKnowledgeRelatedMedicationKnowledge]
 /// Associated or related knowledge about a medication.
+@collection
 class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeRelatedMedicationKnowledge]
@@ -769,6 +777,9 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationKnowledgeRelatedMedicationKnowledge';
 
@@ -837,6 +848,7 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
 
 /// [MedicationKnowledgeMonograph]
 /// Associated documentation about the medication.
+@collection
 class MedicationKnowledgeMonograph extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeMonograph]
@@ -929,6 +941,9 @@ class MedicationKnowledgeMonograph extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationKnowledgeMonograph';
 
@@ -1001,6 +1016,7 @@ class MedicationKnowledgeMonograph extends BackboneElement {
 
 /// [MedicationKnowledgeIngredient]
 /// Identifies a particular constituent of interest in the product.
+@collection
 class MedicationKnowledgeIngredient extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeIngredient]
@@ -1106,6 +1122,9 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationKnowledgeIngredient';
 
@@ -1206,6 +1225,7 @@ class MedicationKnowledgeIngredient extends BackboneElement {
 
 /// [MedicationKnowledgeCost]
 /// The price of the medication.
+@collection
 class MedicationKnowledgeCost extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeCost]
@@ -1301,6 +1321,9 @@ class MedicationKnowledgeCost extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationKnowledgeCost';
 
@@ -1383,6 +1406,7 @@ class MedicationKnowledgeCost extends BackboneElement {
 
 /// [MedicationKnowledgeMonitoringProgram]
 /// The program under which the medication is reviewed.
+@collection
 class MedicationKnowledgeMonitoringProgram extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeMonitoringProgram]
@@ -1476,6 +1500,9 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationKnowledgeMonitoringProgram';
 
@@ -1551,6 +1578,7 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
 
 /// [MedicationKnowledgeAdministrationGuidelines]
 /// Guidelines for the administration of the medication.
+@collection
 class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeAdministrationGuidelines]
@@ -1663,6 +1691,9 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationKnowledgeAdministrationGuidelines';
 
@@ -1761,6 +1792,7 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
 
 /// [MedicationKnowledgeDosage]
 /// Dosage for the medication for the specific guidelines.
+@collection
 class MedicationKnowledgeDosage extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeDosage]
@@ -1855,6 +1887,9 @@ class MedicationKnowledgeDosage extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationKnowledgeDosage';
 
@@ -1924,6 +1959,7 @@ class MedicationKnowledgeDosage extends BackboneElement {
 /// [MedicationKnowledgePatientCharacteristics]
 /// Characteristics of the patient that are relevant to the administration
 /// guidelines (for example, height, weight, gender, etc.).
+@collection
 class MedicationKnowledgePatientCharacteristics extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgePatientCharacteristics]
@@ -2023,6 +2059,9 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationKnowledgePatientCharacteristics';
 
@@ -2115,6 +2154,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
 /// [MedicationKnowledgeMedicineClassification]
 /// Categorization of the medication within a formulary or classification
 /// system.
+@collection
 class MedicationKnowledgeMedicineClassification extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeMedicineClassification]
@@ -2209,6 +2249,9 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationKnowledgeMedicineClassification';
 
@@ -2281,6 +2324,7 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
 
 /// [MedicationKnowledgePackaging]
 /// Information that only applies to packages (not products).
+@collection
 class MedicationKnowledgePackaging extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgePackaging]
@@ -2373,6 +2417,9 @@ class MedicationKnowledgePackaging extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationKnowledgePackaging';
 
@@ -2446,6 +2493,7 @@ class MedicationKnowledgePackaging extends BackboneElement {
 /// [MedicationKnowledgeDrugCharacteristic]
 /// Specifies descriptive properties of the medicine, such as color, shape,
 /// imprints, etc.
+@collection
 class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeDrugCharacteristic]
@@ -2559,6 +2607,9 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationKnowledgeDrugCharacteristic';
 
@@ -2669,6 +2720,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
 
 /// [MedicationKnowledgeRegulatory]
 /// Regulatory information about a medication.
+@collection
 class MedicationKnowledgeRegulatory extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeRegulatory]
@@ -2779,6 +2831,9 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationKnowledgeRegulatory';
 
@@ -2871,6 +2926,7 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
 /// [MedicationKnowledgeSubstitution]
 /// Specifies if changes are allowed when dispensing a medication from a
 /// regulatory perspective.
+@collection
 class MedicationKnowledgeSubstitution extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeSubstitution]
@@ -2960,6 +3016,9 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationKnowledgeSubstitution';
 
@@ -3032,6 +3091,7 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
 
 /// [MedicationKnowledgeSchedule]
 /// Specifies the schedule of a medication in jurisdiction.
+@collection
 class MedicationKnowledgeSchedule extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeSchedule]
@@ -3116,6 +3176,9 @@ class MedicationKnowledgeSchedule extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationKnowledgeSchedule';
 
@@ -3176,6 +3239,7 @@ class MedicationKnowledgeSchedule extends BackboneElement {
 /// [MedicationKnowledgeMaxDispense]
 /// The maximum number of units of the medication that can be dispensed in
 /// a period.
+@collection
 class MedicationKnowledgeMaxDispense extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeMaxDispense]
@@ -3266,6 +3330,9 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationKnowledgeMaxDispense';
 
@@ -3336,6 +3403,7 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
 /// [MedicationKnowledgeKinetics]
 /// The time course of drug absorption, distribution, metabolism and
 /// excretion of a medication from the body.
+@collection
 class MedicationKnowledgeKinetics extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeKinetics]
@@ -3441,6 +3509,9 @@ class MedicationKnowledgeKinetics extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MedicationKnowledgeKinetics';

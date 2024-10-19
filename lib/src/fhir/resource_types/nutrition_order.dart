@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'nutrition_order.g.dart';
 
 /// [NutritionOrder]
 /// A request to supply a diet, formula feeding (enteral) or oral
 /// nutritional supplement to a patient/resident.
+@collection
 class NutritionOrder extends DomainResource {
   /// Primary constructor for
   /// [NutritionOrder]
@@ -244,6 +248,9 @@ class NutritionOrder extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'NutritionOrder';
@@ -555,6 +562,7 @@ class NutritionOrder extends DomainResource {
 
 /// [NutritionOrderOralDiet]
 /// Diet given orally in contrast to enteral (tube) feeding.
+@collection
 class NutritionOrderOralDiet extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderOralDiet]
@@ -692,6 +700,9 @@ class NutritionOrderOralDiet extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'NutritionOrderOralDiet';
 
@@ -816,6 +827,7 @@ class NutritionOrderOralDiet extends BackboneElement {
 /// [NutritionOrderNutrient]
 /// Class that defines the quantity and type of nutrient modifications (for
 /// example carbohydrate, fiber or sodium) required for the oral diet.
+@collection
 class NutritionOrderNutrient extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderNutrient]
@@ -908,6 +920,9 @@ class NutritionOrderNutrient extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'NutritionOrderNutrient';
 
@@ -980,6 +995,7 @@ class NutritionOrderNutrient extends BackboneElement {
 /// [NutritionOrderTexture]
 /// Class that describes any texture modifications required for the patient
 /// to safely consume various types of solid foods.
+@collection
 class NutritionOrderTexture extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderTexture]
@@ -1072,6 +1088,9 @@ class NutritionOrderTexture extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'NutritionOrderTexture';
 
@@ -1146,6 +1165,7 @@ class NutritionOrderTexture extends BackboneElement {
 /// [NutritionOrderSupplement]
 /// Oral nutritional products given in order to add further nutritional
 /// value to the patient's diet.
+@collection
 class NutritionOrderSupplement extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderSupplement]
@@ -1262,6 +1282,9 @@ class NutritionOrderSupplement extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'NutritionOrderSupplement';
 
@@ -1377,6 +1400,7 @@ class NutritionOrderSupplement extends BackboneElement {
 /// [NutritionOrderEnteralFormula]
 /// Feeding provided through the gastrointestinal tract via a tube,
 /// catheter, or stoma that delivers nutrition distal to the oral cavity.
+@collection
 class NutritionOrderEnteralFormula extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderEnteralFormula]
@@ -1512,6 +1536,9 @@ class NutritionOrderEnteralFormula extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'NutritionOrderEnteralFormula';
@@ -1673,6 +1700,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
 /// time for both bolus and continuous feeding. An example of this would be
 /// an instruction to increase the rate of continuous feeding every 2
 /// hours.
+@collection
 class NutritionOrderAdministration extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderAdministration]
@@ -1784,6 +1812,9 @@ class NutritionOrderAdministration extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'NutritionOrderAdministration';

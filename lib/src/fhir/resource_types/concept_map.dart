@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'concept_map.g.dart';
 
 /// [ConceptMap]
 /// A statement of relationships from one set of concepts to one or more
 /// other concepts - either concepts in code systems, or data element/data
 /// element concepts, or classes in class models.
+@collection
 class ConceptMap extends DomainResource {
   /// Primary constructor for
   /// [ConceptMap]
@@ -276,6 +280,9 @@ class ConceptMap extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ConceptMap';
@@ -665,6 +672,7 @@ class ConceptMap extends DomainResource {
 
 /// [ConceptMapGroup]
 /// A group of mappings that all have the same source and target system.
+@collection
 class ConceptMapGroup extends BackboneElement {
   /// Primary constructor for
   /// [ConceptMapGroup]
@@ -790,6 +798,9 @@ class ConceptMapGroup extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ConceptMapGroup';
@@ -924,6 +935,7 @@ class ConceptMapGroup extends BackboneElement {
 /// [ConceptMapElement]
 /// Mappings for an individual concept in the source to one or more
 /// concepts in the target.
+@collection
 class ConceptMapElement extends BackboneElement {
   /// Primary constructor for
   /// [ConceptMapElement]
@@ -1028,6 +1040,9 @@ class ConceptMapElement extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ConceptMapElement';
 
@@ -1118,6 +1133,7 @@ class ConceptMapElement extends BackboneElement {
 
 /// [ConceptMapTarget]
 /// A concept from the target value set that this concept maps to.
+@collection
 class ConceptMapTarget extends BackboneElement {
   /// Primary constructor for
   /// [ConceptMapTarget]
@@ -1233,6 +1249,9 @@ class ConceptMapTarget extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ConceptMapTarget';
@@ -1357,6 +1376,7 @@ class ConceptMapTarget extends BackboneElement {
 /// A set of additional dependencies for this mapping to hold. This mapping
 /// is only applicable if the specified element can be resolved, and it has
 /// the specified value.
+@collection
 class ConceptMapDependsOn extends BackboneElement {
   /// Primary constructor for
   /// [ConceptMapDependsOn]
@@ -1460,6 +1480,9 @@ class ConceptMapDependsOn extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ConceptMapDependsOn';
@@ -1572,6 +1595,7 @@ class ConceptMapDependsOn extends BackboneElement {
 /// What to do when there is no mapping for the source concept. "Unmapped"
 /// does not include codes that are unmatched, and the unmapped element is
 /// ignored in a code is specified to have equivalence = unmatched.
+@collection
 class ConceptMapUnmapped extends BackboneElement {
   /// Primary constructor for
   /// [ConceptMapUnmapped]
@@ -1677,6 +1701,9 @@ class ConceptMapUnmapped extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ConceptMapUnmapped';

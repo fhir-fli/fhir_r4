@@ -1,58 +1,85 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// This value set includes Example Coverage Financial Exception Codes.
-enum ExampleCoverageFinancialExceptionCodes {
-  /// Display: Retired
-  /// Definition: Retired persons have all copays and deductibles reduced.
-  retired('retired'),
+@collection
+class ExampleCoverageFinancialExceptionCodes {
+  /// Constructor for internal use (like enum)
+  ExampleCoverageFinancialExceptionCodes({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Foster child
-  /// Definition: Children in the foster care have all copays and deductibles waived.
-  foster('foster'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ExampleCoverageFinancialExceptionCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// ExampleCoverageFinancialExceptionCodes values
+  /// retired
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExampleCoverageFinancialExceptionCodes retired =
+      ExampleCoverageFinancialExceptionCodes(
+    fhirCode: 'retired',
+  );
+
+  /// foster
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExampleCoverageFinancialExceptionCodes foster =
+      ExampleCoverageFinancialExceptionCodes(
+    fhirCode: 'foster',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ExampleCoverageFinancialExceptionCodes elementOnly =
+      ExampleCoverageFinancialExceptionCodes();
+
+  /// List of all enum-like values
+  static final List<ExampleCoverageFinancialExceptionCodes> values = [
+    retired,
+    foster,
+  ];
+
+  /// Returns the enum value with an element attached
+  ExampleCoverageFinancialExceptionCodes withElement(Element? newElement) {
+    return ExampleCoverageFinancialExceptionCodes(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ExampleCoverageFinancialExceptionCodes] instances.
+  /// Factory constructor to create [ExampleCoverageFinancialExceptionCodes] from JSON.
   static ExampleCoverageFinancialExceptionCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleCoverageFinancialExceptionCodes.elementOnly.withElement(
-        element,
-      );
+      return ExampleCoverageFinancialExceptionCodes.elementOnly
+          .withElement(element);
     }
     return ExampleCoverageFinancialExceptionCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ExampleCoverageFinancialExceptionCodes withElement(Element? newElement) {
-    return ExampleCoverageFinancialExceptionCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ExampleCoverageFinancialExceptionCodes.$fhirCode';
 }

@@ -1,58 +1,80 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// A classification of the ingredient identifying its precise purpose(s) in the drug product (beyond e.g. active/inactive).
-enum IngredientFunction {
-  /// Display: Antioxidant
-  /// Definition:
-  Antioxidant('Antioxidant'),
+@collection
+class IngredientFunction {
+  /// Constructor for internal use (like enum)
+  IngredientFunction({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Alkalizing Agent
-  /// Definition:
-  AlkalizingAgent('AlkalizingAgent'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const IngredientFunction(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// IngredientFunction values
+  /// Antioxidant
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final IngredientFunction Antioxidant = IngredientFunction(
+    fhirCode: 'Antioxidant',
+  );
+
+  /// AlkalizingAgent
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final IngredientFunction AlkalizingAgent = IngredientFunction(
+    fhirCode: 'AlkalizingAgent',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final IngredientFunction elementOnly = IngredientFunction();
+
+  /// List of all enum-like values
+  static final List<IngredientFunction> values = [
+    Antioxidant,
+    AlkalizingAgent,
+  ];
+
+  /// Returns the enum value with an element attached
+  IngredientFunction withElement(Element? newElement) {
+    return IngredientFunction(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [IngredientFunction] instances.
-  static IngredientFunction fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [IngredientFunction] from JSON.
+  static IngredientFunction fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return IngredientFunction.elementOnly.withElement(
-        element,
-      );
+      return IngredientFunction.elementOnly.withElement(element);
     }
     return IngredientFunction.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  IngredientFunction withElement(Element? newElement) {
-    return IngredientFunction.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'IngredientFunction.$fhirCode';
 }

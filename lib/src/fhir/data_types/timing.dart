@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'timing.g.dart';
 
 /// [Timing]
 /// Specifies an event that may occur multiple times. Timing schedules are
@@ -9,6 +12,7 @@ import 'package:yaml/yaml.dart';
 /// are also used when planning care of various kinds, and may be used for
 /// reporting the schedule to which past regular activities were carried
 /// out.
+@collection
 class Timing extends BackboneType {
   /// Primary constructor for
   /// [Timing]
@@ -107,6 +111,9 @@ class Timing extends BackboneType {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'Timing';
 
@@ -198,7 +205,8 @@ class Timing extends BackboneType {
 
 /// [TimingRepeat]
 /// A set of rules that describe when the event is scheduled.
-class TimingRepeat extends Element {
+@collection
+class TimingRepeat extends SimpleElement {
   /// Primary constructor for
   /// [TimingRepeat]
 
@@ -382,6 +390,9 @@ class TimingRepeat extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'TimingRepeat';

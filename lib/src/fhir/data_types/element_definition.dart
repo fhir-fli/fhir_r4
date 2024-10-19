@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'element_definition.g.dart';
 
 /// [ElementDefinition]
 /// Captures constraints on each element within the resource, profile, or
 /// extension.
+@collection
 class ElementDefinition extends BackboneType {
   /// Primary constructor for
   /// [ElementDefinition]
@@ -1459,6 +1463,9 @@ class ElementDefinition extends BackboneType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ElementDefinition';
@@ -5154,7 +5161,8 @@ class ElementDefinition extends BackboneType {
 /// slices is any elements that come after this in the element sequence
 /// that have the same path, until a shorter path occurs (the shorter path
 /// terminates the set).
-class ElementDefinitionSlicing extends Element {
+@collection
+class ElementDefinitionSlicing extends SimpleElement {
   /// Primary constructor for
   /// [ElementDefinitionSlicing]
 
@@ -5252,6 +5260,9 @@ class ElementDefinitionSlicing extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ElementDefinitionSlicing';
@@ -5360,7 +5371,8 @@ class ElementDefinitionSlicing extends Element {
 /// provided, the value of the child elements in the instance data SHALL
 /// completely distinguish which slice the element in the resource matches
 /// based on the allowed values for those elements in each of the slices.
-class ElementDefinitionDiscriminator extends Element {
+@collection
+class ElementDefinitionDiscriminator extends SimpleElement {
   /// Primary constructor for
   /// [ElementDefinitionDiscriminator]
 
@@ -5440,6 +5452,9 @@ class ElementDefinitionDiscriminator extends Element {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ElementDefinitionDiscriminator';
 
@@ -5517,7 +5532,8 @@ class ElementDefinitionDiscriminator extends Element {
 /// the information in provided in the element definition may be different
 /// to the base definition. On the original definition of the element, it
 /// will be same.
-class ElementDefinitionBase extends Element {
+@collection
+class ElementDefinitionBase extends SimpleElement {
   /// Primary constructor for
   /// [ElementDefinitionBase]
 
@@ -5601,6 +5617,9 @@ class ElementDefinitionBase extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ElementDefinitionBase';
@@ -5687,7 +5706,8 @@ class ElementDefinitionBase extends Element {
 /// [ElementDefinitionType]
 /// The data type or resource that the value of this element is permitted
 /// to be.
-class ElementDefinitionType extends Element {
+@collection
+class ElementDefinitionType extends SimpleElement {
   /// Primary constructor for
   /// [ElementDefinitionType]
 
@@ -5786,6 +5806,9 @@ class ElementDefinitionType extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ElementDefinitionType';
@@ -5920,7 +5943,8 @@ class ElementDefinitionType extends Element {
 /// [ElementDefinitionExample]
 /// A sample value for this element demonstrating the type of information
 /// that would typically be found in the element.
-class ElementDefinitionExample extends Element {
+@collection
+class ElementDefinitionExample extends SimpleElement {
   /// Primary constructor for
   /// [ElementDefinitionExample]
 
@@ -6329,6 +6353,9 @@ class ElementDefinitionExample extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ElementDefinitionExample';
@@ -7027,7 +7054,8 @@ class ElementDefinitionExample extends Element {
 /// [ElementDefinitionConstraint]
 /// Formal constraints such as co-occurrence and other constraints that can
 /// be computationally evaluated within the context of the instance.
-class ElementDefinitionConstraint extends Element {
+@collection
+class ElementDefinitionConstraint extends SimpleElement {
   /// Primary constructor for
   /// [ElementDefinitionConstraint]
 
@@ -7140,6 +7168,9 @@ class ElementDefinitionConstraint extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ElementDefinitionConstraint';
@@ -7285,7 +7316,8 @@ class ElementDefinitionConstraint extends Element {
 /// [ElementDefinitionBinding]
 /// Binds to a value set if this element is coded (code, Coding,
 /// CodeableConcept, Quantity), or the data types (string, uri).
-class ElementDefinitionBinding extends Element {
+@collection
+class ElementDefinitionBinding extends SimpleElement {
   /// Primary constructor for
   /// [ElementDefinitionBinding]
 
@@ -7373,6 +7405,9 @@ class ElementDefinitionBinding extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ElementDefinitionBinding';
@@ -7462,7 +7497,8 @@ class ElementDefinitionBinding extends Element {
 /// [ElementDefinitionMapping]
 /// Identifies a concept from an external specification that roughly
 /// corresponds to this element.
-class ElementDefinitionMapping extends Element {
+@collection
+class ElementDefinitionMapping extends SimpleElement {
   /// Primary constructor for
   /// [ElementDefinitionMapping]
 
@@ -7555,6 +7591,9 @@ class ElementDefinitionMapping extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ElementDefinitionMapping';

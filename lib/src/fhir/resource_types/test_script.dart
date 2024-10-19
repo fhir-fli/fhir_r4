@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'test_script.g.dart';
 
 /// [TestScript]
 /// A structured set of tests against a FHIR server or client
 /// implementation to determine compliance against the FHIR specification.
+@collection
 class TestScript extends DomainResource {
   /// Primary constructor for
   /// [TestScript]
@@ -309,6 +313,9 @@ class TestScript extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'TestScript';
@@ -717,6 +724,7 @@ class TestScript extends DomainResource {
 /// [TestScriptOrigin]
 /// An abstract server used in operations within this test script in the
 /// origin element.
+@collection
 class TestScriptOrigin extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptOrigin]
@@ -806,6 +814,9 @@ class TestScriptOrigin extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestScriptOrigin';
 
@@ -879,6 +890,7 @@ class TestScriptOrigin extends BackboneElement {
 /// [TestScriptDestination]
 /// An abstract server used in operations within this test script in the
 /// destination element.
+@collection
 class TestScriptDestination extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptDestination]
@@ -968,6 +980,9 @@ class TestScriptDestination extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestScriptDestination';
 
@@ -1041,6 +1056,7 @@ class TestScriptDestination extends BackboneElement {
 /// [TestScriptMetadata]
 /// The required capability must exist and are assumed to function
 /// correctly on the FHIR server being tested.
+@collection
 class TestScriptMetadata extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptMetadata]
@@ -1141,6 +1157,9 @@ class TestScriptMetadata extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestScriptMetadata';
 
@@ -1211,6 +1230,7 @@ class TestScriptMetadata extends BackboneElement {
 
 /// [TestScriptLink]
 /// A link to the FHIR specification that this test is covering.
+@collection
 class TestScriptLink extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptLink]
@@ -1303,6 +1323,9 @@ class TestScriptLink extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestScriptLink';
 
@@ -1382,6 +1405,7 @@ class TestScriptLink extends BackboneElement {
 /// [TestScriptCapability]
 /// Capabilities that must exist and are assumed to function correctly on
 /// the FHIR server being tested.
+@collection
 class TestScriptCapability extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptCapability]
@@ -1502,6 +1526,9 @@ class TestScriptCapability extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'TestScriptCapability';
@@ -1653,6 +1680,7 @@ class TestScriptCapability extends BackboneElement {
 /// [TestScriptFixture]
 /// Fixture in the test script - by reference (uri). All fixtures are
 /// required for the test script to execute.
+@collection
 class TestScriptFixture extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptFixture]
@@ -1749,6 +1777,9 @@ class TestScriptFixture extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestScriptFixture';
 
@@ -1842,6 +1873,7 @@ class TestScriptFixture extends BackboneElement {
 /// [TestScriptVariable]
 /// Variable is set based either on element value in response body or on
 /// header field value in the response headers.
+@collection
 class TestScriptVariable extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptVariable]
@@ -1976,6 +2008,9 @@ class TestScriptVariable extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'TestScriptVariable';
@@ -2146,6 +2181,7 @@ class TestScriptVariable extends BackboneElement {
 
 /// [TestScriptSetup]
 /// A series of required setup operations before tests are executed.
+@collection
 class TestScriptSetup extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptSetup]
@@ -2236,6 +2272,9 @@ class TestScriptSetup extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestScriptSetup';
 
@@ -2295,6 +2334,7 @@ class TestScriptSetup extends BackboneElement {
 
 /// [TestScriptAction]
 /// Action would contain either an operation or an assertion.
+@collection
 class TestScriptAction extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptAction]
@@ -2387,6 +2427,9 @@ class TestScriptAction extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestScriptAction';
 
@@ -2459,6 +2502,7 @@ class TestScriptAction extends BackboneElement {
 
 /// [TestScriptOperation]
 /// The operation to perform.
+@collection
 class TestScriptOperation extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptOperation]
@@ -2657,6 +2701,9 @@ class TestScriptOperation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'TestScriptOperation';
@@ -2947,6 +2994,7 @@ class TestScriptOperation extends BackboneElement {
 
 /// [TestScriptRequestHeader]
 /// Header elements would be used to set HTTP headers.
+@collection
 class TestScriptRequestHeader extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptRequestHeader]
@@ -3037,6 +3085,9 @@ class TestScriptRequestHeader extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestScriptRequestHeader';
 
@@ -3113,6 +3164,7 @@ class TestScriptRequestHeader extends BackboneElement {
 /// [TestScriptAssert]
 /// Evaluates the results of previous operations to determine if the server
 /// under test behaves appropriately.
+@collection
 class TestScriptAssert extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptAssert]
@@ -3351,6 +3403,9 @@ class TestScriptAssert extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'TestScriptAssert';
@@ -3727,6 +3782,7 @@ class TestScriptAssert extends BackboneElement {
 
 /// [TestScriptTest]
 /// A test in this script.
+@collection
 class TestScriptTest extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptTest]
@@ -3831,6 +3887,9 @@ class TestScriptTest extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestScriptTest';
 
@@ -3920,6 +3979,7 @@ class TestScriptTest extends BackboneElement {
 
 /// [TestScriptAction1]
 /// Action would contain either an operation or an assertion.
+@collection
 class TestScriptAction1 extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptAction1]
@@ -4000,6 +4060,9 @@ class TestScriptAction1 extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestScriptAction1';
 
@@ -4053,6 +4116,7 @@ class TestScriptAction1 extends BackboneElement {
 /// [TestScriptTeardown]
 /// A series of operations required to clean up after all the tests are
 /// executed (successfully or otherwise).
+@collection
 class TestScriptTeardown extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptTeardown]
@@ -4143,6 +4207,9 @@ class TestScriptTeardown extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestScriptTeardown';
 
@@ -4202,6 +4269,7 @@ class TestScriptTeardown extends BackboneElement {
 
 /// [TestScriptAction2]
 /// The teardown action will only contain an operation.
+@collection
 class TestScriptAction2 extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptAction2]
@@ -4281,6 +4349,9 @@ class TestScriptAction2 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'TestScriptAction2';

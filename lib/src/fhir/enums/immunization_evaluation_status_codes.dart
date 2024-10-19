@@ -1,86 +1,128 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the current status of the evaluation for vaccine administration event.
-enum ImmunizationEvaluationStatusCodes {
-  /// Display: In Progress
-  /// Definition: The administration has started but has not yet completed.
-  in_progress('in-progress'),
+@collection
+class ImmunizationEvaluationStatusCodes {
+  /// Constructor for internal use (like enum)
+  ImmunizationEvaluationStatusCodes({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Not Done
-  /// Definition: The administration was terminated prior to any impact on the subject (though preparatory actions may have been taken)
-  not_done('not-done'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: On Hold
-  /// Definition: Actions implied by the administration have been temporarily halted, but are expected to continue later. May also be called 'suspended'.
-  on_hold('on-hold'),
-
-  /// Display: Completed
-  /// Definition: All actions that are implied by the administration have occurred.
-  completed('completed'),
-
-  /// Display: Entered in Error
-  /// Definition: The administration was entered in error and therefore nullified.
-  entered_in_error('entered-in-error'),
-
-  /// Display: Stopped
-  /// Definition: Actions implied by the administration have been permanently halted, before all of them occurred.
-  stopped('stopped'),
-
-  /// Display: Unknown
-  /// Definition: The authoring system does not know which of the status values currently applies for this request. Note: This concept is not to be used for 'other' - one of the listed statuses is presumed to apply, it's just not known which one.
-  unknown('unknown'),
-
-  /// Display:
-  /// Definition:
-  completed_1('completed'),
-
-  /// Display:
-  /// Definition:
-  entered_in_error_1('entered-in-error'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ImmunizationEvaluationStatusCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// ImmunizationEvaluationStatusCodes values
+  /// in_progress
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ImmunizationEvaluationStatusCodes in_progress =
+      ImmunizationEvaluationStatusCodes(
+    fhirCode: 'in-progress',
+  );
+
+  /// not_done
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ImmunizationEvaluationStatusCodes not_done =
+      ImmunizationEvaluationStatusCodes(
+    fhirCode: 'not-done',
+  );
+
+  /// on_hold
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ImmunizationEvaluationStatusCodes on_hold =
+      ImmunizationEvaluationStatusCodes(
+    fhirCode: 'on-hold',
+  );
+
+  /// completed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ImmunizationEvaluationStatusCodes completed =
+      ImmunizationEvaluationStatusCodes(
+    fhirCode: 'completed',
+  );
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ImmunizationEvaluationStatusCodes entered_in_error =
+      ImmunizationEvaluationStatusCodes(
+    fhirCode: 'entered-in-error',
+  );
+
+  /// stopped
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ImmunizationEvaluationStatusCodes stopped =
+      ImmunizationEvaluationStatusCodes(
+    fhirCode: 'stopped',
+  );
+
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ImmunizationEvaluationStatusCodes unknown =
+      ImmunizationEvaluationStatusCodes(
+    fhirCode: 'unknown',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ImmunizationEvaluationStatusCodes elementOnly =
+      ImmunizationEvaluationStatusCodes();
+
+  /// List of all enum-like values
+  static final List<ImmunizationEvaluationStatusCodes> values = [
+    in_progress,
+    not_done,
+    on_hold,
+    completed,
+    entered_in_error,
+    stopped,
+    unknown,
+  ];
+
+  /// Returns the enum value with an element attached
+  ImmunizationEvaluationStatusCodes withElement(Element? newElement) {
+    return ImmunizationEvaluationStatusCodes(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ImmunizationEvaluationStatusCodes] instances.
-  static ImmunizationEvaluationStatusCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ImmunizationEvaluationStatusCodes] from JSON.
+  static ImmunizationEvaluationStatusCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImmunizationEvaluationStatusCodes.elementOnly.withElement(
-        element,
-      );
+      return ImmunizationEvaluationStatusCodes.elementOnly.withElement(element);
     }
     return ImmunizationEvaluationStatusCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ImmunizationEvaluationStatusCodes withElement(Element? newElement) {
-    return ImmunizationEvaluationStatusCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ImmunizationEvaluationStatusCodes.$fhirCode';
 }

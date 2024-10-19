@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'implementation_guide.g.dart';
 
 /// [ImplementationGuide]
 /// A set of rules of how a particular interoperability or standards
@@ -8,6 +11,7 @@ import 'package:yaml/yaml.dart';
 /// resource is used to gather all the parts of an implementation guide
 /// into a logical whole and to publish a computable definition of all the
 /// parts.
+@collection
 class ImplementationGuide extends DomainResource {
   /// Primary constructor for
   /// [ImplementationGuide]
@@ -273,6 +277,9 @@ class ImplementationGuide extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ImplementationGuide';
@@ -651,6 +658,7 @@ class ImplementationGuide extends DomainResource {
 /// Another implementation guide that this implementation depends on.
 /// Typically, an implementation guide uses value sets, profiles
 /// etc.defined in other implementation guides.
+@collection
 class ImplementationGuideDependsOn extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideDependsOn]
@@ -750,6 +758,9 @@ class ImplementationGuideDependsOn extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ImplementationGuideDependsOn';
 
@@ -844,6 +855,7 @@ class ImplementationGuideDependsOn extends BackboneElement {
 /// [ImplementationGuideGlobal]
 /// A set of profiles that all resources covered by this implementation
 /// guide must conform to.
+@collection
 class ImplementationGuideGlobal extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideGlobal]
@@ -934,6 +946,9 @@ class ImplementationGuideGlobal extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ImplementationGuideGlobal';
 
@@ -1010,6 +1025,7 @@ class ImplementationGuideGlobal extends BackboneElement {
 /// [ImplementationGuideDefinition]
 /// The information needed by an IG publisher tool to publish the whole
 /// implementation guide.
+@collection
 class ImplementationGuideDefinition extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideDefinition]
@@ -1136,6 +1152,9 @@ class ImplementationGuideDefinition extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ImplementationGuideDefinition';
 
@@ -1241,6 +1260,7 @@ class ImplementationGuideDefinition extends BackboneElement {
 /// [ImplementationGuideGrouping]
 /// A logical group of resources. Logical groups can be used when building
 /// pages.
+@collection
 class ImplementationGuideGrouping extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideGrouping]
@@ -1333,6 +1353,9 @@ class ImplementationGuideGrouping extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ImplementationGuideGrouping';
 
@@ -1414,6 +1437,7 @@ class ImplementationGuideGrouping extends BackboneElement {
 /// resources (value set, structure definition, capability statements etc.)
 /// are obvious candidates for inclusion, but any kind of resource can be
 /// included as an example resource.
+@collection
 class ImplementationGuideResource extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideResource]
@@ -1540,6 +1564,9 @@ class ImplementationGuideResource extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ImplementationGuideResource';
@@ -1694,6 +1721,7 @@ class ImplementationGuideResource extends BackboneElement {
 /// [ImplementationGuidePage]
 /// A page / section in the implementation guide. The root page is the
 /// implementation guide home page.
+@collection
 class ImplementationGuidePage extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuidePage]
@@ -1797,6 +1825,9 @@ class ImplementationGuidePage extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ImplementationGuidePage';
 
@@ -1897,6 +1928,7 @@ class ImplementationGuidePage extends BackboneElement {
 
 /// [ImplementationGuideParameter]
 /// Defines how IG is built by tools.
+@collection
 class ImplementationGuideParameter extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideParameter]
@@ -1987,6 +2019,9 @@ class ImplementationGuideParameter extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ImplementationGuideParameter';
 
@@ -2064,6 +2099,7 @@ class ImplementationGuideParameter extends BackboneElement {
 
 /// [ImplementationGuideTemplate]
 /// A template for building resources.
+@collection
 class ImplementationGuideTemplate extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideTemplate]
@@ -2161,6 +2197,9 @@ class ImplementationGuideTemplate extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ImplementationGuideTemplate';
 
@@ -2251,6 +2290,7 @@ class ImplementationGuideTemplate extends BackboneElement {
 /// [ImplementationGuideManifest]
 /// Information about an assembled implementation guide, created by the
 /// publication tooling.
+@collection
 class ImplementationGuideManifest extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideManifest]
@@ -2369,6 +2409,9 @@ class ImplementationGuideManifest extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ImplementationGuideManifest';
@@ -2490,6 +2533,7 @@ class ImplementationGuideManifest extends BackboneElement {
 /// resources (value set, structure definition, capability statements etc.)
 /// are obvious candidates for inclusion, but any kind of resource can be
 /// included as an example resource.
+@collection
 class ImplementationGuideResource1 extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideResource1]
@@ -2598,6 +2642,9 @@ class ImplementationGuideResource1 extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ImplementationGuideResource1';
 
@@ -2703,6 +2750,7 @@ class ImplementationGuideResource1 extends BackboneElement {
 
 /// [ImplementationGuidePage1]
 /// Information about a page within the IG.
+@collection
 class ImplementationGuidePage1 extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuidePage1]
@@ -2800,6 +2848,9 @@ class ImplementationGuidePage1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ImplementationGuidePage1';

@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'supply_delivery.g.dart';
 
 /// [SupplyDelivery]
 /// Record of delivery of what is supplied.
+@collection
 class SupplyDelivery extends DomainResource {
   /// Primary constructor for
   /// [SupplyDelivery]
@@ -219,6 +223,9 @@ class SupplyDelivery extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SupplyDelivery';
@@ -455,6 +462,7 @@ class SupplyDelivery extends DomainResource {
 
 /// [SupplyDeliverySuppliedItem]
 /// The item that is being delivered or has been supplied.
+@collection
 class SupplyDeliverySuppliedItem extends BackboneElement {
   /// Primary constructor for
   /// [SupplyDeliverySuppliedItem]
@@ -552,6 +560,9 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SupplyDeliverySuppliedItem';

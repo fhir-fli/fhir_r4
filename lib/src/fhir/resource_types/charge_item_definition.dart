@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'charge_item_definition.g.dart';
 
 /// [ChargeItemDefinition]
 /// The ChargeItemDefinition resource provides the properties that apply to
@@ -8,6 +11,7 @@ import 'package:yaml/yaml.dart';
 /// properties may differ largely depending on type and realm, therefore
 /// this resource gives only a rough structure and requires profiling for
 /// each type of billing code system.
+@collection
 class ChargeItemDefinition extends DomainResource {
   /// Primary constructor for
   /// [ChargeItemDefinition]
@@ -302,6 +306,9 @@ class ChargeItemDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ChargeItemDefinition';
@@ -722,6 +729,7 @@ class ChargeItemDefinition extends DomainResource {
 
 /// [ChargeItemDefinitionApplicability]
 /// Expressions that describe applicability criteria for the billing code.
+@collection
 class ChargeItemDefinitionApplicability extends BackboneElement {
   /// Primary constructor for
   /// [ChargeItemDefinitionApplicability]
@@ -822,6 +830,9 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ChargeItemDefinitionApplicability';
@@ -924,6 +935,7 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
 /// Group of properties which are applicable under the same conditions. If
 /// no applicability rules are established for the group, then all
 /// properties always apply.
+@collection
 class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   /// Primary constructor for
   /// [ChargeItemDefinitionPropertyGroup]
@@ -1024,6 +1036,9 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ChargeItemDefinitionPropertyGroup';
 
@@ -1106,6 +1121,7 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
 /// conditions that apply to a billing code is currently under development.
 /// The priceComponent element can be used to offer transparency to the
 /// recipient of the Invoice of how the prices have been calculated.
+@collection
 class ChargeItemDefinitionPriceComponent extends BackboneElement {
   /// Primary constructor for
   /// [ChargeItemDefinitionPriceComponent]
@@ -1209,6 +1225,9 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ChargeItemDefinitionPriceComponent';

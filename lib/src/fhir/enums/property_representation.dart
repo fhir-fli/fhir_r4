@@ -1,70 +1,104 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// How a property is represented when serialized.
-enum PropertyRepresentation {
-  /// Display: XML Attribute
-  /// Definition: In XML, this property is represented as an attribute not an element.
-  xmlAttr('xmlAttr'),
+@collection
+class PropertyRepresentation {
+  /// Constructor for internal use (like enum)
+  PropertyRepresentation({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: XML Text
-  /// Definition: This element is represented using the XML text attribute (primitives only).
-  xmlText('xmlText'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Type Attribute
-  /// Definition: The type of this element is indicated using xsi:type.
-  typeAttr('typeAttr'),
-
-  /// Display: CDA Text Format
-  /// Definition: Use CDA narrative instead of XHTML.
-  cdaText('cdaText'),
-
-  /// Display: XHTML
-  /// Definition: The property is represented using XHTML.
-  xhtml('xhtml'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const PropertyRepresentation(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// PropertyRepresentation values
+  /// xmlAttr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final PropertyRepresentation xmlAttr = PropertyRepresentation(
+    fhirCode: 'xmlAttr',
+  );
+
+  /// xmlText
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final PropertyRepresentation xmlText = PropertyRepresentation(
+    fhirCode: 'xmlText',
+  );
+
+  /// typeAttr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final PropertyRepresentation typeAttr = PropertyRepresentation(
+    fhirCode: 'typeAttr',
+  );
+
+  /// cdaText
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final PropertyRepresentation cdaText = PropertyRepresentation(
+    fhirCode: 'cdaText',
+  );
+
+  /// xhtml
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final PropertyRepresentation xhtml = PropertyRepresentation(
+    fhirCode: 'xhtml',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final PropertyRepresentation elementOnly = PropertyRepresentation();
+
+  /// List of all enum-like values
+  static final List<PropertyRepresentation> values = [
+    xmlAttr,
+    xmlText,
+    typeAttr,
+    cdaText,
+    xhtml,
+  ];
+
+  /// Returns the enum value with an element attached
+  PropertyRepresentation withElement(Element? newElement) {
+    return PropertyRepresentation(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [PropertyRepresentation] instances.
-  static PropertyRepresentation fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [PropertyRepresentation] from JSON.
+  static PropertyRepresentation fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PropertyRepresentation.elementOnly.withElement(
-        element,
-      );
+      return PropertyRepresentation.elementOnly.withElement(element);
     }
     return PropertyRepresentation.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  PropertyRepresentation withElement(Element? newElement) {
-    return PropertyRepresentation.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'PropertyRepresentation.$fhirCode';
 }

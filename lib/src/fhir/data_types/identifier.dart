@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'identifier.g.dart';
 
 /// [Identifier]
 /// An identifier - identifies some entity uniquely and unambiguously.
 /// Typically this is used for business identifiers.
+@collection
 class Identifier extends DataType {
   /// Primary constructor for
   /// [Identifier]
@@ -113,6 +117,9 @@ class Identifier extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Identifier';

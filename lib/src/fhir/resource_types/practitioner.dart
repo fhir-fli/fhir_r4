@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'practitioner.g.dart';
 
 /// [Practitioner]
 /// A person who is directly or indirectly involved in the provisioning of
 /// healthcare.
+@collection
 class Practitioner extends DomainResource {
   /// Primary constructor for
   /// [Practitioner]
@@ -214,6 +218,9 @@ class Practitioner extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Practitioner';
@@ -427,6 +434,7 @@ class Practitioner extends DomainResource {
 /// otherwise pertain to the provision of care by the practitioner. For
 /// example, a medical license issued by a medical board authorizing the
 /// practitioner to practice medicine within a certian locality.
+@collection
 class PractitionerQualification extends BackboneElement {
   /// Primary constructor for
   /// [PractitionerQualification]
@@ -532,6 +540,9 @@ class PractitionerQualification extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PractitionerQualification';

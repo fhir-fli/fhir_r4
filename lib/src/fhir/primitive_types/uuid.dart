@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:uuid/uuid.dart';
 import 'package:yaml/yaml.dart';
+
+part 'uuid.g.dart';
 
 /// Extension to convert a String to a [FhirUuid].
 extension FhirUuidExtension on String {
@@ -16,17 +19,19 @@ extension FhirUuidValueExtension on UuidValue {
 }
 
 /// [FhirUuid] represents a validated UUID value in the FHIR standard.
+@collection
 class FhirUuid extends PrimitiveType<UuidValue?> {
   /// Constructs a [FhirUuid] from a String input, allowing null values.
   FhirUuid(String? input, [Element? element])
-      : super(input != null ? _validateUuid(input) : null, element) {
+      : dbValue = input,
+        super(input != null ? _validateUuid(input) : null, element) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
   }
 
   /// Constructs a [FhirUuid] from a [UuidValue], allowing null values.
-  FhirUuid.fromUuid(super.input, [super.element]);
+  FhirUuid.fromUuid(super.input, [super.element]) : dbValue = input?.uuid;
 
   /// Factory constructor to create [FhirUuid] from JSON.
   factory FhirUuid.fromJson(Map<String, dynamic> json) {
@@ -79,6 +84,13 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
       throw FormatException('Invalid UUID: $input');
     }
   }
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final String? dbValue;
 
   /// Returns the FHIR type as 'uuid'.
   @override

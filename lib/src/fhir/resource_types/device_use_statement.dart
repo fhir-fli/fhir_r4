@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'device_use_statement.g.dart';
 
 /// [DeviceUseStatement]
 /// A record of a device being used by a patient where the record is the
 /// result of a report from the patient or another clinician.
+@collection
 class DeviceUseStatement extends DomainResource {
   /// Primary constructor for
   /// [DeviceUseStatement]
@@ -235,6 +239,9 @@ class DeviceUseStatement extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DeviceUseStatement';

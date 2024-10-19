@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'episode_of_care.g.dart';
 
 /// [EpisodeOfCare]
 /// An association between a patient and an organization / healthcare
 /// provider(s) during which time encounters may occur. The managing
 /// organization assumes a level of responsibility for the patient during
 /// this time.
+@collection
 class EpisodeOfCare extends DomainResource {
   /// Primary constructor for
   /// [EpisodeOfCare]
@@ -222,6 +226,9 @@ class EpisodeOfCare extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'EpisodeOfCare';
@@ -445,6 +452,7 @@ class EpisodeOfCare extends DomainResource {
 /// [EpisodeOfCareStatusHistory]
 /// The history of statuses that the EpisodeOfCare has been through
 /// (without requiring processing the history of the resource).
+@collection
 class EpisodeOfCareStatusHistory extends BackboneElement {
   /// Primary constructor for
   /// [EpisodeOfCareStatusHistory]
@@ -534,6 +542,9 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'EpisodeOfCareStatusHistory';
 
@@ -605,6 +616,7 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
 
 /// [EpisodeOfCareDiagnosis]
 /// The list of diagnosis relevant to this episode of care.
+@collection
 class EpisodeOfCareDiagnosis extends BackboneElement {
   /// Primary constructor for
   /// [EpisodeOfCareDiagnosis]
@@ -701,6 +713,9 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'EpisodeOfCareDiagnosis';

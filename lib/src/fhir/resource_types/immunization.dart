@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'immunization.g.dart';
 
 /// [Immunization]
 /// Describes the event of a patient being administered a vaccine or a
 /// record of an immunization as reported by a patient, a clinician or
 /// another party.
+@collection
 class Immunization extends DomainResource {
   /// Primary constructor for
   /// [Immunization]
@@ -344,6 +348,9 @@ class Immunization extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Immunization';
@@ -771,6 +778,7 @@ class Immunization extends DomainResource {
 
 /// [ImmunizationPerformer]
 /// Indicates who performed the immunization event.
+@collection
 class ImmunizationPerformer extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationPerformer]
@@ -861,6 +869,9 @@ class ImmunizationPerformer extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ImmunizationPerformer';
 
@@ -932,6 +943,7 @@ class ImmunizationPerformer extends BackboneElement {
 /// [ImmunizationEducation]
 /// Educational material presented to the patient (or guardian) at the time
 /// of vaccine administration.
+@collection
 class ImmunizationEducation extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationEducation]
@@ -1043,6 +1055,9 @@ class ImmunizationEducation extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ImmunizationEducation';
 
@@ -1152,6 +1167,7 @@ class ImmunizationEducation extends BackboneElement {
 /// [ImmunizationReaction]
 /// Categorical data indicating that an adverse event is associated in time
 /// to an immunization.
+@collection
 class ImmunizationReaction extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationReaction]
@@ -1252,6 +1268,9 @@ class ImmunizationReaction extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ImmunizationReaction';
 
@@ -1342,6 +1361,7 @@ class ImmunizationReaction extends BackboneElement {
 /// [ImmunizationProtocolApplied]
 /// The protocol (set of recommendations) being followed by the provider
 /// who administered the dose.
+@collection
 class ImmunizationProtocolApplied extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationProtocolApplied]
@@ -1476,6 +1496,9 @@ class ImmunizationProtocolApplied extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ImmunizationProtocolApplied';

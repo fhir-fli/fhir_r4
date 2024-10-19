@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'canonical.g.dart';
 
 /// Extension to convert a [String] to a [FhirCanonical]
 extension FhirCanonicalExtension on String {
@@ -15,10 +18,12 @@ extension FhirCanonicalUriExtension on Uri {
 }
 
 /// Represents a canonical URL in FHIR as a [PrimitiveType] of [Uri]
+@collection
 class FhirCanonical extends PrimitiveType<Uri> {
   /// Constructs a [FhirCanonical] from a [String]
   FhirCanonical(String? input, [Element? element])
-      : super(
+      : dbValue = input,
+        super(
           input == null ? null : _validateCanonical(input),
           element,
         ) {
@@ -28,7 +33,8 @@ class FhirCanonical extends PrimitiveType<Uri> {
   }
 
   /// Constructs a [FhirCanonical] from a [Uri] object
-  FhirCanonical.fromUri(super.input, [super.element]);
+  FhirCanonical.fromUri(super.input, [super.element])
+      : dbValue = input?.toString();
 
   /// Factory constructor to create [FhirCanonical] from JSON
   factory FhirCanonical.fromJson(Map<String, dynamic> json) {
@@ -134,6 +140,17 @@ class FhirCanonical extends PrimitiveType<Uri> {
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(value, element);
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final String? dbValue;
+
+  /// Returns the FHIR type as 'uuid'.
+  @override
+  String get fhirType => 'canonical';
 
   /// Clones this [FhirCanonical] instance
   @override

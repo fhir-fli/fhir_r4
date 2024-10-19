@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'code.g.dart';
 
 /// Extension to add `toFhirCode` method on all [String] instances
 extension FhirCodeExtension on String {
@@ -9,10 +12,12 @@ extension FhirCodeExtension on String {
 }
 
 /// FHIR primitive type `code`
+@collection
 class FhirCode extends PrimitiveType<String> {
   /// Public constructor with input validation
   FhirCode(String? input, [Element? element])
-      : super(
+      : dbValue = input,
+        super(
           input == null ? null : _validateCode(input),
           element,
         ) {
@@ -106,6 +111,13 @@ class FhirCode extends PrimitiveType<String> {
       '_value': codes.map((code) => code.element?.toJson()).toList(),
     };
   }
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final String? dbValue;
 
   /// Returns the FHIR type as a [String]
   @override

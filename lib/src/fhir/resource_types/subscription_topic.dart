@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'subscription_topic.g.dart';
 
 /// [SubscriptionTopic]
 /// Describes a stream of resource state changes or events and annotated
 /// with labels useful to filter projections from this topic.
+@collection
 class SubscriptionTopic extends DomainResource {
   /// Primary constructor for
   /// [SubscriptionTopic]
@@ -298,6 +302,9 @@ class SubscriptionTopic extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubscriptionTopic';
@@ -704,6 +711,7 @@ class SubscriptionTopic extends DomainResource {
 /// expression. Multiple triggers are considered OR joined (e.g., a
 /// resource update matching ANY of the definitions will trigger a
 /// notification).
+@collection
 class SubscriptionTopicResourceTrigger extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionTopicResourceTrigger]
@@ -815,6 +823,9 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubscriptionTopicResourceTrigger';
@@ -945,6 +956,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
 /// [SubscriptionTopicQueryCriteria]
 /// The FHIR query based rules that the server should use to determine when
 /// to trigger a notification for this subscription topic.
+@collection
 class SubscriptionTopicQueryCriteria extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionTopicQueryCriteria]
@@ -1061,6 +1073,9 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubscriptionTopicQueryCriteria';
@@ -1189,6 +1204,7 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
 
 /// [SubscriptionTopicEventTrigger]
 /// Event definition which can be used to trigger the SubscriptionTopic.
+@collection
 class SubscriptionTopicEventTrigger extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionTopicEventTrigger]
@@ -1284,6 +1300,9 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubscriptionTopicEventTrigger';
@@ -1383,6 +1402,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
 /// be filtered. May be defined Search Parameters (e.g., Encounter.patient)
 /// or parameters defined within this SubscriptionTopic context (e.g.,
 /// hub.event).
+@collection
 class SubscriptionTopicCanFilterBy extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionTopicCanFilterBy]
@@ -1495,6 +1515,9 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubscriptionTopicCanFilterBy';
@@ -1629,6 +1652,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
 /// [SubscriptionTopicNotificationShape]
 /// List of properties to describe the shape (e.g., resources) included in
 /// notifications from this Subscription Topic.
+@collection
 class SubscriptionTopicNotificationShape extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionTopicNotificationShape]
@@ -1725,6 +1749,9 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubscriptionTopicNotificationShape';

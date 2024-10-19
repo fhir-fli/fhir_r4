@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'usage_context.g.dart';
 
 /// [UsageContext]
 /// Specifies clinical/business/etc. metadata that can be used to retrieve,
 /// index and/or categorize an artifact. This metadata can either be
 /// specific to the applicable population (e.g., age category, DRG) or the
 /// specific context of care (e.g., venue, care setting, provider of care).
+@collection
 class UsageContext extends DataType {
   /// Primary constructor for
   /// [UsageContext]
@@ -104,6 +108,9 @@ class UsageContext extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'UsageContext';

@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'verification_result.g.dart';
 
 /// [VerificationResult]
 /// Describes validation requirements, source(s), status and dates for one
 /// or more elements.
+@collection
 class VerificationResult extends DomainResource {
   /// Primary constructor for
   /// [VerificationResult]
@@ -227,6 +231,9 @@ class VerificationResult extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'VerificationResult';
@@ -482,6 +489,7 @@ class VerificationResult extends DomainResource {
 
 /// [VerificationResultPrimarySource]
 /// Information about the primary source(s) involved in validation.
+@collection
 class VerificationResultPrimarySource extends BackboneElement {
   /// Primary constructor for
   /// [VerificationResultPrimarySource]
@@ -618,6 +626,9 @@ class VerificationResultPrimarySource extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'VerificationResultPrimarySource';
 
@@ -750,6 +761,7 @@ class VerificationResultPrimarySource extends BackboneElement {
 
 /// [VerificationResultAttestation]
 /// Information about the entity attesting to information.
+@collection
 class VerificationResultAttestation extends BackboneElement {
   /// Primary constructor for
   /// [VerificationResultAttestation]
@@ -882,6 +894,9 @@ class VerificationResultAttestation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'VerificationResultAttestation';
@@ -1034,6 +1049,7 @@ class VerificationResultAttestation extends BackboneElement {
 
 /// [VerificationResultValidator]
 /// Information about the entity validating information.
+@collection
 class VerificationResultValidator extends BackboneElement {
   /// Primary constructor for
   /// [VerificationResultValidator]
@@ -1131,6 +1147,9 @@ class VerificationResultValidator extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'VerificationResultValidator';

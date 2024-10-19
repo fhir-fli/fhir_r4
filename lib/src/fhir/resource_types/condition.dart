@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'condition.g.dart';
 
 /// [Condition]
 /// A clinical condition, problem, diagnosis, or other event, situation,
 /// issue, or clinical concept that has risen to a level of concern.
+@collection
 class Condition extends DomainResource {
   /// Primary constructor for
   /// [Condition]
@@ -304,6 +308,9 @@ class Condition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Condition';
@@ -697,6 +704,7 @@ class Condition extends DomainResource {
 /// [ConditionStage]
 /// Clinical stage or grade of a condition. May include formal severity
 /// assessments.
+@collection
 class ConditionStage extends BackboneElement {
   /// Primary constructor for
   /// [ConditionStage]
@@ -799,6 +807,9 @@ class ConditionStage extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ConditionStage';
 
@@ -884,6 +895,7 @@ class ConditionStage extends BackboneElement {
 /// Supporting evidence / manifestations that are the basis of the
 /// Condition's verification status, such as evidence that confirmed or
 /// refuted the condition.
+@collection
 class ConditionEvidence extends BackboneElement {
   /// Primary constructor for
   /// [ConditionEvidence]
@@ -983,6 +995,9 @@ class ConditionEvidence extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ConditionEvidence';

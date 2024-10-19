@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'string.g.dart';
 
 /// Extension to convert a [String] to [FhirString].
 extension FhirStringExtension on String {
@@ -9,9 +12,10 @@ extension FhirStringExtension on String {
 }
 
 /// [FhirString] represents a string used in FHIR resources.
+@collection
 class FhirString extends PrimitiveType<String> {
   /// Constructs a [FhirString] with validation.
-  FhirString(super.input, [super.element]) {
+  FhirString(super.input, [super.element]) : dbValue = input {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -49,6 +53,13 @@ class FhirString extends PrimitiveType<String> {
     }
     return null;
   }
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final String? dbValue;
 
   /// Returns the FHIR type as 'string'.
   @override

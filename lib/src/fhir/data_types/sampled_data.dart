@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'sampled_data.g.dart';
 
 /// [SampledData]
 /// A series of measurements taken by a device, with upper and lower
 /// limits. There may be more than one dimension in the data.
+@collection
 class SampledData extends DataType {
   /// Primary constructor for
   /// [SampledData]
@@ -116,6 +120,9 @@ class SampledData extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SampledData';

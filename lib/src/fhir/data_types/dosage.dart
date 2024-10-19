@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'dosage.g.dart';
 
 /// [Dosage]
 /// Indicates how the medication is/was taken or should be taken by the
 /// patient.
+@collection
 class Dosage extends BackboneType {
   /// Primary constructor for
   /// [Dosage]
@@ -182,6 +186,9 @@ class Dosage extends BackboneType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Dosage';
@@ -402,7 +409,8 @@ class Dosage extends BackboneType {
 
 /// [DosageDoseAndRate]
 /// The amount of medication administered.
-class DosageDoseAndRate extends Element {
+@collection
+class DosageDoseAndRate extends SimpleElement {
   /// Primary constructor for
   /// [DosageDoseAndRate]
 
@@ -507,6 +515,9 @@ class DosageDoseAndRate extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DosageDoseAndRate';

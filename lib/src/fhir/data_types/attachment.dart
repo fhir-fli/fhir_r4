@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'attachment.g.dart';
 
 /// [Attachment]
 /// For referring to data content defined in other formats.
+@collection
 class Attachment extends DataType {
   /// Primary constructor for
   /// [Attachment]
@@ -129,6 +133,9 @@ class Attachment extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Attachment';

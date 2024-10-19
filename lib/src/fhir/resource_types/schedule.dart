@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'schedule.g.dart';
 
 /// [Schedule]
 /// A container for slots of time that may be available for booking
 /// appointments.
+@collection
 class Schedule extends DomainResource {
   /// Primary constructor for
   /// [Schedule]
@@ -193,6 +197,9 @@ class Schedule extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Schedule';

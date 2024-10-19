@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'quantity.g.dart';
 
 /// [Quantity]
 /// A measured amount (or an amount that can potentially be measured). Note
 /// that measured amounts include amounts that are not precisely
 /// quantified, including amounts involving arbitrary units and floating
 /// currencies.
+@collection
 class Quantity extends DataType {
   /// Primary constructor for
   /// [Quantity]
@@ -111,6 +115,9 @@ class Quantity extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Quantity';

@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'operation_outcome.g.dart';
 
 /// [OperationOutcome]
 /// A collection of error, warning, or information messages that result
 /// from a system action.
+@collection
 class OperationOutcome extends DomainResource {
   /// Primary constructor for
   /// [OperationOutcome]
@@ -134,6 +138,9 @@ class OperationOutcome extends DomainResource {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'OperationOutcome';
 
@@ -234,6 +241,7 @@ class OperationOutcome extends DomainResource {
 /// [OperationOutcomeIssue]
 /// An error, warning, or information message that results from a system
 /// action.
+@collection
 class OperationOutcomeIssue extends BackboneElement {
   /// Primary constructor for
   /// [OperationOutcomeIssue]
@@ -348,6 +356,9 @@ class OperationOutcomeIssue extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'OperationOutcomeIssue';

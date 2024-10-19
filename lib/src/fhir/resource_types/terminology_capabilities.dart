@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'terminology_capabilities.g.dart';
 
 /// [TerminologyCapabilities]
 /// A TerminologyCapabilities resource documents a set of capabilities
 /// (behaviors) of a FHIR Terminology Server that may be used as a
 /// statement of actual server functionality or a statement of required or
 /// desired server implementation.
+@collection
 class TerminologyCapabilities extends DomainResource {
   /// Primary constructor for
   /// [TerminologyCapabilities]
@@ -294,6 +298,9 @@ class TerminologyCapabilities extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'TerminologyCapabilities';
@@ -728,6 +735,7 @@ class TerminologyCapabilities extends DomainResource {
 /// Software that is covered by this terminology capability statement. It
 /// is used when the statement describes the capabilities of a particular
 /// software version, independent of an installation.
+@collection
 class TerminologyCapabilitiesSoftware extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesSoftware]
@@ -820,6 +828,9 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TerminologyCapabilitiesSoftware';
 
@@ -899,6 +910,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
 /// Identifies a specific implementation instance that is described by the
 /// terminology capability statement - i.e. a particular installation,
 /// rather than the capabilities of a software program.
+@collection
 class TerminologyCapabilitiesImplementation extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesImplementation]
@@ -991,6 +1003,9 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TerminologyCapabilitiesImplementation';
 
@@ -1071,6 +1086,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
 /// Identifies a code system that is supported by the server. If there is a
 /// no code system URL, then this declares the general assumptions a client
 /// can make about support for any CodeSystem resource.
+@collection
 class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesCodeSystem]
@@ -1175,6 +1191,9 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TerminologyCapabilitiesCodeSystem';
 
@@ -1266,6 +1285,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
 /// [TerminologyCapabilitiesVersion]
 /// For the code system, a list of versions that are supported by the
 /// server.
+@collection
 class TerminologyCapabilitiesVersion extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesVersion]
@@ -1389,6 +1409,9 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'TerminologyCapabilitiesVersion';
@@ -1522,6 +1545,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
 
 /// [TerminologyCapabilitiesFilter]
 /// Filter Properties supported.
+@collection
 class TerminologyCapabilitiesFilter extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesFilter]
@@ -1615,6 +1639,9 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TerminologyCapabilitiesFilter';
 
@@ -1691,6 +1718,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
 /// [TerminologyCapabilitiesExpansion]
 /// Information about the
 /// [ValueSet/$expand](valueset-operation-expand.html) operation.
+@collection
 class TerminologyCapabilitiesExpansion extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesExpansion]
@@ -1810,6 +1838,9 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TerminologyCapabilitiesExpansion';
 
@@ -1927,6 +1958,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
 
 /// [TerminologyCapabilitiesParameter]
 /// Supported expansion parameter.
+@collection
 class TerminologyCapabilitiesParameter extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesParameter]
@@ -2020,6 +2052,9 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TerminologyCapabilitiesParameter';
 
@@ -2099,6 +2134,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
 /// Information about the
 /// [ValueSet/$validate-code](valueset-operation-validate-code.html)
 /// operation.
+@collection
 class TerminologyCapabilitiesValidateCode extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesValidateCode]
@@ -2184,6 +2220,9 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TerminologyCapabilitiesValidateCode';
 
@@ -2248,6 +2287,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
 /// [TerminologyCapabilitiesTranslation]
 /// Information about the
 /// [ConceptMap/$translate](conceptmap-operation-translate.html) operation.
+@collection
 class TerminologyCapabilitiesTranslation extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesTranslation]
@@ -2333,6 +2373,9 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TerminologyCapabilitiesTranslation';
 
@@ -2396,6 +2439,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
 
 /// [TerminologyCapabilitiesClosure]
 /// Whether the $closure operation is supported.
+@collection
 class TerminologyCapabilitiesClosure extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesClosure]
@@ -2482,6 +2526,9 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'TerminologyCapabilitiesClosure';

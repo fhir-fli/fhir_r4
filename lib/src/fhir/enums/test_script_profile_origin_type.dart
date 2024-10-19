@@ -1,58 +1,83 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// This value set defines a set of codes that are used to indicate the profile type of a test system when acting as the origin within a TestScript.
-enum TestScriptProfileOriginType {
-  /// Display: FHIR Client
-  /// Definition: General FHIR client used to initiate operations against a FHIR server.
-  FHIR_Client('FHIR-Client'),
+@collection
+class TestScriptProfileOriginType {
+  /// Constructor for internal use (like enum)
+  TestScriptProfileOriginType({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: FHIR SDC FormFiller
-  /// Definition: A FHIR client acting as a Structured Data Capture Form Filler.
-  FHIR_SDC_FormFiller('FHIR-SDC-FormFiller'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const TestScriptProfileOriginType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// TestScriptProfileOriginType values
+  /// FHIR_Client
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TestScriptProfileOriginType FHIR_Client =
+      TestScriptProfileOriginType(
+    fhirCode: 'FHIR-Client',
+  );
+
+  /// FHIR_SDC_FormFiller
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TestScriptProfileOriginType FHIR_SDC_FormFiller =
+      TestScriptProfileOriginType(
+    fhirCode: 'FHIR-SDC-FormFiller',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final TestScriptProfileOriginType elementOnly =
+      TestScriptProfileOriginType();
+
+  /// List of all enum-like values
+  static final List<TestScriptProfileOriginType> values = [
+    FHIR_Client,
+    FHIR_SDC_FormFiller,
+  ];
+
+  /// Returns the enum value with an element attached
+  TestScriptProfileOriginType withElement(Element? newElement) {
+    return TestScriptProfileOriginType(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [TestScriptProfileOriginType] instances.
-  static TestScriptProfileOriginType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [TestScriptProfileOriginType] from JSON.
+  static TestScriptProfileOriginType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestScriptProfileOriginType.elementOnly.withElement(
-        element,
-      );
+      return TestScriptProfileOriginType.elementOnly.withElement(element);
     }
     return TestScriptProfileOriginType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  TestScriptProfileOriginType withElement(Element? newElement) {
-    return TestScriptProfileOriginType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'TestScriptProfileOriginType.$fhirCode';
 }

@@ -1,74 +1,112 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// Indicates the state of the consent.
-enum ConsentState {
-  /// Display: Pending
-  /// Definition: The consent is in development or awaiting use but is not yet intended to be acted upon.
-  draft('draft'),
+@collection
+class ConsentState {
+  /// Constructor for internal use (like enum)
+  ConsentState({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Proposed
-  /// Definition: The consent has been proposed but not yet agreed to by all parties. The negotiation stage.
-  proposed('proposed'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Active
-  /// Definition: The consent is to be followed and enforced.
-  active('active'),
-
-  /// Display: Rejected
-  /// Definition: The consent has been rejected by one or more of the parties.
-  rejected('rejected'),
-
-  /// Display: Inactive
-  /// Definition: The consent is terminated or replaced.
-  inactive('inactive'),
-
-  /// Display: Entered in Error
-  /// Definition: The consent was created wrongly (e.g. wrong patient) and should be ignored.
-  entered_in_error('entered-in-error'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ConsentState(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// ConsentState values
+  /// draft
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentState draft = ConsentState(
+    fhirCode: 'draft',
+  );
+
+  /// proposed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentState proposed = ConsentState(
+    fhirCode: 'proposed',
+  );
+
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentState active = ConsentState(
+    fhirCode: 'active',
+  );
+
+  /// rejected
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentState rejected = ConsentState(
+    fhirCode: 'rejected',
+  );
+
+  /// inactive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentState inactive = ConsentState(
+    fhirCode: 'inactive',
+  );
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentState entered_in_error = ConsentState(
+    fhirCode: 'entered-in-error',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ConsentState elementOnly = ConsentState();
+
+  /// List of all enum-like values
+  static final List<ConsentState> values = [
+    draft,
+    proposed,
+    active,
+    rejected,
+    inactive,
+    entered_in_error,
+  ];
+
+  /// Returns the enum value with an element attached
+  ConsentState withElement(Element? newElement) {
+    return ConsentState(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ConsentState] instances.
-  static ConsentState fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ConsentState] from JSON.
+  static ConsentState fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConsentState.elementOnly.withElement(
-        element,
-      );
+      return ConsentState.elementOnly.withElement(element);
     }
     return ConsentState.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ConsentState withElement(Element? newElement) {
-    return ConsentState.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ConsentState.$fhirCode';
 }

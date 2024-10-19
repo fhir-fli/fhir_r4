@@ -366,7 +366,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     /// Determine the type and construct the appropriate FhirDateTimeBase object
     if (T == FhirDateTime) {
       if (dateTimeMap.isEmpty) {
-        return FhirDateTime.fromBase(
+        return FhirDateTime(
           year: null,
           month: null,
           day: null,
@@ -378,11 +378,12 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           timeZoneOffset: null,
           isUtc: false,
           element: element,
+          dbValue: dateTimeMap.formattedString,
         );
       } else if (dateTimeMap['year'] == null) {
         throw ArgumentError('Year is required for FhirDateTime');
       }
-      return FhirDateTime.fromBase(
+      return FhirDateTime(
         year: dateTimeMap['year']!.toInt(),
         month: dateTimeMap['month']?.toInt(),
         day: dateTimeMap['day']?.toInt(),
@@ -394,30 +395,33 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         timeZoneOffset: dateTimeMap['timeZoneOffset'],
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
+        dbValue: dateTimeMap.formattedString,
       );
     } else if (T == FhirDate) {
       if (dateTimeMap.isEmpty) {
-        return FhirDate.fromBase(
+        return FhirDate(
           year: null,
           month: null,
           day: null,
           isUtc: false,
           element: element,
+          dbValue: dateTimeMap.formattedString,
         );
       } else if (dateTimeMap['year'] == null) {
         throw ArgumentError('Year is required for FhirDate');
       }
-      return FhirDate.fromBase(
+      return FhirDate(
         year: dateTimeMap['year']?.toInt(),
         month: dateTimeMap['month']?.toInt(),
         day: dateTimeMap['day']?.toInt(),
         timeZoneOffset: dateTimeMap['timeZoneOffset'],
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
+        dbValue: dateTimeMap.formattedString,
       );
     } else if (T == FhirInstant) {
       if (dateTimeMap.isEmpty) {
-        return FhirInstant.fromBase(
+        return FhirInstant(
           year: null,
           month: null,
           day: null,
@@ -429,6 +433,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           timeZoneOffset: null,
           isUtc: false,
           element: element,
+          dbValue: dateTimeMap.dateTime,
         );
       } else if (dateTimeMap['year'] == null ||
           dateTimeMap['month'] == null ||
@@ -441,7 +446,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           'are required for FhirInstant',
         );
       }
-      final instant = FhirInstant.fromBase(
+      final instant = FhirInstant(
         year: dateTimeMap['year']!.toInt(),
         month: dateTimeMap['month']!.toInt(),
         day: dateTimeMap['day']!.toInt(),
@@ -453,6 +458,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         timeZoneOffset: dateTimeMap['timeZoneOffset'] ?? 0,
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
+        dbValue: dateTimeMap.dateTime,
       );
       return instant;
     } else {
@@ -750,5 +756,65 @@ extension TimeZoneOffsetString on String {
     final totalOffset = hours + minutes / 60.0;
 
     return positive ? totalOffset : -totalOffset;
+  }
+}
+
+/// [Date](https://www.hl7.org/fhir/datatypes.html#date)
+extension FormattedString on Map<String, num?> {
+  /// Converts a map of date-time parts to a formatted string.
+  String get formattedString {
+    final buffer = StringBuffer('${this['year']}');
+
+    if (this['month'] != null) {
+      buffer.write('-${this['month']!.toString().padLeft(2, '0')}');
+    }
+    if (this['day'] != null) {
+      buffer.write('-${this['day']!.toString().padLeft(2, '0')}');
+    }
+    if (this['hour'] != null) {
+      buffer.write('T${this['hour']!.toString().padLeft(2, '0')}');
+      if (this['minute'] != null) {
+        buffer.write(':${this['minute']!.toString().padLeft(2, '0')}');
+        if (this['second'] != null) {
+          buffer.write(':${this['second']!.toString().padLeft(2, '0')}');
+          if (this['millisecond'] != null || this['microsecond'] != null) {
+            buffer
+              ..write('.')
+              ..write(this['millisecond']?.toString().padLeft(3, '0') ?? '000');
+            if (this['microsecond'] != null) {
+              buffer.write(this['microsecond']!.toString().padLeft(3, '0'));
+            }
+          }
+        }
+      }
+    }
+    if (this['isUtc'] == 0) {
+      if (this['hour'] == null &&
+          this['minute'] == null &&
+          this['second'] == null &&
+          this['millisecond'] == null) {
+        buffer.write('T');
+      }
+      buffer.write('Z');
+    } else if (this['timeZoneOffset'] != null) {
+      if (this['hour'] == null &&
+          this['minute'] == null &&
+          this['second'] == null &&
+          this['millisecond'] == null) {
+        buffer.write('T');
+      }
+      buffer.write(
+        '${this['timeZoneOffset']! >= 0 ? '+' : '-'}'
+        '${this['timeZoneOffset']!.toInt().abs().toString().padLeft(2, '0')}'
+        ':00',
+      );
+    }
+
+    return buffer.toString();
+  }
+
+  /// Converts a map of date-time parts to a [DateTime].
+  DateTime? get dateTime {
+    return DateTime.tryParse(formattedString);
   }
 }

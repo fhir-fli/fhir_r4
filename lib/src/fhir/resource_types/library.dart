@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'library.g.dart';
 
 /// [Library]
 /// The Library resource is a general-purpose container for knowledge asset
 /// definitions. It can be used to describe and expose existing knowledge
 /// assets such as logic libraries and information model descriptions, as
 /// well as to describe a collection of knowledge assets.
+@collection
 class Library extends DomainResource {
   /// Primary constructor for
   /// [Library]
@@ -383,6 +387,9 @@ class Library extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Library';

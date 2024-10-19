@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'oid.g.dart';
 
 /// Extension to convert a [String] to [FhirOid].
 extension FhirOidExtension on String {
@@ -9,10 +12,12 @@ extension FhirOidExtension on String {
 }
 
 /// [FhirOid] represents a validated OID value in the FHIR standard.
+@collection
 class FhirOid extends PrimitiveType<String> {
   /// Constructs a [FhirOid] from a String input with validation.
   FhirOid(String? input, [Element? element])
-      : super(_validateOid(input), element) {
+      : dbValue = input,
+        super(_validateOid(input), element) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -59,6 +64,13 @@ class FhirOid extends PrimitiveType<String> {
     }
     throw FormatException('Invalid FhirOid: $input');
   }
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final String? dbValue;
 
   /// Returns the FHIR type as 'oid'.
   @override

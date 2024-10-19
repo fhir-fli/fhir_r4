@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:xml/xml.dart';
 import 'package:yaml/yaml.dart';
+
+part 'xhtml.g.dart';
 
 /// Extension to convert a [String] to a [FhirXhtml].
 extension FhirXhtmlExtension on String {
@@ -10,17 +13,20 @@ extension FhirXhtmlExtension on String {
 }
 
 /// This class represents the FHIR primitive type `xhtml`.
+@collection
 class FhirXhtml extends PrimitiveType<String?> {
   /// Constructor that accepts and validates an XHTML string, or allows `null`.
   FhirXhtml(String? input, [Element? element])
-      : super(input != null ? _validateXhtml(input) : null, element) {
+      : dbValue = input,
+        super(input != null ? _validateXhtml(input) : null, element) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
   }
 
   /// Constructor that accepts already validated XHTML string, or `null`.
-  FhirXhtml.fromValidatedXhtml(super.validatedInput, [super.element]);
+  FhirXhtml.fromValidatedXhtml(super.validatedInput, [super.element])
+      : dbValue = validatedInput;
 
   /// Factory constructor to create [FhirXhtml] from JSON.
   factory FhirXhtml.fromJson(Map<String, dynamic> json) {
@@ -241,6 +247,13 @@ class FhirXhtml extends PrimitiveType<String?> {
 
     return true;
   }
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final String? dbValue;
 
   @override
   String get fhirType => 'xhtml';

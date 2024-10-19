@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'payment_reconciliation.g.dart';
 
 /// [PaymentReconciliation]
 /// This resource provides the details including amount of a payment and
 /// allocates the payment items being paid.
+@collection
 class PaymentReconciliation extends DomainResource {
   /// Primary constructor for
   /// [PaymentReconciliation]
@@ -222,6 +226,9 @@ class PaymentReconciliation extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PaymentReconciliation';
@@ -481,6 +488,7 @@ class PaymentReconciliation extends DomainResource {
 /// [PaymentReconciliationDetail]
 /// Distribution of the payment amount for a previously acknowledged
 /// payable.
+@collection
 class PaymentReconciliationDetail extends BackboneElement {
   /// Primary constructor for
   /// [PaymentReconciliationDetail]
@@ -619,6 +627,9 @@ class PaymentReconciliationDetail extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PaymentReconciliationDetail';
@@ -779,6 +790,7 @@ class PaymentReconciliationDetail extends BackboneElement {
 /// [PaymentReconciliationProcessNote]
 /// A note that describes or explains the processing in a human readable
 /// form.
+@collection
 class PaymentReconciliationProcessNote extends BackboneElement {
   /// Primary constructor for
   /// [PaymentReconciliationProcessNote]
@@ -872,6 +884,9 @@ class PaymentReconciliationProcessNote extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PaymentReconciliationProcessNote';

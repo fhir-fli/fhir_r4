@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'expression.g.dart';
 
 /// [FhirExpression]
 /// A expression that is evaluated in a specified context and returns a
 /// value. The context of use of the expression must specify the context in
 /// which the expression is evaluated, and how the result of the expression
 /// is used.
+@collection
 class FhirExpression extends DataType {
   /// Primary constructor for
   /// [FhirExpression]
@@ -109,6 +113,9 @@ class FhirExpression extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'FhirExpression';

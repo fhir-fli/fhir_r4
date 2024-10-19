@@ -1,7 +1,10 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'instant.g.dart';
 
 /// Extension to convert a [DateTime] to a [FhirInstant].
 extension FhirInstantExtension on DateTime {
@@ -16,7 +19,24 @@ extension FhirInstantStringExtension on String {
 }
 
 /// [FhirInstant] represents an instant in time as defined by the FHIR spec.
+@collection
 class FhirInstant extends FhirDateTimeBase {
+  /// Constructor to create a [FhirInstant] from base values.
+  FhirInstant({
+    required super.year,
+    required super.month,
+    required super.day,
+    required super.hour,
+    required super.minute,
+    required super.second,
+    required super.millisecond,
+    required super.microsecond,
+    required super.timeZoneOffset,
+    required super.isUtc,
+    super.element,
+    this.dbValue,
+  });
+
   /// Factory constructor to create a [FhirInstant] from individual units.
   factory FhirInstant.fromUnits({
     required int year,
@@ -44,21 +64,6 @@ class FhirInstant extends FhirDateTimeBase {
         isUtc: isUtc ?? false,
         element: element,
       ) as FhirInstant;
-
-  /// Constructor to create a [FhirInstant] from base values.
-  FhirInstant.fromBase({
-    required super.year,
-    required super.month,
-    required super.day,
-    required super.hour,
-    required super.minute,
-    required super.second,
-    required super.millisecond,
-    required super.microsecond,
-    required super.timeZoneOffset,
-    required super.isUtc,
-    super.element,
-  });
 
   /// Factory constructor restricted to String or DateTime inputs.
   factory FhirInstant.fromString(String? inValue, [Element? element]) =>
@@ -124,6 +129,13 @@ class FhirInstant extends FhirDateTimeBase {
     }
     return null;
   }
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final DateTime? dbValue;
 
   /// Returns the FHIR type as 'instant'.
   @override

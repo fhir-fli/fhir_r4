@@ -1,106 +1,191 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// TextureModifiedFoodType: Codes for types of foods that are texture-modified. This value set is composed SNOMED CT Concepts from SCTID 255620007 Foods (substance) and is provided as a suggestive example.
-enum TextureModifiedFoodTypeCodes {
-  /// Display: Foods
-  /// Definition:
-  value255620007('255620007'),
+@collection
+class TextureModifiedFoodTypeCodes {
+  /// Constructor for internal use (like enum)
+  TextureModifiedFoodTypeCodes({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Meat
-  /// Definition:
-  value28647000('28647000'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Vegetables
-  /// Definition:
-  value22836000('22836000'),
-
-  /// Display: Fruit
-  /// Definition:
-  value72511004('72511004'),
-
-  /// Display: Dairy foods
-  /// Definition:
-  value226760005('226760005'),
-
-  /// Display: Dietary Fats and Oils
-  /// Definition:
-  value226887002('226887002'),
-
-  /// Display: Eggs
-  /// Definition:
-  value102263004('102263004'),
-
-  /// Display: Food Starch
-  /// Definition:
-  value74242007('74242007'),
-
-  /// Display: Fruit Nuts and Seeds
-  /// Definition:
-  value227415002('227415002'),
-
-  /// Display: Grain
-  /// Definition:
-  value264331002('264331002'),
-
-  /// Display: Sauce seasonings and soups
-  /// Definition:
-  value227518002('227518002'),
-
-  /// Display: Seafood
-  /// Definition:
-  value44027008('44027008'),
-
-  /// Display: Starchy food
-  /// Definition:
-  value226529007('226529007'),
-
-  /// Display: Vegetables plus herbs and spices
-  /// Definition:
-  value227210005('227210005'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const TextureModifiedFoodTypeCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// TextureModifiedFoodTypeCodes values
+  /// value255620007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TextureModifiedFoodTypeCodes value255620007 =
+      TextureModifiedFoodTypeCodes(
+    fhirCode: '255620007',
+  );
+
+  /// value28647000
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TextureModifiedFoodTypeCodes value28647000 =
+      TextureModifiedFoodTypeCodes(
+    fhirCode: '28647000',
+  );
+
+  /// value22836000
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TextureModifiedFoodTypeCodes value22836000 =
+      TextureModifiedFoodTypeCodes(
+    fhirCode: '22836000',
+  );
+
+  /// value72511004
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TextureModifiedFoodTypeCodes value72511004 =
+      TextureModifiedFoodTypeCodes(
+    fhirCode: '72511004',
+  );
+
+  /// value226760005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TextureModifiedFoodTypeCodes value226760005 =
+      TextureModifiedFoodTypeCodes(
+    fhirCode: '226760005',
+  );
+
+  /// value226887002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TextureModifiedFoodTypeCodes value226887002 =
+      TextureModifiedFoodTypeCodes(
+    fhirCode: '226887002',
+  );
+
+  /// value102263004
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TextureModifiedFoodTypeCodes value102263004 =
+      TextureModifiedFoodTypeCodes(
+    fhirCode: '102263004',
+  );
+
+  /// value74242007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TextureModifiedFoodTypeCodes value74242007 =
+      TextureModifiedFoodTypeCodes(
+    fhirCode: '74242007',
+  );
+
+  /// value227415002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TextureModifiedFoodTypeCodes value227415002 =
+      TextureModifiedFoodTypeCodes(
+    fhirCode: '227415002',
+  );
+
+  /// value264331002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TextureModifiedFoodTypeCodes value264331002 =
+      TextureModifiedFoodTypeCodes(
+    fhirCode: '264331002',
+  );
+
+  /// value227518002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TextureModifiedFoodTypeCodes value227518002 =
+      TextureModifiedFoodTypeCodes(
+    fhirCode: '227518002',
+  );
+
+  /// value44027008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TextureModifiedFoodTypeCodes value44027008 =
+      TextureModifiedFoodTypeCodes(
+    fhirCode: '44027008',
+  );
+
+  /// value226529007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TextureModifiedFoodTypeCodes value226529007 =
+      TextureModifiedFoodTypeCodes(
+    fhirCode: '226529007',
+  );
+
+  /// value227210005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TextureModifiedFoodTypeCodes value227210005 =
+      TextureModifiedFoodTypeCodes(
+    fhirCode: '227210005',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final TextureModifiedFoodTypeCodes elementOnly =
+      TextureModifiedFoodTypeCodes();
+
+  /// List of all enum-like values
+  static final List<TextureModifiedFoodTypeCodes> values = [
+    value255620007,
+    value28647000,
+    value22836000,
+    value72511004,
+    value226760005,
+    value226887002,
+    value102263004,
+    value74242007,
+    value227415002,
+    value264331002,
+    value227518002,
+    value44027008,
+    value226529007,
+    value227210005,
+  ];
+
+  /// Returns the enum value with an element attached
+  TextureModifiedFoodTypeCodes withElement(Element? newElement) {
+    return TextureModifiedFoodTypeCodes(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [TextureModifiedFoodTypeCodes] instances.
-  static TextureModifiedFoodTypeCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [TextureModifiedFoodTypeCodes] from JSON.
+  static TextureModifiedFoodTypeCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TextureModifiedFoodTypeCodes.elementOnly.withElement(
-        element,
-      );
+      return TextureModifiedFoodTypeCodes.elementOnly.withElement(element);
     }
     return TextureModifiedFoodTypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  TextureModifiedFoodTypeCodes withElement(Element? newElement) {
-    return TextureModifiedFoodTypeCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'TextureModifiedFoodTypeCodes.$fhirCode';
 }

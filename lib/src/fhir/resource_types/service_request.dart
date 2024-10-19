@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'service_request.g.dart';
 
 /// [ServiceRequest]
 /// A record of a request for service such as diagnostic investigations,
 /// treatments, or operations to be performed.
+@collection
 class ServiceRequest extends DomainResource {
   /// Primary constructor for
   /// [ServiceRequest]
@@ -421,6 +425,9 @@ class ServiceRequest extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ServiceRequest';

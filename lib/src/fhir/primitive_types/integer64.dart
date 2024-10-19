@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'integer64.g.dart';
 
 /// Extension to convert a [num] to a [FhirInteger64].
 extension FhirInteger64NumExtension on num {
@@ -21,11 +24,13 @@ extension FhirInteger64BigIntExtension on BigInt {
 }
 
 /// Represents a 64-bit integer in the FHIR spec.
+@collection
 class FhirInteger64 extends PrimitiveType<BigInt?>
     implements Comparable<FhirInteger64> {
   /// Constructor that allows nullable BigInt input.
   FhirInteger64(BigInt? input, [Element? element])
-      : super(input != null ? _validateInteger64(input) : null, element) {
+      : dbValue = input.toString(),
+        super(input != null ? _validateInteger64(input) : null, element) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -33,14 +38,17 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
 
   /// Named constructor to create a [FhirInteger64] from an [int].
   FhirInteger64.fromNum(num input, [Element? element])
-      : super(BigInt.from(input), element);
+      : dbValue = input.toString(),
+        super(BigInt.from(input), element);
 
   /// Named constructor to create a [FhirInteger64] from a [String].
   FhirInteger64.fromString(String input, [Element? element])
-      : super(_validateInteger64(input), element);
+      : dbValue = input,
+        super(_validateInteger64(input), element);
 
   /// Named constructor to create a [FhirInteger64] from a [BigInt].
-  FhirInteger64.fromBigInt(super.input, [super.element]);
+  FhirInteger64.fromBigInt(super.input, [super.element])
+      : dbValue = input.toString();
 
   /// Factory constructor to create from JSON.
   factory FhirInteger64.fromJson(Map<String, dynamic> json) {
@@ -82,6 +90,13 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
     if (input is String) return BigInt.parse(input);
     throw FormatException('Invalid input for FhirInteger64: $input');
   }
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final String? dbValue;
 
   /// Returns the FHIR type as 'integer64'.
   @override

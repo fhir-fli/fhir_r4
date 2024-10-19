@@ -1,62 +1,88 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// Indicates the level of importance associated with reaching or sustaining a goal.
-enum GoalPriority {
-  /// Display: High Priority
-  /// Definition: Indicates that the goal is of considerable importance and should be a primary focus of care delivery.
-  high_priority('high-priority'),
+@collection
+class GoalPriority {
+  /// Constructor for internal use (like enum)
+  GoalPriority({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Medium Priority
-  /// Definition: Indicates that the goal has a reasonable degree of importance and that concrete action should be taken towards the goal. Attainment is not as critical as high-priority goals.
-  medium_priority('medium-priority'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Low Priority
-  /// Definition: The goal is desirable but is not sufficiently important to devote significant resources to. Achievement of the goal may be sought when incidental to achieving other goals.
-  low_priority('low-priority'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const GoalPriority(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// GoalPriority values
+  /// high_priority
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final GoalPriority high_priority = GoalPriority(
+    fhirCode: 'high-priority',
+  );
+
+  /// medium_priority
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final GoalPriority medium_priority = GoalPriority(
+    fhirCode: 'medium-priority',
+  );
+
+  /// low_priority
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final GoalPriority low_priority = GoalPriority(
+    fhirCode: 'low-priority',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final GoalPriority elementOnly = GoalPriority();
+
+  /// List of all enum-like values
+  static final List<GoalPriority> values = [
+    high_priority,
+    medium_priority,
+    low_priority,
+  ];
+
+  /// Returns the enum value with an element attached
+  GoalPriority withElement(Element? newElement) {
+    return GoalPriority(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [GoalPriority] instances.
-  static GoalPriority fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [GoalPriority] from JSON.
+  static GoalPriority fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GoalPriority.elementOnly.withElement(
-        element,
-      );
+      return GoalPriority.elementOnly.withElement(element);
     }
     return GoalPriority.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  GoalPriority withElement(Element? newElement) {
-    return GoalPriority.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'GoalPriority.$fhirCode';
 }

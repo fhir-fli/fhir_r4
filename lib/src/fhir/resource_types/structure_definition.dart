@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'structure_definition.g.dart';
 
 /// [StructureDefinition]
 /// A definition of a FHIR structure. This resource is used to describe the
 /// underlying resources, data types defined in FHIR, and also for
 /// describing extensions and constraints on resources and data types.
+@collection
 class StructureDefinition extends DomainResource {
   /// Primary constructor for
   /// [StructureDefinition]
@@ -315,6 +319,9 @@ class StructureDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'StructureDefinition';
@@ -776,6 +783,7 @@ class StructureDefinition extends DomainResource {
 
 /// [StructureDefinitionMapping]
 /// An external specification that the content is mapped to.
+@collection
 class StructureDefinitionMapping extends BackboneElement {
   /// Primary constructor for
   /// [StructureDefinitionMapping]
@@ -881,6 +889,9 @@ class StructureDefinitionMapping extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'StructureDefinitionMapping';
@@ -991,6 +1002,7 @@ class StructureDefinitionMapping extends BackboneElement {
 /// [StructureDefinitionContext]
 /// Identifies the types of resource or data type elements to which the
 /// extension can be applied.
+@collection
 class StructureDefinitionContext extends BackboneElement {
   /// Primary constructor for
   /// [StructureDefinitionContext]
@@ -1087,6 +1099,9 @@ class StructureDefinitionContext extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'StructureDefinitionContext';
 
@@ -1180,6 +1195,7 @@ class StructureDefinitionContext extends BackboneElement {
 /// [StructureDefinitionSnapshot]
 /// A snapshot view is expressed in a standalone form that can be used and
 /// interpreted without considering the base StructureDefinition.
+@collection
 class StructureDefinitionSnapshot extends BackboneElement {
   /// Primary constructor for
   /// [StructureDefinitionSnapshot]
@@ -1270,6 +1286,9 @@ class StructureDefinitionSnapshot extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'StructureDefinitionSnapshot';
 
@@ -1330,6 +1349,7 @@ class StructureDefinitionSnapshot extends BackboneElement {
 /// [StructureDefinitionDifferential]
 /// A differential view is expressed relative to the base
 /// StructureDefinition - a statement of differences that it applies.
+@collection
 class StructureDefinitionDifferential extends BackboneElement {
   /// Primary constructor for
   /// [StructureDefinitionDifferential]
@@ -1419,6 +1439,9 @@ class StructureDefinitionDifferential extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'StructureDefinitionDifferential';

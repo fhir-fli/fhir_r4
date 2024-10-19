@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'id.g.dart';
 
 /// Extension to convert a [String] to a [FhirId].
 extension FhirIdExtension on String {
@@ -9,10 +12,12 @@ extension FhirIdExtension on String {
 }
 
 /// Represents the FHIR primitive type `id`.
+@collection
 class FhirId extends PrimitiveType<String> {
   /// Public constructor with input validation.
   FhirId(String? input, [Element? element])
-      : super(
+      : dbValue = input,
+        super(
           input != null ? _validateId(input) : null,
           element,
         ) {
@@ -69,6 +74,13 @@ class FhirId extends PrimitiveType<String> {
 
   /// Boolean checks for the presence of both value and element.
   bool get valueAndElement => value != null && element != null;
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final String? dbValue;
 
   /// Returns the FHIR type as a [String].
   @override

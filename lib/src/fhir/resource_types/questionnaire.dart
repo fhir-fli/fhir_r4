@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'questionnaire.g.dart';
 
 /// [Questionnaire]
 /// A structured set of questions intended to guide the collection of
 /// answers from end-users. Questionnaires provide detailed control over
 /// order, presentation, phraseology and grouping to allow coherent,
 /// consistent data collection.
+@collection
 class Questionnaire extends DomainResource {
   /// Primary constructor for
   /// [Questionnaire]
@@ -295,6 +299,9 @@ class Questionnaire extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Questionnaire';
@@ -706,6 +713,7 @@ class Questionnaire extends DomainResource {
 /// [QuestionnaireItem]
 /// A particular question, question grouping or display text that is part
 /// of the questionnaire.
+@collection
 class QuestionnaireItem extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireItem]
@@ -910,6 +918,9 @@ class QuestionnaireItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'QuestionnaireItem';
@@ -1198,6 +1209,7 @@ class QuestionnaireItem extends BackboneElement {
 /// A constraint indicating that this item should only be enabled
 /// (displayed/allow answers to be captured) when the specified condition
 /// is true.
+@collection
 class QuestionnaireEnableWhen extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireEnableWhen]
@@ -1359,6 +1371,9 @@ class QuestionnaireEnableWhen extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'QuestionnaireEnableWhen';
@@ -1574,6 +1589,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
 
 /// [QuestionnaireAnswerOption]
 /// One of the permitted answers for a "choice" or "open-choice" question.
+@collection
 class QuestionnaireAnswerOption extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireAnswerOption]
@@ -1702,6 +1718,9 @@ class QuestionnaireAnswerOption extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'QuestionnaireAnswerOption';
@@ -1846,6 +1865,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
 /// [QuestionnaireInitial]
 /// One or more values that should be pre-populated in the answer when
 /// initially rendering the questionnaire for user input.
+@collection
 class QuestionnaireInitial extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireInitial]
@@ -2009,6 +2029,9 @@ class QuestionnaireInitial extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'QuestionnaireInitial';

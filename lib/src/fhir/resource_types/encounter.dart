@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'encounter.g.dart';
 
 /// [Encounter]
 /// An interaction between a patient and healthcare provider(s) for the
 /// purpose of providing healthcare service(s) or assessing the health
 /// status of a patient.
+@collection
 class Encounter extends DomainResource {
   /// Primary constructor for
   /// [Encounter]
@@ -311,6 +315,9 @@ class Encounter extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Encounter';
@@ -665,6 +672,7 @@ class Encounter extends DomainResource {
 /// The status history permits the encounter resource to contain the status
 /// history without needing to read through the historical versions of the
 /// resource, or even have the server store them.
+@collection
 class EncounterStatusHistory extends BackboneElement {
   /// Primary constructor for
   /// [EncounterStatusHistory]
@@ -754,6 +762,9 @@ class EncounterStatusHistory extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'EncounterStatusHistory';
 
@@ -832,6 +843,7 @@ class EncounterStatusHistory extends BackboneElement {
 /// new encounter ensures that any lab/diagnostic results can more easily
 /// follow the patient and not require re-processing and not get lost or
 /// cancelled during a kind of discharge from emergency to inpatient.
+@collection
 class EncounterClassHistory extends BackboneElement {
   /// Primary constructor for
   /// [EncounterClassHistory]
@@ -920,6 +932,9 @@ class EncounterClassHistory extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'EncounterClassHistory';
 
@@ -987,6 +1002,7 @@ class EncounterClassHistory extends BackboneElement {
 
 /// [EncounterParticipant]
 /// The list of people responsible for providing the service.
+@collection
 class EncounterParticipant extends BackboneElement {
   /// Primary constructor for
   /// [EncounterParticipant]
@@ -1089,6 +1105,9 @@ class EncounterParticipant extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'EncounterParticipant';
 
@@ -1172,6 +1191,7 @@ class EncounterParticipant extends BackboneElement {
 
 /// [EncounterDiagnosis]
 /// The list of diagnosis relevant to this encounter.
+@collection
 class EncounterDiagnosis extends BackboneElement {
   /// Primary constructor for
   /// [EncounterDiagnosis]
@@ -1269,6 +1289,9 @@ class EncounterDiagnosis extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'EncounterDiagnosis';
 
@@ -1356,6 +1379,7 @@ class EncounterDiagnosis extends BackboneElement {
 
 /// [EncounterHospitalization]
 /// Details about the admission to a healthcare service.
+@collection
 class EncounterHospitalization extends BackboneElement {
   /// Primary constructor for
   /// [EncounterHospitalization]
@@ -1502,6 +1526,9 @@ class EncounterHospitalization extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'EncounterHospitalization';
 
@@ -1647,6 +1674,7 @@ class EncounterHospitalization extends BackboneElement {
 
 /// [EncounterLocation]
 /// List of locations where the patient has been during this encounter.
+@collection
 class EncounterLocation extends BackboneElement {
   /// Primary constructor for
   /// [EncounterLocation]
@@ -1749,6 +1777,9 @@ class EncounterLocation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'EncounterLocation';

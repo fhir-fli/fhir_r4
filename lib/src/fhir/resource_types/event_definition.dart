@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'event_definition.g.dart';
 
 /// [EventDefinition]
 /// The EventDefinition resource provides a reusable description of when a
 /// particular event can occur.
+@collection
 class EventDefinition extends DomainResource {
   /// Primary constructor for
   /// [EventDefinition]
@@ -357,6 +361,9 @@ class EventDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'EventDefinition';

@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'request_group.g.dart';
 
 /// [RequestGroup]
 /// A group of related requests that can be used to capture intended
 /// activities that have inter-dependencies such as "give this medication
 /// after that one".
+@collection
 class RequestGroup extends DomainResource {
   /// Primary constructor for
   /// [RequestGroup]
@@ -260,6 +264,9 @@ class RequestGroup extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'RequestGroup';
@@ -569,6 +576,7 @@ class RequestGroup extends DomainResource {
 
 /// [RequestGroupAction]
 /// The actions, if any, produced by the evaluation of the artifact.
+@collection
 class RequestGroupAction extends BackboneElement {
   /// Primary constructor for
   /// [RequestGroupAction]
@@ -834,6 +842,9 @@ class RequestGroupAction extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'RequestGroupAction';
@@ -1183,6 +1194,7 @@ class RequestGroupAction extends BackboneElement {
 /// [RequestGroupCondition]
 /// An expression that describes applicability criteria, or start/stop
 /// conditions for the action.
+@collection
 class RequestGroupCondition extends BackboneElement {
   /// Primary constructor for
   /// [RequestGroupCondition]
@@ -1274,6 +1286,9 @@ class RequestGroupCondition extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'RequestGroupCondition';
 
@@ -1349,6 +1364,7 @@ class RequestGroupCondition extends BackboneElement {
 /// [RequestGroupRelatedAction]
 /// A relationship to another action such as "before" or "30-60 minutes
 /// after start of".
+@collection
 class RequestGroupRelatedAction extends BackboneElement {
   /// Primary constructor for
   /// [RequestGroupRelatedAction]
@@ -1450,6 +1466,9 @@ class RequestGroupRelatedAction extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'RequestGroupRelatedAction';

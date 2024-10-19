@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'appointment_response.g.dart';
 
 /// [AppointmentResponse]
 /// A reply to an appointment request for a patient and/or practitioner(s),
 /// such as a confirmation or rejection.
+@collection
 class AppointmentResponse extends DomainResource {
   /// Primary constructor for
   /// [AppointmentResponse]
@@ -179,6 +183,9 @@ class AppointmentResponse extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'AppointmentResponse';

@@ -1,58 +1,80 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// Mode for this instance of data.
-enum StructureMapInputMode {
-  /// Display: Source Instance
-  /// Definition: Names an input instance used a source for mapping.
-  source('source'),
+@collection
+class StructureMapInputMode {
+  /// Constructor for internal use (like enum)
+  StructureMapInputMode({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Target Instance
-  /// Definition: Names an instance that is being populated.
-  target('target'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const StructureMapInputMode(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// StructureMapInputMode values
+  /// source
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StructureMapInputMode source = StructureMapInputMode(
+    fhirCode: 'source',
+  );
+
+  /// target
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StructureMapInputMode target = StructureMapInputMode(
+    fhirCode: 'target',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final StructureMapInputMode elementOnly = StructureMapInputMode();
+
+  /// List of all enum-like values
+  static final List<StructureMapInputMode> values = [
+    source,
+    target,
+  ];
+
+  /// Returns the enum value with an element attached
+  StructureMapInputMode withElement(Element? newElement) {
+    return StructureMapInputMode(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [StructureMapInputMode] instances.
-  static StructureMapInputMode fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [StructureMapInputMode] from JSON.
+  static StructureMapInputMode fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureMapInputMode.elementOnly.withElement(
-        element,
-      );
+      return StructureMapInputMode.elementOnly.withElement(element);
     }
     return StructureMapInputMode.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  StructureMapInputMode withElement(Element? newElement) {
-    return StructureMapInputMode.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'StructureMapInputMode.$fhirCode';
 }

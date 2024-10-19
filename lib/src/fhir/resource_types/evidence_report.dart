@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'evidence_report.g.dart';
 
 /// [EvidenceReport]
 /// The EvidenceReport Resource is a specialized container for a collection
 /// of resources and codable concepts, adapted to support compositions of
 /// Evidence, EvidenceVariable, and Citation resources and related
 /// concepts.
+@collection
 class EvidenceReport extends DomainResource {
   /// Primary constructor for
   /// [EvidenceReport]
@@ -288,6 +292,9 @@ class EvidenceReport extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'EvidenceReport';
@@ -607,6 +614,7 @@ class EvidenceReport extends DomainResource {
 /// [EvidenceReportSubject]
 /// Specifies the subject or focus of the report. Answers "What is this
 /// report about?".
+@collection
 class EvidenceReportSubject extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceReportSubject]
@@ -707,6 +715,9 @@ class EvidenceReportSubject extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'EvidenceReportSubject';
 
@@ -778,6 +789,7 @@ class EvidenceReportSubject extends BackboneElement {
 
 /// [EvidenceReportCharacteristic]
 /// Characteristic.
+@collection
 class EvidenceReportCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceReportCharacteristic]
@@ -906,6 +918,9 @@ class EvidenceReportCharacteristic extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'EvidenceReportCharacteristic';
@@ -1045,6 +1060,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
 /// [EvidenceReportRelatesTo]
 /// Relationships that this composition has with other compositions or
 /// documents that already exist.
+@collection
 class EvidenceReportRelatesTo extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceReportRelatesTo]
@@ -1142,6 +1158,9 @@ class EvidenceReportRelatesTo extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'EvidenceReportRelatesTo';
 
@@ -1226,6 +1245,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
 
 /// [EvidenceReportSection]
 /// The root of the sections that make up the composition.
+@collection
 class EvidenceReportSection extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceReportSection]
@@ -1399,6 +1419,9 @@ class EvidenceReportSection extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'EvidenceReportSection';

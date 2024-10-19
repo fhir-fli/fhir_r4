@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'procedure.g.dart';
 
 /// [Procedure]
 /// An action that is or was performed on or for a patient. This can be a
 /// physical intervention like an operation, or less invasive like long
 /// term services, counseling, or hypnotherapy.
+@collection
 class Procedure extends DomainResource {
   /// Primary constructor for
   /// [Procedure]
@@ -377,6 +381,9 @@ class Procedure extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Procedure';
@@ -851,6 +858,7 @@ class Procedure extends DomainResource {
 
 /// [ProcedurePerformer]
 /// Limited to "real" people rather than equipment.
+@collection
 class ProcedurePerformer extends BackboneElement {
   /// Primary constructor for
   /// [ProcedurePerformer]
@@ -947,6 +955,9 @@ class ProcedurePerformer extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ProcedurePerformer';
 
@@ -1029,6 +1040,7 @@ class ProcedurePerformer extends BackboneElement {
 /// A device that is implanted, removed or otherwise manipulated
 /// (calibration, battery replacement, fitting a prosthesis, attaching a
 /// wound-vac, etc.) as a focal portion of the Procedure.
+@collection
 class ProcedureFocalDevice extends BackboneElement {
   /// Primary constructor for
   /// [ProcedureFocalDevice]
@@ -1118,6 +1130,9 @@ class ProcedureFocalDevice extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ProcedureFocalDevice';

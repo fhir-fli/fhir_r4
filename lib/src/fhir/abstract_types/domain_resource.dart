@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
 
 /// [DomainResource] Base definition for all FHIR elements.
@@ -39,6 +40,7 @@ abstract class DomainResource extends Resource {
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope
+  @ignore
   final List<Resource>? contained;
 
   /// May be used to represent additional information that is not part of the

@@ -1,70 +1,104 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// The status of the ImagingStudy.
-enum ImagingStudyStatus {
-  /// Display: Registered
-  /// Definition: The existence of the imaging study is registered, but there is nothing yet available.
-  registered('registered'),
+@collection
+class ImagingStudyStatus {
+  /// Constructor for internal use (like enum)
+  ImagingStudyStatus({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Available
-  /// Definition: At least one instance has been associated with this imaging study.
-  available('available'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Cancelled
-  /// Definition: The imaging study is unavailable because the imaging study was not started or not completed (also sometimes called "aborted").
-  cancelled('cancelled'),
-
-  /// Display: Entered in Error
-  /// Definition: The imaging study has been withdrawn following a previous final release. This electronic record should never have existed, though it is possible that real-world decisions were based on it. (If real-world activity has occurred, the status should be "cancelled" rather than "entered-in-error".).
-  entered_in_error('entered-in-error'),
-
-  /// Display: Unknown
-  /// Definition: The system does not know which of the status values currently applies for this request. Note: This concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known which one.
-  unknown('unknown'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ImagingStudyStatus(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// ImagingStudyStatus values
+  /// registered
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ImagingStudyStatus registered = ImagingStudyStatus(
+    fhirCode: 'registered',
+  );
+
+  /// available
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ImagingStudyStatus available = ImagingStudyStatus(
+    fhirCode: 'available',
+  );
+
+  /// cancelled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ImagingStudyStatus cancelled = ImagingStudyStatus(
+    fhirCode: 'cancelled',
+  );
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ImagingStudyStatus entered_in_error = ImagingStudyStatus(
+    fhirCode: 'entered-in-error',
+  );
+
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ImagingStudyStatus unknown = ImagingStudyStatus(
+    fhirCode: 'unknown',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ImagingStudyStatus elementOnly = ImagingStudyStatus();
+
+  /// List of all enum-like values
+  static final List<ImagingStudyStatus> values = [
+    registered,
+    available,
+    cancelled,
+    entered_in_error,
+    unknown,
+  ];
+
+  /// Returns the enum value with an element attached
+  ImagingStudyStatus withElement(Element? newElement) {
+    return ImagingStudyStatus(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ImagingStudyStatus] instances.
-  static ImagingStudyStatus fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ImagingStudyStatus] from JSON.
+  static ImagingStudyStatus fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImagingStudyStatus.elementOnly.withElement(
-        element,
-      );
+      return ImagingStudyStatus.elementOnly.withElement(element);
     }
     return ImagingStudyStatus.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ImagingStudyStatus withElement(Element? newElement) {
-    return ImagingStudyStatus.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ImagingStudyStatus.$fhirCode';
 }

@@ -1,66 +1,101 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// MedicationDispense Category Codes
-enum MedicationDispenseCategoryCodes {
-  /// Display: Inpatient
-  /// Definition: Includes dispenses for medications to be administered or consumed in an inpatient or acute care setting.
-  inpatient('inpatient'),
+@collection
+class MedicationDispenseCategoryCodes {
+  /// Constructor for internal use (like enum)
+  MedicationDispenseCategoryCodes({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Outpatient
-  /// Definition: Includes dispenses for medications to be administered or consumed in an outpatient setting (for example, Emergency Department, Outpatient Clinic, Outpatient Surgery, Doctor's office).
-  outpatient('outpatient'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Community
-  /// Definition: Includes dispenses for medications to be administered or consumed by the patient in their home (this would include long term care or nursing homes, hospices, etc.).
-  community('community'),
-
-  /// Display: Discharge
-  /// Definition: Includes dispenses for medications created when the patient is being released from a facility.
-  discharge('discharge'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const MedicationDispenseCategoryCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// MedicationDispenseCategoryCodes values
+  /// inpatient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationDispenseCategoryCodes inpatient =
+      MedicationDispenseCategoryCodes(
+    fhirCode: 'inpatient',
+  );
+
+  /// outpatient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationDispenseCategoryCodes outpatient =
+      MedicationDispenseCategoryCodes(
+    fhirCode: 'outpatient',
+  );
+
+  /// community
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationDispenseCategoryCodes community =
+      MedicationDispenseCategoryCodes(
+    fhirCode: 'community',
+  );
+
+  /// discharge
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationDispenseCategoryCodes discharge =
+      MedicationDispenseCategoryCodes(
+    fhirCode: 'discharge',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final MedicationDispenseCategoryCodes elementOnly =
+      MedicationDispenseCategoryCodes();
+
+  /// List of all enum-like values
+  static final List<MedicationDispenseCategoryCodes> values = [
+    inpatient,
+    outpatient,
+    community,
+    discharge,
+  ];
+
+  /// Returns the enum value with an element attached
+  MedicationDispenseCategoryCodes withElement(Element? newElement) {
+    return MedicationDispenseCategoryCodes(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [MedicationDispenseCategoryCodes] instances.
-  static MedicationDispenseCategoryCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [MedicationDispenseCategoryCodes] from JSON.
+  static MedicationDispenseCategoryCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationDispenseCategoryCodes.elementOnly.withElement(
-        element,
-      );
+      return MedicationDispenseCategoryCodes.elementOnly.withElement(element);
     }
     return MedicationDispenseCategoryCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  MedicationDispenseCategoryCodes withElement(Element? newElement) {
-    return MedicationDispenseCategoryCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'MedicationDispenseCategoryCodes.$fhirCode';
 }

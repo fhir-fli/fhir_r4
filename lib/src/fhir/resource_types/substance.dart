@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'substance.g.dart';
 
 /// [Substance]
 /// A homogeneous material with a definite composition.
+@collection
 class Substance extends DomainResource {
   /// Primary constructor for
   /// [Substance]
@@ -181,6 +185,9 @@ class Substance extends DomainResource {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'Substance';
 
@@ -351,6 +358,7 @@ class Substance extends DomainResource {
 /// [SubstanceInstance]
 /// Substance may be used to describe a kind of substance, or a specific
 /// package/container of the substance: an instance.
+@collection
 class SubstanceInstance extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceInstance]
@@ -450,6 +458,9 @@ class SubstanceInstance extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'SubstanceInstance';
 
@@ -537,6 +548,7 @@ class SubstanceInstance extends BackboneElement {
 
 /// [SubstanceIngredient]
 /// A substance can be composed of other substances.
+@collection
 class SubstanceIngredient extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceIngredient]
@@ -634,6 +646,9 @@ class SubstanceIngredient extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SubstanceIngredient';

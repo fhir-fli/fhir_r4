@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'task.g.dart';
 
 /// [Task]
 /// A task to be performed.
+@collection
 class Task extends DomainResource {
   /// Primary constructor for
   /// [Task]
@@ -351,6 +355,9 @@ class Task extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Task';
@@ -809,6 +816,7 @@ class Task extends DomainResource {
 /// fulfillment (i.e. is asking for the request to be actioned), this
 /// element identifies any limitations on what parts of the referenced
 /// request should be actioned.
+@collection
 class TaskRestriction extends BackboneElement {
   /// Primary constructor for
   /// [TaskRestriction]
@@ -912,6 +920,9 @@ class TaskRestriction extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TaskRestriction';
 
@@ -998,6 +1009,7 @@ class TaskRestriction extends BackboneElement {
 
 /// [TaskInput]
 /// Additional information that may be needed in the execution of the task.
+@collection
 class TaskInput extends BackboneElement {
   /// Primary constructor for
   /// [TaskInput]
@@ -1410,6 +1422,9 @@ class TaskInput extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'TaskInput';
@@ -2049,6 +2064,7 @@ class TaskInput extends BackboneElement {
 
 /// [TaskOutput]
 /// Outputs produced by the Task.
+@collection
 class TaskOutput extends BackboneElement {
   /// Primary constructor for
   /// [TaskOutput]
@@ -2461,6 +2477,9 @@ class TaskOutput extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'TaskOutput';

@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'immunization_evaluation.g.dart';
 
 /// [ImmunizationEvaluation]
 /// Describes a comparison of an immunization event against published
 /// recommendations to determine if the administration is "valid" in
 /// relation to those recommendations.
+@collection
 class ImmunizationEvaluation extends DomainResource {
   /// Primary constructor for
   /// [ImmunizationEvaluation]
@@ -224,6 +228,9 @@ class ImmunizationEvaluation extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ImmunizationEvaluation';

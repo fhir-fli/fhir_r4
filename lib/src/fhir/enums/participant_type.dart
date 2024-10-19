@@ -1,70 +1,104 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// This value set defines a set of codes that can be used to indicate how an individual participates in an encounter.
-enum ParticipantType {
-  /// Display:
-  /// Definition:
-  SPRF('SPRF'),
+@collection
+class ParticipantType {
+  /// Constructor for internal use (like enum)
+  ParticipantType({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display:
-  /// Definition:
-  PPRF('PPRF'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display:
-  /// Definition:
-  PART('PART'),
-
-  /// Display: Translator
-  /// Definition: A translator who is facilitating communication with the patient during the encounter.
-  translator('translator'),
-
-  /// Display: Emergency
-  /// Definition: A person to be contacted in case of an emergency during the encounter.
-  emergency('emergency'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ParticipantType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// ParticipantType values
+  /// SPRF
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ParticipantType SPRF = ParticipantType(
+    fhirCode: 'SPRF',
+  );
+
+  /// PPRF
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ParticipantType PPRF = ParticipantType(
+    fhirCode: 'PPRF',
+  );
+
+  /// PART
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ParticipantType PART = ParticipantType(
+    fhirCode: 'PART',
+  );
+
+  /// translator
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ParticipantType translator = ParticipantType(
+    fhirCode: 'translator',
+  );
+
+  /// emergency
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ParticipantType emergency = ParticipantType(
+    fhirCode: 'emergency',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ParticipantType elementOnly = ParticipantType();
+
+  /// List of all enum-like values
+  static final List<ParticipantType> values = [
+    SPRF,
+    PPRF,
+    PART,
+    translator,
+    emergency,
+  ];
+
+  /// Returns the enum value with an element attached
+  ParticipantType withElement(Element? newElement) {
+    return ParticipantType(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ParticipantType] instances.
-  static ParticipantType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ParticipantType] from JSON.
+  static ParticipantType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ParticipantType.elementOnly.withElement(
-        element,
-      );
+      return ParticipantType.elementOnly.withElement(element);
     }
     return ParticipantType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ParticipantType withElement(Element? newElement) {
-    return ParticipantType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ParticipantType.$fhirCode';
 }

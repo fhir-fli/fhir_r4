@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'communication_request.g.dart';
 
 /// [CommunicationRequest]
 /// A request to convey information; e.g. the CDS system proposes that an
 /// alert be sent to a responsible provider, the CDS system proposes that
 /// the public health agency be notified about a reportable condition.
+@collection
 class CommunicationRequest extends DomainResource {
   /// Primary constructor for
   /// [CommunicationRequest]
@@ -311,6 +315,9 @@ class CommunicationRequest extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CommunicationRequest';
@@ -670,6 +677,7 @@ class CommunicationRequest extends DomainResource {
 /// [CommunicationRequestPayload]
 /// Text, attachment(s), or resource(s) to be communicated to the
 /// recipient.
+@collection
 class CommunicationRequestPayload extends BackboneElement {
   /// Primary constructor for
   /// [CommunicationRequestPayload]
@@ -769,6 +777,9 @@ class CommunicationRequestPayload extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CommunicationRequestPayload';

@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'flag.g.dart';
 
 /// [Flag]
 /// Prospective warnings of potential issues when providing care to the
 /// patient.
+@collection
 class Flag extends DomainResource {
   /// Primary constructor for
   /// [Flag]
@@ -174,6 +178,9 @@ class Flag extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Flag';

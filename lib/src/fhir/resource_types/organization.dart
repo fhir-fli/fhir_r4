@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'organization.g.dart';
 
 /// [Organization]
 /// A formally or informally recognized grouping of people or organizations
 /// formed for the purpose of achieving some form of collective action.
 /// Includes companies, institutions, corporations, departments, community
 /// groups, healthcare practice groups, payer/insurer, etc.
+@collection
 class Organization extends DomainResource {
   /// Primary constructor for
   /// [Organization]
@@ -211,6 +215,9 @@ class Organization extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Organization';
@@ -417,6 +424,7 @@ class Organization extends DomainResource {
 
 /// [OrganizationContact]
 /// Contact for the organization for a certain purpose.
+@collection
 class OrganizationContact extends BackboneElement {
   /// Primary constructor for
   /// [OrganizationContact]
@@ -524,6 +532,9 @@ class OrganizationContact extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'OrganizationContact';

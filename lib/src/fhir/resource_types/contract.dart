@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'contract.g.dart';
 
 /// [Contract]
 /// Legally enforceable, formally recorded unilateral or bilateral
 /// directive i.e., a policy or agreement.
+@collection
 class Contract extends DomainResource {
   /// Primary constructor for
   /// [Contract]
@@ -382,6 +386,9 @@ class Contract extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Contract';
@@ -900,6 +907,7 @@ class Contract extends DomainResource {
 /// Precusory content developed with a focus and intent of supporting the
 /// formation a Contract instance, which may be associated with and
 /// transformable into a Contract.
+@collection
 class ContractContentDefinition extends BackboneElement {
   /// Primary constructor for
   /// [ContractContentDefinition]
@@ -1015,6 +1023,9 @@ class ContractContentDefinition extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ContractContentDefinition';
@@ -1146,6 +1157,7 @@ class ContractContentDefinition extends BackboneElement {
 /// [ContractTerm]
 /// One or more Contract Provisions, which may be related and conveyed as a
 /// group, and may contain nested groups.
+@collection
 class ContractTerm extends BackboneElement {
   /// Primary constructor for
   /// [ContractTerm]
@@ -1319,6 +1331,9 @@ class ContractTerm extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ContractTerm';
@@ -1515,6 +1530,7 @@ class ContractTerm extends BackboneElement {
 /// [ContractSecurityLabel]
 /// Security labels that protect the handling of information about the term
 /// and its elements, which may be specifically identified..
+@collection
 class ContractSecurityLabel extends BackboneElement {
   /// Primary constructor for
   /// [ContractSecurityLabel]
@@ -1625,6 +1641,9 @@ class ContractSecurityLabel extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ContractSecurityLabel';
 
@@ -1722,6 +1741,7 @@ class ContractSecurityLabel extends BackboneElement {
 
 /// [ContractOffer]
 /// The matter of concern in the context of this provision of the agrement.
+@collection
 class ContractOffer extends BackboneElement {
   /// Primary constructor for
   /// [ContractOffer]
@@ -1878,6 +1898,9 @@ class ContractOffer extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ContractOffer';
@@ -2048,6 +2071,7 @@ class ContractOffer extends BackboneElement {
 
 /// [ContractParty]
 /// Offer Recipient.
+@collection
 class ContractParty extends BackboneElement {
   /// Primary constructor for
   /// [ContractParty]
@@ -2142,6 +2166,9 @@ class ContractParty extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ContractParty';
 
@@ -2209,6 +2236,7 @@ class ContractParty extends BackboneElement {
 
 /// [ContractAnswer]
 /// Response to offer text.
+@collection
 class ContractAnswer extends BackboneElement {
   /// Primary constructor for
   /// [ContractAnswer]
@@ -2372,6 +2400,9 @@ class ContractAnswer extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ContractAnswer';
@@ -2612,6 +2643,7 @@ class ContractAnswer extends BackboneElement {
 
 /// [ContractAsset]
 /// Contract Term Asset List.
+@collection
 class ContractAsset extends BackboneElement {
   /// Primary constructor for
   /// [ContractAsset]
@@ -2809,6 +2841,9 @@ class ContractAsset extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ContractAsset';
@@ -3024,6 +3059,7 @@ class ContractAsset extends BackboneElement {
 
 /// [ContractContext]
 /// Circumstance of the asset.
+@collection
 class ContractContext extends BackboneElement {
   /// Primary constructor for
   /// [ContractContext]
@@ -3127,6 +3163,9 @@ class ContractContext extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ContractContext';
 
@@ -3215,6 +3254,7 @@ class ContractContext extends BackboneElement {
 
 /// [ContractValuedItem]
 /// Contract Valued Item List.
+@collection
 class ContractValuedItem extends BackboneElement {
   /// Primary constructor for
   /// [ContractValuedItem]
@@ -3390,6 +3430,9 @@ class ContractValuedItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ContractValuedItem';
@@ -3638,6 +3681,7 @@ class ContractValuedItem extends BackboneElement {
 /// [ContractAction]
 /// An actor taking a role in an activity for which it can be assigned some
 /// degree of responsibility for the activity taking place.
+@collection
 class ContractAction extends BackboneElement {
   /// Primary constructor for
   /// [ContractAction]
@@ -3877,6 +3921,9 @@ class ContractAction extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ContractAction';
@@ -4210,6 +4257,7 @@ class ContractAction extends BackboneElement {
 
 /// [ContractSubject]
 /// Entity of the action.
+@collection
 class ContractSubject extends BackboneElement {
   /// Primary constructor for
   /// [ContractSubject]
@@ -4306,6 +4354,9 @@ class ContractSubject extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ContractSubject';
 
@@ -4378,6 +4429,7 @@ class ContractSubject extends BackboneElement {
 /// parties, the grantor(s) and grantee(s), which are any person or
 /// organization bound by the contract, and any ancillary parties, which
 /// facilitate the execution of the contract such as a notary or witness.
+@collection
 class ContractSigner extends BackboneElement {
   /// Primary constructor for
   /// [ContractSigner]
@@ -4476,6 +4528,9 @@ class ContractSigner extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ContractSigner';
 
@@ -4557,6 +4612,7 @@ class ContractSigner extends BackboneElement {
 /// communication styles that ensure that those agreeing to or signing the
 /// Contract understand the roles, actions, obligations, responsibilities,
 /// and implication of the agreement.
+@collection
 class ContractFriendly extends BackboneElement {
   /// Primary constructor for
   /// [ContractFriendly]
@@ -4649,6 +4705,9 @@ class ContractFriendly extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ContractFriendly';
 
@@ -4724,6 +4783,7 @@ class ContractFriendly extends BackboneElement {
 
 /// [ContractLegal]
 /// List of Legal expressions or representations of this Contract.
+@collection
 class ContractLegal extends BackboneElement {
   /// Primary constructor for
   /// [ContractLegal]
@@ -4828,6 +4888,9 @@ class ContractLegal extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ContractLegal';
 
@@ -4928,6 +4991,7 @@ class ContractLegal extends BackboneElement {
 /// [ContractRule]
 /// List of Computable Policy Rule Language Representations of this
 /// Contract.
+@collection
 class ContractRule extends BackboneElement {
   /// Primary constructor for
   /// [ContractRule]
@@ -5019,6 +5083,9 @@ class ContractRule extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ContractRule';

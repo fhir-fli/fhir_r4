@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'time.g.dart';
 
 /// Extension on String to convert a String to [FhirTime].
 extension FhirTimeExtension on String {
@@ -10,11 +13,13 @@ extension FhirTimeExtension on String {
 
 /// Class to handle FHIR time values.
 /// Inherits from [PrimitiveType] and implements [Comparable].
+@collection
 class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   /// Constructor that accepts a valid [String] input representing a time and
   /// validates the input. Optionally takes an [Element].
   FhirTime(String? input, [Element? element])
-      : super(_validateTime(input), element) {
+      : dbValue = input,
+        super(_validateTime(input), element) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -86,6 +91,13 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
       throw FormatException('Invalid time format: $input');
     }
   }
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final String? dbValue;
 
   /// Returns the FHIR type, which is 'time' for this class.
   @override

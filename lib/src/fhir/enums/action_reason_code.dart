@@ -1,70 +1,104 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// Provides examples of reasons for actions to be performed.
-enum ActionReasonCode {
-  /// Display: Off pathway
-  /// Definition: The action should be performed because the patient was determined to be off pathway.
-  off_pathway('off-pathway'),
+@collection
+class ActionReasonCode {
+  /// Constructor for internal use (like enum)
+  ActionReasonCode({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Risk assessment
-  /// Definition: The action should be performed based on a particular risk assessment.
-  risk_assessment('risk-assessment'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Care gap detected
-  /// Definition: The action should be performed to address a detected care gap.
-  care_gap('care-gap'),
-
-  /// Display: Drug-drug interaction
-  /// Definition: The action should be performed to address a detected potential drug-drug interaction.
-  drug_drug_interaction('drug-drug-interaction'),
-
-  /// Display: Quality measure
-  /// Definition: The action should be performed to bring the patient's care in line with a quality measure.
-  quality_measure('quality-measure'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ActionReasonCode(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// ActionReasonCode values
+  /// off_pathway
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionReasonCode off_pathway = ActionReasonCode(
+    fhirCode: 'off-pathway',
+  );
+
+  /// risk_assessment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionReasonCode risk_assessment = ActionReasonCode(
+    fhirCode: 'risk-assessment',
+  );
+
+  /// care_gap
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionReasonCode care_gap = ActionReasonCode(
+    fhirCode: 'care-gap',
+  );
+
+  /// drug_drug_interaction
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionReasonCode drug_drug_interaction = ActionReasonCode(
+    fhirCode: 'drug-drug-interaction',
+  );
+
+  /// quality_measure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionReasonCode quality_measure = ActionReasonCode(
+    fhirCode: 'quality-measure',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ActionReasonCode elementOnly = ActionReasonCode();
+
+  /// List of all enum-like values
+  static final List<ActionReasonCode> values = [
+    off_pathway,
+    risk_assessment,
+    care_gap,
+    drug_drug_interaction,
+    quality_measure,
+  ];
+
+  /// Returns the enum value with an element attached
+  ActionReasonCode withElement(Element? newElement) {
+    return ActionReasonCode(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ActionReasonCode] instances.
-  static ActionReasonCode fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ActionReasonCode] from JSON.
+  static ActionReasonCode fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionReasonCode.elementOnly.withElement(
-        element,
-      );
+      return ActionReasonCode.elementOnly.withElement(element);
     }
     return ActionReasonCode.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ActionReasonCode withElement(Element? newElement) {
-    return ActionReasonCode.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ActionReasonCode.$fhirCode';
 }

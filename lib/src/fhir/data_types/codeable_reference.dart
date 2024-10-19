@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'codeable_reference.g.dart';
 
 /// [CodeableReference]
 /// A reference to a resource (by instance), or instead, a reference to a
 /// concept defined in a terminology or ontology (by class).
+@collection
 class CodeableReference extends DataType {
   /// Primary constructor for
   /// [CodeableReference]
@@ -86,6 +90,9 @@ class CodeableReference extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CodeableReference';

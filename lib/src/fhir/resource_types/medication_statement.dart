@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'medication_statement.g.dart';
 
 /// [MedicationStatement]
 /// A record of a medication that is being consumed by a patient. A
@@ -27,6 +30,7 @@ import 'package:yaml/yaml.dart';
 /// patient's memory, from a prescription bottle or from a list of
 /// medications the patient, clinician or other party maintains. Medication
 /// administration is more formal and is not missing detailed information.
+@collection
 class MedicationStatement extends DomainResource {
   /// Primary constructor for
   /// [MedicationStatement]
@@ -296,6 +300,9 @@ class MedicationStatement extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MedicationStatement';

@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'detected_issue.g.dart';
 
 /// [DetectedIssue]
 /// Indicates an actual or potential clinical issue with or between one or
 /// more active or proposed clinical actions for a patient; e.g. Drug-drug
 /// interaction, Ineffective treatment frequency, Procedure-condition
 /// conflict, etc.
+@collection
 class DetectedIssue extends DomainResource {
   /// Primary constructor for
   /// [DetectedIssue]
@@ -223,6 +227,9 @@ class DetectedIssue extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DetectedIssue';
@@ -475,6 +482,7 @@ class DetectedIssue extends DomainResource {
 /// Supporting evidence or manifestations that provide the basis for
 /// identifying the detected issue such as a GuidanceResponse or
 /// MeasureReport.
+@collection
 class DetectedIssueEvidence extends BackboneElement {
   /// Primary constructor for
   /// [DetectedIssueEvidence]
@@ -575,6 +583,9 @@ class DetectedIssueEvidence extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'DetectedIssueEvidence';
 
@@ -650,6 +661,7 @@ class DetectedIssueEvidence extends BackboneElement {
 /// eliminate the likelihood of the risk identified by the detected issue
 /// from manifesting. Can also reflect an observation of known mitigating
 /// factors that may reduce/eliminate the need for any action.
+@collection
 class DetectedIssueMitigation extends BackboneElement {
   /// Primary constructor for
   /// [DetectedIssueMitigation]
@@ -746,6 +758,9 @@ class DetectedIssueMitigation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DetectedIssueMitigation';

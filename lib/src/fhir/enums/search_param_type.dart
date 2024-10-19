@@ -1,86 +1,136 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// Data types allowed to be used for search parameters.
-enum SearchParamType {
-  /// Display: Number
-  /// Definition: Search parameter SHALL be a number (a whole number, or a decimal).
-  number('number'),
+@collection
+class SearchParamType {
+  /// Constructor for internal use (like enum)
+  SearchParamType({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Date/DateTime
-  /// Definition: Search parameter is on a date/time. The date format is the standard XML format, though other formats may be supported.
-  date('date'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: String
-  /// Definition: Search parameter is a simple string, like a name part. Search is case-insensitive and accent-insensitive. May match just the start of a string. String parameters may contain spaces.
-  string('string'),
-
-  /// Display: Token
-  /// Definition: Search parameter on a coded element or identifier. May be used to search through the text, display, code and code/codesystem (for codes) and label, system and key (for identifier). Its value is either a string or a pair of namespace and value, separated by a "|", depending on the modifier used.
-  token('token'),
-
-  /// Display: Reference
-  /// Definition: A reference to another resource (Reference or canonical).
-  reference('reference'),
-
-  /// Display: Composite
-  /// Definition: A composite search parameter that combines a search on two values together.
-  composite('composite'),
-
-  /// Display: Quantity
-  /// Definition: A search parameter that searches on a quantity.
-  quantity('quantity'),
-
-  /// Display: URI
-  /// Definition: A search parameter that searches on a URI (RFC 3986).
-  uri('uri'),
-
-  /// Display: Special
-  /// Definition: Special logic applies to this parameter per the description of the search parameter.
-  special('special'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const SearchParamType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// SearchParamType values
+  /// number
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SearchParamType number = SearchParamType(
+    fhirCode: 'number',
+  );
+
+  /// date
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SearchParamType date = SearchParamType(
+    fhirCode: 'date',
+  );
+
+  /// string
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SearchParamType string = SearchParamType(
+    fhirCode: 'string',
+  );
+
+  /// token
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SearchParamType token = SearchParamType(
+    fhirCode: 'token',
+  );
+
+  /// reference
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SearchParamType reference = SearchParamType(
+    fhirCode: 'reference',
+  );
+
+  /// composite
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SearchParamType composite = SearchParamType(
+    fhirCode: 'composite',
+  );
+
+  /// quantity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SearchParamType quantity = SearchParamType(
+    fhirCode: 'quantity',
+  );
+
+  /// uri
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SearchParamType uri = SearchParamType(
+    fhirCode: 'uri',
+  );
+
+  /// special
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SearchParamType special = SearchParamType(
+    fhirCode: 'special',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final SearchParamType elementOnly = SearchParamType();
+
+  /// List of all enum-like values
+  static final List<SearchParamType> values = [
+    number,
+    date,
+    string,
+    token,
+    reference,
+    composite,
+    quantity,
+    uri,
+    special,
+  ];
+
+  /// Returns the enum value with an element attached
+  SearchParamType withElement(Element? newElement) {
+    return SearchParamType(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [SearchParamType] instances.
-  static SearchParamType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [SearchParamType] from JSON.
+  static SearchParamType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SearchParamType.elementOnly.withElement(
-        element,
-      );
+      return SearchParamType.elementOnly.withElement(element);
     }
     return SearchParamType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  SearchParamType withElement(Element? newElement) {
-    return SearchParamType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'SearchParamType.$fhirCode';
 }

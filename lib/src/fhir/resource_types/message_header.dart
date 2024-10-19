@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'message_header.g.dart';
 
 /// [MessageHeader]
 /// The header for a message exchange that is either requesting or
@@ -8,6 +11,7 @@ import 'package:yaml/yaml.dart';
 /// action as well as other information related to the action are typically
 /// transmitted in a bundle in which the MessageHeader resource instance is
 /// the first resource in the bundle.
+@collection
 class MessageHeader extends DomainResource {
   /// Primary constructor for
   /// [MessageHeader]
@@ -206,6 +210,9 @@ class MessageHeader extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MessageHeader';
@@ -441,6 +448,7 @@ class MessageHeader extends DomainResource {
 
 /// [MessageHeaderDestination]
 /// The destination application which the message is intended for.
+@collection
 class MessageHeaderDestination extends BackboneElement {
   /// Primary constructor for
   /// [MessageHeaderDestination]
@@ -545,6 +553,9 @@ class MessageHeaderDestination extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MessageHeaderDestination';
 
@@ -645,6 +656,7 @@ class MessageHeaderDestination extends BackboneElement {
 
 /// [MessageHeaderSource]
 /// The source application from which this message originated.
+@collection
 class MessageHeaderSource extends BackboneElement {
   /// Primary constructor for
   /// [MessageHeaderSource]
@@ -756,6 +768,9 @@ class MessageHeaderSource extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MessageHeaderSource';
@@ -875,6 +890,7 @@ class MessageHeaderSource extends BackboneElement {
 /// [MessageHeaderResponse]
 /// Information about the message that this message is a response to. Only
 /// present if this message is a response.
+@collection
 class MessageHeaderResponse extends BackboneElement {
   /// Primary constructor for
   /// [MessageHeaderResponse]
@@ -970,6 +986,9 @@ class MessageHeaderResponse extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MessageHeaderResponse';

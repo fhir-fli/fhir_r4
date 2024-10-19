@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'message_definition.g.dart';
 
 /// [MessageDefinition]
 /// Defines the characteristics of a message that can be shared between
 /// systems, including the type of event that initiates the message, the
 /// content to be transmitted and what response(s), if any, are permitted.
+@collection
 class MessageDefinition extends DomainResource {
   /// Primary constructor for
   /// [MessageDefinition]
@@ -311,6 +315,9 @@ class MessageDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MessageDefinition';
@@ -761,6 +768,7 @@ class MessageDefinition extends DomainResource {
 /// Identifies the resource (or resources) that are being addressed by the
 /// event. For example, the Encounter for an admit message or two Account
 /// records for a merge.
+@collection
 class MessageDefinitionFocus extends BackboneElement {
   /// Primary constructor for
   /// [MessageDefinitionFocus]
@@ -864,6 +872,9 @@ class MessageDefinitionFocus extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MessageDefinitionFocus';
@@ -974,6 +985,7 @@ class MessageDefinitionFocus extends BackboneElement {
 /// [MessageDefinitionAllowedResponse]
 /// Indicates what types of messages may be sent as an application-level
 /// response to this message.
+@collection
 class MessageDefinitionAllowedResponse extends BackboneElement {
   /// Primary constructor for
   /// [MessageDefinitionAllowedResponse]
@@ -1065,6 +1077,9 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MessageDefinitionAllowedResponse';

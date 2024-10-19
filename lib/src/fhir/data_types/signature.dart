@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'signature.g.dart';
 
 /// [Signature]
 /// A signature along with supporting context. The signature may be a
@@ -9,6 +12,7 @@ import 'package:yaml/yaml.dart';
 /// simple as a graphical image representing a hand-written signature, or a
 /// signature ceremony Different signature approaches have different
 /// utilities.
+@collection
 class Signature extends DataType {
   /// Primary constructor for
   /// [Signature]
@@ -125,6 +129,9 @@ class Signature extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Signature';

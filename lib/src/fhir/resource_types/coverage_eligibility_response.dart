@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'coverage_eligibility_response.g.dart';
 
 /// [CoverageEligibilityResponse]
 /// This resource provides eligibility and plan details from the processing
 /// of an CoverageEligibilityRequest resource.
+@collection
 class CoverageEligibilityResponse extends DomainResource {
   /// Primary constructor for
   /// [CoverageEligibilityResponse]
@@ -228,6 +232,9 @@ class CoverageEligibilityResponse extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CoverageEligibilityResponse';
@@ -504,6 +511,7 @@ class CoverageEligibilityResponse extends DomainResource {
 /// [CoverageEligibilityResponseInsurance]
 /// Financial instruments for reimbursement for the health care products
 /// and services.
+@collection
 class CoverageEligibilityResponseInsurance extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityResponseInsurance]
@@ -611,6 +619,9 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CoverageEligibilityResponseInsurance';
 
@@ -711,6 +722,7 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
 /// [CoverageEligibilityResponseItem]
 /// Benefits and optionally current balances, and authorization details by
 /// category or service.
+@collection
 class CoverageEligibilityResponseItem extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityResponseItem]
@@ -893,6 +905,9 @@ class CoverageEligibilityResponseItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CoverageEligibilityResponseItem';
@@ -1120,6 +1135,7 @@ class CoverageEligibilityResponseItem extends BackboneElement {
 
 /// [CoverageEligibilityResponseBenefit]
 /// Benefits used to date.
+@collection
 class CoverageEligibilityResponseBenefit extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityResponseBenefit]
@@ -1246,6 +1262,9 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CoverageEligibilityResponseBenefit';
@@ -1382,6 +1401,7 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
 
 /// [CoverageEligibilityResponseError]
 /// Errors encountered during the processing of the request.
+@collection
 class CoverageEligibilityResponseError extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityResponseError]
@@ -1465,6 +1485,9 @@ class CoverageEligibilityResponseError extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CoverageEligibilityResponseError';

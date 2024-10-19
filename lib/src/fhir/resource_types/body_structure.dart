@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'body_structure.g.dart';
 
 /// [BodyStructure]
 /// Record details about an anatomical structure. This resource may be used
 /// when a coded concept does not provide the necessary detail needed for
 /// the use case.
+@collection
 class BodyStructure extends DomainResource {
   /// Primary constructor for
   /// [BodyStructure]
@@ -184,6 +188,9 @@ class BodyStructure extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'BodyStructure';

@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'capability_statement.g.dart';
 
 /// [CapabilityStatement]
 /// A Capability Statement documents a set of capabilities (behaviors) of a
 /// FHIR Server for a particular version of FHIR that may be used as a
 /// statement of actual server functionality or a statement of required or
 /// desired server implementation.
+@collection
 class CapabilityStatement extends DomainResource {
   /// Primary constructor for
   /// [CapabilityStatement]
@@ -307,6 +311,9 @@ class CapabilityStatement extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CapabilityStatement';
@@ -763,6 +770,7 @@ class CapabilityStatement extends DomainResource {
 /// Software that is covered by this capability statement. It is used when
 /// the capability statement describes the capabilities of a particular
 /// software version, independent of an installation.
+@collection
 class CapabilityStatementSoftware extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementSoftware]
@@ -862,6 +870,9 @@ class CapabilityStatementSoftware extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CapabilityStatementSoftware';
 
@@ -955,6 +966,7 @@ class CapabilityStatementSoftware extends BackboneElement {
 /// Identifies a specific implementation instance that is described by the
 /// capability statement - i.e. a particular installation, rather than the
 /// capabilities of a software program.
+@collection
 class CapabilityStatementImplementation extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementImplementation]
@@ -1058,6 +1070,9 @@ class CapabilityStatementImplementation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CapabilityStatementImplementation';
@@ -1165,6 +1180,7 @@ class CapabilityStatementImplementation extends BackboneElement {
 
 /// [CapabilityStatementRest]
 /// A definition of the restful capabilities of the solution, if any.
+@collection
 class CapabilityStatementRest extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementRest]
@@ -1289,6 +1305,9 @@ class CapabilityStatementRest extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CapabilityStatementRest';
@@ -1418,6 +1437,7 @@ class CapabilityStatementRest extends BackboneElement {
 /// [CapabilityStatementSecurity]
 /// Information about security implementation from an interface perspective
 /// - what a client needs to know.
+@collection
 class CapabilityStatementSecurity extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementSecurity]
@@ -1522,6 +1542,9 @@ class CapabilityStatementSecurity extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CapabilityStatementSecurity';
 
@@ -1613,6 +1636,7 @@ class CapabilityStatementSecurity extends BackboneElement {
 /// [CapabilityStatementResource]
 /// A specification of the restful capabilities of the solution for a
 /// specific resource type.
+@collection
 class CapabilityStatementResource extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementResource]
@@ -1820,6 +1844,9 @@ class CapabilityStatementResource extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CapabilityStatementResource';
@@ -2122,6 +2149,7 @@ class CapabilityStatementResource extends BackboneElement {
 
 /// [CapabilityStatementInteraction]
 /// Identifies a restful operation supported by the solution.
+@collection
 class CapabilityStatementInteraction extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementInteraction]
@@ -2215,6 +2243,9 @@ class CapabilityStatementInteraction extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CapabilityStatementInteraction';
 
@@ -2296,6 +2327,7 @@ class CapabilityStatementInteraction extends BackboneElement {
 /// Search parameters for implementations to support and/or make use of -
 /// either references to ones defined in the specification, or additional
 /// ones defined for/by the implementation.
+@collection
 class CapabilityStatementSearchParam extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementSearchParam]
@@ -2400,6 +2432,9 @@ class CapabilityStatementSearchParam extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CapabilityStatementSearchParam';
@@ -2515,6 +2550,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
 /// parameters and their meaning and type. Consult the definition of the
 /// operation for details about how to invoke the operation, and the
 /// parameters.
+@collection
 class CapabilityStatementOperation extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementOperation]
@@ -2612,6 +2648,9 @@ class CapabilityStatementOperation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CapabilityStatementOperation';
@@ -2714,6 +2753,7 @@ class CapabilityStatementOperation extends BackboneElement {
 
 /// [CapabilityStatementInteraction1]
 /// A specification of restful operations supported by the system.
+@collection
 class CapabilityStatementInteraction1 extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementInteraction1]
@@ -2807,6 +2847,9 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CapabilityStatementInteraction1';
 
@@ -2886,6 +2929,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
 
 /// [CapabilityStatementMessaging]
 /// A description of the messaging capabilities of the solution.
+@collection
 class CapabilityStatementMessaging extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementMessaging]
@@ -3002,6 +3046,9 @@ class CapabilityStatementMessaging extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CapabilityStatementMessaging';
 
@@ -3110,6 +3157,7 @@ class CapabilityStatementMessaging extends BackboneElement {
 /// [CapabilityStatementEndpoint]
 /// An endpoint (network accessible address) to which messages and/or
 /// replies are to be sent.
+@collection
 class CapabilityStatementEndpoint extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementEndpoint]
@@ -3199,6 +3247,9 @@ class CapabilityStatementEndpoint extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CapabilityStatementEndpoint';
 
@@ -3273,6 +3324,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
 /// [CapabilityStatementSupportedMessage]
 /// References to message definitions for messages this system can send or
 /// receive.
+@collection
 class CapabilityStatementSupportedMessage extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementSupportedMessage]
@@ -3363,6 +3415,9 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CapabilityStatementSupportedMessage';
 
@@ -3440,6 +3495,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
 
 /// [CapabilityStatementDocument]
 /// A document definition.
+@collection
 class CapabilityStatementDocument extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementDocument]
@@ -3537,6 +3593,9 @@ class CapabilityStatementDocument extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CapabilityStatementDocument';

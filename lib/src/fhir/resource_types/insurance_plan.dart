@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'insurance_plan.g.dart';
 
 /// [InsurancePlan]
 /// Details of a Health Insurance product/plan provided by an organization.
+@collection
 class InsurancePlan extends DomainResource {
   /// Primary constructor for
   /// [InsurancePlan]
@@ -240,6 +244,9 @@ class InsurancePlan extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'InsurancePlan';
@@ -494,6 +501,7 @@ class InsurancePlan extends DomainResource {
 
 /// [InsurancePlanContact]
 /// The contact for the health insurance product for a certain purpose.
+@collection
 class InsurancePlanContact extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanContact]
@@ -602,6 +610,9 @@ class InsurancePlanContact extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'InsurancePlanContact';
 
@@ -694,6 +705,7 @@ class InsurancePlanContact extends BackboneElement {
 
 /// [InsurancePlanCoverage]
 /// Details about the coverage offered by the insurance product.
+@collection
 class InsurancePlanCoverage extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanCoverage]
@@ -798,6 +810,9 @@ class InsurancePlanCoverage extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'InsurancePlanCoverage';
 
@@ -876,6 +891,7 @@ class InsurancePlanCoverage extends BackboneElement {
 
 /// [InsurancePlanBenefit]
 /// Specific benefits under this type of coverage.
+@collection
 class InsurancePlanBenefit extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanBenefit]
@@ -977,6 +993,9 @@ class InsurancePlanBenefit extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'InsurancePlanBenefit';
 
@@ -1060,6 +1079,7 @@ class InsurancePlanBenefit extends BackboneElement {
 
 /// [InsurancePlanLimit]
 /// The specific limits on the benefit.
+@collection
 class InsurancePlanLimit extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanLimit]
@@ -1152,6 +1172,9 @@ class InsurancePlanLimit extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'InsurancePlanLimit';
 
@@ -1224,6 +1247,7 @@ class InsurancePlanLimit extends BackboneElement {
 
 /// [InsurancePlanPlan]
 /// Details about an insurance plan.
+@collection
 class InsurancePlanPlan extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanPlan]
@@ -1360,6 +1384,9 @@ class InsurancePlanPlan extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'InsurancePlanPlan';
 
@@ -1474,6 +1501,7 @@ class InsurancePlanPlan extends BackboneElement {
 
 /// [InsurancePlanGeneralCost]
 /// Overall costs associated with the plan.
+@collection
 class InsurancePlanGeneralCost extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanGeneralCost]
@@ -1580,6 +1608,9 @@ class InsurancePlanGeneralCost extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'InsurancePlanGeneralCost';
 
@@ -1680,6 +1711,7 @@ class InsurancePlanGeneralCost extends BackboneElement {
 
 /// [InsurancePlanSpecificCost]
 /// Costs associated with the coverage provided by the product.
+@collection
 class InsurancePlanSpecificCost extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanSpecificCost]
@@ -1774,6 +1806,9 @@ class InsurancePlanSpecificCost extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'InsurancePlanSpecificCost';
 
@@ -1844,6 +1879,7 @@ class InsurancePlanSpecificCost extends BackboneElement {
 
 /// [InsurancePlanBenefit1]
 /// List of the specific benefits under this category of benefit.
+@collection
 class InsurancePlanBenefit1 extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanBenefit1]
@@ -1938,6 +1974,9 @@ class InsurancePlanBenefit1 extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'InsurancePlanBenefit1';
 
@@ -2008,6 +2047,7 @@ class InsurancePlanBenefit1 extends BackboneElement {
 
 /// [InsurancePlanCost]
 /// List of the costs associated with a specific benefit.
+@collection
 class InsurancePlanCost extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanCost]
@@ -2113,6 +2153,9 @@ class InsurancePlanCost extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'InsurancePlanCost';

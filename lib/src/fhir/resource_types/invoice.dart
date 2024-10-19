@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'invoice.g.dart';
 
 /// [Invoice]
 /// Invoice containing collected ChargeItems from an Account with
 /// calculated individual and total price for Billing purpose.
+@collection
 class Invoice extends DomainResource {
   /// Primary constructor for
   /// [Invoice]
@@ -233,6 +237,9 @@ class Invoice extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Invoice';
@@ -497,6 +504,7 @@ class Invoice extends DomainResource {
 
 /// [InvoiceParticipant]
 /// Indicates who or what performed or participated in the charged service.
+@collection
 class InvoiceParticipant extends BackboneElement {
   /// Primary constructor for
   /// [InvoiceParticipant]
@@ -587,6 +595,9 @@ class InvoiceParticipant extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'InvoiceParticipant';
 
@@ -661,6 +672,7 @@ class InvoiceParticipant extends BackboneElement {
 /// Each line item represents one charge for goods and services rendered.
 /// Details such as date, code and amount are found in the referenced
 /// ChargeItem resource.
+@collection
 class InvoiceLineItem extends BackboneElement {
   /// Primary constructor for
   /// [InvoiceLineItem]
@@ -769,6 +781,9 @@ class InvoiceLineItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'InvoiceLineItem';
@@ -882,6 +897,7 @@ class InvoiceLineItem extends BackboneElement {
 /// conditions that apply to a billing code is currently under development.
 /// The priceComponent element can be used to offer transparency to the
 /// recipient of the Invoice as to how the prices have been calculated.
+@collection
 class InvoicePriceComponent extends BackboneElement {
   /// Primary constructor for
   /// [InvoicePriceComponent]
@@ -985,6 +1001,9 @@ class InvoicePriceComponent extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'InvoicePriceComponent';

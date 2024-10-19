@@ -1,7 +1,10 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'date_time.g.dart';
 
 /// Extension on [DateTime] to convert it to a [FhirDateTime].
 extension FhirDateTimeExtension on DateTime {
@@ -17,7 +20,24 @@ extension FhirDateTimeStringExtension on String {
 
 /// [FhirDateTime] represents FHIR-compliant date and time, extending
 /// [FhirDateTimeBase].
+@collection
 class FhirDateTime extends FhirDateTimeBase {
+  /// Constructor from base units, required by [FhirDateTimeBase].
+  FhirDateTime({
+    required super.year,
+    required super.month,
+    required super.day,
+    required super.hour,
+    required super.minute,
+    required super.second,
+    required super.millisecond,
+    required super.microsecond,
+    required super.timeZoneOffset,
+    required super.isUtc,
+    super.element,
+    this.dbValue,
+  });
+
   /// Factory constructor to create a [FhirDateTime] from individual units.
   ///
   /// Requires the [year] to be specified, while other components like [month],
@@ -49,21 +69,6 @@ class FhirDateTime extends FhirDateTimeBase {
         isUtc: isUtc ?? false,
         element: element,
       ) as FhirDateTime;
-
-  /// Constructor from base units, required by [FhirDateTimeBase].
-  FhirDateTime.fromBase({
-    required super.year,
-    required super.month,
-    required super.day,
-    required super.hour,
-    required super.minute,
-    required super.second,
-    required super.millisecond,
-    required super.microsecond,
-    required super.timeZoneOffset,
-    required super.isUtc,
-    super.element,
-  });
 
   /// Factory constructor to create a [FhirDateTime] from a [String].
   ///
@@ -129,6 +134,13 @@ class FhirDateTime extends FhirDateTimeBase {
     }
     return null;
   }
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final String? dbValue;
 
   /// Returns the FHIR type as a [String], which is 'dateTime' in this case.
   @override

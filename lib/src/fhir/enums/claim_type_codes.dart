@@ -1,70 +1,104 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// This value set includes Claim Type codes.
-enum ClaimTypeCodes {
-  /// Display: Institutional
-  /// Definition: Hospital, clinic and typically inpatient claims.
-  institutional('institutional'),
+@collection
+class ClaimTypeCodes {
+  /// Constructor for internal use (like enum)
+  ClaimTypeCodes({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Oral
-  /// Definition: Dental, Denture and Hygiene claims.
-  oral('oral'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Pharmacy
-  /// Definition: Pharmacy claims for goods and services.
-  pharmacy('pharmacy'),
-
-  /// Display: Professional
-  /// Definition: Typically, outpatient claims from Physician, Psychological, Chiropractor, Physiotherapy, Speech Pathology, rehabilitative, consulting.
-  professional('professional'),
-
-  /// Display: Vision
-  /// Definition: Vision claims for professional services and products such as glasses and contact lenses.
-  vision('vision'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ClaimTypeCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// ClaimTypeCodes values
+  /// institutional
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ClaimTypeCodes institutional = ClaimTypeCodes(
+    fhirCode: 'institutional',
+  );
+
+  /// oral
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ClaimTypeCodes oral = ClaimTypeCodes(
+    fhirCode: 'oral',
+  );
+
+  /// pharmacy
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ClaimTypeCodes pharmacy = ClaimTypeCodes(
+    fhirCode: 'pharmacy',
+  );
+
+  /// professional
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ClaimTypeCodes professional = ClaimTypeCodes(
+    fhirCode: 'professional',
+  );
+
+  /// vision
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ClaimTypeCodes vision = ClaimTypeCodes(
+    fhirCode: 'vision',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ClaimTypeCodes elementOnly = ClaimTypeCodes();
+
+  /// List of all enum-like values
+  static final List<ClaimTypeCodes> values = [
+    institutional,
+    oral,
+    pharmacy,
+    professional,
+    vision,
+  ];
+
+  /// Returns the enum value with an element attached
+  ClaimTypeCodes withElement(Element? newElement) {
+    return ClaimTypeCodes(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ClaimTypeCodes] instances.
-  static ClaimTypeCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ClaimTypeCodes] from JSON.
+  static ClaimTypeCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ClaimTypeCodes.elementOnly.withElement(
-        element,
-      );
+      return ClaimTypeCodes.elementOnly.withElement(element);
     }
     return ClaimTypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ClaimTypeCodes withElement(Element? newElement) {
-    return ClaimTypeCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ClaimTypeCodes.$fhirCode';
 }

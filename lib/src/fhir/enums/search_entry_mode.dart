@@ -1,62 +1,88 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// Why an entry is in the result set - whether it's included as a match or because of an _include requirement, or to convey information or warning information about the search process.
-enum SearchEntryMode {
-  /// Display: Match
-  /// Definition: This resource matched the search specification.
-  match('match'),
+@collection
+class SearchEntryMode {
+  /// Constructor for internal use (like enum)
+  SearchEntryMode({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Include
-  /// Definition: This resource is returned because it is referred to from another resource in the search set.
-  include('include'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Outcome
-  /// Definition: An OperationOutcome that provides additional information about the processing of a search.
-  outcome('outcome'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const SearchEntryMode(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// SearchEntryMode values
+  /// match
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SearchEntryMode match = SearchEntryMode(
+    fhirCode: 'match',
+  );
+
+  /// include
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SearchEntryMode include = SearchEntryMode(
+    fhirCode: 'include',
+  );
+
+  /// outcome
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SearchEntryMode outcome = SearchEntryMode(
+    fhirCode: 'outcome',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final SearchEntryMode elementOnly = SearchEntryMode();
+
+  /// List of all enum-like values
+  static final List<SearchEntryMode> values = [
+    match,
+    include,
+    outcome,
+  ];
+
+  /// Returns the enum value with an element attached
+  SearchEntryMode withElement(Element? newElement) {
+    return SearchEntryMode(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [SearchEntryMode] instances.
-  static SearchEntryMode fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [SearchEntryMode] from JSON.
+  static SearchEntryMode fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SearchEntryMode.elementOnly.withElement(
-        element,
-      );
+      return SearchEntryMode.elementOnly.withElement(element);
     }
     return SearchEntryMode.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  SearchEntryMode withElement(Element? newElement) {
-    return SearchEntryMode.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'SearchEntryMode.$fhirCode';
 }

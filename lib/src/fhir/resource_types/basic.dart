@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'basic.g.dart';
 
 /// [Basic]
 /// Basic is used for handling concepts not yet defined in FHIR,
 /// narrative-only resources that don't map to an existing resource, and
 /// custom resources not appropriate for inclusion in the FHIR
 /// specification.
+@collection
 class Basic extends DomainResource {
   /// Primary constructor for
   /// [Basic]
@@ -158,6 +162,9 @@ class Basic extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Basic';

@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'family_member_history.g.dart';
 
 /// [FamilyMemberHistory]
 /// Significant health conditions for a person related to the patient
 /// relevant in the context of care for the patient.
+@collection
 class FamilyMemberHistory extends DomainResource {
   /// Primary constructor for
   /// [FamilyMemberHistory]
@@ -307,6 +311,9 @@ class FamilyMemberHistory extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'FamilyMemberHistory';
@@ -732,6 +739,7 @@ class FamilyMemberHistory extends DomainResource {
 /// This is a repeating section to allow a system to represent more than
 /// one condition per resource, though there is nothing stopping multiple
 /// resources - one per condition.
+@collection
 class FamilyMemberHistoryCondition extends BackboneElement {
   /// Primary constructor for
   /// [FamilyMemberHistoryCondition]
@@ -864,6 +872,9 @@ class FamilyMemberHistoryCondition extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'FamilyMemberHistoryCondition';

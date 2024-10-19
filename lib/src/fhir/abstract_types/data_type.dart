@@ -4,7 +4,7 @@ import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
 /// Base class for all reusable types defined as part of the FHIR specification.
-abstract class DataType extends Element {
+abstract class DataType extends SimpleElement {
   /// Constructor for DataType
   DataType({
     super.id,

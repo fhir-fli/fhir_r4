@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'account.g.dart';
 
 /// [Account]
 /// A financial tool for tracking value accrued for a particular purpose.
 /// In the healthcare field, used to track charges for a patient, cost
 /// centers, etc.
+@collection
 class Account extends DomainResource {
   /// Primary constructor for
   /// [Account]
@@ -207,6 +211,9 @@ class Account extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Account';
@@ -427,6 +434,7 @@ class Account extends DomainResource {
 /// [AccountCoverage]
 /// The party(s) that are responsible for covering the payment of this
 /// account, and what order should they be applied to the account.
+@collection
 class AccountCoverage extends BackboneElement {
   /// Primary constructor for
   /// [AccountCoverage]
@@ -518,6 +526,9 @@ class AccountCoverage extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'AccountCoverage';
 
@@ -597,6 +608,7 @@ class AccountCoverage extends BackboneElement {
 /// [AccountGuarantor]
 /// The parties responsible for balancing the account if other payment
 /// options fall short.
+@collection
 class AccountGuarantor extends BackboneElement {
   /// Primary constructor for
   /// [AccountGuarantor]
@@ -693,6 +705,9 @@ class AccountGuarantor extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'AccountGuarantor';

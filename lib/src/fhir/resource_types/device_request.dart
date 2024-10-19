@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'device_request.g.dart';
 
 /// [DeviceRequest]
 /// Represents a request for a patient to employ a medical device. The
 /// device may be an implantable device, or an external assistive device,
 /// such as a walker.
+@collection
 class DeviceRequest extends DomainResource {
   /// Primary constructor for
   /// [DeviceRequest]
@@ -328,6 +332,9 @@ class DeviceRequest extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DeviceRequest';
@@ -745,6 +752,7 @@ class DeviceRequest extends DomainResource {
 /// [DeviceRequestParameter]
 /// Specific parameters for the ordered item. For example, the prism value
 /// for lenses.
+@collection
 class DeviceRequestParameter extends BackboneElement {
   /// Primary constructor for
   /// [DeviceRequestParameter]
@@ -856,6 +864,9 @@ class DeviceRequestParameter extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DeviceRequestParameter';

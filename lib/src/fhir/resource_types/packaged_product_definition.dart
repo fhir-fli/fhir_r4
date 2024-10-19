@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'packaged_product_definition.g.dart';
 
 /// [PackagedProductDefinition]
 /// A medically related item or items, in a container or package.
+@collection
 class PackagedProductDefinition extends DomainResource {
   /// Primary constructor for
   /// [PackagedProductDefinition]
@@ -239,6 +243,9 @@ class PackagedProductDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PackagedProductDefinition';
@@ -518,6 +525,7 @@ class PackagedProductDefinition extends DomainResource {
 /// [PackagedProductDefinitionLegalStatusOfSupply]
 /// The legal status of supply of the packaged item as classified by the
 /// regulator.
+@collection
 class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   /// Primary constructor for
   /// [PackagedProductDefinitionLegalStatusOfSupply]
@@ -610,6 +618,9 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'PackagedProductDefinitionLegalStatusOfSupply';
 
@@ -686,6 +697,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
 /// A packaging item, as a container for medically related items, possibly
 /// with other packaging items within, or a packaging component, such as
 /// bottle cap (which is not a device or a medication manufactured item).
+@collection
 class PackagedProductDefinitionPackage extends BackboneElement {
   /// Primary constructor for
   /// [PackagedProductDefinitionPackage]
@@ -859,6 +871,9 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'PackagedProductDefinitionPackage';
 
@@ -1023,6 +1038,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
 
 /// [PackagedProductDefinitionShelfLifeStorage]
 /// Shelf Life and storage information.
+@collection
 class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// Primary constructor for
   /// [PackagedProductDefinitionShelfLifeStorage]
@@ -1132,6 +1148,9 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PackagedProductDefinitionShelfLifeStorage';
@@ -1247,6 +1266,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
 
 /// [PackagedProductDefinitionProperty]
 /// General characteristics of this item.
+@collection
 class PackagedProductDefinitionProperty extends BackboneElement {
   /// Primary constructor for
   /// [PackagedProductDefinitionProperty]
@@ -1363,6 +1383,9 @@ class PackagedProductDefinitionProperty extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PackagedProductDefinitionProperty';
@@ -1481,6 +1504,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 
 /// [PackagedProductDefinitionContainedItem]
 /// The item(s) within the packaging.
+@collection
 class PackagedProductDefinitionContainedItem extends BackboneElement {
   /// Primary constructor for
   /// [PackagedProductDefinitionContainedItem]
@@ -1570,6 +1594,9 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PackagedProductDefinitionContainedItem';

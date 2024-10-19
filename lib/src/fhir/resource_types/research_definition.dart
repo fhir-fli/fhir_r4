@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'research_definition.g.dart';
 
 /// [ResearchDefinition]
 /// The ResearchDefinition resource describes the conditional state
 /// (population and any exposures being compared within the population) and
 /// outcome (if specified) that the knowledge (evidence, assertion,
 /// recommendation) is about.
+@collection
 class ResearchDefinition extends DomainResource {
   /// Primary constructor for
   /// [ResearchDefinition]
@@ -390,6 +394,9 @@ class ResearchDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ResearchDefinition';

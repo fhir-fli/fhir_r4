@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'ingredient.g.dart';
 
 /// [Ingredient]
 /// An ingredient of a manufactured item or pharmaceutical product.
+@collection
 class Ingredient extends DomainResource {
   /// Primary constructor for
   /// [Ingredient]
@@ -179,6 +183,9 @@ class Ingredient extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Ingredient';
@@ -371,6 +378,7 @@ class Ingredient extends DomainResource {
 /// organisations allowed to manufacture this ingredient for this product
 /// Users must be clear on the application of context relevant to their use
 /// case.
+@collection
 class IngredientManufacturer extends BackboneElement {
   /// Primary constructor for
   /// [IngredientManufacturer]
@@ -462,6 +470,9 @@ class IngredientManufacturer extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'IngredientManufacturer';
 
@@ -538,6 +549,7 @@ class IngredientManufacturer extends BackboneElement {
 
 /// [IngredientSubstance]
 /// The substance that comprises this ingredient.
+@collection
 class IngredientSubstance extends BackboneElement {
   /// Primary constructor for
   /// [IngredientSubstance]
@@ -632,6 +644,9 @@ class IngredientSubstance extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'IngredientSubstance';
 
@@ -709,6 +724,7 @@ class IngredientSubstance extends BackboneElement {
 /// The allowed repetitions do not represent different strengths, but are
 /// different representations - mathematically equivalent - of a single
 /// strength.
+@collection
 class IngredientStrength extends BackboneElement {
   /// Primary constructor for
   /// [IngredientStrength]
@@ -856,6 +872,9 @@ class IngredientStrength extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'IngredientStrength';
@@ -1042,6 +1061,7 @@ class IngredientStrength extends BackboneElement {
 /// of the active moiety of the active substance. There are situations when
 /// the active substance and active moiety are different, therefore both a
 /// strength and a reference strength are needed.
+@collection
 class IngredientReferenceStrength extends BackboneElement {
   /// Primary constructor for
   /// [IngredientReferenceStrength]
@@ -1157,6 +1177,9 @@ class IngredientReferenceStrength extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'IngredientReferenceStrength';

@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'healthcare_service.g.dart';
 
 /// [HealthcareService]
 /// The details of a healthcare service available at a location.
+@collection
 class HealthcareService extends DomainResource {
   /// Primary constructor for
   /// [HealthcareService]
@@ -339,6 +343,9 @@ class HealthcareService extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'HealthcareService';
@@ -721,6 +728,7 @@ class HealthcareService extends DomainResource {
 /// [HealthcareServiceEligibility]
 /// Does this service have specific eligibility requirements that need to
 /// be met in order to use the service?
+@collection
 class HealthcareServiceEligibility extends BackboneElement {
   /// Primary constructor for
   /// [HealthcareServiceEligibility]
@@ -814,6 +822,9 @@ class HealthcareServiceEligibility extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'HealthcareServiceEligibility';
 
@@ -889,6 +900,7 @@ class HealthcareServiceEligibility extends BackboneElement {
 
 /// [HealthcareServiceAvailableTime]
 /// A collection of times that the Service Site is available.
+@collection
 class HealthcareServiceAvailableTime extends BackboneElement {
   /// Primary constructor for
   /// [HealthcareServiceAvailableTime]
@@ -997,6 +1009,9 @@ class HealthcareServiceAvailableTime extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'HealthcareServiceAvailableTime';
@@ -1110,6 +1125,7 @@ class HealthcareServiceAvailableTime extends BackboneElement {
 /// [HealthcareServiceNotAvailable]
 /// The HealthcareService is not available during this period of time due
 /// to the provided reason.
+@collection
 class HealthcareServiceNotAvailable extends BackboneElement {
   /// Primary constructor for
   /// [HealthcareServiceNotAvailable]
@@ -1200,6 +1216,9 @@ class HealthcareServiceNotAvailable extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'HealthcareServiceNotAvailable';

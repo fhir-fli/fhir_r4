@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'immunization_recommendation.g.dart';
 
 /// [ImmunizationRecommendation]
 /// A patient's point-in-time set of recommendations (i.e. forecasting)
 /// according to a published schedule with optional supporting
 /// justification.
+@collection
 class ImmunizationRecommendation extends DomainResource {
   /// Primary constructor for
   /// [ImmunizationRecommendation]
@@ -160,6 +164,9 @@ class ImmunizationRecommendation extends DomainResource {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ImmunizationRecommendation';
 
@@ -298,6 +305,7 @@ class ImmunizationRecommendation extends DomainResource {
 
 /// [ImmunizationRecommendationRecommendation]
 /// Vaccine administration recommendations.
+@collection
 class ImmunizationRecommendationRecommendation extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationRecommendationRecommendation]
@@ -493,6 +501,9 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ImmunizationRecommendationRecommendation';
@@ -728,6 +739,7 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
 /// [ImmunizationRecommendationDateCriterion]
 /// Vaccine date recommendations. For example, earliest date to administer,
 /// latest date to administer, etc.
+@collection
 class ImmunizationRecommendationDateCriterion extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationRecommendationDateCriterion]
@@ -816,6 +828,9 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ImmunizationRecommendationDateCriterion';

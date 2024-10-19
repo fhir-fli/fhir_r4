@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'enrollment_request.g.dart';
 
 /// [EnrollmentRequest]
 /// This resource provides the insurance enrollment details to the insurer
 /// regarding a specified coverage.
+@collection
 class EnrollmentRequest extends DomainResource {
   /// Primary constructor for
   /// [EnrollmentRequest]
@@ -171,6 +175,9 @@ class EnrollmentRequest extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'EnrollmentRequest';

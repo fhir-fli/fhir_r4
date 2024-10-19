@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4/src/fhir/r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Resource] Base definition for all FHIR elements.
-abstract class Resource extends FhirBase {
+class Resource extends FhirBase {
   /// Main constructor for [Resource ]
   Resource({
     required this.resourceType,
@@ -30,26 +30,27 @@ abstract class Resource extends FhirBase {
   String get fhirType => 'Resource';
 
   /// The type of resource
-  final R4ResourceType resourceType;
+  @enumerated
+  R4ResourceType resourceType;
 
   /// The logical id of the resource, as used in the URL for the resource.
-  final FhirString? id;
+  FhirString? id;
 
   /// The metadata about the resource. This is content that is maintained by the
   /// infrastructure. Changes to the content might not always be associated with
   /// version changes to the resource.
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// A reference to a set of rules that were followed when the resource was
   /// constructed, and which must be understood when processing the content.
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// The base language in which the resource is written.
   /// This should be the language of the text value in the content element
   /// when a text value is present.
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// Acts like a constructor, returns a [Resource], accepts a
   /// [String] as an argument, mostly because I got tired of typing it out
@@ -137,5 +138,9 @@ abstract class Resource extends FhirBase {
     List<dynamic>? annotations,
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
-  });
+  }) =>
+      throw UnimplementedError();
+
+  @override
+  Resource clone() => throw UnimplementedError();
 }

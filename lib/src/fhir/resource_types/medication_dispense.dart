@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'medication_dispense.g.dart';
 
 /// [MedicationDispense]
 /// Indicates that a medication product is to be or has been dispensed for
@@ -8,6 +11,7 @@ import 'package:yaml/yaml.dart';
 /// product (supply) provided and the instructions for administering the
 /// medication. The medication dispense is the result of a pharmacy system
 /// responding to a medication order.
+@collection
 class MedicationDispense extends DomainResource {
   /// Primary constructor for
   /// [MedicationDispense]
@@ -325,6 +329,9 @@ class MedicationDispense extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MedicationDispense';
@@ -726,6 +733,7 @@ class MedicationDispense extends DomainResource {
 
 /// [MedicationDispensePerformer]
 /// Indicates who or what performed the event.
+@collection
 class MedicationDispensePerformer extends BackboneElement {
   /// Primary constructor for
   /// [MedicationDispensePerformer]
@@ -816,6 +824,9 @@ class MedicationDispensePerformer extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationDispensePerformer';
 
@@ -891,6 +902,7 @@ class MedicationDispensePerformer extends BackboneElement {
 /// other cases substitution is not expected but does happen. This block
 /// explains what substitution did or did not happen and why. If nothing is
 /// specified, substitution was not done.
+@collection
 class MedicationDispenseSubstitution extends BackboneElement {
   /// Primary constructor for
   /// [MedicationDispenseSubstitution]
@@ -1001,6 +1013,9 @@ class MedicationDispenseSubstitution extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MedicationDispenseSubstitution';

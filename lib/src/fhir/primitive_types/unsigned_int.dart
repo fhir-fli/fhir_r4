@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'unsigned_int.g.dart';
 
 /// Extension to convert a [num] to a [FhirUnsignedInt].
 extension FhirUnsignedIntExtension on num {
@@ -13,9 +16,10 @@ extension FhirUnsignedIntExtension on num {
 }
 
 /// Represents the FHIR primitive type `integer`.
+@collection
 class FhirUnsignedInt extends FhirNumber {
   /// Constructor that ensures valid input.
-  FhirUnsignedInt(int? super.input, [super.element]) {
+  FhirUnsignedInt(int? super.input, [super.element]) : dbValue = input {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -57,6 +61,13 @@ class FhirUnsignedInt extends FhirNumber {
     }
     return null;
   }
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final int? dbValue;
 
   /// Returns the FHIR type as a string.
   @override

@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'test_report.g.dart';
 
 /// [TestReport]
 /// A summary of information based on the results of executing a
 /// TestScript.
+@collection
 class TestReport extends DomainResource {
   /// Primary constructor for
   /// [TestReport]
@@ -203,6 +207,9 @@ class TestReport extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'TestReport';
@@ -440,6 +447,7 @@ class TestReport extends DomainResource {
 /// [TestReportParticipant]
 /// A participant in the test execution, either the execution engine, a
 /// client, or a server.
+@collection
 class TestReportParticipant extends BackboneElement {
   /// Primary constructor for
   /// [TestReportParticipant]
@@ -537,6 +545,9 @@ class TestReportParticipant extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestReportParticipant';
 
@@ -627,6 +638,7 @@ class TestReportParticipant extends BackboneElement {
 /// [TestReportSetup]
 /// The results of the series of required setup operations before the tests
 /// were executed.
+@collection
 class TestReportSetup extends BackboneElement {
   /// Primary constructor for
   /// [TestReportSetup]
@@ -717,6 +729,9 @@ class TestReportSetup extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestReportSetup';
 
@@ -776,6 +791,7 @@ class TestReportSetup extends BackboneElement {
 
 /// [TestReportAction]
 /// Action would contain either an operation or an assertion.
+@collection
 class TestReportAction extends BackboneElement {
   /// Primary constructor for
   /// [TestReportAction]
@@ -868,6 +884,9 @@ class TestReportAction extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestReportAction';
 
@@ -939,6 +958,7 @@ class TestReportAction extends BackboneElement {
 
 /// [TestReportOperation]
 /// The operation performed.
+@collection
 class TestReportOperation extends BackboneElement {
   /// Primary constructor for
   /// [TestReportOperation]
@@ -1038,6 +1058,9 @@ class TestReportOperation extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestReportOperation';
 
@@ -1129,6 +1152,7 @@ class TestReportOperation extends BackboneElement {
 
 /// [TestReportAssert]
 /// The results of the assertion performed on the previous operations.
+@collection
 class TestReportAssert extends BackboneElement {
   /// Primary constructor for
   /// [TestReportAssert]
@@ -1228,6 +1252,9 @@ class TestReportAssert extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestReportAssert';
 
@@ -1319,6 +1346,7 @@ class TestReportAssert extends BackboneElement {
 
 /// [TestReportTest]
 /// A test executed from the test script.
+@collection
 class TestReportTest extends BackboneElement {
   /// Primary constructor for
   /// [TestReportTest]
@@ -1423,6 +1451,9 @@ class TestReportTest extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestReportTest';
 
@@ -1512,6 +1543,7 @@ class TestReportTest extends BackboneElement {
 
 /// [TestReportAction1]
 /// Action would contain either an operation or an assertion.
+@collection
 class TestReportAction1 extends BackboneElement {
   /// Primary constructor for
   /// [TestReportAction1]
@@ -1592,6 +1624,9 @@ class TestReportAction1 extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestReportAction1';
 
@@ -1645,6 +1680,7 @@ class TestReportAction1 extends BackboneElement {
 /// [TestReportTeardown]
 /// The results of the series of operations required to clean up after all
 /// the tests were executed (successfully or otherwise).
+@collection
 class TestReportTeardown extends BackboneElement {
   /// Primary constructor for
   /// [TestReportTeardown]
@@ -1735,6 +1771,9 @@ class TestReportTeardown extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'TestReportTeardown';
 
@@ -1794,6 +1833,7 @@ class TestReportTeardown extends BackboneElement {
 
 /// [TestReportAction2]
 /// The teardown action will only contain an operation.
+@collection
 class TestReportAction2 extends BackboneElement {
   /// Primary constructor for
   /// [TestReportAction2]
@@ -1873,6 +1913,9 @@ class TestReportAction2 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'TestReportAction2';

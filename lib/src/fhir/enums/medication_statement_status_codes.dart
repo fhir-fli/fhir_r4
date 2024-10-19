@@ -1,82 +1,137 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// MedicationStatement Status Codes
-enum MedicationStatementStatusCodes {
-  /// Display: Active
-  /// Definition: The medication is still being taken.
-  active('active'),
+@collection
+class MedicationStatementStatusCodes {
+  /// Constructor for internal use (like enum)
+  MedicationStatementStatusCodes({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Completed
-  /// Definition: The medication is no longer being taken.
-  completed('completed'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Entered in Error
-  /// Definition: Some of the actions that are implied by the medication statement may have occurred. For example, the patient may have taken some of the medication. Clinical decision support systems should take this status into account.
-  entered_in_error('entered-in-error'),
-
-  /// Display: Intended
-  /// Definition: The medication may be taken at some time in the future.
-  intended('intended'),
-
-  /// Display: Stopped
-  /// Definition: Actions implied by the statement have been permanently halted, before all of them occurred. This should not be used if the statement was entered in error.
-  stopped('stopped'),
-
-  /// Display: On Hold
-  /// Definition: Actions implied by the statement have been temporarily halted, but are expected to continue later. May also be called 'suspended'.
-  on_hold('on-hold'),
-
-  /// Display: Unknown
-  /// Definition: The state of the medication use is not currently known.
-  unknown('unknown'),
-
-  /// Display: Not Taken
-  /// Definition: The medication was not consumed by the patient
-  not_taken('not-taken'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const MedicationStatementStatusCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// MedicationStatementStatusCodes values
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationStatementStatusCodes active =
+      MedicationStatementStatusCodes(
+    fhirCode: 'active',
+  );
+
+  /// completed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationStatementStatusCodes completed =
+      MedicationStatementStatusCodes(
+    fhirCode: 'completed',
+  );
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationStatementStatusCodes entered_in_error =
+      MedicationStatementStatusCodes(
+    fhirCode: 'entered-in-error',
+  );
+
+  /// intended
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationStatementStatusCodes intended =
+      MedicationStatementStatusCodes(
+    fhirCode: 'intended',
+  );
+
+  /// stopped
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationStatementStatusCodes stopped =
+      MedicationStatementStatusCodes(
+    fhirCode: 'stopped',
+  );
+
+  /// on_hold
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationStatementStatusCodes on_hold =
+      MedicationStatementStatusCodes(
+    fhirCode: 'on-hold',
+  );
+
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationStatementStatusCodes unknown =
+      MedicationStatementStatusCodes(
+    fhirCode: 'unknown',
+  );
+
+  /// not_taken
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationStatementStatusCodes not_taken =
+      MedicationStatementStatusCodes(
+    fhirCode: 'not-taken',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final MedicationStatementStatusCodes elementOnly =
+      MedicationStatementStatusCodes();
+
+  /// List of all enum-like values
+  static final List<MedicationStatementStatusCodes> values = [
+    active,
+    completed,
+    entered_in_error,
+    intended,
+    stopped,
+    on_hold,
+    unknown,
+    not_taken,
+  ];
+
+  /// Returns the enum value with an element attached
+  MedicationStatementStatusCodes withElement(Element? newElement) {
+    return MedicationStatementStatusCodes(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [MedicationStatementStatusCodes] instances.
-  static MedicationStatementStatusCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [MedicationStatementStatusCodes] from JSON.
+  static MedicationStatementStatusCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationStatementStatusCodes.elementOnly.withElement(
-        element,
-      );
+      return MedicationStatementStatusCodes.elementOnly.withElement(element);
     }
     return MedicationStatementStatusCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  MedicationStatementStatusCodes withElement(Element? newElement) {
-    return MedicationStatementStatusCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'MedicationStatementStatusCodes.$fhirCode';
 }

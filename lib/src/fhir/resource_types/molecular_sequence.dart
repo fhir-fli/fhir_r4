@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'molecular_sequence.g.dart';
 
 /// [MolecularSequence]
 /// Raw data describing a biological sequence.
+@collection
 class MolecularSequence extends DomainResource {
   /// Primary constructor for
   /// [MolecularSequence]
@@ -245,6 +249,9 @@ class MolecularSequence extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MolecularSequence';
@@ -526,6 +533,7 @@ class MolecularSequence extends DomainResource {
 /// [MolecularSequenceReferenceSeq]
 /// A sequence that is used as a reference to describe variants that are
 /// present in a sequence analyzed.
+@collection
 class MolecularSequenceReferenceSeq extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceReferenceSeq]
@@ -666,6 +674,9 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MolecularSequenceReferenceSeq';
@@ -854,6 +865,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
 /// This element can represent amino acid or nucleic sequence
 /// change(including insertion,deletion,SNP,etc.) It can represent some
 /// complex mutation or segment variation with the assist of CIGAR string.
+@collection
 class MolecularSequenceVariant extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceVariant]
@@ -976,6 +988,9 @@ class MolecularSequenceVariant extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MolecularSequenceVariant';
@@ -1129,6 +1144,7 @@ class MolecularSequenceVariant extends BackboneElement {
 /// An experimental feature attribute that defines the quality of the
 /// feature in a quantitative way, such as a phred quality score
 /// ([SO:0001686](http://www.sequenceontology.org/browser/current_svn/term/SO:0001686)).
+@collection
 class MolecularSequenceQuality extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceQuality]
@@ -1307,6 +1323,9 @@ class MolecularSequenceQuality extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MolecularSequenceQuality';
@@ -1574,6 +1593,7 @@ class MolecularSequenceQuality extends BackboneElement {
 /// [MolecularSequenceRoc]
 /// Receiver Operator Characteristic (ROC) Curve to give
 /// sensitivity/specificity tradeoff.
+@collection
 class MolecularSequenceRoc extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceRoc]
@@ -1695,6 +1715,9 @@ class MolecularSequenceRoc extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MolecularSequenceRoc';
@@ -1853,6 +1876,7 @@ class MolecularSequenceRoc extends BackboneElement {
 /// [MolecularSequenceRepository]
 /// Configurations of the external repository. The repository shall store
 /// target's observedSeq or records related with target's observedSeq.
+@collection
 class MolecularSequenceRepository extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceRepository]
@@ -1973,6 +1997,9 @@ class MolecularSequenceRepository extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MolecularSequenceRepository';
@@ -2114,6 +2141,7 @@ class MolecularSequenceRepository extends BackboneElement {
 
 /// [MolecularSequenceStructureVariant]
 /// Information about chromosome structure variation.
+@collection
 class MolecularSequenceStructureVariant extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceStructureVariant]
@@ -2226,6 +2254,9 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MolecularSequenceStructureVariant';
 
@@ -2336,6 +2367,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
 
 /// [MolecularSequenceOuter]
 /// Structural variant outer.
+@collection
 class MolecularSequenceOuter extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceOuter]
@@ -2430,6 +2462,9 @@ class MolecularSequenceOuter extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MolecularSequenceOuter';
 
@@ -2513,6 +2548,7 @@ class MolecularSequenceOuter extends BackboneElement {
 
 /// [MolecularSequenceInner]
 /// Structural variant inner.
+@collection
 class MolecularSequenceInner extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceInner]
@@ -2606,6 +2642,9 @@ class MolecularSequenceInner extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MolecularSequenceInner';

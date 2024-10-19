@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'allergy_intolerance.g.dart';
 
 /// [AllergyIntolerance]
 /// Risk of harmful or undesirable, physiological response which is unique
 /// to an individual and associated with exposure to a substance.
+@collection
 class AllergyIntolerance extends DomainResource {
   /// Primary constructor for
   /// [AllergyIntolerance]
@@ -262,6 +266,9 @@ class AllergyIntolerance extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'AllergyIntolerance';
@@ -612,6 +619,7 @@ class AllergyIntolerance extends DomainResource {
 /// [AllergyIntoleranceReaction]
 /// Details about each adverse reaction event linked to exposure to the
 /// identified substance.
+@collection
 class AllergyIntoleranceReaction extends BackboneElement {
   /// Primary constructor for
   /// [AllergyIntoleranceReaction]
@@ -744,6 +752,9 @@ class AllergyIntoleranceReaction extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'AllergyIntoleranceReaction';

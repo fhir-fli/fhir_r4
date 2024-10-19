@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'uri.g.dart';
 
 /// Extension to convert a [String] to a [FhirUri]
 extension FhirUriExtension on String {
@@ -15,10 +18,12 @@ extension FhirUriUriExtension on Uri {
 }
 
 /// Represents a canonical URL in FHIR as a [PrimitiveType] of [Uri]
+@collection
 class FhirUri extends PrimitiveType<Uri> {
   /// Constructs a [FhirUri] from a [String]
   FhirUri(String? input, [Element? element])
-      : super(
+      : dbValue = input,
+        super(
           input == null ? null : _validateCanonical(input),
           element,
         ) {
@@ -28,7 +33,7 @@ class FhirUri extends PrimitiveType<Uri> {
   }
 
   /// Constructs a [FhirUri] from a [Uri] object
-  FhirUri.fromUri(super.input, [super.element]);
+  FhirUri.fromUri(super.input, [super.element]) : dbValue = input?.toString();
 
   /// Factory constructor to create [FhirUri] from JSON
   factory FhirUri.fromJson(Map<String, dynamic> json) {
@@ -134,6 +139,17 @@ class FhirUri extends PrimitiveType<Uri> {
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(value, element);
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final String? dbValue;
+
+  /// Returns the FHIR type as 'uuid'.
+  @override
+  String get fhirType => 'uri';
 
   /// Clones this [FhirUri] instance
   @override

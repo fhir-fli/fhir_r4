@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'practitioner_role.g.dart';
 
 /// [PractitionerRole]
 /// A specific set of Roles/Locations/specialties/services that a
 /// practitioner may perform at an organization for a period of time.
+@collection
 class PractitionerRole extends DomainResource {
   /// Primary constructor for
   /// [PractitionerRole]
@@ -246,6 +250,9 @@ class PractitionerRole extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PractitionerRole';
@@ -498,6 +505,7 @@ class PractitionerRole extends DomainResource {
 /// [PractitionerRoleAvailableTime]
 /// A collection of times the practitioner is available or performing this
 /// role at the location and/or healthcareservice.
+@collection
 class PractitionerRoleAvailableTime extends BackboneElement {
   /// Primary constructor for
   /// [PractitionerRoleAvailableTime]
@@ -606,6 +614,9 @@ class PractitionerRoleAvailableTime extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PractitionerRoleAvailableTime';
@@ -719,6 +730,7 @@ class PractitionerRoleAvailableTime extends BackboneElement {
 /// [PractitionerRoleNotAvailable]
 /// The practitioner is not available or performing this role during this
 /// period of time due to the provided reason.
+@collection
 class PractitionerRoleNotAvailable extends BackboneElement {
   /// Primary constructor for
   /// [PractitionerRoleNotAvailable]
@@ -809,6 +821,9 @@ class PractitionerRoleNotAvailable extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'PractitionerRoleNotAvailable';

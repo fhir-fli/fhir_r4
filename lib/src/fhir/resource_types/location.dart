@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'location.g.dart';
 
 /// [Location]
 /// Details and position information for a physical place where services
 /// are provided and resources and participants may be stored, found,
 /// contained, or accommodated.
+@collection
 class Location extends DomainResource {
   /// Primary constructor for
   /// [Location]
@@ -252,6 +256,9 @@ class Location extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Location';
@@ -556,6 +563,7 @@ class Location extends DomainResource {
 /// [LocationPosition]
 /// The absolute geographic location of the Location, expressed using the
 /// WGS84 datum (This is the same co-ordinate system used in KML).
+@collection
 class LocationPosition extends BackboneElement {
   /// Primary constructor for
   /// [LocationPosition]
@@ -653,6 +661,9 @@ class LocationPosition extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'LocationPosition';
 
@@ -745,6 +756,7 @@ class LocationPosition extends BackboneElement {
 
 /// [LocationHoursOfOperation]
 /// What days/times during a week is this location usually open.
+@collection
 class LocationHoursOfOperation extends BackboneElement {
   /// Primary constructor for
   /// [LocationHoursOfOperation]
@@ -851,6 +863,9 @@ class LocationHoursOfOperation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'LocationHoursOfOperation';

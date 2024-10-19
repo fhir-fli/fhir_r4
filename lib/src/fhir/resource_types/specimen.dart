@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'specimen.g.dart';
 
 /// [Specimen]
 /// A sample to be used for analysis.
+@collection
 class Specimen extends DomainResource {
   /// Primary constructor for
   /// [Specimen]
@@ -231,6 +235,9 @@ class Specimen extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Specimen';
@@ -469,6 +476,7 @@ class Specimen extends DomainResource {
 
 /// [SpecimenCollection]
 /// Details concerning the specimen collection.
+@collection
 class SpecimenCollection extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenCollection]
@@ -604,6 +612,9 @@ class SpecimenCollection extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SpecimenCollection';
@@ -761,6 +772,7 @@ class SpecimenCollection extends BackboneElement {
 
 /// [SpecimenProcessing]
 /// Details concerning processing and processing steps for the specimen.
+@collection
 class SpecimenProcessing extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenProcessing]
@@ -878,6 +890,9 @@ class SpecimenProcessing extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'SpecimenProcessing';
 
@@ -992,6 +1007,7 @@ class SpecimenProcessing extends BackboneElement {
 /// [SpecimenContainer]
 /// The container holding the specimen. The recursive nature of containers;
 /// i.e. blood in tube in tray in rack is not addressed here.
+@collection
 class SpecimenContainer extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenContainer]
@@ -1118,6 +1134,9 @@ class SpecimenContainer extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SpecimenContainer';

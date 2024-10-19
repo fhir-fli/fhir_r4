@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'questionnaire_response.g.dart';
 
 /// [QuestionnaireResponse]
 /// A structured set of questions and their answers. The questions are
 /// ordered and grouped into coherent subsets, corresponding to the
 /// structure of the grouping of the questionnaire being responded to.
+@collection
 class QuestionnaireResponse extends DomainResource {
   /// Primary constructor for
   /// [QuestionnaireResponse]
@@ -204,6 +208,9 @@ class QuestionnaireResponse extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'QuestionnaireResponse';
@@ -429,6 +436,7 @@ class QuestionnaireResponse extends DomainResource {
 /// [QuestionnaireResponseItem]
 /// A group or question item from the original questionnaire for which
 /// answers are provided.
+@collection
 class QuestionnaireResponseItem extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireResponseItem]
@@ -548,6 +556,9 @@ class QuestionnaireResponseItem extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'QuestionnaireResponseItem';
 
@@ -662,6 +673,7 @@ class QuestionnaireResponseItem extends BackboneElement {
 
 /// [QuestionnaireResponseAnswer]
 /// The respondent's answer(s) to the question.
+@collection
 class QuestionnaireResponseAnswer extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireResponseAnswer]
@@ -835,6 +847,9 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'QuestionnaireResponseAnswer';

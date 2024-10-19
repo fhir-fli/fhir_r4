@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'related_person.g.dart';
 
 /// [RelatedPerson]
 /// Information about a person that is involved in the care for a patient,
 /// but who is not the target of healthcare, nor has a formal
 /// responsibility in the care process.
+@collection
 class RelatedPerson extends DomainResource {
   /// Primary constructor for
   /// [RelatedPerson]
@@ -225,6 +229,9 @@ class RelatedPerson extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'RelatedPerson';
@@ -452,6 +459,7 @@ class RelatedPerson extends DomainResource {
 /// [RelatedPersonCommunication]
 /// A language which may be used to communicate with about the patient's
 /// health.
+@collection
 class RelatedPersonCommunication extends BackboneElement {
   /// Primary constructor for
   /// [RelatedPersonCommunication]
@@ -542,6 +550,9 @@ class RelatedPersonCommunication extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'RelatedPersonCommunication';

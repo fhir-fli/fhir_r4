@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'clinical_impression.g.dart';
 
 /// [ClinicalImpression]
 /// A record of a clinical assessment performed to determine what
@@ -11,6 +14,7 @@ import 'package:yaml/yaml.dart';
 /// is called "ClinicalImpression" rather than "ClinicalAssessment" to
 /// avoid confusion with the recording of assessment tools such as Apgar
 /// score.
+@collection
 class ClinicalImpression extends DomainResource {
   /// Primary constructor for
   /// [ClinicalImpression]
@@ -289,6 +293,9 @@ class ClinicalImpression extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClinicalImpression';
@@ -634,6 +641,7 @@ class ClinicalImpression extends DomainResource {
 /// context of the assessment. These investigations may include data
 /// generated during the assessment process, or data previously generated
 /// and recorded that is pertinent to the outcomes.
+@collection
 class ClinicalImpressionInvestigation extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalImpressionInvestigation]
@@ -728,6 +736,9 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClinicalImpressionInvestigation';
 
@@ -801,6 +812,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
 /// [ClinicalImpressionFinding]
 /// Specific findings or diagnoses that were considered likely or relevant
 /// to ongoing treatment.
+@collection
 class ClinicalImpressionFinding extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalImpressionFinding]
@@ -899,6 +911,9 @@ class ClinicalImpressionFinding extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClinicalImpressionFinding';

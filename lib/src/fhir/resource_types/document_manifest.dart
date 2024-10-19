@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'document_manifest.g.dart';
 
 /// [DocumentManifest]
 /// A collection of documents compiled for a purpose together with metadata
 /// that applies to the collection.
+@collection
 class DocumentManifest extends DomainResource {
   /// Primary constructor for
   /// [DocumentManifest]
@@ -217,6 +221,9 @@ class DocumentManifest extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DocumentManifest';
@@ -454,6 +461,7 @@ class DocumentManifest extends DomainResource {
 
 /// [DocumentManifestRelated]
 /// Related identifiers or resources associated with the DocumentManifest.
+@collection
 class DocumentManifestRelated extends BackboneElement {
   /// Primary constructor for
   /// [DocumentManifestRelated]
@@ -545,6 +553,9 @@ class DocumentManifestRelated extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DocumentManifestRelated';

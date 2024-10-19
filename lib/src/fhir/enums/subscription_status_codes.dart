@@ -1,66 +1,96 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// The status of a subscription.
-enum SubscriptionStatusCodes {
-  /// Display: Requested
-  /// Definition: The client has requested the subscription, and the server has not yet set it up.
-  requested('requested'),
+@collection
+class SubscriptionStatusCodes {
+  /// Constructor for internal use (like enum)
+  SubscriptionStatusCodes({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Active
-  /// Definition: The subscription is active.
-  active('active'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Error
-  /// Definition: The server has an error executing the notification.
-  error('error'),
-
-  /// Display: Off
-  /// Definition: Too many errors have occurred or the subscription has expired.
-  off('off'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const SubscriptionStatusCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// SubscriptionStatusCodes values
+  /// requested
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionStatusCodes requested = SubscriptionStatusCodes(
+    fhirCode: 'requested',
+  );
+
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionStatusCodes active = SubscriptionStatusCodes(
+    fhirCode: 'active',
+  );
+
+  /// error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionStatusCodes error = SubscriptionStatusCodes(
+    fhirCode: 'error',
+  );
+
+  /// off
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionStatusCodes off = SubscriptionStatusCodes(
+    fhirCode: 'off',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final SubscriptionStatusCodes elementOnly = SubscriptionStatusCodes();
+
+  /// List of all enum-like values
+  static final List<SubscriptionStatusCodes> values = [
+    requested,
+    active,
+    error,
+    off,
+  ];
+
+  /// Returns the enum value with an element attached
+  SubscriptionStatusCodes withElement(Element? newElement) {
+    return SubscriptionStatusCodes(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [SubscriptionStatusCodes] instances.
-  static SubscriptionStatusCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [SubscriptionStatusCodes] from JSON.
+  static SubscriptionStatusCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubscriptionStatusCodes.elementOnly.withElement(
-        element,
-      );
+      return SubscriptionStatusCodes.elementOnly.withElement(element);
     }
     return SubscriptionStatusCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  SubscriptionStatusCodes withElement(Element? newElement) {
-    return SubscriptionStatusCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'SubscriptionStatusCodes.$fhirCode';
 }

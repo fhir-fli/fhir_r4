@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'base64binary.g.dart';
 
 /// Extension to convert from [String] to [FhirBase64Binary]
 extension FhirBase64BinaryExtension on String {
@@ -9,10 +12,12 @@ extension FhirBase64BinaryExtension on String {
 }
 
 /// [FhirBase64Binary] class that extends [PrimitiveType]
+@collection
 class FhirBase64Binary extends PrimitiveType<String?> {
   /// Public generative constructor with validation logic
   FhirBase64Binary(String? input, [Element? element])
-      : super(
+      : dbValue = input,
+        super(
           input != null ? _validateBase64(input) : null,
           element,
         ) {
@@ -136,6 +141,17 @@ class FhirBase64Binary extends PrimitiveType<String?> {
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(value, element);
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final String? dbValue;
+
+  /// Returns the FHIR type as 'uuid'.
+  @override
+  String get fhirType => 'base64Binary';
 
   /// Creates a deep copy of the instance
   @override

@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'research_study.g.dart';
 
 /// [ResearchStudy]
 /// A process where a researcher or organization plans and then executes a
@@ -10,6 +13,7 @@ import 'package:yaml/yaml.dart';
 /// therapies and other interventional and investigative techniques. A
 /// ResearchStudy involves the gathering of information about human or
 /// animal subjects.
+@collection
 class ResearchStudy extends DomainResource {
   /// Primary constructor for
   /// [ResearchStudy]
@@ -333,6 +337,9 @@ class ResearchStudy extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ResearchStudy';
@@ -705,6 +712,7 @@ class ResearchStudy extends DomainResource {
 /// Describes an expected sequence of events for one of the participants of
 /// a study. E.g. Exposure to drug A, wash-out, exposure to drug B,
 /// wash-out, follow-up.
+@collection
 class ResearchStudyArm extends BackboneElement {
   /// Primary constructor for
   /// [ResearchStudyArm]
@@ -803,6 +811,9 @@ class ResearchStudyArm extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ResearchStudyArm';
 
@@ -894,6 +905,7 @@ class ResearchStudyArm extends BackboneElement {
 /// A goal that the study is aiming to achieve in terms of a scientific
 /// question to be answered by the analysis of data collected during the
 /// study.
+@collection
 class ResearchStudyObjective extends BackboneElement {
   /// Primary constructor for
   /// [ResearchStudyObjective]
@@ -986,6 +998,9 @@ class ResearchStudyObjective extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ResearchStudyObjective';

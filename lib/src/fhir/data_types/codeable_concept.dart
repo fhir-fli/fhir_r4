@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'codeable_concept.g.dart';
 
 /// [CodeableConcept]
 /// A concept that may be defined by a formal reference to a terminology or
 /// ontology or may be provided by text.
+@collection
 class CodeableConcept extends DataType {
   /// Primary constructor for
   /// [CodeableConcept]
@@ -91,6 +95,9 @@ class CodeableConcept extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CodeableConcept';

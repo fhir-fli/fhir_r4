@@ -1,14 +1,12 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
 
-/// [Element] Base definition for all FHIR elements.
-@collection
-class Element extends FhirBase {
-  /// Constructor for Element with optional id and extensions
-  Element({
+/// [SimpleElement] Base definition for all FHIR elements.
+class SimpleElement extends FhirBase {
+  /// Constructor for SimpleElement with optional id and extensions
+  SimpleElement({
     this.id,
     this.extension_,
     super.userData,
@@ -19,23 +17,23 @@ class Element extends FhirBase {
     super.namedChildren,
   });
 
-  /// Factory constructor for [Element] that takes in a [YamlMap] and returns
-  /// a [Element]
-  factory Element.fromYaml(dynamic yaml) => yaml is String
-      ? Element.fromJson(
+  /// Factory constructor for [SimpleElement] that takes in a
+  /// [YamlMap] and returns a [SimpleElement]
+  factory SimpleElement.fromYaml(dynamic yaml) => yaml is String
+      ? SimpleElement.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
         )
       : yaml is YamlMap
-          ? Element.fromJson(
+          ? SimpleElement.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'Element cannot be constructed from input provided,'
+              'SimpleElement cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
-  /// FromJson Factory Constructor for [Element]
-  factory Element.fromJson(Map<String, Object?> json) {
-    return Element(
+  /// FromJson Factory Constructor for [SimpleElement]
+  factory SimpleElement.fromJson(Map<String, Object?> json) {
+    return SimpleElement(
       id: (json['id'] as String?)?.toFhirString,
       extension_: json['extension'] == null
           ? <FhirExtension>[]
@@ -48,34 +46,31 @@ class Element extends FhirBase {
     );
   }
 
-  /// Factory constructor for [Element] that takes in a [String]
+  /// Factory constructor for [SimpleElement] that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Element.fromJsonString(String source) {
+  factory SimpleElement.fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
-      return Element.fromJson(json);
+      return SimpleElement.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
 
-  /// The ID of the object in the database.
-  Id dbId = Isar.autoIncrement;
-
   @override
   String get fhirType => 'Element';
 
   /// Unique id for the element within a resource
-  FhirString? id;
+  final FhirString? id;
 
   /// List of extensions for additional information
-  List<FhirExtension>? extension_;
+  final List<FhirExtension>? extension_;
 
-  /// Method to copy the current Element with modifications
+  /// Method to copy the current SimpleElement with modifications
   @override
-  Element copyWith({
+  SimpleElement copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
@@ -85,7 +80,7 @@ class Element extends FhirBase {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return Element(
+    return SimpleElement(
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       userData: userData ?? this.userData,
@@ -158,17 +153,17 @@ class Element extends FhirBase {
   }
 
   /// Implementing the setProperty method
-  Element setProperty(String name, dynamic value) {
+  SimpleElement setProperty(String name, dynamic value) {
     switch (name) {
       case 'id':
         if (value is String) {
-          return Element(id: value.toFhirString, extension_: extension_);
+          return SimpleElement(id: value.toFhirString, extension_: extension_);
         } else {
           throw ArgumentError('Invalid type for id. Expected String.');
         }
       case 'extension':
         if (value is List<FhirExtension>) {
-          return Element(id: id, extension_: value);
+          return SimpleElement(id: id, extension_: value);
         } else {
           throw ArgumentError(
             'Invalid type for extension. Expected List<FhirExtension>.',
@@ -180,17 +175,17 @@ class Element extends FhirBase {
   }
 
   /// Optionally, if we want to use hashes like in Java:
-  Element setPropertyByHash(int hash, dynamic value) {
+  SimpleElement setPropertyByHash(int hash, dynamic value) {
     switch (hash) {
       case 3355: // hash for 'id'
         if (value is String) {
-          return Element(id: value.toFhirString, extension_: extension_);
+          return SimpleElement(id: value.toFhirString, extension_: extension_);
         } else {
           throw ArgumentError('Invalid type for id. Expected String.');
         }
       case -612557761: // hash for 'extension'
         if (value is List<FhirExtension>) {
-          return Element(id: id, extension_: value);
+          return SimpleElement(id: id, extension_: value);
         } else {
           throw ArgumentError(
             'Invalid type for extension. Expected List<FhirExtension>.',
@@ -203,7 +198,7 @@ class Element extends FhirBase {
 
   @override
   bool equalsDeep(FhirBase? other) {
-    if (other == null || other is! Element) {
+    if (other == null || other is! SimpleElement) {
       return false;
     }
 
@@ -211,7 +206,7 @@ class Element extends FhirBase {
   }
 
   /// Method to compare shallow equality of two elements
-  bool equalsShallow(Element other) {
+  bool equalsShallow(SimpleElement other) {
     return id == other.id;
   }
 
@@ -221,8 +216,8 @@ class Element extends FhirBase {
   }
 
   /// Method to copy the current element
-  Element copy() {
-    final copiedElement = Element(
+  SimpleElement copy() {
+    final copiedElement = SimpleElement(
       id: id,
       extension_: extension_ == null
           ? null

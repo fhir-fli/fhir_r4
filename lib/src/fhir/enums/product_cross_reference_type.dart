@@ -1,74 +1,118 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// Relationship to another Medicinal Product.
-enum ProductCrossReferenceType {
-  /// Display: Link to Investigational Product
-  /// Definition: Link to Investigational (Development) Product
-  InvestigationalProduct('InvestigationalProduct'),
+@collection
+class ProductCrossReferenceType {
+  /// Constructor for internal use (like enum)
+  ProductCrossReferenceType({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Link Actual to Virtual Product
-  /// Definition: Link Actual to Virtual Product
-  VirtualProduct('VirtualProduct'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Link Virtual to Actual Product
-  /// Definition: Link Virtual to Actual Product
-  ActualProduct('ActualProduct'),
-
-  /// Display: Link Generic to Branded Product
-  /// Definition: Link Generic to Branded Product
-  BrandedProduct('BrandedProduct'),
-
-  /// Display: Link Branded to Generic Product
-  /// Definition: Link Branded to Generic Product
-  GenericProduct('GenericProduct'),
-
-  /// Display: Link to Parallel Import Product
-  /// Definition: Link to Parallel Import Product
-  Parallel('Parallel'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ProductCrossReferenceType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// ProductCrossReferenceType values
+  /// InvestigationalProduct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProductCrossReferenceType InvestigationalProduct =
+      ProductCrossReferenceType(
+    fhirCode: 'InvestigationalProduct',
+  );
+
+  /// VirtualProduct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProductCrossReferenceType VirtualProduct =
+      ProductCrossReferenceType(
+    fhirCode: 'VirtualProduct',
+  );
+
+  /// ActualProduct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProductCrossReferenceType ActualProduct =
+      ProductCrossReferenceType(
+    fhirCode: 'ActualProduct',
+  );
+
+  /// BrandedProduct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProductCrossReferenceType BrandedProduct =
+      ProductCrossReferenceType(
+    fhirCode: 'BrandedProduct',
+  );
+
+  /// GenericProduct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProductCrossReferenceType GenericProduct =
+      ProductCrossReferenceType(
+    fhirCode: 'GenericProduct',
+  );
+
+  /// Parallel
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProductCrossReferenceType Parallel = ProductCrossReferenceType(
+    fhirCode: 'Parallel',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ProductCrossReferenceType elementOnly =
+      ProductCrossReferenceType();
+
+  /// List of all enum-like values
+  static final List<ProductCrossReferenceType> values = [
+    InvestigationalProduct,
+    VirtualProduct,
+    ActualProduct,
+    BrandedProduct,
+    GenericProduct,
+    Parallel,
+  ];
+
+  /// Returns the enum value with an element attached
+  ProductCrossReferenceType withElement(Element? newElement) {
+    return ProductCrossReferenceType(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ProductCrossReferenceType] instances.
-  static ProductCrossReferenceType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ProductCrossReferenceType] from JSON.
+  static ProductCrossReferenceType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ProductCrossReferenceType.elementOnly.withElement(
-        element,
-      );
+      return ProductCrossReferenceType.elementOnly.withElement(element);
     }
     return ProductCrossReferenceType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ProductCrossReferenceType withElement(Element? newElement) {
-    return ProductCrossReferenceType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ProductCrossReferenceType.$fhirCode';
 }

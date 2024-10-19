@@ -1,98 +1,160 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// Color of the container cap.
-enum ContainerCap {
-  /// Display: red cap
-  /// Definition: red cap.
-  red('red'),
+@collection
+class ContainerCap {
+  /// Constructor for internal use (like enum)
+  ContainerCap({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: yellow cap
-  /// Definition: yellow cap.
-  yellow('yellow'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: dark yellow cap
-  /// Definition: dark yellow cap.
-  dark_yellow('dark-yellow'),
-
-  /// Display: grey cap
-  /// Definition: grey cap.
-  grey('grey'),
-
-  /// Display: light blue cap
-  /// Definition: light blue cap.
-  light_blue('light-blue'),
-
-  /// Display: black cap
-  /// Definition: black cap.
-  black('black'),
-
-  /// Display: green cap
-  /// Definition: green cap.
-  green('green'),
-
-  /// Display: light green cap
-  /// Definition: light green cap.
-  light_green('light-green'),
-
-  /// Display: lavender cap
-  /// Definition: lavender cap.
-  lavender('lavender'),
-
-  /// Display: brown cap
-  /// Definition: brown cap.
-  brown('brown'),
-
-  /// Display: white cap
-  /// Definition: white cap.
-  white('white'),
-
-  /// Display: pink cap
-  /// Definition: pink cap.
-  pink('pink'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ContainerCap(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// ContainerCap values
+  /// red
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap red = ContainerCap(
+    fhirCode: 'red',
+  );
+
+  /// yellow
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap yellow = ContainerCap(
+    fhirCode: 'yellow',
+  );
+
+  /// dark_yellow
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap dark_yellow = ContainerCap(
+    fhirCode: 'dark-yellow',
+  );
+
+  /// grey
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap grey = ContainerCap(
+    fhirCode: 'grey',
+  );
+
+  /// light_blue
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap light_blue = ContainerCap(
+    fhirCode: 'light-blue',
+  );
+
+  /// black
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap black = ContainerCap(
+    fhirCode: 'black',
+  );
+
+  /// green
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap green = ContainerCap(
+    fhirCode: 'green',
+  );
+
+  /// light_green
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap light_green = ContainerCap(
+    fhirCode: 'light-green',
+  );
+
+  /// lavender
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap lavender = ContainerCap(
+    fhirCode: 'lavender',
+  );
+
+  /// brown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap brown = ContainerCap(
+    fhirCode: 'brown',
+  );
+
+  /// white
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap white = ContainerCap(
+    fhirCode: 'white',
+  );
+
+  /// pink
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap pink = ContainerCap(
+    fhirCode: 'pink',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ContainerCap elementOnly = ContainerCap();
+
+  /// List of all enum-like values
+  static final List<ContainerCap> values = [
+    red,
+    yellow,
+    dark_yellow,
+    grey,
+    light_blue,
+    black,
+    green,
+    light_green,
+    lavender,
+    brown,
+    white,
+    pink,
+  ];
+
+  /// Returns the enum value with an element attached
+  ContainerCap withElement(Element? newElement) {
+    return ContainerCap(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ContainerCap] instances.
-  static ContainerCap fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ContainerCap] from JSON.
+  static ContainerCap fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContainerCap.elementOnly.withElement(
-        element,
-      );
+      return ContainerCap.elementOnly.withElement(element);
     }
     return ContainerCap.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ContainerCap withElement(Element? newElement) {
-    return ContainerCap.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ContainerCap.$fhirCode';
 }

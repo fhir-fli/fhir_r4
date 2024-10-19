@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'communication.g.dart';
 
 /// [Communication]
 /// An occurrence of information being transmitted; e.g. an alert that was
 /// sent to a responsible provider, a public health agency that was
 /// notified about a reportable condition.
+@collection
 class Communication extends DomainResource {
   /// Primary constructor for
   /// [Communication]
@@ -312,6 +316,9 @@ class Communication extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Communication';
@@ -682,6 +689,7 @@ class Communication extends DomainResource {
 /// [CommunicationPayload]
 /// Text, attachment(s), or resource(s) that was communicated to the
 /// recipient.
+@collection
 class CommunicationPayload extends BackboneElement {
   /// Primary constructor for
   /// [CommunicationPayload]
@@ -781,6 +789,9 @@ class CommunicationPayload extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CommunicationPayload';

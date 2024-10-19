@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'example_scenario.g.dart';
 
 /// [ExampleScenario]
 /// Example of workflow instance.
+@collection
 class ExampleScenario extends DomainResource {
   /// Primary constructor for
   /// [ExampleScenario]
@@ -260,6 +264,9 @@ class ExampleScenario extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExampleScenario';
@@ -593,6 +600,7 @@ class ExampleScenario extends DomainResource {
 
 /// [ExampleScenarioActor]
 /// Actor participating in the resource.
+@collection
 class ExampleScenarioActor extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioActor]
@@ -697,6 +705,9 @@ class ExampleScenarioActor extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ExampleScenarioActor';
 
@@ -800,6 +811,7 @@ class ExampleScenarioActor extends BackboneElement {
 
 /// [ExampleScenarioInstance]
 /// Each resource and each version that is present in the workflow.
+@collection
 class ExampleScenarioInstance extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioInstance]
@@ -923,6 +935,9 @@ class ExampleScenarioInstance extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExampleScenarioInstance';
@@ -1049,6 +1064,7 @@ class ExampleScenarioInstance extends BackboneElement {
 
 /// [ExampleScenarioVersion]
 /// A specific version of the resource.
+@collection
 class ExampleScenarioVersion extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioVersion]
@@ -1139,6 +1155,9 @@ class ExampleScenarioVersion extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ExampleScenarioVersion';
 
@@ -1215,6 +1234,7 @@ class ExampleScenarioVersion extends BackboneElement {
 /// [ExampleScenarioContainedInstance]
 /// Resources contained in the instance (e.g. the observations contained in
 /// a bundle).
+@collection
 class ExampleScenarioContainedInstance extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioContainedInstance]
@@ -1307,6 +1327,9 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ExampleScenarioContainedInstance';
 
@@ -1384,6 +1407,7 @@ class ExampleScenarioContainedInstance extends BackboneElement {
 
 /// [ExampleScenarioProcess]
 /// Each major process - a group of operations.
+@collection
 class ExampleScenarioProcess extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioProcess]
@@ -1502,6 +1526,9 @@ class ExampleScenarioProcess extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ExampleScenarioProcess';
 
@@ -1617,6 +1644,7 @@ class ExampleScenarioProcess extends BackboneElement {
 
 /// [ExampleScenarioStep]
 /// Each step of the process.
+@collection
 class ExampleScenarioStep extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioStep]
@@ -1730,6 +1758,9 @@ class ExampleScenarioStep extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ExampleScenarioStep';
 
@@ -1826,6 +1857,7 @@ class ExampleScenarioStep extends BackboneElement {
 
 /// [ExampleScenarioOperation]
 /// Each interaction or action.
+@collection
 class ExampleScenarioOperation extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioOperation]
@@ -1961,6 +1993,9 @@ class ExampleScenarioOperation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExampleScenarioOperation';
@@ -2124,6 +2159,7 @@ class ExampleScenarioOperation extends BackboneElement {
 /// [ExampleScenarioAlternative]
 /// Indicates an alternative step that can be taken instead of the
 /// operations on the base step in exceptional/atypical circumstances.
+@collection
 class ExampleScenarioAlternative extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioAlternative]
@@ -2215,6 +2251,9 @@ class ExampleScenarioAlternative extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ExampleScenarioAlternative';

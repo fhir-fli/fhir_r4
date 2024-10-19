@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'operation_definition.g.dart';
 
 /// [OperationDefinition]
 /// A formal computable definition of an operation (on the RESTful
 /// interface) or a named query (using the search interaction).
+@collection
 class OperationDefinition extends DomainResource {
   /// Primary constructor for
   /// [OperationDefinition]
@@ -309,6 +313,9 @@ class OperationDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'OperationDefinition';
@@ -773,6 +780,7 @@ class OperationDefinition extends DomainResource {
 
 /// [OperationDefinitionParameter]
 /// The parameters for the operation/query.
+@collection
 class OperationDefinitionParameter extends BackboneElement {
   /// Primary constructor for
   /// [OperationDefinitionParameter]
@@ -926,6 +934,9 @@ class OperationDefinitionParameter extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'OperationDefinitionParameter';
@@ -1125,6 +1136,7 @@ class OperationDefinitionParameter extends BackboneElement {
 /// [OperationDefinitionBinding]
 /// Binds to a value set if this parameter is coded (code, Coding,
 /// CodeableConcept).
+@collection
 class OperationDefinitionBinding extends BackboneElement {
   /// Primary constructor for
   /// [OperationDefinitionBinding]
@@ -1215,6 +1227,9 @@ class OperationDefinitionBinding extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'OperationDefinitionBinding';
 
@@ -1294,6 +1309,7 @@ class OperationDefinitionBinding extends BackboneElement {
 /// [OperationDefinitionReferencedFrom]
 /// Identifies other resource parameters within the operation invocation
 /// that are expected to resolve to this resource.
+@collection
 class OperationDefinitionReferencedFrom extends BackboneElement {
   /// Primary constructor for
   /// [OperationDefinitionReferencedFrom]
@@ -1386,6 +1402,9 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'OperationDefinitionReferencedFrom';
 
@@ -1468,6 +1487,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
 /// Defines an appropriate combination of parameters to use when invoking
 /// this operation, to help code generators when generating overloaded
 /// parameter sets for this operation.
+@collection
 class OperationDefinitionOverload extends BackboneElement {
   /// Primary constructor for
   /// [OperationDefinitionOverload]
@@ -1560,6 +1580,9 @@ class OperationDefinitionOverload extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'OperationDefinitionOverload';

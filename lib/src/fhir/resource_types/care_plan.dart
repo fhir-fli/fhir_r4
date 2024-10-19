@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'care_plan.g.dart';
 
 /// [CarePlan]
 /// Describes the intention of how one or more practitioners intend to
 /// deliver care for a particular patient, group or community for a period
 /// of time, possibly limited to care for a specific condition or set of
 /// conditions.
+@collection
 class CarePlan extends DomainResource {
   /// Primary constructor for
   /// [CarePlan]
@@ -310,6 +314,9 @@ class CarePlan extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CarePlan';
@@ -682,6 +689,7 @@ class CarePlan extends DomainResource {
 /// Identifies a planned action to occur as part of the plan. For example,
 /// a medication to be used, lab tests to perform, self-monitoring,
 /// education, etc.
+@collection
 class CarePlanActivity extends BackboneElement {
   /// Primary constructor for
   /// [CarePlanActivity]
@@ -804,6 +812,9 @@ class CarePlanActivity extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CarePlanActivity';
 
@@ -919,6 +930,7 @@ class CarePlanActivity extends BackboneElement {
 /// A simple summary of a planned activity suitable for a general care plan
 /// system (e.g. form driven) that doesn't know about specific resources
 /// such as procedure etc.
+@collection
 class CarePlanDetail extends BackboneElement {
   /// Primary constructor for
   /// [CarePlanDetail]
@@ -1139,6 +1151,9 @@ class CarePlanDetail extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CarePlanDetail';

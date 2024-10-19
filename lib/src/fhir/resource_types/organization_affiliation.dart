@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'organization_affiliation.g.dart';
 
 /// [OrganizationAffiliation]
 /// Defines an affiliation/assotiation/relationship between 2 distinct
 /// oganizations, that is not a part-of relationship/sub-division
 /// relationship.
+@collection
 class OrganizationAffiliation extends DomainResource {
   /// Primary constructor for
   /// [OrganizationAffiliation]
@@ -229,6 +233,9 @@ class OrganizationAffiliation extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'OrganizationAffiliation';

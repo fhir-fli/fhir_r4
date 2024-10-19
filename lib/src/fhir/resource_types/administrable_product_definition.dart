@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'administrable_product_definition.g.dart';
 
 /// [AdministrableProductDefinition]
 /// A medicinal product in the final form which is suitable for
 /// administering to a patient (after any mixing of multiple components,
 /// dissolution etc. has been performed).
+@collection
 class AdministrableProductDefinition extends DomainResource {
   /// Primary constructor for
   /// [AdministrableProductDefinition]
@@ -208,6 +212,9 @@ class AdministrableProductDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'AdministrableProductDefinition';
@@ -437,6 +444,7 @@ class AdministrableProductDefinition extends DomainResource {
 
 /// [AdministrableProductDefinitionProperty]
 /// Characteristics e.g. a product's onset of action.
+@collection
 class AdministrableProductDefinitionProperty extends BackboneElement {
   /// Primary constructor for
   /// [AdministrableProductDefinitionProperty]
@@ -559,6 +567,9 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'AdministrableProductDefinitionProperty';
@@ -690,6 +701,7 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
 /// body. In some regions this is referred to as the licenced or approved
 /// route. RouteOfAdministration cannot be used when the 'formOf' product
 /// already uses MedicinalProductDefinition.route (and vice versa).
+@collection
 class AdministrableProductDefinitionRouteOfAdministration
     extends BackboneElement {
   /// Primary constructor for
@@ -814,6 +826,9 @@ class AdministrableProductDefinitionRouteOfAdministration
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'AdministrableProductDefinitionRouteOfAdministration';
@@ -940,6 +955,7 @@ class AdministrableProductDefinitionRouteOfAdministration
 
 /// [AdministrableProductDefinitionTargetSpecies]
 /// A species for which this route applies.
+@collection
 class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
   /// Primary constructor for
   /// [AdministrableProductDefinitionTargetSpecies]
@@ -1034,6 +1050,9 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'AdministrableProductDefinitionTargetSpecies';
 
@@ -1107,6 +1126,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
 /// [AdministrableProductDefinitionWithdrawalPeriod]
 /// A species specific time during which consumption of animal product is
 /// not appropriate.
+@collection
 class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
   /// Primary constructor for
   /// [AdministrableProductDefinitionWithdrawalPeriod]
@@ -1202,6 +1222,9 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'AdministrableProductDefinitionWithdrawalPeriod';

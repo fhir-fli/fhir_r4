@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'citation.g.dart';
 
 /// [Citation]
 /// The Citation Resource enables reference to any knowledge artifact for
@@ -8,6 +11,7 @@ import 'package:yaml/yaml.dart';
 /// supports existing reference structures and developing publication
 /// practices such as versioning, expressing complex contributorship roles,
 /// and referencing computable resources.
+@collection
 class Citation extends DomainResource {
   /// Primary constructor for
   /// [Citation]
@@ -370,6 +374,9 @@ class Citation extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Citation';
@@ -836,6 +843,7 @@ class Citation extends DomainResource {
 
 /// [CitationSummary]
 /// A human-readable display of the citation.
+@collection
 class CitationSummary extends BackboneElement {
   /// Primary constructor for
   /// [CitationSummary]
@@ -927,6 +935,9 @@ class CitationSummary extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationSummary';
 
@@ -1000,6 +1011,7 @@ class CitationSummary extends BackboneElement {
 
 /// [CitationClassification]
 /// The assignment to an organizing scheme.
+@collection
 class CitationClassification extends BackboneElement {
   /// Primary constructor for
   /// [CitationClassification]
@@ -1096,6 +1108,9 @@ class CitationClassification extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationClassification';
 
@@ -1167,6 +1182,7 @@ class CitationClassification extends BackboneElement {
 
 /// [CitationStatusDate]
 /// An effective date or period for a status of the citation.
+@collection
 class CitationStatusDate extends BackboneElement {
   /// Primary constructor for
   /// [CitationStatusDate]
@@ -1262,6 +1278,9 @@ class CitationStatusDate extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationStatusDate';
 
@@ -1343,6 +1362,7 @@ class CitationStatusDate extends BackboneElement {
 
 /// [CitationRelatesTo]
 /// Artifact related to the Citation Resource.
+@collection
 class CitationRelatesTo extends BackboneElement {
   /// Primary constructor for
   /// [CitationRelatesTo]
@@ -1462,6 +1482,9 @@ class CitationRelatesTo extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationRelatesTo';
 
@@ -1576,6 +1599,7 @@ class CitationRelatesTo extends BackboneElement {
 
 /// [CitationCitedArtifact]
 /// The article or artifact being described.
+@collection
 class CitationCitedArtifact extends BackboneElement {
   /// Primary constructor for
   /// [CitationCitedArtifact]
@@ -1792,6 +1816,9 @@ class CitationCitedArtifact extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationCitedArtifact';
 
@@ -2004,6 +2031,7 @@ class CitationCitedArtifact extends BackboneElement {
 
 /// [CitationVersion]
 /// The defined version of the cited artifact.
+@collection
 class CitationVersion extends BackboneElement {
   /// Primary constructor for
   /// [CitationVersion]
@@ -2095,6 +2123,9 @@ class CitationVersion extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationVersion';
 
@@ -2168,6 +2199,7 @@ class CitationVersion extends BackboneElement {
 
 /// [CitationStatusDate1]
 /// An effective date or period for a status of the cited artifact.
+@collection
 class CitationStatusDate1 extends BackboneElement {
   /// Primary constructor for
   /// [CitationStatusDate1]
@@ -2263,6 +2295,9 @@ class CitationStatusDate1 extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationStatusDate1';
 
@@ -2344,6 +2379,7 @@ class CitationStatusDate1 extends BackboneElement {
 
 /// [CitationTitle]
 /// The title details of the article or artifact.
+@collection
 class CitationTitle extends BackboneElement {
   /// Primary constructor for
   /// [CitationTitle]
@@ -2445,6 +2481,9 @@ class CitationTitle extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationTitle';
 
@@ -2528,6 +2567,7 @@ class CitationTitle extends BackboneElement {
 
 /// [CitationAbstract]
 /// Summary of the article or artifact.
+@collection
 class CitationAbstract extends BackboneElement {
   /// Primary constructor for
   /// [CitationAbstract]
@@ -2632,6 +2672,9 @@ class CitationAbstract extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationAbstract';
 
@@ -2729,6 +2772,7 @@ class CitationAbstract extends BackboneElement {
 
 /// [CitationPart]
 /// The component of the article or artifact.
+@collection
 class CitationPart extends BackboneElement {
   /// Primary constructor for
   /// [CitationPart]
@@ -2828,6 +2872,9 @@ class CitationPart extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationPart';
 
@@ -2913,6 +2960,7 @@ class CitationPart extends BackboneElement {
 
 /// [CitationRelatesTo1]
 /// The artifact related to the cited artifact.
+@collection
 class CitationRelatesTo1 extends BackboneElement {
   /// Primary constructor for
   /// [CitationRelatesTo1]
@@ -3032,6 +3080,9 @@ class CitationRelatesTo1 extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationRelatesTo1';
 
@@ -3147,6 +3198,7 @@ class CitationRelatesTo1 extends BackboneElement {
 /// [CitationPublicationForm]
 /// If multiple, used to represent alternative forms of the article that
 /// are not separate citations.
+@collection
 class CitationPublicationForm extends BackboneElement {
   /// Primary constructor for
   /// [CitationPublicationForm]
@@ -3306,6 +3358,9 @@ class CitationPublicationForm extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CitationPublicationForm';
@@ -3502,6 +3557,7 @@ class CitationPublicationForm extends BackboneElement {
 
 /// [CitationPublishedIn]
 /// The collection the cited article or artifact is published in.
+@collection
 class CitationPublishedIn extends BackboneElement {
   /// Primary constructor for
   /// [CitationPublishedIn]
@@ -3619,6 +3675,9 @@ class CitationPublishedIn extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationPublishedIn';
 
@@ -3729,6 +3788,7 @@ class CitationPublishedIn extends BackboneElement {
 
 /// [CitationPeriodicRelease]
 /// The specific issue in which the cited article resides.
+@collection
 class CitationPeriodicRelease extends BackboneElement {
   /// Primary constructor for
   /// [CitationPeriodicRelease]
@@ -3835,6 +3895,9 @@ class CitationPeriodicRelease extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationPeriodicRelease';
 
@@ -3935,6 +3998,7 @@ class CitationPeriodicRelease extends BackboneElement {
 
 /// [CitationDateOfPublication]
 /// Defining the date on which the issue of the journal was published.
+@collection
 class CitationDateOfPublication extends BackboneElement {
   /// Primary constructor for
   /// [CitationDateOfPublication]
@@ -4056,6 +4120,9 @@ class CitationDateOfPublication extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CitationDateOfPublication';
@@ -4193,6 +4260,7 @@ class CitationDateOfPublication extends BackboneElement {
 
 /// [CitationWebLocation]
 /// Used for any URL for the article or artifact cited.
+@collection
 class CitationWebLocation extends BackboneElement {
   /// Primary constructor for
   /// [CitationWebLocation]
@@ -4286,6 +4354,9 @@ class CitationWebLocation extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationWebLocation';
 
@@ -4361,6 +4432,7 @@ class CitationWebLocation extends BackboneElement {
 
 /// [CitationClassification1]
 /// The assignment to an organizing scheme.
+@collection
 class CitationClassification1 extends BackboneElement {
   /// Primary constructor for
   /// [CitationClassification1]
@@ -4463,6 +4535,9 @@ class CitationClassification1 extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationClassification1';
 
@@ -4544,6 +4619,7 @@ class CitationClassification1 extends BackboneElement {
 
 /// [CitationWhoClassified]
 /// Provenance and copyright of classification.
+@collection
 class CitationWhoClassified extends BackboneElement {
   /// Primary constructor for
   /// [CitationWhoClassified]
@@ -4657,6 +4733,9 @@ class CitationWhoClassified extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationWhoClassified';
 
@@ -4768,6 +4847,7 @@ class CitationWhoClassified extends BackboneElement {
 /// [CitationContributorship]
 /// This element is used to list authors and other contributors, their
 /// contact information, specific contributions, and summary statements.
+@collection
 class CitationContributorship extends BackboneElement {
   /// Primary constructor for
   /// [CitationContributorship]
@@ -4875,6 +4955,9 @@ class CitationContributorship extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationContributorship';
 
@@ -4961,6 +5044,7 @@ class CitationContributorship extends BackboneElement {
 
 /// [CitationEntry]
 /// An individual entity named in the author list or contributor list.
+@collection
 class CitationEntry extends BackboneElement {
   /// Primary constructor for
   /// [CitationEntry]
@@ -5142,6 +5226,9 @@ class CitationEntry extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CitationEntry';
@@ -5335,6 +5422,7 @@ class CitationEntry extends BackboneElement {
 
 /// [CitationAffiliationInfo]
 /// Organization affiliated with the entity.
+@collection
 class CitationAffiliationInfo extends BackboneElement {
   /// Primary constructor for
   /// [CitationAffiliationInfo]
@@ -5439,6 +5527,9 @@ class CitationAffiliationInfo extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationAffiliationInfo';
 
@@ -5528,6 +5619,7 @@ class CitationAffiliationInfo extends BackboneElement {
 
 /// [CitationContributionInstance]
 /// Contributions with accounting for time or number.
+@collection
 class CitationContributionInstance extends BackboneElement {
   /// Primary constructor for
   /// [CitationContributionInstance]
@@ -5619,6 +5711,9 @@ class CitationContributionInstance extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CitationContributionInstance';
 
@@ -5693,6 +5788,7 @@ class CitationContributionInstance extends BackboneElement {
 /// [CitationSummary1]
 /// Used to record a display of the author/contributor list without
 /// separate coding for each list member.
+@collection
 class CitationSummary1 extends BackboneElement {
   /// Primary constructor for
   /// [CitationSummary1]
@@ -5795,6 +5891,9 @@ class CitationSummary1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CitationSummary1';

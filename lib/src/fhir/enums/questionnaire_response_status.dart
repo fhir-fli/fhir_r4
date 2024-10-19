@@ -1,70 +1,110 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// Lifecycle status of the questionnaire response.
-enum QuestionnaireResponseStatus {
-  /// Display: In Progress
-  /// Definition: This QuestionnaireResponse has been partially filled out with answers but changes or additions are still expected to be made to it.
-  in_progress('in-progress'),
+@collection
+class QuestionnaireResponseStatus {
+  /// Constructor for internal use (like enum)
+  QuestionnaireResponseStatus({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Completed
-  /// Definition: This QuestionnaireResponse has been filled out with answers and the current content is regarded as definitive.
-  completed('completed'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Amended
-  /// Definition: This QuestionnaireResponse has been filled out with answers, then marked as complete, yet changes or additions have been made to it afterwards.
-  amended('amended'),
-
-  /// Display: Entered in Error
-  /// Definition: This QuestionnaireResponse was entered in error and voided.
-  entered_in_error('entered-in-error'),
-
-  /// Display: Stopped
-  /// Definition: This QuestionnaireResponse has been partially filled out with answers but has been abandoned. It is unknown whether changes or additions are expected to be made to it.
-  stopped('stopped'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const QuestionnaireResponseStatus(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// QuestionnaireResponseStatus values
+  /// in_progress
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuestionnaireResponseStatus in_progress =
+      QuestionnaireResponseStatus(
+    fhirCode: 'in-progress',
+  );
+
+  /// completed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuestionnaireResponseStatus completed =
+      QuestionnaireResponseStatus(
+    fhirCode: 'completed',
+  );
+
+  /// amended
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuestionnaireResponseStatus amended =
+      QuestionnaireResponseStatus(
+    fhirCode: 'amended',
+  );
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuestionnaireResponseStatus entered_in_error =
+      QuestionnaireResponseStatus(
+    fhirCode: 'entered-in-error',
+  );
+
+  /// stopped
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuestionnaireResponseStatus stopped =
+      QuestionnaireResponseStatus(
+    fhirCode: 'stopped',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final QuestionnaireResponseStatus elementOnly =
+      QuestionnaireResponseStatus();
+
+  /// List of all enum-like values
+  static final List<QuestionnaireResponseStatus> values = [
+    in_progress,
+    completed,
+    amended,
+    entered_in_error,
+    stopped,
+  ];
+
+  /// Returns the enum value with an element attached
+  QuestionnaireResponseStatus withElement(Element? newElement) {
+    return QuestionnaireResponseStatus(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [QuestionnaireResponseStatus] instances.
-  static QuestionnaireResponseStatus fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [QuestionnaireResponseStatus] from JSON.
+  static QuestionnaireResponseStatus fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QuestionnaireResponseStatus.elementOnly.withElement(
-        element,
-      );
+      return QuestionnaireResponseStatus.elementOnly.withElement(element);
     }
     return QuestionnaireResponseStatus.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  QuestionnaireResponseStatus withElement(Element? newElement) {
-    return QuestionnaireResponseStatus.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'QuestionnaireResponseStatus.$fhirCode';
 }

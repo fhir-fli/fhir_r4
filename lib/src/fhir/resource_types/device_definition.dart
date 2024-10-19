@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'device_definition.g.dart';
 
 /// [DeviceDefinition]
 /// The characteristics, operational status and capabilities of a
 /// medical-related component of a medical device.
+@collection
 class DeviceDefinition extends DomainResource {
   /// Primary constructor for
   /// [DeviceDefinition]
@@ -315,6 +319,9 @@ class DeviceDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DeviceDefinition';
@@ -676,6 +683,7 @@ class DeviceDefinition extends DomainResource {
 /// Note that the Device may include multiple udiCarriers as it either may
 /// include just the udiCarrier for the jurisdiction it is sold, or for
 /// multiple jurisdictions it could have been sold.
+@collection
 class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   /// Primary constructor for
   /// [DeviceDefinitionUdiDeviceIdentifier]
@@ -771,6 +779,9 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'DeviceDefinitionUdiDeviceIdentifier';
 
@@ -860,6 +871,7 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
 
 /// [DeviceDefinitionDeviceName]
 /// A name given to the device to identify it.
+@collection
 class DeviceDefinitionDeviceName extends BackboneElement {
   /// Primary constructor for
   /// [DeviceDefinitionDeviceName]
@@ -950,6 +962,9 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'DeviceDefinitionDeviceName';
 
@@ -1029,6 +1044,7 @@ class DeviceDefinitionDeviceName extends BackboneElement {
 /// The capabilities supported on a device, the standards to which the
 /// device conforms for a particular purpose, and used for the
 /// communication.
+@collection
 class DeviceDefinitionSpecialization extends BackboneElement {
   /// Primary constructor for
   /// [DeviceDefinitionSpecialization]
@@ -1121,6 +1137,9 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'DeviceDefinitionSpecialization';
 
@@ -1198,6 +1217,7 @@ class DeviceDefinitionSpecialization extends BackboneElement {
 
 /// [DeviceDefinitionCapability]
 /// Device capabilities.
+@collection
 class DeviceDefinitionCapability extends BackboneElement {
   /// Primary constructor for
   /// [DeviceDefinitionCapability]
@@ -1292,6 +1312,9 @@ class DeviceDefinitionCapability extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'DeviceDefinitionCapability';
 
@@ -1362,6 +1385,7 @@ class DeviceDefinitionCapability extends BackboneElement {
 /// [DeviceDefinitionProperty]
 /// The actual configuration settings of a device as it actually operates,
 /// e.g., regulation status, time properties.
+@collection
 class DeviceDefinitionProperty extends BackboneElement {
   /// Primary constructor for
   /// [DeviceDefinitionProperty]
@@ -1466,6 +1490,9 @@ class DeviceDefinitionProperty extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'DeviceDefinitionProperty';
 
@@ -1546,6 +1573,7 @@ class DeviceDefinitionProperty extends BackboneElement {
 
 /// [DeviceDefinitionMaterial]
 /// A substance used to create the material(s) of which the device is made.
+@collection
 class DeviceDefinitionMaterial extends BackboneElement {
   /// Primary constructor for
   /// [DeviceDefinitionMaterial]
@@ -1644,6 +1672,9 @@ class DeviceDefinitionMaterial extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DeviceDefinitionMaterial';

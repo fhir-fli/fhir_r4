@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'claim_response.g.dart';
 
 /// [ClaimResponse]
 /// This resource provides the adjudication details from the processing of
 /// a Claim resource.
+@collection
 class ClaimResponse extends DomainResource {
   /// Primary constructor for
   /// [ClaimResponse]
@@ -303,6 +307,9 @@ class ClaimResponse extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClaimResponse';
@@ -684,6 +691,7 @@ class ClaimResponse extends DomainResource {
 /// [ClaimResponseItem]
 /// A claim line. Either a simple (a product or service) or a 'group' of
 /// details which can also be a simple items or groups of sub-details.
+@collection
 class ClaimResponseItem extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseItem]
@@ -795,6 +803,9 @@ class ClaimResponseItem extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClaimResponseItem';
 
@@ -896,6 +907,7 @@ class ClaimResponseItem extends BackboneElement {
 /// If this item is a group then the values here are a summary of the
 /// adjudication of the detail items. If this item is a simple product or
 /// service then this is the result of the adjudication of this item.
+@collection
 class ClaimResponseAdjudication extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseAdjudication]
@@ -999,6 +1011,9 @@ class ClaimResponseAdjudication extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClaimResponseAdjudication';
 
@@ -1100,6 +1115,7 @@ class ClaimResponseAdjudication extends BackboneElement {
 /// [ClaimResponseDetail]
 /// A claim detail. Either a simple (a product or service) or a 'group' of
 /// sub-details which are simple items.
+@collection
 class ClaimResponseDetail extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseDetail]
@@ -1201,6 +1217,9 @@ class ClaimResponseDetail extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClaimResponseDetail';
 
@@ -1289,6 +1308,7 @@ class ClaimResponseDetail extends BackboneElement {
 
 /// [ClaimResponseSubDetail]
 /// A sub-detail adjudication of a simple product or service.
+@collection
 class ClaimResponseSubDetail extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseSubDetail]
@@ -1380,6 +1400,9 @@ class ClaimResponseSubDetail extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClaimResponseSubDetail';
 
@@ -1459,6 +1482,7 @@ class ClaimResponseSubDetail extends BackboneElement {
 /// [ClaimResponseAddItem]
 /// The first-tier service adjudications for payor added product or service
 /// lines.
+@collection
 class ClaimResponseAddItem extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseAddItem]
@@ -1679,6 +1703,9 @@ class ClaimResponseAddItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClaimResponseAddItem';
@@ -1971,6 +1998,7 @@ class ClaimResponseAddItem extends BackboneElement {
 
 /// [ClaimResponseDetail1]
 /// The second-tier service adjudications for payor added services.
+@collection
 class ClaimResponseDetail1 extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseDetail1]
@@ -2105,6 +2133,9 @@ class ClaimResponseDetail1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClaimResponseDetail1';
@@ -2253,6 +2284,7 @@ class ClaimResponseDetail1 extends BackboneElement {
 
 /// [ClaimResponseSubDetail1]
 /// The third-tier service adjudications for payor added services.
+@collection
 class ClaimResponseSubDetail1 extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseSubDetail1]
@@ -2377,6 +2409,9 @@ class ClaimResponseSubDetail1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClaimResponseSubDetail1';
@@ -2515,6 +2550,7 @@ class ClaimResponseSubDetail1 extends BackboneElement {
 
 /// [ClaimResponseTotal]
 /// Categorized monetary totals for the adjudication.
+@collection
 class ClaimResponseTotal extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseTotal]
@@ -2603,6 +2639,9 @@ class ClaimResponseTotal extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClaimResponseTotal';
 
@@ -2674,6 +2713,7 @@ class ClaimResponseTotal extends BackboneElement {
 
 /// [ClaimResponsePayment]
 /// Payment details for the adjudication of the claim.
+@collection
 class ClaimResponsePayment extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponsePayment]
@@ -2786,6 +2826,9 @@ class ClaimResponsePayment extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClaimResponsePayment';
@@ -2902,6 +2945,7 @@ class ClaimResponsePayment extends BackboneElement {
 /// [ClaimResponseProcessNote]
 /// A note that describes or explains adjudication results in a human
 /// readable form.
+@collection
 class ClaimResponseProcessNote extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseProcessNote]
@@ -3007,6 +3051,9 @@ class ClaimResponseProcessNote extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClaimResponseProcessNote';
 
@@ -3109,6 +3156,7 @@ class ClaimResponseProcessNote extends BackboneElement {
 /// [ClaimResponseInsurance]
 /// Financial instruments for reimbursement for the health care products
 /// and services specified on the claim.
+@collection
 class ClaimResponseInsurance extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseInsurance]
@@ -3216,6 +3264,9 @@ class ClaimResponseInsurance extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClaimResponseInsurance';
@@ -3331,6 +3382,7 @@ class ClaimResponseInsurance extends BackboneElement {
 
 /// [ClaimResponseError]
 /// Errors encountered during the processing of the adjudication.
+@collection
 class ClaimResponseError extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseError]
@@ -3438,6 +3490,9 @@ class ClaimResponseError extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClaimResponseError';

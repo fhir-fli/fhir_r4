@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'diagnostic_report.g.dart';
 
 /// [DiagnosticReport]
 /// The findings and interpretation of diagnostic tests performed on
@@ -9,6 +12,7 @@ import 'package:yaml/yaml.dart';
 /// requesting and provider information, and some mix of atomic results,
 /// images, textual and coded interpretations, and formatted representation
 /// of diagnostic reports.
+@collection
 class DiagnosticReport extends DomainResource {
   /// Primary constructor for
   /// [DiagnosticReport]
@@ -286,6 +290,9 @@ class DiagnosticReport extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DiagnosticReport';
@@ -606,6 +613,7 @@ class DiagnosticReport extends DomainResource {
 /// A list of key images associated with this report. The images are
 /// generally created during the diagnostic process, and may be directly of
 /// the patient, or of treated specimens (i.e. slides of interest).
+@collection
 class DiagnosticReportMedia extends BackboneElement {
   /// Primary constructor for
   /// [DiagnosticReportMedia]
@@ -696,6 +704,9 @@ class DiagnosticReportMedia extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'DiagnosticReportMedia';

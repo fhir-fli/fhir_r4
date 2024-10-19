@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'care_team.g.dart';
 
 /// [CareTeam]
 /// The Care Team includes all the people and organizations who plan to
 /// participate in the coordination and delivery of care for a patient.
+@collection
 class CareTeam extends DomainResource {
   /// Primary constructor for
   /// [CareTeam]
@@ -235,6 +239,9 @@ class CareTeam extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CareTeam';
@@ -477,6 +484,7 @@ class CareTeam extends DomainResource {
 /// [CareTeamParticipant]
 /// Identifies all people and organizations who are expected to be involved
 /// in the care team.
+@collection
 class CareTeamParticipant extends BackboneElement {
   /// Primary constructor for
   /// [CareTeamParticipant]
@@ -584,6 +592,9 @@ class CareTeamParticipant extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CareTeamParticipant';

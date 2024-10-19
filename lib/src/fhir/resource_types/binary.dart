@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'binary.g.dart';
 
 /// [Binary]
 /// A resource that represents the data of a single raw artifact as digital
 /// content accessible in its native format. A Binary resource can contain
 /// any content, whether text, image, pdf, zip archive, etc.
+@collection
 class Binary extends Resource {
   /// Primary constructor for
   /// [Binary]
@@ -106,6 +110,9 @@ class Binary extends Resource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Binary';

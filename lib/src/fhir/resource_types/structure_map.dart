@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'structure_map.g.dart';
 
 /// [StructureMap]
 /// A Map of relationships between 2 structures that can be used to
 /// transform data.
+@collection
 class StructureMap extends DomainResource {
   /// Primary constructor for
   /// [StructureMap]
@@ -261,6 +265,9 @@ class StructureMap extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'StructureMap';
@@ -610,6 +617,7 @@ class StructureMap extends DomainResource {
 /// A structure definition used by this map. The structure definition may
 /// describe instances that are converted, or the instances that are
 /// produced.
+@collection
 class StructureMapStructure extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapStructure]
@@ -715,6 +723,9 @@ class StructureMapStructure extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'StructureMapStructure';
 
@@ -819,6 +830,7 @@ class StructureMapStructure extends BackboneElement {
 /// [StructureMapGroup]
 /// Organizes the mapping into manageable chunks for human review/ease of
 /// maintenance.
+@collection
 class StructureMapGroup extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapGroup]
@@ -944,6 +956,9 @@ class StructureMapGroup extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'StructureMapGroup';
 
@@ -1067,6 +1082,7 @@ class StructureMapGroup extends BackboneElement {
 /// [StructureMapInput]
 /// A name assigned to an instance of data. The instance must be provided
 /// when the mapping is invoked.
+@collection
 class StructureMapInput extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapInput]
@@ -1172,6 +1188,9 @@ class StructureMapInput extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'StructureMapInput';
 
@@ -1275,6 +1294,7 @@ class StructureMapInput extends BackboneElement {
 
 /// [StructureMapRule]
 /// Transform Rule from source to target.
+@collection
 class StructureMapRule extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapRule]
@@ -1398,6 +1418,9 @@ class StructureMapRule extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'StructureMapRule';
 
@@ -1503,6 +1526,7 @@ class StructureMapRule extends BackboneElement {
 
 /// [StructureMapSource]
 /// Source inputs to the mapping.
+@collection
 class StructureMapSource extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapSource]
@@ -1991,6 +2015,9 @@ class StructureMapSource extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'StructureMapSource';
@@ -2789,6 +2816,7 @@ class StructureMapSource extends BackboneElement {
 
 /// [StructureMapTarget]
 /// Content to create because of this mapping rule.
+@collection
 class StructureMapTarget extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapTarget]
@@ -2926,6 +2954,9 @@ class StructureMapTarget extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'StructureMapTarget';
@@ -3086,6 +3117,7 @@ class StructureMapTarget extends BackboneElement {
 
 /// [StructureMapParameter]
 /// Parameters to the transform.
+@collection
 class StructureMapParameter extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapParameter]
@@ -3203,6 +3235,9 @@ class StructureMapParameter extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'StructureMapParameter';
@@ -3325,6 +3360,7 @@ class StructureMapParameter extends BackboneElement {
 
 /// [StructureMapDependent]
 /// Which other rules to apply in the context of this rule.
+@collection
 class StructureMapDependent extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapDependent]
@@ -3417,6 +3453,9 @@ class StructureMapDependent extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'StructureMapDependent';

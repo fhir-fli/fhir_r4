@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'nutrition_product.g.dart';
 
 /// [NutritionProduct]
 /// A food or fluid product that is consumed by patients.
+@collection
 class NutritionProduct extends DomainResource {
   /// Primary constructor for
   /// [NutritionProduct]
@@ -210,6 +214,9 @@ class NutritionProduct extends DomainResource {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'NutritionProduct';
 
@@ -409,6 +416,7 @@ class NutritionProduct extends DomainResource {
 
 /// [NutritionProductNutrient]
 /// The product's nutritional information expressed by the nutrients.
+@collection
 class NutritionProductNutrient extends BackboneElement {
   /// Primary constructor for
   /// [NutritionProductNutrient]
@@ -505,6 +513,9 @@ class NutritionProductNutrient extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'NutritionProductNutrient';
 
@@ -577,6 +588,7 @@ class NutritionProductNutrient extends BackboneElement {
 
 /// [NutritionProductIngredient]
 /// Ingredients contained in this product.
+@collection
 class NutritionProductIngredient extends BackboneElement {
   /// Primary constructor for
   /// [NutritionProductIngredient]
@@ -671,6 +683,9 @@ class NutritionProductIngredient extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'NutritionProductIngredient';
 
@@ -740,6 +755,7 @@ class NutritionProductIngredient extends BackboneElement {
 
 /// [NutritionProductProductCharacteristic]
 /// Specifies descriptive properties of the nutrition product.
+@collection
 class NutritionProductProductCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [NutritionProductProductCharacteristic]
@@ -864,6 +880,9 @@ class NutritionProductProductCharacteristic extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'NutritionProductProductCharacteristic';
@@ -998,6 +1017,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
 /// [NutritionProductInstance]
 /// Conveys instance-level information about this product item. One or
 /// several physical, countable instances or occurrences of the product.
+@collection
 class NutritionProductInstance extends BackboneElement {
   /// Primary constructor for
   /// [NutritionProductInstance]
@@ -1114,6 +1134,9 @@ class NutritionProductInstance extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'NutritionProductInstance';

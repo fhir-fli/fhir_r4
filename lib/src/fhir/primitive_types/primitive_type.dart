@@ -1,4 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// Abstract base class for all FHIR primitive types
 abstract class PrimitiveType<T> extends FhirBase {
@@ -9,6 +10,7 @@ abstract class PrimitiveType<T> extends FhirBase {
   String get fhirType => 'PrimitiveType';
 
   /// The primitive value (nullable)
+  @ignore
   final T? value;
 
   /// Optional metadata element (nullable)

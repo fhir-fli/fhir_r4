@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'biologically_derived_product.g.dart';
 
 /// [BiologicallyDerivedProduct]
 /// A material substance originating from a biological entity intended to
 /// be transplanted or infused
 /// into another (possibly the same) biological entity.
+@collection
 class BiologicallyDerivedProduct extends DomainResource {
   /// Primary constructor for
   /// [BiologicallyDerivedProduct]
@@ -214,6 +218,9 @@ class BiologicallyDerivedProduct extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'BiologicallyDerivedProduct';
@@ -436,6 +443,7 @@ class BiologicallyDerivedProduct extends DomainResource {
 
 /// [BiologicallyDerivedProductCollection]
 /// How this product was collected.
+@collection
 class BiologicallyDerivedProductCollection extends BackboneElement {
   /// Primary constructor for
   /// [BiologicallyDerivedProductCollection]
@@ -542,6 +550,9 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'BiologicallyDerivedProductCollection';
 
@@ -640,6 +651,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
 /// Any processing of the product during collection that does not change
 /// the fundamental nature of the product. For example adding
 /// anti-coagulants during the collection of Peripheral Blood Stem Cells.
+@collection
 class BiologicallyDerivedProductProcessing extends BackboneElement {
   /// Primary constructor for
   /// [BiologicallyDerivedProductProcessing]
@@ -753,6 +765,9 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'BiologicallyDerivedProductProcessing';
 
@@ -864,6 +879,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
 /// Any manipulation of product post-collection that is intended to alter
 /// the product. For example a buffy-coat enrichment or CD8 reduction of
 /// Peripheral Blood Stem Cells to make it more suitable for infusion.
+@collection
 class BiologicallyDerivedProductManipulation extends BackboneElement {
   /// Primary constructor for
   /// [BiologicallyDerivedProductManipulation]
@@ -965,6 +981,9 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'BiologicallyDerivedProductManipulation';
 
@@ -1054,6 +1073,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
 
 /// [BiologicallyDerivedProductStorage]
 /// Product storage.
+@collection
 class BiologicallyDerivedProductStorage extends BackboneElement {
   /// Primary constructor for
   /// [BiologicallyDerivedProductStorage]
@@ -1160,6 +1180,9 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'BiologicallyDerivedProductStorage';

@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'coverage.g.dart';
 
 /// [Coverage]
 /// Financial instrument which may be used to reimburse or pay for health
 /// care products and services. Includes both insurance and self-payment.
+@collection
 class Coverage extends DomainResource {
   /// Primary constructor for
   /// [Coverage]
@@ -248,6 +252,9 @@ class Coverage extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Coverage';
@@ -546,6 +553,7 @@ class Coverage extends DomainResource {
 
 /// [CoverageClass]
 /// A suite of underwriter specific classifiers.
+@collection
 class CoverageClass extends BackboneElement {
   /// Primary constructor for
   /// [CoverageClass]
@@ -642,6 +650,9 @@ class CoverageClass extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CoverageClass';
 
@@ -731,6 +742,7 @@ class CoverageClass extends BackboneElement {
 /// A suite of codes indicating the cost category and associated amount
 /// which have been detailed in the policy and may have been included on
 /// the health card.
+@collection
 class CoverageCostToBeneficiary extends BackboneElement {
   /// Primary constructor for
   /// [CoverageCostToBeneficiary]
@@ -839,6 +851,9 @@ class CoverageCostToBeneficiary extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'CoverageCostToBeneficiary';
 
@@ -932,6 +947,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
 /// [CoverageException]
 /// A suite of codes indicating exceptions or reductions to patient costs
 /// and their effective periods.
+@collection
 class CoverageException extends BackboneElement {
   /// Primary constructor for
   /// [CoverageException]
@@ -1021,6 +1037,9 @@ class CoverageException extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'CoverageException';

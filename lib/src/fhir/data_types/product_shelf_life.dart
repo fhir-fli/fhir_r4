@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'product_shelf_life.g.dart';
 
 /// [ProductShelfLife]
 /// The shelf-life and storage information for a medicinal product item or
 /// container can be described using this class.
+@collection
 class ProductShelfLife extends BackboneType {
   /// Primary constructor for
   /// [ProductShelfLife]
@@ -108,6 +112,9 @@ class ProductShelfLife extends BackboneType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ProductShelfLife';

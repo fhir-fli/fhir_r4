@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'adverse_event.g.dart';
 
 /// [AdverseEvent]
 /// Actual or potential/avoided event causing unintended physical injury
 /// resulting from or contributed to by medical care, a research study or
 /// other healthcare setting factors that requires additional monitoring,
 /// treatment, or hospitalization, or that results in death.
+@collection
 class AdverseEvent extends DomainResource {
   /// Primary constructor for
   /// [AdverseEvent]
@@ -274,6 +278,9 @@ class AdverseEvent extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'AdverseEvent';
@@ -600,6 +607,7 @@ class AdverseEvent extends DomainResource {
 /// [AdverseEventSuspectEntity]
 /// Describes the entity that is suspected to have caused the adverse
 /// event.
+@collection
 class AdverseEventSuspectEntity extends BackboneElement {
   /// Primary constructor for
   /// [AdverseEventSuspectEntity]
@@ -694,6 +702,9 @@ class AdverseEventSuspectEntity extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'AdverseEventSuspectEntity';
 
@@ -765,6 +776,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
 
 /// [AdverseEventCausality]
 /// Information on the possible cause of the event.
+@collection
 class AdverseEventCausality extends BackboneElement {
   /// Primary constructor for
   /// [AdverseEventCausality]
@@ -870,6 +882,9 @@ class AdverseEventCausality extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'AdverseEventCausality';

@@ -1,70 +1,104 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// Criterion for rejection of the specimen by laboratory.
-enum RejectionCriterion {
-  /// Display: hemolized specimen
-  /// Definition: blood specimen hemolized.
-  hemolized('hemolized'),
+@collection
+class RejectionCriterion {
+  /// Constructor for internal use (like enum)
+  RejectionCriterion({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: insufficient specimen volume
-  /// Definition: insufficient quantity of specimen.
-  insufficient('insufficient'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: broken specimen container
-  /// Definition: specimen container broken.
-  broken('broken'),
-
-  /// Display: specimen clotted
-  /// Definition: specimen clotted.
-  clotted('clotted'),
-
-  /// Display: specimen temperature inappropriate
-  /// Definition: specimen temperature inappropriate.
-  wrong_temperature('wrong-temperature'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const RejectionCriterion(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// RejectionCriterion values
+  /// hemolized
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final RejectionCriterion hemolized = RejectionCriterion(
+    fhirCode: 'hemolized',
+  );
+
+  /// insufficient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final RejectionCriterion insufficient = RejectionCriterion(
+    fhirCode: 'insufficient',
+  );
+
+  /// broken
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final RejectionCriterion broken = RejectionCriterion(
+    fhirCode: 'broken',
+  );
+
+  /// clotted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final RejectionCriterion clotted = RejectionCriterion(
+    fhirCode: 'clotted',
+  );
+
+  /// wrong_temperature
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final RejectionCriterion wrong_temperature = RejectionCriterion(
+    fhirCode: 'wrong-temperature',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final RejectionCriterion elementOnly = RejectionCriterion();
+
+  /// List of all enum-like values
+  static final List<RejectionCriterion> values = [
+    hemolized,
+    insufficient,
+    broken,
+    clotted,
+    wrong_temperature,
+  ];
+
+  /// Returns the enum value with an element attached
+  RejectionCriterion withElement(Element? newElement) {
+    return RejectionCriterion(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [RejectionCriterion] instances.
-  static RejectionCriterion fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [RejectionCriterion] from JSON.
+  static RejectionCriterion fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RejectionCriterion.elementOnly.withElement(
-        element,
-      );
+      return RejectionCriterion.elementOnly.withElement(element);
     }
     return RejectionCriterion.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  RejectionCriterion withElement(Element? newElement) {
-    return RejectionCriterion.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'RejectionCriterion.$fhirCode';
 }

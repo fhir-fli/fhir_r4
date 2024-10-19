@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'claim.g.dart';
 
 /// [Claim]
 /// A provider issued list of professional services and products which have
 /// been provided, or are to be provided, to a patient which is sent to an
 /// insurer for reimbursement.
+@collection
 class Claim extends DomainResource {
   /// Primary constructor for
   /// [Claim]
@@ -307,6 +311,9 @@ class Claim extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Claim';
@@ -685,6 +692,7 @@ class Claim extends DomainResource {
 /// [ClaimRelated]
 /// Other claims which are related to this claim such as prior submissions
 /// or claims for related services or for the same event.
+@collection
 class ClaimRelated extends BackboneElement {
   /// Primary constructor for
   /// [ClaimRelated]
@@ -783,6 +791,9 @@ class ClaimRelated extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClaimRelated';
 
@@ -866,6 +877,7 @@ class ClaimRelated extends BackboneElement {
 /// [ClaimPayee]
 /// The party to be reimbursed for cost of the products and services
 /// according to the terms of the policy.
+@collection
 class ClaimPayee extends BackboneElement {
   /// Primary constructor for
   /// [ClaimPayee]
@@ -956,6 +968,9 @@ class ClaimPayee extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClaimPayee';
 
@@ -1026,6 +1041,7 @@ class ClaimPayee extends BackboneElement {
 
 /// [ClaimCareTeam]
 /// The members of the team who provided the products and services.
+@collection
 class ClaimCareTeam extends BackboneElement {
   /// Primary constructor for
   /// [ClaimCareTeam]
@@ -1133,6 +1149,9 @@ class ClaimCareTeam extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClaimCareTeam';
@@ -1243,6 +1262,7 @@ class ClaimCareTeam extends BackboneElement {
 /// [ClaimSupportingInfo]
 /// Additional information codes regarding exceptions, special
 /// considerations, the condition, situation, prior or concurrent issues.
+@collection
 class ClaimSupportingInfo extends BackboneElement {
   /// Primary constructor for
   /// [ClaimSupportingInfo]
@@ -1389,6 +1409,9 @@ class ClaimSupportingInfo extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClaimSupportingInfo';
@@ -1577,6 +1600,7 @@ class ClaimSupportingInfo extends BackboneElement {
 
 /// [ClaimDiagnosis]
 /// Information about diagnoses relevant to the claim items.
+@collection
 class ClaimDiagnosis extends BackboneElement {
   /// Primary constructor for
   /// [ClaimDiagnosis]
@@ -1695,6 +1719,9 @@ class ClaimDiagnosis extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClaimDiagnosis';
@@ -1816,6 +1843,7 @@ class ClaimDiagnosis extends BackboneElement {
 /// [ClaimProcedure]
 /// Procedures performed on the patient relevant to the billing items with
 /// the claim.
+@collection
 class ClaimProcedure extends BackboneElement {
   /// Primary constructor for
   /// [ClaimProcedure]
@@ -1940,6 +1968,9 @@ class ClaimProcedure extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClaimProcedure';
 
@@ -2061,6 +2092,7 @@ class ClaimProcedure extends BackboneElement {
 /// [ClaimInsurance]
 /// Financial instruments for reimbursement for the health care products
 /// and services specified on the claim.
+@collection
 class ClaimInsurance extends BackboneElement {
   /// Primary constructor for
   /// [ClaimInsurance]
@@ -2180,6 +2212,9 @@ class ClaimInsurance extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClaimInsurance';
@@ -2323,6 +2358,7 @@ class ClaimInsurance extends BackboneElement {
 /// [ClaimAccident]
 /// Details of an accident which resulted in injuries which required the
 /// products and services listed in the claim.
+@collection
 class ClaimAccident extends BackboneElement {
   /// Primary constructor for
   /// [ClaimAccident]
@@ -2426,6 +2462,9 @@ class ClaimAccident extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ClaimAccident';
 
@@ -2523,6 +2562,7 @@ class ClaimAccident extends BackboneElement {
 /// [ClaimItem]
 /// A claim line. Either a simple product or service or a 'group' of
 /// details which can each be a simple items or groups of sub-details.
+@collection
 class ClaimItem extends BackboneElement {
   /// Primary constructor for
   /// [ClaimItem]
@@ -2770,6 +2810,9 @@ class ClaimItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClaimItem';
@@ -3108,6 +3151,7 @@ class ClaimItem extends BackboneElement {
 /// [ClaimDetail]
 /// A claim detail line. Either a simple (a product or service) or a
 /// 'group' of sub-details which are simple items.
+@collection
 class ClaimDetail extends BackboneElement {
   /// Primary constructor for
   /// [ClaimDetail]
@@ -3273,6 +3317,9 @@ class ClaimDetail extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClaimDetail';
@@ -3462,6 +3509,7 @@ class ClaimDetail extends BackboneElement {
 /// [ClaimSubDetail]
 /// A claim detail line. Either a simple (a product or service) or a
 /// 'group' of sub-details which are simple items.
+@collection
 class ClaimSubDetail extends BackboneElement {
   /// Primary constructor for
   /// [ClaimSubDetail]
@@ -3617,6 +3665,9 @@ class ClaimSubDetail extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ClaimSubDetail';

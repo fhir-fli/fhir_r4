@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'bundle.g.dart';
 
 /// [Bundle]
 /// A container for a collection of resources.
+@collection
 class Bundle extends Resource {
   /// Primary constructor for
   /// [Bundle]
@@ -137,6 +141,9 @@ class Bundle extends Resource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Bundle';
@@ -289,6 +296,7 @@ class Bundle extends Resource {
 
 /// [BundleLink]
 /// A series of links that provide context to this bundle.
+@collection
 class BundleLink extends BackboneElement {
   /// Primary constructor for
   /// [BundleLink]
@@ -379,6 +387,9 @@ class BundleLink extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'BundleLink';
 
@@ -456,6 +467,7 @@ class BundleLink extends BackboneElement {
 /// [BundleEntry]
 /// An entry in a bundle resource - will either contain a resource or
 /// information about a resource (transactions and history only).
+@collection
 class BundleEntry extends BackboneElement {
   /// Primary constructor for
   /// [BundleEntry]
@@ -576,6 +588,9 @@ class BundleEntry extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'BundleEntry';
@@ -707,6 +722,7 @@ class BundleEntry extends BackboneElement {
 /// [BundleSearch]
 /// Information about the search process that lead to the creation of this
 /// entry.
+@collection
 class BundleSearch extends BackboneElement {
   /// Primary constructor for
   /// [BundleSearch]
@@ -801,6 +817,9 @@ class BundleSearch extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'BundleSearch';
 
@@ -884,6 +903,7 @@ class BundleSearch extends BackboneElement {
 /// Additional information about how this entry should be processed as part
 /// of a transaction or batch. For history, it shows how the entry was
 /// processed to create the version contained in the entry.
+@collection
 class BundleRequest extends BackboneElement {
   /// Primary constructor for
   /// [BundleRequest]
@@ -1002,6 +1022,9 @@ class BundleRequest extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'BundleRequest';
@@ -1146,6 +1169,7 @@ class BundleRequest extends BackboneElement {
 /// Indicates the results of processing the corresponding 'request' entry
 /// in the batch or transaction being responded to or what the results of
 /// an operation where when returning history.
+@collection
 class BundleResponse extends BackboneElement {
   /// Primary constructor for
   /// [BundleResponse]
@@ -1258,6 +1282,9 @@ class BundleResponse extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'BundleResponse';

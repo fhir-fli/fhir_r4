@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'activity_definition.g.dart';
 
 /// [ActivityDefinition]
 /// This resource allows for the definition of some activity to be
 /// performed, independent of a particular patient, practitioner, or other
 /// performance context.
+@collection
 class ActivityDefinition extends DomainResource {
   /// Primary constructor for
   /// [ActivityDefinition]
@@ -543,6 +547,9 @@ class ActivityDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ActivityDefinition';
@@ -1379,6 +1386,7 @@ class ActivityDefinition extends DomainResource {
 
 /// [ActivityDefinitionParticipant]
 /// Indicates who should participate in performing the action described.
+@collection
 class ActivityDefinitionParticipant extends BackboneElement {
   /// Primary constructor for
   /// [ActivityDefinitionParticipant]
@@ -1470,6 +1478,9 @@ class ActivityDefinitionParticipant extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'ActivityDefinitionParticipant';
 
@@ -1548,6 +1559,7 @@ class ActivityDefinitionParticipant extends BackboneElement {
 /// be computed based on the patient's weight, a dynamic value would be
 /// used to specify an expression that calculated the weight, and the path
 /// on the request resource that would contain the result.
+@collection
 class ActivityDefinitionDynamicValue extends BackboneElement {
   /// Primary constructor for
   /// [ActivityDefinitionDynamicValue]
@@ -1636,6 +1648,9 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ActivityDefinitionDynamicValue';

@@ -1,66 +1,99 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// Describes the type of a metric calibration.
-enum DeviceMetricCalibrationType {
-  /// Display: Unspecified
-  /// Definition: Metric calibration method has not been identified.
-  unspecified('unspecified'),
+@collection
+class DeviceMetricCalibrationType {
+  /// Constructor for internal use (like enum)
+  DeviceMetricCalibrationType({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Offset
-  /// Definition: Offset metric calibration method.
-  offset('offset'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Gain
-  /// Definition: Gain metric calibration method.
-  gain('gain'),
-
-  /// Display: Two Point
-  /// Definition: Two-point metric calibration method.
-  two_point('two-point'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const DeviceMetricCalibrationType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// DeviceMetricCalibrationType values
+  /// unspecified
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DeviceMetricCalibrationType unspecified =
+      DeviceMetricCalibrationType(
+    fhirCode: 'unspecified',
+  );
+
+  /// offset
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DeviceMetricCalibrationType offset = DeviceMetricCalibrationType(
+    fhirCode: 'offset',
+  );
+
+  /// gain
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DeviceMetricCalibrationType gain = DeviceMetricCalibrationType(
+    fhirCode: 'gain',
+  );
+
+  /// two_point
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DeviceMetricCalibrationType two_point =
+      DeviceMetricCalibrationType(
+    fhirCode: 'two-point',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final DeviceMetricCalibrationType elementOnly =
+      DeviceMetricCalibrationType();
+
+  /// List of all enum-like values
+  static final List<DeviceMetricCalibrationType> values = [
+    unspecified,
+    offset,
+    gain,
+    two_point,
+  ];
+
+  /// Returns the enum value with an element attached
+  DeviceMetricCalibrationType withElement(Element? newElement) {
+    return DeviceMetricCalibrationType(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [DeviceMetricCalibrationType] instances.
-  static DeviceMetricCalibrationType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [DeviceMetricCalibrationType] from JSON.
+  static DeviceMetricCalibrationType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceMetricCalibrationType.elementOnly.withElement(
-        element,
-      );
+      return DeviceMetricCalibrationType.elementOnly.withElement(element);
     }
     return DeviceMetricCalibrationType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  DeviceMetricCalibrationType withElement(Element? newElement) {
-    return DeviceMetricCalibrationType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'DeviceMetricCalibrationType.$fhirCode';
 }

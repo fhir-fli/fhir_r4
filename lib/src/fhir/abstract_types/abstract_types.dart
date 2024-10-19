@@ -5,3 +5,4 @@ export 'domain_resource.dart';
 export 'element.dart';
 export 'fhir_base.dart';
 export 'resource.dart';
+export 'simple_element.dart';

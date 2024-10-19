@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'evidence.g.dart';
 
 /// [Evidence]
 /// The Evidence Resource provides a machine-interpretable expression of an
@@ -8,6 +11,7 @@ import 'package:yaml/yaml.dart';
 /// exposures/interventions, comparators, outcomes, measured variables,
 /// confounding variables), the statistics, and the certainty of this
 /// evidence.
+@collection
 class Evidence extends DomainResource {
   /// Primary constructor for
   /// [Evidence]
@@ -342,6 +346,9 @@ class Evidence extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Evidence';
@@ -767,6 +774,7 @@ class Evidence extends DomainResource {
 
 /// [EvidenceVariableDefinition]
 /// Evidence variable such as population, exposure, or outcome.
+@collection
 class EvidenceVariableDefinition extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceVariableDefinition]
@@ -886,6 +894,9 @@ class EvidenceVariableDefinition extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'EvidenceVariableDefinition';
 
@@ -1001,6 +1012,7 @@ class EvidenceVariableDefinition extends BackboneElement {
 
 /// [EvidenceStatistic]
 /// Values and parameters for a single statistic.
+@collection
 class EvidenceStatistic extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceStatistic]
@@ -1157,6 +1169,9 @@ class EvidenceStatistic extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'EvidenceStatistic';
@@ -1328,6 +1343,7 @@ class EvidenceStatistic extends BackboneElement {
 
 /// [EvidenceSampleSize]
 /// Number of samples in the statistic.
+@collection
 class EvidenceSampleSize extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceSampleSize]
@@ -1449,6 +1465,9 @@ class EvidenceSampleSize extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'EvidenceSampleSize';
 
@@ -1568,6 +1587,7 @@ class EvidenceSampleSize extends BackboneElement {
 /// [EvidenceAttributeEstimate]
 /// A statistical attribute of the statistic such as a measure of
 /// heterogeneity.
+@collection
 class EvidenceAttributeEstimate extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceAttributeEstimate]
@@ -1690,6 +1710,9 @@ class EvidenceAttributeEstimate extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'EvidenceAttributeEstimate';
 
@@ -1811,6 +1834,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
 
 /// [EvidenceModelCharacteristic]
 /// A component of the method to generate the statistic.
+@collection
 class EvidenceModelCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceModelCharacteristic]
@@ -1911,6 +1935,9 @@ class EvidenceModelCharacteristic extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'EvidenceModelCharacteristic';
 
@@ -1991,6 +2018,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
 
 /// [EvidenceModelCharacteristicVariable]
 /// A variable adjusted for in the adjusted analysis.
+@collection
 class EvidenceModelCharacteristicVariable extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceModelCharacteristicVariable]
@@ -2112,6 +2140,9 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'EvidenceModelCharacteristicVariable';
 
@@ -2216,6 +2247,7 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
 /// [EvidenceCertainty]
 /// Assessment of certainty, confidence in the estimates, or quality of the
 /// evidence.
+@collection
 class EvidenceCertainty extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceCertainty]
@@ -2341,6 +2373,9 @@ class EvidenceCertainty extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'EvidenceCertainty';

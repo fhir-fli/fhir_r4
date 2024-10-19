@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'list.g.dart';
 
 /// [FhirList]
 /// A list is a curated collection of resources.
+@collection
 class FhirList extends DomainResource {
   /// Primary constructor for
   /// [FhirList]
@@ -212,6 +216,9 @@ class FhirList extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'FhirList';
@@ -452,6 +459,7 @@ class FhirList extends DomainResource {
 
 /// [ListEntry]
 /// Entries in this list.
+@collection
 class ListEntry extends BackboneElement {
   /// Primary constructor for
   /// [ListEntry]
@@ -555,6 +563,9 @@ class ListEntry extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ListEntry';

@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'medication.g.dart';
 
 /// [Medication]
 /// This resource is primarily used for the identification and definition
 /// of a medication for the purposes of prescribing, dispensing, and
 /// administering a medication as well as for making statements about
 /// medication use.
+@collection
 class Medication extends DomainResource {
   /// Primary constructor for
   /// [Medication]
@@ -182,6 +186,9 @@ class Medication extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Medication';
@@ -367,6 +374,7 @@ class Medication extends DomainResource {
 
 /// [MedicationIngredient]
 /// Identifies a particular constituent of interest in the product.
+@collection
 class MedicationIngredient extends BackboneElement {
   /// Primary constructor for
   /// [MedicationIngredient]
@@ -472,6 +480,9 @@ class MedicationIngredient extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MedicationIngredient';
 
@@ -572,6 +583,7 @@ class MedicationIngredient extends BackboneElement {
 
 /// [MedicationBatch]
 /// Information that only applies to packages (not products).
+@collection
 class MedicationBatch extends BackboneElement {
   /// Primary constructor for
   /// [MedicationBatch]
@@ -666,6 +678,9 @@ class MedicationBatch extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MedicationBatch';

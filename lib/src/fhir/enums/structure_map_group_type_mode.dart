@@ -1,62 +1,90 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// If this is the default rule set to apply for the source type, or this combination of types.
-enum StructureMapGroupTypeMode {
-  /// Display: Not a Default
-  /// Definition: This group is not a default group for the types.
-  none('none'),
+@collection
+class StructureMapGroupTypeMode {
+  /// Constructor for internal use (like enum)
+  StructureMapGroupTypeMode({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: Default for Type Combination
-  /// Definition: This group is a default mapping group for the specified types and for the primary source type.
-  types('types'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: Default for type + combination
-  /// Definition: This group is a default mapping group for the specified types.
-  type_and_types('type-and-types'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const StructureMapGroupTypeMode(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// StructureMapGroupTypeMode values
+  /// none
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StructureMapGroupTypeMode none = StructureMapGroupTypeMode(
+    fhirCode: 'none',
+  );
+
+  /// types
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StructureMapGroupTypeMode types = StructureMapGroupTypeMode(
+    fhirCode: 'types',
+  );
+
+  /// type_and_types
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StructureMapGroupTypeMode type_and_types =
+      StructureMapGroupTypeMode(
+    fhirCode: 'type-and-types',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final StructureMapGroupTypeMode elementOnly =
+      StructureMapGroupTypeMode();
+
+  /// List of all enum-like values
+  static final List<StructureMapGroupTypeMode> values = [
+    none,
+    types,
+    type_and_types,
+  ];
+
+  /// Returns the enum value with an element attached
+  StructureMapGroupTypeMode withElement(Element? newElement) {
+    return StructureMapGroupTypeMode(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [StructureMapGroupTypeMode] instances.
-  static StructureMapGroupTypeMode fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [StructureMapGroupTypeMode] from JSON.
+  static StructureMapGroupTypeMode fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureMapGroupTypeMode.elementOnly.withElement(
-        element,
-      );
+      return StructureMapGroupTypeMode.elementOnly.withElement(element);
     }
     return StructureMapGroupTypeMode.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  StructureMapGroupTypeMode withElement(Element? newElement) {
-    return StructureMapGroupTypeMode.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'StructureMapGroupTypeMode.$fhirCode';
 }

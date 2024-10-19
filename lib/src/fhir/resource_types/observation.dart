@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'observation.g.dart';
 
 /// [Observation]
 /// Measurements and simple assertions made about a patient, device or
 /// other subject.
+@collection
 class Observation extends DomainResource {
   /// Primary constructor for
   /// [Observation]
@@ -403,6 +407,9 @@ class Observation extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Observation';
@@ -959,6 +966,7 @@ class Observation extends DomainResource {
 /// recommended range. Multiple reference ranges are interpreted as an
 /// "OR". In other words, to represent two distinct target populations, two
 /// `referenceRange` elements would be used.
+@collection
 class ObservationReferenceRange extends BackboneElement {
   /// Primary constructor for
   /// [ObservationReferenceRange]
@@ -1079,6 +1087,9 @@ class ObservationReferenceRange extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ObservationReferenceRange';
@@ -1215,6 +1226,7 @@ class ObservationReferenceRange extends BackboneElement {
 /// same attributes. Examples include systolic and diastolic component
 /// observations for blood pressure measurement and multiple component
 /// observations for genetics observations.
+@collection
 class ObservationComponent extends BackboneElement {
   /// Primary constructor for
   /// [ObservationComponent]
@@ -1398,6 +1410,9 @@ class ObservationComponent extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ObservationComponent';

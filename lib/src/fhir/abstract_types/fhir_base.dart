@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// Base class for all FHIR elements.
 abstract class FhirBase {
@@ -24,21 +25,27 @@ abstract class FhirBase {
   String get fhirType => 'FhirBase';
 
   /// User data map for storing additional information
+  @ignore
   final Map<String, Object?>? userData;
 
   /// List of comments to be added before the element
+  @ignore
   final List<String>? formatCommentsPre;
 
   /// List of comments to be added after the element
+  @ignore
   final List<String>? formatCommentsPost;
 
   /// List of annotations for additional, non-core information
+  @ignore
   final List<dynamic>? annotations;
 
   /// List of children for the element
+  @ignore
   final List<FhirBase>? children;
 
   /// Map of named children for the element
+  @ignore
   final Map<String, FhirBase>? namedChildren;
 
   /// Returns a [Map] representation of the object, usually. As

@@ -1,21 +1,25 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'age.g.dart';
 
 /// [Age]
 /// A duration of time during which an organism (or a process) has existed.
-class Age extends Quantity {
+@collection
+class Age extends DataType {
   /// Primary constructor for
   /// [Age]
 
   Age({
     super.id,
     super.extension_,
-    super.value,
-    super.comparator,
-    super.unit,
-    super.system,
-    super.code,
+    this.value,
+    this.comparator,
+    this.unit,
+    this.system,
+    this.code,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -109,9 +113,37 @@ class Age extends Quantity {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'Age';
 
+  /// [value]
+  /// The value of the measured amount. The value includes an implicit
+  /// precision in the presentation of the value.
+  final FhirDecimal? value;
+
+  /// [comparator]
+  /// How the value should be understood and represented - whether the actual
+  /// value is greater or less than the stated value due to measurement
+  /// issues; e.g. if the comparator is "<" , then the real value is < stated
+  /// value.
+  final QuantityComparator? comparator;
+
+  /// [unit]
+  /// A human-readable form of the unit.
+  final FhirString? unit;
+
+  /// [system]
+  /// The identification of the system that provides the coded form of the
+  /// unit.
+  final FhirUri? system;
+
+  /// [code]
+  /// A computer processable form of the unit in some unit representation
+  /// system.
+  final FhirCode? code;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

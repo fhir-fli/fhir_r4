@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'date.g.dart';
 
 /// Extension on [DateTime] to convert to a [FhirDate].
 extension FhirDateExtension on DateTime {
@@ -15,7 +18,19 @@ extension FhirDateStringExtension on String {
 }
 
 /// [FhirDate] represents FHIR-compliant dates, extending [FhirDateTimeBase].
+@collection
 class FhirDate extends FhirDateTimeBase {
+  /// Constructor from base units, used internally.
+  FhirDate({
+    required super.year,
+    required super.month,
+    required super.day,
+    required super.isUtc,
+    super.timeZoneOffset,
+    super.element,
+    this.dbValue,
+  });
+
   /// Factory constructor to create a [FhirDate] from individual units.
   ///
   /// Requires [year], while [month], [day], and [isUtc] are optional.
@@ -33,16 +48,6 @@ class FhirDate extends FhirDateTimeBase {
         isUtc: isUtc ?? false,
         element: element,
       ) as FhirDate;
-
-  /// Constructor from base units, used internally.
-  FhirDate.fromBase({
-    required super.year,
-    required super.month,
-    required super.day,
-    required super.isUtc,
-    super.timeZoneOffset,
-    super.element,
-  });
 
   /// Factory constructor to create a [FhirDate] from a [String].
   ///
@@ -108,6 +113,13 @@ class FhirDate extends FhirDateTimeBase {
     }
     return null;
   }
+
+  /// dbId for Isar Database
+  Id dbId = Isar.autoIncrement;
+
+  /// value for database
+  @Name('value')
+  final String? dbValue;
 
   /// Returns the FHIR type as 'date'.
   @override

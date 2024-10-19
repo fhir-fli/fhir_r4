@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'vision_prescription.g.dart';
 
 /// [VisionPrescription]
 /// An authorization for the provision of glasses and/or contact lenses to
 /// a patient.
+@collection
 class VisionPrescription extends DomainResource {
   /// Primary constructor for
   /// [VisionPrescription]
@@ -172,6 +176,9 @@ class VisionPrescription extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'VisionPrescription';
@@ -350,6 +357,7 @@ class VisionPrescription extends DomainResource {
 /// [VisionPrescriptionLensSpecification]
 /// Contain the details of the individual lens specifications and serves as
 /// the authorization for the fullfillment by certified professionals.
+@collection
 class VisionPrescriptionLensSpecification extends BackboneElement {
   /// Primary constructor for
   /// [VisionPrescriptionLensSpecification]
@@ -527,6 +535,9 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'VisionPrescriptionLensSpecification';
@@ -757,6 +768,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
 
 /// [VisionPrescriptionPrism]
 /// Allows for adjustment on two axis.
+@collection
 class VisionPrescriptionPrism extends BackboneElement {
   /// Primary constructor for
   /// [VisionPrescriptionPrism]
@@ -846,6 +858,9 @@ class VisionPrescriptionPrism extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'VisionPrescriptionPrism';

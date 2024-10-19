@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'specimen_definition.g.dart';
 
 /// [SpecimenDefinition]
 /// A kind of specimen with associated set of requirements.
+@collection
 class SpecimenDefinition extends DomainResource {
   /// Primary constructor for
   /// [SpecimenDefinition]
@@ -172,6 +176,9 @@ class SpecimenDefinition extends DomainResource {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'SpecimenDefinition';
 
@@ -329,6 +336,7 @@ class SpecimenDefinition extends DomainResource {
 /// [SpecimenDefinitionTypeTested]
 /// Specimen conditioned in a container as expected by the testing
 /// laboratory.
+@collection
 class SpecimenDefinitionTypeTested extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenDefinitionTypeTested]
@@ -465,6 +473,9 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SpecimenDefinitionTypeTested';
@@ -612,6 +623,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
 
 /// [SpecimenDefinitionContainer]
 /// The specimen's container.
+@collection
 class SpecimenDefinitionContainer extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenDefinitionContainer]
@@ -753,6 +765,9 @@ class SpecimenDefinitionContainer extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SpecimenDefinitionContainer';
@@ -911,6 +926,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
 /// [SpecimenDefinitionAdditive]
 /// Substance introduced in the kind of container to preserve, maintain or
 /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
+@collection
 class SpecimenDefinitionAdditive extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenDefinitionAdditive]
@@ -1003,6 +1019,9 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'SpecimenDefinitionAdditive';
 
@@ -1078,6 +1097,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
 /// [SpecimenDefinitionHandling]
 /// Set of instructions for preservation/transport of the specimen at a
 /// defined temperature interval, prior the testing process.
+@collection
 class SpecimenDefinitionHandling extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenDefinitionHandling]
@@ -1182,6 +1202,9 @@ class SpecimenDefinitionHandling extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SpecimenDefinitionHandling';

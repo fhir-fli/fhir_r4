@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'narrative.g.dart';
 
 /// [Narrative]
 /// A human-readable summary of the resource conveying the essential
 /// clinical and business information for the resource.
+@collection
 class Narrative extends DataType {
   /// Primary constructor for
   /// [Narrative]
@@ -84,6 +88,9 @@ class Narrative extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Narrative';

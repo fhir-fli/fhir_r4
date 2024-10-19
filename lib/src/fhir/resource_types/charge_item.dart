@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'charge_item.g.dart';
 
 /// [ChargeItem]
 /// The resource ChargeItem describes the provision of healthcare provider
@@ -9,6 +12,7 @@ import 'package:yaml/yaml.dart';
 /// date, time, amounts and participating organizations and persons. Main
 /// Usage of the ChargeItem is to enable the billing process and internal
 /// cost allocation.
+@collection
 class ChargeItem extends DomainResource {
   /// Primary constructor for
   /// [ChargeItem]
@@ -339,6 +343,9 @@ class ChargeItem extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ChargeItem';
@@ -760,6 +767,7 @@ class ChargeItem extends DomainResource {
 
 /// [ChargeItemPerformer]
 /// Indicates who or what performed or participated in the charged service.
+@collection
 class ChargeItemPerformer extends BackboneElement {
   /// Primary constructor for
   /// [ChargeItemPerformer]
@@ -849,6 +857,9 @@ class ChargeItemPerformer extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'ChargeItemPerformer';

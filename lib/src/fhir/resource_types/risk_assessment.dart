@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'risk_assessment.g.dart';
 
 /// [RiskAssessment]
 /// An assessment of the likely outcome(s) for a patient or other subject
 /// as well as the likelihood of each outcome.
+@collection
 class RiskAssessment extends DomainResource {
   /// Primary constructor for
   /// [RiskAssessment]
@@ -255,6 +259,9 @@ class RiskAssessment extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'RiskAssessment';
@@ -540,6 +547,7 @@ class RiskAssessment extends DomainResource {
 
 /// [RiskAssessmentPrediction]
 /// Describes the expected outcome for the subject.
+@collection
 class RiskAssessmentPrediction extends BackboneElement {
   /// Primary constructor for
   /// [RiskAssessmentPrediction]
@@ -672,6 +680,9 @@ class RiskAssessmentPrediction extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'RiskAssessmentPrediction';

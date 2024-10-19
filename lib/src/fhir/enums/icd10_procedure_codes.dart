@@ -1,62 +1,88 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 
 /// This value set includes sample ICD-10 Procedure codes.
-enum ICD10ProcedureCodes {
-  /// Display: PROC-1
-  /// Definition: Procedure 1
-  value123001('123001'),
+@collection
+class ICD10ProcedureCodes {
+  /// Constructor for internal use (like enum)
+  ICD10ProcedureCodes({this.fhirCode, this.element})
+      : assert(
+          fhirCode != null || element != null,
+          'Either fhirCode or element should be provided',
+        );
 
-  /// Display: PROC-2
-  /// Definition: Procedure 2
-  value123002('123002'),
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
-  /// Display: PROC-3
-  /// Definition: Procedure 3
-  value123003('123003'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ICD10ProcedureCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
-  final String fhirCode;
+  /// The String value of this enum (FHIR code)
+  final String? fhirCode;
 
   /// The Element value of this enum
   final Element? element;
 
+  /// ICD10ProcedureCodes values
+  /// value123001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ICD10ProcedureCodes value123001 = ICD10ProcedureCodes(
+    fhirCode: '123001',
+  );
+
+  /// value123002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ICD10ProcedureCodes value123002 = ICD10ProcedureCodes(
+    fhirCode: '123002',
+  );
+
+  /// value123003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ICD10ProcedureCodes value123003 = ICD10ProcedureCodes(
+    fhirCode: '123003',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ICD10ProcedureCodes elementOnly = ICD10ProcedureCodes();
+
+  /// List of all enum-like values
+  static final List<ICD10ProcedureCodes> values = [
+    value123001,
+    value123002,
+    value123003,
+  ];
+
+  /// Returns the enum value with an element attached
+  ICD10ProcedureCodes withElement(Element? newElement) {
+    return ICD10ProcedureCodes(
+      fhirCode: fhirCode,
+      element: newElement,
+    );
+  }
+
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (fhirCode != null) 'value': fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ICD10ProcedureCodes] instances.
-  static ICD10ProcedureCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ICD10ProcedureCodes] from JSON.
+  static ICD10ProcedureCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ICD10ProcedureCodes.elementOnly.withElement(
-        element,
-      );
+      return ICD10ProcedureCodes.elementOnly.withElement(element);
     }
     return ICD10ProcedureCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ICD10ProcedureCodes withElement(Element? newElement) {
-    return ICD10ProcedureCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ICD10ProcedureCodes.$fhirCode';
 }

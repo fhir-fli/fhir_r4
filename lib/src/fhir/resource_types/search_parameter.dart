@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'search_parameter.g.dart';
 
 /// [SearchParameter]
 /// A search parameter that defines a named search item that can be used to
 /// search/filter on a resource.
+@collection
 class SearchParameter extends DomainResource {
   /// Primary constructor for
   /// [SearchParameter]
@@ -303,6 +307,9 @@ class SearchParameter extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SearchParameter';
@@ -774,6 +781,7 @@ class SearchParameter extends DomainResource {
 
 /// [SearchParameterComponent]
 /// Used to define the parts of a composite search parameter.
+@collection
 class SearchParameterComponent extends BackboneElement {
   /// Primary constructor for
   /// [SearchParameterComponent]
@@ -863,6 +871,9 @@ class SearchParameterComponent extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'SearchParameterComponent';

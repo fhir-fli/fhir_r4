@@ -1,12 +1,16 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'endpoint.g.dart';
 
 /// [FhirEndpoint]
 /// The technical details of an endpoint that can be used for electronic
 /// services, such as for web services providing XDS.b or a REST endpoint
 /// for another FHIR server. This may include any security context
 /// information.
+@collection
 class FhirEndpoint extends DomainResource {
   /// Primary constructor for
   /// [FhirEndpoint]
@@ -200,6 +204,9 @@ class FhirEndpoint extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'FhirEndpoint';

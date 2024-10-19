@@ -1,9 +1,13 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:isar/isar.dart';
 import 'package:yaml/yaml.dart';
+
+part 'measure.g.dart';
 
 /// [Measure]
 /// The Measure resource provides the definition of a quality measure.
+@collection
 class Measure extends DomainResource {
   /// Primary constructor for
   /// [Measure]
@@ -452,6 +456,9 @@ class Measure extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'Measure';
@@ -1130,6 +1137,7 @@ class Measure extends DomainResource {
 
 /// [MeasureGroup]
 /// A group of population criteria for the measure.
+@collection
 class MeasureGroup extends BackboneElement {
   /// Primary constructor for
   /// [MeasureGroup]
@@ -1243,6 +1251,9 @@ class MeasureGroup extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MeasureGroup';
 
@@ -1342,6 +1353,7 @@ class MeasureGroup extends BackboneElement {
 
 /// [MeasurePopulation]
 /// A population criteria for the measure.
+@collection
 class MeasurePopulation extends BackboneElement {
   /// Primary constructor for
   /// [MeasurePopulation]
@@ -1439,6 +1451,9 @@ class MeasurePopulation extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MeasurePopulation';
 
@@ -1525,6 +1540,7 @@ class MeasurePopulation extends BackboneElement {
 /// The stratifier criteria for the measure report, specified as either the
 /// name of a valid CQL expression defined within a referenced library or a
 /// valid FHIR Resource Path.
+@collection
 class MeasureStratifier extends BackboneElement {
   /// Primary constructor for
   /// [MeasureStratifier]
@@ -1634,6 +1650,9 @@ class MeasureStratifier extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MeasureStratifier';
 
@@ -1738,6 +1757,7 @@ class MeasureStratifier extends BackboneElement {
 /// A component of the stratifier criteria for the measure report,
 /// specified as either the name of a valid CQL expression defined within a
 /// referenced library or a valid FHIR Resource Path.
+@collection
 class MeasureComponent extends BackboneElement {
   /// Primary constructor for
   /// [MeasureComponent]
@@ -1835,6 +1855,9 @@ class MeasureComponent extends BackboneElement {
     }
   }
 
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
+
   @override
   String get fhirType => 'MeasureComponent';
 
@@ -1926,6 +1949,7 @@ class MeasureComponent extends BackboneElement {
 /// The supplemental data criteria for the measure report, specified as
 /// either the name of a valid CQL expression within a referenced library,
 /// or a valid FHIR Resource Path.
+@collection
 class MeasureSupplementalData extends BackboneElement {
   /// Primary constructor for
   /// [MeasureSupplementalData]
@@ -2032,6 +2056,9 @@ class MeasureSupplementalData extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// The ID of the object in the database.
+  Id dbId = Isar.autoIncrement;
 
   @override
   String get fhirType => 'MeasureSupplementalData';
