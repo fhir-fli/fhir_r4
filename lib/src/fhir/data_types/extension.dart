@@ -88,9 +88,10 @@ class FhirExtension extends DataType {
               )
               .toList()
           : null,
-      url: FhirString.fromJson(
-        json['url'] as Map<String, dynamic>,
-      ),
+      url: FhirString.fromJson({
+        'value': json['url'],
+        '_value': json['_url'],
+      }),
       valueBase64Binary: (json['valueBase64Binary'] != null ||
               json['_valueBase64Binary'] != null)
           ? FhirBase64Binary.fromJson({
@@ -686,7 +687,11 @@ class FhirExtension extends DataType {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    json['url'] = url.toJson();
+    final fieldJson1 = url.toJson();
+    json['url'] = fieldJson1['value'];
+    if (fieldJson1['_value'] != null) {
+      json['_url'] = fieldJson1['_value'];
+    }
 
     if (valueBase64Binary != null) {
       final fieldJson2 = valueBase64Binary!.toJson();
