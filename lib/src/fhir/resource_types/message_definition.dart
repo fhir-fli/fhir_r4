@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [MessageDefinition]
 /// Defines the characteristics of a message that can be shared between
 /// systems, including the type of event that initiates the message, the
 /// content to be transmitted and what response(s), if any, are permitted.
+@Entity()
 class MessageDefinition extends DomainResource {
   /// Primary constructor for
   /// [MessageDefinition]
 
   MessageDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -311,6 +314,12 @@ class MessageDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MessageDefinition';
@@ -761,11 +770,13 @@ class MessageDefinition extends DomainResource {
 /// Identifies the resource (or resources) that are being addressed by the
 /// event. For example, the Encounter for an admit message or two Account
 /// records for a merge.
+@Entity()
 class MessageDefinitionFocus extends BackboneElement {
   /// Primary constructor for
   /// [MessageDefinitionFocus]
 
   MessageDefinitionFocus({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -864,6 +875,12 @@ class MessageDefinitionFocus extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MessageDefinitionFocus';
@@ -974,11 +991,13 @@ class MessageDefinitionFocus extends BackboneElement {
 /// [MessageDefinitionAllowedResponse]
 /// Indicates what types of messages may be sent as an application-level
 /// response to this message.
+@Entity()
 class MessageDefinitionAllowedResponse extends BackboneElement {
   /// Primary constructor for
   /// [MessageDefinitionAllowedResponse]
 
   MessageDefinitionAllowedResponse({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1065,6 +1084,12 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MessageDefinitionAllowedResponse';

@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [CareTeam]
 /// The Care Team includes all the people and organizations who plan to
 /// participate in the coordination and delivery of care for a patient.
+@Entity()
 class CareTeam extends DomainResource {
   /// Primary constructor for
   /// [CareTeam]
 
   CareTeam({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -235,6 +238,12 @@ class CareTeam extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CareTeam';
@@ -477,11 +486,13 @@ class CareTeam extends DomainResource {
 /// [CareTeamParticipant]
 /// Identifies all people and organizations who are expected to be involved
 /// in the care team.
+@Entity()
 class CareTeamParticipant extends BackboneElement {
   /// Primary constructor for
   /// [CareTeamParticipant]
 
   CareTeamParticipant({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -584,6 +595,12 @@ class CareTeamParticipant extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CareTeamParticipant';

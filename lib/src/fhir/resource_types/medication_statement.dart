@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [MedicationStatement]
@@ -27,11 +28,13 @@ import 'package:yaml/yaml.dart';
 /// patient's memory, from a prescription bottle or from a list of
 /// medications the patient, clinician or other party maintains. Medication
 /// administration is more formal and is not missing detailed information.
+@Entity()
 class MedicationStatement extends DomainResource {
   /// Primary constructor for
   /// [MedicationStatement]
 
   MedicationStatement({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -296,6 +299,12 @@ class MedicationStatement extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicationStatement';

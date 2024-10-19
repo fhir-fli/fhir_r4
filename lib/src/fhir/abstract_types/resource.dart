@@ -2,12 +2,15 @@ import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir/r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Resource] Base definition for all FHIR elements.
-abstract class Resource extends FhirBase {
+@Entity()
+class Resource extends FhirBase {
   /// Main constructor for [Resource ]
   Resource({
+    this.dbId = 0,
     required this.resourceType,
     this.id,
     this.meta,
@@ -25,6 +28,12 @@ abstract class Resource extends FhirBase {
   /// [Map<String, Object?>] as an argument
   factory Resource.fromJson(Map<String, Object?> json) =>
       resourceFromJson(json);
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Resource';
@@ -137,5 +146,19 @@ abstract class Resource extends FhirBase {
     List<dynamic>? annotations,
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
-  });
+  }) {
+    return Resource(
+      resourceType: resourceType,
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
+    );
+  }
 }

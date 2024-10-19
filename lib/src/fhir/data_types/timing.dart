@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Timing]
@@ -9,11 +10,13 @@ import 'package:yaml/yaml.dart';
 /// are also used when planning care of various kinds, and may be used for
 /// reporting the schedule to which past regular activities were carried
 /// out.
+@Entity()
 class Timing extends BackboneType {
   /// Primary constructor for
   /// [Timing]
 
   Timing({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -107,6 +110,12 @@ class Timing extends BackboneType {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'Timing';
 
@@ -198,11 +207,13 @@ class Timing extends BackboneType {
 
 /// [TimingRepeat]
 /// A set of rules that describe when the event is scheduled.
+@Entity()
 class TimingRepeat extends Element {
   /// Primary constructor for
   /// [TimingRepeat]
 
   TimingRepeat({
+    this.dbId = 0,
     super.id,
     super.extension_,
     this.boundsDuration,
@@ -382,6 +393,12 @@ class TimingRepeat extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'TimingRepeat';

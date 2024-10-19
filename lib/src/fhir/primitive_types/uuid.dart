@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:uuid/uuid.dart';
 import 'package:yaml/yaml.dart';
 
@@ -16,17 +17,25 @@ extension FhirUuidValueExtension on UuidValue {
 }
 
 /// [FhirUuid] represents a validated UUID value in the FHIR standard.
+@Entity()
 class FhirUuid extends PrimitiveType<UuidValue?> {
   /// Constructs a [FhirUuid] from a String input, allowing null values.
-  FhirUuid(String? input, [Element? element])
-      : super(input != null ? _validateUuid(input) : null, element) {
+  FhirUuid(String? input, [this.element])
+      : dbValue = input,
+        super(
+          input != null ? _validateUuid(input) : null,
+          element,
+        ) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
   }
 
   /// Constructs a [FhirUuid] from a [UuidValue], allowing null values.
-  FhirUuid.fromUuid(super.input, [super.element]);
+  FhirUuid.fromUuid(super.input, [super.element])
+      : dbValue = input?.uuid,
+        // ignore: prefer_initializing_formals
+        element = element;
 
   /// Factory constructor to create [FhirUuid] from JSON.
   factory FhirUuid.fromJson(Map<String, dynamic> json) {
@@ -79,6 +88,19 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
       throw FormatException('Invalid UUID: $input');
     }
   }
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// The original value of the UUID.
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
 
   /// Returns the FHIR type as 'uuid'.
   @override

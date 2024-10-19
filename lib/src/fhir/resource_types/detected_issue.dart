@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [DetectedIssue]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// more active or proposed clinical actions for a patient; e.g. Drug-drug
 /// interaction, Ineffective treatment frequency, Procedure-condition
 /// conflict, etc.
+@Entity()
 class DetectedIssue extends DomainResource {
   /// Primary constructor for
   /// [DetectedIssue]
 
   DetectedIssue({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -223,6 +226,12 @@ class DetectedIssue extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DetectedIssue';
@@ -475,11 +484,13 @@ class DetectedIssue extends DomainResource {
 /// Supporting evidence or manifestations that provide the basis for
 /// identifying the detected issue such as a GuidanceResponse or
 /// MeasureReport.
+@Entity()
 class DetectedIssueEvidence extends BackboneElement {
   /// Primary constructor for
   /// [DetectedIssueEvidence]
 
   DetectedIssueEvidence({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -575,6 +586,12 @@ class DetectedIssueEvidence extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'DetectedIssueEvidence';
 
@@ -650,11 +667,13 @@ class DetectedIssueEvidence extends BackboneElement {
 /// eliminate the likelihood of the risk identified by the detected issue
 /// from manifesting. Can also reflect an observation of known mitigating
 /// factors that may reduce/eliminate the need for any action.
+@Entity()
 class DetectedIssueMitigation extends BackboneElement {
   /// Primary constructor for
   /// [DetectedIssueMitigation]
 
   DetectedIssueMitigation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -746,6 +765,12 @@ class DetectedIssueMitigation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DetectedIssueMitigation';

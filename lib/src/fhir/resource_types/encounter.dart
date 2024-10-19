@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Encounter]
 /// An interaction between a patient and healthcare provider(s) for the
 /// purpose of providing healthcare service(s) or assessing the health
 /// status of a patient.
+@Entity()
 class Encounter extends DomainResource {
   /// Primary constructor for
   /// [Encounter]
 
   Encounter({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -311,6 +314,12 @@ class Encounter extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Encounter';
@@ -665,11 +674,13 @@ class Encounter extends DomainResource {
 /// The status history permits the encounter resource to contain the status
 /// history without needing to read through the historical versions of the
 /// resource, or even have the server store them.
+@Entity()
 class EncounterStatusHistory extends BackboneElement {
   /// Primary constructor for
   /// [EncounterStatusHistory]
 
   EncounterStatusHistory({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -754,6 +765,12 @@ class EncounterStatusHistory extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'EncounterStatusHistory';
 
@@ -832,11 +849,13 @@ class EncounterStatusHistory extends BackboneElement {
 /// new encounter ensures that any lab/diagnostic results can more easily
 /// follow the patient and not require re-processing and not get lost or
 /// cancelled during a kind of discharge from emergency to inpatient.
+@Entity()
 class EncounterClassHistory extends BackboneElement {
   /// Primary constructor for
   /// [EncounterClassHistory]
 
   EncounterClassHistory({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -920,6 +939,12 @@ class EncounterClassHistory extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'EncounterClassHistory';
 
@@ -987,11 +1012,13 @@ class EncounterClassHistory extends BackboneElement {
 
 /// [EncounterParticipant]
 /// The list of people responsible for providing the service.
+@Entity()
 class EncounterParticipant extends BackboneElement {
   /// Primary constructor for
   /// [EncounterParticipant]
 
   EncounterParticipant({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1089,6 +1116,12 @@ class EncounterParticipant extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'EncounterParticipant';
 
@@ -1172,11 +1205,13 @@ class EncounterParticipant extends BackboneElement {
 
 /// [EncounterDiagnosis]
 /// The list of diagnosis relevant to this encounter.
+@Entity()
 class EncounterDiagnosis extends BackboneElement {
   /// Primary constructor for
   /// [EncounterDiagnosis]
 
   EncounterDiagnosis({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1269,6 +1304,12 @@ class EncounterDiagnosis extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'EncounterDiagnosis';
 
@@ -1356,11 +1397,13 @@ class EncounterDiagnosis extends BackboneElement {
 
 /// [EncounterHospitalization]
 /// Details about the admission to a healthcare service.
+@Entity()
 class EncounterHospitalization extends BackboneElement {
   /// Primary constructor for
   /// [EncounterHospitalization]
 
   EncounterHospitalization({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1501,6 +1544,12 @@ class EncounterHospitalization extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EncounterHospitalization';
@@ -1647,11 +1696,13 @@ class EncounterHospitalization extends BackboneElement {
 
 /// [EncounterLocation]
 /// List of locations where the patient has been during this encounter.
+@Entity()
 class EncounterLocation extends BackboneElement {
   /// Primary constructor for
   /// [EncounterLocation]
 
   EncounterLocation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1749,6 +1800,12 @@ class EncounterLocation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EncounterLocation';

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// Extension to convert a [String] to [FhirString].
@@ -9,9 +10,13 @@ extension FhirStringExtension on String {
 }
 
 /// [FhirString] represents a string used in FHIR resources.
+@Entity()
 class FhirString extends PrimitiveType<String> {
   /// Constructs a [FhirString] with validation.
-  FhirString(super.input, [super.element]) {
+  FhirString(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -49,6 +54,19 @@ class FhirString extends PrimitiveType<String> {
     }
     return null;
   }
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// The original value of the string.
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
 
   /// Returns the FHIR type as 'string'.
   @override

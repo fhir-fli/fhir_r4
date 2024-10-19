@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [QuestionnaireResponse]
 /// A structured set of questions and their answers. The questions are
 /// ordered and grouped into coherent subsets, corresponding to the
 /// structure of the grouping of the questionnaire being responded to.
+@Entity()
 class QuestionnaireResponse extends DomainResource {
   /// Primary constructor for
   /// [QuestionnaireResponse]
 
   QuestionnaireResponse({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -204,6 +207,12 @@ class QuestionnaireResponse extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'QuestionnaireResponse';
@@ -429,11 +438,13 @@ class QuestionnaireResponse extends DomainResource {
 /// [QuestionnaireResponseItem]
 /// A group or question item from the original questionnaire for which
 /// answers are provided.
+@Entity()
 class QuestionnaireResponseItem extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireResponseItem]
 
   QuestionnaireResponseItem({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -547,6 +558,12 @@ class QuestionnaireResponseItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'QuestionnaireResponseItem';
@@ -662,11 +679,13 @@ class QuestionnaireResponseItem extends BackboneElement {
 
 /// [QuestionnaireResponseAnswer]
 /// The respondent's answer(s) to the question.
+@Entity()
 class QuestionnaireResponseAnswer extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireResponseAnswer]
 
   QuestionnaireResponseAnswer({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -835,6 +854,12 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'QuestionnaireResponseAnswer';

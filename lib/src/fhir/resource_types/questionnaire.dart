@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Questionnaire]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// answers from end-users. Questionnaires provide detailed control over
 /// order, presentation, phraseology and grouping to allow coherent,
 /// consistent data collection.
+@Entity()
 class Questionnaire extends DomainResource {
   /// Primary constructor for
   /// [Questionnaire]
 
   Questionnaire({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -295,6 +298,12 @@ class Questionnaire extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Questionnaire';
@@ -706,11 +715,13 @@ class Questionnaire extends DomainResource {
 /// [QuestionnaireItem]
 /// A particular question, question grouping or display text that is part
 /// of the questionnaire.
+@Entity()
 class QuestionnaireItem extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireItem]
 
   QuestionnaireItem({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -910,6 +921,12 @@ class QuestionnaireItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'QuestionnaireItem';
@@ -1198,11 +1215,13 @@ class QuestionnaireItem extends BackboneElement {
 /// A constraint indicating that this item should only be enabled
 /// (displayed/allow answers to be captured) when the specified condition
 /// is true.
+@Entity()
 class QuestionnaireEnableWhen extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireEnableWhen]
 
   QuestionnaireEnableWhen({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1359,6 +1378,12 @@ class QuestionnaireEnableWhen extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'QuestionnaireEnableWhen';
@@ -1574,11 +1599,13 @@ class QuestionnaireEnableWhen extends BackboneElement {
 
 /// [QuestionnaireAnswerOption]
 /// One of the permitted answers for a "choice" or "open-choice" question.
+@Entity()
 class QuestionnaireAnswerOption extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireAnswerOption]
 
   QuestionnaireAnswerOption({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1702,6 +1729,12 @@ class QuestionnaireAnswerOption extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'QuestionnaireAnswerOption';
@@ -1846,11 +1879,13 @@ class QuestionnaireAnswerOption extends BackboneElement {
 /// [QuestionnaireInitial]
 /// One or more values that should be pre-populated in the answer when
 /// initially rendering the questionnaire for user input.
+@Entity()
 class QuestionnaireInitial extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireInitial]
 
   QuestionnaireInitial({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2009,6 +2044,12 @@ class QuestionnaireInitial extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'QuestionnaireInitial';

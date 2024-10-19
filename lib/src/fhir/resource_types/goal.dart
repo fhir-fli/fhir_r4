@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Goal]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// organization care, for example, weight loss, restoring an activity of
 /// daily living, obtaining herd immunity via immunization, meeting a
 /// process improvement objective, etc.
+@Entity()
 class Goal extends DomainResource {
   /// Primary constructor for
   /// [Goal]
 
   Goal({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -254,6 +257,12 @@ class Goal extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Goal';
@@ -536,11 +545,13 @@ class Goal extends DomainResource {
 
 /// [GoalTarget]
 /// Indicates what should be done by when.
+@Entity()
 class GoalTarget extends BackboneElement {
   /// Primary constructor for
   /// [GoalTarget]
 
   GoalTarget({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -682,6 +693,12 @@ class GoalTarget extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'GoalTarget';

@@ -1,12 +1,15 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Element] Base definition for all FHIR elements.
+@Entity()
 class Element extends FhirBase {
   /// Constructor for Element with optional id and extensions
   Element({
+    this.dbId = 0,
     this.id,
     this.extension_,
     super.userData,
@@ -58,6 +61,12 @@ class Element extends FhirBase {
           'This does not properly decode to a Map<String,dynamic>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Element';

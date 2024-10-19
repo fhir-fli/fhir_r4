@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [SubscriptionTopic]
 /// Describes a stream of resource state changes or events and annotated
 /// with labels useful to filter projections from this topic.
+@Entity()
 class SubscriptionTopic extends DomainResource {
   /// Primary constructor for
   /// [SubscriptionTopic]
 
   SubscriptionTopic({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -298,6 +301,12 @@ class SubscriptionTopic extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SubscriptionTopic';
@@ -704,11 +713,13 @@ class SubscriptionTopic extends DomainResource {
 /// expression. Multiple triggers are considered OR joined (e.g., a
 /// resource update matching ANY of the definitions will trigger a
 /// notification).
+@Entity()
 class SubscriptionTopicResourceTrigger extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionTopicResourceTrigger]
 
   SubscriptionTopicResourceTrigger({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -815,6 +826,12 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SubscriptionTopicResourceTrigger';
@@ -945,11 +962,13 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
 /// [SubscriptionTopicQueryCriteria]
 /// The FHIR query based rules that the server should use to determine when
 /// to trigger a notification for this subscription topic.
+@Entity()
 class SubscriptionTopicQueryCriteria extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionTopicQueryCriteria]
 
   SubscriptionTopicQueryCriteria({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1061,6 +1080,12 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SubscriptionTopicQueryCriteria';
@@ -1189,11 +1214,13 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
 
 /// [SubscriptionTopicEventTrigger]
 /// Event definition which can be used to trigger the SubscriptionTopic.
+@Entity()
 class SubscriptionTopicEventTrigger extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionTopicEventTrigger]
 
   SubscriptionTopicEventTrigger({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1284,6 +1311,12 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SubscriptionTopicEventTrigger';
@@ -1383,11 +1416,13 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
 /// be filtered. May be defined Search Parameters (e.g., Encounter.patient)
 /// or parameters defined within this SubscriptionTopic context (e.g.,
 /// hub.event).
+@Entity()
 class SubscriptionTopicCanFilterBy extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionTopicCanFilterBy]
 
   SubscriptionTopicCanFilterBy({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1495,6 +1530,12 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SubscriptionTopicCanFilterBy';
@@ -1629,11 +1670,13 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
 /// [SubscriptionTopicNotificationShape]
 /// List of properties to describe the shape (e.g., resources) included in
 /// notifications from this Subscription Topic.
+@Entity()
 class SubscriptionTopicNotificationShape extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionTopicNotificationShape]
 
   SubscriptionTopicNotificationShape({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1725,6 +1768,12 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SubscriptionTopicNotificationShape';

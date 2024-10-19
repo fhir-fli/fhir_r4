@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Practitioner]
 /// A person who is directly or indirectly involved in the provisioning of
 /// healthcare.
+@Entity()
 class Practitioner extends DomainResource {
   /// Primary constructor for
   /// [Practitioner]
 
   Practitioner({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -214,6 +217,12 @@ class Practitioner extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Practitioner';
@@ -427,11 +436,13 @@ class Practitioner extends DomainResource {
 /// otherwise pertain to the provision of care by the practitioner. For
 /// example, a medical license issued by a medical board authorizing the
 /// practitioner to practice medicine within a certian locality.
+@Entity()
 class PractitionerQualification extends BackboneElement {
   /// Primary constructor for
   /// [PractitionerQualification]
 
   PractitionerQualification({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -532,6 +543,12 @@ class PractitionerQualification extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PractitionerQualification';

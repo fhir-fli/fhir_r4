@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [MedicationDispense]
@@ -8,11 +9,13 @@ import 'package:yaml/yaml.dart';
 /// product (supply) provided and the instructions for administering the
 /// medication. The medication dispense is the result of a pharmacy system
 /// responding to a medication order.
+@Entity()
 class MedicationDispense extends DomainResource {
   /// Primary constructor for
   /// [MedicationDispense]
 
   MedicationDispense({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -325,6 +328,12 @@ class MedicationDispense extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicationDispense';
@@ -726,11 +735,13 @@ class MedicationDispense extends DomainResource {
 
 /// [MedicationDispensePerformer]
 /// Indicates who or what performed the event.
+@Entity()
 class MedicationDispensePerformer extends BackboneElement {
   /// Primary constructor for
   /// [MedicationDispensePerformer]
 
   MedicationDispensePerformer({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -816,6 +827,12 @@ class MedicationDispensePerformer extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationDispensePerformer';
 
@@ -891,11 +908,13 @@ class MedicationDispensePerformer extends BackboneElement {
 /// other cases substitution is not expected but does happen. This block
 /// explains what substitution did or did not happen and why. If nothing is
 /// specified, substitution was not done.
+@Entity()
 class MedicationDispenseSubstitution extends BackboneElement {
   /// Primary constructor for
   /// [MedicationDispenseSubstitution]
 
   MedicationDispenseSubstitution({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1001,6 +1020,12 @@ class MedicationDispenseSubstitution extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicationDispenseSubstitution';

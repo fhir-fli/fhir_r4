@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ClaimResponse]
 /// This resource provides the adjudication details from the processing of
 /// a Claim resource.
+@Entity()
 class ClaimResponse extends DomainResource {
   /// Primary constructor for
   /// [ClaimResponse]
 
   ClaimResponse({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -303,6 +306,12 @@ class ClaimResponse extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimResponse';
@@ -684,11 +693,13 @@ class ClaimResponse extends DomainResource {
 /// [ClaimResponseItem]
 /// A claim line. Either a simple (a product or service) or a 'group' of
 /// details which can also be a simple items or groups of sub-details.
+@Entity()
 class ClaimResponseItem extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseItem]
 
   ClaimResponseItem({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -795,6 +806,12 @@ class ClaimResponseItem extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ClaimResponseItem';
 
@@ -896,11 +913,13 @@ class ClaimResponseItem extends BackboneElement {
 /// If this item is a group then the values here are a summary of the
 /// adjudication of the detail items. If this item is a simple product or
 /// service then this is the result of the adjudication of this item.
+@Entity()
 class ClaimResponseAdjudication extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseAdjudication]
 
   ClaimResponseAdjudication({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -998,6 +1017,12 @@ class ClaimResponseAdjudication extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimResponseAdjudication';
@@ -1100,11 +1125,13 @@ class ClaimResponseAdjudication extends BackboneElement {
 /// [ClaimResponseDetail]
 /// A claim detail. Either a simple (a product or service) or a 'group' of
 /// sub-details which are simple items.
+@Entity()
 class ClaimResponseDetail extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseDetail]
 
   ClaimResponseDetail({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1201,6 +1228,12 @@ class ClaimResponseDetail extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ClaimResponseDetail';
 
@@ -1289,11 +1322,13 @@ class ClaimResponseDetail extends BackboneElement {
 
 /// [ClaimResponseSubDetail]
 /// A sub-detail adjudication of a simple product or service.
+@Entity()
 class ClaimResponseSubDetail extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseSubDetail]
 
   ClaimResponseSubDetail({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1380,6 +1415,12 @@ class ClaimResponseSubDetail extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ClaimResponseSubDetail';
 
@@ -1459,11 +1500,13 @@ class ClaimResponseSubDetail extends BackboneElement {
 /// [ClaimResponseAddItem]
 /// The first-tier service adjudications for payor added product or service
 /// lines.
+@Entity()
 class ClaimResponseAddItem extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseAddItem]
 
   ClaimResponseAddItem({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1679,6 +1722,12 @@ class ClaimResponseAddItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimResponseAddItem';
@@ -1971,11 +2020,13 @@ class ClaimResponseAddItem extends BackboneElement {
 
 /// [ClaimResponseDetail1]
 /// The second-tier service adjudications for payor added services.
+@Entity()
 class ClaimResponseDetail1 extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseDetail1]
 
   ClaimResponseDetail1({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2105,6 +2156,12 @@ class ClaimResponseDetail1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimResponseDetail1';
@@ -2253,11 +2310,13 @@ class ClaimResponseDetail1 extends BackboneElement {
 
 /// [ClaimResponseSubDetail1]
 /// The third-tier service adjudications for payor added services.
+@Entity()
 class ClaimResponseSubDetail1 extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseSubDetail1]
 
   ClaimResponseSubDetail1({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2377,6 +2436,12 @@ class ClaimResponseSubDetail1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimResponseSubDetail1';
@@ -2515,11 +2580,13 @@ class ClaimResponseSubDetail1 extends BackboneElement {
 
 /// [ClaimResponseTotal]
 /// Categorized monetary totals for the adjudication.
+@Entity()
 class ClaimResponseTotal extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseTotal]
 
   ClaimResponseTotal({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2603,6 +2670,12 @@ class ClaimResponseTotal extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ClaimResponseTotal';
 
@@ -2674,11 +2747,13 @@ class ClaimResponseTotal extends BackboneElement {
 
 /// [ClaimResponsePayment]
 /// Payment details for the adjudication of the claim.
+@Entity()
 class ClaimResponsePayment extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponsePayment]
 
   ClaimResponsePayment({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2786,6 +2861,12 @@ class ClaimResponsePayment extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimResponsePayment';
@@ -2902,11 +2983,13 @@ class ClaimResponsePayment extends BackboneElement {
 /// [ClaimResponseProcessNote]
 /// A note that describes or explains adjudication results in a human
 /// readable form.
+@Entity()
 class ClaimResponseProcessNote extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseProcessNote]
 
   ClaimResponseProcessNote({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3006,6 +3089,12 @@ class ClaimResponseProcessNote extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimResponseProcessNote';
@@ -3109,11 +3198,13 @@ class ClaimResponseProcessNote extends BackboneElement {
 /// [ClaimResponseInsurance]
 /// Financial instruments for reimbursement for the health care products
 /// and services specified on the claim.
+@Entity()
 class ClaimResponseInsurance extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseInsurance]
 
   ClaimResponseInsurance({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3216,6 +3307,12 @@ class ClaimResponseInsurance extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimResponseInsurance';
@@ -3331,11 +3428,13 @@ class ClaimResponseInsurance extends BackboneElement {
 
 /// [ClaimResponseError]
 /// Errors encountered during the processing of the adjudication.
+@Entity()
 class ClaimResponseError extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseError]
 
   ClaimResponseError({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3438,6 +3537,12 @@ class ClaimResponseError extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimResponseError';

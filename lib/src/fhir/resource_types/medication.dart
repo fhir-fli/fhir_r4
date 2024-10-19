@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Medication]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// of a medication for the purposes of prescribing, dispensing, and
 /// administering a medication as well as for making statements about
 /// medication use.
+@Entity()
 class Medication extends DomainResource {
   /// Primary constructor for
   /// [Medication]
 
   Medication({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -182,6 +185,12 @@ class Medication extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Medication';
@@ -367,11 +376,13 @@ class Medication extends DomainResource {
 
 /// [MedicationIngredient]
 /// Identifies a particular constituent of interest in the product.
+@Entity()
 class MedicationIngredient extends BackboneElement {
   /// Primary constructor for
   /// [MedicationIngredient]
 
   MedicationIngredient({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -471,6 +482,12 @@ class MedicationIngredient extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicationIngredient';
@@ -572,11 +589,13 @@ class MedicationIngredient extends BackboneElement {
 
 /// [MedicationBatch]
 /// Information that only applies to packages (not products).
+@Entity()
 class MedicationBatch extends BackboneElement {
   /// Primary constructor for
   /// [MedicationBatch]
 
   MedicationBatch({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -666,6 +685,12 @@ class MedicationBatch extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicationBatch';

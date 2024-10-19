@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [TerminologyCapabilities]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// (behaviors) of a FHIR Terminology Server that may be used as a
 /// statement of actual server functionality or a statement of required or
 /// desired server implementation.
+@Entity()
 class TerminologyCapabilities extends DomainResource {
   /// Primary constructor for
   /// [TerminologyCapabilities]
 
   TerminologyCapabilities({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -294,6 +297,12 @@ class TerminologyCapabilities extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'TerminologyCapabilities';
@@ -728,11 +737,13 @@ class TerminologyCapabilities extends DomainResource {
 /// Software that is covered by this terminology capability statement. It
 /// is used when the statement describes the capabilities of a particular
 /// software version, independent of an installation.
+@Entity()
 class TerminologyCapabilitiesSoftware extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesSoftware]
 
   TerminologyCapabilitiesSoftware({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -820,6 +831,12 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TerminologyCapabilitiesSoftware';
 
@@ -899,11 +916,13 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
 /// Identifies a specific implementation instance that is described by the
 /// terminology capability statement - i.e. a particular installation,
 /// rather than the capabilities of a software program.
+@Entity()
 class TerminologyCapabilitiesImplementation extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesImplementation]
 
   TerminologyCapabilitiesImplementation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -991,6 +1010,12 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TerminologyCapabilitiesImplementation';
 
@@ -1071,11 +1096,13 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
 /// Identifies a code system that is supported by the server. If there is a
 /// no code system URL, then this declares the general assumptions a client
 /// can make about support for any CodeSystem resource.
+@Entity()
 class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesCodeSystem]
 
   TerminologyCapabilitiesCodeSystem({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1175,6 +1202,12 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TerminologyCapabilitiesCodeSystem';
 
@@ -1266,11 +1299,13 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
 /// [TerminologyCapabilitiesVersion]
 /// For the code system, a list of versions that are supported by the
 /// server.
+@Entity()
 class TerminologyCapabilitiesVersion extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesVersion]
 
   TerminologyCapabilitiesVersion({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1389,6 +1424,12 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'TerminologyCapabilitiesVersion';
@@ -1522,11 +1563,13 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
 
 /// [TerminologyCapabilitiesFilter]
 /// Filter Properties supported.
+@Entity()
 class TerminologyCapabilitiesFilter extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesFilter]
 
   TerminologyCapabilitiesFilter({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1615,6 +1658,12 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TerminologyCapabilitiesFilter';
 
@@ -1691,11 +1740,13 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
 /// [TerminologyCapabilitiesExpansion]
 /// Information about the
 /// [ValueSet/$expand](valueset-operation-expand.html) operation.
+@Entity()
 class TerminologyCapabilitiesExpansion extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesExpansion]
 
   TerminologyCapabilitiesExpansion({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1809,6 +1860,12 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'TerminologyCapabilitiesExpansion';
@@ -1927,11 +1984,13 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
 
 /// [TerminologyCapabilitiesParameter]
 /// Supported expansion parameter.
+@Entity()
 class TerminologyCapabilitiesParameter extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesParameter]
 
   TerminologyCapabilitiesParameter({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2020,6 +2079,12 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TerminologyCapabilitiesParameter';
 
@@ -2099,11 +2164,13 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
 /// Information about the
 /// [ValueSet/$validate-code](valueset-operation-validate-code.html)
 /// operation.
+@Entity()
 class TerminologyCapabilitiesValidateCode extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesValidateCode]
 
   TerminologyCapabilitiesValidateCode({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2184,6 +2251,12 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TerminologyCapabilitiesValidateCode';
 
@@ -2248,11 +2321,13 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
 /// [TerminologyCapabilitiesTranslation]
 /// Information about the
 /// [ConceptMap/$translate](conceptmap-operation-translate.html) operation.
+@Entity()
 class TerminologyCapabilitiesTranslation extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesTranslation]
 
   TerminologyCapabilitiesTranslation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2333,6 +2408,12 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TerminologyCapabilitiesTranslation';
 
@@ -2396,11 +2477,13 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
 
 /// [TerminologyCapabilitiesClosure]
 /// Whether the $closure operation is supported.
+@Entity()
 class TerminologyCapabilitiesClosure extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesClosure]
 
   TerminologyCapabilitiesClosure({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2482,6 +2565,12 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'TerminologyCapabilitiesClosure';

@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Task]
 /// A task to be performed.
+@Entity()
 class Task extends DomainResource {
   /// Primary constructor for
   /// [Task]
 
   Task({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -351,6 +354,12 @@ class Task extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Task';
@@ -809,11 +818,13 @@ class Task extends DomainResource {
 /// fulfillment (i.e. is asking for the request to be actioned), this
 /// element identifies any limitations on what parts of the referenced
 /// request should be actioned.
+@Entity()
 class TaskRestriction extends BackboneElement {
   /// Primary constructor for
   /// [TaskRestriction]
 
   TaskRestriction({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -912,6 +923,12 @@ class TaskRestriction extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TaskRestriction';
 
@@ -998,11 +1015,13 @@ class TaskRestriction extends BackboneElement {
 
 /// [TaskInput]
 /// Additional information that may be needed in the execution of the task.
+@Entity()
 class TaskInput extends BackboneElement {
   /// Primary constructor for
   /// [TaskInput]
 
   TaskInput({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1410,6 +1429,12 @@ class TaskInput extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'TaskInput';
@@ -2049,11 +2074,13 @@ class TaskInput extends BackboneElement {
 
 /// [TaskOutput]
 /// Outputs produced by the Task.
+@Entity()
 class TaskOutput extends BackboneElement {
   /// Primary constructor for
   /// [TaskOutput]
 
   TaskOutput({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2461,6 +2488,12 @@ class TaskOutput extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'TaskOutput';

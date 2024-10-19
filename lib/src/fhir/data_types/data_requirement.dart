@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [DataRequirement]
 /// Describes a required data item for evaluation in terms of the type of
 /// data, and optional code or date-based filters of the data.
+@Entity()
 class DataRequirement extends DataType {
   /// Primary constructor for
   /// [DataRequirement]
 
   DataRequirement({
+    this.dbId = 0,
     super.id,
     super.extension_,
     required this.type,
@@ -140,6 +143,12 @@ class DataRequirement extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DataRequirement';
@@ -315,11 +324,13 @@ class DataRequirement extends DataType {
 /// value set of interest for a particular element of the data. Each code
 /// filter defines an additional constraint on the data, i.e. code filters
 /// are AND'ed, not OR'ed.
+@Entity()
 class DataRequirementCodeFilter extends Element {
   /// Primary constructor for
   /// [DataRequirementCodeFilter]
 
   DataRequirementCodeFilter({
+    this.dbId = 0,
     super.id,
     super.extension_,
     this.path,
@@ -415,6 +426,12 @@ class DataRequirementCodeFilter extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DataRequirementCodeFilter';
@@ -531,11 +548,13 @@ class DataRequirementCodeFilter extends Element {
 /// applicable date range for specific elements. Each date filter specifies
 /// an additional constraint on the data, i.e. date filters are AND'ed, not
 /// OR'ed.
+@Entity()
 class DataRequirementDateFilter extends Element {
   /// Primary constructor for
   /// [DataRequirementDateFilter]
 
   DataRequirementDateFilter({
+    this.dbId = 0,
     super.id,
     super.extension_,
     this.path,
@@ -634,6 +653,12 @@ class DataRequirementDateFilter extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DataRequirementDateFilter';
@@ -766,11 +791,13 @@ class DataRequirementDateFilter extends Element {
 
 /// [DataRequirementSort]
 /// Specifies the order of the results to be returned.
+@Entity()
 class DataRequirementSort extends Element {
   /// Primary constructor for
   /// [DataRequirementSort]
 
   DataRequirementSort({
+    this.dbId = 0,
     super.id,
     super.extension_,
     required this.path,
@@ -845,6 +872,12 @@ class DataRequirementSort extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DataRequirementSort';

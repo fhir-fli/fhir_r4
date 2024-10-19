@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Substance]
 /// A homogeneous material with a definite composition.
+@Entity()
 class Substance extends DomainResource {
   /// Primary constructor for
   /// [Substance]
 
   Substance({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -181,6 +184,12 @@ class Substance extends DomainResource {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'Substance';
 
@@ -351,11 +360,13 @@ class Substance extends DomainResource {
 /// [SubstanceInstance]
 /// Substance may be used to describe a kind of substance, or a specific
 /// package/container of the substance: an instance.
+@Entity()
 class SubstanceInstance extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceInstance]
 
   SubstanceInstance({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -450,6 +461,12 @@ class SubstanceInstance extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'SubstanceInstance';
 
@@ -537,11 +554,13 @@ class SubstanceInstance extends BackboneElement {
 
 /// [SubstanceIngredient]
 /// A substance can be composed of other substances.
+@Entity()
 class SubstanceIngredient extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceIngredient]
 
   SubstanceIngredient({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -634,6 +653,12 @@ class SubstanceIngredient extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SubstanceIngredient';

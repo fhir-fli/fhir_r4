@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// Extension on [DateTime] to convert it to a [FhirDateTime].
@@ -17,6 +18,7 @@ extension FhirDateTimeStringExtension on String {
 
 /// [FhirDateTime] represents FHIR-compliant date and time, extending
 /// [FhirDateTimeBase].
+@Entity()
 class FhirDateTime extends FhirDateTimeBase {
   /// Factory constructor to create a [FhirDateTime] from individual units.
   ///
@@ -63,7 +65,10 @@ class FhirDateTime extends FhirDateTimeBase {
     required super.timeZoneOffset,
     required super.isUtc,
     super.element,
-  });
+    this.dbValue,
+  }) :
+        // ignore: prefer_initializing_formals
+        element = element;
 
   /// Factory constructor to create a [FhirDateTime] from a [String].
   ///
@@ -170,6 +175,19 @@ class FhirDateTime extends FhirDateTimeBase {
   @override
   FhirDateTime operator -(ExtendedDuration other) =>
       FhirDateTimeBase.subtract<FhirDateTime>(this, other) as FhirDateTime;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Element stored as a relation in ObjectBox
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
 
   /// Clones the current [FhirDateTime] and returns a new instance.
   @override

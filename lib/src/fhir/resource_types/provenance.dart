@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Provenance]
@@ -14,11 +15,13 @@ import 'package:yaml/yaml.dart';
 /// (e.g. Document Completion - has the artifact been legally
 /// authenticated), all of which may impact security, privacy, and trust
 /// policies.
+@Entity()
 class Provenance extends DomainResource {
   /// Primary constructor for
   /// [Provenance]
 
   Provenance({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -219,6 +222,12 @@ class Provenance extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Provenance';
@@ -435,11 +444,13 @@ class Provenance extends DomainResource {
 /// [ProvenanceAgent]
 /// An actor taking a role in an activity for which it can be assigned some
 /// degree of responsibility for the activity taking place.
+@Entity()
 class ProvenanceAgent extends BackboneElement {
   /// Primary constructor for
   /// [ProvenanceAgent]
 
   ProvenanceAgent({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -541,6 +552,12 @@ class ProvenanceAgent extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ProvenanceAgent';
 
@@ -631,11 +648,13 @@ class ProvenanceAgent extends BackboneElement {
 
 /// [ProvenanceEntity]
 /// An entity used in this activity.
+@Entity()
 class ProvenanceEntity extends BackboneElement {
   /// Primary constructor for
   /// [ProvenanceEntity]
 
   ProvenanceEntity({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -729,6 +748,12 @@ class ProvenanceEntity extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ProvenanceEntity';

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ImplementationGuide]
@@ -8,11 +9,13 @@ import 'package:yaml/yaml.dart';
 /// resource is used to gather all the parts of an implementation guide
 /// into a logical whole and to publish a computable definition of all the
 /// parts.
+@Entity()
 class ImplementationGuide extends DomainResource {
   /// Primary constructor for
   /// [ImplementationGuide]
 
   ImplementationGuide({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -273,6 +276,12 @@ class ImplementationGuide extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ImplementationGuide';
@@ -651,11 +660,13 @@ class ImplementationGuide extends DomainResource {
 /// Another implementation guide that this implementation depends on.
 /// Typically, an implementation guide uses value sets, profiles
 /// etc.defined in other implementation guides.
+@Entity()
 class ImplementationGuideDependsOn extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideDependsOn]
 
   ImplementationGuideDependsOn({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -749,6 +760,12 @@ class ImplementationGuideDependsOn extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ImplementationGuideDependsOn';
@@ -844,11 +861,13 @@ class ImplementationGuideDependsOn extends BackboneElement {
 /// [ImplementationGuideGlobal]
 /// A set of profiles that all resources covered by this implementation
 /// guide must conform to.
+@Entity()
 class ImplementationGuideGlobal extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideGlobal]
 
   ImplementationGuideGlobal({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -934,6 +953,12 @@ class ImplementationGuideGlobal extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ImplementationGuideGlobal';
 
@@ -1010,11 +1035,13 @@ class ImplementationGuideGlobal extends BackboneElement {
 /// [ImplementationGuideDefinition]
 /// The information needed by an IG publisher tool to publish the whole
 /// implementation guide.
+@Entity()
 class ImplementationGuideDefinition extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideDefinition]
 
   ImplementationGuideDefinition({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1136,6 +1163,12 @@ class ImplementationGuideDefinition extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ImplementationGuideDefinition';
 
@@ -1241,11 +1274,13 @@ class ImplementationGuideDefinition extends BackboneElement {
 /// [ImplementationGuideGrouping]
 /// A logical group of resources. Logical groups can be used when building
 /// pages.
+@Entity()
 class ImplementationGuideGrouping extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideGrouping]
 
   ImplementationGuideGrouping({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1333,6 +1368,12 @@ class ImplementationGuideGrouping extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ImplementationGuideGrouping';
 
@@ -1414,11 +1455,13 @@ class ImplementationGuideGrouping extends BackboneElement {
 /// resources (value set, structure definition, capability statements etc.)
 /// are obvious candidates for inclusion, but any kind of resource can be
 /// included as an example resource.
+@Entity()
 class ImplementationGuideResource extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideResource]
 
   ImplementationGuideResource({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1540,6 +1583,12 @@ class ImplementationGuideResource extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ImplementationGuideResource';
@@ -1694,11 +1743,13 @@ class ImplementationGuideResource extends BackboneElement {
 /// [ImplementationGuidePage]
 /// A page / section in the implementation guide. The root page is the
 /// implementation guide home page.
+@Entity()
 class ImplementationGuidePage extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuidePage]
 
   ImplementationGuidePage({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1796,6 +1847,12 @@ class ImplementationGuidePage extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ImplementationGuidePage';
@@ -1897,11 +1954,13 @@ class ImplementationGuidePage extends BackboneElement {
 
 /// [ImplementationGuideParameter]
 /// Defines how IG is built by tools.
+@Entity()
 class ImplementationGuideParameter extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideParameter]
 
   ImplementationGuideParameter({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1987,6 +2046,12 @@ class ImplementationGuideParameter extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ImplementationGuideParameter';
 
@@ -2064,11 +2129,13 @@ class ImplementationGuideParameter extends BackboneElement {
 
 /// [ImplementationGuideTemplate]
 /// A template for building resources.
+@Entity()
 class ImplementationGuideTemplate extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideTemplate]
 
   ImplementationGuideTemplate({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2161,6 +2228,12 @@ class ImplementationGuideTemplate extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ImplementationGuideTemplate';
 
@@ -2251,11 +2324,13 @@ class ImplementationGuideTemplate extends BackboneElement {
 /// [ImplementationGuideManifest]
 /// Information about an assembled implementation guide, created by the
 /// publication tooling.
+@Entity()
 class ImplementationGuideManifest extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideManifest]
 
   ImplementationGuideManifest({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2369,6 +2444,12 @@ class ImplementationGuideManifest extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ImplementationGuideManifest';
@@ -2490,11 +2571,13 @@ class ImplementationGuideManifest extends BackboneElement {
 /// resources (value set, structure definition, capability statements etc.)
 /// are obvious candidates for inclusion, but any kind of resource can be
 /// included as an example resource.
+@Entity()
 class ImplementationGuideResource1 extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideResource1]
 
   ImplementationGuideResource1({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2597,6 +2680,12 @@ class ImplementationGuideResource1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ImplementationGuideResource1';
@@ -2703,11 +2792,13 @@ class ImplementationGuideResource1 extends BackboneElement {
 
 /// [ImplementationGuidePage1]
 /// Information about a page within the IG.
+@Entity()
 class ImplementationGuidePage1 extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuidePage1]
 
   ImplementationGuidePage1({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2800,6 +2891,12 @@ class ImplementationGuidePage1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ImplementationGuidePage1';

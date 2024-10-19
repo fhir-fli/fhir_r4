@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ActivityDefinition]
 /// This resource allows for the definition of some activity to be
 /// performed, independent of a particular patient, practitioner, or other
 /// performance context.
+@Entity()
 class ActivityDefinition extends DomainResource {
   /// Primary constructor for
   /// [ActivityDefinition]
 
   ActivityDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -543,6 +546,12 @@ class ActivityDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ActivityDefinition';
@@ -1379,11 +1388,13 @@ class ActivityDefinition extends DomainResource {
 
 /// [ActivityDefinitionParticipant]
 /// Indicates who should participate in performing the action described.
+@Entity()
 class ActivityDefinitionParticipant extends BackboneElement {
   /// Primary constructor for
   /// [ActivityDefinitionParticipant]
 
   ActivityDefinitionParticipant({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1470,6 +1481,12 @@ class ActivityDefinitionParticipant extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ActivityDefinitionParticipant';
 
@@ -1548,11 +1565,13 @@ class ActivityDefinitionParticipant extends BackboneElement {
 /// be computed based on the patient's weight, a dynamic value would be
 /// used to specify an expression that calculated the weight, and the path
 /// on the request resource that would contain the result.
+@Entity()
 class ActivityDefinitionDynamicValue extends BackboneElement {
   /// Primary constructor for
   /// [ActivityDefinitionDynamicValue]
 
   ActivityDefinitionDynamicValue({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1636,6 +1655,12 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ActivityDefinitionDynamicValue';

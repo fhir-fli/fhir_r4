@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [MedicinalProductDefinition]
@@ -10,11 +11,13 @@ import 'package:yaml/yaml.dart';
 /// intended to define and detail such products and their properties, for
 /// uses other than direct patient care (e.g. regulatory use, or drug
 /// catalogs).
+@Entity()
 class MedicinalProductDefinition extends DomainResource {
   /// Primary constructor for
   /// [MedicinalProductDefinition]
 
   MedicinalProductDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -370,6 +373,12 @@ class MedicinalProductDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicinalProductDefinition';
@@ -819,11 +828,13 @@ class MedicinalProductDefinition extends DomainResource {
 
 /// [MedicinalProductDefinitionContact]
 /// A product specific contact, person (in a role), or an organization.
+@Entity()
 class MedicinalProductDefinitionContact extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionContact]
 
   MedicinalProductDefinitionContact({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -909,6 +920,12 @@ class MedicinalProductDefinitionContact extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicinalProductDefinitionContact';
 
@@ -979,11 +996,13 @@ class MedicinalProductDefinitionContact extends BackboneElement {
 
 /// [MedicinalProductDefinitionName]
 /// The product's name, including full name and possibly coded parts.
+@Entity()
 class MedicinalProductDefinitionName extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionName]
 
   MedicinalProductDefinitionName({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1090,6 +1109,12 @@ class MedicinalProductDefinitionName extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicinalProductDefinitionName';
 
@@ -1185,11 +1210,13 @@ class MedicinalProductDefinitionName extends BackboneElement {
 
 /// [MedicinalProductDefinitionNamePart]
 /// Coding words or phrases of the name.
+@Entity()
 class MedicinalProductDefinitionNamePart extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionNamePart]
 
   MedicinalProductDefinitionNamePart({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1274,6 +1301,12 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicinalProductDefinitionNamePart';
 
@@ -1346,11 +1379,13 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
 /// [MedicinalProductDefinitionCountryLanguage]
 /// Country and jurisdiction where the name applies, and associated
 /// language.
+@Entity()
 class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionCountryLanguage]
 
   MedicinalProductDefinitionCountryLanguage({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1440,6 +1475,12 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicinalProductDefinitionCountryLanguage';
 
@@ -1520,11 +1561,13 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
 /// [MedicinalProductDefinitionCrossReference]
 /// Reference to another product, e.g. for linking authorised to
 /// investigational product, or a virtual product.
+@Entity()
 class MedicinalProductDefinitionCrossReference extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionCrossReference]
 
   MedicinalProductDefinitionCrossReference({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1610,6 +1653,12 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicinalProductDefinitionCrossReference';
 
@@ -1684,11 +1733,13 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
 /// [MedicinalProductDefinitionOperation]
 /// A manufacturing or administrative process or step associated with (or
 /// performed on) the medicinal product.
+@Entity()
 class MedicinalProductDefinitionOperation extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionOperation]
 
   MedicinalProductDefinitionOperation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1792,6 +1843,12 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicinalProductDefinitionOperation';
 
@@ -1890,11 +1947,13 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
 /// [MedicinalProductDefinitionCharacteristic]
 /// Allows the key product features to be recorded, such as "sugar free",
 /// "modified release", "parallel import".
+@Entity()
 class MedicinalProductDefinitionCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionCharacteristic]
 
   MedicinalProductDefinitionCharacteristic({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2006,6 +2065,12 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicinalProductDefinitionCharacteristic';

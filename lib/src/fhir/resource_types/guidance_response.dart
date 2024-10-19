@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [GuidanceResponse]
 /// A guidance response is the formal response to a guidance request,
 /// including any output parameters returned by the evaluation, as well as
 /// the description of any proposed actions to be taken.
+@Entity()
 class GuidanceResponse extends DomainResource {
   /// Primary constructor for
   /// [GuidanceResponse]
 
   GuidanceResponse({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -254,6 +257,12 @@ class GuidanceResponse extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'GuidanceResponse';

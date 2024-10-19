@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [EvidenceVariable]
 /// The EvidenceVariable resource describes an element that knowledge
 /// (Evidence) is about.
+@Entity()
 class EvidenceVariable extends DomainResource {
   /// Primary constructor for
   /// [EvidenceVariable]
 
   EvidenceVariable({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -323,6 +326,12 @@ class EvidenceVariable extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EvidenceVariable';
@@ -750,11 +759,13 @@ class EvidenceVariable extends DomainResource {
 /// [EvidenceVariableCharacteristic]
 /// A characteristic that defines the members of the evidence element.
 /// Multiple characteristics are applied with "and" semantics.
+@Entity()
 class EvidenceVariableCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceVariableCharacteristic]
 
   EvidenceVariableCharacteristic({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -895,6 +906,12 @@ class EvidenceVariableCharacteristic extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EvidenceVariableCharacteristic';
@@ -1081,11 +1098,13 @@ class EvidenceVariableCharacteristic extends BackboneElement {
 /// [EvidenceVariableTimeFromStart]
 /// Indicates duration, period, or point of observation from the
 /// participant's study entry.
+@Entity()
 class EvidenceVariableTimeFromStart extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceVariableTimeFromStart]
 
   EvidenceVariableTimeFromStart({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1190,6 +1209,12 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'EvidenceVariableTimeFromStart';
 
@@ -1288,11 +1313,13 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
 /// [EvidenceVariableCategory]
 /// A grouping (or set of values) described along with other groupings to
 /// specify the set of groupings allowed for the variable.
+@Entity()
 class EvidenceVariableCategory extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceVariableCategory]
 
   EvidenceVariableCategory({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1392,6 +1419,12 @@ class EvidenceVariableCategory extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EvidenceVariableCategory';

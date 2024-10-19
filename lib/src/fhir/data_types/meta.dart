@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [FhirMeta]
 /// The metadata about a resource. This is content in the resource that is
 /// maintained by the infrastructure. Changes to the content might not
 /// always be associated with version changes to the resource.
+@Entity()
 class FhirMeta extends DataType {
   /// Primary constructor for
   /// [FhirMeta]
 
   FhirMeta({
+    this.dbId = 0,
     super.id,
     super.extension_,
     this.versionId,
@@ -122,6 +125,12 @@ class FhirMeta extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'FhirMeta';

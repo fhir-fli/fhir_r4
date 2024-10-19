@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ImmunizationRecommendation]
 /// A patient's point-in-time set of recommendations (i.e. forecasting)
 /// according to a published schedule with optional supporting
 /// justification.
+@Entity()
 class ImmunizationRecommendation extends DomainResource {
   /// Primary constructor for
   /// [ImmunizationRecommendation]
 
   ImmunizationRecommendation({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -160,6 +163,12 @@ class ImmunizationRecommendation extends DomainResource {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ImmunizationRecommendation';
 
@@ -298,11 +307,13 @@ class ImmunizationRecommendation extends DomainResource {
 
 /// [ImmunizationRecommendationRecommendation]
 /// Vaccine administration recommendations.
+@Entity()
 class ImmunizationRecommendationRecommendation extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationRecommendationRecommendation]
 
   ImmunizationRecommendationRecommendation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -493,6 +504,12 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ImmunizationRecommendationRecommendation';
@@ -728,11 +745,13 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
 /// [ImmunizationRecommendationDateCriterion]
 /// Vaccine date recommendations. For example, earliest date to administer,
 /// latest date to administer, etc.
+@Entity()
 class ImmunizationRecommendationDateCriterion extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationRecommendationDateCriterion]
 
   ImmunizationRecommendationDateCriterion({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -816,6 +835,12 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ImmunizationRecommendationDateCriterion';

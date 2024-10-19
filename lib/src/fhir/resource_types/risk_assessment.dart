@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [RiskAssessment]
 /// An assessment of the likely outcome(s) for a patient or other subject
 /// as well as the likelihood of each outcome.
+@Entity()
 class RiskAssessment extends DomainResource {
   /// Primary constructor for
   /// [RiskAssessment]
 
   RiskAssessment({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -255,6 +258,12 @@ class RiskAssessment extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'RiskAssessment';
@@ -540,11 +549,13 @@ class RiskAssessment extends DomainResource {
 
 /// [RiskAssessmentPrediction]
 /// Describes the expected outcome for the subject.
+@Entity()
 class RiskAssessmentPrediction extends BackboneElement {
   /// Primary constructor for
   /// [RiskAssessmentPrediction]
 
   RiskAssessmentPrediction({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -672,6 +683,12 @@ class RiskAssessmentPrediction extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'RiskAssessmentPrediction';

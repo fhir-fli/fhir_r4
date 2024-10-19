@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [AdministrableProductDefinition]
 /// A medicinal product in the final form which is suitable for
 /// administering to a patient (after any mixing of multiple components,
 /// dissolution etc. has been performed).
+@Entity()
 class AdministrableProductDefinition extends DomainResource {
   /// Primary constructor for
   /// [AdministrableProductDefinition]
 
   AdministrableProductDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -208,6 +211,12 @@ class AdministrableProductDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'AdministrableProductDefinition';
@@ -437,11 +446,13 @@ class AdministrableProductDefinition extends DomainResource {
 
 /// [AdministrableProductDefinitionProperty]
 /// Characteristics e.g. a product's onset of action.
+@Entity()
 class AdministrableProductDefinitionProperty extends BackboneElement {
   /// Primary constructor for
   /// [AdministrableProductDefinitionProperty]
 
   AdministrableProductDefinitionProperty({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -559,6 +570,12 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'AdministrableProductDefinitionProperty';
@@ -690,12 +707,14 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
 /// body. In some regions this is referred to as the licenced or approved
 /// route. RouteOfAdministration cannot be used when the 'formOf' product
 /// already uses MedicinalProductDefinition.route (and vice versa).
+@Entity()
 class AdministrableProductDefinitionRouteOfAdministration
     extends BackboneElement {
   /// Primary constructor for
   /// [AdministrableProductDefinitionRouteOfAdministration]
 
   AdministrableProductDefinitionRouteOfAdministration({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -814,6 +833,12 @@ class AdministrableProductDefinitionRouteOfAdministration
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'AdministrableProductDefinitionRouteOfAdministration';
@@ -940,11 +965,13 @@ class AdministrableProductDefinitionRouteOfAdministration
 
 /// [AdministrableProductDefinitionTargetSpecies]
 /// A species for which this route applies.
+@Entity()
 class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
   /// Primary constructor for
   /// [AdministrableProductDefinitionTargetSpecies]
 
   AdministrableProductDefinitionTargetSpecies({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1034,6 +1061,12 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'AdministrableProductDefinitionTargetSpecies';
 
@@ -1107,11 +1140,13 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
 /// [AdministrableProductDefinitionWithdrawalPeriod]
 /// A species specific time during which consumption of animal product is
 /// not appropriate.
+@Entity()
 class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
   /// Primary constructor for
   /// [AdministrableProductDefinitionWithdrawalPeriod]
 
   AdministrableProductDefinitionWithdrawalPeriod({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1202,6 +1237,12 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'AdministrableProductDefinitionWithdrawalPeriod';

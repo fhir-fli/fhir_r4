@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Contract]
 /// Legally enforceable, formally recorded unilateral or bilateral
 /// directive i.e., a policy or agreement.
+@Entity()
 class Contract extends DomainResource {
   /// Primary constructor for
   /// [Contract]
 
   Contract({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -382,6 +385,12 @@ class Contract extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Contract';
@@ -900,11 +909,13 @@ class Contract extends DomainResource {
 /// Precusory content developed with a focus and intent of supporting the
 /// formation a Contract instance, which may be associated with and
 /// transformable into a Contract.
+@Entity()
 class ContractContentDefinition extends BackboneElement {
   /// Primary constructor for
   /// [ContractContentDefinition]
 
   ContractContentDefinition({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1015,6 +1026,12 @@ class ContractContentDefinition extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ContractContentDefinition';
@@ -1146,11 +1163,13 @@ class ContractContentDefinition extends BackboneElement {
 /// [ContractTerm]
 /// One or more Contract Provisions, which may be related and conveyed as a
 /// group, and may contain nested groups.
+@Entity()
 class ContractTerm extends BackboneElement {
   /// Primary constructor for
   /// [ContractTerm]
 
   ContractTerm({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1319,6 +1338,12 @@ class ContractTerm extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ContractTerm';
@@ -1515,11 +1540,13 @@ class ContractTerm extends BackboneElement {
 /// [ContractSecurityLabel]
 /// Security labels that protect the handling of information about the term
 /// and its elements, which may be specifically identified..
+@Entity()
 class ContractSecurityLabel extends BackboneElement {
   /// Primary constructor for
   /// [ContractSecurityLabel]
 
   ContractSecurityLabel({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1625,6 +1652,12 @@ class ContractSecurityLabel extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ContractSecurityLabel';
 
@@ -1722,11 +1755,13 @@ class ContractSecurityLabel extends BackboneElement {
 
 /// [ContractOffer]
 /// The matter of concern in the context of this provision of the agrement.
+@Entity()
 class ContractOffer extends BackboneElement {
   /// Primary constructor for
   /// [ContractOffer]
 
   ContractOffer({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1878,6 +1913,12 @@ class ContractOffer extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ContractOffer';
@@ -2048,11 +2089,13 @@ class ContractOffer extends BackboneElement {
 
 /// [ContractParty]
 /// Offer Recipient.
+@Entity()
 class ContractParty extends BackboneElement {
   /// Primary constructor for
   /// [ContractParty]
 
   ContractParty({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2142,6 +2185,12 @@ class ContractParty extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ContractParty';
 
@@ -2209,11 +2258,13 @@ class ContractParty extends BackboneElement {
 
 /// [ContractAnswer]
 /// Response to offer text.
+@Entity()
 class ContractAnswer extends BackboneElement {
   /// Primary constructor for
   /// [ContractAnswer]
 
   ContractAnswer({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2372,6 +2423,12 @@ class ContractAnswer extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ContractAnswer';
@@ -2612,11 +2669,13 @@ class ContractAnswer extends BackboneElement {
 
 /// [ContractAsset]
 /// Contract Term Asset List.
+@Entity()
 class ContractAsset extends BackboneElement {
   /// Primary constructor for
   /// [ContractAsset]
 
   ContractAsset({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2809,6 +2868,12 @@ class ContractAsset extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ContractAsset';
@@ -3024,11 +3089,13 @@ class ContractAsset extends BackboneElement {
 
 /// [ContractContext]
 /// Circumstance of the asset.
+@Entity()
 class ContractContext extends BackboneElement {
   /// Primary constructor for
   /// [ContractContext]
 
   ContractContext({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3127,6 +3194,12 @@ class ContractContext extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ContractContext';
 
@@ -3215,11 +3288,13 @@ class ContractContext extends BackboneElement {
 
 /// [ContractValuedItem]
 /// Contract Valued Item List.
+@Entity()
 class ContractValuedItem extends BackboneElement {
   /// Primary constructor for
   /// [ContractValuedItem]
 
   ContractValuedItem({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3390,6 +3465,12 @@ class ContractValuedItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ContractValuedItem';
@@ -3638,11 +3719,13 @@ class ContractValuedItem extends BackboneElement {
 /// [ContractAction]
 /// An actor taking a role in an activity for which it can be assigned some
 /// degree of responsibility for the activity taking place.
+@Entity()
 class ContractAction extends BackboneElement {
   /// Primary constructor for
   /// [ContractAction]
 
   ContractAction({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3877,6 +3960,12 @@ class ContractAction extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ContractAction';
@@ -4210,11 +4299,13 @@ class ContractAction extends BackboneElement {
 
 /// [ContractSubject]
 /// Entity of the action.
+@Entity()
 class ContractSubject extends BackboneElement {
   /// Primary constructor for
   /// [ContractSubject]
 
   ContractSubject({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4306,6 +4397,12 @@ class ContractSubject extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ContractSubject';
 
@@ -4378,11 +4475,13 @@ class ContractSubject extends BackboneElement {
 /// parties, the grantor(s) and grantee(s), which are any person or
 /// organization bound by the contract, and any ancillary parties, which
 /// facilitate the execution of the contract such as a notary or witness.
+@Entity()
 class ContractSigner extends BackboneElement {
   /// Primary constructor for
   /// [ContractSigner]
 
   ContractSigner({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4476,6 +4575,12 @@ class ContractSigner extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ContractSigner';
 
@@ -4557,11 +4662,13 @@ class ContractSigner extends BackboneElement {
 /// communication styles that ensure that those agreeing to or signing the
 /// Contract understand the roles, actions, obligations, responsibilities,
 /// and implication of the agreement.
+@Entity()
 class ContractFriendly extends BackboneElement {
   /// Primary constructor for
   /// [ContractFriendly]
 
   ContractFriendly({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4649,6 +4756,12 @@ class ContractFriendly extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ContractFriendly';
 
@@ -4724,11 +4837,13 @@ class ContractFriendly extends BackboneElement {
 
 /// [ContractLegal]
 /// List of Legal expressions or representations of this Contract.
+@Entity()
 class ContractLegal extends BackboneElement {
   /// Primary constructor for
   /// [ContractLegal]
 
   ContractLegal({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4827,6 +4942,12 @@ class ContractLegal extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ContractLegal';
@@ -4928,11 +5049,13 @@ class ContractLegal extends BackboneElement {
 /// [ContractRule]
 /// List of Computable Policy Rule Language Representations of this
 /// Contract.
+@Entity()
 class ContractRule extends BackboneElement {
   /// Primary constructor for
   /// [ContractRule]
 
   ContractRule({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -5019,6 +5142,12 @@ class ContractRule extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ContractRule';

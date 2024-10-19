@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [PaymentReconciliation]
 /// This resource provides the details including amount of a payment and
 /// allocates the payment items being paid.
+@Entity()
 class PaymentReconciliation extends DomainResource {
   /// Primary constructor for
   /// [PaymentReconciliation]
 
   PaymentReconciliation({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -222,6 +225,12 @@ class PaymentReconciliation extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PaymentReconciliation';
@@ -481,11 +490,13 @@ class PaymentReconciliation extends DomainResource {
 /// [PaymentReconciliationDetail]
 /// Distribution of the payment amount for a previously acknowledged
 /// payable.
+@Entity()
 class PaymentReconciliationDetail extends BackboneElement {
   /// Primary constructor for
   /// [PaymentReconciliationDetail]
 
   PaymentReconciliationDetail({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -619,6 +630,12 @@ class PaymentReconciliationDetail extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PaymentReconciliationDetail';
@@ -779,11 +796,13 @@ class PaymentReconciliationDetail extends BackboneElement {
 /// [PaymentReconciliationProcessNote]
 /// A note that describes or explains the processing in a human readable
 /// form.
+@Entity()
 class PaymentReconciliationProcessNote extends BackboneElement {
   /// Primary constructor for
   /// [PaymentReconciliationProcessNote]
 
   PaymentReconciliationProcessNote({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -872,6 +891,12 @@ class PaymentReconciliationProcessNote extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PaymentReconciliationProcessNote';

@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Communication]
 /// An occurrence of information being transmitted; e.g. an alert that was
 /// sent to a responsible provider, a public health agency that was
 /// notified about a reportable condition.
+@Entity()
 class Communication extends DomainResource {
   /// Primary constructor for
   /// [Communication]
 
   Communication({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -312,6 +315,12 @@ class Communication extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Communication';
@@ -682,11 +691,13 @@ class Communication extends DomainResource {
 /// [CommunicationPayload]
 /// Text, attachment(s), or resource(s) that was communicated to the
 /// recipient.
+@Entity()
 class CommunicationPayload extends BackboneElement {
   /// Primary constructor for
   /// [CommunicationPayload]
 
   CommunicationPayload({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -781,6 +792,12 @@ class CommunicationPayload extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CommunicationPayload';

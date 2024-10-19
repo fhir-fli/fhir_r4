@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Subscription]
@@ -9,11 +10,13 @@ import 'package:yaml/yaml.dart';
 /// updated, and if the resource matches the given criteria, it sends a
 /// message on the defined "channel" so that another system can take an
 /// appropriate action.
+@Entity()
 class Subscription extends DomainResource {
   /// Primary constructor for
   /// [Subscription]
 
   Subscription({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -170,6 +173,12 @@ class Subscription extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Subscription';
@@ -349,11 +358,13 @@ class Subscription extends DomainResource {
 /// [SubscriptionChannel]
 /// Details where to send notifications when resources are received that
 /// meet the criteria.
+@Entity()
 class SubscriptionChannel extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionChannel]
 
   SubscriptionChannel({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -453,6 +464,12 @@ class SubscriptionChannel extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SubscriptionChannel';

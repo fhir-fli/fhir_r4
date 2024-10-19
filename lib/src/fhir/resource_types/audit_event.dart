@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [AuditEvent]
 /// A record of an event made for purposes of maintaining a security log.
 /// Typical uses include detection of intrusion attempts and monitoring for
 /// inappropriate usage.
+@Entity()
 class AuditEvent extends DomainResource {
   /// Primary constructor for
   /// [AuditEvent]
 
   AuditEvent({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -204,6 +207,12 @@ class AuditEvent extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'AuditEvent';
@@ -417,11 +426,13 @@ class AuditEvent extends DomainResource {
 
 /// [AuditEventAgent]
 /// An actor taking an active role in the event or activity that is logged.
+@Entity()
 class AuditEventAgent extends BackboneElement {
   /// Primary constructor for
   /// [AuditEventAgent]
 
   AuditEventAgent({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -571,6 +582,12 @@ class AuditEventAgent extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'AuditEventAgent';
@@ -761,11 +778,13 @@ class AuditEventAgent extends BackboneElement {
 /// [AuditEventNetwork]
 /// Logical network location for application activity, if the activity has
 /// a network location.
+@Entity()
 class AuditEventNetwork extends BackboneElement {
   /// Primary constructor for
   /// [AuditEventNetwork]
 
   AuditEventNetwork({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -855,6 +874,12 @@ class AuditEventNetwork extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'AuditEventNetwork';
 
@@ -936,11 +961,13 @@ class AuditEventNetwork extends BackboneElement {
 
 /// [AuditEventSource]
 /// The system that is reporting the event.
+@Entity()
 class AuditEventSource extends BackboneElement {
   /// Primary constructor for
   /// [AuditEventSource]
 
   AuditEventSource({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1037,6 +1064,12 @@ class AuditEventSource extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'AuditEventSource';
 
@@ -1122,11 +1155,13 @@ class AuditEventSource extends BackboneElement {
 
 /// [AuditEventEntity]
 /// Specific instances of data or objects that have been accessed.
+@Entity()
 class AuditEventEntity extends BackboneElement {
   /// Primary constructor for
   /// [AuditEventEntity]
 
   AuditEventEntity({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1266,6 +1301,12 @@ class AuditEventEntity extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'AuditEventEntity';
@@ -1424,11 +1465,13 @@ class AuditEventEntity extends BackboneElement {
 /// [AuditEventDetail]
 /// Tagged value pairs for conveying additional information about the
 /// entity.
+@Entity()
 class AuditEventDetail extends BackboneElement {
   /// Primary constructor for
   /// [AuditEventDetail]
 
   AuditEventDetail({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1523,6 +1566,12 @@ class AuditEventDetail extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'AuditEventDetail';

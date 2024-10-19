@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [CatalogEntry]
 /// Catalog entries are wrappers that contextualize items included in a
 /// catalog.
+@Entity()
 class CatalogEntry extends DomainResource {
   /// Primary constructor for
   /// [CatalogEntry]
 
   CatalogEntry({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -225,6 +228,12 @@ class CatalogEntry extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CatalogEntry';
@@ -470,11 +479,13 @@ class CatalogEntry extends DomainResource {
 /// [CatalogEntryRelatedEntry]
 /// Used for example, to point to a substance, or to a device used to
 /// administer a medication.
+@Entity()
 class CatalogEntryRelatedEntry extends BackboneElement {
   /// Primary constructor for
   /// [CatalogEntryRelatedEntry]
 
   CatalogEntryRelatedEntry({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -558,6 +569,12 @@ class CatalogEntryRelatedEntry extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CatalogEntryRelatedEntry';

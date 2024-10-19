@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [NamingSystem]
 /// A curated namespace that issues unique symbols within that namespace
 /// for the identification of concepts, people, devices, etc. Represents a
 /// "System" used within the Identifier and Coding data types.
+@Entity()
 class NamingSystem extends DomainResource {
   /// Primary constructor for
   /// [NamingSystem]
 
   NamingSystem({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -218,6 +221,12 @@ class NamingSystem extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'NamingSystem';
@@ -483,11 +492,13 @@ class NamingSystem extends DomainResource {
 /// [NamingSystemUniqueId]
 /// Indicates how the system may be identified when referenced in
 /// electronic exchange.
+@Entity()
 class NamingSystemUniqueId extends BackboneElement {
   /// Primary constructor for
   /// [NamingSystemUniqueId]
 
   NamingSystemUniqueId({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -592,6 +603,12 @@ class NamingSystemUniqueId extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'NamingSystemUniqueId';

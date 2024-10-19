@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [DiagnosticReport]
@@ -9,11 +10,13 @@ import 'package:yaml/yaml.dart';
 /// requesting and provider information, and some mix of atomic results,
 /// images, textual and coded interpretations, and formatted representation
 /// of diagnostic reports.
+@Entity()
 class DiagnosticReport extends DomainResource {
   /// Primary constructor for
   /// [DiagnosticReport]
 
   DiagnosticReport({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -286,6 +289,12 @@ class DiagnosticReport extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DiagnosticReport';
@@ -606,11 +615,13 @@ class DiagnosticReport extends DomainResource {
 /// A list of key images associated with this report. The images are
 /// generally created during the diagnostic process, and may be directly of
 /// the patient, or of treated specimens (i.e. slides of interest).
+@Entity()
 class DiagnosticReportMedia extends BackboneElement {
   /// Primary constructor for
   /// [DiagnosticReportMedia]
 
   DiagnosticReportMedia({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -696,6 +707,12 @@ class DiagnosticReportMedia extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DiagnosticReportMedia';

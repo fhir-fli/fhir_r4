@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Specimen]
 /// A sample to be used for analysis.
+@Entity()
 class Specimen extends DomainResource {
   /// Primary constructor for
   /// [Specimen]
 
   Specimen({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -231,6 +234,12 @@ class Specimen extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Specimen';
@@ -469,11 +478,13 @@ class Specimen extends DomainResource {
 
 /// [SpecimenCollection]
 /// Details concerning the specimen collection.
+@Entity()
 class SpecimenCollection extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenCollection]
 
   SpecimenCollection({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -604,6 +615,12 @@ class SpecimenCollection extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SpecimenCollection';
@@ -761,11 +778,13 @@ class SpecimenCollection extends BackboneElement {
 
 /// [SpecimenProcessing]
 /// Details concerning processing and processing steps for the specimen.
+@Entity()
 class SpecimenProcessing extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenProcessing]
 
   SpecimenProcessing({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -877,6 +896,12 @@ class SpecimenProcessing extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SpecimenProcessing';
@@ -992,11 +1017,13 @@ class SpecimenProcessing extends BackboneElement {
 /// [SpecimenContainer]
 /// The container holding the specimen. The recursive nature of containers;
 /// i.e. blood in tube in tray in rack is not addressed here.
+@Entity()
 class SpecimenContainer extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenContainer]
 
   SpecimenContainer({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1118,6 +1145,12 @@ class SpecimenContainer extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SpecimenContainer';

@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [MolecularSequence]
 /// Raw data describing a biological sequence.
+@Entity()
 class MolecularSequence extends DomainResource {
   /// Primary constructor for
   /// [MolecularSequence]
 
   MolecularSequence({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -245,6 +248,12 @@ class MolecularSequence extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MolecularSequence';
@@ -526,11 +535,13 @@ class MolecularSequence extends DomainResource {
 /// [MolecularSequenceReferenceSeq]
 /// A sequence that is used as a reference to describe variants that are
 /// present in a sequence analyzed.
+@Entity()
 class MolecularSequenceReferenceSeq extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceReferenceSeq]
 
   MolecularSequenceReferenceSeq({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -666,6 +677,12 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MolecularSequenceReferenceSeq';
@@ -854,11 +871,13 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
 /// This element can represent amino acid or nucleic sequence
 /// change(including insertion,deletion,SNP,etc.) It can represent some
 /// complex mutation or segment variation with the assist of CIGAR string.
+@Entity()
 class MolecularSequenceVariant extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceVariant]
 
   MolecularSequenceVariant({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -976,6 +995,12 @@ class MolecularSequenceVariant extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MolecularSequenceVariant';
@@ -1129,11 +1154,13 @@ class MolecularSequenceVariant extends BackboneElement {
 /// An experimental feature attribute that defines the quality of the
 /// feature in a quantitative way, such as a phred quality score
 /// ([SO:0001686](http://www.sequenceontology.org/browser/current_svn/term/SO:0001686)).
+@Entity()
 class MolecularSequenceQuality extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceQuality]
 
   MolecularSequenceQuality({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1307,6 +1334,12 @@ class MolecularSequenceQuality extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MolecularSequenceQuality';
@@ -1574,11 +1607,13 @@ class MolecularSequenceQuality extends BackboneElement {
 /// [MolecularSequenceRoc]
 /// Receiver Operator Characteristic (ROC) Curve to give
 /// sensitivity/specificity tradeoff.
+@Entity()
 class MolecularSequenceRoc extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceRoc]
 
   MolecularSequenceRoc({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1695,6 +1730,12 @@ class MolecularSequenceRoc extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MolecularSequenceRoc';
@@ -1853,11 +1894,13 @@ class MolecularSequenceRoc extends BackboneElement {
 /// [MolecularSequenceRepository]
 /// Configurations of the external repository. The repository shall store
 /// target's observedSeq or records related with target's observedSeq.
+@Entity()
 class MolecularSequenceRepository extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceRepository]
 
   MolecularSequenceRepository({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1973,6 +2016,12 @@ class MolecularSequenceRepository extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MolecularSequenceRepository';
@@ -2114,11 +2163,13 @@ class MolecularSequenceRepository extends BackboneElement {
 
 /// [MolecularSequenceStructureVariant]
 /// Information about chromosome structure variation.
+@Entity()
 class MolecularSequenceStructureVariant extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceStructureVariant]
 
   MolecularSequenceStructureVariant({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2225,6 +2276,12 @@ class MolecularSequenceStructureVariant extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MolecularSequenceStructureVariant';
@@ -2336,11 +2393,13 @@ class MolecularSequenceStructureVariant extends BackboneElement {
 
 /// [MolecularSequenceOuter]
 /// Structural variant outer.
+@Entity()
 class MolecularSequenceOuter extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceOuter]
 
   MolecularSequenceOuter({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2430,6 +2489,12 @@ class MolecularSequenceOuter extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MolecularSequenceOuter';
 
@@ -2513,11 +2578,13 @@ class MolecularSequenceOuter extends BackboneElement {
 
 /// [MolecularSequenceInner]
 /// Structural variant inner.
+@Entity()
 class MolecularSequenceInner extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceInner]
 
   MolecularSequenceInner({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2606,6 +2673,12 @@ class MolecularSequenceInner extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MolecularSequenceInner';

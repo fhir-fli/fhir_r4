@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Composition]
@@ -13,11 +14,13 @@ import 'package:yaml/yaml.dart';
 /// Bundle.type=document, and any other resources referenced from
 /// Composition must be included as subsequent entries in the Bundle (for
 /// example Patient, Practitioner, Encounter, etc.).
+@Entity()
 class Composition extends DomainResource {
   /// Primary constructor for
   /// [Composition]
 
   Composition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -242,6 +245,12 @@ class Composition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Composition';
@@ -506,11 +515,13 @@ class Composition extends DomainResource {
 /// [CompositionAttester]
 /// A participant who has attested to the accuracy of the
 /// composition/document.
+@Entity()
 class CompositionAttester extends BackboneElement {
   /// Primary constructor for
   /// [CompositionAttester]
 
   CompositionAttester({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -604,6 +615,12 @@ class CompositionAttester extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CompositionAttester';
 
@@ -692,11 +709,13 @@ class CompositionAttester extends BackboneElement {
 /// [CompositionRelatesTo]
 /// Relationships that this composition has with other compositions or
 /// documents that already exist.
+@Entity()
 class CompositionRelatesTo extends BackboneElement {
   /// Primary constructor for
   /// [CompositionRelatesTo]
 
   CompositionRelatesTo({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -789,6 +808,12 @@ class CompositionRelatesTo extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CompositionRelatesTo';
 
@@ -874,11 +899,13 @@ class CompositionRelatesTo extends BackboneElement {
 /// [CompositionEvent]
 /// The clinical service, such as a colonoscopy or an appendectomy, being
 /// documented.
+@Entity()
 class CompositionEvent extends BackboneElement {
   /// Primary constructor for
   /// [CompositionEvent]
 
   CompositionEvent({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -980,6 +1007,12 @@ class CompositionEvent extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CompositionEvent';
 
@@ -1069,11 +1102,13 @@ class CompositionEvent extends BackboneElement {
 
 /// [CompositionSection]
 /// The root of the sections that make up the composition.
+@Entity()
 class CompositionSection extends BackboneElement {
   /// Primary constructor for
   /// [CompositionSection]
 
   CompositionSection({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1222,6 +1257,12 @@ class CompositionSection extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CompositionSection';

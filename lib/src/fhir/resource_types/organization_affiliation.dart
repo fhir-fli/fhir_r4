@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [OrganizationAffiliation]
 /// Defines an affiliation/assotiation/relationship between 2 distinct
 /// oganizations, that is not a part-of relationship/sub-division
 /// relationship.
+@Entity()
 class OrganizationAffiliation extends DomainResource {
   /// Primary constructor for
   /// [OrganizationAffiliation]
 
   OrganizationAffiliation({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -229,6 +232,12 @@ class OrganizationAffiliation extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'OrganizationAffiliation';

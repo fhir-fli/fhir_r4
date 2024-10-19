@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Evidence]
@@ -8,11 +9,13 @@ import 'package:yaml/yaml.dart';
 /// exposures/interventions, comparators, outcomes, measured variables,
 /// confounding variables), the statistics, and the certainty of this
 /// evidence.
+@Entity()
 class Evidence extends DomainResource {
   /// Primary constructor for
   /// [Evidence]
 
   Evidence({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -342,6 +345,12 @@ class Evidence extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Evidence';
@@ -767,11 +776,13 @@ class Evidence extends DomainResource {
 
 /// [EvidenceVariableDefinition]
 /// Evidence variable such as population, exposure, or outcome.
+@Entity()
 class EvidenceVariableDefinition extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceVariableDefinition]
 
   EvidenceVariableDefinition({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -885,6 +896,12 @@ class EvidenceVariableDefinition extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EvidenceVariableDefinition';
@@ -1001,11 +1018,13 @@ class EvidenceVariableDefinition extends BackboneElement {
 
 /// [EvidenceStatistic]
 /// Values and parameters for a single statistic.
+@Entity()
 class EvidenceStatistic extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceStatistic]
 
   EvidenceStatistic({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1157,6 +1176,12 @@ class EvidenceStatistic extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EvidenceStatistic';
@@ -1328,11 +1353,13 @@ class EvidenceStatistic extends BackboneElement {
 
 /// [EvidenceSampleSize]
 /// Number of samples in the statistic.
+@Entity()
 class EvidenceSampleSize extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceSampleSize]
 
   EvidenceSampleSize({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1448,6 +1475,12 @@ class EvidenceSampleSize extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EvidenceSampleSize';
@@ -1568,11 +1601,13 @@ class EvidenceSampleSize extends BackboneElement {
 /// [EvidenceAttributeEstimate]
 /// A statistical attribute of the statistic such as a measure of
 /// heterogeneity.
+@Entity()
 class EvidenceAttributeEstimate extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceAttributeEstimate]
 
   EvidenceAttributeEstimate({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1689,6 +1724,12 @@ class EvidenceAttributeEstimate extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EvidenceAttributeEstimate';
@@ -1811,11 +1852,13 @@ class EvidenceAttributeEstimate extends BackboneElement {
 
 /// [EvidenceModelCharacteristic]
 /// A component of the method to generate the statistic.
+@Entity()
 class EvidenceModelCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceModelCharacteristic]
 
   EvidenceModelCharacteristic({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1911,6 +1954,12 @@ class EvidenceModelCharacteristic extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'EvidenceModelCharacteristic';
 
@@ -1991,11 +2040,13 @@ class EvidenceModelCharacteristic extends BackboneElement {
 
 /// [EvidenceModelCharacteristicVariable]
 /// A variable adjusted for in the adjusted analysis.
+@Entity()
 class EvidenceModelCharacteristicVariable extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceModelCharacteristicVariable]
 
   EvidenceModelCharacteristicVariable({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2112,6 +2163,12 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'EvidenceModelCharacteristicVariable';
 
@@ -2216,11 +2273,13 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
 /// [EvidenceCertainty]
 /// Assessment of certainty, confidence in the estimates, or quality of the
 /// evidence.
+@Entity()
 class EvidenceCertainty extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceCertainty]
 
   EvidenceCertainty({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2341,6 +2400,12 @@ class EvidenceCertainty extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EvidenceCertainty';

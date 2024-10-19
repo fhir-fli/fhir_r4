@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Signature]
@@ -9,11 +10,13 @@ import 'package:yaml/yaml.dart';
 /// simple as a graphical image representing a hand-written signature, or a
 /// signature ceremony Different signature approaches have different
 /// utilities.
+@Entity()
 class Signature extends DataType {
   /// Primary constructor for
   /// [Signature]
 
   Signature({
+    this.dbId = 0,
     super.id,
     super.extension_,
     required this.type,
@@ -125,6 +128,12 @@ class Signature extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Signature';

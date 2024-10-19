@@ -1,12 +1,15 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [DomainResource] Base definition for all FHIR elements.
-abstract class DomainResource extends Resource {
+@Entity()
+class DomainResource extends Resource {
   /// Main constructor for [DomainResource ]
   DomainResource({
+    this.dbId = 0,
     required super.resourceType,
     super.id,
     super.meta,
@@ -28,6 +31,12 @@ abstract class DomainResource extends Resource {
   /// [Map<String, Object?>] and returns a [DomainResource]
   factory DomainResource.fromJson(Map<String, Object?> json) =>
       Resource.fromJson(json) as DomainResource;
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DomainResource';
@@ -145,5 +154,23 @@ abstract class DomainResource extends Resource {
     List<dynamic>? annotations,
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
-  });
+  }) {
+    return DomainResource(
+      resourceType: resourceType,
+      id: id ?? this.id,
+      meta: meta ?? this.meta,
+      implicitRules: implicitRules ?? this.implicitRules,
+      language: language ?? this.language,
+      text: text ?? this.text,
+      contained: contained ?? this.contained,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
+    );
+  }
 }

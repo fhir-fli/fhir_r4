@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [VisionPrescription]
 /// An authorization for the provision of glasses and/or contact lenses to
 /// a patient.
+@Entity()
 class VisionPrescription extends DomainResource {
   /// Primary constructor for
   /// [VisionPrescription]
 
   VisionPrescription({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -172,6 +175,12 @@ class VisionPrescription extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'VisionPrescription';
@@ -350,11 +359,13 @@ class VisionPrescription extends DomainResource {
 /// [VisionPrescriptionLensSpecification]
 /// Contain the details of the individual lens specifications and serves as
 /// the authorization for the fullfillment by certified professionals.
+@Entity()
 class VisionPrescriptionLensSpecification extends BackboneElement {
   /// Primary constructor for
   /// [VisionPrescriptionLensSpecification]
 
   VisionPrescriptionLensSpecification({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -527,6 +538,12 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'VisionPrescriptionLensSpecification';
@@ -757,11 +774,13 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
 
 /// [VisionPrescriptionPrism]
 /// Allows for adjustment on two axis.
+@Entity()
 class VisionPrescriptionPrism extends BackboneElement {
   /// Primary constructor for
   /// [VisionPrescriptionPrism]
 
   VisionPrescriptionPrism({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -846,6 +865,12 @@ class VisionPrescriptionPrism extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'VisionPrescriptionPrism';

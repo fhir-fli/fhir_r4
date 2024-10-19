@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [NutritionProduct]
 /// A food or fluid product that is consumed by patients.
+@Entity()
 class NutritionProduct extends DomainResource {
   /// Primary constructor for
   /// [NutritionProduct]
 
   NutritionProduct({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -210,6 +213,12 @@ class NutritionProduct extends DomainResource {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'NutritionProduct';
 
@@ -409,11 +418,13 @@ class NutritionProduct extends DomainResource {
 
 /// [NutritionProductNutrient]
 /// The product's nutritional information expressed by the nutrients.
+@Entity()
 class NutritionProductNutrient extends BackboneElement {
   /// Primary constructor for
   /// [NutritionProductNutrient]
 
   NutritionProductNutrient({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -505,6 +516,12 @@ class NutritionProductNutrient extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'NutritionProductNutrient';
 
@@ -577,11 +594,13 @@ class NutritionProductNutrient extends BackboneElement {
 
 /// [NutritionProductIngredient]
 /// Ingredients contained in this product.
+@Entity()
 class NutritionProductIngredient extends BackboneElement {
   /// Primary constructor for
   /// [NutritionProductIngredient]
 
   NutritionProductIngredient({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -671,6 +690,12 @@ class NutritionProductIngredient extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'NutritionProductIngredient';
 
@@ -740,11 +765,13 @@ class NutritionProductIngredient extends BackboneElement {
 
 /// [NutritionProductProductCharacteristic]
 /// Specifies descriptive properties of the nutrition product.
+@Entity()
 class NutritionProductProductCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [NutritionProductProductCharacteristic]
 
   NutritionProductProductCharacteristic({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -864,6 +891,12 @@ class NutritionProductProductCharacteristic extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'NutritionProductProductCharacteristic';
@@ -998,11 +1031,13 @@ class NutritionProductProductCharacteristic extends BackboneElement {
 /// [NutritionProductInstance]
 /// Conveys instance-level information about this product item. One or
 /// several physical, countable instances or occurrences of the product.
+@Entity()
 class NutritionProductInstance extends BackboneElement {
   /// Primary constructor for
   /// [NutritionProductInstance]
 
   NutritionProductInstance({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1114,6 +1149,12 @@ class NutritionProductInstance extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'NutritionProductInstance';

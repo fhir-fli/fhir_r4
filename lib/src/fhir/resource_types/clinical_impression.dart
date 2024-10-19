@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ClinicalImpression]
@@ -11,11 +12,13 @@ import 'package:yaml/yaml.dart';
 /// is called "ClinicalImpression" rather than "ClinicalAssessment" to
 /// avoid confusion with the recording of assessment tools such as Apgar
 /// score.
+@Entity()
 class ClinicalImpression extends DomainResource {
   /// Primary constructor for
   /// [ClinicalImpression]
 
   ClinicalImpression({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -289,6 +292,12 @@ class ClinicalImpression extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClinicalImpression';
@@ -634,11 +643,13 @@ class ClinicalImpression extends DomainResource {
 /// context of the assessment. These investigations may include data
 /// generated during the assessment process, or data previously generated
 /// and recorded that is pertinent to the outcomes.
+@Entity()
 class ClinicalImpressionInvestigation extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalImpressionInvestigation]
 
   ClinicalImpressionInvestigation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -728,6 +739,12 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ClinicalImpressionInvestigation';
 
@@ -801,11 +818,13 @@ class ClinicalImpressionInvestigation extends BackboneElement {
 /// [ClinicalImpressionFinding]
 /// Specific findings or diagnoses that were considered likely or relevant
 /// to ongoing treatment.
+@Entity()
 class ClinicalImpressionFinding extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalImpressionFinding]
 
   ClinicalImpressionFinding({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -899,6 +918,12 @@ class ClinicalImpressionFinding extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClinicalImpressionFinding';

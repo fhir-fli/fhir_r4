@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [EvidenceReport]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// of resources and codable concepts, adapted to support compositions of
 /// Evidence, EvidenceVariable, and Citation resources and related
 /// concepts.
+@Entity()
 class EvidenceReport extends DomainResource {
   /// Primary constructor for
   /// [EvidenceReport]
 
   EvidenceReport({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -288,6 +291,12 @@ class EvidenceReport extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EvidenceReport';
@@ -607,11 +616,13 @@ class EvidenceReport extends DomainResource {
 /// [EvidenceReportSubject]
 /// Specifies the subject or focus of the report. Answers "What is this
 /// report about?".
+@Entity()
 class EvidenceReportSubject extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceReportSubject]
 
   EvidenceReportSubject({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -707,6 +718,12 @@ class EvidenceReportSubject extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'EvidenceReportSubject';
 
@@ -778,11 +795,13 @@ class EvidenceReportSubject extends BackboneElement {
 
 /// [EvidenceReportCharacteristic]
 /// Characteristic.
+@Entity()
 class EvidenceReportCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceReportCharacteristic]
 
   EvidenceReportCharacteristic({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -906,6 +925,12 @@ class EvidenceReportCharacteristic extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EvidenceReportCharacteristic';
@@ -1045,11 +1070,13 @@ class EvidenceReportCharacteristic extends BackboneElement {
 /// [EvidenceReportRelatesTo]
 /// Relationships that this composition has with other compositions or
 /// documents that already exist.
+@Entity()
 class EvidenceReportRelatesTo extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceReportRelatesTo]
 
   EvidenceReportRelatesTo({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1142,6 +1169,12 @@ class EvidenceReportRelatesTo extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'EvidenceReportRelatesTo';
 
@@ -1226,11 +1259,13 @@ class EvidenceReportRelatesTo extends BackboneElement {
 
 /// [EvidenceReportSection]
 /// The root of the sections that make up the composition.
+@Entity()
 class EvidenceReportSection extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceReportSection]
 
   EvidenceReportSection({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1399,6 +1434,12 @@ class EvidenceReportSection extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EvidenceReportSection';

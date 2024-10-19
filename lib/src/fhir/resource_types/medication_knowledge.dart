@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [MedicationKnowledge]
 /// Information about a medication that is used to support knowledge.
+@Entity()
 class MedicationKnowledge extends DomainResource {
   /// Primary constructor for
   /// [MedicationKnowledge]
 
   MedicationKnowledge({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -313,6 +316,12 @@ class MedicationKnowledge extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicationKnowledge';
@@ -675,11 +684,13 @@ class MedicationKnowledge extends DomainResource {
 
 /// [MedicationKnowledgeRelatedMedicationKnowledge]
 /// Associated or related knowledge about a medication.
+@Entity()
 class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeRelatedMedicationKnowledge]
 
   MedicationKnowledgeRelatedMedicationKnowledge({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -769,6 +780,12 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationKnowledgeRelatedMedicationKnowledge';
 
@@ -837,11 +854,13 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
 
 /// [MedicationKnowledgeMonograph]
 /// Associated documentation about the medication.
+@Entity()
 class MedicationKnowledgeMonograph extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeMonograph]
 
   MedicationKnowledgeMonograph({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -929,6 +948,12 @@ class MedicationKnowledgeMonograph extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationKnowledgeMonograph';
 
@@ -1001,11 +1026,13 @@ class MedicationKnowledgeMonograph extends BackboneElement {
 
 /// [MedicationKnowledgeIngredient]
 /// Identifies a particular constituent of interest in the product.
+@Entity()
 class MedicationKnowledgeIngredient extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeIngredient]
 
   MedicationKnowledgeIngredient({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1105,6 +1132,12 @@ class MedicationKnowledgeIngredient extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicationKnowledgeIngredient';
@@ -1206,11 +1239,13 @@ class MedicationKnowledgeIngredient extends BackboneElement {
 
 /// [MedicationKnowledgeCost]
 /// The price of the medication.
+@Entity()
 class MedicationKnowledgeCost extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeCost]
 
   MedicationKnowledgeCost({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1301,6 +1336,12 @@ class MedicationKnowledgeCost extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationKnowledgeCost';
 
@@ -1383,11 +1424,13 @@ class MedicationKnowledgeCost extends BackboneElement {
 
 /// [MedicationKnowledgeMonitoringProgram]
 /// The program under which the medication is reviewed.
+@Entity()
 class MedicationKnowledgeMonitoringProgram extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeMonitoringProgram]
 
   MedicationKnowledgeMonitoringProgram({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1476,6 +1519,12 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationKnowledgeMonitoringProgram';
 
@@ -1551,11 +1600,13 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
 
 /// [MedicationKnowledgeAdministrationGuidelines]
 /// Guidelines for the administration of the medication.
+@Entity()
 class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeAdministrationGuidelines]
 
   MedicationKnowledgeAdministrationGuidelines({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1663,6 +1714,12 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationKnowledgeAdministrationGuidelines';
 
@@ -1761,11 +1818,13 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
 
 /// [MedicationKnowledgeDosage]
 /// Dosage for the medication for the specific guidelines.
+@Entity()
 class MedicationKnowledgeDosage extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeDosage]
 
   MedicationKnowledgeDosage({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1855,6 +1914,12 @@ class MedicationKnowledgeDosage extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationKnowledgeDosage';
 
@@ -1924,11 +1989,13 @@ class MedicationKnowledgeDosage extends BackboneElement {
 /// [MedicationKnowledgePatientCharacteristics]
 /// Characteristics of the patient that are relevant to the administration
 /// guidelines (for example, height, weight, gender, etc.).
+@Entity()
 class MedicationKnowledgePatientCharacteristics extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgePatientCharacteristics]
 
   MedicationKnowledgePatientCharacteristics({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2023,6 +2090,12 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationKnowledgePatientCharacteristics';
 
@@ -2115,11 +2188,13 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
 /// [MedicationKnowledgeMedicineClassification]
 /// Categorization of the medication within a formulary or classification
 /// system.
+@Entity()
 class MedicationKnowledgeMedicineClassification extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeMedicineClassification]
 
   MedicationKnowledgeMedicineClassification({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2209,6 +2284,12 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationKnowledgeMedicineClassification';
 
@@ -2281,11 +2362,13 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
 
 /// [MedicationKnowledgePackaging]
 /// Information that only applies to packages (not products).
+@Entity()
 class MedicationKnowledgePackaging extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgePackaging]
 
   MedicationKnowledgePackaging({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2373,6 +2456,12 @@ class MedicationKnowledgePackaging extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationKnowledgePackaging';
 
@@ -2446,11 +2535,13 @@ class MedicationKnowledgePackaging extends BackboneElement {
 /// [MedicationKnowledgeDrugCharacteristic]
 /// Specifies descriptive properties of the medicine, such as color, shape,
 /// imprints, etc.
+@Entity()
 class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeDrugCharacteristic]
 
   MedicationKnowledgeDrugCharacteristic({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2558,6 +2649,12 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicationKnowledgeDrugCharacteristic';
@@ -2669,11 +2766,13 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
 
 /// [MedicationKnowledgeRegulatory]
 /// Regulatory information about a medication.
+@Entity()
 class MedicationKnowledgeRegulatory extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeRegulatory]
 
   MedicationKnowledgeRegulatory({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2779,6 +2878,12 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationKnowledgeRegulatory';
 
@@ -2871,11 +2976,13 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
 /// [MedicationKnowledgeSubstitution]
 /// Specifies if changes are allowed when dispensing a medication from a
 /// regulatory perspective.
+@Entity()
 class MedicationKnowledgeSubstitution extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeSubstitution]
 
   MedicationKnowledgeSubstitution({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2960,6 +3067,12 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationKnowledgeSubstitution';
 
@@ -3032,11 +3145,13 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
 
 /// [MedicationKnowledgeSchedule]
 /// Specifies the schedule of a medication in jurisdiction.
+@Entity()
 class MedicationKnowledgeSchedule extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeSchedule]
 
   MedicationKnowledgeSchedule({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3116,6 +3231,12 @@ class MedicationKnowledgeSchedule extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationKnowledgeSchedule';
 
@@ -3176,11 +3297,13 @@ class MedicationKnowledgeSchedule extends BackboneElement {
 /// [MedicationKnowledgeMaxDispense]
 /// The maximum number of units of the medication that can be dispensed in
 /// a period.
+@Entity()
 class MedicationKnowledgeMaxDispense extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeMaxDispense]
 
   MedicationKnowledgeMaxDispense({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3266,6 +3389,12 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationKnowledgeMaxDispense';
 
@@ -3336,11 +3465,13 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
 /// [MedicationKnowledgeKinetics]
 /// The time course of drug absorption, distribution, metabolism and
 /// excretion of a medication from the body.
+@Entity()
 class MedicationKnowledgeKinetics extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeKinetics]
 
   MedicationKnowledgeKinetics({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3441,6 +3572,12 @@ class MedicationKnowledgeKinetics extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicationKnowledgeKinetics';

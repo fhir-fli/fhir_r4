@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [DocumentManifest]
 /// A collection of documents compiled for a purpose together with metadata
 /// that applies to the collection.
+@Entity()
 class DocumentManifest extends DomainResource {
   /// Primary constructor for
   /// [DocumentManifest]
 
   DocumentManifest({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -217,6 +220,12 @@ class DocumentManifest extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DocumentManifest';
@@ -454,11 +463,13 @@ class DocumentManifest extends DomainResource {
 
 /// [DocumentManifestRelated]
 /// Related identifiers or resources associated with the DocumentManifest.
+@Entity()
 class DocumentManifestRelated extends BackboneElement {
   /// Primary constructor for
   /// [DocumentManifestRelated]
 
   DocumentManifestRelated({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -545,6 +556,12 @@ class DocumentManifestRelated extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DocumentManifestRelated';

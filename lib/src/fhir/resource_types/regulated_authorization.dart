@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [RegulatedAuthorization]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// product, treatment, facility or activity that is cited in a guidance,
 /// regulation, rule or legislative act. An example is Market Authorization
 /// relating to a Medicinal Product.
+@Entity()
 class RegulatedAuthorization extends DomainResource {
   /// Primary constructor for
   /// [RegulatedAuthorization]
 
   RegulatedAuthorization({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -227,6 +230,12 @@ class RegulatedAuthorization extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'RegulatedAuthorization';
@@ -489,11 +498,13 @@ class RegulatedAuthorization extends DomainResource {
 /// to this and assesses them. Note: This area is subject to ongoing review
 /// and the workgroup is seeking implementer feedback on its use (see link
 /// at bottom of page).
+@Entity()
 class RegulatedAuthorizationCase extends BackboneElement {
   /// Primary constructor for
   /// [RegulatedAuthorizationCase]
 
   RegulatedAuthorizationCase({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -610,6 +621,12 @@ class RegulatedAuthorizationCase extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'RegulatedAuthorizationCase';

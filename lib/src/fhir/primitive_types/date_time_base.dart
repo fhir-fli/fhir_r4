@@ -1,7 +1,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 
 /// [DateTime](https://www.hl7.org/fhir/datatypes.html#dateTime)
-abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
+@Entity()
+class FhirDateTimeBase extends PrimitiveType<DateTime>
     implements Comparable<FhirDateTimeBase> {
   /// Constructor
   FhirDateTimeBase({
@@ -17,6 +19,11 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     this.timeZoneOffset,
     Element? element,
   }) : super(null, element);
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
 
   /// Year
   final int? year;
@@ -378,6 +385,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           timeZoneOffset: null,
           isUtc: false,
           element: element,
+          dbValue: dateTimeMap.formattedString,
         );
       } else if (dateTimeMap['year'] == null) {
         throw ArgumentError('Year is required for FhirDateTime');
@@ -394,6 +402,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         timeZoneOffset: dateTimeMap['timeZoneOffset'],
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
+        dbValue: dateTimeMap.formattedString,
       );
     } else if (T == FhirDate) {
       if (dateTimeMap.isEmpty) {
@@ -403,6 +412,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           day: null,
           isUtc: false,
           element: element,
+          dbValue: dateTimeMap.formattedString,
         );
       } else if (dateTimeMap['year'] == null) {
         throw ArgumentError('Year is required for FhirDate');
@@ -414,6 +424,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         timeZoneOffset: dateTimeMap['timeZoneOffset'],
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
+        dbValue: dateTimeMap.formattedString,
       );
     } else if (T == FhirInstant) {
       if (dateTimeMap.isEmpty) {
@@ -429,6 +440,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           timeZoneOffset: null,
           isUtc: false,
           element: element,
+          dbValue: DateTime.parse(dateTimeMap.formattedString),
         );
       } else if (dateTimeMap['year'] == null ||
           dateTimeMap['month'] == null ||
@@ -453,6 +465,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         timeZoneOffset: dateTimeMap['timeZoneOffset'] ?? 0,
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
+        dbValue: DateTime.parse(dateTimeMap.formattedString),
       );
       return instant;
     } else {
@@ -670,10 +683,12 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   bool? isEqual(Object other) => _compare(Comparator.eq, other);
 
   /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
-  FhirDateTimeBase? operator +(ExtendedDuration other);
+  FhirDateTimeBase? operator +(ExtendedDuration other) =>
+      FhirDateTimeBase.plus<FhirDateTimeBase>(this, other);
 
   /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
-  FhirDateTimeBase? operator -(ExtendedDuration other);
+  FhirDateTimeBase? operator -(ExtendedDuration other) =>
+      FhirDateTimeBase.subtract<FhirDateTimeBase>(this, other);
 
   /// [DateTime](https://build.fhir.org/datatypes.html#dateTime)
   static final RegExp dateTimeExp = RegExp(
@@ -712,6 +727,27 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           : 1,
     };
   }
+
+  @override
+  PrimitiveType<DateTime> setElement(String name, dynamic elementValue) =>
+      throw UnimplementedError();
+
+  @override
+  PrimitiveType<DateTime> clone() => throw UnimplementedError();
+
+  @override
+  PrimitiveType<DateTime> copyWith({
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+    Element? element,
+    DateTime? newValue,
+  }) =>
+      throw UnimplementedError();
 }
 
 /// [Date](https://www.hl7.org/fhir/datatypes.html#date)
@@ -750,5 +786,60 @@ extension TimeZoneOffsetString on String {
     final totalOffset = hours + minutes / 60.0;
 
     return positive ? totalOffset : -totalOffset;
+  }
+}
+
+/// [Date](https://www.hl7.org/fhir/datatypes.html#date)
+extension FormattedString on Map<String, num?> {
+  /// Converts a map of date-time parts to a formatted string.
+  String get formattedString {
+    final buffer = StringBuffer('${this['year']}');
+
+    if (this['month'] != null) {
+      buffer.write('-${this['month']!.toString().padLeft(2, '0')}');
+    }
+    if (this['day'] != null) {
+      buffer.write('-${this['day']!.toString().padLeft(2, '0')}');
+    }
+    if (this['hour'] != null) {
+      buffer.write('T${this['hour']!.toString().padLeft(2, '0')}');
+      if (this['minute'] != null) {
+        buffer.write(':${this['minute']!.toString().padLeft(2, '0')}');
+        if (this['second'] != null) {
+          buffer.write(':${this['second']!.toString().padLeft(2, '0')}');
+          if (this['millisecond'] != null || this['microsecond'] != null) {
+            buffer
+              ..write('.')
+              ..write(this['millisecond']?.toString().padLeft(3, '0') ?? '000');
+            if (this['microsecond'] != null) {
+              buffer.write(this['microsecond']!.toString().padLeft(3, '0'));
+            }
+          }
+        }
+      }
+    }
+    if (this['isUtc'] == 0) {
+      if (this['hour'] == null &&
+          this['minute'] == null &&
+          this['second'] == null &&
+          this['millisecond'] == null) {
+        buffer.write('T');
+      }
+      buffer.write('Z');
+    } else if (this['timeZoneOffset'] != null) {
+      if (this['hour'] == null &&
+          this['minute'] == null &&
+          this['second'] == null &&
+          this['millisecond'] == null) {
+        buffer.write('T');
+      }
+      buffer.write(
+        '${this['timeZoneOffset']! >= 0 ? '+' : '-'}'
+        '${this['timeZoneOffset']!.toInt().abs().toString().padLeft(2, '0')}'
+        ':00',
+      );
+    }
+
+    return buffer.toString();
   }
 }

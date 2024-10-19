@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Period]
 /// A time period defined by a start and end date and optionally time.
+@Entity()
 class Period extends DataType {
   /// Primary constructor for
   /// [Period]
 
   Period({
+    this.dbId = 0,
     super.id,
     super.extension_,
     this.start,
@@ -87,6 +90,12 @@ class Period extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Period';

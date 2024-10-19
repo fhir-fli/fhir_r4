@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [MeasureReport]
 /// The MeasureReport resource contains the results of the calculation of a
 /// measure; and optionally a reference to the resources involved in that
 /// calculation.
+@Entity()
 class MeasureReport extends DomainResource {
   /// Primary constructor for
   /// [MeasureReport]
 
   MeasureReport({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -198,6 +201,12 @@ class MeasureReport extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MeasureReport';
@@ -422,11 +431,13 @@ class MeasureReport extends DomainResource {
 /// [MeasureReportGroup]
 /// The results of the calculation, one for each population group in the
 /// measure.
+@Entity()
 class MeasureReportGroup extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportGroup]
 
   MeasureReportGroup({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -534,6 +545,12 @@ class MeasureReportGroup extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MeasureReportGroup';
 
@@ -631,11 +648,13 @@ class MeasureReportGroup extends BackboneElement {
 /// [MeasureReportPopulation]
 /// The populations that make up the population group, one for each type of
 /// population appropriate for the measure.
+@Entity()
 class MeasureReportPopulation extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportPopulation]
 
   MeasureReportPopulation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -730,6 +749,12 @@ class MeasureReportPopulation extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MeasureReportPopulation';
 
@@ -817,11 +842,13 @@ class MeasureReportPopulation extends BackboneElement {
 /// [MeasureReportStratifier]
 /// When a measure includes multiple stratifiers, there will be a
 /// stratifier group for each stratifier defined by the measure.
+@Entity()
 class MeasureReportStratifier extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportStratifier]
 
   MeasureReportStratifier({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -917,6 +944,12 @@ class MeasureReportStratifier extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MeasureReportStratifier';
 
@@ -992,11 +1025,13 @@ class MeasureReportStratifier extends BackboneElement {
 /// This element contains the results for a single stratum within the
 /// stratifier. For example, when stratifying on administrative gender,
 /// there will be four strata, one for each possible gender value.
+@Entity()
 class MeasureReportStratum extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportStratum]
 
   MeasureReportStratum({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1104,6 +1139,12 @@ class MeasureReportStratum extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MeasureReportStratum';
 
@@ -1200,11 +1241,13 @@ class MeasureReportStratum extends BackboneElement {
 
 /// [MeasureReportComponent]
 /// A stratifier component value.
+@Entity()
 class MeasureReportComponent extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportComponent]
 
   MeasureReportComponent({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1288,6 +1331,12 @@ class MeasureReportComponent extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MeasureReportComponent';
 
@@ -1356,11 +1405,13 @@ class MeasureReportComponent extends BackboneElement {
 /// [MeasureReportPopulation1]
 /// The populations that make up the stratum, one for each type of
 /// population appropriate to the measure.
+@Entity()
 class MeasureReportPopulation1 extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportPopulation1]
 
   MeasureReportPopulation1({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1454,6 +1505,12 @@ class MeasureReportPopulation1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MeasureReportPopulation1';

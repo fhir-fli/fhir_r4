@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [AllergyIntolerance]
 /// Risk of harmful or undesirable, physiological response which is unique
 /// to an individual and associated with exposure to a substance.
+@Entity()
 class AllergyIntolerance extends DomainResource {
   /// Primary constructor for
   /// [AllergyIntolerance]
 
   AllergyIntolerance({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -262,6 +265,12 @@ class AllergyIntolerance extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'AllergyIntolerance';
@@ -612,11 +621,13 @@ class AllergyIntolerance extends DomainResource {
 /// [AllergyIntoleranceReaction]
 /// Details about each adverse reaction event linked to exposure to the
 /// identified substance.
+@Entity()
 class AllergyIntoleranceReaction extends BackboneElement {
   /// Primary constructor for
   /// [AllergyIntoleranceReaction]
 
   AllergyIntoleranceReaction({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -744,6 +755,12 @@ class AllergyIntoleranceReaction extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'AllergyIntoleranceReaction';

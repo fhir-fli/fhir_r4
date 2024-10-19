@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ElementDefinition]
 /// Captures constraints on each element within the resource, profile, or
 /// extension.
+@Entity()
 class ElementDefinition extends BackboneType {
   /// Primary constructor for
   /// [ElementDefinition]
 
   ElementDefinition({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1459,6 +1462,12 @@ class ElementDefinition extends BackboneType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ElementDefinition';
@@ -5154,11 +5163,13 @@ class ElementDefinition extends BackboneType {
 /// slices is any elements that come after this in the element sequence
 /// that have the same path, until a shorter path occurs (the shorter path
 /// terminates the set).
+@Entity()
 class ElementDefinitionSlicing extends Element {
   /// Primary constructor for
   /// [ElementDefinitionSlicing]
 
   ElementDefinitionSlicing({
+    this.dbId = 0,
     super.id,
     super.extension_,
     this.discriminator,
@@ -5252,6 +5263,12 @@ class ElementDefinitionSlicing extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionSlicing';
@@ -5360,11 +5377,13 @@ class ElementDefinitionSlicing extends Element {
 /// provided, the value of the child elements in the instance data SHALL
 /// completely distinguish which slice the element in the resource matches
 /// based on the allowed values for those elements in each of the slices.
+@Entity()
 class ElementDefinitionDiscriminator extends Element {
   /// Primary constructor for
   /// [ElementDefinitionDiscriminator]
 
   ElementDefinitionDiscriminator({
+    this.dbId = 0,
     super.id,
     super.extension_,
     required this.type,
@@ -5439,6 +5458,12 @@ class ElementDefinitionDiscriminator extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionDiscriminator';
@@ -5517,11 +5542,13 @@ class ElementDefinitionDiscriminator extends Element {
 /// the information in provided in the element definition may be different
 /// to the base definition. On the original definition of the element, it
 /// will be same.
+@Entity()
 class ElementDefinitionBase extends Element {
   /// Primary constructor for
   /// [ElementDefinitionBase]
 
   ElementDefinitionBase({
+    this.dbId = 0,
     super.id,
     super.extension_,
     required this.path,
@@ -5601,6 +5628,12 @@ class ElementDefinitionBase extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionBase';
@@ -5687,11 +5720,13 @@ class ElementDefinitionBase extends Element {
 /// [ElementDefinitionType]
 /// The data type or resource that the value of this element is permitted
 /// to be.
+@Entity()
 class ElementDefinitionType extends Element {
   /// Primary constructor for
   /// [ElementDefinitionType]
 
   ElementDefinitionType({
+    this.dbId = 0,
     super.id,
     super.extension_,
     required this.code,
@@ -5786,6 +5821,12 @@ class ElementDefinitionType extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionType';
@@ -5920,11 +5961,13 @@ class ElementDefinitionType extends Element {
 /// [ElementDefinitionExample]
 /// A sample value for this element demonstrating the type of information
 /// that would typically be found in the element.
+@Entity()
 class ElementDefinitionExample extends Element {
   /// Primary constructor for
   /// [ElementDefinitionExample]
 
   ElementDefinitionExample({
+    this.dbId = 0,
     super.id,
     super.extension_,
     required this.label,
@@ -6329,6 +6372,12 @@ class ElementDefinitionExample extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionExample';
@@ -7027,11 +7076,13 @@ class ElementDefinitionExample extends Element {
 /// [ElementDefinitionConstraint]
 /// Formal constraints such as co-occurrence and other constraints that can
 /// be computationally evaluated within the context of the instance.
+@Entity()
 class ElementDefinitionConstraint extends Element {
   /// Primary constructor for
   /// [ElementDefinitionConstraint]
 
   ElementDefinitionConstraint({
+    this.dbId = 0,
     super.id,
     super.extension_,
     required this.key,
@@ -7140,6 +7191,12 @@ class ElementDefinitionConstraint extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionConstraint';
@@ -7285,11 +7342,13 @@ class ElementDefinitionConstraint extends Element {
 /// [ElementDefinitionBinding]
 /// Binds to a value set if this element is coded (code, Coding,
 /// CodeableConcept, Quantity), or the data types (string, uri).
+@Entity()
 class ElementDefinitionBinding extends Element {
   /// Primary constructor for
   /// [ElementDefinitionBinding]
 
   ElementDefinitionBinding({
+    this.dbId = 0,
     super.id,
     super.extension_,
     required this.strength,
@@ -7373,6 +7432,12 @@ class ElementDefinitionBinding extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionBinding';
@@ -7462,11 +7527,13 @@ class ElementDefinitionBinding extends Element {
 /// [ElementDefinitionMapping]
 /// Identifies a concept from an external specification that roughly
 /// corresponds to this element.
+@Entity()
 class ElementDefinitionMapping extends Element {
   /// Primary constructor for
   /// [ElementDefinitionMapping]
 
   ElementDefinitionMapping({
+    this.dbId = 0,
     super.id,
     super.extension_,
     required this.identity,
@@ -7555,6 +7622,12 @@ class ElementDefinitionMapping extends Element {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionMapping';

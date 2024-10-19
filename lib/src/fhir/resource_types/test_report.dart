@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [TestReport]
 /// A summary of information based on the results of executing a
 /// TestScript.
+@Entity()
 class TestReport extends DomainResource {
   /// Primary constructor for
   /// [TestReport]
 
   TestReport({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -203,6 +206,12 @@ class TestReport extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'TestReport';
@@ -440,11 +449,13 @@ class TestReport extends DomainResource {
 /// [TestReportParticipant]
 /// A participant in the test execution, either the execution engine, a
 /// client, or a server.
+@Entity()
 class TestReportParticipant extends BackboneElement {
   /// Primary constructor for
   /// [TestReportParticipant]
 
   TestReportParticipant({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -537,6 +548,12 @@ class TestReportParticipant extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TestReportParticipant';
 
@@ -627,11 +644,13 @@ class TestReportParticipant extends BackboneElement {
 /// [TestReportSetup]
 /// The results of the series of required setup operations before the tests
 /// were executed.
+@Entity()
 class TestReportSetup extends BackboneElement {
   /// Primary constructor for
   /// [TestReportSetup]
 
   TestReportSetup({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -717,6 +736,12 @@ class TestReportSetup extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TestReportSetup';
 
@@ -776,11 +801,13 @@ class TestReportSetup extends BackboneElement {
 
 /// [TestReportAction]
 /// Action would contain either an operation or an assertion.
+@Entity()
 class TestReportAction extends BackboneElement {
   /// Primary constructor for
   /// [TestReportAction]
 
   TestReportAction({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -868,6 +895,12 @@ class TestReportAction extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TestReportAction';
 
@@ -939,11 +972,13 @@ class TestReportAction extends BackboneElement {
 
 /// [TestReportOperation]
 /// The operation performed.
+@Entity()
 class TestReportOperation extends BackboneElement {
   /// Primary constructor for
   /// [TestReportOperation]
 
   TestReportOperation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1038,6 +1073,12 @@ class TestReportOperation extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TestReportOperation';
 
@@ -1129,11 +1170,13 @@ class TestReportOperation extends BackboneElement {
 
 /// [TestReportAssert]
 /// The results of the assertion performed on the previous operations.
+@Entity()
 class TestReportAssert extends BackboneElement {
   /// Primary constructor for
   /// [TestReportAssert]
 
   TestReportAssert({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1228,6 +1271,12 @@ class TestReportAssert extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TestReportAssert';
 
@@ -1319,11 +1368,13 @@ class TestReportAssert extends BackboneElement {
 
 /// [TestReportTest]
 /// A test executed from the test script.
+@Entity()
 class TestReportTest extends BackboneElement {
   /// Primary constructor for
   /// [TestReportTest]
 
   TestReportTest({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1423,6 +1474,12 @@ class TestReportTest extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TestReportTest';
 
@@ -1512,11 +1569,13 @@ class TestReportTest extends BackboneElement {
 
 /// [TestReportAction1]
 /// Action would contain either an operation or an assertion.
+@Entity()
 class TestReportAction1 extends BackboneElement {
   /// Primary constructor for
   /// [TestReportAction1]
 
   TestReportAction1({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1592,6 +1651,12 @@ class TestReportAction1 extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TestReportAction1';
 
@@ -1645,11 +1710,13 @@ class TestReportAction1 extends BackboneElement {
 /// [TestReportTeardown]
 /// The results of the series of operations required to clean up after all
 /// the tests were executed (successfully or otherwise).
+@Entity()
 class TestReportTeardown extends BackboneElement {
   /// Primary constructor for
   /// [TestReportTeardown]
 
   TestReportTeardown({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1735,6 +1802,12 @@ class TestReportTeardown extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'TestReportTeardown';
 
@@ -1794,11 +1867,13 @@ class TestReportTeardown extends BackboneElement {
 
 /// [TestReportAction2]
 /// The teardown action will only contain an operation.
+@Entity()
 class TestReportAction2 extends BackboneElement {
   /// Primary constructor for
   /// [TestReportAction2]
 
   TestReportAction2({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1873,6 +1948,12 @@ class TestReportAction2 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'TestReportAction2';

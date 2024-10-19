@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Citation]
@@ -8,11 +9,13 @@ import 'package:yaml/yaml.dart';
 /// supports existing reference structures and developing publication
 /// practices such as versioning, expressing complex contributorship roles,
 /// and referencing computable resources.
+@Entity()
 class Citation extends DomainResource {
   /// Primary constructor for
   /// [Citation]
 
   Citation({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -370,6 +373,12 @@ class Citation extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Citation';
@@ -836,11 +845,13 @@ class Citation extends DomainResource {
 
 /// [CitationSummary]
 /// A human-readable display of the citation.
+@Entity()
 class CitationSummary extends BackboneElement {
   /// Primary constructor for
   /// [CitationSummary]
 
   CitationSummary({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -927,6 +938,12 @@ class CitationSummary extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CitationSummary';
 
@@ -1000,11 +1017,13 @@ class CitationSummary extends BackboneElement {
 
 /// [CitationClassification]
 /// The assignment to an organizing scheme.
+@Entity()
 class CitationClassification extends BackboneElement {
   /// Primary constructor for
   /// [CitationClassification]
 
   CitationClassification({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1096,6 +1115,12 @@ class CitationClassification extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CitationClassification';
 
@@ -1167,11 +1192,13 @@ class CitationClassification extends BackboneElement {
 
 /// [CitationStatusDate]
 /// An effective date or period for a status of the citation.
+@Entity()
 class CitationStatusDate extends BackboneElement {
   /// Primary constructor for
   /// [CitationStatusDate]
 
   CitationStatusDate({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1262,6 +1289,12 @@ class CitationStatusDate extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CitationStatusDate';
 
@@ -1343,11 +1376,13 @@ class CitationStatusDate extends BackboneElement {
 
 /// [CitationRelatesTo]
 /// Artifact related to the Citation Resource.
+@Entity()
 class CitationRelatesTo extends BackboneElement {
   /// Primary constructor for
   /// [CitationRelatesTo]
 
   CitationRelatesTo({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1461,6 +1496,12 @@ class CitationRelatesTo extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CitationRelatesTo';
@@ -1576,11 +1617,13 @@ class CitationRelatesTo extends BackboneElement {
 
 /// [CitationCitedArtifact]
 /// The article or artifact being described.
+@Entity()
 class CitationCitedArtifact extends BackboneElement {
   /// Primary constructor for
   /// [CitationCitedArtifact]
 
   CitationCitedArtifact({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1791,6 +1834,12 @@ class CitationCitedArtifact extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CitationCitedArtifact';
@@ -2004,11 +2053,13 @@ class CitationCitedArtifact extends BackboneElement {
 
 /// [CitationVersion]
 /// The defined version of the cited artifact.
+@Entity()
 class CitationVersion extends BackboneElement {
   /// Primary constructor for
   /// [CitationVersion]
 
   CitationVersion({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2095,6 +2146,12 @@ class CitationVersion extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CitationVersion';
 
@@ -2168,11 +2225,13 @@ class CitationVersion extends BackboneElement {
 
 /// [CitationStatusDate1]
 /// An effective date or period for a status of the cited artifact.
+@Entity()
 class CitationStatusDate1 extends BackboneElement {
   /// Primary constructor for
   /// [CitationStatusDate1]
 
   CitationStatusDate1({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2263,6 +2322,12 @@ class CitationStatusDate1 extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CitationStatusDate1';
 
@@ -2344,11 +2409,13 @@ class CitationStatusDate1 extends BackboneElement {
 
 /// [CitationTitle]
 /// The title details of the article or artifact.
+@Entity()
 class CitationTitle extends BackboneElement {
   /// Primary constructor for
   /// [CitationTitle]
 
   CitationTitle({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2445,6 +2512,12 @@ class CitationTitle extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CitationTitle';
 
@@ -2528,11 +2601,13 @@ class CitationTitle extends BackboneElement {
 
 /// [CitationAbstract]
 /// Summary of the article or artifact.
+@Entity()
 class CitationAbstract extends BackboneElement {
   /// Primary constructor for
   /// [CitationAbstract]
 
   CitationAbstract({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2632,6 +2707,12 @@ class CitationAbstract extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CitationAbstract';
 
@@ -2729,11 +2810,13 @@ class CitationAbstract extends BackboneElement {
 
 /// [CitationPart]
 /// The component of the article or artifact.
+@Entity()
 class CitationPart extends BackboneElement {
   /// Primary constructor for
   /// [CitationPart]
 
   CitationPart({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2828,6 +2911,12 @@ class CitationPart extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CitationPart';
 
@@ -2913,11 +3002,13 @@ class CitationPart extends BackboneElement {
 
 /// [CitationRelatesTo1]
 /// The artifact related to the cited artifact.
+@Entity()
 class CitationRelatesTo1 extends BackboneElement {
   /// Primary constructor for
   /// [CitationRelatesTo1]
 
   CitationRelatesTo1({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3031,6 +3122,12 @@ class CitationRelatesTo1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CitationRelatesTo1';
@@ -3147,11 +3244,13 @@ class CitationRelatesTo1 extends BackboneElement {
 /// [CitationPublicationForm]
 /// If multiple, used to represent alternative forms of the article that
 /// are not separate citations.
+@Entity()
 class CitationPublicationForm extends BackboneElement {
   /// Primary constructor for
   /// [CitationPublicationForm]
 
   CitationPublicationForm({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3306,6 +3405,12 @@ class CitationPublicationForm extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CitationPublicationForm';
@@ -3502,11 +3607,13 @@ class CitationPublicationForm extends BackboneElement {
 
 /// [CitationPublishedIn]
 /// The collection the cited article or artifact is published in.
+@Entity()
 class CitationPublishedIn extends BackboneElement {
   /// Primary constructor for
   /// [CitationPublishedIn]
 
   CitationPublishedIn({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3619,6 +3726,12 @@ class CitationPublishedIn extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CitationPublishedIn';
 
@@ -3729,11 +3842,13 @@ class CitationPublishedIn extends BackboneElement {
 
 /// [CitationPeriodicRelease]
 /// The specific issue in which the cited article resides.
+@Entity()
 class CitationPeriodicRelease extends BackboneElement {
   /// Primary constructor for
   /// [CitationPeriodicRelease]
 
   CitationPeriodicRelease({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3835,6 +3950,12 @@ class CitationPeriodicRelease extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CitationPeriodicRelease';
 
@@ -3935,11 +4056,13 @@ class CitationPeriodicRelease extends BackboneElement {
 
 /// [CitationDateOfPublication]
 /// Defining the date on which the issue of the journal was published.
+@Entity()
 class CitationDateOfPublication extends BackboneElement {
   /// Primary constructor for
   /// [CitationDateOfPublication]
 
   CitationDateOfPublication({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4056,6 +4179,12 @@ class CitationDateOfPublication extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CitationDateOfPublication';
@@ -4193,11 +4322,13 @@ class CitationDateOfPublication extends BackboneElement {
 
 /// [CitationWebLocation]
 /// Used for any URL for the article or artifact cited.
+@Entity()
 class CitationWebLocation extends BackboneElement {
   /// Primary constructor for
   /// [CitationWebLocation]
 
   CitationWebLocation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4286,6 +4417,12 @@ class CitationWebLocation extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CitationWebLocation';
 
@@ -4361,11 +4498,13 @@ class CitationWebLocation extends BackboneElement {
 
 /// [CitationClassification1]
 /// The assignment to an organizing scheme.
+@Entity()
 class CitationClassification1 extends BackboneElement {
   /// Primary constructor for
   /// [CitationClassification1]
 
   CitationClassification1({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4463,6 +4602,12 @@ class CitationClassification1 extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CitationClassification1';
 
@@ -4544,11 +4689,13 @@ class CitationClassification1 extends BackboneElement {
 
 /// [CitationWhoClassified]
 /// Provenance and copyright of classification.
+@Entity()
 class CitationWhoClassified extends BackboneElement {
   /// Primary constructor for
   /// [CitationWhoClassified]
 
   CitationWhoClassified({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4656,6 +4803,12 @@ class CitationWhoClassified extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CitationWhoClassified';
@@ -4768,11 +4921,13 @@ class CitationWhoClassified extends BackboneElement {
 /// [CitationContributorship]
 /// This element is used to list authors and other contributors, their
 /// contact information, specific contributions, and summary statements.
+@Entity()
 class CitationContributorship extends BackboneElement {
   /// Primary constructor for
   /// [CitationContributorship]
 
   CitationContributorship({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4875,6 +5030,12 @@ class CitationContributorship extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CitationContributorship';
 
@@ -4961,11 +5122,13 @@ class CitationContributorship extends BackboneElement {
 
 /// [CitationEntry]
 /// An individual entity named in the author list or contributor list.
+@Entity()
 class CitationEntry extends BackboneElement {
   /// Primary constructor for
   /// [CitationEntry]
 
   CitationEntry({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -5142,6 +5305,12 @@ class CitationEntry extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CitationEntry';
@@ -5335,11 +5504,13 @@ class CitationEntry extends BackboneElement {
 
 /// [CitationAffiliationInfo]
 /// Organization affiliated with the entity.
+@Entity()
 class CitationAffiliationInfo extends BackboneElement {
   /// Primary constructor for
   /// [CitationAffiliationInfo]
 
   CitationAffiliationInfo({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -5439,6 +5610,12 @@ class CitationAffiliationInfo extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CitationAffiliationInfo';
 
@@ -5528,11 +5705,13 @@ class CitationAffiliationInfo extends BackboneElement {
 
 /// [CitationContributionInstance]
 /// Contributions with accounting for time or number.
+@Entity()
 class CitationContributionInstance extends BackboneElement {
   /// Primary constructor for
   /// [CitationContributionInstance]
 
   CitationContributionInstance({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -5619,6 +5798,12 @@ class CitationContributionInstance extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CitationContributionInstance';
 
@@ -5693,11 +5878,13 @@ class CitationContributionInstance extends BackboneElement {
 /// [CitationSummary1]
 /// Used to record a display of the author/contributor list without
 /// separate coding for each list member.
+@Entity()
 class CitationSummary1 extends BackboneElement {
   /// Primary constructor for
   /// [CitationSummary1]
 
   CitationSummary1({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -5795,6 +5982,12 @@ class CitationSummary1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CitationSummary1';

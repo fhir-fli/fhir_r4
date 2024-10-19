@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Binary]
 /// A resource that represents the data of a single raw artifact as digital
 /// content accessible in its native format. A Binary resource can contain
 /// any content, whether text, image, pdf, zip archive, etc.
+@Entity()
 class Binary extends Resource {
   /// Primary constructor for
   /// [Binary]
 
   Binary({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -106,6 +109,12 @@ class Binary extends Resource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Binary';

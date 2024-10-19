@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ChargeItemDefinition]
@@ -8,11 +9,13 @@ import 'package:yaml/yaml.dart';
 /// properties may differ largely depending on type and realm, therefore
 /// this resource gives only a rough structure and requires profiling for
 /// each type of billing code system.
+@Entity()
 class ChargeItemDefinition extends DomainResource {
   /// Primary constructor for
   /// [ChargeItemDefinition]
 
   ChargeItemDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -302,6 +305,12 @@ class ChargeItemDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ChargeItemDefinition';
@@ -722,11 +731,13 @@ class ChargeItemDefinition extends DomainResource {
 
 /// [ChargeItemDefinitionApplicability]
 /// Expressions that describe applicability criteria for the billing code.
+@Entity()
 class ChargeItemDefinitionApplicability extends BackboneElement {
   /// Primary constructor for
   /// [ChargeItemDefinitionApplicability]
 
   ChargeItemDefinitionApplicability({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -822,6 +833,12 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ChargeItemDefinitionApplicability';
@@ -924,11 +941,13 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
 /// Group of properties which are applicable under the same conditions. If
 /// no applicability rules are established for the group, then all
 /// properties always apply.
+@Entity()
 class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   /// Primary constructor for
   /// [ChargeItemDefinitionPropertyGroup]
 
   ChargeItemDefinitionPropertyGroup({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1024,6 +1043,12 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ChargeItemDefinitionPropertyGroup';
 
@@ -1106,11 +1131,13 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
 /// conditions that apply to a billing code is currently under development.
 /// The priceComponent element can be used to offer transparency to the
 /// recipient of the Invoice of how the prices have been calculated.
+@Entity()
 class ChargeItemDefinitionPriceComponent extends BackboneElement {
   /// Primary constructor for
   /// [ChargeItemDefinitionPriceComponent]
 
   ChargeItemDefinitionPriceComponent({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1209,6 +1236,12 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ChargeItemDefinitionPriceComponent';

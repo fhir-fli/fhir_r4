@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [UsageContext]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// index and/or categorize an artifact. This metadata can either be
 /// specific to the applicable population (e.g., age category, DRG) or the
 /// specific context of care (e.g., venue, care setting, provider of care).
+@Entity()
 class UsageContext extends DataType {
   /// Primary constructor for
   /// [UsageContext]
 
   UsageContext({
+    this.dbId = 0,
     super.id,
     super.extension_,
     required this.code,
@@ -104,6 +107,12 @@ class UsageContext extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'UsageContext';

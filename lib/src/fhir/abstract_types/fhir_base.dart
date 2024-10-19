@@ -1,13 +1,15 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 
 /// Base class for all FHIR elements.
-abstract class FhirBase {
+@Entity()
+class FhirBase {
   /// Main constructor for [FhirBase]
   FhirBase({
+    this.dbId = 0,
     this.userData,
     this.formatCommentsPre,
     this.formatCommentsPost,
@@ -19,6 +21,10 @@ abstract class FhirBase {
   /// Factory constructor for [FhirBase] that takes in a [dynamic]
   factory FhirBase.fromJson(Map<String, dynamic> json) =>
       throw UnimplementedError('FhirBase.fromJson $json');
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  int dbId;
 
   /// Returns a [String] representation of the type of the object
   String get fhirType => 'FhirBase';
@@ -226,8 +232,17 @@ abstract class FhirBase {
     List<dynamic>? annotations,
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
-  });
+  }) {
+    return FhirBase(
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
+    );
+  }
 
   /// Subclasses must implement clone
-  FhirBase clone();
+  FhirBase clone() => throw UnimplementedError('clone');
 }

@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ResearchElementDefinition]
 /// The ResearchElementDefinition resource describes a "PICO" element that
 /// knowledge (evidence, assertion, recommendation) is about.
+@Entity()
 class ResearchElementDefinition extends DomainResource {
   /// Primary constructor for
   /// [ResearchElementDefinition]
 
   ResearchElementDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -389,6 +392,12 @@ class ResearchElementDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ResearchElementDefinition';
@@ -962,11 +971,13 @@ class ResearchElementDefinition extends DomainResource {
 /// [ResearchElementDefinitionCharacteristic]
 /// A characteristic that defines the members of the research element.
 /// Multiple characteristics are applied with "and" semantics.
+@Entity()
 class ResearchElementDefinitionCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [ResearchElementDefinitionCharacteristic]
 
   ResearchElementDefinitionCharacteristic({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1191,6 +1202,12 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ResearchElementDefinitionCharacteristic';

@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ResearchSubject]
 /// A physical entity which is the primary unit of operational and/or
 /// administrative interest in a study.
+@Entity()
 class ResearchSubject extends DomainResource {
   /// Primary constructor for
   /// [ResearchSubject]
 
   ResearchSubject({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -172,6 +175,12 @@ class ResearchSubject extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ResearchSubject';

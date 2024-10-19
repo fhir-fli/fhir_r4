@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Organization]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// formed for the purpose of achieving some form of collective action.
 /// Includes companies, institutions, corporations, departments, community
 /// groups, healthcare practice groups, payer/insurer, etc.
+@Entity()
 class Organization extends DomainResource {
   /// Primary constructor for
   /// [Organization]
 
   Organization({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -211,6 +214,12 @@ class Organization extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Organization';
@@ -417,11 +426,13 @@ class Organization extends DomainResource {
 
 /// [OrganizationContact]
 /// Contact for the organization for a certain purpose.
+@Entity()
 class OrganizationContact extends BackboneElement {
   /// Primary constructor for
   /// [OrganizationContact]
 
   OrganizationContact({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -524,6 +535,12 @@ class OrganizationContact extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'OrganizationContact';

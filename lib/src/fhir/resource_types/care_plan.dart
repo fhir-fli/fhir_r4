@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [CarePlan]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// deliver care for a particular patient, group or community for a period
 /// of time, possibly limited to care for a specific condition or set of
 /// conditions.
+@Entity()
 class CarePlan extends DomainResource {
   /// Primary constructor for
   /// [CarePlan]
 
   CarePlan({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -310,6 +313,12 @@ class CarePlan extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CarePlan';
@@ -682,11 +691,13 @@ class CarePlan extends DomainResource {
 /// Identifies a planned action to occur as part of the plan. For example,
 /// a medication to be used, lab tests to perform, self-monitoring,
 /// education, etc.
+@Entity()
 class CarePlanActivity extends BackboneElement {
   /// Primary constructor for
   /// [CarePlanActivity]
 
   CarePlanActivity({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -804,6 +815,12 @@ class CarePlanActivity extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CarePlanActivity';
 
@@ -919,11 +936,13 @@ class CarePlanActivity extends BackboneElement {
 /// A simple summary of a planned activity suitable for a general care plan
 /// system (e.g. form driven) that doesn't know about specific resources
 /// such as procedure etc.
+@Entity()
 class CarePlanDetail extends BackboneElement {
   /// Primary constructor for
   /// [CarePlanDetail]
 
   CarePlanDetail({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1139,6 +1158,12 @@ class CarePlanDetail extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CarePlanDetail';

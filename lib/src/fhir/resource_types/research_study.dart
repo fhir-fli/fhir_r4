@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ResearchStudy]
@@ -10,11 +11,13 @@ import 'package:yaml/yaml.dart';
 /// therapies and other interventional and investigative techniques. A
 /// ResearchStudy involves the gathering of information about human or
 /// animal subjects.
+@Entity()
 class ResearchStudy extends DomainResource {
   /// Primary constructor for
   /// [ResearchStudy]
 
   ResearchStudy({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -333,6 +336,12 @@ class ResearchStudy extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ResearchStudy';
@@ -705,11 +714,13 @@ class ResearchStudy extends DomainResource {
 /// Describes an expected sequence of events for one of the participants of
 /// a study. E.g. Exposure to drug A, wash-out, exposure to drug B,
 /// wash-out, follow-up.
+@Entity()
 class ResearchStudyArm extends BackboneElement {
   /// Primary constructor for
   /// [ResearchStudyArm]
 
   ResearchStudyArm({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -803,6 +814,12 @@ class ResearchStudyArm extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ResearchStudyArm';
 
@@ -894,11 +911,13 @@ class ResearchStudyArm extends BackboneElement {
 /// A goal that the study is aiming to achieve in terms of a scientific
 /// question to be answered by the analysis of data collected during the
 /// study.
+@Entity()
 class ResearchStudyObjective extends BackboneElement {
   /// Primary constructor for
   /// [ResearchStudyObjective]
 
   ResearchStudyObjective({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -986,6 +1005,12 @@ class ResearchStudyObjective extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ResearchStudyObjective';

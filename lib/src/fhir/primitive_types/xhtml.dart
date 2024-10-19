@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:xml/xml.dart';
 import 'package:yaml/yaml.dart';
 
@@ -10,17 +11,25 @@ extension FhirXhtmlExtension on String {
 }
 
 /// This class represents the FHIR primitive type `xhtml`.
+@Entity()
 class FhirXhtml extends PrimitiveType<String?> {
   /// Constructor that accepts and validates an XHTML string, or allows `null`.
-  FhirXhtml(String? input, [Element? element])
-      : super(input != null ? _validateXhtml(input) : null, element) {
+  FhirXhtml(String? input, [this.element])
+      : dbValue = input,
+        super(
+          input != null ? _validateXhtml(input) : null,
+          element,
+        ) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
   }
 
   /// Constructor that accepts already validated XHTML string, or `null`.
-  FhirXhtml.fromValidatedXhtml(super.validatedInput, [super.element]);
+  FhirXhtml.fromValidatedXhtml(super.validatedInput, [super.element])
+      : dbValue = validatedInput,
+        // ignore: prefer_initializing_formals
+        element = element;
 
   /// Factory constructor to create [FhirXhtml] from JSON.
   factory FhirXhtml.fromJson(Map<String, dynamic> json) {
@@ -241,6 +250,19 @@ class FhirXhtml extends PrimitiveType<String?> {
 
     return true;
   }
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// The original value of the XHTML string.
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
 
   @override
   String get fhirType => 'xhtml';

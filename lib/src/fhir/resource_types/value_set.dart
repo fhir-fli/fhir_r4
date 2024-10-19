@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ValueSet]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// more code systems, intended for use in a particular context. Value sets
 /// link between [CodeSystem](codesystem.html) definitions and their use in
 /// [coded elements](terminologies.html).
+@Entity()
 class ValueSet extends DomainResource {
   /// Primary constructor for
   /// [ValueSet]
 
   ValueSet({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -260,6 +263,12 @@ class ValueSet extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ValueSet';
@@ -620,11 +629,13 @@ class ValueSet extends DomainResource {
 /// including or excluding codes selected from the specified code system(s)
 /// that the value set draws from. This is also known as the Content
 /// Logical Definition (CLD).
+@Entity()
 class ValueSetCompose extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetCompose]
 
   ValueSetCompose({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -724,6 +735,12 @@ class ValueSetCompose extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ValueSetCompose';
 
@@ -819,11 +836,13 @@ class ValueSetCompose extends BackboneElement {
 
 /// [ValueSetInclude]
 /// Include one or more codes from a code system or other value set(s).
+@Entity()
 class ValueSetInclude extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetInclude]
 
   ValueSetInclude({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -938,6 +957,12 @@ class ValueSetInclude extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ValueSetInclude';
@@ -1060,11 +1085,13 @@ class ValueSetInclude extends BackboneElement {
 
 /// [ValueSetConcept]
 /// Specifies a concept to be included or excluded.
+@Entity()
 class ValueSetConcept extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetConcept]
 
   ValueSetConcept({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1162,6 +1189,12 @@ class ValueSetConcept extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ValueSetConcept';
 
@@ -1255,11 +1288,13 @@ class ValueSetConcept extends BackboneElement {
 /// Additional representations for this concept when used in this value set
 /// - other languages, aliases, specialized purposes, used for particular
 /// purposes, etc.
+@Entity()
 class ValueSetDesignation extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetDesignation]
 
   ValueSetDesignation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1353,6 +1388,12 @@ class ValueSetDesignation extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ValueSetDesignation';
 
@@ -1443,11 +1484,13 @@ class ValueSetDesignation extends BackboneElement {
 /// (including relationships) defined by the system, or on filters defined
 /// by the system. If multiple filters are specified, they SHALL all be
 /// true.
+@Entity()
 class ValueSetFilter extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetFilter]
 
   ValueSetFilter({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1537,6 +1580,12 @@ class ValueSetFilter extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ValueSetFilter';
@@ -1633,11 +1682,13 @@ class ValueSetFilter extends BackboneElement {
 /// A value set can also be "expanded", where the value set is turned into
 /// a simple collection of enumerated codes. This element holds the
 /// expansion, if it has been performed.
+@Entity()
 class ValueSetExpansion extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetExpansion]
 
   ValueSetExpansion({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1758,6 +1809,12 @@ class ValueSetExpansion extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ValueSetExpansion';
@@ -1897,11 +1954,13 @@ class ValueSetExpansion extends BackboneElement {
 /// A parameter that controlled the expansion process. These parameters may
 /// be used by users of expanded value sets to check whether the expansion
 /// is suitable for a particular purpose, or to pick the correct expansion.
+@Entity()
 class ValueSetParameter extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetParameter]
 
   ValueSetParameter({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2034,6 +2093,12 @@ class ValueSetParameter extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ValueSetParameter';
@@ -2198,11 +2263,13 @@ class ValueSetParameter extends BackboneElement {
 
 /// [ValueSetContains]
 /// The codes that are contained in the value set expansion.
+@Entity()
 class ValueSetContains extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetContains]
 
   ValueSetContains({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2319,6 +2386,12 @@ class ValueSetContains extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ValueSetContains';

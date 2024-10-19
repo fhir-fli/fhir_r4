@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Consent]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// identified recipient(s) or recipient role(s) to perform one or more
 /// actions within a given policy context, for specific purposes and
 /// periods of time.
+@Entity()
 class Consent extends DomainResource {
   /// Primary constructor for
   /// [Consent]
 
   Consent({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -225,6 +228,12 @@ class Consent extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Consent';
@@ -468,11 +477,13 @@ class Consent extends DomainResource {
 /// The references to the policies that are included in this consent scope.
 /// Policies may be organizational, but are often defined jurisdictionally,
 /// or in law.
+@Entity()
 class ConsentPolicy extends BackboneElement {
   /// Primary constructor for
   /// [ConsentPolicy]
 
   ConsentPolicy({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -568,6 +579,12 @@ class ConsentPolicy extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ConsentPolicy';
 
@@ -662,11 +679,13 @@ class ConsentPolicy extends BackboneElement {
 /// Whether a treatment instruction (e.g. artificial respiration yes or no)
 /// was verified with the patient, his/her family or another authorized
 /// person.
+@Entity()
 class ConsentVerification extends BackboneElement {
   /// Primary constructor for
   /// [ConsentVerification]
 
   ConsentVerification({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -761,6 +780,12 @@ class ConsentVerification extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ConsentVerification';
 
@@ -850,11 +875,13 @@ class ConsentVerification extends BackboneElement {
 /// [ConsentProvision]
 /// An exception to the base policy of this consent. An exception can be an
 /// addition or removal of access permissions.
+@Entity()
 class ConsentProvision extends BackboneElement {
   /// Primary constructor for
   /// [ConsentProvision]
 
   ConsentProvision({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1028,6 +1055,12 @@ class ConsentProvision extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ConsentProvision';
@@ -1203,11 +1236,13 @@ class ConsentProvision extends BackboneElement {
 /// [ConsentActor]
 /// Who or what is controlled by this rule. Use group to identify a set of
 /// actors by some property they share (e.g. 'admitting officers').
+@Entity()
 class ConsentActor extends BackboneElement {
   /// Primary constructor for
   /// [ConsentActor]
 
   ConsentActor({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1291,6 +1326,12 @@ class ConsentActor extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ConsentActor';
 
@@ -1362,11 +1403,13 @@ class ConsentActor extends BackboneElement {
 /// [ConsentData]
 /// The resources controlled by this rule if specific resources are
 /// referenced.
+@Entity()
 class ConsentData extends BackboneElement {
   /// Primary constructor for
   /// [ConsentData]
 
   ConsentData({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1450,6 +1493,12 @@ class ConsentData extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ConsentData';

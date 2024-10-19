@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Library]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// definitions. It can be used to describe and expose existing knowledge
 /// assets such as logic libraries and information model descriptions, as
 /// well as to describe a collection of knowledge assets.
+@Entity()
 class Library extends DomainResource {
   /// Primary constructor for
   /// [Library]
 
   Library({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -383,6 +386,12 @@ class Library extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Library';

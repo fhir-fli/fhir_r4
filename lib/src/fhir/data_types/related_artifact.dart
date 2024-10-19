@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [RelatedArtifact]
 /// Related artifacts such as additional documentation, justification, or
 /// bibliographic references.
+@Entity()
 class RelatedArtifact extends DataType {
   /// Primary constructor for
   /// [RelatedArtifact]
 
   RelatedArtifact({
+    this.dbId = 0,
     super.id,
     super.extension_,
     required this.type,
@@ -120,6 +123,12 @@ class RelatedArtifact extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'RelatedArtifact';

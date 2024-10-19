@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// Extension on String to convert a String to [FhirTime].
@@ -10,11 +11,16 @@ extension FhirTimeExtension on String {
 
 /// Class to handle FHIR time values.
 /// Inherits from [PrimitiveType] and implements [Comparable].
+@Entity()
 class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   /// Constructor that accepts a valid [String] input representing a time and
   /// validates the input. Optionally takes an [Element].
-  FhirTime(String? input, [Element? element])
-      : super(_validateTime(input), element) {
+  FhirTime(String? input, [this.element])
+      : dbValue = input,
+        super(
+          input != null ? _validateTime(input) : null,
+          element,
+        ) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -273,6 +279,19 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   /// Converts [FhirTime] to a String.
   @override
   String toString() => value ?? '';
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Element stored as a relation in ObjectBox
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
 
   /// Converts [FhirTime] to a JSON string.
   @override

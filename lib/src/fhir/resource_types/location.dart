@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Location]
 /// Details and position information for a physical place where services
 /// are provided and resources and participants may be stored, found,
 /// contained, or accommodated.
+@Entity()
 class Location extends DomainResource {
   /// Primary constructor for
   /// [Location]
 
   Location({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -252,6 +255,12 @@ class Location extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Location';
@@ -556,11 +565,13 @@ class Location extends DomainResource {
 /// [LocationPosition]
 /// The absolute geographic location of the Location, expressed using the
 /// WGS84 datum (This is the same co-ordinate system used in KML).
+@Entity()
 class LocationPosition extends BackboneElement {
   /// Primary constructor for
   /// [LocationPosition]
 
   LocationPosition({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -652,6 +663,12 @@ class LocationPosition extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'LocationPosition';
@@ -745,11 +762,13 @@ class LocationPosition extends BackboneElement {
 
 /// [LocationHoursOfOperation]
 /// What days/times during a week is this location usually open.
+@Entity()
 class LocationHoursOfOperation extends BackboneElement {
   /// Primary constructor for
   /// [LocationHoursOfOperation]
 
   LocationHoursOfOperation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -851,6 +870,12 @@ class LocationHoursOfOperation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'LocationHoursOfOperation';

@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [BiologicallyDerivedProduct]
 /// A material substance originating from a biological entity intended to
 /// be transplanted or infused
 /// into another (possibly the same) biological entity.
+@Entity()
 class BiologicallyDerivedProduct extends DomainResource {
   /// Primary constructor for
   /// [BiologicallyDerivedProduct]
 
   BiologicallyDerivedProduct({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -214,6 +217,12 @@ class BiologicallyDerivedProduct extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'BiologicallyDerivedProduct';
@@ -436,11 +445,13 @@ class BiologicallyDerivedProduct extends DomainResource {
 
 /// [BiologicallyDerivedProductCollection]
 /// How this product was collected.
+@Entity()
 class BiologicallyDerivedProductCollection extends BackboneElement {
   /// Primary constructor for
   /// [BiologicallyDerivedProductCollection]
 
   BiologicallyDerivedProductCollection({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -542,6 +553,12 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'BiologicallyDerivedProductCollection';
 
@@ -640,11 +657,13 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
 /// Any processing of the product during collection that does not change
 /// the fundamental nature of the product. For example adding
 /// anti-coagulants during the collection of Peripheral Blood Stem Cells.
+@Entity()
 class BiologicallyDerivedProductProcessing extends BackboneElement {
   /// Primary constructor for
   /// [BiologicallyDerivedProductProcessing]
 
   BiologicallyDerivedProductProcessing({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -752,6 +771,12 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'BiologicallyDerivedProductProcessing';
@@ -864,11 +889,13 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
 /// Any manipulation of product post-collection that is intended to alter
 /// the product. For example a buffy-coat enrichment or CD8 reduction of
 /// Peripheral Blood Stem Cells to make it more suitable for infusion.
+@Entity()
 class BiologicallyDerivedProductManipulation extends BackboneElement {
   /// Primary constructor for
   /// [BiologicallyDerivedProductManipulation]
 
   BiologicallyDerivedProductManipulation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -965,6 +992,12 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'BiologicallyDerivedProductManipulation';
 
@@ -1054,11 +1087,13 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
 
 /// [BiologicallyDerivedProductStorage]
 /// Product storage.
+@Entity()
 class BiologicallyDerivedProductStorage extends BackboneElement {
   /// Primary constructor for
   /// [BiologicallyDerivedProductStorage]
 
   BiologicallyDerivedProductStorage({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1160,6 +1195,12 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'BiologicallyDerivedProductStorage';

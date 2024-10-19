@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [DocumentReference]
@@ -9,11 +10,13 @@ import 'package:yaml/yaml.dart';
 /// mime-type, so includes formal patient centric documents (CDA), cliical
 /// notes, scanned paper, and non-patient specific documents like policy
 /// text.
+@Entity()
 class DocumentReference extends DomainResource {
   /// Primary constructor for
   /// [DocumentReference]
 
   DocumentReference({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -249,6 +252,12 @@ class DocumentReference extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DocumentReference';
@@ -532,11 +541,13 @@ class DocumentReference extends DomainResource {
 /// [DocumentReferenceRelatesTo]
 /// Relationships that this document has with other document references
 /// that already exist.
+@Entity()
 class DocumentReferenceRelatesTo extends BackboneElement {
   /// Primary constructor for
   /// [DocumentReferenceRelatesTo]
 
   DocumentReferenceRelatesTo({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -621,6 +632,12 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'DocumentReferenceRelatesTo';
 
@@ -693,11 +710,13 @@ class DocumentReferenceRelatesTo extends BackboneElement {
 /// [DocumentReferenceContent]
 /// The document and format referenced. There may be multiple content
 /// element repetitions, each with a different format.
+@Entity()
 class DocumentReferenceContent extends BackboneElement {
   /// Primary constructor for
   /// [DocumentReferenceContent]
 
   DocumentReferenceContent({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -783,6 +802,12 @@ class DocumentReferenceContent extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'DocumentReferenceContent';
 
@@ -855,11 +880,13 @@ class DocumentReferenceContent extends BackboneElement {
 
 /// [DocumentReferenceContext]
 /// The clinical context in which the document was prepared.
+@Entity()
 class DocumentReferenceContext extends BackboneElement {
   /// Primary constructor for
   /// [DocumentReferenceContext]
 
   DocumentReferenceContext({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -988,6 +1015,12 @@ class DocumentReferenceContext extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DocumentReferenceContext';

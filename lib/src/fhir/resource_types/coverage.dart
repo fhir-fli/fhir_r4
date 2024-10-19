@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Coverage]
 /// Financial instrument which may be used to reimburse or pay for health
 /// care products and services. Includes both insurance and self-payment.
+@Entity()
 class Coverage extends DomainResource {
   /// Primary constructor for
   /// [Coverage]
 
   Coverage({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -248,6 +251,12 @@ class Coverage extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Coverage';
@@ -546,11 +555,13 @@ class Coverage extends DomainResource {
 
 /// [CoverageClass]
 /// A suite of underwriter specific classifiers.
+@Entity()
 class CoverageClass extends BackboneElement {
   /// Primary constructor for
   /// [CoverageClass]
 
   CoverageClass({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -642,6 +653,12 @@ class CoverageClass extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CoverageClass';
 
@@ -731,11 +748,13 @@ class CoverageClass extends BackboneElement {
 /// A suite of codes indicating the cost category and associated amount
 /// which have been detailed in the policy and may have been included on
 /// the health card.
+@Entity()
 class CoverageCostToBeneficiary extends BackboneElement {
   /// Primary constructor for
   /// [CoverageCostToBeneficiary]
 
   CoverageCostToBeneficiary({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -839,6 +858,12 @@ class CoverageCostToBeneficiary extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CoverageCostToBeneficiary';
 
@@ -932,11 +957,13 @@ class CoverageCostToBeneficiary extends BackboneElement {
 /// [CoverageException]
 /// A suite of codes indicating exceptions or reductions to patient costs
 /// and their effective periods.
+@Entity()
 class CoverageException extends BackboneElement {
   /// Primary constructor for
   /// [CoverageException]
 
   CoverageException({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1021,6 +1048,12 @@ class CoverageException extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CoverageException';

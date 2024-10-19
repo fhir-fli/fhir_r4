@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [MarketingStatus]
 /// The marketing status describes the date when a medicinal product is
 /// actually put on the market or the date as of which it is no longer
 /// available.
+@Entity()
 class MarketingStatus extends BackboneType {
   /// Primary constructor for
   /// [MarketingStatus]
 
   MarketingStatus({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -114,6 +117,12 @@ class MarketingStatus extends BackboneType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MarketingStatus';

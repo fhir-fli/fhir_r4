@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ObservationDefinition]
 /// Set of definitional characteristics for a kind of observation or
 /// measurement produced or consumed by an orderable health care service.
+@Entity()
 class ObservationDefinition extends DomainResource {
   /// Primary constructor for
   /// [ObservationDefinition]
 
   ObservationDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -215,6 +218,12 @@ class ObservationDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ObservationDefinition';
@@ -460,11 +469,13 @@ class ObservationDefinition extends DomainResource {
 
 /// [ObservationDefinitionQuantitativeDetails]
 /// Characteristics for quantitative results of this observation.
+@Entity()
 class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   /// Primary constructor for
   /// [ObservationDefinitionQuantitativeDetails]
 
   ObservationDefinitionQuantitativeDetails({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -567,6 +578,12 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ObservationDefinitionQuantitativeDetails';
@@ -673,11 +690,13 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
 /// [ObservationDefinitionQualifiedInterval]
 /// Multiple ranges of results qualified by different contexts for ordinal
 /// or continuous observations conforming to this ObservationDefinition.
+@Entity()
 class ObservationDefinitionQualifiedInterval extends BackboneElement {
   /// Primary constructor for
   /// [ObservationDefinitionQualifiedInterval]
 
   ObservationDefinitionQualifiedInterval({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -807,6 +826,12 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ObservationDefinitionQualifiedInterval';

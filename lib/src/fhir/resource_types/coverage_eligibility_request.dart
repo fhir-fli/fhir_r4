@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [CoverageEligibilityRequest]
@@ -8,11 +9,13 @@ import 'package:yaml/yaml.dart';
 /// CoverageEligibilityResponse, with information regarding whether the
 /// stated coverage is valid and in-force and optionally to provide the
 /// insurance details of the policy.
+@Entity()
 class CoverageEligibilityRequest extends DomainResource {
   /// Primary constructor for
   /// [CoverageEligibilityRequest]
 
   CoverageEligibilityRequest({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -230,6 +233,12 @@ class CoverageEligibilityRequest extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CoverageEligibilityRequest';
@@ -490,11 +499,13 @@ class CoverageEligibilityRequest extends DomainResource {
 /// [CoverageEligibilityRequestSupportingInfo]
 /// Additional information codes regarding exceptions, special
 /// considerations, the condition, situation, prior or concurrent issues.
+@Entity()
 class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityRequestSupportingInfo]
 
   CoverageEligibilityRequestSupportingInfo({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -587,6 +598,12 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CoverageEligibilityRequestSupportingInfo';
 
@@ -677,11 +694,13 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
 /// [CoverageEligibilityRequestInsurance]
 /// Financial instruments for reimbursement for the health care products
 /// and services.
+@Entity()
 class CoverageEligibilityRequestInsurance extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityRequestInsurance]
 
   CoverageEligibilityRequestInsurance({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -775,6 +794,12 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CoverageEligibilityRequestInsurance';
@@ -870,11 +895,13 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
 /// Service categories or billable services for which benefit details
 /// and/or an authorization prior to service delivery may be required by
 /// the payor.
+@Entity()
 class CoverageEligibilityRequestItem extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityRequestItem]
 
   CoverageEligibilityRequestItem({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1021,6 +1048,12 @@ class CoverageEligibilityRequestItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CoverageEligibilityRequestItem';
@@ -1186,11 +1219,13 @@ class CoverageEligibilityRequestItem extends BackboneElement {
 
 /// [CoverageEligibilityRequestDiagnosis]
 /// Patient diagnosis for which care is sought.
+@Entity()
 class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityRequestDiagnosis]
 
   CoverageEligibilityRequestDiagnosis({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1277,6 +1312,12 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CoverageEligibilityRequestDiagnosis';

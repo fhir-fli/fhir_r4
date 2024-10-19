@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Linkage]
 /// Identifies two or more records (resource instances) that refer to the
 /// same real-world "occurrence".
+@Entity()
 class Linkage extends DomainResource {
   /// Primary constructor for
   /// [Linkage]
 
   Linkage({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -147,6 +150,12 @@ class Linkage extends DomainResource {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'Linkage';
 
@@ -276,11 +285,13 @@ class Linkage extends DomainResource {
 /// Identifies which record considered as the reference to the same
 /// real-world occurrence as well as how the items should be evaluated
 /// within the collection of linked items.
+@Entity()
 class LinkageItem extends BackboneElement {
   /// Primary constructor for
   /// [LinkageItem]
 
   LinkageItem({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -364,6 +375,12 @@ class LinkageItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'LinkageItem';

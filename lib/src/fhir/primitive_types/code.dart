@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// Extension to add `toFhirCode` method on all [String] instances
@@ -9,10 +10,12 @@ extension FhirCodeExtension on String {
 }
 
 /// FHIR primitive type `code`
+@Entity()
 class FhirCode extends PrimitiveType<String> {
   /// Public constructor with input validation
-  FhirCode(String? input, [Element? element])
-      : super(
+  FhirCode(String? input, [this.element])
+      : dbValue = input,
+        super(
           input == null ? null : _validateCode(input),
           element,
         ) {
@@ -72,6 +75,22 @@ class FhirCode extends PrimitiveType<String> {
   /// Boolean checks for the presence of both value and element
   bool get valueAndElement => value != null && element != null;
 
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Element stored as a relation in ObjectBox
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  @override
+  String get fhirType => 'code';
+
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
@@ -106,10 +125,6 @@ class FhirCode extends PrimitiveType<String> {
       '_value': codes.map((code) => code.element?.toJson()).toList(),
     };
   }
-
-  /// Returns the FHIR type as a [String]
-  @override
-  String get fhirType => 'code';
 
   /// Returns the [FhirCode] as a [String]
   @override

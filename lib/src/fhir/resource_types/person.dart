@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Person]
 /// Demographics and administrative information about a person independent
 /// of a specific health-related context.
+@Entity()
 class Person extends DomainResource {
   /// Primary constructor for
   /// [Person]
 
   Person({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -206,6 +209,12 @@ class Person extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Person';
@@ -411,11 +420,13 @@ class Person extends DomainResource {
 
 /// [PersonLink]
 /// Link to a resource that concerns the same actual person.
+@Entity()
 class PersonLink extends BackboneElement {
   /// Primary constructor for
   /// [PersonLink]
 
   PersonLink({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -501,6 +512,12 @@ class PersonLink extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PersonLink';

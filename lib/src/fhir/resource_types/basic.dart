@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Basic]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// narrative-only resources that don't map to an existing resource, and
 /// custom resources not appropriate for inclusion in the FHIR
 /// specification.
+@Entity()
 class Basic extends DomainResource {
   /// Primary constructor for
   /// [Basic]
 
   Basic({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -158,6 +161,12 @@ class Basic extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Basic';

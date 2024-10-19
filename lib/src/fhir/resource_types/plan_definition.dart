@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [PlanDefinition]
@@ -8,11 +9,13 @@ import 'package:yaml/yaml.dart';
 /// enough to support the description of a broad range of clinical and
 /// non-clinical artifacts such as clinical decision support rules, order
 /// sets, protocols, and drug quality specifications.
+@Entity()
 class PlanDefinition extends DomainResource {
   /// Primary constructor for
   /// [PlanDefinition]
 
   PlanDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -390,6 +393,12 @@ class PlanDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PlanDefinition';
@@ -962,11 +971,13 @@ class PlanDefinition extends DomainResource {
 /// activity of daily living, obtaining herd immunity via immunization,
 /// meeting a process improvement objective, meeting the acceptance
 /// criteria for a test as specified by a quality specification, etc.
+@Entity()
 class PlanDefinitionGoal extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionGoal]
 
   PlanDefinitionGoal({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1094,6 +1105,12 @@ class PlanDefinitionGoal extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'PlanDefinitionGoal';
 
@@ -1220,11 +1237,13 @@ class PlanDefinitionGoal extends BackboneElement {
 
 /// [PlanDefinitionTarget]
 /// Indicates what should be done and within what timeframe.
+@Entity()
 class PlanDefinitionTarget extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionTarget]
 
   PlanDefinitionTarget({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1329,6 +1348,12 @@ class PlanDefinitionTarget extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PlanDefinitionTarget';
@@ -1456,11 +1481,13 @@ class PlanDefinitionTarget extends BackboneElement {
 /// indicated medication, or perform a particular test as appropriate. In
 /// pharmaceutical quality, an action would be the test that needs to be
 /// performed on a drug product as defined in the quality specification.
+@Entity()
 class PlanDefinitionAction extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionAction]
 
   PlanDefinitionAction({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1814,6 +1841,12 @@ class PlanDefinitionAction extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PlanDefinitionAction';
@@ -2331,11 +2364,13 @@ class PlanDefinitionAction extends BackboneElement {
 /// [PlanDefinitionCondition]
 /// An expression that describes applicability criteria or start/stop
 /// conditions for the action.
+@Entity()
 class PlanDefinitionCondition extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionCondition]
 
   PlanDefinitionCondition({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2422,6 +2457,12 @@ class PlanDefinitionCondition extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'PlanDefinitionCondition';
 
@@ -2497,11 +2538,13 @@ class PlanDefinitionCondition extends BackboneElement {
 /// [PlanDefinitionRelatedAction]
 /// A relationship to another action such as "before" or "30-60 minutes
 /// after start of".
+@Entity()
 class PlanDefinitionRelatedAction extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionRelatedAction]
 
   PlanDefinitionRelatedAction({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2598,6 +2641,12 @@ class PlanDefinitionRelatedAction extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PlanDefinitionRelatedAction';
@@ -2696,11 +2745,13 @@ class PlanDefinitionRelatedAction extends BackboneElement {
 
 /// [PlanDefinitionParticipant]
 /// Indicates who should participate in performing the action described.
+@Entity()
 class PlanDefinitionParticipant extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionParticipant]
 
   PlanDefinitionParticipant({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2787,6 +2838,12 @@ class PlanDefinitionParticipant extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'PlanDefinitionParticipant';
 
@@ -2865,11 +2922,13 @@ class PlanDefinitionParticipant extends BackboneElement {
 /// based on the patient's weight, a customization would be used to specify
 /// an expression that calculated the weight, and the path on the resource
 /// that would contain the result.
+@Entity()
 class PlanDefinitionDynamicValue extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionDynamicValue]
 
   PlanDefinitionDynamicValue({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2957,6 +3016,12 @@ class PlanDefinitionDynamicValue extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PlanDefinitionDynamicValue';

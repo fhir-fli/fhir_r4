@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ExampleScenario]
 /// Example of workflow instance.
+@Entity()
 class ExampleScenario extends DomainResource {
   /// Primary constructor for
   /// [ExampleScenario]
 
   ExampleScenario({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -260,6 +263,12 @@ class ExampleScenario extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ExampleScenario';
@@ -593,11 +602,13 @@ class ExampleScenario extends DomainResource {
 
 /// [ExampleScenarioActor]
 /// Actor participating in the resource.
+@Entity()
 class ExampleScenarioActor extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioActor]
 
   ExampleScenarioActor({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -696,6 +707,12 @@ class ExampleScenarioActor extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ExampleScenarioActor';
@@ -800,11 +817,13 @@ class ExampleScenarioActor extends BackboneElement {
 
 /// [ExampleScenarioInstance]
 /// Each resource and each version that is present in the workflow.
+@Entity()
 class ExampleScenarioInstance extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioInstance]
 
   ExampleScenarioInstance({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -923,6 +942,12 @@ class ExampleScenarioInstance extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ExampleScenarioInstance';
@@ -1049,11 +1074,13 @@ class ExampleScenarioInstance extends BackboneElement {
 
 /// [ExampleScenarioVersion]
 /// A specific version of the resource.
+@Entity()
 class ExampleScenarioVersion extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioVersion]
 
   ExampleScenarioVersion({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1139,6 +1166,12 @@ class ExampleScenarioVersion extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ExampleScenarioVersion';
 
@@ -1215,11 +1248,13 @@ class ExampleScenarioVersion extends BackboneElement {
 /// [ExampleScenarioContainedInstance]
 /// Resources contained in the instance (e.g. the observations contained in
 /// a bundle).
+@Entity()
 class ExampleScenarioContainedInstance extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioContainedInstance]
 
   ExampleScenarioContainedInstance({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1307,6 +1342,12 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ExampleScenarioContainedInstance';
 
@@ -1384,11 +1425,13 @@ class ExampleScenarioContainedInstance extends BackboneElement {
 
 /// [ExampleScenarioProcess]
 /// Each major process - a group of operations.
+@Entity()
 class ExampleScenarioProcess extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioProcess]
 
   ExampleScenarioProcess({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1501,6 +1544,12 @@ class ExampleScenarioProcess extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ExampleScenarioProcess';
@@ -1617,11 +1666,13 @@ class ExampleScenarioProcess extends BackboneElement {
 
 /// [ExampleScenarioStep]
 /// Each step of the process.
+@Entity()
 class ExampleScenarioStep extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioStep]
 
   ExampleScenarioStep({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1730,6 +1781,12 @@ class ExampleScenarioStep extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ExampleScenarioStep';
 
@@ -1826,11 +1883,13 @@ class ExampleScenarioStep extends BackboneElement {
 
 /// [ExampleScenarioOperation]
 /// Each interaction or action.
+@Entity()
 class ExampleScenarioOperation extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioOperation]
 
   ExampleScenarioOperation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1961,6 +2020,12 @@ class ExampleScenarioOperation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ExampleScenarioOperation';
@@ -2124,11 +2189,13 @@ class ExampleScenarioOperation extends BackboneElement {
 /// [ExampleScenarioAlternative]
 /// Indicates an alternative step that can be taken instead of the
 /// operations on the base step in exceptional/atypical circumstances.
+@Entity()
 class ExampleScenarioAlternative extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioAlternative]
 
   ExampleScenarioAlternative({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2215,6 +2282,12 @@ class ExampleScenarioAlternative extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ExampleScenarioAlternative';

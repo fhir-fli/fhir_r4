@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ManufacturedItemDefinition]
 /// The definition and characteristics of a medicinal manufactured item,
 /// such as a tablet or capsule, as contained in a packaged medicinal
 /// product.
+@Entity()
 class ManufacturedItemDefinition extends DomainResource {
   /// Primary constructor for
   /// [ManufacturedItemDefinition]
 
   ManufacturedItemDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -180,6 +183,12 @@ class ManufacturedItemDefinition extends DomainResource {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ManufacturedItemDefinition';
 
@@ -346,11 +355,13 @@ class ManufacturedItemDefinition extends DomainResource {
 
 /// [ManufacturedItemDefinitionProperty]
 /// General characteristics of this item.
+@Entity()
 class ManufacturedItemDefinitionProperty extends BackboneElement {
   /// Primary constructor for
   /// [ManufacturedItemDefinitionProperty]
 
   ManufacturedItemDefinitionProperty({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -462,6 +473,12 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ManufacturedItemDefinitionProperty';

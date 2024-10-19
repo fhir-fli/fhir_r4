@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [RequestGroup]
 /// A group of related requests that can be used to capture intended
 /// activities that have inter-dependencies such as "give this medication
 /// after that one".
+@Entity()
 class RequestGroup extends DomainResource {
   /// Primary constructor for
   /// [RequestGroup]
 
   RequestGroup({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -260,6 +263,12 @@ class RequestGroup extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'RequestGroup';
@@ -569,11 +578,13 @@ class RequestGroup extends DomainResource {
 
 /// [RequestGroupAction]
 /// The actions, if any, produced by the evaluation of the artifact.
+@Entity()
 class RequestGroupAction extends BackboneElement {
   /// Primary constructor for
   /// [RequestGroupAction]
 
   RequestGroupAction({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -834,6 +845,12 @@ class RequestGroupAction extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'RequestGroupAction';
@@ -1183,11 +1200,13 @@ class RequestGroupAction extends BackboneElement {
 /// [RequestGroupCondition]
 /// An expression that describes applicability criteria, or start/stop
 /// conditions for the action.
+@Entity()
 class RequestGroupCondition extends BackboneElement {
   /// Primary constructor for
   /// [RequestGroupCondition]
 
   RequestGroupCondition({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1274,6 +1293,12 @@ class RequestGroupCondition extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'RequestGroupCondition';
 
@@ -1349,11 +1374,13 @@ class RequestGroupCondition extends BackboneElement {
 /// [RequestGroupRelatedAction]
 /// A relationship to another action such as "before" or "30-60 minutes
 /// after start of".
+@Entity()
 class RequestGroupRelatedAction extends BackboneElement {
   /// Primary constructor for
   /// [RequestGroupRelatedAction]
 
   RequestGroupRelatedAction({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1450,6 +1477,12 @@ class RequestGroupRelatedAction extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'RequestGroupRelatedAction';

@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Narrative]
 /// A human-readable summary of the resource conveying the essential
 /// clinical and business information for the resource.
+@Entity()
 class Narrative extends DataType {
   /// Primary constructor for
   /// [Narrative]
 
   Narrative({
+    this.dbId = 0,
     super.id,
     super.extension_,
     required this.status,
@@ -84,6 +87,12 @@ class Narrative extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Narrative';

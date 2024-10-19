@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [PractitionerRole]
 /// A specific set of Roles/Locations/specialties/services that a
 /// practitioner may perform at an organization for a period of time.
+@Entity()
 class PractitionerRole extends DomainResource {
   /// Primary constructor for
   /// [PractitionerRole]
 
   PractitionerRole({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -246,6 +249,12 @@ class PractitionerRole extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PractitionerRole';
@@ -498,11 +507,13 @@ class PractitionerRole extends DomainResource {
 /// [PractitionerRoleAvailableTime]
 /// A collection of times the practitioner is available or performing this
 /// role at the location and/or healthcareservice.
+@Entity()
 class PractitionerRoleAvailableTime extends BackboneElement {
   /// Primary constructor for
   /// [PractitionerRoleAvailableTime]
 
   PractitionerRoleAvailableTime({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -606,6 +617,12 @@ class PractitionerRoleAvailableTime extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PractitionerRoleAvailableTime';
@@ -719,11 +736,13 @@ class PractitionerRoleAvailableTime extends BackboneElement {
 /// [PractitionerRoleNotAvailable]
 /// The practitioner is not available or performing this role during this
 /// period of time due to the provided reason.
+@Entity()
 class PractitionerRoleNotAvailable extends BackboneElement {
   /// Primary constructor for
   /// [PractitionerRoleNotAvailable]
 
   PractitionerRoleNotAvailable({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -809,6 +828,12 @@ class PractitionerRoleNotAvailable extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PractitionerRoleNotAvailable';

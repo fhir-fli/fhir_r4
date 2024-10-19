@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [TriggerDefinition]
 /// A description of a triggering event. Triggering events can be named
 /// events, data events, or periodic, as determined by the type element.
+@Entity()
 class TriggerDefinition extends DataType {
   /// Primary constructor for
   /// [TriggerDefinition]
 
   TriggerDefinition({
+    this.dbId = 0,
     super.id,
     super.extension_,
     required this.type,
@@ -129,6 +132,12 @@ class TriggerDefinition extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'TriggerDefinition';

@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [PackagedProductDefinition]
 /// A medically related item or items, in a container or package.
+@Entity()
 class PackagedProductDefinition extends DomainResource {
   /// Primary constructor for
   /// [PackagedProductDefinition]
 
   PackagedProductDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -239,6 +242,12 @@ class PackagedProductDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PackagedProductDefinition';
@@ -518,11 +527,13 @@ class PackagedProductDefinition extends DomainResource {
 /// [PackagedProductDefinitionLegalStatusOfSupply]
 /// The legal status of supply of the packaged item as classified by the
 /// regulator.
+@Entity()
 class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   /// Primary constructor for
   /// [PackagedProductDefinitionLegalStatusOfSupply]
 
   PackagedProductDefinitionLegalStatusOfSupply({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -610,6 +621,12 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'PackagedProductDefinitionLegalStatusOfSupply';
 
@@ -686,11 +703,13 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
 /// A packaging item, as a container for medically related items, possibly
 /// with other packaging items within, or a packaging component, such as
 /// bottle cap (which is not a device or a medication manufactured item).
+@Entity()
 class PackagedProductDefinitionPackage extends BackboneElement {
   /// Primary constructor for
   /// [PackagedProductDefinitionPackage]
 
   PackagedProductDefinitionPackage({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -859,6 +878,12 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'PackagedProductDefinitionPackage';
 
@@ -1023,11 +1048,13 @@ class PackagedProductDefinitionPackage extends BackboneElement {
 
 /// [PackagedProductDefinitionShelfLifeStorage]
 /// Shelf Life and storage information.
+@Entity()
 class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// Primary constructor for
   /// [PackagedProductDefinitionShelfLifeStorage]
 
   PackagedProductDefinitionShelfLifeStorage({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1132,6 +1159,12 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PackagedProductDefinitionShelfLifeStorage';
@@ -1247,11 +1280,13 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
 
 /// [PackagedProductDefinitionProperty]
 /// General characteristics of this item.
+@Entity()
 class PackagedProductDefinitionProperty extends BackboneElement {
   /// Primary constructor for
   /// [PackagedProductDefinitionProperty]
 
   PackagedProductDefinitionProperty({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1363,6 +1398,12 @@ class PackagedProductDefinitionProperty extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PackagedProductDefinitionProperty';
@@ -1481,11 +1522,13 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 
 /// [PackagedProductDefinitionContainedItem]
 /// The item(s) within the packaging.
+@Entity()
 class PackagedProductDefinitionContainedItem extends BackboneElement {
   /// Primary constructor for
   /// [PackagedProductDefinitionContainedItem]
 
   PackagedProductDefinitionContainedItem({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1570,6 +1613,12 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PackagedProductDefinitionContainedItem';

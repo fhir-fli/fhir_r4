@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Ingredient]
 /// An ingredient of a manufactured item or pharmaceutical product.
+@Entity()
 class Ingredient extends DomainResource {
   /// Primary constructor for
   /// [Ingredient]
 
   Ingredient({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -179,6 +182,12 @@ class Ingredient extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Ingredient';
@@ -371,11 +380,13 @@ class Ingredient extends DomainResource {
 /// organisations allowed to manufacture this ingredient for this product
 /// Users must be clear on the application of context relevant to their use
 /// case.
+@Entity()
 class IngredientManufacturer extends BackboneElement {
   /// Primary constructor for
   /// [IngredientManufacturer]
 
   IngredientManufacturer({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -462,6 +473,12 @@ class IngredientManufacturer extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'IngredientManufacturer';
 
@@ -538,11 +555,13 @@ class IngredientManufacturer extends BackboneElement {
 
 /// [IngredientSubstance]
 /// The substance that comprises this ingredient.
+@Entity()
 class IngredientSubstance extends BackboneElement {
   /// Primary constructor for
   /// [IngredientSubstance]
 
   IngredientSubstance({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -632,6 +651,12 @@ class IngredientSubstance extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'IngredientSubstance';
 
@@ -709,11 +734,13 @@ class IngredientSubstance extends BackboneElement {
 /// The allowed repetitions do not represent different strengths, but are
 /// different representations - mathematically equivalent - of a single
 /// strength.
+@Entity()
 class IngredientStrength extends BackboneElement {
   /// Primary constructor for
   /// [IngredientStrength]
 
   IngredientStrength({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -856,6 +883,12 @@ class IngredientStrength extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'IngredientStrength';
@@ -1042,11 +1075,13 @@ class IngredientStrength extends BackboneElement {
 /// of the active moiety of the active substance. There are situations when
 /// the active substance and active moiety are different, therefore both a
 /// strength and a reference strength are needed.
+@Entity()
 class IngredientReferenceStrength extends BackboneElement {
   /// Primary constructor for
   /// [IngredientReferenceStrength]
 
   IngredientReferenceStrength({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1157,6 +1192,12 @@ class IngredientReferenceStrength extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'IngredientReferenceStrength';

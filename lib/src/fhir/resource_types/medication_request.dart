@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [MedicationRequest]
@@ -9,11 +10,13 @@ import 'package:yaml/yaml.dart';
 /// "MedicationPrescription" or "MedicationOrder" to generalize the use
 /// across inpatient and outpatient settings, including care plans, etc.,
 /// and to harmonize with workflow patterns.
+@Entity()
 class MedicationRequest extends DomainResource {
   /// Primary constructor for
   /// [MedicationRequest]
 
   MedicationRequest({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -377,6 +380,12 @@ class MedicationRequest extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicationRequest';
@@ -902,11 +911,13 @@ class MedicationRequest extends DomainResource {
 /// with the order. There may be in some settings (e.g. hospitals)
 /// institutional or system support for completing the dispense details in
 /// the pharmacy department.
+@Entity()
 class MedicationRequestDispenseRequest extends BackboneElement {
   /// Primary constructor for
   /// [MedicationRequestDispenseRequest]
 
   MedicationRequestDispenseRequest({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1025,6 +1036,12 @@ class MedicationRequestDispenseRequest extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicationRequestDispenseRequest';
@@ -1166,11 +1183,13 @@ class MedicationRequestDispenseRequest extends BackboneElement {
 /// [MedicationRequestInitialFill]
 /// Indicates the quantity or duration for the first dispense of the
 /// medication.
+@Entity()
 class MedicationRequestInitialFill extends BackboneElement {
   /// Primary constructor for
   /// [MedicationRequestInitialFill]
 
   MedicationRequestInitialFill({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1258,6 +1277,12 @@ class MedicationRequestInitialFill extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationRequestInitialFill';
 
@@ -1332,11 +1357,13 @@ class MedicationRequestInitialFill extends BackboneElement {
 /// dispense. In some cases, substitution must happen, in other cases
 /// substitution must not happen. This block explains the prescriber's
 /// intent. If nothing is specified substitution may be done.
+@Entity()
 class MedicationRequestSubstitution extends BackboneElement {
   /// Primary constructor for
   /// [MedicationRequestSubstitution]
 
   MedicationRequestSubstitution({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1431,6 +1458,12 @@ class MedicationRequestSubstitution extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicationRequestSubstitution';

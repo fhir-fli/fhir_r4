@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [FhirEndpoint]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// services, such as for web services providing XDS.b or a REST endpoint
 /// for another FHIR server. This may include any security context
 /// information.
+@Entity()
 class FhirEndpoint extends DomainResource {
   /// Primary constructor for
   /// [FhirEndpoint]
 
   FhirEndpoint({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -200,6 +203,12 @@ class FhirEndpoint extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'FhirEndpoint';

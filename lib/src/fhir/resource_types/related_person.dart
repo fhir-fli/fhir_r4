@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [RelatedPerson]
 /// Information about a person that is involved in the care for a patient,
 /// but who is not the target of healthcare, nor has a formal
 /// responsibility in the care process.
+@Entity()
 class RelatedPerson extends DomainResource {
   /// Primary constructor for
   /// [RelatedPerson]
 
   RelatedPerson({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -225,6 +228,12 @@ class RelatedPerson extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'RelatedPerson';
@@ -452,11 +461,13 @@ class RelatedPerson extends DomainResource {
 /// [RelatedPersonCommunication]
 /// A language which may be used to communicate with about the patient's
 /// health.
+@Entity()
 class RelatedPersonCommunication extends BackboneElement {
   /// Primary constructor for
   /// [RelatedPersonCommunication]
 
   RelatedPersonCommunication({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -542,6 +553,12 @@ class RelatedPersonCommunication extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'RelatedPersonCommunication';

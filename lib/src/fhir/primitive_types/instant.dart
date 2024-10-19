@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// Extension to convert a [DateTime] to a [FhirInstant].
@@ -16,6 +17,7 @@ extension FhirInstantStringExtension on String {
 }
 
 /// [FhirInstant] represents an instant in time as defined by the FHIR spec.
+@Entity()
 class FhirInstant extends FhirDateTimeBase {
   /// Factory constructor to create a [FhirInstant] from individual units.
   factory FhirInstant.fromUnits({
@@ -58,7 +60,9 @@ class FhirInstant extends FhirDateTimeBase {
     required super.timeZoneOffset,
     required super.isUtc,
     super.element,
-  });
+    this.dbValue,
+    // ignore: prefer_initializing_formals
+  }) : element = element;
 
   /// Factory constructor restricted to String or DateTime inputs.
   factory FhirInstant.fromString(String? inValue, [Element? element]) =>
@@ -160,6 +164,20 @@ class FhirInstant extends FhirDateTimeBase {
   @override
   FhirInstant operator -(ExtendedDuration other) =>
       FhirDateTimeBase.subtract<FhirInstant>(this, other) as FhirInstant;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// The value of the [FhirInstant] as a String
+  @Property(type: PropertyType.date)
+  final DateTime? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
 
   /// Clones the [FhirInstant] object.
   @override

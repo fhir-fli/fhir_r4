@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ConceptMap]
 /// A statement of relationships from one set of concepts to one or more
 /// other concepts - either concepts in code systems, or data element/data
 /// element concepts, or classes in class models.
+@Entity()
 class ConceptMap extends DomainResource {
   /// Primary constructor for
   /// [ConceptMap]
 
   ConceptMap({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -276,6 +279,12 @@ class ConceptMap extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ConceptMap';
@@ -665,11 +674,13 @@ class ConceptMap extends DomainResource {
 
 /// [ConceptMapGroup]
 /// A group of mappings that all have the same source and target system.
+@Entity()
 class ConceptMapGroup extends BackboneElement {
   /// Primary constructor for
   /// [ConceptMapGroup]
 
   ConceptMapGroup({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -790,6 +801,12 @@ class ConceptMapGroup extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ConceptMapGroup';
@@ -924,11 +941,13 @@ class ConceptMapGroup extends BackboneElement {
 /// [ConceptMapElement]
 /// Mappings for an individual concept in the source to one or more
 /// concepts in the target.
+@Entity()
 class ConceptMapElement extends BackboneElement {
   /// Primary constructor for
   /// [ConceptMapElement]
 
   ConceptMapElement({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1028,6 +1047,12 @@ class ConceptMapElement extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ConceptMapElement';
 
@@ -1118,11 +1143,13 @@ class ConceptMapElement extends BackboneElement {
 
 /// [ConceptMapTarget]
 /// A concept from the target value set that this concept maps to.
+@Entity()
 class ConceptMapTarget extends BackboneElement {
   /// Primary constructor for
   /// [ConceptMapTarget]
 
   ConceptMapTarget({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1233,6 +1260,12 @@ class ConceptMapTarget extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ConceptMapTarget';
@@ -1357,11 +1390,13 @@ class ConceptMapTarget extends BackboneElement {
 /// A set of additional dependencies for this mapping to hold. This mapping
 /// is only applicable if the specified element can be resolved, and it has
 /// the specified value.
+@Entity()
 class ConceptMapDependsOn extends BackboneElement {
   /// Primary constructor for
   /// [ConceptMapDependsOn]
 
   ConceptMapDependsOn({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1460,6 +1495,12 @@ class ConceptMapDependsOn extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ConceptMapDependsOn';
@@ -1572,11 +1613,13 @@ class ConceptMapDependsOn extends BackboneElement {
 /// What to do when there is no mapping for the source concept. "Unmapped"
 /// does not include codes that are unmatched, and the unmapped element is
 /// ignored in a code is specified to have equivalence = unmatched.
+@Entity()
 class ConceptMapUnmapped extends BackboneElement {
   /// Primary constructor for
   /// [ConceptMapUnmapped]
 
   ConceptMapUnmapped({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1677,6 +1720,12 @@ class ConceptMapUnmapped extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ConceptMapUnmapped';

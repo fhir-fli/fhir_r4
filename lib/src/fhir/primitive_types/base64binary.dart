@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// Extension to convert from [String] to [FhirBase64Binary]
@@ -9,10 +10,12 @@ extension FhirBase64BinaryExtension on String {
 }
 
 /// [FhirBase64Binary] class that extends [PrimitiveType]
+@Entity()
 class FhirBase64Binary extends PrimitiveType<String?> {
   /// Public generative constructor with validation logic
-  FhirBase64Binary(String? input, [Element? element])
-      : super(
+  FhirBase64Binary(String? input, [this.element])
+      : dbValue = input != null ? _validateBase64(input) : null,
+        super(
           input != null ? _validateBase64(input) : null,
           element,
         ) {
@@ -63,6 +66,22 @@ class FhirBase64Binary extends PrimitiveType<String?> {
 
   /// Boolean getter to determine if both value and element are present
   bool get valueAndElement => value != null && element != null;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Element stored as a relation in ObjectBox
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  @override
+  String get fhirType => 'base64Binary';
 
   /// Serializes the instance to JSON with standardized keys
   @override

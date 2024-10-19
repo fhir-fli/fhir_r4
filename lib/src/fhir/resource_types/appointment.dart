@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Appointment]
 /// A booking of a healthcare event among patient(s), practitioner(s),
 /// related person(s) and/or device(s) for a specific date/time. This may
 /// result in one or more Encounter(s).
+@Entity()
 class Appointment extends DomainResource {
   /// Primary constructor for
   /// [Appointment]
 
   Appointment({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -309,6 +312,12 @@ class Appointment extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Appointment';
@@ -697,11 +706,13 @@ class Appointment extends DomainResource {
 
 /// [AppointmentParticipant]
 /// List of participants involved in the appointment.
+@Entity()
 class AppointmentParticipant extends BackboneElement {
   /// Primary constructor for
   /// [AppointmentParticipant]
 
   AppointmentParticipant({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -810,6 +821,12 @@ class AppointmentParticipant extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'AppointmentParticipant';

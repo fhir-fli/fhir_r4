@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [SpecimenDefinition]
 /// A kind of specimen with associated set of requirements.
+@Entity()
 class SpecimenDefinition extends DomainResource {
   /// Primary constructor for
   /// [SpecimenDefinition]
 
   SpecimenDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -172,6 +175,12 @@ class SpecimenDefinition extends DomainResource {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'SpecimenDefinition';
 
@@ -329,11 +338,13 @@ class SpecimenDefinition extends DomainResource {
 /// [SpecimenDefinitionTypeTested]
 /// Specimen conditioned in a container as expected by the testing
 /// laboratory.
+@Entity()
 class SpecimenDefinitionTypeTested extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenDefinitionTypeTested]
 
   SpecimenDefinitionTypeTested({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -465,6 +476,12 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SpecimenDefinitionTypeTested';
@@ -612,11 +629,13 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
 
 /// [SpecimenDefinitionContainer]
 /// The specimen's container.
+@Entity()
 class SpecimenDefinitionContainer extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenDefinitionContainer]
 
   SpecimenDefinitionContainer({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -753,6 +772,12 @@ class SpecimenDefinitionContainer extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SpecimenDefinitionContainer';
@@ -911,11 +936,13 @@ class SpecimenDefinitionContainer extends BackboneElement {
 /// [SpecimenDefinitionAdditive]
 /// Substance introduced in the kind of container to preserve, maintain or
 /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
+@Entity()
 class SpecimenDefinitionAdditive extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenDefinitionAdditive]
 
   SpecimenDefinitionAdditive({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1003,6 +1030,12 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'SpecimenDefinitionAdditive';
 
@@ -1078,11 +1111,13 @@ class SpecimenDefinitionAdditive extends BackboneElement {
 /// [SpecimenDefinitionHandling]
 /// Set of instructions for preservation/transport of the specimen at a
 /// defined temperature interval, prior the testing process.
+@Entity()
 class SpecimenDefinitionHandling extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenDefinitionHandling]
 
   SpecimenDefinitionHandling({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1182,6 +1217,12 @@ class SpecimenDefinitionHandling extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SpecimenDefinitionHandling';

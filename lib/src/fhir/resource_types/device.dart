@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Device]
 /// A type of a manufactured item that is used in the provision of
 /// healthcare without being substantially changed through that activity.
 /// The device may be a medical or non-medical device.
+@Entity()
 class Device extends DomainResource {
   /// Primary constructor for
   /// [Device]
 
   Device({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -335,6 +338,12 @@ class Device extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Device';
@@ -747,11 +756,13 @@ class Device extends DomainResource {
 /// Note that the Device may include multiple udiCarriers as it either may
 /// include just the udiCarrier for the jurisdiction it is sold, or for
 /// multiple jurisdictions it could have been sold.
+@Entity()
 class DeviceUdiCarrier extends BackboneElement {
   /// Primary constructor for
   /// [DeviceUdiCarrier]
 
   DeviceUdiCarrier({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -870,6 +881,12 @@ class DeviceUdiCarrier extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DeviceUdiCarrier';
@@ -1028,11 +1045,13 @@ class DeviceUdiCarrier extends BackboneElement {
 /// the device, from a UDI label, or by a person describing the Device.
 /// This typically would be used when a person provides the name(s) or when
 /// the device represents one of the names available from DeviceDefinition.
+@Entity()
 class DeviceDeviceName extends BackboneElement {
   /// Primary constructor for
   /// [DeviceDeviceName]
 
   DeviceDeviceName({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1118,6 +1137,12 @@ class DeviceDeviceName extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'DeviceDeviceName';
 
@@ -1197,11 +1222,13 @@ class DeviceDeviceName extends BackboneElement {
 /// The capabilities supported on a device, the standards to which the
 /// device conforms for a particular purpose, and used for the
 /// communication.
+@Entity()
 class DeviceSpecialization extends BackboneElement {
   /// Primary constructor for
   /// [DeviceSpecialization]
 
   DeviceSpecialization({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1288,6 +1315,12 @@ class DeviceSpecialization extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'DeviceSpecialization';
 
@@ -1362,11 +1395,13 @@ class DeviceSpecialization extends BackboneElement {
 /// [DeviceVersion]
 /// The actual design of the device or software version running on the
 /// device.
+@Entity()
 class DeviceVersion extends BackboneElement {
   /// Primary constructor for
   /// [DeviceVersion]
 
   DeviceVersion({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1459,6 +1494,12 @@ class DeviceVersion extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'DeviceVersion';
 
@@ -1543,11 +1584,13 @@ class DeviceVersion extends BackboneElement {
 /// [DeviceProperty]
 /// The actual configuration settings of a device as it actually operates,
 /// e.g., regulation status, time properties.
+@Entity()
 class DeviceProperty extends BackboneElement {
   /// Primary constructor for
   /// [DeviceProperty]
 
   DeviceProperty({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1646,6 +1689,12 @@ class DeviceProperty extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DeviceProperty';

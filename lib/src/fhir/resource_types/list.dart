@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [FhirList]
 /// A list is a curated collection of resources.
+@Entity()
 class FhirList extends DomainResource {
   /// Primary constructor for
   /// [FhirList]
 
   FhirList({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -212,6 +215,12 @@ class FhirList extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'FhirList';
@@ -452,11 +461,13 @@ class FhirList extends DomainResource {
 
 /// [ListEntry]
 /// Entries in this list.
+@Entity()
 class ListEntry extends BackboneElement {
   /// Primary constructor for
   /// [ListEntry]
 
   ListEntry({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -555,6 +566,12 @@ class ListEntry extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ListEntry';

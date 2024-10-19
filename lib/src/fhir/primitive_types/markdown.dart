@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// Extension to convert a [String] to [FhirMarkdown].
@@ -9,10 +10,12 @@ extension FhirMarkdownExtension on String {
 }
 
 /// This class represents the FHIR primitive type `markdown`.
+@Entity()
 class FhirMarkdown extends PrimitiveType<String> {
   /// Constructor enforcing input validation.
-  FhirMarkdown(String? input, [Element? element])
-      : super(_validateMarkdown(input), element) {
+  FhirMarkdown(String? input, [this.element])
+      : dbValue = input,
+        super(_validateMarkdown(input), element) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -61,6 +64,19 @@ class FhirMarkdown extends PrimitiveType<String> {
     }
     throw FormatException('Invalid FhirMarkdown: $input');
   }
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Element stored as a relation in ObjectBox
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
 
   /// Returns the FHIR type as 'markdown'.
   @override

@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [VerificationResult]
 /// Describes validation requirements, source(s), status and dates for one
 /// or more elements.
+@Entity()
 class VerificationResult extends DomainResource {
   /// Primary constructor for
   /// [VerificationResult]
 
   VerificationResult({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -227,6 +230,12 @@ class VerificationResult extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'VerificationResult';
@@ -482,11 +491,13 @@ class VerificationResult extends DomainResource {
 
 /// [VerificationResultPrimarySource]
 /// Information about the primary source(s) involved in validation.
+@Entity()
 class VerificationResultPrimarySource extends BackboneElement {
   /// Primary constructor for
   /// [VerificationResultPrimarySource]
 
   VerificationResultPrimarySource({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -617,6 +628,12 @@ class VerificationResultPrimarySource extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'VerificationResultPrimarySource';
@@ -750,11 +767,13 @@ class VerificationResultPrimarySource extends BackboneElement {
 
 /// [VerificationResultAttestation]
 /// Information about the entity attesting to information.
+@Entity()
 class VerificationResultAttestation extends BackboneElement {
   /// Primary constructor for
   /// [VerificationResultAttestation]
 
   VerificationResultAttestation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -882,6 +901,12 @@ class VerificationResultAttestation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'VerificationResultAttestation';
@@ -1034,11 +1059,13 @@ class VerificationResultAttestation extends BackboneElement {
 
 /// [VerificationResultValidator]
 /// Information about the entity validating information.
+@Entity()
 class VerificationResultValidator extends BackboneElement {
   /// Primary constructor for
   /// [VerificationResultValidator]
 
   VerificationResultValidator({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1131,6 +1158,12 @@ class VerificationResultValidator extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'VerificationResultValidator';

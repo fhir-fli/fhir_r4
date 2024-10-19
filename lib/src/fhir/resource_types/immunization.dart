@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Immunization]
 /// Describes the event of a patient being administered a vaccine or a
 /// record of an immunization as reported by a patient, a clinician or
 /// another party.
+@Entity()
 class Immunization extends DomainResource {
   /// Primary constructor for
   /// [Immunization]
 
   Immunization({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -344,6 +347,12 @@ class Immunization extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Immunization';
@@ -771,11 +780,13 @@ class Immunization extends DomainResource {
 
 /// [ImmunizationPerformer]
 /// Indicates who performed the immunization event.
+@Entity()
 class ImmunizationPerformer extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationPerformer]
 
   ImmunizationPerformer({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -861,6 +872,12 @@ class ImmunizationPerformer extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ImmunizationPerformer';
 
@@ -932,11 +949,13 @@ class ImmunizationPerformer extends BackboneElement {
 /// [ImmunizationEducation]
 /// Educational material presented to the patient (or guardian) at the time
 /// of vaccine administration.
+@Entity()
 class ImmunizationEducation extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationEducation]
 
   ImmunizationEducation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1042,6 +1061,12 @@ class ImmunizationEducation extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ImmunizationEducation';
@@ -1152,11 +1177,13 @@ class ImmunizationEducation extends BackboneElement {
 /// [ImmunizationReaction]
 /// Categorical data indicating that an adverse event is associated in time
 /// to an immunization.
+@Entity()
 class ImmunizationReaction extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationReaction]
 
   ImmunizationReaction({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1252,6 +1279,12 @@ class ImmunizationReaction extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ImmunizationReaction';
 
@@ -1342,11 +1375,13 @@ class ImmunizationReaction extends BackboneElement {
 /// [ImmunizationProtocolApplied]
 /// The protocol (set of recommendations) being followed by the provider
 /// who administered the dose.
+@Entity()
 class ImmunizationProtocolApplied extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationProtocolApplied]
 
   ImmunizationProtocolApplied({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1476,6 +1511,12 @@ class ImmunizationProtocolApplied extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ImmunizationProtocolApplied';

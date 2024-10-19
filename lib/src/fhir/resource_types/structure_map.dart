@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [StructureMap]
 /// A Map of relationships between 2 structures that can be used to
 /// transform data.
+@Entity()
 class StructureMap extends DomainResource {
   /// Primary constructor for
   /// [StructureMap]
 
   StructureMap({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -261,6 +264,12 @@ class StructureMap extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'StructureMap';
@@ -610,11 +619,13 @@ class StructureMap extends DomainResource {
 /// A structure definition used by this map. The structure definition may
 /// describe instances that are converted, or the instances that are
 /// produced.
+@Entity()
 class StructureMapStructure extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapStructure]
 
   StructureMapStructure({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -714,6 +725,12 @@ class StructureMapStructure extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'StructureMapStructure';
@@ -819,11 +836,13 @@ class StructureMapStructure extends BackboneElement {
 /// [StructureMapGroup]
 /// Organizes the mapping into manageable chunks for human review/ease of
 /// maintenance.
+@Entity()
 class StructureMapGroup extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapGroup]
 
   StructureMapGroup({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -943,6 +962,12 @@ class StructureMapGroup extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'StructureMapGroup';
@@ -1067,11 +1092,13 @@ class StructureMapGroup extends BackboneElement {
 /// [StructureMapInput]
 /// A name assigned to an instance of data. The instance must be provided
 /// when the mapping is invoked.
+@Entity()
 class StructureMapInput extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapInput]
 
   StructureMapInput({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1171,6 +1198,12 @@ class StructureMapInput extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'StructureMapInput';
@@ -1275,11 +1308,13 @@ class StructureMapInput extends BackboneElement {
 
 /// [StructureMapRule]
 /// Transform Rule from source to target.
+@Entity()
 class StructureMapRule extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapRule]
 
   StructureMapRule({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1398,6 +1433,12 @@ class StructureMapRule extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'StructureMapRule';
 
@@ -1503,11 +1544,13 @@ class StructureMapRule extends BackboneElement {
 
 /// [StructureMapSource]
 /// Source inputs to the mapping.
+@Entity()
 class StructureMapSource extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapSource]
 
   StructureMapSource({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1991,6 +2034,12 @@ class StructureMapSource extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'StructureMapSource';
@@ -2789,11 +2838,13 @@ class StructureMapSource extends BackboneElement {
 
 /// [StructureMapTarget]
 /// Content to create because of this mapping rule.
+@Entity()
 class StructureMapTarget extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapTarget]
 
   StructureMapTarget({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2926,6 +2977,12 @@ class StructureMapTarget extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'StructureMapTarget';
@@ -3086,11 +3143,13 @@ class StructureMapTarget extends BackboneElement {
 
 /// [StructureMapParameter]
 /// Parameters to the transform.
+@Entity()
 class StructureMapParameter extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapParameter]
 
   StructureMapParameter({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3203,6 +3262,12 @@ class StructureMapParameter extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'StructureMapParameter';
@@ -3325,11 +3390,13 @@ class StructureMapParameter extends BackboneElement {
 
 /// [StructureMapDependent]
 /// Which other rules to apply in the context of this rule.
+@Entity()
 class StructureMapDependent extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapDependent]
 
   StructureMapDependent({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3417,6 +3484,12 @@ class StructureMapDependent extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'StructureMapDependent';

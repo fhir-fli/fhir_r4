@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [SubstanceDefinition]
 /// The detailed description of a substance, typically at a level beyond
 /// what is used for prescribing.
+@Entity()
 class SubstanceDefinition extends DomainResource {
   /// Primary constructor for
   /// [SubstanceDefinition]
 
   SubstanceDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -291,6 +294,12 @@ class SubstanceDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SubstanceDefinition';
@@ -591,11 +600,13 @@ class SubstanceDefinition extends DomainResource {
 
 /// [SubstanceDefinitionMoiety]
 /// Moiety, for structural modifications.
+@Entity()
 class SubstanceDefinitionMoiety extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionMoiety]
 
   SubstanceDefinitionMoiety({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -729,6 +740,12 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SubstanceDefinitionMoiety';
@@ -887,11 +904,13 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 
 /// [SubstanceDefinitionProperty]
 /// General specifications for this substance.
+@Entity()
 class SubstanceDefinitionProperty extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionProperty]
 
   SubstanceDefinitionProperty({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1003,6 +1022,12 @@ class SubstanceDefinitionProperty extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SubstanceDefinitionProperty';
@@ -1122,11 +1147,13 @@ class SubstanceDefinitionProperty extends BackboneElement {
 /// [SubstanceDefinitionMolecularWeight]
 /// The molecular weight or weight range (for proteins, polymers or nucleic
 /// acids).
+@Entity()
 class SubstanceDefinitionMolecularWeight extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionMolecularWeight]
 
   SubstanceDefinitionMolecularWeight({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1218,6 +1245,12 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'SubstanceDefinitionMolecularWeight';
 
@@ -1301,11 +1334,13 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
 
 /// [SubstanceDefinitionStructure]
 /// Structural information.
+@Entity()
 class SubstanceDefinitionStructure extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionStructure]
 
   SubstanceDefinitionStructure({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1444,6 +1479,12 @@ class SubstanceDefinitionStructure extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SubstanceDefinitionStructure';
@@ -1589,11 +1630,13 @@ class SubstanceDefinitionStructure extends BackboneElement {
 
 /// [SubstanceDefinitionRepresentation]
 /// A depiction of the structure or characterization of the substance.
+@Entity()
 class SubstanceDefinitionRepresentation extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionRepresentation]
 
   SubstanceDefinitionRepresentation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1695,6 +1738,12 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'SubstanceDefinitionRepresentation';
 
@@ -1795,11 +1844,13 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
 
 /// [SubstanceDefinitionCode]
 /// Codes associated with the substance.
+@Entity()
 class SubstanceDefinitionCode extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionCode]
 
   SubstanceDefinitionCode({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1914,6 +1965,12 @@ class SubstanceDefinitionCode extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'SubstanceDefinitionCode';
 
@@ -2020,11 +2077,13 @@ class SubstanceDefinitionCode extends BackboneElement {
 
 /// [SubstanceDefinitionName]
 /// Names applicable to this substance.
+@Entity()
 class SubstanceDefinitionName extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionName]
 
   SubstanceDefinitionName({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2193,6 +2252,12 @@ class SubstanceDefinitionName extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SubstanceDefinitionName';
@@ -2363,11 +2428,13 @@ class SubstanceDefinitionName extends BackboneElement {
 
 /// [SubstanceDefinitionOfficial]
 /// Details of the official nature of this name.
+@Entity()
 class SubstanceDefinitionOfficial extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionOfficial]
 
   SubstanceDefinitionOfficial({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2462,6 +2529,12 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'SubstanceDefinitionOfficial';
 
@@ -2549,11 +2622,13 @@ class SubstanceDefinitionOfficial extends BackboneElement {
 /// [SubstanceDefinitionRelationship]
 /// A link between this substance and another, with details of the
 /// relationship.
+@Entity()
 class SubstanceDefinitionRelationship extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionRelationship]
 
   SubstanceDefinitionRelationship({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2695,6 +2770,12 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SubstanceDefinitionRelationship';
@@ -2869,11 +2950,13 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 
 /// [SubstanceDefinitionSourceMaterial]
 /// Material or taxonomic/anatomical source for the substance.
+@Entity()
 class SubstanceDefinitionSourceMaterial extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionSourceMaterial]
 
   SubstanceDefinitionSourceMaterial({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2982,6 +3065,12 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SubstanceDefinitionSourceMaterial';

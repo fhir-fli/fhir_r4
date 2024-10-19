@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Claim]
 /// A provider issued list of professional services and products which have
 /// been provided, or are to be provided, to a patient which is sent to an
 /// insurer for reimbursement.
+@Entity()
 class Claim extends DomainResource {
   /// Primary constructor for
   /// [Claim]
 
   Claim({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -307,6 +310,12 @@ class Claim extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Claim';
@@ -685,11 +694,13 @@ class Claim extends DomainResource {
 /// [ClaimRelated]
 /// Other claims which are related to this claim such as prior submissions
 /// or claims for related services or for the same event.
+@Entity()
 class ClaimRelated extends BackboneElement {
   /// Primary constructor for
   /// [ClaimRelated]
 
   ClaimRelated({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -783,6 +794,12 @@ class ClaimRelated extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ClaimRelated';
 
@@ -866,11 +883,13 @@ class ClaimRelated extends BackboneElement {
 /// [ClaimPayee]
 /// The party to be reimbursed for cost of the products and services
 /// according to the terms of the policy.
+@Entity()
 class ClaimPayee extends BackboneElement {
   /// Primary constructor for
   /// [ClaimPayee]
 
   ClaimPayee({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -956,6 +975,12 @@ class ClaimPayee extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ClaimPayee';
 
@@ -1026,11 +1051,13 @@ class ClaimPayee extends BackboneElement {
 
 /// [ClaimCareTeam]
 /// The members of the team who provided the products and services.
+@Entity()
 class ClaimCareTeam extends BackboneElement {
   /// Primary constructor for
   /// [ClaimCareTeam]
 
   ClaimCareTeam({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1133,6 +1160,12 @@ class ClaimCareTeam extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimCareTeam';
@@ -1243,11 +1276,13 @@ class ClaimCareTeam extends BackboneElement {
 /// [ClaimSupportingInfo]
 /// Additional information codes regarding exceptions, special
 /// considerations, the condition, situation, prior or concurrent issues.
+@Entity()
 class ClaimSupportingInfo extends BackboneElement {
   /// Primary constructor for
   /// [ClaimSupportingInfo]
 
   ClaimSupportingInfo({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1389,6 +1424,12 @@ class ClaimSupportingInfo extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimSupportingInfo';
@@ -1577,11 +1618,13 @@ class ClaimSupportingInfo extends BackboneElement {
 
 /// [ClaimDiagnosis]
 /// Information about diagnoses relevant to the claim items.
+@Entity()
 class ClaimDiagnosis extends BackboneElement {
   /// Primary constructor for
   /// [ClaimDiagnosis]
 
   ClaimDiagnosis({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1695,6 +1738,12 @@ class ClaimDiagnosis extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimDiagnosis';
@@ -1816,11 +1865,13 @@ class ClaimDiagnosis extends BackboneElement {
 /// [ClaimProcedure]
 /// Procedures performed on the patient relevant to the billing items with
 /// the claim.
+@Entity()
 class ClaimProcedure extends BackboneElement {
   /// Primary constructor for
   /// [ClaimProcedure]
 
   ClaimProcedure({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1939,6 +1990,12 @@ class ClaimProcedure extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimProcedure';
@@ -2061,11 +2118,13 @@ class ClaimProcedure extends BackboneElement {
 /// [ClaimInsurance]
 /// Financial instruments for reimbursement for the health care products
 /// and services specified on the claim.
+@Entity()
 class ClaimInsurance extends BackboneElement {
   /// Primary constructor for
   /// [ClaimInsurance]
 
   ClaimInsurance({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2180,6 +2239,12 @@ class ClaimInsurance extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimInsurance';
@@ -2323,11 +2388,13 @@ class ClaimInsurance extends BackboneElement {
 /// [ClaimAccident]
 /// Details of an accident which resulted in injuries which required the
 /// products and services listed in the claim.
+@Entity()
 class ClaimAccident extends BackboneElement {
   /// Primary constructor for
   /// [ClaimAccident]
 
   ClaimAccident({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2426,6 +2493,12 @@ class ClaimAccident extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ClaimAccident';
 
@@ -2523,11 +2596,13 @@ class ClaimAccident extends BackboneElement {
 /// [ClaimItem]
 /// A claim line. Either a simple product or service or a 'group' of
 /// details which can each be a simple items or groups of sub-details.
+@Entity()
 class ClaimItem extends BackboneElement {
   /// Primary constructor for
   /// [ClaimItem]
 
   ClaimItem({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2770,6 +2845,12 @@ class ClaimItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimItem';
@@ -3108,11 +3189,13 @@ class ClaimItem extends BackboneElement {
 /// [ClaimDetail]
 /// A claim detail line. Either a simple (a product or service) or a
 /// 'group' of sub-details which are simple items.
+@Entity()
 class ClaimDetail extends BackboneElement {
   /// Primary constructor for
   /// [ClaimDetail]
 
   ClaimDetail({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3273,6 +3356,12 @@ class ClaimDetail extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimDetail';
@@ -3462,11 +3551,13 @@ class ClaimDetail extends BackboneElement {
 /// [ClaimSubDetail]
 /// A claim detail line. Either a simple (a product or service) or a
 /// 'group' of sub-details which are simple items.
+@Entity()
 class ClaimSubDetail extends BackboneElement {
   /// Primary constructor for
   /// [ClaimSubDetail]
 
   ClaimSubDetail({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3617,6 +3708,12 @@ class ClaimSubDetail extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClaimSubDetail';

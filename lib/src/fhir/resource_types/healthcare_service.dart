@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [HealthcareService]
 /// The details of a healthcare service available at a location.
+@Entity()
 class HealthcareService extends DomainResource {
   /// Primary constructor for
   /// [HealthcareService]
 
   HealthcareService({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -339,6 +342,12 @@ class HealthcareService extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'HealthcareService';
@@ -721,11 +730,13 @@ class HealthcareService extends DomainResource {
 /// [HealthcareServiceEligibility]
 /// Does this service have specific eligibility requirements that need to
 /// be met in order to use the service?
+@Entity()
 class HealthcareServiceEligibility extends BackboneElement {
   /// Primary constructor for
   /// [HealthcareServiceEligibility]
 
   HealthcareServiceEligibility({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -814,6 +825,12 @@ class HealthcareServiceEligibility extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'HealthcareServiceEligibility';
 
@@ -889,11 +906,13 @@ class HealthcareServiceEligibility extends BackboneElement {
 
 /// [HealthcareServiceAvailableTime]
 /// A collection of times that the Service Site is available.
+@Entity()
 class HealthcareServiceAvailableTime extends BackboneElement {
   /// Primary constructor for
   /// [HealthcareServiceAvailableTime]
 
   HealthcareServiceAvailableTime({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -997,6 +1016,12 @@ class HealthcareServiceAvailableTime extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'HealthcareServiceAvailableTime';
@@ -1110,11 +1135,13 @@ class HealthcareServiceAvailableTime extends BackboneElement {
 /// [HealthcareServiceNotAvailable]
 /// The HealthcareService is not available during this period of time due
 /// to the provided reason.
+@Entity()
 class HealthcareServiceNotAvailable extends BackboneElement {
   /// Primary constructor for
   /// [HealthcareServiceNotAvailable]
 
   HealthcareServiceNotAvailable({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1200,6 +1227,12 @@ class HealthcareServiceNotAvailable extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'HealthcareServiceNotAvailable';

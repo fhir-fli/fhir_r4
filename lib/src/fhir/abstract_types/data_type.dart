@@ -1,12 +1,15 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// Base class for all reusable types defined as part of the FHIR specification.
-abstract class DataType extends Element {
+@Entity()
+class DataType extends Element {
   /// Constructor for DataType
   DataType({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.userData,
@@ -21,6 +24,12 @@ abstract class DataType extends Element {
   factory DataType.fromJson(Map<String, Object?> json) {
     throw UnimplementedError('DataType.fromJson $json');
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'DataType';
@@ -62,5 +71,16 @@ abstract class DataType extends Element {
     List<dynamic>? annotations,
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
-  });
+  }) {
+    return DataType(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
+    );
+  }
 }

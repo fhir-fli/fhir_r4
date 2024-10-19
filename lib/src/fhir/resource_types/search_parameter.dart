@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [SearchParameter]
 /// A search parameter that defines a named search item that can be used to
 /// search/filter on a resource.
+@Entity()
 class SearchParameter extends DomainResource {
   /// Primary constructor for
   /// [SearchParameter]
 
   SearchParameter({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -303,6 +306,12 @@ class SearchParameter extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SearchParameter';
@@ -774,11 +783,13 @@ class SearchParameter extends DomainResource {
 
 /// [SearchParameterComponent]
 /// Used to define the parts of a composite search parameter.
+@Entity()
 class SearchParameterComponent extends BackboneElement {
   /// Primary constructor for
   /// [SearchParameterComponent]
 
   SearchParameterComponent({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -863,6 +874,12 @@ class SearchParameterComponent extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'SearchParameterComponent';

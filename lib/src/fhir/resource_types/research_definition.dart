@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ResearchDefinition]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// (population and any exposures being compared within the population) and
 /// outcome (if specified) that the knowledge (evidence, assertion,
 /// recommendation) is about.
+@Entity()
 class ResearchDefinition extends DomainResource {
   /// Primary constructor for
   /// [ResearchDefinition]
 
   ResearchDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -390,6 +393,12 @@ class ResearchDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ResearchDefinition';

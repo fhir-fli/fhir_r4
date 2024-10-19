@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Parameters]
 /// This resource is a non-persisted resource used to pass information into
 /// and back from an [operation](operations.html). It has no other use, and
 /// there is no RESTful endpoint associated with it.
+@Entity()
 class Parameters extends Resource {
   /// Primary constructor for
   /// [Parameters]
 
   Parameters({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -99,6 +102,12 @@ class Parameters extends Resource {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'Parameters';
 
@@ -174,11 +183,13 @@ class Parameters extends Resource {
 
 /// [ParametersParameter]
 /// A parameter passed to or received from the operation.
+@Entity()
 class ParametersParameter extends BackboneElement {
   /// Primary constructor for
   /// [ParametersParameter]
 
   ParametersParameter({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -603,6 +614,12 @@ class ParametersParameter extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ParametersParameter';

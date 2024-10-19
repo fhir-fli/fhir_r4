@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Ratio]
 /// A relationship of two Quantity values - expressed as a numerator and a
 /// denominator.
+@Entity()
 class Ratio extends DataType {
   /// Primary constructor for
   /// [Ratio]
 
   Ratio({
+    this.dbId = 0,
     super.id,
     super.extension_,
     this.numerator,
@@ -86,6 +89,12 @@ class Ratio extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Ratio';

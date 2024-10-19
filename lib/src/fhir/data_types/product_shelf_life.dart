@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ProductShelfLife]
 /// The shelf-life and storage information for a medicinal product item or
 /// container can be described using this class.
+@Entity()
 class ProductShelfLife extends BackboneType {
   /// Primary constructor for
   /// [ProductShelfLife]
 
   ProductShelfLife({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -108,6 +111,12 @@ class ProductShelfLife extends BackboneType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ProductShelfLife';

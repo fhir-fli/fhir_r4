@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [OperationOutcome]
 /// A collection of error, warning, or information messages that result
 /// from a system action.
+@Entity()
 class OperationOutcome extends DomainResource {
   /// Primary constructor for
   /// [OperationOutcome]
 
   OperationOutcome({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -134,6 +137,12 @@ class OperationOutcome extends DomainResource {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'OperationOutcome';
 
@@ -234,11 +243,13 @@ class OperationOutcome extends DomainResource {
 /// [OperationOutcomeIssue]
 /// An error, warning, or information message that results from a system
 /// action.
+@Entity()
 class OperationOutcomeIssue extends BackboneElement {
   /// Primary constructor for
   /// [OperationOutcomeIssue]
 
   OperationOutcomeIssue({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -348,6 +359,12 @@ class OperationOutcomeIssue extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'OperationOutcomeIssue';

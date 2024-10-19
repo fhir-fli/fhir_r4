@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [InsurancePlan]
 /// Details of a Health Insurance product/plan provided by an organization.
+@Entity()
 class InsurancePlan extends DomainResource {
   /// Primary constructor for
   /// [InsurancePlan]
 
   InsurancePlan({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -240,6 +243,12 @@ class InsurancePlan extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'InsurancePlan';
@@ -494,11 +503,13 @@ class InsurancePlan extends DomainResource {
 
 /// [InsurancePlanContact]
 /// The contact for the health insurance product for a certain purpose.
+@Entity()
 class InsurancePlanContact extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanContact]
 
   InsurancePlanContact({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -602,6 +613,12 @@ class InsurancePlanContact extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'InsurancePlanContact';
 
@@ -694,11 +711,13 @@ class InsurancePlanContact extends BackboneElement {
 
 /// [InsurancePlanCoverage]
 /// Details about the coverage offered by the insurance product.
+@Entity()
 class InsurancePlanCoverage extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanCoverage]
 
   InsurancePlanCoverage({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -798,6 +817,12 @@ class InsurancePlanCoverage extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'InsurancePlanCoverage';
 
@@ -876,11 +901,13 @@ class InsurancePlanCoverage extends BackboneElement {
 
 /// [InsurancePlanBenefit]
 /// Specific benefits under this type of coverage.
+@Entity()
 class InsurancePlanBenefit extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanBenefit]
 
   InsurancePlanBenefit({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -977,6 +1004,12 @@ class InsurancePlanBenefit extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'InsurancePlanBenefit';
 
@@ -1060,11 +1093,13 @@ class InsurancePlanBenefit extends BackboneElement {
 
 /// [InsurancePlanLimit]
 /// The specific limits on the benefit.
+@Entity()
 class InsurancePlanLimit extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanLimit]
 
   InsurancePlanLimit({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1152,6 +1187,12 @@ class InsurancePlanLimit extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'InsurancePlanLimit';
 
@@ -1224,11 +1265,13 @@ class InsurancePlanLimit extends BackboneElement {
 
 /// [InsurancePlanPlan]
 /// Details about an insurance plan.
+@Entity()
 class InsurancePlanPlan extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanPlan]
 
   InsurancePlanPlan({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1360,6 +1403,12 @@ class InsurancePlanPlan extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'InsurancePlanPlan';
 
@@ -1474,11 +1523,13 @@ class InsurancePlanPlan extends BackboneElement {
 
 /// [InsurancePlanGeneralCost]
 /// Overall costs associated with the plan.
+@Entity()
 class InsurancePlanGeneralCost extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanGeneralCost]
 
   InsurancePlanGeneralCost({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1580,6 +1631,12 @@ class InsurancePlanGeneralCost extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'InsurancePlanGeneralCost';
 
@@ -1680,11 +1737,13 @@ class InsurancePlanGeneralCost extends BackboneElement {
 
 /// [InsurancePlanSpecificCost]
 /// Costs associated with the coverage provided by the product.
+@Entity()
 class InsurancePlanSpecificCost extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanSpecificCost]
 
   InsurancePlanSpecificCost({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1774,6 +1833,12 @@ class InsurancePlanSpecificCost extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'InsurancePlanSpecificCost';
 
@@ -1844,11 +1909,13 @@ class InsurancePlanSpecificCost extends BackboneElement {
 
 /// [InsurancePlanBenefit1]
 /// List of the specific benefits under this category of benefit.
+@Entity()
 class InsurancePlanBenefit1 extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanBenefit1]
 
   InsurancePlanBenefit1({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1938,6 +2005,12 @@ class InsurancePlanBenefit1 extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'InsurancePlanBenefit1';
 
@@ -2008,11 +2081,13 @@ class InsurancePlanBenefit1 extends BackboneElement {
 
 /// [InsurancePlanCost]
 /// List of the costs associated with a specific benefit.
+@Entity()
 class InsurancePlanCost extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanCost]
 
   InsurancePlanCost({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2113,6 +2188,12 @@ class InsurancePlanCost extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'InsurancePlanCost';

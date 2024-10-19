@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// Extension to convert a [String] to [FhirOid].
@@ -9,10 +10,15 @@ extension FhirOidExtension on String {
 }
 
 /// [FhirOid] represents a validated OID value in the FHIR standard.
+@Entity()
 class FhirOid extends PrimitiveType<String> {
   /// Constructs a [FhirOid] from a String input with validation.
-  FhirOid(String? input, [Element? element])
-      : super(_validateOid(input), element) {
+  FhirOid(String? input, [this.element])
+      : dbValue = input,
+        super(
+          input != null ? _validateOid(input) : null,
+          element,
+        ) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -59,6 +65,19 @@ class FhirOid extends PrimitiveType<String> {
     }
     throw FormatException('Invalid FhirOid: $input');
   }
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Returns the FHIR type as 'oid'.
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
 
   /// Returns the FHIR type as 'oid'.
   @override

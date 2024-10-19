@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// Extension to convert a [bool] to [FhirBoolean]
@@ -9,10 +10,11 @@ extension FhirBooleanExtension on bool {
 }
 
 /// [FhirBoolean] class representing the FHIR primitive type `boolean`
+@Entity()
 class FhirBoolean extends PrimitiveType<bool> {
   /// Public generative constructor
-  // ignore: avoid_positional_boolean_parameters
-  FhirBoolean(super.input, [super.element]) {
+// ignore: avoid_positional_boolean_parameters
+  FhirBoolean(super.input, [this.element]) : dbValue = input {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -60,6 +62,22 @@ class FhirBoolean extends PrimitiveType<bool> {
 
   /// Boolean getter to determine if both value and element are present
   bool get valueAndElement => value != null && element != null;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Element stored as a relation in ObjectBox
+  final bool? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  @override
+  String get fhirType => 'boolean';
 
   /// Serializes the instance to JSON with standardized keys
   @override

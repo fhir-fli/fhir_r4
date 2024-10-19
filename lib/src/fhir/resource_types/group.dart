@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [FhirGroup]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// acted upon collectively but which are not expected to act collectively,
 /// and are not formally or legally recognized; i.e. a collection of
 /// entities that isn't an Organization.
+@Entity()
 class FhirGroup extends DomainResource {
   /// Primary constructor for
   /// [FhirGroup]
 
   FhirGroup({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -198,6 +201,12 @@ class FhirGroup extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'FhirGroup';
@@ -413,11 +422,13 @@ class FhirGroup extends DomainResource {
 /// [GroupCharacteristic]
 /// Identifies traits whose presence r absence is shared by members of the
 /// group.
+@Entity()
 class GroupCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [GroupCharacteristic]
 
   GroupCharacteristic({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -539,6 +550,12 @@ class GroupCharacteristic extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'GroupCharacteristic';
@@ -682,11 +699,13 @@ class GroupCharacteristic extends BackboneElement {
 
 /// [GroupMember]
 /// Identifies the resource instances that are members of the group.
+@Entity()
 class GroupMember extends BackboneElement {
   /// Primary constructor for
   /// [GroupMember]
 
   GroupMember({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -778,6 +797,12 @@ class GroupMember extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'GroupMember';

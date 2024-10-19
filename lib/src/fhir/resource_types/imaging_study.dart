@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ImagingStudy]
@@ -9,11 +10,13 @@ import 'package:yaml/yaml.dart';
 /// acquired or produced in a common context. A series is of only one
 /// modality (e.g. X-ray, CT, MR, ultrasound), but a study may have
 /// multiple series of different modalities.
+@Entity()
 class ImagingStudy extends DomainResource {
   /// Primary constructor for
   /// [ImagingStudy]
 
   ImagingStudy({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -290,6 +293,12 @@ class ImagingStudy extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ImagingStudy';
@@ -618,11 +627,13 @@ class ImagingStudy extends DomainResource {
 
 /// [ImagingStudySeries]
 /// Each study has one or more series of images or other content.
+@Entity()
 class ImagingStudySeries extends BackboneElement {
   /// Primary constructor for
   /// [ImagingStudySeries]
 
   ImagingStudySeries({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -787,6 +798,12 @@ class ImagingStudySeries extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ImagingStudySeries';
@@ -989,11 +1006,13 @@ class ImagingStudySeries extends BackboneElement {
 
 /// [ImagingStudyPerformer]
 /// Indicates who or what performed the series and how they were involved.
+@Entity()
 class ImagingStudyPerformer extends BackboneElement {
   /// Primary constructor for
   /// [ImagingStudyPerformer]
 
   ImagingStudyPerformer({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1079,6 +1098,12 @@ class ImagingStudyPerformer extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ImagingStudyPerformer';
 
@@ -1149,11 +1174,13 @@ class ImagingStudyPerformer extends BackboneElement {
 /// [ImagingStudyInstance]
 /// A single SOP instance within the series, e.g. an image, or presentation
 /// state.
+@Entity()
 class ImagingStudyInstance extends BackboneElement {
   /// Primary constructor for
   /// [ImagingStudyInstance]
 
   ImagingStudyInstance({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1251,6 +1278,12 @@ class ImagingStudyInstance extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ImagingStudyInstance';

@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [EventDefinition]
 /// The EventDefinition resource provides a reusable description of when a
 /// particular event can occur.
+@Entity()
 class EventDefinition extends DomainResource {
   /// Primary constructor for
   /// [EventDefinition]
 
   EventDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -357,6 +360,12 @@ class EventDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EventDefinition';

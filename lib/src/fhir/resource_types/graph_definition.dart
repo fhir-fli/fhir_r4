@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [GraphDefinition]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// coherent set of resources that form a graph by following references.
 /// The Graph Definition resource defines a set and makes rules about the
 /// set.
+@Entity()
 class GraphDefinition extends DomainResource {
   /// Primary constructor for
   /// [GraphDefinition]
 
   GraphDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -237,6 +240,12 @@ class GraphDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'GraphDefinition';
@@ -545,11 +554,13 @@ class GraphDefinition extends DomainResource {
 
 /// [GraphDefinitionLink]
 /// Links this graph makes rules about.
+@Entity()
 class GraphDefinitionLink extends BackboneElement {
   /// Primary constructor for
   /// [GraphDefinitionLink]
 
   GraphDefinitionLink({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -669,6 +680,12 @@ class GraphDefinitionLink extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'GraphDefinitionLink';
@@ -803,11 +820,13 @@ class GraphDefinitionLink extends BackboneElement {
 
 /// [GraphDefinitionTarget]
 /// Potential target for the link.
+@Entity()
 class GraphDefinitionTarget extends BackboneElement {
   /// Primary constructor for
   /// [GraphDefinitionTarget]
 
   GraphDefinitionTarget({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -922,6 +941,12 @@ class GraphDefinitionTarget extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'GraphDefinitionTarget';
 
@@ -1033,11 +1058,13 @@ class GraphDefinitionTarget extends BackboneElement {
 
 /// [GraphDefinitionCompartment]
 /// Compartment Consistency Rules.
+@Entity()
 class GraphDefinitionCompartment extends BackboneElement {
   /// Primary constructor for
   /// [GraphDefinitionCompartment]
 
   GraphDefinitionCompartment({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1141,6 +1168,12 @@ class GraphDefinitionCompartment extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'GraphDefinitionCompartment';

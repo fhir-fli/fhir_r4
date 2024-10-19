@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [MedicationAdministration]
@@ -8,11 +9,13 @@ import 'package:yaml/yaml.dart';
 /// or it may be a long running infusion. Related resources tie this event
 /// to the authorizing prescription, and the specific encounter between
 /// patient and health care practitioner.
+@Entity()
 class MedicationAdministration extends DomainResource {
   /// Primary constructor for
   /// [MedicationAdministration]
 
   MedicationAdministration({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -291,6 +294,12 @@ class MedicationAdministration extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicationAdministration';
@@ -636,11 +645,13 @@ class MedicationAdministration extends DomainResource {
 /// [MedicationAdministrationPerformer]
 /// Indicates who or what performed the medication administration and how
 /// they were involved.
+@Entity()
 class MedicationAdministrationPerformer extends BackboneElement {
   /// Primary constructor for
   /// [MedicationAdministrationPerformer]
 
   MedicationAdministrationPerformer({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -726,6 +737,12 @@ class MedicationAdministrationPerformer extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MedicationAdministrationPerformer';
 
@@ -797,11 +814,13 @@ class MedicationAdministrationPerformer extends BackboneElement {
 /// [MedicationAdministrationDosage]
 /// Describes the medication dosage information details e.g. dose, rate,
 /// site, route, etc.
+@Entity()
 class MedicationAdministrationDosage extends BackboneElement {
   /// Primary constructor for
   /// [MedicationAdministrationDosage]
 
   MedicationAdministrationDosage({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -919,6 +938,12 @@ class MedicationAdministrationDosage extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MedicationAdministrationDosage';

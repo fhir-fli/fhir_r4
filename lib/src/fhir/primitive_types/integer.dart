@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// Extension to convert a [num] to a [FhirInteger].
@@ -13,9 +14,13 @@ extension FhirIntegerExtension on num {
 }
 
 /// Represents the FHIR primitive type `integer`.
+@Entity()
 class FhirInteger extends FhirNumber {
   /// Constructor that ensures valid input.
-  FhirInteger(int? super.input, [super.element]) {
+  FhirInteger(int? super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -40,7 +45,8 @@ class FhirInteger extends FhirNumber {
                 jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
               )
             : throw const FormatException(
-                'Invalid input for FhirInteger: not a valid YAML string or map.',
+                'Invalid input for FhirInteger: '
+                'not a valid YAML string or map.',
               );
   }
 
@@ -56,6 +62,19 @@ class FhirInteger extends FhirNumber {
     }
     return null;
   }
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Element stored as a relation in ObjectBox
+  final int? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
 
   /// Returns the FHIR type as a string.
   @override

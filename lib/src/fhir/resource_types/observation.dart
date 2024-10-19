@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Observation]
 /// Measurements and simple assertions made about a patient, device or
 /// other subject.
+@Entity()
 class Observation extends DomainResource {
   /// Primary constructor for
   /// [Observation]
 
   Observation({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -403,6 +406,12 @@ class Observation extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Observation';
@@ -959,11 +968,13 @@ class Observation extends DomainResource {
 /// recommended range. Multiple reference ranges are interpreted as an
 /// "OR". In other words, to represent two distinct target populations, two
 /// `referenceRange` elements would be used.
+@Entity()
 class ObservationReferenceRange extends BackboneElement {
   /// Primary constructor for
   /// [ObservationReferenceRange]
 
   ObservationReferenceRange({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1079,6 +1090,12 @@ class ObservationReferenceRange extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ObservationReferenceRange';
@@ -1215,11 +1232,13 @@ class ObservationReferenceRange extends BackboneElement {
 /// same attributes. Examples include systolic and diastolic component
 /// observations for blood pressure measurement and multiple component
 /// observations for genetics observations.
+@Entity()
 class ObservationComponent extends BackboneElement {
   /// Primary constructor for
   /// [ObservationComponent]
 
   ObservationComponent({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1398,6 +1417,12 @@ class ObservationComponent extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ObservationComponent';

@@ -1,9 +1,16 @@
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 
 /// Abstract base class for all FHIR primitive types
-abstract class PrimitiveType<T> extends FhirBase {
+@Entity()
+class PrimitiveType<T> extends FhirBase {
   /// Main constructor for [PrimitiveType<T> ]
   PrimitiveType(this.value, [this.element]);
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
 
   @override
   String get fhirType => 'PrimitiveType';
@@ -44,7 +51,8 @@ abstract class PrimitiveType<T> extends FhirBase {
   int _computeHash(String name) => name.hashCode;
 
   /// Sets a property value, returning a new instance with the updated element
-  PrimitiveType<T> setElement(String name, dynamic elementValue);
+  PrimitiveType<T> setElement(String name, dynamic elementValue) =>
+      throw UnimplementedError();
 
   /// Checks equality between two instances (deep comparison)
   @override
@@ -76,12 +84,11 @@ abstract class PrimitiveType<T> extends FhirBase {
 
   /// Provides a string representation of the instance
   @override
-  String toString() =>
-      value != null ? '$runtimeType[$value]' : super.toString();
+  String toString() => throw UnimplementedError();
 
   /// Clone method to create a deep copy of the instance
   @override
-  PrimitiveType<T> clone();
+  PrimitiveType<T> clone() => throw UnimplementedError();
 
   /// CopyWith method to create a modified copy of the instance
   @override
@@ -94,5 +101,6 @@ abstract class PrimitiveType<T> extends FhirBase {
     List<String>? formatCommentsPost,
     List<String>? formatCommentsPre,
     Map<String, FhirBase>? namedChildren,
-  });
+  }) =>
+      throw UnimplementedError();
 }

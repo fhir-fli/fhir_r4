@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// Extension to convert a [num] to a [FhirUnsignedInt].
@@ -13,9 +14,13 @@ extension FhirUnsignedIntExtension on num {
 }
 
 /// Represents the FHIR primitive type `integer`.
+@Entity()
 class FhirUnsignedInt extends FhirNumber {
   /// Constructor that ensures valid input.
-  FhirUnsignedInt(int? super.input, [super.element]) {
+  FhirUnsignedInt(int? super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -57,6 +62,19 @@ class FhirUnsignedInt extends FhirNumber {
     }
     return null;
   }
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Element stored as a relation in ObjectBox
+  final int? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
 
   /// Returns the FHIR type as a string.
   @override

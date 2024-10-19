@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [CompartmentDefinition]
 /// A compartment definition that defines how resources are accessed on a
 /// server.
+@Entity()
 class CompartmentDefinition extends DomainResource {
   /// Primary constructor for
   /// [CompartmentDefinition]
 
   CompartmentDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -221,6 +224,12 @@ class CompartmentDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CompartmentDefinition';
@@ -515,11 +524,13 @@ class CompartmentDefinition extends DomainResource {
 
 /// [CompartmentDefinitionResource]
 /// Information about how a resource is related to the compartment.
+@Entity()
 class CompartmentDefinitionResource extends BackboneElement {
   /// Primary constructor for
   /// [CompartmentDefinitionResource]
 
   CompartmentDefinitionResource({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -613,6 +624,12 @@ class CompartmentDefinitionResource extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CompartmentDefinitionResource';

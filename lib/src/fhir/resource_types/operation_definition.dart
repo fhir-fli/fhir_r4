@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [OperationDefinition]
 /// A formal computable definition of an operation (on the RESTful
 /// interface) or a named query (using the search interaction).
+@Entity()
 class OperationDefinition extends DomainResource {
   /// Primary constructor for
   /// [OperationDefinition]
 
   OperationDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -309,6 +312,12 @@ class OperationDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'OperationDefinition';
@@ -773,11 +782,13 @@ class OperationDefinition extends DomainResource {
 
 /// [OperationDefinitionParameter]
 /// The parameters for the operation/query.
+@Entity()
 class OperationDefinitionParameter extends BackboneElement {
   /// Primary constructor for
   /// [OperationDefinitionParameter]
 
   OperationDefinitionParameter({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -926,6 +937,12 @@ class OperationDefinitionParameter extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'OperationDefinitionParameter';
@@ -1125,11 +1142,13 @@ class OperationDefinitionParameter extends BackboneElement {
 /// [OperationDefinitionBinding]
 /// Binds to a value set if this parameter is coded (code, Coding,
 /// CodeableConcept).
+@Entity()
 class OperationDefinitionBinding extends BackboneElement {
   /// Primary constructor for
   /// [OperationDefinitionBinding]
 
   OperationDefinitionBinding({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1215,6 +1234,12 @@ class OperationDefinitionBinding extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'OperationDefinitionBinding';
 
@@ -1294,11 +1319,13 @@ class OperationDefinitionBinding extends BackboneElement {
 /// [OperationDefinitionReferencedFrom]
 /// Identifies other resource parameters within the operation invocation
 /// that are expected to resolve to this resource.
+@Entity()
 class OperationDefinitionReferencedFrom extends BackboneElement {
   /// Primary constructor for
   /// [OperationDefinitionReferencedFrom]
 
   OperationDefinitionReferencedFrom({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1386,6 +1413,12 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'OperationDefinitionReferencedFrom';
 
@@ -1468,11 +1501,13 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
 /// Defines an appropriate combination of parameters to use when invoking
 /// this operation, to help code generators when generating overloaded
 /// parameter sets for this operation.
+@Entity()
 class OperationDefinitionOverload extends BackboneElement {
   /// Primary constructor for
   /// [OperationDefinitionOverload]
 
   OperationDefinitionOverload({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1560,6 +1595,12 @@ class OperationDefinitionOverload extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'OperationDefinitionOverload';

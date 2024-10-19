@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ClinicalUseDefinition]
 /// A single issue - either an indication, contraindication, interaction or
 /// an undesirable effect for a medicinal product, medication, device or
 /// procedure.
+@Entity()
 class ClinicalUseDefinition extends DomainResource {
   /// Primary constructor for
   /// [ClinicalUseDefinition]
 
   ClinicalUseDefinition({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -205,6 +208,12 @@ class ClinicalUseDefinition extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClinicalUseDefinition';
@@ -415,11 +424,13 @@ class ClinicalUseDefinition extends DomainResource {
 
 /// [ClinicalUseDefinitionContraindication]
 /// Specifics for when this is a contraindication.
+@Entity()
 class ClinicalUseDefinitionContraindication extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionContraindication]
 
   ClinicalUseDefinitionContraindication({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -537,6 +548,12 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ClinicalUseDefinitionContraindication';
 
@@ -643,11 +660,13 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
 /// [ClinicalUseDefinitionOtherTherapy]
 /// Information about the use of the medicinal product in relation to other
 /// therapies described as part of the contraindication.
+@Entity()
 class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionOtherTherapy]
 
   ClinicalUseDefinitionOtherTherapy({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -731,6 +750,12 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ClinicalUseDefinitionOtherTherapy';
 
@@ -800,11 +825,13 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
 
 /// [ClinicalUseDefinitionIndication]
 /// Specifics for when this is an indication.
+@Entity()
 class ClinicalUseDefinitionIndication extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionIndication]
 
   ClinicalUseDefinitionIndication({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -931,6 +958,12 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClinicalUseDefinitionIndication';
@@ -1068,11 +1101,13 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
 
 /// [ClinicalUseDefinitionInteraction]
 /// Specifics for when this is an interaction.
+@Entity()
 class ClinicalUseDefinitionInteraction extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionInteraction]
 
   ClinicalUseDefinitionInteraction({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1186,6 +1221,12 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ClinicalUseDefinitionInteraction';
 
@@ -1291,11 +1332,13 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
 /// [ClinicalUseDefinitionInteractant]
 /// The specific medication, food, substance or laboratory test that
 /// interacts.
+@Entity()
 class ClinicalUseDefinitionInteractant extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionInteractant]
 
   ClinicalUseDefinitionInteractant({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1383,6 +1426,12 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ClinicalUseDefinitionInteractant';
 
@@ -1455,11 +1504,13 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
 /// [ClinicalUseDefinitionUndesirableEffect]
 /// Describe the possible undesirable effects (negative outcomes) from the
 /// use of the medicinal product as treatment.
+@Entity()
 class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionUndesirableEffect]
 
   ClinicalUseDefinitionUndesirableEffect({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1553,6 +1604,12 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ClinicalUseDefinitionUndesirableEffect';
 
@@ -1639,11 +1696,13 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
 /// risks or hazards that serve as caution to the user. For example 'Do not
 /// operate heavy machinery', 'May cause drowsiness', or 'Get medical
 /// advice/attention if you feel unwell'.
+@Entity()
 class ClinicalUseDefinitionWarning extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionWarning]
 
   ClinicalUseDefinitionWarning({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1731,6 +1790,12 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ClinicalUseDefinitionWarning';

@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Coding]
 /// A reference to a code defined by a terminology system.
+@Entity()
 class Coding extends DataType {
   /// Primary constructor for
   /// [Coding]
 
   Coding({
+    this.dbId = 0,
     super.id,
     super.extension_,
     this.system,
@@ -109,6 +112,12 @@ class Coding extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Coding';

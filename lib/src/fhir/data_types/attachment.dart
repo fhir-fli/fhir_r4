@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Attachment]
 /// For referring to data content defined in other formats.
+@Entity()
 class Attachment extends DataType {
   /// Primary constructor for
   /// [Attachment]
 
   Attachment({
+    this.dbId = 0,
     super.id,
     super.extension_,
     this.contentType,
@@ -129,6 +132,12 @@ class Attachment extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Attachment';

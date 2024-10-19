@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [NutritionOrder]
 /// A request to supply a diet, formula feeding (enteral) or oral
 /// nutritional supplement to a patient/resident.
+@Entity()
 class NutritionOrder extends DomainResource {
   /// Primary constructor for
   /// [NutritionOrder]
 
   NutritionOrder({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -244,6 +247,12 @@ class NutritionOrder extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'NutritionOrder';
@@ -555,11 +564,13 @@ class NutritionOrder extends DomainResource {
 
 /// [NutritionOrderOralDiet]
 /// Diet given orally in contrast to enteral (tube) feeding.
+@Entity()
 class NutritionOrderOralDiet extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderOralDiet]
 
   NutritionOrderOralDiet({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -692,6 +703,12 @@ class NutritionOrderOralDiet extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'NutritionOrderOralDiet';
 
@@ -816,11 +833,13 @@ class NutritionOrderOralDiet extends BackboneElement {
 /// [NutritionOrderNutrient]
 /// Class that defines the quantity and type of nutrient modifications (for
 /// example carbohydrate, fiber or sodium) required for the oral diet.
+@Entity()
 class NutritionOrderNutrient extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderNutrient]
 
   NutritionOrderNutrient({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -908,6 +927,12 @@ class NutritionOrderNutrient extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'NutritionOrderNutrient';
 
@@ -980,11 +1005,13 @@ class NutritionOrderNutrient extends BackboneElement {
 /// [NutritionOrderTexture]
 /// Class that describes any texture modifications required for the patient
 /// to safely consume various types of solid foods.
+@Entity()
 class NutritionOrderTexture extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderTexture]
 
   NutritionOrderTexture({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1072,6 +1099,12 @@ class NutritionOrderTexture extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'NutritionOrderTexture';
 
@@ -1146,11 +1179,13 @@ class NutritionOrderTexture extends BackboneElement {
 /// [NutritionOrderSupplement]
 /// Oral nutritional products given in order to add further nutritional
 /// value to the patient's diet.
+@Entity()
 class NutritionOrderSupplement extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderSupplement]
 
   NutritionOrderSupplement({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1261,6 +1296,12 @@ class NutritionOrderSupplement extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'NutritionOrderSupplement';
@@ -1377,11 +1418,13 @@ class NutritionOrderSupplement extends BackboneElement {
 /// [NutritionOrderEnteralFormula]
 /// Feeding provided through the gastrointestinal tract via a tube,
 /// catheter, or stoma that delivers nutrition distal to the oral cavity.
+@Entity()
 class NutritionOrderEnteralFormula extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderEnteralFormula]
 
   NutritionOrderEnteralFormula({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1512,6 +1555,12 @@ class NutritionOrderEnteralFormula extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'NutritionOrderEnteralFormula';
@@ -1673,11 +1722,13 @@ class NutritionOrderEnteralFormula extends BackboneElement {
 /// time for both bolus and continuous feeding. An example of this would be
 /// an instruction to increase the rate of continuous feeding every 2
 /// hours.
+@Entity()
 class NutritionOrderAdministration extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderAdministration]
 
   NutritionOrderAdministration({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1784,6 +1835,12 @@ class NutritionOrderAdministration extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'NutritionOrderAdministration';

@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [CommunicationRequest]
 /// A request to convey information; e.g. the CDS system proposes that an
 /// alert be sent to a responsible provider, the CDS system proposes that
 /// the public health agency be notified about a reportable condition.
+@Entity()
 class CommunicationRequest extends DomainResource {
   /// Primary constructor for
   /// [CommunicationRequest]
 
   CommunicationRequest({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -311,6 +314,12 @@ class CommunicationRequest extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CommunicationRequest';
@@ -670,11 +679,13 @@ class CommunicationRequest extends DomainResource {
 /// [CommunicationRequestPayload]
 /// Text, attachment(s), or resource(s) to be communicated to the
 /// recipient.
+@Entity()
 class CommunicationRequestPayload extends BackboneElement {
   /// Primary constructor for
   /// [CommunicationRequestPayload]
 
   CommunicationRequestPayload({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -769,6 +780,12 @@ class CommunicationRequestPayload extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CommunicationRequestPayload';

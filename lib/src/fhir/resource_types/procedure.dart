@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Procedure]
 /// An action that is or was performed on or for a patient. This can be a
 /// physical intervention like an operation, or less invasive like long
 /// term services, counseling, or hypnotherapy.
+@Entity()
 class Procedure extends DomainResource {
   /// Primary constructor for
   /// [Procedure]
 
   Procedure({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -377,6 +380,12 @@ class Procedure extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Procedure';
@@ -851,11 +860,13 @@ class Procedure extends DomainResource {
 
 /// [ProcedurePerformer]
 /// Limited to "real" people rather than equipment.
+@Entity()
 class ProcedurePerformer extends BackboneElement {
   /// Primary constructor for
   /// [ProcedurePerformer]
 
   ProcedurePerformer({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -947,6 +958,12 @@ class ProcedurePerformer extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'ProcedurePerformer';
 
@@ -1029,11 +1046,13 @@ class ProcedurePerformer extends BackboneElement {
 /// A device that is implanted, removed or otherwise manipulated
 /// (calibration, battery replacement, fitting a prosthesis, attaching a
 /// wound-vac, etc.) as a focal portion of the Procedure.
+@Entity()
 class ProcedureFocalDevice extends BackboneElement {
   /// Primary constructor for
   /// [ProcedureFocalDevice]
 
   ProcedureFocalDevice({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1118,6 +1137,12 @@ class ProcedureFocalDevice extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ProcedureFocalDevice';

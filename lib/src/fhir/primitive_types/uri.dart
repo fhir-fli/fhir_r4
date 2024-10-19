@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// Extension to convert a [String] to a [FhirUri]
@@ -15,10 +16,12 @@ extension FhirUriUriExtension on Uri {
 }
 
 /// Represents a canonical URL in FHIR as a [PrimitiveType] of [Uri]
+@Entity()
 class FhirUri extends PrimitiveType<Uri> {
   /// Constructs a [FhirUri] from a [String]
-  FhirUri(String? input, [Element? element])
-      : super(
+  FhirUri(String? input, [this.element])
+      : dbValue = input,
+        super(
           input == null ? null : _validateCanonical(input),
           element,
         ) {
@@ -28,7 +31,10 @@ class FhirUri extends PrimitiveType<Uri> {
   }
 
   /// Constructs a [FhirUri] from a [Uri] object
-  FhirUri.fromUri(super.input, [super.element]);
+  FhirUri.fromUri(super.input, [super.element])
+      : dbValue = input?.toString(),
+        // ignore: prefer_initializing_formals
+        element = element;
 
   /// Factory constructor to create [FhirUri] from JSON
   factory FhirUri.fromJson(Map<String, dynamic> json) {
@@ -80,6 +86,22 @@ class FhirUri extends PrimitiveType<Uri> {
 
   /// Boolean getter to determine if both value and element are present
   bool get valueAndElement => value != null && element != null;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// The original value of the string.
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  @override
+  String get fhirType => 'uri';
 
   /// Serializes the instance to JSON with standardized keys
   @override

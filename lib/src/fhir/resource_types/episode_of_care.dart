@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [EpisodeOfCare]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// provider(s) during which time encounters may occur. The managing
 /// organization assumes a level of responsibility for the patient during
 /// this time.
+@Entity()
 class EpisodeOfCare extends DomainResource {
   /// Primary constructor for
   /// [EpisodeOfCare]
 
   EpisodeOfCare({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -222,6 +225,12 @@ class EpisodeOfCare extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EpisodeOfCare';
@@ -445,11 +454,13 @@ class EpisodeOfCare extends DomainResource {
 /// [EpisodeOfCareStatusHistory]
 /// The history of statuses that the EpisodeOfCare has been through
 /// (without requiring processing the history of the resource).
+@Entity()
 class EpisodeOfCareStatusHistory extends BackboneElement {
   /// Primary constructor for
   /// [EpisodeOfCareStatusHistory]
 
   EpisodeOfCareStatusHistory({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -534,6 +545,12 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'EpisodeOfCareStatusHistory';
 
@@ -605,11 +622,13 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
 
 /// [EpisodeOfCareDiagnosis]
 /// The list of diagnosis relevant to this episode of care.
+@Entity()
 class EpisodeOfCareDiagnosis extends BackboneElement {
   /// Primary constructor for
   /// [EpisodeOfCareDiagnosis]
 
   EpisodeOfCareDiagnosis({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -701,6 +720,12 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EpisodeOfCareDiagnosis';

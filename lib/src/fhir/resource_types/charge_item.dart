@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ChargeItem]
@@ -9,11 +10,13 @@ import 'package:yaml/yaml.dart';
 /// date, time, amounts and participating organizations and persons. Main
 /// Usage of the ChargeItem is to enable the billing process and internal
 /// cost allocation.
+@Entity()
 class ChargeItem extends DomainResource {
   /// Primary constructor for
   /// [ChargeItem]
 
   ChargeItem({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -339,6 +342,12 @@ class ChargeItem extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ChargeItem';
@@ -760,11 +769,13 @@ class ChargeItem extends DomainResource {
 
 /// [ChargeItemPerformer]
 /// Indicates who or what performed or participated in the charged service.
+@Entity()
 class ChargeItemPerformer extends BackboneElement {
   /// Primary constructor for
   /// [ChargeItemPerformer]
 
   ChargeItemPerformer({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -849,6 +860,12 @@ class ChargeItemPerformer extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ChargeItemPerformer';

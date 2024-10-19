@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [EnrollmentRequest]
 /// This resource provides the insurance enrollment details to the insurer
 /// regarding a specified coverage.
+@Entity()
 class EnrollmentRequest extends DomainResource {
   /// Primary constructor for
   /// [EnrollmentRequest]
 
   EnrollmentRequest({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -171,6 +174,12 @@ class EnrollmentRequest extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'EnrollmentRequest';

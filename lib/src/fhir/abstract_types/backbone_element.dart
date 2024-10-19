@@ -1,12 +1,15 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// Base class for elements inside a resource but not those in a data type.
-abstract class BackboneElement extends DataType {
+@Entity()
+class BackboneElement extends DataType {
   /// Constructor for BackboneElement
   BackboneElement({
+    this.dbId = 0,
     super.id,
     super.extension_,
     this.modifierExtension,
@@ -22,6 +25,12 @@ abstract class BackboneElement extends DataType {
   factory BackboneElement.fromJson(Map<String, Object?> json) {
     throw UnimplementedError('BackboneElement.fromJson $json');
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'BackboneElement';
@@ -128,5 +137,17 @@ abstract class BackboneElement extends DataType {
     List<dynamic>? annotations,
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
-  });
+  }) {
+    return BackboneElement(
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      modifierExtension: modifierExtension ?? this.modifierExtension,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+      children: children ?? this.children,
+      namedChildren: namedChildren ?? this.namedChildren,
+    );
+  }
 }

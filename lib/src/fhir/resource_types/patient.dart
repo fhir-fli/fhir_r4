@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Patient]
 /// Demographics and other administrative information about an individual
 /// or animal receiving care or other health-related services.
+@Entity()
 class Patient extends DomainResource {
   /// Primary constructor for
   /// [Patient]
 
   Patient({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -278,6 +281,12 @@ class Patient extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Patient';
@@ -591,11 +600,13 @@ class Patient extends DomainResource {
 
 /// [PatientContact]
 /// A contact party (e.g. guardian, partner, friend) for the patient.
+@Entity()
 class PatientContact extends BackboneElement {
   /// Primary constructor for
   /// [PatientContact]
 
   PatientContact({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -721,6 +732,12 @@ class PatientContact extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PatientContact';
@@ -853,11 +870,13 @@ class PatientContact extends BackboneElement {
 /// [PatientCommunication]
 /// A language which may be used to communicate with the patient about his
 /// or her health.
+@Entity()
 class PatientCommunication extends BackboneElement {
   /// Primary constructor for
   /// [PatientCommunication]
 
   PatientCommunication({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -944,6 +963,12 @@ class PatientCommunication extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'PatientCommunication';
 
@@ -1021,11 +1046,13 @@ class PatientCommunication extends BackboneElement {
 
 /// [PatientLink]
 /// Link to another patient resource that concerns the same actual patient.
+@Entity()
 class PatientLink extends BackboneElement {
   /// Primary constructor for
   /// [PatientLink]
 
   PatientLink({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1109,6 +1136,12 @@ class PatientLink extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'PatientLink';

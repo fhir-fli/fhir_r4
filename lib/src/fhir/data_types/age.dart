@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Age]
 /// A duration of time during which an organism (or a process) has existed.
+@Entity()
 class Age extends Quantity {
   /// Primary constructor for
   /// [Age]
 
   Age({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.value,
@@ -108,6 +111,12 @@ class Age extends Quantity {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Age';

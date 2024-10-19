@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [MessageHeader]
@@ -8,11 +9,13 @@ import 'package:yaml/yaml.dart';
 /// action as well as other information related to the action are typically
 /// transmitted in a bundle in which the MessageHeader resource instance is
 /// the first resource in the bundle.
+@Entity()
 class MessageHeader extends DomainResource {
   /// Primary constructor for
   /// [MessageHeader]
 
   MessageHeader({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -206,6 +209,12 @@ class MessageHeader extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MessageHeader';
@@ -441,11 +450,13 @@ class MessageHeader extends DomainResource {
 
 /// [MessageHeaderDestination]
 /// The destination application which the message is intended for.
+@Entity()
 class MessageHeaderDestination extends BackboneElement {
   /// Primary constructor for
   /// [MessageHeaderDestination]
 
   MessageHeaderDestination({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -544,6 +555,12 @@ class MessageHeaderDestination extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MessageHeaderDestination';
@@ -645,11 +662,13 @@ class MessageHeaderDestination extends BackboneElement {
 
 /// [MessageHeaderSource]
 /// The source application from which this message originated.
+@Entity()
 class MessageHeaderSource extends BackboneElement {
   /// Primary constructor for
   /// [MessageHeaderSource]
 
   MessageHeaderSource({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -756,6 +775,12 @@ class MessageHeaderSource extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MessageHeaderSource';
@@ -875,11 +900,13 @@ class MessageHeaderSource extends BackboneElement {
 /// [MessageHeaderResponse]
 /// Information about the message that this message is a response to. Only
 /// present if this message is a response.
+@Entity()
 class MessageHeaderResponse extends BackboneElement {
   /// Primary constructor for
   /// [MessageHeaderResponse]
 
   MessageHeaderResponse({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -970,6 +997,12 @@ class MessageHeaderResponse extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MessageHeaderResponse';

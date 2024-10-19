@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [CodeSystem]
 /// The CodeSystem resource is used to declare the existence of and
 /// describe a code system or code system supplement and its key
 /// properties, and optionally define a part or all of its content.
+@Entity()
 class CodeSystem extends DomainResource {
   /// Primary constructor for
   /// [CodeSystem]
 
   CodeSystem({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -328,6 +331,12 @@ class CodeSystem extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CodeSystem';
@@ -799,11 +808,13 @@ class CodeSystem extends DomainResource {
 /// [CodeSystemFilter]
 /// A filter that can be used in a value set compose statement when
 /// selecting concepts using a filter.
+@Entity()
 class CodeSystemFilter extends BackboneElement {
   /// Primary constructor for
   /// [CodeSystemFilter]
 
   CodeSystemFilter({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -903,6 +914,12 @@ class CodeSystemFilter extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CodeSystemFilter';
@@ -1007,11 +1024,13 @@ class CodeSystemFilter extends BackboneElement {
 /// [CodeSystemProperty]
 /// A property defines an additional slot through which additional
 /// information can be provided about a concept.
+@Entity()
 class CodeSystemProperty extends BackboneElement {
   /// Primary constructor for
   /// [CodeSystemProperty]
 
   CodeSystemProperty({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1110,6 +1129,12 @@ class CodeSystemProperty extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CodeSystemProperty';
@@ -1223,11 +1248,13 @@ class CodeSystemProperty extends BackboneElement {
 /// Concepts that are in the code system. The concept definitions are
 /// inherently hierarchical, but the definitions must be consulted to
 /// determine what the meanings of the hierarchical relationships are.
+@Entity()
 class CodeSystemConcept extends BackboneElement {
   /// Primary constructor for
   /// [CodeSystemConcept]
 
   CodeSystemConcept({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1351,6 +1378,12 @@ class CodeSystemConcept extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CodeSystemConcept';
@@ -1482,11 +1515,13 @@ class CodeSystemConcept extends BackboneElement {
 /// [CodeSystemDesignation]
 /// Additional representations for the concept - other languages, aliases,
 /// specialized purposes, used for particular purposes, etc.
+@Entity()
 class CodeSystemDesignation extends BackboneElement {
   /// Primary constructor for
   /// [CodeSystemDesignation]
 
   CodeSystemDesignation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1580,6 +1615,12 @@ class CodeSystemDesignation extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'CodeSystemDesignation';
 
@@ -1667,11 +1708,13 @@ class CodeSystemDesignation extends BackboneElement {
 
 /// [CodeSystemProperty1]
 /// A property value for this concept.
+@Entity()
 class CodeSystemProperty1 extends BackboneElement {
   /// Primary constructor for
   /// [CodeSystemProperty1]
 
   CodeSystemProperty1({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1803,6 +1846,12 @@ class CodeSystemProperty1 extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'CodeSystemProperty1';

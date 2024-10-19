@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Invoice]
 /// Invoice containing collected ChargeItems from an Account with
 /// calculated individual and total price for Billing purpose.
+@Entity()
 class Invoice extends DomainResource {
   /// Primary constructor for
   /// [Invoice]
 
   Invoice({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -233,6 +236,12 @@ class Invoice extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Invoice';
@@ -497,11 +506,13 @@ class Invoice extends DomainResource {
 
 /// [InvoiceParticipant]
 /// Indicates who or what performed or participated in the charged service.
+@Entity()
 class InvoiceParticipant extends BackboneElement {
   /// Primary constructor for
   /// [InvoiceParticipant]
 
   InvoiceParticipant({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -587,6 +598,12 @@ class InvoiceParticipant extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'InvoiceParticipant';
 
@@ -661,11 +678,13 @@ class InvoiceParticipant extends BackboneElement {
 /// Each line item represents one charge for goods and services rendered.
 /// Details such as date, code and amount are found in the referenced
 /// ChargeItem resource.
+@Entity()
 class InvoiceLineItem extends BackboneElement {
   /// Primary constructor for
   /// [InvoiceLineItem]
 
   InvoiceLineItem({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -769,6 +788,12 @@ class InvoiceLineItem extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'InvoiceLineItem';
@@ -882,11 +907,13 @@ class InvoiceLineItem extends BackboneElement {
 /// conditions that apply to a billing code is currently under development.
 /// The priceComponent element can be used to offer transparency to the
 /// recipient of the Invoice as to how the prices have been calculated.
+@Entity()
 class InvoicePriceComponent extends BackboneElement {
   /// Primary constructor for
   /// [InvoicePriceComponent]
 
   InvoicePriceComponent({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -985,6 +1012,12 @@ class InvoicePriceComponent extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'InvoicePriceComponent';

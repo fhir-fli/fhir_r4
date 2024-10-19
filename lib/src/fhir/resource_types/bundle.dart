@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Bundle]
 /// A container for a collection of resources.
+@Entity()
 class Bundle extends Resource {
   /// Primary constructor for
   /// [Bundle]
 
   Bundle({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -137,6 +140,12 @@ class Bundle extends Resource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Bundle';
@@ -289,11 +298,13 @@ class Bundle extends Resource {
 
 /// [BundleLink]
 /// A series of links that provide context to this bundle.
+@Entity()
 class BundleLink extends BackboneElement {
   /// Primary constructor for
   /// [BundleLink]
 
   BundleLink({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -379,6 +390,12 @@ class BundleLink extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'BundleLink';
 
@@ -456,11 +473,13 @@ class BundleLink extends BackboneElement {
 /// [BundleEntry]
 /// An entry in a bundle resource - will either contain a resource or
 /// information about a resource (transactions and history only).
+@Entity()
 class BundleEntry extends BackboneElement {
   /// Primary constructor for
   /// [BundleEntry]
 
   BundleEntry({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -576,6 +595,12 @@ class BundleEntry extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'BundleEntry';
@@ -707,11 +732,13 @@ class BundleEntry extends BackboneElement {
 /// [BundleSearch]
 /// Information about the search process that lead to the creation of this
 /// entry.
+@Entity()
 class BundleSearch extends BackboneElement {
   /// Primary constructor for
   /// [BundleSearch]
 
   BundleSearch({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -801,6 +828,12 @@ class BundleSearch extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'BundleSearch';
 
@@ -884,11 +917,13 @@ class BundleSearch extends BackboneElement {
 /// Additional information about how this entry should be processed as part
 /// of a transaction or batch. For history, it shows how the entry was
 /// processed to create the version contained in the entry.
+@Entity()
 class BundleRequest extends BackboneElement {
   /// Primary constructor for
   /// [BundleRequest]
 
   BundleRequest({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1002,6 +1037,12 @@ class BundleRequest extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'BundleRequest';
@@ -1146,11 +1187,13 @@ class BundleRequest extends BackboneElement {
 /// Indicates the results of processing the corresponding 'request' entry
 /// in the batch or transaction being responded to or what the results of
 /// an operation where when returning history.
+@Entity()
 class BundleResponse extends BackboneElement {
   /// Primary constructor for
   /// [BundleResponse]
 
   BundleResponse({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1258,6 +1301,12 @@ class BundleResponse extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'BundleResponse';

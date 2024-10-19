@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [Measure]
 /// The Measure resource provides the definition of a quality measure.
+@Entity()
 class Measure extends DomainResource {
   /// Primary constructor for
   /// [Measure]
 
   Measure({
+    this.dbId = 0,
     super.id,
     super.meta,
     super.implicitRules,
@@ -452,6 +455,12 @@ class Measure extends DomainResource {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'Measure';
@@ -1130,11 +1139,13 @@ class Measure extends DomainResource {
 
 /// [MeasureGroup]
 /// A group of population criteria for the measure.
+@Entity()
 class MeasureGroup extends BackboneElement {
   /// Primary constructor for
   /// [MeasureGroup]
 
   MeasureGroup({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1243,6 +1254,12 @@ class MeasureGroup extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MeasureGroup';
 
@@ -1342,11 +1359,13 @@ class MeasureGroup extends BackboneElement {
 
 /// [MeasurePopulation]
 /// A population criteria for the measure.
+@Entity()
 class MeasurePopulation extends BackboneElement {
   /// Primary constructor for
   /// [MeasurePopulation]
 
   MeasurePopulation({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1439,6 +1458,12 @@ class MeasurePopulation extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MeasurePopulation';
 
@@ -1525,11 +1550,13 @@ class MeasurePopulation extends BackboneElement {
 /// The stratifier criteria for the measure report, specified as either the
 /// name of a valid CQL expression defined within a referenced library or a
 /// valid FHIR Resource Path.
+@Entity()
 class MeasureStratifier extends BackboneElement {
   /// Primary constructor for
   /// [MeasureStratifier]
 
   MeasureStratifier({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1633,6 +1660,12 @@ class MeasureStratifier extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MeasureStratifier';
@@ -1738,11 +1771,13 @@ class MeasureStratifier extends BackboneElement {
 /// A component of the stratifier criteria for the measure report,
 /// specified as either the name of a valid CQL expression defined within a
 /// referenced library or a valid FHIR Resource Path.
+@Entity()
 class MeasureComponent extends BackboneElement {
   /// Primary constructor for
   /// [MeasureComponent]
 
   MeasureComponent({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1835,6 +1870,12 @@ class MeasureComponent extends BackboneElement {
     }
   }
 
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
+
   @override
   String get fhirType => 'MeasureComponent';
 
@@ -1926,11 +1967,13 @@ class MeasureComponent extends BackboneElement {
 /// The supplemental data criteria for the measure report, specified as
 /// either the name of a valid CQL expression within a referenced library,
 /// or a valid FHIR Resource Path.
+@Entity()
 class MeasureSupplementalData extends BackboneElement {
   /// Primary constructor for
   /// [MeasureSupplementalData]
 
   MeasureSupplementalData({
+    this.dbId = 0,
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2032,6 +2075,12 @@ class MeasureSupplementalData extends BackboneElement {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'MeasureSupplementalData';

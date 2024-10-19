@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// [ParameterDefinition]
@@ -7,11 +8,13 @@ import 'package:yaml/yaml.dart';
 /// and output parameters. Input parameters are provided by the caller as
 /// part of the $evaluate operation. Output parameters are included in the
 /// GuidanceResponse.
+@Entity()
 class ParameterDefinition extends DataType {
   /// Primary constructor for
   /// [ParameterDefinition]
 
   ParameterDefinition({
+    this.dbId = 0,
     super.id,
     super.extension_,
     this.name,
@@ -122,6 +125,12 @@ class ParameterDefinition extends DataType {
           'This does not properly decode to a Map<String, Object?>.');
     }
   }
+
+  /// Auto-incrementing ID for ObjectBox.
+  @Id(assignable: true)
+  @override
+  // ignore: overridden_fields
+  int dbId;
 
   @override
   String get fhirType => 'ParameterDefinition';
