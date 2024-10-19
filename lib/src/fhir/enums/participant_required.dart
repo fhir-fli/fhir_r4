@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Is the Participant required to attend the appointment.
 @Entity()
-class ParticipantRequired {
-  // Private constructor for internal use (like enum)
-  ParticipantRequired._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ParticipantRequired values
-  /// required_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ParticipantRequired required_ = ParticipantRequired._(
-    'required',
-  );
-
-  /// optional
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ParticipantRequired optional = ParticipantRequired._(
-    'optional',
-  );
-
-  /// information_only
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ParticipantRequired information_only = ParticipantRequired._(
-    'information-only',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ParticipantRequired elementOnly = ParticipantRequired._('');
-
-  /// List of all enum-like values
-  static final List<ParticipantRequired> values = [
-    required_,
-    optional,
-    information_only,
-  ];
-
-  /// Returns the enum value with an element attached
-  ParticipantRequired withElement(Element? newElement) {
-    return ParticipantRequired._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ParticipantRequired extends FhirCode {
   /// Factory constructor to create [ParticipantRequired] from JSON.
-  static ParticipantRequired fromJson(Map<String, dynamic> json) {
+  factory ParticipantRequired.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ParticipantRequired.elementOnly.withElement(element);
+      return ParticipantRequired.elementOnly(element);
     }
-    return ParticipantRequired.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ParticipantRequired._(value, element);
+    }
+    throw ArgumentError(
+      'ParticipantRequired.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// required_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ParticipantRequired.required_([this.element])
+      : dbValue = 'required',
+        super('required', element);
+
+  /// optional
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ParticipantRequired.optional([this.element])
+      : dbValue = 'optional',
+        super('optional', element);
+
+  /// information_only
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ParticipantRequired.information_only([this.element])
+      : dbValue = 'information-only',
+        super('information-only', element);
+
+  /// For instances where an Element is present but not value
+
+  ParticipantRequired.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ParticipantRequired._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'required',
+    'optional',
+    'information-only',
+  ];
+
+  /// Returns the enum value with an element attached
+  ParticipantRequired withElement(Element? newElement) {
+    return ParticipantRequired._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ParticipantRequired.$fhirCode';
+  String toString() => 'ParticipantRequired.$value';
 }

@@ -5,126 +5,139 @@ import 'package:objectbox/objectbox.dart';
 
 /// Indicates the purpose of a bundle - how it is intended to be used.
 @Entity()
-class BundleType {
-  // Private constructor for internal use (like enum)
-  BundleType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// BundleType values
-  /// document
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BundleType document = BundleType._(
-    'document',
-  );
-
-  /// message
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BundleType message = BundleType._(
-    'message',
-  );
-
-  /// transaction
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BundleType transaction = BundleType._(
-    'transaction',
-  );
-
-  /// transaction_response
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BundleType transaction_response = BundleType._(
-    'transaction-response',
-  );
-
-  /// batch
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BundleType batch = BundleType._(
-    'batch',
-  );
-
-  /// batch_response
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BundleType batch_response = BundleType._(
-    'batch-response',
-  );
-
-  /// history
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BundleType history = BundleType._(
-    'history',
-  );
-
-  /// searchset
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BundleType searchset = BundleType._(
-    'searchset',
-  );
-
-  /// collection
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BundleType collection = BundleType._(
-    'collection',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final BundleType elementOnly = BundleType._('');
-
-  /// List of all enum-like values
-  static final List<BundleType> values = [
-    document,
-    message,
-    transaction,
-    transaction_response,
-    batch,
-    batch_response,
-    history,
-    searchset,
-    collection,
-  ];
-
-  /// Returns the enum value with an element attached
-  BundleType withElement(Element? newElement) {
-    return BundleType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class BundleType extends FhirCode {
   /// Factory constructor to create [BundleType] from JSON.
-  static BundleType fromJson(Map<String, dynamic> json) {
+  factory BundleType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return BundleType.elementOnly.withElement(element);
+      return BundleType.elementOnly(element);
     }
-    return BundleType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return BundleType._(value, element);
+    }
+    throw ArgumentError(
+      'BundleType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// document
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BundleType.document([this.element])
+      : dbValue = 'document',
+        super('document', element);
+
+  /// message
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BundleType.message([this.element])
+      : dbValue = 'message',
+        super('message', element);
+
+  /// transaction
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BundleType.transaction([this.element])
+      : dbValue = 'transaction',
+        super('transaction', element);
+
+  /// transaction_response
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BundleType.transaction_response([this.element])
+      : dbValue = 'transaction-response',
+        super('transaction-response', element);
+
+  /// batch
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BundleType.batch([this.element])
+      : dbValue = 'batch',
+        super('batch', element);
+
+  /// batch_response
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BundleType.batch_response([this.element])
+      : dbValue = 'batch-response',
+        super('batch-response', element);
+
+  /// history
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BundleType.history([this.element])
+      : dbValue = 'history',
+        super('history', element);
+
+  /// searchset
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BundleType.searchset([this.element])
+      : dbValue = 'searchset',
+        super('searchset', element);
+
+  /// collection
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BundleType.collection([this.element])
+      : dbValue = 'collection',
+        super('collection', element);
+
+  /// For instances where an Element is present but not value
+
+  BundleType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  BundleType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'document',
+    'message',
+    'transaction',
+    'transaction-response',
+    'batch',
+    'batch-response',
+    'history',
+    'searchset',
+    'collection',
+  ];
+
+  /// Returns the enum value with an element attached
+  BundleType withElement(Element? newElement) {
+    return BundleType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'BundleType.$fhirCode';
+  String toString() => 'BundleType.$value';
 }

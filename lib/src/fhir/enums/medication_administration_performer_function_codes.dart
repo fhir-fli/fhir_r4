@@ -5,88 +5,94 @@ import 'package:objectbox/objectbox.dart';
 
 /// MedicationAdministration Performer Function Codes
 @Entity()
-class MedicationAdministrationPerformerFunctionCodes {
-  // Private constructor for internal use (like enum)
-  MedicationAdministrationPerformerFunctionCodes._(this.fhirCode,
-      {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MedicationAdministrationPerformerFunctionCodes values
-  /// performer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationAdministrationPerformerFunctionCodes performer =
-      MedicationAdministrationPerformerFunctionCodes._(
-    'performer',
-  );
-
-  /// verifier
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationAdministrationPerformerFunctionCodes verifier =
-      MedicationAdministrationPerformerFunctionCodes._(
-    'verifier',
-  );
-
-  /// witness
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationAdministrationPerformerFunctionCodes witness =
-      MedicationAdministrationPerformerFunctionCodes._(
-    'witness',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MedicationAdministrationPerformerFunctionCodes elementOnly =
-      MedicationAdministrationPerformerFunctionCodes._('');
-
-  /// List of all enum-like values
-  static final List<MedicationAdministrationPerformerFunctionCodes> values = [
-    performer,
-    verifier,
-    witness,
-  ];
-
-  /// Returns the enum value with an element attached
-  MedicationAdministrationPerformerFunctionCodes withElement(
-      Element? newElement) {
-    return MedicationAdministrationPerformerFunctionCodes._(fhirCode,
-        element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MedicationAdministrationPerformerFunctionCodes extends FhirCode {
   /// Factory constructor to create [MedicationAdministrationPerformerFunctionCodes] from JSON.
-  static MedicationAdministrationPerformerFunctionCodes fromJson(
+  factory MedicationAdministrationPerformerFunctionCodes.fromJson(
       Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationAdministrationPerformerFunctionCodes.elementOnly
-          .withElement(element);
+      return MedicationAdministrationPerformerFunctionCodes.elementOnly(
+          element);
     }
-    return MedicationAdministrationPerformerFunctionCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MedicationAdministrationPerformerFunctionCodes._(value, element);
+    }
+    throw ArgumentError(
+      'MedicationAdministrationPerformerFunctionCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// performer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationAdministrationPerformerFunctionCodes.performer([this.element])
+      : dbValue = 'performer',
+        super('performer', element);
+
+  /// verifier
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationAdministrationPerformerFunctionCodes.verifier([this.element])
+      : dbValue = 'verifier',
+        super('verifier', element);
+
+  /// witness
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationAdministrationPerformerFunctionCodes.witness([this.element])
+      : dbValue = 'witness',
+        super('witness', element);
+
+  /// For instances where an Element is present but not value
+
+  MedicationAdministrationPerformerFunctionCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MedicationAdministrationPerformerFunctionCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'performer',
+    'verifier',
+    'witness',
+  ];
+
+  /// Returns the enum value with an element attached
+  MedicationAdministrationPerformerFunctionCodes withElement(
+      Element? newElement) {
+    return MedicationAdministrationPerformerFunctionCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() =>
-      'MedicationAdministrationPerformerFunctionCodes.$fhirCode';
+  String toString() => 'MedicationAdministrationPerformerFunctionCodes.$value';
 }

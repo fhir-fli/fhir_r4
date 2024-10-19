@@ -32,6 +32,7 @@ class DataType extends Element {
   int dbId;
 
   @override
+  @Transient()
   String get fhirType => 'DataType';
 
   @override

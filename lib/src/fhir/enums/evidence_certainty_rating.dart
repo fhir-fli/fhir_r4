@@ -5,186 +5,195 @@ import 'package:objectbox/objectbox.dart';
 
 /// The assessment of quality, confidence, or certainty.
 @Entity()
-class EvidenceCertaintyRating {
-  // Private constructor for internal use (like enum)
-  EvidenceCertaintyRating._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EvidenceCertaintyRating values
-  /// high
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating high = EvidenceCertaintyRating._(
-    'high',
-  );
-
-  /// moderate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating moderate = EvidenceCertaintyRating._(
-    'moderate',
-  );
-
-  /// low
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating low = EvidenceCertaintyRating._(
-    'low',
-  );
-
-  /// very_low
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating very_low = EvidenceCertaintyRating._(
-    'very-low',
-  );
-
-  /// no_concern
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating no_concern = EvidenceCertaintyRating._(
-    'no-concern',
-  );
-
-  /// serious_concern
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating serious_concern =
-      EvidenceCertaintyRating._(
-    'serious-concern',
-  );
-
-  /// very_serious_concern
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating very_serious_concern =
-      EvidenceCertaintyRating._(
-    'very-serious-concern',
-  );
-
-  /// extremely_serious_concern
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating extremely_serious_concern =
-      EvidenceCertaintyRating._(
-    'extremely-serious-concern',
-  );
-
-  /// present
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating present = EvidenceCertaintyRating._(
-    'present',
-  );
-
-  /// absent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating absent = EvidenceCertaintyRating._(
-    'absent',
-  );
-
-  /// no_change
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating no_change = EvidenceCertaintyRating._(
-    'no-change',
-  );
-
-  /// downcode1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating downcode1 = EvidenceCertaintyRating._(
-    'downcode1',
-  );
-
-  /// downcode2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating downcode2 = EvidenceCertaintyRating._(
-    'downcode2',
-  );
-
-  /// downcode3
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating downcode3 = EvidenceCertaintyRating._(
-    'downcode3',
-  );
-
-  /// upcode1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating upcode1 = EvidenceCertaintyRating._(
-    'upcode1',
-  );
-
-  /// upcode2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyRating upcode2 = EvidenceCertaintyRating._(
-    'upcode2',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final EvidenceCertaintyRating elementOnly =
-      EvidenceCertaintyRating._('');
-
-  /// List of all enum-like values
-  static final List<EvidenceCertaintyRating> values = [
-    high,
-    moderate,
-    low,
-    very_low,
-    no_concern,
-    serious_concern,
-    very_serious_concern,
-    extremely_serious_concern,
-    present,
-    absent,
-    no_change,
-    downcode1,
-    downcode2,
-    downcode3,
-    upcode1,
-    upcode2,
-  ];
-
-  /// Returns the enum value with an element attached
-  EvidenceCertaintyRating withElement(Element? newElement) {
-    return EvidenceCertaintyRating._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class EvidenceCertaintyRating extends FhirCode {
   /// Factory constructor to create [EvidenceCertaintyRating] from JSON.
-  static EvidenceCertaintyRating fromJson(Map<String, dynamic> json) {
+  factory EvidenceCertaintyRating.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EvidenceCertaintyRating.elementOnly.withElement(element);
+      return EvidenceCertaintyRating.elementOnly(element);
     }
-    return EvidenceCertaintyRating.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return EvidenceCertaintyRating._(value, element);
+    }
+    throw ArgumentError(
+      'EvidenceCertaintyRating.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// high
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.high([this.element])
+      : dbValue = 'high',
+        super('high', element);
+
+  /// moderate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.moderate([this.element])
+      : dbValue = 'moderate',
+        super('moderate', element);
+
+  /// low
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.low([this.element])
+      : dbValue = 'low',
+        super('low', element);
+
+  /// very_low
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.very_low([this.element])
+      : dbValue = 'very-low',
+        super('very-low', element);
+
+  /// no_concern
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.no_concern([this.element])
+      : dbValue = 'no-concern',
+        super('no-concern', element);
+
+  /// serious_concern
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.serious_concern([this.element])
+      : dbValue = 'serious-concern',
+        super('serious-concern', element);
+
+  /// very_serious_concern
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.very_serious_concern([this.element])
+      : dbValue = 'very-serious-concern',
+        super('very-serious-concern', element);
+
+  /// extremely_serious_concern
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.extremely_serious_concern([this.element])
+      : dbValue = 'extremely-serious-concern',
+        super('extremely-serious-concern', element);
+
+  /// present
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.present([this.element])
+      : dbValue = 'present',
+        super('present', element);
+
+  /// absent
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.absent([this.element])
+      : dbValue = 'absent',
+        super('absent', element);
+
+  /// no_change
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.no_change([this.element])
+      : dbValue = 'no-change',
+        super('no-change', element);
+
+  /// downcode1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.downcode1([this.element])
+      : dbValue = 'downcode1',
+        super('downcode1', element);
+
+  /// downcode2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.downcode2([this.element])
+      : dbValue = 'downcode2',
+        super('downcode2', element);
+
+  /// downcode3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.downcode3([this.element])
+      : dbValue = 'downcode3',
+        super('downcode3', element);
+
+  /// upcode1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.upcode1([this.element])
+      : dbValue = 'upcode1',
+        super('upcode1', element);
+
+  /// upcode2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyRating.upcode2([this.element])
+      : dbValue = 'upcode2',
+        super('upcode2', element);
+
+  /// For instances where an Element is present but not value
+
+  EvidenceCertaintyRating.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  EvidenceCertaintyRating._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'high',
+    'moderate',
+    'low',
+    'very-low',
+    'no-concern',
+    'serious-concern',
+    'very-serious-concern',
+    'extremely-serious-concern',
+    'present',
+    'absent',
+    'no-change',
+    'downcode1',
+    'downcode2',
+    'downcode3',
+    'upcode1',
+    'upcode2',
+  ];
+
+  /// Returns the enum value with an element attached
+  EvidenceCertaintyRating withElement(Element? newElement) {
+    return EvidenceCertaintyRating._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'EvidenceCertaintyRating.$fhirCode';
+  String toString() => 'EvidenceCertaintyRating.$value';
 }

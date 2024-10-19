@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of participant for the action.
 @Entity()
-class ActionParticipantType {
-  // Private constructor for internal use (like enum)
-  ActionParticipantType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ActionParticipantType values
-  /// patient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionParticipantType patient = ActionParticipantType._(
-    'patient',
-  );
-
-  /// practitioner
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionParticipantType practitioner = ActionParticipantType._(
-    'practitioner',
-  );
-
-  /// related_person
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionParticipantType related_person = ActionParticipantType._(
-    'related-person',
-  );
-
-  /// device
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionParticipantType device = ActionParticipantType._(
-    'device',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ActionParticipantType elementOnly = ActionParticipantType._('');
-
-  /// List of all enum-like values
-  static final List<ActionParticipantType> values = [
-    patient,
-    practitioner,
-    related_person,
-    device,
-  ];
-
-  /// Returns the enum value with an element attached
-  ActionParticipantType withElement(Element? newElement) {
-    return ActionParticipantType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ActionParticipantType extends FhirCode {
   /// Factory constructor to create [ActionParticipantType] from JSON.
-  static ActionParticipantType fromJson(Map<String, dynamic> json) {
+  factory ActionParticipantType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionParticipantType.elementOnly.withElement(element);
+      return ActionParticipantType.elementOnly(element);
     }
-    return ActionParticipantType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ActionParticipantType._(value, element);
+    }
+    throw ArgumentError(
+      'ActionParticipantType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// patient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionParticipantType.patient([this.element])
+      : dbValue = 'patient',
+        super('patient', element);
+
+  /// practitioner
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionParticipantType.practitioner([this.element])
+      : dbValue = 'practitioner',
+        super('practitioner', element);
+
+  /// related_person
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionParticipantType.related_person([this.element])
+      : dbValue = 'related-person',
+        super('related-person', element);
+
+  /// device
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionParticipantType.device([this.element])
+      : dbValue = 'device',
+        super('device', element);
+
+  /// For instances where an Element is present but not value
+
+  ActionParticipantType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ActionParticipantType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'patient',
+    'practitioner',
+    'related-person',
+    'device',
+  ];
+
+  /// Returns the enum value with an element attached
+  ActionParticipantType withElement(Element? newElement) {
+    return ActionParticipantType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ActionParticipantType.$fhirCode';
+  String toString() => 'ActionParticipantType.$value';
 }

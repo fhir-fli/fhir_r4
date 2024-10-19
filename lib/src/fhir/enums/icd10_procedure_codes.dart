@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes sample ICD-10 Procedure codes.
 @Entity()
-class ICD10ProcedureCodes {
-  // Private constructor for internal use (like enum)
-  ICD10ProcedureCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ICD10ProcedureCodes values
-  /// value123001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ICD10ProcedureCodes value123001 = ICD10ProcedureCodes._(
-    '123001',
-  );
-
-  /// value123002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ICD10ProcedureCodes value123002 = ICD10ProcedureCodes._(
-    '123002',
-  );
-
-  /// value123003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ICD10ProcedureCodes value123003 = ICD10ProcedureCodes._(
-    '123003',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ICD10ProcedureCodes elementOnly = ICD10ProcedureCodes._('');
-
-  /// List of all enum-like values
-  static final List<ICD10ProcedureCodes> values = [
-    value123001,
-    value123002,
-    value123003,
-  ];
-
-  /// Returns the enum value with an element attached
-  ICD10ProcedureCodes withElement(Element? newElement) {
-    return ICD10ProcedureCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ICD10ProcedureCodes extends FhirCode {
   /// Factory constructor to create [ICD10ProcedureCodes] from JSON.
-  static ICD10ProcedureCodes fromJson(Map<String, dynamic> json) {
+  factory ICD10ProcedureCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ICD10ProcedureCodes.elementOnly.withElement(element);
+      return ICD10ProcedureCodes.elementOnly(element);
     }
-    return ICD10ProcedureCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ICD10ProcedureCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ICD10ProcedureCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value123001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ICD10ProcedureCodes.value123001([this.element])
+      : dbValue = '123001',
+        super('123001', element);
+
+  /// value123002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ICD10ProcedureCodes.value123002([this.element])
+      : dbValue = '123002',
+        super('123002', element);
+
+  /// value123003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ICD10ProcedureCodes.value123003([this.element])
+      : dbValue = '123003',
+        super('123003', element);
+
+  /// For instances where an Element is present but not value
+
+  ICD10ProcedureCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ICD10ProcedureCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '123001',
+    '123002',
+    '123003',
+  ];
+
+  /// Returns the enum value with an element attached
+  ICD10ProcedureCodes withElement(Element? newElement) {
+    return ICD10ProcedureCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ICD10ProcedureCodes.$fhirCode';
+  String toString() => 'ICD10ProcedureCodes.$value';
 }

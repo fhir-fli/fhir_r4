@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// The kind of dose or rate specified.
 @Entity()
-class DoseAndRateType {
-  // Private constructor for internal use (like enum)
-  DoseAndRateType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DoseAndRateType values
-  /// calculated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DoseAndRateType calculated = DoseAndRateType._(
-    'calculated',
-  );
-
-  /// ordered
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DoseAndRateType ordered = DoseAndRateType._(
-    'ordered',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final DoseAndRateType elementOnly = DoseAndRateType._('');
-
-  /// List of all enum-like values
-  static final List<DoseAndRateType> values = [
-    calculated,
-    ordered,
-  ];
-
-  /// Returns the enum value with an element attached
-  DoseAndRateType withElement(Element? newElement) {
-    return DoseAndRateType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class DoseAndRateType extends FhirCode {
   /// Factory constructor to create [DoseAndRateType] from JSON.
-  static DoseAndRateType fromJson(Map<String, dynamic> json) {
+  factory DoseAndRateType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DoseAndRateType.elementOnly.withElement(element);
+      return DoseAndRateType.elementOnly(element);
     }
-    return DoseAndRateType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return DoseAndRateType._(value, element);
+    }
+    throw ArgumentError(
+      'DoseAndRateType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// calculated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DoseAndRateType.calculated([this.element])
+      : dbValue = 'calculated',
+        super('calculated', element);
+
+  /// ordered
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DoseAndRateType.ordered([this.element])
+      : dbValue = 'ordered',
+        super('ordered', element);
+
+  /// For instances where an Element is present but not value
+
+  DoseAndRateType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  DoseAndRateType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'calculated',
+    'ordered',
+  ];
+
+  /// Returns the enum value with an element attached
+  DoseAndRateType withElement(Element? newElement) {
+    return DoseAndRateType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'DoseAndRateType.$fhirCode';
+  String toString() => 'DoseAndRateType.$value';
 }

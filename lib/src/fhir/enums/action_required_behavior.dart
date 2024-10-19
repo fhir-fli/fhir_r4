@@ -5,80 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Defines expectations around whether an action or action group is required.
 @Entity()
-class ActionRequiredBehavior {
-  // Private constructor for internal use (like enum)
-  ActionRequiredBehavior._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ActionRequiredBehavior values
-  /// must
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionRequiredBehavior must = ActionRequiredBehavior._(
-    'must',
-  );
-
-  /// could
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionRequiredBehavior could = ActionRequiredBehavior._(
-    'could',
-  );
-
-  /// must_unless_documented
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionRequiredBehavior must_unless_documented =
-      ActionRequiredBehavior._(
-    'must-unless-documented',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ActionRequiredBehavior elementOnly =
-      ActionRequiredBehavior._('');
-
-  /// List of all enum-like values
-  static final List<ActionRequiredBehavior> values = [
-    must,
-    could,
-    must_unless_documented,
-  ];
-
-  /// Returns the enum value with an element attached
-  ActionRequiredBehavior withElement(Element? newElement) {
-    return ActionRequiredBehavior._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ActionRequiredBehavior extends FhirCode {
   /// Factory constructor to create [ActionRequiredBehavior] from JSON.
-  static ActionRequiredBehavior fromJson(Map<String, dynamic> json) {
+  factory ActionRequiredBehavior.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionRequiredBehavior.elementOnly.withElement(element);
+      return ActionRequiredBehavior.elementOnly(element);
     }
-    return ActionRequiredBehavior.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ActionRequiredBehavior._(value, element);
+    }
+    throw ArgumentError(
+      'ActionRequiredBehavior.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// must
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionRequiredBehavior.must([this.element])
+      : dbValue = 'must',
+        super('must', element);
+
+  /// could
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionRequiredBehavior.could([this.element])
+      : dbValue = 'could',
+        super('could', element);
+
+  /// must_unless_documented
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionRequiredBehavior.must_unless_documented([this.element])
+      : dbValue = 'must-unless-documented',
+        super('must-unless-documented', element);
+
+  /// For instances where an Element is present but not value
+
+  ActionRequiredBehavior.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ActionRequiredBehavior._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'must',
+    'could',
+    'must-unless-documented',
+  ];
+
+  /// Returns the enum value with an element attached
+  ActionRequiredBehavior withElement(Element? newElement) {
+    return ActionRequiredBehavior._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ActionRequiredBehavior.$fhirCode';
+  String toString() => 'ActionRequiredBehavior.$value';
 }

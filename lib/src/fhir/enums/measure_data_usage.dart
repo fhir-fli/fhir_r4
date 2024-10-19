@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// The intended usage for supplemental data elements in the measure.
 @Entity()
-class MeasureDataUsage {
-  // Private constructor for internal use (like enum)
-  MeasureDataUsage._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasureDataUsage values
-  /// supplemental_data
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureDataUsage supplemental_data = MeasureDataUsage._(
-    'supplemental-data',
-  );
-
-  /// risk_adjustment_factor
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureDataUsage risk_adjustment_factor = MeasureDataUsage._(
-    'risk-adjustment-factor',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MeasureDataUsage elementOnly = MeasureDataUsage._('');
-
-  /// List of all enum-like values
-  static final List<MeasureDataUsage> values = [
-    supplemental_data,
-    risk_adjustment_factor,
-  ];
-
-  /// Returns the enum value with an element attached
-  MeasureDataUsage withElement(Element? newElement) {
-    return MeasureDataUsage._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MeasureDataUsage extends FhirCode {
   /// Factory constructor to create [MeasureDataUsage] from JSON.
-  static MeasureDataUsage fromJson(Map<String, dynamic> json) {
+  factory MeasureDataUsage.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureDataUsage.elementOnly.withElement(element);
+      return MeasureDataUsage.elementOnly(element);
     }
-    return MeasureDataUsage.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MeasureDataUsage._(value, element);
+    }
+    throw ArgumentError(
+      'MeasureDataUsage.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// supplemental_data
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureDataUsage.supplemental_data([this.element])
+      : dbValue = 'supplemental-data',
+        super('supplemental-data', element);
+
+  /// risk_adjustment_factor
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureDataUsage.risk_adjustment_factor([this.element])
+      : dbValue = 'risk-adjustment-factor',
+        super('risk-adjustment-factor', element);
+
+  /// For instances where an Element is present but not value
+
+  MeasureDataUsage.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MeasureDataUsage._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'supplemental-data',
+    'risk-adjustment-factor',
+  ];
+
+  /// Returns the enum value with an element attached
+  MeasureDataUsage withElement(Element? newElement) {
+    return MeasureDataUsage._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MeasureDataUsage.$fhirCode';
+  String toString() => 'MeasureDataUsage.$value';
 }

@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes Claim Type codes.
 @Entity()
-class ClaimTypeCodes {
-  // Private constructor for internal use (like enum)
-  ClaimTypeCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ClaimTypeCodes values
-  /// institutional
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ClaimTypeCodes institutional = ClaimTypeCodes._(
-    'institutional',
-  );
-
-  /// oral
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ClaimTypeCodes oral = ClaimTypeCodes._(
-    'oral',
-  );
-
-  /// pharmacy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ClaimTypeCodes pharmacy = ClaimTypeCodes._(
-    'pharmacy',
-  );
-
-  /// professional
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ClaimTypeCodes professional = ClaimTypeCodes._(
-    'professional',
-  );
-
-  /// vision
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ClaimTypeCodes vision = ClaimTypeCodes._(
-    'vision',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ClaimTypeCodes elementOnly = ClaimTypeCodes._('');
-
-  /// List of all enum-like values
-  static final List<ClaimTypeCodes> values = [
-    institutional,
-    oral,
-    pharmacy,
-    professional,
-    vision,
-  ];
-
-  /// Returns the enum value with an element attached
-  ClaimTypeCodes withElement(Element? newElement) {
-    return ClaimTypeCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ClaimTypeCodes extends FhirCode {
   /// Factory constructor to create [ClaimTypeCodes] from JSON.
-  static ClaimTypeCodes fromJson(Map<String, dynamic> json) {
+  factory ClaimTypeCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ClaimTypeCodes.elementOnly.withElement(element);
+      return ClaimTypeCodes.elementOnly(element);
     }
-    return ClaimTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ClaimTypeCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ClaimTypeCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// institutional
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ClaimTypeCodes.institutional([this.element])
+      : dbValue = 'institutional',
+        super('institutional', element);
+
+  /// oral
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ClaimTypeCodes.oral([this.element])
+      : dbValue = 'oral',
+        super('oral', element);
+
+  /// pharmacy
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ClaimTypeCodes.pharmacy([this.element])
+      : dbValue = 'pharmacy',
+        super('pharmacy', element);
+
+  /// professional
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ClaimTypeCodes.professional([this.element])
+      : dbValue = 'professional',
+        super('professional', element);
+
+  /// vision
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ClaimTypeCodes.vision([this.element])
+      : dbValue = 'vision',
+        super('vision', element);
+
+  /// For instances where an Element is present but not value
+
+  ClaimTypeCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ClaimTypeCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'institutional',
+    'oral',
+    'pharmacy',
+    'professional',
+    'vision',
+  ];
+
+  /// Returns the enum value with an element attached
+  ClaimTypeCodes withElement(Element? newElement) {
+    return ClaimTypeCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ClaimTypeCodes.$fhirCode';
+  String toString() => 'ClaimTypeCodes.$value';
 }

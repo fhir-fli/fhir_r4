@@ -5,121 +5,124 @@ import 'package:objectbox/objectbox.dart';
 
 /// MedicationKnowledge Characteristic Codes
 @Entity()
-class MedicationKnowledgeCharacteristicCodes {
-  // Private constructor for internal use (like enum)
-  MedicationKnowledgeCharacteristicCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MedicationKnowledgeCharacteristicCodes values
-  /// imprintcd
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationKnowledgeCharacteristicCodes imprintcd =
-      MedicationKnowledgeCharacteristicCodes._(
-    'imprintcd',
-  );
-
-  /// size
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationKnowledgeCharacteristicCodes size =
-      MedicationKnowledgeCharacteristicCodes._(
-    'size',
-  );
-
-  /// shape
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationKnowledgeCharacteristicCodes shape =
-      MedicationKnowledgeCharacteristicCodes._(
-    'shape',
-  );
-
-  /// color
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationKnowledgeCharacteristicCodes color =
-      MedicationKnowledgeCharacteristicCodes._(
-    'color',
-  );
-
-  /// coating
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationKnowledgeCharacteristicCodes coating =
-      MedicationKnowledgeCharacteristicCodes._(
-    'coating',
-  );
-
-  /// scoring
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationKnowledgeCharacteristicCodes scoring =
-      MedicationKnowledgeCharacteristicCodes._(
-    'scoring',
-  );
-
-  /// logo
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationKnowledgeCharacteristicCodes logo =
-      MedicationKnowledgeCharacteristicCodes._(
-    'logo',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MedicationKnowledgeCharacteristicCodes elementOnly =
-      MedicationKnowledgeCharacteristicCodes._('');
-
-  /// List of all enum-like values
-  static final List<MedicationKnowledgeCharacteristicCodes> values = [
-    imprintcd,
-    size,
-    shape,
-    color,
-    coating,
-    scoring,
-    logo,
-  ];
-
-  /// Returns the enum value with an element attached
-  MedicationKnowledgeCharacteristicCodes withElement(Element? newElement) {
-    return MedicationKnowledgeCharacteristicCodes._(fhirCode,
-        element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MedicationKnowledgeCharacteristicCodes extends FhirCode {
   /// Factory constructor to create [MedicationKnowledgeCharacteristicCodes] from JSON.
-  static MedicationKnowledgeCharacteristicCodes fromJson(
+  factory MedicationKnowledgeCharacteristicCodes.fromJson(
       Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationKnowledgeCharacteristicCodes.elementOnly
-          .withElement(element);
+      return MedicationKnowledgeCharacteristicCodes.elementOnly(element);
     }
-    return MedicationKnowledgeCharacteristicCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MedicationKnowledgeCharacteristicCodes._(value, element);
+    }
+    throw ArgumentError(
+      'MedicationKnowledgeCharacteristicCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// imprintcd
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationKnowledgeCharacteristicCodes.imprintcd([this.element])
+      : dbValue = 'imprintcd',
+        super('imprintcd', element);
+
+  /// size
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationKnowledgeCharacteristicCodes.size([this.element])
+      : dbValue = 'size',
+        super('size', element);
+
+  /// shape
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationKnowledgeCharacteristicCodes.shape([this.element])
+      : dbValue = 'shape',
+        super('shape', element);
+
+  /// color
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationKnowledgeCharacteristicCodes.color([this.element])
+      : dbValue = 'color',
+        super('color', element);
+
+  /// coating
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationKnowledgeCharacteristicCodes.coating([this.element])
+      : dbValue = 'coating',
+        super('coating', element);
+
+  /// scoring
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationKnowledgeCharacteristicCodes.scoring([this.element])
+      : dbValue = 'scoring',
+        super('scoring', element);
+
+  /// logo
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationKnowledgeCharacteristicCodes.logo([this.element])
+      : dbValue = 'logo',
+        super('logo', element);
+
+  /// For instances where an Element is present but not value
+
+  MedicationKnowledgeCharacteristicCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MedicationKnowledgeCharacteristicCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'imprintcd',
+    'size',
+    'shape',
+    'color',
+    'coating',
+    'scoring',
+    'logo',
+  ];
+
+  /// Returns the enum value with an element attached
+  MedicationKnowledgeCharacteristicCodes withElement(Element? newElement) {
+    return MedicationKnowledgeCharacteristicCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MedicationKnowledgeCharacteristicCodes.$fhirCode';
+  String toString() => 'MedicationKnowledgeCharacteristicCodes.$value';
 }

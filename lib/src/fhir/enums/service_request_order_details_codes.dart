@@ -5,100 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// An example value set of Codified order entry details concepts. These concepts only make sense in the context of what is being ordered. This example is for a patient ventilation order
 @Entity()
-class ServiceRequestOrderDetailsCodes {
-  // Private constructor for internal use (like enum)
-  ServiceRequestOrderDetailsCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ServiceRequestOrderDetailsCodes values
-  /// value47545007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ServiceRequestOrderDetailsCodes value47545007 =
-      ServiceRequestOrderDetailsCodes._(
-    '47545007',
-  );
-
-  /// value286812008
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ServiceRequestOrderDetailsCodes value286812008 =
-      ServiceRequestOrderDetailsCodes._(
-    '286812008',
-  );
-
-  /// value243144002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ServiceRequestOrderDetailsCodes value243144002 =
-      ServiceRequestOrderDetailsCodes._(
-    '243144002',
-  );
-
-  /// value243150007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ServiceRequestOrderDetailsCodes value243150007 =
-      ServiceRequestOrderDetailsCodes._(
-    '243150007',
-  );
-
-  /// value59427005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ServiceRequestOrderDetailsCodes value59427005 =
-      ServiceRequestOrderDetailsCodes._(
-    '59427005',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ServiceRequestOrderDetailsCodes elementOnly =
-      ServiceRequestOrderDetailsCodes._('');
-
-  /// List of all enum-like values
-  static final List<ServiceRequestOrderDetailsCodes> values = [
-    value47545007,
-    value286812008,
-    value243144002,
-    value243150007,
-    value59427005,
-  ];
-
-  /// Returns the enum value with an element attached
-  ServiceRequestOrderDetailsCodes withElement(Element? newElement) {
-    return ServiceRequestOrderDetailsCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ServiceRequestOrderDetailsCodes extends FhirCode {
   /// Factory constructor to create [ServiceRequestOrderDetailsCodes] from JSON.
-  static ServiceRequestOrderDetailsCodes fromJson(Map<String, dynamic> json) {
+  factory ServiceRequestOrderDetailsCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ServiceRequestOrderDetailsCodes.elementOnly.withElement(element);
+      return ServiceRequestOrderDetailsCodes.elementOnly(element);
     }
-    return ServiceRequestOrderDetailsCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ServiceRequestOrderDetailsCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ServiceRequestOrderDetailsCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value47545007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ServiceRequestOrderDetailsCodes.value47545007([this.element])
+      : dbValue = '47545007',
+        super('47545007', element);
+
+  /// value286812008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ServiceRequestOrderDetailsCodes.value286812008([this.element])
+      : dbValue = '286812008',
+        super('286812008', element);
+
+  /// value243144002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ServiceRequestOrderDetailsCodes.value243144002([this.element])
+      : dbValue = '243144002',
+        super('243144002', element);
+
+  /// value243150007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ServiceRequestOrderDetailsCodes.value243150007([this.element])
+      : dbValue = '243150007',
+        super('243150007', element);
+
+  /// value59427005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ServiceRequestOrderDetailsCodes.value59427005([this.element])
+      : dbValue = '59427005',
+        super('59427005', element);
+
+  /// For instances where an Element is present but not value
+
+  ServiceRequestOrderDetailsCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ServiceRequestOrderDetailsCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '47545007',
+    '286812008',
+    '243144002',
+    '243150007',
+    '59427005',
+  ];
+
+  /// Returns the enum value with an element attached
+  ServiceRequestOrderDetailsCodes withElement(Element? newElement) {
+    return ServiceRequestOrderDetailsCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ServiceRequestOrderDetailsCodes.$fhirCode';
+  String toString() => 'ServiceRequestOrderDetailsCodes.$value';
 }

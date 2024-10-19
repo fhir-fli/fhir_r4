@@ -89,6 +89,7 @@ class FhirCode extends PrimitiveType<String> {
   final Element? element;
 
   @override
+  @Transient()
   String get fhirType => 'code';
 
   /// Serializes the instance to JSON with standardized keys

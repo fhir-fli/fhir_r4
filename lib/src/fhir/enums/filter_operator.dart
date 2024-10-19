@@ -5,126 +5,139 @@ import 'package:objectbox/objectbox.dart';
 
 /// The kind of operation to perform as a part of a property based filter.
 @Entity()
-class FilterOperator {
-  // Private constructor for internal use (like enum)
-  FilterOperator._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// FilterOperator values
-  /// eq
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FilterOperator eq = FilterOperator._(
-    '=',
-  );
-
-  /// is_a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FilterOperator is_a = FilterOperator._(
-    'is-a',
-  );
-
-  /// descendent_of
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FilterOperator descendent_of = FilterOperator._(
-    'descendent-of',
-  );
-
-  /// is_not_a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FilterOperator is_not_a = FilterOperator._(
-    'is-not-a',
-  );
-
-  /// regex
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FilterOperator regex = FilterOperator._(
-    'regex',
-  );
-
-  /// in_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FilterOperator in_ = FilterOperator._(
-    'in',
-  );
-
-  /// not_in
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FilterOperator not_in = FilterOperator._(
-    'not-in',
-  );
-
-  /// generalizes
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FilterOperator generalizes = FilterOperator._(
-    'generalizes',
-  );
-
-  /// exists
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FilterOperator exists = FilterOperator._(
-    'exists',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final FilterOperator elementOnly = FilterOperator._('');
-
-  /// List of all enum-like values
-  static final List<FilterOperator> values = [
-    eq,
-    is_a,
-    descendent_of,
-    is_not_a,
-    regex,
-    in_,
-    not_in,
-    generalizes,
-    exists,
-  ];
-
-  /// Returns the enum value with an element attached
-  FilterOperator withElement(Element? newElement) {
-    return FilterOperator._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class FilterOperator extends FhirCode {
   /// Factory constructor to create [FilterOperator] from JSON.
-  static FilterOperator fromJson(Map<String, dynamic> json) {
+  factory FilterOperator.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FilterOperator.elementOnly.withElement(element);
+      return FilterOperator.elementOnly(element);
     }
-    return FilterOperator.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return FilterOperator._(value, element);
+    }
+    throw ArgumentError(
+      'FilterOperator.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// eq
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FilterOperator.eq([this.element])
+      : dbValue = '=',
+        super('=', element);
+
+  /// is_a
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FilterOperator.is_a([this.element])
+      : dbValue = 'is-a',
+        super('is-a', element);
+
+  /// descendent_of
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FilterOperator.descendent_of([this.element])
+      : dbValue = 'descendent-of',
+        super('descendent-of', element);
+
+  /// is_not_a
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FilterOperator.is_not_a([this.element])
+      : dbValue = 'is-not-a',
+        super('is-not-a', element);
+
+  /// regex
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FilterOperator.regex([this.element])
+      : dbValue = 'regex',
+        super('regex', element);
+
+  /// in_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FilterOperator.in_([this.element])
+      : dbValue = 'in',
+        super('in', element);
+
+  /// not_in
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FilterOperator.not_in([this.element])
+      : dbValue = 'not-in',
+        super('not-in', element);
+
+  /// generalizes
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FilterOperator.generalizes([this.element])
+      : dbValue = 'generalizes',
+        super('generalizes', element);
+
+  /// exists
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FilterOperator.exists([this.element])
+      : dbValue = 'exists',
+        super('exists', element);
+
+  /// For instances where an Element is present but not value
+
+  FilterOperator.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  FilterOperator._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '=',
+    'is-a',
+    'descendent-of',
+    'is-not-a',
+    'regex',
+    'in',
+    'not-in',
+    'generalizes',
+    'exists',
+  ];
+
+  /// Returns the enum value with an element attached
+  FilterOperator withElement(Element? newElement) {
+    return FilterOperator._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'FilterOperator.$fhirCode';
+  String toString() => 'FilterOperator.$value';
 }

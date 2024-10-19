@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// The status of the ImagingStudy.
 @Entity()
-class ImagingStudyStatus {
-  // Private constructor for internal use (like enum)
-  ImagingStudyStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ImagingStudyStatus values
-  /// registered
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImagingStudyStatus registered = ImagingStudyStatus._(
-    'registered',
-  );
-
-  /// available
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImagingStudyStatus available = ImagingStudyStatus._(
-    'available',
-  );
-
-  /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImagingStudyStatus cancelled = ImagingStudyStatus._(
-    'cancelled',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImagingStudyStatus entered_in_error = ImagingStudyStatus._(
-    'entered-in-error',
-  );
-
-  /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImagingStudyStatus unknown = ImagingStudyStatus._(
-    'unknown',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ImagingStudyStatus elementOnly = ImagingStudyStatus._('');
-
-  /// List of all enum-like values
-  static final List<ImagingStudyStatus> values = [
-    registered,
-    available,
-    cancelled,
-    entered_in_error,
-    unknown,
-  ];
-
-  /// Returns the enum value with an element attached
-  ImagingStudyStatus withElement(Element? newElement) {
-    return ImagingStudyStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ImagingStudyStatus extends FhirCode {
   /// Factory constructor to create [ImagingStudyStatus] from JSON.
-  static ImagingStudyStatus fromJson(Map<String, dynamic> json) {
+  factory ImagingStudyStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImagingStudyStatus.elementOnly.withElement(element);
+      return ImagingStudyStatus.elementOnly(element);
     }
-    return ImagingStudyStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ImagingStudyStatus._(value, element);
+    }
+    throw ArgumentError(
+      'ImagingStudyStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// registered
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImagingStudyStatus.registered([this.element])
+      : dbValue = 'registered',
+        super('registered', element);
+
+  /// available
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImagingStudyStatus.available([this.element])
+      : dbValue = 'available',
+        super('available', element);
+
+  /// cancelled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImagingStudyStatus.cancelled([this.element])
+      : dbValue = 'cancelled',
+        super('cancelled', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImagingStudyStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImagingStudyStatus.unknown([this.element])
+      : dbValue = 'unknown',
+        super('unknown', element);
+
+  /// For instances where an Element is present but not value
+
+  ImagingStudyStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ImagingStudyStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'registered',
+    'available',
+    'cancelled',
+    'entered-in-error',
+    'unknown',
+  ];
+
+  /// Returns the enum value with an element attached
+  ImagingStudyStatus withElement(Element? newElement) {
+    return ImagingStudyStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ImagingStudyStatus.$fhirCode';
+  String toString() => 'ImagingStudyStatus.$value';
 }

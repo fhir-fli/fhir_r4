@@ -39,6 +39,7 @@ class DomainResource extends Resource {
   int dbId;
 
   @override
+  @Transient()
   String get fhirType => 'DomainResource';
 
   /// A human-readable summary of the resource conveying the essential clinical

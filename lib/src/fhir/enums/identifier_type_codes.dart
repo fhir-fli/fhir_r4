@@ -5,198 +5,211 @@ import 'package:objectbox/objectbox.dart';
 
 /// A coded type for an identifier that can be used to determine which identifier to use for a specific purpose.
 @Entity()
-class IdentifierTypeCodes {
-  // Private constructor for internal use (like enum)
-  IdentifierTypeCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// IdentifierTypeCodes values
-  /// DL
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes DL = IdentifierTypeCodes._(
-    'DL',
-  );
-
-  /// PPN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes PPN = IdentifierTypeCodes._(
-    'PPN',
-  );
-
-  /// BRN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes BRN = IdentifierTypeCodes._(
-    'BRN',
-  );
-
-  /// MR
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes MR = IdentifierTypeCodes._(
-    'MR',
-  );
-
-  /// MCN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes MCN = IdentifierTypeCodes._(
-    'MCN',
-  );
-
-  /// EN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes EN = IdentifierTypeCodes._(
-    'EN',
-  );
-
-  /// TAX
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes TAX = IdentifierTypeCodes._(
-    'TAX',
-  );
-
-  /// NIIP
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes NIIP = IdentifierTypeCodes._(
-    'NIIP',
-  );
-
-  /// PRN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes PRN = IdentifierTypeCodes._(
-    'PRN',
-  );
-
-  /// MD
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes MD = IdentifierTypeCodes._(
-    'MD',
-  );
-
-  /// DR
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes DR = IdentifierTypeCodes._(
-    'DR',
-  );
-
-  /// ACSN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes ACSN = IdentifierTypeCodes._(
-    'ACSN',
-  );
-
-  /// UDI
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes UDI = IdentifierTypeCodes._(
-    'UDI',
-  );
-
-  /// SNO
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes SNO = IdentifierTypeCodes._(
-    'SNO',
-  );
-
-  /// SB
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes SB = IdentifierTypeCodes._(
-    'SB',
-  );
-
-  /// PLAC
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes PLAC = IdentifierTypeCodes._(
-    'PLAC',
-  );
-
-  /// FILL
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes FILL = IdentifierTypeCodes._(
-    'FILL',
-  );
-
-  /// JHN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierTypeCodes JHN = IdentifierTypeCodes._(
-    'JHN',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final IdentifierTypeCodes elementOnly = IdentifierTypeCodes._('');
-
-  /// List of all enum-like values
-  static final List<IdentifierTypeCodes> values = [
-    DL,
-    PPN,
-    BRN,
-    MR,
-    MCN,
-    EN,
-    TAX,
-    NIIP,
-    PRN,
-    MD,
-    DR,
-    ACSN,
-    UDI,
-    SNO,
-    SB,
-    PLAC,
-    FILL,
-    JHN,
-  ];
-
-  /// Returns the enum value with an element attached
-  IdentifierTypeCodes withElement(Element? newElement) {
-    return IdentifierTypeCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class IdentifierTypeCodes extends FhirCode {
   /// Factory constructor to create [IdentifierTypeCodes] from JSON.
-  static IdentifierTypeCodes fromJson(Map<String, dynamic> json) {
+  factory IdentifierTypeCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return IdentifierTypeCodes.elementOnly.withElement(element);
+      return IdentifierTypeCodes.elementOnly(element);
     }
-    return IdentifierTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return IdentifierTypeCodes._(value, element);
+    }
+    throw ArgumentError(
+      'IdentifierTypeCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// DL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.DL([this.element])
+      : dbValue = 'DL',
+        super('DL', element);
+
+  /// PPN
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.PPN([this.element])
+      : dbValue = 'PPN',
+        super('PPN', element);
+
+  /// BRN
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.BRN([this.element])
+      : dbValue = 'BRN',
+        super('BRN', element);
+
+  /// MR
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.MR([this.element])
+      : dbValue = 'MR',
+        super('MR', element);
+
+  /// MCN
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.MCN([this.element])
+      : dbValue = 'MCN',
+        super('MCN', element);
+
+  /// EN
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.EN([this.element])
+      : dbValue = 'EN',
+        super('EN', element);
+
+  /// TAX
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.TAX([this.element])
+      : dbValue = 'TAX',
+        super('TAX', element);
+
+  /// NIIP
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.NIIP([this.element])
+      : dbValue = 'NIIP',
+        super('NIIP', element);
+
+  /// PRN
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.PRN([this.element])
+      : dbValue = 'PRN',
+        super('PRN', element);
+
+  /// MD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.MD([this.element])
+      : dbValue = 'MD',
+        super('MD', element);
+
+  /// DR
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.DR([this.element])
+      : dbValue = 'DR',
+        super('DR', element);
+
+  /// ACSN
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.ACSN([this.element])
+      : dbValue = 'ACSN',
+        super('ACSN', element);
+
+  /// UDI
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.UDI([this.element])
+      : dbValue = 'UDI',
+        super('UDI', element);
+
+  /// SNO
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.SNO([this.element])
+      : dbValue = 'SNO',
+        super('SNO', element);
+
+  /// SB
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.SB([this.element])
+      : dbValue = 'SB',
+        super('SB', element);
+
+  /// PLAC
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.PLAC([this.element])
+      : dbValue = 'PLAC',
+        super('PLAC', element);
+
+  /// FILL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.FILL([this.element])
+      : dbValue = 'FILL',
+        super('FILL', element);
+
+  /// JHN
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierTypeCodes.JHN([this.element])
+      : dbValue = 'JHN',
+        super('JHN', element);
+
+  /// For instances where an Element is present but not value
+
+  IdentifierTypeCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  IdentifierTypeCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'DL',
+    'PPN',
+    'BRN',
+    'MR',
+    'MCN',
+    'EN',
+    'TAX',
+    'NIIP',
+    'PRN',
+    'MD',
+    'DR',
+    'ACSN',
+    'UDI',
+    'SNO',
+    'SB',
+    'PLAC',
+    'FILL',
+    'JHN',
+  ];
+
+  /// Returns the enum value with an element attached
+  IdentifierTypeCodes withElement(Element? newElement) {
+    return IdentifierTypeCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'IdentifierTypeCodes.$fhirCode';
+  String toString() => 'IdentifierTypeCodes.$value';
 }

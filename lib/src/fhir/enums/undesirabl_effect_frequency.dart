@@ -5,79 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// A categorisation for a frequency of occurence of an undesirable effect.
 @Entity()
-class UndesirablEffectFrequency {
-  // Private constructor for internal use (like enum)
-  UndesirablEffectFrequency._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// UndesirablEffectFrequency values
-  /// Common
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UndesirablEffectFrequency Common = UndesirablEffectFrequency._(
-    'Common',
-  );
-
-  /// Uncommon
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UndesirablEffectFrequency Uncommon = UndesirablEffectFrequency._(
-    'Uncommon',
-  );
-
-  /// Rare
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UndesirablEffectFrequency Rare = UndesirablEffectFrequency._(
-    'Rare',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final UndesirablEffectFrequency elementOnly =
-      UndesirablEffectFrequency._('');
-
-  /// List of all enum-like values
-  static final List<UndesirablEffectFrequency> values = [
-    Common,
-    Uncommon,
-    Rare,
-  ];
-
-  /// Returns the enum value with an element attached
-  UndesirablEffectFrequency withElement(Element? newElement) {
-    return UndesirablEffectFrequency._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class UndesirablEffectFrequency extends FhirCode {
   /// Factory constructor to create [UndesirablEffectFrequency] from JSON.
-  static UndesirablEffectFrequency fromJson(Map<String, dynamic> json) {
+  factory UndesirablEffectFrequency.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return UndesirablEffectFrequency.elementOnly.withElement(element);
+      return UndesirablEffectFrequency.elementOnly(element);
     }
-    return UndesirablEffectFrequency.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return UndesirablEffectFrequency._(value, element);
+    }
+    throw ArgumentError(
+      'UndesirablEffectFrequency.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Common
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UndesirablEffectFrequency.Common([this.element])
+      : dbValue = 'Common',
+        super('Common', element);
+
+  /// Uncommon
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UndesirablEffectFrequency.Uncommon([this.element])
+      : dbValue = 'Uncommon',
+        super('Uncommon', element);
+
+  /// Rare
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UndesirablEffectFrequency.Rare([this.element])
+      : dbValue = 'Rare',
+        super('Rare', element);
+
+  /// For instances where an Element is present but not value
+
+  UndesirablEffectFrequency.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  UndesirablEffectFrequency._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Common',
+    'Uncommon',
+    'Rare',
+  ];
+
+  /// Returns the enum value with an element attached
+  UndesirablEffectFrequency withElement(Element? newElement) {
+    return UndesirablEffectFrequency._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'UndesirablEffectFrequency.$fhirCode';
+  String toString() => 'UndesirablEffectFrequency.$value';
 }

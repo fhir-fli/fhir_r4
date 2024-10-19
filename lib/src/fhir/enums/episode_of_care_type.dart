@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// This example value set defines a set of codes that can be used to express the usage type of an EpisodeOfCare record.
 @Entity()
-class EpisodeOfCareType {
-  // Private constructor for internal use (like enum)
-  EpisodeOfCareType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EpisodeOfCareType values
-  /// hacc
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EpisodeOfCareType hacc = EpisodeOfCareType._(
-    'hacc',
-  );
-
-  /// pac
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EpisodeOfCareType pac = EpisodeOfCareType._(
-    'pac',
-  );
-
-  /// diab
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EpisodeOfCareType diab = EpisodeOfCareType._(
-    'diab',
-  );
-
-  /// da
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EpisodeOfCareType da = EpisodeOfCareType._(
-    'da',
-  );
-
-  /// cacp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EpisodeOfCareType cacp = EpisodeOfCareType._(
-    'cacp',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final EpisodeOfCareType elementOnly = EpisodeOfCareType._('');
-
-  /// List of all enum-like values
-  static final List<EpisodeOfCareType> values = [
-    hacc,
-    pac,
-    diab,
-    da,
-    cacp,
-  ];
-
-  /// Returns the enum value with an element attached
-  EpisodeOfCareType withElement(Element? newElement) {
-    return EpisodeOfCareType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class EpisodeOfCareType extends FhirCode {
   /// Factory constructor to create [EpisodeOfCareType] from JSON.
-  static EpisodeOfCareType fromJson(Map<String, dynamic> json) {
+  factory EpisodeOfCareType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EpisodeOfCareType.elementOnly.withElement(element);
+      return EpisodeOfCareType.elementOnly(element);
     }
-    return EpisodeOfCareType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return EpisodeOfCareType._(value, element);
+    }
+    throw ArgumentError(
+      'EpisodeOfCareType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// hacc
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EpisodeOfCareType.hacc([this.element])
+      : dbValue = 'hacc',
+        super('hacc', element);
+
+  /// pac
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EpisodeOfCareType.pac([this.element])
+      : dbValue = 'pac',
+        super('pac', element);
+
+  /// diab
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EpisodeOfCareType.diab([this.element])
+      : dbValue = 'diab',
+        super('diab', element);
+
+  /// da
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EpisodeOfCareType.da([this.element])
+      : dbValue = 'da',
+        super('da', element);
+
+  /// cacp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EpisodeOfCareType.cacp([this.element])
+      : dbValue = 'cacp',
+        super('cacp', element);
+
+  /// For instances where an Element is present but not value
+
+  EpisodeOfCareType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  EpisodeOfCareType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'hacc',
+    'pac',
+    'diab',
+    'da',
+    'cacp',
+  ];
+
+  /// Returns the enum value with an element attached
+  EpisodeOfCareType withElement(Element? newElement) {
+    return EpisodeOfCareType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'EpisodeOfCareType.$fhirCode';
+  String toString() => 'EpisodeOfCareType.$value';
 }

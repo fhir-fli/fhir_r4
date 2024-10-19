@@ -5,76 +5,84 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes sample Related Claim Relationship codes.
 @Entity()
-class ExampleRelatedClaimRelationshipCodes {
-  // Private constructor for internal use (like enum)
-  ExampleRelatedClaimRelationshipCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleRelatedClaimRelationshipCodes values
-  /// prior
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleRelatedClaimRelationshipCodes prior =
-      ExampleRelatedClaimRelationshipCodes._(
-    'prior',
-  );
-
-  /// associated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleRelatedClaimRelationshipCodes associated =
-      ExampleRelatedClaimRelationshipCodes._(
-    'associated',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ExampleRelatedClaimRelationshipCodes elementOnly =
-      ExampleRelatedClaimRelationshipCodes._('');
-
-  /// List of all enum-like values
-  static final List<ExampleRelatedClaimRelationshipCodes> values = [
-    prior,
-    associated,
-  ];
-
-  /// Returns the enum value with an element attached
-  ExampleRelatedClaimRelationshipCodes withElement(Element? newElement) {
-    return ExampleRelatedClaimRelationshipCodes._(fhirCode,
-        element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ExampleRelatedClaimRelationshipCodes extends FhirCode {
   /// Factory constructor to create [ExampleRelatedClaimRelationshipCodes] from JSON.
-  static ExampleRelatedClaimRelationshipCodes fromJson(
+  factory ExampleRelatedClaimRelationshipCodes.fromJson(
       Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleRelatedClaimRelationshipCodes.elementOnly
-          .withElement(element);
+      return ExampleRelatedClaimRelationshipCodes.elementOnly(element);
     }
-    return ExampleRelatedClaimRelationshipCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ExampleRelatedClaimRelationshipCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ExampleRelatedClaimRelationshipCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// prior
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleRelatedClaimRelationshipCodes.prior([this.element])
+      : dbValue = 'prior',
+        super('prior', element);
+
+  /// associated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleRelatedClaimRelationshipCodes.associated([this.element])
+      : dbValue = 'associated',
+        super('associated', element);
+
+  /// For instances where an Element is present but not value
+
+  ExampleRelatedClaimRelationshipCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ExampleRelatedClaimRelationshipCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'prior',
+    'associated',
+  ];
+
+  /// Returns the enum value with an element attached
+  ExampleRelatedClaimRelationshipCodes withElement(Element? newElement) {
+    return ExampleRelatedClaimRelationshipCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ExampleRelatedClaimRelationshipCodes.$fhirCode';
+  String toString() => 'ExampleRelatedClaimRelationshipCodes.$value';
 }

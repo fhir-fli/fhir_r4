@@ -95,6 +95,7 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
 
   /// Returns the FHIR type, which is 'time' for this class.
   @override
+  @Transient()
   String get fhirType => 'time';
 
   /// Getter for the hour component of the time.

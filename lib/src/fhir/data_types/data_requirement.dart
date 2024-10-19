@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:objectbox/objectbox.dart';
@@ -13,8 +15,8 @@ class DataRequirement extends DataType {
 
   DataRequirement({
     this.dbId = 0,
-    super.id,
-    super.extension_,
+    this.id,
+    this.extension_,
     required this.type,
     this.profile,
     this.subjectCodeableConcept,
@@ -147,11 +149,26 @@ class DataRequirement extends DataType {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'DataRequirement';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The type of the required data, specified as the type name of a
@@ -331,8 +348,8 @@ class DataRequirementCodeFilter extends Element {
 
   DataRequirementCodeFilter({
     this.dbId = 0,
-    super.id,
-    super.extension_,
+    this.id,
+    this.extension_,
     this.path,
     this.searchParam,
     this.valueSet,
@@ -430,11 +447,26 @@ class DataRequirementCodeFilter extends Element {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'DataRequirementCodeFilter';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
 
   /// [path]
   /// The code-valued attribute of the filter. The specified path SHALL be a
@@ -555,8 +587,8 @@ class DataRequirementDateFilter extends Element {
 
   DataRequirementDateFilter({
     this.dbId = 0,
-    super.id,
-    super.extension_,
+    this.id,
+    this.extension_,
     this.path,
     this.searchParam,
     this.valueDateTime,
@@ -657,11 +689,26 @@ class DataRequirementDateFilter extends Element {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'DataRequirementDateFilter';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
 
   /// [path]
   /// The date-valued attribute of the filter. The specified path SHALL be a
@@ -798,8 +845,8 @@ class DataRequirementSort extends Element {
 
   DataRequirementSort({
     this.dbId = 0,
-    super.id,
-    super.extension_,
+    this.id,
+    this.extension_,
     required this.path,
     required this.direction,
     super.userData,
@@ -876,11 +923,26 @@ class DataRequirementSort extends Element {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'DataRequirementSort';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
 
   /// [path]
   /// The attribute of the sort. The specified path must be resolvable from

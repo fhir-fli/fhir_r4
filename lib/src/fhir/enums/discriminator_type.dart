@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// How an element value is interpreted when discrimination is evaluated.
 @Entity()
-class DiscriminatorType {
-  // Private constructor for internal use (like enum)
-  DiscriminatorType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DiscriminatorType values
-  /// value
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiscriminatorType value = DiscriminatorType._(
-    'value',
-  );
-
-  /// exists
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiscriminatorType exists = DiscriminatorType._(
-    'exists',
-  );
-
-  /// pattern
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiscriminatorType pattern = DiscriminatorType._(
-    'pattern',
-  );
-
-  /// type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiscriminatorType type = DiscriminatorType._(
-    'type',
-  );
-
-  /// profile
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiscriminatorType profile = DiscriminatorType._(
-    'profile',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final DiscriminatorType elementOnly = DiscriminatorType._('');
-
-  /// List of all enum-like values
-  static final List<DiscriminatorType> values = [
-    value,
-    exists,
-    pattern,
-    type,
-    profile,
-  ];
-
-  /// Returns the enum value with an element attached
-  DiscriminatorType withElement(Element? newElement) {
-    return DiscriminatorType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class DiscriminatorType extends FhirCode {
   /// Factory constructor to create [DiscriminatorType] from JSON.
-  static DiscriminatorType fromJson(Map<String, dynamic> json) {
+  factory DiscriminatorType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DiscriminatorType.elementOnly.withElement(element);
+      return DiscriminatorType.elementOnly(element);
     }
-    return DiscriminatorType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return DiscriminatorType._(value, element);
+    }
+    throw ArgumentError(
+      'DiscriminatorType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiscriminatorType.value([this.element])
+      : dbValue = 'value',
+        super('value', element);
+
+  /// exists
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiscriminatorType.exists([this.element])
+      : dbValue = 'exists',
+        super('exists', element);
+
+  /// pattern
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiscriminatorType.pattern([this.element])
+      : dbValue = 'pattern',
+        super('pattern', element);
+
+  /// type
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiscriminatorType.type([this.element])
+      : dbValue = 'type',
+        super('type', element);
+
+  /// profile
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiscriminatorType.profile([this.element])
+      : dbValue = 'profile',
+        super('profile', element);
+
+  /// For instances where an Element is present but not value
+
+  DiscriminatorType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  DiscriminatorType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'value',
+    'exists',
+    'pattern',
+    'type',
+    'profile',
+  ];
+
+  /// Returns the enum value with an element attached
+  DiscriminatorType withElement(Element? newElement) {
+    return DiscriminatorType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'DiscriminatorType.$fhirCode';
+  String toString() => 'DiscriminatorType.$value';
 }

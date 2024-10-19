@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes sample funds reservation type codes.
 @Entity()
-class FundsReservationCodes {
-  // Private constructor for internal use (like enum)
-  FundsReservationCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// FundsReservationCodes values
-  /// patient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FundsReservationCodes patient = FundsReservationCodes._(
-    'patient',
-  );
-
-  /// provider
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FundsReservationCodes provider = FundsReservationCodes._(
-    'provider',
-  );
-
-  /// none
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FundsReservationCodes none = FundsReservationCodes._(
-    'none',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final FundsReservationCodes elementOnly = FundsReservationCodes._('');
-
-  /// List of all enum-like values
-  static final List<FundsReservationCodes> values = [
-    patient,
-    provider,
-    none,
-  ];
-
-  /// Returns the enum value with an element attached
-  FundsReservationCodes withElement(Element? newElement) {
-    return FundsReservationCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class FundsReservationCodes extends FhirCode {
   /// Factory constructor to create [FundsReservationCodes] from JSON.
-  static FundsReservationCodes fromJson(Map<String, dynamic> json) {
+  factory FundsReservationCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FundsReservationCodes.elementOnly.withElement(element);
+      return FundsReservationCodes.elementOnly(element);
     }
-    return FundsReservationCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return FundsReservationCodes._(value, element);
+    }
+    throw ArgumentError(
+      'FundsReservationCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// patient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FundsReservationCodes.patient([this.element])
+      : dbValue = 'patient',
+        super('patient', element);
+
+  /// provider
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FundsReservationCodes.provider([this.element])
+      : dbValue = 'provider',
+        super('provider', element);
+
+  /// none
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FundsReservationCodes.none([this.element])
+      : dbValue = 'none',
+        super('none', element);
+
+  /// For instances where an Element is present but not value
+
+  FundsReservationCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  FundsReservationCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'patient',
+    'provider',
+    'none',
+  ];
+
+  /// Returns the enum value with an element attached
+  FundsReservationCodes withElement(Element? newElement) {
+    return FundsReservationCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'FundsReservationCodes.$fhirCode';
+  String toString() => 'FundsReservationCodes.$value';
 }

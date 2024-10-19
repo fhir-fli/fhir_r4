@@ -5,110 +5,123 @@ import 'package:objectbox/objectbox.dart';
 
 /// Used to code the format of the display string.
 @Entity()
-class ContributorRole {
-  // Private constructor for internal use (like enum)
-  ContributorRole._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ContributorRole values
-  /// publisher
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorRole publisher = ContributorRole._(
-    'publisher',
-  );
-
-  /// author
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorRole author = ContributorRole._(
-    'author',
-  );
-
-  /// reviewer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorRole reviewer = ContributorRole._(
-    'reviewer',
-  );
-
-  /// endorser
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorRole endorser = ContributorRole._(
-    'endorser',
-  );
-
-  /// editor
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorRole editor = ContributorRole._(
-    'editor',
-  );
-
-  /// informant
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorRole informant = ContributorRole._(
-    'informant',
-  );
-
-  /// funder
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorRole funder = ContributorRole._(
-    'funder',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ContributorRole elementOnly = ContributorRole._('');
-
-  /// List of all enum-like values
-  static final List<ContributorRole> values = [
-    publisher,
-    author,
-    reviewer,
-    endorser,
-    editor,
-    informant,
-    funder,
-  ];
-
-  /// Returns the enum value with an element attached
-  ContributorRole withElement(Element? newElement) {
-    return ContributorRole._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ContributorRole extends FhirCode {
   /// Factory constructor to create [ContributorRole] from JSON.
-  static ContributorRole fromJson(Map<String, dynamic> json) {
+  factory ContributorRole.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContributorRole.elementOnly.withElement(element);
+      return ContributorRole.elementOnly(element);
     }
-    return ContributorRole.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ContributorRole._(value, element);
+    }
+    throw ArgumentError(
+      'ContributorRole.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// publisher
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorRole.publisher([this.element])
+      : dbValue = 'publisher',
+        super('publisher', element);
+
+  /// author
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorRole.author([this.element])
+      : dbValue = 'author',
+        super('author', element);
+
+  /// reviewer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorRole.reviewer([this.element])
+      : dbValue = 'reviewer',
+        super('reviewer', element);
+
+  /// endorser
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorRole.endorser([this.element])
+      : dbValue = 'endorser',
+        super('endorser', element);
+
+  /// editor
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorRole.editor([this.element])
+      : dbValue = 'editor',
+        super('editor', element);
+
+  /// informant
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorRole.informant([this.element])
+      : dbValue = 'informant',
+        super('informant', element);
+
+  /// funder
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorRole.funder([this.element])
+      : dbValue = 'funder',
+        super('funder', element);
+
+  /// For instances where an Element is present but not value
+
+  ContributorRole.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ContributorRole._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'publisher',
+    'author',
+    'reviewer',
+    'endorser',
+    'editor',
+    'informant',
+    'funder',
+  ];
+
+  /// Returns the enum value with an element attached
+  ContributorRole withElement(Element? newElement) {
+    return ContributorRole._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ContributorRole.$fhirCode';
+  String toString() => 'ContributorRole.$value';
 }

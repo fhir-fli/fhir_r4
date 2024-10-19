@@ -5,118 +5,124 @@ import 'package:objectbox/objectbox.dart';
 
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the current status of the evaluation for vaccine administration event.
 @Entity()
-class ImmunizationEvaluationStatusCodes {
-  // Private constructor for internal use (like enum)
-  ImmunizationEvaluationStatusCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ImmunizationEvaluationStatusCodes values
-  /// in_progress
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationEvaluationStatusCodes in_progress =
-      ImmunizationEvaluationStatusCodes._(
-    'in-progress',
-  );
-
-  /// not_done
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationEvaluationStatusCodes not_done =
-      ImmunizationEvaluationStatusCodes._(
-    'not-done',
-  );
-
-  /// on_hold
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationEvaluationStatusCodes on_hold =
-      ImmunizationEvaluationStatusCodes._(
-    'on-hold',
-  );
-
-  /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationEvaluationStatusCodes completed =
-      ImmunizationEvaluationStatusCodes._(
-    'completed',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationEvaluationStatusCodes entered_in_error =
-      ImmunizationEvaluationStatusCodes._(
-    'entered-in-error',
-  );
-
-  /// stopped
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationEvaluationStatusCodes stopped =
-      ImmunizationEvaluationStatusCodes._(
-    'stopped',
-  );
-
-  /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationEvaluationStatusCodes unknown =
-      ImmunizationEvaluationStatusCodes._(
-    'unknown',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ImmunizationEvaluationStatusCodes elementOnly =
-      ImmunizationEvaluationStatusCodes._('');
-
-  /// List of all enum-like values
-  static final List<ImmunizationEvaluationStatusCodes> values = [
-    in_progress,
-    not_done,
-    on_hold,
-    completed,
-    entered_in_error,
-    stopped,
-    unknown,
-  ];
-
-  /// Returns the enum value with an element attached
-  ImmunizationEvaluationStatusCodes withElement(Element? newElement) {
-    return ImmunizationEvaluationStatusCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ImmunizationEvaluationStatusCodes extends FhirCode {
   /// Factory constructor to create [ImmunizationEvaluationStatusCodes] from JSON.
-  static ImmunizationEvaluationStatusCodes fromJson(Map<String, dynamic> json) {
+  factory ImmunizationEvaluationStatusCodes.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImmunizationEvaluationStatusCodes.elementOnly.withElement(element);
+      return ImmunizationEvaluationStatusCodes.elementOnly(element);
     }
-    return ImmunizationEvaluationStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ImmunizationEvaluationStatusCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ImmunizationEvaluationStatusCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// in_progress
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationEvaluationStatusCodes.in_progress([this.element])
+      : dbValue = 'in-progress',
+        super('in-progress', element);
+
+  /// not_done
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationEvaluationStatusCodes.not_done([this.element])
+      : dbValue = 'not-done',
+        super('not-done', element);
+
+  /// on_hold
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationEvaluationStatusCodes.on_hold([this.element])
+      : dbValue = 'on-hold',
+        super('on-hold', element);
+
+  /// completed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationEvaluationStatusCodes.completed([this.element])
+      : dbValue = 'completed',
+        super('completed', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationEvaluationStatusCodes.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// stopped
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationEvaluationStatusCodes.stopped([this.element])
+      : dbValue = 'stopped',
+        super('stopped', element);
+
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationEvaluationStatusCodes.unknown([this.element])
+      : dbValue = 'unknown',
+        super('unknown', element);
+
+  /// For instances where an Element is present but not value
+
+  ImmunizationEvaluationStatusCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ImmunizationEvaluationStatusCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'in-progress',
+    'not-done',
+    'on-hold',
+    'completed',
+    'entered-in-error',
+    'stopped',
+    'unknown',
+  ];
+
+  /// Returns the enum value with an element attached
+  ImmunizationEvaluationStatusCodes withElement(Element? newElement) {
+    return ImmunizationEvaluationStatusCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ImmunizationEvaluationStatusCodes.$fhirCode';
+  String toString() => 'ImmunizationEvaluationStatusCodes.$value';
 }

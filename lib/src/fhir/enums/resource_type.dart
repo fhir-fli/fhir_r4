@@ -5,1198 +5,1211 @@ import 'package:objectbox/objectbox.dart';
 
 /// One of the resource types defined as part of this version of FHIR.
 @Entity()
-class ResourceType {
-  // Private constructor for internal use (like enum)
-  ResourceType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ResourceType values
-  /// Resource
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Resource = ResourceType._(
-    'Resource',
-  );
-
-  /// Binary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Binary = ResourceType._(
-    'Binary',
-  );
-
-  /// Bundle
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Bundle = ResourceType._(
-    'Bundle',
-  );
-
-  /// DomainResource
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType DomainResource = ResourceType._(
-    'DomainResource',
-  );
-
-  /// Account
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Account = ResourceType._(
-    'Account',
-  );
-
-  /// ActivityDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ActivityDefinition = ResourceType._(
-    'ActivityDefinition',
-  );
-
-  /// AdministrableProductDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType AdministrableProductDefinition = ResourceType._(
-    'AdministrableProductDefinition',
-  );
-
-  /// AdverseEvent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType AdverseEvent = ResourceType._(
-    'AdverseEvent',
-  );
-
-  /// AllergyIntolerance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType AllergyIntolerance = ResourceType._(
-    'AllergyIntolerance',
-  );
-
-  /// Appointment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Appointment = ResourceType._(
-    'Appointment',
-  );
-
-  /// AppointmentResponse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType AppointmentResponse = ResourceType._(
-    'AppointmentResponse',
-  );
-
-  /// AuditEvent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType AuditEvent = ResourceType._(
-    'AuditEvent',
-  );
-
-  /// Basic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Basic = ResourceType._(
-    'Basic',
-  );
-
-  /// BiologicallyDerivedProduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType BiologicallyDerivedProduct = ResourceType._(
-    'BiologicallyDerivedProduct',
-  );
-
-  /// BodyStructure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType BodyStructure = ResourceType._(
-    'BodyStructure',
-  );
-
-  /// CapabilityStatement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType CapabilityStatement = ResourceType._(
-    'CapabilityStatement',
-  );
-
-  /// CarePlan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType CarePlan = ResourceType._(
-    'CarePlan',
-  );
-
-  /// CareTeam
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType CareTeam = ResourceType._(
-    'CareTeam',
-  );
-
-  /// CatalogEntry
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType CatalogEntry = ResourceType._(
-    'CatalogEntry',
-  );
-
-  /// ChargeItem
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ChargeItem = ResourceType._(
-    'ChargeItem',
-  );
-
-  /// ChargeItemDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ChargeItemDefinition = ResourceType._(
-    'ChargeItemDefinition',
-  );
-
-  /// Citation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Citation = ResourceType._(
-    'Citation',
-  );
-
-  /// Claim
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Claim = ResourceType._(
-    'Claim',
-  );
-
-  /// ClaimResponse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ClaimResponse = ResourceType._(
-    'ClaimResponse',
-  );
-
-  /// ClinicalImpression
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ClinicalImpression = ResourceType._(
-    'ClinicalImpression',
-  );
-
-  /// ClinicalUseDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ClinicalUseDefinition = ResourceType._(
-    'ClinicalUseDefinition',
-  );
-
-  /// CodeSystem
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType CodeSystem = ResourceType._(
-    'CodeSystem',
-  );
-
-  /// Communication
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Communication = ResourceType._(
-    'Communication',
-  );
-
-  /// CommunicationRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType CommunicationRequest = ResourceType._(
-    'CommunicationRequest',
-  );
-
-  /// CompartmentDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType CompartmentDefinition = ResourceType._(
-    'CompartmentDefinition',
-  );
-
-  /// Composition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Composition = ResourceType._(
-    'Composition',
-  );
-
-  /// ConceptMap
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ConceptMap = ResourceType._(
-    'ConceptMap',
-  );
-
-  /// Condition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Condition = ResourceType._(
-    'Condition',
-  );
-
-  /// Consent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Consent = ResourceType._(
-    'Consent',
-  );
-
-  /// Contract
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Contract = ResourceType._(
-    'Contract',
-  );
-
-  /// Coverage
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Coverage = ResourceType._(
-    'Coverage',
-  );
-
-  /// CoverageEligibilityRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType CoverageEligibilityRequest = ResourceType._(
-    'CoverageEligibilityRequest',
-  );
-
-  /// CoverageEligibilityResponse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType CoverageEligibilityResponse = ResourceType._(
-    'CoverageEligibilityResponse',
-  );
-
-  /// DetectedIssue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType DetectedIssue = ResourceType._(
-    'DetectedIssue',
-  );
-
-  /// Device
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Device = ResourceType._(
-    'Device',
-  );
-
-  /// DeviceDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType DeviceDefinition = ResourceType._(
-    'DeviceDefinition',
-  );
-
-  /// DeviceMetric
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType DeviceMetric = ResourceType._(
-    'DeviceMetric',
-  );
-
-  /// DeviceRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType DeviceRequest = ResourceType._(
-    'DeviceRequest',
-  );
-
-  /// DeviceUseStatement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType DeviceUseStatement = ResourceType._(
-    'DeviceUseStatement',
-  );
-
-  /// DiagnosticReport
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType DiagnosticReport = ResourceType._(
-    'DiagnosticReport',
-  );
-
-  /// DocumentManifest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType DocumentManifest = ResourceType._(
-    'DocumentManifest',
-  );
-
-  /// DocumentReference
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType DocumentReference = ResourceType._(
-    'DocumentReference',
-  );
-
-  /// Encounter
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Encounter = ResourceType._(
-    'Encounter',
-  );
-
-  /// Endpoint
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Endpoint = ResourceType._(
-    'Endpoint',
-  );
-
-  /// EnrollmentRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType EnrollmentRequest = ResourceType._(
-    'EnrollmentRequest',
-  );
-
-  /// EnrollmentResponse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType EnrollmentResponse = ResourceType._(
-    'EnrollmentResponse',
-  );
-
-  /// EpisodeOfCare
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType EpisodeOfCare = ResourceType._(
-    'EpisodeOfCare',
-  );
-
-  /// EventDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType EventDefinition = ResourceType._(
-    'EventDefinition',
-  );
-
-  /// Evidence
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Evidence = ResourceType._(
-    'Evidence',
-  );
-
-  /// EvidenceReport
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType EvidenceReport = ResourceType._(
-    'EvidenceReport',
-  );
-
-  /// EvidenceVariable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType EvidenceVariable = ResourceType._(
-    'EvidenceVariable',
-  );
-
-  /// ExampleScenario
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ExampleScenario = ResourceType._(
-    'ExampleScenario',
-  );
-
-  /// ExplanationOfBenefit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ExplanationOfBenefit = ResourceType._(
-    'ExplanationOfBenefit',
-  );
-
-  /// FamilyMemberHistory
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType FamilyMemberHistory = ResourceType._(
-    'FamilyMemberHistory',
-  );
-
-  /// Flag
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Flag = ResourceType._(
-    'Flag',
-  );
-
-  /// Goal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Goal = ResourceType._(
-    'Goal',
-  );
-
-  /// GraphDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType GraphDefinition = ResourceType._(
-    'GraphDefinition',
-  );
-
-  /// Group
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Group = ResourceType._(
-    'Group',
-  );
-
-  /// GuidanceResponse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType GuidanceResponse = ResourceType._(
-    'GuidanceResponse',
-  );
-
-  /// HealthcareService
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType HealthcareService = ResourceType._(
-    'HealthcareService',
-  );
-
-  /// ImagingStudy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ImagingStudy = ResourceType._(
-    'ImagingStudy',
-  );
-
-  /// Immunization
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Immunization = ResourceType._(
-    'Immunization',
-  );
-
-  /// ImmunizationEvaluation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ImmunizationEvaluation = ResourceType._(
-    'ImmunizationEvaluation',
-  );
-
-  /// ImmunizationRecommendation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ImmunizationRecommendation = ResourceType._(
-    'ImmunizationRecommendation',
-  );
-
-  /// ImplementationGuide
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ImplementationGuide = ResourceType._(
-    'ImplementationGuide',
-  );
-
-  /// Ingredient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Ingredient = ResourceType._(
-    'Ingredient',
-  );
-
-  /// InsurancePlan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType InsurancePlan = ResourceType._(
-    'InsurancePlan',
-  );
-
-  /// Invoice
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Invoice = ResourceType._(
-    'Invoice',
-  );
-
-  /// Library
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Library = ResourceType._(
-    'Library',
-  );
-
-  /// Linkage
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Linkage = ResourceType._(
-    'Linkage',
-  );
-
-  /// List_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType List_ = ResourceType._(
-    'List',
-  );
-
-  /// Location
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Location = ResourceType._(
-    'Location',
-  );
-
-  /// ManufacturedItemDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ManufacturedItemDefinition = ResourceType._(
-    'ManufacturedItemDefinition',
-  );
-
-  /// Measure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Measure = ResourceType._(
-    'Measure',
-  );
-
-  /// MeasureReport
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType MeasureReport = ResourceType._(
-    'MeasureReport',
-  );
-
-  /// Media
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Media = ResourceType._(
-    'Media',
-  );
-
-  /// Medication
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Medication = ResourceType._(
-    'Medication',
-  );
-
-  /// MedicationAdministration
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType MedicationAdministration = ResourceType._(
-    'MedicationAdministration',
-  );
-
-  /// MedicationDispense
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType MedicationDispense = ResourceType._(
-    'MedicationDispense',
-  );
-
-  /// MedicationKnowledge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType MedicationKnowledge = ResourceType._(
-    'MedicationKnowledge',
-  );
-
-  /// MedicationRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType MedicationRequest = ResourceType._(
-    'MedicationRequest',
-  );
-
-  /// MedicationStatement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType MedicationStatement = ResourceType._(
-    'MedicationStatement',
-  );
-
-  /// MedicinalProductDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType MedicinalProductDefinition = ResourceType._(
-    'MedicinalProductDefinition',
-  );
-
-  /// MessageDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType MessageDefinition = ResourceType._(
-    'MessageDefinition',
-  );
-
-  /// MessageHeader
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType MessageHeader = ResourceType._(
-    'MessageHeader',
-  );
-
-  /// MolecularSequence
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType MolecularSequence = ResourceType._(
-    'MolecularSequence',
-  );
-
-  /// NamingSystem
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType NamingSystem = ResourceType._(
-    'NamingSystem',
-  );
-
-  /// NutritionOrder
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType NutritionOrder = ResourceType._(
-    'NutritionOrder',
-  );
-
-  /// NutritionProduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType NutritionProduct = ResourceType._(
-    'NutritionProduct',
-  );
-
-  /// Observation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Observation = ResourceType._(
-    'Observation',
-  );
-
-  /// ObservationDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ObservationDefinition = ResourceType._(
-    'ObservationDefinition',
-  );
-
-  /// OperationDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType OperationDefinition = ResourceType._(
-    'OperationDefinition',
-  );
-
-  /// OperationOutcome
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType OperationOutcome = ResourceType._(
-    'OperationOutcome',
-  );
-
-  /// Organization
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Organization = ResourceType._(
-    'Organization',
-  );
-
-  /// OrganizationAffiliation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType OrganizationAffiliation = ResourceType._(
-    'OrganizationAffiliation',
-  );
-
-  /// PackagedProductDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType PackagedProductDefinition = ResourceType._(
-    'PackagedProductDefinition',
-  );
-
-  /// Patient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Patient = ResourceType._(
-    'Patient',
-  );
-
-  /// PaymentNotice
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType PaymentNotice = ResourceType._(
-    'PaymentNotice',
-  );
-
-  /// PaymentReconciliation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType PaymentReconciliation = ResourceType._(
-    'PaymentReconciliation',
-  );
-
-  /// Person
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Person = ResourceType._(
-    'Person',
-  );
-
-  /// PlanDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType PlanDefinition = ResourceType._(
-    'PlanDefinition',
-  );
-
-  /// Practitioner
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Practitioner = ResourceType._(
-    'Practitioner',
-  );
-
-  /// PractitionerRole
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType PractitionerRole = ResourceType._(
-    'PractitionerRole',
-  );
-
-  /// Procedure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Procedure = ResourceType._(
-    'Procedure',
-  );
-
-  /// Provenance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Provenance = ResourceType._(
-    'Provenance',
-  );
-
-  /// Questionnaire
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Questionnaire = ResourceType._(
-    'Questionnaire',
-  );
-
-  /// QuestionnaireResponse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType QuestionnaireResponse = ResourceType._(
-    'QuestionnaireResponse',
-  );
-
-  /// RegulatedAuthorization
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType RegulatedAuthorization = ResourceType._(
-    'RegulatedAuthorization',
-  );
-
-  /// RelatedPerson
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType RelatedPerson = ResourceType._(
-    'RelatedPerson',
-  );
-
-  /// RequestGroup
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType RequestGroup = ResourceType._(
-    'RequestGroup',
-  );
-
-  /// ResearchDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ResearchDefinition = ResourceType._(
-    'ResearchDefinition',
-  );
-
-  /// ResearchElementDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ResearchElementDefinition = ResourceType._(
-    'ResearchElementDefinition',
-  );
-
-  /// ResearchStudy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ResearchStudy = ResourceType._(
-    'ResearchStudy',
-  );
-
-  /// ResearchSubject
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ResearchSubject = ResourceType._(
-    'ResearchSubject',
-  );
-
-  /// RiskAssessment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType RiskAssessment = ResourceType._(
-    'RiskAssessment',
-  );
-
-  /// Schedule
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Schedule = ResourceType._(
-    'Schedule',
-  );
-
-  /// SearchParameter
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType SearchParameter = ResourceType._(
-    'SearchParameter',
-  );
-
-  /// ServiceRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ServiceRequest = ResourceType._(
-    'ServiceRequest',
-  );
-
-  /// Slot
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Slot = ResourceType._(
-    'Slot',
-  );
-
-  /// Specimen
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Specimen = ResourceType._(
-    'Specimen',
-  );
-
-  /// SpecimenDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType SpecimenDefinition = ResourceType._(
-    'SpecimenDefinition',
-  );
-
-  /// StructureDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType StructureDefinition = ResourceType._(
-    'StructureDefinition',
-  );
-
-  /// StructureMap
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType StructureMap = ResourceType._(
-    'StructureMap',
-  );
-
-  /// Subscription
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Subscription = ResourceType._(
-    'Subscription',
-  );
-
-  /// SubscriptionStatus
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType SubscriptionStatus = ResourceType._(
-    'SubscriptionStatus',
-  );
-
-  /// SubscriptionTopic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType SubscriptionTopic = ResourceType._(
-    'SubscriptionTopic',
-  );
-
-  /// Substance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Substance = ResourceType._(
-    'Substance',
-  );
-
-  /// SubstanceDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType SubstanceDefinition = ResourceType._(
-    'SubstanceDefinition',
-  );
-
-  /// SupplyDelivery
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType SupplyDelivery = ResourceType._(
-    'SupplyDelivery',
-  );
-
-  /// SupplyRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType SupplyRequest = ResourceType._(
-    'SupplyRequest',
-  );
-
-  /// Task
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Task = ResourceType._(
-    'Task',
-  );
-
-  /// TerminologyCapabilities
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType TerminologyCapabilities = ResourceType._(
-    'TerminologyCapabilities',
-  );
-
-  /// TestReport
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType TestReport = ResourceType._(
-    'TestReport',
-  );
-
-  /// TestScript
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType TestScript = ResourceType._(
-    'TestScript',
-  );
-
-  /// ValueSet
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType ValueSet = ResourceType._(
-    'ValueSet',
-  );
-
-  /// VerificationResult
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType VerificationResult = ResourceType._(
-    'VerificationResult',
-  );
-
-  /// VisionPrescription
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType VisionPrescription = ResourceType._(
-    'VisionPrescription',
-  );
-
-  /// Parameters
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResourceType Parameters = ResourceType._(
-    'Parameters',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ResourceType elementOnly = ResourceType._('');
-
-  /// List of all enum-like values
-  static final List<ResourceType> values = [
-    Resource,
-    Binary,
-    Bundle,
-    DomainResource,
-    Account,
-    ActivityDefinition,
-    AdministrableProductDefinition,
-    AdverseEvent,
-    AllergyIntolerance,
-    Appointment,
-    AppointmentResponse,
-    AuditEvent,
-    Basic,
-    BiologicallyDerivedProduct,
-    BodyStructure,
-    CapabilityStatement,
-    CarePlan,
-    CareTeam,
-    CatalogEntry,
-    ChargeItem,
-    ChargeItemDefinition,
-    Citation,
-    Claim,
-    ClaimResponse,
-    ClinicalImpression,
-    ClinicalUseDefinition,
-    CodeSystem,
-    Communication,
-    CommunicationRequest,
-    CompartmentDefinition,
-    Composition,
-    ConceptMap,
-    Condition,
-    Consent,
-    Contract,
-    Coverage,
-    CoverageEligibilityRequest,
-    CoverageEligibilityResponse,
-    DetectedIssue,
-    Device,
-    DeviceDefinition,
-    DeviceMetric,
-    DeviceRequest,
-    DeviceUseStatement,
-    DiagnosticReport,
-    DocumentManifest,
-    DocumentReference,
-    Encounter,
-    Endpoint,
-    EnrollmentRequest,
-    EnrollmentResponse,
-    EpisodeOfCare,
-    EventDefinition,
-    Evidence,
-    EvidenceReport,
-    EvidenceVariable,
-    ExampleScenario,
-    ExplanationOfBenefit,
-    FamilyMemberHistory,
-    Flag,
-    Goal,
-    GraphDefinition,
-    Group,
-    GuidanceResponse,
-    HealthcareService,
-    ImagingStudy,
-    Immunization,
-    ImmunizationEvaluation,
-    ImmunizationRecommendation,
-    ImplementationGuide,
-    Ingredient,
-    InsurancePlan,
-    Invoice,
-    Library,
-    Linkage,
-    List_,
-    Location,
-    ManufacturedItemDefinition,
-    Measure,
-    MeasureReport,
-    Media,
-    Medication,
-    MedicationAdministration,
-    MedicationDispense,
-    MedicationKnowledge,
-    MedicationRequest,
-    MedicationStatement,
-    MedicinalProductDefinition,
-    MessageDefinition,
-    MessageHeader,
-    MolecularSequence,
-    NamingSystem,
-    NutritionOrder,
-    NutritionProduct,
-    Observation,
-    ObservationDefinition,
-    OperationDefinition,
-    OperationOutcome,
-    Organization,
-    OrganizationAffiliation,
-    PackagedProductDefinition,
-    Patient,
-    PaymentNotice,
-    PaymentReconciliation,
-    Person,
-    PlanDefinition,
-    Practitioner,
-    PractitionerRole,
-    Procedure,
-    Provenance,
-    Questionnaire,
-    QuestionnaireResponse,
-    RegulatedAuthorization,
-    RelatedPerson,
-    RequestGroup,
-    ResearchDefinition,
-    ResearchElementDefinition,
-    ResearchStudy,
-    ResearchSubject,
-    RiskAssessment,
-    Schedule,
-    SearchParameter,
-    ServiceRequest,
-    Slot,
-    Specimen,
-    SpecimenDefinition,
-    StructureDefinition,
-    StructureMap,
-    Subscription,
-    SubscriptionStatus,
-    SubscriptionTopic,
-    Substance,
-    SubstanceDefinition,
-    SupplyDelivery,
-    SupplyRequest,
-    Task,
-    TerminologyCapabilities,
-    TestReport,
-    TestScript,
-    ValueSet,
-    VerificationResult,
-    VisionPrescription,
-    Parameters,
-  ];
-
-  /// Returns the enum value with an element attached
-  ResourceType withElement(Element? newElement) {
-    return ResourceType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ResourceType extends FhirCode {
   /// Factory constructor to create [ResourceType] from JSON.
-  static ResourceType fromJson(Map<String, dynamic> json) {
+  factory ResourceType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResourceType.elementOnly.withElement(element);
+      return ResourceType.elementOnly(element);
     }
-    return ResourceType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ResourceType._(value, element);
+    }
+    throw ArgumentError(
+      'ResourceType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Resource
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Resource([this.element])
+      : dbValue = 'Resource',
+        super('Resource', element);
+
+  /// Binary
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Binary([this.element])
+      : dbValue = 'Binary',
+        super('Binary', element);
+
+  /// Bundle
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Bundle([this.element])
+      : dbValue = 'Bundle',
+        super('Bundle', element);
+
+  /// DomainResource
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.DomainResource([this.element])
+      : dbValue = 'DomainResource',
+        super('DomainResource', element);
+
+  /// Account
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Account([this.element])
+      : dbValue = 'Account',
+        super('Account', element);
+
+  /// ActivityDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ActivityDefinition([this.element])
+      : dbValue = 'ActivityDefinition',
+        super('ActivityDefinition', element);
+
+  /// AdministrableProductDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.AdministrableProductDefinition([this.element])
+      : dbValue = 'AdministrableProductDefinition',
+        super('AdministrableProductDefinition', element);
+
+  /// AdverseEvent
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.AdverseEvent([this.element])
+      : dbValue = 'AdverseEvent',
+        super('AdverseEvent', element);
+
+  /// AllergyIntolerance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.AllergyIntolerance([this.element])
+      : dbValue = 'AllergyIntolerance',
+        super('AllergyIntolerance', element);
+
+  /// Appointment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Appointment([this.element])
+      : dbValue = 'Appointment',
+        super('Appointment', element);
+
+  /// AppointmentResponse
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.AppointmentResponse([this.element])
+      : dbValue = 'AppointmentResponse',
+        super('AppointmentResponse', element);
+
+  /// AuditEvent
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.AuditEvent([this.element])
+      : dbValue = 'AuditEvent',
+        super('AuditEvent', element);
+
+  /// Basic
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Basic([this.element])
+      : dbValue = 'Basic',
+        super('Basic', element);
+
+  /// BiologicallyDerivedProduct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.BiologicallyDerivedProduct([this.element])
+      : dbValue = 'BiologicallyDerivedProduct',
+        super('BiologicallyDerivedProduct', element);
+
+  /// BodyStructure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.BodyStructure([this.element])
+      : dbValue = 'BodyStructure',
+        super('BodyStructure', element);
+
+  /// CapabilityStatement
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.CapabilityStatement([this.element])
+      : dbValue = 'CapabilityStatement',
+        super('CapabilityStatement', element);
+
+  /// CarePlan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.CarePlan([this.element])
+      : dbValue = 'CarePlan',
+        super('CarePlan', element);
+
+  /// CareTeam
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.CareTeam([this.element])
+      : dbValue = 'CareTeam',
+        super('CareTeam', element);
+
+  /// CatalogEntry
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.CatalogEntry([this.element])
+      : dbValue = 'CatalogEntry',
+        super('CatalogEntry', element);
+
+  /// ChargeItem
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ChargeItem([this.element])
+      : dbValue = 'ChargeItem',
+        super('ChargeItem', element);
+
+  /// ChargeItemDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ChargeItemDefinition([this.element])
+      : dbValue = 'ChargeItemDefinition',
+        super('ChargeItemDefinition', element);
+
+  /// Citation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Citation([this.element])
+      : dbValue = 'Citation',
+        super('Citation', element);
+
+  /// Claim
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Claim([this.element])
+      : dbValue = 'Claim',
+        super('Claim', element);
+
+  /// ClaimResponse
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ClaimResponse([this.element])
+      : dbValue = 'ClaimResponse',
+        super('ClaimResponse', element);
+
+  /// ClinicalImpression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ClinicalImpression([this.element])
+      : dbValue = 'ClinicalImpression',
+        super('ClinicalImpression', element);
+
+  /// ClinicalUseDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ClinicalUseDefinition([this.element])
+      : dbValue = 'ClinicalUseDefinition',
+        super('ClinicalUseDefinition', element);
+
+  /// CodeSystem
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.CodeSystem([this.element])
+      : dbValue = 'CodeSystem',
+        super('CodeSystem', element);
+
+  /// Communication
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Communication([this.element])
+      : dbValue = 'Communication',
+        super('Communication', element);
+
+  /// CommunicationRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.CommunicationRequest([this.element])
+      : dbValue = 'CommunicationRequest',
+        super('CommunicationRequest', element);
+
+  /// CompartmentDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.CompartmentDefinition([this.element])
+      : dbValue = 'CompartmentDefinition',
+        super('CompartmentDefinition', element);
+
+  /// Composition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Composition([this.element])
+      : dbValue = 'Composition',
+        super('Composition', element);
+
+  /// ConceptMap
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ConceptMap([this.element])
+      : dbValue = 'ConceptMap',
+        super('ConceptMap', element);
+
+  /// Condition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Condition([this.element])
+      : dbValue = 'Condition',
+        super('Condition', element);
+
+  /// Consent
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Consent([this.element])
+      : dbValue = 'Consent',
+        super('Consent', element);
+
+  /// Contract
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Contract([this.element])
+      : dbValue = 'Contract',
+        super('Contract', element);
+
+  /// Coverage
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Coverage([this.element])
+      : dbValue = 'Coverage',
+        super('Coverage', element);
+
+  /// CoverageEligibilityRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.CoverageEligibilityRequest([this.element])
+      : dbValue = 'CoverageEligibilityRequest',
+        super('CoverageEligibilityRequest', element);
+
+  /// CoverageEligibilityResponse
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.CoverageEligibilityResponse([this.element])
+      : dbValue = 'CoverageEligibilityResponse',
+        super('CoverageEligibilityResponse', element);
+
+  /// DetectedIssue
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.DetectedIssue([this.element])
+      : dbValue = 'DetectedIssue',
+        super('DetectedIssue', element);
+
+  /// Device
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Device([this.element])
+      : dbValue = 'Device',
+        super('Device', element);
+
+  /// DeviceDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.DeviceDefinition([this.element])
+      : dbValue = 'DeviceDefinition',
+        super('DeviceDefinition', element);
+
+  /// DeviceMetric
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.DeviceMetric([this.element])
+      : dbValue = 'DeviceMetric',
+        super('DeviceMetric', element);
+
+  /// DeviceRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.DeviceRequest([this.element])
+      : dbValue = 'DeviceRequest',
+        super('DeviceRequest', element);
+
+  /// DeviceUseStatement
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.DeviceUseStatement([this.element])
+      : dbValue = 'DeviceUseStatement',
+        super('DeviceUseStatement', element);
+
+  /// DiagnosticReport
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.DiagnosticReport([this.element])
+      : dbValue = 'DiagnosticReport',
+        super('DiagnosticReport', element);
+
+  /// DocumentManifest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.DocumentManifest([this.element])
+      : dbValue = 'DocumentManifest',
+        super('DocumentManifest', element);
+
+  /// DocumentReference
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.DocumentReference([this.element])
+      : dbValue = 'DocumentReference',
+        super('DocumentReference', element);
+
+  /// Encounter
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Encounter([this.element])
+      : dbValue = 'Encounter',
+        super('Encounter', element);
+
+  /// Endpoint
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Endpoint([this.element])
+      : dbValue = 'Endpoint',
+        super('Endpoint', element);
+
+  /// EnrollmentRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.EnrollmentRequest([this.element])
+      : dbValue = 'EnrollmentRequest',
+        super('EnrollmentRequest', element);
+
+  /// EnrollmentResponse
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.EnrollmentResponse([this.element])
+      : dbValue = 'EnrollmentResponse',
+        super('EnrollmentResponse', element);
+
+  /// EpisodeOfCare
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.EpisodeOfCare([this.element])
+      : dbValue = 'EpisodeOfCare',
+        super('EpisodeOfCare', element);
+
+  /// EventDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.EventDefinition([this.element])
+      : dbValue = 'EventDefinition',
+        super('EventDefinition', element);
+
+  /// Evidence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Evidence([this.element])
+      : dbValue = 'Evidence',
+        super('Evidence', element);
+
+  /// EvidenceReport
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.EvidenceReport([this.element])
+      : dbValue = 'EvidenceReport',
+        super('EvidenceReport', element);
+
+  /// EvidenceVariable
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.EvidenceVariable([this.element])
+      : dbValue = 'EvidenceVariable',
+        super('EvidenceVariable', element);
+
+  /// ExampleScenario
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ExampleScenario([this.element])
+      : dbValue = 'ExampleScenario',
+        super('ExampleScenario', element);
+
+  /// ExplanationOfBenefit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ExplanationOfBenefit([this.element])
+      : dbValue = 'ExplanationOfBenefit',
+        super('ExplanationOfBenefit', element);
+
+  /// FamilyMemberHistory
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.FamilyMemberHistory([this.element])
+      : dbValue = 'FamilyMemberHistory',
+        super('FamilyMemberHistory', element);
+
+  /// Flag
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Flag([this.element])
+      : dbValue = 'Flag',
+        super('Flag', element);
+
+  /// Goal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Goal([this.element])
+      : dbValue = 'Goal',
+        super('Goal', element);
+
+  /// GraphDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.GraphDefinition([this.element])
+      : dbValue = 'GraphDefinition',
+        super('GraphDefinition', element);
+
+  /// Group
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Group([this.element])
+      : dbValue = 'Group',
+        super('Group', element);
+
+  /// GuidanceResponse
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.GuidanceResponse([this.element])
+      : dbValue = 'GuidanceResponse',
+        super('GuidanceResponse', element);
+
+  /// HealthcareService
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.HealthcareService([this.element])
+      : dbValue = 'HealthcareService',
+        super('HealthcareService', element);
+
+  /// ImagingStudy
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ImagingStudy([this.element])
+      : dbValue = 'ImagingStudy',
+        super('ImagingStudy', element);
+
+  /// Immunization
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Immunization([this.element])
+      : dbValue = 'Immunization',
+        super('Immunization', element);
+
+  /// ImmunizationEvaluation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ImmunizationEvaluation([this.element])
+      : dbValue = 'ImmunizationEvaluation',
+        super('ImmunizationEvaluation', element);
+
+  /// ImmunizationRecommendation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ImmunizationRecommendation([this.element])
+      : dbValue = 'ImmunizationRecommendation',
+        super('ImmunizationRecommendation', element);
+
+  /// ImplementationGuide
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ImplementationGuide([this.element])
+      : dbValue = 'ImplementationGuide',
+        super('ImplementationGuide', element);
+
+  /// Ingredient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Ingredient([this.element])
+      : dbValue = 'Ingredient',
+        super('Ingredient', element);
+
+  /// InsurancePlan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.InsurancePlan([this.element])
+      : dbValue = 'InsurancePlan',
+        super('InsurancePlan', element);
+
+  /// Invoice
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Invoice([this.element])
+      : dbValue = 'Invoice',
+        super('Invoice', element);
+
+  /// Library
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Library([this.element])
+      : dbValue = 'Library',
+        super('Library', element);
+
+  /// Linkage
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Linkage([this.element])
+      : dbValue = 'Linkage',
+        super('Linkage', element);
+
+  /// List_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.List_([this.element])
+      : dbValue = 'List',
+        super('List', element);
+
+  /// Location
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Location([this.element])
+      : dbValue = 'Location',
+        super('Location', element);
+
+  /// ManufacturedItemDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ManufacturedItemDefinition([this.element])
+      : dbValue = 'ManufacturedItemDefinition',
+        super('ManufacturedItemDefinition', element);
+
+  /// Measure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Measure([this.element])
+      : dbValue = 'Measure',
+        super('Measure', element);
+
+  /// MeasureReport
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.MeasureReport([this.element])
+      : dbValue = 'MeasureReport',
+        super('MeasureReport', element);
+
+  /// Media
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Media([this.element])
+      : dbValue = 'Media',
+        super('Media', element);
+
+  /// Medication
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Medication([this.element])
+      : dbValue = 'Medication',
+        super('Medication', element);
+
+  /// MedicationAdministration
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.MedicationAdministration([this.element])
+      : dbValue = 'MedicationAdministration',
+        super('MedicationAdministration', element);
+
+  /// MedicationDispense
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.MedicationDispense([this.element])
+      : dbValue = 'MedicationDispense',
+        super('MedicationDispense', element);
+
+  /// MedicationKnowledge
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.MedicationKnowledge([this.element])
+      : dbValue = 'MedicationKnowledge',
+        super('MedicationKnowledge', element);
+
+  /// MedicationRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.MedicationRequest([this.element])
+      : dbValue = 'MedicationRequest',
+        super('MedicationRequest', element);
+
+  /// MedicationStatement
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.MedicationStatement([this.element])
+      : dbValue = 'MedicationStatement',
+        super('MedicationStatement', element);
+
+  /// MedicinalProductDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.MedicinalProductDefinition([this.element])
+      : dbValue = 'MedicinalProductDefinition',
+        super('MedicinalProductDefinition', element);
+
+  /// MessageDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.MessageDefinition([this.element])
+      : dbValue = 'MessageDefinition',
+        super('MessageDefinition', element);
+
+  /// MessageHeader
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.MessageHeader([this.element])
+      : dbValue = 'MessageHeader',
+        super('MessageHeader', element);
+
+  /// MolecularSequence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.MolecularSequence([this.element])
+      : dbValue = 'MolecularSequence',
+        super('MolecularSequence', element);
+
+  /// NamingSystem
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.NamingSystem([this.element])
+      : dbValue = 'NamingSystem',
+        super('NamingSystem', element);
+
+  /// NutritionOrder
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.NutritionOrder([this.element])
+      : dbValue = 'NutritionOrder',
+        super('NutritionOrder', element);
+
+  /// NutritionProduct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.NutritionProduct([this.element])
+      : dbValue = 'NutritionProduct',
+        super('NutritionProduct', element);
+
+  /// Observation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Observation([this.element])
+      : dbValue = 'Observation',
+        super('Observation', element);
+
+  /// ObservationDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ObservationDefinition([this.element])
+      : dbValue = 'ObservationDefinition',
+        super('ObservationDefinition', element);
+
+  /// OperationDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.OperationDefinition([this.element])
+      : dbValue = 'OperationDefinition',
+        super('OperationDefinition', element);
+
+  /// OperationOutcome
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.OperationOutcome([this.element])
+      : dbValue = 'OperationOutcome',
+        super('OperationOutcome', element);
+
+  /// Organization
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Organization([this.element])
+      : dbValue = 'Organization',
+        super('Organization', element);
+
+  /// OrganizationAffiliation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.OrganizationAffiliation([this.element])
+      : dbValue = 'OrganizationAffiliation',
+        super('OrganizationAffiliation', element);
+
+  /// PackagedProductDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.PackagedProductDefinition([this.element])
+      : dbValue = 'PackagedProductDefinition',
+        super('PackagedProductDefinition', element);
+
+  /// Patient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Patient([this.element])
+      : dbValue = 'Patient',
+        super('Patient', element);
+
+  /// PaymentNotice
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.PaymentNotice([this.element])
+      : dbValue = 'PaymentNotice',
+        super('PaymentNotice', element);
+
+  /// PaymentReconciliation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.PaymentReconciliation([this.element])
+      : dbValue = 'PaymentReconciliation',
+        super('PaymentReconciliation', element);
+
+  /// Person
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Person([this.element])
+      : dbValue = 'Person',
+        super('Person', element);
+
+  /// PlanDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.PlanDefinition([this.element])
+      : dbValue = 'PlanDefinition',
+        super('PlanDefinition', element);
+
+  /// Practitioner
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Practitioner([this.element])
+      : dbValue = 'Practitioner',
+        super('Practitioner', element);
+
+  /// PractitionerRole
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.PractitionerRole([this.element])
+      : dbValue = 'PractitionerRole',
+        super('PractitionerRole', element);
+
+  /// Procedure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Procedure([this.element])
+      : dbValue = 'Procedure',
+        super('Procedure', element);
+
+  /// Provenance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Provenance([this.element])
+      : dbValue = 'Provenance',
+        super('Provenance', element);
+
+  /// Questionnaire
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Questionnaire([this.element])
+      : dbValue = 'Questionnaire',
+        super('Questionnaire', element);
+
+  /// QuestionnaireResponse
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.QuestionnaireResponse([this.element])
+      : dbValue = 'QuestionnaireResponse',
+        super('QuestionnaireResponse', element);
+
+  /// RegulatedAuthorization
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.RegulatedAuthorization([this.element])
+      : dbValue = 'RegulatedAuthorization',
+        super('RegulatedAuthorization', element);
+
+  /// RelatedPerson
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.RelatedPerson([this.element])
+      : dbValue = 'RelatedPerson',
+        super('RelatedPerson', element);
+
+  /// RequestGroup
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.RequestGroup([this.element])
+      : dbValue = 'RequestGroup',
+        super('RequestGroup', element);
+
+  /// ResearchDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ResearchDefinition([this.element])
+      : dbValue = 'ResearchDefinition',
+        super('ResearchDefinition', element);
+
+  /// ResearchElementDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ResearchElementDefinition([this.element])
+      : dbValue = 'ResearchElementDefinition',
+        super('ResearchElementDefinition', element);
+
+  /// ResearchStudy
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ResearchStudy([this.element])
+      : dbValue = 'ResearchStudy',
+        super('ResearchStudy', element);
+
+  /// ResearchSubject
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ResearchSubject([this.element])
+      : dbValue = 'ResearchSubject',
+        super('ResearchSubject', element);
+
+  /// RiskAssessment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.RiskAssessment([this.element])
+      : dbValue = 'RiskAssessment',
+        super('RiskAssessment', element);
+
+  /// Schedule
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Schedule([this.element])
+      : dbValue = 'Schedule',
+        super('Schedule', element);
+
+  /// SearchParameter
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.SearchParameter([this.element])
+      : dbValue = 'SearchParameter',
+        super('SearchParameter', element);
+
+  /// ServiceRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ServiceRequest([this.element])
+      : dbValue = 'ServiceRequest',
+        super('ServiceRequest', element);
+
+  /// Slot
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Slot([this.element])
+      : dbValue = 'Slot',
+        super('Slot', element);
+
+  /// Specimen
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Specimen([this.element])
+      : dbValue = 'Specimen',
+        super('Specimen', element);
+
+  /// SpecimenDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.SpecimenDefinition([this.element])
+      : dbValue = 'SpecimenDefinition',
+        super('SpecimenDefinition', element);
+
+  /// StructureDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.StructureDefinition([this.element])
+      : dbValue = 'StructureDefinition',
+        super('StructureDefinition', element);
+
+  /// StructureMap
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.StructureMap([this.element])
+      : dbValue = 'StructureMap',
+        super('StructureMap', element);
+
+  /// Subscription
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Subscription([this.element])
+      : dbValue = 'Subscription',
+        super('Subscription', element);
+
+  /// SubscriptionStatus
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.SubscriptionStatus([this.element])
+      : dbValue = 'SubscriptionStatus',
+        super('SubscriptionStatus', element);
+
+  /// SubscriptionTopic
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.SubscriptionTopic([this.element])
+      : dbValue = 'SubscriptionTopic',
+        super('SubscriptionTopic', element);
+
+  /// Substance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Substance([this.element])
+      : dbValue = 'Substance',
+        super('Substance', element);
+
+  /// SubstanceDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.SubstanceDefinition([this.element])
+      : dbValue = 'SubstanceDefinition',
+        super('SubstanceDefinition', element);
+
+  /// SupplyDelivery
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.SupplyDelivery([this.element])
+      : dbValue = 'SupplyDelivery',
+        super('SupplyDelivery', element);
+
+  /// SupplyRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.SupplyRequest([this.element])
+      : dbValue = 'SupplyRequest',
+        super('SupplyRequest', element);
+
+  /// Task
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Task([this.element])
+      : dbValue = 'Task',
+        super('Task', element);
+
+  /// TerminologyCapabilities
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.TerminologyCapabilities([this.element])
+      : dbValue = 'TerminologyCapabilities',
+        super('TerminologyCapabilities', element);
+
+  /// TestReport
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.TestReport([this.element])
+      : dbValue = 'TestReport',
+        super('TestReport', element);
+
+  /// TestScript
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.TestScript([this.element])
+      : dbValue = 'TestScript',
+        super('TestScript', element);
+
+  /// ValueSet
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.ValueSet([this.element])
+      : dbValue = 'ValueSet',
+        super('ValueSet', element);
+
+  /// VerificationResult
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.VerificationResult([this.element])
+      : dbValue = 'VerificationResult',
+        super('VerificationResult', element);
+
+  /// VisionPrescription
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.VisionPrescription([this.element])
+      : dbValue = 'VisionPrescription',
+        super('VisionPrescription', element);
+
+  /// Parameters
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResourceType.Parameters([this.element])
+      : dbValue = 'Parameters',
+        super('Parameters', element);
+
+  /// For instances where an Element is present but not value
+
+  ResourceType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ResourceType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Resource',
+    'Binary',
+    'Bundle',
+    'DomainResource',
+    'Account',
+    'ActivityDefinition',
+    'AdministrableProductDefinition',
+    'AdverseEvent',
+    'AllergyIntolerance',
+    'Appointment',
+    'AppointmentResponse',
+    'AuditEvent',
+    'Basic',
+    'BiologicallyDerivedProduct',
+    'BodyStructure',
+    'CapabilityStatement',
+    'CarePlan',
+    'CareTeam',
+    'CatalogEntry',
+    'ChargeItem',
+    'ChargeItemDefinition',
+    'Citation',
+    'Claim',
+    'ClaimResponse',
+    'ClinicalImpression',
+    'ClinicalUseDefinition',
+    'CodeSystem',
+    'Communication',
+    'CommunicationRequest',
+    'CompartmentDefinition',
+    'Composition',
+    'ConceptMap',
+    'Condition',
+    'Consent',
+    'Contract',
+    'Coverage',
+    'CoverageEligibilityRequest',
+    'CoverageEligibilityResponse',
+    'DetectedIssue',
+    'Device',
+    'DeviceDefinition',
+    'DeviceMetric',
+    'DeviceRequest',
+    'DeviceUseStatement',
+    'DiagnosticReport',
+    'DocumentManifest',
+    'DocumentReference',
+    'Encounter',
+    'Endpoint',
+    'EnrollmentRequest',
+    'EnrollmentResponse',
+    'EpisodeOfCare',
+    'EventDefinition',
+    'Evidence',
+    'EvidenceReport',
+    'EvidenceVariable',
+    'ExampleScenario',
+    'ExplanationOfBenefit',
+    'FamilyMemberHistory',
+    'Flag',
+    'Goal',
+    'GraphDefinition',
+    'Group',
+    'GuidanceResponse',
+    'HealthcareService',
+    'ImagingStudy',
+    'Immunization',
+    'ImmunizationEvaluation',
+    'ImmunizationRecommendation',
+    'ImplementationGuide',
+    'Ingredient',
+    'InsurancePlan',
+    'Invoice',
+    'Library',
+    'Linkage',
+    'List',
+    'Location',
+    'ManufacturedItemDefinition',
+    'Measure',
+    'MeasureReport',
+    'Media',
+    'Medication',
+    'MedicationAdministration',
+    'MedicationDispense',
+    'MedicationKnowledge',
+    'MedicationRequest',
+    'MedicationStatement',
+    'MedicinalProductDefinition',
+    'MessageDefinition',
+    'MessageHeader',
+    'MolecularSequence',
+    'NamingSystem',
+    'NutritionOrder',
+    'NutritionProduct',
+    'Observation',
+    'ObservationDefinition',
+    'OperationDefinition',
+    'OperationOutcome',
+    'Organization',
+    'OrganizationAffiliation',
+    'PackagedProductDefinition',
+    'Patient',
+    'PaymentNotice',
+    'PaymentReconciliation',
+    'Person',
+    'PlanDefinition',
+    'Practitioner',
+    'PractitionerRole',
+    'Procedure',
+    'Provenance',
+    'Questionnaire',
+    'QuestionnaireResponse',
+    'RegulatedAuthorization',
+    'RelatedPerson',
+    'RequestGroup',
+    'ResearchDefinition',
+    'ResearchElementDefinition',
+    'ResearchStudy',
+    'ResearchSubject',
+    'RiskAssessment',
+    'Schedule',
+    'SearchParameter',
+    'ServiceRequest',
+    'Slot',
+    'Specimen',
+    'SpecimenDefinition',
+    'StructureDefinition',
+    'StructureMap',
+    'Subscription',
+    'SubscriptionStatus',
+    'SubscriptionTopic',
+    'Substance',
+    'SubstanceDefinition',
+    'SupplyDelivery',
+    'SupplyRequest',
+    'Task',
+    'TerminologyCapabilities',
+    'TestReport',
+    'TestScript',
+    'ValueSet',
+    'VerificationResult',
+    'VisionPrescription',
+    'Parameters',
+  ];
+
+  /// Returns the enum value with an element attached
+  ResourceType withElement(Element? newElement) {
+    return ResourceType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ResourceType.$fhirCode';
+  String toString() => 'ResourceType.$value';
 }

@@ -5,102 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// Types of resources that are part of group.
 @Entity()
-class GroupType {
-  // Private constructor for internal use (like enum)
-  GroupType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// GroupType values
-  /// person
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GroupType person = GroupType._(
-    'person',
-  );
-
-  /// animal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GroupType animal = GroupType._(
-    'animal',
-  );
-
-  /// practitioner
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GroupType practitioner = GroupType._(
-    'practitioner',
-  );
-
-  /// device
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GroupType device = GroupType._(
-    'device',
-  );
-
-  /// medication
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GroupType medication = GroupType._(
-    'medication',
-  );
-
-  /// substance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GroupType substance = GroupType._(
-    'substance',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final GroupType elementOnly = GroupType._('');
-
-  /// List of all enum-like values
-  static final List<GroupType> values = [
-    person,
-    animal,
-    practitioner,
-    device,
-    medication,
-    substance,
-  ];
-
-  /// Returns the enum value with an element attached
-  GroupType withElement(Element? newElement) {
-    return GroupType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class GroupType extends FhirCode {
   /// Factory constructor to create [GroupType] from JSON.
-  static GroupType fromJson(Map<String, dynamic> json) {
+  factory GroupType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GroupType.elementOnly.withElement(element);
+      return GroupType.elementOnly(element);
     }
-    return GroupType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return GroupType._(value, element);
+    }
+    throw ArgumentError(
+      'GroupType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// person
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GroupType.person([this.element])
+      : dbValue = 'person',
+        super('person', element);
+
+  /// animal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GroupType.animal([this.element])
+      : dbValue = 'animal',
+        super('animal', element);
+
+  /// practitioner
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GroupType.practitioner([this.element])
+      : dbValue = 'practitioner',
+        super('practitioner', element);
+
+  /// device
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GroupType.device([this.element])
+      : dbValue = 'device',
+        super('device', element);
+
+  /// medication
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GroupType.medication([this.element])
+      : dbValue = 'medication',
+        super('medication', element);
+
+  /// substance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GroupType.substance([this.element])
+      : dbValue = 'substance',
+        super('substance', element);
+
+  /// For instances where an Element is present but not value
+
+  GroupType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  GroupType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'person',
+    'animal',
+    'practitioner',
+    'device',
+    'medication',
+    'substance',
+  ];
+
+  /// Returns the enum value with an element attached
+  GroupType withElement(Element? newElement) {
+    return GroupType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'GroupType.$fhirCode';
+  String toString() => 'GroupType.$value';
 }

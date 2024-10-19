@@ -5,102 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// HTTP verbs (in the HTTP command line). See [HTTP rfc](https://tools.ietf.org/html/rfc7231) for details.
 @Entity()
-class HTTPVerb {
-  // Private constructor for internal use (like enum)
-  HTTPVerb._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// HTTPVerb values
-  /// GET
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final HTTPVerb GET = HTTPVerb._(
-    'GET',
-  );
-
-  /// HEAD
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final HTTPVerb HEAD = HTTPVerb._(
-    'HEAD',
-  );
-
-  /// POST
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final HTTPVerb POST = HTTPVerb._(
-    'POST',
-  );
-
-  /// PUT
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final HTTPVerb PUT = HTTPVerb._(
-    'PUT',
-  );
-
-  /// DELETE
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final HTTPVerb DELETE = HTTPVerb._(
-    'DELETE',
-  );
-
-  /// PATCH
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final HTTPVerb PATCH = HTTPVerb._(
-    'PATCH',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final HTTPVerb elementOnly = HTTPVerb._('');
-
-  /// List of all enum-like values
-  static final List<HTTPVerb> values = [
-    GET,
-    HEAD,
-    POST,
-    PUT,
-    DELETE,
-    PATCH,
-  ];
-
-  /// Returns the enum value with an element attached
-  HTTPVerb withElement(Element? newElement) {
-    return HTTPVerb._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class HTTPVerb extends FhirCode {
   /// Factory constructor to create [HTTPVerb] from JSON.
-  static HTTPVerb fromJson(Map<String, dynamic> json) {
+  factory HTTPVerb.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return HTTPVerb.elementOnly.withElement(element);
+      return HTTPVerb.elementOnly(element);
     }
-    return HTTPVerb.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return HTTPVerb._(value, element);
+    }
+    throw ArgumentError(
+      'HTTPVerb.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// GET
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  HTTPVerb.GET([this.element])
+      : dbValue = 'GET',
+        super('GET', element);
+
+  /// HEAD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  HTTPVerb.HEAD([this.element])
+      : dbValue = 'HEAD',
+        super('HEAD', element);
+
+  /// POST
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  HTTPVerb.POST([this.element])
+      : dbValue = 'POST',
+        super('POST', element);
+
+  /// PUT
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  HTTPVerb.PUT([this.element])
+      : dbValue = 'PUT',
+        super('PUT', element);
+
+  /// DELETE
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  HTTPVerb.DELETE([this.element])
+      : dbValue = 'DELETE',
+        super('DELETE', element);
+
+  /// PATCH
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  HTTPVerb.PATCH([this.element])
+      : dbValue = 'PATCH',
+        super('PATCH', element);
+
+  /// For instances where an Element is present but not value
+
+  HTTPVerb.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  HTTPVerb._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'GET',
+    'HEAD',
+    'POST',
+    'PUT',
+    'DELETE',
+    'PATCH',
+  ];
+
+  /// Returns the enum value with an element attached
+  HTTPVerb withElement(Element? newElement) {
+    return HTTPVerb._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'HTTPVerb.$fhirCode';
+  String toString() => 'HTTPVerb.$value';
 }

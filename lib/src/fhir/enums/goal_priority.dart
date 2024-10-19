@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Indicates the level of importance associated with reaching or sustaining a goal.
 @Entity()
-class GoalPriority {
-  // Private constructor for internal use (like enum)
-  GoalPriority._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// GoalPriority values
-  /// high_priority
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GoalPriority high_priority = GoalPriority._(
-    'high-priority',
-  );
-
-  /// medium_priority
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GoalPriority medium_priority = GoalPriority._(
-    'medium-priority',
-  );
-
-  /// low_priority
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GoalPriority low_priority = GoalPriority._(
-    'low-priority',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final GoalPriority elementOnly = GoalPriority._('');
-
-  /// List of all enum-like values
-  static final List<GoalPriority> values = [
-    high_priority,
-    medium_priority,
-    low_priority,
-  ];
-
-  /// Returns the enum value with an element attached
-  GoalPriority withElement(Element? newElement) {
-    return GoalPriority._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class GoalPriority extends FhirCode {
   /// Factory constructor to create [GoalPriority] from JSON.
-  static GoalPriority fromJson(Map<String, dynamic> json) {
+  factory GoalPriority.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GoalPriority.elementOnly.withElement(element);
+      return GoalPriority.elementOnly(element);
     }
-    return GoalPriority.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return GoalPriority._(value, element);
+    }
+    throw ArgumentError(
+      'GoalPriority.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// high_priority
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GoalPriority.high_priority([this.element])
+      : dbValue = 'high-priority',
+        super('high-priority', element);
+
+  /// medium_priority
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GoalPriority.medium_priority([this.element])
+      : dbValue = 'medium-priority',
+        super('medium-priority', element);
+
+  /// low_priority
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GoalPriority.low_priority([this.element])
+      : dbValue = 'low-priority',
+        super('low-priority', element);
+
+  /// For instances where an Element is present but not value
+
+  GoalPriority.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  GoalPriority._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'high-priority',
+    'medium-priority',
+    'low-priority',
+  ];
+
+  /// Returns the enum value with an element attached
+  GoalPriority withElement(Element? newElement) {
+    return GoalPriority._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'GoalPriority.$fhirCode';
+  String toString() => 'GoalPriority.$value';
 }

@@ -5,80 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// The status of the document reference.
 @Entity()
-class DocumentReferenceStatus {
-  // Private constructor for internal use (like enum)
-  DocumentReferenceStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DocumentReferenceStatus values
-  /// current
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DocumentReferenceStatus current = DocumentReferenceStatus._(
-    'current',
-  );
-
-  /// superseded
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DocumentReferenceStatus superseded = DocumentReferenceStatus._(
-    'superseded',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DocumentReferenceStatus entered_in_error =
-      DocumentReferenceStatus._(
-    'entered-in-error',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final DocumentReferenceStatus elementOnly =
-      DocumentReferenceStatus._('');
-
-  /// List of all enum-like values
-  static final List<DocumentReferenceStatus> values = [
-    current,
-    superseded,
-    entered_in_error,
-  ];
-
-  /// Returns the enum value with an element attached
-  DocumentReferenceStatus withElement(Element? newElement) {
-    return DocumentReferenceStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class DocumentReferenceStatus extends FhirCode {
   /// Factory constructor to create [DocumentReferenceStatus] from JSON.
-  static DocumentReferenceStatus fromJson(Map<String, dynamic> json) {
+  factory DocumentReferenceStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DocumentReferenceStatus.elementOnly.withElement(element);
+      return DocumentReferenceStatus.elementOnly(element);
     }
-    return DocumentReferenceStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return DocumentReferenceStatus._(value, element);
+    }
+    throw ArgumentError(
+      'DocumentReferenceStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// current
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DocumentReferenceStatus.current([this.element])
+      : dbValue = 'current',
+        super('current', element);
+
+  /// superseded
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DocumentReferenceStatus.superseded([this.element])
+      : dbValue = 'superseded',
+        super('superseded', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DocumentReferenceStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// For instances where an Element is present but not value
+
+  DocumentReferenceStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  DocumentReferenceStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'current',
+    'superseded',
+    'entered-in-error',
+  ];
+
+  /// Returns the enum value with an element attached
+  DocumentReferenceStatus withElement(Element? newElement) {
+    return DocumentReferenceStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'DocumentReferenceStatus.$fhirCode';
+  String toString() => 'DocumentReferenceStatus.$value';
 }

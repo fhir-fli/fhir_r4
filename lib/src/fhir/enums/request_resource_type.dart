@@ -5,175 +5,187 @@ import 'package:objectbox/objectbox.dart';
 
 /// A list of all the request resource types defined in this version of the FHIR specification.
 @Entity()
-class RequestResourceType {
-  // Private constructor for internal use (like enum)
-  RequestResourceType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// RequestResourceType values
-  /// Appointment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RequestResourceType Appointment = RequestResourceType._(
-    'Appointment',
-  );
-
-  /// AppointmentResponse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RequestResourceType AppointmentResponse = RequestResourceType._(
-    'AppointmentResponse',
-  );
-
-  /// CarePlan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RequestResourceType CarePlan = RequestResourceType._(
-    'CarePlan',
-  );
-
-  /// Claim
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RequestResourceType Claim = RequestResourceType._(
-    'Claim',
-  );
-
-  /// CommunicationRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RequestResourceType CommunicationRequest = RequestResourceType._(
-    'CommunicationRequest',
-  );
-
-  /// Contract
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RequestResourceType Contract = RequestResourceType._(
-    'Contract',
-  );
-
-  /// DeviceRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RequestResourceType DeviceRequest = RequestResourceType._(
-    'DeviceRequest',
-  );
-
-  /// EnrollmentRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RequestResourceType EnrollmentRequest = RequestResourceType._(
-    'EnrollmentRequest',
-  );
-
-  /// ImmunizationRecommendation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RequestResourceType ImmunizationRecommendation =
-      RequestResourceType._(
-    'ImmunizationRecommendation',
-  );
-
-  /// MedicationRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RequestResourceType MedicationRequest = RequestResourceType._(
-    'MedicationRequest',
-  );
-
-  /// NutritionOrder
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RequestResourceType NutritionOrder = RequestResourceType._(
-    'NutritionOrder',
-  );
-
-  /// ServiceRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RequestResourceType ServiceRequest = RequestResourceType._(
-    'ServiceRequest',
-  );
-
-  /// SupplyRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RequestResourceType SupplyRequest = RequestResourceType._(
-    'SupplyRequest',
-  );
-
-  /// Task
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RequestResourceType Task = RequestResourceType._(
-    'Task',
-  );
-
-  /// VisionPrescription
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RequestResourceType VisionPrescription = RequestResourceType._(
-    'VisionPrescription',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final RequestResourceType elementOnly = RequestResourceType._('');
-
-  /// List of all enum-like values
-  static final List<RequestResourceType> values = [
-    Appointment,
-    AppointmentResponse,
-    CarePlan,
-    Claim,
-    CommunicationRequest,
-    Contract,
-    DeviceRequest,
-    EnrollmentRequest,
-    ImmunizationRecommendation,
-    MedicationRequest,
-    NutritionOrder,
-    ServiceRequest,
-    SupplyRequest,
-    Task,
-    VisionPrescription,
-  ];
-
-  /// Returns the enum value with an element attached
-  RequestResourceType withElement(Element? newElement) {
-    return RequestResourceType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class RequestResourceType extends FhirCode {
   /// Factory constructor to create [RequestResourceType] from JSON.
-  static RequestResourceType fromJson(Map<String, dynamic> json) {
+  factory RequestResourceType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RequestResourceType.elementOnly.withElement(element);
+      return RequestResourceType.elementOnly(element);
     }
-    return RequestResourceType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return RequestResourceType._(value, element);
+    }
+    throw ArgumentError(
+      'RequestResourceType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Appointment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RequestResourceType.Appointment([this.element])
+      : dbValue = 'Appointment',
+        super('Appointment', element);
+
+  /// AppointmentResponse
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RequestResourceType.AppointmentResponse([this.element])
+      : dbValue = 'AppointmentResponse',
+        super('AppointmentResponse', element);
+
+  /// CarePlan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RequestResourceType.CarePlan([this.element])
+      : dbValue = 'CarePlan',
+        super('CarePlan', element);
+
+  /// Claim
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RequestResourceType.Claim([this.element])
+      : dbValue = 'Claim',
+        super('Claim', element);
+
+  /// CommunicationRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RequestResourceType.CommunicationRequest([this.element])
+      : dbValue = 'CommunicationRequest',
+        super('CommunicationRequest', element);
+
+  /// Contract
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RequestResourceType.Contract([this.element])
+      : dbValue = 'Contract',
+        super('Contract', element);
+
+  /// DeviceRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RequestResourceType.DeviceRequest([this.element])
+      : dbValue = 'DeviceRequest',
+        super('DeviceRequest', element);
+
+  /// EnrollmentRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RequestResourceType.EnrollmentRequest([this.element])
+      : dbValue = 'EnrollmentRequest',
+        super('EnrollmentRequest', element);
+
+  /// ImmunizationRecommendation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RequestResourceType.ImmunizationRecommendation([this.element])
+      : dbValue = 'ImmunizationRecommendation',
+        super('ImmunizationRecommendation', element);
+
+  /// MedicationRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RequestResourceType.MedicationRequest([this.element])
+      : dbValue = 'MedicationRequest',
+        super('MedicationRequest', element);
+
+  /// NutritionOrder
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RequestResourceType.NutritionOrder([this.element])
+      : dbValue = 'NutritionOrder',
+        super('NutritionOrder', element);
+
+  /// ServiceRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RequestResourceType.ServiceRequest([this.element])
+      : dbValue = 'ServiceRequest',
+        super('ServiceRequest', element);
+
+  /// SupplyRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RequestResourceType.SupplyRequest([this.element])
+      : dbValue = 'SupplyRequest',
+        super('SupplyRequest', element);
+
+  /// Task
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RequestResourceType.Task([this.element])
+      : dbValue = 'Task',
+        super('Task', element);
+
+  /// VisionPrescription
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RequestResourceType.VisionPrescription([this.element])
+      : dbValue = 'VisionPrescription',
+        super('VisionPrescription', element);
+
+  /// For instances where an Element is present but not value
+
+  RequestResourceType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  RequestResourceType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Appointment',
+    'AppointmentResponse',
+    'CarePlan',
+    'Claim',
+    'CommunicationRequest',
+    'Contract',
+    'DeviceRequest',
+    'EnrollmentRequest',
+    'ImmunizationRecommendation',
+    'MedicationRequest',
+    'NutritionOrder',
+    'ServiceRequest',
+    'SupplyRequest',
+    'Task',
+    'VisionPrescription',
+  ];
+
+  /// Returns the enum value with an element attached
+  RequestResourceType withElement(Element? newElement) {
+    return RequestResourceType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'RequestResourceType.$fhirCode';
+  String toString() => 'RequestResourceType.$value';
 }

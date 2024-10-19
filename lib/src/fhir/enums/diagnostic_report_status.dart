@@ -5,136 +5,147 @@ import 'package:objectbox/objectbox.dart';
 
 /// The status of the diagnostic report.
 @Entity()
-class DiagnosticReportStatus {
-  // Private constructor for internal use (like enum)
-  DiagnosticReportStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DiagnosticReportStatus values
-  /// registered
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosticReportStatus registered = DiagnosticReportStatus._(
-    'registered',
-  );
-
-  /// partial
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosticReportStatus partial = DiagnosticReportStatus._(
-    'partial',
-  );
-
-  /// preliminary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosticReportStatus preliminary = DiagnosticReportStatus._(
-    'preliminary',
-  );
-
-  /// final_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosticReportStatus final_ = DiagnosticReportStatus._(
-    'final',
-  );
-
-  /// amended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosticReportStatus amended = DiagnosticReportStatus._(
-    'amended',
-  );
-
-  /// corrected
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosticReportStatus corrected = DiagnosticReportStatus._(
-    'corrected',
-  );
-
-  /// appended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosticReportStatus appended = DiagnosticReportStatus._(
-    'appended',
-  );
-
-  /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosticReportStatus cancelled = DiagnosticReportStatus._(
-    'cancelled',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosticReportStatus entered_in_error =
-      DiagnosticReportStatus._(
-    'entered-in-error',
-  );
-
-  /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosticReportStatus unknown = DiagnosticReportStatus._(
-    'unknown',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final DiagnosticReportStatus elementOnly =
-      DiagnosticReportStatus._('');
-
-  /// List of all enum-like values
-  static final List<DiagnosticReportStatus> values = [
-    registered,
-    partial,
-    preliminary,
-    final_,
-    amended,
-    corrected,
-    appended,
-    cancelled,
-    entered_in_error,
-    unknown,
-  ];
-
-  /// Returns the enum value with an element attached
-  DiagnosticReportStatus withElement(Element? newElement) {
-    return DiagnosticReportStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class DiagnosticReportStatus extends FhirCode {
   /// Factory constructor to create [DiagnosticReportStatus] from JSON.
-  static DiagnosticReportStatus fromJson(Map<String, dynamic> json) {
+  factory DiagnosticReportStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DiagnosticReportStatus.elementOnly.withElement(element);
+      return DiagnosticReportStatus.elementOnly(element);
     }
-    return DiagnosticReportStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return DiagnosticReportStatus._(value, element);
+    }
+    throw ArgumentError(
+      'DiagnosticReportStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// registered
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosticReportStatus.registered([this.element])
+      : dbValue = 'registered',
+        super('registered', element);
+
+  /// partial
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosticReportStatus.partial([this.element])
+      : dbValue = 'partial',
+        super('partial', element);
+
+  /// preliminary
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosticReportStatus.preliminary([this.element])
+      : dbValue = 'preliminary',
+        super('preliminary', element);
+
+  /// final_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosticReportStatus.final_([this.element])
+      : dbValue = 'final',
+        super('final', element);
+
+  /// amended
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosticReportStatus.amended([this.element])
+      : dbValue = 'amended',
+        super('amended', element);
+
+  /// corrected
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosticReportStatus.corrected([this.element])
+      : dbValue = 'corrected',
+        super('corrected', element);
+
+  /// appended
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosticReportStatus.appended([this.element])
+      : dbValue = 'appended',
+        super('appended', element);
+
+  /// cancelled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosticReportStatus.cancelled([this.element])
+      : dbValue = 'cancelled',
+        super('cancelled', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosticReportStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosticReportStatus.unknown([this.element])
+      : dbValue = 'unknown',
+        super('unknown', element);
+
+  /// For instances where an Element is present but not value
+
+  DiagnosticReportStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  DiagnosticReportStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'registered',
+    'partial',
+    'preliminary',
+    'final',
+    'amended',
+    'corrected',
+    'appended',
+    'cancelled',
+    'entered-in-error',
+    'unknown',
+  ];
+
+  /// Returns the enum value with an element attached
+  DiagnosticReportStatus withElement(Element? newElement) {
+    return DiagnosticReportStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'DiagnosticReportStatus.$fhirCode';
+  String toString() => 'DiagnosticReportStatus.$value';
 }

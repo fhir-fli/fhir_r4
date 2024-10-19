@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// Indicates whether a resource instance represents a specific location or a class of locations.
 @Entity()
-class LocationMode {
-  // Private constructor for internal use (like enum)
-  LocationMode._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// LocationMode values
-  /// instance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationMode instance = LocationMode._(
-    'instance',
-  );
-
-  /// kind
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationMode kind = LocationMode._(
-    'kind',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final LocationMode elementOnly = LocationMode._('');
-
-  /// List of all enum-like values
-  static final List<LocationMode> values = [
-    instance,
-    kind,
-  ];
-
-  /// Returns the enum value with an element attached
-  LocationMode withElement(Element? newElement) {
-    return LocationMode._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class LocationMode extends FhirCode {
   /// Factory constructor to create [LocationMode] from JSON.
-  static LocationMode fromJson(Map<String, dynamic> json) {
+  factory LocationMode.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return LocationMode.elementOnly.withElement(element);
+      return LocationMode.elementOnly(element);
     }
-    return LocationMode.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return LocationMode._(value, element);
+    }
+    throw ArgumentError(
+      'LocationMode.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// instance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationMode.instance([this.element])
+      : dbValue = 'instance',
+        super('instance', element);
+
+  /// kind
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationMode.kind([this.element])
+      : dbValue = 'kind',
+        super('kind', element);
+
+  /// For instances where an Element is present but not value
+
+  LocationMode.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  LocationMode._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'instance',
+    'kind',
+  ];
+
+  /// Returns the enum value with an element attached
+  LocationMode withElement(Element? newElement) {
+    return LocationMode._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'LocationMode.$fhirCode';
+  String toString() => 'LocationMode.$value';
 }

@@ -5,79 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Identifier subgroups in a population for measuring purposes.
 @Entity()
-class MeasureStratifierExample {
-  // Private constructor for internal use (like enum)
-  MeasureStratifierExample._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasureStratifierExample values
-  /// age
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureStratifierExample age = MeasureStratifierExample._(
-    'age',
-  );
-
-  /// gender
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureStratifierExample gender = MeasureStratifierExample._(
-    'gender',
-  );
-
-  /// region
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureStratifierExample region = MeasureStratifierExample._(
-    'region',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MeasureStratifierExample elementOnly =
-      MeasureStratifierExample._('');
-
-  /// List of all enum-like values
-  static final List<MeasureStratifierExample> values = [
-    age,
-    gender,
-    region,
-  ];
-
-  /// Returns the enum value with an element attached
-  MeasureStratifierExample withElement(Element? newElement) {
-    return MeasureStratifierExample._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MeasureStratifierExample extends FhirCode {
   /// Factory constructor to create [MeasureStratifierExample] from JSON.
-  static MeasureStratifierExample fromJson(Map<String, dynamic> json) {
+  factory MeasureStratifierExample.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureStratifierExample.elementOnly.withElement(element);
+      return MeasureStratifierExample.elementOnly(element);
     }
-    return MeasureStratifierExample.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MeasureStratifierExample._(value, element);
+    }
+    throw ArgumentError(
+      'MeasureStratifierExample.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// age
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureStratifierExample.age([this.element])
+      : dbValue = 'age',
+        super('age', element);
+
+  /// gender
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureStratifierExample.gender([this.element])
+      : dbValue = 'gender',
+        super('gender', element);
+
+  /// region
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureStratifierExample.region([this.element])
+      : dbValue = 'region',
+        super('region', element);
+
+  /// For instances where an Element is present but not value
+
+  MeasureStratifierExample.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MeasureStratifierExample._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'age',
+    'gender',
+    'region',
+  ];
+
+  /// Returns the enum value with an element attached
+  MeasureStratifierExample withElement(Element? newElement) {
+    return MeasureStratifierExample._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MeasureStratifierExample.$fhirCode';
+  String toString() => 'MeasureStratifierExample.$value';
 }

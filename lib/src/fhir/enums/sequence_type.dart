@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Type if a sequence -- DNA, RNA, or amino acid sequence.
 @Entity()
-class SequenceType {
-  // Private constructor for internal use (like enum)
-  SequenceType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SequenceType values
-  /// aa
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SequenceType aa = SequenceType._(
-    'aa',
-  );
-
-  /// dna
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SequenceType dna = SequenceType._(
-    'dna',
-  );
-
-  /// rna
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SequenceType rna = SequenceType._(
-    'rna',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SequenceType elementOnly = SequenceType._('');
-
-  /// List of all enum-like values
-  static final List<SequenceType> values = [
-    aa,
-    dna,
-    rna,
-  ];
-
-  /// Returns the enum value with an element attached
-  SequenceType withElement(Element? newElement) {
-    return SequenceType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SequenceType extends FhirCode {
   /// Factory constructor to create [SequenceType] from JSON.
-  static SequenceType fromJson(Map<String, dynamic> json) {
+  factory SequenceType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SequenceType.elementOnly.withElement(element);
+      return SequenceType.elementOnly(element);
     }
-    return SequenceType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SequenceType._(value, element);
+    }
+    throw ArgumentError(
+      'SequenceType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// aa
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SequenceType.aa([this.element])
+      : dbValue = 'aa',
+        super('aa', element);
+
+  /// dna
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SequenceType.dna([this.element])
+      : dbValue = 'dna',
+        super('dna', element);
+
+  /// rna
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SequenceType.rna([this.element])
+      : dbValue = 'rna',
+        super('rna', element);
+
+  /// For instances where an Element is present but not value
+
+  SequenceType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SequenceType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'aa',
+    'dna',
+    'rna',
+  ];
+
+  /// Returns the enum value with an element attached
+  SequenceType withElement(Element? newElement) {
+    return SequenceType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SequenceType.$fhirCode';
+  String toString() => 'SequenceType.$value';
 }

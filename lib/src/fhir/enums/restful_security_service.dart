@@ -5,103 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// Types of security services used with FHIR.
 @Entity()
-class RestfulSecurityService {
-  // Private constructor for internal use (like enum)
-  RestfulSecurityService._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// RestfulSecurityService values
-  /// OAuth
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RestfulSecurityService OAuth = RestfulSecurityService._(
-    'OAuth',
-  );
-
-  /// SMART_on_FHIR
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RestfulSecurityService SMART_on_FHIR = RestfulSecurityService._(
-    'SMART-on-FHIR',
-  );
-
-  /// NTLM
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RestfulSecurityService NTLM = RestfulSecurityService._(
-    'NTLM',
-  );
-
-  /// Basic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RestfulSecurityService Basic = RestfulSecurityService._(
-    'Basic',
-  );
-
-  /// Kerberos
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RestfulSecurityService Kerberos = RestfulSecurityService._(
-    'Kerberos',
-  );
-
-  /// Certificates
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RestfulSecurityService Certificates = RestfulSecurityService._(
-    'Certificates',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final RestfulSecurityService elementOnly =
-      RestfulSecurityService._('');
-
-  /// List of all enum-like values
-  static final List<RestfulSecurityService> values = [
-    OAuth,
-    SMART_on_FHIR,
-    NTLM,
-    Basic,
-    Kerberos,
-    Certificates,
-  ];
-
-  /// Returns the enum value with an element attached
-  RestfulSecurityService withElement(Element? newElement) {
-    return RestfulSecurityService._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class RestfulSecurityService extends FhirCode {
   /// Factory constructor to create [RestfulSecurityService] from JSON.
-  static RestfulSecurityService fromJson(Map<String, dynamic> json) {
+  factory RestfulSecurityService.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RestfulSecurityService.elementOnly.withElement(element);
+      return RestfulSecurityService.elementOnly(element);
     }
-    return RestfulSecurityService.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return RestfulSecurityService._(value, element);
+    }
+    throw ArgumentError(
+      'RestfulSecurityService.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// OAuth
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RestfulSecurityService.OAuth([this.element])
+      : dbValue = 'OAuth',
+        super('OAuth', element);
+
+  /// SMART_on_FHIR
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RestfulSecurityService.SMART_on_FHIR([this.element])
+      : dbValue = 'SMART-on-FHIR',
+        super('SMART-on-FHIR', element);
+
+  /// NTLM
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RestfulSecurityService.NTLM([this.element])
+      : dbValue = 'NTLM',
+        super('NTLM', element);
+
+  /// Basic
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RestfulSecurityService.Basic([this.element])
+      : dbValue = 'Basic',
+        super('Basic', element);
+
+  /// Kerberos
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RestfulSecurityService.Kerberos([this.element])
+      : dbValue = 'Kerberos',
+        super('Kerberos', element);
+
+  /// Certificates
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RestfulSecurityService.Certificates([this.element])
+      : dbValue = 'Certificates',
+        super('Certificates', element);
+
+  /// For instances where an Element is present but not value
+
+  RestfulSecurityService.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  RestfulSecurityService._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'OAuth',
+    'SMART-on-FHIR',
+    'NTLM',
+    'Basic',
+    'Kerberos',
+    'Certificates',
+  ];
+
+  /// Returns the enum value with an element attached
+  RestfulSecurityService withElement(Element? newElement) {
+    return RestfulSecurityService._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'RestfulSecurityService.$fhirCode';
+  String toString() => 'RestfulSecurityService.$value';
 }

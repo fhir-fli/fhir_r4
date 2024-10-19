@@ -5,102 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// Structure Definition Use Codes / Keywords
 @Entity()
-class DefinitionUseCodes {
-  // Private constructor for internal use (like enum)
-  DefinitionUseCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DefinitionUseCodes values
-  /// fhir_structure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DefinitionUseCodes fhir_structure = DefinitionUseCodes._(
-    'fhir-structure',
-  );
-
-  /// custom_resource
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DefinitionUseCodes custom_resource = DefinitionUseCodes._(
-    'custom-resource',
-  );
-
-  /// dam
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DefinitionUseCodes dam = DefinitionUseCodes._(
-    'dam',
-  );
-
-  /// wire_format
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DefinitionUseCodes wire_format = DefinitionUseCodes._(
-    'wire-format',
-  );
-
-  /// archetype
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DefinitionUseCodes archetype = DefinitionUseCodes._(
-    'archetype',
-  );
-
-  /// template
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DefinitionUseCodes template = DefinitionUseCodes._(
-    'template',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final DefinitionUseCodes elementOnly = DefinitionUseCodes._('');
-
-  /// List of all enum-like values
-  static final List<DefinitionUseCodes> values = [
-    fhir_structure,
-    custom_resource,
-    dam,
-    wire_format,
-    archetype,
-    template,
-  ];
-
-  /// Returns the enum value with an element attached
-  DefinitionUseCodes withElement(Element? newElement) {
-    return DefinitionUseCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class DefinitionUseCodes extends FhirCode {
   /// Factory constructor to create [DefinitionUseCodes] from JSON.
-  static DefinitionUseCodes fromJson(Map<String, dynamic> json) {
+  factory DefinitionUseCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DefinitionUseCodes.elementOnly.withElement(element);
+      return DefinitionUseCodes.elementOnly(element);
     }
-    return DefinitionUseCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return DefinitionUseCodes._(value, element);
+    }
+    throw ArgumentError(
+      'DefinitionUseCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// fhir_structure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DefinitionUseCodes.fhir_structure([this.element])
+      : dbValue = 'fhir-structure',
+        super('fhir-structure', element);
+
+  /// custom_resource
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DefinitionUseCodes.custom_resource([this.element])
+      : dbValue = 'custom-resource',
+        super('custom-resource', element);
+
+  /// dam
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DefinitionUseCodes.dam([this.element])
+      : dbValue = 'dam',
+        super('dam', element);
+
+  /// wire_format
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DefinitionUseCodes.wire_format([this.element])
+      : dbValue = 'wire-format',
+        super('wire-format', element);
+
+  /// archetype
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DefinitionUseCodes.archetype([this.element])
+      : dbValue = 'archetype',
+        super('archetype', element);
+
+  /// template
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DefinitionUseCodes.template([this.element])
+      : dbValue = 'template',
+        super('template', element);
+
+  /// For instances where an Element is present but not value
+
+  DefinitionUseCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  DefinitionUseCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'fhir-structure',
+    'custom-resource',
+    'dam',
+    'wire-format',
+    'archetype',
+    'template',
+  ];
+
+  /// Returns the enum value with an element attached
+  DefinitionUseCodes withElement(Element? newElement) {
+    return DefinitionUseCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'DefinitionUseCodes.$fhirCode';
+  String toString() => 'DefinitionUseCodes.$value';
 }

@@ -5,258 +5,259 @@ import 'package:objectbox/objectbox.dart';
 
 /// Artifact Relationship Type
 @Entity()
-class ArtifactRelationshipType {
-  // Private constructor for internal use (like enum)
-  ArtifactRelationshipType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ArtifactRelationshipType values
-  /// replaces
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType replaces = ArtifactRelationshipType._(
-    'replaces',
-  );
-
-  /// amends
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType amends = ArtifactRelationshipType._(
-    'amends',
-  );
-
-  /// appends
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType appends = ArtifactRelationshipType._(
-    'appends',
-  );
-
-  /// transforms
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType transforms = ArtifactRelationshipType._(
-    'transforms',
-  );
-
-  /// replaced_with
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType replaced_with =
-      ArtifactRelationshipType._(
-    'replaced-with',
-  );
-
-  /// amended_with
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType amended_with =
-      ArtifactRelationshipType._(
-    'amended-with',
-  );
-
-  /// appended_with
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType appended_with =
-      ArtifactRelationshipType._(
-    'appended-with',
-  );
-
-  /// transformed_with
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType transformed_with =
-      ArtifactRelationshipType._(
-    'transformed-with',
-  );
-
-  /// derived_from
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType derived_from =
-      ArtifactRelationshipType._(
-    'derived-from',
-  );
-
-  /// transformed_into
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType transformed_into =
-      ArtifactRelationshipType._(
-    'transformed-into',
-  );
-
-  /// composed_of
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType composed_of =
-      ArtifactRelationshipType._(
-    'composed-of',
-  );
-
-  /// part_of
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType part_of = ArtifactRelationshipType._(
-    'part-of',
-  );
-
-  /// supports
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType supports = ArtifactRelationshipType._(
-    'supports',
-  );
-
-  /// supported_with
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType supported_with =
-      ArtifactRelationshipType._(
-    'supported-with',
-  );
-
-  /// depends_on
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType depends_on = ArtifactRelationshipType._(
-    'depends-on',
-  );
-
-  /// similar_to
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType similar_to = ArtifactRelationshipType._(
-    'similar-to',
-  );
-
-  /// cites
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType cites = ArtifactRelationshipType._(
-    'cites',
-  );
-
-  /// cited_by
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType cited_by = ArtifactRelationshipType._(
-    'cited-by',
-  );
-
-  /// retracts
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType retracts = ArtifactRelationshipType._(
-    'retracts',
-  );
-
-  /// retracted_by
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType retracted_by =
-      ArtifactRelationshipType._(
-    'retracted-by',
-  );
-
-  /// comments_on
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType comments_on =
-      ArtifactRelationshipType._(
-    'comments-on',
-  );
-
-  /// comment_in
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType comment_in = ArtifactRelationshipType._(
-    'comment-in',
-  );
-
-  /// corrects
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType corrects = ArtifactRelationshipType._(
-    'corrects',
-  );
-
-  /// correction_in
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactRelationshipType correction_in =
-      ArtifactRelationshipType._(
-    'correction-in',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ArtifactRelationshipType elementOnly =
-      ArtifactRelationshipType._('');
-
-  /// List of all enum-like values
-  static final List<ArtifactRelationshipType> values = [
-    replaces,
-    amends,
-    appends,
-    transforms,
-    replaced_with,
-    amended_with,
-    appended_with,
-    transformed_with,
-    derived_from,
-    transformed_into,
-    composed_of,
-    part_of,
-    supports,
-    supported_with,
-    depends_on,
-    similar_to,
-    cites,
-    cited_by,
-    retracts,
-    retracted_by,
-    comments_on,
-    comment_in,
-    corrects,
-    correction_in,
-  ];
-
-  /// Returns the enum value with an element attached
-  ArtifactRelationshipType withElement(Element? newElement) {
-    return ArtifactRelationshipType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ArtifactRelationshipType extends FhirCode {
   /// Factory constructor to create [ArtifactRelationshipType] from JSON.
-  static ArtifactRelationshipType fromJson(Map<String, dynamic> json) {
+  factory ArtifactRelationshipType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ArtifactRelationshipType.elementOnly.withElement(element);
+      return ArtifactRelationshipType.elementOnly(element);
     }
-    return ArtifactRelationshipType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ArtifactRelationshipType._(value, element);
+    }
+    throw ArgumentError(
+      'ArtifactRelationshipType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// replaces
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.replaces([this.element])
+      : dbValue = 'replaces',
+        super('replaces', element);
+
+  /// amends
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.amends([this.element])
+      : dbValue = 'amends',
+        super('amends', element);
+
+  /// appends
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.appends([this.element])
+      : dbValue = 'appends',
+        super('appends', element);
+
+  /// transforms
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.transforms([this.element])
+      : dbValue = 'transforms',
+        super('transforms', element);
+
+  /// replaced_with
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.replaced_with([this.element])
+      : dbValue = 'replaced-with',
+        super('replaced-with', element);
+
+  /// amended_with
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.amended_with([this.element])
+      : dbValue = 'amended-with',
+        super('amended-with', element);
+
+  /// appended_with
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.appended_with([this.element])
+      : dbValue = 'appended-with',
+        super('appended-with', element);
+
+  /// transformed_with
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.transformed_with([this.element])
+      : dbValue = 'transformed-with',
+        super('transformed-with', element);
+
+  /// derived_from
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.derived_from([this.element])
+      : dbValue = 'derived-from',
+        super('derived-from', element);
+
+  /// transformed_into
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.transformed_into([this.element])
+      : dbValue = 'transformed-into',
+        super('transformed-into', element);
+
+  /// composed_of
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.composed_of([this.element])
+      : dbValue = 'composed-of',
+        super('composed-of', element);
+
+  /// part_of
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.part_of([this.element])
+      : dbValue = 'part-of',
+        super('part-of', element);
+
+  /// supports
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.supports([this.element])
+      : dbValue = 'supports',
+        super('supports', element);
+
+  /// supported_with
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.supported_with([this.element])
+      : dbValue = 'supported-with',
+        super('supported-with', element);
+
+  /// depends_on
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.depends_on([this.element])
+      : dbValue = 'depends-on',
+        super('depends-on', element);
+
+  /// similar_to
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.similar_to([this.element])
+      : dbValue = 'similar-to',
+        super('similar-to', element);
+
+  /// cites
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.cites([this.element])
+      : dbValue = 'cites',
+        super('cites', element);
+
+  /// cited_by
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.cited_by([this.element])
+      : dbValue = 'cited-by',
+        super('cited-by', element);
+
+  /// retracts
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.retracts([this.element])
+      : dbValue = 'retracts',
+        super('retracts', element);
+
+  /// retracted_by
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.retracted_by([this.element])
+      : dbValue = 'retracted-by',
+        super('retracted-by', element);
+
+  /// comments_on
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.comments_on([this.element])
+      : dbValue = 'comments-on',
+        super('comments-on', element);
+
+  /// comment_in
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.comment_in([this.element])
+      : dbValue = 'comment-in',
+        super('comment-in', element);
+
+  /// corrects
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.corrects([this.element])
+      : dbValue = 'corrects',
+        super('corrects', element);
+
+  /// correction_in
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactRelationshipType.correction_in([this.element])
+      : dbValue = 'correction-in',
+        super('correction-in', element);
+
+  /// For instances where an Element is present but not value
+
+  ArtifactRelationshipType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ArtifactRelationshipType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'replaces',
+    'amends',
+    'appends',
+    'transforms',
+    'replaced-with',
+    'amended-with',
+    'appended-with',
+    'transformed-with',
+    'derived-from',
+    'transformed-into',
+    'composed-of',
+    'part-of',
+    'supports',
+    'supported-with',
+    'depends-on',
+    'similar-to',
+    'cites',
+    'cited-by',
+    'retracts',
+    'retracted-by',
+    'comments-on',
+    'comment-in',
+    'corrects',
+    'correction-in',
+  ];
+
+  /// Returns the enum value with an element attached
+  ArtifactRelationshipType withElement(Element? newElement) {
+    return ArtifactRelationshipType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ArtifactRelationshipType.$fhirCode';
+  String toString() => 'ArtifactRelationshipType.$value';
 }

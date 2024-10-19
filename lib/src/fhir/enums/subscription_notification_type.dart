@@ -5,100 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of notification represented by the status message.
 @Entity()
-class SubscriptionNotificationType {
-  // Private constructor for internal use (like enum)
-  SubscriptionNotificationType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubscriptionNotificationType values
-  /// handshake
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionNotificationType handshake =
-      SubscriptionNotificationType._(
-    'handshake',
-  );
-
-  /// heartbeat
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionNotificationType heartbeat =
-      SubscriptionNotificationType._(
-    'heartbeat',
-  );
-
-  /// event_notification
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionNotificationType event_notification =
-      SubscriptionNotificationType._(
-    'event-notification',
-  );
-
-  /// query_status
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionNotificationType query_status =
-      SubscriptionNotificationType._(
-    'query-status',
-  );
-
-  /// query_event
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionNotificationType query_event =
-      SubscriptionNotificationType._(
-    'query-event',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SubscriptionNotificationType elementOnly =
-      SubscriptionNotificationType._('');
-
-  /// List of all enum-like values
-  static final List<SubscriptionNotificationType> values = [
-    handshake,
-    heartbeat,
-    event_notification,
-    query_status,
-    query_event,
-  ];
-
-  /// Returns the enum value with an element attached
-  SubscriptionNotificationType withElement(Element? newElement) {
-    return SubscriptionNotificationType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SubscriptionNotificationType extends FhirCode {
   /// Factory constructor to create [SubscriptionNotificationType] from JSON.
-  static SubscriptionNotificationType fromJson(Map<String, dynamic> json) {
+  factory SubscriptionNotificationType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubscriptionNotificationType.elementOnly.withElement(element);
+      return SubscriptionNotificationType.elementOnly(element);
     }
-    return SubscriptionNotificationType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SubscriptionNotificationType._(value, element);
+    }
+    throw ArgumentError(
+      'SubscriptionNotificationType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// handshake
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionNotificationType.handshake([this.element])
+      : dbValue = 'handshake',
+        super('handshake', element);
+
+  /// heartbeat
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionNotificationType.heartbeat([this.element])
+      : dbValue = 'heartbeat',
+        super('heartbeat', element);
+
+  /// event_notification
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionNotificationType.event_notification([this.element])
+      : dbValue = 'event-notification',
+        super('event-notification', element);
+
+  /// query_status
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionNotificationType.query_status([this.element])
+      : dbValue = 'query-status',
+        super('query-status', element);
+
+  /// query_event
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionNotificationType.query_event([this.element])
+      : dbValue = 'query-event',
+        super('query-event', element);
+
+  /// For instances where an Element is present but not value
+
+  SubscriptionNotificationType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SubscriptionNotificationType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'handshake',
+    'heartbeat',
+    'event-notification',
+    'query-status',
+    'query-event',
+  ];
+
+  /// Returns the enum value with an element attached
+  SubscriptionNotificationType withElement(Element? newElement) {
+    return SubscriptionNotificationType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SubscriptionNotificationType.$fhirCode';
+  String toString() => 'SubscriptionNotificationType.$value';
 }

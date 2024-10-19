@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes a sample set of Payment Status codes.
 @Entity()
-class PaymentStatusCodes {
-  // Private constructor for internal use (like enum)
-  PaymentStatusCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// PaymentStatusCodes values
-  /// paid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PaymentStatusCodes paid = PaymentStatusCodes._(
-    'paid',
-  );
-
-  /// cleared
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PaymentStatusCodes cleared = PaymentStatusCodes._(
-    'cleared',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final PaymentStatusCodes elementOnly = PaymentStatusCodes._('');
-
-  /// List of all enum-like values
-  static final List<PaymentStatusCodes> values = [
-    paid,
-    cleared,
-  ];
-
-  /// Returns the enum value with an element attached
-  PaymentStatusCodes withElement(Element? newElement) {
-    return PaymentStatusCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class PaymentStatusCodes extends FhirCode {
   /// Factory constructor to create [PaymentStatusCodes] from JSON.
-  static PaymentStatusCodes fromJson(Map<String, dynamic> json) {
+  factory PaymentStatusCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PaymentStatusCodes.elementOnly.withElement(element);
+      return PaymentStatusCodes.elementOnly(element);
     }
-    return PaymentStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return PaymentStatusCodes._(value, element);
+    }
+    throw ArgumentError(
+      'PaymentStatusCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// paid
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PaymentStatusCodes.paid([this.element])
+      : dbValue = 'paid',
+        super('paid', element);
+
+  /// cleared
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PaymentStatusCodes.cleared([this.element])
+      : dbValue = 'cleared',
+        super('cleared', element);
+
+  /// For instances where an Element is present but not value
+
+  PaymentStatusCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  PaymentStatusCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'paid',
+    'cleared',
+  ];
+
+  /// Returns the enum value with an element attached
+  PaymentStatusCodes withElement(Element? newElement) {
+    return PaymentStatusCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'PaymentStatusCodes.$fhirCode';
+  String toString() => 'PaymentStatusCodes.$value';
 }

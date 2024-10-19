@@ -5,171 +5,179 @@ import 'package:objectbox/objectbox.dart';
 
 /// Overall categorization of the event, e.g. product-related or situational.
 @Entity()
-class AdverseEventCategory {
-  // Private constructor for internal use (like enum)
-  AdverseEventCategory._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AdverseEventCategory values
-  /// product_problem
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCategory product_problem = AdverseEventCategory._(
-    'product-problem',
-  );
-
-  /// product_quality
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCategory product_quality = AdverseEventCategory._(
-    'product-quality',
-  );
-
-  /// product_use_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCategory product_use_error = AdverseEventCategory._(
-    'product-use-error',
-  );
-
-  /// wrong_dose
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCategory wrong_dose = AdverseEventCategory._(
-    'wrong-dose',
-  );
-
-  /// incorrect_prescribing_information
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCategory incorrect_prescribing_information =
-      AdverseEventCategory._(
-    'incorrect-prescribing-information',
-  );
-
-  /// wrong_technique
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCategory wrong_technique = AdverseEventCategory._(
-    'wrong-technique',
-  );
-
-  /// wrong_route_of_administration
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCategory wrong_route_of_administration =
-      AdverseEventCategory._(
-    'wrong-route-of-administration',
-  );
-
-  /// wrong_rate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCategory wrong_rate = AdverseEventCategory._(
-    'wrong-rate',
-  );
-
-  /// wrong_duration
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCategory wrong_duration = AdverseEventCategory._(
-    'wrong-duration',
-  );
-
-  /// wrong_time
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCategory wrong_time = AdverseEventCategory._(
-    'wrong-time',
-  );
-
-  /// expired_drug
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCategory expired_drug = AdverseEventCategory._(
-    'expired-drug',
-  );
-
-  /// medical_device_use_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCategory medical_device_use_error =
-      AdverseEventCategory._(
-    'medical-device-use-error',
-  );
-
-  /// problem_different_manufacturer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCategory problem_different_manufacturer =
-      AdverseEventCategory._(
-    'problem-different-manufacturer',
-  );
-
-  /// unsafe_physical_environment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCategory unsafe_physical_environment =
-      AdverseEventCategory._(
-    'unsafe-physical-environment',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AdverseEventCategory elementOnly = AdverseEventCategory._('');
-
-  /// List of all enum-like values
-  static final List<AdverseEventCategory> values = [
-    product_problem,
-    product_quality,
-    product_use_error,
-    wrong_dose,
-    incorrect_prescribing_information,
-    wrong_technique,
-    wrong_route_of_administration,
-    wrong_rate,
-    wrong_duration,
-    wrong_time,
-    expired_drug,
-    medical_device_use_error,
-    problem_different_manufacturer,
-    unsafe_physical_environment,
-  ];
-
-  /// Returns the enum value with an element attached
-  AdverseEventCategory withElement(Element? newElement) {
-    return AdverseEventCategory._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AdverseEventCategory extends FhirCode {
   /// Factory constructor to create [AdverseEventCategory] from JSON.
-  static AdverseEventCategory fromJson(Map<String, dynamic> json) {
+  factory AdverseEventCategory.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdverseEventCategory.elementOnly.withElement(element);
+      return AdverseEventCategory.elementOnly(element);
     }
-    return AdverseEventCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AdverseEventCategory._(value, element);
+    }
+    throw ArgumentError(
+      'AdverseEventCategory.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// product_problem
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCategory.product_problem([this.element])
+      : dbValue = 'product-problem',
+        super('product-problem', element);
+
+  /// product_quality
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCategory.product_quality([this.element])
+      : dbValue = 'product-quality',
+        super('product-quality', element);
+
+  /// product_use_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCategory.product_use_error([this.element])
+      : dbValue = 'product-use-error',
+        super('product-use-error', element);
+
+  /// wrong_dose
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCategory.wrong_dose([this.element])
+      : dbValue = 'wrong-dose',
+        super('wrong-dose', element);
+
+  /// incorrect_prescribing_information
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCategory.incorrect_prescribing_information([this.element])
+      : dbValue = 'incorrect-prescribing-information',
+        super('incorrect-prescribing-information', element);
+
+  /// wrong_technique
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCategory.wrong_technique([this.element])
+      : dbValue = 'wrong-technique',
+        super('wrong-technique', element);
+
+  /// wrong_route_of_administration
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCategory.wrong_route_of_administration([this.element])
+      : dbValue = 'wrong-route-of-administration',
+        super('wrong-route-of-administration', element);
+
+  /// wrong_rate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCategory.wrong_rate([this.element])
+      : dbValue = 'wrong-rate',
+        super('wrong-rate', element);
+
+  /// wrong_duration
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCategory.wrong_duration([this.element])
+      : dbValue = 'wrong-duration',
+        super('wrong-duration', element);
+
+  /// wrong_time
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCategory.wrong_time([this.element])
+      : dbValue = 'wrong-time',
+        super('wrong-time', element);
+
+  /// expired_drug
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCategory.expired_drug([this.element])
+      : dbValue = 'expired-drug',
+        super('expired-drug', element);
+
+  /// medical_device_use_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCategory.medical_device_use_error([this.element])
+      : dbValue = 'medical-device-use-error',
+        super('medical-device-use-error', element);
+
+  /// problem_different_manufacturer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCategory.problem_different_manufacturer([this.element])
+      : dbValue = 'problem-different-manufacturer',
+        super('problem-different-manufacturer', element);
+
+  /// unsafe_physical_environment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCategory.unsafe_physical_environment([this.element])
+      : dbValue = 'unsafe-physical-environment',
+        super('unsafe-physical-environment', element);
+
+  /// For instances where an Element is present but not value
+
+  AdverseEventCategory.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AdverseEventCategory._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'product-problem',
+    'product-quality',
+    'product-use-error',
+    'wrong-dose',
+    'incorrect-prescribing-information',
+    'wrong-technique',
+    'wrong-route-of-administration',
+    'wrong-rate',
+    'wrong-duration',
+    'wrong-time',
+    'expired-drug',
+    'medical-device-use-error',
+    'problem-different-manufacturer',
+    'unsafe-physical-environment',
+  ];
+
+  /// Returns the enum value with an element attached
+  AdverseEventCategory withElement(Element? newElement) {
+    return AdverseEventCategory._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AdverseEventCategory.$fhirCode';
+  String toString() => 'AdverseEventCategory.$value';
 }

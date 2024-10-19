@@ -5,100 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// An example value set of SNOMED CT concepts that can classify a requested service
 @Entity()
-class ServiceRequestCategoryCodes {
-  // Private constructor for internal use (like enum)
-  ServiceRequestCategoryCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ServiceRequestCategoryCodes values
-  /// value108252007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ServiceRequestCategoryCodes value108252007 =
-      ServiceRequestCategoryCodes._(
-    '108252007',
-  );
-
-  /// value363679005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ServiceRequestCategoryCodes value363679005 =
-      ServiceRequestCategoryCodes._(
-    '363679005',
-  );
-
-  /// value409063005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ServiceRequestCategoryCodes value409063005 =
-      ServiceRequestCategoryCodes._(
-    '409063005',
-  );
-
-  /// value409073007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ServiceRequestCategoryCodes value409073007 =
-      ServiceRequestCategoryCodes._(
-    '409073007',
-  );
-
-  /// value387713003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ServiceRequestCategoryCodes value387713003 =
-      ServiceRequestCategoryCodes._(
-    '387713003',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ServiceRequestCategoryCodes elementOnly =
-      ServiceRequestCategoryCodes._('');
-
-  /// List of all enum-like values
-  static final List<ServiceRequestCategoryCodes> values = [
-    value108252007,
-    value363679005,
-    value409063005,
-    value409073007,
-    value387713003,
-  ];
-
-  /// Returns the enum value with an element attached
-  ServiceRequestCategoryCodes withElement(Element? newElement) {
-    return ServiceRequestCategoryCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ServiceRequestCategoryCodes extends FhirCode {
   /// Factory constructor to create [ServiceRequestCategoryCodes] from JSON.
-  static ServiceRequestCategoryCodes fromJson(Map<String, dynamic> json) {
+  factory ServiceRequestCategoryCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ServiceRequestCategoryCodes.elementOnly.withElement(element);
+      return ServiceRequestCategoryCodes.elementOnly(element);
     }
-    return ServiceRequestCategoryCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ServiceRequestCategoryCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ServiceRequestCategoryCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value108252007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ServiceRequestCategoryCodes.value108252007([this.element])
+      : dbValue = '108252007',
+        super('108252007', element);
+
+  /// value363679005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ServiceRequestCategoryCodes.value363679005([this.element])
+      : dbValue = '363679005',
+        super('363679005', element);
+
+  /// value409063005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ServiceRequestCategoryCodes.value409063005([this.element])
+      : dbValue = '409063005',
+        super('409063005', element);
+
+  /// value409073007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ServiceRequestCategoryCodes.value409073007([this.element])
+      : dbValue = '409073007',
+        super('409073007', element);
+
+  /// value387713003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ServiceRequestCategoryCodes.value387713003([this.element])
+      : dbValue = '387713003',
+        super('387713003', element);
+
+  /// For instances where an Element is present but not value
+
+  ServiceRequestCategoryCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ServiceRequestCategoryCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '108252007',
+    '363679005',
+    '409063005',
+    '409073007',
+    '387713003',
+  ];
+
+  /// Returns the enum value with an element attached
+  ServiceRequestCategoryCodes withElement(Element? newElement) {
+    return ServiceRequestCategoryCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ServiceRequestCategoryCodes.$fhirCode';
+  String toString() => 'ServiceRequestCategoryCodes.$value';
 }

@@ -5,73 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes smattering of Payment Adjustment Reason codes.
 @Entity()
-class PaymentAdjustmentReasonCodes {
-  // Private constructor for internal use (like enum)
-  PaymentAdjustmentReasonCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// PaymentAdjustmentReasonCodes values
-  /// a001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PaymentAdjustmentReasonCodes a001 =
-      PaymentAdjustmentReasonCodes._(
-    'a001',
-  );
-
-  /// a002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PaymentAdjustmentReasonCodes a002 =
-      PaymentAdjustmentReasonCodes._(
-    'a002',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final PaymentAdjustmentReasonCodes elementOnly =
-      PaymentAdjustmentReasonCodes._('');
-
-  /// List of all enum-like values
-  static final List<PaymentAdjustmentReasonCodes> values = [
-    a001,
-    a002,
-  ];
-
-  /// Returns the enum value with an element attached
-  PaymentAdjustmentReasonCodes withElement(Element? newElement) {
-    return PaymentAdjustmentReasonCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class PaymentAdjustmentReasonCodes extends FhirCode {
   /// Factory constructor to create [PaymentAdjustmentReasonCodes] from JSON.
-  static PaymentAdjustmentReasonCodes fromJson(Map<String, dynamic> json) {
+  factory PaymentAdjustmentReasonCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PaymentAdjustmentReasonCodes.elementOnly.withElement(element);
+      return PaymentAdjustmentReasonCodes.elementOnly(element);
     }
-    return PaymentAdjustmentReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return PaymentAdjustmentReasonCodes._(value, element);
+    }
+    throw ArgumentError(
+      'PaymentAdjustmentReasonCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// a001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PaymentAdjustmentReasonCodes.a001([this.element])
+      : dbValue = 'a001',
+        super('a001', element);
+
+  /// a002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PaymentAdjustmentReasonCodes.a002([this.element])
+      : dbValue = 'a002',
+        super('a002', element);
+
+  /// For instances where an Element is present but not value
+
+  PaymentAdjustmentReasonCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  PaymentAdjustmentReasonCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'a001',
+    'a002',
+  ];
+
+  /// Returns the enum value with an element attached
+  PaymentAdjustmentReasonCodes withElement(Element? newElement) {
+    return PaymentAdjustmentReasonCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'PaymentAdjustmentReasonCodes.$fhirCode';
+  String toString() => 'PaymentAdjustmentReasonCodes.$value';
 }

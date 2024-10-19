@@ -5,216 +5,211 @@ import 'package:objectbox/objectbox.dart';
 
 /// The Digital Signature Purposes, an indication of the reason an entity signs a document. This is included in the signed information and can be used when determining accountability for various actions concerning the document. Examples include: author, transcriptionist/recorder, and witness.
 @Entity()
-class SignatureTypeCodes {
-  // Private constructor for internal use (like enum)
-  SignatureTypeCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SignatureTypeCodes values
-  /// value1_2_840_10065_1_12_1_1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_1 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.1',
-  );
-
-  /// value1_2_840_10065_1_12_1_2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_2 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.2',
-  );
-
-  /// value1_2_840_10065_1_12_1_3
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_3 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.3',
-  );
-
-  /// value1_2_840_10065_1_12_1_4
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_4 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.4',
-  );
-
-  /// value1_2_840_10065_1_12_1_5
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_5 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.5',
-  );
-
-  /// value1_2_840_10065_1_12_1_6
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_6 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.6',
-  );
-
-  /// value1_2_840_10065_1_12_1_7
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_7 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.7',
-  );
-
-  /// value1_2_840_10065_1_12_1_8
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_8 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.8',
-  );
-
-  /// value1_2_840_10065_1_12_1_9
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_9 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.9',
-  );
-
-  /// value1_2_840_10065_1_12_1_10
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_10 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.10',
-  );
-
-  /// value1_2_840_10065_1_12_1_11
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_11 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.11',
-  );
-
-  /// value1_2_840_10065_1_12_1_12
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_12 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.12',
-  );
-
-  /// value1_2_840_10065_1_12_1_13
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_13 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.13',
-  );
-
-  /// value1_2_840_10065_1_12_1_14
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_14 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.14',
-  );
-
-  /// value1_2_840_10065_1_12_1_15
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_15 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.15',
-  );
-
-  /// value1_2_840_10065_1_12_1_16
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_16 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.16',
-  );
-
-  /// value1_2_840_10065_1_12_1_17
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_17 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.17',
-  );
-
-  /// value1_2_840_10065_1_12_1_18
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SignatureTypeCodes value1_2_840_10065_1_12_1_18 =
-      SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.18',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SignatureTypeCodes elementOnly = SignatureTypeCodes._('');
-
-  /// List of all enum-like values
-  static final List<SignatureTypeCodes> values = [
-    value1_2_840_10065_1_12_1_1,
-    value1_2_840_10065_1_12_1_2,
-    value1_2_840_10065_1_12_1_3,
-    value1_2_840_10065_1_12_1_4,
-    value1_2_840_10065_1_12_1_5,
-    value1_2_840_10065_1_12_1_6,
-    value1_2_840_10065_1_12_1_7,
-    value1_2_840_10065_1_12_1_8,
-    value1_2_840_10065_1_12_1_9,
-    value1_2_840_10065_1_12_1_10,
-    value1_2_840_10065_1_12_1_11,
-    value1_2_840_10065_1_12_1_12,
-    value1_2_840_10065_1_12_1_13,
-    value1_2_840_10065_1_12_1_14,
-    value1_2_840_10065_1_12_1_15,
-    value1_2_840_10065_1_12_1_16,
-    value1_2_840_10065_1_12_1_17,
-    value1_2_840_10065_1_12_1_18,
-  ];
-
-  /// Returns the enum value with an element attached
-  SignatureTypeCodes withElement(Element? newElement) {
-    return SignatureTypeCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SignatureTypeCodes extends FhirCode {
   /// Factory constructor to create [SignatureTypeCodes] from JSON.
-  static SignatureTypeCodes fromJson(Map<String, dynamic> json) {
+  factory SignatureTypeCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SignatureTypeCodes.elementOnly.withElement(element);
+      return SignatureTypeCodes.elementOnly(element);
     }
-    return SignatureTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SignatureTypeCodes._(value, element);
+    }
+    throw ArgumentError(
+      'SignatureTypeCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value1_2_840_10065_1_12_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_1([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.1',
+        super('1.2.840.10065.1.12.1.1', element);
+
+  /// value1_2_840_10065_1_12_1_2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_2([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.2',
+        super('1.2.840.10065.1.12.1.2', element);
+
+  /// value1_2_840_10065_1_12_1_3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_3([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.3',
+        super('1.2.840.10065.1.12.1.3', element);
+
+  /// value1_2_840_10065_1_12_1_4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_4([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.4',
+        super('1.2.840.10065.1.12.1.4', element);
+
+  /// value1_2_840_10065_1_12_1_5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_5([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.5',
+        super('1.2.840.10065.1.12.1.5', element);
+
+  /// value1_2_840_10065_1_12_1_6
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_6([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.6',
+        super('1.2.840.10065.1.12.1.6', element);
+
+  /// value1_2_840_10065_1_12_1_7
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_7([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.7',
+        super('1.2.840.10065.1.12.1.7', element);
+
+  /// value1_2_840_10065_1_12_1_8
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_8([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.8',
+        super('1.2.840.10065.1.12.1.8', element);
+
+  /// value1_2_840_10065_1_12_1_9
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_9([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.9',
+        super('1.2.840.10065.1.12.1.9', element);
+
+  /// value1_2_840_10065_1_12_1_10
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_10([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.10',
+        super('1.2.840.10065.1.12.1.10', element);
+
+  /// value1_2_840_10065_1_12_1_11
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_11([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.11',
+        super('1.2.840.10065.1.12.1.11', element);
+
+  /// value1_2_840_10065_1_12_1_12
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_12([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.12',
+        super('1.2.840.10065.1.12.1.12', element);
+
+  /// value1_2_840_10065_1_12_1_13
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_13([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.13',
+        super('1.2.840.10065.1.12.1.13', element);
+
+  /// value1_2_840_10065_1_12_1_14
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_14([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.14',
+        super('1.2.840.10065.1.12.1.14', element);
+
+  /// value1_2_840_10065_1_12_1_15
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_15([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.15',
+        super('1.2.840.10065.1.12.1.15', element);
+
+  /// value1_2_840_10065_1_12_1_16
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_16([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.16',
+        super('1.2.840.10065.1.12.1.16', element);
+
+  /// value1_2_840_10065_1_12_1_17
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_17([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.17',
+        super('1.2.840.10065.1.12.1.17', element);
+
+  /// value1_2_840_10065_1_12_1_18
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SignatureTypeCodes.value1_2_840_10065_1_12_1_18([this.element])
+      : dbValue = '1.2.840.10065.1.12.1.18',
+        super('1.2.840.10065.1.12.1.18', element);
+
+  /// For instances where an Element is present but not value
+
+  SignatureTypeCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SignatureTypeCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '1.2.840.10065.1.12.1.1',
+    '1.2.840.10065.1.12.1.2',
+    '1.2.840.10065.1.12.1.3',
+    '1.2.840.10065.1.12.1.4',
+    '1.2.840.10065.1.12.1.5',
+    '1.2.840.10065.1.12.1.6',
+    '1.2.840.10065.1.12.1.7',
+    '1.2.840.10065.1.12.1.8',
+    '1.2.840.10065.1.12.1.9',
+    '1.2.840.10065.1.12.1.10',
+    '1.2.840.10065.1.12.1.11',
+    '1.2.840.10065.1.12.1.12',
+    '1.2.840.10065.1.12.1.13',
+    '1.2.840.10065.1.12.1.14',
+    '1.2.840.10065.1.12.1.15',
+    '1.2.840.10065.1.12.1.16',
+    '1.2.840.10065.1.12.1.17',
+    '1.2.840.10065.1.12.1.18',
+  ];
+
+  /// Returns the enum value with an element attached
+  SignatureTypeCodes withElement(Element? newElement) {
+    return SignatureTypeCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SignatureTypeCodes.$fhirCode';
+  String toString() => 'SignatureTypeCodes.$value';
 }

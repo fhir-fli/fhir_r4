@@ -5,90 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// Describes the type of a metric calibration.
 @Entity()
-class DeviceMetricCalibrationType {
-  // Private constructor for internal use (like enum)
-  DeviceMetricCalibrationType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DeviceMetricCalibrationType values
-  /// unspecified
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricCalibrationType unspecified =
-      DeviceMetricCalibrationType._(
-    'unspecified',
-  );
-
-  /// offset
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricCalibrationType offset =
-      DeviceMetricCalibrationType._(
-    'offset',
-  );
-
-  /// gain
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricCalibrationType gain = DeviceMetricCalibrationType._(
-    'gain',
-  );
-
-  /// two_point
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricCalibrationType two_point =
-      DeviceMetricCalibrationType._(
-    'two-point',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final DeviceMetricCalibrationType elementOnly =
-      DeviceMetricCalibrationType._('');
-
-  /// List of all enum-like values
-  static final List<DeviceMetricCalibrationType> values = [
-    unspecified,
-    offset,
-    gain,
-    two_point,
-  ];
-
-  /// Returns the enum value with an element attached
-  DeviceMetricCalibrationType withElement(Element? newElement) {
-    return DeviceMetricCalibrationType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class DeviceMetricCalibrationType extends FhirCode {
   /// Factory constructor to create [DeviceMetricCalibrationType] from JSON.
-  static DeviceMetricCalibrationType fromJson(Map<String, dynamic> json) {
+  factory DeviceMetricCalibrationType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceMetricCalibrationType.elementOnly.withElement(element);
+      return DeviceMetricCalibrationType.elementOnly(element);
     }
-    return DeviceMetricCalibrationType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return DeviceMetricCalibrationType._(value, element);
+    }
+    throw ArgumentError(
+      'DeviceMetricCalibrationType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// unspecified
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricCalibrationType.unspecified([this.element])
+      : dbValue = 'unspecified',
+        super('unspecified', element);
+
+  /// offset
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricCalibrationType.offset([this.element])
+      : dbValue = 'offset',
+        super('offset', element);
+
+  /// gain
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricCalibrationType.gain([this.element])
+      : dbValue = 'gain',
+        super('gain', element);
+
+  /// two_point
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricCalibrationType.two_point([this.element])
+      : dbValue = 'two-point',
+        super('two-point', element);
+
+  /// For instances where an Element is present but not value
+
+  DeviceMetricCalibrationType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  DeviceMetricCalibrationType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'unspecified',
+    'offset',
+    'gain',
+    'two-point',
+  ];
+
+  /// Returns the enum value with an element attached
+  DeviceMetricCalibrationType withElement(Element? newElement) {
+    return DeviceMetricCalibrationType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'DeviceMetricCalibrationType.$fhirCode';
+  String toString() => 'DeviceMetricCalibrationType.$value';
 }

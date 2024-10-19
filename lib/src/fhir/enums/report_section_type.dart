@@ -5,287 +5,291 @@ import 'package:objectbox/objectbox.dart';
 
 /// Evidence Report Section Type.
 @Entity()
-class ReportSectionType {
-  // Private constructor for internal use (like enum)
-  ReportSectionType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ReportSectionType values
-  /// Evidence
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Evidence = ReportSectionType._(
-    'Evidence',
-  );
-
-  /// Intervention_group_alone_Evidence
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Intervention_group_alone_Evidence =
-      ReportSectionType._(
-    'Intervention-group-alone-Evidence',
-  );
-
-  /// Intervention_vs_Control_Evidence
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Intervention_vs_Control_Evidence =
-      ReportSectionType._(
-    'Intervention-vs-Control-Evidence',
-  );
-
-  /// Control_group_alone_Evidence
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Control_group_alone_Evidence =
-      ReportSectionType._(
-    'Control-group-alone-Evidence',
-  );
-
-  /// EvidenceVariable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType EvidenceVariable = ReportSectionType._(
-    'EvidenceVariable',
-  );
-
-  /// EvidenceVariable_observed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType EvidenceVariable_observed =
-      ReportSectionType._(
-    'EvidenceVariable-observed',
-  );
-
-  /// EvidenceVariable_intended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType EvidenceVariable_intended =
-      ReportSectionType._(
-    'EvidenceVariable-intended',
-  );
-
-  /// EvidenceVariable_population
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType EvidenceVariable_population =
-      ReportSectionType._(
-    'EvidenceVariable-population',
-  );
-
-  /// EvidenceVariable_exposure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType EvidenceVariable_exposure =
-      ReportSectionType._(
-    'EvidenceVariable-exposure',
-  );
-
-  /// EvidenceVariable_outcome
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType EvidenceVariable_outcome = ReportSectionType._(
-    'EvidenceVariable-outcome',
-  );
-
-  /// Efficacy_outcomes
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Efficacy_outcomes = ReportSectionType._(
-    'Efficacy-outcomes',
-  );
-
-  /// Harms_outcomes
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Harms_outcomes = ReportSectionType._(
-    'Harms-outcomes',
-  );
-
-  /// SampleSize
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType SampleSize = ReportSectionType._(
-    'SampleSize',
-  );
-
-  /// References
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType References = ReportSectionType._(
-    'References',
-  );
-
-  /// Assertion
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Assertion = ReportSectionType._(
-    'Assertion',
-  );
-
-  /// Reasons
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Reasons = ReportSectionType._(
-    'Reasons',
-  );
-
-  /// Certainty_of_Evidence
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Certainty_of_Evidence = ReportSectionType._(
-    'Certainty-of-Evidence',
-  );
-
-  /// Evidence_Classifier
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Evidence_Classifier = ReportSectionType._(
-    'Evidence-Classifier',
-  );
-
-  /// Warnings
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Warnings = ReportSectionType._(
-    'Warnings',
-  );
-
-  /// Text_Summary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Text_Summary = ReportSectionType._(
-    'Text-Summary',
-  );
-
-  /// SummaryOfBodyOfEvidenceFindings
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType SummaryOfBodyOfEvidenceFindings =
-      ReportSectionType._(
-    'SummaryOfBodyOfEvidenceFindings',
-  );
-
-  /// SummaryOfIndividualStudyFindings
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType SummaryOfIndividualStudyFindings =
-      ReportSectionType._(
-    'SummaryOfIndividualStudyFindings',
-  );
-
-  /// Header
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Header = ReportSectionType._(
-    'Header',
-  );
-
-  /// Tables
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Tables = ReportSectionType._(
-    'Tables',
-  );
-
-  /// Table
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Table = ReportSectionType._(
-    'Table',
-  );
-
-  /// Row_Headers
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Row_Headers = ReportSectionType._(
-    'Row-Headers',
-  );
-
-  /// Column_Header
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Column_Header = ReportSectionType._(
-    'Column-Header',
-  );
-
-  /// Column_Headers
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportSectionType Column_Headers = ReportSectionType._(
-    'Column-Headers',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ReportSectionType elementOnly = ReportSectionType._('');
-
-  /// List of all enum-like values
-  static final List<ReportSectionType> values = [
-    Evidence,
-    Intervention_group_alone_Evidence,
-    Intervention_vs_Control_Evidence,
-    Control_group_alone_Evidence,
-    EvidenceVariable,
-    EvidenceVariable_observed,
-    EvidenceVariable_intended,
-    EvidenceVariable_population,
-    EvidenceVariable_exposure,
-    EvidenceVariable_outcome,
-    Efficacy_outcomes,
-    Harms_outcomes,
-    SampleSize,
-    References,
-    Assertion,
-    Reasons,
-    Certainty_of_Evidence,
-    Evidence_Classifier,
-    Warnings,
-    Text_Summary,
-    SummaryOfBodyOfEvidenceFindings,
-    SummaryOfIndividualStudyFindings,
-    Header,
-    Tables,
-    Table,
-    Row_Headers,
-    Column_Header,
-    Column_Headers,
-  ];
-
-  /// Returns the enum value with an element attached
-  ReportSectionType withElement(Element? newElement) {
-    return ReportSectionType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ReportSectionType extends FhirCode {
   /// Factory constructor to create [ReportSectionType] from JSON.
-  static ReportSectionType fromJson(Map<String, dynamic> json) {
+  factory ReportSectionType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ReportSectionType.elementOnly.withElement(element);
+      return ReportSectionType.elementOnly(element);
     }
-    return ReportSectionType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ReportSectionType._(value, element);
+    }
+    throw ArgumentError(
+      'ReportSectionType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Evidence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Evidence([this.element])
+      : dbValue = 'Evidence',
+        super('Evidence', element);
+
+  /// Intervention_group_alone_Evidence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Intervention_group_alone_Evidence([this.element])
+      : dbValue = 'Intervention-group-alone-Evidence',
+        super('Intervention-group-alone-Evidence', element);
+
+  /// Intervention_vs_Control_Evidence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Intervention_vs_Control_Evidence([this.element])
+      : dbValue = 'Intervention-vs-Control-Evidence',
+        super('Intervention-vs-Control-Evidence', element);
+
+  /// Control_group_alone_Evidence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Control_group_alone_Evidence([this.element])
+      : dbValue = 'Control-group-alone-Evidence',
+        super('Control-group-alone-Evidence', element);
+
+  /// EvidenceVariable
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.EvidenceVariable([this.element])
+      : dbValue = 'EvidenceVariable',
+        super('EvidenceVariable', element);
+
+  /// EvidenceVariable_observed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.EvidenceVariable_observed([this.element])
+      : dbValue = 'EvidenceVariable-observed',
+        super('EvidenceVariable-observed', element);
+
+  /// EvidenceVariable_intended
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.EvidenceVariable_intended([this.element])
+      : dbValue = 'EvidenceVariable-intended',
+        super('EvidenceVariable-intended', element);
+
+  /// EvidenceVariable_population
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.EvidenceVariable_population([this.element])
+      : dbValue = 'EvidenceVariable-population',
+        super('EvidenceVariable-population', element);
+
+  /// EvidenceVariable_exposure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.EvidenceVariable_exposure([this.element])
+      : dbValue = 'EvidenceVariable-exposure',
+        super('EvidenceVariable-exposure', element);
+
+  /// EvidenceVariable_outcome
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.EvidenceVariable_outcome([this.element])
+      : dbValue = 'EvidenceVariable-outcome',
+        super('EvidenceVariable-outcome', element);
+
+  /// Efficacy_outcomes
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Efficacy_outcomes([this.element])
+      : dbValue = 'Efficacy-outcomes',
+        super('Efficacy-outcomes', element);
+
+  /// Harms_outcomes
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Harms_outcomes([this.element])
+      : dbValue = 'Harms-outcomes',
+        super('Harms-outcomes', element);
+
+  /// SampleSize
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.SampleSize([this.element])
+      : dbValue = 'SampleSize',
+        super('SampleSize', element);
+
+  /// References
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.References([this.element])
+      : dbValue = 'References',
+        super('References', element);
+
+  /// Assertion
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Assertion([this.element])
+      : dbValue = 'Assertion',
+        super('Assertion', element);
+
+  /// Reasons
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Reasons([this.element])
+      : dbValue = 'Reasons',
+        super('Reasons', element);
+
+  /// Certainty_of_Evidence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Certainty_of_Evidence([this.element])
+      : dbValue = 'Certainty-of-Evidence',
+        super('Certainty-of-Evidence', element);
+
+  /// Evidence_Classifier
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Evidence_Classifier([this.element])
+      : dbValue = 'Evidence-Classifier',
+        super('Evidence-Classifier', element);
+
+  /// Warnings
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Warnings([this.element])
+      : dbValue = 'Warnings',
+        super('Warnings', element);
+
+  /// Text_Summary
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Text_Summary([this.element])
+      : dbValue = 'Text-Summary',
+        super('Text-Summary', element);
+
+  /// SummaryOfBodyOfEvidenceFindings
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.SummaryOfBodyOfEvidenceFindings([this.element])
+      : dbValue = 'SummaryOfBodyOfEvidenceFindings',
+        super('SummaryOfBodyOfEvidenceFindings', element);
+
+  /// SummaryOfIndividualStudyFindings
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.SummaryOfIndividualStudyFindings([this.element])
+      : dbValue = 'SummaryOfIndividualStudyFindings',
+        super('SummaryOfIndividualStudyFindings', element);
+
+  /// Header
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Header([this.element])
+      : dbValue = 'Header',
+        super('Header', element);
+
+  /// Tables
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Tables([this.element])
+      : dbValue = 'Tables',
+        super('Tables', element);
+
+  /// Table
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Table([this.element])
+      : dbValue = 'Table',
+        super('Table', element);
+
+  /// Row_Headers
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Row_Headers([this.element])
+      : dbValue = 'Row-Headers',
+        super('Row-Headers', element);
+
+  /// Column_Header
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Column_Header([this.element])
+      : dbValue = 'Column-Header',
+        super('Column-Header', element);
+
+  /// Column_Headers
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportSectionType.Column_Headers([this.element])
+      : dbValue = 'Column-Headers',
+        super('Column-Headers', element);
+
+  /// For instances where an Element is present but not value
+
+  ReportSectionType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ReportSectionType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Evidence',
+    'Intervention-group-alone-Evidence',
+    'Intervention-vs-Control-Evidence',
+    'Control-group-alone-Evidence',
+    'EvidenceVariable',
+    'EvidenceVariable-observed',
+    'EvidenceVariable-intended',
+    'EvidenceVariable-population',
+    'EvidenceVariable-exposure',
+    'EvidenceVariable-outcome',
+    'Efficacy-outcomes',
+    'Harms-outcomes',
+    'SampleSize',
+    'References',
+    'Assertion',
+    'Reasons',
+    'Certainty-of-Evidence',
+    'Evidence-Classifier',
+    'Warnings',
+    'Text-Summary',
+    'SummaryOfBodyOfEvidenceFindings',
+    'SummaryOfIndividualStudyFindings',
+    'Header',
+    'Tables',
+    'Table',
+    'Row-Headers',
+    'Column-Header',
+    'Column-Headers',
+  ];
+
+  /// Returns the enum value with an element attached
+  ReportSectionType withElement(Element? newElement) {
+    return ReportSectionType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ReportSectionType.$fhirCode';
+  String toString() => 'ReportSectionType.$value';
 }

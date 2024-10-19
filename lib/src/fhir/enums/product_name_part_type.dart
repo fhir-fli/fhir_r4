@@ -5,183 +5,195 @@ import 'package:objectbox/objectbox.dart';
 
 /// Type of part of a name for a Medicinal Product.
 @Entity()
-class ProductNamePartType {
-  // Private constructor for internal use (like enum)
-  ProductNamePartType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ProductNamePartType values
-  /// FullName
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType FullName = ProductNamePartType._(
-    'FullName',
-  );
-
-  /// InventedNamePart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType InventedNamePart = ProductNamePartType._(
-    'InventedNamePart',
-  );
-
-  /// ScientificNamePart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType ScientificNamePart = ProductNamePartType._(
-    'ScientificNamePart',
-  );
-
-  /// StrengthPart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType StrengthPart = ProductNamePartType._(
-    'StrengthPart',
-  );
-
-  /// DoseFormPart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType DoseFormPart = ProductNamePartType._(
-    'DoseFormPart',
-  );
-
-  /// FormulationPart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType FormulationPart = ProductNamePartType._(
-    'FormulationPart',
-  );
-
-  /// IntendedUsePart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType IntendedUsePart = ProductNamePartType._(
-    'IntendedUsePart',
-  );
-
-  /// PopulationPart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType PopulationPart = ProductNamePartType._(
-    'PopulationPart',
-  );
-
-  /// ContainerPart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType ContainerPart = ProductNamePartType._(
-    'ContainerPart',
-  );
-
-  /// DevicePart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType DevicePart = ProductNamePartType._(
-    'DevicePart',
-  );
-
-  /// TrademarkOrCompanyPart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType TrademarkOrCompanyPart =
-      ProductNamePartType._(
-    'TrademarkOrCompanyPart',
-  );
-
-  /// TimeOrPeriodPart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType TimeOrPeriodPart = ProductNamePartType._(
-    'TimeOrPeriodPart',
-  );
-
-  /// FlavorPart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType FlavorPart = ProductNamePartType._(
-    'FlavorPart',
-  );
-
-  /// DelimiterPart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType DelimiterPart = ProductNamePartType._(
-    'DelimiterPart',
-  );
-
-  /// LegacyNamePart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType LegacyNamePart = ProductNamePartType._(
-    'LegacyNamePart',
-  );
-
-  /// SpeciesNamePart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductNamePartType SpeciesNamePart = ProductNamePartType._(
-    'SpeciesNamePart',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ProductNamePartType elementOnly = ProductNamePartType._('');
-
-  /// List of all enum-like values
-  static final List<ProductNamePartType> values = [
-    FullName,
-    InventedNamePart,
-    ScientificNamePart,
-    StrengthPart,
-    DoseFormPart,
-    FormulationPart,
-    IntendedUsePart,
-    PopulationPart,
-    ContainerPart,
-    DevicePart,
-    TrademarkOrCompanyPart,
-    TimeOrPeriodPart,
-    FlavorPart,
-    DelimiterPart,
-    LegacyNamePart,
-    SpeciesNamePart,
-  ];
-
-  /// Returns the enum value with an element attached
-  ProductNamePartType withElement(Element? newElement) {
-    return ProductNamePartType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ProductNamePartType extends FhirCode {
   /// Factory constructor to create [ProductNamePartType] from JSON.
-  static ProductNamePartType fromJson(Map<String, dynamic> json) {
+  factory ProductNamePartType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ProductNamePartType.elementOnly.withElement(element);
+      return ProductNamePartType.elementOnly(element);
     }
-    return ProductNamePartType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ProductNamePartType._(value, element);
+    }
+    throw ArgumentError(
+      'ProductNamePartType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// FullName
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.FullName([this.element])
+      : dbValue = 'FullName',
+        super('FullName', element);
+
+  /// InventedNamePart
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.InventedNamePart([this.element])
+      : dbValue = 'InventedNamePart',
+        super('InventedNamePart', element);
+
+  /// ScientificNamePart
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.ScientificNamePart([this.element])
+      : dbValue = 'ScientificNamePart',
+        super('ScientificNamePart', element);
+
+  /// StrengthPart
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.StrengthPart([this.element])
+      : dbValue = 'StrengthPart',
+        super('StrengthPart', element);
+
+  /// DoseFormPart
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.DoseFormPart([this.element])
+      : dbValue = 'DoseFormPart',
+        super('DoseFormPart', element);
+
+  /// FormulationPart
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.FormulationPart([this.element])
+      : dbValue = 'FormulationPart',
+        super('FormulationPart', element);
+
+  /// IntendedUsePart
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.IntendedUsePart([this.element])
+      : dbValue = 'IntendedUsePart',
+        super('IntendedUsePart', element);
+
+  /// PopulationPart
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.PopulationPart([this.element])
+      : dbValue = 'PopulationPart',
+        super('PopulationPart', element);
+
+  /// ContainerPart
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.ContainerPart([this.element])
+      : dbValue = 'ContainerPart',
+        super('ContainerPart', element);
+
+  /// DevicePart
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.DevicePart([this.element])
+      : dbValue = 'DevicePart',
+        super('DevicePart', element);
+
+  /// TrademarkOrCompanyPart
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.TrademarkOrCompanyPart([this.element])
+      : dbValue = 'TrademarkOrCompanyPart',
+        super('TrademarkOrCompanyPart', element);
+
+  /// TimeOrPeriodPart
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.TimeOrPeriodPart([this.element])
+      : dbValue = 'TimeOrPeriodPart',
+        super('TimeOrPeriodPart', element);
+
+  /// FlavorPart
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.FlavorPart([this.element])
+      : dbValue = 'FlavorPart',
+        super('FlavorPart', element);
+
+  /// DelimiterPart
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.DelimiterPart([this.element])
+      : dbValue = 'DelimiterPart',
+        super('DelimiterPart', element);
+
+  /// LegacyNamePart
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.LegacyNamePart([this.element])
+      : dbValue = 'LegacyNamePart',
+        super('LegacyNamePart', element);
+
+  /// SpeciesNamePart
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductNamePartType.SpeciesNamePart([this.element])
+      : dbValue = 'SpeciesNamePart',
+        super('SpeciesNamePart', element);
+
+  /// For instances where an Element is present but not value
+
+  ProductNamePartType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ProductNamePartType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'FullName',
+    'InventedNamePart',
+    'ScientificNamePart',
+    'StrengthPart',
+    'DoseFormPart',
+    'FormulationPart',
+    'IntendedUsePart',
+    'PopulationPart',
+    'ContainerPart',
+    'DevicePart',
+    'TrademarkOrCompanyPart',
+    'TimeOrPeriodPart',
+    'FlavorPart',
+    'DelimiterPart',
+    'LegacyNamePart',
+    'SpeciesNamePart',
+  ];
+
+  /// Returns the enum value with an element attached
+  ProductNamePartType withElement(Element? newElement) {
+    return ProductNamePartType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ProductNamePartType.$fhirCode';
+  String toString() => 'ProductNamePartType.$value';
 }

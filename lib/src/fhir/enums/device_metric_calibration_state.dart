@@ -5,91 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// Describes the state of a metric calibration.
 @Entity()
-class DeviceMetricCalibrationState {
-  // Private constructor for internal use (like enum)
-  DeviceMetricCalibrationState._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DeviceMetricCalibrationState values
-  /// not_calibrated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricCalibrationState not_calibrated =
-      DeviceMetricCalibrationState._(
-    'not-calibrated',
-  );
-
-  /// calibration_required
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricCalibrationState calibration_required =
-      DeviceMetricCalibrationState._(
-    'calibration-required',
-  );
-
-  /// calibrated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricCalibrationState calibrated =
-      DeviceMetricCalibrationState._(
-    'calibrated',
-  );
-
-  /// unspecified
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricCalibrationState unspecified =
-      DeviceMetricCalibrationState._(
-    'unspecified',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final DeviceMetricCalibrationState elementOnly =
-      DeviceMetricCalibrationState._('');
-
-  /// List of all enum-like values
-  static final List<DeviceMetricCalibrationState> values = [
-    not_calibrated,
-    calibration_required,
-    calibrated,
-    unspecified,
-  ];
-
-  /// Returns the enum value with an element attached
-  DeviceMetricCalibrationState withElement(Element? newElement) {
-    return DeviceMetricCalibrationState._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class DeviceMetricCalibrationState extends FhirCode {
   /// Factory constructor to create [DeviceMetricCalibrationState] from JSON.
-  static DeviceMetricCalibrationState fromJson(Map<String, dynamic> json) {
+  factory DeviceMetricCalibrationState.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceMetricCalibrationState.elementOnly.withElement(element);
+      return DeviceMetricCalibrationState.elementOnly(element);
     }
-    return DeviceMetricCalibrationState.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return DeviceMetricCalibrationState._(value, element);
+    }
+    throw ArgumentError(
+      'DeviceMetricCalibrationState.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// not_calibrated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricCalibrationState.not_calibrated([this.element])
+      : dbValue = 'not-calibrated',
+        super('not-calibrated', element);
+
+  /// calibration_required
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricCalibrationState.calibration_required([this.element])
+      : dbValue = 'calibration-required',
+        super('calibration-required', element);
+
+  /// calibrated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricCalibrationState.calibrated([this.element])
+      : dbValue = 'calibrated',
+        super('calibrated', element);
+
+  /// unspecified
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricCalibrationState.unspecified([this.element])
+      : dbValue = 'unspecified',
+        super('unspecified', element);
+
+  /// For instances where an Element is present but not value
+
+  DeviceMetricCalibrationState.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  DeviceMetricCalibrationState._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'not-calibrated',
+    'calibration-required',
+    'calibrated',
+    'unspecified',
+  ];
+
+  /// Returns the enum value with an element attached
+  DeviceMetricCalibrationState withElement(Element? newElement) {
+    return DeviceMetricCalibrationState._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'DeviceMetricCalibrationState.$fhirCode';
+  String toString() => 'DeviceMetricCalibrationState.$value';
 }

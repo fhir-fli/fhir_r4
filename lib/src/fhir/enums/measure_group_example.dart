@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// Example Measure Groups for the Measure Resource.
 @Entity()
-class MeasureGroupExample {
-  // Private constructor for internal use (like enum)
-  MeasureGroupExample._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasureGroupExample values
-  /// primary_rate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureGroupExample primary_rate = MeasureGroupExample._(
-    'primary-rate',
-  );
-
-  /// secondary_rate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureGroupExample secondary_rate = MeasureGroupExample._(
-    'secondary-rate',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MeasureGroupExample elementOnly = MeasureGroupExample._('');
-
-  /// List of all enum-like values
-  static final List<MeasureGroupExample> values = [
-    primary_rate,
-    secondary_rate,
-  ];
-
-  /// Returns the enum value with an element attached
-  MeasureGroupExample withElement(Element? newElement) {
-    return MeasureGroupExample._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MeasureGroupExample extends FhirCode {
   /// Factory constructor to create [MeasureGroupExample] from JSON.
-  static MeasureGroupExample fromJson(Map<String, dynamic> json) {
+  factory MeasureGroupExample.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureGroupExample.elementOnly.withElement(element);
+      return MeasureGroupExample.elementOnly(element);
     }
-    return MeasureGroupExample.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MeasureGroupExample._(value, element);
+    }
+    throw ArgumentError(
+      'MeasureGroupExample.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// primary_rate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureGroupExample.primary_rate([this.element])
+      : dbValue = 'primary-rate',
+        super('primary-rate', element);
+
+  /// secondary_rate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureGroupExample.secondary_rate([this.element])
+      : dbValue = 'secondary-rate',
+        super('secondary-rate', element);
+
+  /// For instances where an Element is present but not value
+
+  MeasureGroupExample.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MeasureGroupExample._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'primary-rate',
+    'secondary-rate',
+  ];
+
+  /// Returns the enum value with an element attached
+  MeasureGroupExample withElement(Element? newElement) {
+    return MeasureGroupExample._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MeasureGroupExample.$fhirCode';
+  String toString() => 'MeasureGroupExample.$value';
 }

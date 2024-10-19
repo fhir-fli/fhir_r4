@@ -5,150 +5,163 @@ import 'package:objectbox/objectbox.dart';
 
 /// This example value set defines a set of codes that can be used to indicate a type of organization.
 @Entity()
-class OrganizationType {
-  // Private constructor for internal use (like enum)
-  OrganizationType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// OrganizationType values
-  /// prov
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationType prov = OrganizationType._(
-    'prov',
-  );
-
-  /// dept
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationType dept = OrganizationType._(
-    'dept',
-  );
-
-  /// team
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationType team = OrganizationType._(
-    'team',
-  );
-
-  /// govt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationType govt = OrganizationType._(
-    'govt',
-  );
-
-  /// ins
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationType ins = OrganizationType._(
-    'ins',
-  );
-
-  /// pay
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationType pay = OrganizationType._(
-    'pay',
-  );
-
-  /// edu
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationType edu = OrganizationType._(
-    'edu',
-  );
-
-  /// reli
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationType reli = OrganizationType._(
-    'reli',
-  );
-
-  /// crs
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationType crs = OrganizationType._(
-    'crs',
-  );
-
-  /// cg
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationType cg = OrganizationType._(
-    'cg',
-  );
-
-  /// bus
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationType bus = OrganizationType._(
-    'bus',
-  );
-
-  /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationType other = OrganizationType._(
-    'other',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final OrganizationType elementOnly = OrganizationType._('');
-
-  /// List of all enum-like values
-  static final List<OrganizationType> values = [
-    prov,
-    dept,
-    team,
-    govt,
-    ins,
-    pay,
-    edu,
-    reli,
-    crs,
-    cg,
-    bus,
-    other,
-  ];
-
-  /// Returns the enum value with an element attached
-  OrganizationType withElement(Element? newElement) {
-    return OrganizationType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class OrganizationType extends FhirCode {
   /// Factory constructor to create [OrganizationType] from JSON.
-  static OrganizationType fromJson(Map<String, dynamic> json) {
+  factory OrganizationType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return OrganizationType.elementOnly.withElement(element);
+      return OrganizationType.elementOnly(element);
     }
-    return OrganizationType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return OrganizationType._(value, element);
+    }
+    throw ArgumentError(
+      'OrganizationType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// prov
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationType.prov([this.element])
+      : dbValue = 'prov',
+        super('prov', element);
+
+  /// dept
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationType.dept([this.element])
+      : dbValue = 'dept',
+        super('dept', element);
+
+  /// team
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationType.team([this.element])
+      : dbValue = 'team',
+        super('team', element);
+
+  /// govt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationType.govt([this.element])
+      : dbValue = 'govt',
+        super('govt', element);
+
+  /// ins
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationType.ins([this.element])
+      : dbValue = 'ins',
+        super('ins', element);
+
+  /// pay
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationType.pay([this.element])
+      : dbValue = 'pay',
+        super('pay', element);
+
+  /// edu
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationType.edu([this.element])
+      : dbValue = 'edu',
+        super('edu', element);
+
+  /// reli
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationType.reli([this.element])
+      : dbValue = 'reli',
+        super('reli', element);
+
+  /// crs
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationType.crs([this.element])
+      : dbValue = 'crs',
+        super('crs', element);
+
+  /// cg
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationType.cg([this.element])
+      : dbValue = 'cg',
+        super('cg', element);
+
+  /// bus
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationType.bus([this.element])
+      : dbValue = 'bus',
+        super('bus', element);
+
+  /// other
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationType.other([this.element])
+      : dbValue = 'other',
+        super('other', element);
+
+  /// For instances where an Element is present but not value
+
+  OrganizationType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  OrganizationType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'prov',
+    'dept',
+    'team',
+    'govt',
+    'ins',
+    'pay',
+    'edu',
+    'reli',
+    'crs',
+    'cg',
+    'bus',
+    'other',
+  ];
+
+  /// Returns the enum value with an element attached
+  OrganizationType withElement(Element? newElement) {
+    return OrganizationType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'OrganizationType.$fhirCode';
+  String toString() => 'OrganizationType.$value';
 }

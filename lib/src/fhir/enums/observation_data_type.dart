@@ -5,142 +5,155 @@ import 'package:objectbox/objectbox.dart';
 
 /// Permitted data type for observation value.
 @Entity()
-class ObservationDataType {
-  // Private constructor for internal use (like enum)
-  ObservationDataType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ObservationDataType values
-  /// Quantity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationDataType Quantity = ObservationDataType._(
-    'Quantity',
-  );
-
-  /// CodeableConcept
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationDataType CodeableConcept = ObservationDataType._(
-    'CodeableConcept',
-  );
-
-  /// string
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationDataType string = ObservationDataType._(
-    'string',
-  );
-
-  /// boolean
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationDataType boolean = ObservationDataType._(
-    'boolean',
-  );
-
-  /// integer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationDataType integer = ObservationDataType._(
-    'integer',
-  );
-
-  /// Range
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationDataType Range = ObservationDataType._(
-    'Range',
-  );
-
-  /// Ratio
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationDataType Ratio = ObservationDataType._(
-    'Ratio',
-  );
-
-  /// SampledData
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationDataType SampledData = ObservationDataType._(
-    'SampledData',
-  );
-
-  /// time
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationDataType time = ObservationDataType._(
-    'time',
-  );
-
-  /// dateTime
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationDataType dateTime = ObservationDataType._(
-    'dateTime',
-  );
-
-  /// Period
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationDataType Period = ObservationDataType._(
-    'Period',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ObservationDataType elementOnly = ObservationDataType._('');
-
-  /// List of all enum-like values
-  static final List<ObservationDataType> values = [
-    Quantity,
-    CodeableConcept,
-    string,
-    boolean,
-    integer,
-    Range,
-    Ratio,
-    SampledData,
-    time,
-    dateTime,
-    Period,
-  ];
-
-  /// Returns the enum value with an element attached
-  ObservationDataType withElement(Element? newElement) {
-    return ObservationDataType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ObservationDataType extends FhirCode {
   /// Factory constructor to create [ObservationDataType] from JSON.
-  static ObservationDataType fromJson(Map<String, dynamic> json) {
+  factory ObservationDataType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObservationDataType.elementOnly.withElement(element);
+      return ObservationDataType.elementOnly(element);
     }
-    return ObservationDataType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ObservationDataType._(value, element);
+    }
+    throw ArgumentError(
+      'ObservationDataType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Quantity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationDataType.Quantity([this.element])
+      : dbValue = 'Quantity',
+        super('Quantity', element);
+
+  /// CodeableConcept
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationDataType.CodeableConcept([this.element])
+      : dbValue = 'CodeableConcept',
+        super('CodeableConcept', element);
+
+  /// string
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationDataType.string([this.element])
+      : dbValue = 'string',
+        super('string', element);
+
+  /// boolean
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationDataType.boolean([this.element])
+      : dbValue = 'boolean',
+        super('boolean', element);
+
+  /// integer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationDataType.integer([this.element])
+      : dbValue = 'integer',
+        super('integer', element);
+
+  /// Range
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationDataType.Range([this.element])
+      : dbValue = 'Range',
+        super('Range', element);
+
+  /// Ratio
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationDataType.Ratio([this.element])
+      : dbValue = 'Ratio',
+        super('Ratio', element);
+
+  /// SampledData
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationDataType.SampledData([this.element])
+      : dbValue = 'SampledData',
+        super('SampledData', element);
+
+  /// time
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationDataType.time([this.element])
+      : dbValue = 'time',
+        super('time', element);
+
+  /// dateTime
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationDataType.dateTime([this.element])
+      : dbValue = 'dateTime',
+        super('dateTime', element);
+
+  /// Period
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationDataType.Period([this.element])
+      : dbValue = 'Period',
+        super('Period', element);
+
+  /// For instances where an Element is present but not value
+
+  ObservationDataType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ObservationDataType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Quantity',
+    'CodeableConcept',
+    'string',
+    'boolean',
+    'integer',
+    'Range',
+    'Ratio',
+    'SampledData',
+    'time',
+    'dateTime',
+    'Period',
+  ];
+
+  /// Returns the enum value with an element attached
+  ObservationDataType withElement(Element? newElement) {
+    return ObservationDataType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ObservationDataType.$fhirCode';
+  String toString() => 'ObservationDataType.$value';
 }

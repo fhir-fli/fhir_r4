@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// NutrientModifier : Codes for types of nutrients that are being modified such as carbohydrate or sodium. This value set includes codes from [SNOMED CT](http://snomed.info/sct) where concept is-a 226355009 (Nutrients(substance)), and the concepts for Sodium, Potassium and Fluid. This is provided as a suggestive example.
 @Entity()
-class NutrientModifierCodes {
-  // Private constructor for internal use (like enum)
-  NutrientModifierCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// NutrientModifierCodes values
-  /// value33463005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NutrientModifierCodes value33463005 = NutrientModifierCodes._(
-    '33463005',
-  );
-
-  /// value39972003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NutrientModifierCodes value39972003 = NutrientModifierCodes._(
-    '39972003',
-  );
-
-  /// value88480006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NutrientModifierCodes value88480006 = NutrientModifierCodes._(
-    '88480006',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final NutrientModifierCodes elementOnly = NutrientModifierCodes._('');
-
-  /// List of all enum-like values
-  static final List<NutrientModifierCodes> values = [
-    value33463005,
-    value39972003,
-    value88480006,
-  ];
-
-  /// Returns the enum value with an element attached
-  NutrientModifierCodes withElement(Element? newElement) {
-    return NutrientModifierCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class NutrientModifierCodes extends FhirCode {
   /// Factory constructor to create [NutrientModifierCodes] from JSON.
-  static NutrientModifierCodes fromJson(Map<String, dynamic> json) {
+  factory NutrientModifierCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NutrientModifierCodes.elementOnly.withElement(element);
+      return NutrientModifierCodes.elementOnly(element);
     }
-    return NutrientModifierCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return NutrientModifierCodes._(value, element);
+    }
+    throw ArgumentError(
+      'NutrientModifierCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value33463005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NutrientModifierCodes.value33463005([this.element])
+      : dbValue = '33463005',
+        super('33463005', element);
+
+  /// value39972003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NutrientModifierCodes.value39972003([this.element])
+      : dbValue = '39972003',
+        super('39972003', element);
+
+  /// value88480006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NutrientModifierCodes.value88480006([this.element])
+      : dbValue = '88480006',
+        super('88480006', element);
+
+  /// For instances where an Element is present but not value
+
+  NutrientModifierCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  NutrientModifierCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '33463005',
+    '39972003',
+    '88480006',
+  ];
+
+  /// Returns the enum value with an element attached
+  NutrientModifierCodes withElement(Element? newElement) {
+    return NutrientModifierCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'NutrientModifierCodes.$fhirCode';
+  String toString() => 'NutrientModifierCodes.$value';
 }

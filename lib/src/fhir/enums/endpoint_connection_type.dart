@@ -5,167 +5,179 @@ import 'package:objectbox/objectbox.dart';
 
 /// This is an example value set defined by the FHIR project, that could be used to represent possible connection type profile values.
 @Entity()
-class EndpointConnectionType {
-  // Private constructor for internal use (like enum)
-  EndpointConnectionType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EndpointConnectionType values
-  /// ihe_xcpd
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EndpointConnectionType ihe_xcpd = EndpointConnectionType._(
-    'ihe-xcpd',
-  );
-
-  /// ihe_xca
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EndpointConnectionType ihe_xca = EndpointConnectionType._(
-    'ihe-xca',
-  );
-
-  /// ihe_xdr
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EndpointConnectionType ihe_xdr = EndpointConnectionType._(
-    'ihe-xdr',
-  );
-
-  /// ihe_xds
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EndpointConnectionType ihe_xds = EndpointConnectionType._(
-    'ihe-xds',
-  );
-
-  /// ihe_iid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EndpointConnectionType ihe_iid = EndpointConnectionType._(
-    'ihe-iid',
-  );
-
-  /// dicom_wado_rs
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EndpointConnectionType dicom_wado_rs = EndpointConnectionType._(
-    'dicom-wado-rs',
-  );
-
-  /// dicom_qido_rs
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EndpointConnectionType dicom_qido_rs = EndpointConnectionType._(
-    'dicom-qido-rs',
-  );
-
-  /// dicom_stow_rs
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EndpointConnectionType dicom_stow_rs = EndpointConnectionType._(
-    'dicom-stow-rs',
-  );
-
-  /// dicom_wado_uri
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EndpointConnectionType dicom_wado_uri = EndpointConnectionType._(
-    'dicom-wado-uri',
-  );
-
-  /// hl7_fhir_rest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EndpointConnectionType hl7_fhir_rest = EndpointConnectionType._(
-    'hl7-fhir-rest',
-  );
-
-  /// hl7_fhir_msg
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EndpointConnectionType hl7_fhir_msg = EndpointConnectionType._(
-    'hl7-fhir-msg',
-  );
-
-  /// hl7v2_mllp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EndpointConnectionType hl7v2_mllp = EndpointConnectionType._(
-    'hl7v2-mllp',
-  );
-
-  /// secure_email
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EndpointConnectionType secure_email = EndpointConnectionType._(
-    'secure-email',
-  );
-
-  /// direct_project
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EndpointConnectionType direct_project = EndpointConnectionType._(
-    'direct-project',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final EndpointConnectionType elementOnly =
-      EndpointConnectionType._('');
-
-  /// List of all enum-like values
-  static final List<EndpointConnectionType> values = [
-    ihe_xcpd,
-    ihe_xca,
-    ihe_xdr,
-    ihe_xds,
-    ihe_iid,
-    dicom_wado_rs,
-    dicom_qido_rs,
-    dicom_stow_rs,
-    dicom_wado_uri,
-    hl7_fhir_rest,
-    hl7_fhir_msg,
-    hl7v2_mllp,
-    secure_email,
-    direct_project,
-  ];
-
-  /// Returns the enum value with an element attached
-  EndpointConnectionType withElement(Element? newElement) {
-    return EndpointConnectionType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class EndpointConnectionType extends FhirCode {
   /// Factory constructor to create [EndpointConnectionType] from JSON.
-  static EndpointConnectionType fromJson(Map<String, dynamic> json) {
+  factory EndpointConnectionType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EndpointConnectionType.elementOnly.withElement(element);
+      return EndpointConnectionType.elementOnly(element);
     }
-    return EndpointConnectionType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return EndpointConnectionType._(value, element);
+    }
+    throw ArgumentError(
+      'EndpointConnectionType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// ihe_xcpd
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EndpointConnectionType.ihe_xcpd([this.element])
+      : dbValue = 'ihe-xcpd',
+        super('ihe-xcpd', element);
+
+  /// ihe_xca
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EndpointConnectionType.ihe_xca([this.element])
+      : dbValue = 'ihe-xca',
+        super('ihe-xca', element);
+
+  /// ihe_xdr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EndpointConnectionType.ihe_xdr([this.element])
+      : dbValue = 'ihe-xdr',
+        super('ihe-xdr', element);
+
+  /// ihe_xds
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EndpointConnectionType.ihe_xds([this.element])
+      : dbValue = 'ihe-xds',
+        super('ihe-xds', element);
+
+  /// ihe_iid
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EndpointConnectionType.ihe_iid([this.element])
+      : dbValue = 'ihe-iid',
+        super('ihe-iid', element);
+
+  /// dicom_wado_rs
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EndpointConnectionType.dicom_wado_rs([this.element])
+      : dbValue = 'dicom-wado-rs',
+        super('dicom-wado-rs', element);
+
+  /// dicom_qido_rs
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EndpointConnectionType.dicom_qido_rs([this.element])
+      : dbValue = 'dicom-qido-rs',
+        super('dicom-qido-rs', element);
+
+  /// dicom_stow_rs
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EndpointConnectionType.dicom_stow_rs([this.element])
+      : dbValue = 'dicom-stow-rs',
+        super('dicom-stow-rs', element);
+
+  /// dicom_wado_uri
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EndpointConnectionType.dicom_wado_uri([this.element])
+      : dbValue = 'dicom-wado-uri',
+        super('dicom-wado-uri', element);
+
+  /// hl7_fhir_rest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EndpointConnectionType.hl7_fhir_rest([this.element])
+      : dbValue = 'hl7-fhir-rest',
+        super('hl7-fhir-rest', element);
+
+  /// hl7_fhir_msg
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EndpointConnectionType.hl7_fhir_msg([this.element])
+      : dbValue = 'hl7-fhir-msg',
+        super('hl7-fhir-msg', element);
+
+  /// hl7v2_mllp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EndpointConnectionType.hl7v2_mllp([this.element])
+      : dbValue = 'hl7v2-mllp',
+        super('hl7v2-mllp', element);
+
+  /// secure_email
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EndpointConnectionType.secure_email([this.element])
+      : dbValue = 'secure-email',
+        super('secure-email', element);
+
+  /// direct_project
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EndpointConnectionType.direct_project([this.element])
+      : dbValue = 'direct-project',
+        super('direct-project', element);
+
+  /// For instances where an Element is present but not value
+
+  EndpointConnectionType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  EndpointConnectionType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'ihe-xcpd',
+    'ihe-xca',
+    'ihe-xdr',
+    'ihe-xds',
+    'ihe-iid',
+    'dicom-wado-rs',
+    'dicom-qido-rs',
+    'dicom-stow-rs',
+    'dicom-wado-uri',
+    'hl7-fhir-rest',
+    'hl7-fhir-msg',
+    'hl7v2-mllp',
+    'secure-email',
+    'direct-project',
+  ];
+
+  /// Returns the enum value with an element attached
+  EndpointConnectionType withElement(Element? newElement) {
+    return EndpointConnectionType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'EndpointConnectionType.$fhirCode';
+  String toString() => 'EndpointConnectionType.$value';
 }

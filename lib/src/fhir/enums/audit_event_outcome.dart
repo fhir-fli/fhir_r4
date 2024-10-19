@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// Indicates whether the event succeeded or failed.
 @Entity()
-class AuditEventOutcome {
-  // Private constructor for internal use (like enum)
-  AuditEventOutcome._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AuditEventOutcome values
-  /// value0
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventOutcome value0 = AuditEventOutcome._(
-    '0',
-  );
-
-  /// value4
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventOutcome value4 = AuditEventOutcome._(
-    '4',
-  );
-
-  /// value8
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventOutcome value8 = AuditEventOutcome._(
-    '8',
-  );
-
-  /// value12
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventOutcome value12 = AuditEventOutcome._(
-    '12',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AuditEventOutcome elementOnly = AuditEventOutcome._('');
-
-  /// List of all enum-like values
-  static final List<AuditEventOutcome> values = [
-    value0,
-    value4,
-    value8,
-    value12,
-  ];
-
-  /// Returns the enum value with an element attached
-  AuditEventOutcome withElement(Element? newElement) {
-    return AuditEventOutcome._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AuditEventOutcome extends FhirCode {
   /// Factory constructor to create [AuditEventOutcome] from JSON.
-  static AuditEventOutcome fromJson(Map<String, dynamic> json) {
+  factory AuditEventOutcome.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AuditEventOutcome.elementOnly.withElement(element);
+      return AuditEventOutcome.elementOnly(element);
     }
-    return AuditEventOutcome.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AuditEventOutcome._(value, element);
+    }
+    throw ArgumentError(
+      'AuditEventOutcome.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventOutcome.value0([this.element])
+      : dbValue = '0',
+        super('0', element);
+
+  /// value4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventOutcome.value4([this.element])
+      : dbValue = '4',
+        super('4', element);
+
+  /// value8
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventOutcome.value8([this.element])
+      : dbValue = '8',
+        super('8', element);
+
+  /// value12
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventOutcome.value12([this.element])
+      : dbValue = '12',
+        super('12', element);
+
+  /// For instances where an Element is present but not value
+
+  AuditEventOutcome.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AuditEventOutcome._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '0',
+    '4',
+    '8',
+    '12',
+  ];
+
+  /// Returns the enum value with an element attached
+  AuditEventOutcome withElement(Element? newElement) {
+    return AuditEventOutcome._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AuditEventOutcome.$fhirCode';
+  String toString() => 'AuditEventOutcome.$value';
 }

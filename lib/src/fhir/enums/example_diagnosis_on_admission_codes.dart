@@ -5,91 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes example Diagnosis on Admission codes.
 @Entity()
-class ExampleDiagnosisOnAdmissionCodes {
-  // Private constructor for internal use (like enum)
-  ExampleDiagnosisOnAdmissionCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleDiagnosisOnAdmissionCodes values
-  /// y
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisOnAdmissionCodes y =
-      ExampleDiagnosisOnAdmissionCodes._(
-    'y',
-  );
-
-  /// n
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisOnAdmissionCodes n =
-      ExampleDiagnosisOnAdmissionCodes._(
-    'n',
-  );
-
-  /// u
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisOnAdmissionCodes u =
-      ExampleDiagnosisOnAdmissionCodes._(
-    'u',
-  );
-
-  /// w
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisOnAdmissionCodes w =
-      ExampleDiagnosisOnAdmissionCodes._(
-    'w',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ExampleDiagnosisOnAdmissionCodes elementOnly =
-      ExampleDiagnosisOnAdmissionCodes._('');
-
-  /// List of all enum-like values
-  static final List<ExampleDiagnosisOnAdmissionCodes> values = [
-    y,
-    n,
-    u,
-    w,
-  ];
-
-  /// Returns the enum value with an element attached
-  ExampleDiagnosisOnAdmissionCodes withElement(Element? newElement) {
-    return ExampleDiagnosisOnAdmissionCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ExampleDiagnosisOnAdmissionCodes extends FhirCode {
   /// Factory constructor to create [ExampleDiagnosisOnAdmissionCodes] from JSON.
-  static ExampleDiagnosisOnAdmissionCodes fromJson(Map<String, dynamic> json) {
+  factory ExampleDiagnosisOnAdmissionCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleDiagnosisOnAdmissionCodes.elementOnly.withElement(element);
+      return ExampleDiagnosisOnAdmissionCodes.elementOnly(element);
     }
-    return ExampleDiagnosisOnAdmissionCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ExampleDiagnosisOnAdmissionCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ExampleDiagnosisOnAdmissionCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// y
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisOnAdmissionCodes.y([this.element])
+      : dbValue = 'y',
+        super('y', element);
+
+  /// n
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisOnAdmissionCodes.n([this.element])
+      : dbValue = 'n',
+        super('n', element);
+
+  /// u
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisOnAdmissionCodes.u([this.element])
+      : dbValue = 'u',
+        super('u', element);
+
+  /// w
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisOnAdmissionCodes.w([this.element])
+      : dbValue = 'w',
+        super('w', element);
+
+  /// For instances where an Element is present but not value
+
+  ExampleDiagnosisOnAdmissionCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ExampleDiagnosisOnAdmissionCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'y',
+    'n',
+    'u',
+    'w',
+  ];
+
+  /// Returns the enum value with an element attached
+  ExampleDiagnosisOnAdmissionCodes withElement(Element? newElement) {
+    return ExampleDiagnosisOnAdmissionCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ExampleDiagnosisOnAdmissionCodes.$fhirCode';
+  String toString() => 'ExampleDiagnosisOnAdmissionCodes.$value';
 }

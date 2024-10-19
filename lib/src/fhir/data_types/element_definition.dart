@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:objectbox/objectbox.dart';
@@ -13,9 +15,9 @@ class ElementDefinition extends BackboneType {
 
   ElementDefinition({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     required this.path,
     this.representation,
     this.sliceName,
@@ -1466,11 +1468,44 @@ class ElementDefinition extends BackboneType {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'ElementDefinition';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [path]
   /// The path identifies the element and is expressed as a "."-separated
@@ -5170,8 +5205,8 @@ class ElementDefinitionSlicing extends Element {
 
   ElementDefinitionSlicing({
     this.dbId = 0,
-    super.id,
-    super.extension_,
+    this.id,
+    this.extension_,
     this.discriminator,
     this.description,
     this.ordered,
@@ -5267,11 +5302,26 @@ class ElementDefinitionSlicing extends Element {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionSlicing';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
 
   /// [discriminator]
   /// Designates which child elements are used to discriminate between the
@@ -5384,8 +5434,8 @@ class ElementDefinitionDiscriminator extends Element {
 
   ElementDefinitionDiscriminator({
     this.dbId = 0,
-    super.id,
-    super.extension_,
+    this.id,
+    this.extension_,
     required this.type,
     required this.path,
     super.userData,
@@ -5462,11 +5512,26 @@ class ElementDefinitionDiscriminator extends Element {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionDiscriminator';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// How the element value is interpreted when discrimination is evaluated.
@@ -5549,8 +5614,8 @@ class ElementDefinitionBase extends Element {
 
   ElementDefinitionBase({
     this.dbId = 0,
-    super.id,
-    super.extension_,
+    this.id,
+    this.extension_,
     required this.path,
     required this.min,
     required this.max,
@@ -5632,11 +5697,26 @@ class ElementDefinitionBase extends Element {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionBase';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
 
   /// [path]
   /// The Path that identifies the base element - this matches the
@@ -5727,8 +5807,8 @@ class ElementDefinitionType extends Element {
 
   ElementDefinitionType({
     this.dbId = 0,
-    super.id,
-    super.extension_,
+    this.id,
+    this.extension_,
     required this.code,
     this.profile,
     this.targetProfile,
@@ -5825,11 +5905,26 @@ class ElementDefinitionType extends Element {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionType';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
 
   /// [code]
   /// URL of Data type or Resource that is a(or the) type used for this
@@ -5968,8 +6063,8 @@ class ElementDefinitionExample extends Element {
 
   ElementDefinitionExample({
     this.dbId = 0,
-    super.id,
-    super.extension_,
+    this.id,
+    this.extension_,
     required this.label,
     this.valueBase64Binary,
     this.valueBoolean,
@@ -6376,11 +6471,26 @@ class ElementDefinitionExample extends Element {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionExample';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
 
   /// [label]
   /// Describes the purpose of this example amoung the set of examples.
@@ -7083,8 +7193,8 @@ class ElementDefinitionConstraint extends Element {
 
   ElementDefinitionConstraint({
     this.dbId = 0,
-    super.id,
-    super.extension_,
+    this.id,
+    this.extension_,
     required this.key,
     this.requirements,
     required this.severity,
@@ -7195,11 +7305,26 @@ class ElementDefinitionConstraint extends Element {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionConstraint';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
 
   /// [key]
   /// Allows identification of which elements have their cardinalities
@@ -7349,8 +7474,8 @@ class ElementDefinitionBinding extends Element {
 
   ElementDefinitionBinding({
     this.dbId = 0,
-    super.id,
-    super.extension_,
+    this.id,
+    this.extension_,
     required this.strength,
     this.description,
     this.valueSet,
@@ -7436,11 +7561,26 @@ class ElementDefinitionBinding extends Element {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionBinding';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
 
   /// [strength]
   /// Indicates the degree of conformance expectations associated with this
@@ -7534,8 +7674,8 @@ class ElementDefinitionMapping extends Element {
 
   ElementDefinitionMapping({
     this.dbId = 0,
-    super.id,
-    super.extension_,
+    this.id,
+    this.extension_,
     required this.identity,
     this.language,
     required this.map,
@@ -7626,11 +7766,26 @@ class ElementDefinitionMapping extends Element {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'ElementDefinitionMapping';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
 
   /// [identity]
   /// An internal reference to the definition of a mapping.

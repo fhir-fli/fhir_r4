@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// A high level categorisation of a package.
 @Entity()
-class PackageType {
-  // Private constructor for internal use (like enum)
-  PackageType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// PackageType values
-  /// MedicinalProductPack
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PackageType MedicinalProductPack = PackageType._(
-    'MedicinalProductPack',
-  );
-
-  /// RawMaterialPackage
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PackageType RawMaterialPackage = PackageType._(
-    'RawMaterialPackage',
-  );
-
-  /// Shipping_TransportContainer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PackageType Shipping_TransportContainer = PackageType._(
-    'Shipping-TransportContainer',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final PackageType elementOnly = PackageType._('');
-
-  /// List of all enum-like values
-  static final List<PackageType> values = [
-    MedicinalProductPack,
-    RawMaterialPackage,
-    Shipping_TransportContainer,
-  ];
-
-  /// Returns the enum value with an element attached
-  PackageType withElement(Element? newElement) {
-    return PackageType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class PackageType extends FhirCode {
   /// Factory constructor to create [PackageType] from JSON.
-  static PackageType fromJson(Map<String, dynamic> json) {
+  factory PackageType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PackageType.elementOnly.withElement(element);
+      return PackageType.elementOnly(element);
     }
-    return PackageType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return PackageType._(value, element);
+    }
+    throw ArgumentError(
+      'PackageType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// MedicinalProductPack
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PackageType.MedicinalProductPack([this.element])
+      : dbValue = 'MedicinalProductPack',
+        super('MedicinalProductPack', element);
+
+  /// RawMaterialPackage
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PackageType.RawMaterialPackage([this.element])
+      : dbValue = 'RawMaterialPackage',
+        super('RawMaterialPackage', element);
+
+  /// Shipping_TransportContainer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PackageType.Shipping_TransportContainer([this.element])
+      : dbValue = 'Shipping-TransportContainer',
+        super('Shipping-TransportContainer', element);
+
+  /// For instances where an Element is present but not value
+
+  PackageType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  PackageType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'MedicinalProductPack',
+    'RawMaterialPackage',
+    'Shipping-TransportContainer',
+  ];
+
+  /// Returns the enum value with an element attached
+  PackageType withElement(Element? newElement) {
+    return PackageType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'PackageType.$fhirCode';
+  String toString() => 'PackageType.$value';
 }

@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// Example value set for investigation type.
 @Entity()
-class InvestigationType {
-  // Private constructor for internal use (like enum)
-  InvestigationType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// InvestigationType values
-  /// value271336007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final InvestigationType value271336007 = InvestigationType._(
-    '271336007',
-  );
-
-  /// value160237006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final InvestigationType value160237006 = InvestigationType._(
-    '160237006',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final InvestigationType elementOnly = InvestigationType._('');
-
-  /// List of all enum-like values
-  static final List<InvestigationType> values = [
-    value271336007,
-    value160237006,
-  ];
-
-  /// Returns the enum value with an element attached
-  InvestigationType withElement(Element? newElement) {
-    return InvestigationType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class InvestigationType extends FhirCode {
   /// Factory constructor to create [InvestigationType] from JSON.
-  static InvestigationType fromJson(Map<String, dynamic> json) {
+  factory InvestigationType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return InvestigationType.elementOnly.withElement(element);
+      return InvestigationType.elementOnly(element);
     }
-    return InvestigationType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return InvestigationType._(value, element);
+    }
+    throw ArgumentError(
+      'InvestigationType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value271336007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  InvestigationType.value271336007([this.element])
+      : dbValue = '271336007',
+        super('271336007', element);
+
+  /// value160237006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  InvestigationType.value160237006([this.element])
+      : dbValue = '160237006',
+        super('160237006', element);
+
+  /// For instances where an Element is present but not value
+
+  InvestigationType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  InvestigationType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '271336007',
+    '160237006',
+  ];
+
+  /// Returns the enum value with an element attached
+  InvestigationType withElement(Element? newElement) {
+    return InvestigationType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'InvestigationType.$fhirCode';
+  String toString() => 'InvestigationType.$value';
 }

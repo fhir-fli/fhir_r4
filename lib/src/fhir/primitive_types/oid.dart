@@ -81,6 +81,7 @@ class FhirOid extends PrimitiveType<String> {
 
   /// Returns the FHIR type as 'oid'.
   @override
+  @Transient()
   String get fhirType => 'oid';
 
   /// Serializes the instance to JSON with standardized keys

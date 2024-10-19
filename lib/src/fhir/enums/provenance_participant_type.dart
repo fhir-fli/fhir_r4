@@ -5,139 +5,147 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of participation a provenance participant.
 @Entity()
-class ProvenanceParticipantType {
-  // Private constructor for internal use (like enum)
-  ProvenanceParticipantType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ProvenanceParticipantType values
-  /// enterer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceParticipantType enterer = ProvenanceParticipantType._(
-    'enterer',
-  );
-
-  /// performer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceParticipantType performer =
-      ProvenanceParticipantType._(
-    'performer',
-  );
-
-  /// author
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceParticipantType author = ProvenanceParticipantType._(
-    'author',
-  );
-
-  /// verifier
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceParticipantType verifier = ProvenanceParticipantType._(
-    'verifier',
-  );
-
-  /// legal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceParticipantType legal = ProvenanceParticipantType._(
-    'legal',
-  );
-
-  /// attester
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceParticipantType attester = ProvenanceParticipantType._(
-    'attester',
-  );
-
-  /// informant
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceParticipantType informant =
-      ProvenanceParticipantType._(
-    'informant',
-  );
-
-  /// custodian
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceParticipantType custodian =
-      ProvenanceParticipantType._(
-    'custodian',
-  );
-
-  /// assembler
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceParticipantType assembler =
-      ProvenanceParticipantType._(
-    'assembler',
-  );
-
-  /// composer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceParticipantType composer = ProvenanceParticipantType._(
-    'composer',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ProvenanceParticipantType elementOnly =
-      ProvenanceParticipantType._('');
-
-  /// List of all enum-like values
-  static final List<ProvenanceParticipantType> values = [
-    enterer,
-    performer,
-    author,
-    verifier,
-    legal,
-    attester,
-    informant,
-    custodian,
-    assembler,
-    composer,
-  ];
-
-  /// Returns the enum value with an element attached
-  ProvenanceParticipantType withElement(Element? newElement) {
-    return ProvenanceParticipantType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ProvenanceParticipantType extends FhirCode {
   /// Factory constructor to create [ProvenanceParticipantType] from JSON.
-  static ProvenanceParticipantType fromJson(Map<String, dynamic> json) {
+  factory ProvenanceParticipantType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ProvenanceParticipantType.elementOnly.withElement(element);
+      return ProvenanceParticipantType.elementOnly(element);
     }
-    return ProvenanceParticipantType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ProvenanceParticipantType._(value, element);
+    }
+    throw ArgumentError(
+      'ProvenanceParticipantType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// enterer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceParticipantType.enterer([this.element])
+      : dbValue = 'enterer',
+        super('enterer', element);
+
+  /// performer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceParticipantType.performer([this.element])
+      : dbValue = 'performer',
+        super('performer', element);
+
+  /// author
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceParticipantType.author([this.element])
+      : dbValue = 'author',
+        super('author', element);
+
+  /// verifier
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceParticipantType.verifier([this.element])
+      : dbValue = 'verifier',
+        super('verifier', element);
+
+  /// legal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceParticipantType.legal([this.element])
+      : dbValue = 'legal',
+        super('legal', element);
+
+  /// attester
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceParticipantType.attester([this.element])
+      : dbValue = 'attester',
+        super('attester', element);
+
+  /// informant
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceParticipantType.informant([this.element])
+      : dbValue = 'informant',
+        super('informant', element);
+
+  /// custodian
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceParticipantType.custodian([this.element])
+      : dbValue = 'custodian',
+        super('custodian', element);
+
+  /// assembler
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceParticipantType.assembler([this.element])
+      : dbValue = 'assembler',
+        super('assembler', element);
+
+  /// composer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceParticipantType.composer([this.element])
+      : dbValue = 'composer',
+        super('composer', element);
+
+  /// For instances where an Element is present but not value
+
+  ProvenanceParticipantType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ProvenanceParticipantType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'enterer',
+    'performer',
+    'author',
+    'verifier',
+    'legal',
+    'attester',
+    'informant',
+    'custodian',
+    'assembler',
+    'composer',
+  ];
+
+  /// Returns the enum value with an element attached
+  ProvenanceParticipantType withElement(Element? newElement) {
+    return ProvenanceParticipantType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ProvenanceParticipantType.$fhirCode';
+  String toString() => 'ProvenanceParticipantType.$value';
 }

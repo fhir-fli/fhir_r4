@@ -5,128 +5,139 @@ import 'package:objectbox/objectbox.dart';
 
 /// Codes that reflect the current state of a care plan activity within its overall life cycle.
 @Entity()
-class CarePlanActivityStatus {
-  // Private constructor for internal use (like enum)
-  CarePlanActivityStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CarePlanActivityStatus values
-  /// not_started
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanActivityStatus not_started = CarePlanActivityStatus._(
-    'not-started',
-  );
-
-  /// scheduled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanActivityStatus scheduled = CarePlanActivityStatus._(
-    'scheduled',
-  );
-
-  /// in_progress
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanActivityStatus in_progress = CarePlanActivityStatus._(
-    'in-progress',
-  );
-
-  /// on_hold
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanActivityStatus on_hold = CarePlanActivityStatus._(
-    'on-hold',
-  );
-
-  /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanActivityStatus completed = CarePlanActivityStatus._(
-    'completed',
-  );
-
-  /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanActivityStatus cancelled = CarePlanActivityStatus._(
-    'cancelled',
-  );
-
-  /// stopped
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanActivityStatus stopped = CarePlanActivityStatus._(
-    'stopped',
-  );
-
-  /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanActivityStatus unknown = CarePlanActivityStatus._(
-    'unknown',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanActivityStatus entered_in_error =
-      CarePlanActivityStatus._(
-    'entered-in-error',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CarePlanActivityStatus elementOnly =
-      CarePlanActivityStatus._('');
-
-  /// List of all enum-like values
-  static final List<CarePlanActivityStatus> values = [
-    not_started,
-    scheduled,
-    in_progress,
-    on_hold,
-    completed,
-    cancelled,
-    stopped,
-    unknown,
-    entered_in_error,
-  ];
-
-  /// Returns the enum value with an element attached
-  CarePlanActivityStatus withElement(Element? newElement) {
-    return CarePlanActivityStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CarePlanActivityStatus extends FhirCode {
   /// Factory constructor to create [CarePlanActivityStatus] from JSON.
-  static CarePlanActivityStatus fromJson(Map<String, dynamic> json) {
+  factory CarePlanActivityStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CarePlanActivityStatus.elementOnly.withElement(element);
+      return CarePlanActivityStatus.elementOnly(element);
     }
-    return CarePlanActivityStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CarePlanActivityStatus._(value, element);
+    }
+    throw ArgumentError(
+      'CarePlanActivityStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// not_started
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanActivityStatus.not_started([this.element])
+      : dbValue = 'not-started',
+        super('not-started', element);
+
+  /// scheduled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanActivityStatus.scheduled([this.element])
+      : dbValue = 'scheduled',
+        super('scheduled', element);
+
+  /// in_progress
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanActivityStatus.in_progress([this.element])
+      : dbValue = 'in-progress',
+        super('in-progress', element);
+
+  /// on_hold
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanActivityStatus.on_hold([this.element])
+      : dbValue = 'on-hold',
+        super('on-hold', element);
+
+  /// completed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanActivityStatus.completed([this.element])
+      : dbValue = 'completed',
+        super('completed', element);
+
+  /// cancelled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanActivityStatus.cancelled([this.element])
+      : dbValue = 'cancelled',
+        super('cancelled', element);
+
+  /// stopped
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanActivityStatus.stopped([this.element])
+      : dbValue = 'stopped',
+        super('stopped', element);
+
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanActivityStatus.unknown([this.element])
+      : dbValue = 'unknown',
+        super('unknown', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanActivityStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// For instances where an Element is present but not value
+
+  CarePlanActivityStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CarePlanActivityStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'not-started',
+    'scheduled',
+    'in-progress',
+    'on-hold',
+    'completed',
+    'cancelled',
+    'stopped',
+    'unknown',
+    'entered-in-error',
+  ];
+
+  /// Returns the enum value with an element attached
+  CarePlanActivityStatus withElement(Element? newElement) {
+    return CarePlanActivityStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CarePlanActivityStatus.$fhirCode';
+  String toString() => 'CarePlanActivityStatus.$value';
 }

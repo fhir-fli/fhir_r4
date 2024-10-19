@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The outcome of the processing.
 @Entity()
-class RemittanceOutcome {
-  // Private constructor for internal use (like enum)
-  RemittanceOutcome._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// RemittanceOutcome values
-  /// queued
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RemittanceOutcome queued = RemittanceOutcome._(
-    'queued',
-  );
-
-  /// complete
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RemittanceOutcome complete = RemittanceOutcome._(
-    'complete',
-  );
-
-  /// error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RemittanceOutcome error = RemittanceOutcome._(
-    'error',
-  );
-
-  /// partial
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RemittanceOutcome partial = RemittanceOutcome._(
-    'partial',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final RemittanceOutcome elementOnly = RemittanceOutcome._('');
-
-  /// List of all enum-like values
-  static final List<RemittanceOutcome> values = [
-    queued,
-    complete,
-    error,
-    partial,
-  ];
-
-  /// Returns the enum value with an element attached
-  RemittanceOutcome withElement(Element? newElement) {
-    return RemittanceOutcome._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class RemittanceOutcome extends FhirCode {
   /// Factory constructor to create [RemittanceOutcome] from JSON.
-  static RemittanceOutcome fromJson(Map<String, dynamic> json) {
+  factory RemittanceOutcome.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RemittanceOutcome.elementOnly.withElement(element);
+      return RemittanceOutcome.elementOnly(element);
     }
-    return RemittanceOutcome.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return RemittanceOutcome._(value, element);
+    }
+    throw ArgumentError(
+      'RemittanceOutcome.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// queued
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RemittanceOutcome.queued([this.element])
+      : dbValue = 'queued',
+        super('queued', element);
+
+  /// complete
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RemittanceOutcome.complete([this.element])
+      : dbValue = 'complete',
+        super('complete', element);
+
+  /// error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RemittanceOutcome.error([this.element])
+      : dbValue = 'error',
+        super('error', element);
+
+  /// partial
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RemittanceOutcome.partial([this.element])
+      : dbValue = 'partial',
+        super('partial', element);
+
+  /// For instances where an Element is present but not value
+
+  RemittanceOutcome.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  RemittanceOutcome._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'queued',
+    'complete',
+    'error',
+    'partial',
+  ];
+
+  /// Returns the enum value with an element attached
+  RemittanceOutcome withElement(Element? newElement) {
+    return RemittanceOutcome._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'RemittanceOutcome.$fhirCode';
+  String toString() => 'RemittanceOutcome.$value';
 }

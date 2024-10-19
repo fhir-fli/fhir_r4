@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The relationship between two substance types.
 @Entity()
-class SubstanceAmountType {
-  // Private constructor for internal use (like enum)
-  SubstanceAmountType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubstanceAmountType values
-  /// Average
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceAmountType Average = SubstanceAmountType._(
-    'Average',
-  );
-
-  /// Approximately
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceAmountType Approximately = SubstanceAmountType._(
-    'Approximately',
-  );
-
-  /// LessThan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceAmountType LessThan = SubstanceAmountType._(
-    'LessThan',
-  );
-
-  /// MoreThan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceAmountType MoreThan = SubstanceAmountType._(
-    'MoreThan',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SubstanceAmountType elementOnly = SubstanceAmountType._('');
-
-  /// List of all enum-like values
-  static final List<SubstanceAmountType> values = [
-    Average,
-    Approximately,
-    LessThan,
-    MoreThan,
-  ];
-
-  /// Returns the enum value with an element attached
-  SubstanceAmountType withElement(Element? newElement) {
-    return SubstanceAmountType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SubstanceAmountType extends FhirCode {
   /// Factory constructor to create [SubstanceAmountType] from JSON.
-  static SubstanceAmountType fromJson(Map<String, dynamic> json) {
+  factory SubstanceAmountType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubstanceAmountType.elementOnly.withElement(element);
+      return SubstanceAmountType.elementOnly(element);
     }
-    return SubstanceAmountType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SubstanceAmountType._(value, element);
+    }
+    throw ArgumentError(
+      'SubstanceAmountType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Average
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceAmountType.Average([this.element])
+      : dbValue = 'Average',
+        super('Average', element);
+
+  /// Approximately
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceAmountType.Approximately([this.element])
+      : dbValue = 'Approximately',
+        super('Approximately', element);
+
+  /// LessThan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceAmountType.LessThan([this.element])
+      : dbValue = 'LessThan',
+        super('LessThan', element);
+
+  /// MoreThan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceAmountType.MoreThan([this.element])
+      : dbValue = 'MoreThan',
+        super('MoreThan', element);
+
+  /// For instances where an Element is present but not value
+
+  SubstanceAmountType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SubstanceAmountType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Average',
+    'Approximately',
+    'LessThan',
+    'MoreThan',
+  ];
+
+  /// Returns the enum value with an element attached
+  SubstanceAmountType withElement(Element? newElement) {
+    return SubstanceAmountType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SubstanceAmountType.$fhirCode';
+  String toString() => 'SubstanceAmountType.$value';
 }

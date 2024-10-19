@@ -13,6 +13,7 @@ class PrimitiveType<T> extends FhirBase {
   int dbId = 0;
 
   @override
+  @Transient()
   String get fhirType => 'PrimitiveType';
 
   /// The primitive value (nullable)

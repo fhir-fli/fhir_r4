@@ -5,134 +5,147 @@ import 'package:objectbox/objectbox.dart';
 
 /// Distinguishes whether the task is a proposal, plan or full order.
 @Entity()
-class TaskIntent {
-  // Private constructor for internal use (like enum)
-  TaskIntent._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// TaskIntent values
-  /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TaskIntent unknown = TaskIntent._(
-    'unknown',
-  );
-
-  /// proposal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TaskIntent proposal = TaskIntent._(
-    'proposal',
-  );
-
-  /// plan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TaskIntent plan = TaskIntent._(
-    'plan',
-  );
-
-  /// directive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TaskIntent directive = TaskIntent._(
-    'directive',
-  );
-
-  /// order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TaskIntent order = TaskIntent._(
-    'order',
-  );
-
-  /// original_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TaskIntent original_order = TaskIntent._(
-    'original-order',
-  );
-
-  /// reflex_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TaskIntent reflex_order = TaskIntent._(
-    'reflex-order',
-  );
-
-  /// filler_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TaskIntent filler_order = TaskIntent._(
-    'filler-order',
-  );
-
-  /// instance_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TaskIntent instance_order = TaskIntent._(
-    'instance-order',
-  );
-
-  /// option
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TaskIntent option = TaskIntent._(
-    'option',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final TaskIntent elementOnly = TaskIntent._('');
-
-  /// List of all enum-like values
-  static final List<TaskIntent> values = [
-    unknown,
-    proposal,
-    plan,
-    directive,
-    order,
-    original_order,
-    reflex_order,
-    filler_order,
-    instance_order,
-    option,
-  ];
-
-  /// Returns the enum value with an element attached
-  TaskIntent withElement(Element? newElement) {
-    return TaskIntent._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class TaskIntent extends FhirCode {
   /// Factory constructor to create [TaskIntent] from JSON.
-  static TaskIntent fromJson(Map<String, dynamic> json) {
+  factory TaskIntent.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TaskIntent.elementOnly.withElement(element);
+      return TaskIntent.elementOnly(element);
     }
-    return TaskIntent.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return TaskIntent._(value, element);
+    }
+    throw ArgumentError(
+      'TaskIntent.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TaskIntent.unknown([this.element])
+      : dbValue = 'unknown',
+        super('unknown', element);
+
+  /// proposal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TaskIntent.proposal([this.element])
+      : dbValue = 'proposal',
+        super('proposal', element);
+
+  /// plan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TaskIntent.plan([this.element])
+      : dbValue = 'plan',
+        super('plan', element);
+
+  /// directive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TaskIntent.directive([this.element])
+      : dbValue = 'directive',
+        super('directive', element);
+
+  /// order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TaskIntent.order([this.element])
+      : dbValue = 'order',
+        super('order', element);
+
+  /// original_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TaskIntent.original_order([this.element])
+      : dbValue = 'original-order',
+        super('original-order', element);
+
+  /// reflex_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TaskIntent.reflex_order([this.element])
+      : dbValue = 'reflex-order',
+        super('reflex-order', element);
+
+  /// filler_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TaskIntent.filler_order([this.element])
+      : dbValue = 'filler-order',
+        super('filler-order', element);
+
+  /// instance_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TaskIntent.instance_order([this.element])
+      : dbValue = 'instance-order',
+        super('instance-order', element);
+
+  /// option
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TaskIntent.option([this.element])
+      : dbValue = 'option',
+        super('option', element);
+
+  /// For instances where an Element is present but not value
+
+  TaskIntent.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  TaskIntent._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'unknown',
+    'proposal',
+    'plan',
+    'directive',
+    'order',
+    'original-order',
+    'reflex-order',
+    'filler-order',
+    'instance-order',
+    'option',
+  ];
+
+  /// Returns the enum value with an element attached
+  TaskIntent withElement(Element? newElement) {
+    return TaskIntent._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'TaskIntent.$fhirCode';
+  String toString() => 'TaskIntent.$value';
 }

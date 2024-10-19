@@ -77,6 +77,7 @@ class FhirBoolean extends PrimitiveType<bool> {
   final Element? element;
 
   @override
+  @Transient()
   String get fhirType => 'boolean';
 
   /// Serializes the instance to JSON with standardized keys

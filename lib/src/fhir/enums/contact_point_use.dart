@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// Use of contact point.
 @Entity()
-class ContactPointUse {
-  // Private constructor for internal use (like enum)
-  ContactPointUse._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ContactPointUse values
-  /// home
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContactPointUse home = ContactPointUse._(
-    'home',
-  );
-
-  /// work
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContactPointUse work = ContactPointUse._(
-    'work',
-  );
-
-  /// temp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContactPointUse temp = ContactPointUse._(
-    'temp',
-  );
-
-  /// old
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContactPointUse old = ContactPointUse._(
-    'old',
-  );
-
-  /// mobile
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContactPointUse mobile = ContactPointUse._(
-    'mobile',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ContactPointUse elementOnly = ContactPointUse._('');
-
-  /// List of all enum-like values
-  static final List<ContactPointUse> values = [
-    home,
-    work,
-    temp,
-    old,
-    mobile,
-  ];
-
-  /// Returns the enum value with an element attached
-  ContactPointUse withElement(Element? newElement) {
-    return ContactPointUse._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ContactPointUse extends FhirCode {
   /// Factory constructor to create [ContactPointUse] from JSON.
-  static ContactPointUse fromJson(Map<String, dynamic> json) {
+  factory ContactPointUse.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContactPointUse.elementOnly.withElement(element);
+      return ContactPointUse.elementOnly(element);
     }
-    return ContactPointUse.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ContactPointUse._(value, element);
+    }
+    throw ArgumentError(
+      'ContactPointUse.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// home
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContactPointUse.home([this.element])
+      : dbValue = 'home',
+        super('home', element);
+
+  /// work
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContactPointUse.work([this.element])
+      : dbValue = 'work',
+        super('work', element);
+
+  /// temp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContactPointUse.temp([this.element])
+      : dbValue = 'temp',
+        super('temp', element);
+
+  /// old
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContactPointUse.old([this.element])
+      : dbValue = 'old',
+        super('old', element);
+
+  /// mobile
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContactPointUse.mobile([this.element])
+      : dbValue = 'mobile',
+        super('mobile', element);
+
+  /// For instances where an Element is present but not value
+
+  ContactPointUse.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ContactPointUse._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'home',
+    'work',
+    'temp',
+    'old',
+    'mobile',
+  ];
+
+  /// Returns the enum value with an element attached
+  ContactPointUse withElement(Element? newElement) {
+    return ContactPointUse._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ContactPointUse.$fhirCode';
+  String toString() => 'ContactPointUse.$value';
 }

@@ -5,134 +5,147 @@ import 'package:objectbox/objectbox.dart';
 
 /// The free/busy status of an appointment.
 @Entity()
-class AppointmentStatus {
-  // Private constructor for internal use (like enum)
-  AppointmentStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AppointmentStatus values
-  /// proposed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AppointmentStatus proposed = AppointmentStatus._(
-    'proposed',
-  );
-
-  /// pending
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AppointmentStatus pending = AppointmentStatus._(
-    'pending',
-  );
-
-  /// booked
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AppointmentStatus booked = AppointmentStatus._(
-    'booked',
-  );
-
-  /// arrived
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AppointmentStatus arrived = AppointmentStatus._(
-    'arrived',
-  );
-
-  /// fulfilled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AppointmentStatus fulfilled = AppointmentStatus._(
-    'fulfilled',
-  );
-
-  /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AppointmentStatus cancelled = AppointmentStatus._(
-    'cancelled',
-  );
-
-  /// noshow
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AppointmentStatus noshow = AppointmentStatus._(
-    'noshow',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AppointmentStatus entered_in_error = AppointmentStatus._(
-    'entered-in-error',
-  );
-
-  /// checked_in
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AppointmentStatus checked_in = AppointmentStatus._(
-    'checked-in',
-  );
-
-  /// waitlist
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AppointmentStatus waitlist = AppointmentStatus._(
-    'waitlist',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AppointmentStatus elementOnly = AppointmentStatus._('');
-
-  /// List of all enum-like values
-  static final List<AppointmentStatus> values = [
-    proposed,
-    pending,
-    booked,
-    arrived,
-    fulfilled,
-    cancelled,
-    noshow,
-    entered_in_error,
-    checked_in,
-    waitlist,
-  ];
-
-  /// Returns the enum value with an element attached
-  AppointmentStatus withElement(Element? newElement) {
-    return AppointmentStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AppointmentStatus extends FhirCode {
   /// Factory constructor to create [AppointmentStatus] from JSON.
-  static AppointmentStatus fromJson(Map<String, dynamic> json) {
+  factory AppointmentStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AppointmentStatus.elementOnly.withElement(element);
+      return AppointmentStatus.elementOnly(element);
     }
-    return AppointmentStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AppointmentStatus._(value, element);
+    }
+    throw ArgumentError(
+      'AppointmentStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// proposed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AppointmentStatus.proposed([this.element])
+      : dbValue = 'proposed',
+        super('proposed', element);
+
+  /// pending
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AppointmentStatus.pending([this.element])
+      : dbValue = 'pending',
+        super('pending', element);
+
+  /// booked
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AppointmentStatus.booked([this.element])
+      : dbValue = 'booked',
+        super('booked', element);
+
+  /// arrived
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AppointmentStatus.arrived([this.element])
+      : dbValue = 'arrived',
+        super('arrived', element);
+
+  /// fulfilled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AppointmentStatus.fulfilled([this.element])
+      : dbValue = 'fulfilled',
+        super('fulfilled', element);
+
+  /// cancelled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AppointmentStatus.cancelled([this.element])
+      : dbValue = 'cancelled',
+        super('cancelled', element);
+
+  /// noshow
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AppointmentStatus.noshow([this.element])
+      : dbValue = 'noshow',
+        super('noshow', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AppointmentStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// checked_in
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AppointmentStatus.checked_in([this.element])
+      : dbValue = 'checked-in',
+        super('checked-in', element);
+
+  /// waitlist
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AppointmentStatus.waitlist([this.element])
+      : dbValue = 'waitlist',
+        super('waitlist', element);
+
+  /// For instances where an Element is present but not value
+
+  AppointmentStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AppointmentStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'proposed',
+    'pending',
+    'booked',
+    'arrived',
+    'fulfilled',
+    'cancelled',
+    'noshow',
+    'entered-in-error',
+    'checked-in',
+    'waitlist',
+  ];
+
+  /// Returns the enum value with an element attached
+  AppointmentStatus withElement(Element? newElement) {
+    return AppointmentStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AppointmentStatus.$fhirCode';
+  String toString() => 'AppointmentStatus.$value';
 }

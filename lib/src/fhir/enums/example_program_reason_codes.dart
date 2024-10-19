@@ -5,87 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes sample Program Reason Span codes.
 @Entity()
-class ExampleProgramReasonCodes {
-  // Private constructor for internal use (like enum)
-  ExampleProgramReasonCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleProgramReasonCodes values
-  /// as_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleProgramReasonCodes as_ = ExampleProgramReasonCodes._(
-    'as',
-  );
-
-  /// hd
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleProgramReasonCodes hd = ExampleProgramReasonCodes._(
-    'hd',
-  );
-
-  /// auscr
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleProgramReasonCodes auscr = ExampleProgramReasonCodes._(
-    'auscr',
-  );
-
-  /// none
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleProgramReasonCodes none = ExampleProgramReasonCodes._(
-    'none',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ExampleProgramReasonCodes elementOnly =
-      ExampleProgramReasonCodes._('');
-
-  /// List of all enum-like values
-  static final List<ExampleProgramReasonCodes> values = [
-    as_,
-    hd,
-    auscr,
-    none,
-  ];
-
-  /// Returns the enum value with an element attached
-  ExampleProgramReasonCodes withElement(Element? newElement) {
-    return ExampleProgramReasonCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ExampleProgramReasonCodes extends FhirCode {
   /// Factory constructor to create [ExampleProgramReasonCodes] from JSON.
-  static ExampleProgramReasonCodes fromJson(Map<String, dynamic> json) {
+  factory ExampleProgramReasonCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleProgramReasonCodes.elementOnly.withElement(element);
+      return ExampleProgramReasonCodes.elementOnly(element);
     }
-    return ExampleProgramReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ExampleProgramReasonCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ExampleProgramReasonCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// as_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleProgramReasonCodes.as_([this.element])
+      : dbValue = 'as',
+        super('as', element);
+
+  /// hd
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleProgramReasonCodes.hd([this.element])
+      : dbValue = 'hd',
+        super('hd', element);
+
+  /// auscr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleProgramReasonCodes.auscr([this.element])
+      : dbValue = 'auscr',
+        super('auscr', element);
+
+  /// none
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleProgramReasonCodes.none([this.element])
+      : dbValue = 'none',
+        super('none', element);
+
+  /// For instances where an Element is present but not value
+
+  ExampleProgramReasonCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ExampleProgramReasonCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'as',
+    'hd',
+    'auscr',
+    'none',
+  ];
+
+  /// Returns the enum value with an element attached
+  ExampleProgramReasonCodes withElement(Element? newElement) {
+    return ExampleProgramReasonCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ExampleProgramReasonCodes.$fhirCode';
+  String toString() => 'ExampleProgramReasonCodes.$value';
 }

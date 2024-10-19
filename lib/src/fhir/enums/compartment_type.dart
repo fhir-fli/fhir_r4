@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// Which type a compartment definition describes.
 @Entity()
-class CompartmentType {
-  // Private constructor for internal use (like enum)
-  CompartmentType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CompartmentType values
-  /// Patient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CompartmentType Patient = CompartmentType._(
-    'Patient',
-  );
-
-  /// Encounter
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CompartmentType Encounter = CompartmentType._(
-    'Encounter',
-  );
-
-  /// RelatedPerson
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CompartmentType RelatedPerson = CompartmentType._(
-    'RelatedPerson',
-  );
-
-  /// Practitioner
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CompartmentType Practitioner = CompartmentType._(
-    'Practitioner',
-  );
-
-  /// Device
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CompartmentType Device = CompartmentType._(
-    'Device',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CompartmentType elementOnly = CompartmentType._('');
-
-  /// List of all enum-like values
-  static final List<CompartmentType> values = [
-    Patient,
-    Encounter,
-    RelatedPerson,
-    Practitioner,
-    Device,
-  ];
-
-  /// Returns the enum value with an element attached
-  CompartmentType withElement(Element? newElement) {
-    return CompartmentType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CompartmentType extends FhirCode {
   /// Factory constructor to create [CompartmentType] from JSON.
-  static CompartmentType fromJson(Map<String, dynamic> json) {
+  factory CompartmentType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CompartmentType.elementOnly.withElement(element);
+      return CompartmentType.elementOnly(element);
     }
-    return CompartmentType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CompartmentType._(value, element);
+    }
+    throw ArgumentError(
+      'CompartmentType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Patient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CompartmentType.Patient([this.element])
+      : dbValue = 'Patient',
+        super('Patient', element);
+
+  /// Encounter
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CompartmentType.Encounter([this.element])
+      : dbValue = 'Encounter',
+        super('Encounter', element);
+
+  /// RelatedPerson
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CompartmentType.RelatedPerson([this.element])
+      : dbValue = 'RelatedPerson',
+        super('RelatedPerson', element);
+
+  /// Practitioner
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CompartmentType.Practitioner([this.element])
+      : dbValue = 'Practitioner',
+        super('Practitioner', element);
+
+  /// Device
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CompartmentType.Device([this.element])
+      : dbValue = 'Device',
+        super('Device', element);
+
+  /// For instances where an Element is present but not value
+
+  CompartmentType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CompartmentType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Patient',
+    'Encounter',
+    'RelatedPerson',
+    'Practitioner',
+    'Device',
+  ];
+
+  /// Returns the enum value with an element attached
+  CompartmentType withElement(Element? newElement) {
+    return CompartmentType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CompartmentType.$fhirCode';
+  String toString() => 'CompartmentType.$value';
 }

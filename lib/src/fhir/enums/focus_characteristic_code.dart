@@ -5,121 +5,131 @@ import 'package:objectbox/objectbox.dart';
 
 /// Evidence focus characteristic code.
 @Entity()
-class FocusCharacteristicCode {
-  // Private constructor for internal use (like enum)
-  FocusCharacteristicCode._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// FocusCharacteristicCode values
-  /// citation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FocusCharacteristicCode citation = FocusCharacteristicCode._(
-    'citation',
-  );
-
-  /// clinical_outcomes_observed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FocusCharacteristicCode clinical_outcomes_observed =
-      FocusCharacteristicCode._(
-    'clinical-outcomes-observed',
-  );
-
-  /// population
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FocusCharacteristicCode population = FocusCharacteristicCode._(
-    'population',
-  );
-
-  /// exposure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FocusCharacteristicCode exposure = FocusCharacteristicCode._(
-    'exposure',
-  );
-
-  /// comparator
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FocusCharacteristicCode comparator = FocusCharacteristicCode._(
-    'comparator',
-  );
-
-  /// outcome
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FocusCharacteristicCode outcome = FocusCharacteristicCode._(
-    'outcome',
-  );
-
-  /// medication_exposures
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FocusCharacteristicCode medication_exposures =
-      FocusCharacteristicCode._(
-    'medication-exposures',
-  );
-
-  /// study_type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FocusCharacteristicCode study_type = FocusCharacteristicCode._(
-    'study-type',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final FocusCharacteristicCode elementOnly =
-      FocusCharacteristicCode._('');
-
-  /// List of all enum-like values
-  static final List<FocusCharacteristicCode> values = [
-    citation,
-    clinical_outcomes_observed,
-    population,
-    exposure,
-    comparator,
-    outcome,
-    medication_exposures,
-    study_type,
-  ];
-
-  /// Returns the enum value with an element attached
-  FocusCharacteristicCode withElement(Element? newElement) {
-    return FocusCharacteristicCode._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class FocusCharacteristicCode extends FhirCode {
   /// Factory constructor to create [FocusCharacteristicCode] from JSON.
-  static FocusCharacteristicCode fromJson(Map<String, dynamic> json) {
+  factory FocusCharacteristicCode.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FocusCharacteristicCode.elementOnly.withElement(element);
+      return FocusCharacteristicCode.elementOnly(element);
     }
-    return FocusCharacteristicCode.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return FocusCharacteristicCode._(value, element);
+    }
+    throw ArgumentError(
+      'FocusCharacteristicCode.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// citation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FocusCharacteristicCode.citation([this.element])
+      : dbValue = 'citation',
+        super('citation', element);
+
+  /// clinical_outcomes_observed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FocusCharacteristicCode.clinical_outcomes_observed([this.element])
+      : dbValue = 'clinical-outcomes-observed',
+        super('clinical-outcomes-observed', element);
+
+  /// population
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FocusCharacteristicCode.population([this.element])
+      : dbValue = 'population',
+        super('population', element);
+
+  /// exposure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FocusCharacteristicCode.exposure([this.element])
+      : dbValue = 'exposure',
+        super('exposure', element);
+
+  /// comparator
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FocusCharacteristicCode.comparator([this.element])
+      : dbValue = 'comparator',
+        super('comparator', element);
+
+  /// outcome
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FocusCharacteristicCode.outcome([this.element])
+      : dbValue = 'outcome',
+        super('outcome', element);
+
+  /// medication_exposures
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FocusCharacteristicCode.medication_exposures([this.element])
+      : dbValue = 'medication-exposures',
+        super('medication-exposures', element);
+
+  /// study_type
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FocusCharacteristicCode.study_type([this.element])
+      : dbValue = 'study-type',
+        super('study-type', element);
+
+  /// For instances where an Element is present but not value
+
+  FocusCharacteristicCode.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  FocusCharacteristicCode._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'citation',
+    'clinical-outcomes-observed',
+    'population',
+    'exposure',
+    'comparator',
+    'outcome',
+    'medication-exposures',
+    'study-type',
+  ];
+
+  /// Returns the enum value with an element attached
+  FocusCharacteristicCode withElement(Element? newElement) {
+    return FocusCharacteristicCode._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'FocusCharacteristicCode.$fhirCode';
+  String toString() => 'FocusCharacteristicCode.$value';
 }

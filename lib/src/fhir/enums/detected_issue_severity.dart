@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Indicates the potential degree of impact of the identified issue on the patient.
 @Entity()
-class DetectedIssueSeverity {
-  // Private constructor for internal use (like enum)
-  DetectedIssueSeverity._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DetectedIssueSeverity values
-  /// high
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DetectedIssueSeverity high = DetectedIssueSeverity._(
-    'high',
-  );
-
-  /// moderate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DetectedIssueSeverity moderate = DetectedIssueSeverity._(
-    'moderate',
-  );
-
-  /// low
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DetectedIssueSeverity low = DetectedIssueSeverity._(
-    'low',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final DetectedIssueSeverity elementOnly = DetectedIssueSeverity._('');
-
-  /// List of all enum-like values
-  static final List<DetectedIssueSeverity> values = [
-    high,
-    moderate,
-    low,
-  ];
-
-  /// Returns the enum value with an element attached
-  DetectedIssueSeverity withElement(Element? newElement) {
-    return DetectedIssueSeverity._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class DetectedIssueSeverity extends FhirCode {
   /// Factory constructor to create [DetectedIssueSeverity] from JSON.
-  static DetectedIssueSeverity fromJson(Map<String, dynamic> json) {
+  factory DetectedIssueSeverity.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DetectedIssueSeverity.elementOnly.withElement(element);
+      return DetectedIssueSeverity.elementOnly(element);
     }
-    return DetectedIssueSeverity.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return DetectedIssueSeverity._(value, element);
+    }
+    throw ArgumentError(
+      'DetectedIssueSeverity.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// high
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DetectedIssueSeverity.high([this.element])
+      : dbValue = 'high',
+        super('high', element);
+
+  /// moderate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DetectedIssueSeverity.moderate([this.element])
+      : dbValue = 'moderate',
+        super('moderate', element);
+
+  /// low
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DetectedIssueSeverity.low([this.element])
+      : dbValue = 'low',
+        super('low', element);
+
+  /// For instances where an Element is present but not value
+
+  DetectedIssueSeverity.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  DetectedIssueSeverity._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'high',
+    'moderate',
+    'low',
+  ];
+
+  /// Returns the enum value with an element attached
+  DetectedIssueSeverity withElement(Element? newElement) {
+    return DetectedIssueSeverity._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'DetectedIssueSeverity.$fhirCode';
+  String toString() => 'DetectedIssueSeverity.$value';
 }

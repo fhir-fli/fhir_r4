@@ -5,110 +5,123 @@ import 'package:objectbox/objectbox.dart';
 
 /// The status of the episode of care.
 @Entity()
-class EpisodeOfCareStatus {
-  // Private constructor for internal use (like enum)
-  EpisodeOfCareStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EpisodeOfCareStatus values
-  /// planned
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EpisodeOfCareStatus planned = EpisodeOfCareStatus._(
-    'planned',
-  );
-
-  /// waitlist
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EpisodeOfCareStatus waitlist = EpisodeOfCareStatus._(
-    'waitlist',
-  );
-
-  /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EpisodeOfCareStatus active = EpisodeOfCareStatus._(
-    'active',
-  );
-
-  /// onhold
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EpisodeOfCareStatus onhold = EpisodeOfCareStatus._(
-    'onhold',
-  );
-
-  /// finished
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EpisodeOfCareStatus finished = EpisodeOfCareStatus._(
-    'finished',
-  );
-
-  /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EpisodeOfCareStatus cancelled = EpisodeOfCareStatus._(
-    'cancelled',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EpisodeOfCareStatus entered_in_error = EpisodeOfCareStatus._(
-    'entered-in-error',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final EpisodeOfCareStatus elementOnly = EpisodeOfCareStatus._('');
-
-  /// List of all enum-like values
-  static final List<EpisodeOfCareStatus> values = [
-    planned,
-    waitlist,
-    active,
-    onhold,
-    finished,
-    cancelled,
-    entered_in_error,
-  ];
-
-  /// Returns the enum value with an element attached
-  EpisodeOfCareStatus withElement(Element? newElement) {
-    return EpisodeOfCareStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class EpisodeOfCareStatus extends FhirCode {
   /// Factory constructor to create [EpisodeOfCareStatus] from JSON.
-  static EpisodeOfCareStatus fromJson(Map<String, dynamic> json) {
+  factory EpisodeOfCareStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EpisodeOfCareStatus.elementOnly.withElement(element);
+      return EpisodeOfCareStatus.elementOnly(element);
     }
-    return EpisodeOfCareStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return EpisodeOfCareStatus._(value, element);
+    }
+    throw ArgumentError(
+      'EpisodeOfCareStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// planned
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EpisodeOfCareStatus.planned([this.element])
+      : dbValue = 'planned',
+        super('planned', element);
+
+  /// waitlist
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EpisodeOfCareStatus.waitlist([this.element])
+      : dbValue = 'waitlist',
+        super('waitlist', element);
+
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EpisodeOfCareStatus.active([this.element])
+      : dbValue = 'active',
+        super('active', element);
+
+  /// onhold
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EpisodeOfCareStatus.onhold([this.element])
+      : dbValue = 'onhold',
+        super('onhold', element);
+
+  /// finished
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EpisodeOfCareStatus.finished([this.element])
+      : dbValue = 'finished',
+        super('finished', element);
+
+  /// cancelled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EpisodeOfCareStatus.cancelled([this.element])
+      : dbValue = 'cancelled',
+        super('cancelled', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EpisodeOfCareStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// For instances where an Element is present but not value
+
+  EpisodeOfCareStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  EpisodeOfCareStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'planned',
+    'waitlist',
+    'active',
+    'onhold',
+    'finished',
+    'cancelled',
+    'entered-in-error',
+  ];
+
+  /// Returns the enum value with an element attached
+  EpisodeOfCareStatus withElement(Element? newElement) {
+    return EpisodeOfCareStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'EpisodeOfCareStatus.$fhirCode';
+  String toString() => 'EpisodeOfCareStatus.$value';
 }

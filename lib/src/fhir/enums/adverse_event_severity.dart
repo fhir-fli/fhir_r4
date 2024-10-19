@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// The severity of the adverse event itself, in direct relation to the subject.
 @Entity()
-class AdverseEventSeverity {
-  // Private constructor for internal use (like enum)
-  AdverseEventSeverity._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AdverseEventSeverity values
-  /// mild
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventSeverity mild = AdverseEventSeverity._(
-    'mild',
-  );
-
-  /// moderate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventSeverity moderate = AdverseEventSeverity._(
-    'moderate',
-  );
-
-  /// severe
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventSeverity severe = AdverseEventSeverity._(
-    'severe',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AdverseEventSeverity elementOnly = AdverseEventSeverity._('');
-
-  /// List of all enum-like values
-  static final List<AdverseEventSeverity> values = [
-    mild,
-    moderate,
-    severe,
-  ];
-
-  /// Returns the enum value with an element attached
-  AdverseEventSeverity withElement(Element? newElement) {
-    return AdverseEventSeverity._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AdverseEventSeverity extends FhirCode {
   /// Factory constructor to create [AdverseEventSeverity] from JSON.
-  static AdverseEventSeverity fromJson(Map<String, dynamic> json) {
+  factory AdverseEventSeverity.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdverseEventSeverity.elementOnly.withElement(element);
+      return AdverseEventSeverity.elementOnly(element);
     }
-    return AdverseEventSeverity.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AdverseEventSeverity._(value, element);
+    }
+    throw ArgumentError(
+      'AdverseEventSeverity.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// mild
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventSeverity.mild([this.element])
+      : dbValue = 'mild',
+        super('mild', element);
+
+  /// moderate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventSeverity.moderate([this.element])
+      : dbValue = 'moderate',
+        super('moderate', element);
+
+  /// severe
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventSeverity.severe([this.element])
+      : dbValue = 'severe',
+        super('severe', element);
+
+  /// For instances where an Element is present but not value
+
+  AdverseEventSeverity.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AdverseEventSeverity._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'mild',
+    'moderate',
+    'severe',
+  ];
+
+  /// Returns the enum value with an element attached
+  AdverseEventSeverity withElement(Element? newElement) {
+    return AdverseEventSeverity._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AdverseEventSeverity.$fhirCode';
+  String toString() => 'AdverseEventSeverity.$value';
 }

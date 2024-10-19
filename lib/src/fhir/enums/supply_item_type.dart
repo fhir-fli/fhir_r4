@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value sets refers to a specific supply item.
 @Entity()
-class SupplyItemType {
-  // Private constructor for internal use (like enum)
-  SupplyItemType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SupplyItemType values
-  /// medication
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SupplyItemType medication = SupplyItemType._(
-    'medication',
-  );
-
-  /// device
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SupplyItemType device = SupplyItemType._(
-    'device',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SupplyItemType elementOnly = SupplyItemType._('');
-
-  /// List of all enum-like values
-  static final List<SupplyItemType> values = [
-    medication,
-    device,
-  ];
-
-  /// Returns the enum value with an element attached
-  SupplyItemType withElement(Element? newElement) {
-    return SupplyItemType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SupplyItemType extends FhirCode {
   /// Factory constructor to create [SupplyItemType] from JSON.
-  static SupplyItemType fromJson(Map<String, dynamic> json) {
+  factory SupplyItemType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SupplyItemType.elementOnly.withElement(element);
+      return SupplyItemType.elementOnly(element);
     }
-    return SupplyItemType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SupplyItemType._(value, element);
+    }
+    throw ArgumentError(
+      'SupplyItemType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// medication
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SupplyItemType.medication([this.element])
+      : dbValue = 'medication',
+        super('medication', element);
+
+  /// device
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SupplyItemType.device([this.element])
+      : dbValue = 'device',
+        super('device', element);
+
+  /// For instances where an Element is present but not value
+
+  SupplyItemType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SupplyItemType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'medication',
+    'device',
+  ];
+
+  /// Returns the enum value with an element attached
+  SupplyItemType withElement(Element? newElement) {
+    return SupplyItemType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SupplyItemType.$fhirCode';
+  String toString() => 'SupplyItemType.$value';
 }

@@ -5,121 +5,131 @@ import 'package:objectbox/objectbox.dart';
 
 /// MedicationRequest Intent Codes
 @Entity()
-class MedicationRequestIntent {
-  // Private constructor for internal use (like enum)
-  MedicationRequestIntent._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MedicationRequestIntent values
-  /// proposal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationRequestIntent proposal = MedicationRequestIntent._(
-    'proposal',
-  );
-
-  /// plan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationRequestIntent plan = MedicationRequestIntent._(
-    'plan',
-  );
-
-  /// order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationRequestIntent order = MedicationRequestIntent._(
-    'order',
-  );
-
-  /// original_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationRequestIntent original_order =
-      MedicationRequestIntent._(
-    'original-order',
-  );
-
-  /// reflex_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationRequestIntent reflex_order = MedicationRequestIntent._(
-    'reflex-order',
-  );
-
-  /// filler_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationRequestIntent filler_order = MedicationRequestIntent._(
-    'filler-order',
-  );
-
-  /// instance_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationRequestIntent instance_order =
-      MedicationRequestIntent._(
-    'instance-order',
-  );
-
-  /// option
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationRequestIntent option = MedicationRequestIntent._(
-    'option',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MedicationRequestIntent elementOnly =
-      MedicationRequestIntent._('');
-
-  /// List of all enum-like values
-  static final List<MedicationRequestIntent> values = [
-    proposal,
-    plan,
-    order,
-    original_order,
-    reflex_order,
-    filler_order,
-    instance_order,
-    option,
-  ];
-
-  /// Returns the enum value with an element attached
-  MedicationRequestIntent withElement(Element? newElement) {
-    return MedicationRequestIntent._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MedicationRequestIntent extends FhirCode {
   /// Factory constructor to create [MedicationRequestIntent] from JSON.
-  static MedicationRequestIntent fromJson(Map<String, dynamic> json) {
+  factory MedicationRequestIntent.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationRequestIntent.elementOnly.withElement(element);
+      return MedicationRequestIntent.elementOnly(element);
     }
-    return MedicationRequestIntent.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MedicationRequestIntent._(value, element);
+    }
+    throw ArgumentError(
+      'MedicationRequestIntent.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// proposal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationRequestIntent.proposal([this.element])
+      : dbValue = 'proposal',
+        super('proposal', element);
+
+  /// plan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationRequestIntent.plan([this.element])
+      : dbValue = 'plan',
+        super('plan', element);
+
+  /// order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationRequestIntent.order([this.element])
+      : dbValue = 'order',
+        super('order', element);
+
+  /// original_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationRequestIntent.original_order([this.element])
+      : dbValue = 'original-order',
+        super('original-order', element);
+
+  /// reflex_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationRequestIntent.reflex_order([this.element])
+      : dbValue = 'reflex-order',
+        super('reflex-order', element);
+
+  /// filler_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationRequestIntent.filler_order([this.element])
+      : dbValue = 'filler-order',
+        super('filler-order', element);
+
+  /// instance_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationRequestIntent.instance_order([this.element])
+      : dbValue = 'instance-order',
+        super('instance-order', element);
+
+  /// option
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationRequestIntent.option([this.element])
+      : dbValue = 'option',
+        super('option', element);
+
+  /// For instances where an Element is present but not value
+
+  MedicationRequestIntent.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MedicationRequestIntent._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'proposal',
+    'plan',
+    'order',
+    'original-order',
+    'reflex-order',
+    'filler-order',
+    'instance-order',
+    'option',
+  ];
+
+  /// Returns the enum value with an element attached
+  MedicationRequestIntent withElement(Element? newElement) {
+    return MedicationRequestIntent._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MedicationRequestIntent.$fhirCode';
+  String toString() => 'MedicationRequestIntent.$value';
 }

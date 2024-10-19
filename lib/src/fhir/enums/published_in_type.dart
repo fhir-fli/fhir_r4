@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of publication such as book, database, or journal.
 @Entity()
-class PublishedInType {
-  // Private constructor for internal use (like enum)
-  PublishedInType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// PublishedInType values
-  /// D020492
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PublishedInType D020492 = PublishedInType._(
-    'D020492',
-  );
-
-  /// D019991
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PublishedInType D019991 = PublishedInType._(
-    'D019991',
-  );
-
-  /// D001877
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PublishedInType D001877 = PublishedInType._(
-    'D001877',
-  );
-
-  /// D064886
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PublishedInType D064886 = PublishedInType._(
-    'D064886',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final PublishedInType elementOnly = PublishedInType._('');
-
-  /// List of all enum-like values
-  static final List<PublishedInType> values = [
-    D020492,
-    D019991,
-    D001877,
-    D064886,
-  ];
-
-  /// Returns the enum value with an element attached
-  PublishedInType withElement(Element? newElement) {
-    return PublishedInType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class PublishedInType extends FhirCode {
   /// Factory constructor to create [PublishedInType] from JSON.
-  static PublishedInType fromJson(Map<String, dynamic> json) {
+  factory PublishedInType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PublishedInType.elementOnly.withElement(element);
+      return PublishedInType.elementOnly(element);
     }
-    return PublishedInType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return PublishedInType._(value, element);
+    }
+    throw ArgumentError(
+      'PublishedInType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// D020492
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PublishedInType.D020492([this.element])
+      : dbValue = 'D020492',
+        super('D020492', element);
+
+  /// D019991
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PublishedInType.D019991([this.element])
+      : dbValue = 'D019991',
+        super('D019991', element);
+
+  /// D001877
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PublishedInType.D001877([this.element])
+      : dbValue = 'D001877',
+        super('D001877', element);
+
+  /// D064886
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PublishedInType.D064886([this.element])
+      : dbValue = 'D064886',
+        super('D064886', element);
+
+  /// For instances where an Element is present but not value
+
+  PublishedInType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  PublishedInType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'D020492',
+    'D019991',
+    'D001877',
+    'D064886',
+  ];
+
+  /// Returns the enum value with an element attached
+  PublishedInType withElement(Element? newElement) {
+    return PublishedInType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'PublishedInType.$fhirCode';
+  String toString() => 'PublishedInType.$value';
 }

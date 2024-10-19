@@ -104,6 +104,7 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
 
   /// Returns the FHIR type as 'uuid'.
   @override
+  @Transient()
   String get fhirType => 'uuid';
 
   /// Serializes the instance to JSON with standardized keys

@@ -5,118 +5,131 @@ import 'package:objectbox/objectbox.dart';
 
 /// Codes providing the status of an observation.
 @Entity()
-class ObservationStatus {
-  // Private constructor for internal use (like enum)
-  ObservationStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ObservationStatus values
-  /// registered
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationStatus registered = ObservationStatus._(
-    'registered',
-  );
-
-  /// preliminary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationStatus preliminary = ObservationStatus._(
-    'preliminary',
-  );
-
-  /// final_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationStatus final_ = ObservationStatus._(
-    'final',
-  );
-
-  /// amended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationStatus amended = ObservationStatus._(
-    'amended',
-  );
-
-  /// corrected
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationStatus corrected = ObservationStatus._(
-    'corrected',
-  );
-
-  /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationStatus cancelled = ObservationStatus._(
-    'cancelled',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationStatus entered_in_error = ObservationStatus._(
-    'entered-in-error',
-  );
-
-  /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationStatus unknown = ObservationStatus._(
-    'unknown',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ObservationStatus elementOnly = ObservationStatus._('');
-
-  /// List of all enum-like values
-  static final List<ObservationStatus> values = [
-    registered,
-    preliminary,
-    final_,
-    amended,
-    corrected,
-    cancelled,
-    entered_in_error,
-    unknown,
-  ];
-
-  /// Returns the enum value with an element attached
-  ObservationStatus withElement(Element? newElement) {
-    return ObservationStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ObservationStatus extends FhirCode {
   /// Factory constructor to create [ObservationStatus] from JSON.
-  static ObservationStatus fromJson(Map<String, dynamic> json) {
+  factory ObservationStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObservationStatus.elementOnly.withElement(element);
+      return ObservationStatus.elementOnly(element);
     }
-    return ObservationStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ObservationStatus._(value, element);
+    }
+    throw ArgumentError(
+      'ObservationStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// registered
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationStatus.registered([this.element])
+      : dbValue = 'registered',
+        super('registered', element);
+
+  /// preliminary
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationStatus.preliminary([this.element])
+      : dbValue = 'preliminary',
+        super('preliminary', element);
+
+  /// final_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationStatus.final_([this.element])
+      : dbValue = 'final',
+        super('final', element);
+
+  /// amended
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationStatus.amended([this.element])
+      : dbValue = 'amended',
+        super('amended', element);
+
+  /// corrected
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationStatus.corrected([this.element])
+      : dbValue = 'corrected',
+        super('corrected', element);
+
+  /// cancelled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationStatus.cancelled([this.element])
+      : dbValue = 'cancelled',
+        super('cancelled', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationStatus.unknown([this.element])
+      : dbValue = 'unknown',
+        super('unknown', element);
+
+  /// For instances where an Element is present but not value
+
+  ObservationStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ObservationStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'registered',
+    'preliminary',
+    'final',
+    'amended',
+    'corrected',
+    'cancelled',
+    'entered-in-error',
+    'unknown',
+  ];
+
+  /// Returns the enum value with an element attached
+  ObservationStatus withElement(Element? newElement) {
+    return ObservationStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ObservationStatus.$fhirCode';
+  String toString() => 'ObservationStatus.$value';
 }

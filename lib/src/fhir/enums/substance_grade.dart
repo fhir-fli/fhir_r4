@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// The quality standard, established benchmark, to which a substance complies.
 @Entity()
-class SubstanceGrade {
-  // Private constructor for internal use (like enum)
-  SubstanceGrade._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubstanceGrade values
-  /// USP_NF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceGrade USP_NF = SubstanceGrade._(
-    'USP-NF',
-  );
-
-  /// Ph_Eur
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceGrade Ph_Eur = SubstanceGrade._(
-    'Ph.Eur',
-  );
-
-  /// JP
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceGrade JP = SubstanceGrade._(
-    'JP',
-  );
-
-  /// BP
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceGrade BP = SubstanceGrade._(
-    'BP',
-  );
-
-  /// CompanyStandard
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceGrade CompanyStandard = SubstanceGrade._(
-    'CompanyStandard',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SubstanceGrade elementOnly = SubstanceGrade._('');
-
-  /// List of all enum-like values
-  static final List<SubstanceGrade> values = [
-    USP_NF,
-    Ph_Eur,
-    JP,
-    BP,
-    CompanyStandard,
-  ];
-
-  /// Returns the enum value with an element attached
-  SubstanceGrade withElement(Element? newElement) {
-    return SubstanceGrade._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SubstanceGrade extends FhirCode {
   /// Factory constructor to create [SubstanceGrade] from JSON.
-  static SubstanceGrade fromJson(Map<String, dynamic> json) {
+  factory SubstanceGrade.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubstanceGrade.elementOnly.withElement(element);
+      return SubstanceGrade.elementOnly(element);
     }
-    return SubstanceGrade.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SubstanceGrade._(value, element);
+    }
+    throw ArgumentError(
+      'SubstanceGrade.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// USP_NF
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceGrade.USP_NF([this.element])
+      : dbValue = 'USP-NF',
+        super('USP-NF', element);
+
+  /// Ph_Eur
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceGrade.Ph_Eur([this.element])
+      : dbValue = 'Ph.Eur',
+        super('Ph.Eur', element);
+
+  /// JP
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceGrade.JP([this.element])
+      : dbValue = 'JP',
+        super('JP', element);
+
+  /// BP
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceGrade.BP([this.element])
+      : dbValue = 'BP',
+        super('BP', element);
+
+  /// CompanyStandard
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceGrade.CompanyStandard([this.element])
+      : dbValue = 'CompanyStandard',
+        super('CompanyStandard', element);
+
+  /// For instances where an Element is present but not value
+
+  SubstanceGrade.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SubstanceGrade._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'USP-NF',
+    'Ph.Eur',
+    'JP',
+    'BP',
+    'CompanyStandard',
+  ];
+
+  /// Returns the enum value with an element attached
+  SubstanceGrade withElement(Element? newElement) {
+    return SubstanceGrade._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SubstanceGrade.$fhirCode';
+  String toString() => 'SubstanceGrade.$value';
 }

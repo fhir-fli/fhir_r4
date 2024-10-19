@@ -5,102 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes sample Modifier type codes.
 @Entity()
-class ModifierTypeCodes {
-  // Private constructor for internal use (like enum)
-  ModifierTypeCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ModifierTypeCodes values
-  /// a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ModifierTypeCodes a = ModifierTypeCodes._(
-    'a',
-  );
-
-  /// b
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ModifierTypeCodes b = ModifierTypeCodes._(
-    'b',
-  );
-
-  /// c
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ModifierTypeCodes c = ModifierTypeCodes._(
-    'c',
-  );
-
-  /// e
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ModifierTypeCodes e = ModifierTypeCodes._(
-    'e',
-  );
-
-  /// rooh
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ModifierTypeCodes rooh = ModifierTypeCodes._(
-    'rooh',
-  );
-
-  /// x
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ModifierTypeCodes x = ModifierTypeCodes._(
-    'x',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ModifierTypeCodes elementOnly = ModifierTypeCodes._('');
-
-  /// List of all enum-like values
-  static final List<ModifierTypeCodes> values = [
-    a,
-    b,
-    c,
-    e,
-    rooh,
-    x,
-  ];
-
-  /// Returns the enum value with an element attached
-  ModifierTypeCodes withElement(Element? newElement) {
-    return ModifierTypeCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ModifierTypeCodes extends FhirCode {
   /// Factory constructor to create [ModifierTypeCodes] from JSON.
-  static ModifierTypeCodes fromJson(Map<String, dynamic> json) {
+  factory ModifierTypeCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ModifierTypeCodes.elementOnly.withElement(element);
+      return ModifierTypeCodes.elementOnly(element);
     }
-    return ModifierTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ModifierTypeCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ModifierTypeCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// a
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ModifierTypeCodes.a([this.element])
+      : dbValue = 'a',
+        super('a', element);
+
+  /// b
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ModifierTypeCodes.b([this.element])
+      : dbValue = 'b',
+        super('b', element);
+
+  /// c
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ModifierTypeCodes.c([this.element])
+      : dbValue = 'c',
+        super('c', element);
+
+  /// e
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ModifierTypeCodes.e([this.element])
+      : dbValue = 'e',
+        super('e', element);
+
+  /// rooh
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ModifierTypeCodes.rooh([this.element])
+      : dbValue = 'rooh',
+        super('rooh', element);
+
+  /// x
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ModifierTypeCodes.x([this.element])
+      : dbValue = 'x',
+        super('x', element);
+
+  /// For instances where an Element is present but not value
+
+  ModifierTypeCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ModifierTypeCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'a',
+    'b',
+    'c',
+    'e',
+    'rooh',
+    'x',
+  ];
+
+  /// Returns the enum value with an element attached
+  ModifierTypeCodes withElement(Element? newElement) {
+    return ModifierTypeCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ModifierTypeCodes.$fhirCode';
+  String toString() => 'ModifierTypeCodes.$value';
 }

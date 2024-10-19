@@ -5,153 +5,155 @@ import 'package:objectbox/objectbox.dart';
 
 /// Used to express the reason and specific aspect for the variant abstract, such as language and specific language.
 @Entity()
-class CitedArtifactAbstractType {
-  // Private constructor for internal use (like enum)
-  CitedArtifactAbstractType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CitedArtifactAbstractType values
-  /// primary_human_use
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactAbstractType primary_human_use =
-      CitedArtifactAbstractType._(
-    'primary-human-use',
-  );
-
-  /// primary_machine_use
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactAbstractType primary_machine_use =
-      CitedArtifactAbstractType._(
-    'primary-machine-use',
-  );
-
-  /// truncated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactAbstractType truncated =
-      CitedArtifactAbstractType._(
-    'truncated',
-  );
-
-  /// short_abstract
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactAbstractType short_abstract =
-      CitedArtifactAbstractType._(
-    'short-abstract',
-  );
-
-  /// long_abstract
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactAbstractType long_abstract =
-      CitedArtifactAbstractType._(
-    'long-abstract',
-  );
-
-  /// plain_language
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactAbstractType plain_language =
-      CitedArtifactAbstractType._(
-    'plain-language',
-  );
-
-  /// different_publisher
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactAbstractType different_publisher =
-      CitedArtifactAbstractType._(
-    'different-publisher',
-  );
-
-  /// language
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactAbstractType language = CitedArtifactAbstractType._(
-    'language',
-  );
-
-  /// autotranslated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactAbstractType autotranslated =
-      CitedArtifactAbstractType._(
-    'autotranslated',
-  );
-
-  /// duplicate_pmid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactAbstractType duplicate_pmid =
-      CitedArtifactAbstractType._(
-    'duplicate-pmid',
-  );
-
-  /// earlier_abstract
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactAbstractType earlier_abstract =
-      CitedArtifactAbstractType._(
-    'earlier-abstract',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CitedArtifactAbstractType elementOnly =
-      CitedArtifactAbstractType._('');
-
-  /// List of all enum-like values
-  static final List<CitedArtifactAbstractType> values = [
-    primary_human_use,
-    primary_machine_use,
-    truncated,
-    short_abstract,
-    long_abstract,
-    plain_language,
-    different_publisher,
-    language,
-    autotranslated,
-    duplicate_pmid,
-    earlier_abstract,
-  ];
-
-  /// Returns the enum value with an element attached
-  CitedArtifactAbstractType withElement(Element? newElement) {
-    return CitedArtifactAbstractType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CitedArtifactAbstractType extends FhirCode {
   /// Factory constructor to create [CitedArtifactAbstractType] from JSON.
-  static CitedArtifactAbstractType fromJson(Map<String, dynamic> json) {
+  factory CitedArtifactAbstractType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CitedArtifactAbstractType.elementOnly.withElement(element);
+      return CitedArtifactAbstractType.elementOnly(element);
     }
-    return CitedArtifactAbstractType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CitedArtifactAbstractType._(value, element);
+    }
+    throw ArgumentError(
+      'CitedArtifactAbstractType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// primary_human_use
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactAbstractType.primary_human_use([this.element])
+      : dbValue = 'primary-human-use',
+        super('primary-human-use', element);
+
+  /// primary_machine_use
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactAbstractType.primary_machine_use([this.element])
+      : dbValue = 'primary-machine-use',
+        super('primary-machine-use', element);
+
+  /// truncated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactAbstractType.truncated([this.element])
+      : dbValue = 'truncated',
+        super('truncated', element);
+
+  /// short_abstract
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactAbstractType.short_abstract([this.element])
+      : dbValue = 'short-abstract',
+        super('short-abstract', element);
+
+  /// long_abstract
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactAbstractType.long_abstract([this.element])
+      : dbValue = 'long-abstract',
+        super('long-abstract', element);
+
+  /// plain_language
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactAbstractType.plain_language([this.element])
+      : dbValue = 'plain-language',
+        super('plain-language', element);
+
+  /// different_publisher
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactAbstractType.different_publisher([this.element])
+      : dbValue = 'different-publisher',
+        super('different-publisher', element);
+
+  /// language
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactAbstractType.language([this.element])
+      : dbValue = 'language',
+        super('language', element);
+
+  /// autotranslated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactAbstractType.autotranslated([this.element])
+      : dbValue = 'autotranslated',
+        super('autotranslated', element);
+
+  /// duplicate_pmid
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactAbstractType.duplicate_pmid([this.element])
+      : dbValue = 'duplicate-pmid',
+        super('duplicate-pmid', element);
+
+  /// earlier_abstract
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactAbstractType.earlier_abstract([this.element])
+      : dbValue = 'earlier-abstract',
+        super('earlier-abstract', element);
+
+  /// For instances where an Element is present but not value
+
+  CitedArtifactAbstractType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CitedArtifactAbstractType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'primary-human-use',
+    'primary-machine-use',
+    'truncated',
+    'short-abstract',
+    'long-abstract',
+    'plain-language',
+    'different-publisher',
+    'language',
+    'autotranslated',
+    'duplicate-pmid',
+    'earlier-abstract',
+  ];
+
+  /// Returns the enum value with an element attached
+  CitedArtifactAbstractType withElement(Element? newElement) {
+    return CitedArtifactAbstractType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CitedArtifactAbstractType.$fhirCode';
+  String toString() => 'CitedArtifactAbstractType.$value';
 }

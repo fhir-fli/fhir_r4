@@ -5,126 +5,139 @@ import 'package:objectbox/objectbox.dart';
 
 /// What Search Comparator Codes are supported in search.
 @Entity()
-class SearchComparator {
-  // Private constructor for internal use (like enum)
-  SearchComparator._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SearchComparator values
-  /// eq
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchComparator eq = SearchComparator._(
-    'eq',
-  );
-
-  /// ne
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchComparator ne = SearchComparator._(
-    'ne',
-  );
-
-  /// gt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchComparator gt = SearchComparator._(
-    'gt',
-  );
-
-  /// lt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchComparator lt = SearchComparator._(
-    'lt',
-  );
-
-  /// ge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchComparator ge = SearchComparator._(
-    'ge',
-  );
-
-  /// le
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchComparator le = SearchComparator._(
-    'le',
-  );
-
-  /// sa
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchComparator sa = SearchComparator._(
-    'sa',
-  );
-
-  /// eb
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchComparator eb = SearchComparator._(
-    'eb',
-  );
-
-  /// ap
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchComparator ap = SearchComparator._(
-    'ap',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SearchComparator elementOnly = SearchComparator._('');
-
-  /// List of all enum-like values
-  static final List<SearchComparator> values = [
-    eq,
-    ne,
-    gt,
-    lt,
-    ge,
-    le,
-    sa,
-    eb,
-    ap,
-  ];
-
-  /// Returns the enum value with an element attached
-  SearchComparator withElement(Element? newElement) {
-    return SearchComparator._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SearchComparator extends FhirCode {
   /// Factory constructor to create [SearchComparator] from JSON.
-  static SearchComparator fromJson(Map<String, dynamic> json) {
+  factory SearchComparator.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SearchComparator.elementOnly.withElement(element);
+      return SearchComparator.elementOnly(element);
     }
-    return SearchComparator.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SearchComparator._(value, element);
+    }
+    throw ArgumentError(
+      'SearchComparator.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// eq
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchComparator.eq([this.element])
+      : dbValue = 'eq',
+        super('eq', element);
+
+  /// ne
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchComparator.ne([this.element])
+      : dbValue = 'ne',
+        super('ne', element);
+
+  /// gt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchComparator.gt([this.element])
+      : dbValue = 'gt',
+        super('gt', element);
+
+  /// lt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchComparator.lt([this.element])
+      : dbValue = 'lt',
+        super('lt', element);
+
+  /// ge
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchComparator.ge([this.element])
+      : dbValue = 'ge',
+        super('ge', element);
+
+  /// le
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchComparator.le([this.element])
+      : dbValue = 'le',
+        super('le', element);
+
+  /// sa
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchComparator.sa([this.element])
+      : dbValue = 'sa',
+        super('sa', element);
+
+  /// eb
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchComparator.eb([this.element])
+      : dbValue = 'eb',
+        super('eb', element);
+
+  /// ap
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchComparator.ap([this.element])
+      : dbValue = 'ap',
+        super('ap', element);
+
+  /// For instances where an Element is present but not value
+
+  SearchComparator.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SearchComparator._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'eq',
+    'ne',
+    'gt',
+    'lt',
+    'ge',
+    'le',
+    'sa',
+    'eb',
+    'ap',
+  ];
+
+  /// Returns the enum value with an element attached
+  SearchComparator withElement(Element? newElement) {
+    return SearchComparator._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SearchComparator.$fhirCode';
+  String toString() => 'SearchComparator.$value';
 }

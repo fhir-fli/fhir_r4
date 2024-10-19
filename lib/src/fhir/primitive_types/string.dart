@@ -70,6 +70,7 @@ class FhirString extends PrimitiveType<String> {
 
   /// Returns the FHIR type as 'string'.
   @override
+  @Transient()
   String get fhirType => 'string';
 
   /// Serializes the instance to JSON with standardized keys

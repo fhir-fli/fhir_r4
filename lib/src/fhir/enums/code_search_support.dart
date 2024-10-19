@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// The degree to which the server supports the code search parameter on ValueSet, if it is supported.
 @Entity()
-class CodeSearchSupport {
-  // Private constructor for internal use (like enum)
-  CodeSearchSupport._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CodeSearchSupport values
-  /// explicit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CodeSearchSupport explicit = CodeSearchSupport._(
-    'explicit',
-  );
-
-  /// all
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CodeSearchSupport all = CodeSearchSupport._(
-    'all',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CodeSearchSupport elementOnly = CodeSearchSupport._('');
-
-  /// List of all enum-like values
-  static final List<CodeSearchSupport> values = [
-    explicit,
-    all,
-  ];
-
-  /// Returns the enum value with an element attached
-  CodeSearchSupport withElement(Element? newElement) {
-    return CodeSearchSupport._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CodeSearchSupport extends FhirCode {
   /// Factory constructor to create [CodeSearchSupport] from JSON.
-  static CodeSearchSupport fromJson(Map<String, dynamic> json) {
+  factory CodeSearchSupport.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CodeSearchSupport.elementOnly.withElement(element);
+      return CodeSearchSupport.elementOnly(element);
     }
-    return CodeSearchSupport.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CodeSearchSupport._(value, element);
+    }
+    throw ArgumentError(
+      'CodeSearchSupport.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// explicit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CodeSearchSupport.explicit([this.element])
+      : dbValue = 'explicit',
+        super('explicit', element);
+
+  /// all
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CodeSearchSupport.all([this.element])
+      : dbValue = 'all',
+        super('all', element);
+
+  /// For instances where an Element is present but not value
+
+  CodeSearchSupport.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CodeSearchSupport._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'explicit',
+    'all',
+  ];
+
+  /// Returns the enum value with an element attached
+  CodeSearchSupport withElement(Element? newElement) {
+    return CodeSearchSupport._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CodeSearchSupport.$fhirCode';
+  String toString() => 'CodeSearchSupport.$value';
 }

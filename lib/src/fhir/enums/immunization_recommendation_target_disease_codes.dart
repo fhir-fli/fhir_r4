@@ -5,140 +5,141 @@ import 'package:objectbox/objectbox.dart';
 
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the disease targeted by a vaccination recommendation. This value set is provided as a suggestive example and includes the SNOMED CT concepts from the 64572001 (Disease) hierarchy.
 @Entity()
-class ImmunizationRecommendationTargetDiseaseCodes {
-  // Private constructor for internal use (like enum)
-  ImmunizationRecommendationTargetDiseaseCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ImmunizationRecommendationTargetDiseaseCodes values
-  /// value1857005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRecommendationTargetDiseaseCodes value1857005 =
-      ImmunizationRecommendationTargetDiseaseCodes._(
-    '1857005',
-  );
-
-  /// value397430003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRecommendationTargetDiseaseCodes value397430003 =
-      ImmunizationRecommendationTargetDiseaseCodes._(
-    '397430003',
-  );
-
-  /// value14189004
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRecommendationTargetDiseaseCodes value14189004 =
-      ImmunizationRecommendationTargetDiseaseCodes._(
-    '14189004',
-  );
-
-  /// value36989005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRecommendationTargetDiseaseCodes value36989005 =
-      ImmunizationRecommendationTargetDiseaseCodes._(
-    '36989005',
-  );
-
-  /// value36653000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRecommendationTargetDiseaseCodes value36653000 =
-      ImmunizationRecommendationTargetDiseaseCodes._(
-    '36653000',
-  );
-
-  /// value76902006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRecommendationTargetDiseaseCodes value76902006 =
-      ImmunizationRecommendationTargetDiseaseCodes._(
-    '76902006',
-  );
-
-  /// value709410003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRecommendationTargetDiseaseCodes value709410003 =
-      ImmunizationRecommendationTargetDiseaseCodes._(
-    '709410003',
-  );
-
-  /// value27836007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRecommendationTargetDiseaseCodes value27836007 =
-      ImmunizationRecommendationTargetDiseaseCodes._(
-    '27836007',
-  );
-
-  /// value398102009
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRecommendationTargetDiseaseCodes value398102009 =
-      ImmunizationRecommendationTargetDiseaseCodes._(
-    '398102009',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ImmunizationRecommendationTargetDiseaseCodes elementOnly =
-      ImmunizationRecommendationTargetDiseaseCodes._('');
-
-  /// List of all enum-like values
-  static final List<ImmunizationRecommendationTargetDiseaseCodes> values = [
-    value1857005,
-    value397430003,
-    value14189004,
-    value36989005,
-    value36653000,
-    value76902006,
-    value709410003,
-    value27836007,
-    value398102009,
-  ];
-
-  /// Returns the enum value with an element attached
-  ImmunizationRecommendationTargetDiseaseCodes withElement(
-      Element? newElement) {
-    return ImmunizationRecommendationTargetDiseaseCodes._(fhirCode,
-        element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ImmunizationRecommendationTargetDiseaseCodes extends FhirCode {
   /// Factory constructor to create [ImmunizationRecommendationTargetDiseaseCodes] from JSON.
-  static ImmunizationRecommendationTargetDiseaseCodes fromJson(
+  factory ImmunizationRecommendationTargetDiseaseCodes.fromJson(
       Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImmunizationRecommendationTargetDiseaseCodes.elementOnly
-          .withElement(element);
+      return ImmunizationRecommendationTargetDiseaseCodes.elementOnly(element);
     }
-    return ImmunizationRecommendationTargetDiseaseCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ImmunizationRecommendationTargetDiseaseCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ImmunizationRecommendationTargetDiseaseCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value1857005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRecommendationTargetDiseaseCodes.value1857005([this.element])
+      : dbValue = '1857005',
+        super('1857005', element);
+
+  /// value397430003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRecommendationTargetDiseaseCodes.value397430003([this.element])
+      : dbValue = '397430003',
+        super('397430003', element);
+
+  /// value14189004
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRecommendationTargetDiseaseCodes.value14189004([this.element])
+      : dbValue = '14189004',
+        super('14189004', element);
+
+  /// value36989005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRecommendationTargetDiseaseCodes.value36989005([this.element])
+      : dbValue = '36989005',
+        super('36989005', element);
+
+  /// value36653000
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRecommendationTargetDiseaseCodes.value36653000([this.element])
+      : dbValue = '36653000',
+        super('36653000', element);
+
+  /// value76902006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRecommendationTargetDiseaseCodes.value76902006([this.element])
+      : dbValue = '76902006',
+        super('76902006', element);
+
+  /// value709410003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRecommendationTargetDiseaseCodes.value709410003([this.element])
+      : dbValue = '709410003',
+        super('709410003', element);
+
+  /// value27836007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRecommendationTargetDiseaseCodes.value27836007([this.element])
+      : dbValue = '27836007',
+        super('27836007', element);
+
+  /// value398102009
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRecommendationTargetDiseaseCodes.value398102009([this.element])
+      : dbValue = '398102009',
+        super('398102009', element);
+
+  /// For instances where an Element is present but not value
+
+  ImmunizationRecommendationTargetDiseaseCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ImmunizationRecommendationTargetDiseaseCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '1857005',
+    '397430003',
+    '14189004',
+    '36989005',
+    '36653000',
+    '76902006',
+    '709410003',
+    '27836007',
+    '398102009',
+  ];
+
+  /// Returns the enum value with an element attached
+  ImmunizationRecommendationTargetDiseaseCodes withElement(
+      Element? newElement) {
+    return ImmunizationRecommendationTargetDiseaseCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ImmunizationRecommendationTargetDiseaseCodes.$fhirCode';
+  String toString() => 'ImmunizationRecommendationTargetDiseaseCodes.$value';
 }

@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// A code to indicate if the substance is actively used.
 @Entity()
-class FHIRSubstanceStatus {
-  // Private constructor for internal use (like enum)
-  FHIRSubstanceStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// FHIRSubstanceStatus values
-  /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRSubstanceStatus active = FHIRSubstanceStatus._(
-    'active',
-  );
-
-  /// inactive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRSubstanceStatus inactive = FHIRSubstanceStatus._(
-    'inactive',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRSubstanceStatus entered_in_error = FHIRSubstanceStatus._(
-    'entered-in-error',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final FHIRSubstanceStatus elementOnly = FHIRSubstanceStatus._('');
-
-  /// List of all enum-like values
-  static final List<FHIRSubstanceStatus> values = [
-    active,
-    inactive,
-    entered_in_error,
-  ];
-
-  /// Returns the enum value with an element attached
-  FHIRSubstanceStatus withElement(Element? newElement) {
-    return FHIRSubstanceStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class FHIRSubstanceStatus extends FhirCode {
   /// Factory constructor to create [FHIRSubstanceStatus] from JSON.
-  static FHIRSubstanceStatus fromJson(Map<String, dynamic> json) {
+  factory FHIRSubstanceStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FHIRSubstanceStatus.elementOnly.withElement(element);
+      return FHIRSubstanceStatus.elementOnly(element);
     }
-    return FHIRSubstanceStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return FHIRSubstanceStatus._(value, element);
+    }
+    throw ArgumentError(
+      'FHIRSubstanceStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRSubstanceStatus.active([this.element])
+      : dbValue = 'active',
+        super('active', element);
+
+  /// inactive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRSubstanceStatus.inactive([this.element])
+      : dbValue = 'inactive',
+        super('inactive', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRSubstanceStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// For instances where an Element is present but not value
+
+  FHIRSubstanceStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  FHIRSubstanceStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'active',
+    'inactive',
+    'entered-in-error',
+  ];
+
+  /// Returns the enum value with an element attached
+  FHIRSubstanceStatus withElement(Element? newElement) {
+    return FHIRSubstanceStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'FHIRSubstanceStatus.$fhirCode';
+  String toString() => 'FHIRSubstanceStatus.$value';
 }

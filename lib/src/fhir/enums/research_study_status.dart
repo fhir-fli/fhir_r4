@@ -5,146 +5,156 @@ import 'package:objectbox/objectbox.dart';
 
 /// Codes that convey the current status of the research study.
 @Entity()
-class ResearchStudyStatus {
-  // Private constructor for internal use (like enum)
-  ResearchStudyStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ResearchStudyStatus values
-  /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyStatus active = ResearchStudyStatus._(
-    'active',
-  );
-
-  /// administratively_completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyStatus administratively_completed =
-      ResearchStudyStatus._(
-    'administratively-completed',
-  );
-
-  /// approved
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyStatus approved = ResearchStudyStatus._(
-    'approved',
-  );
-
-  /// closed_to_accrual
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyStatus closed_to_accrual = ResearchStudyStatus._(
-    'closed-to-accrual',
-  );
-
-  /// closed_to_accrual_and_intervention
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyStatus closed_to_accrual_and_intervention =
-      ResearchStudyStatus._(
-    'closed-to-accrual-and-intervention',
-  );
-
-  /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyStatus completed = ResearchStudyStatus._(
-    'completed',
-  );
-
-  /// disapproved
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyStatus disapproved = ResearchStudyStatus._(
-    'disapproved',
-  );
-
-  /// in_review
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyStatus in_review = ResearchStudyStatus._(
-    'in-review',
-  );
-
-  /// temporarily_closed_to_accrual
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyStatus temporarily_closed_to_accrual =
-      ResearchStudyStatus._(
-    'temporarily-closed-to-accrual',
-  );
-
-  /// temporarily_closed_to_accrual_and_intervention
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyStatus
-      temporarily_closed_to_accrual_and_intervention = ResearchStudyStatus._(
-    'temporarily-closed-to-accrual-and-intervention',
-  );
-
-  /// withdrawn
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyStatus withdrawn = ResearchStudyStatus._(
-    'withdrawn',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ResearchStudyStatus elementOnly = ResearchStudyStatus._('');
-
-  /// List of all enum-like values
-  static final List<ResearchStudyStatus> values = [
-    active,
-    administratively_completed,
-    approved,
-    closed_to_accrual,
-    closed_to_accrual_and_intervention,
-    completed,
-    disapproved,
-    in_review,
-    temporarily_closed_to_accrual,
-    temporarily_closed_to_accrual_and_intervention,
-    withdrawn,
-  ];
-
-  /// Returns the enum value with an element attached
-  ResearchStudyStatus withElement(Element? newElement) {
-    return ResearchStudyStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ResearchStudyStatus extends FhirCode {
   /// Factory constructor to create [ResearchStudyStatus] from JSON.
-  static ResearchStudyStatus fromJson(Map<String, dynamic> json) {
+  factory ResearchStudyStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResearchStudyStatus.elementOnly.withElement(element);
+      return ResearchStudyStatus.elementOnly(element);
     }
-    return ResearchStudyStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ResearchStudyStatus._(value, element);
+    }
+    throw ArgumentError(
+      'ResearchStudyStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyStatus.active([this.element])
+      : dbValue = 'active',
+        super('active', element);
+
+  /// administratively_completed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyStatus.administratively_completed([this.element])
+      : dbValue = 'administratively-completed',
+        super('administratively-completed', element);
+
+  /// approved
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyStatus.approved([this.element])
+      : dbValue = 'approved',
+        super('approved', element);
+
+  /// closed_to_accrual
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyStatus.closed_to_accrual([this.element])
+      : dbValue = 'closed-to-accrual',
+        super('closed-to-accrual', element);
+
+  /// closed_to_accrual_and_intervention
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyStatus.closed_to_accrual_and_intervention([this.element])
+      : dbValue = 'closed-to-accrual-and-intervention',
+        super('closed-to-accrual-and-intervention', element);
+
+  /// completed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyStatus.completed([this.element])
+      : dbValue = 'completed',
+        super('completed', element);
+
+  /// disapproved
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyStatus.disapproved([this.element])
+      : dbValue = 'disapproved',
+        super('disapproved', element);
+
+  /// in_review
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyStatus.in_review([this.element])
+      : dbValue = 'in-review',
+        super('in-review', element);
+
+  /// temporarily_closed_to_accrual
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyStatus.temporarily_closed_to_accrual([this.element])
+      : dbValue = 'temporarily-closed-to-accrual',
+        super('temporarily-closed-to-accrual', element);
+
+  /// temporarily_closed_to_accrual_and_intervention
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyStatus.temporarily_closed_to_accrual_and_intervention(
+      [this.element])
+      : dbValue = 'temporarily-closed-to-accrual-and-intervention',
+        super('temporarily-closed-to-accrual-and-intervention', element);
+
+  /// withdrawn
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyStatus.withdrawn([this.element])
+      : dbValue = 'withdrawn',
+        super('withdrawn', element);
+
+  /// For instances where an Element is present but not value
+
+  ResearchStudyStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ResearchStudyStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'active',
+    'administratively-completed',
+    'approved',
+    'closed-to-accrual',
+    'closed-to-accrual-and-intervention',
+    'completed',
+    'disapproved',
+    'in-review',
+    'temporarily-closed-to-accrual',
+    'temporarily-closed-to-accrual-and-intervention',
+    'withdrawn',
+  ];
+
+  /// Returns the enum value with an element attached
+  ResearchStudyStatus withElement(Element? newElement) {
+    return ResearchStudyStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ResearchStudyStatus.$fhirCode';
+  String toString() => 'ResearchStudyStatus.$value';
 }

@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// How resource references can be aggregated.
 @Entity()
-class AggregationMode {
-  // Private constructor for internal use (like enum)
-  AggregationMode._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AggregationMode values
-  /// contained
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AggregationMode contained = AggregationMode._(
-    'contained',
-  );
-
-  /// referenced
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AggregationMode referenced = AggregationMode._(
-    'referenced',
-  );
-
-  /// bundled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AggregationMode bundled = AggregationMode._(
-    'bundled',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AggregationMode elementOnly = AggregationMode._('');
-
-  /// List of all enum-like values
-  static final List<AggregationMode> values = [
-    contained,
-    referenced,
-    bundled,
-  ];
-
-  /// Returns the enum value with an element attached
-  AggregationMode withElement(Element? newElement) {
-    return AggregationMode._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AggregationMode extends FhirCode {
   /// Factory constructor to create [AggregationMode] from JSON.
-  static AggregationMode fromJson(Map<String, dynamic> json) {
+  factory AggregationMode.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AggregationMode.elementOnly.withElement(element);
+      return AggregationMode.elementOnly(element);
     }
-    return AggregationMode.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AggregationMode._(value, element);
+    }
+    throw ArgumentError(
+      'AggregationMode.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// contained
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AggregationMode.contained([this.element])
+      : dbValue = 'contained',
+        super('contained', element);
+
+  /// referenced
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AggregationMode.referenced([this.element])
+      : dbValue = 'referenced',
+        super('referenced', element);
+
+  /// bundled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AggregationMode.bundled([this.element])
+      : dbValue = 'bundled',
+        super('bundled', element);
+
+  /// For instances where an Element is present but not value
+
+  AggregationMode.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AggregationMode._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'contained',
+    'referenced',
+    'bundled',
+  ];
+
+  /// Returns the enum value with an element attached
+  AggregationMode withElement(Element? newElement) {
+    return AggregationMode._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AggregationMode.$fhirCode';
+  String toString() => 'AggregationMode.$value';
 }

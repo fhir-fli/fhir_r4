@@ -5,91 +5,100 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes example Diagnosis Related Group codes.
 @Entity()
-class ExampleDiagnosisRelatedGroupCodes {
-  // Private constructor for internal use (like enum)
-  ExampleDiagnosisRelatedGroupCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleDiagnosisRelatedGroupCodes values
-  /// value100
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisRelatedGroupCodes value100 =
-      ExampleDiagnosisRelatedGroupCodes._(
-    '100',
-  );
-
-  /// value101
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisRelatedGroupCodes value101 =
-      ExampleDiagnosisRelatedGroupCodes._(
-    '101',
-  );
-
-  /// value300
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisRelatedGroupCodes value300 =
-      ExampleDiagnosisRelatedGroupCodes._(
-    '300',
-  );
-
-  /// value400
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisRelatedGroupCodes value400 =
-      ExampleDiagnosisRelatedGroupCodes._(
-    '400',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ExampleDiagnosisRelatedGroupCodes elementOnly =
-      ExampleDiagnosisRelatedGroupCodes._('');
-
-  /// List of all enum-like values
-  static final List<ExampleDiagnosisRelatedGroupCodes> values = [
-    value100,
-    value101,
-    value300,
-    value400,
-  ];
-
-  /// Returns the enum value with an element attached
-  ExampleDiagnosisRelatedGroupCodes withElement(Element? newElement) {
-    return ExampleDiagnosisRelatedGroupCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ExampleDiagnosisRelatedGroupCodes extends FhirCode {
   /// Factory constructor to create [ExampleDiagnosisRelatedGroupCodes] from JSON.
-  static ExampleDiagnosisRelatedGroupCodes fromJson(Map<String, dynamic> json) {
+  factory ExampleDiagnosisRelatedGroupCodes.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleDiagnosisRelatedGroupCodes.elementOnly.withElement(element);
+      return ExampleDiagnosisRelatedGroupCodes.elementOnly(element);
     }
-    return ExampleDiagnosisRelatedGroupCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ExampleDiagnosisRelatedGroupCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ExampleDiagnosisRelatedGroupCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value100
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisRelatedGroupCodes.value100([this.element])
+      : dbValue = '100',
+        super('100', element);
+
+  /// value101
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisRelatedGroupCodes.value101([this.element])
+      : dbValue = '101',
+        super('101', element);
+
+  /// value300
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisRelatedGroupCodes.value300([this.element])
+      : dbValue = '300',
+        super('300', element);
+
+  /// value400
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisRelatedGroupCodes.value400([this.element])
+      : dbValue = '400',
+        super('400', element);
+
+  /// For instances where an Element is present but not value
+
+  ExampleDiagnosisRelatedGroupCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ExampleDiagnosisRelatedGroupCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '100',
+    '101',
+    '300',
+    '400',
+  ];
+
+  /// Returns the enum value with an element attached
+  ExampleDiagnosisRelatedGroupCodes withElement(Element? newElement) {
+    return ExampleDiagnosisRelatedGroupCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ExampleDiagnosisRelatedGroupCodes.$fhirCode';
+  String toString() => 'ExampleDiagnosisRelatedGroupCodes.$value';
 }

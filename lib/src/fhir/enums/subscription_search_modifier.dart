@@ -5,168 +5,179 @@ import 'package:objectbox/objectbox.dart';
 
 /// FHIR search modifiers allowed for use in Subscriptions and SubscriptionTopics.
 @Entity()
-class SubscriptionSearchModifier {
-  // Private constructor for internal use (like enum)
-  SubscriptionSearchModifier._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubscriptionSearchModifier values
-  /// eq
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionSearchModifier eq = SubscriptionSearchModifier._(
-    '=',
-  );
-
-  /// ne
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionSearchModifier ne = SubscriptionSearchModifier._(
-    'ne',
-  );
-
-  /// gt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionSearchModifier gt = SubscriptionSearchModifier._(
-    'gt',
-  );
-
-  /// lt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionSearchModifier lt = SubscriptionSearchModifier._(
-    'lt',
-  );
-
-  /// ge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionSearchModifier ge = SubscriptionSearchModifier._(
-    'ge',
-  );
-
-  /// le
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionSearchModifier le = SubscriptionSearchModifier._(
-    'le',
-  );
-
-  /// sa
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionSearchModifier sa = SubscriptionSearchModifier._(
-    'sa',
-  );
-
-  /// eb
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionSearchModifier eb = SubscriptionSearchModifier._(
-    'eb',
-  );
-
-  /// ap
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionSearchModifier ap = SubscriptionSearchModifier._(
-    'ap',
-  );
-
-  /// above
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionSearchModifier above = SubscriptionSearchModifier._(
-    'above',
-  );
-
-  /// below
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionSearchModifier below = SubscriptionSearchModifier._(
-    'below',
-  );
-
-  /// in_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionSearchModifier in_ = SubscriptionSearchModifier._(
-    'in',
-  );
-
-  /// not_in
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionSearchModifier not_in = SubscriptionSearchModifier._(
-    'not-in',
-  );
-
-  /// of_type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionSearchModifier of_type =
-      SubscriptionSearchModifier._(
-    'of-type',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SubscriptionSearchModifier elementOnly =
-      SubscriptionSearchModifier._('');
-
-  /// List of all enum-like values
-  static final List<SubscriptionSearchModifier> values = [
-    eq,
-    ne,
-    gt,
-    lt,
-    ge,
-    le,
-    sa,
-    eb,
-    ap,
-    above,
-    below,
-    in_,
-    not_in,
-    of_type,
-  ];
-
-  /// Returns the enum value with an element attached
-  SubscriptionSearchModifier withElement(Element? newElement) {
-    return SubscriptionSearchModifier._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SubscriptionSearchModifier extends FhirCode {
   /// Factory constructor to create [SubscriptionSearchModifier] from JSON.
-  static SubscriptionSearchModifier fromJson(Map<String, dynamic> json) {
+  factory SubscriptionSearchModifier.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubscriptionSearchModifier.elementOnly.withElement(element);
+      return SubscriptionSearchModifier.elementOnly(element);
     }
-    return SubscriptionSearchModifier.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SubscriptionSearchModifier._(value, element);
+    }
+    throw ArgumentError(
+      'SubscriptionSearchModifier.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// eq
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionSearchModifier.eq([this.element])
+      : dbValue = '=',
+        super('=', element);
+
+  /// ne
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionSearchModifier.ne([this.element])
+      : dbValue = 'ne',
+        super('ne', element);
+
+  /// gt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionSearchModifier.gt([this.element])
+      : dbValue = 'gt',
+        super('gt', element);
+
+  /// lt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionSearchModifier.lt([this.element])
+      : dbValue = 'lt',
+        super('lt', element);
+
+  /// ge
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionSearchModifier.ge([this.element])
+      : dbValue = 'ge',
+        super('ge', element);
+
+  /// le
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionSearchModifier.le([this.element])
+      : dbValue = 'le',
+        super('le', element);
+
+  /// sa
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionSearchModifier.sa([this.element])
+      : dbValue = 'sa',
+        super('sa', element);
+
+  /// eb
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionSearchModifier.eb([this.element])
+      : dbValue = 'eb',
+        super('eb', element);
+
+  /// ap
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionSearchModifier.ap([this.element])
+      : dbValue = 'ap',
+        super('ap', element);
+
+  /// above
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionSearchModifier.above([this.element])
+      : dbValue = 'above',
+        super('above', element);
+
+  /// below
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionSearchModifier.below([this.element])
+      : dbValue = 'below',
+        super('below', element);
+
+  /// in_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionSearchModifier.in_([this.element])
+      : dbValue = 'in',
+        super('in', element);
+
+  /// not_in
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionSearchModifier.not_in([this.element])
+      : dbValue = 'not-in',
+        super('not-in', element);
+
+  /// of_type
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionSearchModifier.of_type([this.element])
+      : dbValue = 'of-type',
+        super('of-type', element);
+
+  /// For instances where an Element is present but not value
+
+  SubscriptionSearchModifier.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SubscriptionSearchModifier._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '=',
+    'ne',
+    'gt',
+    'lt',
+    'ge',
+    'le',
+    'sa',
+    'eb',
+    'ap',
+    'above',
+    'below',
+    'in',
+    'not-in',
+    'of-type',
+  ];
+
+  /// Returns the enum value with an element attached
+  SubscriptionSearchModifier withElement(Element? newElement) {
+    return SubscriptionSearchModifier._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SubscriptionSearchModifier.$fhirCode';
+  String toString() => 'SubscriptionSearchModifier.$value';
 }

@@ -5,82 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// TODO.
 @Entity()
-class AdverseEventCausalityMethod {
-  // Private constructor for internal use (like enum)
-  AdverseEventCausalityMethod._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AdverseEventCausalityMethod values
-  /// ProbabilityScale
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCausalityMethod ProbabilityScale =
-      AdverseEventCausalityMethod._(
-    'ProbabilityScale',
-  );
-
-  /// Bayesian
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCausalityMethod Bayesian =
-      AdverseEventCausalityMethod._(
-    'Bayesian',
-  );
-
-  /// Checklist
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCausalityMethod Checklist =
-      AdverseEventCausalityMethod._(
-    'Checklist',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AdverseEventCausalityMethod elementOnly =
-      AdverseEventCausalityMethod._('');
-
-  /// List of all enum-like values
-  static final List<AdverseEventCausalityMethod> values = [
-    ProbabilityScale,
-    Bayesian,
-    Checklist,
-  ];
-
-  /// Returns the enum value with an element attached
-  AdverseEventCausalityMethod withElement(Element? newElement) {
-    return AdverseEventCausalityMethod._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AdverseEventCausalityMethod extends FhirCode {
   /// Factory constructor to create [AdverseEventCausalityMethod] from JSON.
-  static AdverseEventCausalityMethod fromJson(Map<String, dynamic> json) {
+  factory AdverseEventCausalityMethod.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdverseEventCausalityMethod.elementOnly.withElement(element);
+      return AdverseEventCausalityMethod.elementOnly(element);
     }
-    return AdverseEventCausalityMethod.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AdverseEventCausalityMethod._(value, element);
+    }
+    throw ArgumentError(
+      'AdverseEventCausalityMethod.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// ProbabilityScale
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCausalityMethod.ProbabilityScale([this.element])
+      : dbValue = 'ProbabilityScale',
+        super('ProbabilityScale', element);
+
+  /// Bayesian
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCausalityMethod.Bayesian([this.element])
+      : dbValue = 'Bayesian',
+        super('Bayesian', element);
+
+  /// Checklist
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCausalityMethod.Checklist([this.element])
+      : dbValue = 'Checklist',
+        super('Checklist', element);
+
+  /// For instances where an Element is present but not value
+
+  AdverseEventCausalityMethod.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AdverseEventCausalityMethod._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'ProbabilityScale',
+    'Bayesian',
+    'Checklist',
+  ];
+
+  /// Returns the enum value with an element attached
+  AdverseEventCausalityMethod withElement(Element? newElement) {
+    return AdverseEventCausalityMethod._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AdverseEventCausalityMethod.$fhirCode';
+  String toString() => 'AdverseEventCausalityMethod.$value';
 }

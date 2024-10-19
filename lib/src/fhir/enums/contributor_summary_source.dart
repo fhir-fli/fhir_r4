@@ -5,90 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// Used to code the producer or rule for creating the display string.
 @Entity()
-class ContributorSummarySource {
-  // Private constructor for internal use (like enum)
-  ContributorSummarySource._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ContributorSummarySource values
-  /// publisher_data
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorSummarySource publisher_data =
-      ContributorSummarySource._(
-    'publisher-data',
-  );
-
-  /// article_copy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorSummarySource article_copy =
-      ContributorSummarySource._(
-    'article-copy',
-  );
-
-  /// citation_manager
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorSummarySource citation_manager =
-      ContributorSummarySource._(
-    'citation-manager',
-  );
-
-  /// custom
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorSummarySource custom = ContributorSummarySource._(
-    'custom',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ContributorSummarySource elementOnly =
-      ContributorSummarySource._('');
-
-  /// List of all enum-like values
-  static final List<ContributorSummarySource> values = [
-    publisher_data,
-    article_copy,
-    citation_manager,
-    custom,
-  ];
-
-  /// Returns the enum value with an element attached
-  ContributorSummarySource withElement(Element? newElement) {
-    return ContributorSummarySource._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ContributorSummarySource extends FhirCode {
   /// Factory constructor to create [ContributorSummarySource] from JSON.
-  static ContributorSummarySource fromJson(Map<String, dynamic> json) {
+  factory ContributorSummarySource.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContributorSummarySource.elementOnly.withElement(element);
+      return ContributorSummarySource.elementOnly(element);
     }
-    return ContributorSummarySource.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ContributorSummarySource._(value, element);
+    }
+    throw ArgumentError(
+      'ContributorSummarySource.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// publisher_data
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorSummarySource.publisher_data([this.element])
+      : dbValue = 'publisher-data',
+        super('publisher-data', element);
+
+  /// article_copy
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorSummarySource.article_copy([this.element])
+      : dbValue = 'article-copy',
+        super('article-copy', element);
+
+  /// citation_manager
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorSummarySource.citation_manager([this.element])
+      : dbValue = 'citation-manager',
+        super('citation-manager', element);
+
+  /// custom
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorSummarySource.custom([this.element])
+      : dbValue = 'custom',
+        super('custom', element);
+
+  /// For instances where an Element is present but not value
+
+  ContributorSummarySource.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ContributorSummarySource._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'publisher-data',
+    'article-copy',
+    'citation-manager',
+    'custom',
+  ];
+
+  /// Returns the enum value with an element attached
+  ContributorSummarySource withElement(Element? newElement) {
+    return ContributorSummarySource._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ContributorSummarySource.$fhirCode';
+  String toString() => 'ContributorSummarySource.$value';
 }

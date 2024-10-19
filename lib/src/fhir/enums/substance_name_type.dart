@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of a name given to a substance.
 @Entity()
-class SubstanceNameType {
-  // Private constructor for internal use (like enum)
-  SubstanceNameType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubstanceNameType values
-  /// Systematic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceNameType Systematic = SubstanceNameType._(
-    'Systematic',
-  );
-
-  /// Scientific
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceNameType Scientific = SubstanceNameType._(
-    'Scientific',
-  );
-
-  /// Brand
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceNameType Brand = SubstanceNameType._(
-    'Brand',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SubstanceNameType elementOnly = SubstanceNameType._('');
-
-  /// List of all enum-like values
-  static final List<SubstanceNameType> values = [
-    Systematic,
-    Scientific,
-    Brand,
-  ];
-
-  /// Returns the enum value with an element attached
-  SubstanceNameType withElement(Element? newElement) {
-    return SubstanceNameType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SubstanceNameType extends FhirCode {
   /// Factory constructor to create [SubstanceNameType] from JSON.
-  static SubstanceNameType fromJson(Map<String, dynamic> json) {
+  factory SubstanceNameType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubstanceNameType.elementOnly.withElement(element);
+      return SubstanceNameType.elementOnly(element);
     }
-    return SubstanceNameType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SubstanceNameType._(value, element);
+    }
+    throw ArgumentError(
+      'SubstanceNameType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Systematic
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceNameType.Systematic([this.element])
+      : dbValue = 'Systematic',
+        super('Systematic', element);
+
+  /// Scientific
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceNameType.Scientific([this.element])
+      : dbValue = 'Scientific',
+        super('Scientific', element);
+
+  /// Brand
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceNameType.Brand([this.element])
+      : dbValue = 'Brand',
+        super('Brand', element);
+
+  /// For instances where an Element is present but not value
+
+  SubstanceNameType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SubstanceNameType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Systematic',
+    'Scientific',
+    'Brand',
+  ];
+
+  /// Returns the enum value with an element attached
+  SubstanceNameType withElement(Element? newElement) {
+    return SubstanceNameType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SubstanceNameType.$fhirCode';
+  String toString() => 'SubstanceNameType.$value';
 }

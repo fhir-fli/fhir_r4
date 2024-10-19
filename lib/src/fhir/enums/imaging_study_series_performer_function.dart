@@ -5,102 +5,108 @@ import 'package:objectbox/objectbox.dart';
 
 /// Performer function of an agent in an imaging study series
 @Entity()
-class ImagingStudySeriesPerformerFunction {
-  // Private constructor for internal use (like enum)
-  ImagingStudySeriesPerformerFunction._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ImagingStudySeriesPerformerFunction values
-  /// CON
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImagingStudySeriesPerformerFunction CON =
-      ImagingStudySeriesPerformerFunction._(
-    'CON',
-  );
-
-  /// VRF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImagingStudySeriesPerformerFunction VRF =
-      ImagingStudySeriesPerformerFunction._(
-    'VRF',
-  );
-
-  /// PRF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImagingStudySeriesPerformerFunction PRF =
-      ImagingStudySeriesPerformerFunction._(
-    'PRF',
-  );
-
-  /// SPRF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImagingStudySeriesPerformerFunction SPRF =
-      ImagingStudySeriesPerformerFunction._(
-    'SPRF',
-  );
-
-  /// REF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImagingStudySeriesPerformerFunction REF =
-      ImagingStudySeriesPerformerFunction._(
-    'REF',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ImagingStudySeriesPerformerFunction elementOnly =
-      ImagingStudySeriesPerformerFunction._('');
-
-  /// List of all enum-like values
-  static final List<ImagingStudySeriesPerformerFunction> values = [
-    CON,
-    VRF,
-    PRF,
-    SPRF,
-    REF,
-  ];
-
-  /// Returns the enum value with an element attached
-  ImagingStudySeriesPerformerFunction withElement(Element? newElement) {
-    return ImagingStudySeriesPerformerFunction._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ImagingStudySeriesPerformerFunction extends FhirCode {
   /// Factory constructor to create [ImagingStudySeriesPerformerFunction] from JSON.
-  static ImagingStudySeriesPerformerFunction fromJson(
+  factory ImagingStudySeriesPerformerFunction.fromJson(
       Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImagingStudySeriesPerformerFunction.elementOnly
-          .withElement(element);
+      return ImagingStudySeriesPerformerFunction.elementOnly(element);
     }
-    return ImagingStudySeriesPerformerFunction.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ImagingStudySeriesPerformerFunction._(value, element);
+    }
+    throw ArgumentError(
+      'ImagingStudySeriesPerformerFunction.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// CON
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImagingStudySeriesPerformerFunction.CON([this.element])
+      : dbValue = 'CON',
+        super('CON', element);
+
+  /// VRF
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImagingStudySeriesPerformerFunction.VRF([this.element])
+      : dbValue = 'VRF',
+        super('VRF', element);
+
+  /// PRF
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImagingStudySeriesPerformerFunction.PRF([this.element])
+      : dbValue = 'PRF',
+        super('PRF', element);
+
+  /// SPRF
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImagingStudySeriesPerformerFunction.SPRF([this.element])
+      : dbValue = 'SPRF',
+        super('SPRF', element);
+
+  /// REF
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImagingStudySeriesPerformerFunction.REF([this.element])
+      : dbValue = 'REF',
+        super('REF', element);
+
+  /// For instances where an Element is present but not value
+
+  ImagingStudySeriesPerformerFunction.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ImagingStudySeriesPerformerFunction._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'CON',
+    'VRF',
+    'PRF',
+    'SPRF',
+    'REF',
+  ];
+
+  /// Returns the enum value with an element attached
+  ImagingStudySeriesPerformerFunction withElement(Element? newElement) {
+    return ImagingStudySeriesPerformerFunction._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ImagingStudySeriesPerformerFunction.$fhirCode';
+  String toString() => 'ImagingStudySeriesPerformerFunction.$value';
 }

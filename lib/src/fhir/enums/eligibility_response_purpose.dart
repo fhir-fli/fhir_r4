@@ -5,91 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// A code specifying the types of information being requested.
 @Entity()
-class EligibilityResponsePurpose {
-  // Private constructor for internal use (like enum)
-  EligibilityResponsePurpose._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EligibilityResponsePurpose values
-  /// auth_requirements
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EligibilityResponsePurpose auth_requirements =
-      EligibilityResponsePurpose._(
-    'auth-requirements',
-  );
-
-  /// benefits
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EligibilityResponsePurpose benefits =
-      EligibilityResponsePurpose._(
-    'benefits',
-  );
-
-  /// discovery
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EligibilityResponsePurpose discovery =
-      EligibilityResponsePurpose._(
-    'discovery',
-  );
-
-  /// validation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EligibilityResponsePurpose validation =
-      EligibilityResponsePurpose._(
-    'validation',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final EligibilityResponsePurpose elementOnly =
-      EligibilityResponsePurpose._('');
-
-  /// List of all enum-like values
-  static final List<EligibilityResponsePurpose> values = [
-    auth_requirements,
-    benefits,
-    discovery,
-    validation,
-  ];
-
-  /// Returns the enum value with an element attached
-  EligibilityResponsePurpose withElement(Element? newElement) {
-    return EligibilityResponsePurpose._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class EligibilityResponsePurpose extends FhirCode {
   /// Factory constructor to create [EligibilityResponsePurpose] from JSON.
-  static EligibilityResponsePurpose fromJson(Map<String, dynamic> json) {
+  factory EligibilityResponsePurpose.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EligibilityResponsePurpose.elementOnly.withElement(element);
+      return EligibilityResponsePurpose.elementOnly(element);
     }
-    return EligibilityResponsePurpose.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return EligibilityResponsePurpose._(value, element);
+    }
+    throw ArgumentError(
+      'EligibilityResponsePurpose.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// auth_requirements
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EligibilityResponsePurpose.auth_requirements([this.element])
+      : dbValue = 'auth-requirements',
+        super('auth-requirements', element);
+
+  /// benefits
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EligibilityResponsePurpose.benefits([this.element])
+      : dbValue = 'benefits',
+        super('benefits', element);
+
+  /// discovery
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EligibilityResponsePurpose.discovery([this.element])
+      : dbValue = 'discovery',
+        super('discovery', element);
+
+  /// validation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EligibilityResponsePurpose.validation([this.element])
+      : dbValue = 'validation',
+        super('validation', element);
+
+  /// For instances where an Element is present but not value
+
+  EligibilityResponsePurpose.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  EligibilityResponsePurpose._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'auth-requirements',
+    'benefits',
+    'discovery',
+    'validation',
+  ];
+
+  /// Returns the enum value with an element attached
+  EligibilityResponsePurpose withElement(Element? newElement) {
+    return EligibilityResponsePurpose._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'EligibilityResponsePurpose.$fhirCode';
+  String toString() => 'EligibilityResponsePurpose.$value';
 }

@@ -5,145 +5,147 @@ import 'package:objectbox/objectbox.dart';
 
 /// Procedure follow up codes: A selection of SNOMED CT codes relevant to procedure follow up.
 @Entity()
-class ProcedureFollowUpCodesSNOMEDCT {
-  // Private constructor for internal use (like enum)
-  ProcedureFollowUpCodesSNOMEDCT._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ProcedureFollowUpCodesSNOMEDCT values
-  /// value18949003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProcedureFollowUpCodesSNOMEDCT value18949003 =
-      ProcedureFollowUpCodesSNOMEDCT._(
-    '18949003',
-  );
-
-  /// value30549001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProcedureFollowUpCodesSNOMEDCT value30549001 =
-      ProcedureFollowUpCodesSNOMEDCT._(
-    '30549001',
-  );
-
-  /// value241031001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProcedureFollowUpCodesSNOMEDCT value241031001 =
-      ProcedureFollowUpCodesSNOMEDCT._(
-    '241031001',
-  );
-
-  /// value35963001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProcedureFollowUpCodesSNOMEDCT value35963001 =
-      ProcedureFollowUpCodesSNOMEDCT._(
-    '35963001',
-  );
-
-  /// value225164002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProcedureFollowUpCodesSNOMEDCT value225164002 =
-      ProcedureFollowUpCodesSNOMEDCT._(
-    '225164002',
-  );
-
-  /// value447346005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProcedureFollowUpCodesSNOMEDCT value447346005 =
-      ProcedureFollowUpCodesSNOMEDCT._(
-    '447346005',
-  );
-
-  /// value229506003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProcedureFollowUpCodesSNOMEDCT value229506003 =
-      ProcedureFollowUpCodesSNOMEDCT._(
-    '229506003',
-  );
-
-  /// value274441001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProcedureFollowUpCodesSNOMEDCT value274441001 =
-      ProcedureFollowUpCodesSNOMEDCT._(
-    '274441001',
-  );
-
-  /// value394725008
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProcedureFollowUpCodesSNOMEDCT value394725008 =
-      ProcedureFollowUpCodesSNOMEDCT._(
-    '394725008',
-  );
-
-  /// value359825008
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProcedureFollowUpCodesSNOMEDCT value359825008 =
-      ProcedureFollowUpCodesSNOMEDCT._(
-    '359825008',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ProcedureFollowUpCodesSNOMEDCT elementOnly =
-      ProcedureFollowUpCodesSNOMEDCT._('');
-
-  /// List of all enum-like values
-  static final List<ProcedureFollowUpCodesSNOMEDCT> values = [
-    value18949003,
-    value30549001,
-    value241031001,
-    value35963001,
-    value225164002,
-    value447346005,
-    value229506003,
-    value274441001,
-    value394725008,
-    value359825008,
-  ];
-
-  /// Returns the enum value with an element attached
-  ProcedureFollowUpCodesSNOMEDCT withElement(Element? newElement) {
-    return ProcedureFollowUpCodesSNOMEDCT._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ProcedureFollowUpCodesSNOMEDCT extends FhirCode {
   /// Factory constructor to create [ProcedureFollowUpCodesSNOMEDCT] from JSON.
-  static ProcedureFollowUpCodesSNOMEDCT fromJson(Map<String, dynamic> json) {
+  factory ProcedureFollowUpCodesSNOMEDCT.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ProcedureFollowUpCodesSNOMEDCT.elementOnly.withElement(element);
+      return ProcedureFollowUpCodesSNOMEDCT.elementOnly(element);
     }
-    return ProcedureFollowUpCodesSNOMEDCT.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ProcedureFollowUpCodesSNOMEDCT._(value, element);
+    }
+    throw ArgumentError(
+      'ProcedureFollowUpCodesSNOMEDCT.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value18949003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProcedureFollowUpCodesSNOMEDCT.value18949003([this.element])
+      : dbValue = '18949003',
+        super('18949003', element);
+
+  /// value30549001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProcedureFollowUpCodesSNOMEDCT.value30549001([this.element])
+      : dbValue = '30549001',
+        super('30549001', element);
+
+  /// value241031001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProcedureFollowUpCodesSNOMEDCT.value241031001([this.element])
+      : dbValue = '241031001',
+        super('241031001', element);
+
+  /// value35963001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProcedureFollowUpCodesSNOMEDCT.value35963001([this.element])
+      : dbValue = '35963001',
+        super('35963001', element);
+
+  /// value225164002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProcedureFollowUpCodesSNOMEDCT.value225164002([this.element])
+      : dbValue = '225164002',
+        super('225164002', element);
+
+  /// value447346005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProcedureFollowUpCodesSNOMEDCT.value447346005([this.element])
+      : dbValue = '447346005',
+        super('447346005', element);
+
+  /// value229506003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProcedureFollowUpCodesSNOMEDCT.value229506003([this.element])
+      : dbValue = '229506003',
+        super('229506003', element);
+
+  /// value274441001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProcedureFollowUpCodesSNOMEDCT.value274441001([this.element])
+      : dbValue = '274441001',
+        super('274441001', element);
+
+  /// value394725008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProcedureFollowUpCodesSNOMEDCT.value394725008([this.element])
+      : dbValue = '394725008',
+        super('394725008', element);
+
+  /// value359825008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProcedureFollowUpCodesSNOMEDCT.value359825008([this.element])
+      : dbValue = '359825008',
+        super('359825008', element);
+
+  /// For instances where an Element is present but not value
+
+  ProcedureFollowUpCodesSNOMEDCT.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ProcedureFollowUpCodesSNOMEDCT._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '18949003',
+    '30549001',
+    '241031001',
+    '35963001',
+    '225164002',
+    '447346005',
+    '229506003',
+    '274441001',
+    '394725008',
+    '359825008',
+  ];
+
+  /// Returns the enum value with an element attached
+  ProcedureFollowUpCodesSNOMEDCT withElement(Element? newElement) {
+    return ProcedureFollowUpCodesSNOMEDCT._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ProcedureFollowUpCodesSNOMEDCT.$fhirCode';
+  String toString() => 'ProcedureFollowUpCodesSNOMEDCT.$value';
 }

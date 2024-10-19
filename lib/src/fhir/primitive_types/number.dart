@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 /// Abstract class representing a FHIR number type, which could be an
 /// integer or a decimal. Extends [PrimitiveType] and implements [Comparable].
-abstract class FhirNumber extends PrimitiveType<num?>
-    implements Comparable<FhirNumber> {
+@Entity()
+class FhirNumber extends PrimitiveType<num?> implements Comparable<FhirNumber> {
   /// Constructor accepting a [num] value and an optional [element].
   FhirNumber(super.input, [super.element]) {
     if (value == null && element == null) {
@@ -68,8 +69,14 @@ abstract class FhirNumber extends PrimitiveType<num?>
             )
           : throw ArgumentError('Input must be a YAML string or YAML map.');
 
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
   /// Returns the FHIR type: 'number'.
   @override
+  @Transient()
   String get fhirType => 'number';
 
   /// Serializes the instance to JSON with standardized keys

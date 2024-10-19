@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Identifies the purpose of the naming system.
 @Entity()
-class NamingSystemType {
-  // Private constructor for internal use (like enum)
-  NamingSystemType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// NamingSystemType values
-  /// codesystem
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NamingSystemType codesystem = NamingSystemType._(
-    'codesystem',
-  );
-
-  /// identifier
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NamingSystemType identifier = NamingSystemType._(
-    'identifier',
-  );
-
-  /// root
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NamingSystemType root = NamingSystemType._(
-    'root',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final NamingSystemType elementOnly = NamingSystemType._('');
-
-  /// List of all enum-like values
-  static final List<NamingSystemType> values = [
-    codesystem,
-    identifier,
-    root,
-  ];
-
-  /// Returns the enum value with an element attached
-  NamingSystemType withElement(Element? newElement) {
-    return NamingSystemType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class NamingSystemType extends FhirCode {
   /// Factory constructor to create [NamingSystemType] from JSON.
-  static NamingSystemType fromJson(Map<String, dynamic> json) {
+  factory NamingSystemType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NamingSystemType.elementOnly.withElement(element);
+      return NamingSystemType.elementOnly(element);
     }
-    return NamingSystemType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return NamingSystemType._(value, element);
+    }
+    throw ArgumentError(
+      'NamingSystemType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// codesystem
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NamingSystemType.codesystem([this.element])
+      : dbValue = 'codesystem',
+        super('codesystem', element);
+
+  /// identifier
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NamingSystemType.identifier([this.element])
+      : dbValue = 'identifier',
+        super('identifier', element);
+
+  /// root
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NamingSystemType.root([this.element])
+      : dbValue = 'root',
+        super('root', element);
+
+  /// For instances where an Element is present but not value
+
+  NamingSystemType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  NamingSystemType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'codesystem',
+    'identifier',
+    'root',
+  ];
+
+  /// Returns the enum value with an element attached
+  NamingSystemType withElement(Element? newElement) {
+    return NamingSystemType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'NamingSystemType.$fhirCode';
+  String toString() => 'NamingSystemType.$value';
 }

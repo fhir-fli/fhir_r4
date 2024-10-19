@@ -5,82 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// A categorisation for a clinical use information item.
 @Entity()
-class ClinicalUseDefinitionCategory {
-  // Private constructor for internal use (like enum)
-  ClinicalUseDefinitionCategory._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ClinicalUseDefinitionCategory values
-  /// Pregnancy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ClinicalUseDefinitionCategory Pregnancy =
-      ClinicalUseDefinitionCategory._(
-    'Pregnancy',
-  );
-
-  /// Overdose
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ClinicalUseDefinitionCategory Overdose =
-      ClinicalUseDefinitionCategory._(
-    'Overdose',
-  );
-
-  /// DriveAndMachines
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ClinicalUseDefinitionCategory DriveAndMachines =
-      ClinicalUseDefinitionCategory._(
-    'DriveAndMachines',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ClinicalUseDefinitionCategory elementOnly =
-      ClinicalUseDefinitionCategory._('');
-
-  /// List of all enum-like values
-  static final List<ClinicalUseDefinitionCategory> values = [
-    Pregnancy,
-    Overdose,
-    DriveAndMachines,
-  ];
-
-  /// Returns the enum value with an element attached
-  ClinicalUseDefinitionCategory withElement(Element? newElement) {
-    return ClinicalUseDefinitionCategory._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ClinicalUseDefinitionCategory extends FhirCode {
   /// Factory constructor to create [ClinicalUseDefinitionCategory] from JSON.
-  static ClinicalUseDefinitionCategory fromJson(Map<String, dynamic> json) {
+  factory ClinicalUseDefinitionCategory.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ClinicalUseDefinitionCategory.elementOnly.withElement(element);
+      return ClinicalUseDefinitionCategory.elementOnly(element);
     }
-    return ClinicalUseDefinitionCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ClinicalUseDefinitionCategory._(value, element);
+    }
+    throw ArgumentError(
+      'ClinicalUseDefinitionCategory.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Pregnancy
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ClinicalUseDefinitionCategory.Pregnancy([this.element])
+      : dbValue = 'Pregnancy',
+        super('Pregnancy', element);
+
+  /// Overdose
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ClinicalUseDefinitionCategory.Overdose([this.element])
+      : dbValue = 'Overdose',
+        super('Overdose', element);
+
+  /// DriveAndMachines
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ClinicalUseDefinitionCategory.DriveAndMachines([this.element])
+      : dbValue = 'DriveAndMachines',
+        super('DriveAndMachines', element);
+
+  /// For instances where an Element is present but not value
+
+  ClinicalUseDefinitionCategory.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ClinicalUseDefinitionCategory._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Pregnancy',
+    'Overdose',
+    'DriveAndMachines',
+  ];
+
+  /// Returns the enum value with an element attached
+  ClinicalUseDefinitionCategory withElement(Element? newElement) {
+    return ClinicalUseDefinitionCategory._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ClinicalUseDefinitionCategory.$fhirCode';
+  String toString() => 'ClinicalUseDefinitionCategory.$value';
 }

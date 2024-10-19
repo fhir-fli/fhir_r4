@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// The mode of a message capability statement.
 @Entity()
-class EventCapabilityMode {
-  // Private constructor for internal use (like enum)
-  EventCapabilityMode._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EventCapabilityMode values
-  /// sender
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EventCapabilityMode sender = EventCapabilityMode._(
-    'sender',
-  );
-
-  /// receiver
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EventCapabilityMode receiver = EventCapabilityMode._(
-    'receiver',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final EventCapabilityMode elementOnly = EventCapabilityMode._('');
-
-  /// List of all enum-like values
-  static final List<EventCapabilityMode> values = [
-    sender,
-    receiver,
-  ];
-
-  /// Returns the enum value with an element attached
-  EventCapabilityMode withElement(Element? newElement) {
-    return EventCapabilityMode._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class EventCapabilityMode extends FhirCode {
   /// Factory constructor to create [EventCapabilityMode] from JSON.
-  static EventCapabilityMode fromJson(Map<String, dynamic> json) {
+  factory EventCapabilityMode.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EventCapabilityMode.elementOnly.withElement(element);
+      return EventCapabilityMode.elementOnly(element);
     }
-    return EventCapabilityMode.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return EventCapabilityMode._(value, element);
+    }
+    throw ArgumentError(
+      'EventCapabilityMode.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// sender
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EventCapabilityMode.sender([this.element])
+      : dbValue = 'sender',
+        super('sender', element);
+
+  /// receiver
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EventCapabilityMode.receiver([this.element])
+      : dbValue = 'receiver',
+        super('receiver', element);
+
+  /// For instances where an Element is present but not value
+
+  EventCapabilityMode.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  EventCapabilityMode._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'sender',
+    'receiver',
+  ];
+
+  /// Returns the enum value with an element attached
+  EventCapabilityMode withElement(Element? newElement) {
+    return EventCapabilityMode._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'EventCapabilityMode.$fhirCode';
+  String toString() => 'EventCapabilityMode.$value';
 }

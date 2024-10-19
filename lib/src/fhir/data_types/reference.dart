@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:objectbox/objectbox.dart';
@@ -12,8 +14,8 @@ class Reference extends DataType {
 
   Reference({
     this.dbId = 0,
-    super.id,
-    super.extension_,
+    this.id,
+    this.extension_,
     this.reference,
     this.type,
     this.identifier,
@@ -107,11 +109,26 @@ class Reference extends DataType {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'Reference';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
 
   /// [reference]
   /// A reference to a location at which the other resource is found. The

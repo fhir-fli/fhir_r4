@@ -5,82 +5,92 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes sample Provider Qualification codes.
 @Entity()
-class ExampleProviderQualificationCodes {
-  // Private constructor for internal use (like enum)
-  ExampleProviderQualificationCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleProviderQualificationCodes values
-  /// value311405
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleProviderQualificationCodes value311405 =
-      ExampleProviderQualificationCodes._(
-    '311405',
-  );
-
-  /// value604215
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleProviderQualificationCodes value604215 =
-      ExampleProviderQualificationCodes._(
-    '604215',
-  );
-
-  /// value604210
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleProviderQualificationCodes value604210 =
-      ExampleProviderQualificationCodes._(
-    '604210',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ExampleProviderQualificationCodes elementOnly =
-      ExampleProviderQualificationCodes._('');
-
-  /// List of all enum-like values
-  static final List<ExampleProviderQualificationCodes> values = [
-    value311405,
-    value604215,
-    value604210,
-  ];
-
-  /// Returns the enum value with an element attached
-  ExampleProviderQualificationCodes withElement(Element? newElement) {
-    return ExampleProviderQualificationCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ExampleProviderQualificationCodes extends FhirCode {
   /// Factory constructor to create [ExampleProviderQualificationCodes] from JSON.
-  static ExampleProviderQualificationCodes fromJson(Map<String, dynamic> json) {
+  factory ExampleProviderQualificationCodes.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleProviderQualificationCodes.elementOnly.withElement(element);
+      return ExampleProviderQualificationCodes.elementOnly(element);
     }
-    return ExampleProviderQualificationCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ExampleProviderQualificationCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ExampleProviderQualificationCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value311405
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleProviderQualificationCodes.value311405([this.element])
+      : dbValue = '311405',
+        super('311405', element);
+
+  /// value604215
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleProviderQualificationCodes.value604215([this.element])
+      : dbValue = '604215',
+        super('604215', element);
+
+  /// value604210
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleProviderQualificationCodes.value604210([this.element])
+      : dbValue = '604210',
+        super('604210', element);
+
+  /// For instances where an Element is present but not value
+
+  ExampleProviderQualificationCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ExampleProviderQualificationCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '311405',
+    '604215',
+    '604210',
+  ];
+
+  /// Returns the enum value with an element attached
+  ExampleProviderQualificationCodes withElement(Element? newElement) {
+    return ExampleProviderQualificationCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ExampleProviderQualificationCodes.$fhirCode';
+  String toString() => 'ExampleProviderQualificationCodes.$value';
 }

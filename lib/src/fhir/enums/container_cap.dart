@@ -5,150 +5,163 @@ import 'package:objectbox/objectbox.dart';
 
 /// Color of the container cap.
 @Entity()
-class ContainerCap {
-  // Private constructor for internal use (like enum)
-  ContainerCap._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ContainerCap values
-  /// red
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContainerCap red = ContainerCap._(
-    'red',
-  );
-
-  /// yellow
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContainerCap yellow = ContainerCap._(
-    'yellow',
-  );
-
-  /// dark_yellow
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContainerCap dark_yellow = ContainerCap._(
-    'dark-yellow',
-  );
-
-  /// grey
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContainerCap grey = ContainerCap._(
-    'grey',
-  );
-
-  /// light_blue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContainerCap light_blue = ContainerCap._(
-    'light-blue',
-  );
-
-  /// black
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContainerCap black = ContainerCap._(
-    'black',
-  );
-
-  /// green
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContainerCap green = ContainerCap._(
-    'green',
-  );
-
-  /// light_green
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContainerCap light_green = ContainerCap._(
-    'light-green',
-  );
-
-  /// lavender
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContainerCap lavender = ContainerCap._(
-    'lavender',
-  );
-
-  /// brown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContainerCap brown = ContainerCap._(
-    'brown',
-  );
-
-  /// white
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContainerCap white = ContainerCap._(
-    'white',
-  );
-
-  /// pink
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContainerCap pink = ContainerCap._(
-    'pink',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ContainerCap elementOnly = ContainerCap._('');
-
-  /// List of all enum-like values
-  static final List<ContainerCap> values = [
-    red,
-    yellow,
-    dark_yellow,
-    grey,
-    light_blue,
-    black,
-    green,
-    light_green,
-    lavender,
-    brown,
-    white,
-    pink,
-  ];
-
-  /// Returns the enum value with an element attached
-  ContainerCap withElement(Element? newElement) {
-    return ContainerCap._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ContainerCap extends FhirCode {
   /// Factory constructor to create [ContainerCap] from JSON.
-  static ContainerCap fromJson(Map<String, dynamic> json) {
+  factory ContainerCap.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContainerCap.elementOnly.withElement(element);
+      return ContainerCap.elementOnly(element);
     }
-    return ContainerCap.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ContainerCap._(value, element);
+    }
+    throw ArgumentError(
+      'ContainerCap.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// red
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContainerCap.red([this.element])
+      : dbValue = 'red',
+        super('red', element);
+
+  /// yellow
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContainerCap.yellow([this.element])
+      : dbValue = 'yellow',
+        super('yellow', element);
+
+  /// dark_yellow
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContainerCap.dark_yellow([this.element])
+      : dbValue = 'dark-yellow',
+        super('dark-yellow', element);
+
+  /// grey
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContainerCap.grey([this.element])
+      : dbValue = 'grey',
+        super('grey', element);
+
+  /// light_blue
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContainerCap.light_blue([this.element])
+      : dbValue = 'light-blue',
+        super('light-blue', element);
+
+  /// black
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContainerCap.black([this.element])
+      : dbValue = 'black',
+        super('black', element);
+
+  /// green
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContainerCap.green([this.element])
+      : dbValue = 'green',
+        super('green', element);
+
+  /// light_green
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContainerCap.light_green([this.element])
+      : dbValue = 'light-green',
+        super('light-green', element);
+
+  /// lavender
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContainerCap.lavender([this.element])
+      : dbValue = 'lavender',
+        super('lavender', element);
+
+  /// brown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContainerCap.brown([this.element])
+      : dbValue = 'brown',
+        super('brown', element);
+
+  /// white
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContainerCap.white([this.element])
+      : dbValue = 'white',
+        super('white', element);
+
+  /// pink
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContainerCap.pink([this.element])
+      : dbValue = 'pink',
+        super('pink', element);
+
+  /// For instances where an Element is present but not value
+
+  ContainerCap.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ContainerCap._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'red',
+    'yellow',
+    'dark-yellow',
+    'grey',
+    'light-blue',
+    'black',
+    'green',
+    'light-green',
+    'lavender',
+    'brown',
+    'white',
+    'pink',
+  ];
+
+  /// Returns the enum value with an element attached
+  ContainerCap withElement(Element? newElement) {
+    return ContainerCap._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ContainerCap.$fhirCode';
+  String toString() => 'ContainerCap.$value';
 }

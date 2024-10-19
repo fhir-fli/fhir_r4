@@ -33,6 +33,7 @@ class BackboneElement extends DataType {
   int dbId;
 
   @override
+  @Transient()
   String get fhirType => 'BackboneElement';
 
   /// List of modifier extensions for additional, non-core information

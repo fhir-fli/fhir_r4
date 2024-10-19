@@ -5,90 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// Category of an identified substance associated with allergies or intolerances.
 @Entity()
-class AllergyIntoleranceCategory {
-  // Private constructor for internal use (like enum)
-  AllergyIntoleranceCategory._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AllergyIntoleranceCategory values
-  /// food
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AllergyIntoleranceCategory food = AllergyIntoleranceCategory._(
-    'food',
-  );
-
-  /// medication
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AllergyIntoleranceCategory medication =
-      AllergyIntoleranceCategory._(
-    'medication',
-  );
-
-  /// environment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AllergyIntoleranceCategory environment =
-      AllergyIntoleranceCategory._(
-    'environment',
-  );
-
-  /// biologic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AllergyIntoleranceCategory biologic =
-      AllergyIntoleranceCategory._(
-    'biologic',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AllergyIntoleranceCategory elementOnly =
-      AllergyIntoleranceCategory._('');
-
-  /// List of all enum-like values
-  static final List<AllergyIntoleranceCategory> values = [
-    food,
-    medication,
-    environment,
-    biologic,
-  ];
-
-  /// Returns the enum value with an element attached
-  AllergyIntoleranceCategory withElement(Element? newElement) {
-    return AllergyIntoleranceCategory._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AllergyIntoleranceCategory extends FhirCode {
   /// Factory constructor to create [AllergyIntoleranceCategory] from JSON.
-  static AllergyIntoleranceCategory fromJson(Map<String, dynamic> json) {
+  factory AllergyIntoleranceCategory.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AllergyIntoleranceCategory.elementOnly.withElement(element);
+      return AllergyIntoleranceCategory.elementOnly(element);
     }
-    return AllergyIntoleranceCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AllergyIntoleranceCategory._(value, element);
+    }
+    throw ArgumentError(
+      'AllergyIntoleranceCategory.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// food
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AllergyIntoleranceCategory.food([this.element])
+      : dbValue = 'food',
+        super('food', element);
+
+  /// medication
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AllergyIntoleranceCategory.medication([this.element])
+      : dbValue = 'medication',
+        super('medication', element);
+
+  /// environment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AllergyIntoleranceCategory.environment([this.element])
+      : dbValue = 'environment',
+        super('environment', element);
+
+  /// biologic
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AllergyIntoleranceCategory.biologic([this.element])
+      : dbValue = 'biologic',
+        super('biologic', element);
+
+  /// For instances where an Element is present but not value
+
+  AllergyIntoleranceCategory.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AllergyIntoleranceCategory._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'food',
+    'medication',
+    'environment',
+    'biologic',
+  ];
+
+  /// Returns the enum value with an element attached
+  AllergyIntoleranceCategory withElement(Element? newElement) {
+    return AllergyIntoleranceCategory._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AllergyIntoleranceCategory.$fhirCode';
+  String toString() => 'AllergyIntoleranceCategory.$value';
 }

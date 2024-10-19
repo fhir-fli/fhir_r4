@@ -5,127 +5,131 @@ import 'package:objectbox/objectbox.dart';
 
 /// Codes for the main intent of the study.
 @Entity()
-class ResearchStudyPrimaryPurposeType {
-  // Private constructor for internal use (like enum)
-  ResearchStudyPrimaryPurposeType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ResearchStudyPrimaryPurposeType values
-  /// treatment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyPrimaryPurposeType treatment =
-      ResearchStudyPrimaryPurposeType._(
-    'treatment',
-  );
-
-  /// prevention
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyPrimaryPurposeType prevention =
-      ResearchStudyPrimaryPurposeType._(
-    'prevention',
-  );
-
-  /// diagnostic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyPrimaryPurposeType diagnostic =
-      ResearchStudyPrimaryPurposeType._(
-    'diagnostic',
-  );
-
-  /// supportive_care
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyPrimaryPurposeType supportive_care =
-      ResearchStudyPrimaryPurposeType._(
-    'supportive-care',
-  );
-
-  /// screening
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyPrimaryPurposeType screening =
-      ResearchStudyPrimaryPurposeType._(
-    'screening',
-  );
-
-  /// health_services_research
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyPrimaryPurposeType health_services_research =
-      ResearchStudyPrimaryPurposeType._(
-    'health-services-research',
-  );
-
-  /// basic_science
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyPrimaryPurposeType basic_science =
-      ResearchStudyPrimaryPurposeType._(
-    'basic-science',
-  );
-
-  /// device_feasibility
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchStudyPrimaryPurposeType device_feasibility =
-      ResearchStudyPrimaryPurposeType._(
-    'device-feasibility',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ResearchStudyPrimaryPurposeType elementOnly =
-      ResearchStudyPrimaryPurposeType._('');
-
-  /// List of all enum-like values
-  static final List<ResearchStudyPrimaryPurposeType> values = [
-    treatment,
-    prevention,
-    diagnostic,
-    supportive_care,
-    screening,
-    health_services_research,
-    basic_science,
-    device_feasibility,
-  ];
-
-  /// Returns the enum value with an element attached
-  ResearchStudyPrimaryPurposeType withElement(Element? newElement) {
-    return ResearchStudyPrimaryPurposeType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ResearchStudyPrimaryPurposeType extends FhirCode {
   /// Factory constructor to create [ResearchStudyPrimaryPurposeType] from JSON.
-  static ResearchStudyPrimaryPurposeType fromJson(Map<String, dynamic> json) {
+  factory ResearchStudyPrimaryPurposeType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResearchStudyPrimaryPurposeType.elementOnly.withElement(element);
+      return ResearchStudyPrimaryPurposeType.elementOnly(element);
     }
-    return ResearchStudyPrimaryPurposeType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ResearchStudyPrimaryPurposeType._(value, element);
+    }
+    throw ArgumentError(
+      'ResearchStudyPrimaryPurposeType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// treatment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyPrimaryPurposeType.treatment([this.element])
+      : dbValue = 'treatment',
+        super('treatment', element);
+
+  /// prevention
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyPrimaryPurposeType.prevention([this.element])
+      : dbValue = 'prevention',
+        super('prevention', element);
+
+  /// diagnostic
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyPrimaryPurposeType.diagnostic([this.element])
+      : dbValue = 'diagnostic',
+        super('diagnostic', element);
+
+  /// supportive_care
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyPrimaryPurposeType.supportive_care([this.element])
+      : dbValue = 'supportive-care',
+        super('supportive-care', element);
+
+  /// screening
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyPrimaryPurposeType.screening([this.element])
+      : dbValue = 'screening',
+        super('screening', element);
+
+  /// health_services_research
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyPrimaryPurposeType.health_services_research([this.element])
+      : dbValue = 'health-services-research',
+        super('health-services-research', element);
+
+  /// basic_science
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyPrimaryPurposeType.basic_science([this.element])
+      : dbValue = 'basic-science',
+        super('basic-science', element);
+
+  /// device_feasibility
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchStudyPrimaryPurposeType.device_feasibility([this.element])
+      : dbValue = 'device-feasibility',
+        super('device-feasibility', element);
+
+  /// For instances where an Element is present but not value
+
+  ResearchStudyPrimaryPurposeType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ResearchStudyPrimaryPurposeType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'treatment',
+    'prevention',
+    'diagnostic',
+    'supportive-care',
+    'screening',
+    'health-services-research',
+    'basic-science',
+    'device-feasibility',
+  ];
+
+  /// Returns the enum value with an element attached
+  ResearchStudyPrimaryPurposeType withElement(Element? newElement) {
+    return ResearchStudyPrimaryPurposeType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ResearchStudyPrimaryPurposeType.$fhirCode';
+  String toString() => 'ResearchStudyPrimaryPurposeType.$value';
 }

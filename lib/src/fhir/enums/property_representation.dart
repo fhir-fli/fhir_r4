@@ -5,95 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// How a property is represented when serialized.
 @Entity()
-class PropertyRepresentation {
-  // Private constructor for internal use (like enum)
-  PropertyRepresentation._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// PropertyRepresentation values
-  /// xmlAttr
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PropertyRepresentation xmlAttr = PropertyRepresentation._(
-    'xmlAttr',
-  );
-
-  /// xmlText
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PropertyRepresentation xmlText = PropertyRepresentation._(
-    'xmlText',
-  );
-
-  /// typeAttr
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PropertyRepresentation typeAttr = PropertyRepresentation._(
-    'typeAttr',
-  );
-
-  /// cdaText
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PropertyRepresentation cdaText = PropertyRepresentation._(
-    'cdaText',
-  );
-
-  /// xhtml
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PropertyRepresentation xhtml = PropertyRepresentation._(
-    'xhtml',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final PropertyRepresentation elementOnly =
-      PropertyRepresentation._('');
-
-  /// List of all enum-like values
-  static final List<PropertyRepresentation> values = [
-    xmlAttr,
-    xmlText,
-    typeAttr,
-    cdaText,
-    xhtml,
-  ];
-
-  /// Returns the enum value with an element attached
-  PropertyRepresentation withElement(Element? newElement) {
-    return PropertyRepresentation._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class PropertyRepresentation extends FhirCode {
   /// Factory constructor to create [PropertyRepresentation] from JSON.
-  static PropertyRepresentation fromJson(Map<String, dynamic> json) {
+  factory PropertyRepresentation.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PropertyRepresentation.elementOnly.withElement(element);
+      return PropertyRepresentation.elementOnly(element);
     }
-    return PropertyRepresentation.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return PropertyRepresentation._(value, element);
+    }
+    throw ArgumentError(
+      'PropertyRepresentation.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// xmlAttr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PropertyRepresentation.xmlAttr([this.element])
+      : dbValue = 'xmlAttr',
+        super('xmlAttr', element);
+
+  /// xmlText
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PropertyRepresentation.xmlText([this.element])
+      : dbValue = 'xmlText',
+        super('xmlText', element);
+
+  /// typeAttr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PropertyRepresentation.typeAttr([this.element])
+      : dbValue = 'typeAttr',
+        super('typeAttr', element);
+
+  /// cdaText
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PropertyRepresentation.cdaText([this.element])
+      : dbValue = 'cdaText',
+        super('cdaText', element);
+
+  /// xhtml
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PropertyRepresentation.xhtml([this.element])
+      : dbValue = 'xhtml',
+        super('xhtml', element);
+
+  /// For instances where an Element is present but not value
+
+  PropertyRepresentation.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  PropertyRepresentation._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'xmlAttr',
+    'xmlText',
+    'typeAttr',
+    'cdaText',
+    'xhtml',
+  ];
+
+  /// Returns the enum value with an element attached
+  PropertyRepresentation withElement(Element? newElement) {
+    return PropertyRepresentation._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'PropertyRepresentation.$fhirCode';
+  String toString() => 'PropertyRepresentation.$value';
 }

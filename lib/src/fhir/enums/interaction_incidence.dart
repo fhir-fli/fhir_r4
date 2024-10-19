@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// A categorisation for incidence of occurence of an interaction.
 @Entity()
-class InteractionIncidence {
-  // Private constructor for internal use (like enum)
-  InteractionIncidence._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// InteractionIncidence values
-  /// Theoretical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final InteractionIncidence Theoretical = InteractionIncidence._(
-    'Theoretical',
-  );
-
-  /// Observed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final InteractionIncidence Observed = InteractionIncidence._(
-    'Observed',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final InteractionIncidence elementOnly = InteractionIncidence._('');
-
-  /// List of all enum-like values
-  static final List<InteractionIncidence> values = [
-    Theoretical,
-    Observed,
-  ];
-
-  /// Returns the enum value with an element attached
-  InteractionIncidence withElement(Element? newElement) {
-    return InteractionIncidence._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class InteractionIncidence extends FhirCode {
   /// Factory constructor to create [InteractionIncidence] from JSON.
-  static InteractionIncidence fromJson(Map<String, dynamic> json) {
+  factory InteractionIncidence.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return InteractionIncidence.elementOnly.withElement(element);
+      return InteractionIncidence.elementOnly(element);
     }
-    return InteractionIncidence.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return InteractionIncidence._(value, element);
+    }
+    throw ArgumentError(
+      'InteractionIncidence.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Theoretical
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  InteractionIncidence.Theoretical([this.element])
+      : dbValue = 'Theoretical',
+        super('Theoretical', element);
+
+  /// Observed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  InteractionIncidence.Observed([this.element])
+      : dbValue = 'Observed',
+        super('Observed', element);
+
+  /// For instances where an Element is present but not value
+
+  InteractionIncidence.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  InteractionIncidence._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Theoretical',
+    'Observed',
+  ];
+
+  /// Returns the enum value with an element attached
+  InteractionIncidence withElement(Element? newElement) {
+    return InteractionIncidence._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'InteractionIncidence.$fhirCode';
+  String toString() => 'InteractionIncidence.$value';
 }

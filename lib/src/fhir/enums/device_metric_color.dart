@@ -5,118 +5,131 @@ import 'package:objectbox/objectbox.dart';
 
 /// Describes the typical color of representation.
 @Entity()
-class DeviceMetricColor {
-  // Private constructor for internal use (like enum)
-  DeviceMetricColor._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DeviceMetricColor values
-  /// black
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricColor black = DeviceMetricColor._(
-    'black',
-  );
-
-  /// red
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricColor red = DeviceMetricColor._(
-    'red',
-  );
-
-  /// green
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricColor green = DeviceMetricColor._(
-    'green',
-  );
-
-  /// yellow
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricColor yellow = DeviceMetricColor._(
-    'yellow',
-  );
-
-  /// blue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricColor blue = DeviceMetricColor._(
-    'blue',
-  );
-
-  /// magenta
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricColor magenta = DeviceMetricColor._(
-    'magenta',
-  );
-
-  /// cyan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricColor cyan = DeviceMetricColor._(
-    'cyan',
-  );
-
-  /// white
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricColor white = DeviceMetricColor._(
-    'white',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final DeviceMetricColor elementOnly = DeviceMetricColor._('');
-
-  /// List of all enum-like values
-  static final List<DeviceMetricColor> values = [
-    black,
-    red,
-    green,
-    yellow,
-    blue,
-    magenta,
-    cyan,
-    white,
-  ];
-
-  /// Returns the enum value with an element attached
-  DeviceMetricColor withElement(Element? newElement) {
-    return DeviceMetricColor._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class DeviceMetricColor extends FhirCode {
   /// Factory constructor to create [DeviceMetricColor] from JSON.
-  static DeviceMetricColor fromJson(Map<String, dynamic> json) {
+  factory DeviceMetricColor.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceMetricColor.elementOnly.withElement(element);
+      return DeviceMetricColor.elementOnly(element);
     }
-    return DeviceMetricColor.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return DeviceMetricColor._(value, element);
+    }
+    throw ArgumentError(
+      'DeviceMetricColor.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// black
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricColor.black([this.element])
+      : dbValue = 'black',
+        super('black', element);
+
+  /// red
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricColor.red([this.element])
+      : dbValue = 'red',
+        super('red', element);
+
+  /// green
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricColor.green([this.element])
+      : dbValue = 'green',
+        super('green', element);
+
+  /// yellow
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricColor.yellow([this.element])
+      : dbValue = 'yellow',
+        super('yellow', element);
+
+  /// blue
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricColor.blue([this.element])
+      : dbValue = 'blue',
+        super('blue', element);
+
+  /// magenta
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricColor.magenta([this.element])
+      : dbValue = 'magenta',
+        super('magenta', element);
+
+  /// cyan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricColor.cyan([this.element])
+      : dbValue = 'cyan',
+        super('cyan', element);
+
+  /// white
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricColor.white([this.element])
+      : dbValue = 'white',
+        super('white', element);
+
+  /// For instances where an Element is present but not value
+
+  DeviceMetricColor.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  DeviceMetricColor._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'black',
+    'red',
+    'green',
+    'yellow',
+    'blue',
+    'magenta',
+    'cyan',
+    'white',
+  ];
+
+  /// Returns the enum value with an element attached
+  DeviceMetricColor withElement(Element? newElement) {
+    return DeviceMetricColor._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'DeviceMetricColor.$fhirCode';
+  String toString() => 'DeviceMetricColor.$value';
 }

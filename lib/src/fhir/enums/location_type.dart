@@ -5,166 +5,179 @@ import 'package:objectbox/objectbox.dart';
 
 /// This example value set defines a set of codes that can be used to indicate the physical form of the Location.
 @Entity()
-class LocationType {
-  // Private constructor for internal use (like enum)
-  LocationType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// LocationType values
-  /// si
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationType si = LocationType._(
-    'si',
-  );
-
-  /// bu
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationType bu = LocationType._(
-    'bu',
-  );
-
-  /// wi
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationType wi = LocationType._(
-    'wi',
-  );
-
-  /// wa
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationType wa = LocationType._(
-    'wa',
-  );
-
-  /// lvl
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationType lvl = LocationType._(
-    'lvl',
-  );
-
-  /// co
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationType co = LocationType._(
-    'co',
-  );
-
-  /// ro
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationType ro = LocationType._(
-    'ro',
-  );
-
-  /// bd
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationType bd = LocationType._(
-    'bd',
-  );
-
-  /// ve
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationType ve = LocationType._(
-    've',
-  );
-
-  /// ho
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationType ho = LocationType._(
-    'ho',
-  );
-
-  /// ca
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationType ca = LocationType._(
-    'ca',
-  );
-
-  /// rd
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationType rd = LocationType._(
-    'rd',
-  );
-
-  /// area
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationType area = LocationType._(
-    'area',
-  );
-
-  /// jdn
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LocationType jdn = LocationType._(
-    'jdn',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final LocationType elementOnly = LocationType._('');
-
-  /// List of all enum-like values
-  static final List<LocationType> values = [
-    si,
-    bu,
-    wi,
-    wa,
-    lvl,
-    co,
-    ro,
-    bd,
-    ve,
-    ho,
-    ca,
-    rd,
-    area,
-    jdn,
-  ];
-
-  /// Returns the enum value with an element attached
-  LocationType withElement(Element? newElement) {
-    return LocationType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class LocationType extends FhirCode {
   /// Factory constructor to create [LocationType] from JSON.
-  static LocationType fromJson(Map<String, dynamic> json) {
+  factory LocationType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return LocationType.elementOnly.withElement(element);
+      return LocationType.elementOnly(element);
     }
-    return LocationType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return LocationType._(value, element);
+    }
+    throw ArgumentError(
+      'LocationType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// si
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationType.si([this.element])
+      : dbValue = 'si',
+        super('si', element);
+
+  /// bu
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationType.bu([this.element])
+      : dbValue = 'bu',
+        super('bu', element);
+
+  /// wi
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationType.wi([this.element])
+      : dbValue = 'wi',
+        super('wi', element);
+
+  /// wa
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationType.wa([this.element])
+      : dbValue = 'wa',
+        super('wa', element);
+
+  /// lvl
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationType.lvl([this.element])
+      : dbValue = 'lvl',
+        super('lvl', element);
+
+  /// co
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationType.co([this.element])
+      : dbValue = 'co',
+        super('co', element);
+
+  /// ro
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationType.ro([this.element])
+      : dbValue = 'ro',
+        super('ro', element);
+
+  /// bd
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationType.bd([this.element])
+      : dbValue = 'bd',
+        super('bd', element);
+
+  /// ve
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationType.ve([this.element])
+      : dbValue = 've',
+        super('ve', element);
+
+  /// ho
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationType.ho([this.element])
+      : dbValue = 'ho',
+        super('ho', element);
+
+  /// ca
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationType.ca([this.element])
+      : dbValue = 'ca',
+        super('ca', element);
+
+  /// rd
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationType.rd([this.element])
+      : dbValue = 'rd',
+        super('rd', element);
+
+  /// area
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationType.area([this.element])
+      : dbValue = 'area',
+        super('area', element);
+
+  /// jdn
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LocationType.jdn([this.element])
+      : dbValue = 'jdn',
+        super('jdn', element);
+
+  /// For instances where an Element is present but not value
+
+  LocationType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  LocationType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'si',
+    'bu',
+    'wi',
+    'wa',
+    'lvl',
+    'co',
+    'ro',
+    'bd',
+    've',
+    'ho',
+    'ca',
+    'rd',
+    'area',
+    'jdn',
+  ];
+
+  /// Returns the enum value with an element attached
+  LocationType withElement(Element? newElement) {
+    return LocationType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'LocationType.$fhirCode';
+  String toString() => 'LocationType.$value';
 }

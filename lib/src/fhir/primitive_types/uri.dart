@@ -101,6 +101,7 @@ class FhirUri extends PrimitiveType<Uri> {
   final Element? element;
 
   @override
+  @Transient()
   String get fhirType => 'uri';
 
   /// Serializes the instance to JSON with standardized keys

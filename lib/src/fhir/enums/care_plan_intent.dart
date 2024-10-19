@@ -5,126 +5,139 @@ import 'package:objectbox/objectbox.dart';
 
 /// Codes indicating the degree of authority/intentionality associated with a care plan.
 @Entity()
-class CarePlanIntent {
-  // Private constructor for internal use (like enum)
-  CarePlanIntent._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CarePlanIntent values
-  /// proposal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanIntent proposal = CarePlanIntent._(
-    'proposal',
-  );
-
-  /// plan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanIntent plan = CarePlanIntent._(
-    'plan',
-  );
-
-  /// directive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanIntent directive = CarePlanIntent._(
-    'directive',
-  );
-
-  /// order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanIntent order = CarePlanIntent._(
-    'order',
-  );
-
-  /// original_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanIntent original_order = CarePlanIntent._(
-    'original-order',
-  );
-
-  /// reflex_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanIntent reflex_order = CarePlanIntent._(
-    'reflex-order',
-  );
-
-  /// filler_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanIntent filler_order = CarePlanIntent._(
-    'filler-order',
-  );
-
-  /// instance_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanIntent instance_order = CarePlanIntent._(
-    'instance-order',
-  );
-
-  /// option
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CarePlanIntent option = CarePlanIntent._(
-    'option',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CarePlanIntent elementOnly = CarePlanIntent._('');
-
-  /// List of all enum-like values
-  static final List<CarePlanIntent> values = [
-    proposal,
-    plan,
-    directive,
-    order,
-    original_order,
-    reflex_order,
-    filler_order,
-    instance_order,
-    option,
-  ];
-
-  /// Returns the enum value with an element attached
-  CarePlanIntent withElement(Element? newElement) {
-    return CarePlanIntent._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CarePlanIntent extends FhirCode {
   /// Factory constructor to create [CarePlanIntent] from JSON.
-  static CarePlanIntent fromJson(Map<String, dynamic> json) {
+  factory CarePlanIntent.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CarePlanIntent.elementOnly.withElement(element);
+      return CarePlanIntent.elementOnly(element);
     }
-    return CarePlanIntent.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CarePlanIntent._(value, element);
+    }
+    throw ArgumentError(
+      'CarePlanIntent.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// proposal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanIntent.proposal([this.element])
+      : dbValue = 'proposal',
+        super('proposal', element);
+
+  /// plan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanIntent.plan([this.element])
+      : dbValue = 'plan',
+        super('plan', element);
+
+  /// directive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanIntent.directive([this.element])
+      : dbValue = 'directive',
+        super('directive', element);
+
+  /// order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanIntent.order([this.element])
+      : dbValue = 'order',
+        super('order', element);
+
+  /// original_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanIntent.original_order([this.element])
+      : dbValue = 'original-order',
+        super('original-order', element);
+
+  /// reflex_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanIntent.reflex_order([this.element])
+      : dbValue = 'reflex-order',
+        super('reflex-order', element);
+
+  /// filler_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanIntent.filler_order([this.element])
+      : dbValue = 'filler-order',
+        super('filler-order', element);
+
+  /// instance_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanIntent.instance_order([this.element])
+      : dbValue = 'instance-order',
+        super('instance-order', element);
+
+  /// option
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CarePlanIntent.option([this.element])
+      : dbValue = 'option',
+        super('option', element);
+
+  /// For instances where an Element is present but not value
+
+  CarePlanIntent.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CarePlanIntent._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'proposal',
+    'plan',
+    'directive',
+    'order',
+    'original-order',
+    'reflex-order',
+    'filler-order',
+    'instance-order',
+    'option',
+  ];
+
+  /// Returns the enum value with an element attached
+  CarePlanIntent withElement(Element? newElement) {
+    return CarePlanIntent._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CarePlanIntent.$fhirCode';
+  String toString() => 'CarePlanIntent.$value';
 }

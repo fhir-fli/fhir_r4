@@ -5,100 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// EnteralFormulaAdditiveType: Codes for the type of modular component such as protein, carbohydrate or fiber to be provided in addition to or mixed with the base formula. This value set is provided as a suggestive example.
 @Entity()
-class EnteralFormulaAdditiveTypeCode {
-  // Private constructor for internal use (like enum)
-  EnteralFormulaAdditiveTypeCode._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EnteralFormulaAdditiveTypeCode values
-  /// lipid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EnteralFormulaAdditiveTypeCode lipid =
-      EnteralFormulaAdditiveTypeCode._(
-    'lipid',
-  );
-
-  /// protein
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EnteralFormulaAdditiveTypeCode protein =
-      EnteralFormulaAdditiveTypeCode._(
-    'protein',
-  );
-
-  /// carbohydrate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EnteralFormulaAdditiveTypeCode carbohydrate =
-      EnteralFormulaAdditiveTypeCode._(
-    'carbohydrate',
-  );
-
-  /// fiber
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EnteralFormulaAdditiveTypeCode fiber =
-      EnteralFormulaAdditiveTypeCode._(
-    'fiber',
-  );
-
-  /// water
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EnteralFormulaAdditiveTypeCode water =
-      EnteralFormulaAdditiveTypeCode._(
-    'water',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final EnteralFormulaAdditiveTypeCode elementOnly =
-      EnteralFormulaAdditiveTypeCode._('');
-
-  /// List of all enum-like values
-  static final List<EnteralFormulaAdditiveTypeCode> values = [
-    lipid,
-    protein,
-    carbohydrate,
-    fiber,
-    water,
-  ];
-
-  /// Returns the enum value with an element attached
-  EnteralFormulaAdditiveTypeCode withElement(Element? newElement) {
-    return EnteralFormulaAdditiveTypeCode._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class EnteralFormulaAdditiveTypeCode extends FhirCode {
   /// Factory constructor to create [EnteralFormulaAdditiveTypeCode] from JSON.
-  static EnteralFormulaAdditiveTypeCode fromJson(Map<String, dynamic> json) {
+  factory EnteralFormulaAdditiveTypeCode.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EnteralFormulaAdditiveTypeCode.elementOnly.withElement(element);
+      return EnteralFormulaAdditiveTypeCode.elementOnly(element);
     }
-    return EnteralFormulaAdditiveTypeCode.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return EnteralFormulaAdditiveTypeCode._(value, element);
+    }
+    throw ArgumentError(
+      'EnteralFormulaAdditiveTypeCode.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// lipid
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EnteralFormulaAdditiveTypeCode.lipid([this.element])
+      : dbValue = 'lipid',
+        super('lipid', element);
+
+  /// protein
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EnteralFormulaAdditiveTypeCode.protein([this.element])
+      : dbValue = 'protein',
+        super('protein', element);
+
+  /// carbohydrate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EnteralFormulaAdditiveTypeCode.carbohydrate([this.element])
+      : dbValue = 'carbohydrate',
+        super('carbohydrate', element);
+
+  /// fiber
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EnteralFormulaAdditiveTypeCode.fiber([this.element])
+      : dbValue = 'fiber',
+        super('fiber', element);
+
+  /// water
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EnteralFormulaAdditiveTypeCode.water([this.element])
+      : dbValue = 'water',
+        super('water', element);
+
+  /// For instances where an Element is present but not value
+
+  EnteralFormulaAdditiveTypeCode.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  EnteralFormulaAdditiveTypeCode._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'lipid',
+    'protein',
+    'carbohydrate',
+    'fiber',
+    'water',
+  ];
+
+  /// Returns the enum value with an element attached
+  EnteralFormulaAdditiveTypeCode withElement(Element? newElement) {
+    return EnteralFormulaAdditiveTypeCode._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'EnteralFormulaAdditiveTypeCode.$fhirCode';
+  String toString() => 'EnteralFormulaAdditiveTypeCode.$value';
 }

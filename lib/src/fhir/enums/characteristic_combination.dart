@@ -5,72 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// Logical grouping of characteristics.
 @Entity()
-class CharacteristicCombination {
-  // Private constructor for internal use (like enum)
-  CharacteristicCombination._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CharacteristicCombination values
-  /// intersection
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CharacteristicCombination intersection =
-      CharacteristicCombination._(
-    'intersection',
-  );
-
-  /// union
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CharacteristicCombination union = CharacteristicCombination._(
-    'union',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CharacteristicCombination elementOnly =
-      CharacteristicCombination._('');
-
-  /// List of all enum-like values
-  static final List<CharacteristicCombination> values = [
-    intersection,
-    union,
-  ];
-
-  /// Returns the enum value with an element attached
-  CharacteristicCombination withElement(Element? newElement) {
-    return CharacteristicCombination._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CharacteristicCombination extends FhirCode {
   /// Factory constructor to create [CharacteristicCombination] from JSON.
-  static CharacteristicCombination fromJson(Map<String, dynamic> json) {
+  factory CharacteristicCombination.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CharacteristicCombination.elementOnly.withElement(element);
+      return CharacteristicCombination.elementOnly(element);
     }
-    return CharacteristicCombination.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CharacteristicCombination._(value, element);
+    }
+    throw ArgumentError(
+      'CharacteristicCombination.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// intersection
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CharacteristicCombination.intersection([this.element])
+      : dbValue = 'intersection',
+        super('intersection', element);
+
+  /// union
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CharacteristicCombination.union([this.element])
+      : dbValue = 'union',
+        super('union', element);
+
+  /// For instances where an Element is present but not value
+
+  CharacteristicCombination.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CharacteristicCombination._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'intersection',
+    'union',
+  ];
+
+  /// Returns the enum value with an element attached
+  CharacteristicCombination withElement(Element? newElement) {
+    return CharacteristicCombination._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CharacteristicCombination.$fhirCode';
+  String toString() => 'CharacteristicCombination.$value';
 }

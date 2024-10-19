@@ -5,85 +5,92 @@ import 'package:objectbox/objectbox.dart';
 
 /// BiologicallyDerived Product Storage Scale.
 @Entity()
-class BiologicallyDerivedProductStorageScale {
-  // Private constructor for internal use (like enum)
-  BiologicallyDerivedProductStorageScale._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// BiologicallyDerivedProductStorageScale values
-  /// farenheit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BiologicallyDerivedProductStorageScale farenheit =
-      BiologicallyDerivedProductStorageScale._(
-    'farenheit',
-  );
-
-  /// celsius
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BiologicallyDerivedProductStorageScale celsius =
-      BiologicallyDerivedProductStorageScale._(
-    'celsius',
-  );
-
-  /// kelvin
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BiologicallyDerivedProductStorageScale kelvin =
-      BiologicallyDerivedProductStorageScale._(
-    'kelvin',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final BiologicallyDerivedProductStorageScale elementOnly =
-      BiologicallyDerivedProductStorageScale._('');
-
-  /// List of all enum-like values
-  static final List<BiologicallyDerivedProductStorageScale> values = [
-    farenheit,
-    celsius,
-    kelvin,
-  ];
-
-  /// Returns the enum value with an element attached
-  BiologicallyDerivedProductStorageScale withElement(Element? newElement) {
-    return BiologicallyDerivedProductStorageScale._(fhirCode,
-        element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class BiologicallyDerivedProductStorageScale extends FhirCode {
   /// Factory constructor to create [BiologicallyDerivedProductStorageScale] from JSON.
-  static BiologicallyDerivedProductStorageScale fromJson(
+  factory BiologicallyDerivedProductStorageScale.fromJson(
       Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return BiologicallyDerivedProductStorageScale.elementOnly
-          .withElement(element);
+      return BiologicallyDerivedProductStorageScale.elementOnly(element);
     }
-    return BiologicallyDerivedProductStorageScale.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return BiologicallyDerivedProductStorageScale._(value, element);
+    }
+    throw ArgumentError(
+      'BiologicallyDerivedProductStorageScale.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// farenheit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BiologicallyDerivedProductStorageScale.farenheit([this.element])
+      : dbValue = 'farenheit',
+        super('farenheit', element);
+
+  /// celsius
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BiologicallyDerivedProductStorageScale.celsius([this.element])
+      : dbValue = 'celsius',
+        super('celsius', element);
+
+  /// kelvin
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BiologicallyDerivedProductStorageScale.kelvin([this.element])
+      : dbValue = 'kelvin',
+        super('kelvin', element);
+
+  /// For instances where an Element is present but not value
+
+  BiologicallyDerivedProductStorageScale.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  BiologicallyDerivedProductStorageScale._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'farenheit',
+    'celsius',
+    'kelvin',
+  ];
+
+  /// Returns the enum value with an element attached
+  BiologicallyDerivedProductStorageScale withElement(Element? newElement) {
+    return BiologicallyDerivedProductStorageScale._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'BiologicallyDerivedProductStorageScale.$fhirCode';
+  String toString() => 'BiologicallyDerivedProductStorageScale.$value';
 }

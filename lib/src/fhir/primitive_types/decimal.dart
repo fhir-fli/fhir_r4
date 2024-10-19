@@ -90,6 +90,7 @@ class FhirDecimal extends FhirNumber {
 
   /// Returns the FHIR type as 'decimal'.
   @override
+  @Transient()
   String get fhirType => 'decimal';
 
   /// Serializes the instance to JSON with standardized keys

@@ -5,111 +5,123 @@ import 'package:objectbox/objectbox.dart';
 
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the administrative routes used during vaccination. This value set is provided as a suggestive example.
 @Entity()
-class ImmunizationRouteCodes {
-  // Private constructor for internal use (like enum)
-  ImmunizationRouteCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ImmunizationRouteCodes values
-  /// IDINJ
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRouteCodes IDINJ = ImmunizationRouteCodes._(
-    'IDINJ',
-  );
-
-  /// IM
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRouteCodes IM = ImmunizationRouteCodes._(
-    'IM',
-  );
-
-  /// NASINHLC
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRouteCodes NASINHLC = ImmunizationRouteCodes._(
-    'NASINHLC',
-  );
-
-  /// IVINJ
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRouteCodes IVINJ = ImmunizationRouteCodes._(
-    'IVINJ',
-  );
-
-  /// PO
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRouteCodes PO = ImmunizationRouteCodes._(
-    'PO',
-  );
-
-  /// SQ
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRouteCodes SQ = ImmunizationRouteCodes._(
-    'SQ',
-  );
-
-  /// TRNSDERM
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationRouteCodes TRNSDERM = ImmunizationRouteCodes._(
-    'TRNSDERM',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ImmunizationRouteCodes elementOnly =
-      ImmunizationRouteCodes._('');
-
-  /// List of all enum-like values
-  static final List<ImmunizationRouteCodes> values = [
-    IDINJ,
-    IM,
-    NASINHLC,
-    IVINJ,
-    PO,
-    SQ,
-    TRNSDERM,
-  ];
-
-  /// Returns the enum value with an element attached
-  ImmunizationRouteCodes withElement(Element? newElement) {
-    return ImmunizationRouteCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ImmunizationRouteCodes extends FhirCode {
   /// Factory constructor to create [ImmunizationRouteCodes] from JSON.
-  static ImmunizationRouteCodes fromJson(Map<String, dynamic> json) {
+  factory ImmunizationRouteCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImmunizationRouteCodes.elementOnly.withElement(element);
+      return ImmunizationRouteCodes.elementOnly(element);
     }
-    return ImmunizationRouteCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ImmunizationRouteCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ImmunizationRouteCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// IDINJ
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRouteCodes.IDINJ([this.element])
+      : dbValue = 'IDINJ',
+        super('IDINJ', element);
+
+  /// IM
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRouteCodes.IM([this.element])
+      : dbValue = 'IM',
+        super('IM', element);
+
+  /// NASINHLC
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRouteCodes.NASINHLC([this.element])
+      : dbValue = 'NASINHLC',
+        super('NASINHLC', element);
+
+  /// IVINJ
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRouteCodes.IVINJ([this.element])
+      : dbValue = 'IVINJ',
+        super('IVINJ', element);
+
+  /// PO
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRouteCodes.PO([this.element])
+      : dbValue = 'PO',
+        super('PO', element);
+
+  /// SQ
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRouteCodes.SQ([this.element])
+      : dbValue = 'SQ',
+        super('SQ', element);
+
+  /// TRNSDERM
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationRouteCodes.TRNSDERM([this.element])
+      : dbValue = 'TRNSDERM',
+        super('TRNSDERM', element);
+
+  /// For instances where an Element is present but not value
+
+  ImmunizationRouteCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ImmunizationRouteCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'IDINJ',
+    'IM',
+    'NASINHLC',
+    'IVINJ',
+    'PO',
+    'SQ',
+    'TRNSDERM',
+  ];
+
+  /// Returns the enum value with an element attached
+  ImmunizationRouteCodes withElement(Element? newElement) {
+    return ImmunizationRouteCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ImmunizationRouteCodes.$fhirCode';
+  String toString() => 'ImmunizationRouteCodes.$value';
 }

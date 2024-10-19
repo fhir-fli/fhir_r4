@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of knowledge asset this library contains.
 @Entity()
-class LibraryType {
-  // Private constructor for internal use (like enum)
-  LibraryType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// LibraryType values
-  /// logic_library
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LibraryType logic_library = LibraryType._(
-    'logic-library',
-  );
-
-  /// model_definition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LibraryType model_definition = LibraryType._(
-    'model-definition',
-  );
-
-  /// asset_collection
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LibraryType asset_collection = LibraryType._(
-    'asset-collection',
-  );
-
-  /// module_definition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final LibraryType module_definition = LibraryType._(
-    'module-definition',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final LibraryType elementOnly = LibraryType._('');
-
-  /// List of all enum-like values
-  static final List<LibraryType> values = [
-    logic_library,
-    model_definition,
-    asset_collection,
-    module_definition,
-  ];
-
-  /// Returns the enum value with an element attached
-  LibraryType withElement(Element? newElement) {
-    return LibraryType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class LibraryType extends FhirCode {
   /// Factory constructor to create [LibraryType] from JSON.
-  static LibraryType fromJson(Map<String, dynamic> json) {
+  factory LibraryType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return LibraryType.elementOnly.withElement(element);
+      return LibraryType.elementOnly(element);
     }
-    return LibraryType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return LibraryType._(value, element);
+    }
+    throw ArgumentError(
+      'LibraryType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// logic_library
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LibraryType.logic_library([this.element])
+      : dbValue = 'logic-library',
+        super('logic-library', element);
+
+  /// model_definition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LibraryType.model_definition([this.element])
+      : dbValue = 'model-definition',
+        super('model-definition', element);
+
+  /// asset_collection
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LibraryType.asset_collection([this.element])
+      : dbValue = 'asset-collection',
+        super('asset-collection', element);
+
+  /// module_definition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  LibraryType.module_definition([this.element])
+      : dbValue = 'module-definition',
+        super('module-definition', element);
+
+  /// For instances where an Element is present but not value
+
+  LibraryType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  LibraryType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'logic-library',
+    'model-definition',
+    'asset-collection',
+    'module-definition',
+  ];
+
+  /// Returns the enum value with an element attached
+  LibraryType withElement(Element? newElement) {
+    return LibraryType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'LibraryType.$fhirCode';
+  String toString() => 'LibraryType.$value';
 }

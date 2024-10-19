@@ -5,110 +5,123 @@ import 'package:objectbox/objectbox.dart';
 
 /// The use of a human name.
 @Entity()
-class NameUse {
-  // Private constructor for internal use (like enum)
-  NameUse._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// NameUse values
-  /// usual
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NameUse usual = NameUse._(
-    'usual',
-  );
-
-  /// official
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NameUse official = NameUse._(
-    'official',
-  );
-
-  /// temp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NameUse temp = NameUse._(
-    'temp',
-  );
-
-  /// nickname
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NameUse nickname = NameUse._(
-    'nickname',
-  );
-
-  /// anonymous
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NameUse anonymous = NameUse._(
-    'anonymous',
-  );
-
-  /// old
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NameUse old = NameUse._(
-    'old',
-  );
-
-  /// maiden
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NameUse maiden = NameUse._(
-    'maiden',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final NameUse elementOnly = NameUse._('');
-
-  /// List of all enum-like values
-  static final List<NameUse> values = [
-    usual,
-    official,
-    temp,
-    nickname,
-    anonymous,
-    old,
-    maiden,
-  ];
-
-  /// Returns the enum value with an element attached
-  NameUse withElement(Element? newElement) {
-    return NameUse._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class NameUse extends FhirCode {
   /// Factory constructor to create [NameUse] from JSON.
-  static NameUse fromJson(Map<String, dynamic> json) {
+  factory NameUse.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NameUse.elementOnly.withElement(element);
+      return NameUse.elementOnly(element);
     }
-    return NameUse.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return NameUse._(value, element);
+    }
+    throw ArgumentError(
+      'NameUse.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// usual
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NameUse.usual([this.element])
+      : dbValue = 'usual',
+        super('usual', element);
+
+  /// official
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NameUse.official([this.element])
+      : dbValue = 'official',
+        super('official', element);
+
+  /// temp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NameUse.temp([this.element])
+      : dbValue = 'temp',
+        super('temp', element);
+
+  /// nickname
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NameUse.nickname([this.element])
+      : dbValue = 'nickname',
+        super('nickname', element);
+
+  /// anonymous
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NameUse.anonymous([this.element])
+      : dbValue = 'anonymous',
+        super('anonymous', element);
+
+  /// old
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NameUse.old([this.element])
+      : dbValue = 'old',
+        super('old', element);
+
+  /// maiden
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NameUse.maiden([this.element])
+      : dbValue = 'maiden',
+        super('maiden', element);
+
+  /// For instances where an Element is present but not value
+
+  NameUse.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  NameUse._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'usual',
+    'official',
+    'temp',
+    'nickname',
+    'anonymous',
+    'old',
+    'maiden',
+  ];
+
+  /// Returns the enum value with an element attached
+  NameUse withElement(Element? newElement) {
+    return NameUse._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'NameUse.$fhirCode';
+  String toString() => 'NameUse.$value';
 }

@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// How the referenced structure is used in this mapping.
 @Entity()
-class StructureMapModelMode {
-  // Private constructor for internal use (like enum)
-  StructureMapModelMode._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// StructureMapModelMode values
-  /// source
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StructureMapModelMode source = StructureMapModelMode._(
-    'source',
-  );
-
-  /// queried
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StructureMapModelMode queried = StructureMapModelMode._(
-    'queried',
-  );
-
-  /// target
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StructureMapModelMode target = StructureMapModelMode._(
-    'target',
-  );
-
-  /// produced
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StructureMapModelMode produced = StructureMapModelMode._(
-    'produced',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final StructureMapModelMode elementOnly = StructureMapModelMode._('');
-
-  /// List of all enum-like values
-  static final List<StructureMapModelMode> values = [
-    source,
-    queried,
-    target,
-    produced,
-  ];
-
-  /// Returns the enum value with an element attached
-  StructureMapModelMode withElement(Element? newElement) {
-    return StructureMapModelMode._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class StructureMapModelMode extends FhirCode {
   /// Factory constructor to create [StructureMapModelMode] from JSON.
-  static StructureMapModelMode fromJson(Map<String, dynamic> json) {
+  factory StructureMapModelMode.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureMapModelMode.elementOnly.withElement(element);
+      return StructureMapModelMode.elementOnly(element);
     }
-    return StructureMapModelMode.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return StructureMapModelMode._(value, element);
+    }
+    throw ArgumentError(
+      'StructureMapModelMode.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// source
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StructureMapModelMode.source([this.element])
+      : dbValue = 'source',
+        super('source', element);
+
+  /// queried
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StructureMapModelMode.queried([this.element])
+      : dbValue = 'queried',
+        super('queried', element);
+
+  /// target
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StructureMapModelMode.target([this.element])
+      : dbValue = 'target',
+        super('target', element);
+
+  /// produced
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StructureMapModelMode.produced([this.element])
+      : dbValue = 'produced',
+        super('produced', element);
+
+  /// For instances where an Element is present but not value
+
+  StructureMapModelMode.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  StructureMapModelMode._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'source',
+    'queried',
+    'target',
+    'produced',
+  ];
+
+  /// Returns the enum value with an element attached
+  StructureMapModelMode withElement(Element? newElement) {
+    return StructureMapModelMode._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'StructureMapModelMode.$fhirCode';
+  String toString() => 'StructureMapModelMode.$value';
 }

@@ -5,110 +5,123 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set defines a set of codes that can be used to indicate dietary preferences or restrictions a patient may have.
 @Entity()
-class Diet {
-  // Private constructor for internal use (like enum)
-  Diet._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// Diet values
-  /// vegetarian
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final Diet vegetarian = Diet._(
-    'vegetarian',
-  );
-
-  /// dairy_free
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final Diet dairy_free = Diet._(
-    'dairy-free',
-  );
-
-  /// nut_free
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final Diet nut_free = Diet._(
-    'nut-free',
-  );
-
-  /// gluten_free
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final Diet gluten_free = Diet._(
-    'gluten-free',
-  );
-
-  /// vegan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final Diet vegan = Diet._(
-    'vegan',
-  );
-
-  /// halal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final Diet halal = Diet._(
-    'halal',
-  );
-
-  /// kosher
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final Diet kosher = Diet._(
-    'kosher',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final Diet elementOnly = Diet._('');
-
-  /// List of all enum-like values
-  static final List<Diet> values = [
-    vegetarian,
-    dairy_free,
-    nut_free,
-    gluten_free,
-    vegan,
-    halal,
-    kosher,
-  ];
-
-  /// Returns the enum value with an element attached
-  Diet withElement(Element? newElement) {
-    return Diet._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class Diet extends FhirCode {
   /// Factory constructor to create [Diet] from JSON.
-  static Diet fromJson(Map<String, dynamic> json) {
+  factory Diet.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return Diet.elementOnly.withElement(element);
+      return Diet.elementOnly(element);
     }
-    return Diet.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return Diet._(value, element);
+    }
+    throw ArgumentError(
+      'Diet.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// vegetarian
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  Diet.vegetarian([this.element])
+      : dbValue = 'vegetarian',
+        super('vegetarian', element);
+
+  /// dairy_free
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  Diet.dairy_free([this.element])
+      : dbValue = 'dairy-free',
+        super('dairy-free', element);
+
+  /// nut_free
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  Diet.nut_free([this.element])
+      : dbValue = 'nut-free',
+        super('nut-free', element);
+
+  /// gluten_free
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  Diet.gluten_free([this.element])
+      : dbValue = 'gluten-free',
+        super('gluten-free', element);
+
+  /// vegan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  Diet.vegan([this.element])
+      : dbValue = 'vegan',
+        super('vegan', element);
+
+  /// halal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  Diet.halal([this.element])
+      : dbValue = 'halal',
+        super('halal', element);
+
+  /// kosher
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  Diet.kosher([this.element])
+      : dbValue = 'kosher',
+        super('kosher', element);
+
+  /// For instances where an Element is present but not value
+
+  Diet.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  Diet._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'vegetarian',
+    'dairy-free',
+    'nut-free',
+    'gluten-free',
+    'vegan',
+    'halal',
+    'kosher',
+  ];
+
+  /// Returns the enum value with an element attached
+  Diet withElement(Element? newElement) {
+    return Diet._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'Diet.$fhirCode';
+  String toString() => 'Diet.$value';
 }

@@ -5,117 +5,123 @@ import 'package:objectbox/objectbox.dart';
 
 /// Used to code author list statement, contributorship statement, and such.
 @Entity()
-class ContributorSummaryType {
-  // Private constructor for internal use (like enum)
-  ContributorSummaryType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ContributorSummaryType values
-  /// author_string
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorSummaryType author_string = ContributorSummaryType._(
-    'author-string',
-  );
-
-  /// contributorship_list
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorSummaryType contributorship_list =
-      ContributorSummaryType._(
-    'contributorship-list',
-  );
-
-  /// contributorship_statement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorSummaryType contributorship_statement =
-      ContributorSummaryType._(
-    'contributorship-statement',
-  );
-
-  /// acknowledgement_list
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorSummaryType acknowledgement_list =
-      ContributorSummaryType._(
-    'acknowledgement-list',
-  );
-
-  /// acknowledgment_statement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorSummaryType acknowledgment_statement =
-      ContributorSummaryType._(
-    'acknowledgment-statement',
-  );
-
-  /// funding_statement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorSummaryType funding_statement =
-      ContributorSummaryType._(
-    'funding-statement',
-  );
-
-  /// competing_interests_statement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContributorSummaryType competing_interests_statement =
-      ContributorSummaryType._(
-    'competing-interests-statement',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ContributorSummaryType elementOnly =
-      ContributorSummaryType._('');
-
-  /// List of all enum-like values
-  static final List<ContributorSummaryType> values = [
-    author_string,
-    contributorship_list,
-    contributorship_statement,
-    acknowledgement_list,
-    acknowledgment_statement,
-    funding_statement,
-    competing_interests_statement,
-  ];
-
-  /// Returns the enum value with an element attached
-  ContributorSummaryType withElement(Element? newElement) {
-    return ContributorSummaryType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ContributorSummaryType extends FhirCode {
   /// Factory constructor to create [ContributorSummaryType] from JSON.
-  static ContributorSummaryType fromJson(Map<String, dynamic> json) {
+  factory ContributorSummaryType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContributorSummaryType.elementOnly.withElement(element);
+      return ContributorSummaryType.elementOnly(element);
     }
-    return ContributorSummaryType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ContributorSummaryType._(value, element);
+    }
+    throw ArgumentError(
+      'ContributorSummaryType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// author_string
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorSummaryType.author_string([this.element])
+      : dbValue = 'author-string',
+        super('author-string', element);
+
+  /// contributorship_list
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorSummaryType.contributorship_list([this.element])
+      : dbValue = 'contributorship-list',
+        super('contributorship-list', element);
+
+  /// contributorship_statement
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorSummaryType.contributorship_statement([this.element])
+      : dbValue = 'contributorship-statement',
+        super('contributorship-statement', element);
+
+  /// acknowledgement_list
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorSummaryType.acknowledgement_list([this.element])
+      : dbValue = 'acknowledgement-list',
+        super('acknowledgement-list', element);
+
+  /// acknowledgment_statement
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorSummaryType.acknowledgment_statement([this.element])
+      : dbValue = 'acknowledgment-statement',
+        super('acknowledgment-statement', element);
+
+  /// funding_statement
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorSummaryType.funding_statement([this.element])
+      : dbValue = 'funding-statement',
+        super('funding-statement', element);
+
+  /// competing_interests_statement
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContributorSummaryType.competing_interests_statement([this.element])
+      : dbValue = 'competing-interests-statement',
+        super('competing-interests-statement', element);
+
+  /// For instances where an Element is present but not value
+
+  ContributorSummaryType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ContributorSummaryType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'author-string',
+    'contributorship-list',
+    'contributorship-statement',
+    'acknowledgement-list',
+    'acknowledgment-statement',
+    'funding-statement',
+    'competing-interests-statement',
+  ];
+
+  /// Returns the enum value with an element attached
+  ContributorSummaryType withElement(Element? newElement) {
+    return ContributorSummaryType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ContributorSummaryType.$fhirCode';
+  String toString() => 'ContributorSummaryType.$value';
 }

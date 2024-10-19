@@ -105,6 +105,7 @@ class FhirCanonical extends PrimitiveType<Uri> {
   final Element? element;
 
   @override
+  @Transient()
   String get fhirType => 'canonical';
 
   /// Serializes the instance to JSON with standardized keys

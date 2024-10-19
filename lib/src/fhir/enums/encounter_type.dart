@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// This example value set defines a set of codes that can be used to indicate the type of encounter: a specific code indicating type of service provided.
 @Entity()
-class EncounterType {
-  // Private constructor for internal use (like enum)
-  EncounterType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EncounterType values
-  /// ADMS
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EncounterType ADMS = EncounterType._(
-    'ADMS',
-  );
-
-  /// BD_BM_clin
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EncounterType BD_BM_clin = EncounterType._(
-    'BD/BM-clin',
-  );
-
-  /// CCS60
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EncounterType CCS60 = EncounterType._(
-    'CCS60',
-  );
-
-  /// OKI
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EncounterType OKI = EncounterType._(
-    'OKI',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final EncounterType elementOnly = EncounterType._('');
-
-  /// List of all enum-like values
-  static final List<EncounterType> values = [
-    ADMS,
-    BD_BM_clin,
-    CCS60,
-    OKI,
-  ];
-
-  /// Returns the enum value with an element attached
-  EncounterType withElement(Element? newElement) {
-    return EncounterType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class EncounterType extends FhirCode {
   /// Factory constructor to create [EncounterType] from JSON.
-  static EncounterType fromJson(Map<String, dynamic> json) {
+  factory EncounterType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EncounterType.elementOnly.withElement(element);
+      return EncounterType.elementOnly(element);
     }
-    return EncounterType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return EncounterType._(value, element);
+    }
+    throw ArgumentError(
+      'EncounterType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// ADMS
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EncounterType.ADMS([this.element])
+      : dbValue = 'ADMS',
+        super('ADMS', element);
+
+  /// BD_BM_clin
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EncounterType.BD_BM_clin([this.element])
+      : dbValue = 'BD/BM-clin',
+        super('BD/BM-clin', element);
+
+  /// CCS60
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EncounterType.CCS60([this.element])
+      : dbValue = 'CCS60',
+        super('CCS60', element);
+
+  /// OKI
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EncounterType.OKI([this.element])
+      : dbValue = 'OKI',
+        super('OKI', element);
+
+  /// For instances where an Element is present but not value
+
+  EncounterType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  EncounterType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'ADMS',
+    'BD/BM-clin',
+    'CCS60',
+    'OKI',
+  ];
+
+  /// Returns the enum value with an element attached
+  EncounterType withElement(Element? newElement) {
+    return EncounterType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'EncounterType.$fhirCode';
+  String toString() => 'EncounterType.$value';
 }

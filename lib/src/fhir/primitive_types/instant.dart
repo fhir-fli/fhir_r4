@@ -131,6 +131,7 @@ class FhirInstant extends FhirDateTimeBase {
 
   /// Returns the FHIR type as 'instant'.
   @override
+  @Transient()
   String get fhirType => 'instant';
 
   /// Hash code based on the value of the [FhirInstant].

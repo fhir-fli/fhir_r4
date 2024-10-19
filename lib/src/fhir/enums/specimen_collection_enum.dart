@@ -5,135 +5,147 @@ import 'package:objectbox/objectbox.dart';
 
 /// Actions that can be taken for the collection of specimen from a subject.
 @Entity()
-class SpecimenCollectionEnum {
-  // Private constructor for internal use (like enum)
-  SpecimenCollectionEnum._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SpecimenCollectionEnum values
-  /// value129316008
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecimenCollectionEnum value129316008 = SpecimenCollectionEnum._(
-    '129316008',
-  );
-
-  /// value129314006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecimenCollectionEnum value129314006 = SpecimenCollectionEnum._(
-    '129314006',
-  );
-
-  /// value129300006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecimenCollectionEnum value129300006 = SpecimenCollectionEnum._(
-    '129300006',
-  );
-
-  /// value129304002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecimenCollectionEnum value129304002 = SpecimenCollectionEnum._(
-    '129304002',
-  );
-
-  /// value129323009
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecimenCollectionEnum value129323009 = SpecimenCollectionEnum._(
-    '129323009',
-  );
-
-  /// value73416001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecimenCollectionEnum value73416001 = SpecimenCollectionEnum._(
-    '73416001',
-  );
-
-  /// value225113003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecimenCollectionEnum value225113003 = SpecimenCollectionEnum._(
-    '225113003',
-  );
-
-  /// value70777001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecimenCollectionEnum value70777001 = SpecimenCollectionEnum._(
-    '70777001',
-  );
-
-  /// value386089008
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecimenCollectionEnum value386089008 = SpecimenCollectionEnum._(
-    '386089008',
-  );
-
-  /// value278450005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecimenCollectionEnum value278450005 = SpecimenCollectionEnum._(
-    '278450005',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SpecimenCollectionEnum elementOnly =
-      SpecimenCollectionEnum._('');
-
-  /// List of all enum-like values
-  static final List<SpecimenCollectionEnum> values = [
-    value129316008,
-    value129314006,
-    value129300006,
-    value129304002,
-    value129323009,
-    value73416001,
-    value225113003,
-    value70777001,
-    value386089008,
-    value278450005,
-  ];
-
-  /// Returns the enum value with an element attached
-  SpecimenCollectionEnum withElement(Element? newElement) {
-    return SpecimenCollectionEnum._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SpecimenCollectionEnum extends FhirCode {
   /// Factory constructor to create [SpecimenCollectionEnum] from JSON.
-  static SpecimenCollectionEnum fromJson(Map<String, dynamic> json) {
+  factory SpecimenCollectionEnum.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SpecimenCollectionEnum.elementOnly.withElement(element);
+      return SpecimenCollectionEnum.elementOnly(element);
     }
-    return SpecimenCollectionEnum.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SpecimenCollectionEnum._(value, element);
+    }
+    throw ArgumentError(
+      'SpecimenCollectionEnum.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value129316008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecimenCollectionEnum.value129316008([this.element])
+      : dbValue = '129316008',
+        super('129316008', element);
+
+  /// value129314006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecimenCollectionEnum.value129314006([this.element])
+      : dbValue = '129314006',
+        super('129314006', element);
+
+  /// value129300006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecimenCollectionEnum.value129300006([this.element])
+      : dbValue = '129300006',
+        super('129300006', element);
+
+  /// value129304002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecimenCollectionEnum.value129304002([this.element])
+      : dbValue = '129304002',
+        super('129304002', element);
+
+  /// value129323009
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecimenCollectionEnum.value129323009([this.element])
+      : dbValue = '129323009',
+        super('129323009', element);
+
+  /// value73416001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecimenCollectionEnum.value73416001([this.element])
+      : dbValue = '73416001',
+        super('73416001', element);
+
+  /// value225113003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecimenCollectionEnum.value225113003([this.element])
+      : dbValue = '225113003',
+        super('225113003', element);
+
+  /// value70777001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecimenCollectionEnum.value70777001([this.element])
+      : dbValue = '70777001',
+        super('70777001', element);
+
+  /// value386089008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecimenCollectionEnum.value386089008([this.element])
+      : dbValue = '386089008',
+        super('386089008', element);
+
+  /// value278450005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecimenCollectionEnum.value278450005([this.element])
+      : dbValue = '278450005',
+        super('278450005', element);
+
+  /// For instances where an Element is present but not value
+
+  SpecimenCollectionEnum.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SpecimenCollectionEnum._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '129316008',
+    '129314006',
+    '129300006',
+    '129304002',
+    '129323009',
+    '73416001',
+    '225113003',
+    '70777001',
+    '386089008',
+    '278450005',
+  ];
+
+  /// Returns the enum value with an element attached
+  SpecimenCollectionEnum withElement(Element? newElement) {
+    return SpecimenCollectionEnum._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SpecimenCollectionEnum.$fhirCode';
+  String toString() => 'SpecimenCollectionEnum.$value';
 }

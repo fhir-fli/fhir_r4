@@ -5,71 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of actor - system or human.
 @Entity()
-class ExampleScenarioActorType {
-  // Private constructor for internal use (like enum)
-  ExampleScenarioActorType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleScenarioActorType values
-  /// person
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleScenarioActorType person = ExampleScenarioActorType._(
-    'person',
-  );
-
-  /// entity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleScenarioActorType entity = ExampleScenarioActorType._(
-    'entity',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ExampleScenarioActorType elementOnly =
-      ExampleScenarioActorType._('');
-
-  /// List of all enum-like values
-  static final List<ExampleScenarioActorType> values = [
-    person,
-    entity,
-  ];
-
-  /// Returns the enum value with an element attached
-  ExampleScenarioActorType withElement(Element? newElement) {
-    return ExampleScenarioActorType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ExampleScenarioActorType extends FhirCode {
   /// Factory constructor to create [ExampleScenarioActorType] from JSON.
-  static ExampleScenarioActorType fromJson(Map<String, dynamic> json) {
+  factory ExampleScenarioActorType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleScenarioActorType.elementOnly.withElement(element);
+      return ExampleScenarioActorType.elementOnly(element);
     }
-    return ExampleScenarioActorType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ExampleScenarioActorType._(value, element);
+    }
+    throw ArgumentError(
+      'ExampleScenarioActorType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// person
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleScenarioActorType.person([this.element])
+      : dbValue = 'person',
+        super('person', element);
+
+  /// entity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleScenarioActorType.entity([this.element])
+      : dbValue = 'entity',
+        super('entity', element);
+
+  /// For instances where an Element is present but not value
+
+  ExampleScenarioActorType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ExampleScenarioActorType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'person',
+    'entity',
+  ];
+
+  /// Returns the enum value with an element attached
+  ExampleScenarioActorType withElement(Element? newElement) {
+    return ExampleScenarioActorType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ExampleScenarioActorType.$fhirCode';
+  String toString() => 'ExampleScenarioActorType.$value';
 }

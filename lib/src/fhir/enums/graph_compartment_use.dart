@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// Defines how a compartment rule is used.
 @Entity()
-class GraphCompartmentUse {
-  // Private constructor for internal use (like enum)
-  GraphCompartmentUse._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// GraphCompartmentUse values
-  /// condition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GraphCompartmentUse condition = GraphCompartmentUse._(
-    'condition',
-  );
-
-  /// requirement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GraphCompartmentUse requirement = GraphCompartmentUse._(
-    'requirement',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final GraphCompartmentUse elementOnly = GraphCompartmentUse._('');
-
-  /// List of all enum-like values
-  static final List<GraphCompartmentUse> values = [
-    condition,
-    requirement,
-  ];
-
-  /// Returns the enum value with an element attached
-  GraphCompartmentUse withElement(Element? newElement) {
-    return GraphCompartmentUse._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class GraphCompartmentUse extends FhirCode {
   /// Factory constructor to create [GraphCompartmentUse] from JSON.
-  static GraphCompartmentUse fromJson(Map<String, dynamic> json) {
+  factory GraphCompartmentUse.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GraphCompartmentUse.elementOnly.withElement(element);
+      return GraphCompartmentUse.elementOnly(element);
     }
-    return GraphCompartmentUse.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return GraphCompartmentUse._(value, element);
+    }
+    throw ArgumentError(
+      'GraphCompartmentUse.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// condition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GraphCompartmentUse.condition([this.element])
+      : dbValue = 'condition',
+        super('condition', element);
+
+  /// requirement
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GraphCompartmentUse.requirement([this.element])
+      : dbValue = 'requirement',
+        super('requirement', element);
+
+  /// For instances where an Element is present but not value
+
+  GraphCompartmentUse.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  GraphCompartmentUse._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'condition',
+    'requirement',
+  ];
+
+  /// Returns the enum value with an element attached
+  GraphCompartmentUse withElement(Element? newElement) {
+    return GraphCompartmentUse._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'GraphCompartmentUse.$fhirCode';
+  String toString() => 'GraphCompartmentUse.$value';
 }

@@ -5,109 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// Codes for the reason why a communication did not happen.
 @Entity()
-class CommunicationNotDoneReason {
-  // Private constructor for internal use (like enum)
-  CommunicationNotDoneReason._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CommunicationNotDoneReason values
-  /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommunicationNotDoneReason unknown =
-      CommunicationNotDoneReason._(
-    'unknown',
-  );
-
-  /// system_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommunicationNotDoneReason system_error =
-      CommunicationNotDoneReason._(
-    'system-error',
-  );
-
-  /// invalid_phone_number
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommunicationNotDoneReason invalid_phone_number =
-      CommunicationNotDoneReason._(
-    'invalid-phone-number',
-  );
-
-  /// recipient_unavailable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommunicationNotDoneReason recipient_unavailable =
-      CommunicationNotDoneReason._(
-    'recipient-unavailable',
-  );
-
-  /// family_objection
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommunicationNotDoneReason family_objection =
-      CommunicationNotDoneReason._(
-    'family-objection',
-  );
-
-  /// patient_objection
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommunicationNotDoneReason patient_objection =
-      CommunicationNotDoneReason._(
-    'patient-objection',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CommunicationNotDoneReason elementOnly =
-      CommunicationNotDoneReason._('');
-
-  /// List of all enum-like values
-  static final List<CommunicationNotDoneReason> values = [
-    unknown,
-    system_error,
-    invalid_phone_number,
-    recipient_unavailable,
-    family_objection,
-    patient_objection,
-  ];
-
-  /// Returns the enum value with an element attached
-  CommunicationNotDoneReason withElement(Element? newElement) {
-    return CommunicationNotDoneReason._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CommunicationNotDoneReason extends FhirCode {
   /// Factory constructor to create [CommunicationNotDoneReason] from JSON.
-  static CommunicationNotDoneReason fromJson(Map<String, dynamic> json) {
+  factory CommunicationNotDoneReason.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CommunicationNotDoneReason.elementOnly.withElement(element);
+      return CommunicationNotDoneReason.elementOnly(element);
     }
-    return CommunicationNotDoneReason.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CommunicationNotDoneReason._(value, element);
+    }
+    throw ArgumentError(
+      'CommunicationNotDoneReason.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommunicationNotDoneReason.unknown([this.element])
+      : dbValue = 'unknown',
+        super('unknown', element);
+
+  /// system_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommunicationNotDoneReason.system_error([this.element])
+      : dbValue = 'system-error',
+        super('system-error', element);
+
+  /// invalid_phone_number
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommunicationNotDoneReason.invalid_phone_number([this.element])
+      : dbValue = 'invalid-phone-number',
+        super('invalid-phone-number', element);
+
+  /// recipient_unavailable
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommunicationNotDoneReason.recipient_unavailable([this.element])
+      : dbValue = 'recipient-unavailable',
+        super('recipient-unavailable', element);
+
+  /// family_objection
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommunicationNotDoneReason.family_objection([this.element])
+      : dbValue = 'family-objection',
+        super('family-objection', element);
+
+  /// patient_objection
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommunicationNotDoneReason.patient_objection([this.element])
+      : dbValue = 'patient-objection',
+        super('patient-objection', element);
+
+  /// For instances where an Element is present but not value
+
+  CommunicationNotDoneReason.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CommunicationNotDoneReason._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'unknown',
+    'system-error',
+    'invalid-phone-number',
+    'recipient-unavailable',
+    'family-objection',
+    'patient-objection',
+  ];
+
+  /// Returns the enum value with an element attached
+  CommunicationNotDoneReason withElement(Element? newElement) {
+    return CommunicationNotDoneReason._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CommunicationNotDoneReason.$fhirCode';
+  String toString() => 'CommunicationNotDoneReason.$value';
 }

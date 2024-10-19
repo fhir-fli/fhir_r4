@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:objectbox/objectbox.dart';
@@ -13,14 +15,14 @@ class TestScript extends DomainResource {
 
   TestScript({
     this.dbId = 0,
-    super.id,
-    super.meta,
-    super.implicitRules,
-    super.language,
-    super.text,
-    super.contained,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.meta,
+    this.implicitRules,
+    this.language,
+    this.text,
+    this.contained,
+    this.extension_,
+    this.modifierExtension,
     required this.url,
     this.identifier,
     this.version,
@@ -316,11 +318,81 @@ class TestScript extends DomainResource {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScript';
+
+  /// [id]
+  /// The logical id of the resource, as used in the URL for the resource.
+  /// Once assigned, this value never changes.
+  @override
+  final FhirString? id;
+
+  /// [meta]
+  /// The metadata about the resource. This is content that is maintained by
+  /// the infrastructure. Changes to the content might not always be
+  /// associated with version changes to the resource.
+  @override
+  final FhirMeta? meta;
+
+  /// [implicitRules]
+  /// A reference to a set of rules that were followed when the resource was
+  /// constructed, and which must be understood when processing the content.
+  /// Often, this is a reference to an implementation guide that defines the
+  /// special rules along with other profiles etc.
+  @override
+  final FhirUri? implicitRules;
+
+  /// [language]
+  /// The base language in which the resource is written.
+  @override
+  final CommonLanguages? language;
+
+  /// [text]
+  /// A human-readable narrative that contains a summary of the resource and
+  /// can be used to represent the content of the resource to a human. The
+  /// narrative need not encode all the structured data, but is required to
+  /// contain sufficient detail to make it "clinically safe" for a human to
+  /// just read the narrative. Resource definitions may define what content
+  /// should be represented in the narrative to ensure clinical safety.
+  @override
+  final Narrative? text;
+
+  /// [contained]
+  /// These resources do not have an independent existence apart from the
+  /// resource that contains them - they cannot be identified independently,
+  /// and nor can they have their own independent transaction scope.
+  @override
+  final List<Resource>? contained;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource and that modifies the understanding of
+  /// the element that contains it and/or the understanding of the containing
+  /// element's descendants. Usually modifier elements provide negation or
+  /// qualification. To make the use of extensions safe and manageable, there
+  /// is a strict set of governance applied to the definition and use of
+  /// extensions. Though any implementer is allowed to define an extension,
+  /// there is a set of requirements that SHALL be met as part of the
+  /// definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this test script when it is
@@ -733,9 +805,9 @@ class TestScriptOrigin extends BackboneElement {
 
   TestScriptOrigin({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     required this.index,
     required this.profile,
     super.userData,
@@ -820,11 +892,44 @@ class TestScriptOrigin extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptOrigin';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [index]
   /// Abstract name given to an origin server in this test script. The name
@@ -903,9 +1008,9 @@ class TestScriptDestination extends BackboneElement {
 
   TestScriptDestination({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     required this.index,
     required this.profile,
     super.userData,
@@ -990,11 +1095,44 @@ class TestScriptDestination extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptDestination';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [index]
   /// Abstract name given to a destination server in this test script. The
@@ -1073,9 +1211,9 @@ class TestScriptMetadata extends BackboneElement {
 
   TestScriptMetadata({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     this.link,
     required this.capability,
     super.userData,
@@ -1171,11 +1309,44 @@ class TestScriptMetadata extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptMetadata';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [link]
   /// A link to the FHIR specification that this test is covering.
@@ -1251,9 +1422,9 @@ class TestScriptLink extends BackboneElement {
 
   TestScriptLink({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     required this.url,
     this.description,
     super.userData,
@@ -1341,11 +1512,44 @@ class TestScriptLink extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptLink';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// URL to a particular requirement or feature within the FHIR
@@ -1430,9 +1634,9 @@ class TestScriptCapability extends BackboneElement {
 
   TestScriptCapability({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     required this.required_,
     required this.validated,
     this.description,
@@ -1549,11 +1753,44 @@ class TestScriptCapability extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptCapability';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [required_]
   /// Whether or not the test execution will require the given capabilities
@@ -1709,9 +1946,9 @@ class TestScriptFixture extends BackboneElement {
 
   TestScriptFixture({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     required this.autocreate,
     required this.autodelete,
     this.resource,
@@ -1803,11 +2040,44 @@ class TestScriptFixture extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptFixture';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [autocreate]
   /// Whether or not to implicitly create the fixture during setup. If true,
@@ -1906,9 +2176,9 @@ class TestScriptVariable extends BackboneElement {
 
   TestScriptVariable({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     required this.name,
     this.defaultValue,
     this.description,
@@ -2039,11 +2309,44 @@ class TestScriptVariable extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptVariable';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// Descriptive name for this variable.
@@ -2218,9 +2521,9 @@ class TestScriptSetup extends BackboneElement {
 
   TestScriptSetup({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     required this.action,
     super.userData,
     super.formatCommentsPre,
@@ -2306,11 +2609,44 @@ class TestScriptSetup extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptSetup';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [action]
   /// Action would contain either an operation or an assertion.
@@ -2375,9 +2711,9 @@ class TestScriptAction extends BackboneElement {
 
   TestScriptAction({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     this.operation,
     this.assert_,
     super.userData,
@@ -2465,11 +2801,44 @@ class TestScriptAction extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptAction';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [operation]
   /// The operation to perform.
@@ -2547,9 +2916,9 @@ class TestScriptOperation extends BackboneElement {
 
   TestScriptOperation({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     this.type,
     this.resource,
     this.label,
@@ -2744,11 +3113,44 @@ class TestScriptOperation extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptOperation';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Server interaction or operation type.
@@ -3043,9 +3445,9 @@ class TestScriptRequestHeader extends BackboneElement {
 
   TestScriptRequestHeader({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     required this.field,
     required this.value,
     super.userData,
@@ -3131,11 +3533,44 @@ class TestScriptRequestHeader extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptRequestHeader';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [field]
   /// The HTTP header field e.g. "Accept".
@@ -3217,9 +3652,9 @@ class TestScriptAssert extends BackboneElement {
 
   TestScriptAssert({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     this.label,
     this.description,
     this.direction,
@@ -3454,11 +3889,44 @@ class TestScriptAssert extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptAssert';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [label]
   /// The label would be used for tracking/logging purposes by test engines.
@@ -3839,9 +4307,9 @@ class TestScriptTest extends BackboneElement {
 
   TestScriptTest({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     this.name,
     this.description,
     required this.action,
@@ -3941,11 +4409,44 @@ class TestScriptTest extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptTest';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// The name of this test used for tracking/logging purposes by test
@@ -4040,9 +4541,9 @@ class TestScriptAction1 extends BackboneElement {
 
   TestScriptAction1({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -4118,12 +4619,44 @@ class TestScriptAction1 extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptAction1';
 
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4181,9 +4714,9 @@ class TestScriptTeardown extends BackboneElement {
 
   TestScriptTeardown({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     required this.action,
     super.userData,
     super.formatCommentsPre,
@@ -4269,11 +4802,44 @@ class TestScriptTeardown extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptTeardown';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [action]
   /// The teardown action will only contain an operation.
@@ -4338,9 +4904,9 @@ class TestScriptAction2 extends BackboneElement {
 
   TestScriptAction2({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -4416,12 +4982,44 @@ class TestScriptAction2 extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'TestScriptAction2';
 
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

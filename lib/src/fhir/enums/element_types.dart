@@ -5,117 +5,123 @@ import 'package:objectbox/objectbox.dart';
 
 /// Allowed types for FHIR elements
 @Entity()
-class ElementTypes {
-  // Private constructor for internal use (like enum)
-  ElementTypes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ElementTypes values
-  /// http___hl7_org_fhirpath_System_String
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ElementTypes http___hl7_org_fhirpath_System_String =
-      ElementTypes._(
-    'http://hl7.org/fhirpath/System.String',
-  );
-
-  /// http___hl7_org_fhirpath_System_Boolean
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ElementTypes http___hl7_org_fhirpath_System_Boolean =
-      ElementTypes._(
-    'http://hl7.org/fhirpath/System.Boolean',
-  );
-
-  /// http___hl7_org_fhirpath_System_Date
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ElementTypes http___hl7_org_fhirpath_System_Date =
-      ElementTypes._(
-    'http://hl7.org/fhirpath/System.Date',
-  );
-
-  /// http___hl7_org_fhirpath_System_DateTime
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ElementTypes http___hl7_org_fhirpath_System_DateTime =
-      ElementTypes._(
-    'http://hl7.org/fhirpath/System.DateTime',
-  );
-
-  /// http___hl7_org_fhirpath_System_Decimal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ElementTypes http___hl7_org_fhirpath_System_Decimal =
-      ElementTypes._(
-    'http://hl7.org/fhirpath/System.Decimal',
-  );
-
-  /// http___hl7_org_fhirpath_System_Integer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ElementTypes http___hl7_org_fhirpath_System_Integer =
-      ElementTypes._(
-    'http://hl7.org/fhirpath/System.Integer',
-  );
-
-  /// http___hl7_org_fhirpath_System_Time
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ElementTypes http___hl7_org_fhirpath_System_Time =
-      ElementTypes._(
-    'http://hl7.org/fhirpath/System.Time',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ElementTypes elementOnly = ElementTypes._('');
-
-  /// List of all enum-like values
-  static final List<ElementTypes> values = [
-    http___hl7_org_fhirpath_System_String,
-    http___hl7_org_fhirpath_System_Boolean,
-    http___hl7_org_fhirpath_System_Date,
-    http___hl7_org_fhirpath_System_DateTime,
-    http___hl7_org_fhirpath_System_Decimal,
-    http___hl7_org_fhirpath_System_Integer,
-    http___hl7_org_fhirpath_System_Time,
-  ];
-
-  /// Returns the enum value with an element attached
-  ElementTypes withElement(Element? newElement) {
-    return ElementTypes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ElementTypes extends FhirCode {
   /// Factory constructor to create [ElementTypes] from JSON.
-  static ElementTypes fromJson(Map<String, dynamic> json) {
+  factory ElementTypes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ElementTypes.elementOnly.withElement(element);
+      return ElementTypes.elementOnly(element);
     }
-    return ElementTypes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ElementTypes._(value, element);
+    }
+    throw ArgumentError(
+      'ElementTypes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// http___hl7_org_fhirpath_System_String
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ElementTypes.http___hl7_org_fhirpath_System_String([this.element])
+      : dbValue = 'http://hl7.org/fhirpath/System.String',
+        super('http://hl7.org/fhirpath/System.String', element);
+
+  /// http___hl7_org_fhirpath_System_Boolean
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ElementTypes.http___hl7_org_fhirpath_System_Boolean([this.element])
+      : dbValue = 'http://hl7.org/fhirpath/System.Boolean',
+        super('http://hl7.org/fhirpath/System.Boolean', element);
+
+  /// http___hl7_org_fhirpath_System_Date
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ElementTypes.http___hl7_org_fhirpath_System_Date([this.element])
+      : dbValue = 'http://hl7.org/fhirpath/System.Date',
+        super('http://hl7.org/fhirpath/System.Date', element);
+
+  /// http___hl7_org_fhirpath_System_DateTime
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ElementTypes.http___hl7_org_fhirpath_System_DateTime([this.element])
+      : dbValue = 'http://hl7.org/fhirpath/System.DateTime',
+        super('http://hl7.org/fhirpath/System.DateTime', element);
+
+  /// http___hl7_org_fhirpath_System_Decimal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ElementTypes.http___hl7_org_fhirpath_System_Decimal([this.element])
+      : dbValue = 'http://hl7.org/fhirpath/System.Decimal',
+        super('http://hl7.org/fhirpath/System.Decimal', element);
+
+  /// http___hl7_org_fhirpath_System_Integer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ElementTypes.http___hl7_org_fhirpath_System_Integer([this.element])
+      : dbValue = 'http://hl7.org/fhirpath/System.Integer',
+        super('http://hl7.org/fhirpath/System.Integer', element);
+
+  /// http___hl7_org_fhirpath_System_Time
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ElementTypes.http___hl7_org_fhirpath_System_Time([this.element])
+      : dbValue = 'http://hl7.org/fhirpath/System.Time',
+        super('http://hl7.org/fhirpath/System.Time', element);
+
+  /// For instances where an Element is present but not value
+
+  ElementTypes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ElementTypes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'http://hl7.org/fhirpath/System.String',
+    'http://hl7.org/fhirpath/System.Boolean',
+    'http://hl7.org/fhirpath/System.Date',
+    'http://hl7.org/fhirpath/System.DateTime',
+    'http://hl7.org/fhirpath/System.Decimal',
+    'http://hl7.org/fhirpath/System.Integer',
+    'http://hl7.org/fhirpath/System.Time',
+  ];
+
+  /// Returns the enum value with an element attached
+  ElementTypes withElement(Element? newElement) {
+    return ElementTypes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ElementTypes.$fhirCode';
+  String toString() => 'ElementTypes.$value';
 }

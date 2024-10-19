@@ -5,90 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The meaning of the hierarchy of concepts in a code system.
 @Entity()
-class CodeSystemHierarchyMeaning {
-  // Private constructor for internal use (like enum)
-  CodeSystemHierarchyMeaning._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CodeSystemHierarchyMeaning values
-  /// grouped_by
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CodeSystemHierarchyMeaning grouped_by =
-      CodeSystemHierarchyMeaning._(
-    'grouped-by',
-  );
-
-  /// is_a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CodeSystemHierarchyMeaning is_a = CodeSystemHierarchyMeaning._(
-    'is-a',
-  );
-
-  /// part_of
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CodeSystemHierarchyMeaning part_of =
-      CodeSystemHierarchyMeaning._(
-    'part-of',
-  );
-
-  /// classified_with
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CodeSystemHierarchyMeaning classified_with =
-      CodeSystemHierarchyMeaning._(
-    'classified-with',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CodeSystemHierarchyMeaning elementOnly =
-      CodeSystemHierarchyMeaning._('');
-
-  /// List of all enum-like values
-  static final List<CodeSystemHierarchyMeaning> values = [
-    grouped_by,
-    is_a,
-    part_of,
-    classified_with,
-  ];
-
-  /// Returns the enum value with an element attached
-  CodeSystemHierarchyMeaning withElement(Element? newElement) {
-    return CodeSystemHierarchyMeaning._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CodeSystemHierarchyMeaning extends FhirCode {
   /// Factory constructor to create [CodeSystemHierarchyMeaning] from JSON.
-  static CodeSystemHierarchyMeaning fromJson(Map<String, dynamic> json) {
+  factory CodeSystemHierarchyMeaning.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CodeSystemHierarchyMeaning.elementOnly.withElement(element);
+      return CodeSystemHierarchyMeaning.elementOnly(element);
     }
-    return CodeSystemHierarchyMeaning.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CodeSystemHierarchyMeaning._(value, element);
+    }
+    throw ArgumentError(
+      'CodeSystemHierarchyMeaning.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// grouped_by
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CodeSystemHierarchyMeaning.grouped_by([this.element])
+      : dbValue = 'grouped-by',
+        super('grouped-by', element);
+
+  /// is_a
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CodeSystemHierarchyMeaning.is_a([this.element])
+      : dbValue = 'is-a',
+        super('is-a', element);
+
+  /// part_of
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CodeSystemHierarchyMeaning.part_of([this.element])
+      : dbValue = 'part-of',
+        super('part-of', element);
+
+  /// classified_with
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CodeSystemHierarchyMeaning.classified_with([this.element])
+      : dbValue = 'classified-with',
+        super('classified-with', element);
+
+  /// For instances where an Element is present but not value
+
+  CodeSystemHierarchyMeaning.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CodeSystemHierarchyMeaning._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'grouped-by',
+    'is-a',
+    'part-of',
+    'classified-with',
+  ];
+
+  /// Returns the enum value with an element attached
+  CodeSystemHierarchyMeaning withElement(Element? newElement) {
+    return CodeSystemHierarchyMeaning._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CodeSystemHierarchyMeaning.$fhirCode';
+  String toString() => 'CodeSystemHierarchyMeaning.$value';
 }

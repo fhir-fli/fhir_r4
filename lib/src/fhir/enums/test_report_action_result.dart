@@ -5,95 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// The results of executing an action.
 @Entity()
-class TestReportActionResult {
-  // Private constructor for internal use (like enum)
-  TestReportActionResult._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// TestReportActionResult values
-  /// pass
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestReportActionResult pass = TestReportActionResult._(
-    'pass',
-  );
-
-  /// skip
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestReportActionResult skip = TestReportActionResult._(
-    'skip',
-  );
-
-  /// fail
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestReportActionResult fail = TestReportActionResult._(
-    'fail',
-  );
-
-  /// warning
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestReportActionResult warning = TestReportActionResult._(
-    'warning',
-  );
-
-  /// error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestReportActionResult error = TestReportActionResult._(
-    'error',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final TestReportActionResult elementOnly =
-      TestReportActionResult._('');
-
-  /// List of all enum-like values
-  static final List<TestReportActionResult> values = [
-    pass,
-    skip,
-    fail,
-    warning,
-    error,
-  ];
-
-  /// Returns the enum value with an element attached
-  TestReportActionResult withElement(Element? newElement) {
-    return TestReportActionResult._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class TestReportActionResult extends FhirCode {
   /// Factory constructor to create [TestReportActionResult] from JSON.
-  static TestReportActionResult fromJson(Map<String, dynamic> json) {
+  factory TestReportActionResult.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestReportActionResult.elementOnly.withElement(element);
+      return TestReportActionResult.elementOnly(element);
     }
-    return TestReportActionResult.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return TestReportActionResult._(value, element);
+    }
+    throw ArgumentError(
+      'TestReportActionResult.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// pass
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestReportActionResult.pass([this.element])
+      : dbValue = 'pass',
+        super('pass', element);
+
+  /// skip
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestReportActionResult.skip([this.element])
+      : dbValue = 'skip',
+        super('skip', element);
+
+  /// fail
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestReportActionResult.fail([this.element])
+      : dbValue = 'fail',
+        super('fail', element);
+
+  /// warning
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestReportActionResult.warning([this.element])
+      : dbValue = 'warning',
+        super('warning', element);
+
+  /// error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestReportActionResult.error([this.element])
+      : dbValue = 'error',
+        super('error', element);
+
+  /// For instances where an Element is present but not value
+
+  TestReportActionResult.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  TestReportActionResult._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'pass',
+    'skip',
+    'fail',
+    'warning',
+    'error',
+  ];
+
+  /// Returns the enum value with an element attached
+  TestReportActionResult withElement(Element? newElement) {
+    return TestReportActionResult._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'TestReportActionResult.$fhirCode';
+  String toString() => 'TestReportActionResult.$value';
 }

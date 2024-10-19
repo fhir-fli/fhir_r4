@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// Identifies the purpose for this identifier, if known .
 @Entity()
-class IdentifierUse {
-  // Private constructor for internal use (like enum)
-  IdentifierUse._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// IdentifierUse values
-  /// usual
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierUse usual = IdentifierUse._(
-    'usual',
-  );
-
-  /// official
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierUse official = IdentifierUse._(
-    'official',
-  );
-
-  /// temp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierUse temp = IdentifierUse._(
-    'temp',
-  );
-
-  /// secondary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierUse secondary = IdentifierUse._(
-    'secondary',
-  );
-
-  /// old
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentifierUse old = IdentifierUse._(
-    'old',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final IdentifierUse elementOnly = IdentifierUse._('');
-
-  /// List of all enum-like values
-  static final List<IdentifierUse> values = [
-    usual,
-    official,
-    temp,
-    secondary,
-    old,
-  ];
-
-  /// Returns the enum value with an element attached
-  IdentifierUse withElement(Element? newElement) {
-    return IdentifierUse._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class IdentifierUse extends FhirCode {
   /// Factory constructor to create [IdentifierUse] from JSON.
-  static IdentifierUse fromJson(Map<String, dynamic> json) {
+  factory IdentifierUse.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return IdentifierUse.elementOnly.withElement(element);
+      return IdentifierUse.elementOnly(element);
     }
-    return IdentifierUse.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return IdentifierUse._(value, element);
+    }
+    throw ArgumentError(
+      'IdentifierUse.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// usual
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierUse.usual([this.element])
+      : dbValue = 'usual',
+        super('usual', element);
+
+  /// official
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierUse.official([this.element])
+      : dbValue = 'official',
+        super('official', element);
+
+  /// temp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierUse.temp([this.element])
+      : dbValue = 'temp',
+        super('temp', element);
+
+  /// secondary
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierUse.secondary([this.element])
+      : dbValue = 'secondary',
+        super('secondary', element);
+
+  /// old
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentifierUse.old([this.element])
+      : dbValue = 'old',
+        super('old', element);
+
+  /// For instances where an Element is present but not value
+
+  IdentifierUse.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  IdentifierUse._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'usual',
+    'official',
+    'temp',
+    'secondary',
+    'old',
+  ];
+
+  /// Returns the enum value with an element attached
+  IdentifierUse withElement(Element? newElement) {
+    return IdentifierUse._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'IdentifierUse.$fhirCode';
+  String toString() => 'IdentifierUse.$value';
 }

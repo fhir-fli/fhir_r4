@@ -5,110 +5,123 @@ import 'package:objectbox/objectbox.dart';
 
 /// Telecommunications form for contact point.
 @Entity()
-class ContactPointSystem {
-  // Private constructor for internal use (like enum)
-  ContactPointSystem._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ContactPointSystem values
-  /// phone
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContactPointSystem phone = ContactPointSystem._(
-    'phone',
-  );
-
-  /// fax
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContactPointSystem fax = ContactPointSystem._(
-    'fax',
-  );
-
-  /// email
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContactPointSystem email = ContactPointSystem._(
-    'email',
-  );
-
-  /// pager
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContactPointSystem pager = ContactPointSystem._(
-    'pager',
-  );
-
-  /// url
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContactPointSystem url = ContactPointSystem._(
-    'url',
-  );
-
-  /// sms
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContactPointSystem sms = ContactPointSystem._(
-    'sms',
-  );
-
-  /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContactPointSystem other = ContactPointSystem._(
-    'other',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ContactPointSystem elementOnly = ContactPointSystem._('');
-
-  /// List of all enum-like values
-  static final List<ContactPointSystem> values = [
-    phone,
-    fax,
-    email,
-    pager,
-    url,
-    sms,
-    other,
-  ];
-
-  /// Returns the enum value with an element attached
-  ContactPointSystem withElement(Element? newElement) {
-    return ContactPointSystem._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ContactPointSystem extends FhirCode {
   /// Factory constructor to create [ContactPointSystem] from JSON.
-  static ContactPointSystem fromJson(Map<String, dynamic> json) {
+  factory ContactPointSystem.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContactPointSystem.elementOnly.withElement(element);
+      return ContactPointSystem.elementOnly(element);
     }
-    return ContactPointSystem.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ContactPointSystem._(value, element);
+    }
+    throw ArgumentError(
+      'ContactPointSystem.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// phone
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContactPointSystem.phone([this.element])
+      : dbValue = 'phone',
+        super('phone', element);
+
+  /// fax
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContactPointSystem.fax([this.element])
+      : dbValue = 'fax',
+        super('fax', element);
+
+  /// email
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContactPointSystem.email([this.element])
+      : dbValue = 'email',
+        super('email', element);
+
+  /// pager
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContactPointSystem.pager([this.element])
+      : dbValue = 'pager',
+        super('pager', element);
+
+  /// url
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContactPointSystem.url([this.element])
+      : dbValue = 'url',
+        super('url', element);
+
+  /// sms
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContactPointSystem.sms([this.element])
+      : dbValue = 'sms',
+        super('sms', element);
+
+  /// other
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContactPointSystem.other([this.element])
+      : dbValue = 'other',
+        super('other', element);
+
+  /// For instances where an Element is present but not value
+
+  ContactPointSystem.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ContactPointSystem._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'phone',
+    'fax',
+    'email',
+    'pager',
+    'url',
+    'sms',
+    'other',
+  ];
+
+  /// Returns the enum value with an element attached
+  ContactPointSystem withElement(Element? newElement) {
+    return ContactPointSystem._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ContactPointSystem.$fhirCode';
+  String toString() => 'ContactPointSystem.$value';
 }

@@ -5,120 +5,131 @@ import 'package:objectbox/objectbox.dart';
 
 /// The availability status reason of the device.
 @Entity()
-class FHIRDeviceStatusReason {
-  // Private constructor for internal use (like enum)
-  FHIRDeviceStatusReason._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// FHIRDeviceStatusReason values
-  /// online
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRDeviceStatusReason online = FHIRDeviceStatusReason._(
-    'online',
-  );
-
-  /// paused
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRDeviceStatusReason paused = FHIRDeviceStatusReason._(
-    'paused',
-  );
-
-  /// standby
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRDeviceStatusReason standby = FHIRDeviceStatusReason._(
-    'standby',
-  );
-
-  /// offline
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRDeviceStatusReason offline = FHIRDeviceStatusReason._(
-    'offline',
-  );
-
-  /// not_ready
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRDeviceStatusReason not_ready = FHIRDeviceStatusReason._(
-    'not-ready',
-  );
-
-  /// transduc_discon
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRDeviceStatusReason transduc_discon =
-      FHIRDeviceStatusReason._(
-    'transduc-discon',
-  );
-
-  /// hw_discon
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRDeviceStatusReason hw_discon = FHIRDeviceStatusReason._(
-    'hw-discon',
-  );
-
-  /// off
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRDeviceStatusReason off = FHIRDeviceStatusReason._(
-    'off',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final FHIRDeviceStatusReason elementOnly =
-      FHIRDeviceStatusReason._('');
-
-  /// List of all enum-like values
-  static final List<FHIRDeviceStatusReason> values = [
-    online,
-    paused,
-    standby,
-    offline,
-    not_ready,
-    transduc_discon,
-    hw_discon,
-    off,
-  ];
-
-  /// Returns the enum value with an element attached
-  FHIRDeviceStatusReason withElement(Element? newElement) {
-    return FHIRDeviceStatusReason._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class FHIRDeviceStatusReason extends FhirCode {
   /// Factory constructor to create [FHIRDeviceStatusReason] from JSON.
-  static FHIRDeviceStatusReason fromJson(Map<String, dynamic> json) {
+  factory FHIRDeviceStatusReason.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FHIRDeviceStatusReason.elementOnly.withElement(element);
+      return FHIRDeviceStatusReason.elementOnly(element);
     }
-    return FHIRDeviceStatusReason.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return FHIRDeviceStatusReason._(value, element);
+    }
+    throw ArgumentError(
+      'FHIRDeviceStatusReason.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// online
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRDeviceStatusReason.online([this.element])
+      : dbValue = 'online',
+        super('online', element);
+
+  /// paused
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRDeviceStatusReason.paused([this.element])
+      : dbValue = 'paused',
+        super('paused', element);
+
+  /// standby
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRDeviceStatusReason.standby([this.element])
+      : dbValue = 'standby',
+        super('standby', element);
+
+  /// offline
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRDeviceStatusReason.offline([this.element])
+      : dbValue = 'offline',
+        super('offline', element);
+
+  /// not_ready
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRDeviceStatusReason.not_ready([this.element])
+      : dbValue = 'not-ready',
+        super('not-ready', element);
+
+  /// transduc_discon
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRDeviceStatusReason.transduc_discon([this.element])
+      : dbValue = 'transduc-discon',
+        super('transduc-discon', element);
+
+  /// hw_discon
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRDeviceStatusReason.hw_discon([this.element])
+      : dbValue = 'hw-discon',
+        super('hw-discon', element);
+
+  /// off
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRDeviceStatusReason.off([this.element])
+      : dbValue = 'off',
+        super('off', element);
+
+  /// For instances where an Element is present but not value
+
+  FHIRDeviceStatusReason.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  FHIRDeviceStatusReason._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'online',
+    'paused',
+    'standby',
+    'offline',
+    'not-ready',
+    'transduc-discon',
+    'hw-discon',
+    'off',
+  ];
+
+  /// Returns the enum value with an element attached
+  FHIRDeviceStatusReason withElement(Element? newElement) {
+    return FHIRDeviceStatusReason._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'FHIRDeviceStatusReason.$fhirCode';
+  String toString() => 'FHIRDeviceStatusReason.$value';
 }

@@ -69,12 +69,14 @@ class Element extends FhirBase {
   int dbId;
 
   @override
+  @Transient()
   String get fhirType => 'Element';
 
   /// Unique id for the element within a resource
   final FhirString? id;
 
   /// List of extensions for additional information
+  @Transient()
   final List<FhirExtension>? extension_;
 
   /// Method to copy the current Element with modifications

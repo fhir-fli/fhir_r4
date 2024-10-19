@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// How a compartment must be linked.
 @Entity()
-class GraphCompartmentRule {
-  // Private constructor for internal use (like enum)
-  GraphCompartmentRule._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// GraphCompartmentRule values
-  /// identical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GraphCompartmentRule identical = GraphCompartmentRule._(
-    'identical',
-  );
-
-  /// matching
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GraphCompartmentRule matching = GraphCompartmentRule._(
-    'matching',
-  );
-
-  /// different
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GraphCompartmentRule different = GraphCompartmentRule._(
-    'different',
-  );
-
-  /// custom
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GraphCompartmentRule custom = GraphCompartmentRule._(
-    'custom',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final GraphCompartmentRule elementOnly = GraphCompartmentRule._('');
-
-  /// List of all enum-like values
-  static final List<GraphCompartmentRule> values = [
-    identical,
-    matching,
-    different,
-    custom,
-  ];
-
-  /// Returns the enum value with an element attached
-  GraphCompartmentRule withElement(Element? newElement) {
-    return GraphCompartmentRule._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class GraphCompartmentRule extends FhirCode {
   /// Factory constructor to create [GraphCompartmentRule] from JSON.
-  static GraphCompartmentRule fromJson(Map<String, dynamic> json) {
+  factory GraphCompartmentRule.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GraphCompartmentRule.elementOnly.withElement(element);
+      return GraphCompartmentRule.elementOnly(element);
     }
-    return GraphCompartmentRule.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return GraphCompartmentRule._(value, element);
+    }
+    throw ArgumentError(
+      'GraphCompartmentRule.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// identical
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GraphCompartmentRule.identical([this.element])
+      : dbValue = 'identical',
+        super('identical', element);
+
+  /// matching
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GraphCompartmentRule.matching([this.element])
+      : dbValue = 'matching',
+        super('matching', element);
+
+  /// different
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GraphCompartmentRule.different([this.element])
+      : dbValue = 'different',
+        super('different', element);
+
+  /// custom
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GraphCompartmentRule.custom([this.element])
+      : dbValue = 'custom',
+        super('custom', element);
+
+  /// For instances where an Element is present but not value
+
+  GraphCompartmentRule.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  GraphCompartmentRule._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'identical',
+    'matching',
+    'different',
+    'custom',
+  ];
+
+  /// Returns the enum value with an element attached
+  GraphCompartmentRule withElement(Element? newElement) {
+    return GraphCompartmentRule._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'GraphCompartmentRule.$fhirCode';
+  String toString() => 'GraphCompartmentRule.$value';
 }

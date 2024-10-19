@@ -5,87 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The status of a subscription.
 @Entity()
-class SubscriptionStatusCodes {
-  // Private constructor for internal use (like enum)
-  SubscriptionStatusCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubscriptionStatusCodes values
-  /// requested
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionStatusCodes requested = SubscriptionStatusCodes._(
-    'requested',
-  );
-
-  /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionStatusCodes active = SubscriptionStatusCodes._(
-    'active',
-  );
-
-  /// error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionStatusCodes error = SubscriptionStatusCodes._(
-    'error',
-  );
-
-  /// off
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriptionStatusCodes off = SubscriptionStatusCodes._(
-    'off',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SubscriptionStatusCodes elementOnly =
-      SubscriptionStatusCodes._('');
-
-  /// List of all enum-like values
-  static final List<SubscriptionStatusCodes> values = [
-    requested,
-    active,
-    error,
-    off,
-  ];
-
-  /// Returns the enum value with an element attached
-  SubscriptionStatusCodes withElement(Element? newElement) {
-    return SubscriptionStatusCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SubscriptionStatusCodes extends FhirCode {
   /// Factory constructor to create [SubscriptionStatusCodes] from JSON.
-  static SubscriptionStatusCodes fromJson(Map<String, dynamic> json) {
+  factory SubscriptionStatusCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubscriptionStatusCodes.elementOnly.withElement(element);
+      return SubscriptionStatusCodes.elementOnly(element);
     }
-    return SubscriptionStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SubscriptionStatusCodes._(value, element);
+    }
+    throw ArgumentError(
+      'SubscriptionStatusCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// requested
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionStatusCodes.requested([this.element])
+      : dbValue = 'requested',
+        super('requested', element);
+
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionStatusCodes.active([this.element])
+      : dbValue = 'active',
+        super('active', element);
+
+  /// error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionStatusCodes.error([this.element])
+      : dbValue = 'error',
+        super('error', element);
+
+  /// off
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriptionStatusCodes.off([this.element])
+      : dbValue = 'off',
+        super('off', element);
+
+  /// For instances where an Element is present but not value
+
+  SubscriptionStatusCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SubscriptionStatusCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'requested',
+    'active',
+    'error',
+    'off',
+  ];
+
+  /// Returns the enum value with an element attached
+  SubscriptionStatusCodes withElement(Element? newElement) {
+    return SubscriptionStatusCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SubscriptionStatusCodes.$fhirCode';
+  String toString() => 'SubscriptionStatusCodes.$value';
 }

@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes a smattering of Benefit Term codes.
 @Entity()
-class BenefitTermCodes {
-  // Private constructor for internal use (like enum)
-  BenefitTermCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// BenefitTermCodes values
-  /// annual
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BenefitTermCodes annual = BenefitTermCodes._(
-    'annual',
-  );
-
-  /// day
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BenefitTermCodes day = BenefitTermCodes._(
-    'day',
-  );
-
-  /// lifetime
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BenefitTermCodes lifetime = BenefitTermCodes._(
-    'lifetime',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final BenefitTermCodes elementOnly = BenefitTermCodes._('');
-
-  /// List of all enum-like values
-  static final List<BenefitTermCodes> values = [
-    annual,
-    day,
-    lifetime,
-  ];
-
-  /// Returns the enum value with an element attached
-  BenefitTermCodes withElement(Element? newElement) {
-    return BenefitTermCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class BenefitTermCodes extends FhirCode {
   /// Factory constructor to create [BenefitTermCodes] from JSON.
-  static BenefitTermCodes fromJson(Map<String, dynamic> json) {
+  factory BenefitTermCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return BenefitTermCodes.elementOnly.withElement(element);
+      return BenefitTermCodes.elementOnly(element);
     }
-    return BenefitTermCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return BenefitTermCodes._(value, element);
+    }
+    throw ArgumentError(
+      'BenefitTermCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// annual
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BenefitTermCodes.annual([this.element])
+      : dbValue = 'annual',
+        super('annual', element);
+
+  /// day
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BenefitTermCodes.day([this.element])
+      : dbValue = 'day',
+        super('day', element);
+
+  /// lifetime
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BenefitTermCodes.lifetime([this.element])
+      : dbValue = 'lifetime',
+        super('lifetime', element);
+
+  /// For instances where an Element is present but not value
+
+  BenefitTermCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  BenefitTermCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'annual',
+    'day',
+    'lifetime',
+  ];
+
+  /// Returns the enum value with an element attached
+  BenefitTermCodes withElement(Element? newElement) {
+    return BenefitTermCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'BenefitTermCodes.$fhirCode';
+  String toString() => 'BenefitTermCodes.$value';
 }

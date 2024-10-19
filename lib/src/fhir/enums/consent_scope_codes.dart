@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes the four Consent scope codes.
 @Entity()
-class ConsentScopeCodes {
-  // Private constructor for internal use (like enum)
-  ConsentScopeCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ConsentScopeCodes values
-  /// adr
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentScopeCodes adr = ConsentScopeCodes._(
-    'adr',
-  );
-
-  /// research
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentScopeCodes research = ConsentScopeCodes._(
-    'research',
-  );
-
-  /// patient_privacy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentScopeCodes patient_privacy = ConsentScopeCodes._(
-    'patient-privacy',
-  );
-
-  /// treatment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentScopeCodes treatment = ConsentScopeCodes._(
-    'treatment',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ConsentScopeCodes elementOnly = ConsentScopeCodes._('');
-
-  /// List of all enum-like values
-  static final List<ConsentScopeCodes> values = [
-    adr,
-    research,
-    patient_privacy,
-    treatment,
-  ];
-
-  /// Returns the enum value with an element attached
-  ConsentScopeCodes withElement(Element? newElement) {
-    return ConsentScopeCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ConsentScopeCodes extends FhirCode {
   /// Factory constructor to create [ConsentScopeCodes] from JSON.
-  static ConsentScopeCodes fromJson(Map<String, dynamic> json) {
+  factory ConsentScopeCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConsentScopeCodes.elementOnly.withElement(element);
+      return ConsentScopeCodes.elementOnly(element);
     }
-    return ConsentScopeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ConsentScopeCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ConsentScopeCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// adr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentScopeCodes.adr([this.element])
+      : dbValue = 'adr',
+        super('adr', element);
+
+  /// research
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentScopeCodes.research([this.element])
+      : dbValue = 'research',
+        super('research', element);
+
+  /// patient_privacy
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentScopeCodes.patient_privacy([this.element])
+      : dbValue = 'patient-privacy',
+        super('patient-privacy', element);
+
+  /// treatment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentScopeCodes.treatment([this.element])
+      : dbValue = 'treatment',
+        super('treatment', element);
+
+  /// For instances where an Element is present but not value
+
+  ConsentScopeCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ConsentScopeCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'adr',
+    'research',
+    'patient-privacy',
+    'treatment',
+  ];
+
+  /// Returns the enum value with an element attached
+  ConsentScopeCodes withElement(Element? newElement) {
+    return ConsentScopeCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ConsentScopeCodes.$fhirCode';
+  String toString() => 'ConsentScopeCodes.$value';
 }

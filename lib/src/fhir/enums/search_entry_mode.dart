@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Why an entry is in the result set - whether it's included as a match or because of an _include requirement, or to convey information or warning information about the search process.
 @Entity()
-class SearchEntryMode {
-  // Private constructor for internal use (like enum)
-  SearchEntryMode._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SearchEntryMode values
-  /// match
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchEntryMode match = SearchEntryMode._(
-    'match',
-  );
-
-  /// include
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchEntryMode include = SearchEntryMode._(
-    'include',
-  );
-
-  /// outcome
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchEntryMode outcome = SearchEntryMode._(
-    'outcome',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SearchEntryMode elementOnly = SearchEntryMode._('');
-
-  /// List of all enum-like values
-  static final List<SearchEntryMode> values = [
-    match,
-    include,
-    outcome,
-  ];
-
-  /// Returns the enum value with an element attached
-  SearchEntryMode withElement(Element? newElement) {
-    return SearchEntryMode._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SearchEntryMode extends FhirCode {
   /// Factory constructor to create [SearchEntryMode] from JSON.
-  static SearchEntryMode fromJson(Map<String, dynamic> json) {
+  factory SearchEntryMode.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SearchEntryMode.elementOnly.withElement(element);
+      return SearchEntryMode.elementOnly(element);
     }
-    return SearchEntryMode.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SearchEntryMode._(value, element);
+    }
+    throw ArgumentError(
+      'SearchEntryMode.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// match
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchEntryMode.match([this.element])
+      : dbValue = 'match',
+        super('match', element);
+
+  /// include
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchEntryMode.include([this.element])
+      : dbValue = 'include',
+        super('include', element);
+
+  /// outcome
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchEntryMode.outcome([this.element])
+      : dbValue = 'outcome',
+        super('outcome', element);
+
+  /// For instances where an Element is present but not value
+
+  SearchEntryMode.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SearchEntryMode._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'match',
+    'include',
+    'outcome',
+  ];
+
+  /// Returns the enum value with an element attached
+  SearchEntryMode withElement(Element? newElement) {
+    return SearchEntryMode._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SearchEntryMode.$fhirCode';
+  String toString() => 'SearchEntryMode.$value';
 }

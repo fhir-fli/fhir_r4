@@ -5,108 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// Relationship to another Medicinal Product.
 @Entity()
-class ProductCrossReferenceType {
-  // Private constructor for internal use (like enum)
-  ProductCrossReferenceType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ProductCrossReferenceType values
-  /// InvestigationalProduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductCrossReferenceType InvestigationalProduct =
-      ProductCrossReferenceType._(
-    'InvestigationalProduct',
-  );
-
-  /// VirtualProduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductCrossReferenceType VirtualProduct =
-      ProductCrossReferenceType._(
-    'VirtualProduct',
-  );
-
-  /// ActualProduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductCrossReferenceType ActualProduct =
-      ProductCrossReferenceType._(
-    'ActualProduct',
-  );
-
-  /// BrandedProduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductCrossReferenceType BrandedProduct =
-      ProductCrossReferenceType._(
-    'BrandedProduct',
-  );
-
-  /// GenericProduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductCrossReferenceType GenericProduct =
-      ProductCrossReferenceType._(
-    'GenericProduct',
-  );
-
-  /// Parallel
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductCrossReferenceType Parallel = ProductCrossReferenceType._(
-    'Parallel',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ProductCrossReferenceType elementOnly =
-      ProductCrossReferenceType._('');
-
-  /// List of all enum-like values
-  static final List<ProductCrossReferenceType> values = [
-    InvestigationalProduct,
-    VirtualProduct,
-    ActualProduct,
-    BrandedProduct,
-    GenericProduct,
-    Parallel,
-  ];
-
-  /// Returns the enum value with an element attached
-  ProductCrossReferenceType withElement(Element? newElement) {
-    return ProductCrossReferenceType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ProductCrossReferenceType extends FhirCode {
   /// Factory constructor to create [ProductCrossReferenceType] from JSON.
-  static ProductCrossReferenceType fromJson(Map<String, dynamic> json) {
+  factory ProductCrossReferenceType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ProductCrossReferenceType.elementOnly.withElement(element);
+      return ProductCrossReferenceType.elementOnly(element);
     }
-    return ProductCrossReferenceType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ProductCrossReferenceType._(value, element);
+    }
+    throw ArgumentError(
+      'ProductCrossReferenceType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// InvestigationalProduct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductCrossReferenceType.InvestigationalProduct([this.element])
+      : dbValue = 'InvestigationalProduct',
+        super('InvestigationalProduct', element);
+
+  /// VirtualProduct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductCrossReferenceType.VirtualProduct([this.element])
+      : dbValue = 'VirtualProduct',
+        super('VirtualProduct', element);
+
+  /// ActualProduct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductCrossReferenceType.ActualProduct([this.element])
+      : dbValue = 'ActualProduct',
+        super('ActualProduct', element);
+
+  /// BrandedProduct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductCrossReferenceType.BrandedProduct([this.element])
+      : dbValue = 'BrandedProduct',
+        super('BrandedProduct', element);
+
+  /// GenericProduct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductCrossReferenceType.GenericProduct([this.element])
+      : dbValue = 'GenericProduct',
+        super('GenericProduct', element);
+
+  /// Parallel
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductCrossReferenceType.Parallel([this.element])
+      : dbValue = 'Parallel',
+        super('Parallel', element);
+
+  /// For instances where an Element is present but not value
+
+  ProductCrossReferenceType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ProductCrossReferenceType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'InvestigationalProduct',
+    'VirtualProduct',
+    'ActualProduct',
+    'BrandedProduct',
+    'GenericProduct',
+    'Parallel',
+  ];
+
+  /// Returns the enum value with an element attached
+  ProductCrossReferenceType withElement(Element? newElement) {
+    return ProductCrossReferenceType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ProductCrossReferenceType.$fhirCode';
+  String toString() => 'ProductCrossReferenceType.$value';
 }

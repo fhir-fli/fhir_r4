@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// Describes the category of the metric.
 @Entity()
-class DeviceMetricCategory {
-  // Private constructor for internal use (like enum)
-  DeviceMetricCategory._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DeviceMetricCategory values
-  /// measurement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricCategory measurement = DeviceMetricCategory._(
-    'measurement',
-  );
-
-  /// setting
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricCategory setting = DeviceMetricCategory._(
-    'setting',
-  );
-
-  /// calculation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricCategory calculation = DeviceMetricCategory._(
-    'calculation',
-  );
-
-  /// unspecified
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceMetricCategory unspecified = DeviceMetricCategory._(
-    'unspecified',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final DeviceMetricCategory elementOnly = DeviceMetricCategory._('');
-
-  /// List of all enum-like values
-  static final List<DeviceMetricCategory> values = [
-    measurement,
-    setting,
-    calculation,
-    unspecified,
-  ];
-
-  /// Returns the enum value with an element attached
-  DeviceMetricCategory withElement(Element? newElement) {
-    return DeviceMetricCategory._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class DeviceMetricCategory extends FhirCode {
   /// Factory constructor to create [DeviceMetricCategory] from JSON.
-  static DeviceMetricCategory fromJson(Map<String, dynamic> json) {
+  factory DeviceMetricCategory.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceMetricCategory.elementOnly.withElement(element);
+      return DeviceMetricCategory.elementOnly(element);
     }
-    return DeviceMetricCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return DeviceMetricCategory._(value, element);
+    }
+    throw ArgumentError(
+      'DeviceMetricCategory.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// measurement
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricCategory.measurement([this.element])
+      : dbValue = 'measurement',
+        super('measurement', element);
+
+  /// setting
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricCategory.setting([this.element])
+      : dbValue = 'setting',
+        super('setting', element);
+
+  /// calculation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricCategory.calculation([this.element])
+      : dbValue = 'calculation',
+        super('calculation', element);
+
+  /// unspecified
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceMetricCategory.unspecified([this.element])
+      : dbValue = 'unspecified',
+        super('unspecified', element);
+
+  /// For instances where an Element is present but not value
+
+  DeviceMetricCategory.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  DeviceMetricCategory._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'measurement',
+    'setting',
+    'calculation',
+    'unspecified',
+  ];
+
+  /// Returns the enum value with an element attached
+  DeviceMetricCategory withElement(Element? newElement) {
+    return DeviceMetricCategory._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'DeviceMetricCategory.$fhirCode';
+  String toString() => 'DeviceMetricCategory.$value';
 }

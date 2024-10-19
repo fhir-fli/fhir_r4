@@ -5,104 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// The status of a guidance response.
 @Entity()
-class GuidanceResponseStatus {
-  // Private constructor for internal use (like enum)
-  GuidanceResponseStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// GuidanceResponseStatus values
-  /// success
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GuidanceResponseStatus success = GuidanceResponseStatus._(
-    'success',
-  );
-
-  /// data_requested
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GuidanceResponseStatus data_requested = GuidanceResponseStatus._(
-    'data-requested',
-  );
-
-  /// data_required
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GuidanceResponseStatus data_required = GuidanceResponseStatus._(
-    'data-required',
-  );
-
-  /// in_progress
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GuidanceResponseStatus in_progress = GuidanceResponseStatus._(
-    'in-progress',
-  );
-
-  /// failure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GuidanceResponseStatus failure = GuidanceResponseStatus._(
-    'failure',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GuidanceResponseStatus entered_in_error =
-      GuidanceResponseStatus._(
-    'entered-in-error',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final GuidanceResponseStatus elementOnly =
-      GuidanceResponseStatus._('');
-
-  /// List of all enum-like values
-  static final List<GuidanceResponseStatus> values = [
-    success,
-    data_requested,
-    data_required,
-    in_progress,
-    failure,
-    entered_in_error,
-  ];
-
-  /// Returns the enum value with an element attached
-  GuidanceResponseStatus withElement(Element? newElement) {
-    return GuidanceResponseStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class GuidanceResponseStatus extends FhirCode {
   /// Factory constructor to create [GuidanceResponseStatus] from JSON.
-  static GuidanceResponseStatus fromJson(Map<String, dynamic> json) {
+  factory GuidanceResponseStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GuidanceResponseStatus.elementOnly.withElement(element);
+      return GuidanceResponseStatus.elementOnly(element);
     }
-    return GuidanceResponseStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return GuidanceResponseStatus._(value, element);
+    }
+    throw ArgumentError(
+      'GuidanceResponseStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// success
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GuidanceResponseStatus.success([this.element])
+      : dbValue = 'success',
+        super('success', element);
+
+  /// data_requested
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GuidanceResponseStatus.data_requested([this.element])
+      : dbValue = 'data-requested',
+        super('data-requested', element);
+
+  /// data_required
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GuidanceResponseStatus.data_required([this.element])
+      : dbValue = 'data-required',
+        super('data-required', element);
+
+  /// in_progress
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GuidanceResponseStatus.in_progress([this.element])
+      : dbValue = 'in-progress',
+        super('in-progress', element);
+
+  /// failure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GuidanceResponseStatus.failure([this.element])
+      : dbValue = 'failure',
+        super('failure', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GuidanceResponseStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// For instances where an Element is present but not value
+
+  GuidanceResponseStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  GuidanceResponseStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'success',
+    'data-requested',
+    'data-required',
+    'in-progress',
+    'failure',
+    'entered-in-error',
+  ];
+
+  /// Returns the enum value with an element attached
+  GuidanceResponseStatus withElement(Element? newElement) {
+    return GuidanceResponseStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'GuidanceResponseStatus.$fhirCode';
+  String toString() => 'GuidanceResponseStatus.$value';
 }

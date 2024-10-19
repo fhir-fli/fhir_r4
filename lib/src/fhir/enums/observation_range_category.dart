@@ -5,79 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Codes identifying the category of observation range.
 @Entity()
-class ObservationRangeCategory {
-  // Private constructor for internal use (like enum)
-  ObservationRangeCategory._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ObservationRangeCategory values
-  /// reference
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationRangeCategory reference = ObservationRangeCategory._(
-    'reference',
-  );
-
-  /// critical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationRangeCategory critical = ObservationRangeCategory._(
-    'critical',
-  );
-
-  /// absolute
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationRangeCategory absolute = ObservationRangeCategory._(
-    'absolute',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ObservationRangeCategory elementOnly =
-      ObservationRangeCategory._('');
-
-  /// List of all enum-like values
-  static final List<ObservationRangeCategory> values = [
-    reference,
-    critical,
-    absolute,
-  ];
-
-  /// Returns the enum value with an element attached
-  ObservationRangeCategory withElement(Element? newElement) {
-    return ObservationRangeCategory._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ObservationRangeCategory extends FhirCode {
   /// Factory constructor to create [ObservationRangeCategory] from JSON.
-  static ObservationRangeCategory fromJson(Map<String, dynamic> json) {
+  factory ObservationRangeCategory.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObservationRangeCategory.elementOnly.withElement(element);
+      return ObservationRangeCategory.elementOnly(element);
     }
-    return ObservationRangeCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ObservationRangeCategory._(value, element);
+    }
+    throw ArgumentError(
+      'ObservationRangeCategory.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// reference
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationRangeCategory.reference([this.element])
+      : dbValue = 'reference',
+        super('reference', element);
+
+  /// critical
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationRangeCategory.critical([this.element])
+      : dbValue = 'critical',
+        super('critical', element);
+
+  /// absolute
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationRangeCategory.absolute([this.element])
+      : dbValue = 'absolute',
+        super('absolute', element);
+
+  /// For instances where an Element is present but not value
+
+  ObservationRangeCategory.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ObservationRangeCategory._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'reference',
+    'critical',
+    'absolute',
+  ];
+
+  /// Returns the enum value with an element attached
+  ObservationRangeCategory withElement(Element? newElement) {
+    return ObservationRangeCategory._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ObservationRangeCategory.$fhirCode';
+  String toString() => 'ObservationRangeCategory.$value';
 }

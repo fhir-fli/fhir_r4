@@ -5,82 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Procedure Outcome code: A selection of relevant SNOMED CT codes.
 @Entity()
-class ProcedureOutcomeCodesSNOMEDCT {
-  // Private constructor for internal use (like enum)
-  ProcedureOutcomeCodesSNOMEDCT._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ProcedureOutcomeCodesSNOMEDCT values
-  /// value385669000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProcedureOutcomeCodesSNOMEDCT value385669000 =
-      ProcedureOutcomeCodesSNOMEDCT._(
-    '385669000',
-  );
-
-  /// value385671000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProcedureOutcomeCodesSNOMEDCT value385671000 =
-      ProcedureOutcomeCodesSNOMEDCT._(
-    '385671000',
-  );
-
-  /// value385670004
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProcedureOutcomeCodesSNOMEDCT value385670004 =
-      ProcedureOutcomeCodesSNOMEDCT._(
-    '385670004',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ProcedureOutcomeCodesSNOMEDCT elementOnly =
-      ProcedureOutcomeCodesSNOMEDCT._('');
-
-  /// List of all enum-like values
-  static final List<ProcedureOutcomeCodesSNOMEDCT> values = [
-    value385669000,
-    value385671000,
-    value385670004,
-  ];
-
-  /// Returns the enum value with an element attached
-  ProcedureOutcomeCodesSNOMEDCT withElement(Element? newElement) {
-    return ProcedureOutcomeCodesSNOMEDCT._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ProcedureOutcomeCodesSNOMEDCT extends FhirCode {
   /// Factory constructor to create [ProcedureOutcomeCodesSNOMEDCT] from JSON.
-  static ProcedureOutcomeCodesSNOMEDCT fromJson(Map<String, dynamic> json) {
+  factory ProcedureOutcomeCodesSNOMEDCT.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ProcedureOutcomeCodesSNOMEDCT.elementOnly.withElement(element);
+      return ProcedureOutcomeCodesSNOMEDCT.elementOnly(element);
     }
-    return ProcedureOutcomeCodesSNOMEDCT.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ProcedureOutcomeCodesSNOMEDCT._(value, element);
+    }
+    throw ArgumentError(
+      'ProcedureOutcomeCodesSNOMEDCT.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value385669000
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProcedureOutcomeCodesSNOMEDCT.value385669000([this.element])
+      : dbValue = '385669000',
+        super('385669000', element);
+
+  /// value385671000
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProcedureOutcomeCodesSNOMEDCT.value385671000([this.element])
+      : dbValue = '385671000',
+        super('385671000', element);
+
+  /// value385670004
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProcedureOutcomeCodesSNOMEDCT.value385670004([this.element])
+      : dbValue = '385670004',
+        super('385670004', element);
+
+  /// For instances where an Element is present but not value
+
+  ProcedureOutcomeCodesSNOMEDCT.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ProcedureOutcomeCodesSNOMEDCT._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '385669000',
+    '385671000',
+    '385670004',
+  ];
+
+  /// Returns the enum value with an element attached
+  ProcedureOutcomeCodesSNOMEDCT withElement(Element? newElement) {
+    return ProcedureOutcomeCodesSNOMEDCT._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ProcedureOutcomeCodesSNOMEDCT.$fhirCode';
+  String toString() => 'ProcedureOutcomeCodesSNOMEDCT.$value';
 }

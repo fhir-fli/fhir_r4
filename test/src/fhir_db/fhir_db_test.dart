@@ -86,7 +86,7 @@ Future<void> main() async {
 
     test('Save Observation1', () async {
       final observation1 = Observation(
-        status: ObservationStatus.final_,
+        status: ObservationStatus.final_(),
         id: 'obs1'.toFhirString,
         code: CodeableConcept(text: 'Observation #1'.toFhirString),
         effectiveDateTime: FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
@@ -100,7 +100,7 @@ Future<void> main() async {
 
     test('Save Observation1 Again', () async {
       final observation1 = Observation(
-        status: ObservationStatus.final_,
+        status: ObservationStatus.final_(),
         id: 'obs1'.toFhirString,
         code: CodeableConcept(text: 'Observation #1 - Updated'.toFhirString),
       );
@@ -115,7 +115,7 @@ Future<void> main() async {
 
     test('Save Observation2', () async {
       final observation2 = Observation(
-        status: ObservationStatus.final_,
+        status: ObservationStatus.final_(),
         id: 'obs2'.toFhirString,
         code: CodeableConcept(text: 'Observation #2'.toFhirString),
         effectiveDateTime: FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
@@ -129,7 +129,7 @@ Future<void> main() async {
 
     test('Save Observation3', () async {
       final observation3 = Observation(
-        status: ObservationStatus.final_,
+        status: ObservationStatus.final_(),
         id: 'obs3'.toFhirString,
         code: CodeableConcept(text: 'Observation #3'.toFhirString),
         effectiveDateTime: FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
@@ -297,7 +297,7 @@ Future<void> main() async {
 
     test('Save Observation1', () async {
       final observation1 = Observation(
-        status: ObservationStatus.final_,
+        status: ObservationStatus.final_(),
         id: 'obs1'.toFhirString,
         code: CodeableConcept(text: 'Observation #1'.toFhirString),
         effectiveDateTime: FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
@@ -311,7 +311,7 @@ Future<void> main() async {
 
     test('Save Observation1 Again', () async {
       final observation1 = Observation(
-        status: ObservationStatus.final_,
+        status: ObservationStatus.final_(),
         id: 'obs1'.toFhirString,
         code: CodeableConcept(text: 'Observation #1 - Updated'.toFhirString),
       );
@@ -326,7 +326,7 @@ Future<void> main() async {
 
     test('Save Observation2', () async {
       final observation2 = Observation(
-        status: ObservationStatus.final_,
+        status: ObservationStatus.final_(),
         id: 'obs2'.toFhirString,
         code: CodeableConcept(text: 'Observation #2'.toFhirString),
         effectiveDateTime: FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
@@ -340,7 +340,7 @@ Future<void> main() async {
 
     test('Save Observation3', () async {
       final observation3 = Observation(
-        status: ObservationStatus.final_,
+        status: ObservationStatus.final_(),
         id: 'obs3'.toFhirString,
         code: CodeableConcept(text: 'Observation #3'.toFhirString),
         effectiveDateTime: FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),

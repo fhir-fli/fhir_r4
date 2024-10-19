@@ -5,178 +5,179 @@ import 'package:objectbox/objectbox.dart';
 
 /// Citation contribution.
 @Entity()
-class ArtifactContributionType {
-  // Private constructor for internal use (like enum)
-  ArtifactContributionType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ArtifactContributionType values
-  /// conceptualization
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactContributionType conceptualization =
-      ArtifactContributionType._(
-    'conceptualization',
-  );
-
-  /// data_curation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactContributionType data_curation =
-      ArtifactContributionType._(
-    'data-curation',
-  );
-
-  /// formal_analysis
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactContributionType formal_analysis =
-      ArtifactContributionType._(
-    'formal-analysis',
-  );
-
-  /// funding_acquisition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactContributionType funding_acquisition =
-      ArtifactContributionType._(
-    'funding-acquisition',
-  );
-
-  /// investigation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactContributionType investigation =
-      ArtifactContributionType._(
-    'investigation',
-  );
-
-  /// methodology
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactContributionType methodology =
-      ArtifactContributionType._(
-    'methodology',
-  );
-
-  /// project_administration
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactContributionType project_administration =
-      ArtifactContributionType._(
-    'project-administration',
-  );
-
-  /// resources
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactContributionType resources = ArtifactContributionType._(
-    'resources',
-  );
-
-  /// software
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactContributionType software = ArtifactContributionType._(
-    'software',
-  );
-
-  /// supervision
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactContributionType supervision =
-      ArtifactContributionType._(
-    'supervision',
-  );
-
-  /// validation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactContributionType validation = ArtifactContributionType._(
-    'validation',
-  );
-
-  /// visualization
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactContributionType visualization =
-      ArtifactContributionType._(
-    'visualization',
-  );
-
-  /// writing_original_draft
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactContributionType writing_original_draft =
-      ArtifactContributionType._(
-    'writing-original-draft',
-  );
-
-  /// writing_review_editing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ArtifactContributionType writing_review_editing =
-      ArtifactContributionType._(
-    'writing-review-editing',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ArtifactContributionType elementOnly =
-      ArtifactContributionType._('');
-
-  /// List of all enum-like values
-  static final List<ArtifactContributionType> values = [
-    conceptualization,
-    data_curation,
-    formal_analysis,
-    funding_acquisition,
-    investigation,
-    methodology,
-    project_administration,
-    resources,
-    software,
-    supervision,
-    validation,
-    visualization,
-    writing_original_draft,
-    writing_review_editing,
-  ];
-
-  /// Returns the enum value with an element attached
-  ArtifactContributionType withElement(Element? newElement) {
-    return ArtifactContributionType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ArtifactContributionType extends FhirCode {
   /// Factory constructor to create [ArtifactContributionType] from JSON.
-  static ArtifactContributionType fromJson(Map<String, dynamic> json) {
+  factory ArtifactContributionType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ArtifactContributionType.elementOnly.withElement(element);
+      return ArtifactContributionType.elementOnly(element);
     }
-    return ArtifactContributionType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ArtifactContributionType._(value, element);
+    }
+    throw ArgumentError(
+      'ArtifactContributionType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// conceptualization
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactContributionType.conceptualization([this.element])
+      : dbValue = 'conceptualization',
+        super('conceptualization', element);
+
+  /// data_curation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactContributionType.data_curation([this.element])
+      : dbValue = 'data-curation',
+        super('data-curation', element);
+
+  /// formal_analysis
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactContributionType.formal_analysis([this.element])
+      : dbValue = 'formal-analysis',
+        super('formal-analysis', element);
+
+  /// funding_acquisition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactContributionType.funding_acquisition([this.element])
+      : dbValue = 'funding-acquisition',
+        super('funding-acquisition', element);
+
+  /// investigation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactContributionType.investigation([this.element])
+      : dbValue = 'investigation',
+        super('investigation', element);
+
+  /// methodology
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactContributionType.methodology([this.element])
+      : dbValue = 'methodology',
+        super('methodology', element);
+
+  /// project_administration
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactContributionType.project_administration([this.element])
+      : dbValue = 'project-administration',
+        super('project-administration', element);
+
+  /// resources
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactContributionType.resources([this.element])
+      : dbValue = 'resources',
+        super('resources', element);
+
+  /// software
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactContributionType.software([this.element])
+      : dbValue = 'software',
+        super('software', element);
+
+  /// supervision
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactContributionType.supervision([this.element])
+      : dbValue = 'supervision',
+        super('supervision', element);
+
+  /// validation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactContributionType.validation([this.element])
+      : dbValue = 'validation',
+        super('validation', element);
+
+  /// visualization
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactContributionType.visualization([this.element])
+      : dbValue = 'visualization',
+        super('visualization', element);
+
+  /// writing_original_draft
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactContributionType.writing_original_draft([this.element])
+      : dbValue = 'writing-original-draft',
+        super('writing-original-draft', element);
+
+  /// writing_review_editing
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ArtifactContributionType.writing_review_editing([this.element])
+      : dbValue = 'writing-review-editing',
+        super('writing-review-editing', element);
+
+  /// For instances where an Element is present but not value
+
+  ArtifactContributionType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ArtifactContributionType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'conceptualization',
+    'data-curation',
+    'formal-analysis',
+    'funding-acquisition',
+    'investigation',
+    'methodology',
+    'project-administration',
+    'resources',
+    'software',
+    'supervision',
+    'validation',
+    'visualization',
+    'writing-original-draft',
+    'writing-review-editing',
+  ];
+
+  /// Returns the enum value with an element attached
+  ArtifactContributionType withElement(Element? newElement) {
+    return ArtifactContributionType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ArtifactContributionType.$fhirCode';
+  String toString() => 'ArtifactContributionType.$value';
 }

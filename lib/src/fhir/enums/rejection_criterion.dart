@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// Criterion for rejection of the specimen by laboratory.
 @Entity()
-class RejectionCriterion {
-  // Private constructor for internal use (like enum)
-  RejectionCriterion._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// RejectionCriterion values
-  /// hemolized
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RejectionCriterion hemolized = RejectionCriterion._(
-    'hemolized',
-  );
-
-  /// insufficient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RejectionCriterion insufficient = RejectionCriterion._(
-    'insufficient',
-  );
-
-  /// broken
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RejectionCriterion broken = RejectionCriterion._(
-    'broken',
-  );
-
-  /// clotted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RejectionCriterion clotted = RejectionCriterion._(
-    'clotted',
-  );
-
-  /// wrong_temperature
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final RejectionCriterion wrong_temperature = RejectionCriterion._(
-    'wrong-temperature',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final RejectionCriterion elementOnly = RejectionCriterion._('');
-
-  /// List of all enum-like values
-  static final List<RejectionCriterion> values = [
-    hemolized,
-    insufficient,
-    broken,
-    clotted,
-    wrong_temperature,
-  ];
-
-  /// Returns the enum value with an element attached
-  RejectionCriterion withElement(Element? newElement) {
-    return RejectionCriterion._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class RejectionCriterion extends FhirCode {
   /// Factory constructor to create [RejectionCriterion] from JSON.
-  static RejectionCriterion fromJson(Map<String, dynamic> json) {
+  factory RejectionCriterion.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RejectionCriterion.elementOnly.withElement(element);
+      return RejectionCriterion.elementOnly(element);
     }
-    return RejectionCriterion.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return RejectionCriterion._(value, element);
+    }
+    throw ArgumentError(
+      'RejectionCriterion.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// hemolized
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RejectionCriterion.hemolized([this.element])
+      : dbValue = 'hemolized',
+        super('hemolized', element);
+
+  /// insufficient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RejectionCriterion.insufficient([this.element])
+      : dbValue = 'insufficient',
+        super('insufficient', element);
+
+  /// broken
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RejectionCriterion.broken([this.element])
+      : dbValue = 'broken',
+        super('broken', element);
+
+  /// clotted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RejectionCriterion.clotted([this.element])
+      : dbValue = 'clotted',
+        super('clotted', element);
+
+  /// wrong_temperature
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  RejectionCriterion.wrong_temperature([this.element])
+      : dbValue = 'wrong-temperature',
+        super('wrong-temperature', element);
+
+  /// For instances where an Element is present but not value
+
+  RejectionCriterion.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  RejectionCriterion._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'hemolized',
+    'insufficient',
+    'broken',
+    'clotted',
+    'wrong-temperature',
+  ];
+
+  /// Returns the enum value with an element attached
+  RejectionCriterion withElement(Element? newElement) {
+    return RejectionCriterion._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'RejectionCriterion.$fhirCode';
+  String toString() => 'RejectionCriterion.$value';
 }

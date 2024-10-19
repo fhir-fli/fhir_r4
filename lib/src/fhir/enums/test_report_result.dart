@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// The reported execution result.
 @Entity()
-class TestReportResult {
-  // Private constructor for internal use (like enum)
-  TestReportResult._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// TestReportResult values
-  /// pass
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestReportResult pass = TestReportResult._(
-    'pass',
-  );
-
-  /// fail
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestReportResult fail = TestReportResult._(
-    'fail',
-  );
-
-  /// pending
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestReportResult pending = TestReportResult._(
-    'pending',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final TestReportResult elementOnly = TestReportResult._('');
-
-  /// List of all enum-like values
-  static final List<TestReportResult> values = [
-    pass,
-    fail,
-    pending,
-  ];
-
-  /// Returns the enum value with an element attached
-  TestReportResult withElement(Element? newElement) {
-    return TestReportResult._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class TestReportResult extends FhirCode {
   /// Factory constructor to create [TestReportResult] from JSON.
-  static TestReportResult fromJson(Map<String, dynamic> json) {
+  factory TestReportResult.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestReportResult.elementOnly.withElement(element);
+      return TestReportResult.elementOnly(element);
     }
-    return TestReportResult.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return TestReportResult._(value, element);
+    }
+    throw ArgumentError(
+      'TestReportResult.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// pass
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestReportResult.pass([this.element])
+      : dbValue = 'pass',
+        super('pass', element);
+
+  /// fail
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestReportResult.fail([this.element])
+      : dbValue = 'fail',
+        super('fail', element);
+
+  /// pending
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestReportResult.pending([this.element])
+      : dbValue = 'pending',
+        super('pending', element);
+
+  /// For instances where an Element is present but not value
+
+  TestReportResult.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  TestReportResult._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'pass',
+    'fail',
+    'pending',
+  ];
+
+  /// Returns the enum value with an element attached
+  TestReportResult withElement(Element? newElement) {
+    return TestReportResult._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'TestReportResult.$fhirCode';
+  String toString() => 'TestReportResult.$value';
 }

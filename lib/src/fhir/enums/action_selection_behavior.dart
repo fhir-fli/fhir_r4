@@ -5,103 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// Defines selection behavior of a group.
 @Entity()
-class ActionSelectionBehavior {
-  // Private constructor for internal use (like enum)
-  ActionSelectionBehavior._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ActionSelectionBehavior values
-  /// any
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionSelectionBehavior any = ActionSelectionBehavior._(
-    'any',
-  );
-
-  /// all
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionSelectionBehavior all = ActionSelectionBehavior._(
-    'all',
-  );
-
-  /// all_or_none
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionSelectionBehavior all_or_none = ActionSelectionBehavior._(
-    'all-or-none',
-  );
-
-  /// exactly_one
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionSelectionBehavior exactly_one = ActionSelectionBehavior._(
-    'exactly-one',
-  );
-
-  /// at_most_one
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionSelectionBehavior at_most_one = ActionSelectionBehavior._(
-    'at-most-one',
-  );
-
-  /// one_or_more
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionSelectionBehavior one_or_more = ActionSelectionBehavior._(
-    'one-or-more',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ActionSelectionBehavior elementOnly =
-      ActionSelectionBehavior._('');
-
-  /// List of all enum-like values
-  static final List<ActionSelectionBehavior> values = [
-    any,
-    all,
-    all_or_none,
-    exactly_one,
-    at_most_one,
-    one_or_more,
-  ];
-
-  /// Returns the enum value with an element attached
-  ActionSelectionBehavior withElement(Element? newElement) {
-    return ActionSelectionBehavior._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ActionSelectionBehavior extends FhirCode {
   /// Factory constructor to create [ActionSelectionBehavior] from JSON.
-  static ActionSelectionBehavior fromJson(Map<String, dynamic> json) {
+  factory ActionSelectionBehavior.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionSelectionBehavior.elementOnly.withElement(element);
+      return ActionSelectionBehavior.elementOnly(element);
     }
-    return ActionSelectionBehavior.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ActionSelectionBehavior._(value, element);
+    }
+    throw ArgumentError(
+      'ActionSelectionBehavior.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// any
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionSelectionBehavior.any([this.element])
+      : dbValue = 'any',
+        super('any', element);
+
+  /// all
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionSelectionBehavior.all([this.element])
+      : dbValue = 'all',
+        super('all', element);
+
+  /// all_or_none
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionSelectionBehavior.all_or_none([this.element])
+      : dbValue = 'all-or-none',
+        super('all-or-none', element);
+
+  /// exactly_one
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionSelectionBehavior.exactly_one([this.element])
+      : dbValue = 'exactly-one',
+        super('exactly-one', element);
+
+  /// at_most_one
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionSelectionBehavior.at_most_one([this.element])
+      : dbValue = 'at-most-one',
+        super('at-most-one', element);
+
+  /// one_or_more
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionSelectionBehavior.one_or_more([this.element])
+      : dbValue = 'one-or-more',
+        super('one-or-more', element);
+
+  /// For instances where an Element is present but not value
+
+  ActionSelectionBehavior.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ActionSelectionBehavior._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'any',
+    'all',
+    'all-or-none',
+    'exactly-one',
+    'at-most-one',
+    'one-or-more',
+  ];
+
+  /// Returns the enum value with an element attached
+  ActionSelectionBehavior withElement(Element? newElement) {
+    return ActionSelectionBehavior._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ActionSelectionBehavior.$fhirCode';
+  String toString() => 'ActionSelectionBehavior.$value';
 }

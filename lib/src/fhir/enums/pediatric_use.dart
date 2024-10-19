@@ -5,166 +5,179 @@ import 'package:objectbox/objectbox.dart';
 
 /// Extra measures defined for a Medicinal Product, such as heightened reporting requirements.
 @Entity()
-class PediatricUse {
-  // Private constructor for internal use (like enum)
-  PediatricUse._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// PediatricUse values
-  /// InUtero
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PediatricUse InUtero = PediatricUse._(
-    'InUtero',
-  );
-
-  /// PretermNewborn
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PediatricUse PretermNewborn = PediatricUse._(
-    'PretermNewborn',
-  );
-
-  /// TermNewborn
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PediatricUse TermNewborn = PediatricUse._(
-    'TermNewborn',
-  );
-
-  /// Infants
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PediatricUse Infants = PediatricUse._(
-    'Infants',
-  );
-
-  /// Children
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PediatricUse Children = PediatricUse._(
-    'Children',
-  );
-
-  /// Adolescents
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PediatricUse Adolescents = PediatricUse._(
-    'Adolescents',
-  );
-
-  /// Adults
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PediatricUse Adults = PediatricUse._(
-    'Adults',
-  );
-
-  /// Elderly
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PediatricUse Elderly = PediatricUse._(
-    'Elderly',
-  );
-
-  /// Neonate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PediatricUse Neonate = PediatricUse._(
-    'Neonate',
-  );
-
-  /// PediatricPopulation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PediatricUse PediatricPopulation = PediatricUse._(
-    'PediatricPopulation',
-  );
-
-  /// All
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PediatricUse All = PediatricUse._(
-    'All',
-  );
-
-  /// Prepubertal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PediatricUse Prepubertal = PediatricUse._(
-    'Prepubertal',
-  );
-
-  /// AdultsAndElderly
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PediatricUse AdultsAndElderly = PediatricUse._(
-    'AdultsAndElderly',
-  );
-
-  /// PubertalAndPostpubertal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PediatricUse PubertalAndPostpubertal = PediatricUse._(
-    'PubertalAndPostpubertal',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final PediatricUse elementOnly = PediatricUse._('');
-
-  /// List of all enum-like values
-  static final List<PediatricUse> values = [
-    InUtero,
-    PretermNewborn,
-    TermNewborn,
-    Infants,
-    Children,
-    Adolescents,
-    Adults,
-    Elderly,
-    Neonate,
-    PediatricPopulation,
-    All,
-    Prepubertal,
-    AdultsAndElderly,
-    PubertalAndPostpubertal,
-  ];
-
-  /// Returns the enum value with an element attached
-  PediatricUse withElement(Element? newElement) {
-    return PediatricUse._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class PediatricUse extends FhirCode {
   /// Factory constructor to create [PediatricUse] from JSON.
-  static PediatricUse fromJson(Map<String, dynamic> json) {
+  factory PediatricUse.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PediatricUse.elementOnly.withElement(element);
+      return PediatricUse.elementOnly(element);
     }
-    return PediatricUse.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return PediatricUse._(value, element);
+    }
+    throw ArgumentError(
+      'PediatricUse.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// InUtero
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PediatricUse.InUtero([this.element])
+      : dbValue = 'InUtero',
+        super('InUtero', element);
+
+  /// PretermNewborn
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PediatricUse.PretermNewborn([this.element])
+      : dbValue = 'PretermNewborn',
+        super('PretermNewborn', element);
+
+  /// TermNewborn
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PediatricUse.TermNewborn([this.element])
+      : dbValue = 'TermNewborn',
+        super('TermNewborn', element);
+
+  /// Infants
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PediatricUse.Infants([this.element])
+      : dbValue = 'Infants',
+        super('Infants', element);
+
+  /// Children
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PediatricUse.Children([this.element])
+      : dbValue = 'Children',
+        super('Children', element);
+
+  /// Adolescents
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PediatricUse.Adolescents([this.element])
+      : dbValue = 'Adolescents',
+        super('Adolescents', element);
+
+  /// Adults
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PediatricUse.Adults([this.element])
+      : dbValue = 'Adults',
+        super('Adults', element);
+
+  /// Elderly
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PediatricUse.Elderly([this.element])
+      : dbValue = 'Elderly',
+        super('Elderly', element);
+
+  /// Neonate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PediatricUse.Neonate([this.element])
+      : dbValue = 'Neonate',
+        super('Neonate', element);
+
+  /// PediatricPopulation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PediatricUse.PediatricPopulation([this.element])
+      : dbValue = 'PediatricPopulation',
+        super('PediatricPopulation', element);
+
+  /// All
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PediatricUse.All([this.element])
+      : dbValue = 'All',
+        super('All', element);
+
+  /// Prepubertal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PediatricUse.Prepubertal([this.element])
+      : dbValue = 'Prepubertal',
+        super('Prepubertal', element);
+
+  /// AdultsAndElderly
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PediatricUse.AdultsAndElderly([this.element])
+      : dbValue = 'AdultsAndElderly',
+        super('AdultsAndElderly', element);
+
+  /// PubertalAndPostpubertal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PediatricUse.PubertalAndPostpubertal([this.element])
+      : dbValue = 'PubertalAndPostpubertal',
+        super('PubertalAndPostpubertal', element);
+
+  /// For instances where an Element is present but not value
+
+  PediatricUse.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  PediatricUse._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'InUtero',
+    'PretermNewborn',
+    'TermNewborn',
+    'Infants',
+    'Children',
+    'Adolescents',
+    'Adults',
+    'Elderly',
+    'Neonate',
+    'PediatricPopulation',
+    'All',
+    'Prepubertal',
+    'AdultsAndElderly',
+    'PubertalAndPostpubertal',
+  ];
+
+  /// Returns the enum value with an element attached
+  PediatricUse withElement(Element? newElement) {
+    return PediatricUse._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'PediatricUse.$fhirCode';
+  String toString() => 'PediatricUse.$value';
 }

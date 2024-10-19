@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:objectbox/objectbox.dart';
@@ -12,13 +14,13 @@ class FhirDuration extends Quantity {
 
   FhirDuration({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.value,
-    super.comparator,
-    super.unit,
-    super.system,
-    super.code,
+    this.id,
+    this.extension_,
+    this.value,
+    this.comparator,
+    this.unit,
+    this.system,
+    this.code,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -115,12 +117,57 @@ class FhirDuration extends Quantity {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'FhirDuration';
 
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [value]
+  /// The value of the measured amount. The value includes an implicit
+  /// precision in the presentation of the value.
+  @override
+  final FhirDecimal? value;
+
+  /// [comparator]
+  /// How the value should be understood and represented - whether the actual
+  /// value is greater or less than the stated value due to measurement
+  /// issues; e.g. if the comparator is "<" , then the real value is < stated
+  /// value.
+  @override
+  final QuantityComparator? comparator;
+
+  /// [unit]
+  /// A human-readable form of the unit.
+  @override
+  final FhirString? unit;
+
+  /// [system]
+  /// The identification of the system that provides the coded form of the
+  /// unit.
+  @override
+  final FhirUri? system;
+
+  /// [code]
+  /// A computer processable form of the unit in some unit representation
+  /// system.
+  @override
+  final FhirCode? code;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

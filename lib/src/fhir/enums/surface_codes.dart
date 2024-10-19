@@ -5,142 +5,155 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes a smattering of FDI tooth surface codes.
 @Entity()
-class SurfaceCodes {
-  // Private constructor for internal use (like enum)
-  SurfaceCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SurfaceCodes values
-  /// M
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SurfaceCodes M = SurfaceCodes._(
-    'M',
-  );
-
-  /// O
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SurfaceCodes O = SurfaceCodes._(
-    'O',
-  );
-
-  /// I
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SurfaceCodes I = SurfaceCodes._(
-    'I',
-  );
-
-  /// D
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SurfaceCodes D = SurfaceCodes._(
-    'D',
-  );
-
-  /// B
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SurfaceCodes B = SurfaceCodes._(
-    'B',
-  );
-
-  /// V
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SurfaceCodes V = SurfaceCodes._(
-    'V',
-  );
-
-  /// L
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SurfaceCodes L = SurfaceCodes._(
-    'L',
-  );
-
-  /// MO
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SurfaceCodes MO = SurfaceCodes._(
-    'MO',
-  );
-
-  /// DO
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SurfaceCodes DO = SurfaceCodes._(
-    'DO',
-  );
-
-  /// DI
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SurfaceCodes DI = SurfaceCodes._(
-    'DI',
-  );
-
-  /// MOD
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SurfaceCodes MOD = SurfaceCodes._(
-    'MOD',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SurfaceCodes elementOnly = SurfaceCodes._('');
-
-  /// List of all enum-like values
-  static final List<SurfaceCodes> values = [
-    M,
-    O,
-    I,
-    D,
-    B,
-    V,
-    L,
-    MO,
-    DO,
-    DI,
-    MOD,
-  ];
-
-  /// Returns the enum value with an element attached
-  SurfaceCodes withElement(Element? newElement) {
-    return SurfaceCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SurfaceCodes extends FhirCode {
   /// Factory constructor to create [SurfaceCodes] from JSON.
-  static SurfaceCodes fromJson(Map<String, dynamic> json) {
+  factory SurfaceCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SurfaceCodes.elementOnly.withElement(element);
+      return SurfaceCodes.elementOnly(element);
     }
-    return SurfaceCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SurfaceCodes._(value, element);
+    }
+    throw ArgumentError(
+      'SurfaceCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// M
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SurfaceCodes.M([this.element])
+      : dbValue = 'M',
+        super('M', element);
+
+  /// O
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SurfaceCodes.O([this.element])
+      : dbValue = 'O',
+        super('O', element);
+
+  /// I
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SurfaceCodes.I([this.element])
+      : dbValue = 'I',
+        super('I', element);
+
+  /// D
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SurfaceCodes.D([this.element])
+      : dbValue = 'D',
+        super('D', element);
+
+  /// B
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SurfaceCodes.B([this.element])
+      : dbValue = 'B',
+        super('B', element);
+
+  /// V
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SurfaceCodes.V([this.element])
+      : dbValue = 'V',
+        super('V', element);
+
+  /// L
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SurfaceCodes.L([this.element])
+      : dbValue = 'L',
+        super('L', element);
+
+  /// MO
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SurfaceCodes.MO([this.element])
+      : dbValue = 'MO',
+        super('MO', element);
+
+  /// DO
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SurfaceCodes.DO([this.element])
+      : dbValue = 'DO',
+        super('DO', element);
+
+  /// DI
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SurfaceCodes.DI([this.element])
+      : dbValue = 'DI',
+        super('DI', element);
+
+  /// MOD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SurfaceCodes.MOD([this.element])
+      : dbValue = 'MOD',
+        super('MOD', element);
+
+  /// For instances where an Element is present but not value
+
+  SurfaceCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SurfaceCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'M',
+    'O',
+    'I',
+    'D',
+    'B',
+    'V',
+    'L',
+    'MO',
+    'DO',
+    'DI',
+    'MOD',
+  ];
+
+  /// Returns the enum value with an element attached
+  SurfaceCodes withElement(Element? newElement) {
+    return SurfaceCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SurfaceCodes.$fhirCode';
+  String toString() => 'SurfaceCodes.$value';
 }

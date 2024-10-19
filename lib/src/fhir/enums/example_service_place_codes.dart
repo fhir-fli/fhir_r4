@@ -5,191 +5,203 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes a smattering of Service Place codes.
 @Entity()
-class ExampleServicePlaceCodes {
-  // Private constructor for internal use (like enum)
-  ExampleServicePlaceCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleServicePlaceCodes values
-  /// value01
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value01 = ExampleServicePlaceCodes._(
-    '01',
-  );
-
-  /// value03
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value03 = ExampleServicePlaceCodes._(
-    '03',
-  );
-
-  /// value04
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value04 = ExampleServicePlaceCodes._(
-    '04',
-  );
-
-  /// value05
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value05 = ExampleServicePlaceCodes._(
-    '05',
-  );
-
-  /// value06
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value06 = ExampleServicePlaceCodes._(
-    '06',
-  );
-
-  /// value07
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value07 = ExampleServicePlaceCodes._(
-    '07',
-  );
-
-  /// value08
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value08 = ExampleServicePlaceCodes._(
-    '08',
-  );
-
-  /// value09
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value09 = ExampleServicePlaceCodes._(
-    '09',
-  );
-
-  /// value11
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value11 = ExampleServicePlaceCodes._(
-    '11',
-  );
-
-  /// value12
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value12 = ExampleServicePlaceCodes._(
-    '12',
-  );
-
-  /// value13
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value13 = ExampleServicePlaceCodes._(
-    '13',
-  );
-
-  /// value14
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value14 = ExampleServicePlaceCodes._(
-    '14',
-  );
-
-  /// value15
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value15 = ExampleServicePlaceCodes._(
-    '15',
-  );
-
-  /// value19
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value19 = ExampleServicePlaceCodes._(
-    '19',
-  );
-
-  /// value20
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value20 = ExampleServicePlaceCodes._(
-    '20',
-  );
-
-  /// value21
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value21 = ExampleServicePlaceCodes._(
-    '21',
-  );
-
-  /// value41
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleServicePlaceCodes value41 = ExampleServicePlaceCodes._(
-    '41',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ExampleServicePlaceCodes elementOnly =
-      ExampleServicePlaceCodes._('');
-
-  /// List of all enum-like values
-  static final List<ExampleServicePlaceCodes> values = [
-    value01,
-    value03,
-    value04,
-    value05,
-    value06,
-    value07,
-    value08,
-    value09,
-    value11,
-    value12,
-    value13,
-    value14,
-    value15,
-    value19,
-    value20,
-    value21,
-    value41,
-  ];
-
-  /// Returns the enum value with an element attached
-  ExampleServicePlaceCodes withElement(Element? newElement) {
-    return ExampleServicePlaceCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ExampleServicePlaceCodes extends FhirCode {
   /// Factory constructor to create [ExampleServicePlaceCodes] from JSON.
-  static ExampleServicePlaceCodes fromJson(Map<String, dynamic> json) {
+  factory ExampleServicePlaceCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleServicePlaceCodes.elementOnly.withElement(element);
+      return ExampleServicePlaceCodes.elementOnly(element);
     }
-    return ExampleServicePlaceCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ExampleServicePlaceCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ExampleServicePlaceCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value01
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value01([this.element])
+      : dbValue = '01',
+        super('01', element);
+
+  /// value03
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value03([this.element])
+      : dbValue = '03',
+        super('03', element);
+
+  /// value04
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value04([this.element])
+      : dbValue = '04',
+        super('04', element);
+
+  /// value05
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value05([this.element])
+      : dbValue = '05',
+        super('05', element);
+
+  /// value06
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value06([this.element])
+      : dbValue = '06',
+        super('06', element);
+
+  /// value07
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value07([this.element])
+      : dbValue = '07',
+        super('07', element);
+
+  /// value08
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value08([this.element])
+      : dbValue = '08',
+        super('08', element);
+
+  /// value09
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value09([this.element])
+      : dbValue = '09',
+        super('09', element);
+
+  /// value11
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value11([this.element])
+      : dbValue = '11',
+        super('11', element);
+
+  /// value12
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value12([this.element])
+      : dbValue = '12',
+        super('12', element);
+
+  /// value13
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value13([this.element])
+      : dbValue = '13',
+        super('13', element);
+
+  /// value14
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value14([this.element])
+      : dbValue = '14',
+        super('14', element);
+
+  /// value15
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value15([this.element])
+      : dbValue = '15',
+        super('15', element);
+
+  /// value19
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value19([this.element])
+      : dbValue = '19',
+        super('19', element);
+
+  /// value20
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value20([this.element])
+      : dbValue = '20',
+        super('20', element);
+
+  /// value21
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value21([this.element])
+      : dbValue = '21',
+        super('21', element);
+
+  /// value41
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleServicePlaceCodes.value41([this.element])
+      : dbValue = '41',
+        super('41', element);
+
+  /// For instances where an Element is present but not value
+
+  ExampleServicePlaceCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ExampleServicePlaceCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '01',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '19',
+    '20',
+    '21',
+    '41',
+  ];
+
+  /// Returns the enum value with an element attached
+  ExampleServicePlaceCodes withElement(Element? newElement) {
+    return ExampleServicePlaceCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ExampleServicePlaceCodes.$fhirCode';
+  String toString() => 'ExampleServicePlaceCodes.$value';
 }

@@ -5,142 +5,155 @@ import 'package:objectbox/objectbox.dart';
 
 /// A statistic about a statistic, e.g. Confidence interval or p-value
 @Entity()
-class AttributeEstimateType {
-  // Private constructor for internal use (like enum)
-  AttributeEstimateType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AttributeEstimateType values
-  /// value0000419
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AttributeEstimateType value0000419 = AttributeEstimateType._(
-    '0000419',
-  );
-
-  /// C53324
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AttributeEstimateType C53324 = AttributeEstimateType._(
-    'C53324',
-  );
-
-  /// value0000455
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AttributeEstimateType value0000455 = AttributeEstimateType._(
-    '0000455',
-  );
-
-  /// value0000420
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AttributeEstimateType value0000420 = AttributeEstimateType._(
-    '0000420',
-  );
-
-  /// C53245
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AttributeEstimateType C53245 = AttributeEstimateType._(
-    'C53245',
-  );
-
-  /// C44185
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AttributeEstimateType C44185 = AttributeEstimateType._(
-    'C44185',
-  );
-
-  /// C38013
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AttributeEstimateType C38013 = AttributeEstimateType._(
-    'C38013',
-  );
-
-  /// C53322
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AttributeEstimateType C53322 = AttributeEstimateType._(
-    'C53322',
-  );
-
-  /// value0000037
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AttributeEstimateType value0000037 = AttributeEstimateType._(
-    '0000037',
-  );
-
-  /// value0000421
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AttributeEstimateType value0000421 = AttributeEstimateType._(
-    '0000421',
-  );
-
-  /// C48918
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AttributeEstimateType C48918 = AttributeEstimateType._(
-    'C48918',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AttributeEstimateType elementOnly = AttributeEstimateType._('');
-
-  /// List of all enum-like values
-  static final List<AttributeEstimateType> values = [
-    value0000419,
-    C53324,
-    value0000455,
-    value0000420,
-    C53245,
-    C44185,
-    C38013,
-    C53322,
-    value0000037,
-    value0000421,
-    C48918,
-  ];
-
-  /// Returns the enum value with an element attached
-  AttributeEstimateType withElement(Element? newElement) {
-    return AttributeEstimateType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AttributeEstimateType extends FhirCode {
   /// Factory constructor to create [AttributeEstimateType] from JSON.
-  static AttributeEstimateType fromJson(Map<String, dynamic> json) {
+  factory AttributeEstimateType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AttributeEstimateType.elementOnly.withElement(element);
+      return AttributeEstimateType.elementOnly(element);
     }
-    return AttributeEstimateType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AttributeEstimateType._(value, element);
+    }
+    throw ArgumentError(
+      'AttributeEstimateType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value0000419
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AttributeEstimateType.value0000419([this.element])
+      : dbValue = '0000419',
+        super('0000419', element);
+
+  /// C53324
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AttributeEstimateType.C53324([this.element])
+      : dbValue = 'C53324',
+        super('C53324', element);
+
+  /// value0000455
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AttributeEstimateType.value0000455([this.element])
+      : dbValue = '0000455',
+        super('0000455', element);
+
+  /// value0000420
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AttributeEstimateType.value0000420([this.element])
+      : dbValue = '0000420',
+        super('0000420', element);
+
+  /// C53245
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AttributeEstimateType.C53245([this.element])
+      : dbValue = 'C53245',
+        super('C53245', element);
+
+  /// C44185
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AttributeEstimateType.C44185([this.element])
+      : dbValue = 'C44185',
+        super('C44185', element);
+
+  /// C38013
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AttributeEstimateType.C38013([this.element])
+      : dbValue = 'C38013',
+        super('C38013', element);
+
+  /// C53322
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AttributeEstimateType.C53322([this.element])
+      : dbValue = 'C53322',
+        super('C53322', element);
+
+  /// value0000037
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AttributeEstimateType.value0000037([this.element])
+      : dbValue = '0000037',
+        super('0000037', element);
+
+  /// value0000421
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AttributeEstimateType.value0000421([this.element])
+      : dbValue = '0000421',
+        super('0000421', element);
+
+  /// C48918
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AttributeEstimateType.C48918([this.element])
+      : dbValue = 'C48918',
+        super('C48918', element);
+
+  /// For instances where an Element is present but not value
+
+  AttributeEstimateType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AttributeEstimateType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '0000419',
+    'C53324',
+    '0000455',
+    '0000420',
+    'C53245',
+    'C44185',
+    'C38013',
+    'C53322',
+    '0000037',
+    '0000421',
+    'C48918',
+  ];
+
+  /// Returns the enum value with an element attached
+  AttributeEstimateType withElement(Element? newElement) {
+    return AttributeEstimateType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AttributeEstimateType.$fhirCode';
+  String toString() => 'AttributeEstimateType.$value';
 }

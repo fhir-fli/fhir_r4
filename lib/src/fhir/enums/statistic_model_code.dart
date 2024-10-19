@@ -5,693 +5,699 @@ import 'package:objectbox/objectbox.dart';
 
 /// The handling of the variable in statistical analysis for exposures or outcomes.
 @Entity()
-class StatisticModelCode {
-  // Private constructor for internal use (like enum)
-  StatisticModelCode._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// StatisticModelCode values
-  /// oneTailedTest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode oneTailedTest = StatisticModelCode._(
-    'oneTailedTest',
-  );
-
-  /// twoTailedTest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode twoTailedTest = StatisticModelCode._(
-    'twoTailedTest',
-  );
-
-  /// zTest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode zTest = StatisticModelCode._(
-    'zTest',
-  );
-
-  /// oneSampleTTest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode oneSampleTTest = StatisticModelCode._(
-    'oneSampleTTest',
-  );
-
-  /// twoSampleTTest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode twoSampleTTest = StatisticModelCode._(
-    'twoSampleTTest',
-  );
-
-  /// pairedTTest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode pairedTTest = StatisticModelCode._(
-    'pairedTTest',
-  );
-
-  /// chiSquareTest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode chiSquareTest = StatisticModelCode._(
-    'chiSquareTest',
-  );
-
-  /// chiSquareTestTrend
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode chiSquareTestTrend = StatisticModelCode._(
-    'chiSquareTestTrend',
-  );
-
-  /// pearsonCorrelation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode pearsonCorrelation = StatisticModelCode._(
-    'pearsonCorrelation',
-  );
-
-  /// anova
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode anova = StatisticModelCode._(
-    'anova',
-  );
-
-  /// anovaOneWay
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode anovaOneWay = StatisticModelCode._(
-    'anovaOneWay',
-  );
-
-  /// anovaTwoWay
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode anovaTwoWay = StatisticModelCode._(
-    'anovaTwoWay',
-  );
-
-  /// anovaTwoWayReplication
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode anovaTwoWayReplication = StatisticModelCode._(
-    'anovaTwoWayReplication',
-  );
-
-  /// manova
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode manova = StatisticModelCode._(
-    'manova',
-  );
-
-  /// anovaThreeWay
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode anovaThreeWay = StatisticModelCode._(
-    'anovaThreeWay',
-  );
-
-  /// signTest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode signTest = StatisticModelCode._(
-    'signTest',
-  );
-
-  /// wilcoxonSignedRankTest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode wilcoxonSignedRankTest = StatisticModelCode._(
-    'wilcoxonSignedRankTest',
-  );
-
-  /// wilcoxonRankSumTest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode wilcoxonRankSumTest = StatisticModelCode._(
-    'wilcoxonRankSumTest',
-  );
-
-  /// mannWhitneyUTest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode mannWhitneyUTest = StatisticModelCode._(
-    'mannWhitneyUTest',
-  );
-
-  /// fishersExactTest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode fishersExactTest = StatisticModelCode._(
-    'fishersExactTest',
-  );
-
-  /// mcnemarsTest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode mcnemarsTest = StatisticModelCode._(
-    'mcnemarsTest',
-  );
-
-  /// kruskalWallisTest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode kruskalWallisTest = StatisticModelCode._(
-    'kruskalWallisTest',
-  );
-
-  /// spearmanCorrelation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode spearmanCorrelation = StatisticModelCode._(
-    'spearmanCorrelation',
-  );
-
-  /// kendallCorrelation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode kendallCorrelation = StatisticModelCode._(
-    'kendallCorrelation',
-  );
-
-  /// friedmanTest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode friedmanTest = StatisticModelCode._(
-    'friedmanTest',
-  );
-
-  /// goodmanKruskasGamma
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode goodmanKruskasGamma = StatisticModelCode._(
-    'goodmanKruskasGamma',
-  );
-
-  /// glm
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode glm = StatisticModelCode._(
-    'glm',
-  );
-
-  /// glmProbit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode glmProbit = StatisticModelCode._(
-    'glmProbit',
-  );
-
-  /// glmLogit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode glmLogit = StatisticModelCode._(
-    'glmLogit',
-  );
-
-  /// glmIdentity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode glmIdentity = StatisticModelCode._(
-    'glmIdentity',
-  );
-
-  /// glmLog
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode glmLog = StatisticModelCode._(
-    'glmLog',
-  );
-
-  /// glmGeneralizedLogit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode glmGeneralizedLogit = StatisticModelCode._(
-    'glmGeneralizedLogit',
-  );
-
-  /// glmm
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode glmm = StatisticModelCode._(
-    'glmm',
-  );
-
-  /// glmmProbit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode glmmProbit = StatisticModelCode._(
-    'glmmProbit',
-  );
-
-  /// glmmLogit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode glmmLogit = StatisticModelCode._(
-    'glmmLogit',
-  );
-
-  /// glmmIdentity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode glmmIdentity = StatisticModelCode._(
-    'glmmIdentity',
-  );
-
-  /// glmmLog
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode glmmLog = StatisticModelCode._(
-    'glmmLog',
-  );
-
-  /// glmmGeneralizedLogit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode glmmGeneralizedLogit = StatisticModelCode._(
-    'glmmGeneralizedLogit',
-  );
-
-  /// linearRegression
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode linearRegression = StatisticModelCode._(
-    'linearRegression',
-  );
-
-  /// logisticRegression
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode logisticRegression = StatisticModelCode._(
-    'logisticRegression',
-  );
-
-  /// polynomialRegression
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode polynomialRegression = StatisticModelCode._(
-    'polynomialRegression',
-  );
-
-  /// coxProportionalHazards
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode coxProportionalHazards = StatisticModelCode._(
-    'coxProportionalHazards',
-  );
-
-  /// binomialDistributionRegression
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode binomialDistributionRegression =
-      StatisticModelCode._(
-    'binomialDistributionRegression',
-  );
-
-  /// multinomialDistributionRegression
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode multinomialDistributionRegression =
-      StatisticModelCode._(
-    'multinomialDistributionRegression',
-  );
-
-  /// poissonRegression
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode poissonRegression = StatisticModelCode._(
-    'poissonRegression',
-  );
-
-  /// negativeBinomialRegression
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode negativeBinomialRegression =
-      StatisticModelCode._(
-    'negativeBinomialRegression',
-  );
-
-  /// zeroCellConstant
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode zeroCellConstant = StatisticModelCode._(
-    'zeroCellConstant',
-  );
-
-  /// zeroCellContinuityCorrection
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode zeroCellContinuityCorrection =
-      StatisticModelCode._(
-    'zeroCellContinuityCorrection',
-  );
-
-  /// adjusted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode adjusted = StatisticModelCode._(
-    'adjusted',
-  );
-
-  /// interactionTerm
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode interactionTerm = StatisticModelCode._(
-    'interactionTerm',
-  );
-
-  /// manteHaenszelMethod
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode manteHaenszelMethod = StatisticModelCode._(
-    'manteHaenszelMethod',
-  );
-
-  /// metaAnalysis
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode metaAnalysis = StatisticModelCode._(
-    'metaAnalysis',
-  );
-
-  /// inverseVariance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode inverseVariance = StatisticModelCode._(
-    'inverseVariance',
-  );
-
-  /// petoMethod
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode petoMethod = StatisticModelCode._(
-    'petoMethod',
-  );
-
-  /// hartungKnapp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode hartungKnapp = StatisticModelCode._(
-    'hartungKnapp',
-  );
-
-  /// modifiedHartungKnapp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode modifiedHartungKnapp = StatisticModelCode._(
-    'modifiedHartungKnapp',
-  );
-
-  /// effectsFixed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode effectsFixed = StatisticModelCode._(
-    'effectsFixed',
-  );
-
-  /// effectsRandom
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode effectsRandom = StatisticModelCode._(
-    'effectsRandom',
-  );
-
-  /// chiSquareTestHomogeneity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode chiSquareTestHomogeneity =
-      StatisticModelCode._(
-    'chiSquareTestHomogeneity',
-  );
-
-  /// dersimonianLairdMethod
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode dersimonianLairdMethod = StatisticModelCode._(
-    'dersimonianLairdMethod',
-  );
-
-  /// pauleMandelMethod
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode pauleMandelMethod = StatisticModelCode._(
-    'pauleMandelMethod',
-  );
-
-  /// restrictedLikelihood
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode restrictedLikelihood = StatisticModelCode._(
-    'restrictedLikelihood',
-  );
-
-  /// maximumLikelihood
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode maximumLikelihood = StatisticModelCode._(
-    'maximumLikelihood',
-  );
-
-  /// empiricalBayes
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode empiricalBayes = StatisticModelCode._(
-    'empiricalBayes',
-  );
-
-  /// hunterSchmidt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode hunterSchmidt = StatisticModelCode._(
-    'hunterSchmidt',
-  );
-
-  /// sidikJonkman
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode sidikJonkman = StatisticModelCode._(
-    'sidikJonkman',
-  );
-
-  /// hedgesMethod
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode hedgesMethod = StatisticModelCode._(
-    'hedgesMethod',
-  );
-
-  /// tauDersimonianLaird
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode tauDersimonianLaird = StatisticModelCode._(
-    'tauDersimonianLaird',
-  );
-
-  /// tauPauleMandel
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode tauPauleMandel = StatisticModelCode._(
-    'tauPauleMandel',
-  );
-
-  /// tauRestrictedMaximumLikelihood
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode tauRestrictedMaximumLikelihood =
-      StatisticModelCode._(
-    'tauRestrictedMaximumLikelihood',
-  );
-
-  /// tauMaximumLikelihood
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode tauMaximumLikelihood = StatisticModelCode._(
-    'tauMaximumLikelihood',
-  );
-
-  /// tauEmpiricalBayes
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode tauEmpiricalBayes = StatisticModelCode._(
-    'tauEmpiricalBayes',
-  );
-
-  /// tauHunterSchmidt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode tauHunterSchmidt = StatisticModelCode._(
-    'tauHunterSchmidt',
-  );
-
-  /// tauSidikJonkman
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode tauSidikJonkman = StatisticModelCode._(
-    'tauSidikJonkman',
-  );
-
-  /// tauHedges
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode tauHedges = StatisticModelCode._(
-    'tauHedges',
-  );
-
-  /// poolMantelHaenzsel
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode poolMantelHaenzsel = StatisticModelCode._(
-    'poolMantelHaenzsel',
-  );
-
-  /// poolInverseVariance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode poolInverseVariance = StatisticModelCode._(
-    'poolInverseVariance',
-  );
-
-  /// poolPeto
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode poolPeto = StatisticModelCode._(
-    'poolPeto',
-  );
-
-  /// poolGeneralizedLinearMixedModel
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StatisticModelCode poolGeneralizedLinearMixedModel =
-      StatisticModelCode._(
-    'poolGeneralizedLinearMixedModel',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final StatisticModelCode elementOnly = StatisticModelCode._('');
-
-  /// List of all enum-like values
-  static final List<StatisticModelCode> values = [
-    oneTailedTest,
-    twoTailedTest,
-    zTest,
-    oneSampleTTest,
-    twoSampleTTest,
-    pairedTTest,
-    chiSquareTest,
-    chiSquareTestTrend,
-    pearsonCorrelation,
-    anova,
-    anovaOneWay,
-    anovaTwoWay,
-    anovaTwoWayReplication,
-    manova,
-    anovaThreeWay,
-    signTest,
-    wilcoxonSignedRankTest,
-    wilcoxonRankSumTest,
-    mannWhitneyUTest,
-    fishersExactTest,
-    mcnemarsTest,
-    kruskalWallisTest,
-    spearmanCorrelation,
-    kendallCorrelation,
-    friedmanTest,
-    goodmanKruskasGamma,
-    glm,
-    glmProbit,
-    glmLogit,
-    glmIdentity,
-    glmLog,
-    glmGeneralizedLogit,
-    glmm,
-    glmmProbit,
-    glmmLogit,
-    glmmIdentity,
-    glmmLog,
-    glmmGeneralizedLogit,
-    linearRegression,
-    logisticRegression,
-    polynomialRegression,
-    coxProportionalHazards,
-    binomialDistributionRegression,
-    multinomialDistributionRegression,
-    poissonRegression,
-    negativeBinomialRegression,
-    zeroCellConstant,
-    zeroCellContinuityCorrection,
-    adjusted,
-    interactionTerm,
-    manteHaenszelMethod,
-    metaAnalysis,
-    inverseVariance,
-    petoMethod,
-    hartungKnapp,
-    modifiedHartungKnapp,
-    effectsFixed,
-    effectsRandom,
-    chiSquareTestHomogeneity,
-    dersimonianLairdMethod,
-    pauleMandelMethod,
-    restrictedLikelihood,
-    maximumLikelihood,
-    empiricalBayes,
-    hunterSchmidt,
-    sidikJonkman,
-    hedgesMethod,
-    tauDersimonianLaird,
-    tauPauleMandel,
-    tauRestrictedMaximumLikelihood,
-    tauMaximumLikelihood,
-    tauEmpiricalBayes,
-    tauHunterSchmidt,
-    tauSidikJonkman,
-    tauHedges,
-    poolMantelHaenzsel,
-    poolInverseVariance,
-    poolPeto,
-    poolGeneralizedLinearMixedModel,
-  ];
-
-  /// Returns the enum value with an element attached
-  StatisticModelCode withElement(Element? newElement) {
-    return StatisticModelCode._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class StatisticModelCode extends FhirCode {
   /// Factory constructor to create [StatisticModelCode] from JSON.
-  static StatisticModelCode fromJson(Map<String, dynamic> json) {
+  factory StatisticModelCode.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StatisticModelCode.elementOnly.withElement(element);
+      return StatisticModelCode.elementOnly(element);
     }
-    return StatisticModelCode.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return StatisticModelCode._(value, element);
+    }
+    throw ArgumentError(
+      'StatisticModelCode.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// oneTailedTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.oneTailedTest([this.element])
+      : dbValue = 'oneTailedTest',
+        super('oneTailedTest', element);
+
+  /// twoTailedTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.twoTailedTest([this.element])
+      : dbValue = 'twoTailedTest',
+        super('twoTailedTest', element);
+
+  /// zTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.zTest([this.element])
+      : dbValue = 'zTest',
+        super('zTest', element);
+
+  /// oneSampleTTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.oneSampleTTest([this.element])
+      : dbValue = 'oneSampleTTest',
+        super('oneSampleTTest', element);
+
+  /// twoSampleTTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.twoSampleTTest([this.element])
+      : dbValue = 'twoSampleTTest',
+        super('twoSampleTTest', element);
+
+  /// pairedTTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.pairedTTest([this.element])
+      : dbValue = 'pairedTTest',
+        super('pairedTTest', element);
+
+  /// chiSquareTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.chiSquareTest([this.element])
+      : dbValue = 'chiSquareTest',
+        super('chiSquareTest', element);
+
+  /// chiSquareTestTrend
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.chiSquareTestTrend([this.element])
+      : dbValue = 'chiSquareTestTrend',
+        super('chiSquareTestTrend', element);
+
+  /// pearsonCorrelation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.pearsonCorrelation([this.element])
+      : dbValue = 'pearsonCorrelation',
+        super('pearsonCorrelation', element);
+
+  /// anova
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.anova([this.element])
+      : dbValue = 'anova',
+        super('anova', element);
+
+  /// anovaOneWay
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.anovaOneWay([this.element])
+      : dbValue = 'anovaOneWay',
+        super('anovaOneWay', element);
+
+  /// anovaTwoWay
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.anovaTwoWay([this.element])
+      : dbValue = 'anovaTwoWay',
+        super('anovaTwoWay', element);
+
+  /// anovaTwoWayReplication
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.anovaTwoWayReplication([this.element])
+      : dbValue = 'anovaTwoWayReplication',
+        super('anovaTwoWayReplication', element);
+
+  /// manova
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.manova([this.element])
+      : dbValue = 'manova',
+        super('manova', element);
+
+  /// anovaThreeWay
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.anovaThreeWay([this.element])
+      : dbValue = 'anovaThreeWay',
+        super('anovaThreeWay', element);
+
+  /// signTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.signTest([this.element])
+      : dbValue = 'signTest',
+        super('signTest', element);
+
+  /// wilcoxonSignedRankTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.wilcoxonSignedRankTest([this.element])
+      : dbValue = 'wilcoxonSignedRankTest',
+        super('wilcoxonSignedRankTest', element);
+
+  /// wilcoxonRankSumTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.wilcoxonRankSumTest([this.element])
+      : dbValue = 'wilcoxonRankSumTest',
+        super('wilcoxonRankSumTest', element);
+
+  /// mannWhitneyUTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.mannWhitneyUTest([this.element])
+      : dbValue = 'mannWhitneyUTest',
+        super('mannWhitneyUTest', element);
+
+  /// fishersExactTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.fishersExactTest([this.element])
+      : dbValue = 'fishersExactTest',
+        super('fishersExactTest', element);
+
+  /// mcnemarsTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.mcnemarsTest([this.element])
+      : dbValue = 'mcnemarsTest',
+        super('mcnemarsTest', element);
+
+  /// kruskalWallisTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.kruskalWallisTest([this.element])
+      : dbValue = 'kruskalWallisTest',
+        super('kruskalWallisTest', element);
+
+  /// spearmanCorrelation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.spearmanCorrelation([this.element])
+      : dbValue = 'spearmanCorrelation',
+        super('spearmanCorrelation', element);
+
+  /// kendallCorrelation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.kendallCorrelation([this.element])
+      : dbValue = 'kendallCorrelation',
+        super('kendallCorrelation', element);
+
+  /// friedmanTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.friedmanTest([this.element])
+      : dbValue = 'friedmanTest',
+        super('friedmanTest', element);
+
+  /// goodmanKruskasGamma
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.goodmanKruskasGamma([this.element])
+      : dbValue = 'goodmanKruskasGamma',
+        super('goodmanKruskasGamma', element);
+
+  /// glm
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.glm([this.element])
+      : dbValue = 'glm',
+        super('glm', element);
+
+  /// glmProbit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.glmProbit([this.element])
+      : dbValue = 'glmProbit',
+        super('glmProbit', element);
+
+  /// glmLogit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.glmLogit([this.element])
+      : dbValue = 'glmLogit',
+        super('glmLogit', element);
+
+  /// glmIdentity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.glmIdentity([this.element])
+      : dbValue = 'glmIdentity',
+        super('glmIdentity', element);
+
+  /// glmLog
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.glmLog([this.element])
+      : dbValue = 'glmLog',
+        super('glmLog', element);
+
+  /// glmGeneralizedLogit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.glmGeneralizedLogit([this.element])
+      : dbValue = 'glmGeneralizedLogit',
+        super('glmGeneralizedLogit', element);
+
+  /// glmm
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.glmm([this.element])
+      : dbValue = 'glmm',
+        super('glmm', element);
+
+  /// glmmProbit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.glmmProbit([this.element])
+      : dbValue = 'glmmProbit',
+        super('glmmProbit', element);
+
+  /// glmmLogit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.glmmLogit([this.element])
+      : dbValue = 'glmmLogit',
+        super('glmmLogit', element);
+
+  /// glmmIdentity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.glmmIdentity([this.element])
+      : dbValue = 'glmmIdentity',
+        super('glmmIdentity', element);
+
+  /// glmmLog
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.glmmLog([this.element])
+      : dbValue = 'glmmLog',
+        super('glmmLog', element);
+
+  /// glmmGeneralizedLogit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.glmmGeneralizedLogit([this.element])
+      : dbValue = 'glmmGeneralizedLogit',
+        super('glmmGeneralizedLogit', element);
+
+  /// linearRegression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.linearRegression([this.element])
+      : dbValue = 'linearRegression',
+        super('linearRegression', element);
+
+  /// logisticRegression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.logisticRegression([this.element])
+      : dbValue = 'logisticRegression',
+        super('logisticRegression', element);
+
+  /// polynomialRegression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.polynomialRegression([this.element])
+      : dbValue = 'polynomialRegression',
+        super('polynomialRegression', element);
+
+  /// coxProportionalHazards
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.coxProportionalHazards([this.element])
+      : dbValue = 'coxProportionalHazards',
+        super('coxProportionalHazards', element);
+
+  /// binomialDistributionRegression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.binomialDistributionRegression([this.element])
+      : dbValue = 'binomialDistributionRegression',
+        super('binomialDistributionRegression', element);
+
+  /// multinomialDistributionRegression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.multinomialDistributionRegression([this.element])
+      : dbValue = 'multinomialDistributionRegression',
+        super('multinomialDistributionRegression', element);
+
+  /// poissonRegression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.poissonRegression([this.element])
+      : dbValue = 'poissonRegression',
+        super('poissonRegression', element);
+
+  /// negativeBinomialRegression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.negativeBinomialRegression([this.element])
+      : dbValue = 'negativeBinomialRegression',
+        super('negativeBinomialRegression', element);
+
+  /// zeroCellConstant
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.zeroCellConstant([this.element])
+      : dbValue = 'zeroCellConstant',
+        super('zeroCellConstant', element);
+
+  /// zeroCellContinuityCorrection
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.zeroCellContinuityCorrection([this.element])
+      : dbValue = 'zeroCellContinuityCorrection',
+        super('zeroCellContinuityCorrection', element);
+
+  /// adjusted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.adjusted([this.element])
+      : dbValue = 'adjusted',
+        super('adjusted', element);
+
+  /// interactionTerm
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.interactionTerm([this.element])
+      : dbValue = 'interactionTerm',
+        super('interactionTerm', element);
+
+  /// manteHaenszelMethod
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.manteHaenszelMethod([this.element])
+      : dbValue = 'manteHaenszelMethod',
+        super('manteHaenszelMethod', element);
+
+  /// metaAnalysis
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.metaAnalysis([this.element])
+      : dbValue = 'metaAnalysis',
+        super('metaAnalysis', element);
+
+  /// inverseVariance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.inverseVariance([this.element])
+      : dbValue = 'inverseVariance',
+        super('inverseVariance', element);
+
+  /// petoMethod
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.petoMethod([this.element])
+      : dbValue = 'petoMethod',
+        super('petoMethod', element);
+
+  /// hartungKnapp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.hartungKnapp([this.element])
+      : dbValue = 'hartungKnapp',
+        super('hartungKnapp', element);
+
+  /// modifiedHartungKnapp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.modifiedHartungKnapp([this.element])
+      : dbValue = 'modifiedHartungKnapp',
+        super('modifiedHartungKnapp', element);
+
+  /// effectsFixed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.effectsFixed([this.element])
+      : dbValue = 'effectsFixed',
+        super('effectsFixed', element);
+
+  /// effectsRandom
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.effectsRandom([this.element])
+      : dbValue = 'effectsRandom',
+        super('effectsRandom', element);
+
+  /// chiSquareTestHomogeneity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.chiSquareTestHomogeneity([this.element])
+      : dbValue = 'chiSquareTestHomogeneity',
+        super('chiSquareTestHomogeneity', element);
+
+  /// dersimonianLairdMethod
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.dersimonianLairdMethod([this.element])
+      : dbValue = 'dersimonianLairdMethod',
+        super('dersimonianLairdMethod', element);
+
+  /// pauleMandelMethod
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.pauleMandelMethod([this.element])
+      : dbValue = 'pauleMandelMethod',
+        super('pauleMandelMethod', element);
+
+  /// restrictedLikelihood
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.restrictedLikelihood([this.element])
+      : dbValue = 'restrictedLikelihood',
+        super('restrictedLikelihood', element);
+
+  /// maximumLikelihood
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.maximumLikelihood([this.element])
+      : dbValue = 'maximumLikelihood',
+        super('maximumLikelihood', element);
+
+  /// empiricalBayes
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.empiricalBayes([this.element])
+      : dbValue = 'empiricalBayes',
+        super('empiricalBayes', element);
+
+  /// hunterSchmidt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.hunterSchmidt([this.element])
+      : dbValue = 'hunterSchmidt',
+        super('hunterSchmidt', element);
+
+  /// sidikJonkman
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.sidikJonkman([this.element])
+      : dbValue = 'sidikJonkman',
+        super('sidikJonkman', element);
+
+  /// hedgesMethod
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.hedgesMethod([this.element])
+      : dbValue = 'hedgesMethod',
+        super('hedgesMethod', element);
+
+  /// tauDersimonianLaird
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.tauDersimonianLaird([this.element])
+      : dbValue = 'tauDersimonianLaird',
+        super('tauDersimonianLaird', element);
+
+  /// tauPauleMandel
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.tauPauleMandel([this.element])
+      : dbValue = 'tauPauleMandel',
+        super('tauPauleMandel', element);
+
+  /// tauRestrictedMaximumLikelihood
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.tauRestrictedMaximumLikelihood([this.element])
+      : dbValue = 'tauRestrictedMaximumLikelihood',
+        super('tauRestrictedMaximumLikelihood', element);
+
+  /// tauMaximumLikelihood
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.tauMaximumLikelihood([this.element])
+      : dbValue = 'tauMaximumLikelihood',
+        super('tauMaximumLikelihood', element);
+
+  /// tauEmpiricalBayes
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.tauEmpiricalBayes([this.element])
+      : dbValue = 'tauEmpiricalBayes',
+        super('tauEmpiricalBayes', element);
+
+  /// tauHunterSchmidt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.tauHunterSchmidt([this.element])
+      : dbValue = 'tauHunterSchmidt',
+        super('tauHunterSchmidt', element);
+
+  /// tauSidikJonkman
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.tauSidikJonkman([this.element])
+      : dbValue = 'tauSidikJonkman',
+        super('tauSidikJonkman', element);
+
+  /// tauHedges
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.tauHedges([this.element])
+      : dbValue = 'tauHedges',
+        super('tauHedges', element);
+
+  /// poolMantelHaenzsel
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.poolMantelHaenzsel([this.element])
+      : dbValue = 'poolMantelHaenzsel',
+        super('poolMantelHaenzsel', element);
+
+  /// poolInverseVariance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.poolInverseVariance([this.element])
+      : dbValue = 'poolInverseVariance',
+        super('poolInverseVariance', element);
+
+  /// poolPeto
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.poolPeto([this.element])
+      : dbValue = 'poolPeto',
+        super('poolPeto', element);
+
+  /// poolGeneralizedLinearMixedModel
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StatisticModelCode.poolGeneralizedLinearMixedModel([this.element])
+      : dbValue = 'poolGeneralizedLinearMixedModel',
+        super('poolGeneralizedLinearMixedModel', element);
+
+  /// For instances where an Element is present but not value
+
+  StatisticModelCode.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  StatisticModelCode._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'oneTailedTest',
+    'twoTailedTest',
+    'zTest',
+    'oneSampleTTest',
+    'twoSampleTTest',
+    'pairedTTest',
+    'chiSquareTest',
+    'chiSquareTestTrend',
+    'pearsonCorrelation',
+    'anova',
+    'anovaOneWay',
+    'anovaTwoWay',
+    'anovaTwoWayReplication',
+    'manova',
+    'anovaThreeWay',
+    'signTest',
+    'wilcoxonSignedRankTest',
+    'wilcoxonRankSumTest',
+    'mannWhitneyUTest',
+    'fishersExactTest',
+    'mcnemarsTest',
+    'kruskalWallisTest',
+    'spearmanCorrelation',
+    'kendallCorrelation',
+    'friedmanTest',
+    'goodmanKruskasGamma',
+    'glm',
+    'glmProbit',
+    'glmLogit',
+    'glmIdentity',
+    'glmLog',
+    'glmGeneralizedLogit',
+    'glmm',
+    'glmmProbit',
+    'glmmLogit',
+    'glmmIdentity',
+    'glmmLog',
+    'glmmGeneralizedLogit',
+    'linearRegression',
+    'logisticRegression',
+    'polynomialRegression',
+    'coxProportionalHazards',
+    'binomialDistributionRegression',
+    'multinomialDistributionRegression',
+    'poissonRegression',
+    'negativeBinomialRegression',
+    'zeroCellConstant',
+    'zeroCellContinuityCorrection',
+    'adjusted',
+    'interactionTerm',
+    'manteHaenszelMethod',
+    'metaAnalysis',
+    'inverseVariance',
+    'petoMethod',
+    'hartungKnapp',
+    'modifiedHartungKnapp',
+    'effectsFixed',
+    'effectsRandom',
+    'chiSquareTestHomogeneity',
+    'dersimonianLairdMethod',
+    'pauleMandelMethod',
+    'restrictedLikelihood',
+    'maximumLikelihood',
+    'empiricalBayes',
+    'hunterSchmidt',
+    'sidikJonkman',
+    'hedgesMethod',
+    'tauDersimonianLaird',
+    'tauPauleMandel',
+    'tauRestrictedMaximumLikelihood',
+    'tauMaximumLikelihood',
+    'tauEmpiricalBayes',
+    'tauHunterSchmidt',
+    'tauSidikJonkman',
+    'tauHedges',
+    'poolMantelHaenzsel',
+    'poolInverseVariance',
+    'poolPeto',
+    'poolGeneralizedLinearMixedModel',
+  ];
+
+  /// Returns the enum value with an element attached
+  StatisticModelCode withElement(Element? newElement) {
+    return StatisticModelCode._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'StatisticModelCode.$fhirCode';
+  String toString() => 'StatisticModelCode.$value';
 }

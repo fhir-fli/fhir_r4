@@ -5,85 +5,92 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set defines a set of codes that can be used to indicate the particular target population the reference range applies to.
 @Entity()
-class ObservationReferenceRangeAppliesToCodes {
-  // Private constructor for internal use (like enum)
-  ObservationReferenceRangeAppliesToCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ObservationReferenceRangeAppliesToCodes values
-  /// value248153007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeAppliesToCodes value248153007 =
-      ObservationReferenceRangeAppliesToCodes._(
-    '248153007',
-  );
-
-  /// value248152002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeAppliesToCodes value248152002 =
-      ObservationReferenceRangeAppliesToCodes._(
-    '248152002',
-  );
-
-  /// value77386006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeAppliesToCodes value77386006 =
-      ObservationReferenceRangeAppliesToCodes._(
-    '77386006',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ObservationReferenceRangeAppliesToCodes elementOnly =
-      ObservationReferenceRangeAppliesToCodes._('');
-
-  /// List of all enum-like values
-  static final List<ObservationReferenceRangeAppliesToCodes> values = [
-    value248153007,
-    value248152002,
-    value77386006,
-  ];
-
-  /// Returns the enum value with an element attached
-  ObservationReferenceRangeAppliesToCodes withElement(Element? newElement) {
-    return ObservationReferenceRangeAppliesToCodes._(fhirCode,
-        element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ObservationReferenceRangeAppliesToCodes extends FhirCode {
   /// Factory constructor to create [ObservationReferenceRangeAppliesToCodes] from JSON.
-  static ObservationReferenceRangeAppliesToCodes fromJson(
+  factory ObservationReferenceRangeAppliesToCodes.fromJson(
       Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObservationReferenceRangeAppliesToCodes.elementOnly
-          .withElement(element);
+      return ObservationReferenceRangeAppliesToCodes.elementOnly(element);
     }
-    return ObservationReferenceRangeAppliesToCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ObservationReferenceRangeAppliesToCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ObservationReferenceRangeAppliesToCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value248153007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeAppliesToCodes.value248153007([this.element])
+      : dbValue = '248153007',
+        super('248153007', element);
+
+  /// value248152002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeAppliesToCodes.value248152002([this.element])
+      : dbValue = '248152002',
+        super('248152002', element);
+
+  /// value77386006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeAppliesToCodes.value77386006([this.element])
+      : dbValue = '77386006',
+        super('77386006', element);
+
+  /// For instances where an Element is present but not value
+
+  ObservationReferenceRangeAppliesToCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ObservationReferenceRangeAppliesToCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '248153007',
+    '248152002',
+    '77386006',
+  ];
+
+  /// Returns the enum value with an element attached
+  ObservationReferenceRangeAppliesToCodes withElement(Element? newElement) {
+    return ObservationReferenceRangeAppliesToCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ObservationReferenceRangeAppliesToCodes.$fhirCode';
+  String toString() => 'ObservationReferenceRangeAppliesToCodes.$value';
 }

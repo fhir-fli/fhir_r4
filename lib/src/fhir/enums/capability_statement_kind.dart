@@ -5,79 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// How a capability statement is intended to be used.
 @Entity()
-class CapabilityStatementKind {
-  // Private constructor for internal use (like enum)
-  CapabilityStatementKind._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CapabilityStatementKind values
-  /// instance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CapabilityStatementKind instance = CapabilityStatementKind._(
-    'instance',
-  );
-
-  /// capability
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CapabilityStatementKind capability = CapabilityStatementKind._(
-    'capability',
-  );
-
-  /// requirements
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CapabilityStatementKind requirements = CapabilityStatementKind._(
-    'requirements',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CapabilityStatementKind elementOnly =
-      CapabilityStatementKind._('');
-
-  /// List of all enum-like values
-  static final List<CapabilityStatementKind> values = [
-    instance,
-    capability,
-    requirements,
-  ];
-
-  /// Returns the enum value with an element attached
-  CapabilityStatementKind withElement(Element? newElement) {
-    return CapabilityStatementKind._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CapabilityStatementKind extends FhirCode {
   /// Factory constructor to create [CapabilityStatementKind] from JSON.
-  static CapabilityStatementKind fromJson(Map<String, dynamic> json) {
+  factory CapabilityStatementKind.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CapabilityStatementKind.elementOnly.withElement(element);
+      return CapabilityStatementKind.elementOnly(element);
     }
-    return CapabilityStatementKind.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CapabilityStatementKind._(value, element);
+    }
+    throw ArgumentError(
+      'CapabilityStatementKind.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// instance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CapabilityStatementKind.instance([this.element])
+      : dbValue = 'instance',
+        super('instance', element);
+
+  /// capability
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CapabilityStatementKind.capability([this.element])
+      : dbValue = 'capability',
+        super('capability', element);
+
+  /// requirements
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CapabilityStatementKind.requirements([this.element])
+      : dbValue = 'requirements',
+        super('requirements', element);
+
+  /// For instances where an Element is present but not value
+
+  CapabilityStatementKind.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CapabilityStatementKind._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'instance',
+    'capability',
+    'requirements',
+  ];
+
+  /// Returns the enum value with an element attached
+  CapabilityStatementKind withElement(Element? newElement) {
+    return CapabilityStatementKind._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CapabilityStatementKind.$fhirCode';
+  String toString() => 'CapabilityStatementKind.$value';
 }

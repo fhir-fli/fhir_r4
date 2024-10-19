@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The workflow/clinical status of the composition.
 @Entity()
-class CompositionStatus {
-  // Private constructor for internal use (like enum)
-  CompositionStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CompositionStatus values
-  /// preliminary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CompositionStatus preliminary = CompositionStatus._(
-    'preliminary',
-  );
-
-  /// final_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CompositionStatus final_ = CompositionStatus._(
-    'final',
-  );
-
-  /// amended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CompositionStatus amended = CompositionStatus._(
-    'amended',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CompositionStatus entered_in_error = CompositionStatus._(
-    'entered-in-error',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CompositionStatus elementOnly = CompositionStatus._('');
-
-  /// List of all enum-like values
-  static final List<CompositionStatus> values = [
-    preliminary,
-    final_,
-    amended,
-    entered_in_error,
-  ];
-
-  /// Returns the enum value with an element attached
-  CompositionStatus withElement(Element? newElement) {
-    return CompositionStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CompositionStatus extends FhirCode {
   /// Factory constructor to create [CompositionStatus] from JSON.
-  static CompositionStatus fromJson(Map<String, dynamic> json) {
+  factory CompositionStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CompositionStatus.elementOnly.withElement(element);
+      return CompositionStatus.elementOnly(element);
     }
-    return CompositionStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CompositionStatus._(value, element);
+    }
+    throw ArgumentError(
+      'CompositionStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// preliminary
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CompositionStatus.preliminary([this.element])
+      : dbValue = 'preliminary',
+        super('preliminary', element);
+
+  /// final_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CompositionStatus.final_([this.element])
+      : dbValue = 'final',
+        super('final', element);
+
+  /// amended
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CompositionStatus.amended([this.element])
+      : dbValue = 'amended',
+        super('amended', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CompositionStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// For instances where an Element is present but not value
+
+  CompositionStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CompositionStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'preliminary',
+    'final',
+    'amended',
+    'entered-in-error',
+  ];
+
+  /// Returns the enum value with an element attached
+  CompositionStatus withElement(Element? newElement) {
+    return CompositionStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CompositionStatus.$fhirCode';
+  String toString() => 'CompositionStatus.$value';
 }

@@ -5,71 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes a smattering of adjudication codes.
 @Entity()
-class AdjudicationErrorCodes {
-  // Private constructor for internal use (like enum)
-  AdjudicationErrorCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AdjudicationErrorCodes values
-  /// a001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdjudicationErrorCodes a001 = AdjudicationErrorCodes._(
-    'a001',
-  );
-
-  /// a002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdjudicationErrorCodes a002 = AdjudicationErrorCodes._(
-    'a002',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AdjudicationErrorCodes elementOnly =
-      AdjudicationErrorCodes._('');
-
-  /// List of all enum-like values
-  static final List<AdjudicationErrorCodes> values = [
-    a001,
-    a002,
-  ];
-
-  /// Returns the enum value with an element attached
-  AdjudicationErrorCodes withElement(Element? newElement) {
-    return AdjudicationErrorCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AdjudicationErrorCodes extends FhirCode {
   /// Factory constructor to create [AdjudicationErrorCodes] from JSON.
-  static AdjudicationErrorCodes fromJson(Map<String, dynamic> json) {
+  factory AdjudicationErrorCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdjudicationErrorCodes.elementOnly.withElement(element);
+      return AdjudicationErrorCodes.elementOnly(element);
     }
-    return AdjudicationErrorCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AdjudicationErrorCodes._(value, element);
+    }
+    throw ArgumentError(
+      'AdjudicationErrorCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// a001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdjudicationErrorCodes.a001([this.element])
+      : dbValue = 'a001',
+        super('a001', element);
+
+  /// a002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdjudicationErrorCodes.a002([this.element])
+      : dbValue = 'a002',
+        super('a002', element);
+
+  /// For instances where an Element is present but not value
+
+  AdjudicationErrorCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AdjudicationErrorCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'a001',
+    'a002',
+  ];
+
+  /// Returns the enum value with an element attached
+  AdjudicationErrorCodes withElement(Element? newElement) {
+    return AdjudicationErrorCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AdjudicationErrorCodes.$fhirCode';
+  String toString() => 'AdjudicationErrorCodes.$value';
 }

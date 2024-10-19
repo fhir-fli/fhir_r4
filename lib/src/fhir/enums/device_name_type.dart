@@ -5,102 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of name the device is referred by.
 @Entity()
-class DeviceNameType {
-  // Private constructor for internal use (like enum)
-  DeviceNameType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DeviceNameType values
-  /// udi_label_name
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceNameType udi_label_name = DeviceNameType._(
-    'udi-label-name',
-  );
-
-  /// user_friendly_name
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceNameType user_friendly_name = DeviceNameType._(
-    'user-friendly-name',
-  );
-
-  /// patient_reported_name
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceNameType patient_reported_name = DeviceNameType._(
-    'patient-reported-name',
-  );
-
-  /// manufacturer_name
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceNameType manufacturer_name = DeviceNameType._(
-    'manufacturer-name',
-  );
-
-  /// model_name
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceNameType model_name = DeviceNameType._(
-    'model-name',
-  );
-
-  /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceNameType other = DeviceNameType._(
-    'other',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final DeviceNameType elementOnly = DeviceNameType._('');
-
-  /// List of all enum-like values
-  static final List<DeviceNameType> values = [
-    udi_label_name,
-    user_friendly_name,
-    patient_reported_name,
-    manufacturer_name,
-    model_name,
-    other,
-  ];
-
-  /// Returns the enum value with an element attached
-  DeviceNameType withElement(Element? newElement) {
-    return DeviceNameType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class DeviceNameType extends FhirCode {
   /// Factory constructor to create [DeviceNameType] from JSON.
-  static DeviceNameType fromJson(Map<String, dynamic> json) {
+  factory DeviceNameType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceNameType.elementOnly.withElement(element);
+      return DeviceNameType.elementOnly(element);
     }
-    return DeviceNameType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return DeviceNameType._(value, element);
+    }
+    throw ArgumentError(
+      'DeviceNameType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// udi_label_name
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceNameType.udi_label_name([this.element])
+      : dbValue = 'udi-label-name',
+        super('udi-label-name', element);
+
+  /// user_friendly_name
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceNameType.user_friendly_name([this.element])
+      : dbValue = 'user-friendly-name',
+        super('user-friendly-name', element);
+
+  /// patient_reported_name
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceNameType.patient_reported_name([this.element])
+      : dbValue = 'patient-reported-name',
+        super('patient-reported-name', element);
+
+  /// manufacturer_name
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceNameType.manufacturer_name([this.element])
+      : dbValue = 'manufacturer-name',
+        super('manufacturer-name', element);
+
+  /// model_name
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceNameType.model_name([this.element])
+      : dbValue = 'model-name',
+        super('model-name', element);
+
+  /// other
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceNameType.other([this.element])
+      : dbValue = 'other',
+        super('other', element);
+
+  /// For instances where an Element is present but not value
+
+  DeviceNameType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  DeviceNameType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'udi-label-name',
+    'user-friendly-name',
+    'patient-reported-name',
+    'manufacturer-name',
+    'model-name',
+    'other',
+  ];
+
+  /// Returns the enum value with an element attached
+  DeviceNameType withElement(Element? newElement) {
+    return DeviceNameType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'DeviceNameType.$fhirCode';
+  String toString() => 'DeviceNameType.$value';
 }

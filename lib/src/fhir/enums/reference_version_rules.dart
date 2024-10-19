@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Whether a reference needs to be version specific or version independent, or whether either can be used.
 @Entity()
-class ReferenceVersionRules {
-  // Private constructor for internal use (like enum)
-  ReferenceVersionRules._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ReferenceVersionRules values
-  /// either
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReferenceVersionRules either = ReferenceVersionRules._(
-    'either',
-  );
-
-  /// independent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReferenceVersionRules independent = ReferenceVersionRules._(
-    'independent',
-  );
-
-  /// specific
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReferenceVersionRules specific = ReferenceVersionRules._(
-    'specific',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ReferenceVersionRules elementOnly = ReferenceVersionRules._('');
-
-  /// List of all enum-like values
-  static final List<ReferenceVersionRules> values = [
-    either,
-    independent,
-    specific,
-  ];
-
-  /// Returns the enum value with an element attached
-  ReferenceVersionRules withElement(Element? newElement) {
-    return ReferenceVersionRules._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ReferenceVersionRules extends FhirCode {
   /// Factory constructor to create [ReferenceVersionRules] from JSON.
-  static ReferenceVersionRules fromJson(Map<String, dynamic> json) {
+  factory ReferenceVersionRules.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ReferenceVersionRules.elementOnly.withElement(element);
+      return ReferenceVersionRules.elementOnly(element);
     }
-    return ReferenceVersionRules.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ReferenceVersionRules._(value, element);
+    }
+    throw ArgumentError(
+      'ReferenceVersionRules.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// either
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReferenceVersionRules.either([this.element])
+      : dbValue = 'either',
+        super('either', element);
+
+  /// independent
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReferenceVersionRules.independent([this.element])
+      : dbValue = 'independent',
+        super('independent', element);
+
+  /// specific
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReferenceVersionRules.specific([this.element])
+      : dbValue = 'specific',
+        super('specific', element);
+
+  /// For instances where an Element is present but not value
+
+  ReferenceVersionRules.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ReferenceVersionRules._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'either',
+    'independent',
+    'specific',
+  ];
+
+  /// Returns the enum value with an element attached
+  ReferenceVersionRules withElement(Element? newElement) {
+    return ReferenceVersionRules._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ReferenceVersionRules.$fhirCode';
+  String toString() => 'ReferenceVersionRules.$value';
 }

@@ -5,103 +5,108 @@ import 'package:objectbox/objectbox.dart';
 
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the reason why an administered dose has been assigned a particular status. Often, this reason describes why a dose is considered invalid. This value set is provided as a suggestive example.
 @Entity()
-class ImmunizationEvaluationDoseStatusReasonCodes {
-  // Private constructor for internal use (like enum)
-  ImmunizationEvaluationDoseStatusReasonCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ImmunizationEvaluationDoseStatusReasonCodes values
-  /// advstorage
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationEvaluationDoseStatusReasonCodes advstorage =
-      ImmunizationEvaluationDoseStatusReasonCodes._(
-    'advstorage',
-  );
-
-  /// coldchbrk
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationEvaluationDoseStatusReasonCodes coldchbrk =
-      ImmunizationEvaluationDoseStatusReasonCodes._(
-    'coldchbrk',
-  );
-
-  /// explot
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationEvaluationDoseStatusReasonCodes explot =
-      ImmunizationEvaluationDoseStatusReasonCodes._(
-    'explot',
-  );
-
-  /// outsidesched
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationEvaluationDoseStatusReasonCodes outsidesched =
-      ImmunizationEvaluationDoseStatusReasonCodes._(
-    'outsidesched',
-  );
-
-  /// prodrecall
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationEvaluationDoseStatusReasonCodes prodrecall =
-      ImmunizationEvaluationDoseStatusReasonCodes._(
-    'prodrecall',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ImmunizationEvaluationDoseStatusReasonCodes elementOnly =
-      ImmunizationEvaluationDoseStatusReasonCodes._('');
-
-  /// List of all enum-like values
-  static final List<ImmunizationEvaluationDoseStatusReasonCodes> values = [
-    advstorage,
-    coldchbrk,
-    explot,
-    outsidesched,
-    prodrecall,
-  ];
-
-  /// Returns the enum value with an element attached
-  ImmunizationEvaluationDoseStatusReasonCodes withElement(Element? newElement) {
-    return ImmunizationEvaluationDoseStatusReasonCodes._(fhirCode,
-        element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ImmunizationEvaluationDoseStatusReasonCodes extends FhirCode {
   /// Factory constructor to create [ImmunizationEvaluationDoseStatusReasonCodes] from JSON.
-  static ImmunizationEvaluationDoseStatusReasonCodes fromJson(
+  factory ImmunizationEvaluationDoseStatusReasonCodes.fromJson(
       Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImmunizationEvaluationDoseStatusReasonCodes.elementOnly
-          .withElement(element);
+      return ImmunizationEvaluationDoseStatusReasonCodes.elementOnly(element);
     }
-    return ImmunizationEvaluationDoseStatusReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ImmunizationEvaluationDoseStatusReasonCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ImmunizationEvaluationDoseStatusReasonCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// advstorage
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationEvaluationDoseStatusReasonCodes.advstorage([this.element])
+      : dbValue = 'advstorage',
+        super('advstorage', element);
+
+  /// coldchbrk
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationEvaluationDoseStatusReasonCodes.coldchbrk([this.element])
+      : dbValue = 'coldchbrk',
+        super('coldchbrk', element);
+
+  /// explot
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationEvaluationDoseStatusReasonCodes.explot([this.element])
+      : dbValue = 'explot',
+        super('explot', element);
+
+  /// outsidesched
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationEvaluationDoseStatusReasonCodes.outsidesched([this.element])
+      : dbValue = 'outsidesched',
+        super('outsidesched', element);
+
+  /// prodrecall
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationEvaluationDoseStatusReasonCodes.prodrecall([this.element])
+      : dbValue = 'prodrecall',
+        super('prodrecall', element);
+
+  /// For instances where an Element is present but not value
+
+  ImmunizationEvaluationDoseStatusReasonCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ImmunizationEvaluationDoseStatusReasonCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'advstorage',
+    'coldchbrk',
+    'explot',
+    'outsidesched',
+    'prodrecall',
+  ];
+
+  /// Returns the enum value with an element attached
+  ImmunizationEvaluationDoseStatusReasonCodes withElement(Element? newElement) {
+    return ImmunizationEvaluationDoseStatusReasonCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ImmunizationEvaluationDoseStatusReasonCodes.$fhirCode';
+  String toString() => 'ImmunizationEvaluationDoseStatusReasonCodes.$value';
 }

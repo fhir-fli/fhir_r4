@@ -5,71 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// Defines behavior for an action or a group for how many times that item may be repeated.
 @Entity()
-class ActionCardinalityBehavior {
-  // Private constructor for internal use (like enum)
-  ActionCardinalityBehavior._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ActionCardinalityBehavior values
-  /// single
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionCardinalityBehavior single = ActionCardinalityBehavior._(
-    'single',
-  );
-
-  /// multiple
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionCardinalityBehavior multiple = ActionCardinalityBehavior._(
-    'multiple',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ActionCardinalityBehavior elementOnly =
-      ActionCardinalityBehavior._('');
-
-  /// List of all enum-like values
-  static final List<ActionCardinalityBehavior> values = [
-    single,
-    multiple,
-  ];
-
-  /// Returns the enum value with an element attached
-  ActionCardinalityBehavior withElement(Element? newElement) {
-    return ActionCardinalityBehavior._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ActionCardinalityBehavior extends FhirCode {
   /// Factory constructor to create [ActionCardinalityBehavior] from JSON.
-  static ActionCardinalityBehavior fromJson(Map<String, dynamic> json) {
+  factory ActionCardinalityBehavior.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionCardinalityBehavior.elementOnly.withElement(element);
+      return ActionCardinalityBehavior.elementOnly(element);
     }
-    return ActionCardinalityBehavior.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ActionCardinalityBehavior._(value, element);
+    }
+    throw ArgumentError(
+      'ActionCardinalityBehavior.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// single
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionCardinalityBehavior.single([this.element])
+      : dbValue = 'single',
+        super('single', element);
+
+  /// multiple
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionCardinalityBehavior.multiple([this.element])
+      : dbValue = 'multiple',
+        super('multiple', element);
+
+  /// For instances where an Element is present but not value
+
+  ActionCardinalityBehavior.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ActionCardinalityBehavior._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'single',
+    'multiple',
+  ];
+
+  /// Returns the enum value with an element attached
+  ActionCardinalityBehavior withElement(Element? newElement) {
+    return ActionCardinalityBehavior._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ActionCardinalityBehavior.$fhirCode';
+  String toString() => 'ActionCardinalityBehavior.$value';
 }

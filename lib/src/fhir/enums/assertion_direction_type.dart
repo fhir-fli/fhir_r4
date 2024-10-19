@@ -5,71 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of direction to use for assertion.
 @Entity()
-class AssertionDirectionType {
-  // Private constructor for internal use (like enum)
-  AssertionDirectionType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AssertionDirectionType values
-  /// response
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AssertionDirectionType response = AssertionDirectionType._(
-    'response',
-  );
-
-  /// request
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AssertionDirectionType request = AssertionDirectionType._(
-    'request',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AssertionDirectionType elementOnly =
-      AssertionDirectionType._('');
-
-  /// List of all enum-like values
-  static final List<AssertionDirectionType> values = [
-    response,
-    request,
-  ];
-
-  /// Returns the enum value with an element attached
-  AssertionDirectionType withElement(Element? newElement) {
-    return AssertionDirectionType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AssertionDirectionType extends FhirCode {
   /// Factory constructor to create [AssertionDirectionType] from JSON.
-  static AssertionDirectionType fromJson(Map<String, dynamic> json) {
+  factory AssertionDirectionType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AssertionDirectionType.elementOnly.withElement(element);
+      return AssertionDirectionType.elementOnly(element);
     }
-    return AssertionDirectionType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AssertionDirectionType._(value, element);
+    }
+    throw ArgumentError(
+      'AssertionDirectionType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// response
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AssertionDirectionType.response([this.element])
+      : dbValue = 'response',
+        super('response', element);
+
+  /// request
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AssertionDirectionType.request([this.element])
+      : dbValue = 'request',
+        super('request', element);
+
+  /// For instances where an Element is present but not value
+
+  AssertionDirectionType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AssertionDirectionType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'response',
+    'request',
+  ];
+
+  /// Returns the enum value with an element attached
+  AssertionDirectionType withElement(Element? newElement) {
+    return AssertionDirectionType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AssertionDirectionType.$fhirCode';
+  String toString() => 'AssertionDirectionType.$value';
 }

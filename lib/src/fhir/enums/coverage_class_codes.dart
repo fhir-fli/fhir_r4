@@ -5,142 +5,155 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes Coverage Class codes.
 @Entity()
-class CoverageClassCodes {
-  // Private constructor for internal use (like enum)
-  CoverageClassCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CoverageClassCodes values
-  /// group
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CoverageClassCodes group = CoverageClassCodes._(
-    'group',
-  );
-
-  /// subgroup
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CoverageClassCodes subgroup = CoverageClassCodes._(
-    'subgroup',
-  );
-
-  /// plan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CoverageClassCodes plan = CoverageClassCodes._(
-    'plan',
-  );
-
-  /// subplan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CoverageClassCodes subplan = CoverageClassCodes._(
-    'subplan',
-  );
-
-  /// class_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CoverageClassCodes class_ = CoverageClassCodes._(
-    'class',
-  );
-
-  /// subclass
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CoverageClassCodes subclass = CoverageClassCodes._(
-    'subclass',
-  );
-
-  /// sequence
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CoverageClassCodes sequence = CoverageClassCodes._(
-    'sequence',
-  );
-
-  /// rxbin
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CoverageClassCodes rxbin = CoverageClassCodes._(
-    'rxbin',
-  );
-
-  /// rxpcn
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CoverageClassCodes rxpcn = CoverageClassCodes._(
-    'rxpcn',
-  );
-
-  /// rxid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CoverageClassCodes rxid = CoverageClassCodes._(
-    'rxid',
-  );
-
-  /// rxgroup
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CoverageClassCodes rxgroup = CoverageClassCodes._(
-    'rxgroup',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CoverageClassCodes elementOnly = CoverageClassCodes._('');
-
-  /// List of all enum-like values
-  static final List<CoverageClassCodes> values = [
-    group,
-    subgroup,
-    plan,
-    subplan,
-    class_,
-    subclass,
-    sequence,
-    rxbin,
-    rxpcn,
-    rxid,
-    rxgroup,
-  ];
-
-  /// Returns the enum value with an element attached
-  CoverageClassCodes withElement(Element? newElement) {
-    return CoverageClassCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CoverageClassCodes extends FhirCode {
   /// Factory constructor to create [CoverageClassCodes] from JSON.
-  static CoverageClassCodes fromJson(Map<String, dynamic> json) {
+  factory CoverageClassCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CoverageClassCodes.elementOnly.withElement(element);
+      return CoverageClassCodes.elementOnly(element);
     }
-    return CoverageClassCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CoverageClassCodes._(value, element);
+    }
+    throw ArgumentError(
+      'CoverageClassCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// group
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CoverageClassCodes.group([this.element])
+      : dbValue = 'group',
+        super('group', element);
+
+  /// subgroup
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CoverageClassCodes.subgroup([this.element])
+      : dbValue = 'subgroup',
+        super('subgroup', element);
+
+  /// plan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CoverageClassCodes.plan([this.element])
+      : dbValue = 'plan',
+        super('plan', element);
+
+  /// subplan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CoverageClassCodes.subplan([this.element])
+      : dbValue = 'subplan',
+        super('subplan', element);
+
+  /// class_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CoverageClassCodes.class_([this.element])
+      : dbValue = 'class',
+        super('class', element);
+
+  /// subclass
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CoverageClassCodes.subclass([this.element])
+      : dbValue = 'subclass',
+        super('subclass', element);
+
+  /// sequence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CoverageClassCodes.sequence([this.element])
+      : dbValue = 'sequence',
+        super('sequence', element);
+
+  /// rxbin
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CoverageClassCodes.rxbin([this.element])
+      : dbValue = 'rxbin',
+        super('rxbin', element);
+
+  /// rxpcn
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CoverageClassCodes.rxpcn([this.element])
+      : dbValue = 'rxpcn',
+        super('rxpcn', element);
+
+  /// rxid
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CoverageClassCodes.rxid([this.element])
+      : dbValue = 'rxid',
+        super('rxid', element);
+
+  /// rxgroup
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CoverageClassCodes.rxgroup([this.element])
+      : dbValue = 'rxgroup',
+        super('rxgroup', element);
+
+  /// For instances where an Element is present but not value
+
+  CoverageClassCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CoverageClassCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'group',
+    'subgroup',
+    'plan',
+    'subplan',
+    'class',
+    'subclass',
+    'sequence',
+    'rxbin',
+    'rxpcn',
+    'rxid',
+    'rxgroup',
+  ];
+
+  /// Returns the enum value with an element attached
+  CoverageClassCodes withElement(Element? newElement) {
+    return CoverageClassCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CoverageClassCodes.$fhirCode';
+  String toString() => 'CoverageClassCodes.$value';
 }

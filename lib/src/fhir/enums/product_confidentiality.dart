@@ -5,73 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// Confidentiality rating, e.g. commercial sensitivity for a Medicinal Product.
 @Entity()
-class ProductConfidentiality {
-  // Private constructor for internal use (like enum)
-  ProductConfidentiality._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ProductConfidentiality values
-  /// CommerciallySensitive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductConfidentiality CommerciallySensitive =
-      ProductConfidentiality._(
-    'CommerciallySensitive',
-  );
-
-  /// NotCommerciallySensitive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProductConfidentiality NotCommerciallySensitive =
-      ProductConfidentiality._(
-    'NotCommerciallySensitive',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ProductConfidentiality elementOnly =
-      ProductConfidentiality._('');
-
-  /// List of all enum-like values
-  static final List<ProductConfidentiality> values = [
-    CommerciallySensitive,
-    NotCommerciallySensitive,
-  ];
-
-  /// Returns the enum value with an element attached
-  ProductConfidentiality withElement(Element? newElement) {
-    return ProductConfidentiality._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ProductConfidentiality extends FhirCode {
   /// Factory constructor to create [ProductConfidentiality] from JSON.
-  static ProductConfidentiality fromJson(Map<String, dynamic> json) {
+  factory ProductConfidentiality.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ProductConfidentiality.elementOnly.withElement(element);
+      return ProductConfidentiality.elementOnly(element);
     }
-    return ProductConfidentiality.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ProductConfidentiality._(value, element);
+    }
+    throw ArgumentError(
+      'ProductConfidentiality.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// CommerciallySensitive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductConfidentiality.CommerciallySensitive([this.element])
+      : dbValue = 'CommerciallySensitive',
+        super('CommerciallySensitive', element);
+
+  /// NotCommerciallySensitive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProductConfidentiality.NotCommerciallySensitive([this.element])
+      : dbValue = 'NotCommerciallySensitive',
+        super('NotCommerciallySensitive', element);
+
+  /// For instances where an Element is present but not value
+
+  ProductConfidentiality.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ProductConfidentiality._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'CommerciallySensitive',
+    'NotCommerciallySensitive',
+  ];
+
+  /// Returns the enum value with an element attached
+  ProductConfidentiality withElement(Element? newElement) {
+    return ProductConfidentiality._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ProductConfidentiality.$fhirCode';
+  String toString() => 'ProductConfidentiality.$value';
 }

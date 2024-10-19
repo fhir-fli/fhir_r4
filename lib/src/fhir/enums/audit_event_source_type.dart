@@ -5,126 +5,139 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of process where the audit event originated from.
 @Entity()
-class AuditEventSourceType {
-  // Private constructor for internal use (like enum)
-  AuditEventSourceType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AuditEventSourceType values
-  /// value1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventSourceType value1 = AuditEventSourceType._(
-    '1',
-  );
-
-  /// value2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventSourceType value2 = AuditEventSourceType._(
-    '2',
-  );
-
-  /// value3
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventSourceType value3 = AuditEventSourceType._(
-    '3',
-  );
-
-  /// value4
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventSourceType value4 = AuditEventSourceType._(
-    '4',
-  );
-
-  /// value5
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventSourceType value5 = AuditEventSourceType._(
-    '5',
-  );
-
-  /// value6
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventSourceType value6 = AuditEventSourceType._(
-    '6',
-  );
-
-  /// value7
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventSourceType value7 = AuditEventSourceType._(
-    '7',
-  );
-
-  /// value8
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventSourceType value8 = AuditEventSourceType._(
-    '8',
-  );
-
-  /// value9
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventSourceType value9 = AuditEventSourceType._(
-    '9',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AuditEventSourceType elementOnly = AuditEventSourceType._('');
-
-  /// List of all enum-like values
-  static final List<AuditEventSourceType> values = [
-    value1,
-    value2,
-    value3,
-    value4,
-    value5,
-    value6,
-    value7,
-    value8,
-    value9,
-  ];
-
-  /// Returns the enum value with an element attached
-  AuditEventSourceType withElement(Element? newElement) {
-    return AuditEventSourceType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AuditEventSourceType extends FhirCode {
   /// Factory constructor to create [AuditEventSourceType] from JSON.
-  static AuditEventSourceType fromJson(Map<String, dynamic> json) {
+  factory AuditEventSourceType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AuditEventSourceType.elementOnly.withElement(element);
+      return AuditEventSourceType.elementOnly(element);
     }
-    return AuditEventSourceType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AuditEventSourceType._(value, element);
+    }
+    throw ArgumentError(
+      'AuditEventSourceType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventSourceType.value1([this.element])
+      : dbValue = '1',
+        super('1', element);
+
+  /// value2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventSourceType.value2([this.element])
+      : dbValue = '2',
+        super('2', element);
+
+  /// value3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventSourceType.value3([this.element])
+      : dbValue = '3',
+        super('3', element);
+
+  /// value4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventSourceType.value4([this.element])
+      : dbValue = '4',
+        super('4', element);
+
+  /// value5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventSourceType.value5([this.element])
+      : dbValue = '5',
+        super('5', element);
+
+  /// value6
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventSourceType.value6([this.element])
+      : dbValue = '6',
+        super('6', element);
+
+  /// value7
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventSourceType.value7([this.element])
+      : dbValue = '7',
+        super('7', element);
+
+  /// value8
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventSourceType.value8([this.element])
+      : dbValue = '8',
+        super('8', element);
+
+  /// value9
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventSourceType.value9([this.element])
+      : dbValue = '9',
+        super('9', element);
+
+  /// For instances where an Element is present but not value
+
+  AuditEventSourceType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AuditEventSourceType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+  ];
+
+  /// Returns the enum value with an element attached
+  AuditEventSourceType withElement(Element? newElement) {
+    return AuditEventSourceType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AuditEventSourceType.$fhirCode';
+  String toString() => 'AuditEventSourceType.$value';
 }

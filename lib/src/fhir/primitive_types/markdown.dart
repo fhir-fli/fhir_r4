@@ -80,6 +80,7 @@ class FhirMarkdown extends PrimitiveType<String> {
 
   /// Returns the FHIR type as 'markdown'.
   @override
+  @Transient()
   String get fhirType => 'markdown';
 
   /// Serializes the instance to JSON with standardized keys

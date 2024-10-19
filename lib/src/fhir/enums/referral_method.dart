@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// The methods of referral can be used when referring to a specific HealthCareService resource.
 @Entity()
-class ReferralMethod {
-  // Private constructor for internal use (like enum)
-  ReferralMethod._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ReferralMethod values
-  /// fax
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReferralMethod fax = ReferralMethod._(
-    'fax',
-  );
-
-  /// phone
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReferralMethod phone = ReferralMethod._(
-    'phone',
-  );
-
-  /// elec
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReferralMethod elec = ReferralMethod._(
-    'elec',
-  );
-
-  /// semail
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReferralMethod semail = ReferralMethod._(
-    'semail',
-  );
-
-  /// mail
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReferralMethod mail = ReferralMethod._(
-    'mail',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ReferralMethod elementOnly = ReferralMethod._('');
-
-  /// List of all enum-like values
-  static final List<ReferralMethod> values = [
-    fax,
-    phone,
-    elec,
-    semail,
-    mail,
-  ];
-
-  /// Returns the enum value with an element attached
-  ReferralMethod withElement(Element? newElement) {
-    return ReferralMethod._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ReferralMethod extends FhirCode {
   /// Factory constructor to create [ReferralMethod] from JSON.
-  static ReferralMethod fromJson(Map<String, dynamic> json) {
+  factory ReferralMethod.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ReferralMethod.elementOnly.withElement(element);
+      return ReferralMethod.elementOnly(element);
     }
-    return ReferralMethod.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ReferralMethod._(value, element);
+    }
+    throw ArgumentError(
+      'ReferralMethod.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// fax
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReferralMethod.fax([this.element])
+      : dbValue = 'fax',
+        super('fax', element);
+
+  /// phone
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReferralMethod.phone([this.element])
+      : dbValue = 'phone',
+        super('phone', element);
+
+  /// elec
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReferralMethod.elec([this.element])
+      : dbValue = 'elec',
+        super('elec', element);
+
+  /// semail
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReferralMethod.semail([this.element])
+      : dbValue = 'semail',
+        super('semail', element);
+
+  /// mail
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReferralMethod.mail([this.element])
+      : dbValue = 'mail',
+        super('mail', element);
+
+  /// For instances where an Element is present but not value
+
+  ReferralMethod.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ReferralMethod._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'fax',
+    'phone',
+    'elec',
+    'semail',
+    'mail',
+  ];
+
+  /// Returns the enum value with an element attached
+  ReferralMethod withElement(Element? newElement) {
+    return ReferralMethod._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ReferralMethod.$fhirCode';
+  String toString() => 'ReferralMethod.$value';
 }

@@ -5,390 +5,403 @@ import 'package:objectbox/objectbox.dart';
 
 /// This example FHIR value set is comprised of lifecycle event codes. The FHIR Actor value set is based on DICOM Audit Message, ParticipantObjectDataLifeCycle; ISO Standard, TS 21089-2017;
 @Entity()
-class ObjectLifecycleEvents {
-  // Private constructor for internal use (like enum)
-  ObjectLifecycleEvents._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ObjectLifecycleEvents values
-  /// value1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents value1 = ObjectLifecycleEvents._(
-    '1',
-  );
-
-  /// value2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents value2 = ObjectLifecycleEvents._(
-    '2',
-  );
-
-  /// value3
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents value3 = ObjectLifecycleEvents._(
-    '3',
-  );
-
-  /// value4
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents value4 = ObjectLifecycleEvents._(
-    '4',
-  );
-
-  /// value5
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents value5 = ObjectLifecycleEvents._(
-    '5',
-  );
-
-  /// value6
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents value6 = ObjectLifecycleEvents._(
-    '6',
-  );
-
-  /// value7
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents value7 = ObjectLifecycleEvents._(
-    '7',
-  );
-
-  /// value8
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents value8 = ObjectLifecycleEvents._(
-    '8',
-  );
-
-  /// value9
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents value9 = ObjectLifecycleEvents._(
-    '9',
-  );
-
-  /// value10
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents value10 = ObjectLifecycleEvents._(
-    '10',
-  );
-
-  /// value11
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents value11 = ObjectLifecycleEvents._(
-    '11',
-  );
-
-  /// value12
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents value12 = ObjectLifecycleEvents._(
-    '12',
-  );
-
-  /// value13
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents value13 = ObjectLifecycleEvents._(
-    '13',
-  );
-
-  /// value14
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents value14 = ObjectLifecycleEvents._(
-    '14',
-  );
-
-  /// value15
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents value15 = ObjectLifecycleEvents._(
-    '15',
-  );
-
-  /// access
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents access = ObjectLifecycleEvents._(
-    'access',
-  );
-
-  /// hold
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents hold = ObjectLifecycleEvents._(
-    'hold',
-  );
-
-  /// amend
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents amend = ObjectLifecycleEvents._(
-    'amend',
-  );
-
-  /// archive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents archive = ObjectLifecycleEvents._(
-    'archive',
-  );
-
-  /// attest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents attest = ObjectLifecycleEvents._(
-    'attest',
-  );
-
-  /// decrypt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents decrypt = ObjectLifecycleEvents._(
-    'decrypt',
-  );
-
-  /// deidentify
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents deidentify = ObjectLifecycleEvents._(
-    'deidentify',
-  );
-
-  /// deprecate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents deprecate = ObjectLifecycleEvents._(
-    'deprecate',
-  );
-
-  /// destroy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents destroy = ObjectLifecycleEvents._(
-    'destroy',
-  );
-
-  /// disclose
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents disclose = ObjectLifecycleEvents._(
-    'disclose',
-  );
-
-  /// encrypt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents encrypt = ObjectLifecycleEvents._(
-    'encrypt',
-  );
-
-  /// extract
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents extract = ObjectLifecycleEvents._(
-    'extract',
-  );
-
-  /// link
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents link = ObjectLifecycleEvents._(
-    'link',
-  );
-
-  /// merge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents merge = ObjectLifecycleEvents._(
-    'merge',
-  );
-
-  /// originate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents originate = ObjectLifecycleEvents._(
-    'originate',
-  );
-
-  /// pseudonymize
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents pseudonymize = ObjectLifecycleEvents._(
-    'pseudonymize',
-  );
-
-  /// reactivate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents reactivate = ObjectLifecycleEvents._(
-    'reactivate',
-  );
-
-  /// receive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents receive = ObjectLifecycleEvents._(
-    'receive',
-  );
-
-  /// reidentify
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents reidentify = ObjectLifecycleEvents._(
-    'reidentify',
-  );
-
-  /// unhold
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents unhold = ObjectLifecycleEvents._(
-    'unhold',
-  );
-
-  /// report
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents report = ObjectLifecycleEvents._(
-    'report',
-  );
-
-  /// restore
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents restore = ObjectLifecycleEvents._(
-    'restore',
-  );
-
-  /// transform
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents transform = ObjectLifecycleEvents._(
-    'transform',
-  );
-
-  /// transmit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents transmit = ObjectLifecycleEvents._(
-    'transmit',
-  );
-
-  /// unlink
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents unlink = ObjectLifecycleEvents._(
-    'unlink',
-  );
-
-  /// unmerge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents unmerge = ObjectLifecycleEvents._(
-    'unmerge',
-  );
-
-  /// verify
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObjectLifecycleEvents verify = ObjectLifecycleEvents._(
-    'verify',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ObjectLifecycleEvents elementOnly = ObjectLifecycleEvents._('');
-
-  /// List of all enum-like values
-  static final List<ObjectLifecycleEvents> values = [
-    value1,
-    value2,
-    value3,
-    value4,
-    value5,
-    value6,
-    value7,
-    value8,
-    value9,
-    value10,
-    value11,
-    value12,
-    value13,
-    value14,
-    value15,
-    access,
-    hold,
-    amend,
-    archive,
-    attest,
-    decrypt,
-    deidentify,
-    deprecate,
-    destroy,
-    disclose,
-    encrypt,
-    extract,
-    link,
-    merge,
-    originate,
-    pseudonymize,
-    reactivate,
-    receive,
-    reidentify,
-    unhold,
-    report,
-    restore,
-    transform,
-    transmit,
-    unlink,
-    unmerge,
-    verify,
-  ];
-
-  /// Returns the enum value with an element attached
-  ObjectLifecycleEvents withElement(Element? newElement) {
-    return ObjectLifecycleEvents._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ObjectLifecycleEvents extends FhirCode {
   /// Factory constructor to create [ObjectLifecycleEvents] from JSON.
-  static ObjectLifecycleEvents fromJson(Map<String, dynamic> json) {
+  factory ObjectLifecycleEvents.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObjectLifecycleEvents.elementOnly.withElement(element);
+      return ObjectLifecycleEvents.elementOnly(element);
     }
-    return ObjectLifecycleEvents.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ObjectLifecycleEvents._(value, element);
+    }
+    throw ArgumentError(
+      'ObjectLifecycleEvents.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.value1([this.element])
+      : dbValue = '1',
+        super('1', element);
+
+  /// value2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.value2([this.element])
+      : dbValue = '2',
+        super('2', element);
+
+  /// value3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.value3([this.element])
+      : dbValue = '3',
+        super('3', element);
+
+  /// value4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.value4([this.element])
+      : dbValue = '4',
+        super('4', element);
+
+  /// value5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.value5([this.element])
+      : dbValue = '5',
+        super('5', element);
+
+  /// value6
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.value6([this.element])
+      : dbValue = '6',
+        super('6', element);
+
+  /// value7
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.value7([this.element])
+      : dbValue = '7',
+        super('7', element);
+
+  /// value8
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.value8([this.element])
+      : dbValue = '8',
+        super('8', element);
+
+  /// value9
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.value9([this.element])
+      : dbValue = '9',
+        super('9', element);
+
+  /// value10
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.value10([this.element])
+      : dbValue = '10',
+        super('10', element);
+
+  /// value11
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.value11([this.element])
+      : dbValue = '11',
+        super('11', element);
+
+  /// value12
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.value12([this.element])
+      : dbValue = '12',
+        super('12', element);
+
+  /// value13
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.value13([this.element])
+      : dbValue = '13',
+        super('13', element);
+
+  /// value14
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.value14([this.element])
+      : dbValue = '14',
+        super('14', element);
+
+  /// value15
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.value15([this.element])
+      : dbValue = '15',
+        super('15', element);
+
+  /// access
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.access([this.element])
+      : dbValue = 'access',
+        super('access', element);
+
+  /// hold
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.hold([this.element])
+      : dbValue = 'hold',
+        super('hold', element);
+
+  /// amend
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.amend([this.element])
+      : dbValue = 'amend',
+        super('amend', element);
+
+  /// archive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.archive([this.element])
+      : dbValue = 'archive',
+        super('archive', element);
+
+  /// attest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.attest([this.element])
+      : dbValue = 'attest',
+        super('attest', element);
+
+  /// decrypt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.decrypt([this.element])
+      : dbValue = 'decrypt',
+        super('decrypt', element);
+
+  /// deidentify
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.deidentify([this.element])
+      : dbValue = 'deidentify',
+        super('deidentify', element);
+
+  /// deprecate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.deprecate([this.element])
+      : dbValue = 'deprecate',
+        super('deprecate', element);
+
+  /// destroy
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.destroy([this.element])
+      : dbValue = 'destroy',
+        super('destroy', element);
+
+  /// disclose
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.disclose([this.element])
+      : dbValue = 'disclose',
+        super('disclose', element);
+
+  /// encrypt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.encrypt([this.element])
+      : dbValue = 'encrypt',
+        super('encrypt', element);
+
+  /// extract
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.extract([this.element])
+      : dbValue = 'extract',
+        super('extract', element);
+
+  /// link
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.link([this.element])
+      : dbValue = 'link',
+        super('link', element);
+
+  /// merge
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.merge([this.element])
+      : dbValue = 'merge',
+        super('merge', element);
+
+  /// originate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.originate([this.element])
+      : dbValue = 'originate',
+        super('originate', element);
+
+  /// pseudonymize
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.pseudonymize([this.element])
+      : dbValue = 'pseudonymize',
+        super('pseudonymize', element);
+
+  /// reactivate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.reactivate([this.element])
+      : dbValue = 'reactivate',
+        super('reactivate', element);
+
+  /// receive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.receive([this.element])
+      : dbValue = 'receive',
+        super('receive', element);
+
+  /// reidentify
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.reidentify([this.element])
+      : dbValue = 'reidentify',
+        super('reidentify', element);
+
+  /// unhold
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.unhold([this.element])
+      : dbValue = 'unhold',
+        super('unhold', element);
+
+  /// report
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.report([this.element])
+      : dbValue = 'report',
+        super('report', element);
+
+  /// restore
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.restore([this.element])
+      : dbValue = 'restore',
+        super('restore', element);
+
+  /// transform
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.transform([this.element])
+      : dbValue = 'transform',
+        super('transform', element);
+
+  /// transmit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.transmit([this.element])
+      : dbValue = 'transmit',
+        super('transmit', element);
+
+  /// unlink
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.unlink([this.element])
+      : dbValue = 'unlink',
+        super('unlink', element);
+
+  /// unmerge
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.unmerge([this.element])
+      : dbValue = 'unmerge',
+        super('unmerge', element);
+
+  /// verify
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObjectLifecycleEvents.verify([this.element])
+      : dbValue = 'verify',
+        super('verify', element);
+
+  /// For instances where an Element is present but not value
+
+  ObjectLifecycleEvents.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ObjectLifecycleEvents._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    'access',
+    'hold',
+    'amend',
+    'archive',
+    'attest',
+    'decrypt',
+    'deidentify',
+    'deprecate',
+    'destroy',
+    'disclose',
+    'encrypt',
+    'extract',
+    'link',
+    'merge',
+    'originate',
+    'pseudonymize',
+    'reactivate',
+    'receive',
+    'reidentify',
+    'unhold',
+    'report',
+    'restore',
+    'transform',
+    'transmit',
+    'unlink',
+    'unmerge',
+    'verify',
+  ];
+
+  /// Returns the enum value with an element attached
+  ObjectLifecycleEvents withElement(Element? newElement) {
+    return ObjectLifecycleEvents._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ObjectLifecycleEvents.$fhirCode';
+  String toString() => 'ObjectLifecycleEvents.$value';
 }

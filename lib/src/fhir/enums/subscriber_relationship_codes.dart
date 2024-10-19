@@ -5,117 +5,123 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes codes for the relationship between the Subscriber and the Beneficiary (insured/covered party/patient).
 @Entity()
-class SubscriberRelationshipCodes {
-  // Private constructor for internal use (like enum)
-  SubscriberRelationshipCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubscriberRelationshipCodes values
-  /// child
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriberRelationshipCodes child =
-      SubscriberRelationshipCodes._(
-    'child',
-  );
-
-  /// parent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriberRelationshipCodes parent =
-      SubscriberRelationshipCodes._(
-    'parent',
-  );
-
-  /// spouse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriberRelationshipCodes spouse =
-      SubscriberRelationshipCodes._(
-    'spouse',
-  );
-
-  /// common
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriberRelationshipCodes common =
-      SubscriberRelationshipCodes._(
-    'common',
-  );
-
-  /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriberRelationshipCodes other =
-      SubscriberRelationshipCodes._(
-    'other',
-  );
-
-  /// self
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriberRelationshipCodes self = SubscriberRelationshipCodes._(
-    'self',
-  );
-
-  /// injured
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubscriberRelationshipCodes injured =
-      SubscriberRelationshipCodes._(
-    'injured',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SubscriberRelationshipCodes elementOnly =
-      SubscriberRelationshipCodes._('');
-
-  /// List of all enum-like values
-  static final List<SubscriberRelationshipCodes> values = [
-    child,
-    parent,
-    spouse,
-    common,
-    other,
-    self,
-    injured,
-  ];
-
-  /// Returns the enum value with an element attached
-  SubscriberRelationshipCodes withElement(Element? newElement) {
-    return SubscriberRelationshipCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SubscriberRelationshipCodes extends FhirCode {
   /// Factory constructor to create [SubscriberRelationshipCodes] from JSON.
-  static SubscriberRelationshipCodes fromJson(Map<String, dynamic> json) {
+  factory SubscriberRelationshipCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubscriberRelationshipCodes.elementOnly.withElement(element);
+      return SubscriberRelationshipCodes.elementOnly(element);
     }
-    return SubscriberRelationshipCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SubscriberRelationshipCodes._(value, element);
+    }
+    throw ArgumentError(
+      'SubscriberRelationshipCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// child
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriberRelationshipCodes.child([this.element])
+      : dbValue = 'child',
+        super('child', element);
+
+  /// parent
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriberRelationshipCodes.parent([this.element])
+      : dbValue = 'parent',
+        super('parent', element);
+
+  /// spouse
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriberRelationshipCodes.spouse([this.element])
+      : dbValue = 'spouse',
+        super('spouse', element);
+
+  /// common
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriberRelationshipCodes.common([this.element])
+      : dbValue = 'common',
+        super('common', element);
+
+  /// other
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriberRelationshipCodes.other([this.element])
+      : dbValue = 'other',
+        super('other', element);
+
+  /// self
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriberRelationshipCodes.self([this.element])
+      : dbValue = 'self',
+        super('self', element);
+
+  /// injured
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubscriberRelationshipCodes.injured([this.element])
+      : dbValue = 'injured',
+        super('injured', element);
+
+  /// For instances where an Element is present but not value
+
+  SubscriberRelationshipCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SubscriberRelationshipCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'child',
+    'parent',
+    'spouse',
+    'common',
+    'other',
+    'self',
+    'injured',
+  ];
+
+  /// Returns the enum value with an element attached
+  SubscriberRelationshipCodes withElement(Element? newElement) {
+    return SubscriberRelationshipCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SubscriberRelationshipCodes.$fhirCode';
+  String toString() => 'SubscriberRelationshipCodes.$value';
 }

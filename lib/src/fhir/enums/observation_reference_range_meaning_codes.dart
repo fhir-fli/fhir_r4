@@ -5,175 +5,172 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set defines a set of codes that can be used to indicate the meaning/use of a reference range for a particular target population.
 @Entity()
-class ObservationReferenceRangeMeaningCodes {
-  // Private constructor for internal use (like enum)
-  ObservationReferenceRangeMeaningCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ObservationReferenceRangeMeaningCodes values
-  /// type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeMeaningCodes type =
-      ObservationReferenceRangeMeaningCodes._(
-    'type',
-  );
-
-  /// normal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeMeaningCodes normal =
-      ObservationReferenceRangeMeaningCodes._(
-    'normal',
-  );
-
-  /// recommended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeMeaningCodes recommended =
-      ObservationReferenceRangeMeaningCodes._(
-    'recommended',
-  );
-
-  /// treatment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeMeaningCodes treatment =
-      ObservationReferenceRangeMeaningCodes._(
-    'treatment',
-  );
-
-  /// therapeutic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeMeaningCodes therapeutic =
-      ObservationReferenceRangeMeaningCodes._(
-    'therapeutic',
-  );
-
-  /// pre
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeMeaningCodes pre =
-      ObservationReferenceRangeMeaningCodes._(
-    'pre',
-  );
-
-  /// post
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeMeaningCodes post =
-      ObservationReferenceRangeMeaningCodes._(
-    'post',
-  );
-
-  /// endocrine
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeMeaningCodes endocrine =
-      ObservationReferenceRangeMeaningCodes._(
-    'endocrine',
-  );
-
-  /// pre_puberty
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeMeaningCodes pre_puberty =
-      ObservationReferenceRangeMeaningCodes._(
-    'pre-puberty',
-  );
-
-  /// follicular
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeMeaningCodes follicular =
-      ObservationReferenceRangeMeaningCodes._(
-    'follicular',
-  );
-
-  /// midcycle
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeMeaningCodes midcycle =
-      ObservationReferenceRangeMeaningCodes._(
-    'midcycle',
-  );
-
-  /// luteal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeMeaningCodes luteal =
-      ObservationReferenceRangeMeaningCodes._(
-    'luteal',
-  );
-
-  /// postmenopausal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ObservationReferenceRangeMeaningCodes postmenopausal =
-      ObservationReferenceRangeMeaningCodes._(
-    'postmenopausal',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ObservationReferenceRangeMeaningCodes elementOnly =
-      ObservationReferenceRangeMeaningCodes._('');
-
-  /// List of all enum-like values
-  static final List<ObservationReferenceRangeMeaningCodes> values = [
-    type,
-    normal,
-    recommended,
-    treatment,
-    therapeutic,
-    pre,
-    post,
-    endocrine,
-    pre_puberty,
-    follicular,
-    midcycle,
-    luteal,
-    postmenopausal,
-  ];
-
-  /// Returns the enum value with an element attached
-  ObservationReferenceRangeMeaningCodes withElement(Element? newElement) {
-    return ObservationReferenceRangeMeaningCodes._(fhirCode,
-        element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ObservationReferenceRangeMeaningCodes extends FhirCode {
   /// Factory constructor to create [ObservationReferenceRangeMeaningCodes] from JSON.
-  static ObservationReferenceRangeMeaningCodes fromJson(
+  factory ObservationReferenceRangeMeaningCodes.fromJson(
       Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObservationReferenceRangeMeaningCodes.elementOnly
-          .withElement(element);
+      return ObservationReferenceRangeMeaningCodes.elementOnly(element);
     }
-    return ObservationReferenceRangeMeaningCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ObservationReferenceRangeMeaningCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ObservationReferenceRangeMeaningCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// type
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeMeaningCodes.type([this.element])
+      : dbValue = 'type',
+        super('type', element);
+
+  /// normal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeMeaningCodes.normal([this.element])
+      : dbValue = 'normal',
+        super('normal', element);
+
+  /// recommended
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeMeaningCodes.recommended([this.element])
+      : dbValue = 'recommended',
+        super('recommended', element);
+
+  /// treatment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeMeaningCodes.treatment([this.element])
+      : dbValue = 'treatment',
+        super('treatment', element);
+
+  /// therapeutic
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeMeaningCodes.therapeutic([this.element])
+      : dbValue = 'therapeutic',
+        super('therapeutic', element);
+
+  /// pre
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeMeaningCodes.pre([this.element])
+      : dbValue = 'pre',
+        super('pre', element);
+
+  /// post
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeMeaningCodes.post([this.element])
+      : dbValue = 'post',
+        super('post', element);
+
+  /// endocrine
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeMeaningCodes.endocrine([this.element])
+      : dbValue = 'endocrine',
+        super('endocrine', element);
+
+  /// pre_puberty
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeMeaningCodes.pre_puberty([this.element])
+      : dbValue = 'pre-puberty',
+        super('pre-puberty', element);
+
+  /// follicular
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeMeaningCodes.follicular([this.element])
+      : dbValue = 'follicular',
+        super('follicular', element);
+
+  /// midcycle
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeMeaningCodes.midcycle([this.element])
+      : dbValue = 'midcycle',
+        super('midcycle', element);
+
+  /// luteal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeMeaningCodes.luteal([this.element])
+      : dbValue = 'luteal',
+        super('luteal', element);
+
+  /// postmenopausal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ObservationReferenceRangeMeaningCodes.postmenopausal([this.element])
+      : dbValue = 'postmenopausal',
+        super('postmenopausal', element);
+
+  /// For instances where an Element is present but not value
+
+  ObservationReferenceRangeMeaningCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ObservationReferenceRangeMeaningCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'type',
+    'normal',
+    'recommended',
+    'treatment',
+    'therapeutic',
+    'pre',
+    'post',
+    'endocrine',
+    'pre-puberty',
+    'follicular',
+    'midcycle',
+    'luteal',
+    'postmenopausal',
+  ];
+
+  /// Returns the enum value with an element attached
+  ObservationReferenceRangeMeaningCodes withElement(Element? newElement) {
+    return ObservationReferenceRangeMeaningCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ObservationReferenceRangeMeaningCodes.$fhirCode';
+  String toString() => 'ObservationReferenceRangeMeaningCodes.$value';
 }

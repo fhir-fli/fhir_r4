@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes sample Consent Action codes.
 @Entity()
-class ConsentActionCodes {
-  // Private constructor for internal use (like enum)
-  ConsentActionCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ConsentActionCodes values
-  /// collect
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentActionCodes collect = ConsentActionCodes._(
-    'collect',
-  );
-
-  /// access
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentActionCodes access = ConsentActionCodes._(
-    'access',
-  );
-
-  /// use
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentActionCodes use = ConsentActionCodes._(
-    'use',
-  );
-
-  /// disclose
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentActionCodes disclose = ConsentActionCodes._(
-    'disclose',
-  );
-
-  /// correct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentActionCodes correct = ConsentActionCodes._(
-    'correct',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ConsentActionCodes elementOnly = ConsentActionCodes._('');
-
-  /// List of all enum-like values
-  static final List<ConsentActionCodes> values = [
-    collect,
-    access,
-    use,
-    disclose,
-    correct,
-  ];
-
-  /// Returns the enum value with an element attached
-  ConsentActionCodes withElement(Element? newElement) {
-    return ConsentActionCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ConsentActionCodes extends FhirCode {
   /// Factory constructor to create [ConsentActionCodes] from JSON.
-  static ConsentActionCodes fromJson(Map<String, dynamic> json) {
+  factory ConsentActionCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConsentActionCodes.elementOnly.withElement(element);
+      return ConsentActionCodes.elementOnly(element);
     }
-    return ConsentActionCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ConsentActionCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ConsentActionCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// collect
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentActionCodes.collect([this.element])
+      : dbValue = 'collect',
+        super('collect', element);
+
+  /// access
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentActionCodes.access([this.element])
+      : dbValue = 'access',
+        super('access', element);
+
+  /// use
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentActionCodes.use([this.element])
+      : dbValue = 'use',
+        super('use', element);
+
+  /// disclose
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentActionCodes.disclose([this.element])
+      : dbValue = 'disclose',
+        super('disclose', element);
+
+  /// correct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentActionCodes.correct([this.element])
+      : dbValue = 'correct',
+        super('correct', element);
+
+  /// For instances where an Element is present but not value
+
+  ConsentActionCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ConsentActionCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'collect',
+    'access',
+    'use',
+    'disclose',
+    'correct',
+  ];
+
+  /// Returns the enum value with an element attached
+  ConsentActionCodes withElement(Element? newElement) {
+    return ConsentActionCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ConsentActionCodes.$fhirCode';
+  String toString() => 'ConsentActionCodes.$value';
 }

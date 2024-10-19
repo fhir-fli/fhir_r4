@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// A code that indicates how the server supports conditional read.
 @Entity()
-class ConditionalReadStatus {
-  // Private constructor for internal use (like enum)
-  ConditionalReadStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ConditionalReadStatus values
-  /// not_supported
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConditionalReadStatus not_supported = ConditionalReadStatus._(
-    'not-supported',
-  );
-
-  /// modified_since
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConditionalReadStatus modified_since = ConditionalReadStatus._(
-    'modified-since',
-  );
-
-  /// not_match
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConditionalReadStatus not_match = ConditionalReadStatus._(
-    'not-match',
-  );
-
-  /// full_support
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConditionalReadStatus full_support = ConditionalReadStatus._(
-    'full-support',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ConditionalReadStatus elementOnly = ConditionalReadStatus._('');
-
-  /// List of all enum-like values
-  static final List<ConditionalReadStatus> values = [
-    not_supported,
-    modified_since,
-    not_match,
-    full_support,
-  ];
-
-  /// Returns the enum value with an element attached
-  ConditionalReadStatus withElement(Element? newElement) {
-    return ConditionalReadStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ConditionalReadStatus extends FhirCode {
   /// Factory constructor to create [ConditionalReadStatus] from JSON.
-  static ConditionalReadStatus fromJson(Map<String, dynamic> json) {
+  factory ConditionalReadStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConditionalReadStatus.elementOnly.withElement(element);
+      return ConditionalReadStatus.elementOnly(element);
     }
-    return ConditionalReadStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ConditionalReadStatus._(value, element);
+    }
+    throw ArgumentError(
+      'ConditionalReadStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// not_supported
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConditionalReadStatus.not_supported([this.element])
+      : dbValue = 'not-supported',
+        super('not-supported', element);
+
+  /// modified_since
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConditionalReadStatus.modified_since([this.element])
+      : dbValue = 'modified-since',
+        super('modified-since', element);
+
+  /// not_match
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConditionalReadStatus.not_match([this.element])
+      : dbValue = 'not-match',
+        super('not-match', element);
+
+  /// full_support
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConditionalReadStatus.full_support([this.element])
+      : dbValue = 'full-support',
+        super('full-support', element);
+
+  /// For instances where an Element is present but not value
+
+  ConditionalReadStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ConditionalReadStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'not-supported',
+    'modified-since',
+    'not-match',
+    'full-support',
+  ];
+
+  /// Returns the enum value with an element attached
+  ConditionalReadStatus withElement(Element? newElement) {
+    return ConditionalReadStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ConditionalReadStatus.$fhirCode';
+  String toString() => 'ConditionalReadStatus.$value';
 }

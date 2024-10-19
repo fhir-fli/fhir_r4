@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes sample Payee Type codes.
 @Entity()
-class ClaimPayeeTypeCodes {
-  // Private constructor for internal use (like enum)
-  ClaimPayeeTypeCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ClaimPayeeTypeCodes values
-  /// subscriber
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ClaimPayeeTypeCodes subscriber = ClaimPayeeTypeCodes._(
-    'subscriber',
-  );
-
-  /// provider
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ClaimPayeeTypeCodes provider = ClaimPayeeTypeCodes._(
-    'provider',
-  );
-
-  /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ClaimPayeeTypeCodes other = ClaimPayeeTypeCodes._(
-    'other',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ClaimPayeeTypeCodes elementOnly = ClaimPayeeTypeCodes._('');
-
-  /// List of all enum-like values
-  static final List<ClaimPayeeTypeCodes> values = [
-    subscriber,
-    provider,
-    other,
-  ];
-
-  /// Returns the enum value with an element attached
-  ClaimPayeeTypeCodes withElement(Element? newElement) {
-    return ClaimPayeeTypeCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ClaimPayeeTypeCodes extends FhirCode {
   /// Factory constructor to create [ClaimPayeeTypeCodes] from JSON.
-  static ClaimPayeeTypeCodes fromJson(Map<String, dynamic> json) {
+  factory ClaimPayeeTypeCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ClaimPayeeTypeCodes.elementOnly.withElement(element);
+      return ClaimPayeeTypeCodes.elementOnly(element);
     }
-    return ClaimPayeeTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ClaimPayeeTypeCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ClaimPayeeTypeCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// subscriber
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ClaimPayeeTypeCodes.subscriber([this.element])
+      : dbValue = 'subscriber',
+        super('subscriber', element);
+
+  /// provider
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ClaimPayeeTypeCodes.provider([this.element])
+      : dbValue = 'provider',
+        super('provider', element);
+
+  /// other
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ClaimPayeeTypeCodes.other([this.element])
+      : dbValue = 'other',
+        super('other', element);
+
+  /// For instances where an Element is present but not value
+
+  ClaimPayeeTypeCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ClaimPayeeTypeCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'subscriber',
+    'provider',
+    'other',
+  ];
+
+  /// Returns the enum value with an element attached
+  ClaimPayeeTypeCodes withElement(Element? newElement) {
+    return ClaimPayeeTypeCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ClaimPayeeTypeCodes.$fhirCode';
+  String toString() => 'ClaimPayeeTypeCodes.$value';
 }

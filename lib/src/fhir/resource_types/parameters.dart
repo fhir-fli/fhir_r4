@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:objectbox/objectbox.dart';
@@ -14,10 +16,10 @@ class Parameters extends Resource {
 
   Parameters({
     this.dbId = 0,
-    super.id,
-    super.meta,
-    super.implicitRules,
-    super.language,
+    this.id,
+    this.meta,
+    this.implicitRules,
+    this.language,
     this.parameter,
     super.userData,
     super.formatCommentsPre,
@@ -105,11 +107,36 @@ class Parameters extends Resource {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'Parameters';
+
+  /// [id]
+  /// The logical id of the resource, as used in the URL for the resource.
+  /// Once assigned, this value never changes.
+  @override
+  final FhirString? id;
+
+  /// [meta]
+  /// The metadata about the resource. This is content that is maintained by
+  /// the infrastructure. Changes to the content might not always be
+  /// associated with version changes to the resource.
+  @override
+  final FhirMeta? meta;
+
+  /// [implicitRules]
+  /// A reference to a set of rules that were followed when the resource was
+  /// constructed, and which must be understood when processing the content.
+  /// Often, this is a reference to an implementation guide that defines the
+  /// special rules along with other profiles etc.
+  @override
+  final FhirUri? implicitRules;
+
+  /// [language]
+  /// The base language in which the resource is written.
+  @override
+  final CommonLanguages? language;
 
   /// [parameter]
   /// A parameter passed to or received from the operation.
@@ -190,9 +217,9 @@ class ParametersParameter extends BackboneElement {
 
   ParametersParameter({
     this.dbId = 0,
-    super.id,
-    super.extension_,
-    super.modifierExtension,
+    this.id,
+    this.extension_,
+    this.modifierExtension,
     required this.name,
     this.valueBase64Binary,
     this.valueBoolean,
@@ -618,11 +645,44 @@ class ParametersParameter extends BackboneElement {
   /// Auto-incrementing ID for ObjectBox.
   @Id(assignable: true)
   @override
-  // ignore: overridden_fields
   int dbId;
 
   @override
   String get fhirType => 'ParametersParameter';
+
+  /// [id]
+  /// Unique id for the element within a resource (for internal references).
+  /// This may be any string value that does not contain spaces.
+  @override
+  final FhirString? id;
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  @override
+  final List<FhirExtension>? extension_;
+
+  /// [modifierExtension]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element and that modifies the understanding of
+  /// the element in which it is contained and/or the understanding of the
+  /// containing element's descendants. Usually modifier elements provide
+  /// negation or qualification. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension. Applications processing a resource are
+  /// required to check for modifier extensions.
+  ///
+  /// Modifier extensions SHALL NOT change the meaning of any elements on
+  /// Resource or DomainResource (including cannot change the meaning of
+  /// modifierExtension itself).
+  @override
+  final List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// The name of the parameter (reference to the operation definition).

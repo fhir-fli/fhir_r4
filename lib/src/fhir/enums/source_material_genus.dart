@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// The genus of an organism, typically referring to the Latin epithet of the genus element of the plant/animal scientific name.
 @Entity()
-class SourceMaterialGenus {
-  // Private constructor for internal use (like enum)
-  SourceMaterialGenus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SourceMaterialGenus values
-  /// Mycobacterium
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SourceMaterialGenus Mycobacterium = SourceMaterialGenus._(
-    'Mycobacterium',
-  );
-
-  /// InfluenzavirusA
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SourceMaterialGenus InfluenzavirusA = SourceMaterialGenus._(
-    'InfluenzavirusA',
-  );
-
-  /// Ginkgo
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SourceMaterialGenus Ginkgo = SourceMaterialGenus._(
-    'Ginkgo',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SourceMaterialGenus elementOnly = SourceMaterialGenus._('');
-
-  /// List of all enum-like values
-  static final List<SourceMaterialGenus> values = [
-    Mycobacterium,
-    InfluenzavirusA,
-    Ginkgo,
-  ];
-
-  /// Returns the enum value with an element attached
-  SourceMaterialGenus withElement(Element? newElement) {
-    return SourceMaterialGenus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SourceMaterialGenus extends FhirCode {
   /// Factory constructor to create [SourceMaterialGenus] from JSON.
-  static SourceMaterialGenus fromJson(Map<String, dynamic> json) {
+  factory SourceMaterialGenus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SourceMaterialGenus.elementOnly.withElement(element);
+      return SourceMaterialGenus.elementOnly(element);
     }
-    return SourceMaterialGenus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SourceMaterialGenus._(value, element);
+    }
+    throw ArgumentError(
+      'SourceMaterialGenus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Mycobacterium
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SourceMaterialGenus.Mycobacterium([this.element])
+      : dbValue = 'Mycobacterium',
+        super('Mycobacterium', element);
+
+  /// InfluenzavirusA
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SourceMaterialGenus.InfluenzavirusA([this.element])
+      : dbValue = 'InfluenzavirusA',
+        super('InfluenzavirusA', element);
+
+  /// Ginkgo
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SourceMaterialGenus.Ginkgo([this.element])
+      : dbValue = 'Ginkgo',
+        super('Ginkgo', element);
+
+  /// For instances where an Element is present but not value
+
+  SourceMaterialGenus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SourceMaterialGenus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Mycobacterium',
+    'InfluenzavirusA',
+    'Ginkgo',
+  ];
+
+  /// Returns the enum value with an element attached
+  SourceMaterialGenus withElement(Element? newElement) {
+    return SourceMaterialGenus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SourceMaterialGenus.$fhirCode';
+  String toString() => 'SourceMaterialGenus.$value';
 }

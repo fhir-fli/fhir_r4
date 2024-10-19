@@ -5,95 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// Unified Code for Units of Measure (UCUM). This value set includes common UCUM codes for units of distance
 @Entity()
-class CommonUCUMCodesForDistance {
-  // Private constructor for internal use (like enum)
-  CommonUCUMCodesForDistance._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CommonUCUMCodesForDistance values
-  /// nm
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommonUCUMCodesForDistance nm = CommonUCUMCodesForDistance._(
-    'nm',
-  );
-
-  /// um
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommonUCUMCodesForDistance um = CommonUCUMCodesForDistance._(
-    'um',
-  );
-
-  /// mm
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommonUCUMCodesForDistance mm = CommonUCUMCodesForDistance._(
-    'mm',
-  );
-
-  /// m
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommonUCUMCodesForDistance m = CommonUCUMCodesForDistance._(
-    'm',
-  );
-
-  /// km
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommonUCUMCodesForDistance km = CommonUCUMCodesForDistance._(
-    'km',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CommonUCUMCodesForDistance elementOnly =
-      CommonUCUMCodesForDistance._('');
-
-  /// List of all enum-like values
-  static final List<CommonUCUMCodesForDistance> values = [
-    nm,
-    um,
-    mm,
-    m,
-    km,
-  ];
-
-  /// Returns the enum value with an element attached
-  CommonUCUMCodesForDistance withElement(Element? newElement) {
-    return CommonUCUMCodesForDistance._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CommonUCUMCodesForDistance extends FhirCode {
   /// Factory constructor to create [CommonUCUMCodesForDistance] from JSON.
-  static CommonUCUMCodesForDistance fromJson(Map<String, dynamic> json) {
+  factory CommonUCUMCodesForDistance.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CommonUCUMCodesForDistance.elementOnly.withElement(element);
+      return CommonUCUMCodesForDistance.elementOnly(element);
     }
-    return CommonUCUMCodesForDistance.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CommonUCUMCodesForDistance._(value, element);
+    }
+    throw ArgumentError(
+      'CommonUCUMCodesForDistance.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// nm
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommonUCUMCodesForDistance.nm([this.element])
+      : dbValue = 'nm',
+        super('nm', element);
+
+  /// um
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommonUCUMCodesForDistance.um([this.element])
+      : dbValue = 'um',
+        super('um', element);
+
+  /// mm
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommonUCUMCodesForDistance.mm([this.element])
+      : dbValue = 'mm',
+        super('mm', element);
+
+  /// m
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommonUCUMCodesForDistance.m([this.element])
+      : dbValue = 'm',
+        super('m', element);
+
+  /// km
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommonUCUMCodesForDistance.km([this.element])
+      : dbValue = 'km',
+        super('km', element);
+
+  /// For instances where an Element is present but not value
+
+  CommonUCUMCodesForDistance.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CommonUCUMCodesForDistance._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'nm',
+    'um',
+    'mm',
+    'm',
+    'km',
+  ];
+
+  /// Returns the enum value with an element attached
+  CommonUCUMCodesForDistance withElement(Element? newElement) {
+    return CommonUCUMCodesForDistance._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CommonUCUMCodesForDistance.$fhirCode';
+  String toString() => 'CommonUCUMCodesForDistance.$value';
 }

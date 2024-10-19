@@ -5,103 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// NLM codes Internet or Print.
 @Entity()
-class CitedMedium {
-  // Private constructor for internal use (like enum)
-  CitedMedium._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CitedMedium values
-  /// internet
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedMedium internet = CitedMedium._(
-    'internet',
-  );
-
-  /// print
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedMedium print = CitedMedium._(
-    'print',
-  );
-
-  /// offline_digital_storage
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedMedium offline_digital_storage = CitedMedium._(
-    'offline-digital-storage',
-  );
-
-  /// internet_without_issue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedMedium internet_without_issue = CitedMedium._(
-    'internet-without-issue',
-  );
-
-  /// print_without_issue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedMedium print_without_issue = CitedMedium._(
-    'print-without-issue',
-  );
-
-  /// offline_digital_storage_without_issue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedMedium offline_digital_storage_without_issue =
-      CitedMedium._(
-    'offline-digital-storage-without-issue',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CitedMedium elementOnly = CitedMedium._('');
-
-  /// List of all enum-like values
-  static final List<CitedMedium> values = [
-    internet,
-    print,
-    offline_digital_storage,
-    internet_without_issue,
-    print_without_issue,
-    offline_digital_storage_without_issue,
-  ];
-
-  /// Returns the enum value with an element attached
-  CitedMedium withElement(Element? newElement) {
-    return CitedMedium._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CitedMedium extends FhirCode {
   /// Factory constructor to create [CitedMedium] from JSON.
-  static CitedMedium fromJson(Map<String, dynamic> json) {
+  factory CitedMedium.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CitedMedium.elementOnly.withElement(element);
+      return CitedMedium.elementOnly(element);
     }
-    return CitedMedium.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CitedMedium._(value, element);
+    }
+    throw ArgumentError(
+      'CitedMedium.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// internet
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedMedium.internet([this.element])
+      : dbValue = 'internet',
+        super('internet', element);
+
+  /// print
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedMedium.print([this.element])
+      : dbValue = 'print',
+        super('print', element);
+
+  /// offline_digital_storage
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedMedium.offline_digital_storage([this.element])
+      : dbValue = 'offline-digital-storage',
+        super('offline-digital-storage', element);
+
+  /// internet_without_issue
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedMedium.internet_without_issue([this.element])
+      : dbValue = 'internet-without-issue',
+        super('internet-without-issue', element);
+
+  /// print_without_issue
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedMedium.print_without_issue([this.element])
+      : dbValue = 'print-without-issue',
+        super('print-without-issue', element);
+
+  /// offline_digital_storage_without_issue
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedMedium.offline_digital_storage_without_issue([this.element])
+      : dbValue = 'offline-digital-storage-without-issue',
+        super('offline-digital-storage-without-issue', element);
+
+  /// For instances where an Element is present but not value
+
+  CitedMedium.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CitedMedium._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'internet',
+    'print',
+    'offline-digital-storage',
+    'internet-without-issue',
+    'print-without-issue',
+    'offline-digital-storage-without-issue',
+  ];
+
+  /// Returns the enum value with an element attached
+  CitedMedium withElement(Element? newElement) {
+    return CitedMedium._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CitedMedium.$fhirCode';
+  String toString() => 'CitedMedium.$value';
 }

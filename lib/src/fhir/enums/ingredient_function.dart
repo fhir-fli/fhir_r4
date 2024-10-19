@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// A classification of the ingredient identifying its precise purpose(s) in the drug product (beyond e.g. active/inactive).
 @Entity()
-class IngredientFunction {
-  // Private constructor for internal use (like enum)
-  IngredientFunction._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// IngredientFunction values
-  /// Antioxidant
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IngredientFunction Antioxidant = IngredientFunction._(
-    'Antioxidant',
-  );
-
-  /// AlkalizingAgent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IngredientFunction AlkalizingAgent = IngredientFunction._(
-    'AlkalizingAgent',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final IngredientFunction elementOnly = IngredientFunction._('');
-
-  /// List of all enum-like values
-  static final List<IngredientFunction> values = [
-    Antioxidant,
-    AlkalizingAgent,
-  ];
-
-  /// Returns the enum value with an element attached
-  IngredientFunction withElement(Element? newElement) {
-    return IngredientFunction._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class IngredientFunction extends FhirCode {
   /// Factory constructor to create [IngredientFunction] from JSON.
-  static IngredientFunction fromJson(Map<String, dynamic> json) {
+  factory IngredientFunction.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return IngredientFunction.elementOnly.withElement(element);
+      return IngredientFunction.elementOnly(element);
     }
-    return IngredientFunction.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return IngredientFunction._(value, element);
+    }
+    throw ArgumentError(
+      'IngredientFunction.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Antioxidant
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IngredientFunction.Antioxidant([this.element])
+      : dbValue = 'Antioxidant',
+        super('Antioxidant', element);
+
+  /// AlkalizingAgent
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IngredientFunction.AlkalizingAgent([this.element])
+      : dbValue = 'AlkalizingAgent',
+        super('AlkalizingAgent', element);
+
+  /// For instances where an Element is present but not value
+
+  IngredientFunction.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  IngredientFunction._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Antioxidant',
+    'AlkalizingAgent',
+  ];
+
+  /// Returns the enum value with an element attached
+  IngredientFunction withElement(Element? newElement) {
+    return IngredientFunction._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'IngredientFunction.$fhirCode';
+  String toString() => 'IngredientFunction.$value';
 }

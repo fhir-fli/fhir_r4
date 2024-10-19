@@ -5,246 +5,236 @@ import 'package:objectbox/objectbox.dart';
 
 /// MedicationDispense Status Codes
 @Entity()
-class MedicationDispenseStatusReasonCodes {
-  // Private constructor for internal use (like enum)
-  MedicationDispenseStatusReasonCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MedicationDispenseStatusReasonCodes values
-  /// frr01
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes frr01 =
-      MedicationDispenseStatusReasonCodes._(
-    'frr01',
-  );
-
-  /// frr02
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes frr02 =
-      MedicationDispenseStatusReasonCodes._(
-    'frr02',
-  );
-
-  /// frr03
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes frr03 =
-      MedicationDispenseStatusReasonCodes._(
-    'frr03',
-  );
-
-  /// frr04
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes frr04 =
-      MedicationDispenseStatusReasonCodes._(
-    'frr04',
-  );
-
-  /// frr05
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes frr05 =
-      MedicationDispenseStatusReasonCodes._(
-    'frr05',
-  );
-
-  /// frr06
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes frr06 =
-      MedicationDispenseStatusReasonCodes._(
-    'frr06',
-  );
-
-  /// altchoice
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes altchoice =
-      MedicationDispenseStatusReasonCodes._(
-    'altchoice',
-  );
-
-  /// clarif
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes clarif =
-      MedicationDispenseStatusReasonCodes._(
-    'clarif',
-  );
-
-  /// drughigh
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes drughigh =
-      MedicationDispenseStatusReasonCodes._(
-    'drughigh',
-  );
-
-  /// hospadm
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes hospadm =
-      MedicationDispenseStatusReasonCodes._(
-    'hospadm',
-  );
-
-  /// labint
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes labint =
-      MedicationDispenseStatusReasonCodes._(
-    'labint',
-  );
-
-  /// non_avail
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes non_avail =
-      MedicationDispenseStatusReasonCodes._(
-    'non-avail',
-  );
-
-  /// preg
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes preg =
-      MedicationDispenseStatusReasonCodes._(
-    'preg',
-  );
-
-  /// saig
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes saig =
-      MedicationDispenseStatusReasonCodes._(
-    'saig',
-  );
-
-  /// sddi
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes sddi =
-      MedicationDispenseStatusReasonCodes._(
-    'sddi',
-  );
-
-  /// sdupther
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes sdupther =
-      MedicationDispenseStatusReasonCodes._(
-    'sdupther',
-  );
-
-  /// sintol
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes sintol =
-      MedicationDispenseStatusReasonCodes._(
-    'sintol',
-  );
-
-  /// surg
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes surg =
-      MedicationDispenseStatusReasonCodes._(
-    'surg',
-  );
-
-  /// washout
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes washout =
-      MedicationDispenseStatusReasonCodes._(
-    'washout',
-  );
-
-  /// outofstock
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes outofstock =
-      MedicationDispenseStatusReasonCodes._(
-    'outofstock',
-  );
-
-  /// offmarket
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationDispenseStatusReasonCodes offmarket =
-      MedicationDispenseStatusReasonCodes._(
-    'offmarket',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MedicationDispenseStatusReasonCodes elementOnly =
-      MedicationDispenseStatusReasonCodes._('');
-
-  /// List of all enum-like values
-  static final List<MedicationDispenseStatusReasonCodes> values = [
-    frr01,
-    frr02,
-    frr03,
-    frr04,
-    frr05,
-    frr06,
-    altchoice,
-    clarif,
-    drughigh,
-    hospadm,
-    labint,
-    non_avail,
-    preg,
-    saig,
-    sddi,
-    sdupther,
-    sintol,
-    surg,
-    washout,
-    outofstock,
-    offmarket,
-  ];
-
-  /// Returns the enum value with an element attached
-  MedicationDispenseStatusReasonCodes withElement(Element? newElement) {
-    return MedicationDispenseStatusReasonCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MedicationDispenseStatusReasonCodes extends FhirCode {
   /// Factory constructor to create [MedicationDispenseStatusReasonCodes] from JSON.
-  static MedicationDispenseStatusReasonCodes fromJson(
+  factory MedicationDispenseStatusReasonCodes.fromJson(
       Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationDispenseStatusReasonCodes.elementOnly
-          .withElement(element);
+      return MedicationDispenseStatusReasonCodes.elementOnly(element);
     }
-    return MedicationDispenseStatusReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MedicationDispenseStatusReasonCodes._(value, element);
+    }
+    throw ArgumentError(
+      'MedicationDispenseStatusReasonCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// frr01
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.frr01([this.element])
+      : dbValue = 'frr01',
+        super('frr01', element);
+
+  /// frr02
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.frr02([this.element])
+      : dbValue = 'frr02',
+        super('frr02', element);
+
+  /// frr03
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.frr03([this.element])
+      : dbValue = 'frr03',
+        super('frr03', element);
+
+  /// frr04
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.frr04([this.element])
+      : dbValue = 'frr04',
+        super('frr04', element);
+
+  /// frr05
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.frr05([this.element])
+      : dbValue = 'frr05',
+        super('frr05', element);
+
+  /// frr06
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.frr06([this.element])
+      : dbValue = 'frr06',
+        super('frr06', element);
+
+  /// altchoice
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.altchoice([this.element])
+      : dbValue = 'altchoice',
+        super('altchoice', element);
+
+  /// clarif
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.clarif([this.element])
+      : dbValue = 'clarif',
+        super('clarif', element);
+
+  /// drughigh
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.drughigh([this.element])
+      : dbValue = 'drughigh',
+        super('drughigh', element);
+
+  /// hospadm
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.hospadm([this.element])
+      : dbValue = 'hospadm',
+        super('hospadm', element);
+
+  /// labint
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.labint([this.element])
+      : dbValue = 'labint',
+        super('labint', element);
+
+  /// non_avail
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.non_avail([this.element])
+      : dbValue = 'non-avail',
+        super('non-avail', element);
+
+  /// preg
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.preg([this.element])
+      : dbValue = 'preg',
+        super('preg', element);
+
+  /// saig
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.saig([this.element])
+      : dbValue = 'saig',
+        super('saig', element);
+
+  /// sddi
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.sddi([this.element])
+      : dbValue = 'sddi',
+        super('sddi', element);
+
+  /// sdupther
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.sdupther([this.element])
+      : dbValue = 'sdupther',
+        super('sdupther', element);
+
+  /// sintol
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.sintol([this.element])
+      : dbValue = 'sintol',
+        super('sintol', element);
+
+  /// surg
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.surg([this.element])
+      : dbValue = 'surg',
+        super('surg', element);
+
+  /// washout
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.washout([this.element])
+      : dbValue = 'washout',
+        super('washout', element);
+
+  /// outofstock
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.outofstock([this.element])
+      : dbValue = 'outofstock',
+        super('outofstock', element);
+
+  /// offmarket
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationDispenseStatusReasonCodes.offmarket([this.element])
+      : dbValue = 'offmarket',
+        super('offmarket', element);
+
+  /// For instances where an Element is present but not value
+
+  MedicationDispenseStatusReasonCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MedicationDispenseStatusReasonCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'frr01',
+    'frr02',
+    'frr03',
+    'frr04',
+    'frr05',
+    'frr06',
+    'altchoice',
+    'clarif',
+    'drughigh',
+    'hospadm',
+    'labint',
+    'non-avail',
+    'preg',
+    'saig',
+    'sddi',
+    'sdupther',
+    'sintol',
+    'surg',
+    'washout',
+    'outofstock',
+    'offmarket',
+  ];
+
+  /// Returns the enum value with an element attached
+  MedicationDispenseStatusReasonCodes withElement(Element? newElement) {
+    return MedicationDispenseStatusReasonCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MedicationDispenseStatusReasonCodes.$fhirCode';
+  String toString() => 'MedicationDispenseStatusReasonCodes.$value';
 }

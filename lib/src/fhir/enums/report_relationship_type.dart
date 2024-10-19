@@ -5,120 +5,131 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of relationship between reports.
 @Entity()
-class ReportRelationshipType {
-  // Private constructor for internal use (like enum)
-  ReportRelationshipType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ReportRelationshipType values
-  /// replaces
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportRelationshipType replaces = ReportRelationshipType._(
-    'replaces',
-  );
-
-  /// amends
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportRelationshipType amends = ReportRelationshipType._(
-    'amends',
-  );
-
-  /// appends
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportRelationshipType appends = ReportRelationshipType._(
-    'appends',
-  );
-
-  /// transforms
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportRelationshipType transforms = ReportRelationshipType._(
-    'transforms',
-  );
-
-  /// replacedWith
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportRelationshipType replacedWith = ReportRelationshipType._(
-    'replacedWith',
-  );
-
-  /// amendedWith
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportRelationshipType amendedWith = ReportRelationshipType._(
-    'amendedWith',
-  );
-
-  /// appendedWith
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportRelationshipType appendedWith = ReportRelationshipType._(
-    'appendedWith',
-  );
-
-  /// transformedWith
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReportRelationshipType transformedWith =
-      ReportRelationshipType._(
-    'transformedWith',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ReportRelationshipType elementOnly =
-      ReportRelationshipType._('');
-
-  /// List of all enum-like values
-  static final List<ReportRelationshipType> values = [
-    replaces,
-    amends,
-    appends,
-    transforms,
-    replacedWith,
-    amendedWith,
-    appendedWith,
-    transformedWith,
-  ];
-
-  /// Returns the enum value with an element attached
-  ReportRelationshipType withElement(Element? newElement) {
-    return ReportRelationshipType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ReportRelationshipType extends FhirCode {
   /// Factory constructor to create [ReportRelationshipType] from JSON.
-  static ReportRelationshipType fromJson(Map<String, dynamic> json) {
+  factory ReportRelationshipType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ReportRelationshipType.elementOnly.withElement(element);
+      return ReportRelationshipType.elementOnly(element);
     }
-    return ReportRelationshipType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ReportRelationshipType._(value, element);
+    }
+    throw ArgumentError(
+      'ReportRelationshipType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// replaces
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportRelationshipType.replaces([this.element])
+      : dbValue = 'replaces',
+        super('replaces', element);
+
+  /// amends
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportRelationshipType.amends([this.element])
+      : dbValue = 'amends',
+        super('amends', element);
+
+  /// appends
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportRelationshipType.appends([this.element])
+      : dbValue = 'appends',
+        super('appends', element);
+
+  /// transforms
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportRelationshipType.transforms([this.element])
+      : dbValue = 'transforms',
+        super('transforms', element);
+
+  /// replacedWith
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportRelationshipType.replacedWith([this.element])
+      : dbValue = 'replacedWith',
+        super('replacedWith', element);
+
+  /// amendedWith
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportRelationshipType.amendedWith([this.element])
+      : dbValue = 'amendedWith',
+        super('amendedWith', element);
+
+  /// appendedWith
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportRelationshipType.appendedWith([this.element])
+      : dbValue = 'appendedWith',
+        super('appendedWith', element);
+
+  /// transformedWith
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReportRelationshipType.transformedWith([this.element])
+      : dbValue = 'transformedWith',
+        super('transformedWith', element);
+
+  /// For instances where an Element is present but not value
+
+  ReportRelationshipType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ReportRelationshipType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'replaces',
+    'amends',
+    'appends',
+    'transforms',
+    'replacedWith',
+    'amendedWith',
+    'appendedWith',
+    'transformedWith',
+  ];
+
+  /// Returns the enum value with an element attached
+  ReportRelationshipType withElement(Element? newElement) {
+    return ReportRelationshipType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ReportRelationshipType.$fhirCode';
+  String toString() => 'ReportRelationshipType.$value';
 }

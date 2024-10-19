@@ -5,134 +5,147 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set defines a set of codes that can be used to indicate from where the patient came in.
 @Entity()
-class AdmitSource {
-  // Private constructor for internal use (like enum)
-  AdmitSource._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AdmitSource values
-  /// hosp_trans
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdmitSource hosp_trans = AdmitSource._(
-    'hosp-trans',
-  );
-
-  /// emd
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdmitSource emd = AdmitSource._(
-    'emd',
-  );
-
-  /// outp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdmitSource outp = AdmitSource._(
-    'outp',
-  );
-
-  /// born
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdmitSource born = AdmitSource._(
-    'born',
-  );
-
-  /// gp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdmitSource gp = AdmitSource._(
-    'gp',
-  );
-
-  /// mp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdmitSource mp = AdmitSource._(
-    'mp',
-  );
-
-  /// nursing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdmitSource nursing = AdmitSource._(
-    'nursing',
-  );
-
-  /// psych
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdmitSource psych = AdmitSource._(
-    'psych',
-  );
-
-  /// rehab
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdmitSource rehab = AdmitSource._(
-    'rehab',
-  );
-
-  /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdmitSource other = AdmitSource._(
-    'other',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AdmitSource elementOnly = AdmitSource._('');
-
-  /// List of all enum-like values
-  static final List<AdmitSource> values = [
-    hosp_trans,
-    emd,
-    outp,
-    born,
-    gp,
-    mp,
-    nursing,
-    psych,
-    rehab,
-    other,
-  ];
-
-  /// Returns the enum value with an element attached
-  AdmitSource withElement(Element? newElement) {
-    return AdmitSource._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AdmitSource extends FhirCode {
   /// Factory constructor to create [AdmitSource] from JSON.
-  static AdmitSource fromJson(Map<String, dynamic> json) {
+  factory AdmitSource.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdmitSource.elementOnly.withElement(element);
+      return AdmitSource.elementOnly(element);
     }
-    return AdmitSource.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AdmitSource._(value, element);
+    }
+    throw ArgumentError(
+      'AdmitSource.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// hosp_trans
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdmitSource.hosp_trans([this.element])
+      : dbValue = 'hosp-trans',
+        super('hosp-trans', element);
+
+  /// emd
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdmitSource.emd([this.element])
+      : dbValue = 'emd',
+        super('emd', element);
+
+  /// outp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdmitSource.outp([this.element])
+      : dbValue = 'outp',
+        super('outp', element);
+
+  /// born
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdmitSource.born([this.element])
+      : dbValue = 'born',
+        super('born', element);
+
+  /// gp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdmitSource.gp([this.element])
+      : dbValue = 'gp',
+        super('gp', element);
+
+  /// mp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdmitSource.mp([this.element])
+      : dbValue = 'mp',
+        super('mp', element);
+
+  /// nursing
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdmitSource.nursing([this.element])
+      : dbValue = 'nursing',
+        super('nursing', element);
+
+  /// psych
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdmitSource.psych([this.element])
+      : dbValue = 'psych',
+        super('psych', element);
+
+  /// rehab
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdmitSource.rehab([this.element])
+      : dbValue = 'rehab',
+        super('rehab', element);
+
+  /// other
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdmitSource.other([this.element])
+      : dbValue = 'other',
+        super('other', element);
+
+  /// For instances where an Element is present but not value
+
+  AdmitSource.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AdmitSource._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'hosp-trans',
+    'emd',
+    'outp',
+    'born',
+    'gp',
+    'mp',
+    'nursing',
+    'psych',
+    'rehab',
+    'other',
+  ];
+
+  /// Returns the enum value with an element attached
+  AdmitSource withElement(Element? newElement) {
+    return AdmitSource._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AdmitSource.$fhirCode';
+  String toString() => 'AdmitSource.$value';
 }

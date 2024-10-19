@@ -5,95 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// A set of flags that defines how references are supported.
 @Entity()
-class ReferenceHandlingPolicy {
-  // Private constructor for internal use (like enum)
-  ReferenceHandlingPolicy._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ReferenceHandlingPolicy values
-  /// literal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReferenceHandlingPolicy literal = ReferenceHandlingPolicy._(
-    'literal',
-  );
-
-  /// logical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReferenceHandlingPolicy logical = ReferenceHandlingPolicy._(
-    'logical',
-  );
-
-  /// resolves
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReferenceHandlingPolicy resolves = ReferenceHandlingPolicy._(
-    'resolves',
-  );
-
-  /// enforced
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReferenceHandlingPolicy enforced = ReferenceHandlingPolicy._(
-    'enforced',
-  );
-
-  /// local
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ReferenceHandlingPolicy local = ReferenceHandlingPolicy._(
-    'local',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ReferenceHandlingPolicy elementOnly =
-      ReferenceHandlingPolicy._('');
-
-  /// List of all enum-like values
-  static final List<ReferenceHandlingPolicy> values = [
-    literal,
-    logical,
-    resolves,
-    enforced,
-    local,
-  ];
-
-  /// Returns the enum value with an element attached
-  ReferenceHandlingPolicy withElement(Element? newElement) {
-    return ReferenceHandlingPolicy._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ReferenceHandlingPolicy extends FhirCode {
   /// Factory constructor to create [ReferenceHandlingPolicy] from JSON.
-  static ReferenceHandlingPolicy fromJson(Map<String, dynamic> json) {
+  factory ReferenceHandlingPolicy.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ReferenceHandlingPolicy.elementOnly.withElement(element);
+      return ReferenceHandlingPolicy.elementOnly(element);
     }
-    return ReferenceHandlingPolicy.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ReferenceHandlingPolicy._(value, element);
+    }
+    throw ArgumentError(
+      'ReferenceHandlingPolicy.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// literal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReferenceHandlingPolicy.literal([this.element])
+      : dbValue = 'literal',
+        super('literal', element);
+
+  /// logical
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReferenceHandlingPolicy.logical([this.element])
+      : dbValue = 'logical',
+        super('logical', element);
+
+  /// resolves
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReferenceHandlingPolicy.resolves([this.element])
+      : dbValue = 'resolves',
+        super('resolves', element);
+
+  /// enforced
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReferenceHandlingPolicy.enforced([this.element])
+      : dbValue = 'enforced',
+        super('enforced', element);
+
+  /// local
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ReferenceHandlingPolicy.local([this.element])
+      : dbValue = 'local',
+        super('local', element);
+
+  /// For instances where an Element is present but not value
+
+  ReferenceHandlingPolicy.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ReferenceHandlingPolicy._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'literal',
+    'logical',
+    'resolves',
+    'enforced',
+    'local',
+  ];
+
+  /// Returns the enum value with an element attached
+  ReferenceHandlingPolicy withElement(Element? newElement) {
+    return ReferenceHandlingPolicy._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ReferenceHandlingPolicy.$fhirCode';
+  String toString() => 'ReferenceHandlingPolicy.$value';
 }

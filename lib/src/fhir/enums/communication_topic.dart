@@ -5,103 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// Codes describing the purpose or content of the communication.
 @Entity()
-class CommunicationTopic {
-  // Private constructor for internal use (like enum)
-  CommunicationTopic._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CommunicationTopic values
-  /// prescription_refill_request
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommunicationTopic prescription_refill_request =
-      CommunicationTopic._(
-    'prescription-refill-request',
-  );
-
-  /// progress_update
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommunicationTopic progress_update = CommunicationTopic._(
-    'progress-update',
-  );
-
-  /// report_labs
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommunicationTopic report_labs = CommunicationTopic._(
-    'report-labs',
-  );
-
-  /// appointment_reminder
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommunicationTopic appointment_reminder = CommunicationTopic._(
-    'appointment-reminder',
-  );
-
-  /// phone_consult
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommunicationTopic phone_consult = CommunicationTopic._(
-    'phone-consult',
-  );
-
-  /// summary_report
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommunicationTopic summary_report = CommunicationTopic._(
-    'summary-report',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CommunicationTopic elementOnly = CommunicationTopic._('');
-
-  /// List of all enum-like values
-  static final List<CommunicationTopic> values = [
-    prescription_refill_request,
-    progress_update,
-    report_labs,
-    appointment_reminder,
-    phone_consult,
-    summary_report,
-  ];
-
-  /// Returns the enum value with an element attached
-  CommunicationTopic withElement(Element? newElement) {
-    return CommunicationTopic._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CommunicationTopic extends FhirCode {
   /// Factory constructor to create [CommunicationTopic] from JSON.
-  static CommunicationTopic fromJson(Map<String, dynamic> json) {
+  factory CommunicationTopic.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CommunicationTopic.elementOnly.withElement(element);
+      return CommunicationTopic.elementOnly(element);
     }
-    return CommunicationTopic.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CommunicationTopic._(value, element);
+    }
+    throw ArgumentError(
+      'CommunicationTopic.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// prescription_refill_request
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommunicationTopic.prescription_refill_request([this.element])
+      : dbValue = 'prescription-refill-request',
+        super('prescription-refill-request', element);
+
+  /// progress_update
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommunicationTopic.progress_update([this.element])
+      : dbValue = 'progress-update',
+        super('progress-update', element);
+
+  /// report_labs
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommunicationTopic.report_labs([this.element])
+      : dbValue = 'report-labs',
+        super('report-labs', element);
+
+  /// appointment_reminder
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommunicationTopic.appointment_reminder([this.element])
+      : dbValue = 'appointment-reminder',
+        super('appointment-reminder', element);
+
+  /// phone_consult
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommunicationTopic.phone_consult([this.element])
+      : dbValue = 'phone-consult',
+        super('phone-consult', element);
+
+  /// summary_report
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommunicationTopic.summary_report([this.element])
+      : dbValue = 'summary-report',
+        super('summary-report', element);
+
+  /// For instances where an Element is present but not value
+
+  CommunicationTopic.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CommunicationTopic._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'prescription-refill-request',
+    'progress-update',
+    'report-labs',
+    'appointment-reminder',
+    'phone-consult',
+    'summary-report',
+  ];
+
+  /// Returns the enum value with an element attached
+  CommunicationTopic withElement(Element? newElement) {
+    return CommunicationTopic._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CommunicationTopic.$fhirCode';
+  String toString() => 'CommunicationTopic.$value';
 }

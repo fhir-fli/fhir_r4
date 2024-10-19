@@ -36,6 +36,7 @@ class Resource extends FhirBase {
   int dbId;
 
   @override
+  @Transient()
   String get fhirType => 'Resource';
 
   /// The type of resource

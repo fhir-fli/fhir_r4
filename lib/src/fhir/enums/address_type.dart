@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of an address (physical / postal).
 @Entity()
-class AddressType {
-  // Private constructor for internal use (like enum)
-  AddressType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AddressType values
-  /// postal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AddressType postal = AddressType._(
-    'postal',
-  );
-
-  /// physical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AddressType physical = AddressType._(
-    'physical',
-  );
-
-  /// both
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AddressType both = AddressType._(
-    'both',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AddressType elementOnly = AddressType._('');
-
-  /// List of all enum-like values
-  static final List<AddressType> values = [
-    postal,
-    physical,
-    both,
-  ];
-
-  /// Returns the enum value with an element attached
-  AddressType withElement(Element? newElement) {
-    return AddressType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AddressType extends FhirCode {
   /// Factory constructor to create [AddressType] from JSON.
-  static AddressType fromJson(Map<String, dynamic> json) {
+  factory AddressType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AddressType.elementOnly.withElement(element);
+      return AddressType.elementOnly(element);
     }
-    return AddressType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AddressType._(value, element);
+    }
+    throw ArgumentError(
+      'AddressType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// postal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AddressType.postal([this.element])
+      : dbValue = 'postal',
+        super('postal', element);
+
+  /// physical
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AddressType.physical([this.element])
+      : dbValue = 'physical',
+        super('physical', element);
+
+  /// both
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AddressType.both([this.element])
+      : dbValue = 'both',
+        super('both', element);
+
+  /// For instances where an Element is present but not value
+
+  AddressType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AddressType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'postal',
+    'physical',
+    'both',
+  ];
+
+  /// Returns the enum value with an element attached
+  AddressType withElement(Element? newElement) {
+    return AddressType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AddressType.$fhirCode';
+  String toString() => 'AddressType.$value';
 }

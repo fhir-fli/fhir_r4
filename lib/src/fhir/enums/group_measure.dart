@@ -5,102 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// Possible group measure aggregates (E.g. Mean, Median).
 @Entity()
-class GroupMeasure {
-  // Private constructor for internal use (like enum)
-  GroupMeasure._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// GroupMeasure values
-  /// mean
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GroupMeasure mean = GroupMeasure._(
-    'mean',
-  );
-
-  /// median
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GroupMeasure median = GroupMeasure._(
-    'median',
-  );
-
-  /// mean_of_mean
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GroupMeasure mean_of_mean = GroupMeasure._(
-    'mean-of-mean',
-  );
-
-  /// mean_of_median
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GroupMeasure mean_of_median = GroupMeasure._(
-    'mean-of-median',
-  );
-
-  /// median_of_mean
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GroupMeasure median_of_mean = GroupMeasure._(
-    'median-of-mean',
-  );
-
-  /// median_of_median
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GroupMeasure median_of_median = GroupMeasure._(
-    'median-of-median',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final GroupMeasure elementOnly = GroupMeasure._('');
-
-  /// List of all enum-like values
-  static final List<GroupMeasure> values = [
-    mean,
-    median,
-    mean_of_mean,
-    mean_of_median,
-    median_of_mean,
-    median_of_median,
-  ];
-
-  /// Returns the enum value with an element attached
-  GroupMeasure withElement(Element? newElement) {
-    return GroupMeasure._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class GroupMeasure extends FhirCode {
   /// Factory constructor to create [GroupMeasure] from JSON.
-  static GroupMeasure fromJson(Map<String, dynamic> json) {
+  factory GroupMeasure.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GroupMeasure.elementOnly.withElement(element);
+      return GroupMeasure.elementOnly(element);
     }
-    return GroupMeasure.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return GroupMeasure._(value, element);
+    }
+    throw ArgumentError(
+      'GroupMeasure.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// mean
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GroupMeasure.mean([this.element])
+      : dbValue = 'mean',
+        super('mean', element);
+
+  /// median
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GroupMeasure.median([this.element])
+      : dbValue = 'median',
+        super('median', element);
+
+  /// mean_of_mean
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GroupMeasure.mean_of_mean([this.element])
+      : dbValue = 'mean-of-mean',
+        super('mean-of-mean', element);
+
+  /// mean_of_median
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GroupMeasure.mean_of_median([this.element])
+      : dbValue = 'mean-of-median',
+        super('mean-of-median', element);
+
+  /// median_of_mean
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GroupMeasure.median_of_mean([this.element])
+      : dbValue = 'median-of-mean',
+        super('median-of-mean', element);
+
+  /// median_of_median
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GroupMeasure.median_of_median([this.element])
+      : dbValue = 'median-of-median',
+        super('median-of-median', element);
+
+  /// For instances where an Element is present but not value
+
+  GroupMeasure.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  GroupMeasure._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'mean',
+    'median',
+    'mean-of-mean',
+    'mean-of-median',
+    'median-of-mean',
+    'median-of-median',
+  ];
+
+  /// Returns the enum value with an element attached
+  GroupMeasure withElement(Element? newElement) {
+    return GroupMeasure._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'GroupMeasure.$fhirCode';
+  String toString() => 'GroupMeasure.$value';
 }

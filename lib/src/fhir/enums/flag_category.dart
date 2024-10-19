@@ -5,134 +5,147 @@ import 'package:objectbox/objectbox.dart';
 
 /// Example list of general categories for flagged issues. (Not complete or necessarily appropriate.)
 @Entity()
-class FlagCategory {
-  // Private constructor for internal use (like enum)
-  FlagCategory._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// FlagCategory values
-  /// diet
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FlagCategory diet = FlagCategory._(
-    'diet',
-  );
-
-  /// drug
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FlagCategory drug = FlagCategory._(
-    'drug',
-  );
-
-  /// lab
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FlagCategory lab = FlagCategory._(
-    'lab',
-  );
-
-  /// admin
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FlagCategory admin = FlagCategory._(
-    'admin',
-  );
-
-  /// contact
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FlagCategory contact = FlagCategory._(
-    'contact',
-  );
-
-  /// clinical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FlagCategory clinical = FlagCategory._(
-    'clinical',
-  );
-
-  /// behavioral
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FlagCategory behavioral = FlagCategory._(
-    'behavioral',
-  );
-
-  /// research
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FlagCategory research = FlagCategory._(
-    'research',
-  );
-
-  /// advance_directive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FlagCategory advance_directive = FlagCategory._(
-    'advance-directive',
-  );
-
-  /// safety
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FlagCategory safety = FlagCategory._(
-    'safety',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final FlagCategory elementOnly = FlagCategory._('');
-
-  /// List of all enum-like values
-  static final List<FlagCategory> values = [
-    diet,
-    drug,
-    lab,
-    admin,
-    contact,
-    clinical,
-    behavioral,
-    research,
-    advance_directive,
-    safety,
-  ];
-
-  /// Returns the enum value with an element attached
-  FlagCategory withElement(Element? newElement) {
-    return FlagCategory._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class FlagCategory extends FhirCode {
   /// Factory constructor to create [FlagCategory] from JSON.
-  static FlagCategory fromJson(Map<String, dynamic> json) {
+  factory FlagCategory.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FlagCategory.elementOnly.withElement(element);
+      return FlagCategory.elementOnly(element);
     }
-    return FlagCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return FlagCategory._(value, element);
+    }
+    throw ArgumentError(
+      'FlagCategory.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// diet
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FlagCategory.diet([this.element])
+      : dbValue = 'diet',
+        super('diet', element);
+
+  /// drug
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FlagCategory.drug([this.element])
+      : dbValue = 'drug',
+        super('drug', element);
+
+  /// lab
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FlagCategory.lab([this.element])
+      : dbValue = 'lab',
+        super('lab', element);
+
+  /// admin
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FlagCategory.admin([this.element])
+      : dbValue = 'admin',
+        super('admin', element);
+
+  /// contact
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FlagCategory.contact([this.element])
+      : dbValue = 'contact',
+        super('contact', element);
+
+  /// clinical
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FlagCategory.clinical([this.element])
+      : dbValue = 'clinical',
+        super('clinical', element);
+
+  /// behavioral
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FlagCategory.behavioral([this.element])
+      : dbValue = 'behavioral',
+        super('behavioral', element);
+
+  /// research
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FlagCategory.research([this.element])
+      : dbValue = 'research',
+        super('research', element);
+
+  /// advance_directive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FlagCategory.advance_directive([this.element])
+      : dbValue = 'advance-directive',
+        super('advance-directive', element);
+
+  /// safety
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FlagCategory.safety([this.element])
+      : dbValue = 'safety',
+        super('safety', element);
+
+  /// For instances where an Element is present but not value
+
+  FlagCategory.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  FlagCategory._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'diet',
+    'drug',
+    'lab',
+    'admin',
+    'contact',
+    'clinical',
+    'behavioral',
+    'research',
+    'advance-directive',
+    'safety',
+  ];
+
+  /// Returns the enum value with an element attached
+  FlagCategory withElement(Element? newElement) {
+    return FlagCategory._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'FlagCategory.$fhirCode';
+  String toString() => 'FlagCategory.$value';
 }

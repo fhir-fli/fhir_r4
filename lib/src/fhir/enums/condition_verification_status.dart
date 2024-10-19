@@ -5,109 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// The verification status to support or decline the clinical status of the condition or diagnosis.
 @Entity()
-class ConditionVerificationStatus {
-  // Private constructor for internal use (like enum)
-  ConditionVerificationStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ConditionVerificationStatus values
-  /// unconfirmed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConditionVerificationStatus unconfirmed =
-      ConditionVerificationStatus._(
-    'unconfirmed',
-  );
-
-  /// provisional
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConditionVerificationStatus provisional =
-      ConditionVerificationStatus._(
-    'provisional',
-  );
-
-  /// differential
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConditionVerificationStatus differential =
-      ConditionVerificationStatus._(
-    'differential',
-  );
-
-  /// confirmed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConditionVerificationStatus confirmed =
-      ConditionVerificationStatus._(
-    'confirmed',
-  );
-
-  /// refuted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConditionVerificationStatus refuted =
-      ConditionVerificationStatus._(
-    'refuted',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConditionVerificationStatus entered_in_error =
-      ConditionVerificationStatus._(
-    'entered-in-error',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ConditionVerificationStatus elementOnly =
-      ConditionVerificationStatus._('');
-
-  /// List of all enum-like values
-  static final List<ConditionVerificationStatus> values = [
-    unconfirmed,
-    provisional,
-    differential,
-    confirmed,
-    refuted,
-    entered_in_error,
-  ];
-
-  /// Returns the enum value with an element attached
-  ConditionVerificationStatus withElement(Element? newElement) {
-    return ConditionVerificationStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ConditionVerificationStatus extends FhirCode {
   /// Factory constructor to create [ConditionVerificationStatus] from JSON.
-  static ConditionVerificationStatus fromJson(Map<String, dynamic> json) {
+  factory ConditionVerificationStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConditionVerificationStatus.elementOnly.withElement(element);
+      return ConditionVerificationStatus.elementOnly(element);
     }
-    return ConditionVerificationStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ConditionVerificationStatus._(value, element);
+    }
+    throw ArgumentError(
+      'ConditionVerificationStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// unconfirmed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConditionVerificationStatus.unconfirmed([this.element])
+      : dbValue = 'unconfirmed',
+        super('unconfirmed', element);
+
+  /// provisional
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConditionVerificationStatus.provisional([this.element])
+      : dbValue = 'provisional',
+        super('provisional', element);
+
+  /// differential
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConditionVerificationStatus.differential([this.element])
+      : dbValue = 'differential',
+        super('differential', element);
+
+  /// confirmed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConditionVerificationStatus.confirmed([this.element])
+      : dbValue = 'confirmed',
+        super('confirmed', element);
+
+  /// refuted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConditionVerificationStatus.refuted([this.element])
+      : dbValue = 'refuted',
+        super('refuted', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConditionVerificationStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// For instances where an Element is present but not value
+
+  ConditionVerificationStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ConditionVerificationStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'unconfirmed',
+    'provisional',
+    'differential',
+    'confirmed',
+    'refuted',
+    'entered-in-error',
+  ];
+
+  /// Returns the enum value with an element attached
+  ConditionVerificationStatus withElement(Element? newElement) {
+    return ConditionVerificationStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ConditionVerificationStatus.$fhirCode';
+  String toString() => 'ConditionVerificationStatus.$value';
 }

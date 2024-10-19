@@ -5,62 +5,75 @@ import 'package:objectbox/objectbox.dart';
 
 /// Extra measures defined for a Medicinal Product, such as a requirement to conduct post-authorisation studies.
 @Entity()
-class SpecialMeasures {
-  // Private constructor for internal use (like enum)
-  SpecialMeasures._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SpecialMeasures values
-  /// Post_authorisationStudies
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecialMeasures Post_authorisationStudies = SpecialMeasures._(
-    'Post-authorisationStudies',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SpecialMeasures elementOnly = SpecialMeasures._('');
-
-  /// List of all enum-like values
-  static final List<SpecialMeasures> values = [
-    Post_authorisationStudies,
-  ];
-
-  /// Returns the enum value with an element attached
-  SpecialMeasures withElement(Element? newElement) {
-    return SpecialMeasures._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SpecialMeasures extends FhirCode {
   /// Factory constructor to create [SpecialMeasures] from JSON.
-  static SpecialMeasures fromJson(Map<String, dynamic> json) {
+  factory SpecialMeasures.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SpecialMeasures.elementOnly.withElement(element);
+      return SpecialMeasures.elementOnly(element);
     }
-    return SpecialMeasures.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SpecialMeasures._(value, element);
+    }
+    throw ArgumentError(
+      'SpecialMeasures.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Post_authorisationStudies
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecialMeasures.Post_authorisationStudies([this.element])
+      : dbValue = 'Post-authorisationStudies',
+        super('Post-authorisationStudies', element);
+
+  /// For instances where an Element is present but not value
+
+  SpecialMeasures.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SpecialMeasures._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Post-authorisationStudies',
+  ];
+
+  /// Returns the enum value with an element attached
+  SpecialMeasures withElement(Element? newElement) {
+    return SpecialMeasures._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SpecialMeasures.$fhirCode';
+  String toString() => 'SpecialMeasures.$value';
 }

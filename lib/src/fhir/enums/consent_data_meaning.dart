@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// How a resource reference is interpreted when testing consent restrictions.
 @Entity()
-class ConsentDataMeaning {
-  // Private constructor for internal use (like enum)
-  ConsentDataMeaning._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ConsentDataMeaning values
-  /// instance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentDataMeaning instance = ConsentDataMeaning._(
-    'instance',
-  );
-
-  /// related
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentDataMeaning related = ConsentDataMeaning._(
-    'related',
-  );
-
-  /// dependents
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentDataMeaning dependents = ConsentDataMeaning._(
-    'dependents',
-  );
-
-  /// authoredby
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentDataMeaning authoredby = ConsentDataMeaning._(
-    'authoredby',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ConsentDataMeaning elementOnly = ConsentDataMeaning._('');
-
-  /// List of all enum-like values
-  static final List<ConsentDataMeaning> values = [
-    instance,
-    related,
-    dependents,
-    authoredby,
-  ];
-
-  /// Returns the enum value with an element attached
-  ConsentDataMeaning withElement(Element? newElement) {
-    return ConsentDataMeaning._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ConsentDataMeaning extends FhirCode {
   /// Factory constructor to create [ConsentDataMeaning] from JSON.
-  static ConsentDataMeaning fromJson(Map<String, dynamic> json) {
+  factory ConsentDataMeaning.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConsentDataMeaning.elementOnly.withElement(element);
+      return ConsentDataMeaning.elementOnly(element);
     }
-    return ConsentDataMeaning.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ConsentDataMeaning._(value, element);
+    }
+    throw ArgumentError(
+      'ConsentDataMeaning.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// instance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentDataMeaning.instance([this.element])
+      : dbValue = 'instance',
+        super('instance', element);
+
+  /// related
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentDataMeaning.related([this.element])
+      : dbValue = 'related',
+        super('related', element);
+
+  /// dependents
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentDataMeaning.dependents([this.element])
+      : dbValue = 'dependents',
+        super('dependents', element);
+
+  /// authoredby
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentDataMeaning.authoredby([this.element])
+      : dbValue = 'authoredby',
+        super('authoredby', element);
+
+  /// For instances where an Element is present but not value
+
+  ConsentDataMeaning.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ConsentDataMeaning._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'instance',
+    'related',
+    'dependents',
+    'authoredby',
+  ];
+
+  /// Returns the enum value with an element attached
+  ConsentDataMeaning withElement(Element? newElement) {
+    return ConsentDataMeaning._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ConsentDataMeaning.$fhirCode';
+  String toString() => 'ConsentDataMeaning.$value';
 }

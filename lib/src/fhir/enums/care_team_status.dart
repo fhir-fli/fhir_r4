@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// Indicates the status of the care team.
 @Entity()
-class CareTeamStatus {
-  // Private constructor for internal use (like enum)
-  CareTeamStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CareTeamStatus values
-  /// proposed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CareTeamStatus proposed = CareTeamStatus._(
-    'proposed',
-  );
-
-  /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CareTeamStatus active = CareTeamStatus._(
-    'active',
-  );
-
-  /// suspended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CareTeamStatus suspended = CareTeamStatus._(
-    'suspended',
-  );
-
-  /// inactive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CareTeamStatus inactive = CareTeamStatus._(
-    'inactive',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CareTeamStatus entered_in_error = CareTeamStatus._(
-    'entered-in-error',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CareTeamStatus elementOnly = CareTeamStatus._('');
-
-  /// List of all enum-like values
-  static final List<CareTeamStatus> values = [
-    proposed,
-    active,
-    suspended,
-    inactive,
-    entered_in_error,
-  ];
-
-  /// Returns the enum value with an element attached
-  CareTeamStatus withElement(Element? newElement) {
-    return CareTeamStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CareTeamStatus extends FhirCode {
   /// Factory constructor to create [CareTeamStatus] from JSON.
-  static CareTeamStatus fromJson(Map<String, dynamic> json) {
+  factory CareTeamStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CareTeamStatus.elementOnly.withElement(element);
+      return CareTeamStatus.elementOnly(element);
     }
-    return CareTeamStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CareTeamStatus._(value, element);
+    }
+    throw ArgumentError(
+      'CareTeamStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// proposed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CareTeamStatus.proposed([this.element])
+      : dbValue = 'proposed',
+        super('proposed', element);
+
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CareTeamStatus.active([this.element])
+      : dbValue = 'active',
+        super('active', element);
+
+  /// suspended
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CareTeamStatus.suspended([this.element])
+      : dbValue = 'suspended',
+        super('suspended', element);
+
+  /// inactive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CareTeamStatus.inactive([this.element])
+      : dbValue = 'inactive',
+        super('inactive', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CareTeamStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// For instances where an Element is present but not value
+
+  CareTeamStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CareTeamStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'proposed',
+    'active',
+    'suspended',
+    'inactive',
+    'entered-in-error',
+  ];
+
+  /// Returns the enum value with an element attached
+  CareTeamStatus withElement(Element? newElement) {
+    return CareTeamStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CareTeamStatus.$fhirCode';
+  String toString() => 'CareTeamStatus.$value';
 }

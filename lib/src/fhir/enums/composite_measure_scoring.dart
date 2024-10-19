@@ -5,88 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The composite scoring method of the measure.
 @Entity()
-class CompositeMeasureScoring {
-  // Private constructor for internal use (like enum)
-  CompositeMeasureScoring._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CompositeMeasureScoring values
-  /// opportunity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CompositeMeasureScoring opportunity = CompositeMeasureScoring._(
-    'opportunity',
-  );
-
-  /// all_or_nothing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CompositeMeasureScoring all_or_nothing =
-      CompositeMeasureScoring._(
-    'all-or-nothing',
-  );
-
-  /// linear
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CompositeMeasureScoring linear = CompositeMeasureScoring._(
-    'linear',
-  );
-
-  /// weighted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CompositeMeasureScoring weighted = CompositeMeasureScoring._(
-    'weighted',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CompositeMeasureScoring elementOnly =
-      CompositeMeasureScoring._('');
-
-  /// List of all enum-like values
-  static final List<CompositeMeasureScoring> values = [
-    opportunity,
-    all_or_nothing,
-    linear,
-    weighted,
-  ];
-
-  /// Returns the enum value with an element attached
-  CompositeMeasureScoring withElement(Element? newElement) {
-    return CompositeMeasureScoring._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CompositeMeasureScoring extends FhirCode {
   /// Factory constructor to create [CompositeMeasureScoring] from JSON.
-  static CompositeMeasureScoring fromJson(Map<String, dynamic> json) {
+  factory CompositeMeasureScoring.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CompositeMeasureScoring.elementOnly.withElement(element);
+      return CompositeMeasureScoring.elementOnly(element);
     }
-    return CompositeMeasureScoring.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CompositeMeasureScoring._(value, element);
+    }
+    throw ArgumentError(
+      'CompositeMeasureScoring.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// opportunity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CompositeMeasureScoring.opportunity([this.element])
+      : dbValue = 'opportunity',
+        super('opportunity', element);
+
+  /// all_or_nothing
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CompositeMeasureScoring.all_or_nothing([this.element])
+      : dbValue = 'all-or-nothing',
+        super('all-or-nothing', element);
+
+  /// linear
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CompositeMeasureScoring.linear([this.element])
+      : dbValue = 'linear',
+        super('linear', element);
+
+  /// weighted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CompositeMeasureScoring.weighted([this.element])
+      : dbValue = 'weighted',
+        super('weighted', element);
+
+  /// For instances where an Element is present but not value
+
+  CompositeMeasureScoring.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CompositeMeasureScoring._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'opportunity',
+    'all-or-nothing',
+    'linear',
+    'weighted',
+  ];
+
+  /// Returns the enum value with an element attached
+  CompositeMeasureScoring withElement(Element? newElement) {
+    return CompositeMeasureScoring._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CompositeMeasureScoring.$fhirCode';
+  String toString() => 'CompositeMeasureScoring.$value';
 }

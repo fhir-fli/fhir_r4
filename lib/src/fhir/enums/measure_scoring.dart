@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The scoring type of the measure.
 @Entity()
-class MeasureScoring {
-  // Private constructor for internal use (like enum)
-  MeasureScoring._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasureScoring values
-  /// proportion
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureScoring proportion = MeasureScoring._(
-    'proportion',
-  );
-
-  /// ratio
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureScoring ratio = MeasureScoring._(
-    'ratio',
-  );
-
-  /// continuous_variable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureScoring continuous_variable = MeasureScoring._(
-    'continuous-variable',
-  );
-
-  /// cohort
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureScoring cohort = MeasureScoring._(
-    'cohort',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MeasureScoring elementOnly = MeasureScoring._('');
-
-  /// List of all enum-like values
-  static final List<MeasureScoring> values = [
-    proportion,
-    ratio,
-    continuous_variable,
-    cohort,
-  ];
-
-  /// Returns the enum value with an element attached
-  MeasureScoring withElement(Element? newElement) {
-    return MeasureScoring._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MeasureScoring extends FhirCode {
   /// Factory constructor to create [MeasureScoring] from JSON.
-  static MeasureScoring fromJson(Map<String, dynamic> json) {
+  factory MeasureScoring.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureScoring.elementOnly.withElement(element);
+      return MeasureScoring.elementOnly(element);
     }
-    return MeasureScoring.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MeasureScoring._(value, element);
+    }
+    throw ArgumentError(
+      'MeasureScoring.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// proportion
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureScoring.proportion([this.element])
+      : dbValue = 'proportion',
+        super('proportion', element);
+
+  /// ratio
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureScoring.ratio([this.element])
+      : dbValue = 'ratio',
+        super('ratio', element);
+
+  /// continuous_variable
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureScoring.continuous_variable([this.element])
+      : dbValue = 'continuous-variable',
+        super('continuous-variable', element);
+
+  /// cohort
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureScoring.cohort([this.element])
+      : dbValue = 'cohort',
+        super('cohort', element);
+
+  /// For instances where an Element is present but not value
+
+  MeasureScoring.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MeasureScoring._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'proportion',
+    'ratio',
+    'continuous-variable',
+    'cohort',
+  ];
+
+  /// Returns the enum value with an element attached
+  MeasureScoring withElement(Element? newElement) {
+    return MeasureScoring._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MeasureScoring.$fhirCode';
+  String toString() => 'MeasureScoring.$value';
 }

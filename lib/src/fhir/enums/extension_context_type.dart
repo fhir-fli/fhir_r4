@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// How an extension context is interpreted.
 @Entity()
-class ExtensionContextType {
-  // Private constructor for internal use (like enum)
-  ExtensionContextType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExtensionContextType values
-  /// fhirpath
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExtensionContextType fhirpath = ExtensionContextType._(
-    'fhirpath',
-  );
-
-  /// element_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExtensionContextType element_ = ExtensionContextType._(
-    'element',
-  );
-
-  /// extension_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExtensionContextType extension_ = ExtensionContextType._(
-    'extension',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ExtensionContextType elementOnly = ExtensionContextType._('');
-
-  /// List of all enum-like values
-  static final List<ExtensionContextType> values = [
-    fhirpath,
-    element_,
-    extension_,
-  ];
-
-  /// Returns the enum value with an element attached
-  ExtensionContextType withElement(Element? newElement) {
-    return ExtensionContextType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ExtensionContextType extends FhirCode {
   /// Factory constructor to create [ExtensionContextType] from JSON.
-  static ExtensionContextType fromJson(Map<String, dynamic> json) {
+  factory ExtensionContextType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExtensionContextType.elementOnly.withElement(element);
+      return ExtensionContextType.elementOnly(element);
     }
-    return ExtensionContextType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ExtensionContextType._(value, element);
+    }
+    throw ArgumentError(
+      'ExtensionContextType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// fhirpath
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExtensionContextType.fhirpath([this.element])
+      : dbValue = 'fhirpath',
+        super('fhirpath', element);
+
+  /// element_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExtensionContextType.element_([this.element])
+      : dbValue = 'element',
+        super('element', element);
+
+  /// extension_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExtensionContextType.extension_([this.element])
+      : dbValue = 'extension',
+        super('extension', element);
+
+  /// For instances where an Element is present but not value
+
+  ExtensionContextType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ExtensionContextType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'fhirpath',
+    'element',
+    'extension',
+  ];
+
+  /// Returns the enum value with an element attached
+  ExtensionContextType withElement(Element? newElement) {
+    return ExtensionContextType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ExtensionContextType.$fhirCode';
+  String toString() => 'ExtensionContextType.$value';
 }

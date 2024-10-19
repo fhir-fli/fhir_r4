@@ -5,100 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// Lifecycle status of the questionnaire response.
 @Entity()
-class QuestionnaireResponseStatus {
-  // Private constructor for internal use (like enum)
-  QuestionnaireResponseStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// QuestionnaireResponseStatus values
-  /// in_progress
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final QuestionnaireResponseStatus in_progress =
-      QuestionnaireResponseStatus._(
-    'in-progress',
-  );
-
-  /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final QuestionnaireResponseStatus completed =
-      QuestionnaireResponseStatus._(
-    'completed',
-  );
-
-  /// amended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final QuestionnaireResponseStatus amended =
-      QuestionnaireResponseStatus._(
-    'amended',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final QuestionnaireResponseStatus entered_in_error =
-      QuestionnaireResponseStatus._(
-    'entered-in-error',
-  );
-
-  /// stopped
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final QuestionnaireResponseStatus stopped =
-      QuestionnaireResponseStatus._(
-    'stopped',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final QuestionnaireResponseStatus elementOnly =
-      QuestionnaireResponseStatus._('');
-
-  /// List of all enum-like values
-  static final List<QuestionnaireResponseStatus> values = [
-    in_progress,
-    completed,
-    amended,
-    entered_in_error,
-    stopped,
-  ];
-
-  /// Returns the enum value with an element attached
-  QuestionnaireResponseStatus withElement(Element? newElement) {
-    return QuestionnaireResponseStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class QuestionnaireResponseStatus extends FhirCode {
   /// Factory constructor to create [QuestionnaireResponseStatus] from JSON.
-  static QuestionnaireResponseStatus fromJson(Map<String, dynamic> json) {
+  factory QuestionnaireResponseStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QuestionnaireResponseStatus.elementOnly.withElement(element);
+      return QuestionnaireResponseStatus.elementOnly(element);
     }
-    return QuestionnaireResponseStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return QuestionnaireResponseStatus._(value, element);
+    }
+    throw ArgumentError(
+      'QuestionnaireResponseStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// in_progress
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  QuestionnaireResponseStatus.in_progress([this.element])
+      : dbValue = 'in-progress',
+        super('in-progress', element);
+
+  /// completed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  QuestionnaireResponseStatus.completed([this.element])
+      : dbValue = 'completed',
+        super('completed', element);
+
+  /// amended
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  QuestionnaireResponseStatus.amended([this.element])
+      : dbValue = 'amended',
+        super('amended', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  QuestionnaireResponseStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// stopped
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  QuestionnaireResponseStatus.stopped([this.element])
+      : dbValue = 'stopped',
+        super('stopped', element);
+
+  /// For instances where an Element is present but not value
+
+  QuestionnaireResponseStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  QuestionnaireResponseStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'in-progress',
+    'completed',
+    'amended',
+    'entered-in-error',
+    'stopped',
+  ];
+
+  /// Returns the enum value with an element attached
+  QuestionnaireResponseStatus withElement(Element? newElement) {
+    return QuestionnaireResponseStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'QuestionnaireResponseStatus.$fhirCode';
+  String toString() => 'QuestionnaireResponseStatus.$value';
 }

@@ -5,143 +5,155 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set contains representative Activity Type codes, which includes codes from the HL7 DocumentCompletion, ActStatus, and DataOperations code system, W3C PROV-DM and PROV-N concepts and display names, several HL7 Lifecycle Event codes for which there are agreed upon definitions, and non-duplicated codes from the HL7 Security and Privacy Ontology Operations codes.
 @Entity()
-class ProvenanceActivityType {
-  // Private constructor for internal use (like enum)
-  ProvenanceActivityType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ProvenanceActivityType values
-  /// LA
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceActivityType LA = ProvenanceActivityType._(
-    'LA',
-  );
-
-  /// ANONY
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceActivityType ANONY = ProvenanceActivityType._(
-    'ANONY',
-  );
-
-  /// DEID
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceActivityType DEID = ProvenanceActivityType._(
-    'DEID',
-  );
-
-  /// MASK
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceActivityType MASK = ProvenanceActivityType._(
-    'MASK',
-  );
-
-  /// LABEL
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceActivityType LABEL = ProvenanceActivityType._(
-    'LABEL',
-  );
-
-  /// PSEUD
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceActivityType PSEUD = ProvenanceActivityType._(
-    'PSEUD',
-  );
-
-  /// CREATE
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceActivityType CREATE = ProvenanceActivityType._(
-    'CREATE',
-  );
-
-  /// DELETE
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceActivityType DELETE = ProvenanceActivityType._(
-    'DELETE',
-  );
-
-  /// UPDATE
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceActivityType UPDATE = ProvenanceActivityType._(
-    'UPDATE',
-  );
-
-  /// APPEND
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceActivityType APPEND = ProvenanceActivityType._(
-    'APPEND',
-  );
-
-  /// NULLIFY
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceActivityType NULLIFY = ProvenanceActivityType._(
-    'NULLIFY',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ProvenanceActivityType elementOnly =
-      ProvenanceActivityType._('');
-
-  /// List of all enum-like values
-  static final List<ProvenanceActivityType> values = [
-    LA,
-    ANONY,
-    DEID,
-    MASK,
-    LABEL,
-    PSEUD,
-    CREATE,
-    DELETE,
-    UPDATE,
-    APPEND,
-    NULLIFY,
-  ];
-
-  /// Returns the enum value with an element attached
-  ProvenanceActivityType withElement(Element? newElement) {
-    return ProvenanceActivityType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ProvenanceActivityType extends FhirCode {
   /// Factory constructor to create [ProvenanceActivityType] from JSON.
-  static ProvenanceActivityType fromJson(Map<String, dynamic> json) {
+  factory ProvenanceActivityType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ProvenanceActivityType.elementOnly.withElement(element);
+      return ProvenanceActivityType.elementOnly(element);
     }
-    return ProvenanceActivityType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ProvenanceActivityType._(value, element);
+    }
+    throw ArgumentError(
+      'ProvenanceActivityType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// LA
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceActivityType.LA([this.element])
+      : dbValue = 'LA',
+        super('LA', element);
+
+  /// ANONY
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceActivityType.ANONY([this.element])
+      : dbValue = 'ANONY',
+        super('ANONY', element);
+
+  /// DEID
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceActivityType.DEID([this.element])
+      : dbValue = 'DEID',
+        super('DEID', element);
+
+  /// MASK
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceActivityType.MASK([this.element])
+      : dbValue = 'MASK',
+        super('MASK', element);
+
+  /// LABEL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceActivityType.LABEL([this.element])
+      : dbValue = 'LABEL',
+        super('LABEL', element);
+
+  /// PSEUD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceActivityType.PSEUD([this.element])
+      : dbValue = 'PSEUD',
+        super('PSEUD', element);
+
+  /// CREATE
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceActivityType.CREATE([this.element])
+      : dbValue = 'CREATE',
+        super('CREATE', element);
+
+  /// DELETE
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceActivityType.DELETE([this.element])
+      : dbValue = 'DELETE',
+        super('DELETE', element);
+
+  /// UPDATE
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceActivityType.UPDATE([this.element])
+      : dbValue = 'UPDATE',
+        super('UPDATE', element);
+
+  /// APPEND
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceActivityType.APPEND([this.element])
+      : dbValue = 'APPEND',
+        super('APPEND', element);
+
+  /// NULLIFY
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceActivityType.NULLIFY([this.element])
+      : dbValue = 'NULLIFY',
+        super('NULLIFY', element);
+
+  /// For instances where an Element is present but not value
+
+  ProvenanceActivityType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ProvenanceActivityType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'LA',
+    'ANONY',
+    'DEID',
+    'MASK',
+    'LABEL',
+    'PSEUD',
+    'CREATE',
+    'DELETE',
+    'UPDATE',
+    'APPEND',
+    'NULLIFY',
+  ];
+
+  /// Returns the enum value with an element attached
+  ProvenanceActivityType withElement(Element? newElement) {
+    return ProvenanceActivityType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ProvenanceActivityType.$fhirCode';
+  String toString() => 'ProvenanceActivityType.$value';
 }

@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Laterality: SNOMED-CT concepts for 'left', 'right', and 'bilateral'
 @Entity()
-class Laterality {
-  // Private constructor for internal use (like enum)
-  Laterality._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// Laterality values
-  /// value419161000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final Laterality value419161000 = Laterality._(
-    '419161000',
-  );
-
-  /// value419465000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final Laterality value419465000 = Laterality._(
-    '419465000',
-  );
-
-  /// value51440002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final Laterality value51440002 = Laterality._(
-    '51440002',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final Laterality elementOnly = Laterality._('');
-
-  /// List of all enum-like values
-  static final List<Laterality> values = [
-    value419161000,
-    value419465000,
-    value51440002,
-  ];
-
-  /// Returns the enum value with an element attached
-  Laterality withElement(Element? newElement) {
-    return Laterality._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class Laterality extends FhirCode {
   /// Factory constructor to create [Laterality] from JSON.
-  static Laterality fromJson(Map<String, dynamic> json) {
+  factory Laterality.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return Laterality.elementOnly.withElement(element);
+      return Laterality.elementOnly(element);
     }
-    return Laterality.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return Laterality._(value, element);
+    }
+    throw ArgumentError(
+      'Laterality.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value419161000
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  Laterality.value419161000([this.element])
+      : dbValue = '419161000',
+        super('419161000', element);
+
+  /// value419465000
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  Laterality.value419465000([this.element])
+      : dbValue = '419465000',
+        super('419465000', element);
+
+  /// value51440002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  Laterality.value51440002([this.element])
+      : dbValue = '51440002',
+        super('51440002', element);
+
+  /// For instances where an Element is present but not value
+
+  Laterality.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  Laterality._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '419161000',
+    '419465000',
+    '51440002',
+  ];
+
+  /// Returns the enum value with an element attached
+  Laterality withElement(Element? newElement) {
+    return Laterality._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'Laterality.$fhirCode';
+  String toString() => 'Laterality.$value';
 }

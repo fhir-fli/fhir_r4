@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// The optical rotation type of a substance.
 @Entity()
-class OpticalActivity {
-  // Private constructor for internal use (like enum)
-  OpticalActivity._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// OpticalActivity values
-  /// plus
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OpticalActivity plus = OpticalActivity._(
-    '+',
-  );
-
-  /// minus
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OpticalActivity minus = OpticalActivity._(
-    '-',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final OpticalActivity elementOnly = OpticalActivity._('');
-
-  /// List of all enum-like values
-  static final List<OpticalActivity> values = [
-    plus,
-    minus,
-  ];
-
-  /// Returns the enum value with an element attached
-  OpticalActivity withElement(Element? newElement) {
-    return OpticalActivity._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class OpticalActivity extends FhirCode {
   /// Factory constructor to create [OpticalActivity] from JSON.
-  static OpticalActivity fromJson(Map<String, dynamic> json) {
+  factory OpticalActivity.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return OpticalActivity.elementOnly.withElement(element);
+      return OpticalActivity.elementOnly(element);
     }
-    return OpticalActivity.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return OpticalActivity._(value, element);
+    }
+    throw ArgumentError(
+      'OpticalActivity.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// plus
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OpticalActivity.plus([this.element])
+      : dbValue = '+',
+        super('+', element);
+
+  /// minus
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OpticalActivity.minus([this.element])
+      : dbValue = '-',
+        super('-', element);
+
+  /// For instances where an Element is present but not value
+
+  OpticalActivity.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  OpticalActivity._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '+',
+    '-',
+  ];
+
+  /// Returns the enum value with an element attached
+  OpticalActivity withElement(Element? newElement) {
+    return OpticalActivity._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'OpticalActivity.$fhirCode';
+  String toString() => 'OpticalActivity.$value';
 }

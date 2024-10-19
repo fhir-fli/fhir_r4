@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The status of a resource narrative.
 @Entity()
-class NarrativeStatus {
-  // Private constructor for internal use (like enum)
-  NarrativeStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// NarrativeStatus values
-  /// generated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NarrativeStatus generated = NarrativeStatus._(
-    'generated',
-  );
-
-  /// extensions
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NarrativeStatus extensions = NarrativeStatus._(
-    'extensions',
-  );
-
-  /// additional
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NarrativeStatus additional = NarrativeStatus._(
-    'additional',
-  );
-
-  /// empty
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NarrativeStatus empty = NarrativeStatus._(
-    'empty',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final NarrativeStatus elementOnly = NarrativeStatus._('');
-
-  /// List of all enum-like values
-  static final List<NarrativeStatus> values = [
-    generated,
-    extensions,
-    additional,
-    empty,
-  ];
-
-  /// Returns the enum value with an element attached
-  NarrativeStatus withElement(Element? newElement) {
-    return NarrativeStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class NarrativeStatus extends FhirCode {
   /// Factory constructor to create [NarrativeStatus] from JSON.
-  static NarrativeStatus fromJson(Map<String, dynamic> json) {
+  factory NarrativeStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NarrativeStatus.elementOnly.withElement(element);
+      return NarrativeStatus.elementOnly(element);
     }
-    return NarrativeStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return NarrativeStatus._(value, element);
+    }
+    throw ArgumentError(
+      'NarrativeStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// generated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NarrativeStatus.generated([this.element])
+      : dbValue = 'generated',
+        super('generated', element);
+
+  /// extensions
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NarrativeStatus.extensions([this.element])
+      : dbValue = 'extensions',
+        super('extensions', element);
+
+  /// additional
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NarrativeStatus.additional([this.element])
+      : dbValue = 'additional',
+        super('additional', element);
+
+  /// empty
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NarrativeStatus.empty([this.element])
+      : dbValue = 'empty',
+        super('empty', element);
+
+  /// For instances where an Element is present but not value
+
+  NarrativeStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  NarrativeStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'generated',
+    'extensions',
+    'additional',
+    'empty',
+  ];
+
+  /// Returns the enum value with an element attached
+  NarrativeStatus withElement(Element? newElement) {
+    return NarrativeStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'NarrativeStatus.$fhirCode';
+  String toString() => 'NarrativeStatus.$value';
 }

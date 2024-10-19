@@ -5,80 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Clinical assessment of the severity of a reaction event as a whole, potentially considering multiple different manifestations.
 @Entity()
-class AllergyIntoleranceSeverity {
-  // Private constructor for internal use (like enum)
-  AllergyIntoleranceSeverity._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AllergyIntoleranceSeverity values
-  /// mild
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AllergyIntoleranceSeverity mild = AllergyIntoleranceSeverity._(
-    'mild',
-  );
-
-  /// moderate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AllergyIntoleranceSeverity moderate =
-      AllergyIntoleranceSeverity._(
-    'moderate',
-  );
-
-  /// severe
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AllergyIntoleranceSeverity severe = AllergyIntoleranceSeverity._(
-    'severe',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AllergyIntoleranceSeverity elementOnly =
-      AllergyIntoleranceSeverity._('');
-
-  /// List of all enum-like values
-  static final List<AllergyIntoleranceSeverity> values = [
-    mild,
-    moderate,
-    severe,
-  ];
-
-  /// Returns the enum value with an element attached
-  AllergyIntoleranceSeverity withElement(Element? newElement) {
-    return AllergyIntoleranceSeverity._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AllergyIntoleranceSeverity extends FhirCode {
   /// Factory constructor to create [AllergyIntoleranceSeverity] from JSON.
-  static AllergyIntoleranceSeverity fromJson(Map<String, dynamic> json) {
+  factory AllergyIntoleranceSeverity.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AllergyIntoleranceSeverity.elementOnly.withElement(element);
+      return AllergyIntoleranceSeverity.elementOnly(element);
     }
-    return AllergyIntoleranceSeverity.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AllergyIntoleranceSeverity._(value, element);
+    }
+    throw ArgumentError(
+      'AllergyIntoleranceSeverity.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// mild
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AllergyIntoleranceSeverity.mild([this.element])
+      : dbValue = 'mild',
+        super('mild', element);
+
+  /// moderate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AllergyIntoleranceSeverity.moderate([this.element])
+      : dbValue = 'moderate',
+        super('moderate', element);
+
+  /// severe
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AllergyIntoleranceSeverity.severe([this.element])
+      : dbValue = 'severe',
+        super('severe', element);
+
+  /// For instances where an Element is present but not value
+
+  AllergyIntoleranceSeverity.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AllergyIntoleranceSeverity._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'mild',
+    'moderate',
+    'severe',
+  ];
+
+  /// Returns the enum value with an element attached
+  AllergyIntoleranceSeverity withElement(Element? newElement) {
+    return AllergyIntoleranceSeverity._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AllergyIntoleranceSeverity.$fhirCode';
+  String toString() => 'AllergyIntoleranceSeverity.$value';
 }

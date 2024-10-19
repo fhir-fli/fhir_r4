@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// The protocol used for message transport.
 @Entity()
-class MessageTransport {
-  // Private constructor for internal use (like enum)
-  MessageTransport._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MessageTransport values
-  /// http
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MessageTransport http = MessageTransport._(
-    'http',
-  );
-
-  /// ftp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MessageTransport ftp = MessageTransport._(
-    'ftp',
-  );
-
-  /// mllp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MessageTransport mllp = MessageTransport._(
-    'mllp',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MessageTransport elementOnly = MessageTransport._('');
-
-  /// List of all enum-like values
-  static final List<MessageTransport> values = [
-    http,
-    ftp,
-    mllp,
-  ];
-
-  /// Returns the enum value with an element attached
-  MessageTransport withElement(Element? newElement) {
-    return MessageTransport._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MessageTransport extends FhirCode {
   /// Factory constructor to create [MessageTransport] from JSON.
-  static MessageTransport fromJson(Map<String, dynamic> json) {
+  factory MessageTransport.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MessageTransport.elementOnly.withElement(element);
+      return MessageTransport.elementOnly(element);
     }
-    return MessageTransport.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MessageTransport._(value, element);
+    }
+    throw ArgumentError(
+      'MessageTransport.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// http
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MessageTransport.http([this.element])
+      : dbValue = 'http',
+        super('http', element);
+
+  /// ftp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MessageTransport.ftp([this.element])
+      : dbValue = 'ftp',
+        super('ftp', element);
+
+  /// mllp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MessageTransport.mllp([this.element])
+      : dbValue = 'mllp',
+        super('mllp', element);
+
+  /// For instances where an Element is present but not value
+
+  MessageTransport.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MessageTransport._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'http',
+    'ftp',
+    'mllp',
+  ];
+
+  /// Returns the enum value with an element attached
+  MessageTransport withElement(Element? newElement) {
+    return MessageTransport._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MessageTransport.$fhirCode';
+  String toString() => 'MessageTransport.$value';
 }

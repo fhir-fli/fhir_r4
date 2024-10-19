@@ -106,6 +106,7 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
 
   /// Returns the FHIR type as 'integer64'.
   @override
+  @Transient()
   String get fhirType => 'integer64';
 
   /// Serializes the instance to JSON with standardized keys.

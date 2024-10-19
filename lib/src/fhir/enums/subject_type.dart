@@ -5,1198 +5,1211 @@ import 'package:objectbox/objectbox.dart';
 
 /// Possible types of subjects.
 @Entity()
-class SubjectType {
-  // Private constructor for internal use (like enum)
-  SubjectType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubjectType values
-  /// Resource
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Resource = SubjectType._(
-    'Resource',
-  );
-
-  /// Binary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Binary = SubjectType._(
-    'Binary',
-  );
-
-  /// Bundle
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Bundle = SubjectType._(
-    'Bundle',
-  );
-
-  /// DomainResource
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType DomainResource = SubjectType._(
-    'DomainResource',
-  );
-
-  /// Account
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Account = SubjectType._(
-    'Account',
-  );
-
-  /// ActivityDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ActivityDefinition = SubjectType._(
-    'ActivityDefinition',
-  );
-
-  /// AdministrableProductDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType AdministrableProductDefinition = SubjectType._(
-    'AdministrableProductDefinition',
-  );
-
-  /// AdverseEvent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType AdverseEvent = SubjectType._(
-    'AdverseEvent',
-  );
-
-  /// AllergyIntolerance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType AllergyIntolerance = SubjectType._(
-    'AllergyIntolerance',
-  );
-
-  /// Appointment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Appointment = SubjectType._(
-    'Appointment',
-  );
-
-  /// AppointmentResponse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType AppointmentResponse = SubjectType._(
-    'AppointmentResponse',
-  );
-
-  /// AuditEvent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType AuditEvent = SubjectType._(
-    'AuditEvent',
-  );
-
-  /// Basic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Basic = SubjectType._(
-    'Basic',
-  );
-
-  /// BiologicallyDerivedProduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType BiologicallyDerivedProduct = SubjectType._(
-    'BiologicallyDerivedProduct',
-  );
-
-  /// BodyStructure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType BodyStructure = SubjectType._(
-    'BodyStructure',
-  );
-
-  /// CapabilityStatement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType CapabilityStatement = SubjectType._(
-    'CapabilityStatement',
-  );
-
-  /// CarePlan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType CarePlan = SubjectType._(
-    'CarePlan',
-  );
-
-  /// CareTeam
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType CareTeam = SubjectType._(
-    'CareTeam',
-  );
-
-  /// CatalogEntry
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType CatalogEntry = SubjectType._(
-    'CatalogEntry',
-  );
-
-  /// ChargeItem
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ChargeItem = SubjectType._(
-    'ChargeItem',
-  );
-
-  /// ChargeItemDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ChargeItemDefinition = SubjectType._(
-    'ChargeItemDefinition',
-  );
-
-  /// Citation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Citation = SubjectType._(
-    'Citation',
-  );
-
-  /// Claim
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Claim = SubjectType._(
-    'Claim',
-  );
-
-  /// ClaimResponse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ClaimResponse = SubjectType._(
-    'ClaimResponse',
-  );
-
-  /// ClinicalImpression
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ClinicalImpression = SubjectType._(
-    'ClinicalImpression',
-  );
-
-  /// ClinicalUseDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ClinicalUseDefinition = SubjectType._(
-    'ClinicalUseDefinition',
-  );
-
-  /// CodeSystem
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType CodeSystem = SubjectType._(
-    'CodeSystem',
-  );
-
-  /// Communication
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Communication = SubjectType._(
-    'Communication',
-  );
-
-  /// CommunicationRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType CommunicationRequest = SubjectType._(
-    'CommunicationRequest',
-  );
-
-  /// CompartmentDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType CompartmentDefinition = SubjectType._(
-    'CompartmentDefinition',
-  );
-
-  /// Composition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Composition = SubjectType._(
-    'Composition',
-  );
-
-  /// ConceptMap
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ConceptMap = SubjectType._(
-    'ConceptMap',
-  );
-
-  /// Condition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Condition = SubjectType._(
-    'Condition',
-  );
-
-  /// Consent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Consent = SubjectType._(
-    'Consent',
-  );
-
-  /// Contract
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Contract = SubjectType._(
-    'Contract',
-  );
-
-  /// Coverage
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Coverage = SubjectType._(
-    'Coverage',
-  );
-
-  /// CoverageEligibilityRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType CoverageEligibilityRequest = SubjectType._(
-    'CoverageEligibilityRequest',
-  );
-
-  /// CoverageEligibilityResponse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType CoverageEligibilityResponse = SubjectType._(
-    'CoverageEligibilityResponse',
-  );
-
-  /// DetectedIssue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType DetectedIssue = SubjectType._(
-    'DetectedIssue',
-  );
-
-  /// Device
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Device = SubjectType._(
-    'Device',
-  );
-
-  /// DeviceDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType DeviceDefinition = SubjectType._(
-    'DeviceDefinition',
-  );
-
-  /// DeviceMetric
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType DeviceMetric = SubjectType._(
-    'DeviceMetric',
-  );
-
-  /// DeviceRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType DeviceRequest = SubjectType._(
-    'DeviceRequest',
-  );
-
-  /// DeviceUseStatement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType DeviceUseStatement = SubjectType._(
-    'DeviceUseStatement',
-  );
-
-  /// DiagnosticReport
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType DiagnosticReport = SubjectType._(
-    'DiagnosticReport',
-  );
-
-  /// DocumentManifest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType DocumentManifest = SubjectType._(
-    'DocumentManifest',
-  );
-
-  /// DocumentReference
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType DocumentReference = SubjectType._(
-    'DocumentReference',
-  );
-
-  /// Encounter
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Encounter = SubjectType._(
-    'Encounter',
-  );
-
-  /// Endpoint
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Endpoint = SubjectType._(
-    'Endpoint',
-  );
-
-  /// EnrollmentRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType EnrollmentRequest = SubjectType._(
-    'EnrollmentRequest',
-  );
-
-  /// EnrollmentResponse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType EnrollmentResponse = SubjectType._(
-    'EnrollmentResponse',
-  );
-
-  /// EpisodeOfCare
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType EpisodeOfCare = SubjectType._(
-    'EpisodeOfCare',
-  );
-
-  /// EventDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType EventDefinition = SubjectType._(
-    'EventDefinition',
-  );
-
-  /// Evidence
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Evidence = SubjectType._(
-    'Evidence',
-  );
-
-  /// EvidenceReport
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType EvidenceReport = SubjectType._(
-    'EvidenceReport',
-  );
-
-  /// EvidenceVariable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType EvidenceVariable = SubjectType._(
-    'EvidenceVariable',
-  );
-
-  /// ExampleScenario
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ExampleScenario = SubjectType._(
-    'ExampleScenario',
-  );
-
-  /// ExplanationOfBenefit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ExplanationOfBenefit = SubjectType._(
-    'ExplanationOfBenefit',
-  );
-
-  /// FamilyMemberHistory
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType FamilyMemberHistory = SubjectType._(
-    'FamilyMemberHistory',
-  );
-
-  /// Flag
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Flag = SubjectType._(
-    'Flag',
-  );
-
-  /// Goal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Goal = SubjectType._(
-    'Goal',
-  );
-
-  /// GraphDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType GraphDefinition = SubjectType._(
-    'GraphDefinition',
-  );
-
-  /// Group
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Group = SubjectType._(
-    'Group',
-  );
-
-  /// GuidanceResponse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType GuidanceResponse = SubjectType._(
-    'GuidanceResponse',
-  );
-
-  /// HealthcareService
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType HealthcareService = SubjectType._(
-    'HealthcareService',
-  );
-
-  /// ImagingStudy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ImagingStudy = SubjectType._(
-    'ImagingStudy',
-  );
-
-  /// Immunization
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Immunization = SubjectType._(
-    'Immunization',
-  );
-
-  /// ImmunizationEvaluation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ImmunizationEvaluation = SubjectType._(
-    'ImmunizationEvaluation',
-  );
-
-  /// ImmunizationRecommendation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ImmunizationRecommendation = SubjectType._(
-    'ImmunizationRecommendation',
-  );
-
-  /// ImplementationGuide
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ImplementationGuide = SubjectType._(
-    'ImplementationGuide',
-  );
-
-  /// Ingredient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Ingredient = SubjectType._(
-    'Ingredient',
-  );
-
-  /// InsurancePlan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType InsurancePlan = SubjectType._(
-    'InsurancePlan',
-  );
-
-  /// Invoice
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Invoice = SubjectType._(
-    'Invoice',
-  );
-
-  /// Library
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Library = SubjectType._(
-    'Library',
-  );
-
-  /// Linkage
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Linkage = SubjectType._(
-    'Linkage',
-  );
-
-  /// List_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType List_ = SubjectType._(
-    'List',
-  );
-
-  /// Location
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Location = SubjectType._(
-    'Location',
-  );
-
-  /// ManufacturedItemDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ManufacturedItemDefinition = SubjectType._(
-    'ManufacturedItemDefinition',
-  );
-
-  /// Measure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Measure = SubjectType._(
-    'Measure',
-  );
-
-  /// MeasureReport
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType MeasureReport = SubjectType._(
-    'MeasureReport',
-  );
-
-  /// Media
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Media = SubjectType._(
-    'Media',
-  );
-
-  /// Medication
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Medication = SubjectType._(
-    'Medication',
-  );
-
-  /// MedicationAdministration
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType MedicationAdministration = SubjectType._(
-    'MedicationAdministration',
-  );
-
-  /// MedicationDispense
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType MedicationDispense = SubjectType._(
-    'MedicationDispense',
-  );
-
-  /// MedicationKnowledge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType MedicationKnowledge = SubjectType._(
-    'MedicationKnowledge',
-  );
-
-  /// MedicationRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType MedicationRequest = SubjectType._(
-    'MedicationRequest',
-  );
-
-  /// MedicationStatement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType MedicationStatement = SubjectType._(
-    'MedicationStatement',
-  );
-
-  /// MedicinalProductDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType MedicinalProductDefinition = SubjectType._(
-    'MedicinalProductDefinition',
-  );
-
-  /// MessageDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType MessageDefinition = SubjectType._(
-    'MessageDefinition',
-  );
-
-  /// MessageHeader
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType MessageHeader = SubjectType._(
-    'MessageHeader',
-  );
-
-  /// MolecularSequence
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType MolecularSequence = SubjectType._(
-    'MolecularSequence',
-  );
-
-  /// NamingSystem
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType NamingSystem = SubjectType._(
-    'NamingSystem',
-  );
-
-  /// NutritionOrder
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType NutritionOrder = SubjectType._(
-    'NutritionOrder',
-  );
-
-  /// NutritionProduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType NutritionProduct = SubjectType._(
-    'NutritionProduct',
-  );
-
-  /// Observation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Observation = SubjectType._(
-    'Observation',
-  );
-
-  /// ObservationDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ObservationDefinition = SubjectType._(
-    'ObservationDefinition',
-  );
-
-  /// OperationDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType OperationDefinition = SubjectType._(
-    'OperationDefinition',
-  );
-
-  /// OperationOutcome
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType OperationOutcome = SubjectType._(
-    'OperationOutcome',
-  );
-
-  /// Organization
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Organization = SubjectType._(
-    'Organization',
-  );
-
-  /// OrganizationAffiliation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType OrganizationAffiliation = SubjectType._(
-    'OrganizationAffiliation',
-  );
-
-  /// PackagedProductDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType PackagedProductDefinition = SubjectType._(
-    'PackagedProductDefinition',
-  );
-
-  /// Patient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Patient = SubjectType._(
-    'Patient',
-  );
-
-  /// PaymentNotice
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType PaymentNotice = SubjectType._(
-    'PaymentNotice',
-  );
-
-  /// PaymentReconciliation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType PaymentReconciliation = SubjectType._(
-    'PaymentReconciliation',
-  );
-
-  /// Person
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Person = SubjectType._(
-    'Person',
-  );
-
-  /// PlanDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType PlanDefinition = SubjectType._(
-    'PlanDefinition',
-  );
-
-  /// Practitioner
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Practitioner = SubjectType._(
-    'Practitioner',
-  );
-
-  /// PractitionerRole
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType PractitionerRole = SubjectType._(
-    'PractitionerRole',
-  );
-
-  /// Procedure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Procedure = SubjectType._(
-    'Procedure',
-  );
-
-  /// Provenance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Provenance = SubjectType._(
-    'Provenance',
-  );
-
-  /// Questionnaire
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Questionnaire = SubjectType._(
-    'Questionnaire',
-  );
-
-  /// QuestionnaireResponse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType QuestionnaireResponse = SubjectType._(
-    'QuestionnaireResponse',
-  );
-
-  /// RegulatedAuthorization
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType RegulatedAuthorization = SubjectType._(
-    'RegulatedAuthorization',
-  );
-
-  /// RelatedPerson
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType RelatedPerson = SubjectType._(
-    'RelatedPerson',
-  );
-
-  /// RequestGroup
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType RequestGroup = SubjectType._(
-    'RequestGroup',
-  );
-
-  /// ResearchDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ResearchDefinition = SubjectType._(
-    'ResearchDefinition',
-  );
-
-  /// ResearchElementDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ResearchElementDefinition = SubjectType._(
-    'ResearchElementDefinition',
-  );
-
-  /// ResearchStudy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ResearchStudy = SubjectType._(
-    'ResearchStudy',
-  );
-
-  /// ResearchSubject
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ResearchSubject = SubjectType._(
-    'ResearchSubject',
-  );
-
-  /// RiskAssessment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType RiskAssessment = SubjectType._(
-    'RiskAssessment',
-  );
-
-  /// Schedule
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Schedule = SubjectType._(
-    'Schedule',
-  );
-
-  /// SearchParameter
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType SearchParameter = SubjectType._(
-    'SearchParameter',
-  );
-
-  /// ServiceRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ServiceRequest = SubjectType._(
-    'ServiceRequest',
-  );
-
-  /// Slot
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Slot = SubjectType._(
-    'Slot',
-  );
-
-  /// Specimen
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Specimen = SubjectType._(
-    'Specimen',
-  );
-
-  /// SpecimenDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType SpecimenDefinition = SubjectType._(
-    'SpecimenDefinition',
-  );
-
-  /// StructureDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType StructureDefinition = SubjectType._(
-    'StructureDefinition',
-  );
-
-  /// StructureMap
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType StructureMap = SubjectType._(
-    'StructureMap',
-  );
-
-  /// Subscription
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Subscription = SubjectType._(
-    'Subscription',
-  );
-
-  /// SubscriptionStatus
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType SubscriptionStatus = SubjectType._(
-    'SubscriptionStatus',
-  );
-
-  /// SubscriptionTopic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType SubscriptionTopic = SubjectType._(
-    'SubscriptionTopic',
-  );
-
-  /// Substance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Substance = SubjectType._(
-    'Substance',
-  );
-
-  /// SubstanceDefinition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType SubstanceDefinition = SubjectType._(
-    'SubstanceDefinition',
-  );
-
-  /// SupplyDelivery
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType SupplyDelivery = SubjectType._(
-    'SupplyDelivery',
-  );
-
-  /// SupplyRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType SupplyRequest = SubjectType._(
-    'SupplyRequest',
-  );
-
-  /// Task
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Task = SubjectType._(
-    'Task',
-  );
-
-  /// TerminologyCapabilities
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType TerminologyCapabilities = SubjectType._(
-    'TerminologyCapabilities',
-  );
-
-  /// TestReport
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType TestReport = SubjectType._(
-    'TestReport',
-  );
-
-  /// TestScript
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType TestScript = SubjectType._(
-    'TestScript',
-  );
-
-  /// ValueSet
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType ValueSet = SubjectType._(
-    'ValueSet',
-  );
-
-  /// VerificationResult
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType VerificationResult = SubjectType._(
-    'VerificationResult',
-  );
-
-  /// VisionPrescription
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType VisionPrescription = SubjectType._(
-    'VisionPrescription',
-  );
-
-  /// Parameters
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubjectType Parameters = SubjectType._(
-    'Parameters',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SubjectType elementOnly = SubjectType._('');
-
-  /// List of all enum-like values
-  static final List<SubjectType> values = [
-    Resource,
-    Binary,
-    Bundle,
-    DomainResource,
-    Account,
-    ActivityDefinition,
-    AdministrableProductDefinition,
-    AdverseEvent,
-    AllergyIntolerance,
-    Appointment,
-    AppointmentResponse,
-    AuditEvent,
-    Basic,
-    BiologicallyDerivedProduct,
-    BodyStructure,
-    CapabilityStatement,
-    CarePlan,
-    CareTeam,
-    CatalogEntry,
-    ChargeItem,
-    ChargeItemDefinition,
-    Citation,
-    Claim,
-    ClaimResponse,
-    ClinicalImpression,
-    ClinicalUseDefinition,
-    CodeSystem,
-    Communication,
-    CommunicationRequest,
-    CompartmentDefinition,
-    Composition,
-    ConceptMap,
-    Condition,
-    Consent,
-    Contract,
-    Coverage,
-    CoverageEligibilityRequest,
-    CoverageEligibilityResponse,
-    DetectedIssue,
-    Device,
-    DeviceDefinition,
-    DeviceMetric,
-    DeviceRequest,
-    DeviceUseStatement,
-    DiagnosticReport,
-    DocumentManifest,
-    DocumentReference,
-    Encounter,
-    Endpoint,
-    EnrollmentRequest,
-    EnrollmentResponse,
-    EpisodeOfCare,
-    EventDefinition,
-    Evidence,
-    EvidenceReport,
-    EvidenceVariable,
-    ExampleScenario,
-    ExplanationOfBenefit,
-    FamilyMemberHistory,
-    Flag,
-    Goal,
-    GraphDefinition,
-    Group,
-    GuidanceResponse,
-    HealthcareService,
-    ImagingStudy,
-    Immunization,
-    ImmunizationEvaluation,
-    ImmunizationRecommendation,
-    ImplementationGuide,
-    Ingredient,
-    InsurancePlan,
-    Invoice,
-    Library,
-    Linkage,
-    List_,
-    Location,
-    ManufacturedItemDefinition,
-    Measure,
-    MeasureReport,
-    Media,
-    Medication,
-    MedicationAdministration,
-    MedicationDispense,
-    MedicationKnowledge,
-    MedicationRequest,
-    MedicationStatement,
-    MedicinalProductDefinition,
-    MessageDefinition,
-    MessageHeader,
-    MolecularSequence,
-    NamingSystem,
-    NutritionOrder,
-    NutritionProduct,
-    Observation,
-    ObservationDefinition,
-    OperationDefinition,
-    OperationOutcome,
-    Organization,
-    OrganizationAffiliation,
-    PackagedProductDefinition,
-    Patient,
-    PaymentNotice,
-    PaymentReconciliation,
-    Person,
-    PlanDefinition,
-    Practitioner,
-    PractitionerRole,
-    Procedure,
-    Provenance,
-    Questionnaire,
-    QuestionnaireResponse,
-    RegulatedAuthorization,
-    RelatedPerson,
-    RequestGroup,
-    ResearchDefinition,
-    ResearchElementDefinition,
-    ResearchStudy,
-    ResearchSubject,
-    RiskAssessment,
-    Schedule,
-    SearchParameter,
-    ServiceRequest,
-    Slot,
-    Specimen,
-    SpecimenDefinition,
-    StructureDefinition,
-    StructureMap,
-    Subscription,
-    SubscriptionStatus,
-    SubscriptionTopic,
-    Substance,
-    SubstanceDefinition,
-    SupplyDelivery,
-    SupplyRequest,
-    Task,
-    TerminologyCapabilities,
-    TestReport,
-    TestScript,
-    ValueSet,
-    VerificationResult,
-    VisionPrescription,
-    Parameters,
-  ];
-
-  /// Returns the enum value with an element attached
-  SubjectType withElement(Element? newElement) {
-    return SubjectType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SubjectType extends FhirCode {
   /// Factory constructor to create [SubjectType] from JSON.
-  static SubjectType fromJson(Map<String, dynamic> json) {
+  factory SubjectType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubjectType.elementOnly.withElement(element);
+      return SubjectType.elementOnly(element);
     }
-    return SubjectType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SubjectType._(value, element);
+    }
+    throw ArgumentError(
+      'SubjectType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Resource
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Resource([this.element])
+      : dbValue = 'Resource',
+        super('Resource', element);
+
+  /// Binary
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Binary([this.element])
+      : dbValue = 'Binary',
+        super('Binary', element);
+
+  /// Bundle
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Bundle([this.element])
+      : dbValue = 'Bundle',
+        super('Bundle', element);
+
+  /// DomainResource
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.DomainResource([this.element])
+      : dbValue = 'DomainResource',
+        super('DomainResource', element);
+
+  /// Account
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Account([this.element])
+      : dbValue = 'Account',
+        super('Account', element);
+
+  /// ActivityDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ActivityDefinition([this.element])
+      : dbValue = 'ActivityDefinition',
+        super('ActivityDefinition', element);
+
+  /// AdministrableProductDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.AdministrableProductDefinition([this.element])
+      : dbValue = 'AdministrableProductDefinition',
+        super('AdministrableProductDefinition', element);
+
+  /// AdverseEvent
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.AdverseEvent([this.element])
+      : dbValue = 'AdverseEvent',
+        super('AdverseEvent', element);
+
+  /// AllergyIntolerance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.AllergyIntolerance([this.element])
+      : dbValue = 'AllergyIntolerance',
+        super('AllergyIntolerance', element);
+
+  /// Appointment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Appointment([this.element])
+      : dbValue = 'Appointment',
+        super('Appointment', element);
+
+  /// AppointmentResponse
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.AppointmentResponse([this.element])
+      : dbValue = 'AppointmentResponse',
+        super('AppointmentResponse', element);
+
+  /// AuditEvent
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.AuditEvent([this.element])
+      : dbValue = 'AuditEvent',
+        super('AuditEvent', element);
+
+  /// Basic
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Basic([this.element])
+      : dbValue = 'Basic',
+        super('Basic', element);
+
+  /// BiologicallyDerivedProduct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.BiologicallyDerivedProduct([this.element])
+      : dbValue = 'BiologicallyDerivedProduct',
+        super('BiologicallyDerivedProduct', element);
+
+  /// BodyStructure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.BodyStructure([this.element])
+      : dbValue = 'BodyStructure',
+        super('BodyStructure', element);
+
+  /// CapabilityStatement
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.CapabilityStatement([this.element])
+      : dbValue = 'CapabilityStatement',
+        super('CapabilityStatement', element);
+
+  /// CarePlan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.CarePlan([this.element])
+      : dbValue = 'CarePlan',
+        super('CarePlan', element);
+
+  /// CareTeam
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.CareTeam([this.element])
+      : dbValue = 'CareTeam',
+        super('CareTeam', element);
+
+  /// CatalogEntry
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.CatalogEntry([this.element])
+      : dbValue = 'CatalogEntry',
+        super('CatalogEntry', element);
+
+  /// ChargeItem
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ChargeItem([this.element])
+      : dbValue = 'ChargeItem',
+        super('ChargeItem', element);
+
+  /// ChargeItemDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ChargeItemDefinition([this.element])
+      : dbValue = 'ChargeItemDefinition',
+        super('ChargeItemDefinition', element);
+
+  /// Citation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Citation([this.element])
+      : dbValue = 'Citation',
+        super('Citation', element);
+
+  /// Claim
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Claim([this.element])
+      : dbValue = 'Claim',
+        super('Claim', element);
+
+  /// ClaimResponse
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ClaimResponse([this.element])
+      : dbValue = 'ClaimResponse',
+        super('ClaimResponse', element);
+
+  /// ClinicalImpression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ClinicalImpression([this.element])
+      : dbValue = 'ClinicalImpression',
+        super('ClinicalImpression', element);
+
+  /// ClinicalUseDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ClinicalUseDefinition([this.element])
+      : dbValue = 'ClinicalUseDefinition',
+        super('ClinicalUseDefinition', element);
+
+  /// CodeSystem
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.CodeSystem([this.element])
+      : dbValue = 'CodeSystem',
+        super('CodeSystem', element);
+
+  /// Communication
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Communication([this.element])
+      : dbValue = 'Communication',
+        super('Communication', element);
+
+  /// CommunicationRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.CommunicationRequest([this.element])
+      : dbValue = 'CommunicationRequest',
+        super('CommunicationRequest', element);
+
+  /// CompartmentDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.CompartmentDefinition([this.element])
+      : dbValue = 'CompartmentDefinition',
+        super('CompartmentDefinition', element);
+
+  /// Composition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Composition([this.element])
+      : dbValue = 'Composition',
+        super('Composition', element);
+
+  /// ConceptMap
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ConceptMap([this.element])
+      : dbValue = 'ConceptMap',
+        super('ConceptMap', element);
+
+  /// Condition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Condition([this.element])
+      : dbValue = 'Condition',
+        super('Condition', element);
+
+  /// Consent
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Consent([this.element])
+      : dbValue = 'Consent',
+        super('Consent', element);
+
+  /// Contract
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Contract([this.element])
+      : dbValue = 'Contract',
+        super('Contract', element);
+
+  /// Coverage
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Coverage([this.element])
+      : dbValue = 'Coverage',
+        super('Coverage', element);
+
+  /// CoverageEligibilityRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.CoverageEligibilityRequest([this.element])
+      : dbValue = 'CoverageEligibilityRequest',
+        super('CoverageEligibilityRequest', element);
+
+  /// CoverageEligibilityResponse
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.CoverageEligibilityResponse([this.element])
+      : dbValue = 'CoverageEligibilityResponse',
+        super('CoverageEligibilityResponse', element);
+
+  /// DetectedIssue
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.DetectedIssue([this.element])
+      : dbValue = 'DetectedIssue',
+        super('DetectedIssue', element);
+
+  /// Device
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Device([this.element])
+      : dbValue = 'Device',
+        super('Device', element);
+
+  /// DeviceDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.DeviceDefinition([this.element])
+      : dbValue = 'DeviceDefinition',
+        super('DeviceDefinition', element);
+
+  /// DeviceMetric
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.DeviceMetric([this.element])
+      : dbValue = 'DeviceMetric',
+        super('DeviceMetric', element);
+
+  /// DeviceRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.DeviceRequest([this.element])
+      : dbValue = 'DeviceRequest',
+        super('DeviceRequest', element);
+
+  /// DeviceUseStatement
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.DeviceUseStatement([this.element])
+      : dbValue = 'DeviceUseStatement',
+        super('DeviceUseStatement', element);
+
+  /// DiagnosticReport
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.DiagnosticReport([this.element])
+      : dbValue = 'DiagnosticReport',
+        super('DiagnosticReport', element);
+
+  /// DocumentManifest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.DocumentManifest([this.element])
+      : dbValue = 'DocumentManifest',
+        super('DocumentManifest', element);
+
+  /// DocumentReference
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.DocumentReference([this.element])
+      : dbValue = 'DocumentReference',
+        super('DocumentReference', element);
+
+  /// Encounter
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Encounter([this.element])
+      : dbValue = 'Encounter',
+        super('Encounter', element);
+
+  /// Endpoint
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Endpoint([this.element])
+      : dbValue = 'Endpoint',
+        super('Endpoint', element);
+
+  /// EnrollmentRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.EnrollmentRequest([this.element])
+      : dbValue = 'EnrollmentRequest',
+        super('EnrollmentRequest', element);
+
+  /// EnrollmentResponse
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.EnrollmentResponse([this.element])
+      : dbValue = 'EnrollmentResponse',
+        super('EnrollmentResponse', element);
+
+  /// EpisodeOfCare
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.EpisodeOfCare([this.element])
+      : dbValue = 'EpisodeOfCare',
+        super('EpisodeOfCare', element);
+
+  /// EventDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.EventDefinition([this.element])
+      : dbValue = 'EventDefinition',
+        super('EventDefinition', element);
+
+  /// Evidence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Evidence([this.element])
+      : dbValue = 'Evidence',
+        super('Evidence', element);
+
+  /// EvidenceReport
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.EvidenceReport([this.element])
+      : dbValue = 'EvidenceReport',
+        super('EvidenceReport', element);
+
+  /// EvidenceVariable
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.EvidenceVariable([this.element])
+      : dbValue = 'EvidenceVariable',
+        super('EvidenceVariable', element);
+
+  /// ExampleScenario
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ExampleScenario([this.element])
+      : dbValue = 'ExampleScenario',
+        super('ExampleScenario', element);
+
+  /// ExplanationOfBenefit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ExplanationOfBenefit([this.element])
+      : dbValue = 'ExplanationOfBenefit',
+        super('ExplanationOfBenefit', element);
+
+  /// FamilyMemberHistory
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.FamilyMemberHistory([this.element])
+      : dbValue = 'FamilyMemberHistory',
+        super('FamilyMemberHistory', element);
+
+  /// Flag
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Flag([this.element])
+      : dbValue = 'Flag',
+        super('Flag', element);
+
+  /// Goal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Goal([this.element])
+      : dbValue = 'Goal',
+        super('Goal', element);
+
+  /// GraphDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.GraphDefinition([this.element])
+      : dbValue = 'GraphDefinition',
+        super('GraphDefinition', element);
+
+  /// Group
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Group([this.element])
+      : dbValue = 'Group',
+        super('Group', element);
+
+  /// GuidanceResponse
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.GuidanceResponse([this.element])
+      : dbValue = 'GuidanceResponse',
+        super('GuidanceResponse', element);
+
+  /// HealthcareService
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.HealthcareService([this.element])
+      : dbValue = 'HealthcareService',
+        super('HealthcareService', element);
+
+  /// ImagingStudy
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ImagingStudy([this.element])
+      : dbValue = 'ImagingStudy',
+        super('ImagingStudy', element);
+
+  /// Immunization
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Immunization([this.element])
+      : dbValue = 'Immunization',
+        super('Immunization', element);
+
+  /// ImmunizationEvaluation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ImmunizationEvaluation([this.element])
+      : dbValue = 'ImmunizationEvaluation',
+        super('ImmunizationEvaluation', element);
+
+  /// ImmunizationRecommendation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ImmunizationRecommendation([this.element])
+      : dbValue = 'ImmunizationRecommendation',
+        super('ImmunizationRecommendation', element);
+
+  /// ImplementationGuide
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ImplementationGuide([this.element])
+      : dbValue = 'ImplementationGuide',
+        super('ImplementationGuide', element);
+
+  /// Ingredient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Ingredient([this.element])
+      : dbValue = 'Ingredient',
+        super('Ingredient', element);
+
+  /// InsurancePlan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.InsurancePlan([this.element])
+      : dbValue = 'InsurancePlan',
+        super('InsurancePlan', element);
+
+  /// Invoice
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Invoice([this.element])
+      : dbValue = 'Invoice',
+        super('Invoice', element);
+
+  /// Library
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Library([this.element])
+      : dbValue = 'Library',
+        super('Library', element);
+
+  /// Linkage
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Linkage([this.element])
+      : dbValue = 'Linkage',
+        super('Linkage', element);
+
+  /// List_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.List_([this.element])
+      : dbValue = 'List',
+        super('List', element);
+
+  /// Location
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Location([this.element])
+      : dbValue = 'Location',
+        super('Location', element);
+
+  /// ManufacturedItemDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ManufacturedItemDefinition([this.element])
+      : dbValue = 'ManufacturedItemDefinition',
+        super('ManufacturedItemDefinition', element);
+
+  /// Measure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Measure([this.element])
+      : dbValue = 'Measure',
+        super('Measure', element);
+
+  /// MeasureReport
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.MeasureReport([this.element])
+      : dbValue = 'MeasureReport',
+        super('MeasureReport', element);
+
+  /// Media
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Media([this.element])
+      : dbValue = 'Media',
+        super('Media', element);
+
+  /// Medication
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Medication([this.element])
+      : dbValue = 'Medication',
+        super('Medication', element);
+
+  /// MedicationAdministration
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.MedicationAdministration([this.element])
+      : dbValue = 'MedicationAdministration',
+        super('MedicationAdministration', element);
+
+  /// MedicationDispense
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.MedicationDispense([this.element])
+      : dbValue = 'MedicationDispense',
+        super('MedicationDispense', element);
+
+  /// MedicationKnowledge
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.MedicationKnowledge([this.element])
+      : dbValue = 'MedicationKnowledge',
+        super('MedicationKnowledge', element);
+
+  /// MedicationRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.MedicationRequest([this.element])
+      : dbValue = 'MedicationRequest',
+        super('MedicationRequest', element);
+
+  /// MedicationStatement
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.MedicationStatement([this.element])
+      : dbValue = 'MedicationStatement',
+        super('MedicationStatement', element);
+
+  /// MedicinalProductDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.MedicinalProductDefinition([this.element])
+      : dbValue = 'MedicinalProductDefinition',
+        super('MedicinalProductDefinition', element);
+
+  /// MessageDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.MessageDefinition([this.element])
+      : dbValue = 'MessageDefinition',
+        super('MessageDefinition', element);
+
+  /// MessageHeader
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.MessageHeader([this.element])
+      : dbValue = 'MessageHeader',
+        super('MessageHeader', element);
+
+  /// MolecularSequence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.MolecularSequence([this.element])
+      : dbValue = 'MolecularSequence',
+        super('MolecularSequence', element);
+
+  /// NamingSystem
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.NamingSystem([this.element])
+      : dbValue = 'NamingSystem',
+        super('NamingSystem', element);
+
+  /// NutritionOrder
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.NutritionOrder([this.element])
+      : dbValue = 'NutritionOrder',
+        super('NutritionOrder', element);
+
+  /// NutritionProduct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.NutritionProduct([this.element])
+      : dbValue = 'NutritionProduct',
+        super('NutritionProduct', element);
+
+  /// Observation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Observation([this.element])
+      : dbValue = 'Observation',
+        super('Observation', element);
+
+  /// ObservationDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ObservationDefinition([this.element])
+      : dbValue = 'ObservationDefinition',
+        super('ObservationDefinition', element);
+
+  /// OperationDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.OperationDefinition([this.element])
+      : dbValue = 'OperationDefinition',
+        super('OperationDefinition', element);
+
+  /// OperationOutcome
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.OperationOutcome([this.element])
+      : dbValue = 'OperationOutcome',
+        super('OperationOutcome', element);
+
+  /// Organization
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Organization([this.element])
+      : dbValue = 'Organization',
+        super('Organization', element);
+
+  /// OrganizationAffiliation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.OrganizationAffiliation([this.element])
+      : dbValue = 'OrganizationAffiliation',
+        super('OrganizationAffiliation', element);
+
+  /// PackagedProductDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.PackagedProductDefinition([this.element])
+      : dbValue = 'PackagedProductDefinition',
+        super('PackagedProductDefinition', element);
+
+  /// Patient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Patient([this.element])
+      : dbValue = 'Patient',
+        super('Patient', element);
+
+  /// PaymentNotice
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.PaymentNotice([this.element])
+      : dbValue = 'PaymentNotice',
+        super('PaymentNotice', element);
+
+  /// PaymentReconciliation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.PaymentReconciliation([this.element])
+      : dbValue = 'PaymentReconciliation',
+        super('PaymentReconciliation', element);
+
+  /// Person
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Person([this.element])
+      : dbValue = 'Person',
+        super('Person', element);
+
+  /// PlanDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.PlanDefinition([this.element])
+      : dbValue = 'PlanDefinition',
+        super('PlanDefinition', element);
+
+  /// Practitioner
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Practitioner([this.element])
+      : dbValue = 'Practitioner',
+        super('Practitioner', element);
+
+  /// PractitionerRole
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.PractitionerRole([this.element])
+      : dbValue = 'PractitionerRole',
+        super('PractitionerRole', element);
+
+  /// Procedure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Procedure([this.element])
+      : dbValue = 'Procedure',
+        super('Procedure', element);
+
+  /// Provenance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Provenance([this.element])
+      : dbValue = 'Provenance',
+        super('Provenance', element);
+
+  /// Questionnaire
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Questionnaire([this.element])
+      : dbValue = 'Questionnaire',
+        super('Questionnaire', element);
+
+  /// QuestionnaireResponse
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.QuestionnaireResponse([this.element])
+      : dbValue = 'QuestionnaireResponse',
+        super('QuestionnaireResponse', element);
+
+  /// RegulatedAuthorization
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.RegulatedAuthorization([this.element])
+      : dbValue = 'RegulatedAuthorization',
+        super('RegulatedAuthorization', element);
+
+  /// RelatedPerson
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.RelatedPerson([this.element])
+      : dbValue = 'RelatedPerson',
+        super('RelatedPerson', element);
+
+  /// RequestGroup
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.RequestGroup([this.element])
+      : dbValue = 'RequestGroup',
+        super('RequestGroup', element);
+
+  /// ResearchDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ResearchDefinition([this.element])
+      : dbValue = 'ResearchDefinition',
+        super('ResearchDefinition', element);
+
+  /// ResearchElementDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ResearchElementDefinition([this.element])
+      : dbValue = 'ResearchElementDefinition',
+        super('ResearchElementDefinition', element);
+
+  /// ResearchStudy
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ResearchStudy([this.element])
+      : dbValue = 'ResearchStudy',
+        super('ResearchStudy', element);
+
+  /// ResearchSubject
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ResearchSubject([this.element])
+      : dbValue = 'ResearchSubject',
+        super('ResearchSubject', element);
+
+  /// RiskAssessment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.RiskAssessment([this.element])
+      : dbValue = 'RiskAssessment',
+        super('RiskAssessment', element);
+
+  /// Schedule
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Schedule([this.element])
+      : dbValue = 'Schedule',
+        super('Schedule', element);
+
+  /// SearchParameter
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.SearchParameter([this.element])
+      : dbValue = 'SearchParameter',
+        super('SearchParameter', element);
+
+  /// ServiceRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ServiceRequest([this.element])
+      : dbValue = 'ServiceRequest',
+        super('ServiceRequest', element);
+
+  /// Slot
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Slot([this.element])
+      : dbValue = 'Slot',
+        super('Slot', element);
+
+  /// Specimen
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Specimen([this.element])
+      : dbValue = 'Specimen',
+        super('Specimen', element);
+
+  /// SpecimenDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.SpecimenDefinition([this.element])
+      : dbValue = 'SpecimenDefinition',
+        super('SpecimenDefinition', element);
+
+  /// StructureDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.StructureDefinition([this.element])
+      : dbValue = 'StructureDefinition',
+        super('StructureDefinition', element);
+
+  /// StructureMap
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.StructureMap([this.element])
+      : dbValue = 'StructureMap',
+        super('StructureMap', element);
+
+  /// Subscription
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Subscription([this.element])
+      : dbValue = 'Subscription',
+        super('Subscription', element);
+
+  /// SubscriptionStatus
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.SubscriptionStatus([this.element])
+      : dbValue = 'SubscriptionStatus',
+        super('SubscriptionStatus', element);
+
+  /// SubscriptionTopic
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.SubscriptionTopic([this.element])
+      : dbValue = 'SubscriptionTopic',
+        super('SubscriptionTopic', element);
+
+  /// Substance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Substance([this.element])
+      : dbValue = 'Substance',
+        super('Substance', element);
+
+  /// SubstanceDefinition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.SubstanceDefinition([this.element])
+      : dbValue = 'SubstanceDefinition',
+        super('SubstanceDefinition', element);
+
+  /// SupplyDelivery
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.SupplyDelivery([this.element])
+      : dbValue = 'SupplyDelivery',
+        super('SupplyDelivery', element);
+
+  /// SupplyRequest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.SupplyRequest([this.element])
+      : dbValue = 'SupplyRequest',
+        super('SupplyRequest', element);
+
+  /// Task
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Task([this.element])
+      : dbValue = 'Task',
+        super('Task', element);
+
+  /// TerminologyCapabilities
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.TerminologyCapabilities([this.element])
+      : dbValue = 'TerminologyCapabilities',
+        super('TerminologyCapabilities', element);
+
+  /// TestReport
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.TestReport([this.element])
+      : dbValue = 'TestReport',
+        super('TestReport', element);
+
+  /// TestScript
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.TestScript([this.element])
+      : dbValue = 'TestScript',
+        super('TestScript', element);
+
+  /// ValueSet
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.ValueSet([this.element])
+      : dbValue = 'ValueSet',
+        super('ValueSet', element);
+
+  /// VerificationResult
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.VerificationResult([this.element])
+      : dbValue = 'VerificationResult',
+        super('VerificationResult', element);
+
+  /// VisionPrescription
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.VisionPrescription([this.element])
+      : dbValue = 'VisionPrescription',
+        super('VisionPrescription', element);
+
+  /// Parameters
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubjectType.Parameters([this.element])
+      : dbValue = 'Parameters',
+        super('Parameters', element);
+
+  /// For instances where an Element is present but not value
+
+  SubjectType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SubjectType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Resource',
+    'Binary',
+    'Bundle',
+    'DomainResource',
+    'Account',
+    'ActivityDefinition',
+    'AdministrableProductDefinition',
+    'AdverseEvent',
+    'AllergyIntolerance',
+    'Appointment',
+    'AppointmentResponse',
+    'AuditEvent',
+    'Basic',
+    'BiologicallyDerivedProduct',
+    'BodyStructure',
+    'CapabilityStatement',
+    'CarePlan',
+    'CareTeam',
+    'CatalogEntry',
+    'ChargeItem',
+    'ChargeItemDefinition',
+    'Citation',
+    'Claim',
+    'ClaimResponse',
+    'ClinicalImpression',
+    'ClinicalUseDefinition',
+    'CodeSystem',
+    'Communication',
+    'CommunicationRequest',
+    'CompartmentDefinition',
+    'Composition',
+    'ConceptMap',
+    'Condition',
+    'Consent',
+    'Contract',
+    'Coverage',
+    'CoverageEligibilityRequest',
+    'CoverageEligibilityResponse',
+    'DetectedIssue',
+    'Device',
+    'DeviceDefinition',
+    'DeviceMetric',
+    'DeviceRequest',
+    'DeviceUseStatement',
+    'DiagnosticReport',
+    'DocumentManifest',
+    'DocumentReference',
+    'Encounter',
+    'Endpoint',
+    'EnrollmentRequest',
+    'EnrollmentResponse',
+    'EpisodeOfCare',
+    'EventDefinition',
+    'Evidence',
+    'EvidenceReport',
+    'EvidenceVariable',
+    'ExampleScenario',
+    'ExplanationOfBenefit',
+    'FamilyMemberHistory',
+    'Flag',
+    'Goal',
+    'GraphDefinition',
+    'Group',
+    'GuidanceResponse',
+    'HealthcareService',
+    'ImagingStudy',
+    'Immunization',
+    'ImmunizationEvaluation',
+    'ImmunizationRecommendation',
+    'ImplementationGuide',
+    'Ingredient',
+    'InsurancePlan',
+    'Invoice',
+    'Library',
+    'Linkage',
+    'List',
+    'Location',
+    'ManufacturedItemDefinition',
+    'Measure',
+    'MeasureReport',
+    'Media',
+    'Medication',
+    'MedicationAdministration',
+    'MedicationDispense',
+    'MedicationKnowledge',
+    'MedicationRequest',
+    'MedicationStatement',
+    'MedicinalProductDefinition',
+    'MessageDefinition',
+    'MessageHeader',
+    'MolecularSequence',
+    'NamingSystem',
+    'NutritionOrder',
+    'NutritionProduct',
+    'Observation',
+    'ObservationDefinition',
+    'OperationDefinition',
+    'OperationOutcome',
+    'Organization',
+    'OrganizationAffiliation',
+    'PackagedProductDefinition',
+    'Patient',
+    'PaymentNotice',
+    'PaymentReconciliation',
+    'Person',
+    'PlanDefinition',
+    'Practitioner',
+    'PractitionerRole',
+    'Procedure',
+    'Provenance',
+    'Questionnaire',
+    'QuestionnaireResponse',
+    'RegulatedAuthorization',
+    'RelatedPerson',
+    'RequestGroup',
+    'ResearchDefinition',
+    'ResearchElementDefinition',
+    'ResearchStudy',
+    'ResearchSubject',
+    'RiskAssessment',
+    'Schedule',
+    'SearchParameter',
+    'ServiceRequest',
+    'Slot',
+    'Specimen',
+    'SpecimenDefinition',
+    'StructureDefinition',
+    'StructureMap',
+    'Subscription',
+    'SubscriptionStatus',
+    'SubscriptionTopic',
+    'Substance',
+    'SubstanceDefinition',
+    'SupplyDelivery',
+    'SupplyRequest',
+    'Task',
+    'TerminologyCapabilities',
+    'TestReport',
+    'TestScript',
+    'ValueSet',
+    'VerificationResult',
+    'VisionPrescription',
+    'Parameters',
+  ];
+
+  /// Returns the enum value with an element attached
+  SubjectType withElement(Element? newElement) {
+    return SubjectType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SubjectType.$fhirCode';
+  String toString() => 'SubjectType.$value';
 }

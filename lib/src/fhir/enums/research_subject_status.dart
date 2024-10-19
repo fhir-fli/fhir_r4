@@ -5,161 +5,171 @@ import 'package:objectbox/objectbox.dart';
 
 /// Indicates the progression of a study subject through a study.
 @Entity()
-class ResearchSubjectStatus {
-  // Private constructor for internal use (like enum)
-  ResearchSubjectStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ResearchSubjectStatus values
-  /// candidate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchSubjectStatus candidate = ResearchSubjectStatus._(
-    'candidate',
-  );
-
-  /// eligible
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchSubjectStatus eligible = ResearchSubjectStatus._(
-    'eligible',
-  );
-
-  /// follow_up
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchSubjectStatus follow_up = ResearchSubjectStatus._(
-    'follow-up',
-  );
-
-  /// ineligible
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchSubjectStatus ineligible = ResearchSubjectStatus._(
-    'ineligible',
-  );
-
-  /// not_registered
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchSubjectStatus not_registered = ResearchSubjectStatus._(
-    'not-registered',
-  );
-
-  /// off_study
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchSubjectStatus off_study = ResearchSubjectStatus._(
-    'off-study',
-  );
-
-  /// on_study
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchSubjectStatus on_study = ResearchSubjectStatus._(
-    'on-study',
-  );
-
-  /// on_study_intervention
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchSubjectStatus on_study_intervention =
-      ResearchSubjectStatus._(
-    'on-study-intervention',
-  );
-
-  /// on_study_observation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchSubjectStatus on_study_observation =
-      ResearchSubjectStatus._(
-    'on-study-observation',
-  );
-
-  /// pending_on_study
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchSubjectStatus pending_on_study = ResearchSubjectStatus._(
-    'pending-on-study',
-  );
-
-  /// potential_candidate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchSubjectStatus potential_candidate =
-      ResearchSubjectStatus._(
-    'potential-candidate',
-  );
-
-  /// screening
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchSubjectStatus screening = ResearchSubjectStatus._(
-    'screening',
-  );
-
-  /// withdrawn
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ResearchSubjectStatus withdrawn = ResearchSubjectStatus._(
-    'withdrawn',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ResearchSubjectStatus elementOnly = ResearchSubjectStatus._('');
-
-  /// List of all enum-like values
-  static final List<ResearchSubjectStatus> values = [
-    candidate,
-    eligible,
-    follow_up,
-    ineligible,
-    not_registered,
-    off_study,
-    on_study,
-    on_study_intervention,
-    on_study_observation,
-    pending_on_study,
-    potential_candidate,
-    screening,
-    withdrawn,
-  ];
-
-  /// Returns the enum value with an element attached
-  ResearchSubjectStatus withElement(Element? newElement) {
-    return ResearchSubjectStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ResearchSubjectStatus extends FhirCode {
   /// Factory constructor to create [ResearchSubjectStatus] from JSON.
-  static ResearchSubjectStatus fromJson(Map<String, dynamic> json) {
+  factory ResearchSubjectStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResearchSubjectStatus.elementOnly.withElement(element);
+      return ResearchSubjectStatus.elementOnly(element);
     }
-    return ResearchSubjectStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ResearchSubjectStatus._(value, element);
+    }
+    throw ArgumentError(
+      'ResearchSubjectStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// candidate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchSubjectStatus.candidate([this.element])
+      : dbValue = 'candidate',
+        super('candidate', element);
+
+  /// eligible
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchSubjectStatus.eligible([this.element])
+      : dbValue = 'eligible',
+        super('eligible', element);
+
+  /// follow_up
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchSubjectStatus.follow_up([this.element])
+      : dbValue = 'follow-up',
+        super('follow-up', element);
+
+  /// ineligible
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchSubjectStatus.ineligible([this.element])
+      : dbValue = 'ineligible',
+        super('ineligible', element);
+
+  /// not_registered
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchSubjectStatus.not_registered([this.element])
+      : dbValue = 'not-registered',
+        super('not-registered', element);
+
+  /// off_study
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchSubjectStatus.off_study([this.element])
+      : dbValue = 'off-study',
+        super('off-study', element);
+
+  /// on_study
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchSubjectStatus.on_study([this.element])
+      : dbValue = 'on-study',
+        super('on-study', element);
+
+  /// on_study_intervention
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchSubjectStatus.on_study_intervention([this.element])
+      : dbValue = 'on-study-intervention',
+        super('on-study-intervention', element);
+
+  /// on_study_observation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchSubjectStatus.on_study_observation([this.element])
+      : dbValue = 'on-study-observation',
+        super('on-study-observation', element);
+
+  /// pending_on_study
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchSubjectStatus.pending_on_study([this.element])
+      : dbValue = 'pending-on-study',
+        super('pending-on-study', element);
+
+  /// potential_candidate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchSubjectStatus.potential_candidate([this.element])
+      : dbValue = 'potential-candidate',
+        super('potential-candidate', element);
+
+  /// screening
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchSubjectStatus.screening([this.element])
+      : dbValue = 'screening',
+        super('screening', element);
+
+  /// withdrawn
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ResearchSubjectStatus.withdrawn([this.element])
+      : dbValue = 'withdrawn',
+        super('withdrawn', element);
+
+  /// For instances where an Element is present but not value
+
+  ResearchSubjectStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ResearchSubjectStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'candidate',
+    'eligible',
+    'follow-up',
+    'ineligible',
+    'not-registered',
+    'off-study',
+    'on-study',
+    'on-study-intervention',
+    'on-study-observation',
+    'pending-on-study',
+    'potential-candidate',
+    'screening',
+    'withdrawn',
+  ];
+
+  /// Returns the enum value with an element attached
+  ResearchSubjectStatus withElement(Element? newElement) {
+    return ResearchSubjectStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ResearchSubjectStatus.$fhirCode';
+  String toString() => 'ResearchSubjectStatus.$value';
 }

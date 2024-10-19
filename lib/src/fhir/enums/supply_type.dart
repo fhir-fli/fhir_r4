@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value sets refers to a Category of supply.
 @Entity()
-class SupplyType {
-  // Private constructor for internal use (like enum)
-  SupplyType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SupplyType values
-  /// central
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SupplyType central = SupplyType._(
-    'central',
-  );
-
-  /// nonstock
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SupplyType nonstock = SupplyType._(
-    'nonstock',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SupplyType elementOnly = SupplyType._('');
-
-  /// List of all enum-like values
-  static final List<SupplyType> values = [
-    central,
-    nonstock,
-  ];
-
-  /// Returns the enum value with an element attached
-  SupplyType withElement(Element? newElement) {
-    return SupplyType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SupplyType extends FhirCode {
   /// Factory constructor to create [SupplyType] from JSON.
-  static SupplyType fromJson(Map<String, dynamic> json) {
+  factory SupplyType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SupplyType.elementOnly.withElement(element);
+      return SupplyType.elementOnly(element);
     }
-    return SupplyType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SupplyType._(value, element);
+    }
+    throw ArgumentError(
+      'SupplyType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// central
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SupplyType.central([this.element])
+      : dbValue = 'central',
+        super('central', element);
+
+  /// nonstock
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SupplyType.nonstock([this.element])
+      : dbValue = 'nonstock',
+        super('nonstock', element);
+
+  /// For instances where an Element is present but not value
+
+  SupplyType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SupplyType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'central',
+    'nonstock',
+  ];
+
+  /// Returns the enum value with an element attached
+  SupplyType withElement(Element? newElement) {
+    return SupplyType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SupplyType.$fhirCode';
+  String toString() => 'SupplyType.$value';
 }

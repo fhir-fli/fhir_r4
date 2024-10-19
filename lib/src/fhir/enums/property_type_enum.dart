@@ -5,110 +5,123 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of a property value.
 @Entity()
-class PropertyTypeEnum {
-  // Private constructor for internal use (like enum)
-  PropertyTypeEnum._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// PropertyTypeEnum values
-  /// code
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PropertyTypeEnum code = PropertyTypeEnum._(
-    'code',
-  );
-
-  /// Coding
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PropertyTypeEnum Coding = PropertyTypeEnum._(
-    'Coding',
-  );
-
-  /// string
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PropertyTypeEnum string = PropertyTypeEnum._(
-    'string',
-  );
-
-  /// integer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PropertyTypeEnum integer = PropertyTypeEnum._(
-    'integer',
-  );
-
-  /// boolean
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PropertyTypeEnum boolean = PropertyTypeEnum._(
-    'boolean',
-  );
-
-  /// dateTime
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PropertyTypeEnum dateTime = PropertyTypeEnum._(
-    'dateTime',
-  );
-
-  /// decimal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PropertyTypeEnum decimal = PropertyTypeEnum._(
-    'decimal',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final PropertyTypeEnum elementOnly = PropertyTypeEnum._('');
-
-  /// List of all enum-like values
-  static final List<PropertyTypeEnum> values = [
-    code,
-    Coding,
-    string,
-    integer,
-    boolean,
-    dateTime,
-    decimal,
-  ];
-
-  /// Returns the enum value with an element attached
-  PropertyTypeEnum withElement(Element? newElement) {
-    return PropertyTypeEnum._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class PropertyTypeEnum extends FhirCode {
   /// Factory constructor to create [PropertyTypeEnum] from JSON.
-  static PropertyTypeEnum fromJson(Map<String, dynamic> json) {
+  factory PropertyTypeEnum.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PropertyTypeEnum.elementOnly.withElement(element);
+      return PropertyTypeEnum.elementOnly(element);
     }
-    return PropertyTypeEnum.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return PropertyTypeEnum._(value, element);
+    }
+    throw ArgumentError(
+      'PropertyTypeEnum.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// code
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PropertyTypeEnum.code([this.element])
+      : dbValue = 'code',
+        super('code', element);
+
+  /// Coding
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PropertyTypeEnum.Coding([this.element])
+      : dbValue = 'Coding',
+        super('Coding', element);
+
+  /// string
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PropertyTypeEnum.string([this.element])
+      : dbValue = 'string',
+        super('string', element);
+
+  /// integer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PropertyTypeEnum.integer([this.element])
+      : dbValue = 'integer',
+        super('integer', element);
+
+  /// boolean
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PropertyTypeEnum.boolean([this.element])
+      : dbValue = 'boolean',
+        super('boolean', element);
+
+  /// dateTime
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PropertyTypeEnum.dateTime([this.element])
+      : dbValue = 'dateTime',
+        super('dateTime', element);
+
+  /// decimal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PropertyTypeEnum.decimal([this.element])
+      : dbValue = 'decimal',
+        super('decimal', element);
+
+  /// For instances where an Element is present but not value
+
+  PropertyTypeEnum.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  PropertyTypeEnum._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'code',
+    'Coding',
+    'string',
+    'integer',
+    'boolean',
+    'dateTime',
+    'decimal',
+  ];
+
+  /// Returns the enum value with an element attached
+  PropertyTypeEnum withElement(Element? newElement) {
+    return PropertyTypeEnum._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'PropertyTypeEnum.$fhirCode';
+  String toString() => 'PropertyTypeEnum.$value';
 }

@@ -5,62 +5,75 @@ import 'package:objectbox/objectbox.dart';
 
 /// Common Tag Codes defined by FHIR project
 @Entity()
-class CommonTags {
-  // Private constructor for internal use (like enum)
-  CommonTags._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CommonTags values
-  /// actionable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommonTags actionable = CommonTags._(
-    'actionable',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CommonTags elementOnly = CommonTags._('');
-
-  /// List of all enum-like values
-  static final List<CommonTags> values = [
-    actionable,
-  ];
-
-  /// Returns the enum value with an element attached
-  CommonTags withElement(Element? newElement) {
-    return CommonTags._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CommonTags extends FhirCode {
   /// Factory constructor to create [CommonTags] from JSON.
-  static CommonTags fromJson(Map<String, dynamic> json) {
+  factory CommonTags.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CommonTags.elementOnly.withElement(element);
+      return CommonTags.elementOnly(element);
     }
-    return CommonTags.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CommonTags._(value, element);
+    }
+    throw ArgumentError(
+      'CommonTags.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// actionable
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommonTags.actionable([this.element])
+      : dbValue = 'actionable',
+        super('actionable', element);
+
+  /// For instances where an Element is present but not value
+
+  CommonTags.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CommonTags._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'actionable',
+  ];
+
+  /// Returns the enum value with an element attached
+  CommonTags withElement(Element? newElement) {
+    return CommonTags._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CommonTags.$fhirCode';
+  String toString() => 'CommonTags.$value';
 }

@@ -5,266 +5,275 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes sample Regulatory consent policy types from the US and other regions.
 @Entity()
-class ConsentPolicyRuleCodes {
-  // Private constructor for internal use (like enum)
-  ConsentPolicyRuleCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ConsentPolicyRuleCodes values
-  /// cric
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes cric = ConsentPolicyRuleCodes._(
-    'cric',
-  );
-
-  /// illinois_minor_procedure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes illinois_minor_procedure =
-      ConsentPolicyRuleCodes._(
-    'illinois-minor-procedure',
-  );
-
-  /// hipaa_auth
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes hipaa_auth = ConsentPolicyRuleCodes._(
-    'hipaa-auth',
-  );
-
-  /// hipaa_npp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes hipaa_npp = ConsentPolicyRuleCodes._(
-    'hipaa-npp',
-  );
-
-  /// hipaa_restrictions
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes hipaa_restrictions =
-      ConsentPolicyRuleCodes._(
-    'hipaa-restrictions',
-  );
-
-  /// hipaa_research
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes hipaa_research = ConsentPolicyRuleCodes._(
-    'hipaa-research',
-  );
-
-  /// hipaa_self_pay
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes hipaa_self_pay = ConsentPolicyRuleCodes._(
-    'hipaa-self-pay',
-  );
-
-  /// mdhhs_5515
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes mdhhs_5515 = ConsentPolicyRuleCodes._(
-    'mdhhs-5515',
-  );
-
-  /// nyssipp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes nyssipp = ConsentPolicyRuleCodes._(
-    'nyssipp',
-  );
-
-  /// va_10_0484
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes va_10_0484 = ConsentPolicyRuleCodes._(
-    'va-10-0484',
-  );
-
-  /// va_10_0485
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes va_10_0485 = ConsentPolicyRuleCodes._(
-    'va-10-0485',
-  );
-
-  /// va_10_5345
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes va_10_5345 = ConsentPolicyRuleCodes._(
-    'va-10-5345',
-  );
-
-  /// va_10_5345a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes va_10_5345a = ConsentPolicyRuleCodes._(
-    'va-10-5345a',
-  );
-
-  /// va_10_5345a_mhv
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes va_10_5345a_mhv =
-      ConsentPolicyRuleCodes._(
-    'va-10-5345a-mhv',
-  );
-
-  /// va_10_10116
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes va_10_10116 = ConsentPolicyRuleCodes._(
-    'va-10-10116',
-  );
-
-  /// va_21_4142
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes va_21_4142 = ConsentPolicyRuleCodes._(
-    'va-21-4142',
-  );
-
-  /// ssa_827
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes ssa_827 = ConsentPolicyRuleCodes._(
-    'ssa-827',
-  );
-
-  /// dch_3927
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes dch_3927 = ConsentPolicyRuleCodes._(
-    'dch-3927',
-  );
-
-  /// squaxin
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes squaxin = ConsentPolicyRuleCodes._(
-    'squaxin',
-  );
-
-  /// nl_lsp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes nl_lsp = ConsentPolicyRuleCodes._(
-    'nl-lsp',
-  );
-
-  /// at_elga
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes at_elga = ConsentPolicyRuleCodes._(
-    'at-elga',
-  );
-
-  /// nih_hipaa
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes nih_hipaa = ConsentPolicyRuleCodes._(
-    'nih-hipaa',
-  );
-
-  /// nci
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes nci = ConsentPolicyRuleCodes._(
-    'nci',
-  );
-
-  /// nih_grdr
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes nih_grdr = ConsentPolicyRuleCodes._(
-    'nih-grdr',
-  );
-
-  /// nih_527
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes nih_527 = ConsentPolicyRuleCodes._(
-    'nih-527',
-  );
-
-  /// ga4gh
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentPolicyRuleCodes ga4gh = ConsentPolicyRuleCodes._(
-    'ga4gh',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ConsentPolicyRuleCodes elementOnly =
-      ConsentPolicyRuleCodes._('');
-
-  /// List of all enum-like values
-  static final List<ConsentPolicyRuleCodes> values = [
-    cric,
-    illinois_minor_procedure,
-    hipaa_auth,
-    hipaa_npp,
-    hipaa_restrictions,
-    hipaa_research,
-    hipaa_self_pay,
-    mdhhs_5515,
-    nyssipp,
-    va_10_0484,
-    va_10_0485,
-    va_10_5345,
-    va_10_5345a,
-    va_10_5345a_mhv,
-    va_10_10116,
-    va_21_4142,
-    ssa_827,
-    dch_3927,
-    squaxin,
-    nl_lsp,
-    at_elga,
-    nih_hipaa,
-    nci,
-    nih_grdr,
-    nih_527,
-    ga4gh,
-  ];
-
-  /// Returns the enum value with an element attached
-  ConsentPolicyRuleCodes withElement(Element? newElement) {
-    return ConsentPolicyRuleCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ConsentPolicyRuleCodes extends FhirCode {
   /// Factory constructor to create [ConsentPolicyRuleCodes] from JSON.
-  static ConsentPolicyRuleCodes fromJson(Map<String, dynamic> json) {
+  factory ConsentPolicyRuleCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConsentPolicyRuleCodes.elementOnly.withElement(element);
+      return ConsentPolicyRuleCodes.elementOnly(element);
     }
-    return ConsentPolicyRuleCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ConsentPolicyRuleCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ConsentPolicyRuleCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// cric
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.cric([this.element])
+      : dbValue = 'cric',
+        super('cric', element);
+
+  /// illinois_minor_procedure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.illinois_minor_procedure([this.element])
+      : dbValue = 'illinois-minor-procedure',
+        super('illinois-minor-procedure', element);
+
+  /// hipaa_auth
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.hipaa_auth([this.element])
+      : dbValue = 'hipaa-auth',
+        super('hipaa-auth', element);
+
+  /// hipaa_npp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.hipaa_npp([this.element])
+      : dbValue = 'hipaa-npp',
+        super('hipaa-npp', element);
+
+  /// hipaa_restrictions
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.hipaa_restrictions([this.element])
+      : dbValue = 'hipaa-restrictions',
+        super('hipaa-restrictions', element);
+
+  /// hipaa_research
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.hipaa_research([this.element])
+      : dbValue = 'hipaa-research',
+        super('hipaa-research', element);
+
+  /// hipaa_self_pay
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.hipaa_self_pay([this.element])
+      : dbValue = 'hipaa-self-pay',
+        super('hipaa-self-pay', element);
+
+  /// mdhhs_5515
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.mdhhs_5515([this.element])
+      : dbValue = 'mdhhs-5515',
+        super('mdhhs-5515', element);
+
+  /// nyssipp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.nyssipp([this.element])
+      : dbValue = 'nyssipp',
+        super('nyssipp', element);
+
+  /// va_10_0484
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.va_10_0484([this.element])
+      : dbValue = 'va-10-0484',
+        super('va-10-0484', element);
+
+  /// va_10_0485
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.va_10_0485([this.element])
+      : dbValue = 'va-10-0485',
+        super('va-10-0485', element);
+
+  /// va_10_5345
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.va_10_5345([this.element])
+      : dbValue = 'va-10-5345',
+        super('va-10-5345', element);
+
+  /// va_10_5345a
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.va_10_5345a([this.element])
+      : dbValue = 'va-10-5345a',
+        super('va-10-5345a', element);
+
+  /// va_10_5345a_mhv
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.va_10_5345a_mhv([this.element])
+      : dbValue = 'va-10-5345a-mhv',
+        super('va-10-5345a-mhv', element);
+
+  /// va_10_10116
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.va_10_10116([this.element])
+      : dbValue = 'va-10-10116',
+        super('va-10-10116', element);
+
+  /// va_21_4142
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.va_21_4142([this.element])
+      : dbValue = 'va-21-4142',
+        super('va-21-4142', element);
+
+  /// ssa_827
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.ssa_827([this.element])
+      : dbValue = 'ssa-827',
+        super('ssa-827', element);
+
+  /// dch_3927
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.dch_3927([this.element])
+      : dbValue = 'dch-3927',
+        super('dch-3927', element);
+
+  /// squaxin
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.squaxin([this.element])
+      : dbValue = 'squaxin',
+        super('squaxin', element);
+
+  /// nl_lsp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.nl_lsp([this.element])
+      : dbValue = 'nl-lsp',
+        super('nl-lsp', element);
+
+  /// at_elga
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.at_elga([this.element])
+      : dbValue = 'at-elga',
+        super('at-elga', element);
+
+  /// nih_hipaa
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.nih_hipaa([this.element])
+      : dbValue = 'nih-hipaa',
+        super('nih-hipaa', element);
+
+  /// nci
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.nci([this.element])
+      : dbValue = 'nci',
+        super('nci', element);
+
+  /// nih_grdr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.nih_grdr([this.element])
+      : dbValue = 'nih-grdr',
+        super('nih-grdr', element);
+
+  /// nih_527
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.nih_527([this.element])
+      : dbValue = 'nih-527',
+        super('nih-527', element);
+
+  /// ga4gh
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentPolicyRuleCodes.ga4gh([this.element])
+      : dbValue = 'ga4gh',
+        super('ga4gh', element);
+
+  /// For instances where an Element is present but not value
+
+  ConsentPolicyRuleCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ConsentPolicyRuleCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'cric',
+    'illinois-minor-procedure',
+    'hipaa-auth',
+    'hipaa-npp',
+    'hipaa-restrictions',
+    'hipaa-research',
+    'hipaa-self-pay',
+    'mdhhs-5515',
+    'nyssipp',
+    'va-10-0484',
+    'va-10-0485',
+    'va-10-5345',
+    'va-10-5345a',
+    'va-10-5345a-mhv',
+    'va-10-10116',
+    'va-21-4142',
+    'ssa-827',
+    'dch-3927',
+    'squaxin',
+    'nl-lsp',
+    'at-elga',
+    'nih-hipaa',
+    'nci',
+    'nih-grdr',
+    'nih-527',
+    'ga4gh',
+  ];
+
+  /// Returns the enum value with an element attached
+  ConsentPolicyRuleCodes withElement(Element? newElement) {
+    return ConsentPolicyRuleCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ConsentPolicyRuleCodes.$fhirCode';
+  String toString() => 'ConsentPolicyRuleCodes.$value';
 }

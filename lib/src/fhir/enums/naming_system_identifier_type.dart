@@ -5,87 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// Identifies the style of unique identifier used to identify a namespace.
 @Entity()
-class NamingSystemIdentifierType {
-  // Private constructor for internal use (like enum)
-  NamingSystemIdentifierType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// NamingSystemIdentifierType values
-  /// oid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NamingSystemIdentifierType oid = NamingSystemIdentifierType._(
-    'oid',
-  );
-
-  /// uuid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NamingSystemIdentifierType uuid = NamingSystemIdentifierType._(
-    'uuid',
-  );
-
-  /// uri
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NamingSystemIdentifierType uri = NamingSystemIdentifierType._(
-    'uri',
-  );
-
-  /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NamingSystemIdentifierType other = NamingSystemIdentifierType._(
-    'other',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final NamingSystemIdentifierType elementOnly =
-      NamingSystemIdentifierType._('');
-
-  /// List of all enum-like values
-  static final List<NamingSystemIdentifierType> values = [
-    oid,
-    uuid,
-    uri,
-    other,
-  ];
-
-  /// Returns the enum value with an element attached
-  NamingSystemIdentifierType withElement(Element? newElement) {
-    return NamingSystemIdentifierType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class NamingSystemIdentifierType extends FhirCode {
   /// Factory constructor to create [NamingSystemIdentifierType] from JSON.
-  static NamingSystemIdentifierType fromJson(Map<String, dynamic> json) {
+  factory NamingSystemIdentifierType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NamingSystemIdentifierType.elementOnly.withElement(element);
+      return NamingSystemIdentifierType.elementOnly(element);
     }
-    return NamingSystemIdentifierType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return NamingSystemIdentifierType._(value, element);
+    }
+    throw ArgumentError(
+      'NamingSystemIdentifierType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// oid
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NamingSystemIdentifierType.oid([this.element])
+      : dbValue = 'oid',
+        super('oid', element);
+
+  /// uuid
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NamingSystemIdentifierType.uuid([this.element])
+      : dbValue = 'uuid',
+        super('uuid', element);
+
+  /// uri
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NamingSystemIdentifierType.uri([this.element])
+      : dbValue = 'uri',
+        super('uri', element);
+
+  /// other
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NamingSystemIdentifierType.other([this.element])
+      : dbValue = 'other',
+        super('other', element);
+
+  /// For instances where an Element is present but not value
+
+  NamingSystemIdentifierType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  NamingSystemIdentifierType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'oid',
+    'uuid',
+    'uri',
+    'other',
+  ];
+
+  /// Returns the enum value with an element attached
+  NamingSystemIdentifierType withElement(Element? newElement) {
+    return NamingSystemIdentifierType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'NamingSystemIdentifierType.$fhirCode';
+  String toString() => 'NamingSystemIdentifierType.$value';
 }

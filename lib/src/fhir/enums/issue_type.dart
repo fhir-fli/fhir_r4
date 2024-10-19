@@ -5,302 +5,315 @@ import 'package:objectbox/objectbox.dart';
 
 /// A code that describes the type of issue.
 @Entity()
-class IssueType {
-  // Private constructor for internal use (like enum)
-  IssueType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// IssueType values
-  /// invalid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType invalid = IssueType._(
-    'invalid',
-  );
-
-  /// structure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType structure = IssueType._(
-    'structure',
-  );
-
-  /// required_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType required_ = IssueType._(
-    'required',
-  );
-
-  /// value
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType value = IssueType._(
-    'value',
-  );
-
-  /// invariant
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType invariant = IssueType._(
-    'invariant',
-  );
-
-  /// security
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType security = IssueType._(
-    'security',
-  );
-
-  /// login
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType login = IssueType._(
-    'login',
-  );
-
-  /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType unknown = IssueType._(
-    'unknown',
-  );
-
-  /// expired
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType expired = IssueType._(
-    'expired',
-  );
-
-  /// forbidden
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType forbidden = IssueType._(
-    'forbidden',
-  );
-
-  /// suppressed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType suppressed = IssueType._(
-    'suppressed',
-  );
-
-  /// processing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType processing = IssueType._(
-    'processing',
-  );
-
-  /// not_supported
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType not_supported = IssueType._(
-    'not-supported',
-  );
-
-  /// duplicate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType duplicate = IssueType._(
-    'duplicate',
-  );
-
-  /// multiple_matches
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType multiple_matches = IssueType._(
-    'multiple-matches',
-  );
-
-  /// not_found
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType not_found = IssueType._(
-    'not-found',
-  );
-
-  /// deleted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType deleted = IssueType._(
-    'deleted',
-  );
-
-  /// too_long
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType too_long = IssueType._(
-    'too-long',
-  );
-
-  /// code_invalid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType code_invalid = IssueType._(
-    'code-invalid',
-  );
-
-  /// extension_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType extension_ = IssueType._(
-    'extension',
-  );
-
-  /// too_costly
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType too_costly = IssueType._(
-    'too-costly',
-  );
-
-  /// business_rule
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType business_rule = IssueType._(
-    'business-rule',
-  );
-
-  /// conflict
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType conflict = IssueType._(
-    'conflict',
-  );
-
-  /// transient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType transient = IssueType._(
-    'transient',
-  );
-
-  /// lock_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType lock_error = IssueType._(
-    'lock-error',
-  );
-
-  /// no_store
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType no_store = IssueType._(
-    'no-store',
-  );
-
-  /// exception
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType exception = IssueType._(
-    'exception',
-  );
-
-  /// timeout
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType timeout = IssueType._(
-    'timeout',
-  );
-
-  /// incomplete
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType incomplete = IssueType._(
-    'incomplete',
-  );
-
-  /// throttled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType throttled = IssueType._(
-    'throttled',
-  );
-
-  /// informational
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IssueType informational = IssueType._(
-    'informational',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final IssueType elementOnly = IssueType._('');
-
-  /// List of all enum-like values
-  static final List<IssueType> values = [
-    invalid,
-    structure,
-    required_,
-    value,
-    invariant,
-    security,
-    login,
-    unknown,
-    expired,
-    forbidden,
-    suppressed,
-    processing,
-    not_supported,
-    duplicate,
-    multiple_matches,
-    not_found,
-    deleted,
-    too_long,
-    code_invalid,
-    extension_,
-    too_costly,
-    business_rule,
-    conflict,
-    transient,
-    lock_error,
-    no_store,
-    exception,
-    timeout,
-    incomplete,
-    throttled,
-    informational,
-  ];
-
-  /// Returns the enum value with an element attached
-  IssueType withElement(Element? newElement) {
-    return IssueType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class IssueType extends FhirCode {
   /// Factory constructor to create [IssueType] from JSON.
-  static IssueType fromJson(Map<String, dynamic> json) {
+  factory IssueType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return IssueType.elementOnly.withElement(element);
+      return IssueType.elementOnly(element);
     }
-    return IssueType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return IssueType._(value, element);
+    }
+    throw ArgumentError(
+      'IssueType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// invalid
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.invalid([this.element])
+      : dbValue = 'invalid',
+        super('invalid', element);
+
+  /// structure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.structure([this.element])
+      : dbValue = 'structure',
+        super('structure', element);
+
+  /// required_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.required_([this.element])
+      : dbValue = 'required',
+        super('required', element);
+
+  /// value
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.value([this.element])
+      : dbValue = 'value',
+        super('value', element);
+
+  /// invariant
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.invariant([this.element])
+      : dbValue = 'invariant',
+        super('invariant', element);
+
+  /// security
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.security([this.element])
+      : dbValue = 'security',
+        super('security', element);
+
+  /// login
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.login([this.element])
+      : dbValue = 'login',
+        super('login', element);
+
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.unknown([this.element])
+      : dbValue = 'unknown',
+        super('unknown', element);
+
+  /// expired
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.expired([this.element])
+      : dbValue = 'expired',
+        super('expired', element);
+
+  /// forbidden
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.forbidden([this.element])
+      : dbValue = 'forbidden',
+        super('forbidden', element);
+
+  /// suppressed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.suppressed([this.element])
+      : dbValue = 'suppressed',
+        super('suppressed', element);
+
+  /// processing
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.processing([this.element])
+      : dbValue = 'processing',
+        super('processing', element);
+
+  /// not_supported
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.not_supported([this.element])
+      : dbValue = 'not-supported',
+        super('not-supported', element);
+
+  /// duplicate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.duplicate([this.element])
+      : dbValue = 'duplicate',
+        super('duplicate', element);
+
+  /// multiple_matches
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.multiple_matches([this.element])
+      : dbValue = 'multiple-matches',
+        super('multiple-matches', element);
+
+  /// not_found
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.not_found([this.element])
+      : dbValue = 'not-found',
+        super('not-found', element);
+
+  /// deleted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.deleted([this.element])
+      : dbValue = 'deleted',
+        super('deleted', element);
+
+  /// too_long
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.too_long([this.element])
+      : dbValue = 'too-long',
+        super('too-long', element);
+
+  /// code_invalid
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.code_invalid([this.element])
+      : dbValue = 'code-invalid',
+        super('code-invalid', element);
+
+  /// extension_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.extension_([this.element])
+      : dbValue = 'extension',
+        super('extension', element);
+
+  /// too_costly
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.too_costly([this.element])
+      : dbValue = 'too-costly',
+        super('too-costly', element);
+
+  /// business_rule
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.business_rule([this.element])
+      : dbValue = 'business-rule',
+        super('business-rule', element);
+
+  /// conflict
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.conflict([this.element])
+      : dbValue = 'conflict',
+        super('conflict', element);
+
+  /// transient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.transient([this.element])
+      : dbValue = 'transient',
+        super('transient', element);
+
+  /// lock_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.lock_error([this.element])
+      : dbValue = 'lock-error',
+        super('lock-error', element);
+
+  /// no_store
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.no_store([this.element])
+      : dbValue = 'no-store',
+        super('no-store', element);
+
+  /// exception
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.exception([this.element])
+      : dbValue = 'exception',
+        super('exception', element);
+
+  /// timeout
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.timeout([this.element])
+      : dbValue = 'timeout',
+        super('timeout', element);
+
+  /// incomplete
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.incomplete([this.element])
+      : dbValue = 'incomplete',
+        super('incomplete', element);
+
+  /// throttled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.throttled([this.element])
+      : dbValue = 'throttled',
+        super('throttled', element);
+
+  /// informational
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IssueType.informational([this.element])
+      : dbValue = 'informational',
+        super('informational', element);
+
+  /// For instances where an Element is present but not value
+
+  IssueType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  IssueType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'invalid',
+    'structure',
+    'required',
+    'value',
+    'invariant',
+    'security',
+    'login',
+    'unknown',
+    'expired',
+    'forbidden',
+    'suppressed',
+    'processing',
+    'not-supported',
+    'duplicate',
+    'multiple-matches',
+    'not-found',
+    'deleted',
+    'too-long',
+    'code-invalid',
+    'extension',
+    'too-costly',
+    'business-rule',
+    'conflict',
+    'transient',
+    'lock-error',
+    'no-store',
+    'exception',
+    'timeout',
+    'incomplete',
+    'throttled',
+    'informational',
+  ];
+
+  /// Returns the enum value with an element attached
+  IssueType withElement(Element? newElement) {
+    return IssueType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'IssueType.$fhirCode';
+  String toString() => 'IssueType.$value';
 }

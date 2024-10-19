@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// Indication of the degree of conformance expectations associated with a binding.
 @Entity()
-class BindingStrength {
-  // Private constructor for internal use (like enum)
-  BindingStrength._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// BindingStrength values
-  /// required_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BindingStrength required_ = BindingStrength._(
-    'required',
-  );
-
-  /// extensible
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BindingStrength extensible = BindingStrength._(
-    'extensible',
-  );
-
-  /// preferred
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BindingStrength preferred = BindingStrength._(
-    'preferred',
-  );
-
-  /// example
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BindingStrength example = BindingStrength._(
-    'example',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final BindingStrength elementOnly = BindingStrength._('');
-
-  /// List of all enum-like values
-  static final List<BindingStrength> values = [
-    required_,
-    extensible,
-    preferred,
-    example,
-  ];
-
-  /// Returns the enum value with an element attached
-  BindingStrength withElement(Element? newElement) {
-    return BindingStrength._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class BindingStrength extends FhirCode {
   /// Factory constructor to create [BindingStrength] from JSON.
-  static BindingStrength fromJson(Map<String, dynamic> json) {
+  factory BindingStrength.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return BindingStrength.elementOnly.withElement(element);
+      return BindingStrength.elementOnly(element);
     }
-    return BindingStrength.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return BindingStrength._(value, element);
+    }
+    throw ArgumentError(
+      'BindingStrength.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// required_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BindingStrength.required_([this.element])
+      : dbValue = 'required',
+        super('required', element);
+
+  /// extensible
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BindingStrength.extensible([this.element])
+      : dbValue = 'extensible',
+        super('extensible', element);
+
+  /// preferred
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BindingStrength.preferred([this.element])
+      : dbValue = 'preferred',
+        super('preferred', element);
+
+  /// example
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BindingStrength.example([this.element])
+      : dbValue = 'example',
+        super('example', element);
+
+  /// For instances where an Element is present but not value
+
+  BindingStrength.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  BindingStrength._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'required',
+    'extensible',
+    'preferred',
+    'example',
+  ];
+
+  /// Returns the enum value with an element attached
+  BindingStrength withElement(Element? newElement) {
+    return BindingStrength._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'BindingStrength.$fhirCode';
+  String toString() => 'BindingStrength.$value';
 }

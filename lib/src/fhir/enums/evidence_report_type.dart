@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The kind of report, such as grouping of classifiers, search results, or human-compiled expression.
 @Entity()
-class EvidenceReportType {
-  // Private constructor for internal use (like enum)
-  EvidenceReportType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EvidenceReportType values
-  /// classification
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceReportType classification = EvidenceReportType._(
-    'classification',
-  );
-
-  /// search_results
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceReportType search_results = EvidenceReportType._(
-    'search-results',
-  );
-
-  /// resources_compiled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceReportType resources_compiled = EvidenceReportType._(
-    'resources-compiled',
-  );
-
-  /// text_structured
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceReportType text_structured = EvidenceReportType._(
-    'text-structured',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final EvidenceReportType elementOnly = EvidenceReportType._('');
-
-  /// List of all enum-like values
-  static final List<EvidenceReportType> values = [
-    classification,
-    search_results,
-    resources_compiled,
-    text_structured,
-  ];
-
-  /// Returns the enum value with an element attached
-  EvidenceReportType withElement(Element? newElement) {
-    return EvidenceReportType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class EvidenceReportType extends FhirCode {
   /// Factory constructor to create [EvidenceReportType] from JSON.
-  static EvidenceReportType fromJson(Map<String, dynamic> json) {
+  factory EvidenceReportType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EvidenceReportType.elementOnly.withElement(element);
+      return EvidenceReportType.elementOnly(element);
     }
-    return EvidenceReportType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return EvidenceReportType._(value, element);
+    }
+    throw ArgumentError(
+      'EvidenceReportType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// classification
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceReportType.classification([this.element])
+      : dbValue = 'classification',
+        super('classification', element);
+
+  /// search_results
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceReportType.search_results([this.element])
+      : dbValue = 'search-results',
+        super('search-results', element);
+
+  /// resources_compiled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceReportType.resources_compiled([this.element])
+      : dbValue = 'resources-compiled',
+        super('resources-compiled', element);
+
+  /// text_structured
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceReportType.text_structured([this.element])
+      : dbValue = 'text-structured',
+        super('text-structured', element);
+
+  /// For instances where an Element is present but not value
+
+  EvidenceReportType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  EvidenceReportType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'classification',
+    'search-results',
+    'resources-compiled',
+    'text-structured',
+  ];
+
+  /// Returns the enum value with an element attached
+  EvidenceReportType withElement(Element? newElement) {
+    return EvidenceReportType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'EvidenceReportType.$fhirCode';
+  String toString() => 'EvidenceReportType.$value';
 }

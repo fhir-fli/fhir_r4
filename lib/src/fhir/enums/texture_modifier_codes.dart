@@ -5,172 +5,179 @@ import 'package:objectbox/objectbox.dart';
 
 /// TextureModifier: Codes for food consistency types or texture modifications to apply to foods. This value set is composed of SNOMED CT (US Extension and Core) Concepts from SCTID 229961002 Food consistency types (substance) hierarchy and is provided as a suggestive example.
 @Entity()
-class TextureModifierCodes {
-  // Private constructor for internal use (like enum)
-  TextureModifierCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// TextureModifierCodes values
-  /// value228053002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TextureModifierCodes value228053002 = TextureModifierCodes._(
-    '228053002',
-  );
-
-  /// value439091000124107
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TextureModifierCodes value439091000124107 =
-      TextureModifierCodes._(
-    '439091000124107',
-  );
-
-  /// value228049004
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TextureModifierCodes value228049004 = TextureModifierCodes._(
-    '228049004',
-  );
-
-  /// value441881000124103
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TextureModifierCodes value441881000124103 =
-      TextureModifierCodes._(
-    '441881000124103',
-  );
-
-  /// value441761000124103
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TextureModifierCodes value441761000124103 =
-      TextureModifierCodes._(
-    '441761000124103',
-  );
-
-  /// value441751000124100
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TextureModifierCodes value441751000124100 =
-      TextureModifierCodes._(
-    '441751000124100',
-  );
-
-  /// value228059003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TextureModifierCodes value228059003 = TextureModifierCodes._(
-    '228059003',
-  );
-
-  /// value441791000124106
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TextureModifierCodes value441791000124106 =
-      TextureModifierCodes._(
-    '441791000124106',
-  );
-
-  /// value228055009
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TextureModifierCodes value228055009 = TextureModifierCodes._(
-    '228055009',
-  );
-
-  /// value228056005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TextureModifierCodes value228056005 = TextureModifierCodes._(
-    '228056005',
-  );
-
-  /// value441771000124105
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TextureModifierCodes value441771000124105 =
-      TextureModifierCodes._(
-    '441771000124105',
-  );
-
-  /// value228057001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TextureModifierCodes value228057001 = TextureModifierCodes._(
-    '228057001',
-  );
-
-  /// value228058006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TextureModifierCodes value228058006 = TextureModifierCodes._(
-    '228058006',
-  );
-
-  /// value228060008
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TextureModifierCodes value228060008 = TextureModifierCodes._(
-    '228060008',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final TextureModifierCodes elementOnly = TextureModifierCodes._('');
-
-  /// List of all enum-like values
-  static final List<TextureModifierCodes> values = [
-    value228053002,
-    value439091000124107,
-    value228049004,
-    value441881000124103,
-    value441761000124103,
-    value441751000124100,
-    value228059003,
-    value441791000124106,
-    value228055009,
-    value228056005,
-    value441771000124105,
-    value228057001,
-    value228058006,
-    value228060008,
-  ];
-
-  /// Returns the enum value with an element attached
-  TextureModifierCodes withElement(Element? newElement) {
-    return TextureModifierCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class TextureModifierCodes extends FhirCode {
   /// Factory constructor to create [TextureModifierCodes] from JSON.
-  static TextureModifierCodes fromJson(Map<String, dynamic> json) {
+  factory TextureModifierCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TextureModifierCodes.elementOnly.withElement(element);
+      return TextureModifierCodes.elementOnly(element);
     }
-    return TextureModifierCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return TextureModifierCodes._(value, element);
+    }
+    throw ArgumentError(
+      'TextureModifierCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value228053002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TextureModifierCodes.value228053002([this.element])
+      : dbValue = '228053002',
+        super('228053002', element);
+
+  /// value439091000124107
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TextureModifierCodes.value439091000124107([this.element])
+      : dbValue = '439091000124107',
+        super('439091000124107', element);
+
+  /// value228049004
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TextureModifierCodes.value228049004([this.element])
+      : dbValue = '228049004',
+        super('228049004', element);
+
+  /// value441881000124103
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TextureModifierCodes.value441881000124103([this.element])
+      : dbValue = '441881000124103',
+        super('441881000124103', element);
+
+  /// value441761000124103
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TextureModifierCodes.value441761000124103([this.element])
+      : dbValue = '441761000124103',
+        super('441761000124103', element);
+
+  /// value441751000124100
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TextureModifierCodes.value441751000124100([this.element])
+      : dbValue = '441751000124100',
+        super('441751000124100', element);
+
+  /// value228059003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TextureModifierCodes.value228059003([this.element])
+      : dbValue = '228059003',
+        super('228059003', element);
+
+  /// value441791000124106
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TextureModifierCodes.value441791000124106([this.element])
+      : dbValue = '441791000124106',
+        super('441791000124106', element);
+
+  /// value228055009
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TextureModifierCodes.value228055009([this.element])
+      : dbValue = '228055009',
+        super('228055009', element);
+
+  /// value228056005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TextureModifierCodes.value228056005([this.element])
+      : dbValue = '228056005',
+        super('228056005', element);
+
+  /// value441771000124105
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TextureModifierCodes.value441771000124105([this.element])
+      : dbValue = '441771000124105',
+        super('441771000124105', element);
+
+  /// value228057001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TextureModifierCodes.value228057001([this.element])
+      : dbValue = '228057001',
+        super('228057001', element);
+
+  /// value228058006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TextureModifierCodes.value228058006([this.element])
+      : dbValue = '228058006',
+        super('228058006', element);
+
+  /// value228060008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TextureModifierCodes.value228060008([this.element])
+      : dbValue = '228060008',
+        super('228060008', element);
+
+  /// For instances where an Element is present but not value
+
+  TextureModifierCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  TextureModifierCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '228053002',
+    '439091000124107',
+    '228049004',
+    '441881000124103',
+    '441761000124103',
+    '441751000124100',
+    '228059003',
+    '441791000124106',
+    '228055009',
+    '228056005',
+    '441771000124105',
+    '228057001',
+    '228058006',
+    '228060008',
+  ];
+
+  /// Returns the enum value with an element attached
+  TextureModifierCodes withElement(Element? newElement) {
+    return TextureModifierCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'TextureModifierCodes.$fhirCode';
+  String toString() => 'TextureModifierCodes.$value';
 }

@@ -5,102 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set defines a set of codes that can be used to indicate special courtesies provided to the patient.
 @Entity()
-class SpecialCourtesy {
-  // Private constructor for internal use (like enum)
-  SpecialCourtesy._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SpecialCourtesy values
-  /// EXT
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecialCourtesy EXT = SpecialCourtesy._(
-    'EXT',
-  );
-
-  /// NRM
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecialCourtesy NRM = SpecialCourtesy._(
-    'NRM',
-  );
-
-  /// PRF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecialCourtesy PRF = SpecialCourtesy._(
-    'PRF',
-  );
-
-  /// STF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecialCourtesy STF = SpecialCourtesy._(
-    'STF',
-  );
-
-  /// VIP
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecialCourtesy VIP = SpecialCourtesy._(
-    'VIP',
-  );
-
-  /// UNK
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecialCourtesy UNK = SpecialCourtesy._(
-    'UNK',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SpecialCourtesy elementOnly = SpecialCourtesy._('');
-
-  /// List of all enum-like values
-  static final List<SpecialCourtesy> values = [
-    EXT,
-    NRM,
-    PRF,
-    STF,
-    VIP,
-    UNK,
-  ];
-
-  /// Returns the enum value with an element attached
-  SpecialCourtesy withElement(Element? newElement) {
-    return SpecialCourtesy._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SpecialCourtesy extends FhirCode {
   /// Factory constructor to create [SpecialCourtesy] from JSON.
-  static SpecialCourtesy fromJson(Map<String, dynamic> json) {
+  factory SpecialCourtesy.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SpecialCourtesy.elementOnly.withElement(element);
+      return SpecialCourtesy.elementOnly(element);
     }
-    return SpecialCourtesy.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SpecialCourtesy._(value, element);
+    }
+    throw ArgumentError(
+      'SpecialCourtesy.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// EXT
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecialCourtesy.EXT([this.element])
+      : dbValue = 'EXT',
+        super('EXT', element);
+
+  /// NRM
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecialCourtesy.NRM([this.element])
+      : dbValue = 'NRM',
+        super('NRM', element);
+
+  /// PRF
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecialCourtesy.PRF([this.element])
+      : dbValue = 'PRF',
+        super('PRF', element);
+
+  /// STF
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecialCourtesy.STF([this.element])
+      : dbValue = 'STF',
+        super('STF', element);
+
+  /// VIP
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecialCourtesy.VIP([this.element])
+      : dbValue = 'VIP',
+        super('VIP', element);
+
+  /// UNK
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecialCourtesy.UNK([this.element])
+      : dbValue = 'UNK',
+        super('UNK', element);
+
+  /// For instances where an Element is present but not value
+
+  SpecialCourtesy.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SpecialCourtesy._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'EXT',
+    'NRM',
+    'PRF',
+    'STF',
+    'VIP',
+    'UNK',
+  ];
+
+  /// Returns the enum value with an element attached
+  SpecialCourtesy withElement(Element? newElement) {
+    return SpecialCourtesy._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SpecialCourtesy.$fhirCode';
+  String toString() => 'SpecialCourtesy.$value';
 }

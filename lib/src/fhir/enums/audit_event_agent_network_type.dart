@@ -5,95 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of network access point of this agent in the audit event.
 @Entity()
-class AuditEventAgentNetworkType {
-  // Private constructor for internal use (like enum)
-  AuditEventAgentNetworkType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AuditEventAgentNetworkType values
-  /// value1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventAgentNetworkType value1 = AuditEventAgentNetworkType._(
-    '1',
-  );
-
-  /// value2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventAgentNetworkType value2 = AuditEventAgentNetworkType._(
-    '2',
-  );
-
-  /// value3
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventAgentNetworkType value3 = AuditEventAgentNetworkType._(
-    '3',
-  );
-
-  /// value4
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventAgentNetworkType value4 = AuditEventAgentNetworkType._(
-    '4',
-  );
-
-  /// value5
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventAgentNetworkType value5 = AuditEventAgentNetworkType._(
-    '5',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AuditEventAgentNetworkType elementOnly =
-      AuditEventAgentNetworkType._('');
-
-  /// List of all enum-like values
-  static final List<AuditEventAgentNetworkType> values = [
-    value1,
-    value2,
-    value3,
-    value4,
-    value5,
-  ];
-
-  /// Returns the enum value with an element attached
-  AuditEventAgentNetworkType withElement(Element? newElement) {
-    return AuditEventAgentNetworkType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AuditEventAgentNetworkType extends FhirCode {
   /// Factory constructor to create [AuditEventAgentNetworkType] from JSON.
-  static AuditEventAgentNetworkType fromJson(Map<String, dynamic> json) {
+  factory AuditEventAgentNetworkType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AuditEventAgentNetworkType.elementOnly.withElement(element);
+      return AuditEventAgentNetworkType.elementOnly(element);
     }
-    return AuditEventAgentNetworkType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AuditEventAgentNetworkType._(value, element);
+    }
+    throw ArgumentError(
+      'AuditEventAgentNetworkType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventAgentNetworkType.value1([this.element])
+      : dbValue = '1',
+        super('1', element);
+
+  /// value2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventAgentNetworkType.value2([this.element])
+      : dbValue = '2',
+        super('2', element);
+
+  /// value3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventAgentNetworkType.value3([this.element])
+      : dbValue = '3',
+        super('3', element);
+
+  /// value4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventAgentNetworkType.value4([this.element])
+      : dbValue = '4',
+        super('4', element);
+
+  /// value5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventAgentNetworkType.value5([this.element])
+      : dbValue = '5',
+        super('5', element);
+
+  /// For instances where an Element is present but not value
+
+  AuditEventAgentNetworkType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AuditEventAgentNetworkType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+  ];
+
+  /// Returns the enum value with an element attached
+  AuditEventAgentNetworkType withElement(Element? newElement) {
+    return AuditEventAgentNetworkType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AuditEventAgentNetworkType.$fhirCode';
+  String toString() => 'AuditEventAgentNetworkType.$value';
 }

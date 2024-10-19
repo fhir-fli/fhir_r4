@@ -5,91 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes Status codes.
 @Entity()
-class FinancialResourceStatusCodes {
-  // Private constructor for internal use (like enum)
-  FinancialResourceStatusCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// FinancialResourceStatusCodes values
-  /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FinancialResourceStatusCodes active =
-      FinancialResourceStatusCodes._(
-    'active',
-  );
-
-  /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FinancialResourceStatusCodes cancelled =
-      FinancialResourceStatusCodes._(
-    'cancelled',
-  );
-
-  /// draft
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FinancialResourceStatusCodes draft =
-      FinancialResourceStatusCodes._(
-    'draft',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FinancialResourceStatusCodes entered_in_error =
-      FinancialResourceStatusCodes._(
-    'entered-in-error',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final FinancialResourceStatusCodes elementOnly =
-      FinancialResourceStatusCodes._('');
-
-  /// List of all enum-like values
-  static final List<FinancialResourceStatusCodes> values = [
-    active,
-    cancelled,
-    draft,
-    entered_in_error,
-  ];
-
-  /// Returns the enum value with an element attached
-  FinancialResourceStatusCodes withElement(Element? newElement) {
-    return FinancialResourceStatusCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class FinancialResourceStatusCodes extends FhirCode {
   /// Factory constructor to create [FinancialResourceStatusCodes] from JSON.
-  static FinancialResourceStatusCodes fromJson(Map<String, dynamic> json) {
+  factory FinancialResourceStatusCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FinancialResourceStatusCodes.elementOnly.withElement(element);
+      return FinancialResourceStatusCodes.elementOnly(element);
     }
-    return FinancialResourceStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return FinancialResourceStatusCodes._(value, element);
+    }
+    throw ArgumentError(
+      'FinancialResourceStatusCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FinancialResourceStatusCodes.active([this.element])
+      : dbValue = 'active',
+        super('active', element);
+
+  /// cancelled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FinancialResourceStatusCodes.cancelled([this.element])
+      : dbValue = 'cancelled',
+        super('cancelled', element);
+
+  /// draft
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FinancialResourceStatusCodes.draft([this.element])
+      : dbValue = 'draft',
+        super('draft', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FinancialResourceStatusCodes.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// For instances where an Element is present but not value
+
+  FinancialResourceStatusCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  FinancialResourceStatusCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'active',
+    'cancelled',
+    'draft',
+    'entered-in-error',
+  ];
+
+  /// Returns the enum value with an element attached
+  FinancialResourceStatusCodes withElement(Element? newElement) {
+    return FinancialResourceStatusCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'FinancialResourceStatusCodes.$fhirCode';
+  String toString() => 'FinancialResourceStatusCodes.$value';
 }

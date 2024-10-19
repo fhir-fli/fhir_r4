@@ -5,73 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the patient's eligibility for a vaccination program. This value set is provided as a suggestive example.
 @Entity()
-class ImmunizationProgramEligibility {
-  // Private constructor for internal use (like enum)
-  ImmunizationProgramEligibility._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ImmunizationProgramEligibility values
-  /// ineligible
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationProgramEligibility ineligible =
-      ImmunizationProgramEligibility._(
-    'ineligible',
-  );
-
-  /// uninsured
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationProgramEligibility uninsured =
-      ImmunizationProgramEligibility._(
-    'uninsured',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ImmunizationProgramEligibility elementOnly =
-      ImmunizationProgramEligibility._('');
-
-  /// List of all enum-like values
-  static final List<ImmunizationProgramEligibility> values = [
-    ineligible,
-    uninsured,
-  ];
-
-  /// Returns the enum value with an element attached
-  ImmunizationProgramEligibility withElement(Element? newElement) {
-    return ImmunizationProgramEligibility._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ImmunizationProgramEligibility extends FhirCode {
   /// Factory constructor to create [ImmunizationProgramEligibility] from JSON.
-  static ImmunizationProgramEligibility fromJson(Map<String, dynamic> json) {
+  factory ImmunizationProgramEligibility.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImmunizationProgramEligibility.elementOnly.withElement(element);
+      return ImmunizationProgramEligibility.elementOnly(element);
     }
-    return ImmunizationProgramEligibility.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ImmunizationProgramEligibility._(value, element);
+    }
+    throw ArgumentError(
+      'ImmunizationProgramEligibility.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// ineligible
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationProgramEligibility.ineligible([this.element])
+      : dbValue = 'ineligible',
+        super('ineligible', element);
+
+  /// uninsured
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationProgramEligibility.uninsured([this.element])
+      : dbValue = 'uninsured',
+        super('uninsured', element);
+
+  /// For instances where an Element is present but not value
+
+  ImmunizationProgramEligibility.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ImmunizationProgramEligibility._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'ineligible',
+    'uninsured',
+  ];
+
+  /// Returns the enum value with an element attached
+  ImmunizationProgramEligibility withElement(Element? newElement) {
+    return ImmunizationProgramEligibility._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ImmunizationProgramEligibility.$fhirCode';
+  String toString() => 'ImmunizationProgramEligibility.$value';
 }

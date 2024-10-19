@@ -5,106 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// Codes indicating the kind of the price component.
 @Entity()
-class InvoicePriceComponentType {
-  // Private constructor for internal use (like enum)
-  InvoicePriceComponentType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// InvoicePriceComponentType values
-  /// base
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final InvoicePriceComponentType base = InvoicePriceComponentType._(
-    'base',
-  );
-
-  /// surcharge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final InvoicePriceComponentType surcharge =
-      InvoicePriceComponentType._(
-    'surcharge',
-  );
-
-  /// deduction
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final InvoicePriceComponentType deduction =
-      InvoicePriceComponentType._(
-    'deduction',
-  );
-
-  /// discount
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final InvoicePriceComponentType discount = InvoicePriceComponentType._(
-    'discount',
-  );
-
-  /// tax
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final InvoicePriceComponentType tax = InvoicePriceComponentType._(
-    'tax',
-  );
-
-  /// informational
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final InvoicePriceComponentType informational =
-      InvoicePriceComponentType._(
-    'informational',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final InvoicePriceComponentType elementOnly =
-      InvoicePriceComponentType._('');
-
-  /// List of all enum-like values
-  static final List<InvoicePriceComponentType> values = [
-    base,
-    surcharge,
-    deduction,
-    discount,
-    tax,
-    informational,
-  ];
-
-  /// Returns the enum value with an element attached
-  InvoicePriceComponentType withElement(Element? newElement) {
-    return InvoicePriceComponentType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class InvoicePriceComponentType extends FhirCode {
   /// Factory constructor to create [InvoicePriceComponentType] from JSON.
-  static InvoicePriceComponentType fromJson(Map<String, dynamic> json) {
+  factory InvoicePriceComponentType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return InvoicePriceComponentType.elementOnly.withElement(element);
+      return InvoicePriceComponentType.elementOnly(element);
     }
-    return InvoicePriceComponentType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return InvoicePriceComponentType._(value, element);
+    }
+    throw ArgumentError(
+      'InvoicePriceComponentType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// base
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  InvoicePriceComponentType.base([this.element])
+      : dbValue = 'base',
+        super('base', element);
+
+  /// surcharge
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  InvoicePriceComponentType.surcharge([this.element])
+      : dbValue = 'surcharge',
+        super('surcharge', element);
+
+  /// deduction
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  InvoicePriceComponentType.deduction([this.element])
+      : dbValue = 'deduction',
+        super('deduction', element);
+
+  /// discount
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  InvoicePriceComponentType.discount([this.element])
+      : dbValue = 'discount',
+        super('discount', element);
+
+  /// tax
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  InvoicePriceComponentType.tax([this.element])
+      : dbValue = 'tax',
+        super('tax', element);
+
+  /// informational
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  InvoicePriceComponentType.informational([this.element])
+      : dbValue = 'informational',
+        super('informational', element);
+
+  /// For instances where an Element is present but not value
+
+  InvoicePriceComponentType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  InvoicePriceComponentType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'base',
+    'surcharge',
+    'deduction',
+    'discount',
+    'tax',
+    'informational',
+  ];
+
+  /// Returns the enum value with an element attached
+  InvoicePriceComponentType withElement(Element? newElement) {
+    return InvoicePriceComponentType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'InvoicePriceComponentType.$fhirCode';
+  String toString() => 'InvoicePriceComponentType.$value';
 }

@@ -5,150 +5,163 @@ import 'package:objectbox/objectbox.dart';
 
 /// A supported modifier for a search parameter.
 @Entity()
-class SearchModifierCode {
-  // Private constructor for internal use (like enum)
-  SearchModifierCode._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SearchModifierCode values
-  /// missing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchModifierCode missing = SearchModifierCode._(
-    'missing',
-  );
-
-  /// exact
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchModifierCode exact = SearchModifierCode._(
-    'exact',
-  );
-
-  /// contains
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchModifierCode contains = SearchModifierCode._(
-    'contains',
-  );
-
-  /// not
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchModifierCode not = SearchModifierCode._(
-    'not',
-  );
-
-  /// text
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchModifierCode text = SearchModifierCode._(
-    'text',
-  );
-
-  /// in_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchModifierCode in_ = SearchModifierCode._(
-    'in',
-  );
-
-  /// not_in
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchModifierCode not_in = SearchModifierCode._(
-    'not-in',
-  );
-
-  /// below
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchModifierCode below = SearchModifierCode._(
-    'below',
-  );
-
-  /// above
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchModifierCode above = SearchModifierCode._(
-    'above',
-  );
-
-  /// type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchModifierCode type = SearchModifierCode._(
-    'type',
-  );
-
-  /// identifier
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchModifierCode identifier = SearchModifierCode._(
-    'identifier',
-  );
-
-  /// ofType
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchModifierCode ofType = SearchModifierCode._(
-    'ofType',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SearchModifierCode elementOnly = SearchModifierCode._('');
-
-  /// List of all enum-like values
-  static final List<SearchModifierCode> values = [
-    missing,
-    exact,
-    contains,
-    not,
-    text,
-    in_,
-    not_in,
-    below,
-    above,
-    type,
-    identifier,
-    ofType,
-  ];
-
-  /// Returns the enum value with an element attached
-  SearchModifierCode withElement(Element? newElement) {
-    return SearchModifierCode._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SearchModifierCode extends FhirCode {
   /// Factory constructor to create [SearchModifierCode] from JSON.
-  static SearchModifierCode fromJson(Map<String, dynamic> json) {
+  factory SearchModifierCode.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SearchModifierCode.elementOnly.withElement(element);
+      return SearchModifierCode.elementOnly(element);
     }
-    return SearchModifierCode.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SearchModifierCode._(value, element);
+    }
+    throw ArgumentError(
+      'SearchModifierCode.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// missing
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchModifierCode.missing([this.element])
+      : dbValue = 'missing',
+        super('missing', element);
+
+  /// exact
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchModifierCode.exact([this.element])
+      : dbValue = 'exact',
+        super('exact', element);
+
+  /// contains
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchModifierCode.contains([this.element])
+      : dbValue = 'contains',
+        super('contains', element);
+
+  /// not
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchModifierCode.not([this.element])
+      : dbValue = 'not',
+        super('not', element);
+
+  /// text
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchModifierCode.text([this.element])
+      : dbValue = 'text',
+        super('text', element);
+
+  /// in_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchModifierCode.in_([this.element])
+      : dbValue = 'in',
+        super('in', element);
+
+  /// not_in
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchModifierCode.not_in([this.element])
+      : dbValue = 'not-in',
+        super('not-in', element);
+
+  /// below
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchModifierCode.below([this.element])
+      : dbValue = 'below',
+        super('below', element);
+
+  /// above
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchModifierCode.above([this.element])
+      : dbValue = 'above',
+        super('above', element);
+
+  /// type
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchModifierCode.type([this.element])
+      : dbValue = 'type',
+        super('type', element);
+
+  /// identifier
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchModifierCode.identifier([this.element])
+      : dbValue = 'identifier',
+        super('identifier', element);
+
+  /// ofType
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchModifierCode.ofType([this.element])
+      : dbValue = 'ofType',
+        super('ofType', element);
+
+  /// For instances where an Element is present but not value
+
+  SearchModifierCode.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SearchModifierCode._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'missing',
+    'exact',
+    'contains',
+    'not',
+    'text',
+    'in',
+    'not-in',
+    'below',
+    'above',
+    'type',
+    'identifier',
+    'ofType',
+  ];
+
+  /// Returns the enum value with an element attached
+  SearchModifierCode withElement(Element? newElement) {
+    return SearchModifierCode._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SearchModifierCode.$fhirCode';
+  String toString() => 'SearchModifierCode.$value';
 }

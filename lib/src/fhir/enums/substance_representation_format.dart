@@ -5,118 +5,123 @@ import 'package:objectbox/objectbox.dart';
 
 /// A format of a substance representation.
 @Entity()
-class SubstanceRepresentationFormat {
-  // Private constructor for internal use (like enum)
-  SubstanceRepresentationFormat._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubstanceRepresentationFormat values
-  /// InChI
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceRepresentationFormat InChI =
-      SubstanceRepresentationFormat._(
-    'InChI',
-  );
-
-  /// SMILES
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceRepresentationFormat SMILES =
-      SubstanceRepresentationFormat._(
-    'SMILES',
-  );
-
-  /// MOLFILE
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceRepresentationFormat MOLFILE =
-      SubstanceRepresentationFormat._(
-    'MOLFILE',
-  );
-
-  /// CDX
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceRepresentationFormat CDX =
-      SubstanceRepresentationFormat._(
-    'CDX',
-  );
-
-  /// SDF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceRepresentationFormat SDF =
-      SubstanceRepresentationFormat._(
-    'SDF',
-  );
-
-  /// PDB
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceRepresentationFormat PDB =
-      SubstanceRepresentationFormat._(
-    'PDB',
-  );
-
-  /// mmCIF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SubstanceRepresentationFormat mmCIF =
-      SubstanceRepresentationFormat._(
-    'mmCIF',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SubstanceRepresentationFormat elementOnly =
-      SubstanceRepresentationFormat._('');
-
-  /// List of all enum-like values
-  static final List<SubstanceRepresentationFormat> values = [
-    InChI,
-    SMILES,
-    MOLFILE,
-    CDX,
-    SDF,
-    PDB,
-    mmCIF,
-  ];
-
-  /// Returns the enum value with an element attached
-  SubstanceRepresentationFormat withElement(Element? newElement) {
-    return SubstanceRepresentationFormat._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SubstanceRepresentationFormat extends FhirCode {
   /// Factory constructor to create [SubstanceRepresentationFormat] from JSON.
-  static SubstanceRepresentationFormat fromJson(Map<String, dynamic> json) {
+  factory SubstanceRepresentationFormat.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubstanceRepresentationFormat.elementOnly.withElement(element);
+      return SubstanceRepresentationFormat.elementOnly(element);
     }
-    return SubstanceRepresentationFormat.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SubstanceRepresentationFormat._(value, element);
+    }
+    throw ArgumentError(
+      'SubstanceRepresentationFormat.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// InChI
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceRepresentationFormat.InChI([this.element])
+      : dbValue = 'InChI',
+        super('InChI', element);
+
+  /// SMILES
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceRepresentationFormat.SMILES([this.element])
+      : dbValue = 'SMILES',
+        super('SMILES', element);
+
+  /// MOLFILE
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceRepresentationFormat.MOLFILE([this.element])
+      : dbValue = 'MOLFILE',
+        super('MOLFILE', element);
+
+  /// CDX
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceRepresentationFormat.CDX([this.element])
+      : dbValue = 'CDX',
+        super('CDX', element);
+
+  /// SDF
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceRepresentationFormat.SDF([this.element])
+      : dbValue = 'SDF',
+        super('SDF', element);
+
+  /// PDB
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceRepresentationFormat.PDB([this.element])
+      : dbValue = 'PDB',
+        super('PDB', element);
+
+  /// mmCIF
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SubstanceRepresentationFormat.mmCIF([this.element])
+      : dbValue = 'mmCIF',
+        super('mmCIF', element);
+
+  /// For instances where an Element is present but not value
+
+  SubstanceRepresentationFormat.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SubstanceRepresentationFormat._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'InChI',
+    'SMILES',
+    'MOLFILE',
+    'CDX',
+    'SDF',
+    'PDB',
+    'mmCIF',
+  ];
+
+  /// Returns the enum value with an element attached
+  SubstanceRepresentationFormat withElement(Element? newElement) {
+    return SubstanceRepresentationFormat._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SubstanceRepresentationFormat.$fhirCode';
+  String toString() => 'SubstanceRepresentationFormat.$value';
 }

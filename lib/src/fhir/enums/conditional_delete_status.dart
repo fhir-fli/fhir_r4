@@ -5,80 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// A code that indicates how the server supports conditional delete.
 @Entity()
-class ConditionalDeleteStatus {
-  // Private constructor for internal use (like enum)
-  ConditionalDeleteStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ConditionalDeleteStatus values
-  /// not_supported
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConditionalDeleteStatus not_supported =
-      ConditionalDeleteStatus._(
-    'not-supported',
-  );
-
-  /// single
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConditionalDeleteStatus single = ConditionalDeleteStatus._(
-    'single',
-  );
-
-  /// multiple
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConditionalDeleteStatus multiple = ConditionalDeleteStatus._(
-    'multiple',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ConditionalDeleteStatus elementOnly =
-      ConditionalDeleteStatus._('');
-
-  /// List of all enum-like values
-  static final List<ConditionalDeleteStatus> values = [
-    not_supported,
-    single,
-    multiple,
-  ];
-
-  /// Returns the enum value with an element attached
-  ConditionalDeleteStatus withElement(Element? newElement) {
-    return ConditionalDeleteStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ConditionalDeleteStatus extends FhirCode {
   /// Factory constructor to create [ConditionalDeleteStatus] from JSON.
-  static ConditionalDeleteStatus fromJson(Map<String, dynamic> json) {
+  factory ConditionalDeleteStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConditionalDeleteStatus.elementOnly.withElement(element);
+      return ConditionalDeleteStatus.elementOnly(element);
     }
-    return ConditionalDeleteStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ConditionalDeleteStatus._(value, element);
+    }
+    throw ArgumentError(
+      'ConditionalDeleteStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// not_supported
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConditionalDeleteStatus.not_supported([this.element])
+      : dbValue = 'not-supported',
+        super('not-supported', element);
+
+  /// single
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConditionalDeleteStatus.single([this.element])
+      : dbValue = 'single',
+        super('single', element);
+
+  /// multiple
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConditionalDeleteStatus.multiple([this.element])
+      : dbValue = 'multiple',
+        super('multiple', element);
+
+  /// For instances where an Element is present but not value
+
+  ConditionalDeleteStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ConditionalDeleteStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'not-supported',
+    'single',
+    'multiple',
+  ];
+
+  /// Returns the enum value with an element attached
+  ConditionalDeleteStatus withElement(Element? newElement) {
+    return ConditionalDeleteStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ConditionalDeleteStatus.$fhirCode';
+  String toString() => 'ConditionalDeleteStatus.$value';
 }

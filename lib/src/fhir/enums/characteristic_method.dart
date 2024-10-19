@@ -5,62 +5,75 @@ import 'package:objectbox/objectbox.dart';
 
 /// The method used to determine the characteristic(s) of the variable.
 @Entity()
-class CharacteristicMethod {
-  // Private constructor for internal use (like enum)
-  CharacteristicMethod._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CharacteristicMethod values
-  /// Default
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CharacteristicMethod Default = CharacteristicMethod._(
-    'Default',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CharacteristicMethod elementOnly = CharacteristicMethod._('');
-
-  /// List of all enum-like values
-  static final List<CharacteristicMethod> values = [
-    Default,
-  ];
-
-  /// Returns the enum value with an element attached
-  CharacteristicMethod withElement(Element? newElement) {
-    return CharacteristicMethod._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CharacteristicMethod extends FhirCode {
   /// Factory constructor to create [CharacteristicMethod] from JSON.
-  static CharacteristicMethod fromJson(Map<String, dynamic> json) {
+  factory CharacteristicMethod.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CharacteristicMethod.elementOnly.withElement(element);
+      return CharacteristicMethod.elementOnly(element);
     }
-    return CharacteristicMethod.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CharacteristicMethod._(value, element);
+    }
+    throw ArgumentError(
+      'CharacteristicMethod.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Default
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CharacteristicMethod.Default([this.element])
+      : dbValue = 'Default',
+        super('Default', element);
+
+  /// For instances where an Element is present but not value
+
+  CharacteristicMethod.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CharacteristicMethod._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Default',
+  ];
+
+  /// Returns the enum value with an element attached
+  CharacteristicMethod withElement(Element? newElement) {
+    return CharacteristicMethod._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CharacteristicMethod.$fhirCode';
+  String toString() => 'CharacteristicMethod.$value';
 }

@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Set of handling instructions prior testing of the specimen.
 @Entity()
-class HandlingConditionSet {
-  // Private constructor for internal use (like enum)
-  HandlingConditionSet._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// HandlingConditionSet values
-  /// room
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final HandlingConditionSet room = HandlingConditionSet._(
-    'room',
-  );
-
-  /// refrigerated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final HandlingConditionSet refrigerated = HandlingConditionSet._(
-    'refrigerated',
-  );
-
-  /// frozen
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final HandlingConditionSet frozen = HandlingConditionSet._(
-    'frozen',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final HandlingConditionSet elementOnly = HandlingConditionSet._('');
-
-  /// List of all enum-like values
-  static final List<HandlingConditionSet> values = [
-    room,
-    refrigerated,
-    frozen,
-  ];
-
-  /// Returns the enum value with an element attached
-  HandlingConditionSet withElement(Element? newElement) {
-    return HandlingConditionSet._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class HandlingConditionSet extends FhirCode {
   /// Factory constructor to create [HandlingConditionSet] from JSON.
-  static HandlingConditionSet fromJson(Map<String, dynamic> json) {
+  factory HandlingConditionSet.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return HandlingConditionSet.elementOnly.withElement(element);
+      return HandlingConditionSet.elementOnly(element);
     }
-    return HandlingConditionSet.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return HandlingConditionSet._(value, element);
+    }
+    throw ArgumentError(
+      'HandlingConditionSet.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// room
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  HandlingConditionSet.room([this.element])
+      : dbValue = 'room',
+        super('room', element);
+
+  /// refrigerated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  HandlingConditionSet.refrigerated([this.element])
+      : dbValue = 'refrigerated',
+        super('refrigerated', element);
+
+  /// frozen
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  HandlingConditionSet.frozen([this.element])
+      : dbValue = 'frozen',
+        super('frozen', element);
+
+  /// For instances where an Element is present but not value
+
+  HandlingConditionSet.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  HandlingConditionSet._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'room',
+    'refrigerated',
+    'frozen',
+  ];
+
+  /// Returns the enum value with an element attached
+  HandlingConditionSet withElement(Element? newElement) {
+    return HandlingConditionSet._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'HandlingConditionSet.$fhirCode';
+  String toString() => 'HandlingConditionSet.$value';
 }

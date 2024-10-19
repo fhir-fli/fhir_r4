@@ -5,126 +5,139 @@ import 'package:objectbox/objectbox.dart';
 
 /// A code that specifies a type of context being specified by a usage context.
 @Entity()
-class UsageContextType {
-  // Private constructor for internal use (like enum)
-  UsageContextType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// UsageContextType values
-  /// gender
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UsageContextType gender = UsageContextType._(
-    'gender',
-  );
-
-  /// age
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UsageContextType age = UsageContextType._(
-    'age',
-  );
-
-  /// focus
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UsageContextType focus = UsageContextType._(
-    'focus',
-  );
-
-  /// user
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UsageContextType user = UsageContextType._(
-    'user',
-  );
-
-  /// workflow
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UsageContextType workflow = UsageContextType._(
-    'workflow',
-  );
-
-  /// task
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UsageContextType task = UsageContextType._(
-    'task',
-  );
-
-  /// venue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UsageContextType venue = UsageContextType._(
-    'venue',
-  );
-
-  /// species
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UsageContextType species = UsageContextType._(
-    'species',
-  );
-
-  /// program
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UsageContextType program = UsageContextType._(
-    'program',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final UsageContextType elementOnly = UsageContextType._('');
-
-  /// List of all enum-like values
-  static final List<UsageContextType> values = [
-    gender,
-    age,
-    focus,
-    user,
-    workflow,
-    task,
-    venue,
-    species,
-    program,
-  ];
-
-  /// Returns the enum value with an element attached
-  UsageContextType withElement(Element? newElement) {
-    return UsageContextType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class UsageContextType extends FhirCode {
   /// Factory constructor to create [UsageContextType] from JSON.
-  static UsageContextType fromJson(Map<String, dynamic> json) {
+  factory UsageContextType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return UsageContextType.elementOnly.withElement(element);
+      return UsageContextType.elementOnly(element);
     }
-    return UsageContextType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return UsageContextType._(value, element);
+    }
+    throw ArgumentError(
+      'UsageContextType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// gender
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UsageContextType.gender([this.element])
+      : dbValue = 'gender',
+        super('gender', element);
+
+  /// age
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UsageContextType.age([this.element])
+      : dbValue = 'age',
+        super('age', element);
+
+  /// focus
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UsageContextType.focus([this.element])
+      : dbValue = 'focus',
+        super('focus', element);
+
+  /// user
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UsageContextType.user([this.element])
+      : dbValue = 'user',
+        super('user', element);
+
+  /// workflow
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UsageContextType.workflow([this.element])
+      : dbValue = 'workflow',
+        super('workflow', element);
+
+  /// task
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UsageContextType.task([this.element])
+      : dbValue = 'task',
+        super('task', element);
+
+  /// venue
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UsageContextType.venue([this.element])
+      : dbValue = 'venue',
+        super('venue', element);
+
+  /// species
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UsageContextType.species([this.element])
+      : dbValue = 'species',
+        super('species', element);
+
+  /// program
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UsageContextType.program([this.element])
+      : dbValue = 'program',
+        super('program', element);
+
+  /// For instances where an Element is present but not value
+
+  UsageContextType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  UsageContextType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'gender',
+    'age',
+    'focus',
+    'user',
+    'workflow',
+    'task',
+    'venue',
+    'species',
+    'program',
+  ];
+
+  /// Returns the enum value with an element attached
+  UsageContextType withElement(Element? newElement) {
+    return UsageContextType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'UsageContextType.$fhirCode';
+  String toString() => 'UsageContextType.$value';
 }

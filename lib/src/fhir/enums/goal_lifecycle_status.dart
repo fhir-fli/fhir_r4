@@ -5,126 +5,139 @@ import 'package:objectbox/objectbox.dart';
 
 /// Codes that reflect the current state of a goal and whether the goal is still being targeted.
 @Entity()
-class GoalLifecycleStatus {
-  // Private constructor for internal use (like enum)
-  GoalLifecycleStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// GoalLifecycleStatus values
-  /// proposed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GoalLifecycleStatus proposed = GoalLifecycleStatus._(
-    'proposed',
-  );
-
-  /// planned
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GoalLifecycleStatus planned = GoalLifecycleStatus._(
-    'planned',
-  );
-
-  /// accepted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GoalLifecycleStatus accepted = GoalLifecycleStatus._(
-    'accepted',
-  );
-
-  /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GoalLifecycleStatus active = GoalLifecycleStatus._(
-    'active',
-  );
-
-  /// on_hold
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GoalLifecycleStatus on_hold = GoalLifecycleStatus._(
-    'on-hold',
-  );
-
-  /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GoalLifecycleStatus completed = GoalLifecycleStatus._(
-    'completed',
-  );
-
-  /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GoalLifecycleStatus cancelled = GoalLifecycleStatus._(
-    'cancelled',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GoalLifecycleStatus entered_in_error = GoalLifecycleStatus._(
-    'entered-in-error',
-  );
-
-  /// rejected
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final GoalLifecycleStatus rejected = GoalLifecycleStatus._(
-    'rejected',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final GoalLifecycleStatus elementOnly = GoalLifecycleStatus._('');
-
-  /// List of all enum-like values
-  static final List<GoalLifecycleStatus> values = [
-    proposed,
-    planned,
-    accepted,
-    active,
-    on_hold,
-    completed,
-    cancelled,
-    entered_in_error,
-    rejected,
-  ];
-
-  /// Returns the enum value with an element attached
-  GoalLifecycleStatus withElement(Element? newElement) {
-    return GoalLifecycleStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class GoalLifecycleStatus extends FhirCode {
   /// Factory constructor to create [GoalLifecycleStatus] from JSON.
-  static GoalLifecycleStatus fromJson(Map<String, dynamic> json) {
+  factory GoalLifecycleStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return GoalLifecycleStatus.elementOnly.withElement(element);
+      return GoalLifecycleStatus.elementOnly(element);
     }
-    return GoalLifecycleStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return GoalLifecycleStatus._(value, element);
+    }
+    throw ArgumentError(
+      'GoalLifecycleStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// proposed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GoalLifecycleStatus.proposed([this.element])
+      : dbValue = 'proposed',
+        super('proposed', element);
+
+  /// planned
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GoalLifecycleStatus.planned([this.element])
+      : dbValue = 'planned',
+        super('planned', element);
+
+  /// accepted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GoalLifecycleStatus.accepted([this.element])
+      : dbValue = 'accepted',
+        super('accepted', element);
+
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GoalLifecycleStatus.active([this.element])
+      : dbValue = 'active',
+        super('active', element);
+
+  /// on_hold
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GoalLifecycleStatus.on_hold([this.element])
+      : dbValue = 'on-hold',
+        super('on-hold', element);
+
+  /// completed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GoalLifecycleStatus.completed([this.element])
+      : dbValue = 'completed',
+        super('completed', element);
+
+  /// cancelled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GoalLifecycleStatus.cancelled([this.element])
+      : dbValue = 'cancelled',
+        super('cancelled', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GoalLifecycleStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// rejected
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  GoalLifecycleStatus.rejected([this.element])
+      : dbValue = 'rejected',
+        super('rejected', element);
+
+  /// For instances where an Element is present but not value
+
+  GoalLifecycleStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  GoalLifecycleStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'proposed',
+    'planned',
+    'accepted',
+    'active',
+    'on-hold',
+    'completed',
+    'cancelled',
+    'entered-in-error',
+    'rejected',
+  ];
+
+  /// Returns the enum value with an element attached
+  GoalLifecycleStatus withElement(Element? newElement) {
+    return GoalLifecycleStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'GoalLifecycleStatus.$fhirCode';
+  String toString() => 'GoalLifecycleStatus.$value';
 }

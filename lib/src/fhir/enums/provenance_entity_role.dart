@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// How an entity was used in an activity.
 @Entity()
-class ProvenanceEntityRole {
-  // Private constructor for internal use (like enum)
-  ProvenanceEntityRole._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ProvenanceEntityRole values
-  /// derivation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceEntityRole derivation = ProvenanceEntityRole._(
-    'derivation',
-  );
-
-  /// revision
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceEntityRole revision = ProvenanceEntityRole._(
-    'revision',
-  );
-
-  /// quotation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceEntityRole quotation = ProvenanceEntityRole._(
-    'quotation',
-  );
-
-  /// source
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceEntityRole source = ProvenanceEntityRole._(
-    'source',
-  );
-
-  /// removal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ProvenanceEntityRole removal = ProvenanceEntityRole._(
-    'removal',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ProvenanceEntityRole elementOnly = ProvenanceEntityRole._('');
-
-  /// List of all enum-like values
-  static final List<ProvenanceEntityRole> values = [
-    derivation,
-    revision,
-    quotation,
-    source,
-    removal,
-  ];
-
-  /// Returns the enum value with an element attached
-  ProvenanceEntityRole withElement(Element? newElement) {
-    return ProvenanceEntityRole._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ProvenanceEntityRole extends FhirCode {
   /// Factory constructor to create [ProvenanceEntityRole] from JSON.
-  static ProvenanceEntityRole fromJson(Map<String, dynamic> json) {
+  factory ProvenanceEntityRole.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ProvenanceEntityRole.elementOnly.withElement(element);
+      return ProvenanceEntityRole.elementOnly(element);
     }
-    return ProvenanceEntityRole.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ProvenanceEntityRole._(value, element);
+    }
+    throw ArgumentError(
+      'ProvenanceEntityRole.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// derivation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceEntityRole.derivation([this.element])
+      : dbValue = 'derivation',
+        super('derivation', element);
+
+  /// revision
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceEntityRole.revision([this.element])
+      : dbValue = 'revision',
+        super('revision', element);
+
+  /// quotation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceEntityRole.quotation([this.element])
+      : dbValue = 'quotation',
+        super('quotation', element);
+
+  /// source
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceEntityRole.source([this.element])
+      : dbValue = 'source',
+        super('source', element);
+
+  /// removal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ProvenanceEntityRole.removal([this.element])
+      : dbValue = 'removal',
+        super('removal', element);
+
+  /// For instances where an Element is present but not value
+
+  ProvenanceEntityRole.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ProvenanceEntityRole._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'derivation',
+    'revision',
+    'quotation',
+    'source',
+    'removal',
+  ];
+
+  /// Returns the enum value with an element attached
+  ProvenanceEntityRole withElement(Element? newElement) {
+    return ProvenanceEntityRole._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ProvenanceEntityRole.$fhirCode';
+  String toString() => 'ProvenanceEntityRole.$value';
 }

@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Indicates whether this flag is active and needs to be displayed to a user, or whether it is no longer needed or was entered in error.
 @Entity()
-class FlagStatus {
-  // Private constructor for internal use (like enum)
-  FlagStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// FlagStatus values
-  /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FlagStatus active = FlagStatus._(
-    'active',
-  );
-
-  /// inactive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FlagStatus inactive = FlagStatus._(
-    'inactive',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FlagStatus entered_in_error = FlagStatus._(
-    'entered-in-error',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final FlagStatus elementOnly = FlagStatus._('');
-
-  /// List of all enum-like values
-  static final List<FlagStatus> values = [
-    active,
-    inactive,
-    entered_in_error,
-  ];
-
-  /// Returns the enum value with an element attached
-  FlagStatus withElement(Element? newElement) {
-    return FlagStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class FlagStatus extends FhirCode {
   /// Factory constructor to create [FlagStatus] from JSON.
-  static FlagStatus fromJson(Map<String, dynamic> json) {
+  factory FlagStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FlagStatus.elementOnly.withElement(element);
+      return FlagStatus.elementOnly(element);
     }
-    return FlagStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return FlagStatus._(value, element);
+    }
+    throw ArgumentError(
+      'FlagStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FlagStatus.active([this.element])
+      : dbValue = 'active',
+        super('active', element);
+
+  /// inactive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FlagStatus.inactive([this.element])
+      : dbValue = 'inactive',
+        super('inactive', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FlagStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// For instances where an Element is present but not value
+
+  FlagStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  FlagStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'active',
+    'inactive',
+    'entered-in-error',
+  ];
+
+  /// Returns the enum value with an element attached
+  FlagStatus withElement(Element? newElement) {
+    return FlagStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'FlagStatus.$fhirCode';
+  String toString() => 'FlagStatus.$value';
 }

@@ -5,128 +5,139 @@ import 'package:objectbox/objectbox.dart';
 
 /// The aspect of quality, confidence, or certainty.
 @Entity()
-class EvidenceCertaintyType {
-  // Private constructor for internal use (like enum)
-  EvidenceCertaintyType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EvidenceCertaintyType values
-  /// Overall
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyType Overall = EvidenceCertaintyType._(
-    'Overall',
-  );
-
-  /// RiskOfBias
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyType RiskOfBias = EvidenceCertaintyType._(
-    'RiskOfBias',
-  );
-
-  /// Inconsistency
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyType Inconsistency = EvidenceCertaintyType._(
-    'Inconsistency',
-  );
-
-  /// Indirectness
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyType Indirectness = EvidenceCertaintyType._(
-    'Indirectness',
-  );
-
-  /// Imprecision
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyType Imprecision = EvidenceCertaintyType._(
-    'Imprecision',
-  );
-
-  /// PublicationBias
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyType PublicationBias = EvidenceCertaintyType._(
-    'PublicationBias',
-  );
-
-  /// DoseResponseGradient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyType DoseResponseGradient =
-      EvidenceCertaintyType._(
-    'DoseResponseGradient',
-  );
-
-  /// PlausibleConfounding
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyType PlausibleConfounding =
-      EvidenceCertaintyType._(
-    'PlausibleConfounding',
-  );
-
-  /// LargeEffect
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final EvidenceCertaintyType LargeEffect = EvidenceCertaintyType._(
-    'LargeEffect',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final EvidenceCertaintyType elementOnly = EvidenceCertaintyType._('');
-
-  /// List of all enum-like values
-  static final List<EvidenceCertaintyType> values = [
-    Overall,
-    RiskOfBias,
-    Inconsistency,
-    Indirectness,
-    Imprecision,
-    PublicationBias,
-    DoseResponseGradient,
-    PlausibleConfounding,
-    LargeEffect,
-  ];
-
-  /// Returns the enum value with an element attached
-  EvidenceCertaintyType withElement(Element? newElement) {
-    return EvidenceCertaintyType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class EvidenceCertaintyType extends FhirCode {
   /// Factory constructor to create [EvidenceCertaintyType] from JSON.
-  static EvidenceCertaintyType fromJson(Map<String, dynamic> json) {
+  factory EvidenceCertaintyType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EvidenceCertaintyType.elementOnly.withElement(element);
+      return EvidenceCertaintyType.elementOnly(element);
     }
-    return EvidenceCertaintyType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return EvidenceCertaintyType._(value, element);
+    }
+    throw ArgumentError(
+      'EvidenceCertaintyType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Overall
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyType.Overall([this.element])
+      : dbValue = 'Overall',
+        super('Overall', element);
+
+  /// RiskOfBias
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyType.RiskOfBias([this.element])
+      : dbValue = 'RiskOfBias',
+        super('RiskOfBias', element);
+
+  /// Inconsistency
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyType.Inconsistency([this.element])
+      : dbValue = 'Inconsistency',
+        super('Inconsistency', element);
+
+  /// Indirectness
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyType.Indirectness([this.element])
+      : dbValue = 'Indirectness',
+        super('Indirectness', element);
+
+  /// Imprecision
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyType.Imprecision([this.element])
+      : dbValue = 'Imprecision',
+        super('Imprecision', element);
+
+  /// PublicationBias
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyType.PublicationBias([this.element])
+      : dbValue = 'PublicationBias',
+        super('PublicationBias', element);
+
+  /// DoseResponseGradient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyType.DoseResponseGradient([this.element])
+      : dbValue = 'DoseResponseGradient',
+        super('DoseResponseGradient', element);
+
+  /// PlausibleConfounding
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyType.PlausibleConfounding([this.element])
+      : dbValue = 'PlausibleConfounding',
+        super('PlausibleConfounding', element);
+
+  /// LargeEffect
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  EvidenceCertaintyType.LargeEffect([this.element])
+      : dbValue = 'LargeEffect',
+        super('LargeEffect', element);
+
+  /// For instances where an Element is present but not value
+
+  EvidenceCertaintyType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  EvidenceCertaintyType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Overall',
+    'RiskOfBias',
+    'Inconsistency',
+    'Indirectness',
+    'Imprecision',
+    'PublicationBias',
+    'DoseResponseGradient',
+    'PlausibleConfounding',
+    'LargeEffect',
+  ];
+
+  /// Returns the enum value with an element attached
+  EvidenceCertaintyType withElement(Element? newElement) {
+    return EvidenceCertaintyType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'EvidenceCertaintyType.$fhirCode';
+  String toString() => 'EvidenceCertaintyType.$value';
 }

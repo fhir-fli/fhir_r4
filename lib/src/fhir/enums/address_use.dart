@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// The use of an address.
 @Entity()
-class AddressUse {
-  // Private constructor for internal use (like enum)
-  AddressUse._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AddressUse values
-  /// home
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AddressUse home = AddressUse._(
-    'home',
-  );
-
-  /// work
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AddressUse work = AddressUse._(
-    'work',
-  );
-
-  /// temp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AddressUse temp = AddressUse._(
-    'temp',
-  );
-
-  /// old
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AddressUse old = AddressUse._(
-    'old',
-  );
-
-  /// billing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AddressUse billing = AddressUse._(
-    'billing',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AddressUse elementOnly = AddressUse._('');
-
-  /// List of all enum-like values
-  static final List<AddressUse> values = [
-    home,
-    work,
-    temp,
-    old,
-    billing,
-  ];
-
-  /// Returns the enum value with an element attached
-  AddressUse withElement(Element? newElement) {
-    return AddressUse._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AddressUse extends FhirCode {
   /// Factory constructor to create [AddressUse] from JSON.
-  static AddressUse fromJson(Map<String, dynamic> json) {
+  factory AddressUse.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AddressUse.elementOnly.withElement(element);
+      return AddressUse.elementOnly(element);
     }
-    return AddressUse.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AddressUse._(value, element);
+    }
+    throw ArgumentError(
+      'AddressUse.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// home
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AddressUse.home([this.element])
+      : dbValue = 'home',
+        super('home', element);
+
+  /// work
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AddressUse.work([this.element])
+      : dbValue = 'work',
+        super('work', element);
+
+  /// temp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AddressUse.temp([this.element])
+      : dbValue = 'temp',
+        super('temp', element);
+
+  /// old
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AddressUse.old([this.element])
+      : dbValue = 'old',
+        super('old', element);
+
+  /// billing
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AddressUse.billing([this.element])
+      : dbValue = 'billing',
+        super('billing', element);
+
+  /// For instances where an Element is present but not value
+
+  AddressUse.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AddressUse._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'home',
+    'work',
+    'temp',
+    'old',
+    'billing',
+  ];
+
+  /// Returns the enum value with an element attached
+  AddressUse withElement(Element? newElement) {
+    return AddressUse._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AddressUse.$fhirCode';
+  String toString() => 'AddressUse.$value';
 }

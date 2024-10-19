@@ -5,87 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
 @Entity()
-class IdentityAssuranceLevel {
-  // Private constructor for internal use (like enum)
-  IdentityAssuranceLevel._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// IdentityAssuranceLevel values
-  /// level1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentityAssuranceLevel level1 = IdentityAssuranceLevel._(
-    'level1',
-  );
-
-  /// level2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentityAssuranceLevel level2 = IdentityAssuranceLevel._(
-    'level2',
-  );
-
-  /// level3
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentityAssuranceLevel level3 = IdentityAssuranceLevel._(
-    'level3',
-  );
-
-  /// level4
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final IdentityAssuranceLevel level4 = IdentityAssuranceLevel._(
-    'level4',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final IdentityAssuranceLevel elementOnly =
-      IdentityAssuranceLevel._('');
-
-  /// List of all enum-like values
-  static final List<IdentityAssuranceLevel> values = [
-    level1,
-    level2,
-    level3,
-    level4,
-  ];
-
-  /// Returns the enum value with an element attached
-  IdentityAssuranceLevel withElement(Element? newElement) {
-    return IdentityAssuranceLevel._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class IdentityAssuranceLevel extends FhirCode {
   /// Factory constructor to create [IdentityAssuranceLevel] from JSON.
-  static IdentityAssuranceLevel fromJson(Map<String, dynamic> json) {
+  factory IdentityAssuranceLevel.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return IdentityAssuranceLevel.elementOnly.withElement(element);
+      return IdentityAssuranceLevel.elementOnly(element);
     }
-    return IdentityAssuranceLevel.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return IdentityAssuranceLevel._(value, element);
+    }
+    throw ArgumentError(
+      'IdentityAssuranceLevel.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// level1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentityAssuranceLevel.level1([this.element])
+      : dbValue = 'level1',
+        super('level1', element);
+
+  /// level2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentityAssuranceLevel.level2([this.element])
+      : dbValue = 'level2',
+        super('level2', element);
+
+  /// level3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentityAssuranceLevel.level3([this.element])
+      : dbValue = 'level3',
+        super('level3', element);
+
+  /// level4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  IdentityAssuranceLevel.level4([this.element])
+      : dbValue = 'level4',
+        super('level4', element);
+
+  /// For instances where an Element is present but not value
+
+  IdentityAssuranceLevel.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  IdentityAssuranceLevel._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'level1',
+    'level2',
+    'level3',
+    'level4',
+  ];
+
+  /// Returns the enum value with an element attached
+  IdentityAssuranceLevel withElement(Element? newElement) {
+    return IdentityAssuranceLevel._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'IdentityAssuranceLevel.$fhirCode';
+  String toString() => 'IdentityAssuranceLevel.$value';
 }

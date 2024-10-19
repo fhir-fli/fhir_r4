@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// A code that identifies the status of the family history record.
 @Entity()
-class FamilyHistoryStatus {
-  // Private constructor for internal use (like enum)
-  FamilyHistoryStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// FamilyHistoryStatus values
-  /// partial
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FamilyHistoryStatus partial = FamilyHistoryStatus._(
-    'partial',
-  );
-
-  /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FamilyHistoryStatus completed = FamilyHistoryStatus._(
-    'completed',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FamilyHistoryStatus entered_in_error = FamilyHistoryStatus._(
-    'entered-in-error',
-  );
-
-  /// health_unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FamilyHistoryStatus health_unknown = FamilyHistoryStatus._(
-    'health-unknown',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final FamilyHistoryStatus elementOnly = FamilyHistoryStatus._('');
-
-  /// List of all enum-like values
-  static final List<FamilyHistoryStatus> values = [
-    partial,
-    completed,
-    entered_in_error,
-    health_unknown,
-  ];
-
-  /// Returns the enum value with an element attached
-  FamilyHistoryStatus withElement(Element? newElement) {
-    return FamilyHistoryStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class FamilyHistoryStatus extends FhirCode {
   /// Factory constructor to create [FamilyHistoryStatus] from JSON.
-  static FamilyHistoryStatus fromJson(Map<String, dynamic> json) {
+  factory FamilyHistoryStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FamilyHistoryStatus.elementOnly.withElement(element);
+      return FamilyHistoryStatus.elementOnly(element);
     }
-    return FamilyHistoryStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return FamilyHistoryStatus._(value, element);
+    }
+    throw ArgumentError(
+      'FamilyHistoryStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// partial
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FamilyHistoryStatus.partial([this.element])
+      : dbValue = 'partial',
+        super('partial', element);
+
+  /// completed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FamilyHistoryStatus.completed([this.element])
+      : dbValue = 'completed',
+        super('completed', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FamilyHistoryStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// health_unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FamilyHistoryStatus.health_unknown([this.element])
+      : dbValue = 'health-unknown',
+        super('health-unknown', element);
+
+  /// For instances where an Element is present but not value
+
+  FamilyHistoryStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  FamilyHistoryStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'partial',
+    'completed',
+    'entered-in-error',
+    'health-unknown',
+  ];
+
+  /// Returns the enum value with an element attached
+  FamilyHistoryStatus withElement(Element? newElement) {
+    return FamilyHistoryStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'FamilyHistoryStatus.$fhirCode';
+  String toString() => 'FamilyHistoryStatus.$value';
 }

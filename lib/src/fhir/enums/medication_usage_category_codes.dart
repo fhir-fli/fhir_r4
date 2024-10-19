@@ -5,91 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// Medication Status Codes
 @Entity()
-class MedicationUsageCategoryCodes {
-  // Private constructor for internal use (like enum)
-  MedicationUsageCategoryCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MedicationUsageCategoryCodes values
-  /// inpatient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationUsageCategoryCodes inpatient =
-      MedicationUsageCategoryCodes._(
-    'inpatient',
-  );
-
-  /// outpatient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationUsageCategoryCodes outpatient =
-      MedicationUsageCategoryCodes._(
-    'outpatient',
-  );
-
-  /// community
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationUsageCategoryCodes community =
-      MedicationUsageCategoryCodes._(
-    'community',
-  );
-
-  /// patientspecified
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationUsageCategoryCodes patientspecified =
-      MedicationUsageCategoryCodes._(
-    'patientspecified',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MedicationUsageCategoryCodes elementOnly =
-      MedicationUsageCategoryCodes._('');
-
-  /// List of all enum-like values
-  static final List<MedicationUsageCategoryCodes> values = [
-    inpatient,
-    outpatient,
-    community,
-    patientspecified,
-  ];
-
-  /// Returns the enum value with an element attached
-  MedicationUsageCategoryCodes withElement(Element? newElement) {
-    return MedicationUsageCategoryCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MedicationUsageCategoryCodes extends FhirCode {
   /// Factory constructor to create [MedicationUsageCategoryCodes] from JSON.
-  static MedicationUsageCategoryCodes fromJson(Map<String, dynamic> json) {
+  factory MedicationUsageCategoryCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationUsageCategoryCodes.elementOnly.withElement(element);
+      return MedicationUsageCategoryCodes.elementOnly(element);
     }
-    return MedicationUsageCategoryCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MedicationUsageCategoryCodes._(value, element);
+    }
+    throw ArgumentError(
+      'MedicationUsageCategoryCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// inpatient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationUsageCategoryCodes.inpatient([this.element])
+      : dbValue = 'inpatient',
+        super('inpatient', element);
+
+  /// outpatient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationUsageCategoryCodes.outpatient([this.element])
+      : dbValue = 'outpatient',
+        super('outpatient', element);
+
+  /// community
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationUsageCategoryCodes.community([this.element])
+      : dbValue = 'community',
+        super('community', element);
+
+  /// patientspecified
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationUsageCategoryCodes.patientspecified([this.element])
+      : dbValue = 'patientspecified',
+        super('patientspecified', element);
+
+  /// For instances where an Element is present but not value
+
+  MedicationUsageCategoryCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MedicationUsageCategoryCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'inpatient',
+    'outpatient',
+    'community',
+    'patientspecified',
+  ];
+
+  /// Returns the enum value with an element attached
+  MedicationUsageCategoryCodes withElement(Element? newElement) {
+    return MedicationUsageCategoryCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MedicationUsageCategoryCodes.$fhirCode';
+  String toString() => 'MedicationUsageCategoryCodes.$value';
 }

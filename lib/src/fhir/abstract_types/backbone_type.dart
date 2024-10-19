@@ -34,6 +34,7 @@ class BackboneType extends DataType {
   int dbId;
 
   @override
+  @Transient()
   String get fhirType => 'BackboneType';
 
   /// List of modifier extensions for additional, non-core information

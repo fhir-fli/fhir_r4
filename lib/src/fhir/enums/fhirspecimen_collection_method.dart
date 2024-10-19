@@ -5,145 +5,147 @@ import 'package:objectbox/objectbox.dart';
 
 /// This example value set defines a set of codes that can be used to indicate the method by which a specimen was collected.
 @Entity()
-class FHIRSpecimenCollectionMethod {
-  // Private constructor for internal use (like enum)
-  FHIRSpecimenCollectionMethod._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// FHIRSpecimenCollectionMethod values
-  /// value129316008
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRSpecimenCollectionMethod value129316008 =
-      FHIRSpecimenCollectionMethod._(
-    '129316008',
-  );
-
-  /// value129314006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRSpecimenCollectionMethod value129314006 =
-      FHIRSpecimenCollectionMethod._(
-    '129314006',
-  );
-
-  /// value129300006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRSpecimenCollectionMethod value129300006 =
-      FHIRSpecimenCollectionMethod._(
-    '129300006',
-  );
-
-  /// value129304002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRSpecimenCollectionMethod value129304002 =
-      FHIRSpecimenCollectionMethod._(
-    '129304002',
-  );
-
-  /// value129323009
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRSpecimenCollectionMethod value129323009 =
-      FHIRSpecimenCollectionMethod._(
-    '129323009',
-  );
-
-  /// value73416001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRSpecimenCollectionMethod value73416001 =
-      FHIRSpecimenCollectionMethod._(
-    '73416001',
-  );
-
-  /// value225113003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRSpecimenCollectionMethod value225113003 =
-      FHIRSpecimenCollectionMethod._(
-    '225113003',
-  );
-
-  /// value70777001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRSpecimenCollectionMethod value70777001 =
-      FHIRSpecimenCollectionMethod._(
-    '70777001',
-  );
-
-  /// value386089008
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRSpecimenCollectionMethod value386089008 =
-      FHIRSpecimenCollectionMethod._(
-    '386089008',
-  );
-
-  /// value278450005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final FHIRSpecimenCollectionMethod value278450005 =
-      FHIRSpecimenCollectionMethod._(
-    '278450005',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final FHIRSpecimenCollectionMethod elementOnly =
-      FHIRSpecimenCollectionMethod._('');
-
-  /// List of all enum-like values
-  static final List<FHIRSpecimenCollectionMethod> values = [
-    value129316008,
-    value129314006,
-    value129300006,
-    value129304002,
-    value129323009,
-    value73416001,
-    value225113003,
-    value70777001,
-    value386089008,
-    value278450005,
-  ];
-
-  /// Returns the enum value with an element attached
-  FHIRSpecimenCollectionMethod withElement(Element? newElement) {
-    return FHIRSpecimenCollectionMethod._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class FHIRSpecimenCollectionMethod extends FhirCode {
   /// Factory constructor to create [FHIRSpecimenCollectionMethod] from JSON.
-  static FHIRSpecimenCollectionMethod fromJson(Map<String, dynamic> json) {
+  factory FHIRSpecimenCollectionMethod.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FHIRSpecimenCollectionMethod.elementOnly.withElement(element);
+      return FHIRSpecimenCollectionMethod.elementOnly(element);
     }
-    return FHIRSpecimenCollectionMethod.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return FHIRSpecimenCollectionMethod._(value, element);
+    }
+    throw ArgumentError(
+      'FHIRSpecimenCollectionMethod.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value129316008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRSpecimenCollectionMethod.value129316008([this.element])
+      : dbValue = '129316008',
+        super('129316008', element);
+
+  /// value129314006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRSpecimenCollectionMethod.value129314006([this.element])
+      : dbValue = '129314006',
+        super('129314006', element);
+
+  /// value129300006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRSpecimenCollectionMethod.value129300006([this.element])
+      : dbValue = '129300006',
+        super('129300006', element);
+
+  /// value129304002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRSpecimenCollectionMethod.value129304002([this.element])
+      : dbValue = '129304002',
+        super('129304002', element);
+
+  /// value129323009
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRSpecimenCollectionMethod.value129323009([this.element])
+      : dbValue = '129323009',
+        super('129323009', element);
+
+  /// value73416001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRSpecimenCollectionMethod.value73416001([this.element])
+      : dbValue = '73416001',
+        super('73416001', element);
+
+  /// value225113003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRSpecimenCollectionMethod.value225113003([this.element])
+      : dbValue = '225113003',
+        super('225113003', element);
+
+  /// value70777001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRSpecimenCollectionMethod.value70777001([this.element])
+      : dbValue = '70777001',
+        super('70777001', element);
+
+  /// value386089008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRSpecimenCollectionMethod.value386089008([this.element])
+      : dbValue = '386089008',
+        super('386089008', element);
+
+  /// value278450005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  FHIRSpecimenCollectionMethod.value278450005([this.element])
+      : dbValue = '278450005',
+        super('278450005', element);
+
+  /// For instances where an Element is present but not value
+
+  FHIRSpecimenCollectionMethod.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  FHIRSpecimenCollectionMethod._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '129316008',
+    '129314006',
+    '129300006',
+    '129304002',
+    '129323009',
+    '73416001',
+    '225113003',
+    '70777001',
+    '386089008',
+    '278450005',
+  ];
+
+  /// Returns the enum value with an element attached
+  FHIRSpecimenCollectionMethod withElement(Element? newElement) {
+    return FHIRSpecimenCollectionMethod._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'FHIRSpecimenCollectionMethod.$fhirCode';
+  String toString() => 'FHIRSpecimenCollectionMethod.$value';
 }

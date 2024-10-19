@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set defines a set of codes that can be used to indicate how an individual participates in an encounter.
 @Entity()
-class ParticipantType {
-  // Private constructor for internal use (like enum)
-  ParticipantType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ParticipantType values
-  /// SPRF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ParticipantType SPRF = ParticipantType._(
-    'SPRF',
-  );
-
-  /// PPRF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ParticipantType PPRF = ParticipantType._(
-    'PPRF',
-  );
-
-  /// PART
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ParticipantType PART = ParticipantType._(
-    'PART',
-  );
-
-  /// translator
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ParticipantType translator = ParticipantType._(
-    'translator',
-  );
-
-  /// emergency
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ParticipantType emergency = ParticipantType._(
-    'emergency',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ParticipantType elementOnly = ParticipantType._('');
-
-  /// List of all enum-like values
-  static final List<ParticipantType> values = [
-    SPRF,
-    PPRF,
-    PART,
-    translator,
-    emergency,
-  ];
-
-  /// Returns the enum value with an element attached
-  ParticipantType withElement(Element? newElement) {
-    return ParticipantType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ParticipantType extends FhirCode {
   /// Factory constructor to create [ParticipantType] from JSON.
-  static ParticipantType fromJson(Map<String, dynamic> json) {
+  factory ParticipantType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ParticipantType.elementOnly.withElement(element);
+      return ParticipantType.elementOnly(element);
     }
-    return ParticipantType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ParticipantType._(value, element);
+    }
+    throw ArgumentError(
+      'ParticipantType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// SPRF
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ParticipantType.SPRF([this.element])
+      : dbValue = 'SPRF',
+        super('SPRF', element);
+
+  /// PPRF
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ParticipantType.PPRF([this.element])
+      : dbValue = 'PPRF',
+        super('PPRF', element);
+
+  /// PART
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ParticipantType.PART([this.element])
+      : dbValue = 'PART',
+        super('PART', element);
+
+  /// translator
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ParticipantType.translator([this.element])
+      : dbValue = 'translator',
+        super('translator', element);
+
+  /// emergency
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ParticipantType.emergency([this.element])
+      : dbValue = 'emergency',
+        super('emergency', element);
+
+  /// For instances where an Element is present but not value
+
+  ParticipantType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ParticipantType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'SPRF',
+    'PPRF',
+    'PART',
+    'translator',
+    'emergency',
+  ];
+
+  /// Returns the enum value with an element attached
+  ParticipantType withElement(Element? newElement) {
+    return ParticipantType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ParticipantType.$fhirCode';
+  String toString() => 'ParticipantType.$value';
 }

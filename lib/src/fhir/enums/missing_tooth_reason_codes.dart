@@ -5,87 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes sample Missing Tooth Reason codes.
 @Entity()
-class MissingToothReasonCodes {
-  // Private constructor for internal use (like enum)
-  MissingToothReasonCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MissingToothReasonCodes values
-  /// e
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MissingToothReasonCodes e = MissingToothReasonCodes._(
-    'e',
-  );
-
-  /// c
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MissingToothReasonCodes c = MissingToothReasonCodes._(
-    'c',
-  );
-
-  /// u
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MissingToothReasonCodes u = MissingToothReasonCodes._(
-    'u',
-  );
-
-  /// o
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MissingToothReasonCodes o = MissingToothReasonCodes._(
-    'o',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MissingToothReasonCodes elementOnly =
-      MissingToothReasonCodes._('');
-
-  /// List of all enum-like values
-  static final List<MissingToothReasonCodes> values = [
-    e,
-    c,
-    u,
-    o,
-  ];
-
-  /// Returns the enum value with an element attached
-  MissingToothReasonCodes withElement(Element? newElement) {
-    return MissingToothReasonCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MissingToothReasonCodes extends FhirCode {
   /// Factory constructor to create [MissingToothReasonCodes] from JSON.
-  static MissingToothReasonCodes fromJson(Map<String, dynamic> json) {
+  factory MissingToothReasonCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MissingToothReasonCodes.elementOnly.withElement(element);
+      return MissingToothReasonCodes.elementOnly(element);
     }
-    return MissingToothReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MissingToothReasonCodes._(value, element);
+    }
+    throw ArgumentError(
+      'MissingToothReasonCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// e
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MissingToothReasonCodes.e([this.element])
+      : dbValue = 'e',
+        super('e', element);
+
+  /// c
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MissingToothReasonCodes.c([this.element])
+      : dbValue = 'c',
+        super('c', element);
+
+  /// u
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MissingToothReasonCodes.u([this.element])
+      : dbValue = 'u',
+        super('u', element);
+
+  /// o
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MissingToothReasonCodes.o([this.element])
+      : dbValue = 'o',
+        super('o', element);
+
+  /// For instances where an Element is present but not value
+
+  MissingToothReasonCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MissingToothReasonCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'e',
+    'c',
+    'u',
+    'o',
+  ];
+
+  /// Returns the enum value with an element attached
+  MissingToothReasonCodes withElement(Element? newElement) {
+    return MissingToothReasonCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MissingToothReasonCodes.$fhirCode';
+  String toString() => 'MissingToothReasonCodes.$value';
 }

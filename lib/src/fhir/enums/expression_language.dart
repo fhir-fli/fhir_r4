@@ -5,95 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// The media type of the expression language.
 @Entity()
-class ExpressionLanguage {
-  // Private constructor for internal use (like enum)
-  ExpressionLanguage._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExpressionLanguage values
-  /// text_cql
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExpressionLanguage text_cql = ExpressionLanguage._(
-    'text/cql',
-  );
-
-  /// text_fhirpath
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExpressionLanguage text_fhirpath = ExpressionLanguage._(
-    'text/fhirpath',
-  );
-
-  /// application_x_fhir_query
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExpressionLanguage application_x_fhir_query =
-      ExpressionLanguage._(
-    'application/x-fhir-query',
-  );
-
-  /// text_cql_identifier
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExpressionLanguage text_cql_identifier = ExpressionLanguage._(
-    'text/cql-identifier',
-  );
-
-  /// text_cql_expression
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExpressionLanguage text_cql_expression = ExpressionLanguage._(
-    'text/cql-expression',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ExpressionLanguage elementOnly = ExpressionLanguage._('');
-
-  /// List of all enum-like values
-  static final List<ExpressionLanguage> values = [
-    text_cql,
-    text_fhirpath,
-    application_x_fhir_query,
-    text_cql_identifier,
-    text_cql_expression,
-  ];
-
-  /// Returns the enum value with an element attached
-  ExpressionLanguage withElement(Element? newElement) {
-    return ExpressionLanguage._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ExpressionLanguage extends FhirCode {
   /// Factory constructor to create [ExpressionLanguage] from JSON.
-  static ExpressionLanguage fromJson(Map<String, dynamic> json) {
+  factory ExpressionLanguage.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExpressionLanguage.elementOnly.withElement(element);
+      return ExpressionLanguage.elementOnly(element);
     }
-    return ExpressionLanguage.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ExpressionLanguage._(value, element);
+    }
+    throw ArgumentError(
+      'ExpressionLanguage.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// text_cql
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExpressionLanguage.text_cql([this.element])
+      : dbValue = 'text/cql',
+        super('text/cql', element);
+
+  /// text_fhirpath
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExpressionLanguage.text_fhirpath([this.element])
+      : dbValue = 'text/fhirpath',
+        super('text/fhirpath', element);
+
+  /// application_x_fhir_query
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExpressionLanguage.application_x_fhir_query([this.element])
+      : dbValue = 'application/x-fhir-query',
+        super('application/x-fhir-query', element);
+
+  /// text_cql_identifier
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExpressionLanguage.text_cql_identifier([this.element])
+      : dbValue = 'text/cql-identifier',
+        super('text/cql-identifier', element);
+
+  /// text_cql_expression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExpressionLanguage.text_cql_expression([this.element])
+      : dbValue = 'text/cql-expression',
+        super('text/cql-expression', element);
+
+  /// For instances where an Element is present but not value
+
+  ExpressionLanguage.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ExpressionLanguage._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'text/cql',
+    'text/fhirpath',
+    'application/x-fhir-query',
+    'text/cql-identifier',
+    'text/cql-expression',
+  ];
+
+  /// Returns the enum value with an element attached
+  ExpressionLanguage withElement(Element? newElement) {
+    return ExpressionLanguage._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ExpressionLanguage.$fhirCode';
+  String toString() => 'ExpressionLanguage.$value';
 }

@@ -5,118 +5,131 @@ import 'package:objectbox/objectbox.dart';
 
 /// Detailed information about the type of the image - its kind, purpose, or the kind of equipment used to generate it.
 @Entity()
-class MediaModality {
-  // Private constructor for internal use (like enum)
-  MediaModality._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MediaModality values
-  /// diagram
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MediaModality diagram = MediaModality._(
-    'diagram',
-  );
-
-  /// fax
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MediaModality fax = MediaModality._(
-    'fax',
-  );
-
-  /// scan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MediaModality scan = MediaModality._(
-    'scan',
-  );
-
-  /// retina
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MediaModality retina = MediaModality._(
-    'retina',
-  );
-
-  /// fingerprint
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MediaModality fingerprint = MediaModality._(
-    'fingerprint',
-  );
-
-  /// iris
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MediaModality iris = MediaModality._(
-    'iris',
-  );
-
-  /// palm
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MediaModality palm = MediaModality._(
-    'palm',
-  );
-
-  /// face
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MediaModality face = MediaModality._(
-    'face',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MediaModality elementOnly = MediaModality._('');
-
-  /// List of all enum-like values
-  static final List<MediaModality> values = [
-    diagram,
-    fax,
-    scan,
-    retina,
-    fingerprint,
-    iris,
-    palm,
-    face,
-  ];
-
-  /// Returns the enum value with an element attached
-  MediaModality withElement(Element? newElement) {
-    return MediaModality._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MediaModality extends FhirCode {
   /// Factory constructor to create [MediaModality] from JSON.
-  static MediaModality fromJson(Map<String, dynamic> json) {
+  factory MediaModality.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MediaModality.elementOnly.withElement(element);
+      return MediaModality.elementOnly(element);
     }
-    return MediaModality.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MediaModality._(value, element);
+    }
+    throw ArgumentError(
+      'MediaModality.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// diagram
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MediaModality.diagram([this.element])
+      : dbValue = 'diagram',
+        super('diagram', element);
+
+  /// fax
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MediaModality.fax([this.element])
+      : dbValue = 'fax',
+        super('fax', element);
+
+  /// scan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MediaModality.scan([this.element])
+      : dbValue = 'scan',
+        super('scan', element);
+
+  /// retina
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MediaModality.retina([this.element])
+      : dbValue = 'retina',
+        super('retina', element);
+
+  /// fingerprint
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MediaModality.fingerprint([this.element])
+      : dbValue = 'fingerprint',
+        super('fingerprint', element);
+
+  /// iris
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MediaModality.iris([this.element])
+      : dbValue = 'iris',
+        super('iris', element);
+
+  /// palm
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MediaModality.palm([this.element])
+      : dbValue = 'palm',
+        super('palm', element);
+
+  /// face
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MediaModality.face([this.element])
+      : dbValue = 'face',
+        super('face', element);
+
+  /// For instances where an Element is present but not value
+
+  MediaModality.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MediaModality._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'diagram',
+    'fax',
+    'scan',
+    'retina',
+    'fingerprint',
+    'iris',
+    'palm',
+    'face',
+  ];
+
+  /// Returns the enum value with an element attached
+  MediaModality withElement(Element? newElement) {
+    return MediaModality._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MediaModality.$fhirCode';
+  String toString() => 'MediaModality.$value';
 }

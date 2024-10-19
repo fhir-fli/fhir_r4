@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Medication Status Codes
 @Entity()
-class MedicationStatusCodes {
-  // Private constructor for internal use (like enum)
-  MedicationStatusCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MedicationStatusCodes values
-  /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationStatusCodes active = MedicationStatusCodes._(
-    'active',
-  );
-
-  /// inactive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationStatusCodes inactive = MedicationStatusCodes._(
-    'inactive',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MedicationStatusCodes entered_in_error = MedicationStatusCodes._(
-    'entered-in-error',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MedicationStatusCodes elementOnly = MedicationStatusCodes._('');
-
-  /// List of all enum-like values
-  static final List<MedicationStatusCodes> values = [
-    active,
-    inactive,
-    entered_in_error,
-  ];
-
-  /// Returns the enum value with an element attached
-  MedicationStatusCodes withElement(Element? newElement) {
-    return MedicationStatusCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MedicationStatusCodes extends FhirCode {
   /// Factory constructor to create [MedicationStatusCodes] from JSON.
-  static MedicationStatusCodes fromJson(Map<String, dynamic> json) {
+  factory MedicationStatusCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationStatusCodes.elementOnly.withElement(element);
+      return MedicationStatusCodes.elementOnly(element);
     }
-    return MedicationStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MedicationStatusCodes._(value, element);
+    }
+    throw ArgumentError(
+      'MedicationStatusCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationStatusCodes.active([this.element])
+      : dbValue = 'active',
+        super('active', element);
+
+  /// inactive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationStatusCodes.inactive([this.element])
+      : dbValue = 'inactive',
+        super('inactive', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MedicationStatusCodes.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// For instances where an Element is present but not value
+
+  MedicationStatusCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MedicationStatusCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'active',
+    'inactive',
+    'entered-in-error',
+  ];
+
+  /// Returns the enum value with an element attached
+  MedicationStatusCodes withElement(Element? newElement) {
+    return MedicationStatusCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MedicationStatusCodes.$fhirCode';
+  String toString() => 'MedicationStatusCodes.$value';
 }

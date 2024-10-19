@@ -5,76 +5,84 @@ import 'package:objectbox/objectbox.dart';
 
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the validity of a dose relative to a particular recommended schedule. This value set is provided as a suggestive example.
 @Entity()
-class ImmunizationEvaluationDoseStatusCodes {
-  // Private constructor for internal use (like enum)
-  ImmunizationEvaluationDoseStatusCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ImmunizationEvaluationDoseStatusCodes values
-  /// valid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationEvaluationDoseStatusCodes valid =
-      ImmunizationEvaluationDoseStatusCodes._(
-    'valid',
-  );
-
-  /// notvalid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationEvaluationDoseStatusCodes notvalid =
-      ImmunizationEvaluationDoseStatusCodes._(
-    'notvalid',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ImmunizationEvaluationDoseStatusCodes elementOnly =
-      ImmunizationEvaluationDoseStatusCodes._('');
-
-  /// List of all enum-like values
-  static final List<ImmunizationEvaluationDoseStatusCodes> values = [
-    valid,
-    notvalid,
-  ];
-
-  /// Returns the enum value with an element attached
-  ImmunizationEvaluationDoseStatusCodes withElement(Element? newElement) {
-    return ImmunizationEvaluationDoseStatusCodes._(fhirCode,
-        element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ImmunizationEvaluationDoseStatusCodes extends FhirCode {
   /// Factory constructor to create [ImmunizationEvaluationDoseStatusCodes] from JSON.
-  static ImmunizationEvaluationDoseStatusCodes fromJson(
+  factory ImmunizationEvaluationDoseStatusCodes.fromJson(
       Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImmunizationEvaluationDoseStatusCodes.elementOnly
-          .withElement(element);
+      return ImmunizationEvaluationDoseStatusCodes.elementOnly(element);
     }
-    return ImmunizationEvaluationDoseStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ImmunizationEvaluationDoseStatusCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ImmunizationEvaluationDoseStatusCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// valid
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationEvaluationDoseStatusCodes.valid([this.element])
+      : dbValue = 'valid',
+        super('valid', element);
+
+  /// notvalid
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationEvaluationDoseStatusCodes.notvalid([this.element])
+      : dbValue = 'notvalid',
+        super('notvalid', element);
+
+  /// For instances where an Element is present but not value
+
+  ImmunizationEvaluationDoseStatusCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ImmunizationEvaluationDoseStatusCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'valid',
+    'notvalid',
+  ];
+
+  /// Returns the enum value with an element attached
+  ImmunizationEvaluationDoseStatusCodes withElement(Element? newElement) {
+    return ImmunizationEvaluationDoseStatusCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ImmunizationEvaluationDoseStatusCodes.$fhirCode';
+  String toString() => 'ImmunizationEvaluationDoseStatusCodes.$value';
 }

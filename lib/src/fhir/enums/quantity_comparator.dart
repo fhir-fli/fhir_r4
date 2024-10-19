@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// How the Quantity should be understood and represented.
 @Entity()
-class QuantityComparator {
-  // Private constructor for internal use (like enum)
-  QuantityComparator._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// QuantityComparator values
-  /// lt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final QuantityComparator lt = QuantityComparator._(
-    '<',
-  );
-
-  /// le
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final QuantityComparator le = QuantityComparator._(
-    '<=',
-  );
-
-  /// ge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final QuantityComparator ge = QuantityComparator._(
-    '>=',
-  );
-
-  /// gt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final QuantityComparator gt = QuantityComparator._(
-    '>',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final QuantityComparator elementOnly = QuantityComparator._('');
-
-  /// List of all enum-like values
-  static final List<QuantityComparator> values = [
-    lt,
-    le,
-    ge,
-    gt,
-  ];
-
-  /// Returns the enum value with an element attached
-  QuantityComparator withElement(Element? newElement) {
-    return QuantityComparator._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class QuantityComparator extends FhirCode {
   /// Factory constructor to create [QuantityComparator] from JSON.
-  static QuantityComparator fromJson(Map<String, dynamic> json) {
+  factory QuantityComparator.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QuantityComparator.elementOnly.withElement(element);
+      return QuantityComparator.elementOnly(element);
     }
-    return QuantityComparator.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return QuantityComparator._(value, element);
+    }
+    throw ArgumentError(
+      'QuantityComparator.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// lt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  QuantityComparator.lt([this.element])
+      : dbValue = '<',
+        super('<', element);
+
+  /// le
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  QuantityComparator.le([this.element])
+      : dbValue = '<=',
+        super('<=', element);
+
+  /// ge
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  QuantityComparator.ge([this.element])
+      : dbValue = '>=',
+        super('>=', element);
+
+  /// gt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  QuantityComparator.gt([this.element])
+      : dbValue = '>',
+        super('>', element);
+
+  /// For instances where an Element is present but not value
+
+  QuantityComparator.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  QuantityComparator._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '<',
+    '<=',
+    '>=',
+    '>',
+  ];
+
+  /// Returns the enum value with an element attached
+  QuantityComparator withElement(Element? newElement) {
+    return QuantityComparator._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'QuantityComparator.$fhirCode';
+  String toString() => 'QuantityComparator.$value';
 }

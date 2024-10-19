@@ -5,192 +5,203 @@ import 'package:objectbox/objectbox.dart';
 
 /// Operations supported by REST at the type or instance level.
 @Entity()
-class TypeRestfulInteraction {
-  // Private constructor for internal use (like enum)
-  TypeRestfulInteraction._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// TypeRestfulInteraction values
-  /// read
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction read = TypeRestfulInteraction._(
-    'read',
-  );
-
-  /// vread
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction vread = TypeRestfulInteraction._(
-    'vread',
-  );
-
-  /// update
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction update = TypeRestfulInteraction._(
-    'update',
-  );
-
-  /// patch
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction patch = TypeRestfulInteraction._(
-    'patch',
-  );
-
-  /// delete
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction delete = TypeRestfulInteraction._(
-    'delete',
-  );
-
-  /// history
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction history = TypeRestfulInteraction._(
-    'history',
-  );
-
-  /// history_instance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction history_instance =
-      TypeRestfulInteraction._(
-    'history-instance',
-  );
-
-  /// history_type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction history_type = TypeRestfulInteraction._(
-    'history-type',
-  );
-
-  /// history_system
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction history_system = TypeRestfulInteraction._(
-    'history-system',
-  );
-
-  /// create
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction create = TypeRestfulInteraction._(
-    'create',
-  );
-
-  /// search
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction search = TypeRestfulInteraction._(
-    'search',
-  );
-
-  /// search_type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction search_type = TypeRestfulInteraction._(
-    'search-type',
-  );
-
-  /// search_system
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction search_system = TypeRestfulInteraction._(
-    'search-system',
-  );
-
-  /// capabilities
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction capabilities = TypeRestfulInteraction._(
-    'capabilities',
-  );
-
-  /// transaction
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction transaction = TypeRestfulInteraction._(
-    'transaction',
-  );
-
-  /// batch
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction batch = TypeRestfulInteraction._(
-    'batch',
-  );
-
-  /// operation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TypeRestfulInteraction operation = TypeRestfulInteraction._(
-    'operation',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final TypeRestfulInteraction elementOnly =
-      TypeRestfulInteraction._('');
-
-  /// List of all enum-like values
-  static final List<TypeRestfulInteraction> values = [
-    read,
-    vread,
-    update,
-    patch,
-    delete,
-    history,
-    history_instance,
-    history_type,
-    history_system,
-    create,
-    search,
-    search_type,
-    search_system,
-    capabilities,
-    transaction,
-    batch,
-    operation,
-  ];
-
-  /// Returns the enum value with an element attached
-  TypeRestfulInteraction withElement(Element? newElement) {
-    return TypeRestfulInteraction._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class TypeRestfulInteraction extends FhirCode {
   /// Factory constructor to create [TypeRestfulInteraction] from JSON.
-  static TypeRestfulInteraction fromJson(Map<String, dynamic> json) {
+  factory TypeRestfulInteraction.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TypeRestfulInteraction.elementOnly.withElement(element);
+      return TypeRestfulInteraction.elementOnly(element);
     }
-    return TypeRestfulInteraction.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return TypeRestfulInteraction._(value, element);
+    }
+    throw ArgumentError(
+      'TypeRestfulInteraction.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// read
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.read([this.element])
+      : dbValue = 'read',
+        super('read', element);
+
+  /// vread
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.vread([this.element])
+      : dbValue = 'vread',
+        super('vread', element);
+
+  /// update
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.update([this.element])
+      : dbValue = 'update',
+        super('update', element);
+
+  /// patch
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.patch([this.element])
+      : dbValue = 'patch',
+        super('patch', element);
+
+  /// delete
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.delete([this.element])
+      : dbValue = 'delete',
+        super('delete', element);
+
+  /// history
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.history([this.element])
+      : dbValue = 'history',
+        super('history', element);
+
+  /// history_instance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.history_instance([this.element])
+      : dbValue = 'history-instance',
+        super('history-instance', element);
+
+  /// history_type
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.history_type([this.element])
+      : dbValue = 'history-type',
+        super('history-type', element);
+
+  /// history_system
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.history_system([this.element])
+      : dbValue = 'history-system',
+        super('history-system', element);
+
+  /// create
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.create([this.element])
+      : dbValue = 'create',
+        super('create', element);
+
+  /// search
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.search([this.element])
+      : dbValue = 'search',
+        super('search', element);
+
+  /// search_type
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.search_type([this.element])
+      : dbValue = 'search-type',
+        super('search-type', element);
+
+  /// search_system
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.search_system([this.element])
+      : dbValue = 'search-system',
+        super('search-system', element);
+
+  /// capabilities
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.capabilities([this.element])
+      : dbValue = 'capabilities',
+        super('capabilities', element);
+
+  /// transaction
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.transaction([this.element])
+      : dbValue = 'transaction',
+        super('transaction', element);
+
+  /// batch
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.batch([this.element])
+      : dbValue = 'batch',
+        super('batch', element);
+
+  /// operation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TypeRestfulInteraction.operation([this.element])
+      : dbValue = 'operation',
+        super('operation', element);
+
+  /// For instances where an Element is present but not value
+
+  TypeRestfulInteraction.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  TypeRestfulInteraction._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'read',
+    'vread',
+    'update',
+    'patch',
+    'delete',
+    'history',
+    'history-instance',
+    'history-type',
+    'history-system',
+    'create',
+    'search',
+    'search-type',
+    'search-system',
+    'capabilities',
+    'transaction',
+    'batch',
+    'operation',
+  ];
+
+  /// Returns the enum value with an element attached
+  TypeRestfulInteraction withElement(Element? newElement) {
+    return TypeRestfulInteraction._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'TypeRestfulInteraction.$fhirCode';
+  String toString() => 'TypeRestfulInteraction.$value';
 }

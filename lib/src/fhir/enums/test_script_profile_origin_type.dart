@@ -5,73 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set defines a set of codes that are used to indicate the profile type of a test system when acting as the origin within a TestScript.
 @Entity()
-class TestScriptProfileOriginType {
-  // Private constructor for internal use (like enum)
-  TestScriptProfileOriginType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// TestScriptProfileOriginType values
-  /// FHIR_Client
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestScriptProfileOriginType FHIR_Client =
-      TestScriptProfileOriginType._(
-    'FHIR-Client',
-  );
-
-  /// FHIR_SDC_FormFiller
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestScriptProfileOriginType FHIR_SDC_FormFiller =
-      TestScriptProfileOriginType._(
-    'FHIR-SDC-FormFiller',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final TestScriptProfileOriginType elementOnly =
-      TestScriptProfileOriginType._('');
-
-  /// List of all enum-like values
-  static final List<TestScriptProfileOriginType> values = [
-    FHIR_Client,
-    FHIR_SDC_FormFiller,
-  ];
-
-  /// Returns the enum value with an element attached
-  TestScriptProfileOriginType withElement(Element? newElement) {
-    return TestScriptProfileOriginType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class TestScriptProfileOriginType extends FhirCode {
   /// Factory constructor to create [TestScriptProfileOriginType] from JSON.
-  static TestScriptProfileOriginType fromJson(Map<String, dynamic> json) {
+  factory TestScriptProfileOriginType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestScriptProfileOriginType.elementOnly.withElement(element);
+      return TestScriptProfileOriginType.elementOnly(element);
     }
-    return TestScriptProfileOriginType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return TestScriptProfileOriginType._(value, element);
+    }
+    throw ArgumentError(
+      'TestScriptProfileOriginType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// FHIR_Client
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestScriptProfileOriginType.FHIR_Client([this.element])
+      : dbValue = 'FHIR-Client',
+        super('FHIR-Client', element);
+
+  /// FHIR_SDC_FormFiller
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestScriptProfileOriginType.FHIR_SDC_FormFiller([this.element])
+      : dbValue = 'FHIR-SDC-FormFiller',
+        super('FHIR-SDC-FormFiller', element);
+
+  /// For instances where an Element is present but not value
+
+  TestScriptProfileOriginType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  TestScriptProfileOriginType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'FHIR-Client',
+    'FHIR-SDC-FormFiller',
+  ];
+
+  /// Returns the enum value with an element attached
+  TestScriptProfileOriginType withElement(Element? newElement) {
+    return TestScriptProfileOriginType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'TestScriptProfileOriginType.$fhirCode';
+  String toString() => 'TestScriptProfileOriginType.$value';
 }

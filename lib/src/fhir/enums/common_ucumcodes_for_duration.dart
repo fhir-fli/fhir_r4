@@ -5,119 +5,131 @@ import 'package:objectbox/objectbox.dart';
 
 /// Unified Code for Units of Measure (UCUM). This value set includes all UCUM codes
 @Entity()
-class CommonUCUMCodesForDuration {
-  // Private constructor for internal use (like enum)
-  CommonUCUMCodesForDuration._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CommonUCUMCodesForDuration values
-  /// ms
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommonUCUMCodesForDuration ms = CommonUCUMCodesForDuration._(
-    'ms',
-  );
-
-  /// s
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommonUCUMCodesForDuration s = CommonUCUMCodesForDuration._(
-    's',
-  );
-
-  /// min
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommonUCUMCodesForDuration min = CommonUCUMCodesForDuration._(
-    'min',
-  );
-
-  /// h
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommonUCUMCodesForDuration h = CommonUCUMCodesForDuration._(
-    'h',
-  );
-
-  /// d
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommonUCUMCodesForDuration d = CommonUCUMCodesForDuration._(
-    'd',
-  );
-
-  /// wk
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommonUCUMCodesForDuration wk = CommonUCUMCodesForDuration._(
-    'wk',
-  );
-
-  /// mo
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommonUCUMCodesForDuration mo = CommonUCUMCodesForDuration._(
-    'mo',
-  );
-
-  /// a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CommonUCUMCodesForDuration a = CommonUCUMCodesForDuration._(
-    'a',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CommonUCUMCodesForDuration elementOnly =
-      CommonUCUMCodesForDuration._('');
-
-  /// List of all enum-like values
-  static final List<CommonUCUMCodesForDuration> values = [
-    ms,
-    s,
-    min,
-    h,
-    d,
-    wk,
-    mo,
-    a,
-  ];
-
-  /// Returns the enum value with an element attached
-  CommonUCUMCodesForDuration withElement(Element? newElement) {
-    return CommonUCUMCodesForDuration._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CommonUCUMCodesForDuration extends FhirCode {
   /// Factory constructor to create [CommonUCUMCodesForDuration] from JSON.
-  static CommonUCUMCodesForDuration fromJson(Map<String, dynamic> json) {
+  factory CommonUCUMCodesForDuration.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CommonUCUMCodesForDuration.elementOnly.withElement(element);
+      return CommonUCUMCodesForDuration.elementOnly(element);
     }
-    return CommonUCUMCodesForDuration.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CommonUCUMCodesForDuration._(value, element);
+    }
+    throw ArgumentError(
+      'CommonUCUMCodesForDuration.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// ms
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommonUCUMCodesForDuration.ms([this.element])
+      : dbValue = 'ms',
+        super('ms', element);
+
+  /// s
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommonUCUMCodesForDuration.s([this.element])
+      : dbValue = 's',
+        super('s', element);
+
+  /// min
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommonUCUMCodesForDuration.min([this.element])
+      : dbValue = 'min',
+        super('min', element);
+
+  /// h
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommonUCUMCodesForDuration.h([this.element])
+      : dbValue = 'h',
+        super('h', element);
+
+  /// d
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommonUCUMCodesForDuration.d([this.element])
+      : dbValue = 'd',
+        super('d', element);
+
+  /// wk
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommonUCUMCodesForDuration.wk([this.element])
+      : dbValue = 'wk',
+        super('wk', element);
+
+  /// mo
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommonUCUMCodesForDuration.mo([this.element])
+      : dbValue = 'mo',
+        super('mo', element);
+
+  /// a
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CommonUCUMCodesForDuration.a([this.element])
+      : dbValue = 'a',
+        super('a', element);
+
+  /// For instances where an Element is present but not value
+
+  CommonUCUMCodesForDuration.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CommonUCUMCodesForDuration._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'ms',
+    's',
+    'min',
+    'h',
+    'd',
+    'wk',
+    'mo',
+    'a',
+  ];
+
+  /// Returns the enum value with an element attached
+  CommonUCUMCodesForDuration withElement(Element? newElement) {
+    return CommonUCUMCodesForDuration._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CommonUCUMCodesForDuration.$fhirCode';
+  String toString() => 'CommonUCUMCodesForDuration.$value';
 }

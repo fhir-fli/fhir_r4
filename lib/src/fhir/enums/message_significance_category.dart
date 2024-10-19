@@ -5,82 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// The impact of the content of a message.
 @Entity()
-class MessageSignificanceCategory {
-  // Private constructor for internal use (like enum)
-  MessageSignificanceCategory._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MessageSignificanceCategory values
-  /// consequence
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MessageSignificanceCategory consequence =
-      MessageSignificanceCategory._(
-    'consequence',
-  );
-
-  /// currency
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MessageSignificanceCategory currency =
-      MessageSignificanceCategory._(
-    'currency',
-  );
-
-  /// notification
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MessageSignificanceCategory notification =
-      MessageSignificanceCategory._(
-    'notification',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MessageSignificanceCategory elementOnly =
-      MessageSignificanceCategory._('');
-
-  /// List of all enum-like values
-  static final List<MessageSignificanceCategory> values = [
-    consequence,
-    currency,
-    notification,
-  ];
-
-  /// Returns the enum value with an element attached
-  MessageSignificanceCategory withElement(Element? newElement) {
-    return MessageSignificanceCategory._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MessageSignificanceCategory extends FhirCode {
   /// Factory constructor to create [MessageSignificanceCategory] from JSON.
-  static MessageSignificanceCategory fromJson(Map<String, dynamic> json) {
+  factory MessageSignificanceCategory.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MessageSignificanceCategory.elementOnly.withElement(element);
+      return MessageSignificanceCategory.elementOnly(element);
     }
-    return MessageSignificanceCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MessageSignificanceCategory._(value, element);
+    }
+    throw ArgumentError(
+      'MessageSignificanceCategory.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// consequence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MessageSignificanceCategory.consequence([this.element])
+      : dbValue = 'consequence',
+        super('consequence', element);
+
+  /// currency
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MessageSignificanceCategory.currency([this.element])
+      : dbValue = 'currency',
+        super('currency', element);
+
+  /// notification
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MessageSignificanceCategory.notification([this.element])
+      : dbValue = 'notification',
+        super('notification', element);
+
+  /// For instances where an Element is present but not value
+
+  MessageSignificanceCategory.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MessageSignificanceCategory._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'consequence',
+    'currency',
+    'notification',
+  ];
+
+  /// Returns the enum value with an element attached
+  MessageSignificanceCategory withElement(Element? newElement) {
+    return MessageSignificanceCategory._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MessageSignificanceCategory.$fhirCode';
+  String toString() => 'MessageSignificanceCategory.$value';
 }

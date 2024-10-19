@@ -5,246 +5,259 @@ import 'package:objectbox/objectbox.dart';
 
 /// Code representing the role the entity played in the audit event.
 @Entity()
-class AuditEventEntityRole {
-  // Private constructor for internal use (like enum)
-  AuditEventEntityRole._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AuditEventEntityRole values
-  /// value1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value1 = AuditEventEntityRole._(
-    '1',
-  );
-
-  /// value2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value2 = AuditEventEntityRole._(
-    '2',
-  );
-
-  /// value3
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value3 = AuditEventEntityRole._(
-    '3',
-  );
-
-  /// value4
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value4 = AuditEventEntityRole._(
-    '4',
-  );
-
-  /// value5
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value5 = AuditEventEntityRole._(
-    '5',
-  );
-
-  /// value6
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value6 = AuditEventEntityRole._(
-    '6',
-  );
-
-  /// value7
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value7 = AuditEventEntityRole._(
-    '7',
-  );
-
-  /// value8
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value8 = AuditEventEntityRole._(
-    '8',
-  );
-
-  /// value9
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value9 = AuditEventEntityRole._(
-    '9',
-  );
-
-  /// value10
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value10 = AuditEventEntityRole._(
-    '10',
-  );
-
-  /// value11
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value11 = AuditEventEntityRole._(
-    '11',
-  );
-
-  /// value12
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value12 = AuditEventEntityRole._(
-    '12',
-  );
-
-  /// value13
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value13 = AuditEventEntityRole._(
-    '13',
-  );
-
-  /// value14
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value14 = AuditEventEntityRole._(
-    '14',
-  );
-
-  /// value15
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value15 = AuditEventEntityRole._(
-    '15',
-  );
-
-  /// value16
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value16 = AuditEventEntityRole._(
-    '16',
-  );
-
-  /// value17
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value17 = AuditEventEntityRole._(
-    '17',
-  );
-
-  /// value18
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value18 = AuditEventEntityRole._(
-    '18',
-  );
-
-  /// value19
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value19 = AuditEventEntityRole._(
-    '19',
-  );
-
-  /// value20
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value20 = AuditEventEntityRole._(
-    '20',
-  );
-
-  /// value21
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value21 = AuditEventEntityRole._(
-    '21',
-  );
-
-  /// value22
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value22 = AuditEventEntityRole._(
-    '22',
-  );
-
-  /// value23
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value23 = AuditEventEntityRole._(
-    '23',
-  );
-
-  /// value24
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AuditEventEntityRole value24 = AuditEventEntityRole._(
-    '24',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AuditEventEntityRole elementOnly = AuditEventEntityRole._('');
-
-  /// List of all enum-like values
-  static final List<AuditEventEntityRole> values = [
-    value1,
-    value2,
-    value3,
-    value4,
-    value5,
-    value6,
-    value7,
-    value8,
-    value9,
-    value10,
-    value11,
-    value12,
-    value13,
-    value14,
-    value15,
-    value16,
-    value17,
-    value18,
-    value19,
-    value20,
-    value21,
-    value22,
-    value23,
-    value24,
-  ];
-
-  /// Returns the enum value with an element attached
-  AuditEventEntityRole withElement(Element? newElement) {
-    return AuditEventEntityRole._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AuditEventEntityRole extends FhirCode {
   /// Factory constructor to create [AuditEventEntityRole] from JSON.
-  static AuditEventEntityRole fromJson(Map<String, dynamic> json) {
+  factory AuditEventEntityRole.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AuditEventEntityRole.elementOnly.withElement(element);
+      return AuditEventEntityRole.elementOnly(element);
     }
-    return AuditEventEntityRole.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AuditEventEntityRole._(value, element);
+    }
+    throw ArgumentError(
+      'AuditEventEntityRole.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value1([this.element])
+      : dbValue = '1',
+        super('1', element);
+
+  /// value2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value2([this.element])
+      : dbValue = '2',
+        super('2', element);
+
+  /// value3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value3([this.element])
+      : dbValue = '3',
+        super('3', element);
+
+  /// value4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value4([this.element])
+      : dbValue = '4',
+        super('4', element);
+
+  /// value5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value5([this.element])
+      : dbValue = '5',
+        super('5', element);
+
+  /// value6
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value6([this.element])
+      : dbValue = '6',
+        super('6', element);
+
+  /// value7
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value7([this.element])
+      : dbValue = '7',
+        super('7', element);
+
+  /// value8
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value8([this.element])
+      : dbValue = '8',
+        super('8', element);
+
+  /// value9
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value9([this.element])
+      : dbValue = '9',
+        super('9', element);
+
+  /// value10
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value10([this.element])
+      : dbValue = '10',
+        super('10', element);
+
+  /// value11
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value11([this.element])
+      : dbValue = '11',
+        super('11', element);
+
+  /// value12
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value12([this.element])
+      : dbValue = '12',
+        super('12', element);
+
+  /// value13
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value13([this.element])
+      : dbValue = '13',
+        super('13', element);
+
+  /// value14
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value14([this.element])
+      : dbValue = '14',
+        super('14', element);
+
+  /// value15
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value15([this.element])
+      : dbValue = '15',
+        super('15', element);
+
+  /// value16
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value16([this.element])
+      : dbValue = '16',
+        super('16', element);
+
+  /// value17
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value17([this.element])
+      : dbValue = '17',
+        super('17', element);
+
+  /// value18
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value18([this.element])
+      : dbValue = '18',
+        super('18', element);
+
+  /// value19
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value19([this.element])
+      : dbValue = '19',
+        super('19', element);
+
+  /// value20
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value20([this.element])
+      : dbValue = '20',
+        super('20', element);
+
+  /// value21
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value21([this.element])
+      : dbValue = '21',
+        super('21', element);
+
+  /// value22
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value22([this.element])
+      : dbValue = '22',
+        super('22', element);
+
+  /// value23
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value23([this.element])
+      : dbValue = '23',
+        super('23', element);
+
+  /// value24
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AuditEventEntityRole.value24([this.element])
+      : dbValue = '24',
+        super('24', element);
+
+  /// For instances where an Element is present but not value
+
+  AuditEventEntityRole.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AuditEventEntityRole._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '17',
+    '18',
+    '19',
+    '20',
+    '21',
+    '22',
+    '23',
+    '24',
+  ];
+
+  /// Returns the enum value with an element attached
+  AuditEventEntityRole withElement(Element? newElement) {
+    return AuditEventEntityRole._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AuditEventEntityRole.$fhirCode';
+  String toString() => 'AuditEventEntityRole.$value';
 }

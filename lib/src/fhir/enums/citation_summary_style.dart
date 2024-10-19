@@ -5,166 +5,179 @@ import 'package:objectbox/objectbox.dart';
 
 /// The format for display of the citation.
 @Entity()
-class CitationSummaryStyle {
-  // Private constructor for internal use (like enum)
-  CitationSummaryStyle._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CitationSummaryStyle values
-  /// vancouver
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitationSummaryStyle vancouver = CitationSummaryStyle._(
-    'vancouver',
-  );
-
-  /// ama11
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitationSummaryStyle ama11 = CitationSummaryStyle._(
-    'ama11',
-  );
-
-  /// apa7
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitationSummaryStyle apa7 = CitationSummaryStyle._(
-    'apa7',
-  );
-
-  /// apa6
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitationSummaryStyle apa6 = CitationSummaryStyle._(
-    'apa6',
-  );
-
-  /// asa6
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitationSummaryStyle asa6 = CitationSummaryStyle._(
-    'asa6',
-  );
-
-  /// mla8
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitationSummaryStyle mla8 = CitationSummaryStyle._(
-    'mla8',
-  );
-
-  /// cochrane
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitationSummaryStyle cochrane = CitationSummaryStyle._(
-    'cochrane',
-  );
-
-  /// elsevier_harvard
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitationSummaryStyle elsevier_harvard = CitationSummaryStyle._(
-    'elsevier-harvard',
-  );
-
-  /// nature
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitationSummaryStyle nature = CitationSummaryStyle._(
-    'nature',
-  );
-
-  /// acs
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitationSummaryStyle acs = CitationSummaryStyle._(
-    'acs',
-  );
-
-  /// chicago_a_17
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitationSummaryStyle chicago_a_17 = CitationSummaryStyle._(
-    'chicago-a-17',
-  );
-
-  /// chicago_b_17
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitationSummaryStyle chicago_b_17 = CitationSummaryStyle._(
-    'chicago-b-17',
-  );
-
-  /// ieee
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitationSummaryStyle ieee = CitationSummaryStyle._(
-    'ieee',
-  );
-
-  /// comppub
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitationSummaryStyle comppub = CitationSummaryStyle._(
-    'comppub',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CitationSummaryStyle elementOnly = CitationSummaryStyle._('');
-
-  /// List of all enum-like values
-  static final List<CitationSummaryStyle> values = [
-    vancouver,
-    ama11,
-    apa7,
-    apa6,
-    asa6,
-    mla8,
-    cochrane,
-    elsevier_harvard,
-    nature,
-    acs,
-    chicago_a_17,
-    chicago_b_17,
-    ieee,
-    comppub,
-  ];
-
-  /// Returns the enum value with an element attached
-  CitationSummaryStyle withElement(Element? newElement) {
-    return CitationSummaryStyle._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CitationSummaryStyle extends FhirCode {
   /// Factory constructor to create [CitationSummaryStyle] from JSON.
-  static CitationSummaryStyle fromJson(Map<String, dynamic> json) {
+  factory CitationSummaryStyle.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CitationSummaryStyle.elementOnly.withElement(element);
+      return CitationSummaryStyle.elementOnly(element);
     }
-    return CitationSummaryStyle.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CitationSummaryStyle._(value, element);
+    }
+    throw ArgumentError(
+      'CitationSummaryStyle.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// vancouver
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitationSummaryStyle.vancouver([this.element])
+      : dbValue = 'vancouver',
+        super('vancouver', element);
+
+  /// ama11
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitationSummaryStyle.ama11([this.element])
+      : dbValue = 'ama11',
+        super('ama11', element);
+
+  /// apa7
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitationSummaryStyle.apa7([this.element])
+      : dbValue = 'apa7',
+        super('apa7', element);
+
+  /// apa6
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitationSummaryStyle.apa6([this.element])
+      : dbValue = 'apa6',
+        super('apa6', element);
+
+  /// asa6
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitationSummaryStyle.asa6([this.element])
+      : dbValue = 'asa6',
+        super('asa6', element);
+
+  /// mla8
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitationSummaryStyle.mla8([this.element])
+      : dbValue = 'mla8',
+        super('mla8', element);
+
+  /// cochrane
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitationSummaryStyle.cochrane([this.element])
+      : dbValue = 'cochrane',
+        super('cochrane', element);
+
+  /// elsevier_harvard
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitationSummaryStyle.elsevier_harvard([this.element])
+      : dbValue = 'elsevier-harvard',
+        super('elsevier-harvard', element);
+
+  /// nature
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitationSummaryStyle.nature([this.element])
+      : dbValue = 'nature',
+        super('nature', element);
+
+  /// acs
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitationSummaryStyle.acs([this.element])
+      : dbValue = 'acs',
+        super('acs', element);
+
+  /// chicago_a_17
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitationSummaryStyle.chicago_a_17([this.element])
+      : dbValue = 'chicago-a-17',
+        super('chicago-a-17', element);
+
+  /// chicago_b_17
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitationSummaryStyle.chicago_b_17([this.element])
+      : dbValue = 'chicago-b-17',
+        super('chicago-b-17', element);
+
+  /// ieee
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitationSummaryStyle.ieee([this.element])
+      : dbValue = 'ieee',
+        super('ieee', element);
+
+  /// comppub
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitationSummaryStyle.comppub([this.element])
+      : dbValue = 'comppub',
+        super('comppub', element);
+
+  /// For instances where an Element is present but not value
+
+  CitationSummaryStyle.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CitationSummaryStyle._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'vancouver',
+    'ama11',
+    'apa7',
+    'apa6',
+    'asa6',
+    'mla8',
+    'cochrane',
+    'elsevier-harvard',
+    'nature',
+    'acs',
+    'chicago-a-17',
+    'chicago-b-17',
+    'ieee',
+    'comppub',
+  ];
+
+  /// Returns the enum value with an element attached
+  CitationSummaryStyle withElement(Element? newElement) {
+    return CitationSummaryStyle._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CitationSummaryStyle.$fhirCode';
+  String toString() => 'CitationSummaryStyle.$value';
 }

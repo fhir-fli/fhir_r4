@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// The extent of the content of the code system (the concepts and codes it defines) are represented in a code system resource.
 @Entity()
-class CodeSystemContentMode {
-  // Private constructor for internal use (like enum)
-  CodeSystemContentMode._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CodeSystemContentMode values
-  /// not_present
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CodeSystemContentMode not_present = CodeSystemContentMode._(
-    'not-present',
-  );
-
-  /// example
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CodeSystemContentMode example = CodeSystemContentMode._(
-    'example',
-  );
-
-  /// fragment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CodeSystemContentMode fragment = CodeSystemContentMode._(
-    'fragment',
-  );
-
-  /// complete
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CodeSystemContentMode complete = CodeSystemContentMode._(
-    'complete',
-  );
-
-  /// supplement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CodeSystemContentMode supplement = CodeSystemContentMode._(
-    'supplement',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CodeSystemContentMode elementOnly = CodeSystemContentMode._('');
-
-  /// List of all enum-like values
-  static final List<CodeSystemContentMode> values = [
-    not_present,
-    example,
-    fragment,
-    complete,
-    supplement,
-  ];
-
-  /// Returns the enum value with an element attached
-  CodeSystemContentMode withElement(Element? newElement) {
-    return CodeSystemContentMode._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CodeSystemContentMode extends FhirCode {
   /// Factory constructor to create [CodeSystemContentMode] from JSON.
-  static CodeSystemContentMode fromJson(Map<String, dynamic> json) {
+  factory CodeSystemContentMode.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CodeSystemContentMode.elementOnly.withElement(element);
+      return CodeSystemContentMode.elementOnly(element);
     }
-    return CodeSystemContentMode.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CodeSystemContentMode._(value, element);
+    }
+    throw ArgumentError(
+      'CodeSystemContentMode.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// not_present
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CodeSystemContentMode.not_present([this.element])
+      : dbValue = 'not-present',
+        super('not-present', element);
+
+  /// example
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CodeSystemContentMode.example([this.element])
+      : dbValue = 'example',
+        super('example', element);
+
+  /// fragment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CodeSystemContentMode.fragment([this.element])
+      : dbValue = 'fragment',
+        super('fragment', element);
+
+  /// complete
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CodeSystemContentMode.complete([this.element])
+      : dbValue = 'complete',
+        super('complete', element);
+
+  /// supplement
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CodeSystemContentMode.supplement([this.element])
+      : dbValue = 'supplement',
+        super('supplement', element);
+
+  /// For instances where an Element is present but not value
+
+  CodeSystemContentMode.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CodeSystemContentMode._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'not-present',
+    'example',
+    'fragment',
+    'complete',
+    'supplement',
+  ];
+
+  /// Returns the enum value with an element attached
+  CodeSystemContentMode withElement(Element? newElement) {
+    return CodeSystemContentMode._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CodeSystemContentMode.$fhirCode';
+  String toString() => 'CodeSystemContentMode.$value';
 }

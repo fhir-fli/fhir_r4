@@ -5,118 +5,131 @@ import 'package:objectbox/objectbox.dart';
 
 /// The method by which the substance weight was measured.
 @Entity()
-class WeightMethod {
-  // Private constructor for internal use (like enum)
-  WeightMethod._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// WeightMethod values
-  /// SDS_PAGE
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final WeightMethod SDS_PAGE = WeightMethod._(
-    'SDS-PAGE',
-  );
-
-  /// Calculated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final WeightMethod Calculated = WeightMethod._(
-    'Calculated',
-  );
-
-  /// LighScattering
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final WeightMethod LighScattering = WeightMethod._(
-    'LighScattering',
-  );
-
-  /// Viscosity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final WeightMethod Viscosity = WeightMethod._(
-    'Viscosity',
-  );
-
-  /// GelPermeationCentrifugation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final WeightMethod GelPermeationCentrifugation = WeightMethod._(
-    'GelPermeationCentrifugation',
-  );
-
-  /// End_groupAnalysis
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final WeightMethod End_groupAnalysis = WeightMethod._(
-    'End-groupAnalysis',
-  );
-
-  /// End_groupTitration
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final WeightMethod End_groupTitration = WeightMethod._(
-    'End-groupTitration',
-  );
-
-  /// Size_ExclusionChromatography
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final WeightMethod Size_ExclusionChromatography = WeightMethod._(
-    'Size-ExclusionChromatography',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final WeightMethod elementOnly = WeightMethod._('');
-
-  /// List of all enum-like values
-  static final List<WeightMethod> values = [
-    SDS_PAGE,
-    Calculated,
-    LighScattering,
-    Viscosity,
-    GelPermeationCentrifugation,
-    End_groupAnalysis,
-    End_groupTitration,
-    Size_ExclusionChromatography,
-  ];
-
-  /// Returns the enum value with an element attached
-  WeightMethod withElement(Element? newElement) {
-    return WeightMethod._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class WeightMethod extends FhirCode {
   /// Factory constructor to create [WeightMethod] from JSON.
-  static WeightMethod fromJson(Map<String, dynamic> json) {
+  factory WeightMethod.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return WeightMethod.elementOnly.withElement(element);
+      return WeightMethod.elementOnly(element);
     }
-    return WeightMethod.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return WeightMethod._(value, element);
+    }
+    throw ArgumentError(
+      'WeightMethod.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// SDS_PAGE
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  WeightMethod.SDS_PAGE([this.element])
+      : dbValue = 'SDS-PAGE',
+        super('SDS-PAGE', element);
+
+  /// Calculated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  WeightMethod.Calculated([this.element])
+      : dbValue = 'Calculated',
+        super('Calculated', element);
+
+  /// LighScattering
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  WeightMethod.LighScattering([this.element])
+      : dbValue = 'LighScattering',
+        super('LighScattering', element);
+
+  /// Viscosity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  WeightMethod.Viscosity([this.element])
+      : dbValue = 'Viscosity',
+        super('Viscosity', element);
+
+  /// GelPermeationCentrifugation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  WeightMethod.GelPermeationCentrifugation([this.element])
+      : dbValue = 'GelPermeationCentrifugation',
+        super('GelPermeationCentrifugation', element);
+
+  /// End_groupAnalysis
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  WeightMethod.End_groupAnalysis([this.element])
+      : dbValue = 'End-groupAnalysis',
+        super('End-groupAnalysis', element);
+
+  /// End_groupTitration
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  WeightMethod.End_groupTitration([this.element])
+      : dbValue = 'End-groupTitration',
+        super('End-groupTitration', element);
+
+  /// Size_ExclusionChromatography
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  WeightMethod.Size_ExclusionChromatography([this.element])
+      : dbValue = 'Size-ExclusionChromatography',
+        super('Size-ExclusionChromatography', element);
+
+  /// For instances where an Element is present but not value
+
+  WeightMethod.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  WeightMethod._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'SDS-PAGE',
+    'Calculated',
+    'LighScattering',
+    'Viscosity',
+    'GelPermeationCentrifugation',
+    'End-groupAnalysis',
+    'End-groupTitration',
+    'Size-ExclusionChromatography',
+  ];
+
+  /// Returns the enum value with an element attached
+  WeightMethod withElement(Element? newElement) {
+    return WeightMethod._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'WeightMethod.$fhirCode';
+  String toString() => 'WeightMethod.$value';
 }

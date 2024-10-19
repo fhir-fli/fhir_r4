@@ -5,71 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the function a practitioner or organization may play in the immunization event. This value set is provided as a suggestive example.
 @Entity()
-class ImmunizationFunctionCodes {
-  // Private constructor for internal use (like enum)
-  ImmunizationFunctionCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ImmunizationFunctionCodes values
-  /// OP
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationFunctionCodes OP = ImmunizationFunctionCodes._(
-    'OP',
-  );
-
-  /// AP
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ImmunizationFunctionCodes AP = ImmunizationFunctionCodes._(
-    'AP',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ImmunizationFunctionCodes elementOnly =
-      ImmunizationFunctionCodes._('');
-
-  /// List of all enum-like values
-  static final List<ImmunizationFunctionCodes> values = [
-    OP,
-    AP,
-  ];
-
-  /// Returns the enum value with an element attached
-  ImmunizationFunctionCodes withElement(Element? newElement) {
-    return ImmunizationFunctionCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ImmunizationFunctionCodes extends FhirCode {
   /// Factory constructor to create [ImmunizationFunctionCodes] from JSON.
-  static ImmunizationFunctionCodes fromJson(Map<String, dynamic> json) {
+  factory ImmunizationFunctionCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ImmunizationFunctionCodes.elementOnly.withElement(element);
+      return ImmunizationFunctionCodes.elementOnly(element);
     }
-    return ImmunizationFunctionCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ImmunizationFunctionCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ImmunizationFunctionCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// OP
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationFunctionCodes.OP([this.element])
+      : dbValue = 'OP',
+        super('OP', element);
+
+  /// AP
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ImmunizationFunctionCodes.AP([this.element])
+      : dbValue = 'AP',
+        super('AP', element);
+
+  /// For instances where an Element is present but not value
+
+  ImmunizationFunctionCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ImmunizationFunctionCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'OP',
+    'AP',
+  ];
+
+  /// Returns the enum value with an element attached
+  ImmunizationFunctionCodes withElement(Element? newElement) {
+    return ImmunizationFunctionCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ImmunizationFunctionCodes.$fhirCode';
+  String toString() => 'ImmunizationFunctionCodes.$value';
 }

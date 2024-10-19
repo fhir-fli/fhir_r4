@@ -5,119 +5,131 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes a smattering of Adjudication Value codes which includes codes to indicate the amounts eligible under the plan, the amount of benefit, copays etc.
 @Entity()
-class AdjudicationValueCodes {
-  // Private constructor for internal use (like enum)
-  AdjudicationValueCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AdjudicationValueCodes values
-  /// submitted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdjudicationValueCodes submitted = AdjudicationValueCodes._(
-    'submitted',
-  );
-
-  /// copay
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdjudicationValueCodes copay = AdjudicationValueCodes._(
-    'copay',
-  );
-
-  /// eligible
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdjudicationValueCodes eligible = AdjudicationValueCodes._(
-    'eligible',
-  );
-
-  /// deductible
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdjudicationValueCodes deductible = AdjudicationValueCodes._(
-    'deductible',
-  );
-
-  /// unallocdeduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdjudicationValueCodes unallocdeduct = AdjudicationValueCodes._(
-    'unallocdeduct',
-  );
-
-  /// eligpercent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdjudicationValueCodes eligpercent = AdjudicationValueCodes._(
-    'eligpercent',
-  );
-
-  /// tax
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdjudicationValueCodes tax = AdjudicationValueCodes._(
-    'tax',
-  );
-
-  /// benefit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdjudicationValueCodes benefit = AdjudicationValueCodes._(
-    'benefit',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AdjudicationValueCodes elementOnly =
-      AdjudicationValueCodes._('');
-
-  /// List of all enum-like values
-  static final List<AdjudicationValueCodes> values = [
-    submitted,
-    copay,
-    eligible,
-    deductible,
-    unallocdeduct,
-    eligpercent,
-    tax,
-    benefit,
-  ];
-
-  /// Returns the enum value with an element attached
-  AdjudicationValueCodes withElement(Element? newElement) {
-    return AdjudicationValueCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AdjudicationValueCodes extends FhirCode {
   /// Factory constructor to create [AdjudicationValueCodes] from JSON.
-  static AdjudicationValueCodes fromJson(Map<String, dynamic> json) {
+  factory AdjudicationValueCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdjudicationValueCodes.elementOnly.withElement(element);
+      return AdjudicationValueCodes.elementOnly(element);
     }
-    return AdjudicationValueCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AdjudicationValueCodes._(value, element);
+    }
+    throw ArgumentError(
+      'AdjudicationValueCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// submitted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdjudicationValueCodes.submitted([this.element])
+      : dbValue = 'submitted',
+        super('submitted', element);
+
+  /// copay
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdjudicationValueCodes.copay([this.element])
+      : dbValue = 'copay',
+        super('copay', element);
+
+  /// eligible
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdjudicationValueCodes.eligible([this.element])
+      : dbValue = 'eligible',
+        super('eligible', element);
+
+  /// deductible
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdjudicationValueCodes.deductible([this.element])
+      : dbValue = 'deductible',
+        super('deductible', element);
+
+  /// unallocdeduct
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdjudicationValueCodes.unallocdeduct([this.element])
+      : dbValue = 'unallocdeduct',
+        super('unallocdeduct', element);
+
+  /// eligpercent
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdjudicationValueCodes.eligpercent([this.element])
+      : dbValue = 'eligpercent',
+        super('eligpercent', element);
+
+  /// tax
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdjudicationValueCodes.tax([this.element])
+      : dbValue = 'tax',
+        super('tax', element);
+
+  /// benefit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdjudicationValueCodes.benefit([this.element])
+      : dbValue = 'benefit',
+        super('benefit', element);
+
+  /// For instances where an Element is present but not value
+
+  AdjudicationValueCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AdjudicationValueCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'submitted',
+    'copay',
+    'eligible',
+    'deductible',
+    'unallocdeduct',
+    'eligpercent',
+    'tax',
+    'benefit',
+  ];
+
+  /// Returns the enum value with an element attached
+  AdjudicationValueCodes withElement(Element? newElement) {
+    return AdjudicationValueCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AdjudicationValueCodes.$fhirCode';
+  String toString() => 'AdjudicationValueCodes.$value';
 }

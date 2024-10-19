@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// The method used to elucidate the structure or characterization of the drug substance.
 @Entity()
-class StructureTechnique {
-  // Private constructor for internal use (like enum)
-  StructureTechnique._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// StructureTechnique values
-  /// X_Ray
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StructureTechnique X_Ray = StructureTechnique._(
-    'X-Ray',
-  );
-
-  /// HPLC
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StructureTechnique HPLC = StructureTechnique._(
-    'HPLC',
-  );
-
-  /// NMR
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StructureTechnique NMR = StructureTechnique._(
-    'NMR',
-  );
-
-  /// PeptideMapping
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StructureTechnique PeptideMapping = StructureTechnique._(
-    'PeptideMapping',
-  );
-
-  /// LigandBindingAssay
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final StructureTechnique LigandBindingAssay = StructureTechnique._(
-    'LigandBindingAssay',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final StructureTechnique elementOnly = StructureTechnique._('');
-
-  /// List of all enum-like values
-  static final List<StructureTechnique> values = [
-    X_Ray,
-    HPLC,
-    NMR,
-    PeptideMapping,
-    LigandBindingAssay,
-  ];
-
-  /// Returns the enum value with an element attached
-  StructureTechnique withElement(Element? newElement) {
-    return StructureTechnique._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class StructureTechnique extends FhirCode {
   /// Factory constructor to create [StructureTechnique] from JSON.
-  static StructureTechnique fromJson(Map<String, dynamic> json) {
+  factory StructureTechnique.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureTechnique.elementOnly.withElement(element);
+      return StructureTechnique.elementOnly(element);
     }
-    return StructureTechnique.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return StructureTechnique._(value, element);
+    }
+    throw ArgumentError(
+      'StructureTechnique.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// X_Ray
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StructureTechnique.X_Ray([this.element])
+      : dbValue = 'X-Ray',
+        super('X-Ray', element);
+
+  /// HPLC
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StructureTechnique.HPLC([this.element])
+      : dbValue = 'HPLC',
+        super('HPLC', element);
+
+  /// NMR
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StructureTechnique.NMR([this.element])
+      : dbValue = 'NMR',
+        super('NMR', element);
+
+  /// PeptideMapping
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StructureTechnique.PeptideMapping([this.element])
+      : dbValue = 'PeptideMapping',
+        super('PeptideMapping', element);
+
+  /// LigandBindingAssay
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  StructureTechnique.LigandBindingAssay([this.element])
+      : dbValue = 'LigandBindingAssay',
+        super('LigandBindingAssay', element);
+
+  /// For instances where an Element is present but not value
+
+  StructureTechnique.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  StructureTechnique._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'X-Ray',
+    'HPLC',
+    'NMR',
+    'PeptideMapping',
+    'LigandBindingAssay',
+  ];
+
+  /// Returns the enum value with an element attached
+  StructureTechnique withElement(Element? newElement) {
+    return StructureTechnique._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'StructureTechnique.$fhirCode';
+  String toString() => 'StructureTechnique.$value';
 }

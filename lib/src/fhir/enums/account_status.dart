@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// Indicates whether the account is available to be used.
 @Entity()
-class AccountStatus {
-  // Private constructor for internal use (like enum)
-  AccountStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AccountStatus values
-  /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AccountStatus active = AccountStatus._(
-    'active',
-  );
-
-  /// inactive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AccountStatus inactive = AccountStatus._(
-    'inactive',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AccountStatus entered_in_error = AccountStatus._(
-    'entered-in-error',
-  );
-
-  /// on_hold
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AccountStatus on_hold = AccountStatus._(
-    'on-hold',
-  );
-
-  /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AccountStatus unknown = AccountStatus._(
-    'unknown',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AccountStatus elementOnly = AccountStatus._('');
-
-  /// List of all enum-like values
-  static final List<AccountStatus> values = [
-    active,
-    inactive,
-    entered_in_error,
-    on_hold,
-    unknown,
-  ];
-
-  /// Returns the enum value with an element attached
-  AccountStatus withElement(Element? newElement) {
-    return AccountStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AccountStatus extends FhirCode {
   /// Factory constructor to create [AccountStatus] from JSON.
-  static AccountStatus fromJson(Map<String, dynamic> json) {
+  factory AccountStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AccountStatus.elementOnly.withElement(element);
+      return AccountStatus.elementOnly(element);
     }
-    return AccountStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AccountStatus._(value, element);
+    }
+    throw ArgumentError(
+      'AccountStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AccountStatus.active([this.element])
+      : dbValue = 'active',
+        super('active', element);
+
+  /// inactive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AccountStatus.inactive([this.element])
+      : dbValue = 'inactive',
+        super('inactive', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AccountStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// on_hold
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AccountStatus.on_hold([this.element])
+      : dbValue = 'on-hold',
+        super('on-hold', element);
+
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AccountStatus.unknown([this.element])
+      : dbValue = 'unknown',
+        super('unknown', element);
+
+  /// For instances where an Element is present but not value
+
+  AccountStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AccountStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'active',
+    'inactive',
+    'entered-in-error',
+    'on-hold',
+    'unknown',
+  ];
+
+  /// Returns the enum value with an element attached
+  AccountStatus withElement(Element? newElement) {
+    return AccountStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AccountStatus.$fhirCode';
+  String toString() => 'AccountStatus.$value';
 }

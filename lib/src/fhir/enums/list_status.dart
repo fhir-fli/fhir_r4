@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// The current state of the list.
 @Entity()
-class ListStatus {
-  // Private constructor for internal use (like enum)
-  ListStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ListStatus values
-  /// current
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ListStatus current = ListStatus._(
-    'current',
-  );
-
-  /// retired
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ListStatus retired = ListStatus._(
-    'retired',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ListStatus entered_in_error = ListStatus._(
-    'entered-in-error',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ListStatus elementOnly = ListStatus._('');
-
-  /// List of all enum-like values
-  static final List<ListStatus> values = [
-    current,
-    retired,
-    entered_in_error,
-  ];
-
-  /// Returns the enum value with an element attached
-  ListStatus withElement(Element? newElement) {
-    return ListStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ListStatus extends FhirCode {
   /// Factory constructor to create [ListStatus] from JSON.
-  static ListStatus fromJson(Map<String, dynamic> json) {
+  factory ListStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ListStatus.elementOnly.withElement(element);
+      return ListStatus.elementOnly(element);
     }
-    return ListStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ListStatus._(value, element);
+    }
+    throw ArgumentError(
+      'ListStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// current
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ListStatus.current([this.element])
+      : dbValue = 'current',
+        super('current', element);
+
+  /// retired
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ListStatus.retired([this.element])
+      : dbValue = 'retired',
+        super('retired', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ListStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// For instances where an Element is present but not value
+
+  ListStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ListStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'current',
+    'retired',
+    'entered-in-error',
+  ];
+
+  /// Returns the enum value with an element attached
+  ListStatus withElement(Element? newElement) {
+    return ListStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ListStatus.$fhirCode';
+  String toString() => 'ListStatus.$value';
 }

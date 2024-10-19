@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// The reason why the supply item was requested.
 @Entity()
-class SupplyRequestReason {
-  // Private constructor for internal use (like enum)
-  SupplyRequestReason._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SupplyRequestReason values
-  /// patient_care
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SupplyRequestReason patient_care = SupplyRequestReason._(
-    'patient-care',
-  );
-
-  /// ward_stock
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SupplyRequestReason ward_stock = SupplyRequestReason._(
-    'ward-stock',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SupplyRequestReason elementOnly = SupplyRequestReason._('');
-
-  /// List of all enum-like values
-  static final List<SupplyRequestReason> values = [
-    patient_care,
-    ward_stock,
-  ];
-
-  /// Returns the enum value with an element attached
-  SupplyRequestReason withElement(Element? newElement) {
-    return SupplyRequestReason._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SupplyRequestReason extends FhirCode {
   /// Factory constructor to create [SupplyRequestReason] from JSON.
-  static SupplyRequestReason fromJson(Map<String, dynamic> json) {
+  factory SupplyRequestReason.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SupplyRequestReason.elementOnly.withElement(element);
+      return SupplyRequestReason.elementOnly(element);
     }
-    return SupplyRequestReason.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SupplyRequestReason._(value, element);
+    }
+    throw ArgumentError(
+      'SupplyRequestReason.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// patient_care
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SupplyRequestReason.patient_care([this.element])
+      : dbValue = 'patient-care',
+        super('patient-care', element);
+
+  /// ward_stock
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SupplyRequestReason.ward_stock([this.element])
+      : dbValue = 'ward-stock',
+        super('ward-stock', element);
+
+  /// For instances where an Element is present but not value
+
+  SupplyRequestReason.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SupplyRequestReason._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'patient-care',
+    'ward-stock',
+  ];
+
+  /// Returns the enum value with an element attached
+  SupplyRequestReason withElement(Element? newElement) {
+    return SupplyRequestReason._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SupplyRequestReason.$fhirCode';
+  String toString() => 'SupplyRequestReason.$value';
 }

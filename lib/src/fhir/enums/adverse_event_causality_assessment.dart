@@ -5,109 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// Codes for the assessment of whether the entity caused the event.
 @Entity()
-class AdverseEventCausalityAssessment {
-  // Private constructor for internal use (like enum)
-  AdverseEventCausalityAssessment._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AdverseEventCausalityAssessment values
-  /// Certain
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCausalityAssessment Certain =
-      AdverseEventCausalityAssessment._(
-    'Certain',
-  );
-
-  /// Probably_Likely
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCausalityAssessment Probably_Likely =
-      AdverseEventCausalityAssessment._(
-    'Probably-Likely',
-  );
-
-  /// Possible
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCausalityAssessment Possible =
-      AdverseEventCausalityAssessment._(
-    'Possible',
-  );
-
-  /// Unlikely
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCausalityAssessment Unlikely =
-      AdverseEventCausalityAssessment._(
-    'Unlikely',
-  );
-
-  /// Conditional_Classified
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCausalityAssessment Conditional_Classified =
-      AdverseEventCausalityAssessment._(
-    'Conditional-Classified',
-  );
-
-  /// Unassessable_Unclassifiable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AdverseEventCausalityAssessment Unassessable_Unclassifiable =
-      AdverseEventCausalityAssessment._(
-    'Unassessable-Unclassifiable',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AdverseEventCausalityAssessment elementOnly =
-      AdverseEventCausalityAssessment._('');
-
-  /// List of all enum-like values
-  static final List<AdverseEventCausalityAssessment> values = [
-    Certain,
-    Probably_Likely,
-    Possible,
-    Unlikely,
-    Conditional_Classified,
-    Unassessable_Unclassifiable,
-  ];
-
-  /// Returns the enum value with an element attached
-  AdverseEventCausalityAssessment withElement(Element? newElement) {
-    return AdverseEventCausalityAssessment._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AdverseEventCausalityAssessment extends FhirCode {
   /// Factory constructor to create [AdverseEventCausalityAssessment] from JSON.
-  static AdverseEventCausalityAssessment fromJson(Map<String, dynamic> json) {
+  factory AdverseEventCausalityAssessment.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdverseEventCausalityAssessment.elementOnly.withElement(element);
+      return AdverseEventCausalityAssessment.elementOnly(element);
     }
-    return AdverseEventCausalityAssessment.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AdverseEventCausalityAssessment._(value, element);
+    }
+    throw ArgumentError(
+      'AdverseEventCausalityAssessment.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// Certain
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCausalityAssessment.Certain([this.element])
+      : dbValue = 'Certain',
+        super('Certain', element);
+
+  /// Probably_Likely
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCausalityAssessment.Probably_Likely([this.element])
+      : dbValue = 'Probably-Likely',
+        super('Probably-Likely', element);
+
+  /// Possible
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCausalityAssessment.Possible([this.element])
+      : dbValue = 'Possible',
+        super('Possible', element);
+
+  /// Unlikely
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCausalityAssessment.Unlikely([this.element])
+      : dbValue = 'Unlikely',
+        super('Unlikely', element);
+
+  /// Conditional_Classified
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCausalityAssessment.Conditional_Classified([this.element])
+      : dbValue = 'Conditional-Classified',
+        super('Conditional-Classified', element);
+
+  /// Unassessable_Unclassifiable
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AdverseEventCausalityAssessment.Unassessable_Unclassifiable([this.element])
+      : dbValue = 'Unassessable-Unclassifiable',
+        super('Unassessable-Unclassifiable', element);
+
+  /// For instances where an Element is present but not value
+
+  AdverseEventCausalityAssessment.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AdverseEventCausalityAssessment._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'Certain',
+    'Probably-Likely',
+    'Possible',
+    'Unlikely',
+    'Conditional-Classified',
+    'Unassessable-Unclassifiable',
+  ];
+
+  /// Returns the enum value with an element attached
+  AdverseEventCausalityAssessment withElement(Element? newElement) {
+    return AdverseEventCausalityAssessment._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AdverseEventCausalityAssessment.$fhirCode';
+  String toString() => 'AdverseEventCausalityAssessment.$value';
 }

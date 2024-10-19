@@ -5,129 +5,139 @@ import 'package:objectbox/objectbox.dart';
 
 /// Defines the types of relationships between actions.
 @Entity()
-class ActionRelationshipType {
-  // Private constructor for internal use (like enum)
-  ActionRelationshipType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ActionRelationshipType values
-  /// before_start
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionRelationshipType before_start = ActionRelationshipType._(
-    'before-start',
-  );
-
-  /// before
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionRelationshipType before = ActionRelationshipType._(
-    'before',
-  );
-
-  /// before_end
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionRelationshipType before_end = ActionRelationshipType._(
-    'before-end',
-  );
-
-  /// concurrent_with_start
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionRelationshipType concurrent_with_start =
-      ActionRelationshipType._(
-    'concurrent-with-start',
-  );
-
-  /// concurrent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionRelationshipType concurrent = ActionRelationshipType._(
-    'concurrent',
-  );
-
-  /// concurrent_with_end
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionRelationshipType concurrent_with_end =
-      ActionRelationshipType._(
-    'concurrent-with-end',
-  );
-
-  /// after_start
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionRelationshipType after_start = ActionRelationshipType._(
-    'after-start',
-  );
-
-  /// after
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionRelationshipType after = ActionRelationshipType._(
-    'after',
-  );
-
-  /// after_end
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionRelationshipType after_end = ActionRelationshipType._(
-    'after-end',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ActionRelationshipType elementOnly =
-      ActionRelationshipType._('');
-
-  /// List of all enum-like values
-  static final List<ActionRelationshipType> values = [
-    before_start,
-    before,
-    before_end,
-    concurrent_with_start,
-    concurrent,
-    concurrent_with_end,
-    after_start,
-    after,
-    after_end,
-  ];
-
-  /// Returns the enum value with an element attached
-  ActionRelationshipType withElement(Element? newElement) {
-    return ActionRelationshipType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ActionRelationshipType extends FhirCode {
   /// Factory constructor to create [ActionRelationshipType] from JSON.
-  static ActionRelationshipType fromJson(Map<String, dynamic> json) {
+  factory ActionRelationshipType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionRelationshipType.elementOnly.withElement(element);
+      return ActionRelationshipType.elementOnly(element);
     }
-    return ActionRelationshipType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ActionRelationshipType._(value, element);
+    }
+    throw ArgumentError(
+      'ActionRelationshipType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// before_start
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionRelationshipType.before_start([this.element])
+      : dbValue = 'before-start',
+        super('before-start', element);
+
+  /// before
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionRelationshipType.before([this.element])
+      : dbValue = 'before',
+        super('before', element);
+
+  /// before_end
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionRelationshipType.before_end([this.element])
+      : dbValue = 'before-end',
+        super('before-end', element);
+
+  /// concurrent_with_start
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionRelationshipType.concurrent_with_start([this.element])
+      : dbValue = 'concurrent-with-start',
+        super('concurrent-with-start', element);
+
+  /// concurrent
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionRelationshipType.concurrent([this.element])
+      : dbValue = 'concurrent',
+        super('concurrent', element);
+
+  /// concurrent_with_end
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionRelationshipType.concurrent_with_end([this.element])
+      : dbValue = 'concurrent-with-end',
+        super('concurrent-with-end', element);
+
+  /// after_start
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionRelationshipType.after_start([this.element])
+      : dbValue = 'after-start',
+        super('after-start', element);
+
+  /// after
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionRelationshipType.after([this.element])
+      : dbValue = 'after',
+        super('after', element);
+
+  /// after_end
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionRelationshipType.after_end([this.element])
+      : dbValue = 'after-end',
+        super('after-end', element);
+
+  /// For instances where an Element is present but not value
+
+  ActionRelationshipType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ActionRelationshipType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'before-start',
+    'before',
+    'before-end',
+    'concurrent-with-start',
+    'concurrent',
+    'concurrent-with-end',
+    'after-start',
+    'after',
+    'after-end',
+  ];
+
+  /// Returns the enum value with an element attached
+  ActionRelationshipType withElement(Element? newElement) {
+    return ActionRelationshipType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ActionRelationshipType.$fhirCode';
+  String toString() => 'ActionRelationshipType.$value';
 }

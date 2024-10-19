@@ -5,91 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// Supplemental data in a population for measuring purposes.
 @Entity()
-class MeasureSupplementalDataExample {
-  // Private constructor for internal use (like enum)
-  MeasureSupplementalDataExample._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasureSupplementalDataExample values
-  /// age
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureSupplementalDataExample age =
-      MeasureSupplementalDataExample._(
-    'age',
-  );
-
-  /// gender
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureSupplementalDataExample gender =
-      MeasureSupplementalDataExample._(
-    'gender',
-  );
-
-  /// ethnicity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureSupplementalDataExample ethnicity =
-      MeasureSupplementalDataExample._(
-    'ethnicity',
-  );
-
-  /// payer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureSupplementalDataExample payer =
-      MeasureSupplementalDataExample._(
-    'payer',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MeasureSupplementalDataExample elementOnly =
-      MeasureSupplementalDataExample._('');
-
-  /// List of all enum-like values
-  static final List<MeasureSupplementalDataExample> values = [
-    age,
-    gender,
-    ethnicity,
-    payer,
-  ];
-
-  /// Returns the enum value with an element attached
-  MeasureSupplementalDataExample withElement(Element? newElement) {
-    return MeasureSupplementalDataExample._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MeasureSupplementalDataExample extends FhirCode {
   /// Factory constructor to create [MeasureSupplementalDataExample] from JSON.
-  static MeasureSupplementalDataExample fromJson(Map<String, dynamic> json) {
+  factory MeasureSupplementalDataExample.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureSupplementalDataExample.elementOnly.withElement(element);
+      return MeasureSupplementalDataExample.elementOnly(element);
     }
-    return MeasureSupplementalDataExample.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MeasureSupplementalDataExample._(value, element);
+    }
+    throw ArgumentError(
+      'MeasureSupplementalDataExample.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// age
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureSupplementalDataExample.age([this.element])
+      : dbValue = 'age',
+        super('age', element);
+
+  /// gender
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureSupplementalDataExample.gender([this.element])
+      : dbValue = 'gender',
+        super('gender', element);
+
+  /// ethnicity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureSupplementalDataExample.ethnicity([this.element])
+      : dbValue = 'ethnicity',
+        super('ethnicity', element);
+
+  /// payer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureSupplementalDataExample.payer([this.element])
+      : dbValue = 'payer',
+        super('payer', element);
+
+  /// For instances where an Element is present but not value
+
+  MeasureSupplementalDataExample.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MeasureSupplementalDataExample._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'age',
+    'gender',
+    'ethnicity',
+    'payer',
+  ];
+
+  /// Returns the enum value with an element attached
+  MeasureSupplementalDataExample withElement(Element? newElement) {
+    return MeasureSupplementalDataExample._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MeasureSupplementalDataExample.$fhirCode';
+  String toString() => 'MeasureSupplementalDataExample.$value';
 }

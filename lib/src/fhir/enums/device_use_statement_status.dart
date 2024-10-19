@@ -5,104 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// A coded concept indicating the current status of the Device Usage.
 @Entity()
-class DeviceUseStatementStatus {
-  // Private constructor for internal use (like enum)
-  DeviceUseStatementStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DeviceUseStatementStatus values
-  /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceUseStatementStatus active = DeviceUseStatementStatus._(
-    'active',
-  );
-
-  /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceUseStatementStatus completed = DeviceUseStatementStatus._(
-    'completed',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceUseStatementStatus entered_in_error =
-      DeviceUseStatementStatus._(
-    'entered-in-error',
-  );
-
-  /// intended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceUseStatementStatus intended = DeviceUseStatementStatus._(
-    'intended',
-  );
-
-  /// stopped
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceUseStatementStatus stopped = DeviceUseStatementStatus._(
-    'stopped',
-  );
-
-  /// on_hold
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DeviceUseStatementStatus on_hold = DeviceUseStatementStatus._(
-    'on-hold',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final DeviceUseStatementStatus elementOnly =
-      DeviceUseStatementStatus._('');
-
-  /// List of all enum-like values
-  static final List<DeviceUseStatementStatus> values = [
-    active,
-    completed,
-    entered_in_error,
-    intended,
-    stopped,
-    on_hold,
-  ];
-
-  /// Returns the enum value with an element attached
-  DeviceUseStatementStatus withElement(Element? newElement) {
-    return DeviceUseStatementStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class DeviceUseStatementStatus extends FhirCode {
   /// Factory constructor to create [DeviceUseStatementStatus] from JSON.
-  static DeviceUseStatementStatus fromJson(Map<String, dynamic> json) {
+  factory DeviceUseStatementStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceUseStatementStatus.elementOnly.withElement(element);
+      return DeviceUseStatementStatus.elementOnly(element);
     }
-    return DeviceUseStatementStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return DeviceUseStatementStatus._(value, element);
+    }
+    throw ArgumentError(
+      'DeviceUseStatementStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceUseStatementStatus.active([this.element])
+      : dbValue = 'active',
+        super('active', element);
+
+  /// completed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceUseStatementStatus.completed([this.element])
+      : dbValue = 'completed',
+        super('completed', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceUseStatementStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// intended
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceUseStatementStatus.intended([this.element])
+      : dbValue = 'intended',
+        super('intended', element);
+
+  /// stopped
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceUseStatementStatus.stopped([this.element])
+      : dbValue = 'stopped',
+        super('stopped', element);
+
+  /// on_hold
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DeviceUseStatementStatus.on_hold([this.element])
+      : dbValue = 'on-hold',
+        super('on-hold', element);
+
+  /// For instances where an Element is present but not value
+
+  DeviceUseStatementStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  DeviceUseStatementStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'active',
+    'completed',
+    'entered-in-error',
+    'intended',
+    'stopped',
+    'on-hold',
+  ];
+
+  /// Returns the enum value with an element attached
+  DeviceUseStatementStatus withElement(Element? newElement) {
+    return DeviceUseStatementStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'DeviceUseStatementStatus.$fhirCode';
+  String toString() => 'DeviceUseStatementStatus.$value';
 }

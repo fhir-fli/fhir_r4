@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// The processing mode that applies to this list.
 @Entity()
-class ListMode {
-  // Private constructor for internal use (like enum)
-  ListMode._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ListMode values
-  /// working
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ListMode working = ListMode._(
-    'working',
-  );
-
-  /// snapshot
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ListMode snapshot = ListMode._(
-    'snapshot',
-  );
-
-  /// changes
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ListMode changes = ListMode._(
-    'changes',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ListMode elementOnly = ListMode._('');
-
-  /// List of all enum-like values
-  static final List<ListMode> values = [
-    working,
-    snapshot,
-    changes,
-  ];
-
-  /// Returns the enum value with an element attached
-  ListMode withElement(Element? newElement) {
-    return ListMode._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ListMode extends FhirCode {
   /// Factory constructor to create [ListMode] from JSON.
-  static ListMode fromJson(Map<String, dynamic> json) {
+  factory ListMode.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ListMode.elementOnly.withElement(element);
+      return ListMode.elementOnly(element);
     }
-    return ListMode.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ListMode._(value, element);
+    }
+    throw ArgumentError(
+      'ListMode.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// working
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ListMode.working([this.element])
+      : dbValue = 'working',
+        super('working', element);
+
+  /// snapshot
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ListMode.snapshot([this.element])
+      : dbValue = 'snapshot',
+        super('snapshot', element);
+
+  /// changes
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ListMode.changes([this.element])
+      : dbValue = 'changes',
+        super('changes', element);
+
+  /// For instances where an Element is present but not value
+
+  ListMode.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ListMode._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'working',
+    'snapshot',
+    'changes',
+  ];
+
+  /// Returns the enum value with an element attached
+  ListMode withElement(Element? newElement) {
+    return ListMode._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ListMode.$fhirCode';
+  String toString() => 'ListMode.$value';
 }

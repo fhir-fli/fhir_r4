@@ -5,91 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set defines a set of codes that are used to indicate the profile type of a test system when acting as the destination within a TestScript.
 @Entity()
-class TestScriptProfileDestinationType {
-  // Private constructor for internal use (like enum)
-  TestScriptProfileDestinationType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// TestScriptProfileDestinationType values
-  /// FHIR_Server
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestScriptProfileDestinationType FHIR_Server =
-      TestScriptProfileDestinationType._(
-    'FHIR-Server',
-  );
-
-  /// FHIR_SDC_FormManager
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestScriptProfileDestinationType FHIR_SDC_FormManager =
-      TestScriptProfileDestinationType._(
-    'FHIR-SDC-FormManager',
-  );
-
-  /// FHIR_SDC_FormProcessor
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestScriptProfileDestinationType FHIR_SDC_FormProcessor =
-      TestScriptProfileDestinationType._(
-    'FHIR-SDC-FormProcessor',
-  );
-
-  /// FHIR_SDC_FormReceiver
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestScriptProfileDestinationType FHIR_SDC_FormReceiver =
-      TestScriptProfileDestinationType._(
-    'FHIR-SDC-FormReceiver',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final TestScriptProfileDestinationType elementOnly =
-      TestScriptProfileDestinationType._('');
-
-  /// List of all enum-like values
-  static final List<TestScriptProfileDestinationType> values = [
-    FHIR_Server,
-    FHIR_SDC_FormManager,
-    FHIR_SDC_FormProcessor,
-    FHIR_SDC_FormReceiver,
-  ];
-
-  /// Returns the enum value with an element attached
-  TestScriptProfileDestinationType withElement(Element? newElement) {
-    return TestScriptProfileDestinationType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class TestScriptProfileDestinationType extends FhirCode {
   /// Factory constructor to create [TestScriptProfileDestinationType] from JSON.
-  static TestScriptProfileDestinationType fromJson(Map<String, dynamic> json) {
+  factory TestScriptProfileDestinationType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestScriptProfileDestinationType.elementOnly.withElement(element);
+      return TestScriptProfileDestinationType.elementOnly(element);
     }
-    return TestScriptProfileDestinationType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return TestScriptProfileDestinationType._(value, element);
+    }
+    throw ArgumentError(
+      'TestScriptProfileDestinationType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// FHIR_Server
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestScriptProfileDestinationType.FHIR_Server([this.element])
+      : dbValue = 'FHIR-Server',
+        super('FHIR-Server', element);
+
+  /// FHIR_SDC_FormManager
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestScriptProfileDestinationType.FHIR_SDC_FormManager([this.element])
+      : dbValue = 'FHIR-SDC-FormManager',
+        super('FHIR-SDC-FormManager', element);
+
+  /// FHIR_SDC_FormProcessor
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestScriptProfileDestinationType.FHIR_SDC_FormProcessor([this.element])
+      : dbValue = 'FHIR-SDC-FormProcessor',
+        super('FHIR-SDC-FormProcessor', element);
+
+  /// FHIR_SDC_FormReceiver
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestScriptProfileDestinationType.FHIR_SDC_FormReceiver([this.element])
+      : dbValue = 'FHIR-SDC-FormReceiver',
+        super('FHIR-SDC-FormReceiver', element);
+
+  /// For instances where an Element is present but not value
+
+  TestScriptProfileDestinationType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  TestScriptProfileDestinationType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'FHIR-Server',
+    'FHIR-SDC-FormManager',
+    'FHIR-SDC-FormProcessor',
+    'FHIR-SDC-FormReceiver',
+  ];
+
+  /// Returns the enum value with an element attached
+  TestScriptProfileDestinationType withElement(Element? newElement) {
+    return TestScriptProfileDestinationType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'TestScriptProfileDestinationType.$fhirCode';
+  String toString() => 'TestScriptProfileDestinationType.$value';
 }

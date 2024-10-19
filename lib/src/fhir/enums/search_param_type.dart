@@ -5,126 +5,139 @@ import 'package:objectbox/objectbox.dart';
 
 /// Data types allowed to be used for search parameters.
 @Entity()
-class SearchParamType {
-  // Private constructor for internal use (like enum)
-  SearchParamType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SearchParamType values
-  /// number
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchParamType number = SearchParamType._(
-    'number',
-  );
-
-  /// date
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchParamType date = SearchParamType._(
-    'date',
-  );
-
-  /// string
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchParamType string = SearchParamType._(
-    'string',
-  );
-
-  /// token
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchParamType token = SearchParamType._(
-    'token',
-  );
-
-  /// reference
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchParamType reference = SearchParamType._(
-    'reference',
-  );
-
-  /// composite
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchParamType composite = SearchParamType._(
-    'composite',
-  );
-
-  /// quantity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchParamType quantity = SearchParamType._(
-    'quantity',
-  );
-
-  /// uri
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchParamType uri = SearchParamType._(
-    'uri',
-  );
-
-  /// special
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SearchParamType special = SearchParamType._(
-    'special',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SearchParamType elementOnly = SearchParamType._('');
-
-  /// List of all enum-like values
-  static final List<SearchParamType> values = [
-    number,
-    date,
-    string,
-    token,
-    reference,
-    composite,
-    quantity,
-    uri,
-    special,
-  ];
-
-  /// Returns the enum value with an element attached
-  SearchParamType withElement(Element? newElement) {
-    return SearchParamType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SearchParamType extends FhirCode {
   /// Factory constructor to create [SearchParamType] from JSON.
-  static SearchParamType fromJson(Map<String, dynamic> json) {
+  factory SearchParamType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SearchParamType.elementOnly.withElement(element);
+      return SearchParamType.elementOnly(element);
     }
-    return SearchParamType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SearchParamType._(value, element);
+    }
+    throw ArgumentError(
+      'SearchParamType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// number
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchParamType.number([this.element])
+      : dbValue = 'number',
+        super('number', element);
+
+  /// date
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchParamType.date([this.element])
+      : dbValue = 'date',
+        super('date', element);
+
+  /// string
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchParamType.string([this.element])
+      : dbValue = 'string',
+        super('string', element);
+
+  /// token
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchParamType.token([this.element])
+      : dbValue = 'token',
+        super('token', element);
+
+  /// reference
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchParamType.reference([this.element])
+      : dbValue = 'reference',
+        super('reference', element);
+
+  /// composite
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchParamType.composite([this.element])
+      : dbValue = 'composite',
+        super('composite', element);
+
+  /// quantity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchParamType.quantity([this.element])
+      : dbValue = 'quantity',
+        super('quantity', element);
+
+  /// uri
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchParamType.uri([this.element])
+      : dbValue = 'uri',
+        super('uri', element);
+
+  /// special
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SearchParamType.special([this.element])
+      : dbValue = 'special',
+        super('special', element);
+
+  /// For instances where an Element is present but not value
+
+  SearchParamType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SearchParamType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'number',
+    'date',
+    'string',
+    'token',
+    'reference',
+    'composite',
+    'quantity',
+    'uri',
+    'special',
+  ];
+
+  /// Returns the enum value with an element attached
+  SearchParamType withElement(Element? newElement) {
+    return SearchParamType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SearchParamType.$fhirCode';
+  String toString() => 'SearchParamType.$value';
 }

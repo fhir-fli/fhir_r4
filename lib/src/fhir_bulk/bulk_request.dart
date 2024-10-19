@@ -191,8 +191,8 @@ abstract class BulkRequest {
       OperationOutcome(
         issue: <OperationOutcomeIssue>[
           OperationOutcomeIssue(
-            severity: IssueSeverity.error,
-            code: IssueType.invalid,
+            severity: IssueSeverity.error(),
+            code: IssueType.invalid(),
             details: CodeableConcept(
               text: FhirString('Failed to make restful request'),
             ),
@@ -215,8 +215,8 @@ abstract class BulkRequest {
         OperationOutcome(
           issue: <OperationOutcomeIssue>[
             OperationOutcomeIssue(
-              severity: IssueSeverity.error,
-              code: IssueType.invalid,
+              severity: IssueSeverity.error(),
+              code: IssueType.invalid(),
               details: CodeableConcept(text: issue.toFhirString),
               diagnostics: diagnostics?.toFhirString,
             ),

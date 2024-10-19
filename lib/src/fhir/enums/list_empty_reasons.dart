@@ -5,102 +5,115 @@ import 'package:objectbox/objectbox.dart';
 
 /// General reasons for a list to be empty. Reasons are either related to a summary list (i.e. problem or medication list) or to a workflow related list (i.e. consultation list).
 @Entity()
-class ListEmptyReasons {
-  // Private constructor for internal use (like enum)
-  ListEmptyReasons._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ListEmptyReasons values
-  /// nilknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ListEmptyReasons nilknown = ListEmptyReasons._(
-    'nilknown',
-  );
-
-  /// notasked
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ListEmptyReasons notasked = ListEmptyReasons._(
-    'notasked',
-  );
-
-  /// withheld
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ListEmptyReasons withheld = ListEmptyReasons._(
-    'withheld',
-  );
-
-  /// unavailable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ListEmptyReasons unavailable = ListEmptyReasons._(
-    'unavailable',
-  );
-
-  /// notstarted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ListEmptyReasons notstarted = ListEmptyReasons._(
-    'notstarted',
-  );
-
-  /// closed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ListEmptyReasons closed = ListEmptyReasons._(
-    'closed',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ListEmptyReasons elementOnly = ListEmptyReasons._('');
-
-  /// List of all enum-like values
-  static final List<ListEmptyReasons> values = [
-    nilknown,
-    notasked,
-    withheld,
-    unavailable,
-    notstarted,
-    closed,
-  ];
-
-  /// Returns the enum value with an element attached
-  ListEmptyReasons withElement(Element? newElement) {
-    return ListEmptyReasons._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ListEmptyReasons extends FhirCode {
   /// Factory constructor to create [ListEmptyReasons] from JSON.
-  static ListEmptyReasons fromJson(Map<String, dynamic> json) {
+  factory ListEmptyReasons.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ListEmptyReasons.elementOnly.withElement(element);
+      return ListEmptyReasons.elementOnly(element);
     }
-    return ListEmptyReasons.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ListEmptyReasons._(value, element);
+    }
+    throw ArgumentError(
+      'ListEmptyReasons.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// nilknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ListEmptyReasons.nilknown([this.element])
+      : dbValue = 'nilknown',
+        super('nilknown', element);
+
+  /// notasked
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ListEmptyReasons.notasked([this.element])
+      : dbValue = 'notasked',
+        super('notasked', element);
+
+  /// withheld
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ListEmptyReasons.withheld([this.element])
+      : dbValue = 'withheld',
+        super('withheld', element);
+
+  /// unavailable
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ListEmptyReasons.unavailable([this.element])
+      : dbValue = 'unavailable',
+        super('unavailable', element);
+
+  /// notstarted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ListEmptyReasons.notstarted([this.element])
+      : dbValue = 'notstarted',
+        super('notstarted', element);
+
+  /// closed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ListEmptyReasons.closed([this.element])
+      : dbValue = 'closed',
+        super('closed', element);
+
+  /// For instances where an Element is present but not value
+
+  ListEmptyReasons.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ListEmptyReasons._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'nilknown',
+    'notasked',
+    'withheld',
+    'unavailable',
+    'notstarted',
+    'closed',
+  ];
+
+  /// Returns the enum value with an element attached
+  ListEmptyReasons withElement(Element? newElement) {
+    return ListEmptyReasons._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ListEmptyReasons.$fhirCode';
+  String toString() => 'ListEmptyReasons.$value';
 }

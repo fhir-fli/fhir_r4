@@ -5,80 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of participant.
 @Entity()
-class TestReportParticipantType {
-  // Private constructor for internal use (like enum)
-  TestReportParticipantType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// TestReportParticipantType values
-  /// test_engine
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestReportParticipantType test_engine =
-      TestReportParticipantType._(
-    'test-engine',
-  );
-
-  /// client
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestReportParticipantType client = TestReportParticipantType._(
-    'client',
-  );
-
-  /// server
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final TestReportParticipantType server = TestReportParticipantType._(
-    'server',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final TestReportParticipantType elementOnly =
-      TestReportParticipantType._('');
-
-  /// List of all enum-like values
-  static final List<TestReportParticipantType> values = [
-    test_engine,
-    client,
-    server,
-  ];
-
-  /// Returns the enum value with an element attached
-  TestReportParticipantType withElement(Element? newElement) {
-    return TestReportParticipantType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class TestReportParticipantType extends FhirCode {
   /// Factory constructor to create [TestReportParticipantType] from JSON.
-  static TestReportParticipantType fromJson(Map<String, dynamic> json) {
+  factory TestReportParticipantType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestReportParticipantType.elementOnly.withElement(element);
+      return TestReportParticipantType.elementOnly(element);
     }
-    return TestReportParticipantType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return TestReportParticipantType._(value, element);
+    }
+    throw ArgumentError(
+      'TestReportParticipantType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// test_engine
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestReportParticipantType.test_engine([this.element])
+      : dbValue = 'test-engine',
+        super('test-engine', element);
+
+  /// client
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestReportParticipantType.client([this.element])
+      : dbValue = 'client',
+        super('client', element);
+
+  /// server
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  TestReportParticipantType.server([this.element])
+      : dbValue = 'server',
+        super('server', element);
+
+  /// For instances where an Element is present but not value
+
+  TestReportParticipantType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  TestReportParticipantType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'test-engine',
+    'client',
+    'server',
+  ];
+
+  /// Returns the enum value with an element attached
+  TestReportParticipantType withElement(Element? newElement) {
+    return TestReportParticipantType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'TestReportParticipantType.$fhirCode';
+  String toString() => 'TestReportParticipantType.$value';
 }

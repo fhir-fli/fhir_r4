@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// How a search parameter relates to the set of elements returned by evaluating its xpath query.
 @Entity()
-class XPathUsageType {
-  // Private constructor for internal use (like enum)
-  XPathUsageType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// XPathUsageType values
-  /// normal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final XPathUsageType normal = XPathUsageType._(
-    'normal',
-  );
-
-  /// phonetic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final XPathUsageType phonetic = XPathUsageType._(
-    'phonetic',
-  );
-
-  /// nearby
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final XPathUsageType nearby = XPathUsageType._(
-    'nearby',
-  );
-
-  /// distance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final XPathUsageType distance = XPathUsageType._(
-    'distance',
-  );
-
-  /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final XPathUsageType other = XPathUsageType._(
-    'other',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final XPathUsageType elementOnly = XPathUsageType._('');
-
-  /// List of all enum-like values
-  static final List<XPathUsageType> values = [
-    normal,
-    phonetic,
-    nearby,
-    distance,
-    other,
-  ];
-
-  /// Returns the enum value with an element attached
-  XPathUsageType withElement(Element? newElement) {
-    return XPathUsageType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class XPathUsageType extends FhirCode {
   /// Factory constructor to create [XPathUsageType] from JSON.
-  static XPathUsageType fromJson(Map<String, dynamic> json) {
+  factory XPathUsageType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return XPathUsageType.elementOnly.withElement(element);
+      return XPathUsageType.elementOnly(element);
     }
-    return XPathUsageType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return XPathUsageType._(value, element);
+    }
+    throw ArgumentError(
+      'XPathUsageType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// normal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  XPathUsageType.normal([this.element])
+      : dbValue = 'normal',
+        super('normal', element);
+
+  /// phonetic
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  XPathUsageType.phonetic([this.element])
+      : dbValue = 'phonetic',
+        super('phonetic', element);
+
+  /// nearby
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  XPathUsageType.nearby([this.element])
+      : dbValue = 'nearby',
+        super('nearby', element);
+
+  /// distance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  XPathUsageType.distance([this.element])
+      : dbValue = 'distance',
+        super('distance', element);
+
+  /// other
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  XPathUsageType.other([this.element])
+      : dbValue = 'other',
+        super('other', element);
+
+  /// For instances where an Element is present but not value
+
+  XPathUsageType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  XPathUsageType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'normal',
+    'phonetic',
+    'nearby',
+    'distance',
+    'other',
+  ];
+
+  /// Returns the enum value with an element attached
+  XPathUsageType withElement(Element? newElement) {
+    return XPathUsageType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'XPathUsageType.$fhirCode';
+  String toString() => 'XPathUsageType.$value';
 }

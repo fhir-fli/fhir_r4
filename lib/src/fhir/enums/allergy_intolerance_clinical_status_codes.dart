@@ -5,85 +5,92 @@ import 'package:objectbox/objectbox.dart';
 
 /// Preferred value set for AllergyIntolerance Clinical Status.
 @Entity()
-class AllergyIntoleranceClinicalStatusCodes {
-  // Private constructor for internal use (like enum)
-  AllergyIntoleranceClinicalStatusCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AllergyIntoleranceClinicalStatusCodes values
-  /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AllergyIntoleranceClinicalStatusCodes active =
-      AllergyIntoleranceClinicalStatusCodes._(
-    'active',
-  );
-
-  /// inactive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AllergyIntoleranceClinicalStatusCodes inactive =
-      AllergyIntoleranceClinicalStatusCodes._(
-    'inactive',
-  );
-
-  /// resolved
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final AllergyIntoleranceClinicalStatusCodes resolved =
-      AllergyIntoleranceClinicalStatusCodes._(
-    'resolved',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final AllergyIntoleranceClinicalStatusCodes elementOnly =
-      AllergyIntoleranceClinicalStatusCodes._('');
-
-  /// List of all enum-like values
-  static final List<AllergyIntoleranceClinicalStatusCodes> values = [
-    active,
-    inactive,
-    resolved,
-  ];
-
-  /// Returns the enum value with an element attached
-  AllergyIntoleranceClinicalStatusCodes withElement(Element? newElement) {
-    return AllergyIntoleranceClinicalStatusCodes._(fhirCode,
-        element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class AllergyIntoleranceClinicalStatusCodes extends FhirCode {
   /// Factory constructor to create [AllergyIntoleranceClinicalStatusCodes] from JSON.
-  static AllergyIntoleranceClinicalStatusCodes fromJson(
+  factory AllergyIntoleranceClinicalStatusCodes.fromJson(
       Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AllergyIntoleranceClinicalStatusCodes.elementOnly
-          .withElement(element);
+      return AllergyIntoleranceClinicalStatusCodes.elementOnly(element);
     }
-    return AllergyIntoleranceClinicalStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return AllergyIntoleranceClinicalStatusCodes._(value, element);
+    }
+    throw ArgumentError(
+      'AllergyIntoleranceClinicalStatusCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AllergyIntoleranceClinicalStatusCodes.active([this.element])
+      : dbValue = 'active',
+        super('active', element);
+
+  /// inactive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AllergyIntoleranceClinicalStatusCodes.inactive([this.element])
+      : dbValue = 'inactive',
+        super('inactive', element);
+
+  /// resolved
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  AllergyIntoleranceClinicalStatusCodes.resolved([this.element])
+      : dbValue = 'resolved',
+        super('resolved', element);
+
+  /// For instances where an Element is present but not value
+
+  AllergyIntoleranceClinicalStatusCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  AllergyIntoleranceClinicalStatusCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'active',
+    'inactive',
+    'resolved',
+  ];
+
+  /// Returns the enum value with an element attached
+  AllergyIntoleranceClinicalStatusCodes withElement(Element? newElement) {
+    return AllergyIntoleranceClinicalStatusCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'AllergyIntoleranceClinicalStatusCodes.$fhirCode';
+  String toString() => 'AllergyIntoleranceClinicalStatusCodes.$value';
 }

@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// The status of the measure report.
 @Entity()
-class MeasureReportStatus {
-  // Private constructor for internal use (like enum)
-  MeasureReportStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasureReportStatus values
-  /// complete
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureReportStatus complete = MeasureReportStatus._(
-    'complete',
-  );
-
-  /// pending
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureReportStatus pending = MeasureReportStatus._(
-    'pending',
-  );
-
-  /// error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureReportStatus error = MeasureReportStatus._(
-    'error',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MeasureReportStatus elementOnly = MeasureReportStatus._('');
-
-  /// List of all enum-like values
-  static final List<MeasureReportStatus> values = [
-    complete,
-    pending,
-    error,
-  ];
-
-  /// Returns the enum value with an element attached
-  MeasureReportStatus withElement(Element? newElement) {
-    return MeasureReportStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MeasureReportStatus extends FhirCode {
   /// Factory constructor to create [MeasureReportStatus] from JSON.
-  static MeasureReportStatus fromJson(Map<String, dynamic> json) {
+  factory MeasureReportStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureReportStatus.elementOnly.withElement(element);
+      return MeasureReportStatus.elementOnly(element);
     }
-    return MeasureReportStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MeasureReportStatus._(value, element);
+    }
+    throw ArgumentError(
+      'MeasureReportStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// complete
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureReportStatus.complete([this.element])
+      : dbValue = 'complete',
+        super('complete', element);
+
+  /// pending
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureReportStatus.pending([this.element])
+      : dbValue = 'pending',
+        super('pending', element);
+
+  /// error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureReportStatus.error([this.element])
+      : dbValue = 'error',
+        super('error', element);
+
+  /// For instances where an Element is present but not value
+
+  MeasureReportStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MeasureReportStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'complete',
+    'pending',
+    'error',
+  ];
+
+  /// Returns the enum value with an element attached
+  MeasureReportStatus withElement(Element? newElement) {
+    return MeasureReportStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MeasureReportStatus.$fhirCode';
+  String toString() => 'MeasureReportStatus.$value';
 }

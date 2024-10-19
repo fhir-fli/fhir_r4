@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// The presentation types of notes.
 @Entity()
-class NoteType {
-  // Private constructor for internal use (like enum)
-  NoteType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// NoteType values
-  /// display
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NoteType display = NoteType._(
-    'display',
-  );
-
-  /// print
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NoteType print = NoteType._(
-    'print',
-  );
-
-  /// printoper
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final NoteType printoper = NoteType._(
-    'printoper',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final NoteType elementOnly = NoteType._('');
-
-  /// List of all enum-like values
-  static final List<NoteType> values = [
-    display,
-    print,
-    printoper,
-  ];
-
-  /// Returns the enum value with an element attached
-  NoteType withElement(Element? newElement) {
-    return NoteType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class NoteType extends FhirCode {
   /// Factory constructor to create [NoteType] from JSON.
-  static NoteType fromJson(Map<String, dynamic> json) {
+  factory NoteType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NoteType.elementOnly.withElement(element);
+      return NoteType.elementOnly(element);
     }
-    return NoteType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return NoteType._(value, element);
+    }
+    throw ArgumentError(
+      'NoteType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// display
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NoteType.display([this.element])
+      : dbValue = 'display',
+        super('display', element);
+
+  /// print
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NoteType.print([this.element])
+      : dbValue = 'print',
+        super('print', element);
+
+  /// printoper
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  NoteType.printoper([this.element])
+      : dbValue = 'printoper',
+        super('printoper', element);
+
+  /// For instances where an Element is present but not value
+
+  NoteType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  NoteType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'display',
+    'print',
+    'printoper',
+  ];
+
+  /// Returns the enum value with an element attached
+  NoteType withElement(Element? newElement) {
+    return NoteType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'NoteType.$fhirCode';
+  String toString() => 'NoteType.$value';
 }

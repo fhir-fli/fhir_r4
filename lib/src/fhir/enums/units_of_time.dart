@@ -5,110 +5,123 @@ import 'package:objectbox/objectbox.dart';
 
 /// A unit of time (units from UCUM).
 @Entity()
-class UnitsOfTime {
-  // Private constructor for internal use (like enum)
-  UnitsOfTime._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// UnitsOfTime values
-  /// s
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UnitsOfTime s = UnitsOfTime._(
-    's',
-  );
-
-  /// min
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UnitsOfTime min = UnitsOfTime._(
-    'min',
-  );
-
-  /// h
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UnitsOfTime h = UnitsOfTime._(
-    'h',
-  );
-
-  /// d
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UnitsOfTime d = UnitsOfTime._(
-    'd',
-  );
-
-  /// wk
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UnitsOfTime wk = UnitsOfTime._(
-    'wk',
-  );
-
-  /// mo
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UnitsOfTime mo = UnitsOfTime._(
-    'mo',
-  );
-
-  /// a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final UnitsOfTime a = UnitsOfTime._(
-    'a',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final UnitsOfTime elementOnly = UnitsOfTime._('');
-
-  /// List of all enum-like values
-  static final List<UnitsOfTime> values = [
-    s,
-    min,
-    h,
-    d,
-    wk,
-    mo,
-    a,
-  ];
-
-  /// Returns the enum value with an element attached
-  UnitsOfTime withElement(Element? newElement) {
-    return UnitsOfTime._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class UnitsOfTime extends FhirCode {
   /// Factory constructor to create [UnitsOfTime] from JSON.
-  static UnitsOfTime fromJson(Map<String, dynamic> json) {
+  factory UnitsOfTime.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return UnitsOfTime.elementOnly.withElement(element);
+      return UnitsOfTime.elementOnly(element);
     }
-    return UnitsOfTime.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return UnitsOfTime._(value, element);
+    }
+    throw ArgumentError(
+      'UnitsOfTime.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// s
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UnitsOfTime.s([this.element])
+      : dbValue = 's',
+        super('s', element);
+
+  /// min
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UnitsOfTime.min([this.element])
+      : dbValue = 'min',
+        super('min', element);
+
+  /// h
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UnitsOfTime.h([this.element])
+      : dbValue = 'h',
+        super('h', element);
+
+  /// d
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UnitsOfTime.d([this.element])
+      : dbValue = 'd',
+        super('d', element);
+
+  /// wk
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UnitsOfTime.wk([this.element])
+      : dbValue = 'wk',
+        super('wk', element);
+
+  /// mo
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UnitsOfTime.mo([this.element])
+      : dbValue = 'mo',
+        super('mo', element);
+
+  /// a
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  UnitsOfTime.a([this.element])
+      : dbValue = 'a',
+        super('a', element);
+
+  /// For instances where an Element is present but not value
+
+  UnitsOfTime.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  UnitsOfTime._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    's',
+    'min',
+    'h',
+    'd',
+    'wk',
+    'mo',
+    'a',
+  ];
+
+  /// Returns the enum value with an element attached
+  UnitsOfTime withElement(Element? newElement) {
+    return UnitsOfTime._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'UnitsOfTime.$fhirCode';
+  String toString() => 'UnitsOfTime.$value';
 }

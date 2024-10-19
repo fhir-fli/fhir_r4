@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// Provides examples of reasons for actions to be performed.
 @Entity()
-class ActionReasonCode {
-  // Private constructor for internal use (like enum)
-  ActionReasonCode._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ActionReasonCode values
-  /// off_pathway
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionReasonCode off_pathway = ActionReasonCode._(
-    'off-pathway',
-  );
-
-  /// risk_assessment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionReasonCode risk_assessment = ActionReasonCode._(
-    'risk-assessment',
-  );
-
-  /// care_gap
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionReasonCode care_gap = ActionReasonCode._(
-    'care-gap',
-  );
-
-  /// drug_drug_interaction
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionReasonCode drug_drug_interaction = ActionReasonCode._(
-    'drug-drug-interaction',
-  );
-
-  /// quality_measure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionReasonCode quality_measure = ActionReasonCode._(
-    'quality-measure',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ActionReasonCode elementOnly = ActionReasonCode._('');
-
-  /// List of all enum-like values
-  static final List<ActionReasonCode> values = [
-    off_pathway,
-    risk_assessment,
-    care_gap,
-    drug_drug_interaction,
-    quality_measure,
-  ];
-
-  /// Returns the enum value with an element attached
-  ActionReasonCode withElement(Element? newElement) {
-    return ActionReasonCode._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ActionReasonCode extends FhirCode {
   /// Factory constructor to create [ActionReasonCode] from JSON.
-  static ActionReasonCode fromJson(Map<String, dynamic> json) {
+  factory ActionReasonCode.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionReasonCode.elementOnly.withElement(element);
+      return ActionReasonCode.elementOnly(element);
     }
-    return ActionReasonCode.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ActionReasonCode._(value, element);
+    }
+    throw ArgumentError(
+      'ActionReasonCode.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// off_pathway
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionReasonCode.off_pathway([this.element])
+      : dbValue = 'off-pathway',
+        super('off-pathway', element);
+
+  /// risk_assessment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionReasonCode.risk_assessment([this.element])
+      : dbValue = 'risk-assessment',
+        super('risk-assessment', element);
+
+  /// care_gap
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionReasonCode.care_gap([this.element])
+      : dbValue = 'care-gap',
+        super('care-gap', element);
+
+  /// drug_drug_interaction
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionReasonCode.drug_drug_interaction([this.element])
+      : dbValue = 'drug-drug-interaction',
+        super('drug-drug-interaction', element);
+
+  /// quality_measure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionReasonCode.quality_measure([this.element])
+      : dbValue = 'quality-measure',
+        super('quality-measure', element);
+
+  /// For instances where an Element is present but not value
+
+  ActionReasonCode.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ActionReasonCode._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'off-pathway',
+    'risk-assessment',
+    'care-gap',
+    'drug-drug-interaction',
+    'quality-measure',
+  ];
+
+  /// Returns the enum value with an element attached
+  ActionReasonCode withElement(Element? newElement) {
+    return ActionReasonCode._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ActionReasonCode.$fhirCode';
+  String toString() => 'ActionReasonCode.$value';
 }

@@ -5,64 +5,75 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set contract specific codes for asset scope.
 @Entity()
-class ContractResourceAssetScopeCodes {
-  // Private constructor for internal use (like enum)
-  ContractResourceAssetScopeCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ContractResourceAssetScopeCodes values
-  /// thing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContractResourceAssetScopeCodes thing =
-      ContractResourceAssetScopeCodes._(
-    'thing',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ContractResourceAssetScopeCodes elementOnly =
-      ContractResourceAssetScopeCodes._('');
-
-  /// List of all enum-like values
-  static final List<ContractResourceAssetScopeCodes> values = [
-    thing,
-  ];
-
-  /// Returns the enum value with an element attached
-  ContractResourceAssetScopeCodes withElement(Element? newElement) {
-    return ContractResourceAssetScopeCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ContractResourceAssetScopeCodes extends FhirCode {
   /// Factory constructor to create [ContractResourceAssetScopeCodes] from JSON.
-  static ContractResourceAssetScopeCodes fromJson(Map<String, dynamic> json) {
+  factory ContractResourceAssetScopeCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContractResourceAssetScopeCodes.elementOnly.withElement(element);
+      return ContractResourceAssetScopeCodes.elementOnly(element);
     }
-    return ContractResourceAssetScopeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ContractResourceAssetScopeCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ContractResourceAssetScopeCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// thing
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContractResourceAssetScopeCodes.thing([this.element])
+      : dbValue = 'thing',
+        super('thing', element);
+
+  /// For instances where an Element is present but not value
+
+  ContractResourceAssetScopeCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ContractResourceAssetScopeCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'thing',
+  ];
+
+  /// Returns the enum value with an element attached
+  ContractResourceAssetScopeCodes withElement(Element? newElement) {
+    return ContractResourceAssetScopeCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ContractResourceAssetScopeCodes.$fhirCode';
+  String toString() => 'ContractResourceAssetScopeCodes.$value';
 }

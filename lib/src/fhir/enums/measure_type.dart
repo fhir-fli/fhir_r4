@@ -5,94 +5,107 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of measure (includes codes from 2.16.840.1.113883.1.11.20368).
 @Entity()
-class MeasureType {
-  // Private constructor for internal use (like enum)
-  MeasureType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasureType values
-  /// process
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureType process = MeasureType._(
-    'process',
-  );
-
-  /// outcome
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureType outcome = MeasureType._(
-    'outcome',
-  );
-
-  /// structure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureType structure = MeasureType._(
-    'structure',
-  );
-
-  /// patient_reported_outcome
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureType patient_reported_outcome = MeasureType._(
-    'patient-reported-outcome',
-  );
-
-  /// composite
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureType composite = MeasureType._(
-    'composite',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MeasureType elementOnly = MeasureType._('');
-
-  /// List of all enum-like values
-  static final List<MeasureType> values = [
-    process,
-    outcome,
-    structure,
-    patient_reported_outcome,
-    composite,
-  ];
-
-  /// Returns the enum value with an element attached
-  MeasureType withElement(Element? newElement) {
-    return MeasureType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MeasureType extends FhirCode {
   /// Factory constructor to create [MeasureType] from JSON.
-  static MeasureType fromJson(Map<String, dynamic> json) {
+  factory MeasureType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureType.elementOnly.withElement(element);
+      return MeasureType.elementOnly(element);
     }
-    return MeasureType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MeasureType._(value, element);
+    }
+    throw ArgumentError(
+      'MeasureType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// process
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureType.process([this.element])
+      : dbValue = 'process',
+        super('process', element);
+
+  /// outcome
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureType.outcome([this.element])
+      : dbValue = 'outcome',
+        super('outcome', element);
+
+  /// structure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureType.structure([this.element])
+      : dbValue = 'structure',
+        super('structure', element);
+
+  /// patient_reported_outcome
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureType.patient_reported_outcome([this.element])
+      : dbValue = 'patient-reported-outcome',
+        super('patient-reported-outcome', element);
+
+  /// composite
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureType.composite([this.element])
+      : dbValue = 'composite',
+        super('composite', element);
+
+  /// For instances where an Element is present but not value
+
+  MeasureType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MeasureType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'process',
+    'outcome',
+    'structure',
+    'patient-reported-outcome',
+    'composite',
+  ];
+
+  /// Returns the enum value with an element attached
+  MeasureType withElement(Element? newElement) {
+    return MeasureType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MeasureType.$fhirCode';
+  String toString() => 'MeasureType.$value';
 }

@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of action to be performed.
 @Entity()
-class ActionType {
-  // Private constructor for internal use (like enum)
-  ActionType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ActionType values
-  /// create
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionType create = ActionType._(
-    'create',
-  );
-
-  /// update
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionType update = ActionType._(
-    'update',
-  );
-
-  /// remove
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionType remove = ActionType._(
-    'remove',
-  );
-
-  /// fire_event
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ActionType fire_event = ActionType._(
-    'fire-event',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ActionType elementOnly = ActionType._('');
-
-  /// List of all enum-like values
-  static final List<ActionType> values = [
-    create,
-    update,
-    remove,
-    fire_event,
-  ];
-
-  /// Returns the enum value with an element attached
-  ActionType withElement(Element? newElement) {
-    return ActionType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ActionType extends FhirCode {
   /// Factory constructor to create [ActionType] from JSON.
-  static ActionType fromJson(Map<String, dynamic> json) {
+  factory ActionType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionType.elementOnly.withElement(element);
+      return ActionType.elementOnly(element);
     }
-    return ActionType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ActionType._(value, element);
+    }
+    throw ArgumentError(
+      'ActionType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// create
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionType.create([this.element])
+      : dbValue = 'create',
+        super('create', element);
+
+  /// update
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionType.update([this.element])
+      : dbValue = 'update',
+        super('update', element);
+
+  /// remove
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionType.remove([this.element])
+      : dbValue = 'remove',
+        super('remove', element);
+
+  /// fire_event
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ActionType.fire_event([this.element])
+      : dbValue = 'fire-event',
+        super('fire-event', element);
+
+  /// For instances where an Element is present but not value
+
+  ActionType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ActionType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'create',
+    'update',
+    'remove',
+    'fire-event',
+  ];
+
+  /// Returns the enum value with an element attached
+  ActionType withElement(Element? newElement) {
+    return ActionType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ActionType.$fhirCode';
+  String toString() => 'ActionType.$value';
 }

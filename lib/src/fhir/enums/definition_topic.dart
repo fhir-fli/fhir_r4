@@ -5,78 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// High-level categorization of the definition, used for searching, sorting, and filtering.
 @Entity()
-class DefinitionTopic {
-  // Private constructor for internal use (like enum)
-  DefinitionTopic._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DefinitionTopic values
-  /// treatment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DefinitionTopic treatment = DefinitionTopic._(
-    'treatment',
-  );
-
-  /// education
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DefinitionTopic education = DefinitionTopic._(
-    'education',
-  );
-
-  /// assessment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DefinitionTopic assessment = DefinitionTopic._(
-    'assessment',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final DefinitionTopic elementOnly = DefinitionTopic._('');
-
-  /// List of all enum-like values
-  static final List<DefinitionTopic> values = [
-    treatment,
-    education,
-    assessment,
-  ];
-
-  /// Returns the enum value with an element attached
-  DefinitionTopic withElement(Element? newElement) {
-    return DefinitionTopic._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class DefinitionTopic extends FhirCode {
   /// Factory constructor to create [DefinitionTopic] from JSON.
-  static DefinitionTopic fromJson(Map<String, dynamic> json) {
+  factory DefinitionTopic.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DefinitionTopic.elementOnly.withElement(element);
+      return DefinitionTopic.elementOnly(element);
     }
-    return DefinitionTopic.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return DefinitionTopic._(value, element);
+    }
+    throw ArgumentError(
+      'DefinitionTopic.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// treatment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DefinitionTopic.treatment([this.element])
+      : dbValue = 'treatment',
+        super('treatment', element);
+
+  /// education
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DefinitionTopic.education([this.element])
+      : dbValue = 'education',
+        super('education', element);
+
+  /// assessment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DefinitionTopic.assessment([this.element])
+      : dbValue = 'assessment',
+        super('assessment', element);
+
+  /// For instances where an Element is present but not value
+
+  DefinitionTopic.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  DefinitionTopic._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'treatment',
+    'education',
+    'assessment',
+  ];
+
+  /// Returns the enum value with an element attached
+  DefinitionTopic withElement(Element? newElement) {
+    return DefinitionTopic._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'DefinitionTopic.$fhirCode';
+  String toString() => 'DefinitionTopic.$value';
 }

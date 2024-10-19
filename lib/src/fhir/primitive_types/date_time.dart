@@ -137,6 +137,7 @@ class FhirDateTime extends FhirDateTimeBase {
 
   /// Returns the FHIR type as a [String], which is 'dateTime' in this case.
   @override
+  @Transient()
   String get fhirType => 'dateTime';
 
   /// Overrides the [hashCode] method to generate the hash code based on the

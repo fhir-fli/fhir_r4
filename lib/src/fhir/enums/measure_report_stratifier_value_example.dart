@@ -5,93 +5,100 @@ import 'package:objectbox/objectbox.dart';
 
 /// Example Measure Stratification Value for MeasureReports Resource.
 @Entity()
-class MeasureReportStratifierValueExample {
-  // Private constructor for internal use (like enum)
-  MeasureReportStratifierValueExample._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasureReportStratifierValueExample values
-  /// northwest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureReportStratifierValueExample northwest =
-      MeasureReportStratifierValueExample._(
-    'northwest',
-  );
-
-  /// northeast
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureReportStratifierValueExample northeast =
-      MeasureReportStratifierValueExample._(
-    'northeast',
-  );
-
-  /// southwest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureReportStratifierValueExample southwest =
-      MeasureReportStratifierValueExample._(
-    'southwest',
-  );
-
-  /// southeast
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureReportStratifierValueExample southeast =
-      MeasureReportStratifierValueExample._(
-    'southeast',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MeasureReportStratifierValueExample elementOnly =
-      MeasureReportStratifierValueExample._('');
-
-  /// List of all enum-like values
-  static final List<MeasureReportStratifierValueExample> values = [
-    northwest,
-    northeast,
-    southwest,
-    southeast,
-  ];
-
-  /// Returns the enum value with an element attached
-  MeasureReportStratifierValueExample withElement(Element? newElement) {
-    return MeasureReportStratifierValueExample._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MeasureReportStratifierValueExample extends FhirCode {
   /// Factory constructor to create [MeasureReportStratifierValueExample] from JSON.
-  static MeasureReportStratifierValueExample fromJson(
+  factory MeasureReportStratifierValueExample.fromJson(
       Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureReportStratifierValueExample.elementOnly
-          .withElement(element);
+      return MeasureReportStratifierValueExample.elementOnly(element);
     }
-    return MeasureReportStratifierValueExample.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MeasureReportStratifierValueExample._(value, element);
+    }
+    throw ArgumentError(
+      'MeasureReportStratifierValueExample.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// northwest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureReportStratifierValueExample.northwest([this.element])
+      : dbValue = 'northwest',
+        super('northwest', element);
+
+  /// northeast
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureReportStratifierValueExample.northeast([this.element])
+      : dbValue = 'northeast',
+        super('northeast', element);
+
+  /// southwest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureReportStratifierValueExample.southwest([this.element])
+      : dbValue = 'southwest',
+        super('southwest', element);
+
+  /// southeast
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureReportStratifierValueExample.southeast([this.element])
+      : dbValue = 'southeast',
+        super('southeast', element);
+
+  /// For instances where an Element is present but not value
+
+  MeasureReportStratifierValueExample.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MeasureReportStratifierValueExample._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'northwest',
+    'northeast',
+    'southwest',
+    'southeast',
+  ];
+
+  /// Returns the enum value with an element attached
+  MeasureReportStratifierValueExample withElement(Element? newElement) {
+    return MeasureReportStratifierValueExample._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MeasureReportStratifierValueExample.$fhirCode';
+  String toString() => 'MeasureReportStratifierValueExample.$value';
 }

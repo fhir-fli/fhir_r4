@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// A categorisation for an interaction between two substances.
 @Entity()
-class InteractionType {
-  // Private constructor for internal use (like enum)
-  InteractionType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// InteractionType values
-  /// drug_drug
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final InteractionType drug_drug = InteractionType._(
-    'drug-drug',
-  );
-
-  /// drug_food
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final InteractionType drug_food = InteractionType._(
-    'drug-food',
-  );
-
-  /// drug_test
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final InteractionType drug_test = InteractionType._(
-    'drug-test',
-  );
-
-  /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final InteractionType other = InteractionType._(
-    'other',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final InteractionType elementOnly = InteractionType._('');
-
-  /// List of all enum-like values
-  static final List<InteractionType> values = [
-    drug_drug,
-    drug_food,
-    drug_test,
-    other,
-  ];
-
-  /// Returns the enum value with an element attached
-  InteractionType withElement(Element? newElement) {
-    return InteractionType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class InteractionType extends FhirCode {
   /// Factory constructor to create [InteractionType] from JSON.
-  static InteractionType fromJson(Map<String, dynamic> json) {
+  factory InteractionType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return InteractionType.elementOnly.withElement(element);
+      return InteractionType.elementOnly(element);
     }
-    return InteractionType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return InteractionType._(value, element);
+    }
+    throw ArgumentError(
+      'InteractionType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// drug_drug
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  InteractionType.drug_drug([this.element])
+      : dbValue = 'drug-drug',
+        super('drug-drug', element);
+
+  /// drug_food
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  InteractionType.drug_food([this.element])
+      : dbValue = 'drug-food',
+        super('drug-food', element);
+
+  /// drug_test
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  InteractionType.drug_test([this.element])
+      : dbValue = 'drug-test',
+        super('drug-test', element);
+
+  /// other
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  InteractionType.other([this.element])
+      : dbValue = 'other',
+        super('other', element);
+
+  /// For instances where an Element is present but not value
+
+  InteractionType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  InteractionType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'drug-drug',
+    'drug-food',
+    'drug-test',
+    'other',
+  ];
+
+  /// Returns the enum value with an element attached
+  InteractionType withElement(Element? newElement) {
+    return InteractionType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'InteractionType.$fhirCode';
+  String toString() => 'InteractionType.$value';
 }

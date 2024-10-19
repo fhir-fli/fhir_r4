@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of the measure report.
 @Entity()
-class MeasureReportType {
-  // Private constructor for internal use (like enum)
-  MeasureReportType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasureReportType values
-  /// individual
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureReportType individual = MeasureReportType._(
-    'individual',
-  );
-
-  /// subject_list
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureReportType subject_list = MeasureReportType._(
-    'subject-list',
-  );
-
-  /// summary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureReportType summary = MeasureReportType._(
-    'summary',
-  );
-
-  /// data_collection
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasureReportType data_collection = MeasureReportType._(
-    'data-collection',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MeasureReportType elementOnly = MeasureReportType._('');
-
-  /// List of all enum-like values
-  static final List<MeasureReportType> values = [
-    individual,
-    subject_list,
-    summary,
-    data_collection,
-  ];
-
-  /// Returns the enum value with an element attached
-  MeasureReportType withElement(Element? newElement) {
-    return MeasureReportType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MeasureReportType extends FhirCode {
   /// Factory constructor to create [MeasureReportType] from JSON.
-  static MeasureReportType fromJson(Map<String, dynamic> json) {
+  factory MeasureReportType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureReportType.elementOnly.withElement(element);
+      return MeasureReportType.elementOnly(element);
     }
-    return MeasureReportType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MeasureReportType._(value, element);
+    }
+    throw ArgumentError(
+      'MeasureReportType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// individual
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureReportType.individual([this.element])
+      : dbValue = 'individual',
+        super('individual', element);
+
+  /// subject_list
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureReportType.subject_list([this.element])
+      : dbValue = 'subject-list',
+        super('subject-list', element);
+
+  /// summary
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureReportType.summary([this.element])
+      : dbValue = 'summary',
+        super('summary', element);
+
+  /// data_collection
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasureReportType.data_collection([this.element])
+      : dbValue = 'data-collection',
+        super('data-collection', element);
+
+  /// For instances where an Element is present but not value
+
+  MeasureReportType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MeasureReportType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'individual',
+    'subject-list',
+    'summary',
+    'data-collection',
+  ];
+
+  /// Returns the enum value with an element attached
+  MeasureReportType withElement(Element? newElement) {
+    return MeasureReportType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MeasureReportType.$fhirCode';
+  String toString() => 'MeasureReportType.$value';
 }

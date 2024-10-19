@@ -5,158 +5,163 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes example Diagnosis Type codes.
 @Entity()
-class ExampleDiagnosisTypeCodes {
-  // Private constructor for internal use (like enum)
-  ExampleDiagnosisTypeCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleDiagnosisTypeCodes values
-  /// admitting
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisTypeCodes admitting =
-      ExampleDiagnosisTypeCodes._(
-    'admitting',
-  );
-
-  /// clinical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisTypeCodes clinical = ExampleDiagnosisTypeCodes._(
-    'clinical',
-  );
-
-  /// differential
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisTypeCodes differential =
-      ExampleDiagnosisTypeCodes._(
-    'differential',
-  );
-
-  /// discharge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisTypeCodes discharge =
-      ExampleDiagnosisTypeCodes._(
-    'discharge',
-  );
-
-  /// laboratory
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisTypeCodes laboratory =
-      ExampleDiagnosisTypeCodes._(
-    'laboratory',
-  );
-
-  /// nursing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisTypeCodes nursing = ExampleDiagnosisTypeCodes._(
-    'nursing',
-  );
-
-  /// prenatal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisTypeCodes prenatal = ExampleDiagnosisTypeCodes._(
-    'prenatal',
-  );
-
-  /// principal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisTypeCodes principal =
-      ExampleDiagnosisTypeCodes._(
-    'principal',
-  );
-
-  /// radiology
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisTypeCodes radiology =
-      ExampleDiagnosisTypeCodes._(
-    'radiology',
-  );
-
-  /// remote
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisTypeCodes remote = ExampleDiagnosisTypeCodes._(
-    'remote',
-  );
-
-  /// retrospective
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisTypeCodes retrospective =
-      ExampleDiagnosisTypeCodes._(
-    'retrospective',
-  );
-
-  /// self
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ExampleDiagnosisTypeCodes self = ExampleDiagnosisTypeCodes._(
-    'self',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ExampleDiagnosisTypeCodes elementOnly =
-      ExampleDiagnosisTypeCodes._('');
-
-  /// List of all enum-like values
-  static final List<ExampleDiagnosisTypeCodes> values = [
-    admitting,
-    clinical,
-    differential,
-    discharge,
-    laboratory,
-    nursing,
-    prenatal,
-    principal,
-    radiology,
-    remote,
-    retrospective,
-    self,
-  ];
-
-  /// Returns the enum value with an element attached
-  ExampleDiagnosisTypeCodes withElement(Element? newElement) {
-    return ExampleDiagnosisTypeCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ExampleDiagnosisTypeCodes extends FhirCode {
   /// Factory constructor to create [ExampleDiagnosisTypeCodes] from JSON.
-  static ExampleDiagnosisTypeCodes fromJson(Map<String, dynamic> json) {
+  factory ExampleDiagnosisTypeCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleDiagnosisTypeCodes.elementOnly.withElement(element);
+      return ExampleDiagnosisTypeCodes.elementOnly(element);
     }
-    return ExampleDiagnosisTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ExampleDiagnosisTypeCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ExampleDiagnosisTypeCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// admitting
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisTypeCodes.admitting([this.element])
+      : dbValue = 'admitting',
+        super('admitting', element);
+
+  /// clinical
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisTypeCodes.clinical([this.element])
+      : dbValue = 'clinical',
+        super('clinical', element);
+
+  /// differential
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisTypeCodes.differential([this.element])
+      : dbValue = 'differential',
+        super('differential', element);
+
+  /// discharge
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisTypeCodes.discharge([this.element])
+      : dbValue = 'discharge',
+        super('discharge', element);
+
+  /// laboratory
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisTypeCodes.laboratory([this.element])
+      : dbValue = 'laboratory',
+        super('laboratory', element);
+
+  /// nursing
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisTypeCodes.nursing([this.element])
+      : dbValue = 'nursing',
+        super('nursing', element);
+
+  /// prenatal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisTypeCodes.prenatal([this.element])
+      : dbValue = 'prenatal',
+        super('prenatal', element);
+
+  /// principal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisTypeCodes.principal([this.element])
+      : dbValue = 'principal',
+        super('principal', element);
+
+  /// radiology
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisTypeCodes.radiology([this.element])
+      : dbValue = 'radiology',
+        super('radiology', element);
+
+  /// remote
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisTypeCodes.remote([this.element])
+      : dbValue = 'remote',
+        super('remote', element);
+
+  /// retrospective
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisTypeCodes.retrospective([this.element])
+      : dbValue = 'retrospective',
+        super('retrospective', element);
+
+  /// self
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ExampleDiagnosisTypeCodes.self([this.element])
+      : dbValue = 'self',
+        super('self', element);
+
+  /// For instances where an Element is present but not value
+
+  ExampleDiagnosisTypeCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ExampleDiagnosisTypeCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'admitting',
+    'clinical',
+    'differential',
+    'discharge',
+    'laboratory',
+    'nursing',
+    'prenatal',
+    'principal',
+    'radiology',
+    'remote',
+    'retrospective',
+    'self',
+  ];
+
+  /// Returns the enum value with an element attached
+  ExampleDiagnosisTypeCodes withElement(Element? newElement) {
+    return ExampleDiagnosisTypeCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ExampleDiagnosisTypeCodes.$fhirCode';
+  String toString() => 'ExampleDiagnosisTypeCodes.$value';
 }

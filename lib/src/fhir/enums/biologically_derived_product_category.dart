@@ -5,102 +5,108 @@ import 'package:objectbox/objectbox.dart';
 
 /// Biologically Derived Product Category.
 @Entity()
-class BiologicallyDerivedProductCategory {
-  // Private constructor for internal use (like enum)
-  BiologicallyDerivedProductCategory._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// BiologicallyDerivedProductCategory values
-  /// organ
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BiologicallyDerivedProductCategory organ =
-      BiologicallyDerivedProductCategory._(
-    'organ',
-  );
-
-  /// tissue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BiologicallyDerivedProductCategory tissue =
-      BiologicallyDerivedProductCategory._(
-    'tissue',
-  );
-
-  /// fluid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BiologicallyDerivedProductCategory fluid =
-      BiologicallyDerivedProductCategory._(
-    'fluid',
-  );
-
-  /// cells
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BiologicallyDerivedProductCategory cells =
-      BiologicallyDerivedProductCategory._(
-    'cells',
-  );
-
-  /// biologicalAgent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final BiologicallyDerivedProductCategory biologicalAgent =
-      BiologicallyDerivedProductCategory._(
-    'biologicalAgent',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final BiologicallyDerivedProductCategory elementOnly =
-      BiologicallyDerivedProductCategory._('');
-
-  /// List of all enum-like values
-  static final List<BiologicallyDerivedProductCategory> values = [
-    organ,
-    tissue,
-    fluid,
-    cells,
-    biologicalAgent,
-  ];
-
-  /// Returns the enum value with an element attached
-  BiologicallyDerivedProductCategory withElement(Element? newElement) {
-    return BiologicallyDerivedProductCategory._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class BiologicallyDerivedProductCategory extends FhirCode {
   /// Factory constructor to create [BiologicallyDerivedProductCategory] from JSON.
-  static BiologicallyDerivedProductCategory fromJson(
+  factory BiologicallyDerivedProductCategory.fromJson(
       Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return BiologicallyDerivedProductCategory.elementOnly
-          .withElement(element);
+      return BiologicallyDerivedProductCategory.elementOnly(element);
     }
-    return BiologicallyDerivedProductCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return BiologicallyDerivedProductCategory._(value, element);
+    }
+    throw ArgumentError(
+      'BiologicallyDerivedProductCategory.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// organ
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BiologicallyDerivedProductCategory.organ([this.element])
+      : dbValue = 'organ',
+        super('organ', element);
+
+  /// tissue
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BiologicallyDerivedProductCategory.tissue([this.element])
+      : dbValue = 'tissue',
+        super('tissue', element);
+
+  /// fluid
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BiologicallyDerivedProductCategory.fluid([this.element])
+      : dbValue = 'fluid',
+        super('fluid', element);
+
+  /// cells
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BiologicallyDerivedProductCategory.cells([this.element])
+      : dbValue = 'cells',
+        super('cells', element);
+
+  /// biologicalAgent
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  BiologicallyDerivedProductCategory.biologicalAgent([this.element])
+      : dbValue = 'biologicalAgent',
+        super('biologicalAgent', element);
+
+  /// For instances where an Element is present but not value
+
+  BiologicallyDerivedProductCategory.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  BiologicallyDerivedProductCategory._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'organ',
+    'tissue',
+    'fluid',
+    'cells',
+    'biologicalAgent',
+  ];
+
+  /// Returns the enum value with an element attached
+  BiologicallyDerivedProductCategory withElement(Element? newElement) {
+    return BiologicallyDerivedProductCategory._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'BiologicallyDerivedProductCategory.$fhirCode';
+  String toString() => 'BiologicallyDerivedProductCategory.$value';
 }

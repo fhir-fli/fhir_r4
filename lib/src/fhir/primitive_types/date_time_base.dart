@@ -57,6 +57,7 @@ class FhirDateTimeBase extends PrimitiveType<DateTime>
 
   /// Getters for value and formatting
   @override
+  @Transient()
   String get fhirType => 'dateTimeBase';
 
   @override

@@ -5,178 +5,187 @@ import 'package:objectbox/objectbox.dart';
 
 /// Cited Artifact Status Type
 @Entity()
-class CitedArtifactStatusType {
-  // Private constructor for internal use (like enum)
-  CitedArtifactStatusType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CitedArtifactStatusType values
-  /// created
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactStatusType created = CitedArtifactStatusType._(
-    'created',
-  );
-
-  /// submitted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactStatusType submitted = CitedArtifactStatusType._(
-    'submitted',
-  );
-
-  /// withdrawn
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactStatusType withdrawn = CitedArtifactStatusType._(
-    'withdrawn',
-  );
-
-  /// pre_review
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactStatusType pre_review = CitedArtifactStatusType._(
-    'pre-review',
-  );
-
-  /// under_review
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactStatusType under_review = CitedArtifactStatusType._(
-    'under-review',
-  );
-
-  /// post_review_pre_published
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactStatusType post_review_pre_published =
-      CitedArtifactStatusType._(
-    'post-review-pre-published',
-  );
-
-  /// rejected
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactStatusType rejected = CitedArtifactStatusType._(
-    'rejected',
-  );
-
-  /// published_early_form
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactStatusType published_early_form =
-      CitedArtifactStatusType._(
-    'published-early-form',
-  );
-
-  /// published_final_form
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactStatusType published_final_form =
-      CitedArtifactStatusType._(
-    'published-final-form',
-  );
-
-  /// accepted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactStatusType accepted = CitedArtifactStatusType._(
-    'accepted',
-  );
-
-  /// archived
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactStatusType archived = CitedArtifactStatusType._(
-    'archived',
-  );
-
-  /// retracted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactStatusType retracted = CitedArtifactStatusType._(
-    'retracted',
-  );
-
-  /// draft
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactStatusType draft = CitedArtifactStatusType._(
-    'draft',
-  );
-
-  /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactStatusType active = CitedArtifactStatusType._(
-    'active',
-  );
-
-  /// approved
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final CitedArtifactStatusType approved = CitedArtifactStatusType._(
-    'approved',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final CitedArtifactStatusType elementOnly =
-      CitedArtifactStatusType._('');
-
-  /// List of all enum-like values
-  static final List<CitedArtifactStatusType> values = [
-    created,
-    submitted,
-    withdrawn,
-    pre_review,
-    under_review,
-    post_review_pre_published,
-    rejected,
-    published_early_form,
-    published_final_form,
-    accepted,
-    archived,
-    retracted,
-    draft,
-    active,
-    approved,
-  ];
-
-  /// Returns the enum value with an element attached
-  CitedArtifactStatusType withElement(Element? newElement) {
-    return CitedArtifactStatusType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class CitedArtifactStatusType extends FhirCode {
   /// Factory constructor to create [CitedArtifactStatusType] from JSON.
-  static CitedArtifactStatusType fromJson(Map<String, dynamic> json) {
+  factory CitedArtifactStatusType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CitedArtifactStatusType.elementOnly.withElement(element);
+      return CitedArtifactStatusType.elementOnly(element);
     }
-    return CitedArtifactStatusType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return CitedArtifactStatusType._(value, element);
+    }
+    throw ArgumentError(
+      'CitedArtifactStatusType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// created
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactStatusType.created([this.element])
+      : dbValue = 'created',
+        super('created', element);
+
+  /// submitted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactStatusType.submitted([this.element])
+      : dbValue = 'submitted',
+        super('submitted', element);
+
+  /// withdrawn
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactStatusType.withdrawn([this.element])
+      : dbValue = 'withdrawn',
+        super('withdrawn', element);
+
+  /// pre_review
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactStatusType.pre_review([this.element])
+      : dbValue = 'pre-review',
+        super('pre-review', element);
+
+  /// under_review
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactStatusType.under_review([this.element])
+      : dbValue = 'under-review',
+        super('under-review', element);
+
+  /// post_review_pre_published
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactStatusType.post_review_pre_published([this.element])
+      : dbValue = 'post-review-pre-published',
+        super('post-review-pre-published', element);
+
+  /// rejected
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactStatusType.rejected([this.element])
+      : dbValue = 'rejected',
+        super('rejected', element);
+
+  /// published_early_form
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactStatusType.published_early_form([this.element])
+      : dbValue = 'published-early-form',
+        super('published-early-form', element);
+
+  /// published_final_form
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactStatusType.published_final_form([this.element])
+      : dbValue = 'published-final-form',
+        super('published-final-form', element);
+
+  /// accepted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactStatusType.accepted([this.element])
+      : dbValue = 'accepted',
+        super('accepted', element);
+
+  /// archived
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactStatusType.archived([this.element])
+      : dbValue = 'archived',
+        super('archived', element);
+
+  /// retracted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactStatusType.retracted([this.element])
+      : dbValue = 'retracted',
+        super('retracted', element);
+
+  /// draft
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactStatusType.draft([this.element])
+      : dbValue = 'draft',
+        super('draft', element);
+
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactStatusType.active([this.element])
+      : dbValue = 'active',
+        super('active', element);
+
+  /// approved
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  CitedArtifactStatusType.approved([this.element])
+      : dbValue = 'approved',
+        super('approved', element);
+
+  /// For instances where an Element is present but not value
+
+  CitedArtifactStatusType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  CitedArtifactStatusType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'created',
+    'submitted',
+    'withdrawn',
+    'pre-review',
+    'under-review',
+    'post-review-pre-published',
+    'rejected',
+    'published-early-form',
+    'published-final-form',
+    'accepted',
+    'archived',
+    'retracted',
+    'draft',
+    'active',
+    'approved',
+  ];
+
+  /// Returns the enum value with an element attached
+  CitedArtifactStatusType withElement(Element? newElement) {
+    return CitedArtifactStatusType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'CitedArtifactStatusType.$fhirCode';
+  String toString() => 'CitedArtifactStatusType.$value';
 }

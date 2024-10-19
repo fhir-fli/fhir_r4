@@ -5,133 +5,139 @@ import 'package:objectbox/objectbox.dart';
 
 /// The type of population.
 @Entity()
-class MeasurePopulationType {
-  // Private constructor for internal use (like enum)
-  MeasurePopulationType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasurePopulationType values
-  /// initial_population
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasurePopulationType initial_population =
-      MeasurePopulationType._(
-    'initial-population',
-  );
-
-  /// numerator
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasurePopulationType numerator = MeasurePopulationType._(
-    'numerator',
-  );
-
-  /// numerator_exclusion
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasurePopulationType numerator_exclusion =
-      MeasurePopulationType._(
-    'numerator-exclusion',
-  );
-
-  /// denominator
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasurePopulationType denominator = MeasurePopulationType._(
-    'denominator',
-  );
-
-  /// denominator_exclusion
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasurePopulationType denominator_exclusion =
-      MeasurePopulationType._(
-    'denominator-exclusion',
-  );
-
-  /// denominator_exception
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasurePopulationType denominator_exception =
-      MeasurePopulationType._(
-    'denominator-exception',
-  );
-
-  /// measure_population
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasurePopulationType measure_population =
-      MeasurePopulationType._(
-    'measure-population',
-  );
-
-  /// measure_population_exclusion
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasurePopulationType measure_population_exclusion =
-      MeasurePopulationType._(
-    'measure-population-exclusion',
-  );
-
-  /// measure_observation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final MeasurePopulationType measure_observation =
-      MeasurePopulationType._(
-    'measure-observation',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final MeasurePopulationType elementOnly = MeasurePopulationType._('');
-
-  /// List of all enum-like values
-  static final List<MeasurePopulationType> values = [
-    initial_population,
-    numerator,
-    numerator_exclusion,
-    denominator,
-    denominator_exclusion,
-    denominator_exception,
-    measure_population,
-    measure_population_exclusion,
-    measure_observation,
-  ];
-
-  /// Returns the enum value with an element attached
-  MeasurePopulationType withElement(Element? newElement) {
-    return MeasurePopulationType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class MeasurePopulationType extends FhirCode {
   /// Factory constructor to create [MeasurePopulationType] from JSON.
-  static MeasurePopulationType fromJson(Map<String, dynamic> json) {
+  factory MeasurePopulationType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasurePopulationType.elementOnly.withElement(element);
+      return MeasurePopulationType.elementOnly(element);
     }
-    return MeasurePopulationType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return MeasurePopulationType._(value, element);
+    }
+    throw ArgumentError(
+      'MeasurePopulationType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// initial_population
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasurePopulationType.initial_population([this.element])
+      : dbValue = 'initial-population',
+        super('initial-population', element);
+
+  /// numerator
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasurePopulationType.numerator([this.element])
+      : dbValue = 'numerator',
+        super('numerator', element);
+
+  /// numerator_exclusion
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasurePopulationType.numerator_exclusion([this.element])
+      : dbValue = 'numerator-exclusion',
+        super('numerator-exclusion', element);
+
+  /// denominator
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasurePopulationType.denominator([this.element])
+      : dbValue = 'denominator',
+        super('denominator', element);
+
+  /// denominator_exclusion
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasurePopulationType.denominator_exclusion([this.element])
+      : dbValue = 'denominator-exclusion',
+        super('denominator-exclusion', element);
+
+  /// denominator_exception
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasurePopulationType.denominator_exception([this.element])
+      : dbValue = 'denominator-exception',
+        super('denominator-exception', element);
+
+  /// measure_population
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasurePopulationType.measure_population([this.element])
+      : dbValue = 'measure-population',
+        super('measure-population', element);
+
+  /// measure_population_exclusion
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasurePopulationType.measure_population_exclusion([this.element])
+      : dbValue = 'measure-population-exclusion',
+        super('measure-population-exclusion', element);
+
+  /// measure_observation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  MeasurePopulationType.measure_observation([this.element])
+      : dbValue = 'measure-observation',
+        super('measure-observation', element);
+
+  /// For instances where an Element is present but not value
+
+  MeasurePopulationType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  MeasurePopulationType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'initial-population',
+    'numerator',
+    'numerator-exclusion',
+    'denominator',
+    'denominator-exclusion',
+    'denominator-exception',
+    'measure-population',
+    'measure-population-exclusion',
+    'measure-observation',
+  ];
+
+  /// Returns the enum value with an element attached
+  MeasurePopulationType withElement(Element? newElement) {
+    return MeasurePopulationType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'MeasurePopulationType.$fhirCode';
+  String toString() => 'MeasurePopulationType.$value';
 }

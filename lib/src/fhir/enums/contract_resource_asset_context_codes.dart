@@ -5,64 +5,76 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set contract specific codes for asset context.
 @Entity()
-class ContractResourceAssetContextCodes {
-  // Private constructor for internal use (like enum)
-  ContractResourceAssetContextCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ContractResourceAssetContextCodes values
-  /// custodian
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ContractResourceAssetContextCodes custodian =
-      ContractResourceAssetContextCodes._(
-    'custodian',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ContractResourceAssetContextCodes elementOnly =
-      ContractResourceAssetContextCodes._('');
-
-  /// List of all enum-like values
-  static final List<ContractResourceAssetContextCodes> values = [
-    custodian,
-  ];
-
-  /// Returns the enum value with an element attached
-  ContractResourceAssetContextCodes withElement(Element? newElement) {
-    return ContractResourceAssetContextCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ContractResourceAssetContextCodes extends FhirCode {
   /// Factory constructor to create [ContractResourceAssetContextCodes] from JSON.
-  static ContractResourceAssetContextCodes fromJson(Map<String, dynamic> json) {
+  factory ContractResourceAssetContextCodes.fromJson(
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContractResourceAssetContextCodes.elementOnly.withElement(element);
+      return ContractResourceAssetContextCodes.elementOnly(element);
     }
-    return ContractResourceAssetContextCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ContractResourceAssetContextCodes._(value, element);
+    }
+    throw ArgumentError(
+      'ContractResourceAssetContextCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// custodian
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ContractResourceAssetContextCodes.custodian([this.element])
+      : dbValue = 'custodian',
+        super('custodian', element);
+
+  /// For instances where an Element is present but not value
+
+  ContractResourceAssetContextCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ContractResourceAssetContextCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'custodian',
+  ];
+
+  /// Returns the enum value with an element attached
+  ContractResourceAssetContextCodes withElement(Element? newElement) {
+    return ContractResourceAssetContextCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ContractResourceAssetContextCodes.$fhirCode';
+  String toString() => 'ContractResourceAssetContextCodes.$value';
 }

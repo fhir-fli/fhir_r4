@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// Codes providing the status/availability of a specimen.
 @Entity()
-class SpecimenStatus {
-  // Private constructor for internal use (like enum)
-  SpecimenStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SpecimenStatus values
-  /// available
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecimenStatus available = SpecimenStatus._(
-    'available',
-  );
-
-  /// unavailable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecimenStatus unavailable = SpecimenStatus._(
-    'unavailable',
-  );
-
-  /// unsatisfactory
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecimenStatus unsatisfactory = SpecimenStatus._(
-    'unsatisfactory',
-  );
-
-  /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final SpecimenStatus entered_in_error = SpecimenStatus._(
-    'entered-in-error',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final SpecimenStatus elementOnly = SpecimenStatus._('');
-
-  /// List of all enum-like values
-  static final List<SpecimenStatus> values = [
-    available,
-    unavailable,
-    unsatisfactory,
-    entered_in_error,
-  ];
-
-  /// Returns the enum value with an element attached
-  SpecimenStatus withElement(Element? newElement) {
-    return SpecimenStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class SpecimenStatus extends FhirCode {
   /// Factory constructor to create [SpecimenStatus] from JSON.
-  static SpecimenStatus fromJson(Map<String, dynamic> json) {
+  factory SpecimenStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SpecimenStatus.elementOnly.withElement(element);
+      return SpecimenStatus.elementOnly(element);
     }
-    return SpecimenStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return SpecimenStatus._(value, element);
+    }
+    throw ArgumentError(
+      'SpecimenStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// available
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecimenStatus.available([this.element])
+      : dbValue = 'available',
+        super('available', element);
+
+  /// unavailable
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecimenStatus.unavailable([this.element])
+      : dbValue = 'unavailable',
+        super('unavailable', element);
+
+  /// unsatisfactory
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecimenStatus.unsatisfactory([this.element])
+      : dbValue = 'unsatisfactory',
+        super('unsatisfactory', element);
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  SpecimenStatus.entered_in_error([this.element])
+      : dbValue = 'entered-in-error',
+        super('entered-in-error', element);
+
+  /// For instances where an Element is present but not value
+
+  SpecimenStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  SpecimenStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'available',
+    'unavailable',
+    'unsatisfactory',
+    'entered-in-error',
+  ];
+
+  /// Returns the enum value with an element attached
+  SpecimenStatus withElement(Element? newElement) {
+    return SpecimenStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'SpecimenStatus.$fhirCode';
+  String toString() => 'SpecimenStatus.$value';
 }

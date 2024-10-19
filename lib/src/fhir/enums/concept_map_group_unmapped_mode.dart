@@ -5,82 +5,91 @@ import 'package:objectbox/objectbox.dart';
 
 /// Defines which action to take if there is no match in the group.
 @Entity()
-class ConceptMapGroupUnmappedMode {
-  // Private constructor for internal use (like enum)
-  ConceptMapGroupUnmappedMode._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ConceptMapGroupUnmappedMode values
-  /// provided
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConceptMapGroupUnmappedMode provided =
-      ConceptMapGroupUnmappedMode._(
-    'provided',
-  );
-
-  /// fixed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConceptMapGroupUnmappedMode fixed =
-      ConceptMapGroupUnmappedMode._(
-    'fixed',
-  );
-
-  /// other_map
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConceptMapGroupUnmappedMode other_map =
-      ConceptMapGroupUnmappedMode._(
-    'other-map',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ConceptMapGroupUnmappedMode elementOnly =
-      ConceptMapGroupUnmappedMode._('');
-
-  /// List of all enum-like values
-  static final List<ConceptMapGroupUnmappedMode> values = [
-    provided,
-    fixed,
-    other_map,
-  ];
-
-  /// Returns the enum value with an element attached
-  ConceptMapGroupUnmappedMode withElement(Element? newElement) {
-    return ConceptMapGroupUnmappedMode._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ConceptMapGroupUnmappedMode extends FhirCode {
   /// Factory constructor to create [ConceptMapGroupUnmappedMode] from JSON.
-  static ConceptMapGroupUnmappedMode fromJson(Map<String, dynamic> json) {
+  factory ConceptMapGroupUnmappedMode.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConceptMapGroupUnmappedMode.elementOnly.withElement(element);
+      return ConceptMapGroupUnmappedMode.elementOnly(element);
     }
-    return ConceptMapGroupUnmappedMode.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ConceptMapGroupUnmappedMode._(value, element);
+    }
+    throw ArgumentError(
+      'ConceptMapGroupUnmappedMode.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// provided
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConceptMapGroupUnmappedMode.provided([this.element])
+      : dbValue = 'provided',
+        super('provided', element);
+
+  /// fixed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConceptMapGroupUnmappedMode.fixed([this.element])
+      : dbValue = 'fixed',
+        super('fixed', element);
+
+  /// other_map
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConceptMapGroupUnmappedMode.other_map([this.element])
+      : dbValue = 'other-map',
+        super('other-map', element);
+
+  /// For instances where an Element is present but not value
+
+  ConceptMapGroupUnmappedMode.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ConceptMapGroupUnmappedMode._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'provided',
+    'fixed',
+    'other-map',
+  ];
+
+  /// Returns the enum value with an element attached
+  ConceptMapGroupUnmappedMode withElement(Element? newElement) {
+    return ConceptMapGroupUnmappedMode._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ConceptMapGroupUnmappedMode.$fhirCode';
+  String toString() => 'ConceptMapGroupUnmappedMode.$value';
 }

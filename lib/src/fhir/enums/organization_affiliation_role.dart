@@ -5,127 +5,131 @@ import 'package:objectbox/objectbox.dart';
 
 /// This example value set defines a set of codes that can be used to indicate the role of one Organization in relation to another.
 @Entity()
-class OrganizationAffiliationRole {
-  // Private constructor for internal use (like enum)
-  OrganizationAffiliationRole._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// OrganizationAffiliationRole values
-  /// provider
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationAffiliationRole provider =
-      OrganizationAffiliationRole._(
-    'provider',
-  );
-
-  /// agency
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationAffiliationRole agency =
-      OrganizationAffiliationRole._(
-    'agency',
-  );
-
-  /// research
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationAffiliationRole research =
-      OrganizationAffiliationRole._(
-    'research',
-  );
-
-  /// payer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationAffiliationRole payer =
-      OrganizationAffiliationRole._(
-    'payer',
-  );
-
-  /// diagnostics
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationAffiliationRole diagnostics =
-      OrganizationAffiliationRole._(
-    'diagnostics',
-  );
-
-  /// supplier
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationAffiliationRole supplier =
-      OrganizationAffiliationRole._(
-    'supplier',
-  );
-
-  /// HIE_HIO
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationAffiliationRole HIE_HIO =
-      OrganizationAffiliationRole._(
-    'HIE/HIO',
-  );
-
-  /// member
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final OrganizationAffiliationRole member =
-      OrganizationAffiliationRole._(
-    'member',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final OrganizationAffiliationRole elementOnly =
-      OrganizationAffiliationRole._('');
-
-  /// List of all enum-like values
-  static final List<OrganizationAffiliationRole> values = [
-    provider,
-    agency,
-    research,
-    payer,
-    diagnostics,
-    supplier,
-    HIE_HIO,
-    member,
-  ];
-
-  /// Returns the enum value with an element attached
-  OrganizationAffiliationRole withElement(Element? newElement) {
-    return OrganizationAffiliationRole._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class OrganizationAffiliationRole extends FhirCode {
   /// Factory constructor to create [OrganizationAffiliationRole] from JSON.
-  static OrganizationAffiliationRole fromJson(Map<String, dynamic> json) {
+  factory OrganizationAffiliationRole.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return OrganizationAffiliationRole.elementOnly.withElement(element);
+      return OrganizationAffiliationRole.elementOnly(element);
     }
-    return OrganizationAffiliationRole.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return OrganizationAffiliationRole._(value, element);
+    }
+    throw ArgumentError(
+      'OrganizationAffiliationRole.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// provider
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationAffiliationRole.provider([this.element])
+      : dbValue = 'provider',
+        super('provider', element);
+
+  /// agency
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationAffiliationRole.agency([this.element])
+      : dbValue = 'agency',
+        super('agency', element);
+
+  /// research
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationAffiliationRole.research([this.element])
+      : dbValue = 'research',
+        super('research', element);
+
+  /// payer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationAffiliationRole.payer([this.element])
+      : dbValue = 'payer',
+        super('payer', element);
+
+  /// diagnostics
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationAffiliationRole.diagnostics([this.element])
+      : dbValue = 'diagnostics',
+        super('diagnostics', element);
+
+  /// supplier
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationAffiliationRole.supplier([this.element])
+      : dbValue = 'supplier',
+        super('supplier', element);
+
+  /// HIE_HIO
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationAffiliationRole.HIE_HIO([this.element])
+      : dbValue = 'HIE/HIO',
+        super('HIE/HIO', element);
+
+  /// member
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  OrganizationAffiliationRole.member([this.element])
+      : dbValue = 'member',
+        super('member', element);
+
+  /// For instances where an Element is present but not value
+
+  OrganizationAffiliationRole.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  OrganizationAffiliationRole._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'provider',
+    'agency',
+    'research',
+    'payer',
+    'diagnostics',
+    'supplier',
+    'HIE/HIO',
+    'member',
+  ];
+
+  /// Returns the enum value with an element attached
+  OrganizationAffiliationRole withElement(Element? newElement) {
+    return OrganizationAffiliationRole._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'OrganizationAffiliationRole.$fhirCode';
+  String toString() => 'OrganizationAffiliationRole.$value';
 }

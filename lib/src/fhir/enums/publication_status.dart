@@ -5,86 +5,99 @@ import 'package:objectbox/objectbox.dart';
 
 /// The lifecycle status of an artifact.
 @Entity()
-class PublicationStatus {
-  // Private constructor for internal use (like enum)
-  PublicationStatus._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// PublicationStatus values
-  /// draft
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PublicationStatus draft = PublicationStatus._(
-    'draft',
-  );
-
-  /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PublicationStatus active = PublicationStatus._(
-    'active',
-  );
-
-  /// retired
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PublicationStatus retired = PublicationStatus._(
-    'retired',
-  );
-
-  /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final PublicationStatus unknown = PublicationStatus._(
-    'unknown',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final PublicationStatus elementOnly = PublicationStatus._('');
-
-  /// List of all enum-like values
-  static final List<PublicationStatus> values = [
-    draft,
-    active,
-    retired,
-    unknown,
-  ];
-
-  /// Returns the enum value with an element attached
-  PublicationStatus withElement(Element? newElement) {
-    return PublicationStatus._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class PublicationStatus extends FhirCode {
   /// Factory constructor to create [PublicationStatus] from JSON.
-  static PublicationStatus fromJson(Map<String, dynamic> json) {
+  factory PublicationStatus.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PublicationStatus.elementOnly.withElement(element);
+      return PublicationStatus.elementOnly(element);
     }
-    return PublicationStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return PublicationStatus._(value, element);
+    }
+    throw ArgumentError(
+      'PublicationStatus.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// draft
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PublicationStatus.draft([this.element])
+      : dbValue = 'draft',
+        super('draft', element);
+
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PublicationStatus.active([this.element])
+      : dbValue = 'active',
+        super('active', element);
+
+  /// retired
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PublicationStatus.retired([this.element])
+      : dbValue = 'retired',
+        super('retired', element);
+
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  PublicationStatus.unknown([this.element])
+      : dbValue = 'unknown',
+        super('unknown', element);
+
+  /// For instances where an Element is present but not value
+
+  PublicationStatus.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  PublicationStatus._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'draft',
+    'active',
+    'retired',
+    'unknown',
+  ];
+
+  /// Returns the enum value with an element attached
+  PublicationStatus withElement(Element? newElement) {
+    return PublicationStatus._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'PublicationStatus.$fhirCode';
+  String toString() => 'PublicationStatus.$value';
 }

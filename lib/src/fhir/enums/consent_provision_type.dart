@@ -5,70 +5,83 @@ import 'package:objectbox/objectbox.dart';
 
 /// How a rule statement is applied, such as adding additional consent or removing consent.
 @Entity()
-class ConsentProvisionType {
-  // Private constructor for internal use (like enum)
-  ConsentProvisionType._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ConsentProvisionType values
-  /// deny
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentProvisionType deny = ConsentProvisionType._(
-    'deny',
-  );
-
-  /// permit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final ConsentProvisionType permit = ConsentProvisionType._(
-    'permit',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final ConsentProvisionType elementOnly = ConsentProvisionType._('');
-
-  /// List of all enum-like values
-  static final List<ConsentProvisionType> values = [
-    deny,
-    permit,
-  ];
-
-  /// Returns the enum value with an element attached
-  ConsentProvisionType withElement(Element? newElement) {
-    return ConsentProvisionType._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class ConsentProvisionType extends FhirCode {
   /// Factory constructor to create [ConsentProvisionType] from JSON.
-  static ConsentProvisionType fromJson(Map<String, dynamic> json) {
+  factory ConsentProvisionType.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConsentProvisionType.elementOnly.withElement(element);
+      return ConsentProvisionType.elementOnly(element);
     }
-    return ConsentProvisionType.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return ConsentProvisionType._(value, element);
+    }
+    throw ArgumentError(
+      'ConsentProvisionType.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// deny
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentProvisionType.deny([this.element])
+      : dbValue = 'deny',
+        super('deny', element);
+
+  /// permit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  ConsentProvisionType.permit([this.element])
+      : dbValue = 'permit',
+        super('permit', element);
+
+  /// For instances where an Element is present but not value
+
+  ConsentProvisionType.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  ConsentProvisionType._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'deny',
+    'permit',
+  ];
+
+  /// Returns the enum value with an element attached
+  ConsentProvisionType withElement(Element? newElement) {
+    return ConsentProvisionType._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'ConsentProvisionType.$fhirCode';
+  String toString() => 'ConsentProvisionType.$value';
 }

@@ -5,110 +5,123 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set defines a set of codes that can be used to express the role of a diagnosis on the Encounter or EpisodeOfCare record.
 @Entity()
-class DiagnosisRole {
-  // Private constructor for internal use (like enum)
-  DiagnosisRole._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DiagnosisRole values
-  /// AD
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosisRole AD = DiagnosisRole._(
-    'AD',
-  );
-
-  /// DD
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosisRole DD = DiagnosisRole._(
-    'DD',
-  );
-
-  /// CC
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosisRole CC = DiagnosisRole._(
-    'CC',
-  );
-
-  /// CM
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosisRole CM = DiagnosisRole._(
-    'CM',
-  );
-
-  /// pre_op
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosisRole pre_op = DiagnosisRole._(
-    'pre-op',
-  );
-
-  /// post_op
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosisRole post_op = DiagnosisRole._(
-    'post-op',
-  );
-
-  /// billing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final DiagnosisRole billing = DiagnosisRole._(
-    'billing',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final DiagnosisRole elementOnly = DiagnosisRole._('');
-
-  /// List of all enum-like values
-  static final List<DiagnosisRole> values = [
-    AD,
-    DD,
-    CC,
-    CM,
-    pre_op,
-    post_op,
-    billing,
-  ];
-
-  /// Returns the enum value with an element attached
-  DiagnosisRole withElement(Element? newElement) {
-    return DiagnosisRole._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class DiagnosisRole extends FhirCode {
   /// Factory constructor to create [DiagnosisRole] from JSON.
-  static DiagnosisRole fromJson(Map<String, dynamic> json) {
+  factory DiagnosisRole.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DiagnosisRole.elementOnly.withElement(element);
+      return DiagnosisRole.elementOnly(element);
     }
-    return DiagnosisRole.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return DiagnosisRole._(value, element);
+    }
+    throw ArgumentError(
+      'DiagnosisRole.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// AD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosisRole.AD([this.element])
+      : dbValue = 'AD',
+        super('AD', element);
+
+  /// DD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosisRole.DD([this.element])
+      : dbValue = 'DD',
+        super('DD', element);
+
+  /// CC
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosisRole.CC([this.element])
+      : dbValue = 'CC',
+        super('CC', element);
+
+  /// CM
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosisRole.CM([this.element])
+      : dbValue = 'CM',
+        super('CM', element);
+
+  /// pre_op
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosisRole.pre_op([this.element])
+      : dbValue = 'pre-op',
+        super('pre-op', element);
+
+  /// post_op
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosisRole.post_op([this.element])
+      : dbValue = 'post-op',
+        super('post-op', element);
+
+  /// billing
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  DiagnosisRole.billing([this.element])
+      : dbValue = 'billing',
+        super('billing', element);
+
+  /// For instances where an Element is present but not value
+
+  DiagnosisRole.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  DiagnosisRole._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    'AD',
+    'DD',
+    'CC',
+    'CM',
+    'pre-op',
+    'post-op',
+    'billing',
+  ];
+
+  /// Returns the enum value with an element attached
+  DiagnosisRole withElement(Element? newElement) {
+    return DiagnosisRole._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'DiagnosisRole.$fhirCode';
+  String toString() => 'DiagnosisRole.$value';
 }

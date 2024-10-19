@@ -5,214 +5,227 @@ import 'package:objectbox/objectbox.dart';
 
 /// This value set includes a smattering of USCLS codes.
 @Entity()
-class USCLSCodes {
-  // Private constructor for internal use (like enum)
-  USCLSCodes._(this.fhirCode, {this.element});
-
-  /// Auto-incrementing ID for ObjectBox.
-  @Id(assignable: true)
-  int dbId = 0;
-
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// USCLSCodes values
-  /// value1101
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value1101 = USCLSCodes._(
-    '1101',
-  );
-
-  /// value1102
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value1102 = USCLSCodes._(
-    '1102',
-  );
-
-  /// value1103
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value1103 = USCLSCodes._(
-    '1103',
-  );
-
-  /// value1201
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value1201 = USCLSCodes._(
-    '1201',
-  );
-
-  /// value1205
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value1205 = USCLSCodes._(
-    '1205',
-  );
-
-  /// value2101
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value2101 = USCLSCodes._(
-    '2101',
-  );
-
-  /// value2102
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value2102 = USCLSCodes._(
-    '2102',
-  );
-
-  /// value2141
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value2141 = USCLSCodes._(
-    '2141',
-  );
-
-  /// value2601
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value2601 = USCLSCodes._(
-    '2601',
-  );
-
-  /// value11101
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value11101 = USCLSCodes._(
-    '11101',
-  );
-
-  /// value11102
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value11102 = USCLSCodes._(
-    '11102',
-  );
-
-  /// value11103
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value11103 = USCLSCodes._(
-    '11103',
-  );
-
-  /// value11104
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value11104 = USCLSCodes._(
-    '11104',
-  );
-
-  /// value21211
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value21211 = USCLSCodes._(
-    '21211',
-  );
-
-  /// value21212
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value21212 = USCLSCodes._(
-    '21212',
-  );
-
-  /// value27211
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value27211 = USCLSCodes._(
-    '27211',
-  );
-
-  /// value67211
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value67211 = USCLSCodes._(
-    '67211',
-  );
-
-  /// value99111
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value99111 = USCLSCodes._(
-    '99111',
-  );
-
-  /// value99333
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value99333 = USCLSCodes._(
-    '99333',
-  );
-
-  /// value99555
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
-  static final USCLSCodes value99555 = USCLSCodes._(
-    '99555',
-  );
-
-  /// For instances where an Element is present but not value
-
-  static final USCLSCodes elementOnly = USCLSCodes._('');
-
-  /// List of all enum-like values
-  static final List<USCLSCodes> values = [
-    value1101,
-    value1102,
-    value1103,
-    value1201,
-    value1205,
-    value2101,
-    value2102,
-    value2141,
-    value2601,
-    value11101,
-    value11102,
-    value11103,
-    value11104,
-    value21211,
-    value21212,
-    value27211,
-    value67211,
-    value99111,
-    value99333,
-    value99555,
-  ];
-
-  /// Returns the enum value with an element attached
-  USCLSCodes withElement(Element? newElement) {
-    return USCLSCodes._(fhirCode, element: newElement);
-  }
-
-  /// Serializes the instance to JSON with standardized keys
-  Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
-        if (element != null) '_value': element!.toJson(),
-      };
-
+class USCLSCodes extends FhirCode {
   /// Factory constructor to create [USCLSCodes] from JSON.
-  static USCLSCodes fromJson(Map<String, dynamic> json) {
+  factory USCLSCodes.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return USCLSCodes.elementOnly.withElement(element);
+      return USCLSCodes.elementOnly(element);
     }
-    return USCLSCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
+    if (values.contains(value)) {
+      return USCLSCodes._(value, element);
+    }
+    throw ArgumentError(
+      'USCLSCodes.fromJson: JSON value is not a valid value',
     );
   }
 
+  /// value1101
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value1101([this.element])
+      : dbValue = '1101',
+        super('1101', element);
+
+  /// value1102
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value1102([this.element])
+      : dbValue = '1102',
+        super('1102', element);
+
+  /// value1103
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value1103([this.element])
+      : dbValue = '1103',
+        super('1103', element);
+
+  /// value1201
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value1201([this.element])
+      : dbValue = '1201',
+        super('1201', element);
+
+  /// value1205
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value1205([this.element])
+      : dbValue = '1205',
+        super('1205', element);
+
+  /// value2101
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value2101([this.element])
+      : dbValue = '2101',
+        super('2101', element);
+
+  /// value2102
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value2102([this.element])
+      : dbValue = '2102',
+        super('2102', element);
+
+  /// value2141
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value2141([this.element])
+      : dbValue = '2141',
+        super('2141', element);
+
+  /// value2601
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value2601([this.element])
+      : dbValue = '2601',
+        super('2601', element);
+
+  /// value11101
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value11101([this.element])
+      : dbValue = '11101',
+        super('11101', element);
+
+  /// value11102
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value11102([this.element])
+      : dbValue = '11102',
+        super('11102', element);
+
+  /// value11103
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value11103([this.element])
+      : dbValue = '11103',
+        super('11103', element);
+
+  /// value11104
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value11104([this.element])
+      : dbValue = '11104',
+        super('11104', element);
+
+  /// value21211
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value21211([this.element])
+      : dbValue = '21211',
+        super('21211', element);
+
+  /// value21212
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value21212([this.element])
+      : dbValue = '21212',
+        super('21212', element);
+
+  /// value27211
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value27211([this.element])
+      : dbValue = '27211',
+        super('27211', element);
+
+  /// value67211
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value67211([this.element])
+      : dbValue = '67211',
+        super('67211', element);
+
+  /// value99111
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value99111([this.element])
+      : dbValue = '99111',
+        super('99111', element);
+
+  /// value99333
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value99333([this.element])
+      : dbValue = '99333',
+        super('99333', element);
+
+  /// value99555
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  USCLSCodes.value99555([this.element])
+      : dbValue = '99555',
+        super('99555', element);
+
+  /// For instances where an Element is present but not value
+
+  USCLSCodes.elementOnly(this.element)
+      : dbValue = null,
+        super(null, element);
+
+  /// Private constructor for internal use (like enum)
+  USCLSCodes._(super.input, [super.element])
+      : dbValue = input,
+        // ignore: prefer_initializing_formals
+        element = element;
+
+  @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  /// Value to store in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final String? dbValue;
+
+  /// Element stored as a relation in ObjectBox
+  @override
+  // ignore: overridden_fields
+  final Element? element;
+
+  /// List of all enum-like values
+  static final List<String> values = [
+    '1101',
+    '1102',
+    '1103',
+    '1201',
+    '1205',
+    '2101',
+    '2102',
+    '2141',
+    '2601',
+    '11101',
+    '11102',
+    '11103',
+    '11104',
+    '21211',
+    '21212',
+    '27211',
+    '67211',
+    '99111',
+    '99333',
+    '99555',
+  ];
+
+  /// Returns the enum value with an element attached
+  USCLSCodes withElement(Element? newElement) {
+    return USCLSCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (value != null && value!.isNotEmpty) 'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
   /// String representation (for debugging purposes)
   @override
-  String toString() => 'USCLSCodes.$fhirCode';
+  String toString() => 'USCLSCodes.$value';
 }
