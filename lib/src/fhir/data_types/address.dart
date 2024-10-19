@@ -163,7 +163,7 @@ class Address extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -173,56 +173,56 @@ class Address extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [use]
   /// The purpose of this address.
-  final AddressUse? use;
+  AddressUse? use;
 
   /// [type]
   /// Distinguishes between physical addresses (those you can visit) and
   /// mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses
   /// are both.
-  final AddressType? type;
+  AddressType? type;
 
   /// [text]
   /// Specifies the entire address as it should be displayed e.g. on a postal
   /// label. This may be provided instead of or as well as the specific
   /// parts.
-  final FhirString? text;
+  FhirString? text;
 
   /// [line]
   /// This component contains the house number, apartment number, street
   /// name, street direction, P.O. Box number, delivery hints, and similar
   /// address information.
-  final List<FhirString>? line;
+  List<FhirString>? line;
 
   /// [city]
   /// The name of the city, town, suburb, village or other community or
   /// delivery center.
-  final FhirString? city;
+  FhirString? city;
 
   /// [district]
   /// The name of the administrative area (county).
-  final FhirString? district;
+  FhirString? district;
 
   /// [state]
   /// Sub-unit of a country with limited sovereignty in a federally organized
   /// country. A code may be used if codes are in common use (e.g. US 2
   /// letter state codes).
-  final FhirString? state;
+  FhirString? state;
 
   /// [postalCode]
   /// A postal code designating a region defined by the postal service.
-  final FhirString? postalCode;
+  FhirString? postalCode;
 
   /// [country]
   /// Country - a nation as commonly understood or generally accepted.
-  final FhirString? country;
+  FhirString? country;
 
   /// [period]
   /// Time period when address was/is in use.
-  final Period? period;
+  Period? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -325,14 +325,14 @@ class CapabilityStatement extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -340,12 +340,12 @@ class CapabilityStatement extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -355,14 +355,14 @@ class CapabilityStatement extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -372,7 +372,7 @@ class CapabilityStatement extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -390,7 +390,7 @@ class CapabilityStatement extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this capability statement when
@@ -400,7 +400,7 @@ class CapabilityStatement extends DomainResource {
   /// of this capability statement is (or will be) published. This URL can be
   /// the target of a canonical reference. It SHALL remain the same when the
   /// capability statement is stored on different servers.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [version]
   /// The identifier that is used to identify this version of the capability
@@ -410,28 +410,28 @@ class CapabilityStatement extends DomainResource {
   /// example, it might be a timestamp (e.g. yyyymmdd) if a managed version
   /// is not available. There is also no expectation that versions can be
   /// placed in a lexicographical sequence.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the capability statement. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString? name;
+  FhirString? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the capability statement.
-  final FhirString? title;
+  FhirString? title;
 
   /// [status]
   /// The status of this capability statement. Enables tracking the
   /// life-cycle of the content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this capability statement is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [date]
   /// The date (and optionally time) when the capability statement was
@@ -439,17 +439,17 @@ class CapabilityStatement extends DomainResource {
   /// it must change if the status code changes. In addition, it should
   /// change when the substantive content of the capability statement
   /// changes.
-  final FhirDateTime date;
+  FhirDateTime date;
 
   /// [publisher]
   /// The name of the organization or individual that published the
   /// capability statement.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the capability statement
@@ -457,7 +457,7 @@ class CapabilityStatement extends DomainResource {
   /// capability statement describes a desired rather than an actual
   /// solution, for example as a formal expression of requirements as part of
   /// an RFP.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -465,30 +465,30 @@ class CapabilityStatement extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate capability statement instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the capability statement is
   /// intended to be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this capability statement is needed and why it has
   /// been designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [copyright]
   /// A copyright statement relating to the capability statement and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the capability statement.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [kind]
   /// The way that this statement is intended to be used, to describe an
   /// actual running instance of software, a particular product (kind, not
   /// instance of software) or a class of implementation (e.g. a desired
   /// purchase).
-  final CapabilityStatementKind kind;
+  CapabilityStatementKind kind;
 
   /// [instantiates]
   /// Reference to a canonical URL of another CapabilityStatement that this
@@ -497,7 +497,7 @@ class CapabilityStatement extends DomainResource {
   /// actually implement a subset of the capability statement it claims to
   /// implement, so the capability statement must specify the full capability
   /// details.
-  final List<FhirCanonical>? instantiates;
+  List<FhirCanonical>? instantiates;
 
   /// [imports]
   /// Reference to a canonical URL of another CapabilityStatement that this
@@ -505,47 +505,47 @@ class CapabilityStatement extends DomainResource {
   /// everything in the other statement, and it is not duplicated, though the
   /// server may repeat the same resources, interactions and operations to
   /// add additional details to them.
-  final List<FhirCanonical>? imports;
+  List<FhirCanonical>? imports;
 
   /// [software]
   /// Software that is covered by this capability statement. It is used when
   /// the capability statement describes the capabilities of a particular
   /// software version, independent of an installation.
-  final CapabilityStatementSoftware? software;
+  CapabilityStatementSoftware? software;
 
   /// [implementation]
   /// Identifies a specific implementation instance that is described by the
   /// capability statement - i.e. a particular installation, rather than the
   /// capabilities of a software program.
-  final CapabilityStatementImplementation? implementation;
+  CapabilityStatementImplementation? implementation;
 
   /// [fhirVersion]
   /// The version of the FHIR specification that this CapabilityStatement
   /// describes (which SHALL be the same as the FHIR version of the
   /// CapabilityStatement itself). There is no default value.
-  final FHIRVersion fhirVersion;
+  FHIRVersion fhirVersion;
 
   /// [format]
   /// A list of the formats supported by this implementation using their
   /// content types.
-  final List<FhirCode> format;
+  List<FhirCode> format;
 
   /// [patchFormat]
   /// A list of the patch formats supported by this implementation using
   /// their content types.
-  final List<FhirCode>? patchFormat;
+  List<FhirCode>? patchFormat;
 
   /// [rest]
   /// A definition of the restful capabilities of the solution, if any.
-  final List<CapabilityStatementRest>? rest;
+  List<CapabilityStatementRest>? rest;
 
   /// [messaging]
   /// A description of the messaging capabilities of the solution.
-  final List<CapabilityStatementMessaging>? messaging;
+  List<CapabilityStatementMessaging>? messaging;
 
   /// [document]
   /// A document definition.
-  final List<CapabilityStatementDocument>? document;
+  List<CapabilityStatementDocument>? document;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -957,7 +957,7 @@ class CapabilityStatementSoftware extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -967,7 +967,7 @@ class CapabilityStatementSoftware extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -985,19 +985,19 @@ class CapabilityStatementSoftware extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// Name the software is known by.
-  final FhirString name;
+  FhirString name;
 
   /// [version]
   /// The version identifier for the software covered by this statement.
-  final FhirString? version;
+  FhirString? version;
 
   /// [releaseDate]
   /// Date this version of the software was released.
-  final FhirDateTime? releaseDate;
+  FhirDateTime? releaseDate;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1195,7 +1195,7 @@ class CapabilityStatementImplementation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1205,7 +1205,7 @@ class CapabilityStatementImplementation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1223,27 +1223,27 @@ class CapabilityStatementImplementation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// Information about the specific installation that this capability
   /// statement relates to.
-  final FhirString description;
+  FhirString description;
 
   /// [url]
   /// An absolute base URL for the implementation. This forms the base for
   /// REST interfaces as well as the mailbox and document interfaces.
-  final FhirUrl? url;
+  FhirUrl? url;
 
   /// [custodian]
   /// The organization responsible for the management of the instance and
   /// oversight of the data on the server at the specified URL.
-  final Reference? custodian;
+  Reference? custodian;
 
   /// [implementationGuide]
   /// A list of implementation guides that the server does (or should)
   /// support in their entirety.
-  final List<FhirCanonical>? implementationGuide;
+  List<FhirCanonical>? implementationGuide;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1467,7 +1467,7 @@ class CapabilityStatementRest extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1477,7 +1477,7 @@ class CapabilityStatementRest extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1495,37 +1495,37 @@ class CapabilityStatementRest extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [mode]
   /// Identifies whether this portion of the statement is describing the
   /// ability to initiate or receive restful operations.
-  final RestfulCapabilityMode mode;
+  RestfulCapabilityMode mode;
 
   /// [documentation]
   /// Information about the system's restful capabilities that apply across
   /// all applications, such as security.
-  final FhirMarkdown? documentation;
+  FhirMarkdown? documentation;
 
   /// [security]
   /// Information about security implementation from an interface perspective
   /// - what a client needs to know.
-  final CapabilityStatementSecurity? security;
+  CapabilityStatementSecurity? security;
 
   /// [resource]
   /// A specification of the restful capabilities of the solution for a
   /// specific resource type.
-  final List<CapabilityStatementResource>? resource;
+  List<CapabilityStatementResource>? resource;
 
   /// [interaction]
   /// A specification of restful operations supported by the system.
-  final List<CapabilityStatementInteraction>? interaction;
+  List<CapabilityStatementInteraction>? interaction;
 
   /// [compartment]
   /// An absolute URI which is a reference to the definition of a compartment
   /// that the system supports. The reference is to a CompartmentDefinition
   /// resource by its canonical URL .
-  final List<FhirCanonical>? compartment;
+  List<FhirCanonical>? compartment;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1740,7 +1740,7 @@ class CapabilityStatementSecurity extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1750,7 +1750,7 @@ class CapabilityStatementSecurity extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1768,20 +1768,20 @@ class CapabilityStatementSecurity extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [cors]
   /// Server adds CORS headers when responding to requests - this enables
   /// Javascript applications to use the server.
-  final FhirBoolean? cors;
+  FhirBoolean? cors;
 
   /// [service]
   /// Types of security services that are supported/required by the system.
-  final List<CodeableConcept>? service;
+  List<CodeableConcept>? service;
 
   /// [description]
   /// General description of how security works.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2080,7 +2080,7 @@ class CapabilityStatementResource extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2090,7 +2090,7 @@ class CapabilityStatementResource extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2108,18 +2108,18 @@ class CapabilityStatementResource extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// A type of resource exposed via the restful interface.
-  final FhirCode type;
+  FhirCode type;
 
   /// [profile]
   /// A specification of the profile that describes the solution's overall
   /// support for the resource, including any constraints on cardinality,
   /// bindings, lengths or other limitations. See further discussion in
   /// [Using Profiles](profiling.html#profile-uses).
-  final FhirCanonical? profile;
+  FhirCanonical? profile;
 
   /// [supportedProfile]
   /// A list of profiles that represent different use cases supported by the
@@ -2130,15 +2130,15 @@ class CapabilityStatementResource extends BackboneElement {
   /// will search by this profile and process data according to the guidance
   /// implicit in the profile. See further discussion in [Using
   /// Profiles](profiling.html#profile-uses).
-  final List<FhirCanonical>? supportedProfile;
+  List<FhirCanonical>? supportedProfile;
 
   /// [documentation]
   /// Additional information about the resource type used by the system.
-  final FhirMarkdown? documentation;
+  FhirMarkdown? documentation;
 
   /// [interaction]
   /// Identifies a restful operation supported by the solution.
-  final List<CapabilityStatementInteraction>? interaction;
+  List<CapabilityStatementInteraction>? interaction;
 
   /// [versioning]
   /// This field is set to no-version to specify that the system does not
@@ -2147,12 +2147,12 @@ class CapabilityStatementResource extends BackboneElement {
   /// populate the versionId meta-property on resources. If the value is
   /// 'versioned-update', then the server supports all the versioning
   /// features, including using e-tags for version integrity in the API.
-  final ResourceVersionPolicy? versioning;
+  ResourceVersionPolicy? versioning;
 
   /// [readHistory]
   /// A flag for whether the server is able to return past versions as part
   /// of the vRead operation.
-  final FhirBoolean? readHistory;
+  FhirBoolean? readHistory;
 
   /// [updateCreate]
   /// A flag to indicate that the server allows or needs to allow the client
@@ -2160,48 +2160,48 @@ class CapabilityStatementResource extends BackboneElement {
   /// location where there is no existing resource). Allowing this operation
   /// means that the server allows the client to create new identities on the
   /// server.
-  final FhirBoolean? updateCreate;
+  FhirBoolean? updateCreate;
 
   /// [conditionalCreate]
   /// A flag that indicates that the server supports conditional create.
-  final FhirBoolean? conditionalCreate;
+  FhirBoolean? conditionalCreate;
 
   /// [conditionalRead]
   /// A code that indicates how the server supports conditional read.
-  final ConditionalReadStatus? conditionalRead;
+  ConditionalReadStatus? conditionalRead;
 
   /// [conditionalUpdate]
   /// A flag that indicates that the server supports conditional update.
-  final FhirBoolean? conditionalUpdate;
+  FhirBoolean? conditionalUpdate;
 
   /// [conditionalDelete]
   /// A code that indicates how the server supports conditional delete.
-  final ConditionalDeleteStatus? conditionalDelete;
+  ConditionalDeleteStatus? conditionalDelete;
 
   /// [referencePolicy]
   /// A set of flags that defines how references are supported.
-  final List<ReferenceHandlingPolicy>? referencePolicy;
+  List<ReferenceHandlingPolicy>? referencePolicy;
 
   /// [searchInclude]
   /// A list of _include values supported by the server.
-  final List<FhirString>? searchInclude;
+  List<FhirString>? searchInclude;
 
   /// [searchRevInclude]
   /// A list of _revinclude (reverse include) values supported by the server.
-  final List<FhirString>? searchRevInclude;
+  List<FhirString>? searchRevInclude;
 
   /// [searchParam]
   /// Search parameters for implementations to support and/or make use of -
   /// either references to ones defined in the specification, or additional
   /// ones defined for/by the implementation.
-  final List<CapabilityStatementSearchParam>? searchParam;
+  List<CapabilityStatementSearchParam>? searchParam;
 
   /// [operation]
   /// Definition of an operation or a named query together with its
   /// parameters and their meaning and type. Consult the definition of the
   /// operation for details about how to invoke the operation, and the
   /// parameters.
-  final List<CapabilityStatementOperation>? operation;
+  List<CapabilityStatementOperation>? operation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2515,7 +2515,7 @@ class CapabilityStatementInteraction extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2525,7 +2525,7 @@ class CapabilityStatementInteraction extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2543,17 +2543,17 @@ class CapabilityStatementInteraction extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// Coded identifier of the operation, supported by the system resource.
-  final TypeRestfulInteraction code;
+  TypeRestfulInteraction code;
 
   /// [documentation]
   /// Guidance specific to the implementation of this operation, such as
   /// 'delete is a logical delete' or 'updates are only allowed with version
   /// id' or 'creates permitted from pre-authorized certificates only'.
-  final FhirMarkdown? documentation;
+  FhirMarkdown? documentation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2742,7 +2742,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2752,7 +2752,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2770,11 +2770,11 @@ class CapabilityStatementSearchParam extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// The name of the search parameter used in the interface.
-  final FhirString name;
+  FhirString name;
 
   /// [definition]
   /// An absolute URI that is a formal reference to where this parameter was
@@ -2784,17 +2784,17 @@ class CapabilityStatementSearchParam extends BackboneElement {
   /// This element SHALL be populated if the search parameter refers to a
   /// SearchParameter defined by the FHIR core specification or externally
   /// defined IGs.
-  final FhirCanonical? definition;
+  FhirCanonical? definition;
 
   /// [type]
   /// The type of value a search parameter refers to, and how the content is
   /// interpreted.
-  final SearchParamType type;
+  SearchParamType type;
 
   /// [documentation]
   /// This allows documentation of any distinct behaviors about how the
   /// search parameter is used. For example, text matching algorithms.
-  final FhirMarkdown? documentation;
+  FhirMarkdown? documentation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2995,7 +2995,7 @@ class CapabilityStatementOperation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3005,7 +3005,7 @@ class CapabilityStatementOperation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3023,13 +3023,13 @@ class CapabilityStatementOperation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// The name of the operation or query. For an operation, this is the name
   /// prefixed with $ and used in the URL. For a query, this is the name used
   /// in the _query parameter when the query is called.
-  final FhirString name;
+  FhirString name;
 
   /// [definition]
   /// Where the formal definition can be found. If a server references the
@@ -3041,13 +3041,13 @@ class CapabilityStatementOperation extends BackboneElement {
   /// with a 'base' of the original OperationDefinition. The custom
   /// definition would describe the specific subset of functionality
   /// supported.
-  final FhirCanonical definition;
+  FhirCanonical definition;
 
   /// [documentation]
   /// Documentation that describes anything special about the operation
   /// behavior, possibly detailing different behavior for system, type and
   /// instance-level invocation of the operation.
-  final FhirMarkdown? documentation;
+  FhirMarkdown? documentation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3230,7 +3230,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3240,7 +3240,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3258,17 +3258,17 @@ class CapabilityStatementInteraction1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// A coded identifier of the operation, supported by the system.
-  final SystemRestfulInteraction code;
+  SystemRestfulInteraction code;
 
   /// [documentation]
   /// Guidance specific to the implementation of this operation, such as
   /// limitations on the kind of transactions allowed, or information about
   /// system wide search is implemented.
-  final FhirMarkdown? documentation;
+  FhirMarkdown? documentation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3466,7 +3466,7 @@ class CapabilityStatementMessaging extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3476,7 +3476,7 @@ class CapabilityStatementMessaging extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3494,30 +3494,30 @@ class CapabilityStatementMessaging extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [endpoint]
   /// An endpoint (network accessible address) to which messages and/or
   /// replies are to be sent.
-  final List<CapabilityStatementEndpoint>? endpoint;
+  List<CapabilityStatementEndpoint>? endpoint;
 
   /// [reliableCache]
   /// Length if the receiver's reliable messaging cache in minutes (if a
   /// receiver) or how long the cache length on the receiver should be (if a
   /// sender).
-  final FhirUnsignedInt? reliableCache;
+  FhirUnsignedInt? reliableCache;
 
   /// [documentation]
   /// Documentation about the system's messaging capabilities for this
   /// endpoint not otherwise documented by the capability statement. For
   /// example, the process for becoming an authorized messaging exchange
   /// partner.
-  final FhirMarkdown? documentation;
+  FhirMarkdown? documentation;
 
   /// [supportedMessage]
   /// References to message definitions for messages this system can send or
   /// receive.
-  final List<CapabilityStatementSupportedMessage>? supportedMessage;
+  List<CapabilityStatementSupportedMessage>? supportedMessage;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3704,7 +3704,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3714,7 +3714,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3732,17 +3732,17 @@ class CapabilityStatementEndpoint extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [protocol]
   /// A list of the messaging transport protocol(s) identifiers, supported by
   /// this endpoint.
-  final Coding protocol;
+  Coding protocol;
 
   /// [address]
   /// The network address of the endpoint. For solutions that do not use
   /// network addresses for routing, it can be just an identifier.
-  final FhirUrl address;
+  FhirUrl address;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3909,7 +3909,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3919,7 +3919,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3937,17 +3937,17 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [mode]
   /// The mode of this event declaration - whether application is sender or
   /// receiver.
-  final EventCapabilityMode mode;
+  EventCapabilityMode mode;
 
   /// [definition]
   /// Points to a message definition that identifies the messaging event,
   /// message structure, allowed responses, etc.
-  final FhirCanonical definition;
+  FhirCanonical definition;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4125,7 +4125,7 @@ class CapabilityStatementDocument extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -4135,7 +4135,7 @@ class CapabilityStatementDocument extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -4153,23 +4153,23 @@ class CapabilityStatementDocument extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [mode]
   /// Mode of this document declaration - whether an application is a
   /// producer or consumer.
-  final DocumentMode mode;
+  DocumentMode mode;
 
   /// [documentation]
   /// A description of how the application supports or uses the specified
   /// document profile. For example, when documents are created, what action
   /// is taken with consumed documents, etc.
-  final FhirMarkdown? documentation;
+  FhirMarkdown? documentation;
 
   /// [profile]
   /// A profile on the document Bundle that constrains which resources are
   /// present, and their contents.
-  final FhirCanonical profile;
+  FhirCanonical profile;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

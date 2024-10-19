@@ -122,7 +122,7 @@ class UsageContext extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -132,32 +132,32 @@ class UsageContext extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [code]
   /// A code that identifies the type of context being specified by this
   /// usage context.
-  final Coding code;
+  Coding code;
 
   /// [valueCodeableConcept]
   /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
-  final CodeableConcept? valueCodeableConcept;
+  CodeableConcept? valueCodeableConcept;
 
   /// [valueQuantity]
   /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueRange]
   /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
-  final Range? valueRange;
+  Range? valueRange;
 
   /// [valueReference]
   /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
-  final Reference? valueReference;
+  Reference? valueReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

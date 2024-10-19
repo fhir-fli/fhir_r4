@@ -321,14 +321,14 @@ class ClaimResponse extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -336,12 +336,12 @@ class ClaimResponse extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -351,14 +351,14 @@ class ClaimResponse extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -368,7 +368,7 @@ class ClaimResponse extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -386,25 +386,25 @@ class ClaimResponse extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A unique identifier assigned to this claim response.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// The status of the resource instance.
-  final FinancialResourceStatusCodes status;
+  FinancialResourceStatusCodes status;
 
   /// [type]
   /// A finer grained suite of claim type codes which may convey additional
   /// information such as Inpatient vs Outpatient and/or a specialty service.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [subType]
   /// A finer grained suite of claim type codes which may convey additional
   /// information such as Inpatient vs Outpatient and/or a specialty service.
-  final CodeableConcept? subType;
+  CodeableConcept? subType;
 
   /// [use]
   /// A code to indicate whether the nature of the request is: to request
@@ -412,103 +412,103 @@ class ClaimResponse extends DomainResource {
   /// requesting authorization and adjudication for provision in the future;
   /// or requesting the non-binding adjudication of the listed products and
   /// services which could be provided in the future.
-  final Use use;
+  Use use;
 
   /// [patient]
   /// The party to whom the professional services and/or products have been
   /// supplied or are being considered and for whom actual for facast
   /// reimbursement is sought.
-  final Reference patient;
+  Reference patient;
 
   /// [created]
   /// The date this resource was created.
-  final FhirDateTime created;
+  FhirDateTime created;
 
   /// [insurer]
   /// The party responsible for authorization, adjudication and
   /// reimbursement.
-  final Reference insurer;
+  Reference insurer;
 
   /// [requestor]
   /// The provider which is responsible for the claim, predetermination or
   /// preauthorization.
-  final Reference? requestor;
+  Reference? requestor;
 
   /// [request]
   /// Original request resource reference.
-  final Reference? request;
+  Reference? request;
 
   /// [outcome]
   /// The outcome of the claim, predetermination, or preauthorization
   /// processing.
-  final RemittanceOutcome outcome;
+  RemittanceOutcome outcome;
 
   /// [disposition]
   /// A human readable description of the status of the adjudication.
-  final FhirString? disposition;
+  FhirString? disposition;
 
   /// [preAuthRef]
   /// Reference from the Insurer which is used in later communications which
   /// refers to this adjudication.
-  final FhirString? preAuthRef;
+  FhirString? preAuthRef;
 
   /// [preAuthPeriod]
   /// The time frame during which this authorization is effective.
-  final Period? preAuthPeriod;
+  Period? preAuthPeriod;
 
   /// [payeeType]
   /// Type of Party to be reimbursed: subscriber, provider, other.
-  final CodeableConcept? payeeType;
+  CodeableConcept? payeeType;
 
   /// [item]
   /// A claim line. Either a simple (a product or service) or a 'group' of
   /// details which can also be a simple items or groups of sub-details.
-  final List<ClaimResponseItem>? item;
+  List<ClaimResponseItem>? item;
 
   /// [addItem]
   /// The first-tier service adjudications for payor added product or service
   /// lines.
-  final List<ClaimResponseAddItem>? addItem;
+  List<ClaimResponseAddItem>? addItem;
 
   /// [total]
   /// Categorized monetary totals for the adjudication.
-  final List<ClaimResponseTotal>? total;
+  List<ClaimResponseTotal>? total;
 
   /// [payment]
   /// Payment details for the adjudication of the claim.
-  final ClaimResponsePayment? payment;
+  ClaimResponsePayment? payment;
 
   /// [fundsReserve]
   /// A code, used only on a response to a preauthorization, to indicate
   /// whether the benefits payable have been reserved and for whom.
-  final CodeableConcept? fundsReserve;
+  CodeableConcept? fundsReserve;
 
   /// [formCode]
   /// A code for the form to be used for printing the content.
-  final CodeableConcept? formCode;
+  CodeableConcept? formCode;
 
   /// [form]
   /// The actual form, by reference or inclusion, for printing the content or
   /// an EOB.
-  final Attachment? form;
+  Attachment? form;
 
   /// [processNote]
   /// A note that describes or explains adjudication results in a human
   /// readable form.
-  final List<ClaimResponseProcessNote>? processNote;
+  List<ClaimResponseProcessNote>? processNote;
 
   /// [communicationRequest]
   /// Request for additional supporting or authorizing information.
-  final List<Reference>? communicationRequest;
+  List<Reference>? communicationRequest;
 
   /// [insurance]
   /// Financial instruments for reimbursement for the health care products
   /// and services specified on the claim.
-  final List<ClaimResponseInsurance>? insurance;
+  List<ClaimResponseInsurance>? insurance;
 
   /// [error]
   /// Errors encountered during the processing of the adjudication.
-  final List<ClaimResponseError>? error;
+  List<ClaimResponseError>? error;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -890,7 +890,7 @@ class ClaimResponseItem extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -900,7 +900,7 @@ class ClaimResponseItem extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -918,27 +918,27 @@ class ClaimResponseItem extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [itemSequence]
   /// A number to uniquely reference the claim item entries.
-  final FhirPositiveInt itemSequence;
+  FhirPositiveInt itemSequence;
 
   /// [noteNumber]
   /// The numbers associated with notes below which apply to the adjudication
   /// of this item.
-  final List<FhirPositiveInt>? noteNumber;
+  List<FhirPositiveInt>? noteNumber;
 
   /// [adjudication]
   /// If this item is a group then the values here are a summary of the
   /// adjudication of the detail items. If this item is a simple product or
   /// service then this is the result of the adjudication of this item.
-  final List<ClaimResponseAdjudication> adjudication;
+  List<ClaimResponseAdjudication> adjudication;
 
   /// [detail]
   /// A claim detail. Either a simple (a product or service) or a 'group' of
   /// sub-details which are simple items.
-  final List<ClaimResponseDetail>? detail;
+  List<ClaimResponseDetail>? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1135,7 +1135,7 @@ class ClaimResponseAdjudication extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1145,7 +1145,7 @@ class ClaimResponseAdjudication extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1163,7 +1163,7 @@ class ClaimResponseAdjudication extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [category]
   /// A code to indicate the information type of this adjudication record.
@@ -1172,21 +1172,21 @@ class ClaimResponseAdjudication extends BackboneElement {
   /// patient is responsible for in aggregate or pertaining to this item;
   /// amounts paid by other coverages; and, the benefit payable for this
   /// item.
-  final CodeableConcept category;
+  CodeableConcept category;
 
   /// [reason]
   /// A code supporting the understanding of the adjudication result and
   /// explaining variance from expected amount.
-  final CodeableConcept? reason;
+  CodeableConcept? reason;
 
   /// [amount]
   /// Monetary amount associated with the category.
-  final Money? amount;
+  Money? amount;
 
   /// [value]
   /// A non-monetary value associated with the category. Mutually exclusive
   /// to the amount element above.
-  final FhirDecimal? value;
+  FhirDecimal? value;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1378,7 +1378,7 @@ class ClaimResponseDetail extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1388,7 +1388,7 @@ class ClaimResponseDetail extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1406,20 +1406,20 @@ class ClaimResponseDetail extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [detailSequence]
   /// A number to uniquely reference the claim detail entry.
-  final FhirPositiveInt detailSequence;
+  FhirPositiveInt detailSequence;
 
   /// [noteNumber]
   /// The numbers associated with notes below which apply to the adjudication
   /// of this item.
-  final List<FhirPositiveInt>? noteNumber;
+  List<FhirPositiveInt>? noteNumber;
 
   /// [subDetail]
   /// A sub-detail adjudication of a simple product or service.
-  final List<ClaimResponseSubDetail>? subDetail;
+  List<ClaimResponseSubDetail>? subDetail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1598,7 +1598,7 @@ class ClaimResponseSubDetail extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1608,7 +1608,7 @@ class ClaimResponseSubDetail extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1626,16 +1626,16 @@ class ClaimResponseSubDetail extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [subDetailSequence]
   /// A number to uniquely reference the claim sub-detail entry.
-  final FhirPositiveInt subDetailSequence;
+  FhirPositiveInt subDetailSequence;
 
   /// [noteNumber]
   /// The numbers associated with notes below which apply to the adjudication
   /// of this item.
-  final List<FhirPositiveInt>? noteNumber;
+  List<FhirPositiveInt>? noteNumber;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1939,7 +1939,7 @@ class ClaimResponseAddItem extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1949,7 +1949,7 @@ class ClaimResponseAddItem extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1967,103 +1967,103 @@ class ClaimResponseAddItem extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [itemSequence]
   /// Claim items which this service line is intended to replace.
-  final List<FhirPositiveInt>? itemSequence;
+  List<FhirPositiveInt>? itemSequence;
 
   /// [detailSequence]
   /// The sequence number of the details within the claim item which this
   /// line is intended to replace.
-  final List<FhirPositiveInt>? detailSequence;
+  List<FhirPositiveInt>? detailSequence;
 
   /// [subdetailSequence]
   /// The sequence number of the sub-details within the details within the
   /// claim item which this line is intended to replace.
-  final List<FhirPositiveInt>? subdetailSequence;
+  List<FhirPositiveInt>? subdetailSequence;
 
   /// [provider]
   /// The providers who are authorized for the services rendered to the
   /// patient.
-  final List<Reference>? provider;
+  List<Reference>? provider;
 
   /// [productOrService]
   /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or
   /// other billing code for the item.
-  final CodeableConcept productOrService;
+  CodeableConcept productOrService;
 
   /// [modifier]
   /// Item typification or modifiers codes to convey additional context for
   /// the product or service.
-  final List<CodeableConcept>? modifier;
+  List<CodeableConcept>? modifier;
 
   /// [programCode]
   /// Identifies the program under which this may be recovered.
-  final List<CodeableConcept>? programCode;
+  List<CodeableConcept>? programCode;
 
   /// [servicedDate]
   /// The date or dates when the service or product was supplied, performed
   /// or completed.
-  final FhirDate? servicedDate;
+  FhirDate? servicedDate;
 
   /// [servicedPeriod]
   /// The date or dates when the service or product was supplied, performed
   /// or completed.
-  final Period? servicedPeriod;
+  Period? servicedPeriod;
 
   /// [locationCodeableConcept]
   /// Where the product or service was provided.
-  final CodeableConcept? locationCodeableConcept;
+  CodeableConcept? locationCodeableConcept;
 
   /// [locationAddress]
   /// Where the product or service was provided.
-  final Address? locationAddress;
+  Address? locationAddress;
 
   /// [locationReference]
   /// Where the product or service was provided.
-  final Reference? locationReference;
+  Reference? locationReference;
 
   /// [quantity]
   /// The number of repetitions of a service or product.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [unitPrice]
   /// If the item is not a group then this is the fee for the product or
   /// service, otherwise this is the total of the fees for the details of the
   /// group.
-  final Money? unitPrice;
+  Money? unitPrice;
 
   /// [factor]
   /// A real number that represents a multiplier used in determining the
   /// overall value of services delivered and/or goods received. The concept
   /// of a Factor allows for a discount or surcharge multiplier to be applied
   /// to a monetary amount.
-  final FhirDecimal? factor;
+  FhirDecimal? factor;
 
   /// [net]
   /// The quantity times the unit price for an additional service or product
   /// or charge.
-  final Money? net;
+  Money? net;
 
   /// [bodySite]
   /// Physical service site on the patient (limb, tooth, etc.).
-  final CodeableConcept? bodySite;
+  CodeableConcept? bodySite;
 
   /// [subSite]
   /// A region or surface of the bodySite, e.g. limb region or tooth
   /// surface(s).
-  final List<CodeableConcept>? subSite;
+  List<CodeableConcept>? subSite;
 
   /// [noteNumber]
   /// The numbers associated with notes below which apply to the adjudication
   /// of this item.
-  final List<FhirPositiveInt>? noteNumber;
+  List<FhirPositiveInt>? noteNumber;
 
   /// [detail]
   /// The second-tier service adjudications for payor added services.
-  final List<ClaimResponseDetail>? detail;
+  List<ClaimResponseDetail>? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2406,7 +2406,7 @@ class ClaimResponseDetail1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2416,7 +2416,7 @@ class ClaimResponseDetail1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2434,49 +2434,49 @@ class ClaimResponseDetail1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [productOrService]
   /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or
   /// other billing code for the item.
-  final CodeableConcept productOrService;
+  CodeableConcept productOrService;
 
   /// [modifier]
   /// Item typification or modifiers codes to convey additional context for
   /// the product or service.
-  final List<CodeableConcept>? modifier;
+  List<CodeableConcept>? modifier;
 
   /// [quantity]
   /// The number of repetitions of a service or product.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [unitPrice]
   /// If the item is not a group then this is the fee for the product or
   /// service, otherwise this is the total of the fees for the details of the
   /// group.
-  final Money? unitPrice;
+  Money? unitPrice;
 
   /// [factor]
   /// A real number that represents a multiplier used in determining the
   /// overall value of services delivered and/or goods received. The concept
   /// of a Factor allows for a discount or surcharge multiplier to be applied
   /// to a monetary amount.
-  final FhirDecimal? factor;
+  FhirDecimal? factor;
 
   /// [net]
   /// The quantity times the unit price for an additional service or product
   /// or charge.
-  final Money? net;
+  Money? net;
 
   /// [noteNumber]
   /// The numbers associated with notes below which apply to the adjudication
   /// of this item.
-  final List<FhirPositiveInt>? noteNumber;
+  List<FhirPositiveInt>? noteNumber;
 
   /// [subDetail]
   /// The third-tier service adjudications for payor added services.
-  final List<ClaimResponseSubDetail>? subDetail;
+  List<ClaimResponseSubDetail>? subDetail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2719,7 +2719,7 @@ class ClaimResponseSubDetail1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2729,7 +2729,7 @@ class ClaimResponseSubDetail1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2747,45 +2747,45 @@ class ClaimResponseSubDetail1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [productOrService]
   /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or
   /// other billing code for the item.
-  final CodeableConcept productOrService;
+  CodeableConcept productOrService;
 
   /// [modifier]
   /// Item typification or modifiers codes to convey additional context for
   /// the product or service.
-  final List<CodeableConcept>? modifier;
+  List<CodeableConcept>? modifier;
 
   /// [quantity]
   /// The number of repetitions of a service or product.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [unitPrice]
   /// If the item is not a group then this is the fee for the product or
   /// service, otherwise this is the total of the fees for the details of the
   /// group.
-  final Money? unitPrice;
+  Money? unitPrice;
 
   /// [factor]
   /// A real number that represents a multiplier used in determining the
   /// overall value of services delivered and/or goods received. The concept
   /// of a Factor allows for a discount or surcharge multiplier to be applied
   /// to a monetary amount.
-  final FhirDecimal? factor;
+  FhirDecimal? factor;
 
   /// [net]
   /// The quantity times the unit price for an additional service or product
   /// or charge.
-  final Money? net;
+  Money? net;
 
   /// [noteNumber]
   /// The numbers associated with notes below which apply to the adjudication
   /// of this item.
-  final List<FhirPositiveInt>? noteNumber;
+  List<FhirPositiveInt>? noteNumber;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2985,7 +2985,7 @@ class ClaimResponseTotal extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2995,7 +2995,7 @@ class ClaimResponseTotal extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3013,7 +3013,7 @@ class ClaimResponseTotal extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [category]
   /// A code to indicate the information type of this adjudication record.
@@ -3021,11 +3021,11 @@ class ClaimResponseTotal extends BackboneElement {
   /// percentages allowed or payable under the plan, amounts that the patient
   /// is responsible for in aggregate or pertaining to this item, amounts
   /// paid by other coverages, and the benefit payable for this item.
-  final CodeableConcept category;
+  CodeableConcept category;
 
   /// [amount]
   /// Monetary total amount associated with the category.
-  final Money amount;
+  Money amount;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3210,7 +3210,7 @@ class ClaimResponsePayment extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3220,7 +3220,7 @@ class ClaimResponsePayment extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3238,34 +3238,34 @@ class ClaimResponsePayment extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Whether this represents partial or complete payment of the benefits
   /// payable.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [adjustment]
   /// Total amount of all adjustments to this payment included in this
   /// transaction which are not related to this claim's adjudication.
-  final Money? adjustment;
+  Money? adjustment;
 
   /// [adjustmentReason]
   /// Reason for the payment adjustment.
-  final CodeableConcept? adjustmentReason;
+  CodeableConcept? adjustmentReason;
 
   /// [date]
   /// Estimated date the payment will be issued or the actual issue date of
   /// payment.
-  final FhirDate? date;
+  FhirDate? date;
 
   /// [amount]
   /// Benefits payable less any payment adjustment.
-  final Money amount;
+  Money amount;
 
   /// [identifier]
   /// Issuer's unique identifier for the payment instrument.
-  final Identifier? identifier;
+  Identifier? identifier;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3471,7 +3471,7 @@ class ClaimResponseProcessNote extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3481,7 +3481,7 @@ class ClaimResponseProcessNote extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3499,23 +3499,23 @@ class ClaimResponseProcessNote extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [number]
   /// A number to uniquely identify a note entry.
-  final FhirPositiveInt? number;
+  FhirPositiveInt? number;
 
   /// [type]
   /// The business purpose of the note text.
-  final NoteType? type;
+  NoteType? type;
 
   /// [text]
   /// The explanation or description associated with the processing.
-  final FhirString text;
+  FhirString text;
 
   /// [language]
   /// A code to define the language used in the text of the note.
-  final CodeableConcept? language;
+  CodeableConcept? language;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3722,7 +3722,7 @@ class ClaimResponseInsurance extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3732,7 +3732,7 @@ class ClaimResponseInsurance extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3750,34 +3750,34 @@ class ClaimResponseInsurance extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [sequence]
   /// A number to uniquely identify insurance entries and provide a sequence
   /// of coverages to convey coordination of benefit order.
-  final FhirPositiveInt sequence;
+  FhirPositiveInt sequence;
 
   /// [focal]
   /// A flag to indicate that this Coverage is to be used for adjudication of
   /// this claim when set to true.
-  final FhirBoolean focal;
+  FhirBoolean focal;
 
   /// [coverage]
   /// Reference to the insurance card level information contained in the
   /// Coverage resource. The coverage issuing insurer will use these details
   /// to locate the patient's actual coverage within the insurer's
   /// information system.
-  final Reference coverage;
+  Reference coverage;
 
   /// [businessArrangement]
   /// A business agreement number established between the provider and the
   /// insurer for special business processing purposes.
-  final FhirString? businessArrangement;
+  FhirString? businessArrangement;
 
   /// [claimResponse]
   /// The result of the adjudication of the line items for the Coverage
   /// specified in this insurance.
-  final Reference? claimResponse;
+  Reference? claimResponse;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3985,7 +3985,7 @@ class ClaimResponseError extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3995,7 +3995,7 @@ class ClaimResponseError extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -4013,30 +4013,30 @@ class ClaimResponseError extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [itemSequence]
   /// The sequence number of the line item submitted which contains the
   /// error. This value is omitted when the error occurs outside of the item
   /// structure.
-  final FhirPositiveInt? itemSequence;
+  FhirPositiveInt? itemSequence;
 
   /// [detailSequence]
   /// The sequence number of the detail within the line item submitted which
   /// contains the error. This value is omitted when the error occurs outside
   /// of the item structure.
-  final FhirPositiveInt? detailSequence;
+  FhirPositiveInt? detailSequence;
 
   /// [subDetailSequence]
   /// The sequence number of the sub-detail within the detail within the line
   /// item submitted which contains the error. This value is omitted when the
   /// error occurs outside of the item structure.
-  final FhirPositiveInt? subDetailSequence;
+  FhirPositiveInt? subDetailSequence;
 
   /// [code]
   /// An error code, from a specified code system, which details why the
   /// claim could not be adjudicated.
-  final CodeableConcept code;
+  CodeableConcept code;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -333,14 +333,14 @@ class StructureDefinition extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -348,12 +348,12 @@ class StructureDefinition extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -363,14 +363,14 @@ class StructureDefinition extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -380,7 +380,7 @@ class StructureDefinition extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -398,7 +398,7 @@ class StructureDefinition extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this structure definition when
@@ -408,13 +408,13 @@ class StructureDefinition extends DomainResource {
   /// of this structure definition is (or will be) published. This URL can be
   /// the target of a canonical reference. It SHALL remain the same when the
   /// structure definition is stored on different servers.
-  final FhirUri url;
+  FhirUri url;
 
   /// [identifier]
   /// A formal identifier that is used to identify this structure definition
   /// when it is represented in other formats, or referenced in a
   /// specification, model, design or an instance.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the structure
@@ -424,28 +424,28 @@ class StructureDefinition extends DomainResource {
   /// example, it might be a timestamp (e.g. yyyymmdd) if a managed version
   /// is not available. There is also no expectation that versions can be
   /// placed in a lexicographical sequence.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the structure definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString name;
+  FhirString name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the structure definition.
-  final FhirString? title;
+  FhirString? title;
 
   /// [status]
   /// The status of this structure definition. Enables tracking the
   /// life-cycle of the content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this structure definition is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [date]
   /// The date (and optionally time) when the structure definition was
@@ -453,22 +453,22 @@ class StructureDefinition extends DomainResource {
   /// it must change if the status code changes. In addition, it should
   /// change when the substantive content of the structure definition
   /// changes.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the structure
   /// definition.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the structure definition
   /// from a consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -476,56 +476,56 @@ class StructureDefinition extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate structure definition instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the structure definition is
   /// intended to be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this structure definition is needed and why it has
   /// been designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [copyright]
   /// A copyright statement relating to the structure definition and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the structure definition.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [keyword]
   /// A set of key words or terms from external terminologies that may be
   /// used to assist with indexing and searching of templates nby describing
   /// the use of this structure definition, or the content it describes.
-  final List<Coding>? keyword;
+  List<Coding>? keyword;
 
   /// [fhirVersion]
   /// The version of the FHIR specification on which this StructureDefinition
   /// is based - this is the formal version of the specification, without the
   /// revision number, e.g. [publication].[major].[minor], which is 4.3.0 for
   /// this version.
-  final FHIRVersion? fhirVersion;
+  FHIRVersion? fhirVersion;
 
   /// [mapping]
   /// An external specification that the content is mapped to.
-  final List<StructureDefinitionMapping>? mapping;
+  List<StructureDefinitionMapping>? mapping;
 
   /// [kind]
   /// Defines the kind of structure that this definition is describing.
-  final StructureDefinitionKind kind;
+  StructureDefinitionKind kind;
 
   /// [abstract_]
   /// Whether structure this definition describes is abstract or not - that
   /// is, whether the structure is not intended to be instantiated. For
   /// Resources and Data types, abstract types will never be exchanged
   /// between systems.
-  final FhirBoolean abstract_;
+  FhirBoolean abstract_;
 
   /// [context]
   /// Identifies the types of resource or data type elements to which the
   /// extension can be applied.
-  final List<StructureDefinitionContext>? context;
+  List<StructureDefinitionContext>? context;
 
   /// [type]
   /// The type this structure describes. If the derivation kind is
@@ -537,26 +537,26 @@ class StructureDefinition extends DomainResource {
   /// http://hl7.org/fhir/StructureDefinition e.g. "string" is a reference to
   /// http://hl7.org/fhir/StructureDefinition/string. Absolute URLs are only
   /// allowed in logical models.
-  final FHIRDefinedType type;
+  FHIRDefinedType type;
 
   /// [baseDefinition]
   /// An absolute URI that is the base structure from which this type is
   /// derived, either by specialization or constraint.
-  final FhirCanonical? baseDefinition;
+  FhirCanonical? baseDefinition;
 
   /// [derivation]
   /// How the type relates to the baseDefinition.
-  final TypeDerivationRule? derivation;
+  TypeDerivationRule? derivation;
 
   /// [snapshot]
   /// A snapshot view is expressed in a standalone form that can be used and
   /// interpreted without considering the base StructureDefinition.
-  final StructureDefinitionSnapshot? snapshot;
+  StructureDefinitionSnapshot? snapshot;
 
   /// [differential]
   /// A differential view is expressed relative to the base
   /// StructureDefinition - a statement of differences that it applies.
-  final StructureDefinitionDifferential? differential;
+  StructureDefinitionDifferential? differential;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -977,7 +977,7 @@ class StructureDefinitionMapping extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -987,7 +987,7 @@ class StructureDefinitionMapping extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1005,26 +1005,26 @@ class StructureDefinitionMapping extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identity]
   /// An Internal id that is used to identify this mapping set when specific
   /// mappings are made.
-  final FhirId identity;
+  FhirId identity;
 
   /// [uri]
   /// An absolute URI that identifies the specification that this mapping is
   /// expressed to.
-  final FhirUri? uri;
+  FhirUri? uri;
 
   /// [name]
   /// A name for the specification that is being mapped to.
-  final FhirString? name;
+  FhirString? name;
 
   /// [comment]
   /// Comments about this mapping, including version notes, issues, scope
   /// limitations, and other important notes for usage.
-  final FhirString? comment;
+  FhirString? comment;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1223,7 +1223,7 @@ class StructureDefinitionContext extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1233,7 +1233,7 @@ class StructureDefinitionContext extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1251,22 +1251,22 @@ class StructureDefinitionContext extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Defines how to interpret the expression that defines what the context
   /// of the extension is.
-  final ExtensionContextType type;
+  ExtensionContextType type;
 
   /// [expression]
   /// An expression that defines where an extension can be used in resources.
-  final FhirString expression;
+  FhirString expression;
 
   /// [contextInvariant]
   /// A set of rules as FHIRPath Invariants about when the extension can be
   /// used (e.g. co-occurrence variants for the extension). All the rules
   /// must be true.
-  final List<FhirString>? contextInvariant;
+  List<FhirString>? contextInvariant;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1447,7 +1447,7 @@ class StructureDefinitionSnapshot extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1457,7 +1457,7 @@ class StructureDefinitionSnapshot extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1475,11 +1475,11 @@ class StructureDefinitionSnapshot extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [element]
   /// Captures constraints on each element within the resource.
-  final List<ElementDefinition> element;
+  List<ElementDefinition> element;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1638,7 +1638,7 @@ class StructureDefinitionDifferential extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1648,7 +1648,7 @@ class StructureDefinitionDifferential extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1666,11 +1666,11 @@ class StructureDefinitionDifferential extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [element]
   /// Captures constraints on each element within the resource.
-  final List<ElementDefinition> element;
+  List<ElementDefinition> element;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

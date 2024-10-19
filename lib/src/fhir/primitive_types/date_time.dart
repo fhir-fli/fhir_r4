@@ -183,12 +183,12 @@ class FhirDateTime extends FhirDateTimeBase {
   int dbId = 0;
 
   /// Element stored as a relation in ObjectBox
-  final String? dbValue;
+  String? dbValue;
 
   /// Element stored as a relation in ObjectBox
   @override
   // ignore: overridden_fields
-  final Element? element;
+  Element? element;
 
   /// Clones the current [FhirDateTime] and returns a new instance.
   @override

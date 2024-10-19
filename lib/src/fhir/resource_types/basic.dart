@@ -176,14 +176,14 @@ class Basic extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -191,12 +191,12 @@ class Basic extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -206,14 +206,14 @@ class Basic extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -223,7 +223,7 @@ class Basic extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -241,30 +241,30 @@ class Basic extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifier assigned to the resource for business purposes, outside the
   /// context of FHIR.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [code]
   /// Identifies the 'type' of resource - equivalent to the resource name for
   /// other resources.
-  final CodeableConcept code;
+  CodeableConcept code;
 
   /// [subject]
   /// Identifies the patient, practitioner, device or any other resource that
   /// is the "focus" of this resource.
-  final Reference? subject;
+  Reference? subject;
 
   /// [created]
   /// Identifies when the resource was first created.
-  final FhirDate? created;
+  FhirDate? created;
 
   /// [author]
   /// Indicates who was responsible for creating the resource instance.
-  final Reference? author;
+  Reference? author;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

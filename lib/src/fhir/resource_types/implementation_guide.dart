@@ -291,14 +291,14 @@ class ImplementationGuide extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -306,12 +306,12 @@ class ImplementationGuide extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -321,14 +321,14 @@ class ImplementationGuide extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -338,7 +338,7 @@ class ImplementationGuide extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -356,7 +356,7 @@ class ImplementationGuide extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this implementation guide when
@@ -366,7 +366,7 @@ class ImplementationGuide extends DomainResource {
   /// of this implementation guide is (or will be) published. This URL can be
   /// the target of a canonical reference. It SHALL remain the same when the
   /// implementation guide is stored on different servers.
-  final FhirUri url;
+  FhirUri url;
 
   /// [version]
   /// The identifier that is used to identify this version of the
@@ -376,28 +376,28 @@ class ImplementationGuide extends DomainResource {
   /// For example, it might be a timestamp (e.g. yyyymmdd) if a managed
   /// version is not available. There is also no expectation that versions
   /// can be placed in a lexicographical sequence.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the implementation guide. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString name;
+  FhirString name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the implementation guide.
-  final FhirString? title;
+  FhirString? title;
 
   /// [status]
   /// The status of this implementation guide. Enables tracking the
   /// life-cycle of the content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this implementation guide is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [date]
   /// The date (and optionally time) when the implementation guide was
@@ -405,22 +405,22 @@ class ImplementationGuide extends DomainResource {
   /// it must change if the status code changes. In addition, it should
   /// change when the substantive content of the implementation guide
   /// changes.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the
   /// implementation guide.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the implementation guide
   /// from a consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -428,58 +428,58 @@ class ImplementationGuide extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate implementation guide instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the implementation guide is
   /// intended to be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [copyright]
   /// A copyright statement relating to the implementation guide and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the implementation guide.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [packageId]
   /// The NPM package name for this Implementation Guide, used in the NPM
   /// package distribution, which is the primary mechanism by which FHIR
   /// based tooling manages IG dependencies. This value must be globally
   /// unique, and should be assigned with care.
-  final FhirId packageId;
+  FhirId packageId;
 
   /// [license]
   /// The license that applies to this Implementation Guide, using an SPDX
   /// license code, or 'not-open-source'.
-  final SPDXLicense? license;
+  SPDXLicense? license;
 
   /// [fhirVersion]
   /// The version(s) of the FHIR specification that this ImplementationGuide
   /// targets - e.g. describes how to use. The value of this element is the
   /// formal version of the specification, without the revision number, e.g.
   /// [publication].[major].[minor], which is 4.3.0 for this version.
-  final List<FHIRVersion> fhirVersion;
+  List<FHIRVersion> fhirVersion;
 
   /// [dependsOn]
   /// Another implementation guide that this implementation depends on.
   /// Typically, an implementation guide uses value sets, profiles
   /// etc.defined in other implementation guides.
-  final List<ImplementationGuideDependsOn>? dependsOn;
+  List<ImplementationGuideDependsOn>? dependsOn;
 
   /// [global]
   /// A set of profiles that all resources covered by this implementation
   /// guide must conform to.
-  final List<ImplementationGuideGlobal>? global;
+  List<ImplementationGuideGlobal>? global;
 
   /// [definition]
   /// The information needed by an IG publisher tool to publish the whole
   /// implementation guide.
-  final ImplementationGuideDefinition? definition;
+  ImplementationGuideDefinition? definition;
 
   /// [manifest]
   /// Information about an assembled implementation guide, created by the
   /// publication tooling.
-  final ImplementationGuideManifest? manifest;
+  ImplementationGuideManifest? manifest;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -845,7 +845,7 @@ class ImplementationGuideDependsOn extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -855,7 +855,7 @@ class ImplementationGuideDependsOn extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -873,21 +873,21 @@ class ImplementationGuideDependsOn extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [uri]
   /// A canonical reference to the Implementation guide for the dependency.
-  final FhirCanonical uri;
+  FhirCanonical uri;
 
   /// [packageId]
   /// The NPM package name for the Implementation Guide that this IG depends
   /// on.
-  final FhirId? packageId;
+  FhirId? packageId;
 
   /// [version]
   /// The version of the IG that is depended on, when the correct version is
   /// required to understand the IG correctly.
-  final FhirString? version;
+  FhirString? version;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1070,7 +1070,7 @@ class ImplementationGuideGlobal extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1080,7 +1080,7 @@ class ImplementationGuideGlobal extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1098,15 +1098,15 @@ class ImplementationGuideGlobal extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The type of resource that all instances must conform to.
-  final FhirCode type;
+  FhirCode type;
 
   /// [profile]
   /// A reference to the profile that all instances must conform to.
-  final FhirCanonical profile;
+  FhirCanonical profile;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1313,7 +1313,7 @@ class ImplementationGuideDefinition extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1323,7 +1323,7 @@ class ImplementationGuideDefinition extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1341,32 +1341,32 @@ class ImplementationGuideDefinition extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [grouping]
   /// A logical group of resources. Logical groups can be used when building
   /// pages.
-  final List<ImplementationGuideGrouping>? grouping;
+  List<ImplementationGuideGrouping>? grouping;
 
   /// [resource]
   /// A resource that is part of the implementation guide. Conformance
   /// resources (value set, structure definition, capability statements etc.)
   /// are obvious candidates for inclusion, but any kind of resource can be
   /// included as an example resource.
-  final List<ImplementationGuideResource> resource;
+  List<ImplementationGuideResource> resource;
 
   /// [page]
   /// A page / section in the implementation guide. The root page is the
   /// implementation guide home page.
-  final ImplementationGuidePage? page;
+  ImplementationGuidePage? page;
 
   /// [parameter]
   /// Defines how IG is built by tools.
-  final List<ImplementationGuideParameter>? parameter;
+  List<ImplementationGuideParameter>? parameter;
 
   /// [template]
   /// A template for building resources.
-  final List<ImplementationGuideTemplate>? template;
+  List<ImplementationGuideTemplate>? template;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1551,7 +1551,7 @@ class ImplementationGuideGrouping extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1561,7 +1561,7 @@ class ImplementationGuideGrouping extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1579,16 +1579,16 @@ class ImplementationGuideGrouping extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// The human-readable title to display for the package of resources when
   /// rendering the implementation guide.
-  final FhirString name;
+  FhirString name;
 
   /// [description]
   /// Human readable text describing the package.
-  final FhirString? description;
+  FhirString? description;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1800,7 +1800,7 @@ class ImplementationGuideResource extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1810,7 +1810,7 @@ class ImplementationGuideResource extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1828,44 +1828,44 @@ class ImplementationGuideResource extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [reference]
   /// Where this resource is found.
-  final Reference reference;
+  Reference reference;
 
   /// [fhirVersion]
   /// Indicates the FHIR Version(s) this artifact is intended to apply to. If
   /// no versions are specified, the resource is assumed to apply to all the
   /// versions stated in ImplementationGuide.fhirVersion.
-  final List<FHIRVersion>? fhirVersion;
+  List<FHIRVersion>? fhirVersion;
 
   /// [name]
   /// A human assigned name for the resource. All resources SHOULD have a
   /// name, but the name may be extracted from the resource (e.g.
   /// ValueSet.name).
-  final FhirString? name;
+  FhirString? name;
 
   /// [description]
   /// A description of the reason that a resource has been included in the
   /// implementation guide.
-  final FhirString? description;
+  FhirString? description;
 
   /// [exampleBoolean]
   /// If true or a reference, indicates the resource is an example instance.
   /// If a reference is present, indicates that the example is an example of
   /// the specified profile.
-  final FhirBoolean? exampleBoolean;
+  FhirBoolean? exampleBoolean;
 
   /// [exampleCanonical]
   /// If true or a reference, indicates the resource is an example instance.
   /// If a reference is present, indicates that the example is an example of
   /// the specified profile.
-  final FhirCanonical? exampleCanonical;
+  FhirCanonical? exampleCanonical;
 
   /// [groupingId]
   /// Reference to the id of the grouping this resource appears in.
-  final FhirId? groupingId;
+  FhirId? groupingId;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2097,7 +2097,7 @@ class ImplementationGuidePage extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2107,7 +2107,7 @@ class ImplementationGuidePage extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2125,24 +2125,24 @@ class ImplementationGuidePage extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [nameUrl]
   /// The source address for the page.
-  final FhirUrl? nameUrl;
+  FhirUrl? nameUrl;
 
   /// [nameReference]
   /// The source address for the page.
-  final Reference? nameReference;
+  Reference? nameReference;
 
   /// [title]
   /// A short title used to represent this page in navigational structures
   /// such as table of contents, bread crumbs, etc.
-  final FhirString title;
+  FhirString title;
 
   /// [generation]
   /// A code that indicates how the page is generated.
-  final GuidePageGeneration generation;
+  GuidePageGeneration generation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2328,7 +2328,7 @@ class ImplementationGuideParameter extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2338,7 +2338,7 @@ class ImplementationGuideParameter extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2356,17 +2356,17 @@ class ImplementationGuideParameter extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// apply | path-resource | path-pages | path-tx-cache |
   /// expansion-parameter | rule-broken-links | generate-xml | generate-json
   /// | generate-turtle | html-template.
-  final GuideParameterCode code;
+  GuideParameterCode code;
 
   /// [value]
   /// Value for named type.
-  final FhirString value;
+  FhirString value;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2543,7 +2543,7 @@ class ImplementationGuideTemplate extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2553,7 +2553,7 @@ class ImplementationGuideTemplate extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2571,19 +2571,19 @@ class ImplementationGuideTemplate extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// Type of template specified.
-  final FhirCode code;
+  FhirCode code;
 
   /// [source]
   /// The source location for the template.
-  final FhirString source;
+  FhirString source;
 
   /// [scope]
   /// The scope in which the template applies.
-  final FhirString? scope;
+  FhirString? scope;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2793,7 +2793,7 @@ class ImplementationGuideManifest extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2803,7 +2803,7 @@ class ImplementationGuideManifest extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2821,33 +2821,33 @@ class ImplementationGuideManifest extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [rendering]
   /// A pointer to official web page, PDF or other rendering of the
   /// implementation guide.
-  final FhirUrl? rendering;
+  FhirUrl? rendering;
 
   /// [resource]
   /// A resource that is part of the implementation guide. Conformance
   /// resources (value set, structure definition, capability statements etc.)
   /// are obvious candidates for inclusion, but any kind of resource can be
   /// included as an example resource.
-  final List<ImplementationGuideResource> resource;
+  List<ImplementationGuideResource> resource;
 
   /// [page]
   /// Information about a page within the IG.
-  final List<ImplementationGuidePage>? page;
+  List<ImplementationGuidePage>? page;
 
   /// [image]
   /// Indicates a relative path to an image that exists within the IG.
-  final List<FhirString>? image;
+  List<FhirString>? image;
 
   /// [other]
   /// Indicates the relative path of an additional non-page, non-image file
   /// that is part of the IG - e.g. zip, jar and similar files that could be
   /// the target of a hyperlink in a derived IG.
-  final List<FhirString>? other;
+  List<FhirString>? other;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3062,7 +3062,7 @@ class ImplementationGuideResource1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3072,7 +3072,7 @@ class ImplementationGuideResource1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3090,27 +3090,27 @@ class ImplementationGuideResource1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [reference]
   /// Where this resource is found.
-  final Reference reference;
+  Reference reference;
 
   /// [exampleBoolean]
   /// If true or a reference, indicates the resource is an example instance.
   /// If a reference is present, indicates that the example is an example of
   /// the specified profile.
-  final FhirBoolean? exampleBoolean;
+  FhirBoolean? exampleBoolean;
 
   /// [exampleCanonical]
   /// If true or a reference, indicates the resource is an example instance.
   /// If a reference is present, indicates that the example is an example of
   /// the specified profile.
-  final FhirCanonical? exampleCanonical;
+  FhirCanonical? exampleCanonical;
 
   /// [relativePath]
   /// The relative path for primary page for this resource within the IG.
-  final FhirUrl? relativePath;
+  FhirUrl? relativePath;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3306,7 +3306,7 @@ class ImplementationGuidePage1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3316,7 +3316,7 @@ class ImplementationGuidePage1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3334,19 +3334,19 @@ class ImplementationGuidePage1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// Relative path to the page.
-  final FhirString name;
+  FhirString name;
 
   /// [title]
   /// Label for the page intended for human display.
-  final FhirString? title;
+  FhirString? title;
 
   /// [anchor]
   /// The name of an anchor available on the page.
-  final List<FhirString>? anchor;
+  List<FhirString>? anchor;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

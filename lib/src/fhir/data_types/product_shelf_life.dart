@@ -126,7 +126,7 @@ class ProductShelfLife extends BackboneType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -136,7 +136,7 @@ class ProductShelfLife extends BackboneType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -154,11 +154,11 @@ class ProductShelfLife extends BackboneType {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Unique identifier for the packaged Medicinal Product.
-  final Identifier? identifier;
+  Identifier? identifier;
 
   /// [type]
   /// This describes the shelf life, taking into account various scenarios
@@ -167,7 +167,7 @@ class ProductShelfLife extends BackboneType {
   /// opening of a bottle, etc. The shelf life type shall be specified using
   /// an appropriate controlled vocabulary The controlled term and the
   /// controlled term identifier shall be specified.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [period]
   /// The shelf life time period can be specified using a numerical value for
@@ -175,13 +175,13 @@ class ProductShelfLife extends BackboneType {
   /// measurement shall be specified in accordance with ISO 11240 and the
   /// resulting terminology The symbol and the symbol identifier shall be
   /// used.
-  final Quantity period;
+  Quantity period;
 
   /// [specialPrecautionsForStorage]
   /// Special precautions for storage, if any, can be specified using an
   /// appropriate controlled vocabulary The controlled term and the
   /// controlled term identifier shall be specified.
-  final List<CodeableConcept>? specialPrecautionsForStorage;
+  List<CodeableConcept>? specialPrecautionsForStorage;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

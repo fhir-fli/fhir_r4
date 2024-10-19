@@ -278,14 +278,14 @@ class ExampleScenario extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -293,12 +293,12 @@ class ExampleScenario extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -308,14 +308,14 @@ class ExampleScenario extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -325,7 +325,7 @@ class ExampleScenario extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -343,7 +343,7 @@ class ExampleScenario extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this example scenario when it
@@ -353,13 +353,13 @@ class ExampleScenario extends DomainResource {
   /// of this example scenario is (or will be) published. This URL can be the
   /// target of a canonical reference. It SHALL remain the same when the
   /// example scenario is stored on different servers.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [identifier]
   /// A formal identifier that is used to identify this example scenario when
   /// it is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the example
@@ -369,24 +369,24 @@ class ExampleScenario extends DomainResource {
   /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
   /// There is also no expectation that versions can be placed in a
   /// lexicographical sequence.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the example scenario. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString? name;
+  FhirString? name;
 
   /// [status]
   /// The status of this example scenario. Enables tracking the life-cycle of
   /// the content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this example scenario is authored for
   /// testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [date]
   /// The date (and optionally time) when the example scenario was published.
@@ -394,17 +394,17 @@ class ExampleScenario extends DomainResource {
   /// change if the status code changes. In addition, it should change when
   /// the substantive content of the example scenario changes. (e.g. the
   /// 'content logical definition').
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the example
   /// scenario.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -412,40 +412,40 @@ class ExampleScenario extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate example scenario instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the example scenario is intended
   /// to be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [copyright]
   /// A copyright statement relating to the example scenario and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the example scenario.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [purpose]
   /// What the example scenario resource is created for. This should not be
   /// used to show the business purpose of the scenario itself, but the
   /// purpose of documenting a scenario.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [actor]
   /// Actor participating in the resource.
-  final List<ExampleScenarioActor>? actor;
+  List<ExampleScenarioActor>? actor;
 
   /// [instance]
   /// Each resource and each version that is present in the workflow.
-  final List<ExampleScenarioInstance>? instance;
+  List<ExampleScenarioInstance>? instance;
 
   /// [process]
   /// Each major process - a group of operations.
-  final List<ExampleScenarioProcess>? process;
+  List<ExampleScenarioProcess>? process;
 
   /// [workflow]
   /// Another nested workflow.
-  final List<FhirCanonical>? workflow;
+  List<FhirCanonical>? workflow;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -792,7 +792,7 @@ class ExampleScenarioActor extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -802,7 +802,7 @@ class ExampleScenarioActor extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -820,23 +820,23 @@ class ExampleScenarioActor extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [actorId]
   /// ID or acronym of actor.
-  final FhirString actorId;
+  FhirString actorId;
 
   /// [type]
   /// The type of actor - person or system.
-  final ExampleScenarioActorType type;
+  ExampleScenarioActorType type;
 
   /// [name]
   /// The name of the actor as shown in the page.
-  final FhirString? name;
+  FhirString? name;
 
   /// [description]
   /// The description of the actor.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1060,7 +1060,7 @@ class ExampleScenarioInstance extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1070,7 +1070,7 @@ class ExampleScenarioInstance extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1088,32 +1088,32 @@ class ExampleScenarioInstance extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [resourceId]
   /// The id of the resource for referencing.
-  final FhirString resourceId;
+  FhirString resourceId;
 
   /// [resourceType]
   /// The type of the resource.
-  final FhirCode resourceType;
+  FhirCode resourceType;
 
   /// [name]
   /// A short name for the resource instance.
-  final FhirString? name;
+  FhirString? name;
 
   /// [description]
   /// Human-friendly description of the resource instance.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [version]
   /// A specific version of the resource.
-  final List<ExampleScenarioVersion>? version;
+  List<ExampleScenarioVersion>? version;
 
   /// [containedInstance]
   /// Resources contained in the instance (e.g. the observations contained in
   /// a bundle).
-  final List<ExampleScenarioContainedInstance>? containedInstance;
+  List<ExampleScenarioContainedInstance>? containedInstance;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1316,7 +1316,7 @@ class ExampleScenarioVersion extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1326,7 +1326,7 @@ class ExampleScenarioVersion extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1344,15 +1344,15 @@ class ExampleScenarioVersion extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [versionId]
   /// The identifier of a specific version of a resource.
-  final FhirString versionId;
+  FhirString versionId;
 
   /// [description]
   /// The description of the resource version.
-  final FhirMarkdown description;
+  FhirMarkdown description;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1525,7 +1525,7 @@ class ExampleScenarioContainedInstance extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1535,7 +1535,7 @@ class ExampleScenarioContainedInstance extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1553,15 +1553,15 @@ class ExampleScenarioContainedInstance extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [resourceId]
   /// Each resource contained in the instance.
-  final FhirString resourceId;
+  FhirString resourceId;
 
   /// [versionId]
   /// A specific version of a resource contained in the instance.
-  final FhirString? versionId;
+  FhirString? versionId;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1761,7 +1761,7 @@ class ExampleScenarioProcess extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1771,7 +1771,7 @@ class ExampleScenarioProcess extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1789,27 +1789,27 @@ class ExampleScenarioProcess extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [title]
   /// The diagram title of the group of operations.
-  final FhirString title;
+  FhirString title;
 
   /// [description]
   /// A longer description of the group of operations.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [preConditions]
   /// Description of initial status before the process starts.
-  final FhirMarkdown? preConditions;
+  FhirMarkdown? preConditions;
 
   /// [postConditions]
   /// Description of final status after the process ends.
-  final FhirMarkdown? postConditions;
+  FhirMarkdown? postConditions;
 
   /// [step]
   /// Each step of the process.
-  final List<ExampleScenarioStep>? step;
+  List<ExampleScenarioStep>? step;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2030,7 +2030,7 @@ class ExampleScenarioStep extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2040,7 +2040,7 @@ class ExampleScenarioStep extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2058,24 +2058,24 @@ class ExampleScenarioStep extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [process]
   /// Nested process.
-  final List<ExampleScenarioProcess>? process;
+  List<ExampleScenarioProcess>? process;
 
   /// [pause]
   /// If there is a pause in the flow.
-  final FhirBoolean? pause;
+  FhirBoolean? pause;
 
   /// [operation]
   /// Each interaction or action.
-  final ExampleScenarioOperation? operation;
+  ExampleScenarioOperation? operation;
 
   /// [alternative]
   /// Indicates an alternative step that can be taken instead of the
   /// operations on the base step in exceptional/atypical circumstances.
-  final List<ExampleScenarioAlternative>? alternative;
+  List<ExampleScenarioAlternative>? alternative;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2303,7 +2303,7 @@ class ExampleScenarioOperation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2313,7 +2313,7 @@ class ExampleScenarioOperation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2331,39 +2331,39 @@ class ExampleScenarioOperation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [number]
   /// The sequential number of the interaction, e.g. 1.2.5.
-  final FhirString number;
+  FhirString number;
 
   /// [type]
   /// The type of operation - CRUD.
-  final FhirString? type;
+  FhirString? type;
 
   /// [name]
   /// The human-friendly name of the interaction.
-  final FhirString? name;
+  FhirString? name;
 
   /// [initiator]
   /// Who starts the transaction.
-  final FhirString? initiator;
+  FhirString? initiator;
 
   /// [receiver]
   /// Who receives the transaction.
-  final FhirString? receiver;
+  FhirString? receiver;
 
   /// [description]
   /// A comment to be inserted in the diagram.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [initiatorActive]
   /// Whether the initiator is deactivated right after the transaction.
-  final FhirBoolean? initiatorActive;
+  FhirBoolean? initiatorActive;
 
   /// [receiverActive]
   /// Whether the receiver is deactivated right after the transaction.
-  final FhirBoolean? receiverActive;
+  FhirBoolean? receiverActive;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2598,7 +2598,7 @@ class ExampleScenarioAlternative extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2608,7 +2608,7 @@ class ExampleScenarioAlternative extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2626,17 +2626,17 @@ class ExampleScenarioAlternative extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [title]
   /// The label to display for the alternative that gives a sense of the
   /// circumstance in which the alternative should be invoked.
-  final FhirString title;
+  FhirString title;
 
   /// [description]
   /// A human-readable description of the alternative explaining when the
   /// alternative should occur rather than the base step.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

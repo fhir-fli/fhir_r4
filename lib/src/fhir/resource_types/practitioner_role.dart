@@ -264,14 +264,14 @@ class PractitionerRole extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -279,12 +279,12 @@ class PractitionerRole extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -294,14 +294,14 @@ class PractitionerRole extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -311,7 +311,7 @@ class PractitionerRole extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -329,73 +329,73 @@ class PractitionerRole extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business Identifiers that are specific to a role/location.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [active]
   /// Whether this practitioner role record is in active use.
-  final FhirBoolean? active;
+  FhirBoolean? active;
 
   /// [period]
   /// The period during which the person is authorized to act as a
   /// practitioner in these role(s) for the organization.
-  final Period? period;
+  Period? period;
 
   /// [practitioner]
   /// Practitioner that is able to provide the defined services for the
   /// organization.
-  final Reference? practitioner;
+  Reference? practitioner;
 
   /// [organization]
   /// The organization where the Practitioner performs the roles associated.
-  final Reference? organization;
+  Reference? organization;
 
   /// [code]
   /// Roles which this practitioner is authorized to perform for the
   /// organization.
-  final List<CodeableConcept>? code;
+  List<CodeableConcept>? code;
 
   /// [specialty]
   /// Specific specialty of the practitioner.
-  final List<CodeableConcept>? specialty;
+  List<CodeableConcept>? specialty;
 
   /// [location]
   /// The location(s) at which this practitioner provides care.
-  final List<Reference>? location;
+  List<Reference>? location;
 
   /// [healthcareService]
   /// The list of healthcare services that this worker provides for this
   /// role's Organization/Location(s).
-  final List<Reference>? healthcareService;
+  List<Reference>? healthcareService;
 
   /// [telecom]
   /// Contact details that are specific to the role/location/service.
-  final List<ContactPoint>? telecom;
+  List<ContactPoint>? telecom;
 
   /// [availableTime]
   /// A collection of times the practitioner is available or performing this
   /// role at the location and/or healthcareservice.
-  final List<PractitionerRoleAvailableTime>? availableTime;
+  List<PractitionerRoleAvailableTime>? availableTime;
 
   /// [notAvailable]
   /// The practitioner is not available or performing this role during this
   /// period of time due to the provided reason.
-  final List<PractitionerRoleNotAvailable>? notAvailable;
+  List<PractitionerRoleNotAvailable>? notAvailable;
 
   /// [availabilityExceptions]
   /// A description of site availability exceptions, e.g. public holiday
   /// availability. Succinctly describing all possible exceptions to normal
   /// site availability as details in the available Times and not available
   /// Times.
-  final FhirString? availabilityExceptions;
+  FhirString? availabilityExceptions;
 
   /// [endpoint]
   /// Technical endpoints providing access to services operated for the
   /// practitioner with this role.
-  final List<Reference>? endpoint;
+  List<Reference>? endpoint;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -702,7 +702,7 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -712,7 +712,7 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -730,27 +730,27 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [daysOfWeek]
   /// Indicates which days of the week are available between the start and
   /// end Times.
-  final List<DaysOfWeek>? daysOfWeek;
+  List<DaysOfWeek>? daysOfWeek;
 
   /// [allDay]
   /// Is this always available? (hence times are irrelevant) e.g. 24 hour
   /// service.
-  final FhirBoolean? allDay;
+  FhirBoolean? allDay;
 
   /// [availableStartTime]
   /// The opening time of day. Note: If the AllDay flag is set, then this
   /// time is ignored.
-  final FhirTime? availableStartTime;
+  FhirTime? availableStartTime;
 
   /// [availableEndTime]
   /// The closing time of day. Note: If the AllDay flag is set, then this
   /// time is ignored.
-  final FhirTime? availableEndTime;
+  FhirTime? availableEndTime;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -946,7 +946,7 @@ class PractitionerRoleNotAvailable extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -956,7 +956,7 @@ class PractitionerRoleNotAvailable extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -974,17 +974,17 @@ class PractitionerRoleNotAvailable extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// The reason that can be presented to the user as to why this time is not
   /// available.
-  final FhirString description;
+  FhirString description;
 
   /// [during]
   /// Service is not available (seasonally or for a public holiday) from this
   /// date.
-  final Period? during;
+  Period? during;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

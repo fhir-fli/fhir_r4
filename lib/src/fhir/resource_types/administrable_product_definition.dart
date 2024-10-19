@@ -226,14 +226,14 @@ class AdministrableProductDefinition extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -241,12 +241,12 @@ class AdministrableProductDefinition extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -256,14 +256,14 @@ class AdministrableProductDefinition extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -273,7 +273,7 @@ class AdministrableProductDefinition extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -291,16 +291,16 @@ class AdministrableProductDefinition extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// An identifier for the administrable product.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// The status of this administrable product. Enables tracking the
   /// life-cycle of the content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [formOf]
   /// References a product from which one or more of the constituent parts of
@@ -311,7 +311,7 @@ class AdministrableProductDefinition extends DomainResource {
   /// cream. This is distinct from the 'producedFrom' which refers to the
   /// specific components of the product that are used in this preparation,
   /// rather than the product as a whole.
-  final List<Reference>? formOf;
+  List<Reference>? formOf;
 
   /// [administrableDoseForm]
   /// The dose form of the final product after necessary reconstitution or
@@ -320,13 +320,13 @@ class AdministrableProductDefinition extends DomainResource {
   /// solution for injection', the administrable dose form could be 'solution
   /// for injection' (once mixed with another item having manufactured form
   /// 'solvent for solution for injection').
-  final CodeableConcept? administrableDoseForm;
+  CodeableConcept? administrableDoseForm;
 
   /// [unitOfPresentation]
   /// The presentation type in which this item is given to a patient. e.g.
   /// for a spray - 'puff' (as in 'contains 100 mcg per puff'), or for a
   /// liquid - 'vial' (as in 'contains 5 ml per vial').
-  final CodeableConcept? unitOfPresentation;
+  CodeableConcept? unitOfPresentation;
 
   /// [producedFrom]
   /// Indicates the specific manufactured items that are part of the 'formOf'
@@ -337,7 +337,7 @@ class AdministrableProductDefinition extends DomainResource {
   /// available in the overall product. For example, an administrable form
   /// might involve combining a liquid and a powder available as part of an
   /// overall product, but not involve applying the also supplied cream.
-  final List<Reference>? producedFrom;
+  List<Reference>? producedFrom;
 
   /// [ingredient]
   /// The ingredients of this administrable medicinal product. This is only
@@ -347,24 +347,24 @@ class AdministrableProductDefinition extends DomainResource {
   /// items are used to make this, or using by incoming references from the
   /// Ingredient resource, to state in detail which substances exist within
   /// this. This element allows a basic coded ingredient to be used.
-  final List<CodeableConcept>? ingredient;
+  List<CodeableConcept>? ingredient;
 
   /// [device]
   /// A device that is integral to the medicinal product, in effect being
   /// considered as an "ingredient" of the medicinal product. This is not
   /// intended for devices that are just co-packaged.
-  final Reference? device;
+  Reference? device;
 
   /// [property]
   /// Characteristics e.g. a product's onset of action.
-  final List<AdministrableProductDefinitionProperty>? property;
+  List<AdministrableProductDefinitionProperty>? property;
 
   /// [routeOfAdministration]
   /// The path by which the product is taken into or makes contact with the
   /// body. In some regions this is referred to as the licenced or approved
   /// route. RouteOfAdministration cannot be used when the 'formOf' product
   /// already uses MedicinalProductDefinition.route (and vice versa).
-  final List<AdministrableProductDefinitionRouteOfAdministration>
+  List<AdministrableProductDefinitionRouteOfAdministration>
       routeOfAdministration;
   @override
   Map<String, dynamic> toJson() {
@@ -655,7 +655,7 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -665,7 +665,7 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -683,35 +683,35 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// A code expressing the type of characteristic.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [valueCodeableConcept]
   /// A value for the characteristic.
-  final CodeableConcept? valueCodeableConcept;
+  CodeableConcept? valueCodeableConcept;
 
   /// [valueQuantity]
   /// A value for the characteristic.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueDate]
   /// A value for the characteristic.
-  final FhirDate? valueDate;
+  FhirDate? valueDate;
 
   /// [valueBoolean]
   /// A value for the characteristic.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueAttachment]
   /// A value for the characteristic.
-  final Attachment? valueAttachment;
+  Attachment? valueAttachment;
 
   /// [status]
   /// The status of characteristic e.g. assigned or pending.
-  final CodeableConcept? status;
+  CodeableConcept? status;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -951,7 +951,7 @@ class AdministrableProductDefinitionRouteOfAdministration
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -961,7 +961,7 @@ class AdministrableProductDefinitionRouteOfAdministration
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -979,39 +979,39 @@ class AdministrableProductDefinitionRouteOfAdministration
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// Coded expression for the route.
-  final CodeableConcept code;
+  CodeableConcept code;
 
   /// [firstDose]
   /// The first dose (dose quantity) administered can be specified for the
   /// product, using a numerical value and its unit of measurement.
-  final Quantity? firstDose;
+  Quantity? firstDose;
 
   /// [maxSingleDose]
   /// The maximum single dose that can be administered, specified using a
   /// numerical value and its unit of measurement.
-  final Quantity? maxSingleDose;
+  Quantity? maxSingleDose;
 
   /// [maxDosePerDay]
   /// The maximum dose per day (maximum dose quantity to be administered in
   /// any one 24-h period) that can be administered.
-  final Quantity? maxDosePerDay;
+  Quantity? maxDosePerDay;
 
   /// [maxDosePerTreatmentPeriod]
   /// The maximum dose per treatment period that can be administered.
-  final Ratio? maxDosePerTreatmentPeriod;
+  Ratio? maxDosePerTreatmentPeriod;
 
   /// [maxTreatmentPeriod]
   /// The maximum treatment period during which the product can be
   /// administered.
-  final FhirDuration? maxTreatmentPeriod;
+  FhirDuration? maxTreatmentPeriod;
 
   /// [targetSpecies]
   /// A species for which this route applies.
-  final List<AdministrableProductDefinitionTargetSpecies>? targetSpecies;
+  List<AdministrableProductDefinitionTargetSpecies>? targetSpecies;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1211,7 +1211,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1221,7 +1221,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1239,16 +1239,16 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// Coded expression for the species.
-  final CodeableConcept code;
+  CodeableConcept code;
 
   /// [withdrawalPeriod]
   /// A species specific time during which consumption of animal product is
   /// not appropriate.
-  final List<AdministrableProductDefinitionWithdrawalPeriod>? withdrawalPeriod;
+  List<AdministrableProductDefinitionWithdrawalPeriod>? withdrawalPeriod;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1421,7 +1421,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1431,7 +1431,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1449,20 +1449,20 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [tissue]
   /// Coded expression for the type of tissue for which the withdrawal period
   /// applies, e.g. meat, milk.
-  final CodeableConcept tissue;
+  CodeableConcept tissue;
 
   /// [value]
   /// A value for the time.
-  final Quantity value;
+  Quantity value;
 
   /// [supportingInformation]
   /// Extra information about the withdrawal period.
-  final FhirString? supportingInformation;
+  FhirString? supportingInformation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

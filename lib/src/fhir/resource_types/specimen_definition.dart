@@ -189,14 +189,14 @@ class SpecimenDefinition extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -204,12 +204,12 @@ class SpecimenDefinition extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -219,14 +219,14 @@ class SpecimenDefinition extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -236,7 +236,7 @@ class SpecimenDefinition extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -254,32 +254,32 @@ class SpecimenDefinition extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A business identifier associated with the kind of specimen.
-  final Identifier? identifier;
+  Identifier? identifier;
 
   /// [typeCollected]
   /// The kind of material to be collected.
-  final CodeableConcept? typeCollected;
+  CodeableConcept? typeCollected;
 
   /// [patientPreparation]
   /// Preparation of the patient for specimen collection.
-  final List<CodeableConcept>? patientPreparation;
+  List<CodeableConcept>? patientPreparation;
 
   /// [timeAspect]
   /// Time aspect of specimen collection (duration or offset).
-  final FhirString? timeAspect;
+  FhirString? timeAspect;
 
   /// [collection]
   /// The action to be performed for collecting the specimen.
-  final List<CodeableConcept>? collection;
+  List<CodeableConcept>? collection;
 
   /// [typeTested]
   /// Specimen conditioned in a container as expected by the testing
   /// laboratory.
-  final List<SpecimenDefinitionTypeTested>? typeTested;
+  List<SpecimenDefinitionTypeTested>? typeTested;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -561,7 +561,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -571,7 +571,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -589,43 +589,43 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [isDerived]
   /// Primary of secondary specimen.
-  final FhirBoolean? isDerived;
+  FhirBoolean? isDerived;
 
   /// [type]
   /// The kind of specimen conditioned for testing expected by lab.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [preference]
   /// The preference for this type of conditioned specimen.
-  final SpecimenContainedPreference preference;
+  SpecimenContainedPreference preference;
 
   /// [container]
   /// The specimen's container.
-  final SpecimenDefinitionContainer? container;
+  SpecimenDefinitionContainer? container;
 
   /// [requirement]
   /// Requirements for delivery and special handling of this kind of
   /// conditioned specimen.
-  final FhirString? requirement;
+  FhirString? requirement;
 
   /// [retentionTime]
   /// The usual time that a specimen of this kind is retained after the
   /// ordered tests are completed, for the purpose of additional testing.
-  final FhirDuration? retentionTime;
+  FhirDuration? retentionTime;
 
   /// [rejectionCriterion]
   /// Criterion for rejection of the specimen in its container by the
   /// laboratory.
-  final List<CodeableConcept>? rejectionCriterion;
+  List<CodeableConcept>? rejectionCriterion;
 
   /// [handling]
   /// Set of instructions for preservation/transport of the specimen at a
   /// defined temperature interval, prior the testing process.
-  final List<SpecimenDefinitionHandling>? handling;
+  List<SpecimenDefinitionHandling>? handling;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -890,7 +890,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -900,7 +900,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -918,45 +918,45 @@ class SpecimenDefinitionContainer extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [material]
   /// The type of material of the container.
-  final CodeableConcept? material;
+  CodeableConcept? material;
 
   /// [type]
   /// The type of container used to contain this kind of specimen.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [cap]
   /// Color of container cap.
-  final CodeableConcept? cap;
+  CodeableConcept? cap;
 
   /// [description]
   /// The textual description of the kind of container.
-  final FhirString? description;
+  FhirString? description;
 
   /// [capacity]
   /// The capacity (volume or other measure) of this kind of container.
-  final Quantity? capacity;
+  Quantity? capacity;
 
   /// [minimumVolumeQuantity]
   /// The minimum volume to be conditioned in the container.
-  final Quantity? minimumVolumeQuantity;
+  Quantity? minimumVolumeQuantity;
 
   /// [minimumVolumeString]
   /// The minimum volume to be conditioned in the container.
-  final FhirString? minimumVolumeString;
+  FhirString? minimumVolumeString;
 
   /// [additive]
   /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
-  final List<SpecimenDefinitionAdditive>? additive;
+  List<SpecimenDefinitionAdditive>? additive;
 
   /// [preparation]
   /// Special processing that should be applied to the container for this
   /// kind of specimen.
-  final FhirString? preparation;
+  FhirString? preparation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1180,7 +1180,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1190,7 +1190,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1208,17 +1208,17 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [additiveCodeableConcept]
   /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
-  final CodeableConcept? additiveCodeableConcept;
+  CodeableConcept? additiveCodeableConcept;
 
   /// [additiveReference]
   /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
-  final Reference? additiveReference;
+  Reference? additiveReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1401,7 +1401,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1411,7 +1411,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1429,27 +1429,27 @@ class SpecimenDefinitionHandling extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [temperatureQualifier]
   /// It qualifies the interval of temperature, which characterizes an
   /// occurrence of handling. Conditions that are not related to temperature
   /// may be handled in the instruction element.
-  final CodeableConcept? temperatureQualifier;
+  CodeableConcept? temperatureQualifier;
 
   /// [temperatureRange]
   /// The temperature interval for this set of handling instructions.
-  final Range? temperatureRange;
+  Range? temperatureRange;
 
   /// [maxDuration]
   /// The maximum time interval of preservation of the specimen with these
   /// conditions.
-  final FhirDuration? maxDuration;
+  FhirDuration? maxDuration;
 
   /// [instruction]
   /// Additional textual instructions for the preservation or transport of
   /// the specimen. For instance, 'Protect from light exposure'.
-  final FhirString? instruction;
+  FhirString? instruction;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

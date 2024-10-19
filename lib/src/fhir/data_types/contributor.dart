@@ -112,7 +112,7 @@ class Contributor extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -122,21 +122,21 @@ class Contributor extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [type]
   /// The type of contributor.
-  final ContributorType type;
+  ContributorType type;
 
   /// [name]
   /// The name of the individual or organization responsible for the
   /// contribution.
-  final FhirString name;
+  FhirString name;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// contributor.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

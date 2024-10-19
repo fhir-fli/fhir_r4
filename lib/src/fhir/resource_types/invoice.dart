@@ -251,14 +251,14 @@ class Invoice extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -266,12 +266,12 @@ class Invoice extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -281,14 +281,14 @@ class Invoice extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -298,7 +298,7 @@ class Invoice extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -316,76 +316,76 @@ class Invoice extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifier of this Invoice, often used for reference in correspondence
   /// about this invoice or for tracking of payments.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// The current state of the Invoice.
-  final InvoiceStatus status;
+  InvoiceStatus status;
 
   /// [cancelledReason]
   /// In case of Invoice cancellation a reason must be given (entered in
   /// error, superseded by corrected invoice etc.).
-  final FhirString? cancelledReason;
+  FhirString? cancelledReason;
 
   /// [type]
   /// Type of Invoice depending on domain, realm an usage (e.g.
   /// internal/external, dental, preliminary).
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [subject]
   /// The individual or set of individuals receiving the goods and services
   /// billed in this invoice.
-  final Reference? subject;
+  Reference? subject;
 
   /// [recipient]
   /// The individual or Organization responsible for balancing of this
   /// invoice.
-  final Reference? recipient;
+  Reference? recipient;
 
   /// [date]
   /// Date/time(s) of when this Invoice was posted.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [participant]
   /// Indicates who or what performed or participated in the charged service.
-  final List<InvoiceParticipant>? participant;
+  List<InvoiceParticipant>? participant;
 
   /// [issuer]
   /// The organizationissuing the Invoice.
-  final Reference? issuer;
+  Reference? issuer;
 
   /// [account]
   /// Account which is supposed to be balanced with this Invoice.
-  final Reference? account;
+  Reference? account;
 
   /// [lineItem]
   /// Each line item represents one charge for goods and services rendered.
   /// Details such as date, code and amount are found in the referenced
   /// ChargeItem resource.
-  final List<InvoiceLineItem>? lineItem;
+  List<InvoiceLineItem>? lineItem;
 
   /// [totalNet]
   /// Invoice total , taxes excluded.
-  final Money? totalNet;
+  Money? totalNet;
 
   /// [totalGross]
   /// Invoice total, tax included.
-  final Money? totalGross;
+  Money? totalGross;
 
   /// [paymentTerms]
   /// Payment details such as banking details, period of payment,
   /// deductibles, methods of payment.
-  final FhirMarkdown? paymentTerms;
+  FhirMarkdown? paymentTerms;
 
   /// [note]
   /// Comments made about the invoice by the issuer, subject, or other
   /// participants.
-  final List<Annotation>? note;
+  List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -682,7 +682,7 @@ class InvoiceParticipant extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -692,7 +692,7 @@ class InvoiceParticipant extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -710,18 +710,18 @@ class InvoiceParticipant extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [role]
   /// Describes the type of involvement (e.g. transcriptionist, creator
   /// etc.). If the invoice has been created automatically, the Participant
   /// may be a billing engine or another kind of device.
-  final CodeableConcept? role;
+  CodeableConcept? role;
 
   /// [actor]
   /// The device, practitioner, etc. who performed or participated in the
   /// service.
-  final Reference actor;
+  Reference actor;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -906,7 +906,7 @@ class InvoiceLineItem extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -916,7 +916,7 @@ class InvoiceLineItem extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -934,25 +934,25 @@ class InvoiceLineItem extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [sequence]
   /// Sequence in which the items appear on the invoice.
-  final FhirPositiveInt? sequence;
+  FhirPositiveInt? sequence;
 
   /// [chargeItemReference]
   /// The ChargeItem contains information such as the billing code, date,
   /// amount etc. If no further details are required for the lineItem, inline
   /// billing codes can be added using the CodeableConcept data type instead
   /// of the Reference.
-  final Reference? chargeItemReference;
+  Reference? chargeItemReference;
 
   /// [chargeItemCodeableConcept]
   /// The ChargeItem contains information such as the billing code, date,
   /// amount etc. If no further details are required for the lineItem, inline
   /// billing codes can be added using the CodeableConcept data type instead
   /// of the Reference.
-  final CodeableConcept? chargeItemCodeableConcept;
+  CodeableConcept? chargeItemCodeableConcept;
 
   /// [priceComponent]
   /// The price for a ChargeItem may be calculated as a base price with
@@ -961,7 +961,7 @@ class InvoiceLineItem extends BackboneElement {
   /// conditions that apply to a billing code is currently under development.
   /// The priceComponent element can be used to offer transparency to the
   /// recipient of the Invoice as to how the prices have been calculated.
-  final List<InvoicePriceComponent>? priceComponent;
+  List<InvoicePriceComponent>? priceComponent;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1163,7 +1163,7 @@ class InvoicePriceComponent extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1173,7 +1173,7 @@ class InvoicePriceComponent extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1191,25 +1191,25 @@ class InvoicePriceComponent extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// This code identifies the type of the component.
-  final InvoicePriceComponentType type;
+  InvoicePriceComponentType type;
 
   /// [code]
   /// A code that identifies the component. Codes may be used to
   /// differentiate between kinds of taxes, surcharges, discounts etc.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [factor]
   /// The factor that has been applied on the base price for calculating this
   /// component.
-  final FhirDecimal? factor;
+  FhirDecimal? factor;
 
   /// [amount]
   /// The amount calculated for this component.
-  final Money? amount;
+  Money? amount;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

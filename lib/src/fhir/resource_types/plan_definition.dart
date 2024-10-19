@@ -408,14 +408,14 @@ class PlanDefinition extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -423,12 +423,12 @@ class PlanDefinition extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -438,14 +438,14 @@ class PlanDefinition extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -455,7 +455,7 @@ class PlanDefinition extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -473,7 +473,7 @@ class PlanDefinition extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this plan definition when it
@@ -483,13 +483,13 @@ class PlanDefinition extends DomainResource {
   /// of this plan definition is (or will be) published. This URL can be the
   /// target of a canonical reference. It SHALL remain the same when the plan
   /// definition is stored on different servers.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [identifier]
   /// A formal identifier that is used to identify this plan definition when
   /// it is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the plan
@@ -503,38 +503,38 @@ class PlanDefinition extends DomainResource {
   /// Major.Minor.Revision (e.g. 1.0.0). For more information on versioning
   /// knowledge assets, refer to the Decision Support Service specification.
   /// Note that a version is required for non-experimental active artifacts.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the plan definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString? name;
+  FhirString? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the plan definition.
-  final FhirString? title;
+  FhirString? title;
 
   /// [subtitle]
   /// An explanatory or alternate title for the plan definition giving
   /// additional information about its content.
-  final FhirString? subtitle;
+  FhirString? subtitle;
 
   /// [type]
   /// A high-level category for the plan definition that distinguishes the
   /// kinds of systems that would be interested in the plan definition.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [status]
   /// The status of this plan definition. Enables tracking the life-cycle of
   /// the content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this plan definition is authored for
   /// testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [subjectCodeableConcept]
   /// A code, group definition, or canonical reference that describes or
@@ -544,7 +544,7 @@ class PlanDefinition extends DomainResource {
   /// MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  final CodeableConcept? subjectCodeableConcept;
+  CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference]
   /// A code, group definition, or canonical reference that describes or
@@ -554,7 +554,7 @@ class PlanDefinition extends DomainResource {
   /// MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  final Reference? subjectReference;
+  Reference? subjectReference;
 
   /// [subjectCanonical]
   /// A code, group definition, or canonical reference that describes or
@@ -564,29 +564,29 @@ class PlanDefinition extends DomainResource {
   /// MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  final SubjectType? subjectCanonical;
+  SubjectType? subjectCanonical;
 
   /// [date]
   /// The date (and optionally time) when the plan definition was published.
   /// The date must change when the business version changes and it must
   /// change if the status code changes. In addition, it should change when
   /// the substantive content of the plan definition changes.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the plan
   /// definition.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the plan definition from a
   /// consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -594,81 +594,81 @@ class PlanDefinition extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate plan definition instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the plan definition is intended
   /// to be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this plan definition is needed and why it has been
   /// designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [usage]
   /// A detailed description of how the plan definition is used from a
   /// clinical perspective.
-  final FhirString? usage;
+  FhirString? usage;
 
   /// [copyright]
   /// A copyright statement relating to the plan definition and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the plan definition.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [approvalDate]
   /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for
   /// usage.
-  final FhirDate? approvalDate;
+  FhirDate? approvalDate;
 
   /// [lastReviewDate]
   /// The date on which the resource content was last reviewed. Review
   /// happens periodically after approval but does not change the original
   /// approval date.
-  final FhirDate? lastReviewDate;
+  FhirDate? lastReviewDate;
 
   /// [effectivePeriod]
   /// The period during which the plan definition content was or is planned
   /// to be in active use.
-  final Period? effectivePeriod;
+  Period? effectivePeriod;
 
   /// [topic]
   /// Descriptive topics related to the content of the plan definition.
   /// Topics provide a high-level categorization of the definition that can
   /// be useful for filtering and searching.
-  final List<CodeableConcept>? topic;
+  List<CodeableConcept>? topic;
 
   /// [author]
   /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
-  final List<ContactDetail>? author;
+  List<ContactDetail>? author;
 
   /// [editor]
   /// An individual or organization primarily responsible for internal
   /// coherence of the content.
-  final List<ContactDetail>? editor;
+  List<ContactDetail>? editor;
 
   /// [reviewer]
   /// An individual or organization primarily responsible for review of some
   /// aspect of the content.
-  final List<ContactDetail>? reviewer;
+  List<ContactDetail>? reviewer;
 
   /// [endorser]
   /// An individual or organization responsible for officially endorsing the
   /// content for use in some setting.
-  final List<ContactDetail>? endorser;
+  List<ContactDetail>? endorser;
 
   /// [relatedArtifact]
   /// Related artifacts such as additional documentation, justification, or
   /// bibliographic references.
-  final List<RelatedArtifact>? relatedArtifact;
+  List<RelatedArtifact>? relatedArtifact;
 
   /// [library_]
   /// A reference to a Library resource containing any formal logic used by
   /// the plan definition.
-  final List<FhirCanonical>? library_;
+  List<FhirCanonical>? library_;
 
   /// [goal]
   /// A goal describes an expected outcome that activities within the plan
@@ -676,7 +676,7 @@ class PlanDefinition extends DomainResource {
   /// activity of daily living, obtaining herd immunity via immunization,
   /// meeting a process improvement objective, meeting the acceptance
   /// criteria for a test as specified by a quality specification, etc.
-  final List<PlanDefinitionGoal>? goal;
+  List<PlanDefinitionGoal>? goal;
 
   /// [action]
   /// An action or group of actions to be taken as part of the plan. For
@@ -684,7 +684,7 @@ class PlanDefinition extends DomainResource {
   /// indicated medication, or perform a particular test as appropriate. In
   /// pharmaceutical quality, an action would be the test that needs to be
   /// performed on a drug product as defined in the quality specification.
-  final List<PlanDefinitionAction>? action;
+  List<PlanDefinitionAction>? action;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1189,7 +1189,7 @@ class PlanDefinitionGoal extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1199,7 +1199,7 @@ class PlanDefinitionGoal extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1217,42 +1217,42 @@ class PlanDefinitionGoal extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [category]
   /// Indicates a category the goal falls within.
-  final CodeableConcept? category;
+  CodeableConcept? category;
 
   /// [description]
   /// Human-readable and/or coded description of a specific desired objective
   /// of care, such as "control blood pressure" or "negotiate an obstacle
   /// course" or "dance with child at wedding".
-  final CodeableConcept description;
+  CodeableConcept description;
 
   /// [priority]
   /// Identifies the expected level of importance associated with
   /// reaching/sustaining the defined goal.
-  final CodeableConcept? priority;
+  CodeableConcept? priority;
 
   /// [start]
   /// The event after which the goal should begin being pursued.
-  final CodeableConcept? start;
+  CodeableConcept? start;
 
   /// [addresses]
   /// Identifies problems, conditions, issues, or concerns the goal is
   /// intended to address.
-  final List<CodeableConcept>? addresses;
+  List<CodeableConcept>? addresses;
 
   /// [documentation]
   /// Didactic or other informational resources associated with the goal that
   /// provide further supporting information about the goal. Information
   /// resources can include inline text commentary and links to web
   /// resources.
-  final List<RelatedArtifact>? documentation;
+  List<RelatedArtifact>? documentation;
 
   /// [target]
   /// Indicates what should be done and within what timeframe.
-  final List<PlanDefinitionTarget>? target;
+  List<PlanDefinitionTarget>? target;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1466,7 +1466,7 @@ class PlanDefinitionTarget extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1476,7 +1476,7 @@ class PlanDefinitionTarget extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1494,12 +1494,12 @@ class PlanDefinitionTarget extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [measure]
   /// The parameter whose value is to be tracked, e.g. body weight, blood
   /// pressure, or hemoglobin A1c level.
-  final CodeableConcept? measure;
+  CodeableConcept? measure;
 
   /// [detailQuantity]
   /// The target value of the measure to be achieved to signify fulfillment
@@ -1509,7 +1509,7 @@ class PlanDefinitionTarget extends BackboneElement {
   /// indicates that the goal is achieved at any value at or below the high
   /// value. Similarly, if the high value is missing, it indicates that the
   /// goal is achieved at any value at or above the low value.
-  final Quantity? detailQuantity;
+  Quantity? detailQuantity;
 
   /// [detailRange]
   /// The target value of the measure to be achieved to signify fulfillment
@@ -1519,7 +1519,7 @@ class PlanDefinitionTarget extends BackboneElement {
   /// indicates that the goal is achieved at any value at or below the high
   /// value. Similarly, if the high value is missing, it indicates that the
   /// goal is achieved at any value at or above the low value.
-  final Range? detailRange;
+  Range? detailRange;
 
   /// [detailCodeableConcept]
   /// The target value of the measure to be achieved to signify fulfillment
@@ -1529,12 +1529,12 @@ class PlanDefinitionTarget extends BackboneElement {
   /// indicates that the goal is achieved at any value at or below the high
   /// value. Similarly, if the high value is missing, it indicates that the
   /// goal is achieved at any value at or above the low value.
-  final CodeableConcept? detailCodeableConcept;
+  CodeableConcept? detailCodeableConcept;
 
   /// [due]
   /// Indicates the timeframe after the start of the goal in which the goal
   /// should be met.
-  final FhirDuration? due;
+  FhirDuration? due;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1992,7 +1992,7 @@ class PlanDefinitionAction extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2002,7 +2002,7 @@ class PlanDefinitionAction extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2020,51 +2020,51 @@ class PlanDefinitionAction extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [prefix]
   /// A user-visible prefix for the action.
-  final FhirString? prefix;
+  FhirString? prefix;
 
   /// [title]
   /// The textual description of the action displayed to a user. For example,
   /// when the action is a test to be performed, the title would be the title
   /// of the test such as Assay by HPLC.
-  final FhirString? title;
+  FhirString? title;
 
   /// [description]
   /// A brief description of the action used to provide a summary to display
   /// to the user.
-  final FhirString? description;
+  FhirString? description;
 
   /// [textEquivalent]
   /// A text equivalent of the action to be performed. This provides a
   /// human-interpretable description of the action when the definition is
   /// consumed by a system that might not be capable of interpreting it
   /// dynamically.
-  final FhirString? textEquivalent;
+  FhirString? textEquivalent;
 
   /// [priority]
   /// Indicates how quickly the action should be addressed with respect to
   /// other actions.
-  final RequestPriority? priority;
+  RequestPriority? priority;
 
   /// [code]
   /// A code that provides a meaning, grouping, or classification for the
   /// action or action group. For example, a section may have a LOINC code
   /// for the section of a documentation template. In pharmaceutical quality,
   /// an action (Test) such as pH could be classified as a physical property.
-  final List<CodeableConcept>? code;
+  List<CodeableConcept>? code;
 
   /// [reason]
   /// A description of why this action is necessary or appropriate.
-  final List<CodeableConcept>? reason;
+  List<CodeableConcept>? reason;
 
   /// [documentation]
   /// Didactic or other informational resources associated with the action
   /// that can be provided to the CDS recipient. Information resources can
   /// include inline text commentary and links to web resources.
-  final List<RelatedArtifact>? documentation;
+  List<RelatedArtifact>? documentation;
 
   /// [goalId]
   /// Identifies goals that this action supports. The reference must be to a
@@ -2072,7 +2072,7 @@ class PlanDefinitionAction extends BackboneElement {
   /// quality, a goal represents acceptance criteria (Goal) for a given
   /// action (Test), so the goalId would be the unique id of a defined goal
   /// element establishing the acceptance criteria for the action.
-  final List<FhirId>? goalId;
+  List<FhirId>? goalId;
 
   /// [subjectCodeableConcept]
   /// A code, group definition, or canonical reference that describes the
@@ -2082,7 +2082,7 @@ class PlanDefinitionAction extends BackboneElement {
   /// MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  final CodeableConcept? subjectCodeableConcept;
+  CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference]
   /// A code, group definition, or canonical reference that describes the
@@ -2092,7 +2092,7 @@ class PlanDefinitionAction extends BackboneElement {
   /// MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  final Reference? subjectReference;
+  Reference? subjectReference;
 
   /// [subjectCanonical]
   /// A code, group definition, or canonical reference that describes the
@@ -2102,99 +2102,99 @@ class PlanDefinitionAction extends BackboneElement {
   /// MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  final SubjectType? subjectCanonical;
+  SubjectType? subjectCanonical;
 
   /// [trigger]
   /// A description of when the action should be triggered.
-  final List<TriggerDefinition>? trigger;
+  List<TriggerDefinition>? trigger;
 
   /// [condition]
   /// An expression that describes applicability criteria or start/stop
   /// conditions for the action.
-  final List<PlanDefinitionCondition>? condition;
+  List<PlanDefinitionCondition>? condition;
 
   /// [input]
   /// Defines input data requirements for the action.
-  final List<DataRequirement>? input;
+  List<DataRequirement>? input;
 
   /// [output]
   /// Defines the outputs of the action, if any.
-  final List<DataRequirement>? output;
+  List<DataRequirement>? output;
 
   /// [relatedAction]
   /// A relationship to another action such as "before" or "30-60 minutes
   /// after start of".
-  final List<PlanDefinitionRelatedAction>? relatedAction;
+  List<PlanDefinitionRelatedAction>? relatedAction;
 
   /// [timingDateTime]
   /// An optional value describing when the action should be performed.
-  final FhirDateTime? timingDateTime;
+  FhirDateTime? timingDateTime;
 
   /// [timingAge]
   /// An optional value describing when the action should be performed.
-  final Age? timingAge;
+  Age? timingAge;
 
   /// [timingPeriod]
   /// An optional value describing when the action should be performed.
-  final Period? timingPeriod;
+  Period? timingPeriod;
 
   /// [timingDuration]
   /// An optional value describing when the action should be performed.
-  final FhirDuration? timingDuration;
+  FhirDuration? timingDuration;
 
   /// [timingRange]
   /// An optional value describing when the action should be performed.
-  final Range? timingRange;
+  Range? timingRange;
 
   /// [timingTiming]
   /// An optional value describing when the action should be performed.
-  final Timing? timingTiming;
+  Timing? timingTiming;
 
   /// [participant]
   /// Indicates who should participate in performing the action described.
-  final List<PlanDefinitionParticipant>? participant;
+  List<PlanDefinitionParticipant>? participant;
 
   /// [type]
   /// The type of action to perform (create, update, remove).
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [groupingBehavior]
   /// Defines the grouping behavior for the action and its children.
-  final ActionGroupingBehavior? groupingBehavior;
+  ActionGroupingBehavior? groupingBehavior;
 
   /// [selectionBehavior]
   /// Defines the selection behavior for the action and its children.
-  final ActionSelectionBehavior? selectionBehavior;
+  ActionSelectionBehavior? selectionBehavior;
 
   /// [requiredBehavior]
   /// Defines the required behavior for the action.
-  final ActionRequiredBehavior? requiredBehavior;
+  ActionRequiredBehavior? requiredBehavior;
 
   /// [precheckBehavior]
   /// Defines whether the action should usually be preselected.
-  final ActionPrecheckBehavior? precheckBehavior;
+  ActionPrecheckBehavior? precheckBehavior;
 
   /// [cardinalityBehavior]
   /// Defines whether the action can be selected multiple times.
-  final ActionCardinalityBehavior? cardinalityBehavior;
+  ActionCardinalityBehavior? cardinalityBehavior;
 
   /// [definitionCanonical]
   /// A reference to an ActivityDefinition that describes the action to be
   /// taken in detail, or a PlanDefinition that describes a series of actions
   /// to be taken.
-  final FhirCanonical? definitionCanonical;
+  FhirCanonical? definitionCanonical;
 
   /// [definitionUri]
   /// A reference to an ActivityDefinition that describes the action to be
   /// taken in detail, or a PlanDefinition that describes a series of actions
   /// to be taken.
-  final FhirUri? definitionUri;
+  FhirUri? definitionUri;
 
   /// [transform]
   /// A reference to a StructureMap resource that defines a transform that
   /// can be executed to produce the intent resource using the
   /// ActivityDefinition instance as the input.
-  final FhirCanonical? transform;
+  FhirCanonical? transform;
 
   /// [dynamicValue]
   /// Customizations that should be applied to the statically defined
@@ -2202,14 +2202,14 @@ class PlanDefinitionAction extends BackboneElement {
   /// based on the patient's weight, a customization would be used to specify
   /// an expression that calculated the weight, and the path on the resource
   /// that would contain the result.
-  final List<PlanDefinitionDynamicValue>? dynamicValue;
+  List<PlanDefinitionDynamicValue>? dynamicValue;
 
   /// [action]
   /// Sub actions that are contained within the action. The behavior of this
   /// action determines the functionality of the sub-actions. For example, a
   /// selection behavior of at-most-one indicates that of the sub-actions, at
   /// most one may be chosen as part of realizing the action definition.
-  final List<PlanDefinitionAction>? action;
+  List<PlanDefinitionAction>? action;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2640,7 +2640,7 @@ class PlanDefinitionCondition extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2650,7 +2650,7 @@ class PlanDefinitionCondition extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2668,16 +2668,16 @@ class PlanDefinitionCondition extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [kind]
   /// The kind of condition.
-  final ActionConditionKind kind;
+  ActionConditionKind kind;
 
   /// [expression]
   /// An expression that returns true or false, indicating whether the
   /// condition is satisfied.
-  final FhirExpression? expression;
+  FhirExpression? expression;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2858,7 +2858,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2868,7 +2868,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2886,25 +2886,25 @@ class PlanDefinitionRelatedAction extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [actionId]
   /// The element id of the related action.
-  final FhirId actionId;
+  FhirId actionId;
 
   /// [relationship]
   /// The relationship of this action to the related action.
-  final ActionRelationshipType relationship;
+  ActionRelationshipType relationship;
 
   /// [offsetDuration]
   /// A duration or range of durations to apply to the relationship. For
   /// example, 30-60 minutes before.
-  final FhirDuration? offsetDuration;
+  FhirDuration? offsetDuration;
 
   /// [offsetRange]
   /// A duration or range of durations to apply to the relationship. For
   /// example, 30-60 minutes before.
-  final Range? offsetRange;
+  Range? offsetRange;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3087,7 +3087,7 @@ class PlanDefinitionParticipant extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3097,7 +3097,7 @@ class PlanDefinitionParticipant extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3115,16 +3115,16 @@ class PlanDefinitionParticipant extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The type of participant in the action.
-  final ActionParticipantType type;
+  ActionParticipantType type;
 
   /// [role]
   /// The role the participant should play in performing the described
   /// action.
-  final CodeableConcept? role;
+  CodeableConcept? role;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3299,7 +3299,7 @@ class PlanDefinitionDynamicValue extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3309,7 +3309,7 @@ class PlanDefinitionDynamicValue extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3327,7 +3327,7 @@ class PlanDefinitionDynamicValue extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [path]
   /// The path to the element to be customized. This is the path on the
@@ -3339,11 +3339,11 @@ class PlanDefinitionDynamicValue extends BackboneElement {
   /// sub-elements, as well as indexers ([x]) to traverse
   /// multiple-cardinality sub-elements (see the [Simple FHIRPath
   /// Profile](fhirpath.html#simple) for full details).
-  final FhirString? path;
+  FhirString? path;
 
   /// [expression]
   /// An expression specifying the value of the customized element.
-  final FhirExpression? expression;
+  FhirExpression? expression;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -258,14 +258,14 @@ class InsurancePlan extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -273,12 +273,12 @@ class InsurancePlan extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -288,14 +288,14 @@ class InsurancePlan extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -305,7 +305,7 @@ class InsurancePlan extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -323,74 +323,74 @@ class InsurancePlan extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business identifiers assigned to this health insurance product which
   /// remain constant as the resource is updated and propagates from server
   /// to server.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// The current state of the health insurance product.
-  final PublicationStatus? status;
+  PublicationStatus? status;
 
   /// [type]
   /// The kind of health insurance product.
-  final List<CodeableConcept>? type;
+  List<CodeableConcept>? type;
 
   /// [name]
   /// Official name of the health insurance product as designated by the
   /// owner.
-  final FhirString? name;
+  FhirString? name;
 
   /// [alias]
   /// A list of alternate names that the product is known as, or was known as
   /// in the past.
-  final List<FhirString>? alias;
+  List<FhirString>? alias;
 
   /// [period]
   /// The period of time that the health insurance product is available.
-  final Period? period;
+  Period? period;
 
   /// [ownedBy]
   /// The entity that is providing the health insurance product and
   /// underwriting the risk. This is typically an insurance carriers, other
   /// third-party payers, or health plan sponsors comonly referred to as
   /// 'payers'.
-  final Reference? ownedBy;
+  Reference? ownedBy;
 
   /// [administeredBy]
   /// An organization which administer other services such as underwriting,
   /// customer service and/or claims processing on behalf of the health
   /// insurance product owner.
-  final Reference? administeredBy;
+  Reference? administeredBy;
 
   /// [coverageArea]
   /// The geographic region in which a health insurance product's benefits
   /// apply.
-  final List<Reference>? coverageArea;
+  List<Reference>? coverageArea;
 
   /// [contact]
   /// The contact for the health insurance product for a certain purpose.
-  final List<InsurancePlanContact>? contact;
+  List<InsurancePlanContact>? contact;
 
   /// [endpoint]
   /// The technical endpoints providing access to services operated for the
   /// health insurance product.
-  final List<Reference>? endpoint;
+  List<Reference>? endpoint;
 
   /// [network]
   /// Reference to the network included in the health insurance product.
-  final List<Reference>? network;
+  List<Reference>? network;
 
   /// [coverage]
   /// Details about the coverage offered by the insurance product.
-  final List<InsurancePlanCoverage>? coverage;
+  List<InsurancePlanCoverage>? coverage;
 
   /// [plan]
   /// Details about an insurance plan.
-  final List<InsurancePlanPlan>? plan;
+  List<InsurancePlanPlan>? plan;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -697,7 +697,7 @@ class InsurancePlanContact extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -707,7 +707,7 @@ class InsurancePlanContact extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -725,24 +725,24 @@ class InsurancePlanContact extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [purpose]
   /// Indicates a purpose for which the contact can be reached.
-  final CodeableConcept? purpose;
+  CodeableConcept? purpose;
 
   /// [name]
   /// A name associated with the contact.
-  final HumanName? name;
+  HumanName? name;
 
   /// [telecom]
   /// A contact detail (e.g. a telephone number or an email address) by which
   /// the party may be contacted.
-  final List<ContactPoint>? telecom;
+  List<ContactPoint>? telecom;
 
   /// [address]
   /// Visiting or postal addresses for the contact.
-  final Address? address;
+  Address? address;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -934,7 +934,7 @@ class InsurancePlanCoverage extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -944,7 +944,7 @@ class InsurancePlanCoverage extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -962,20 +962,20 @@ class InsurancePlanCoverage extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Type of coverage (Medical; Dental; Mental Health; Substance Abuse;
   /// Vision; Drug; Short Term; Long Term Care; Hospice; Home Health).
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [network]
   /// Reference to the network that providing the type of coverage.
-  final List<Reference>? network;
+  List<Reference>? network;
 
   /// [benefit]
   /// Specific benefits under this type of coverage.
-  final List<InsurancePlanBenefit> benefit;
+  List<InsurancePlanBenefit> benefit;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1154,7 +1154,7 @@ class InsurancePlanBenefit extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1164,7 +1164,7 @@ class InsurancePlanBenefit extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1182,19 +1182,19 @@ class InsurancePlanBenefit extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Type of benefit (primary care; speciality care; inpatient; outpatient).
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [requirement]
   /// The referral requirements to have access/coverage for this benefit.
-  final FhirString? requirement;
+  FhirString? requirement;
 
   /// [limit]
   /// The specific limits on the benefit.
-  final List<InsurancePlanLimit>? limit;
+  List<InsurancePlanLimit>? limit;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1370,7 +1370,7 @@ class InsurancePlanLimit extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1380,7 +1380,7 @@ class InsurancePlanLimit extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1398,16 +1398,16 @@ class InsurancePlanLimit extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [value]
   /// The maximum amount of a service item a plan will pay for a covered
   /// benefit. For examples. wellness visits, or eyeglasses.
-  final Quantity? value;
+  Quantity? value;
 
   /// [code]
   /// The specific limit on the benefit.
-  final CodeableConcept? code;
+  CodeableConcept? code;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1619,7 +1619,7 @@ class InsurancePlanPlan extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1629,7 +1629,7 @@ class InsurancePlanPlan extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1647,34 +1647,34 @@ class InsurancePlanPlan extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business identifiers assigned to this health insurance plan which
   /// remain constant as the resource is updated and propagates from server
   /// to server.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [type]
   /// Type of plan. For example, "Platinum" or "High Deductable".
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [coverageArea]
   /// The geographic region in which a health insurance plan's benefits
   /// apply.
-  final List<Reference>? coverageArea;
+  List<Reference>? coverageArea;
 
   /// [network]
   /// Reference to the network that providing the type of coverage.
-  final List<Reference>? network;
+  List<Reference>? network;
 
   /// [generalCost]
   /// Overall costs associated with the plan.
-  final List<InsurancePlanGeneralCost>? generalCost;
+  List<InsurancePlanGeneralCost>? generalCost;
 
   /// [specificCost]
   /// Costs associated with the coverage provided by the product.
-  final List<InsurancePlanSpecificCost>? specificCost;
+  List<InsurancePlanSpecificCost>? specificCost;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1880,7 +1880,7 @@ class InsurancePlanGeneralCost extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1890,7 +1890,7 @@ class InsurancePlanGeneralCost extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1908,24 +1908,24 @@ class InsurancePlanGeneralCost extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Type of cost.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [groupSize]
   /// Number of participants enrolled in the plan.
-  final FhirPositiveInt? groupSize;
+  FhirPositiveInt? groupSize;
 
   /// [cost]
   /// Value of the cost.
-  final Money? cost;
+  Money? cost;
 
   /// [comment]
   /// Additional information about the general costs associated with this
   /// plan.
-  final FhirString? comment;
+  FhirString? comment;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2115,7 +2115,7 @@ class InsurancePlanSpecificCost extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2125,7 +2125,7 @@ class InsurancePlanSpecificCost extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2143,16 +2143,16 @@ class InsurancePlanSpecificCost extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [category]
   /// General category of benefit (Medical; Dental; Vision; Drug; Mental
   /// Health; Substance Abuse; Hospice, Home Health).
-  final CodeableConcept category;
+  CodeableConcept category;
 
   /// [benefit]
   /// List of the specific benefits under this category of benefit.
-  final List<InsurancePlanBenefit>? benefit;
+  List<InsurancePlanBenefit>? benefit;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2320,7 +2320,7 @@ class InsurancePlanBenefit1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2330,7 +2330,7 @@ class InsurancePlanBenefit1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2348,16 +2348,16 @@ class InsurancePlanBenefit1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Type of specific benefit (preventative; primary care office visit;
   /// speciality office visit; hospitalization; emergency room; urgent care).
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [cost]
   /// List of the costs associated with a specific benefit.
-  final List<InsurancePlanCost>? cost;
+  List<InsurancePlanCost>? cost;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2537,7 +2537,7 @@ class InsurancePlanCost extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2547,7 +2547,7 @@ class InsurancePlanCost extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2565,27 +2565,27 @@ class InsurancePlanCost extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Type of cost (copay; individual cap; family cap; coinsurance;
   /// deductible).
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [applicability]
   /// Whether the cost applies to in-network or out-of-network providers
   /// (in-network; out-of-network; other).
-  final CodeableConcept? applicability;
+  CodeableConcept? applicability;
 
   /// [qualifiers]
   /// Additional information about the cost, such as information about
   /// funding sources (e.g. HSA, HRA, FSA, RRA).
-  final List<CodeableConcept>? qualifiers;
+  List<CodeableConcept>? qualifiers;
 
   /// [value]
   /// The actual cost value. (some of the costs may be represented as
   /// percentages rather than currency, e.g. 10% coinsurance).
-  final Quantity? value;
+  Quantity? value;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

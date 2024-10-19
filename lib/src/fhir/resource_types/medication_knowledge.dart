@@ -331,14 +331,14 @@ class MedicationKnowledge extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -346,12 +346,12 @@ class MedicationKnowledge extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -361,14 +361,14 @@ class MedicationKnowledge extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -378,7 +378,7 @@ class MedicationKnowledge extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -396,7 +396,7 @@ class MedicationKnowledge extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// A code that specifies this medication, or a textual description if no
@@ -404,23 +404,23 @@ class MedicationKnowledge extends DomainResource {
   /// such as a code from RxNorm, SNOMED CT, IDMP etc. It could also be a
   /// national or local formulary code, optionally with translations to other
   /// code systems.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [status]
   /// A code to indicate if the medication is in active use. The status
   /// refers to the validity about the information of the medication and not
   /// to its medicinal properties.
-  final MedicationKnowledgeStatusCodes? status;
+  MedicationKnowledgeStatusCodes? status;
 
   /// [manufacturer]
   /// Describes the details of the manufacturer of the medication product.
   /// This is not intended to represent the distributor of a medication
   /// product.
-  final Reference? manufacturer;
+  Reference? manufacturer;
 
   /// [doseForm]
   /// Describes the form of the item. Powder; tablets; capsule.
-  final CodeableConcept? doseForm;
+  CodeableConcept? doseForm;
 
   /// [amount]
   /// Specific amount of the drug in the packaged product. For example, when
@@ -428,17 +428,17 @@ class MedicationKnowledge extends DomainResource {
   /// glargine 100 unit per mL solution for injection), this attribute
   /// provides additional clarification of the package amount (For example, 3
   /// mL, 10mL, etc.).
-  final Quantity? amount;
+  Quantity? amount;
 
   /// [synonym]
   /// Additional names for a medication, for example, the name(s) given to a
   /// medication in different countries. For example, acetaminophen and
   /// paracetamol or salbutamol and albuterol.
-  final List<FhirString>? synonym;
+  List<FhirString>? synonym;
 
   /// [relatedMedicationKnowledge]
   /// Associated or related knowledge about a medication.
-  final List<MedicationKnowledgeRelatedMedicationKnowledge>?
+  List<MedicationKnowledgeRelatedMedicationKnowledge>?
       relatedMedicationKnowledge;
 
   /// [associatedMedication]
@@ -446,70 +446,69 @@ class MedicationKnowledge extends DomainResource {
   /// branded product (e.g. Crestor), this is the Therapeutic Moeity (e.g.
   /// Rosuvastatin) or if this is a generic medication (e.g. Rosuvastatin),
   /// this would link to a branded product (e.g. Crestor).
-  final List<Reference>? associatedMedication;
+  List<Reference>? associatedMedication;
 
   /// [productType]
   /// Category of the medication or product (e.g. branded product,
   /// therapeutic moeity, generic product, innovator product, etc.).
-  final List<CodeableConcept>? productType;
+  List<CodeableConcept>? productType;
 
   /// [monograph]
   /// Associated documentation about the medication.
-  final List<MedicationKnowledgeMonograph>? monograph;
+  List<MedicationKnowledgeMonograph>? monograph;
 
   /// [ingredient]
   /// Identifies a particular constituent of interest in the product.
-  final List<MedicationKnowledgeIngredient>? ingredient;
+  List<MedicationKnowledgeIngredient>? ingredient;
 
   /// [preparationInstruction]
   /// The instructions for preparing the medication.
-  final FhirMarkdown? preparationInstruction;
+  FhirMarkdown? preparationInstruction;
 
   /// [intendedRoute]
   /// The intended or approved route of administration.
-  final List<CodeableConcept>? intendedRoute;
+  List<CodeableConcept>? intendedRoute;
 
   /// [cost]
   /// The price of the medication.
-  final List<MedicationKnowledgeCost>? cost;
+  List<MedicationKnowledgeCost>? cost;
 
   /// [monitoringProgram]
   /// The program under which the medication is reviewed.
-  final List<MedicationKnowledgeMonitoringProgram>? monitoringProgram;
+  List<MedicationKnowledgeMonitoringProgram>? monitoringProgram;
 
   /// [administrationGuidelines]
   /// Guidelines for the administration of the medication.
-  final List<MedicationKnowledgeAdministrationGuidelines>?
-      administrationGuidelines;
+  List<MedicationKnowledgeAdministrationGuidelines>? administrationGuidelines;
 
   /// [medicineClassification]
   /// Categorization of the medication within a formulary or classification
   /// system.
-  final List<MedicationKnowledgeMedicineClassification>? medicineClassification;
+  List<MedicationKnowledgeMedicineClassification>? medicineClassification;
 
   /// [packaging]
   /// Information that only applies to packages (not products).
-  final MedicationKnowledgePackaging? packaging;
+  MedicationKnowledgePackaging? packaging;
 
   /// [drugCharacteristic]
   /// Specifies descriptive properties of the medicine, such as color, shape,
   /// imprints, etc.
-  final List<MedicationKnowledgeDrugCharacteristic>? drugCharacteristic;
+  List<MedicationKnowledgeDrugCharacteristic>? drugCharacteristic;
 
   /// [contraindication]
   /// Potential clinical issue with or between medication(s) (for example,
   /// drug-drug interaction, drug-disease contraindication, drug-allergy
   /// interaction, etc.).
-  final List<Reference>? contraindication;
+  List<Reference>? contraindication;
 
   /// [regulatory]
   /// Regulatory information about a medication.
-  final List<MedicationKnowledgeRegulatory>? regulatory;
+  List<MedicationKnowledgeRegulatory>? regulatory;
 
   /// [kinetics]
   /// The time course of drug absorption, distribution, metabolism and
   /// excretion of a medication from the body.
-  final List<MedicationKnowledgeKinetics>? kinetics;
+  List<MedicationKnowledgeKinetics>? kinetics;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -864,7 +863,7 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -874,7 +873,7 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -892,15 +891,15 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The category of the associated medication knowledge reference.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [reference]
   /// Associated documentation about the associated medication knowledge.
-  final List<Reference> reference;
+  List<Reference> reference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1065,7 +1064,7 @@ class MedicationKnowledgeMonograph extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1075,7 +1074,7 @@ class MedicationKnowledgeMonograph extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1093,16 +1092,16 @@ class MedicationKnowledgeMonograph extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The category of documentation about the medication. (e.g. professional
   /// monograph, patient education monograph).
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [source]
   /// Associated documentation about the medication.
-  final Reference? source;
+  Reference? source;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1283,7 +1282,7 @@ class MedicationKnowledgeIngredient extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1293,7 +1292,7 @@ class MedicationKnowledgeIngredient extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1311,28 +1310,28 @@ class MedicationKnowledgeIngredient extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [itemCodeableConcept]
   /// The actual ingredient - either a substance (simple ingredient) or
   /// another medication.
-  final CodeableConcept? itemCodeableConcept;
+  CodeableConcept? itemCodeableConcept;
 
   /// [itemReference]
   /// The actual ingredient - either a substance (simple ingredient) or
   /// another medication.
-  final Reference? itemReference;
+  Reference? itemReference;
 
   /// [isActive]
   /// Indication of whether this ingredient affects the therapeutic action of
   /// the drug.
-  final FhirBoolean? isActive;
+  FhirBoolean? isActive;
 
   /// [strength]
   /// Specifies how many (or how much) of the items there are in this
   /// Medication. For example, 250 mg per tablet. This is expressed as a
   /// ratio where the numerator is 250mg and the denominator is 1 tablet.
-  final Ratio? strength;
+  Ratio? strength;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1519,7 +1518,7 @@ class MedicationKnowledgeCost extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1529,7 +1528,7 @@ class MedicationKnowledgeCost extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1547,20 +1546,20 @@ class MedicationKnowledgeCost extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The category of the cost information. For example, manufacturers' cost,
   /// patient cost, claim reimbursement cost, actual acquisition cost.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [source]
   /// The source or owner that assigns the price to the medication.
-  final FhirString? source;
+  FhirString? source;
 
   /// [cost]
   /// The price of the medication.
-  final Money cost;
+  Money cost;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1735,7 +1734,7 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1745,7 +1744,7 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1763,15 +1762,15 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Type of program under which the medication is monitored.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [name]
   /// Name of the reviewing program.
-  final FhirString? name;
+  FhirString? name;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1963,7 +1962,7 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1973,7 +1972,7 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1991,26 +1990,26 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [dosage]
   /// Dosage for the medication for the specific guidelines.
-  final List<MedicationKnowledgeDosage>? dosage;
+  List<MedicationKnowledgeDosage>? dosage;
 
   /// [indicationCodeableConcept]
   /// Indication for use that apply to the specific administration
   /// guidelines.
-  final CodeableConcept? indicationCodeableConcept;
+  CodeableConcept? indicationCodeableConcept;
 
   /// [indicationReference]
   /// Indication for use that apply to the specific administration
   /// guidelines.
-  final Reference? indicationReference;
+  Reference? indicationReference;
 
   /// [patientCharacteristics]
   /// Characteristics of the patient that are relevant to the administration
   /// guidelines (for example, height, weight, gender, etc.).
-  final List<MedicationKnowledgePatientCharacteristics>? patientCharacteristics;
+  List<MedicationKnowledgePatientCharacteristics>? patientCharacteristics;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2196,7 +2195,7 @@ class MedicationKnowledgeDosage extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2206,7 +2205,7 @@ class MedicationKnowledgeDosage extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2224,16 +2223,16 @@ class MedicationKnowledgeDosage extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The type of dosage (for example, prophylaxis, maintenance, therapeutic,
   /// etc.).
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [dosage]
   /// Dosage for the medication for the specific guidelines.
-  final List<Dosage> dosage;
+  List<Dosage> dosage;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2405,7 +2404,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2415,7 +2414,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2433,21 +2432,21 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [characteristicCodeableConcept]
   /// Specific characteristic that is relevant to the administration
   /// guideline (e.g. height, weight, gender).
-  final CodeableConcept? characteristicCodeableConcept;
+  CodeableConcept? characteristicCodeableConcept;
 
   /// [characteristicQuantity]
   /// Specific characteristic that is relevant to the administration
   /// guideline (e.g. height, weight, gender).
-  final Quantity? characteristicQuantity;
+  Quantity? characteristicQuantity;
 
   /// [value]
   /// The specific characteristic (e.g. height, weight, gender, etc.).
-  final List<FhirString>? value;
+  List<FhirString>? value;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2632,7 +2631,7 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2642,7 +2641,7 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2660,17 +2659,17 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The type of category for the medication (for example, therapeutic
   /// classification, therapeutic sub-classification).
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [classification]
   /// Specific category assigned to the medication (e.g. anti-infective,
   /// anti-hypertensive, antibiotic, etc.).
-  final List<CodeableConcept>? classification;
+  List<CodeableConcept>? classification;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2837,7 +2836,7 @@ class MedicationKnowledgePackaging extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2847,7 +2846,7 @@ class MedicationKnowledgePackaging extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2865,16 +2864,16 @@ class MedicationKnowledgePackaging extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// A code that defines the specific type of packaging that the medication
   /// can be found in (e.g. blister sleeve, tube, bottle).
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [quantity]
   /// The number of product units the package would contain if fully loaded.
-  final Quantity? quantity;
+  Quantity? quantity;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3064,7 +3063,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3074,7 +3073,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3092,28 +3091,28 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// A code specifying which characteristic of the medicine is being
   /// described (for example, colour, shape, imprint).
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [valueCodeableConcept]
   /// Description of the characteristic.
-  final CodeableConcept? valueCodeableConcept;
+  CodeableConcept? valueCodeableConcept;
 
   /// [valueString]
   /// Description of the characteristic.
-  final FhirString? valueString;
+  FhirString? valueString;
 
   /// [valueQuantity]
   /// Description of the characteristic.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueBase64Binary]
   /// Description of the characteristic.
-  final FhirBase64Binary? valueBase64Binary;
+  FhirBase64Binary? valueBase64Binary;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3325,7 +3324,7 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3335,7 +3334,7 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3353,25 +3352,25 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [regulatoryAuthority]
   /// The authority that is specifying the regulations.
-  final Reference regulatoryAuthority;
+  Reference regulatoryAuthority;
 
   /// [substitution]
   /// Specifies if changes are allowed when dispensing a medication from a
   /// regulatory perspective.
-  final List<MedicationKnowledgeSubstitution>? substitution;
+  List<MedicationKnowledgeSubstitution>? substitution;
 
   /// [schedule]
   /// Specifies the schedule of a medication in jurisdiction.
-  final List<MedicationKnowledgeSchedule>? schedule;
+  List<MedicationKnowledgeSchedule>? schedule;
 
   /// [maxDispense]
   /// The maximum number of units of the medication that can be dispensed in
   /// a period.
-  final MedicationKnowledgeMaxDispense? maxDispense;
+  MedicationKnowledgeMaxDispense? maxDispense;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3547,7 +3546,7 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3557,7 +3556,7 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3575,16 +3574,16 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Specifies the type of substitution allowed.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [allowed]
   /// Specifies if regulation allows for changes in the medication when
   /// dispensing.
-  final FhirBoolean allowed;
+  FhirBoolean allowed;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3744,7 +3743,7 @@ class MedicationKnowledgeSchedule extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3754,7 +3753,7 @@ class MedicationKnowledgeSchedule extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3772,11 +3771,11 @@ class MedicationKnowledgeSchedule extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [schedule]
   /// Specifies the specific drug schedule.
-  final CodeableConcept schedule;
+  CodeableConcept schedule;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3935,7 +3934,7 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3945,7 +3944,7 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3963,15 +3962,15 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [quantity]
   /// The maximum number of units of the medication that can be dispensed.
-  final Quantity quantity;
+  Quantity quantity;
 
   /// [period]
   /// The period that applies to the maximum number of units.
-  final FhirDuration? period;
+  FhirDuration? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4152,7 +4151,7 @@ class MedicationKnowledgeKinetics extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -4162,7 +4161,7 @@ class MedicationKnowledgeKinetics extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -4180,20 +4179,20 @@ class MedicationKnowledgeKinetics extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [areaUnderCurve]
   /// The drug concentration measured at certain discrete points in time.
-  final List<Quantity>? areaUnderCurve;
+  List<Quantity>? areaUnderCurve;
 
   /// [lethalDose50]
   /// The median lethal dose of a drug.
-  final List<Quantity>? lethalDose50;
+  List<Quantity>? lethalDose50;
 
   /// [halfLifePeriod]
   /// The time required for any specified property (e.g., the concentration
   /// of a substance in the body) to decrease by half.
-  final FhirDuration? halfLifePeriod;
+  FhirDuration? halfLifePeriod;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

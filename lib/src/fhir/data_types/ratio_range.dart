@@ -110,7 +110,7 @@ class RatioRange extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -120,19 +120,19 @@ class RatioRange extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [lowNumerator]
   /// The value of the low limit numerator.
-  final Quantity? lowNumerator;
+  Quantity? lowNumerator;
 
   /// [highNumerator]
   /// The value of the high limit numerator.
-  final Quantity? highNumerator;
+  Quantity? highNumerator;
 
   /// [denominator]
   /// The value of the denominator.
-  final Quantity? denominator;
+  Quantity? denominator;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

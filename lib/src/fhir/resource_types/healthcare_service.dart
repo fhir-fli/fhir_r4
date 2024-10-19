@@ -357,14 +357,14 @@ class HealthcareService extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -372,12 +372,12 @@ class HealthcareService extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -387,14 +387,14 @@ class HealthcareService extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -404,7 +404,7 @@ class HealthcareService extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -422,127 +422,127 @@ class HealthcareService extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// External identifiers for this item.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [active]
   /// This flag is used to mark the record to not be used. This is not used
   /// when a center is closed for maintenance, or for holidays, the
   /// notAvailable period is to be used for this.
-  final FhirBoolean? active;
+  FhirBoolean? active;
 
   /// [providedBy]
   /// The organization that provides this healthcare service.
-  final Reference? providedBy;
+  Reference? providedBy;
 
   /// [category]
   /// Identifies the broad category of service being performed or delivered.
-  final List<CodeableConcept>? category;
+  List<CodeableConcept>? category;
 
   /// [type]
   /// The specific type of service that may be delivered or performed.
-  final List<CodeableConcept>? type;
+  List<CodeableConcept>? type;
 
   /// [specialty]
   /// Collection of specialties handled by the service site. This is more of
   /// a medical term.
-  final List<CodeableConcept>? specialty;
+  List<CodeableConcept>? specialty;
 
   /// [location]
   /// The location(s) where this healthcare service may be provided.
-  final List<Reference>? location;
+  List<Reference>? location;
 
   /// [name]
   /// Further description of the service as it would be presented to a
   /// consumer while searching.
-  final FhirString? name;
+  FhirString? name;
 
   /// [comment]
   /// Any additional description of the service and/or any specific issues
   /// not covered by the other attributes, which can be displayed as further
   /// detail under the serviceName.
-  final FhirString? comment;
+  FhirString? comment;
 
   /// [extraDetails]
   /// Extra details about the service that can't be placed in the other
   /// fields.
-  final FhirMarkdown? extraDetails;
+  FhirMarkdown? extraDetails;
 
   /// [photo]
   /// If there is a photo/symbol associated with this HealthcareService, it
   /// may be included here to facilitate quick identification of the service
   /// in a list.
-  final Attachment? photo;
+  Attachment? photo;
 
   /// [telecom]
   /// List of contacts related to this specific healthcare service.
-  final List<ContactPoint>? telecom;
+  List<ContactPoint>? telecom;
 
   /// [coverageArea]
   /// The location(s) that this service is available to (not where the
   /// service is provided).
-  final List<Reference>? coverageArea;
+  List<Reference>? coverageArea;
 
   /// [serviceProvisionCode]
   /// The code(s) that detail the conditions under which the healthcare
   /// service is available/offered.
-  final List<CodeableConcept>? serviceProvisionCode;
+  List<CodeableConcept>? serviceProvisionCode;
 
   /// [eligibility]
   /// Does this service have specific eligibility requirements that need to
   /// be met in order to use the service?
-  final List<HealthcareServiceEligibility>? eligibility;
+  List<HealthcareServiceEligibility>? eligibility;
 
   /// [program]
   /// Programs that this service is applicable to.
-  final List<CodeableConcept>? program;
+  List<CodeableConcept>? program;
 
   /// [characteristic]
   /// Collection of characteristics (attributes).
-  final List<CodeableConcept>? characteristic;
+  List<CodeableConcept>? characteristic;
 
   /// [communication]
   /// Some services are specifically made available in multiple languages,
   /// this property permits a directory to declare the languages this is
   /// offered in. Typically this is only provided where a service operates in
   /// communities with mixed languages used.
-  final List<CodeableConcept>? communication;
+  List<CodeableConcept>? communication;
 
   /// [referralMethod]
   /// Ways that the service accepts referrals, if this is not provided then
   /// it is implied that no referral is required.
-  final List<CodeableConcept>? referralMethod;
+  List<CodeableConcept>? referralMethod;
 
   /// [appointmentRequired]
   /// Indicates whether or not a prospective consumer will require an
   /// appointment for a particular service at a site to be provided by the
   /// Organization. Indicates if an appointment is required for access to
   /// this service.
-  final FhirBoolean? appointmentRequired;
+  FhirBoolean? appointmentRequired;
 
   /// [availableTime]
   /// A collection of times that the Service Site is available.
-  final List<HealthcareServiceAvailableTime>? availableTime;
+  List<HealthcareServiceAvailableTime>? availableTime;
 
   /// [notAvailable]
   /// The HealthcareService is not available during this period of time due
   /// to the provided reason.
-  final List<HealthcareServiceNotAvailable>? notAvailable;
+  List<HealthcareServiceNotAvailable>? notAvailable;
 
   /// [availabilityExceptions]
   /// A description of site availability exceptions, e.g. public holiday
   /// availability. Succinctly describing all possible exceptions to normal
   /// site availability as details in the available Times and not available
   /// Times.
-  final FhirString? availabilityExceptions;
+  FhirString? availabilityExceptions;
 
   /// [endpoint]
   /// Technical endpoints providing access to services operated for the
   /// specific healthcare services defined at this resource.
-  final List<Reference>? endpoint;
+  List<Reference>? endpoint;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -909,7 +909,7 @@ class HealthcareServiceEligibility extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -919,7 +919,7 @@ class HealthcareServiceEligibility extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -937,15 +937,15 @@ class HealthcareServiceEligibility extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// Coded value for the eligibility.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [comment]
   /// Describes the eligibility conditions for the service.
-  final FhirMarkdown? comment;
+  FhirMarkdown? comment;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1134,7 +1134,7 @@ class HealthcareServiceAvailableTime extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1144,7 +1144,7 @@ class HealthcareServiceAvailableTime extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1162,27 +1162,27 @@ class HealthcareServiceAvailableTime extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [daysOfWeek]
   /// Indicates which days of the week are available between the start and
   /// end Times.
-  final List<DaysOfWeek>? daysOfWeek;
+  List<DaysOfWeek>? daysOfWeek;
 
   /// [allDay]
   /// Is this always available? (hence times are irrelevant) e.g. 24 hour
   /// service.
-  final FhirBoolean? allDay;
+  FhirBoolean? allDay;
 
   /// [availableStartTime]
   /// The opening time of day. Note: If the AllDay flag is set, then this
   /// time is ignored.
-  final FhirTime? availableStartTime;
+  FhirTime? availableStartTime;
 
   /// [availableEndTime]
   /// The closing time of day. Note: If the AllDay flag is set, then this
   /// time is ignored.
-  final FhirTime? availableEndTime;
+  FhirTime? availableEndTime;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1378,7 +1378,7 @@ class HealthcareServiceNotAvailable extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1388,7 +1388,7 @@ class HealthcareServiceNotAvailable extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1406,17 +1406,17 @@ class HealthcareServiceNotAvailable extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// The reason that can be presented to the user as to why this time is not
   /// available.
-  final FhirString description;
+  FhirString description;
 
   /// [during]
   /// Service is not available (seasonally or for a public holiday) from this
   /// date.
-  final Period? during;
+  Period? during;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

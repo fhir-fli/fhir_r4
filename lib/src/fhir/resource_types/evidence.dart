@@ -360,14 +360,14 @@ class Evidence extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -375,12 +375,12 @@ class Evidence extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -390,14 +390,14 @@ class Evidence extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -407,7 +407,7 @@ class Evidence extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -425,7 +425,7 @@ class Evidence extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this evidence when it is
@@ -435,13 +435,13 @@ class Evidence extends DomainResource {
   /// of this summary is (or will be) published. This URL can be the target
   /// of a canonical reference. It SHALL remain the same when the summary is
   /// stored on different servers.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [identifier]
   /// A formal identifier that is used to identify this summary when it is
   /// represented in other formats, or referenced in a specification, model,
   /// design or an instance.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the summary
@@ -450,31 +450,31 @@ class Evidence extends DomainResource {
   /// expected to be globally unique. For example, it might be a timestamp
   /// (e.g. yyyymmdd) if a managed version is not available. There is also no
   /// expectation that versions can be placed in a lexicographical sequence.
-  final FhirString? version;
+  FhirString? version;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the summary.
-  final FhirString? title;
+  FhirString? title;
 
   /// [citeAsReference]
   /// Citation Resource or display of suggested citation for this evidence.
-  final Reference? citeAsReference;
+  Reference? citeAsReference;
 
   /// [citeAsMarkdown]
   /// Citation Resource or display of suggested citation for this evidence.
-  final FhirMarkdown? citeAsMarkdown;
+  FhirMarkdown? citeAsMarkdown;
 
   /// [status]
   /// The status of this summary. Enables tracking the life-cycle of the
   /// content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [date]
   /// The date (and optionally time) when the summary was published. The date
   /// must change when the business version changes and it must change if the
   /// status code changes. In addition, it should change when the substantive
   /// content of the summary changes.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -482,86 +482,86 @@ class Evidence extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate evidence instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [approvalDate]
   /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for
   /// usage.
-  final FhirDate? approvalDate;
+  FhirDate? approvalDate;
 
   /// [lastReviewDate]
   /// The date on which the resource content was last reviewed. Review
   /// happens periodically after approval but does not change the original
   /// approval date.
-  final FhirDate? lastReviewDate;
+  FhirDate? lastReviewDate;
 
   /// [publisher]
   /// The name of the organization or individual that published the evidence.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [author]
   /// An individiual, organization, or device primarily involved in the
   /// creation and maintenance of the content.
-  final List<ContactDetail>? author;
+  List<ContactDetail>? author;
 
   /// [editor]
   /// An individiual, organization, or device primarily responsible for
   /// internal coherence of the content.
-  final List<ContactDetail>? editor;
+  List<ContactDetail>? editor;
 
   /// [reviewer]
   /// An individiual, organization, or device primarily responsible for
   /// review of some aspect of the content.
-  final List<ContactDetail>? reviewer;
+  List<ContactDetail>? reviewer;
 
   /// [endorser]
   /// An individiual, organization, or device responsible for officially
   /// endorsing the content for use in some setting.
-  final List<ContactDetail>? endorser;
+  List<ContactDetail>? endorser;
 
   /// [relatedArtifact]
   /// Link or citation to artifact associated with the summary.
-  final List<RelatedArtifact>? relatedArtifact;
+  List<RelatedArtifact>? relatedArtifact;
 
   /// [description]
   /// A free text natural language description of the evidence from a
   /// consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [assertion]
   /// Declarative description of the Evidence.
-  final FhirMarkdown? assertion;
+  FhirMarkdown? assertion;
 
   /// [note]
   /// Footnotes and/or explanatory notes.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [variableDefinition]
   /// Evidence variable such as population, exposure, or outcome.
-  final List<EvidenceVariableDefinition> variableDefinition;
+  List<EvidenceVariableDefinition> variableDefinition;
 
   /// [synthesisType]
   /// The method to combine studies.
-  final CodeableConcept? synthesisType;
+  CodeableConcept? synthesisType;
 
   /// [studyType]
   /// The type of study that produced this evidence.
-  final CodeableConcept? studyType;
+  CodeableConcept? studyType;
 
   /// [statistic]
   /// Values and parameters for a single statistic.
-  final List<EvidenceStatistic>? statistic;
+  List<EvidenceStatistic>? statistic;
 
   /// [certainty]
   /// Assessment of certainty, confidence in the estimates, or quality of the
   /// evidence.
-  final List<EvidenceCertainty>? certainty;
+  List<EvidenceCertainty>? certainty;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -981,7 +981,7 @@ class EvidenceVariableDefinition extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -991,7 +991,7 @@ class EvidenceVariableDefinition extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1009,33 +1009,33 @@ class EvidenceVariableDefinition extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// A text description or summary of the variable.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [note]
   /// Footnotes and/or explanatory notes.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [variableRole]
   /// population | subpopulation | exposure | referenceExposure |
   /// measuredVariable | confounder.
-  final CodeableConcept variableRole;
+  CodeableConcept variableRole;
 
   /// [observed]
   /// Definition of the actual variable related to the statistic(s).
-  final Reference? observed;
+  Reference? observed;
 
   /// [intended]
   /// Definition of the intended variable related to the Evidence.
-  final Reference? intended;
+  Reference? intended;
 
   /// [directnessMatch]
   /// Indication of quality of match between intended variable to actual
   /// variable.
-  final CodeableConcept? directnessMatch;
+  CodeableConcept? directnessMatch;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1294,7 +1294,7 @@ class EvidenceStatistic extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1304,7 +1304,7 @@ class EvidenceStatistic extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1322,52 +1322,52 @@ class EvidenceStatistic extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// A description of the content value of the statistic.
-  final FhirString? description;
+  FhirString? description;
 
   /// [note]
   /// Footnotes and/or explanatory notes.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [statisticType]
   /// Type of statistic, eg relative risk.
-  final CodeableConcept? statisticType;
+  CodeableConcept? statisticType;
 
   /// [category]
   /// When the measured variable is handled categorically, the category
   /// element is used to define which category the statistic is reporting.
-  final CodeableConcept? category;
+  CodeableConcept? category;
 
   /// [quantity]
   /// Statistic value.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [numberOfEvents]
   /// The number of events associated with the statistic, where the unit of
   /// analysis is different from numberAffected, sampleSize.knownDataCount
   /// and sampleSize.numberOfParticipants.
-  final FhirUnsignedInt? numberOfEvents;
+  FhirUnsignedInt? numberOfEvents;
 
   /// [numberAffected]
   /// The number of participants affected where the unit of analysis is the
   /// same as sampleSize.knownDataCount and sampleSize.numberOfParticipants.
-  final FhirUnsignedInt? numberAffected;
+  FhirUnsignedInt? numberAffected;
 
   /// [sampleSize]
   /// Number of samples in the statistic.
-  final EvidenceSampleSize? sampleSize;
+  EvidenceSampleSize? sampleSize;
 
   /// [attributeEstimate]
   /// A statistical attribute of the statistic such as a measure of
   /// heterogeneity.
-  final List<EvidenceAttributeEstimate>? attributeEstimate;
+  List<EvidenceAttributeEstimate>? attributeEstimate;
 
   /// [modelCharacteristic]
   /// A component of the method to generate the statistic.
-  final List<EvidenceModelCharacteristic>? modelCharacteristic;
+  List<EvidenceModelCharacteristic>? modelCharacteristic;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1626,7 +1626,7 @@ class EvidenceSampleSize extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1636,7 +1636,7 @@ class EvidenceSampleSize extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1654,28 +1654,28 @@ class EvidenceSampleSize extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// Human-readable summary of population sample size.
-  final FhirString? description;
+  FhirString? description;
 
   /// [note]
   /// Footnote or explanatory note about the sample size.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [numberOfStudies]
   /// Number of participants in the population.
-  final FhirUnsignedInt? numberOfStudies;
+  FhirUnsignedInt? numberOfStudies;
 
   /// [numberOfParticipants]
   /// A human-readable string to clarify or explain concepts about the sample
   /// size.
-  final FhirUnsignedInt? numberOfParticipants;
+  FhirUnsignedInt? numberOfParticipants;
 
   /// [knownDataCount]
   /// Number of participants with known results for measured variables.
-  final FhirUnsignedInt? knownDataCount;
+  FhirUnsignedInt? knownDataCount;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1908,7 +1908,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1918,7 +1918,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1936,33 +1936,33 @@ class EvidenceAttributeEstimate extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// Human-readable summary of the estimate.
-  final FhirString? description;
+  FhirString? description;
 
   /// [note]
   /// Footnote or explanatory note about the estimate.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [type]
   /// The type of attribute estimate, eg confidence interval or p value.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [quantity]
   /// The singular quantity of the attribute estimate, for attribute
   /// estimates represented as single values; also used to report unit of
   /// measure.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [level]
   /// Use 95 for a 95% confidence interval.
-  final FhirDecimal? level;
+  FhirDecimal? level;
 
   /// [range]
   /// Lower bound of confidence interval.
-  final Range? range;
+  Range? range;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2170,7 +2170,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2180,7 +2180,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2198,20 +2198,20 @@ class EvidenceModelCharacteristic extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// Description of a component of the method to generate the statistic.
-  final CodeableConcept code;
+  CodeableConcept code;
 
   /// [value]
   /// Further specification of the quantified value of the component of the
   /// method to generate the statistic.
-  final Quantity? value;
+  Quantity? value;
 
   /// [variable]
   /// A variable adjusted for in the adjusted analysis.
-  final List<EvidenceModelCharacteristicVariable>? variable;
+  List<EvidenceModelCharacteristicVariable>? variable;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2412,7 +2412,7 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2422,7 +2422,7 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2440,27 +2440,27 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [variableDefinition]
   /// Description of the variable.
-  final Reference variableDefinition;
+  Reference variableDefinition;
 
   /// [handling]
   /// How the variable is classified for use in adjusted analysis.
-  final EvidenceVariableHandling? handling;
+  EvidenceVariableHandling? handling;
 
   /// [valueCategory]
   /// Description for grouping of ordinal or polychotomous variables.
-  final List<CodeableConcept>? valueCategory;
+  List<CodeableConcept>? valueCategory;
 
   /// [valueQuantity]
   /// Discrete value for grouping of ordinal or polychotomous variables.
-  final List<Quantity>? valueQuantity;
+  List<Quantity>? valueQuantity;
 
   /// [valueRange]
   /// Range of values for grouping of ordinal or polychotomous variables.
-  final List<Range>? valueRange;
+  List<Range>? valueRange;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2683,7 +2683,7 @@ class EvidenceCertainty extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2693,7 +2693,7 @@ class EvidenceCertainty extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2711,31 +2711,31 @@ class EvidenceCertainty extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// Textual description of certainty.
-  final FhirString? description;
+  FhirString? description;
 
   /// [note]
   /// Footnotes and/or explanatory notes.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [type]
   /// Aspect of certainty being rated.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [rating]
   /// Assessment or judgement of the aspect.
-  final CodeableConcept? rating;
+  CodeableConcept? rating;
 
   /// [rater]
   /// Individual or group who did the rating.
-  final FhirString? rater;
+  FhirString? rater;
 
   /// [subcomponent]
   /// A domain or subdomain of certainty.
-  final List<EvidenceCertainty>? subcomponent;
+  List<EvidenceCertainty>? subcomponent;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

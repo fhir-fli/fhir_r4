@@ -232,14 +232,14 @@ class Practitioner extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -247,12 +247,12 @@ class Practitioner extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -262,14 +262,14 @@ class Practitioner extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -279,7 +279,7 @@ class Practitioner extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -297,54 +297,54 @@ class Practitioner extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// An identifier that applies to this person in this role.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [active]
   /// Whether this practitioner's record is in active use.
-  final FhirBoolean? active;
+  FhirBoolean? active;
 
   /// [name]
   /// The name(s) associated with the practitioner.
-  final List<HumanName>? name;
+  List<HumanName>? name;
 
   /// [telecom]
   /// A contact detail for the practitioner, e.g. a telephone number or an
   /// email address.
-  final List<ContactPoint>? telecom;
+  List<ContactPoint>? telecom;
 
   /// [address]
   /// Address(es) of the practitioner that are not role specific (typically
   /// home address). Work addresses are not typically entered in this
   /// property as they are usually role dependent.
-  final List<Address>? address;
+  List<Address>? address;
 
   /// [gender]
   /// Administrative Gender - the gender that the person is considered to
   /// have for administration and record keeping purposes.
-  final AdministrativeGender? gender;
+  AdministrativeGender? gender;
 
   /// [birthDate]
   /// The date of birth for the practitioner.
-  final FhirDate? birthDate;
+  FhirDate? birthDate;
 
   /// [photo]
   /// Image of the person.
-  final List<Attachment>? photo;
+  List<Attachment>? photo;
 
   /// [qualification]
   /// The official certifications, training, and licenses that authorize or
   /// otherwise pertain to the provision of care by the practitioner. For
   /// example, a medical license issued by a medical board authorizing the
   /// practitioner to practice medicine within a certian locality.
-  final List<PractitionerQualification>? qualification;
+  List<PractitionerQualification>? qualification;
 
   /// [communication]
   /// A language the practitioner can use in patient communication.
-  final List<CodeableConcept>? communication;
+  List<CodeableConcept>? communication;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -628,7 +628,7 @@ class PractitionerQualification extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -638,7 +638,7 @@ class PractitionerQualification extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -656,23 +656,23 @@ class PractitionerQualification extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// An identifier that applies to this person's qualification in this role.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [code]
   /// Coded representation of the qualification.
-  final CodeableConcept code;
+  CodeableConcept code;
 
   /// [period]
   /// Period during which the qualification is valid.
-  final Period? period;
+  Period? period;
 
   /// [issuer]
   /// Organization that regulates and issues the qualification.
-  final Reference? issuer;
+  Reference? issuer;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

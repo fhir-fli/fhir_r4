@@ -313,14 +313,14 @@ class Questionnaire extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -328,12 +328,12 @@ class Questionnaire extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -343,14 +343,14 @@ class Questionnaire extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -360,7 +360,7 @@ class Questionnaire extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -378,7 +378,7 @@ class Questionnaire extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this questionnaire when it is
@@ -388,13 +388,13 @@ class Questionnaire extends DomainResource {
   /// of this questionnaire is (or will be) published. This URL can be the
   /// target of a canonical reference. It SHALL remain the same when the
   /// questionnaire is stored on different servers.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [identifier]
   /// A formal identifier that is used to identify this questionnaire when it
   /// is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the
@@ -404,59 +404,59 @@ class Questionnaire extends DomainResource {
   /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
   /// There is also no expectation that versions can be placed in a
   /// lexicographical sequence.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the questionnaire. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString? name;
+  FhirString? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the questionnaire.
-  final FhirString? title;
+  FhirString? title;
 
   /// [derivedFrom]
   /// The URL of a Questionnaire that this Questionnaire is based on.
-  final List<FhirCanonical>? derivedFrom;
+  List<FhirCanonical>? derivedFrom;
 
   /// [status]
   /// The status of this questionnaire. Enables tracking the life-cycle of
   /// the content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this questionnaire is authored for
   /// testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [subjectType]
   /// The types of subjects that can be the subject of responses created for
   /// the questionnaire.
-  final List<FhirCode>? subjectType;
+  List<FhirCode>? subjectType;
 
   /// [date]
   /// The date (and optionally time) when the questionnaire was published.
   /// The date must change when the business version changes and it must
   /// change if the status code changes. In addition, it should change when
   /// the substantive content of the questionnaire changes.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the
   /// questionnaire.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the questionnaire from a
   /// consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -464,50 +464,50 @@ class Questionnaire extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate questionnaire instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the questionnaire is intended to
   /// be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this questionnaire is needed and why it has been
   /// designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [copyright]
   /// A copyright statement relating to the questionnaire and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the questionnaire.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [approvalDate]
   /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for
   /// usage.
-  final FhirDate? approvalDate;
+  FhirDate? approvalDate;
 
   /// [lastReviewDate]
   /// The date on which the resource content was last reviewed. Review
   /// happens periodically after approval but does not change the original
   /// approval date.
-  final FhirDate? lastReviewDate;
+  FhirDate? lastReviewDate;
 
   /// [effectivePeriod]
   /// The period during which the questionnaire content was or is planned to
   /// be in active use.
-  final Period? effectivePeriod;
+  Period? effectivePeriod;
 
   /// [code]
   /// An identifier for this question or group of questions in a particular
   /// terminology such as LOINC.
-  final List<Coding>? code;
+  List<Coding>? code;
 
   /// [item]
   /// A particular question, question grouping or display text that is part
   /// of the questionnaire.
-  final List<QuestionnaireItem>? item;
+  List<QuestionnaireItem>? item;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1006,7 +1006,7 @@ class QuestionnaireItem extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1016,7 +1016,7 @@ class QuestionnaireItem extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1034,12 +1034,12 @@ class QuestionnaireItem extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [linkId]
   /// An identifier that is unique within the Questionnaire allowing linkage
   /// to the equivalent item in a QuestionnaireResponse resource.
-  final FhirString linkId;
+  FhirString linkId;
 
   /// [definition]
   /// This element is a URI that refers to an
@@ -1058,81 +1058,81 @@ class QuestionnaireItem extends BackboneElement {
   /// * maxLength (ElementDefinition.maxLength)
   /// * answerValueSet (ElementDefinition.binding)
   /// * options (ElementDefinition.binding).
-  final FhirUri? definition;
+  FhirUri? definition;
 
   /// [code]
   /// A terminology code that corresponds to this group or question (e.g. a
   /// code from LOINC, which defines many questions and answers).
-  final List<Coding>? code;
+  List<Coding>? code;
 
   /// [prefix]
   /// A short label for a particular group, question or set of display text
   /// within the questionnaire used for reference by the individual
   /// completing the questionnaire.
-  final FhirString? prefix;
+  FhirString? prefix;
 
   /// [text]
   /// The name of a section, the text of a question or text content for a
   /// display item.
-  final FhirString? text;
+  FhirString? text;
 
   /// [type]
   /// The type of questionnaire item this is - whether text for display, a
   /// grouping of other items or a particular type of data to be captured
   /// (string, integer, coded choice, etc.).
-  final QuestionnaireItemType type;
+  QuestionnaireItemType type;
 
   /// [enableWhen]
   /// A constraint indicating that this item should only be enabled
   /// (displayed/allow answers to be captured) when the specified condition
   /// is true.
-  final List<QuestionnaireEnableWhen>? enableWhen;
+  List<QuestionnaireEnableWhen>? enableWhen;
 
   /// [enableBehavior]
   /// Controls how multiple enableWhen values are interpreted - whether all
   /// or any must be true.
-  final EnableWhenBehavior? enableBehavior;
+  EnableWhenBehavior? enableBehavior;
 
   /// [required_]
   /// An indication, if true, that the item must be present in a "completed"
   /// QuestionnaireResponse. If false, the item may be skipped when answering
   /// the questionnaire.
-  final FhirBoolean? required_;
+  FhirBoolean? required_;
 
   /// [repeats]
   /// An indication, if true, that the item may occur multiple times in the
   /// response, collecting multiple answers for questions or multiple sets of
   /// answers for groups.
-  final FhirBoolean? repeats;
+  FhirBoolean? repeats;
 
   /// [readOnly]
   /// An indication, when true, that the value cannot be changed by a human
   /// respondent to the Questionnaire.
-  final FhirBoolean? readOnly;
+  FhirBoolean? readOnly;
 
   /// [maxLength]
   /// The maximum number of characters that are permitted in the answer to be
   /// considered a "valid" QuestionnaireResponse.
-  final FhirInteger? maxLength;
+  FhirInteger? maxLength;
 
   /// [answerValueSet]
   /// A reference to a value set containing a list of codes representing
   /// permitted answers for a "choice" or "open-choice" question.
-  final FhirCanonical? answerValueSet;
+  FhirCanonical? answerValueSet;
 
   /// [answerOption]
   /// One of the permitted answers for a "choice" or "open-choice" question.
-  final List<QuestionnaireAnswerOption>? answerOption;
+  List<QuestionnaireAnswerOption>? answerOption;
 
   /// [initial]
   /// One or more values that should be pre-populated in the answer when
   /// initially rendering the questionnaire for user input.
-  final List<QuestionnaireInitial>? initial;
+  List<QuestionnaireInitial>? initial;
 
   /// [item]
   /// Text, questions and other groups to be nested beneath a question or
   /// group.
-  final List<QuestionnaireItem>? item;
+  List<QuestionnaireItem>? item;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1496,7 +1496,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1506,7 +1506,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1524,66 +1524,66 @@ class QuestionnaireEnableWhen extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [question]
   /// The linkId for the question whose answer (or lack of answer) governs
   /// whether this item is enabled.
-  final FhirString question;
+  FhirString question;
 
   /// [operator_]
   /// Specifies the criteria by which the question is enabled.
-  final QuestionnaireItemOperator operator_;
+  QuestionnaireItemOperator operator_;
 
   /// [answerBoolean]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
-  final FhirBoolean? answerBoolean;
+  FhirBoolean? answerBoolean;
 
   /// [answerDecimal]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
-  final FhirDecimal? answerDecimal;
+  FhirDecimal? answerDecimal;
 
   /// [answerInteger]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
-  final FhirInteger? answerInteger;
+  FhirInteger? answerInteger;
 
   /// [answerDate]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
-  final FhirDate? answerDate;
+  FhirDate? answerDate;
 
   /// [answerDateTime]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
-  final FhirDateTime? answerDateTime;
+  FhirDateTime? answerDateTime;
 
   /// [answerTime]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
-  final FhirTime? answerTime;
+  FhirTime? answerTime;
 
   /// [answerString]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
-  final FhirString? answerString;
+  FhirString? answerString;
 
   /// [answerCoding]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
-  final Coding? answerCoding;
+  Coding? answerCoding;
 
   /// [answerQuantity]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
-  final Quantity? answerQuantity;
+  Quantity? answerQuantity;
 
   /// [answerReference]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
-  final Reference? answerReference;
+  Reference? answerReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1880,7 +1880,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1890,7 +1890,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1908,36 +1908,36 @@ class QuestionnaireAnswerOption extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [valueInteger]
   /// A potential answer that's allowed as the answer to this question.
-  final FhirInteger? valueInteger;
+  FhirInteger? valueInteger;
 
   /// [valueDate]
   /// A potential answer that's allowed as the answer to this question.
-  final FhirDate? valueDate;
+  FhirDate? valueDate;
 
   /// [valueTime]
   /// A potential answer that's allowed as the answer to this question.
-  final FhirTime? valueTime;
+  FhirTime? valueTime;
 
   /// [valueString]
   /// A potential answer that's allowed as the answer to this question.
-  final FhirString? valueString;
+  FhirString? valueString;
 
   /// [valueCoding]
   /// A potential answer that's allowed as the answer to this question.
-  final Coding? valueCoding;
+  Coding? valueCoding;
 
   /// [valueReference]
   /// A potential answer that's allowed as the answer to this question.
-  final Reference? valueReference;
+  Reference? valueReference;
 
   /// [initialSelected]
   /// Indicates whether the answer value is selected when the list of
   /// possible answers is initially shown.
-  final FhirBoolean? initialSelected;
+  FhirBoolean? initialSelected;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2228,7 +2228,7 @@ class QuestionnaireInitial extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2238,7 +2238,7 @@ class QuestionnaireInitial extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2256,55 +2256,55 @@ class QuestionnaireInitial extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [valueBoolean]
   /// The actual value to for an initial answer.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueDecimal]
   /// The actual value to for an initial answer.
-  final FhirDecimal? valueDecimal;
+  FhirDecimal? valueDecimal;
 
   /// [valueInteger]
   /// The actual value to for an initial answer.
-  final FhirInteger? valueInteger;
+  FhirInteger? valueInteger;
 
   /// [valueDate]
   /// The actual value to for an initial answer.
-  final FhirDate? valueDate;
+  FhirDate? valueDate;
 
   /// [valueDateTime]
   /// The actual value to for an initial answer.
-  final FhirDateTime? valueDateTime;
+  FhirDateTime? valueDateTime;
 
   /// [valueTime]
   /// The actual value to for an initial answer.
-  final FhirTime? valueTime;
+  FhirTime? valueTime;
 
   /// [valueString]
   /// The actual value to for an initial answer.
-  final FhirString? valueString;
+  FhirString? valueString;
 
   /// [valueUri]
   /// The actual value to for an initial answer.
-  final FhirUri? valueUri;
+  FhirUri? valueUri;
 
   /// [valueAttachment]
   /// The actual value to for an initial answer.
-  final Attachment? valueAttachment;
+  Attachment? valueAttachment;
 
   /// [valueCoding]
   /// The actual value to for an initial answer.
-  final Coding? valueCoding;
+  Coding? valueCoding;
 
   /// [valueQuantity]
   /// The actual value to for an initial answer.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueReference]
   /// The actual value to for an initial answer.
-  final Reference? valueReference;
+  Reference? valueReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

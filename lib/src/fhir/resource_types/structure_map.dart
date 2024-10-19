@@ -279,14 +279,14 @@ class StructureMap extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -294,12 +294,12 @@ class StructureMap extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -309,14 +309,14 @@ class StructureMap extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -326,7 +326,7 @@ class StructureMap extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -344,7 +344,7 @@ class StructureMap extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this structure map when it is
@@ -354,13 +354,13 @@ class StructureMap extends DomainResource {
   /// of this structure map is (or will be) published. This URL can be the
   /// target of a canonical reference. It SHALL remain the same when the
   /// structure map is stored on different servers.
-  final FhirUri url;
+  FhirUri url;
 
   /// [identifier]
   /// A formal identifier that is used to identify this structure map when it
   /// is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the structure
@@ -370,50 +370,50 @@ class StructureMap extends DomainResource {
   /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
   /// There is also no expectation that versions can be placed in a
   /// lexicographical sequence.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the structure map. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString name;
+  FhirString name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the structure map.
-  final FhirString? title;
+  FhirString? title;
 
   /// [status]
   /// The status of this structure map. Enables tracking the life-cycle of
   /// the content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this structure map is authored for
   /// testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [date]
   /// The date (and optionally time) when the structure map was published.
   /// The date must change when the business version changes and it must
   /// change if the status code changes. In addition, it should change when
   /// the substantive content of the structure map changes.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the structure
   /// map.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the structure map from a
   /// consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -421,38 +421,38 @@ class StructureMap extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate structure map instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the structure map is intended to
   /// be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this structure map is needed and why it has been
   /// designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [copyright]
   /// A copyright statement relating to the structure map and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the structure map.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [structure]
   /// A structure definition used by this map. The structure definition may
   /// describe instances that are converted, or the instances that are
   /// produced.
-  final List<StructureMapStructure>? structure;
+  List<StructureMapStructure>? structure;
 
   /// [import_]
   /// Other maps used by this map (canonical URLs).
-  final List<FhirCanonical>? import_;
+  List<FhirCanonical>? import_;
 
   /// [group]
   /// Organizes the mapping into manageable chunks for human review/ease of
   /// maintenance.
-  final List<StructureMapGroup> group;
+  List<StructureMapGroup> group;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -810,7 +810,7 @@ class StructureMapStructure extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -820,7 +820,7 @@ class StructureMapStructure extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -838,23 +838,23 @@ class StructureMapStructure extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// The canonical reference to the structure.
-  final FhirCanonical url;
+  FhirCanonical url;
 
   /// [mode]
   /// How the referenced structure is used in this mapping.
-  final StructureMapModelMode mode;
+  StructureMapModelMode mode;
 
   /// [alias]
   /// The name used for this type in the map.
-  final FhirString? alias;
+  FhirString? alias;
 
   /// [documentation]
   /// Documentation that describes how the structure is used in the mapping.
-  final FhirString? documentation;
+  FhirString? documentation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1080,7 +1080,7 @@ class StructureMapGroup extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1090,7 +1090,7 @@ class StructureMapGroup extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1108,34 +1108,34 @@ class StructureMapGroup extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// A unique name for the group for the convenience of human readers.
-  final FhirId name;
+  FhirId name;
 
   /// [extends_]
   /// Another group that this group adds rules to.
-  final FhirId? extends_;
+  FhirId? extends_;
 
   /// [typeMode]
   /// If this is the default rule set to apply for the source type or this
   /// combination of types.
-  final StructureMapGroupTypeMode typeMode;
+  StructureMapGroupTypeMode typeMode;
 
   /// [documentation]
   /// Additional supporting documentation that explains the purpose of the
   /// group and the types of mappings within it.
-  final FhirString? documentation;
+  FhirString? documentation;
 
   /// [input]
   /// A name assigned to an instance of data. The instance must be provided
   /// when the mapping is invoked.
-  final List<StructureMapInput> input;
+  List<StructureMapInput> input;
 
   /// [rule]
   /// Transform Rule from source to target.
-  final List<StructureMapRule> rule;
+  List<StructureMapRule> rule;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1349,7 +1349,7 @@ class StructureMapInput extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1359,7 +1359,7 @@ class StructureMapInput extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1377,23 +1377,23 @@ class StructureMapInput extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// Name for this instance of data.
-  final FhirId name;
+  FhirId name;
 
   /// [type]
   /// Type for this instance of data.
-  final FhirString? type;
+  FhirString? type;
 
   /// [mode]
   /// Mode for this instance of data.
-  final StructureMapInputMode mode;
+  StructureMapInputMode mode;
 
   /// [documentation]
   /// Documentation for this instance of data.
-  final FhirString? documentation;
+  FhirString? documentation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1616,7 +1616,7 @@ class StructureMapRule extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1626,7 +1626,7 @@ class StructureMapRule extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1644,27 +1644,27 @@ class StructureMapRule extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// Name of the rule for internal references.
-  final FhirId name;
+  FhirId name;
 
   /// [source]
   /// Source inputs to the mapping.
-  final List<StructureMapSource> source;
+  List<StructureMapSource> source;
 
   /// [target]
   /// Content to create because of this mapping rule.
-  final List<StructureMapTarget>? target;
+  List<StructureMapTarget>? target;
 
   /// [dependent]
   /// Which other rules to apply in the context of this rule.
-  final List<StructureMapDependent>? dependent;
+  List<StructureMapDependent>? dependent;
 
   /// [documentation]
   /// Documentation for this instance of data.
-  final FhirString? documentation;
+  FhirString? documentation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2251,7 +2251,7 @@ class StructureMapSource extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2261,7 +2261,7 @@ class StructureMapSource extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2279,253 +2279,253 @@ class StructureMapSource extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [context]
   /// Type or variable this rule applies to.
-  final FhirId context;
+  FhirId context;
 
   /// [min]
   /// Specified minimum cardinality for the element. This is optional; if
   /// present, it acts an implicit check on the input content.
-  final FhirInteger? min;
+  FhirInteger? min;
 
   /// [max]
   /// Specified maximum cardinality for the element - a number or a "*". This
   /// is optional; if present, it acts an implicit check on the input content
   /// (* just serves as documentation; it's the default value).
-  final FhirString? max;
+  FhirString? max;
 
   /// [type]
   /// Specified type for the element. This works as a condition on the
   /// mapping - use for polymorphic elements.
-  final FhirString? type;
+  FhirString? type;
 
   /// [defaultValueBase64Binary]
   /// A value to use if there is no existing value in the source object.
-  final FhirBase64Binary? defaultValueBase64Binary;
+  FhirBase64Binary? defaultValueBase64Binary;
 
   /// [defaultValueBoolean]
   /// A value to use if there is no existing value in the source object.
-  final FhirBoolean? defaultValueBoolean;
+  FhirBoolean? defaultValueBoolean;
 
   /// [defaultValueCanonical]
   /// A value to use if there is no existing value in the source object.
-  final FhirCanonical? defaultValueCanonical;
+  FhirCanonical? defaultValueCanonical;
 
   /// [defaultValueCode]
   /// A value to use if there is no existing value in the source object.
-  final FhirCode? defaultValueCode;
+  FhirCode? defaultValueCode;
 
   /// [defaultValueDate]
   /// A value to use if there is no existing value in the source object.
-  final FhirDate? defaultValueDate;
+  FhirDate? defaultValueDate;
 
   /// [defaultValueDateTime]
   /// A value to use if there is no existing value in the source object.
-  final FhirDateTime? defaultValueDateTime;
+  FhirDateTime? defaultValueDateTime;
 
   /// [defaultValueDecimal]
   /// A value to use if there is no existing value in the source object.
-  final FhirDecimal? defaultValueDecimal;
+  FhirDecimal? defaultValueDecimal;
 
   /// [defaultValueId]
   /// A value to use if there is no existing value in the source object.
-  final FhirId? defaultValueId;
+  FhirId? defaultValueId;
 
   /// [defaultValueInstant]
   /// A value to use if there is no existing value in the source object.
-  final FhirInstant? defaultValueInstant;
+  FhirInstant? defaultValueInstant;
 
   /// [defaultValueInteger]
   /// A value to use if there is no existing value in the source object.
-  final FhirInteger? defaultValueInteger;
+  FhirInteger? defaultValueInteger;
 
   /// [defaultValueMarkdown]
   /// A value to use if there is no existing value in the source object.
-  final FhirMarkdown? defaultValueMarkdown;
+  FhirMarkdown? defaultValueMarkdown;
 
   /// [defaultValueOid]
   /// A value to use if there is no existing value in the source object.
-  final FhirOid? defaultValueOid;
+  FhirOid? defaultValueOid;
 
   /// [defaultValuePositiveInt]
   /// A value to use if there is no existing value in the source object.
-  final FhirPositiveInt? defaultValuePositiveInt;
+  FhirPositiveInt? defaultValuePositiveInt;
 
   /// [defaultValueString]
   /// A value to use if there is no existing value in the source object.
-  final FhirString? defaultValueString;
+  FhirString? defaultValueString;
 
   /// [defaultValueTime]
   /// A value to use if there is no existing value in the source object.
-  final FhirTime? defaultValueTime;
+  FhirTime? defaultValueTime;
 
   /// [defaultValueUnsignedInt]
   /// A value to use if there is no existing value in the source object.
-  final FhirUnsignedInt? defaultValueUnsignedInt;
+  FhirUnsignedInt? defaultValueUnsignedInt;
 
   /// [defaultValueUri]
   /// A value to use if there is no existing value in the source object.
-  final FhirUri? defaultValueUri;
+  FhirUri? defaultValueUri;
 
   /// [defaultValueUrl]
   /// A value to use if there is no existing value in the source object.
-  final FhirUrl? defaultValueUrl;
+  FhirUrl? defaultValueUrl;
 
   /// [defaultValueUuid]
   /// A value to use if there is no existing value in the source object.
-  final FhirUuid? defaultValueUuid;
+  FhirUuid? defaultValueUuid;
 
   /// [defaultValueAddress]
   /// A value to use if there is no existing value in the source object.
-  final Address? defaultValueAddress;
+  Address? defaultValueAddress;
 
   /// [defaultValueAge]
   /// A value to use if there is no existing value in the source object.
-  final Age? defaultValueAge;
+  Age? defaultValueAge;
 
   /// [defaultValueAnnotation]
   /// A value to use if there is no existing value in the source object.
-  final Annotation? defaultValueAnnotation;
+  Annotation? defaultValueAnnotation;
 
   /// [defaultValueAttachment]
   /// A value to use if there is no existing value in the source object.
-  final Attachment? defaultValueAttachment;
+  Attachment? defaultValueAttachment;
 
   /// [defaultValueCodeableConcept]
   /// A value to use if there is no existing value in the source object.
-  final CodeableConcept? defaultValueCodeableConcept;
+  CodeableConcept? defaultValueCodeableConcept;
 
   /// [defaultValueCoding]
   /// A value to use if there is no existing value in the source object.
-  final Coding? defaultValueCoding;
+  Coding? defaultValueCoding;
 
   /// [defaultValueContactPoint]
   /// A value to use if there is no existing value in the source object.
-  final ContactPoint? defaultValueContactPoint;
+  ContactPoint? defaultValueContactPoint;
 
   /// [defaultValueCount]
   /// A value to use if there is no existing value in the source object.
-  final Count? defaultValueCount;
+  Count? defaultValueCount;
 
   /// [defaultValueDistance]
   /// A value to use if there is no existing value in the source object.
-  final Distance? defaultValueDistance;
+  Distance? defaultValueDistance;
 
   /// [defaultValueDuration]
   /// A value to use if there is no existing value in the source object.
-  final FhirDuration? defaultValueDuration;
+  FhirDuration? defaultValueDuration;
 
   /// [defaultValueHumanName]
   /// A value to use if there is no existing value in the source object.
-  final HumanName? defaultValueHumanName;
+  HumanName? defaultValueHumanName;
 
   /// [defaultValueIdentifier]
   /// A value to use if there is no existing value in the source object.
-  final Identifier? defaultValueIdentifier;
+  Identifier? defaultValueIdentifier;
 
   /// [defaultValueMoney]
   /// A value to use if there is no existing value in the source object.
-  final Money? defaultValueMoney;
+  Money? defaultValueMoney;
 
   /// [defaultValuePeriod]
   /// A value to use if there is no existing value in the source object.
-  final Period? defaultValuePeriod;
+  Period? defaultValuePeriod;
 
   /// [defaultValueQuantity]
   /// A value to use if there is no existing value in the source object.
-  final Quantity? defaultValueQuantity;
+  Quantity? defaultValueQuantity;
 
   /// [defaultValueRange]
   /// A value to use if there is no existing value in the source object.
-  final Range? defaultValueRange;
+  Range? defaultValueRange;
 
   /// [defaultValueRatio]
   /// A value to use if there is no existing value in the source object.
-  final Ratio? defaultValueRatio;
+  Ratio? defaultValueRatio;
 
   /// [defaultValueReference]
   /// A value to use if there is no existing value in the source object.
-  final Reference? defaultValueReference;
+  Reference? defaultValueReference;
 
   /// [defaultValueSampledData]
   /// A value to use if there is no existing value in the source object.
-  final SampledData? defaultValueSampledData;
+  SampledData? defaultValueSampledData;
 
   /// [defaultValueSignature]
   /// A value to use if there is no existing value in the source object.
-  final Signature? defaultValueSignature;
+  Signature? defaultValueSignature;
 
   /// [defaultValueTiming]
   /// A value to use if there is no existing value in the source object.
-  final Timing? defaultValueTiming;
+  Timing? defaultValueTiming;
 
   /// [defaultValueContactDetail]
   /// A value to use if there is no existing value in the source object.
-  final ContactDetail? defaultValueContactDetail;
+  ContactDetail? defaultValueContactDetail;
 
   /// [defaultValueContributor]
   /// A value to use if there is no existing value in the source object.
-  final Contributor? defaultValueContributor;
+  Contributor? defaultValueContributor;
 
   /// [defaultValueDataRequirement]
   /// A value to use if there is no existing value in the source object.
-  final DataRequirement? defaultValueDataRequirement;
+  DataRequirement? defaultValueDataRequirement;
 
   /// [defaultValueExpression]
   /// A value to use if there is no existing value in the source object.
-  final FhirExpression? defaultValueExpression;
+  FhirExpression? defaultValueExpression;
 
   /// [defaultValueParameterDefinition]
   /// A value to use if there is no existing value in the source object.
-  final ParameterDefinition? defaultValueParameterDefinition;
+  ParameterDefinition? defaultValueParameterDefinition;
 
   /// [defaultValueRelatedArtifact]
   /// A value to use if there is no existing value in the source object.
-  final RelatedArtifact? defaultValueRelatedArtifact;
+  RelatedArtifact? defaultValueRelatedArtifact;
 
   /// [defaultValueTriggerDefinition]
   /// A value to use if there is no existing value in the source object.
-  final TriggerDefinition? defaultValueTriggerDefinition;
+  TriggerDefinition? defaultValueTriggerDefinition;
 
   /// [defaultValueUsageContext]
   /// A value to use if there is no existing value in the source object.
-  final UsageContext? defaultValueUsageContext;
+  UsageContext? defaultValueUsageContext;
 
   /// [defaultValueDosage]
   /// A value to use if there is no existing value in the source object.
-  final Dosage? defaultValueDosage;
+  Dosage? defaultValueDosage;
 
   /// [defaultValueMeta]
   /// A value to use if there is no existing value in the source object.
-  final FhirMeta? defaultValueMeta;
+  FhirMeta? defaultValueMeta;
 
   /// [element]
   /// Optional field for this source.
-  final FhirString? element;
+  FhirString? element;
 
   /// [listMode]
   /// How to handle the list mode for this element.
-  final StructureMapSourceListMode? listMode;
+  StructureMapSourceListMode? listMode;
 
   /// [variable]
   /// Named context for field, if a field is specified.
-  final FhirId? variable;
+  FhirId? variable;
 
   /// [condition]
   /// FHIRPath expression - must be true or the rule does not apply.
-  final FhirString? condition;
+  FhirString? condition;
 
   /// [check]
   /// FHIRPath expression - must be true or the mapping engine throws an
   /// error instead of completing.
-  final FhirString? check;
+  FhirString? check;
 
   /// [logMessage]
   /// A FHIRPath expression which specifies a message to put in the transform
   /// log when content matching the source rule is found.
-  final FhirString? logMessage;
+  FhirString? logMessage;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3227,7 +3227,7 @@ class StructureMapTarget extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3237,7 +3237,7 @@ class StructureMapTarget extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3255,39 +3255,39 @@ class StructureMapTarget extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [context]
   /// Type or variable this rule applies to.
-  final FhirId? context;
+  FhirId? context;
 
   /// [contextType]
   /// How to interpret the context.
-  final StructureMapContextType? contextType;
+  StructureMapContextType? contextType;
 
   /// [element]
   /// Field to create in the context.
-  final FhirString? element;
+  FhirString? element;
 
   /// [variable]
   /// Named context for field, if desired, and a field is specified.
-  final FhirId? variable;
+  FhirId? variable;
 
   /// [listMode]
   /// If field is a list, how to manage the list.
-  final List<StructureMapTargetListMode>? listMode;
+  List<StructureMapTargetListMode>? listMode;
 
   /// [listRuleId]
   /// Internal rule reference for shared list items.
-  final FhirId? listRuleId;
+  FhirId? listRuleId;
 
   /// [transform]
   /// How the data is copied / created.
-  final StructureMapTransform? transform;
+  StructureMapTransform? transform;
 
   /// [parameter]
   /// Parameters to the transform.
-  final List<StructureMapParameter>? parameter;
+  List<StructureMapParameter>? parameter;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3545,7 +3545,7 @@ class StructureMapParameter extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3555,7 +3555,7 @@ class StructureMapParameter extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3573,27 +3573,27 @@ class StructureMapParameter extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [valueId]
   /// Parameter value - variable or literal.
-  final FhirId? valueId;
+  FhirId? valueId;
 
   /// [valueString]
   /// Parameter value - variable or literal.
-  final FhirString? valueString;
+  FhirString? valueString;
 
   /// [valueBoolean]
   /// Parameter value - variable or literal.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueInteger]
   /// Parameter value - variable or literal.
-  final FhirInteger? valueInteger;
+  FhirInteger? valueInteger;
 
   /// [valueDecimal]
   /// Parameter value - variable or literal.
-  final FhirDecimal? valueDecimal;
+  FhirDecimal? valueDecimal;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3800,7 +3800,7 @@ class StructureMapDependent extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3810,7 +3810,7 @@ class StructureMapDependent extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3828,15 +3828,15 @@ class StructureMapDependent extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// Name of a rule or group to apply.
-  final FhirId name;
+  FhirId name;
 
   /// [variable]
   /// Variable to pass to the rule or group.
-  final List<FhirString> variable;
+  List<FhirString> variable;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

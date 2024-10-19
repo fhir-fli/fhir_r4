@@ -272,14 +272,14 @@ class Goal extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -287,12 +287,12 @@ class Goal extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -302,14 +302,14 @@ class Goal extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -319,7 +319,7 @@ class Goal extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -337,85 +337,85 @@ class Goal extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business identifiers assigned to this goal by the performer or other
   /// systems which remain constant as the resource is updated and propagates
   /// from server to server.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [lifecycleStatus]
   /// The state of the goal throughout its lifecycle.
-  final GoalLifecycleStatus lifecycleStatus;
+  GoalLifecycleStatus lifecycleStatus;
 
   /// [achievementStatus]
   /// Describes the progression, or lack thereof, towards the goal against
   /// the target.
-  final CodeableConcept? achievementStatus;
+  CodeableConcept? achievementStatus;
 
   /// [category]
   /// Indicates a category the goal falls within.
-  final List<CodeableConcept>? category;
+  List<CodeableConcept>? category;
 
   /// [priority]
   /// Identifies the mutually agreed level of importance associated with
   /// reaching/sustaining the goal.
-  final CodeableConcept? priority;
+  CodeableConcept? priority;
 
   /// [description]
   /// Human-readable and/or coded description of a specific desired objective
   /// of care, such as "control blood pressure" or "negotiate an obstacle
   /// course" or "dance with child at wedding".
-  final CodeableConcept description;
+  CodeableConcept description;
 
   /// [subject]
   /// Identifies the patient, group or organization for whom the goal is
   /// being established.
-  final Reference subject;
+  Reference subject;
 
   /// [startDate]
   /// The date or event after which the goal should begin being pursued.
-  final GoalStartEvent? startDate;
+  GoalStartEvent? startDate;
 
   /// [startCodeableConcept]
   /// The date or event after which the goal should begin being pursued.
-  final CodeableConcept? startCodeableConcept;
+  CodeableConcept? startCodeableConcept;
 
   /// [target]
   /// Indicates what should be done by when.
-  final List<GoalTarget>? target;
+  List<GoalTarget>? target;
 
   /// [statusDate]
   /// Identifies when the current status. I.e. When initially created, when
   /// achieved, when cancelled, etc.
-  final FhirDate? statusDate;
+  FhirDate? statusDate;
 
   /// [statusReason]
   /// Captures the reason for the current status.
-  final FhirString? statusReason;
+  FhirString? statusReason;
 
   /// [expressedBy]
   /// Indicates whose goal this is - patient goal, practitioner goal, etc.
-  final Reference? expressedBy;
+  Reference? expressedBy;
 
   /// [addresses]
   /// The identified conditions and other health record elements that are
   /// intended to be addressed by the goal.
-  final List<Reference>? addresses;
+  List<Reference>? addresses;
 
   /// [note]
   /// Any comments related to the goal.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [outcomeCode]
   /// Identifies the change (or lack of change) at the point when the status
   /// of the goal is assessed.
-  final List<CodeableConcept>? outcomeCode;
+  List<CodeableConcept>? outcomeCode;
 
   /// [outcomeReference]
   /// Details of what's changed (or not changed).
-  final List<Reference>? outcomeReference;
+  List<Reference>? outcomeReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -778,7 +778,7 @@ class GoalTarget extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -788,7 +788,7 @@ class GoalTarget extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -806,12 +806,12 @@ class GoalTarget extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [measure]
   /// The parameter whose value is being tracked, e.g. body weight, blood
   /// pressure, or hemoglobin A1c level.
-  final CodeableConcept? measure;
+  CodeableConcept? measure;
 
   /// [detailQuantity]
   /// The target value of the focus to be achieved to signify the fulfillment
@@ -820,7 +820,7 @@ class GoalTarget extends BackboneElement {
   /// indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that
   /// the goal is achieved at any focus value at or above the low value.
-  final Quantity? detailQuantity;
+  Quantity? detailQuantity;
 
   /// [detailRange]
   /// The target value of the focus to be achieved to signify the fulfillment
@@ -829,7 +829,7 @@ class GoalTarget extends BackboneElement {
   /// indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that
   /// the goal is achieved at any focus value at or above the low value.
-  final Range? detailRange;
+  Range? detailRange;
 
   /// [detailCodeableConcept]
   /// The target value of the focus to be achieved to signify the fulfillment
@@ -838,7 +838,7 @@ class GoalTarget extends BackboneElement {
   /// indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that
   /// the goal is achieved at any focus value at or above the low value.
-  final CodeableConcept? detailCodeableConcept;
+  CodeableConcept? detailCodeableConcept;
 
   /// [detailString]
   /// The target value of the focus to be achieved to signify the fulfillment
@@ -847,7 +847,7 @@ class GoalTarget extends BackboneElement {
   /// indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that
   /// the goal is achieved at any focus value at or above the low value.
-  final FhirString? detailString;
+  FhirString? detailString;
 
   /// [detailBoolean]
   /// The target value of the focus to be achieved to signify the fulfillment
@@ -856,7 +856,7 @@ class GoalTarget extends BackboneElement {
   /// indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that
   /// the goal is achieved at any focus value at or above the low value.
-  final FhirBoolean? detailBoolean;
+  FhirBoolean? detailBoolean;
 
   /// [detailInteger]
   /// The target value of the focus to be achieved to signify the fulfillment
@@ -865,7 +865,7 @@ class GoalTarget extends BackboneElement {
   /// indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that
   /// the goal is achieved at any focus value at or above the low value.
-  final FhirInteger? detailInteger;
+  FhirInteger? detailInteger;
 
   /// [detailRatio]
   /// The target value of the focus to be achieved to signify the fulfillment
@@ -874,17 +874,17 @@ class GoalTarget extends BackboneElement {
   /// indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that
   /// the goal is achieved at any focus value at or above the low value.
-  final Ratio? detailRatio;
+  Ratio? detailRatio;
 
   /// [dueDate]
   /// Indicates either the date or the duration after start by which the goal
   /// should be met.
-  final FhirDate? dueDate;
+  FhirDate? dueDate;
 
   /// [dueDuration]
   /// Indicates either the date or the duration after start by which the goal
   /// should be met.
-  final FhirDuration? dueDuration;
+  FhirDuration? dueDuration;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

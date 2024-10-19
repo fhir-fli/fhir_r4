@@ -260,14 +260,14 @@ class Composition extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -275,12 +275,12 @@ class Composition extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -290,14 +290,14 @@ class Composition extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -307,7 +307,7 @@ class Composition extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -325,83 +325,83 @@ class Composition extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A version-independent identifier for the Composition. This identifier
   /// stays constant as the composition is changed over time.
-  final Identifier? identifier;
+  Identifier? identifier;
 
   /// [status]
   /// The workflow/clinical status of this composition. The status is a
   /// marker for the clinical standing of the document.
-  final CompositionStatus status;
+  CompositionStatus status;
 
   /// [type]
   /// Specifies the particular kind of composition (e.g. History and
   /// Physical, Discharge Summary, Progress Note). This usually equates to
   /// the purpose of making the composition.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [category]
   /// A categorization for the type of the composition - helps for indexing
   /// and searching. This may be implied by or derived from the code
   /// specified in the Composition Type.
-  final List<CodeableConcept>? category;
+  List<CodeableConcept>? category;
 
   /// [subject]
   /// Who or what the composition is about. The composition can be about a
   /// person, (patient or healthcare practitioner), a device (e.g. a machine)
   /// or even a group of subjects (such as a document about a herd of
   /// livestock, or a set of patients that share a common exposure).
-  final Reference? subject;
+  Reference? subject;
 
   /// [encounter]
   /// Describes the clinical encounter or type of care this documentation is
   /// associated with.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [date]
   /// The composition editing time, when the composition was last logically
   /// changed by the author.
-  final FhirDateTime date;
+  FhirDateTime date;
 
   /// [author]
   /// Identifies who is responsible for the information in the composition,
   /// not necessarily who typed it in.
-  final List<Reference> author;
+  List<Reference> author;
 
   /// [title]
   /// Official human-readable label for the composition.
-  final FhirString title;
+  FhirString title;
 
   /// [confidentiality]
   /// The code specifying the level of confidentiality of the Composition.
-  final FhirCode? confidentiality;
+  FhirCode? confidentiality;
 
   /// [attester]
   /// A participant who has attested to the accuracy of the
   /// composition/document.
-  final List<CompositionAttester>? attester;
+  List<CompositionAttester>? attester;
 
   /// [custodian]
   /// Identifies the organization or group who is responsible for ongoing
   /// maintenance of and access to the composition/document information.
-  final Reference? custodian;
+  Reference? custodian;
 
   /// [relatesTo]
   /// Relationships that this composition has with other compositions or
   /// documents that already exist.
-  final List<CompositionRelatesTo>? relatesTo;
+  List<CompositionRelatesTo>? relatesTo;
 
   /// [event]
   /// The clinical service, such as a colonoscopy or an appendectomy, being
   /// documented.
-  final List<CompositionEvent>? event;
+  List<CompositionEvent>? event;
 
   /// [section]
   /// The root of the sections that make up the composition.
-  final List<CompositionSection>? section;
+  List<CompositionSection>? section;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -699,7 +699,7 @@ class CompositionAttester extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -709,7 +709,7 @@ class CompositionAttester extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -727,19 +727,19 @@ class CompositionAttester extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [mode]
   /// The type of attestation the authenticator offers.
-  final CompositionAttestationMode mode;
+  CompositionAttestationMode mode;
 
   /// [time]
   /// When the composition was attested by the party.
-  final FhirDateTime? time;
+  FhirDateTime? time;
 
   /// [party]
   /// Who attested the composition in the specified way.
-  final Reference? party;
+  Reference? party;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -925,7 +925,7 @@ class CompositionRelatesTo extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -935,7 +935,7 @@ class CompositionRelatesTo extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -953,20 +953,20 @@ class CompositionRelatesTo extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// The type of relationship that this composition has with anther
   /// composition or document.
-  final DocumentRelationshipType code;
+  DocumentRelationshipType code;
 
   /// [targetIdentifier]
   /// The target composition/document of this relationship.
-  final Identifier? targetIdentifier;
+  Identifier? targetIdentifier;
 
   /// [targetReference]
   /// The target composition/document of this relationship.
-  final Reference? targetReference;
+  Reference? targetReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1157,7 +1157,7 @@ class CompositionEvent extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1167,7 +1167,7 @@ class CompositionEvent extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1185,7 +1185,7 @@ class CompositionEvent extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// This list of codes represents the main clinical acts, such as a
@@ -1193,19 +1193,19 @@ class CompositionEvent extends BackboneElement {
   /// event is inherent in the typeCode, such as a "History and Physical
   /// Report" in which the procedure being documented is necessarily a
   /// "History and Physical" act.
-  final List<CodeableConcept>? code;
+  List<CodeableConcept>? code;
 
   /// [period]
   /// The period of time covered by the documentation. There is no assertion
   /// that the documentation is a complete representation for this period,
   /// only that it documents events during this time.
-  final Period? period;
+  Period? period;
 
   /// [detail]
   /// The description and/or reference of the event(s) being documented. For
   /// example, this could be used to document such a colonoscopy or an
   /// appendectomy.
-  final List<Reference>? detail;
+  List<Reference>? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1441,7 +1441,7 @@ class CompositionSection extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1451,7 +1451,7 @@ class CompositionSection extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1469,23 +1469,23 @@ class CompositionSection extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [title]
   /// The label for this particular section. This will be part of the
   /// rendered content for the document, and is often used to build a table
   /// of contents.
-  final FhirString? title;
+  FhirString? title;
 
   /// [code]
   /// A code identifying the kind of content contained within the section.
   /// This must be consistent with the section title.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [author]
   /// Identifies who is responsible for the information in this section, not
   /// necessarily who typed it in.
-  final List<Reference>? author;
+  List<Reference>? author;
 
   /// [focus]
   /// The actual focus of the section when it is not the subject of the
@@ -1497,7 +1497,7 @@ class CompositionSection extends BackboneElement {
   /// only include resources where the logical subject (patient, subject,
   /// focus, etc.) matches the section focus, or the resources have no
   /// logical subject (few resources).
-  final Reference? focus;
+  Reference? focus;
 
   /// [text]
   /// A human-readable narrative that contains the attested content of the
@@ -1505,32 +1505,32 @@ class CompositionSection extends BackboneElement {
   /// narrative need not encode all the structured data, but is required to
   /// contain sufficient detail to make it "clinically safe" for a human to
   /// just read the narrative.
-  final Narrative? text;
+  Narrative? text;
 
   /// [mode]
   /// How the entry list was prepared - whether it is a working list that is
   /// suitable for being maintained on an ongoing basis, or if it represents
   /// a snapshot of a list of items from another source, or whether it is a
   /// prepared list where items may be marked as added, modified or deleted.
-  final ListMode? mode;
+  ListMode? mode;
 
   /// [orderedBy]
   /// Specifies the order applied to the items in the section entries.
-  final CodeableConcept? orderedBy;
+  CodeableConcept? orderedBy;
 
   /// [entry]
   /// A reference to the actual resource from which the narrative in the
   /// section is derived.
-  final List<Reference>? entry;
+  List<Reference>? entry;
 
   /// [emptyReason]
   /// If the section is empty, why the list is empty. An empty section
   /// typically has some text explaining the empty reason.
-  final CodeableConcept? emptyReason;
+  CodeableConcept? emptyReason;
 
   /// [section]
   /// A nested sub-section within this section.
-  final List<CompositionSection>? section;
+  List<CompositionSection>? section;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

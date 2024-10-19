@@ -223,14 +223,14 @@ class ClinicalUseDefinition extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -238,12 +238,12 @@ class ClinicalUseDefinition extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -253,14 +253,14 @@ class ClinicalUseDefinition extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -270,7 +270,7 @@ class ClinicalUseDefinition extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -288,58 +288,58 @@ class ClinicalUseDefinition extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business identifier for this issue.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [type]
   /// indication | contraindication | interaction | undesirable-effect |
   /// warning.
-  final ClinicalUseDefinitionType type;
+  ClinicalUseDefinitionType type;
 
   /// [category]
   /// A categorisation of the issue, primarily for dividing warnings into
   /// subject heading areas such as "Pregnancy and Lactation", "Overdose",
   /// "Effects on Ability to Drive and Use Machines".
-  final List<CodeableConcept>? category;
+  List<CodeableConcept>? category;
 
   /// [subject]
   /// The medication or procedure for which this is an indication.
-  final List<Reference>? subject;
+  List<Reference>? subject;
 
   /// [status]
   /// Whether this is a current issue or one that has been retired etc.
-  final CodeableConcept? status;
+  CodeableConcept? status;
 
   /// [contraindication]
   /// Specifics for when this is a contraindication.
-  final ClinicalUseDefinitionContraindication? contraindication;
+  ClinicalUseDefinitionContraindication? contraindication;
 
   /// [indication]
   /// Specifics for when this is an indication.
-  final ClinicalUseDefinitionIndication? indication;
+  ClinicalUseDefinitionIndication? indication;
 
   /// [interaction]
   /// Specifics for when this is an interaction.
-  final ClinicalUseDefinitionInteraction? interaction;
+  ClinicalUseDefinitionInteraction? interaction;
 
   /// [population]
   /// The population group to which this applies.
-  final List<Reference>? population;
+  List<Reference>? population;
 
   /// [undesirableEffect]
   /// Describe the possible undesirable effects (negative outcomes) from the
   /// use of the medicinal product as treatment.
-  final ClinicalUseDefinitionUndesirableEffect? undesirableEffect;
+  ClinicalUseDefinitionUndesirableEffect? undesirableEffect;
 
   /// [warning]
   /// A critical piece of information about environmental, health or physical
   /// risks or hazards that serve as caution to the user. For example 'Do not
   /// operate heavy machinery', 'May cause drowsiness', or 'Get medical
   /// advice/attention if you feel unwell'.
-  final ClinicalUseDefinitionWarning? warning;
+  ClinicalUseDefinitionWarning? warning;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -632,7 +632,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -642,7 +642,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -660,30 +660,30 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [diseaseSymptomProcedure]
   /// The situation that is being documented as contraindicating against this
   /// item.
-  final CodeableReference? diseaseSymptomProcedure;
+  CodeableReference? diseaseSymptomProcedure;
 
   /// [diseaseStatus]
   /// The status of the disease or symptom for the contraindication, for
   /// example "chronic" or "metastatic".
-  final CodeableReference? diseaseStatus;
+  CodeableReference? diseaseStatus;
 
   /// [comorbidity]
   /// A comorbidity (concurrent condition) or coinfection.
-  final List<CodeableReference>? comorbidity;
+  List<CodeableReference>? comorbidity;
 
   /// [indication]
   /// The indication which this is a contraidication for.
-  final List<Reference>? indication;
+  List<Reference>? indication;
 
   /// [otherTherapy]
   /// Information about the use of the medicinal product in relation to other
   /// therapies described as part of the contraindication.
-  final List<ClinicalUseDefinitionOtherTherapy>? otherTherapy;
+  List<ClinicalUseDefinitionOtherTherapy>? otherTherapy;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -867,7 +867,7 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -877,7 +877,7 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -895,17 +895,17 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [relationshipType]
   /// The type of relationship between the medicinal product indication or
   /// contraindication and another therapy.
-  final CodeableConcept relationshipType;
+  CodeableConcept relationshipType;
 
   /// [therapy]
   /// Reference to a specific medication (active substance, medicinal product
   /// or class of products) as part of an indication or contraindication.
-  final CodeableReference therapy;
+  CodeableReference therapy;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1109,7 +1109,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1119,7 +1119,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1137,44 +1137,44 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [diseaseSymptomProcedure]
   /// The situation that is being documented as an indicaton for this item.
-  final CodeableReference? diseaseSymptomProcedure;
+  CodeableReference? diseaseSymptomProcedure;
 
   /// [diseaseStatus]
   /// The status of the disease or symptom for the indication, for example
   /// "chronic" or "metastatic".
-  final CodeableReference? diseaseStatus;
+  CodeableReference? diseaseStatus;
 
   /// [comorbidity]
   /// A comorbidity (concurrent condition) or coinfection as part of the
   /// indication.
-  final List<CodeableReference>? comorbidity;
+  List<CodeableReference>? comorbidity;
 
   /// [intendedEffect]
   /// The intended effect, aim or strategy to be achieved.
-  final CodeableReference? intendedEffect;
+  CodeableReference? intendedEffect;
 
   /// [durationRange]
   /// Timing or duration information, that may be associated with use with
   /// the indicated condition e.g. Adult patients suffering from myocardial
   /// infarction (from a few days until less than 35 days), ischaemic stroke
   /// (from 7 days until less than 6 months).
-  final Range? durationRange;
+  Range? durationRange;
 
   /// [durationString]
   /// Timing or duration information, that may be associated with use with
   /// the indicated condition e.g. Adult patients suffering from myocardial
   /// infarction (from a few days until less than 35 days), ischaemic stroke
   /// (from 7 days until less than 6 months).
-  final FhirString? durationString;
+  FhirString? durationString;
 
   /// [undesirableEffect]
   /// An unwanted side effect or negative outcome that may happen if you use
   /// the drug (or other subject of this resource) for this indication.
-  final List<Reference>? undesirableEffect;
+  List<Reference>? undesirableEffect;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1404,7 +1404,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1414,7 +1414,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1432,30 +1432,30 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [interactant]
   /// The specific medication, food, substance or laboratory test that
   /// interacts.
-  final List<ClinicalUseDefinitionInteractant>? interactant;
+  List<ClinicalUseDefinitionInteractant>? interactant;
 
   /// [type]
   /// The type of the interaction e.g. drug-drug interaction, drug-food
   /// interaction, drug-lab test interaction.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [effect]
   /// The effect of the interaction, for example "reduced gastric absorption
   /// of primary medication".
-  final CodeableReference? effect;
+  CodeableReference? effect;
 
   /// [incidence]
   /// The incidence of the interaction, e.g. theoretical, observed.
-  final CodeableConcept? incidence;
+  CodeableConcept? incidence;
 
   /// [management]
   /// Actions for managing the interaction.
-  final List<CodeableConcept>? management;
+  List<CodeableConcept>? management;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1642,7 +1642,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1652,7 +1652,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1670,15 +1670,15 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [itemReference]
   /// The specific medication, food or laboratory test that interacts.
-  final Reference? itemReference;
+  Reference? itemReference;
 
   /// [itemCodeableConcept]
   /// The specific medication, food or laboratory test that interacts.
-  final CodeableConcept? itemCodeableConcept;
+  CodeableConcept? itemCodeableConcept;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1853,7 +1853,7 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1863,7 +1863,7 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1881,19 +1881,19 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [symptomConditionEffect]
   /// The situation in which the undesirable effect may manifest.
-  final CodeableReference? symptomConditionEffect;
+  CodeableReference? symptomConditionEffect;
 
   /// [classification]
   /// High level classification of the effect.
-  final CodeableConcept? classification;
+  CodeableConcept? classification;
 
   /// [frequencyOfOccurrence]
   /// How often the effect is seen.
-  final CodeableConcept? frequencyOfOccurrence;
+  CodeableConcept? frequencyOfOccurrence;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2073,7 +2073,7 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2083,7 +2083,7 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2101,15 +2101,15 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// A textual definition of this warning, with formatting.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [code]
   /// A coded or unformatted textual definition of this warning.
-  final CodeableConcept? code;
+  CodeableConcept? code;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

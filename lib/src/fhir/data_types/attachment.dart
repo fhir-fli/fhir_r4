@@ -147,7 +147,7 @@ class Attachment extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -157,44 +157,44 @@ class Attachment extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [contentType]
   /// Identifies the type of the data in the attachment and allows a method
   /// to be chosen to interpret or render the data. Includes mime type
   /// parameters such as charset where appropriate.
-  final FhirCode? contentType;
+  FhirCode? contentType;
 
   /// [language]
   /// The human language of the content. The value can be any valid value
   /// according to BCP 47.
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [data]
   /// The actual data of the attachment - a sequence of bytes, base64
   /// encoded.
-  final FhirBase64Binary? data;
+  FhirBase64Binary? data;
 
   /// [url]
   /// A location where the data can be accessed.
-  final FhirUrl? url;
+  FhirUrl? url;
 
   /// [size]
   /// The number of bytes of data that make up this attachment (before base64
   /// encoding, if that is done).
-  final FhirUnsignedInt? size;
+  FhirUnsignedInt? size;
 
   /// [hash]
   /// The calculated hash of the data using SHA-1. Represented using base64.
-  final FhirBase64Binary? hash;
+  FhirBase64Binary? hash;
 
   /// [title]
   /// A label or set of text to display in place of the data.
-  final FhirString? title;
+  FhirString? title;
 
   /// [creation]
   /// The date that the attachment was first created.
-  final FhirDateTime? creation;
+  FhirDateTime? creation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

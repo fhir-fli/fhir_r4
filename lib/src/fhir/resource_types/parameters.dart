@@ -116,14 +116,14 @@ class Parameters extends Resource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -131,16 +131,16 @@ class Parameters extends Resource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [parameter]
   /// A parameter passed to or received from the operation.
-  final List<ParametersParameter>? parameter;
+  List<ParametersParameter>? parameter;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -654,7 +654,7 @@ class ParametersParameter extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -664,7 +664,7 @@ class ParametersParameter extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -682,219 +682,219 @@ class ParametersParameter extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// The name of the parameter (reference to the operation definition).
-  final FhirString name;
+  FhirString name;
 
   /// [valueBase64Binary]
   /// Conveys the content if the parameter is a data type.
-  final FhirBase64Binary? valueBase64Binary;
+  FhirBase64Binary? valueBase64Binary;
 
   /// [valueBoolean]
   /// Conveys the content if the parameter is a data type.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueCanonical]
   /// Conveys the content if the parameter is a data type.
-  final FhirCanonical? valueCanonical;
+  FhirCanonical? valueCanonical;
 
   /// [valueCode]
   /// Conveys the content if the parameter is a data type.
-  final FhirCode? valueCode;
+  FhirCode? valueCode;
 
   /// [valueDate]
   /// Conveys the content if the parameter is a data type.
-  final FhirDate? valueDate;
+  FhirDate? valueDate;
 
   /// [valueDateTime]
   /// Conveys the content if the parameter is a data type.
-  final FhirDateTime? valueDateTime;
+  FhirDateTime? valueDateTime;
 
   /// [valueDecimal]
   /// Conveys the content if the parameter is a data type.
-  final FhirDecimal? valueDecimal;
+  FhirDecimal? valueDecimal;
 
   /// [valueId]
   /// Conveys the content if the parameter is a data type.
-  final FhirId? valueId;
+  FhirId? valueId;
 
   /// [valueInstant]
   /// Conveys the content if the parameter is a data type.
-  final FhirInstant? valueInstant;
+  FhirInstant? valueInstant;
 
   /// [valueInteger]
   /// Conveys the content if the parameter is a data type.
-  final FhirInteger? valueInteger;
+  FhirInteger? valueInteger;
 
   /// [valueMarkdown]
   /// Conveys the content if the parameter is a data type.
-  final FhirMarkdown? valueMarkdown;
+  FhirMarkdown? valueMarkdown;
 
   /// [valueOid]
   /// Conveys the content if the parameter is a data type.
-  final FhirOid? valueOid;
+  FhirOid? valueOid;
 
   /// [valuePositiveInt]
   /// Conveys the content if the parameter is a data type.
-  final FhirPositiveInt? valuePositiveInt;
+  FhirPositiveInt? valuePositiveInt;
 
   /// [valueString]
   /// Conveys the content if the parameter is a data type.
-  final FhirString? valueString;
+  FhirString? valueString;
 
   /// [valueTime]
   /// Conveys the content if the parameter is a data type.
-  final FhirTime? valueTime;
+  FhirTime? valueTime;
 
   /// [valueUnsignedInt]
   /// Conveys the content if the parameter is a data type.
-  final FhirUnsignedInt? valueUnsignedInt;
+  FhirUnsignedInt? valueUnsignedInt;
 
   /// [valueUri]
   /// Conveys the content if the parameter is a data type.
-  final FhirUri? valueUri;
+  FhirUri? valueUri;
 
   /// [valueUrl]
   /// Conveys the content if the parameter is a data type.
-  final FhirUrl? valueUrl;
+  FhirUrl? valueUrl;
 
   /// [valueUuid]
   /// Conveys the content if the parameter is a data type.
-  final FhirUuid? valueUuid;
+  FhirUuid? valueUuid;
 
   /// [valueAddress]
   /// Conveys the content if the parameter is a data type.
-  final Address? valueAddress;
+  Address? valueAddress;
 
   /// [valueAge]
   /// Conveys the content if the parameter is a data type.
-  final Age? valueAge;
+  Age? valueAge;
 
   /// [valueAnnotation]
   /// Conveys the content if the parameter is a data type.
-  final Annotation? valueAnnotation;
+  Annotation? valueAnnotation;
 
   /// [valueAttachment]
   /// Conveys the content if the parameter is a data type.
-  final Attachment? valueAttachment;
+  Attachment? valueAttachment;
 
   /// [valueCodeableConcept]
   /// Conveys the content if the parameter is a data type.
-  final CodeableConcept? valueCodeableConcept;
+  CodeableConcept? valueCodeableConcept;
 
   /// [valueCoding]
   /// Conveys the content if the parameter is a data type.
-  final Coding? valueCoding;
+  Coding? valueCoding;
 
   /// [valueContactPoint]
   /// Conveys the content if the parameter is a data type.
-  final ContactPoint? valueContactPoint;
+  ContactPoint? valueContactPoint;
 
   /// [valueCount]
   /// Conveys the content if the parameter is a data type.
-  final Count? valueCount;
+  Count? valueCount;
 
   /// [valueDistance]
   /// Conveys the content if the parameter is a data type.
-  final Distance? valueDistance;
+  Distance? valueDistance;
 
   /// [valueDuration]
   /// Conveys the content if the parameter is a data type.
-  final FhirDuration? valueDuration;
+  FhirDuration? valueDuration;
 
   /// [valueHumanName]
   /// Conveys the content if the parameter is a data type.
-  final HumanName? valueHumanName;
+  HumanName? valueHumanName;
 
   /// [valueIdentifier]
   /// Conveys the content if the parameter is a data type.
-  final Identifier? valueIdentifier;
+  Identifier? valueIdentifier;
 
   /// [valueMoney]
   /// Conveys the content if the parameter is a data type.
-  final Money? valueMoney;
+  Money? valueMoney;
 
   /// [valuePeriod]
   /// Conveys the content if the parameter is a data type.
-  final Period? valuePeriod;
+  Period? valuePeriod;
 
   /// [valueQuantity]
   /// Conveys the content if the parameter is a data type.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueRange]
   /// Conveys the content if the parameter is a data type.
-  final Range? valueRange;
+  Range? valueRange;
 
   /// [valueRatio]
   /// Conveys the content if the parameter is a data type.
-  final Ratio? valueRatio;
+  Ratio? valueRatio;
 
   /// [valueReference]
   /// Conveys the content if the parameter is a data type.
-  final Reference? valueReference;
+  Reference? valueReference;
 
   /// [valueSampledData]
   /// Conveys the content if the parameter is a data type.
-  final SampledData? valueSampledData;
+  SampledData? valueSampledData;
 
   /// [valueSignature]
   /// Conveys the content if the parameter is a data type.
-  final Signature? valueSignature;
+  Signature? valueSignature;
 
   /// [valueTiming]
   /// Conveys the content if the parameter is a data type.
-  final Timing? valueTiming;
+  Timing? valueTiming;
 
   /// [valueContactDetail]
   /// Conveys the content if the parameter is a data type.
-  final ContactDetail? valueContactDetail;
+  ContactDetail? valueContactDetail;
 
   /// [valueContributor]
   /// Conveys the content if the parameter is a data type.
-  final Contributor? valueContributor;
+  Contributor? valueContributor;
 
   /// [valueDataRequirement]
   /// Conveys the content if the parameter is a data type.
-  final DataRequirement? valueDataRequirement;
+  DataRequirement? valueDataRequirement;
 
   /// [valueExpression]
   /// Conveys the content if the parameter is a data type.
-  final FhirExpression? valueExpression;
+  FhirExpression? valueExpression;
 
   /// [valueParameterDefinition]
   /// Conveys the content if the parameter is a data type.
-  final ParameterDefinition? valueParameterDefinition;
+  ParameterDefinition? valueParameterDefinition;
 
   /// [valueRelatedArtifact]
   /// Conveys the content if the parameter is a data type.
-  final RelatedArtifact? valueRelatedArtifact;
+  RelatedArtifact? valueRelatedArtifact;
 
   /// [valueTriggerDefinition]
   /// Conveys the content if the parameter is a data type.
-  final TriggerDefinition? valueTriggerDefinition;
+  TriggerDefinition? valueTriggerDefinition;
 
   /// [valueUsageContext]
   /// Conveys the content if the parameter is a data type.
-  final UsageContext? valueUsageContext;
+  UsageContext? valueUsageContext;
 
   /// [valueDosage]
   /// Conveys the content if the parameter is a data type.
-  final Dosage? valueDosage;
+  Dosage? valueDosage;
 
   /// [valueMeta]
   /// Conveys the content if the parameter is a data type.
-  final FhirMeta? valueMeta;
+  FhirMeta? valueMeta;
 
   /// [resource]
   /// If the parameter is a whole resource.
-  final Resource? resource;
+  Resource? resource;
 
   /// [part_]
   /// A named part of a multi-part parameter.
-  final List<ParametersParameter>? part_;
+  List<ParametersParameter>? part_;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -202,14 +202,14 @@ class BodyStructure extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -217,12 +217,12 @@ class BodyStructure extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -232,14 +232,14 @@ class BodyStructure extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -249,7 +249,7 @@ class BodyStructure extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -267,43 +267,43 @@ class BodyStructure extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifier for this instance of the anatomical structure.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [active]
   /// Whether this body site is in active use.
-  final FhirBoolean? active;
+  FhirBoolean? active;
 
   /// [morphology]
   /// The kind of structure being represented by the body structure at
   /// `BodyStructure.location`. This can define both normal and abnormal
   /// morphologies.
-  final CodeableConcept? morphology;
+  CodeableConcept? morphology;
 
   /// [location]
   /// The anatomical location or region of the specimen, lesion, or body
   /// structure.
-  final CodeableConcept? location;
+  CodeableConcept? location;
 
   /// [locationQualifier]
   /// Qualifier to refine the anatomical location. These include qualifiers
   /// for laterality, relative location, directionality, number, and plane.
-  final List<CodeableConcept>? locationQualifier;
+  List<CodeableConcept>? locationQualifier;
 
   /// [description]
   /// A summary, characterization or explanation of the body structure.
-  final FhirString? description;
+  FhirString? description;
 
   /// [image]
   /// Image or images used to identify a location.
-  final List<Attachment>? image;
+  List<Attachment>? image;
 
   /// [patient]
   /// The person to which the body site belongs.
-  final Reference patient;
+  Reference patient;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

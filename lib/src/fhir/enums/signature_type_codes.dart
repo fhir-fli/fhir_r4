@@ -168,14 +168,15 @@ class SignatureTypeCodes extends FhirCode {
   /// Value to store in ObjectBox
   @override
   // ignore: overridden_fields
-  final String? dbValue;
+  String? dbValue;
 
   /// Element stored as a relation in ObjectBox
   @override
   // ignore: overridden_fields
-  final Element? element;
+  Element? element;
 
   /// List of all enum-like values
+  @Transient()
   static final List<String> values = [
     '1.2.840.10065.1.12.1.1',
     '1.2.840.10065.1.12.1.2',

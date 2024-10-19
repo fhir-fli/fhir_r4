@@ -147,7 +147,7 @@ class TriggerDefinition extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -157,45 +157,45 @@ class TriggerDefinition extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [type]
   /// The type of triggering event.
-  final TriggerType type;
+  TriggerType type;
 
   /// [name]
   /// A formal name for the event. This may be an absolute URI that
   /// identifies the event formally (e.g. from a trigger registry), or a
   /// simple relative URI that identifies the event in a local context.
-  final FhirString? name;
+  FhirString? name;
 
   /// [timingTiming]
   /// The timing of the event (if this is a periodic trigger).
-  final Timing? timingTiming;
+  Timing? timingTiming;
 
   /// [timingReference]
   /// The timing of the event (if this is a periodic trigger).
-  final Reference? timingReference;
+  Reference? timingReference;
 
   /// [timingDate]
   /// The timing of the event (if this is a periodic trigger).
-  final FhirDate? timingDate;
+  FhirDate? timingDate;
 
   /// [timingDateTime]
   /// The timing of the event (if this is a periodic trigger).
-  final FhirDateTime? timingDateTime;
+  FhirDateTime? timingDateTime;
 
   /// [data]
   /// The triggering data of the event (if this is a data trigger). If more
   /// than one data is requirement is specified, then all the data
   /// requirements must be true.
-  final List<DataRequirement>? data;
+  List<DataRequirement>? data;
 
   /// [condition]
   /// A boolean-valued expression that is evaluated in the context of the
   /// container of the trigger definition and returns whether or not the
   /// trigger fires.
-  final FhirExpression? condition;
+  FhirExpression? condition;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

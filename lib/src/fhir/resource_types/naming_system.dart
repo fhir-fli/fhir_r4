@@ -236,14 +236,14 @@ class NamingSystem extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -251,12 +251,12 @@ class NamingSystem extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -266,14 +266,14 @@ class NamingSystem extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -283,7 +283,7 @@ class NamingSystem extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -301,57 +301,57 @@ class NamingSystem extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// A natural language name identifying the naming system. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString name;
+  FhirString name;
 
   /// [status]
   /// The status of this naming system. Enables tracking the life-cycle of
   /// the content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [kind]
   /// Indicates the purpose for the naming system - what kinds of things does
   /// it make unique?
-  final NamingSystemType kind;
+  NamingSystemType kind;
 
   /// [date]
   /// The date (and optionally time) when the naming system was published.
   /// The date must change when the business version changes and it must
   /// change if the status code changes. In addition, it should change when
   /// the substantive content of the naming system changes.
-  final FhirDateTime date;
+  FhirDateTime date;
 
   /// [publisher]
   /// The name of the organization or individual that published the naming
   /// system.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [responsible]
   /// The name of the organization that is responsible for issuing
   /// identifiers or codes for this namespace and ensuring their
   /// non-collision.
-  final FhirString? responsible;
+  FhirString? responsible;
 
   /// [type]
   /// Categorizes a naming system for easier search by grouping related
   /// naming systems.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [description]
   /// A free text natural language description of the naming system from a
   /// consumer's perspective. Details about what the namespace identifies
   /// including scope, granularity, version labeling, etc.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -359,22 +359,22 @@ class NamingSystem extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate naming system instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the naming system is intended to
   /// be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [usage]
   /// Provides guidance on the use of the namespace, including the handling
   /// of formatting characters, use of upper vs. lower case, etc.
-  final FhirString? usage;
+  FhirString? usage;
 
   /// [uniqueId]
   /// Indicates how the system may be identified when referenced in
   /// electronic exchange.
-  final List<NamingSystemUniqueId> uniqueId;
+  List<NamingSystemUniqueId> uniqueId;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -688,7 +688,7 @@ class NamingSystemUniqueId extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -698,7 +698,7 @@ class NamingSystemUniqueId extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -716,32 +716,32 @@ class NamingSystemUniqueId extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Identifies the unique identifier scheme used for this particular
   /// identifier.
-  final NamingSystemIdentifierType type;
+  NamingSystemIdentifierType type;
 
   /// [value]
   /// The string that should be sent over the wire to identify the code
   /// system or identifier system.
-  final FhirString value;
+  FhirString value;
 
   /// [preferred]
   /// Indicates whether this identifier is the "preferred" identifier of this
   /// type.
-  final FhirBoolean? preferred;
+  FhirBoolean? preferred;
 
   /// [comment]
   /// Notes about the past or intended usage of this identifier.
-  final FhirString? comment;
+  FhirString? comment;
 
   /// [period]
   /// Identifies the period of time over which this identifier is considered
   /// appropriate to refer to the naming system. Outside of this window, the
   /// identifier might be non-deterministic.
-  final Period? period;
+  Period? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

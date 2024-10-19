@@ -230,14 +230,14 @@ class FhirList extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -245,12 +245,12 @@ class FhirList extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -260,14 +260,14 @@ class FhirList extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -277,7 +277,7 @@ class FhirList extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -295,66 +295,66 @@ class FhirList extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifier for the List assigned for business purposes outside the
   /// context of FHIR.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// Indicates the current state of this list.
-  final ListStatus status;
+  ListStatus status;
 
   /// [mode]
   /// How this list was prepared - whether it is a working list that is
   /// suitable for being maintained on an ongoing basis, or if it represents
   /// a snapshot of a list of items from another source, or whether it is a
   /// prepared list where items may be marked as added, modified or deleted.
-  final ListMode mode;
+  ListMode mode;
 
   /// [title]
   /// A label for the list assigned by the author.
-  final FhirString? title;
+  FhirString? title;
 
   /// [code]
   /// This code defines the purpose of the list - why it was created.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [subject]
   /// The common subject (or patient) of the resources that are in the list
   /// if there is one.
-  final Reference? subject;
+  Reference? subject;
 
   /// [encounter]
   /// The encounter that is the context in which this list was created.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [date]
   /// The date that the list was prepared.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [source]
   /// The entity responsible for deciding what the contents of the list were.
   /// Where the list was created by a human, this is the same as the author
   /// of the list.
-  final Reference? source;
+  Reference? source;
 
   /// [orderedBy]
   /// What order applies to the items in the list.
-  final CodeableConcept? orderedBy;
+  CodeableConcept? orderedBy;
 
   /// [note]
   /// Comments that apply to the overall list.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [entry]
   /// Entries in this list.
-  final List<ListEntry>? entry;
+  List<ListEntry>? entry;
 
   /// [emptyReason]
   /// If the list is empty, why the list is empty.
-  final CodeableConcept? emptyReason;
+  CodeableConcept? emptyReason;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -651,7 +651,7 @@ class ListEntry extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -661,7 +661,7 @@ class ListEntry extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -679,24 +679,24 @@ class ListEntry extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [flag]
   /// The flag allows the system constructing the list to indicate the role
   /// and significance of the item in the list.
-  final CodeableConcept? flag;
+  CodeableConcept? flag;
 
   /// [deleted]
   /// True if this item is marked as deleted in the list.
-  final FhirBoolean? deleted;
+  FhirBoolean? deleted;
 
   /// [date]
   /// When this item was added to the list.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [item]
   /// A reference to the actual resource from which data was derived.
-  final Reference item;
+  Reference item;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

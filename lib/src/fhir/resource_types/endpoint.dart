@@ -218,14 +218,14 @@ class FhirEndpoint extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -233,12 +233,12 @@ class FhirEndpoint extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -248,14 +248,14 @@ class FhirEndpoint extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -265,7 +265,7 @@ class FhirEndpoint extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -283,61 +283,61 @@ class FhirEndpoint extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifier for the organization that is used to identify the endpoint
   /// across multiple disparate systems.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// active | suspended | error | off | test.
-  final EndpointStatus status;
+  EndpointStatus status;
 
   /// [connectionType]
   /// A coded value that represents the technical details of the usage of
   /// this endpoint, such as what WSDLs should be used in what way. (e.g.
   /// XDS.b/DICOM/cds-hook).
-  final Coding connectionType;
+  Coding connectionType;
 
   /// [name]
   /// A friendly name that this endpoint can be referred to with.
-  final FhirString? name;
+  FhirString? name;
 
   /// [managingOrganization]
   /// The organization that manages this endpoint (even if technically
   /// another organization is hosting this in the cloud, it is the
   /// organization associated with the data).
-  final Reference? managingOrganization;
+  Reference? managingOrganization;
 
   /// [contact]
   /// Contact details for a human to contact about the subscription. The
   /// primary use of this for system administrator troubleshooting.
-  final List<ContactPoint>? contact;
+  List<ContactPoint>? contact;
 
   /// [period]
   /// The interval during which the endpoint is expected to be operational.
-  final Period? period;
+  Period? period;
 
   /// [payloadType]
   /// The payload type describes the acceptable content that can be
   /// communicated on the endpoint.
-  final List<CodeableConcept> payloadType;
+  List<CodeableConcept> payloadType;
 
   /// [payloadMimeType]
   /// The mime type to send the payload in - e.g. application/fhir+xml,
   /// application/fhir+json. If the mime type is not specified, then the
   /// sender could send any content (including no content depending on the
   /// connectionType).
-  final List<FhirCode>? payloadMimeType;
+  List<FhirCode>? payloadMimeType;
 
   /// [address]
   /// The uri that describes the actual end-point to connect to.
-  final FhirUrl address;
+  FhirUrl address;
 
   /// [header]
   /// Additional headers / information to send as part of the notification.
-  final List<FhirString>? header;
+  List<FhirString>? header;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

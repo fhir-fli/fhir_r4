@@ -132,7 +132,7 @@ class MarketingStatus extends BackboneType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -142,7 +142,7 @@ class MarketingStatus extends BackboneType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -160,13 +160,13 @@ class MarketingStatus extends BackboneType {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [country]
   /// The country in which the marketing authorisation has been granted shall
   /// be specified It should be specified using the ISO 3166 ‑ 1 alpha-2 code
   /// elements.
-  final CodeableConcept? country;
+  CodeableConcept? country;
 
   /// [jurisdiction]
   /// Where a Medicines Regulatory Agency has granted a marketing
@@ -174,13 +174,13 @@ class MarketingStatus extends BackboneType {
   /// apply, the jurisdiction can be specified using an appropriate
   /// controlled terminology The controlled term and the controlled term
   /// identifier shall be specified.
-  final CodeableConcept? jurisdiction;
+  CodeableConcept? jurisdiction;
 
   /// [status]
   /// This attribute provides information on the status of the marketing of
   /// the medicinal product See ISO/TS 20443 for more information and
   /// examples.
-  final CodeableConcept status;
+  CodeableConcept status;
 
   /// [dateRange]
   /// The date when the Medicinal Product is placed on the market by the
@@ -190,7 +190,7 @@ class MarketingStatus extends BackboneType {
   /// specified using the ISO 8601 date format NOTE “Placed on the market”
   /// refers to the release of the Medicinal Product into the distribution
   /// chain.
-  final Period? dateRange;
+  Period? dateRange;
 
   /// [restoreDate]
   /// The date when the Medicinal Product is placed on the market by the
@@ -200,7 +200,7 @@ class MarketingStatus extends BackboneType {
   /// specified using the ISO 8601 date format NOTE “Placed on the market”
   /// refers to the release of the Medicinal Product into the distribution
   /// chain.
-  final FhirDateTime? restoreDate;
+  FhirDateTime? restoreDate;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

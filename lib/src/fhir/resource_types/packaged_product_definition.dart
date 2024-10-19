@@ -257,14 +257,14 @@ class PackagedProductDefinition extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -272,12 +272,12 @@ class PackagedProductDefinition extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -287,14 +287,14 @@ class PackagedProductDefinition extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -304,7 +304,7 @@ class PackagedProductDefinition extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -322,37 +322,37 @@ class PackagedProductDefinition extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A unique identifier for this package as whole. Unique instance
   /// identifiers assigned to a package by manufacturers, regulators, drug
   /// catalogue custodians or other organizations.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [name]
   /// A name for this package. Typically what it would be listed as in a drug
   /// formulary or catalogue, inventory etc.
-  final FhirString? name;
+  FhirString? name;
 
   /// [type]
   /// A high level category e.g. medicinal product, raw material,
   /// shipping/transport container, etc.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [packageFor]
   /// The product that this is a pack for.
-  final List<Reference>? packageFor;
+  List<Reference>? packageFor;
 
   /// [status]
   /// The status within the lifecycle of this item. A high level status, this
   /// is not intended to duplicate details carried elsewhere such as legal
   /// status, or authorization or marketing status.
-  final CodeableConcept? status;
+  CodeableConcept? status;
 
   /// [statusDate]
   /// The date at which the given status became applicable.
-  final FhirDateTime? statusDate;
+  FhirDateTime? statusDate;
 
   /// [containedItemQuantity]
   /// A total of the complete count of contained items of a particular
@@ -369,43 +369,43 @@ class PackagedProductDefinition extends DomainResource {
   /// '2 tubes and 3 tubes'). Repeats are not to be used to represent
   /// different pack sizes (e.g. 20 pack vs. 50 pack) - which would be
   /// different instances of this resource.
-  final List<Quantity>? containedItemQuantity;
+  List<Quantity>? containedItemQuantity;
 
   /// [description]
   /// Textual description. Note that this is not the name of the package or
   /// product.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [legalStatusOfSupply]
   /// The legal status of supply of the packaged item as classified by the
   /// regulator.
-  final List<PackagedProductDefinitionLegalStatusOfSupply>? legalStatusOfSupply;
+  List<PackagedProductDefinitionLegalStatusOfSupply>? legalStatusOfSupply;
 
   /// [marketingStatus]
   /// Allows specifying that an item is on the market for sale, or that it is
   /// not available, and the dates and locations associated.
-  final List<MarketingStatus>? marketingStatus;
+  List<MarketingStatus>? marketingStatus;
 
   /// [characteristic]
   /// Allows the key features to be recorded, such as "hospital pack", "nurse
   /// prescribable", "calendar pack".
-  final List<CodeableConcept>? characteristic;
+  List<CodeableConcept>? characteristic;
 
   /// [copackagedIndicator]
   /// States whether a drug product is supplied with another item such as a
   /// diluent or adjuvant.
-  final FhirBoolean? copackagedIndicator;
+  FhirBoolean? copackagedIndicator;
 
   /// [manufacturer]
   /// Manufacturer of this package type. When there are multiple it means
   /// these are all possible manufacturers.
-  final List<Reference>? manufacturer;
+  List<Reference>? manufacturer;
 
   /// [package]
   /// A packaging item, as a container for medically related items, possibly
   /// with other packaging items within, or a packaging component, such as
   /// bottle cap (which is not a device or a medication manufactured item).
-  final PackagedProductDefinitionPackage? package;
+  PackagedProductDefinitionPackage? package;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -705,7 +705,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -715,7 +715,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -733,17 +733,17 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// The actual status of supply. Conveys in what situation this package
   /// type may be supplied for use.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [jurisdiction]
   /// The place where the legal status of supply applies. When not specified,
   /// this indicates it is unknown in this context.
-  final CodeableConcept? jurisdiction;
+  CodeableConcept? jurisdiction;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -995,7 +995,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1005,7 +1005,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1023,54 +1023,54 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// An identifier that is specific to this particular part of the
   /// packaging. Including possibly Data Carrier Identifier (a GS1 barcode).
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [type]
   /// The physical type of the container of the items.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [quantity]
   /// The quantity of this level of packaging in the package that contains
   /// it. If specified, the outermost level is always 1.
-  final FhirInteger? quantity;
+  FhirInteger? quantity;
 
   /// [material]
   /// Material type of the package item.
-  final List<CodeableConcept>? material;
+  List<CodeableConcept>? material;
 
   /// [alternateMaterial]
   /// A possible alternate material for this part of the packaging, that is
   /// allowed to be used instead of the usual material (e.g. different types
   /// of plastic for a blister sleeve).
-  final List<CodeableConcept>? alternateMaterial;
+  List<CodeableConcept>? alternateMaterial;
 
   /// [shelfLifeStorage]
   /// Shelf Life and storage information.
-  final List<PackagedProductDefinitionShelfLifeStorage>? shelfLifeStorage;
+  List<PackagedProductDefinitionShelfLifeStorage>? shelfLifeStorage;
 
   /// [manufacturer]
   /// Manufacturer of this package Item. When there are multiple it means
   /// these are all possible manufacturers.
-  final List<Reference>? manufacturer;
+  List<Reference>? manufacturer;
 
   /// [property]
   /// General characteristics of this item.
-  final List<PackagedProductDefinitionProperty>? property;
+  List<PackagedProductDefinitionProperty>? property;
 
   /// [containedItem]
   /// The item(s) within the packaging.
-  final List<PackagedProductDefinitionContainedItem>? containedItem;
+  List<PackagedProductDefinitionContainedItem>? containedItem;
 
   /// [package]
   /// Allows containers (and parts of containers) parwithin containers, still
   /// a single packaged product. See also
   /// PackagedProductDefinition.package.containedItem.item(PackagedProductDefinition).
-  final List<PackagedProductDefinitionPackage>? package;
+  List<PackagedProductDefinitionPackage>? package;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1310,7 +1310,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1320,7 +1320,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1338,7 +1338,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// This describes the shelf life, taking into account various scenarios
@@ -1347,7 +1347,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// opening of a bottle, etc. The shelf life type shall be specified using
   /// an appropriate controlled vocabulary The controlled term and the
   /// controlled term identifier shall be specified.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [periodDuration]
   /// The shelf life time period can be specified using a numerical value for
@@ -1355,7 +1355,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// measurement shall be specified in accordance with ISO 11240 and the
   /// resulting terminology The symbol and the symbol identifier shall be
   /// used.
-  final FhirDuration? periodDuration;
+  FhirDuration? periodDuration;
 
   /// [periodString]
   /// The shelf life time period can be specified using a numerical value for
@@ -1363,13 +1363,13 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// measurement shall be specified in accordance with ISO 11240 and the
   /// resulting terminology The symbol and the symbol identifier shall be
   /// used.
-  final FhirString? periodString;
+  FhirString? periodString;
 
   /// [specialPrecautionsForStorage]
   /// Special precautions for storage, if any, can be specified using an
   /// appropriate controlled vocabulary. The controlled term and the
   /// controlled term identifier shall be specified.
-  final List<CodeableConcept>? specialPrecautionsForStorage;
+  List<CodeableConcept>? specialPrecautionsForStorage;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1582,7 +1582,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1592,7 +1592,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1610,31 +1610,31 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// A code expressing the type of characteristic.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [valueCodeableConcept]
   /// A value for the characteristic.
-  final CodeableConcept? valueCodeableConcept;
+  CodeableConcept? valueCodeableConcept;
 
   /// [valueQuantity]
   /// A value for the characteristic.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueDate]
   /// A value for the characteristic.
-  final FhirDate? valueDate;
+  FhirDate? valueDate;
 
   /// [valueBoolean]
   /// A value for the characteristic.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueAttachment]
   /// A value for the characteristic.
-  final Attachment? valueAttachment;
+  Attachment? valueAttachment;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1830,7 +1830,7 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1840,7 +1840,7 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1858,7 +1858,7 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [item]
   /// The actual item(s) of medication, as manufactured, or a device
@@ -1869,11 +1869,11 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
   /// where a package of other entire packages is wanted - such as a
   /// wholesale or distribution pack (for layers within one package, use
   /// PackagedProductDefinition.package.package).
-  final CodeableReference item;
+  CodeableReference item;
 
   /// [amount]
   /// The number of this type of item within this packaging.
-  final Quantity? amount;
+  Quantity? amount;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

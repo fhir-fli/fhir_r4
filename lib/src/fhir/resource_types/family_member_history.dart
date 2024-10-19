@@ -325,14 +325,14 @@ class FamilyMemberHistory extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -340,12 +340,12 @@ class FamilyMemberHistory extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -355,14 +355,14 @@ class FamilyMemberHistory extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -372,7 +372,7 @@ class FamilyMemberHistory extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -390,136 +390,136 @@ class FamilyMemberHistory extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business identifiers assigned to this family member history by the
   /// performer or other systems which remain constant as the resource is
   /// updated and propagates from server to server.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [instantiatesCanonical]
   /// The URL pointing to a FHIR-defined protocol, guideline, orderset or
   /// other definition that is adhered to in whole or in part by this
   /// FamilyMemberHistory.
-  final List<FhirCanonical>? instantiatesCanonical;
+  List<FhirCanonical>? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline,
   /// orderset or other definition that is adhered to in whole or in part by
   /// this FamilyMemberHistory.
-  final List<FhirUri>? instantiatesUri;
+  List<FhirUri>? instantiatesUri;
 
   /// [status]
   /// A code specifying the status of the record of the family history of a
   /// specific family member.
-  final FamilyHistoryStatus status;
+  FamilyHistoryStatus status;
 
   /// [dataAbsentReason]
   /// Describes why the family member's history is not available.
-  final CodeableConcept? dataAbsentReason;
+  CodeableConcept? dataAbsentReason;
 
   /// [patient]
   /// The person who this history concerns.
-  final Reference patient;
+  Reference patient;
 
   /// [date]
   /// The date (and possibly time) when the family member history was
   /// recorded or last updated.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [name]
   /// This will either be a name or a description; e.g. "Aunt Susan", "my
   /// cousin with the red hair".
-  final FhirString? name;
+  FhirString? name;
 
   /// [relationship]
   /// The type of relationship this person has to the patient (father,
   /// mother, brother etc.).
-  final CodeableConcept relationship;
+  CodeableConcept relationship;
 
   /// [sex]
   /// The birth sex of the family member.
-  final CodeableConcept? sex;
+  CodeableConcept? sex;
 
   /// [bornPeriod]
   /// The actual or approximate date of birth of the relative.
-  final Period? bornPeriod;
+  Period? bornPeriod;
 
   /// [bornDate]
   /// The actual or approximate date of birth of the relative.
-  final FhirDate? bornDate;
+  FhirDate? bornDate;
 
   /// [bornString]
   /// The actual or approximate date of birth of the relative.
-  final FhirString? bornString;
+  FhirString? bornString;
 
   /// [ageAge]
   /// The age of the relative at the time the family member history is
   /// recorded.
-  final Age? ageAge;
+  Age? ageAge;
 
   /// [ageRange]
   /// The age of the relative at the time the family member history is
   /// recorded.
-  final Range? ageRange;
+  Range? ageRange;
 
   /// [ageString]
   /// The age of the relative at the time the family member history is
   /// recorded.
-  final FhirString? ageString;
+  FhirString? ageString;
 
   /// [estimatedAge]
   /// If true, indicates that the age value specified is an estimated value.
-  final FhirBoolean? estimatedAge;
+  FhirBoolean? estimatedAge;
 
   /// [deceasedBoolean]
   /// Deceased flag or the actual or approximate age of the relative at the
   /// time of death for the family member history record.
-  final FhirBoolean? deceasedBoolean;
+  FhirBoolean? deceasedBoolean;
 
   /// [deceasedAge]
   /// Deceased flag or the actual or approximate age of the relative at the
   /// time of death for the family member history record.
-  final Age? deceasedAge;
+  Age? deceasedAge;
 
   /// [deceasedRange]
   /// Deceased flag or the actual or approximate age of the relative at the
   /// time of death for the family member history record.
-  final Range? deceasedRange;
+  Range? deceasedRange;
 
   /// [deceasedDate]
   /// Deceased flag or the actual or approximate age of the relative at the
   /// time of death for the family member history record.
-  final FhirDate? deceasedDate;
+  FhirDate? deceasedDate;
 
   /// [deceasedString]
   /// Deceased flag or the actual or approximate age of the relative at the
   /// time of death for the family member history record.
-  final FhirString? deceasedString;
+  FhirString? deceasedString;
 
   /// [reasonCode]
   /// Describes why the family member history occurred in coded or textual
   /// form.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConcept>? reasonCode;
 
   /// [reasonReference]
   /// Indicates a Condition, Observation, AllergyIntolerance, or
   /// QuestionnaireResponse that justifies this family member history event.
-  final List<Reference>? reasonReference;
+  List<Reference>? reasonReference;
 
   /// [note]
   /// This property allows a non condition-specific note to the made about
   /// the related person. Ideally, the note would be in the condition
   /// property, but this is not always possible.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [condition]
   /// The significant Conditions (or condition) that the family member had.
   /// This is a repeating section to allow a system to represent more than
   /// one condition per resource, though there is nothing stopping multiple
   /// resources - one per condition.
-  final List<FamilyMemberHistoryCondition>? condition;
+  List<FamilyMemberHistoryCondition>? condition;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -960,7 +960,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -970,7 +970,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -988,53 +988,53 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// The actual condition specified. Could be a coded condition (like MI or
   /// Diabetes) or a less specific string like 'cancer' depending on how much
   /// is known about the condition and the capabilities of the creating
   /// system.
-  final CodeableConcept code;
+  CodeableConcept code;
 
   /// [outcome]
   /// Indicates what happened following the condition. If the condition
   /// resulted in death, deceased date is captured on the relation.
-  final CodeableConcept? outcome;
+  CodeableConcept? outcome;
 
   /// [contributedToDeath]
   /// This condition contributed to the cause of death of the related person.
   /// If contributedToDeath is not populated, then it is unknown.
-  final FhirBoolean? contributedToDeath;
+  FhirBoolean? contributedToDeath;
 
   /// [onsetAge]
   /// Either the age of onset, range of approximate age or descriptive string
   /// can be recorded. For conditions with multiple occurrences, this
   /// describes the first known occurrence.
-  final Age? onsetAge;
+  Age? onsetAge;
 
   /// [onsetRange]
   /// Either the age of onset, range of approximate age or descriptive string
   /// can be recorded. For conditions with multiple occurrences, this
   /// describes the first known occurrence.
-  final Range? onsetRange;
+  Range? onsetRange;
 
   /// [onsetPeriod]
   /// Either the age of onset, range of approximate age or descriptive string
   /// can be recorded. For conditions with multiple occurrences, this
   /// describes the first known occurrence.
-  final Period? onsetPeriod;
+  Period? onsetPeriod;
 
   /// [onsetString]
   /// Either the age of onset, range of approximate age or descriptive string
   /// can be recorded. For conditions with multiple occurrences, this
   /// describes the first known occurrence.
-  final FhirString? onsetString;
+  FhirString? onsetString;
 
   /// [note]
   /// An area where general notes can be placed about this specific
   /// condition.
-  final List<Annotation>? note;
+  List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

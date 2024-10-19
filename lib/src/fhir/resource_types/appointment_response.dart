@@ -197,14 +197,14 @@ class AppointmentResponse extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -212,12 +212,12 @@ class AppointmentResponse extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -227,14 +227,14 @@ class AppointmentResponse extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -244,7 +244,7 @@ class AppointmentResponse extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -262,38 +262,38 @@ class AppointmentResponse extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// This records identifiers associated with this appointment response
   /// concern that are defined by business processes and/ or used to refer to
   /// it when a direct URL reference to the resource itself is not
   /// appropriate.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [appointment]
   /// Appointment that this response is replying to.
-  final Reference appointment;
+  Reference appointment;
 
   /// [start]
   /// Date/Time that the appointment is to take place, or requested new start
   /// time.
-  final FhirInstant? start;
+  FhirInstant? start;
 
   /// [end]
   /// This may be either the same as the appointment request to confirm the
   /// details of the appointment, or alternately a new time to request a
   /// re-negotiation of the end time.
-  final FhirInstant? end;
+  FhirInstant? end;
 
   /// [participantType]
   /// Role of participant in the appointment.
-  final List<CodeableConcept>? participantType;
+  List<CodeableConcept>? participantType;
 
   /// [actor]
   /// A Person, Location, HealthcareService, or Device that is participating
   /// in the appointment.
-  final Reference? actor;
+  Reference? actor;
 
   /// [participantStatus]
   /// Participation status of the participant. When the status is declined or
@@ -301,11 +301,11 @@ class AppointmentResponse extends DomainResource {
   /// these times should be interpreted as a requested time change. When the
   /// status is accepted, the times can either be the time of the appointment
   /// (as a confirmation of the time) or can be empty.
-  final ParticipationStatus participantStatus;
+  ParticipationStatus participantStatus;
 
   /// [comment]
   /// Additional comments about the appointment.
-  final FhirString? comment;
+  FhirString? comment;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

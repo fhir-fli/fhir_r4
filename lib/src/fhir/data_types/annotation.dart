@@ -118,7 +118,7 @@ class Annotation extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -128,23 +128,23 @@ class Annotation extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [authorReference]
   /// The individual responsible for making the annotation.
-  final Reference? authorReference;
+  Reference? authorReference;
 
   /// [authorString]
   /// The individual responsible for making the annotation.
-  final FhirString? authorString;
+  FhirString? authorString;
 
   /// [time]
   /// Indicates when this particular annotation was made.
-  final FhirDateTime? time;
+  FhirDateTime? time;
 
   /// [text]
   /// The text of the annotation in markdown format.
-  final FhirMarkdown text;
+  FhirMarkdown text;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -224,14 +224,14 @@ class MessageHeader extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -239,12 +239,12 @@ class MessageHeader extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -254,14 +254,14 @@ class MessageHeader extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -271,7 +271,7 @@ class MessageHeader extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -289,7 +289,7 @@ class MessageHeader extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [eventCoding]
   /// Code that identifies the event this message represents and connects it
@@ -297,7 +297,7 @@ class MessageHeader extends DomainResource {
   /// have the system value
   /// "http://terminology.hl7.org/CodeSystem/message-events". Alternatively
   /// uri to the EventDefinition.
-  final Coding? eventCoding;
+  Coding? eventCoding;
 
   /// [eventUri]
   /// Code that identifies the event this message represents and connects it
@@ -305,57 +305,57 @@ class MessageHeader extends DomainResource {
   /// have the system value
   /// "http://terminology.hl7.org/CodeSystem/message-events". Alternatively
   /// uri to the EventDefinition.
-  final FhirUri? eventUri;
+  FhirUri? eventUri;
 
   /// [destination]
   /// The destination application which the message is intended for.
-  final List<MessageHeaderDestination>? destination;
+  List<MessageHeaderDestination>? destination;
 
   /// [sender]
   /// Identifies the sending system to allow the use of a trust relationship.
-  final Reference? sender;
+  Reference? sender;
 
   /// [enterer]
   /// The person or device that performed the data entry leading to this
   /// message. When there is more than one candidate, pick the most proximal
   /// to the message. Can provide other enterers in extensions.
-  final Reference? enterer;
+  Reference? enterer;
 
   /// [author]
   /// The logical author of the message - the person or device that decided
   /// the described event should happen. When there is more than one
   /// candidate, pick the most proximal to the MessageHeader. Can provide
   /// other authors in extensions.
-  final Reference? author;
+  Reference? author;
 
   /// [source]
   /// The source application from which this message originated.
-  final MessageHeaderSource source;
+  MessageHeaderSource source;
 
   /// [responsible]
   /// The person or organization that accepts overall responsibility for the
   /// contents of the message. The implication is that the message event
   /// happened under the policies of the responsible party.
-  final Reference? responsible;
+  Reference? responsible;
 
   /// [reason]
   /// Coded indication of the cause for the event - indicates a reason for
   /// the occurrence of the event that is a focus of this message.
-  final CodeableConcept? reason;
+  CodeableConcept? reason;
 
   /// [response]
   /// Information about the message that this message is a response to. Only
   /// present if this message is a response.
-  final MessageHeaderResponse? response;
+  MessageHeaderResponse? response;
 
   /// [focus]
   /// The actual data of the message - a reference to the root/focus class of
   /// the event.
-  final List<Reference>? focus;
+  List<Reference>? focus;
 
   /// [definition]
   /// Permanent link to the MessageDefinition for this message.
-  final FhirCanonical? definition;
+  FhirCanonical? definition;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -640,7 +640,7 @@ class MessageHeaderDestination extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -650,7 +650,7 @@ class MessageHeaderDestination extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -668,26 +668,26 @@ class MessageHeaderDestination extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// Human-readable name for the target system.
-  final FhirString? name;
+  FhirString? name;
 
   /// [target]
   /// Identifies the target end system in situations where the initial
   /// message transmission is to an intermediary system.
-  final Reference? target;
+  Reference? target;
 
   /// [endpoint]
   /// Indicates where the message should be routed to.
-  final FhirUrl endpoint;
+  FhirUrl endpoint;
 
   /// [receiver]
   /// Allows data conveyed by a message to be addressed to a particular
   /// person or department when routing to a specific application isn't
   /// sufficient.
-  final Reference? receiver;
+  Reference? receiver;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -893,7 +893,7 @@ class MessageHeaderSource extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -903,7 +903,7 @@ class MessageHeaderSource extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -921,29 +921,29 @@ class MessageHeaderSource extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// Human-readable name for the source system.
-  final FhirString? name;
+  FhirString? name;
 
   /// [software]
   /// May include configuration or other information useful in debugging.
-  final FhirString? software;
+  FhirString? software;
 
   /// [version]
   /// Can convey versions of multiple systems in situations where a message
   /// passes through multiple hands.
-  final FhirString? version;
+  FhirString? version;
 
   /// [contact]
   /// An e-mail, phone, website or other contact point to use to resolve
   /// issues with message communications.
-  final ContactPoint? contact;
+  ContactPoint? contact;
 
   /// [endpoint]
   /// Identifies the routing target to send acknowledgements to.
-  final FhirUrl endpoint;
+  FhirUrl endpoint;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1148,7 +1148,7 @@ class MessageHeaderResponse extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1158,7 +1158,7 @@ class MessageHeaderResponse extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1176,21 +1176,21 @@ class MessageHeaderResponse extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// The MessageHeader.id of the message to which this message is a
   /// response.
-  final FhirId identifier;
+  FhirId identifier;
 
   /// [code]
   /// Code that identifies the type of response to the message - whether it
   /// was successful or not, and whether it should be resent or not.
-  final ResponseType code;
+  ResponseType code;
 
   /// [details]
   /// Full details of any issues found in the message.
-  final Reference? details;
+  Reference? details;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

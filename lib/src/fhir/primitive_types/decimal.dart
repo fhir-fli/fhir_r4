@@ -81,12 +81,12 @@ class FhirDecimal extends FhirNumber {
   int dbId = 0;
 
   /// The value of the decimal.
-  final double? dbValue;
+  double? dbValue;
 
   /// Element stored as a relation in ObjectBox
   @override
   // ignore: overridden_fields
-  final Element? element;
+  Element? element;
 
   /// Returns the FHIR type as 'decimal'.
   @override

@@ -27,24 +27,31 @@ class FhirBase {
   int dbId;
 
   /// Returns a [String] representation of the type of the object
+  @Transient()
   String get fhirType => 'FhirBase';
 
   /// User data map for storing additional information
+  @Transient()
   final Map<String, Object?>? userData;
 
   /// List of comments to be added before the element
+  @Transient()
   final List<String>? formatCommentsPre;
 
   /// List of comments to be added after the element
+  @Transient()
   final List<String>? formatCommentsPost;
 
   /// List of annotations for additional, non-core information
+  @Transient()
   final List<dynamic>? annotations;
 
   /// List of children for the element
+  @Transient()
   final List<FhirBase>? children;
 
   /// Map of named children for the element
+  @Transient()
   final Map<String, FhirBase>? namedChildren;
 
   /// Returns a [Map] representation of the object, usually. As

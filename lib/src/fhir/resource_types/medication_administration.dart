@@ -309,14 +309,14 @@ class MedicationAdministration extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -324,12 +324,12 @@ class MedicationAdministration extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -339,14 +339,14 @@ class MedicationAdministration extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -356,7 +356,7 @@ class MedicationAdministration extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -374,7 +374,7 @@ class MedicationAdministration extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifiers associated with this Medication Administration that are
@@ -383,113 +383,113 @@ class MedicationAdministration extends DomainResource {
   /// business identifiers assigned to this resource by the performer or
   /// other systems and remain constant as the resource is updated and
   /// propagates from server to server.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [instantiates]
   /// A protocol, guideline, orderset, or other definition that was adhered
   /// to in whole or in part by this event.
-  final List<FhirUri>? instantiates;
+  List<FhirUri>? instantiates;
 
   /// [partOf]
   /// A larger event of which this particular event is a component or step.
-  final List<Reference>? partOf;
+  List<Reference>? partOf;
 
   /// [status]
   /// Will generally be set to show that the administration has been
   /// completed. For some long running administrations such as infusions, it
   /// is possible for an administration to be started but not completed or it
   /// may be paused while some other process is under way.
-  final MedicationAdministrationStatusCodes status;
+  MedicationAdministrationStatusCodes status;
 
   /// [statusReason]
   /// A code indicating why the administration was not performed.
-  final List<CodeableConcept>? statusReason;
+  List<CodeableConcept>? statusReason;
 
   /// [category]
   /// Indicates where the medication is expected to be consumed or
   /// administered.
-  final CodeableConcept? category;
+  CodeableConcept? category;
 
   /// [medicationCodeableConcept]
   /// Identifies the medication that was administered. This is either a link
   /// to a resource representing the details of the medication or a simple
   /// attribute carrying a code that identifies the medication from a known
   /// list of medications.
-  final CodeableConcept? medicationCodeableConcept;
+  CodeableConcept? medicationCodeableConcept;
 
   /// [medicationReference]
   /// Identifies the medication that was administered. This is either a link
   /// to a resource representing the details of the medication or a simple
   /// attribute carrying a code that identifies the medication from a known
   /// list of medications.
-  final Reference? medicationReference;
+  Reference? medicationReference;
 
   /// [subject]
   /// The person or animal or group receiving the medication.
-  final Reference subject;
+  Reference subject;
 
   /// [context]
   /// The visit, admission, or other contact between patient and health care
   /// provider during which the medication administration was performed.
-  final Reference? context;
+  Reference? context;
 
   /// [supportingInformation]
   /// Additional information (for example, patient height and weight) that
   /// supports the administration of the medication.
-  final List<Reference>? supportingInformation;
+  List<Reference>? supportingInformation;
 
   /// [effectiveDateTime]
   /// A specific date/time or interval of time during which the
   /// administration took place (or did not take place, when the 'notGiven'
   /// attribute is true). For many administrations, such as swallowing a
   /// tablet the use of dateTime is more appropriate.
-  final FhirDateTime? effectiveDateTime;
+  FhirDateTime? effectiveDateTime;
 
   /// [effectivePeriod]
   /// A specific date/time or interval of time during which the
   /// administration took place (or did not take place, when the 'notGiven'
   /// attribute is true). For many administrations, such as swallowing a
   /// tablet the use of dateTime is more appropriate.
-  final Period? effectivePeriod;
+  Period? effectivePeriod;
 
   /// [performer]
   /// Indicates who or what performed the medication administration and how
   /// they were involved.
-  final List<MedicationAdministrationPerformer>? performer;
+  List<MedicationAdministrationPerformer>? performer;
 
   /// [reasonCode]
   /// A code indicating why the medication was given.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConcept>? reasonCode;
 
   /// [reasonReference]
   /// Condition or observation that supports why the medication was
   /// administered.
-  final List<Reference>? reasonReference;
+  List<Reference>? reasonReference;
 
   /// [request]
   /// The original request, instruction or authority to perform the
   /// administration.
-  final Reference? request;
+  Reference? request;
 
   /// [device]
   /// The device used in administering the medication to the patient. For
   /// example, a particular infusion pump.
-  final List<Reference>? device;
+  List<Reference>? device;
 
   /// [note]
   /// Extra information about the medication administration that is not
   /// conveyed by the other attributes.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [dosage]
   /// Describes the medication dosage information details e.g. dose, rate,
   /// site, route, etc.
-  final MedicationAdministrationDosage? dosage;
+  MedicationAdministrationDosage? dosage;
 
   /// [eventHistory]
   /// A summary of the events of interest that have occurred, such as when
   /// the administration was verified.
-  final List<Reference>? eventHistory;
+  List<Reference>? eventHistory;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -821,7 +821,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -831,7 +831,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -849,16 +849,16 @@ class MedicationAdministrationPerformer extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [function_]
   /// Distinguishes the type of involvement of the performer in the
   /// medication administration.
-  final CodeableConcept? function_;
+  CodeableConcept? function_;
 
   /// [actor]
   /// Indicates who or what performed the medication administration.
-  final Reference actor;
+  Reference actor;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1056,7 +1056,7 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1066,7 +1066,7 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1084,38 +1084,38 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [text]
   /// Free text dosage can be used for cases where the dosage administered is
   /// too complex to code. When coded dosage is present, the free text dosage
   /// may still be present for display to humans. The dosage instructions
   /// should reflect the dosage of the medication that was administered.
-  final FhirString? text;
+  FhirString? text;
 
   /// [site]
   /// A coded specification of the anatomic site where the medication first
   /// entered the body. For example, "left arm".
-  final CodeableConcept? site;
+  CodeableConcept? site;
 
   /// [route]
   /// A code specifying the route or physiological path of administration of
   /// a therapeutic agent into or onto the patient. For example, topical,
   /// intravenous, etc.
-  final CodeableConcept? route;
+  CodeableConcept? route;
 
   /// [method]
   /// A coded value indicating the method by which the medication is intended
   /// to be or was introduced into or on the body. This attribute will most
   /// often NOT be populated. It is most commonly used for injections. For
   /// example, Slow Push, Deep IV.
-  final CodeableConcept? method;
+  CodeableConcept? method;
 
   /// [dose]
   /// The amount of the medication given at one administration event. Use
   /// this value when the administration is essentially an instantaneous
   /// event such as a swallowing a tablet or giving an injection.
-  final Quantity? dose;
+  Quantity? dose;
 
   /// [rateRatio]
   /// Identifies the speed with which the medication was or will be
@@ -1123,7 +1123,7 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// 100 ml per 1 hour or 100 ml/hr. May also be expressed as a rate per
   /// unit of time, e.g. 500 ml per 2 hours. Other examples: 200 mcg/min or
   /// 200 mcg/1 minute; 1 liter/8 hours.
-  final Ratio? rateRatio;
+  Ratio? rateRatio;
 
   /// [rateQuantity]
   /// Identifies the speed with which the medication was or will be
@@ -1131,7 +1131,7 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// 100 ml per 1 hour or 100 ml/hr. May also be expressed as a rate per
   /// unit of time, e.g. 500 ml per 2 hours. Other examples: 200 mcg/min or
   /// 200 mcg/1 minute; 1 liter/8 hours.
-  final Quantity? rateQuantity;
+  Quantity? rateQuantity;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

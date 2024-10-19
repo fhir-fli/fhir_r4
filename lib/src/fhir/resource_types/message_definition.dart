@@ -329,14 +329,14 @@ class MessageDefinition extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -344,12 +344,12 @@ class MessageDefinition extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -359,14 +359,14 @@ class MessageDefinition extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -376,7 +376,7 @@ class MessageDefinition extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -394,18 +394,18 @@ class MessageDefinition extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// The business identifier that is used to reference the MessageDefinition
   /// and *is* expected to be consistent from server to server.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [identifier]
   /// A formal identifier that is used to identify this message definition
   /// when it is represented in other formats, or referenced in a
   /// specification, model, design or an instance.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the message
@@ -415,54 +415,54 @@ class MessageDefinition extends DomainResource {
   /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
   /// There is also no expectation that versions can be placed in a
   /// lexicographical sequence.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the message definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString? name;
+  FhirString? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the message definition.
-  final FhirString? title;
+  FhirString? title;
 
   /// [replaces]
   /// A MessageDefinition that is superseded by this definition.
-  final List<FhirCanonical>? replaces;
+  List<FhirCanonical>? replaces;
 
   /// [status]
   /// The status of this message definition. Enables tracking the life-cycle
   /// of the content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this message definition is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [date]
   /// The date (and optionally time) when the message definition was
   /// published. The date must change when the business version changes and
   /// it must change if the status code changes. In addition, it should
   /// change when the substantive content of the message definition changes.
-  final FhirDateTime date;
+  FhirDateTime date;
 
   /// [publisher]
   /// The name of the organization or individual that published the message
   /// definition.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the message definition from
   /// a consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -470,61 +470,61 @@ class MessageDefinition extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate message definition instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the message definition is
   /// intended to be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this message definition is needed and why it has
   /// been designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [copyright]
   /// A copyright statement relating to the message definition and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the message definition.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [base]
   /// The MessageDefinition that is the basis for the contents of this
   /// resource.
-  final FhirCanonical? base;
+  FhirCanonical? base;
 
   /// [parent]
   /// Identifies a protocol or workflow that this MessageDefinition
   /// represents a step in.
-  final List<FhirCanonical>? parent;
+  List<FhirCanonical>? parent;
 
   /// [eventCoding]
   /// Event code or link to the EventDefinition.
-  final Coding? eventCoding;
+  Coding? eventCoding;
 
   /// [eventUri]
   /// Event code or link to the EventDefinition.
-  final FhirUri? eventUri;
+  FhirUri? eventUri;
 
   /// [category]
   /// The impact of the content of the message.
-  final MessageSignificanceCategory? category;
+  MessageSignificanceCategory? category;
 
   /// [focus]
   /// Identifies the resource (or resources) that are being addressed by the
   /// event. For example, the Encounter for an admit message or two Account
   /// records for a merge.
-  final List<MessageDefinitionFocus>? focus;
+  List<MessageDefinitionFocus>? focus;
 
   /// [responseRequired]
   /// Declare at a message definition level whether a response is required or
   /// only upon error or success, or never.
-  final MessageheaderResponseRequest? responseRequired;
+  MessageheaderResponseRequest? responseRequired;
 
   /// [allowedResponse]
   /// Indicates what types of messages may be sent as an application-level
   /// response to this message.
-  final List<MessageDefinitionAllowedResponse>? allowedResponse;
+  List<MessageDefinitionAllowedResponse>? allowedResponse;
 
   /// [graph]
   /// Canonical reference to a GraphDefinition. If a URL is provided, it is
@@ -532,7 +532,7 @@ class MessageDefinition extends DomainResource {
   /// that it controls what resources are to be added to the bundle when
   /// building the document. The GraphDefinition can also specify profiles
   /// that apply to the various resources.
-  final List<FhirCanonical>? graph;
+  List<FhirCanonical>? graph;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -960,7 +960,7 @@ class MessageDefinitionFocus extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -970,7 +970,7 @@ class MessageDefinitionFocus extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -988,28 +988,28 @@ class MessageDefinitionFocus extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// The kind of resource that must be the focus for this message.
-  final FhirCode code;
+  FhirCode code;
 
   /// [profile]
   /// A profile that reflects constraints for the focal resource (and
   /// potentially for related resources).
-  final FhirCanonical? profile;
+  FhirCanonical? profile;
 
   /// [min]
   /// Identifies the minimum number of resources of this type that must be
   /// pointed to by a message in order for it to be valid against this
   /// MessageDefinition.
-  final FhirUnsignedInt min;
+  FhirUnsignedInt min;
 
   /// [max]
   /// Identifies the maximum number of resources of this type that must be
   /// pointed to by a message in order for it to be valid against this
   /// MessageDefinition.
-  final FhirString? max;
+  FhirString? max;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1202,7 +1202,7 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1212,7 +1212,7 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1230,17 +1230,17 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [message]
   /// A reference to the message definition that must be adhered to by this
   /// supported response.
-  final FhirCanonical message;
+  FhirCanonical message;
 
   /// [situation]
   /// Provides a description of the circumstances in which this response
   /// should be used (as opposed to one of the alternative responses).
-  final FhirMarkdown? situation;
+  FhirMarkdown? situation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

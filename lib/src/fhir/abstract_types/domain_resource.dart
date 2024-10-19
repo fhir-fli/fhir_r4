@@ -44,12 +44,12 @@ class DomainResource extends Resource {
 
   /// A human-readable summary of the resource conveying the essential clinical
   /// and business information for the resource.",
-  final Narrative? text;
+  Narrative? text;
 
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// May be used to represent additional information that is not part of the
   /// basic definition of the resource. To make the use of extensions safe and
@@ -57,7 +57,7 @@ class DomainResource extends Resource {
   /// definition and use of extensions. Though any implementer can define an
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.",
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// May be used to represent additional information that is not part of the
   /// basic definition of the resource and that modifies the understanding of
@@ -71,7 +71,7 @@ class DomainResource extends Resource {
   /// required to check for modifier extensions.\n\nModifier extensions SHALL
   /// NOT change the meaning of any elements on Resource or DomainResource
   /// (including cannot change the meaning of modifierExtension itself).",
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// Returns a [Map<String, Object?>] of the [DomainResource]
   @override

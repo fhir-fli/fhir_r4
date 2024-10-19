@@ -220,14 +220,14 @@ class Slot extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -235,12 +235,12 @@ class Slot extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -250,14 +250,14 @@ class Slot extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -267,7 +267,7 @@ class Slot extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -285,60 +285,60 @@ class Slot extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// External Ids for this item.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [serviceCategory]
   /// A broad categorization of the service that is to be performed during
   /// this appointment.
-  final List<CodeableConcept>? serviceCategory;
+  List<CodeableConcept>? serviceCategory;
 
   /// [serviceType]
   /// The type of appointments that can be booked into this slot (ideally
   /// this would be an identifiable service - which is at a location, rather
   /// than the location itself). If provided then this overrides the value
   /// provided on the availability resource.
-  final List<CodeableConcept>? serviceType;
+  List<CodeableConcept>? serviceType;
 
   /// [specialty]
   /// The specialty of a practitioner that would be required to perform the
   /// service requested in this appointment.
-  final List<CodeableConcept>? specialty;
+  List<CodeableConcept>? specialty;
 
   /// [appointmentType]
   /// The style of appointment or patient that may be booked in the slot (not
   /// service type).
-  final CodeableConcept? appointmentType;
+  CodeableConcept? appointmentType;
 
   /// [schedule]
   /// The schedule resource that this slot defines an interval of status
   /// information.
-  final Reference schedule;
+  Reference schedule;
 
   /// [status]
   /// busy | free | busy-unavailable | busy-tentative | entered-in-error.
-  final SlotStatus status;
+  SlotStatus status;
 
   /// [start]
   /// Date/Time that the slot is to begin.
-  final FhirInstant start;
+  FhirInstant start;
 
   /// [end]
   /// Date/Time that the slot is to conclude.
-  final FhirInstant end;
+  FhirInstant end;
 
   /// [overbooked]
   /// This slot has already been overbooked, appointments are unlikely to be
   /// accepted for this time.
-  final FhirBoolean? overbooked;
+  FhirBoolean? overbooked;
 
   /// [comment]
   /// Comments on the slot to describe any extended information. Such as
   /// custom constraints on the slot.
-  final FhirString? comment;
+  FhirString? comment;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

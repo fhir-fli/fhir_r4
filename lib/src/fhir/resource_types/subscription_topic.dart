@@ -316,14 +316,14 @@ class SubscriptionTopic extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -331,12 +331,12 @@ class SubscriptionTopic extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -346,14 +346,14 @@ class SubscriptionTopic extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -363,7 +363,7 @@ class SubscriptionTopic extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -381,7 +381,7 @@ class SubscriptionTopic extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this subscription topic when
@@ -391,13 +391,13 @@ class SubscriptionTopic extends DomainResource {
   /// of this subscription topic is (or will be) published. This URL can be
   /// the target of a canonical reference. It SHALL remain the same when the
   /// subscription topic is stored on different servers.
-  final FhirUri url;
+  FhirUri url;
 
   /// [identifier]
   /// Business identifiers assigned to this subscription topic by the
   /// performer and/or other systems. These identifiers remain constant as
   /// the resource is updated and propagates from server to server.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the
@@ -406,85 +406,85 @@ class SubscriptionTopic extends DomainResource {
   /// author and is not expected to be globally unique. For example, it might
   /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
   /// There is also no expectation that versions are orderable.
-  final FhirString? version;
+  FhirString? version;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the SubscriptionTopic,
   /// for example, "admission".
-  final FhirString? title;
+  FhirString? title;
 
   /// [derivedFrom]
   /// The canonical URL pointing to another FHIR-defined SubscriptionTopic
   /// that is adhered to in whole or in part by this SubscriptionTopic.
-  final List<FhirCanonical>? derivedFrom;
+  List<FhirCanonical>? derivedFrom;
 
   /// [status]
   /// The current state of the SubscriptionTopic.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A flag to indicate that this TopSubscriptionTopicic is authored for
   /// testing purposes (or education/evaluation/marketing), and is not
   /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [date]
   /// For draft definitions, indicates the date of initial creation. For
   /// active definitions, represents the date of activation. For withdrawn
   /// definitions, indicates the date of withdrawal.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [publisher]
   /// Helps establish the "authority/credibility" of the SubscriptionTopic.
   /// May also allow for contact.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the Topic from the
   /// consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
   /// contexts that are listed. These terms may be used to assist with
   /// indexing and searching of code system definitions.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A jurisdiction in which the Topic is intended to be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explains why this Topic is needed and why it has been designed as it
   /// has.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [copyright]
   /// A copyright statement relating to the SubscriptionTopic and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the SubscriptionTopic.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [approvalDate]
   /// The date on which the asset content was approved by the publisher.
   /// Approval happens once when the content is officially approved for
   /// usage.
-  final FhirDate? approvalDate;
+  FhirDate? approvalDate;
 
   /// [lastReviewDate]
   /// The date on which the asset content was last reviewed. Review happens
   /// periodically after that, but doesn't change the original approval date.
-  final FhirDate? lastReviewDate;
+  FhirDate? lastReviewDate;
 
   /// [effectivePeriod]
   /// The period during which the SubscriptionTopic content was or is planned
   /// to be effective.
-  final Period? effectivePeriod;
+  Period? effectivePeriod;
 
   /// [resourceTrigger]
   /// A definition of a resource-based event that triggers a notification
@@ -493,23 +493,23 @@ class SubscriptionTopic extends DomainResource {
   /// expression. Multiple triggers are considered OR joined (e.g., a
   /// resource update matching ANY of the definitions will trigger a
   /// notification).
-  final List<SubscriptionTopicResourceTrigger>? resourceTrigger;
+  List<SubscriptionTopicResourceTrigger>? resourceTrigger;
 
   /// [eventTrigger]
   /// Event definition which can be used to trigger the SubscriptionTopic.
-  final List<SubscriptionTopicEventTrigger>? eventTrigger;
+  List<SubscriptionTopicEventTrigger>? eventTrigger;
 
   /// [canFilterBy]
   /// List of properties by which Subscriptions on the SubscriptionTopic can
   /// be filtered. May be defined Search Parameters (e.g., Encounter.patient)
   /// or parameters defined within this SubscriptionTopic context (e.g.,
   /// hub.event).
-  final List<SubscriptionTopicCanFilterBy>? canFilterBy;
+  List<SubscriptionTopicCanFilterBy>? canFilterBy;
 
   /// [notificationShape]
   /// List of properties to describe the shape (e.g., resources) included in
   /// notifications from this Subscription Topic.
-  final List<SubscriptionTopicNotificationShape>? notificationShape;
+  List<SubscriptionTopicNotificationShape>? notificationShape;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -911,7 +911,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -921,7 +921,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -939,13 +939,13 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// The human readable description of this resource trigger for the
   /// SubscriptionTopic - for example, "An Encounter enters the 'in-progress'
   /// state".
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [resource]
   /// URL of the Resource that is the type used in this resource trigger.
@@ -955,23 +955,23 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   /// to http://hl7.org/fhir/StructureDefinition/Patient. For more
   /// information, see <a
   /// href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDefinition.type.code</a>.
-  final FHIRDefinedType resource;
+  FHIRDefinedType resource;
 
   /// [supportedInteraction]
   /// The FHIR RESTful interaction which can be used to trigger a
   /// notification for the SubscriptionTopic. Multiple values are considered
   /// OR joined (e.g., CREATE or UPDATE).
-  final List<InteractionTrigger>? supportedInteraction;
+  List<InteractionTrigger>? supportedInteraction;
 
   /// [queryCriteria]
   /// The FHIR query based rules that the server should use to determine when
   /// to trigger a notification for this subscription topic.
-  final SubscriptionTopicQueryCriteria? queryCriteria;
+  SubscriptionTopicQueryCriteria? queryCriteria;
 
   /// [fhirPathCriteria]
   /// The FHIRPath based rules that the server should use to determine when
   /// to trigger a notification for this topic.
-  final FhirString? fhirPathCriteria;
+  FhirString? fhirPathCriteria;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1198,7 +1198,7 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1208,7 +1208,7 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1226,33 +1226,33 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [previous]
   /// The FHIR query based rules are applied to the previous resource state
   /// (e.g., state before an update).
-  final FhirString? previous;
+  FhirString? previous;
 
   /// [resultForCreate]
   /// For "create" interactions, should the "previous" criteria count as an
   /// automatic pass or an automatic fail.
-  final CriteriaNotExistsBehavior? resultForCreate;
+  CriteriaNotExistsBehavior? resultForCreate;
 
   /// [current]
   /// The FHIR query based rules are applied to the current resource state
   /// (e.g., state after an update).
-  final FhirString? current;
+  FhirString? current;
 
   /// [resultForDelete]
   /// For "delete" interactions, should the "current" criteria count as an
   /// automatic pass or an automatic fail.
-  final CriteriaNotExistsBehavior? resultForDelete;
+  CriteriaNotExistsBehavior? resultForDelete;
 
   /// [requireBoth]
   /// If set to true, both current and previous criteria must evaluate true
   /// to trigger a notification for this topic. Otherwise a notification for
   /// this topic will be triggered if either one evaluates to true.
-  final FhirBoolean? requireBoth;
+  FhirBoolean? requireBoth;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1462,7 +1462,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1472,7 +1472,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1490,19 +1490,19 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// The human readable description of an event to trigger a notification
   /// for the SubscriptionTopic - for example, "Patient Admission, as defined
   /// in HL7v2 via message ADT^A01". Multiple values are considered OR joined
   /// (e.g., matching any single event listed).
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [event]
   /// A well-defined event which can be used to trigger notifications from
   /// the SubscriptionTopic.
-  final CodeableConcept event;
+  CodeableConcept event;
 
   /// [resource]
   /// URL of the Resource that is the focus type used in this event trigger.
@@ -1512,7 +1512,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   /// to http://hl7.org/fhir/StructureDefinition/Patient. For more
   /// information, see <a
   /// href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDefinition.type.code</a>.
-  final FHIRDefinedType resource;
+  FHIRDefinedType resource;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1714,7 +1714,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1724,7 +1724,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1742,11 +1742,11 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// Description of how this filtering parameter is intended to be used.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [resource]
   /// URL of the Resource that is the type used in this filter. This is the
@@ -1754,28 +1754,28 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   /// will be the same, a generality, or a specificity of
   /// SubscriptionTopic.resourceTrigger.resource or
   /// SubscriptionTopic.eventTrigger.resource when they are present.
-  final FHIRDefinedType? resource;
+  FHIRDefinedType? resource;
 
   /// [filterParameter]
   /// Either the canonical URL to a search parameter (like
   /// "http://hl7.org/fhir/SearchParameter/encounter-patient") or
   /// topic-defined parameter (like "hub.event") which is a label for the
   /// filter.
-  final FhirString filterParameter;
+  FhirString filterParameter;
 
   /// [filterDefinition]
   /// Either the canonical URL to a search parameter (like
   /// "http://hl7.org/fhir/SearchParameter/encounter-patient") or the
   /// officially-defined URI for a shared filter concept (like
   /// "http://example.org/concepts/shared-common-event").
-  final FhirUri? filterDefinition;
+  FhirUri? filterDefinition;
 
   /// [modifier]
   /// Allowable operators to apply when determining matches (Search
   /// Modifiers). If the filterParameter is a SearchParameter, this list of
   /// modifiers SHALL be a strict subset of the modifiers defined on that
   /// SearchParameter.
-  final List<SubscriptionSearchModifier>? modifier;
+  List<SubscriptionSearchModifier>? modifier;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1985,7 +1985,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1995,7 +1995,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2013,7 +2013,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [resource]
   /// URL of the Resource that is the type used in this shape. This is the
@@ -2022,7 +2022,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   /// generality, or a specificity of
   /// SubscriptionTopic.resourceTrigger.resource or
   /// SubscriptionTopic.eventTrigger.resource when they are present.
-  final FHIRDefinedType resource;
+  FHIRDefinedType resource;
 
   /// [include]
   /// Search-style _include directives, rooted in the resource for this
@@ -2030,7 +2030,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   /// the user is authorized to receive them. Clients SHOULD be prepared to
   /// receive these additional resources, but SHALL function properly without
   /// them.
-  final List<FhirString>? include;
+  List<FhirString>? include;
 
   /// [revInclude]
   /// Search-style _revinclude directives, rooted in the resource for this
@@ -2038,7 +2038,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   /// the user is authorized to receive them. Clients SHOULD be prepared to
   /// receive these additional resources, but SHALL function properly without
   /// them.
-  final List<FhirString>? revInclude;
+  List<FhirString>? revInclude;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

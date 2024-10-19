@@ -270,14 +270,14 @@ class Location extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -285,12 +285,12 @@ class Location extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -300,14 +300,14 @@ class Location extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -317,7 +317,7 @@ class Location extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -335,91 +335,91 @@ class Location extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Unique code or number identifying the location to its users.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// The status property covers the general availability of the resource,
   /// not the current value which may be covered by the operationStatus, or
   /// by a schedule/slots if they are configured for the location.
-  final LocationStatus? status;
+  LocationStatus? status;
 
   /// [operationalStatus]
   /// The operational status covers operation values most relevant to beds
   /// (but can also apply to rooms/units/chairs/etc. such as an isolation
   /// unit/dialysis chair). This typically covers concepts such as
   /// contamination, housekeeping, and other activities like maintenance.
-  final Coding? operationalStatus;
+  Coding? operationalStatus;
 
   /// [name]
   /// Name of the location as used by humans. Does not need to be unique.
-  final FhirString? name;
+  FhirString? name;
 
   /// [alias]
   /// A list of alternate names that the location is known as, or was known
   /// as, in the past.
-  final List<FhirString>? alias;
+  List<FhirString>? alias;
 
   /// [description]
   /// Description of the Location, which helps in finding or referencing the
   /// place.
-  final FhirString? description;
+  FhirString? description;
 
   /// [mode]
   /// Indicates whether a resource instance represents a specific location or
   /// a class of locations.
-  final LocationMode? mode;
+  LocationMode? mode;
 
   /// [type]
   /// Indicates the type of function performed at the location.
-  final List<CodeableConcept>? type;
+  List<CodeableConcept>? type;
 
   /// [telecom]
   /// The contact details of communication devices available at the location.
   /// This can include phone numbers, fax numbers, mobile numbers, email
   /// addresses and web sites.
-  final List<ContactPoint>? telecom;
+  List<ContactPoint>? telecom;
 
   /// [address]
   /// Physical location.
-  final Address? address;
+  Address? address;
 
   /// [physicalType]
   /// Physical form of the location, e.g. building, room, vehicle, road.
-  final CodeableConcept? physicalType;
+  CodeableConcept? physicalType;
 
   /// [position]
   /// The absolute geographic location of the Location, expressed using the
   /// WGS84 datum (This is the same co-ordinate system used in KML).
-  final LocationPosition? position;
+  LocationPosition? position;
 
   /// [managingOrganization]
   /// The organization responsible for the provisioning and upkeep of the
   /// location.
-  final Reference? managingOrganization;
+  Reference? managingOrganization;
 
   /// [partOf]
   /// Another Location of which this Location is physically a part of.
-  final Reference? partOf;
+  Reference? partOf;
 
   /// [hoursOfOperation]
   /// What days/times during a week is this location usually open.
-  final List<LocationHoursOfOperation>? hoursOfOperation;
+  List<LocationHoursOfOperation>? hoursOfOperation;
 
   /// [availabilityExceptions]
   /// A description of when the locations opening ours are different to
   /// normal, e.g. public holiday availability. Succinctly describing all
   /// possible exceptions to normal site availability as detailed in the
   /// opening hours Times.
-  final FhirString? availabilityExceptions;
+  FhirString? availabilityExceptions;
 
   /// [endpoint]
   /// Technical endpoints providing access to services operated for the
   /// location.
-  final List<Reference>? endpoint;
+  List<Reference>? endpoint;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -748,7 +748,7 @@ class LocationPosition extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -758,7 +758,7 @@ class LocationPosition extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -776,22 +776,22 @@ class LocationPosition extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [longitude]
   /// Longitude. The value domain and the interpretation are the same as for
   /// the text of the longitude element in KML (see notes below).
-  final FhirDecimal longitude;
+  FhirDecimal longitude;
 
   /// [latitude]
   /// Latitude. The value domain and the interpretation are the same as for
   /// the text of the latitude element in KML (see notes below).
-  final FhirDecimal latitude;
+  FhirDecimal latitude;
 
   /// [altitude]
   /// Altitude. The value domain and the interpretation are the same as for
   /// the text of the altitude element in KML (see notes below).
-  final FhirDecimal? altitude;
+  FhirDecimal? altitude;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -988,7 +988,7 @@ class LocationHoursOfOperation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -998,7 +998,7 @@ class LocationHoursOfOperation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1016,24 +1016,24 @@ class LocationHoursOfOperation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [daysOfWeek]
   /// Indicates which days of the week are available between the start and
   /// end Times.
-  final List<DaysOfWeek>? daysOfWeek;
+  List<DaysOfWeek>? daysOfWeek;
 
   /// [allDay]
   /// The Location is open all day.
-  final FhirBoolean? allDay;
+  FhirBoolean? allDay;
 
   /// [openingTime]
   /// Time that the Location opens.
-  final FhirTime? openingTime;
+  FhirTime? openingTime;
 
   /// [closingTime]
   /// Time that the Location closes.
-  final FhirTime? closingTime;
+  FhirTime? closingTime;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

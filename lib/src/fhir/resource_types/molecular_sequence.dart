@@ -263,14 +263,14 @@ class MolecularSequence extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -278,12 +278,12 @@ class MolecularSequence extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -293,14 +293,14 @@ class MolecularSequence extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -310,7 +310,7 @@ class MolecularSequence extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -328,47 +328,47 @@ class MolecularSequence extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A unique identifier for this particular sequence instance. This is a
   /// FHIR-defined id.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [type]
   /// Amino Acid Sequence/ DNA Sequence / RNA Sequence.
-  final SequenceType? type;
+  SequenceType? type;
 
   /// [coordinateSystem]
   /// Whether the sequence is numbered starting at 0 (0-based numbering or
   /// coordinates, inclusive start, exclusive end) or starting at 1 (1-based
   /// numbering, inclusive start and inclusive end).
-  final FhirInteger coordinateSystem;
+  FhirInteger coordinateSystem;
 
   /// [patient]
   /// The patient whose sequencing results are described by this resource.
-  final Reference? patient;
+  Reference? patient;
 
   /// [specimen]
   /// Specimen used for sequencing.
-  final Reference? specimen;
+  Reference? specimen;
 
   /// [device]
   /// The method for sequencing, for example, chip information.
-  final Reference? device;
+  Reference? device;
 
   /// [performer]
   /// The organization or lab that should be responsible for this result.
-  final Reference? performer;
+  Reference? performer;
 
   /// [quantity]
   /// The number of copies of the sequence of interest. (RNASeq).
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [referenceSeq]
   /// A sequence that is used as a reference to describe variants that are
   /// present in a sequence analyzed.
-  final MolecularSequenceReferenceSeq? referenceSeq;
+  MolecularSequenceReferenceSeq? referenceSeq;
 
   /// [variant]
   /// The definition of variant here originates from Sequence ontology
@@ -376,37 +376,37 @@ class MolecularSequence extends DomainResource {
   /// This element can represent amino acid or nucleic sequence
   /// change(including insertion,deletion,SNP,etc.) It can represent some
   /// complex mutation or segment variation with the assist of CIGAR string.
-  final List<MolecularSequenceVariant>? variant;
+  List<MolecularSequenceVariant>? variant;
 
   /// [observedSeq]
   /// Sequence that was observed. It is the result marked by referenceSeq
   /// along with variant records on referenceSeq. This shall start from
   /// referenceSeq.windowStart and end by referenceSeq.windowEnd.
-  final FhirString? observedSeq;
+  FhirString? observedSeq;
 
   /// [quality]
   /// An experimental feature attribute that defines the quality of the
   /// feature in a quantitative way, such as a phred quality score
   /// ([SO:0001686](http://www.sequenceontology.org/browser/current_svn/term/SO:0001686)).
-  final List<MolecularSequenceQuality>? quality;
+  List<MolecularSequenceQuality>? quality;
 
   /// [readCoverage]
   /// Coverage (read depth or depth) is the average number of reads
   /// representing a given nucleotide in the reconstructed sequence.
-  final FhirInteger? readCoverage;
+  FhirInteger? readCoverage;
 
   /// [repository]
   /// Configurations of the external repository. The repository shall store
   /// target's observedSeq or records related with target's observedSeq.
-  final List<MolecularSequenceRepository>? repository;
+  List<MolecularSequenceRepository>? repository;
 
   /// [pointer]
   /// Pointer to next atomic sequence which at most contains one variant.
-  final List<Reference>? pointer;
+  List<Reference>? pointer;
 
   /// [structureVariant]
   /// Information about chromosome structure variation.
-  final List<MolecularSequenceStructureVariant>? structureVariant;
+  List<MolecularSequenceStructureVariant>? structureVariant;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -762,7 +762,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -772,7 +772,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -790,61 +790,61 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [chromosome]
   /// Structural unit composed of a nucleic acid molecule which controls its
   /// own replication through the interaction of specific proteins at one or
   /// more origins of replication
   /// ([SO:0000340](http://www.sequenceontology.org/browser/current_svn/term/SO:0000340)).
-  final CodeableConcept? chromosome;
+  CodeableConcept? chromosome;
 
   /// [genomeBuild]
   /// The Genome Build used for reference, following GRCh build versions e.g.
   /// 'GRCh 37'. Version number must be included if a versioned release of a
   /// primary build was used.
-  final FhirString? genomeBuild;
+  FhirString? genomeBuild;
 
   /// [orientation]
   /// A relative reference to a DNA strand based on gene orientation. The
   /// strand that contains the open reading frame of the gene is the "sense"
   /// strand, and the opposite complementary strand is the "antisense"
   /// strand.
-  final OrientationType? orientation;
+  OrientationType? orientation;
 
   /// [referenceSeqId]
   /// Reference identifier of reference sequence submitted to NCBI. It must
   /// match the type in the MolecularSequence.type field. For example, the
   /// prefix, “NG_” identifies reference sequence for genes, “NM_” for
   /// messenger RNA transcripts, and “NP_” for amino acid sequences.
-  final CodeableConcept? referenceSeqId;
+  CodeableConcept? referenceSeqId;
 
   /// [referenceSeqPointer]
   /// A pointer to another MolecularSequence entity as reference sequence.
-  final Reference? referenceSeqPointer;
+  Reference? referenceSeqPointer;
 
   /// [referenceSeqString]
   /// A string like "ACGT".
-  final FhirString? referenceSeqString;
+  FhirString? referenceSeqString;
 
   /// [strand]
   /// An absolute reference to a strand. The Watson strand is the strand
   /// whose 5'-end is on the short arm of the chromosome, and the Crick
   /// strand as the one whose 5'-end is on the long arm.
-  final StrandType? strand;
+  StrandType? strand;
 
   /// [windowStart]
   /// Start position of the window on the reference sequence. If the
   /// coordinate system is either 0-based or 1-based, then start position is
   /// inclusive.
-  final FhirInteger? windowStart;
+  FhirInteger? windowStart;
 
   /// [windowEnd]
   /// End position of the window on the reference sequence. If the coordinate
   /// system is 0-based then end is exclusive and does not include the last
   /// position. If the coordinate system is 1-base, then end is inclusive and
   /// includes the last position.
-  final FhirInteger? windowEnd;
+  FhirInteger? windowEnd;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1113,7 +1113,7 @@ class MolecularSequenceVariant extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1123,7 +1123,7 @@ class MolecularSequenceVariant extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1141,20 +1141,20 @@ class MolecularSequenceVariant extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [start]
   /// Start position of the variant on the reference sequence. If the
   /// coordinate system is either 0-based or 1-based, then start position is
   /// inclusive.
-  final FhirInteger? start;
+  FhirInteger? start;
 
   /// [end]
   /// End position of the variant on the reference sequence. If the
   /// coordinate system is 0-based then end is exclusive and does not include
   /// the last position. If the coordinate system is 1-base, then end is
   /// inclusive and includes the last position.
-  final FhirInteger? end;
+  FhirInteger? end;
 
   /// [observedAllele]
   /// An allele is one of a set of coexisting sequence variants of a gene
@@ -1164,7 +1164,7 @@ class MolecularSequenceVariant extends BackboneElement {
   /// sequence. When the sequence type is DNA, it should be the sequence on
   /// the positive (+) strand. This will lay in the range between
   /// variant.start and variant.end.
-  final FhirString? observedAllele;
+  FhirString? observedAllele;
 
   /// [referenceAllele]
   /// An allele is one of a set of coexisting sequence variants of a gene
@@ -1174,17 +1174,17 @@ class MolecularSequenceVariant extends BackboneElement {
   /// sequence. When the sequence type is DNA, it should be the sequence on
   /// the positive (+) strand. This will lay in the range between
   /// variant.start and variant.end.
-  final FhirString? referenceAllele;
+  FhirString? referenceAllele;
 
   /// [cigar]
   /// Extended CIGAR string for aligning the sequence with reference bases.
   /// See detailed documentation
   /// [here](http://support.illumina.com/help/SequencingAnalysisWorkflow/Content/Vault/Informatics/Sequencing_Analysis/CASAVA/swSEQ_mCA_ExtendedCIGARFormat.htm).
-  final FhirString? cigar;
+  FhirString? cigar;
 
   /// [variantPointer]
   /// A pointer to an Observation containing variant information.
-  final Reference? variantPointer;
+  Reference? variantPointer;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1485,7 +1485,7 @@ class MolecularSequenceQuality extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1495,7 +1495,7 @@ class MolecularSequenceQuality extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1513,50 +1513,50 @@ class MolecularSequenceQuality extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// INDEL / SNP / Undefined variant.
-  final QualityType type;
+  QualityType type;
 
   /// [standardSequence]
   /// Gold standard sequence used for comparing against.
-  final CodeableConcept? standardSequence;
+  CodeableConcept? standardSequence;
 
   /// [start]
   /// Start position of the sequence. If the coordinate system is either
   /// 0-based or 1-based, then start position is inclusive.
-  final FhirInteger? start;
+  FhirInteger? start;
 
   /// [end]
   /// End position of the sequence. If the coordinate system is 0-based then
   /// end is exclusive and does not include the last position. If the
   /// coordinate system is 1-base, then end is inclusive and includes the
   /// last position.
-  final FhirInteger? end;
+  FhirInteger? end;
 
   /// [score]
   /// The score of an experimentally derived feature such as a p-value
   /// ([SO:0001685](http://www.sequenceontology.org/browser/current_svn/term/SO:0001685)).
-  final Quantity? score;
+  Quantity? score;
 
   /// [method]
   /// Which method is used to get sequence quality.
-  final CodeableConcept? method;
+  CodeableConcept? method;
 
   /// [truthTP]
   /// True positives, from the perspective of the truth data, i.e. the number
   /// of sites in the Truth Call Set for which there are paths through the
   /// Query Call Set that are consistent with all of the alleles at this
   /// site, and for which there is an accurate genotype call for the event.
-  final FhirDecimal? truthTP;
+  FhirDecimal? truthTP;
 
   /// [queryTP]
   /// True positives, from the perspective of the query data, i.e. the number
   /// of sites in the Query Call Set for which there are paths through the
   /// Truth Call Set that are consistent with all of the alleles at this
   /// site, and for which there is an accurate genotype call for the event.
-  final FhirDecimal? queryTP;
+  FhirDecimal? queryTP;
 
   /// [truthFN]
   /// False negatives, i.e. the number of sites in the Truth Call Set for
@@ -1564,38 +1564,38 @@ class MolecularSequenceQuality extends BackboneElement {
   /// with all of the alleles at this site, or sites for which there is an
   /// inaccurate genotype call for the event. Sites with correct variant but
   /// incorrect genotype are counted here.
-  final FhirDecimal? truthFN;
+  FhirDecimal? truthFN;
 
   /// [queryFP]
   /// False positives, i.e. the number of sites in the Query Call Set for
   /// which there is no path through the Truth Call Set that is consistent
   /// with this site. Sites with correct variant but incorrect genotype are
   /// counted here.
-  final FhirDecimal? queryFP;
+  FhirDecimal? queryFP;
 
   /// [gtFP]
   /// The number of false positives where the non-REF alleles in the Truth
   /// and Query Call Sets match (i.e. cases where the truth is 1/1 and the
   /// query is 0/1 or similar).
-  final FhirDecimal? gtFP;
+  FhirDecimal? gtFP;
 
   /// [precision]
   /// QUERY.TP / (QUERY.TP + QUERY.FP).
-  final FhirDecimal? precision;
+  FhirDecimal? precision;
 
   /// [recall]
   /// TRUTH.TP / (TRUTH.TP + TRUTH.FN).
-  final FhirDecimal? recall;
+  FhirDecimal? recall;
 
   /// [fScore]
   /// Harmonic mean of Recall and Precision, computed as: 2 * precision *
   /// recall / (precision + recall).
-  final FhirDecimal? fScore;
+  FhirDecimal? fScore;
 
   /// [roc]
   /// Receiver Operator Characteristic (ROC) Curve to give
   /// sensitivity/specificity tradeoff.
-  final MolecularSequenceRoc? roc;
+  MolecularSequenceRoc? roc;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1914,7 +1914,7 @@ class MolecularSequenceRoc extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1924,7 +1924,7 @@ class MolecularSequenceRoc extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1942,42 +1942,42 @@ class MolecularSequenceRoc extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [score]
   /// Invidual data point representing the GQ (genotype quality) score
   /// threshold.
-  final List<FhirInteger>? score;
+  List<FhirInteger>? score;
 
   /// [numTP]
   /// The number of true positives if the GQ score threshold was set to
   /// "score" field value.
-  final List<FhirInteger>? numTP;
+  List<FhirInteger>? numTP;
 
   /// [numFP]
   /// The number of false positives if the GQ score threshold was set to
   /// "score" field value.
-  final List<FhirInteger>? numFP;
+  List<FhirInteger>? numFP;
 
   /// [numFN]
   /// The number of false negatives if the GQ score threshold was set to
   /// "score" field value.
-  final List<FhirInteger>? numFN;
+  List<FhirInteger>? numFN;
 
   /// [precision]
   /// Calculated precision if the GQ score threshold was set to "score" field
   /// value.
-  final List<FhirDecimal>? precision;
+  List<FhirDecimal>? precision;
 
   /// [sensitivity]
   /// Calculated sensitivity if the GQ score threshold was set to "score"
   /// field value.
-  final List<FhirDecimal>? sensitivity;
+  List<FhirDecimal>? sensitivity;
 
   /// [fMeasure]
   /// Calculated fScore if the GQ score threshold was set to "score" field
   /// value.
-  final List<FhirDecimal>? fMeasure;
+  List<FhirDecimal>? fMeasure;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2233,7 +2233,7 @@ class MolecularSequenceRepository extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2243,7 +2243,7 @@ class MolecularSequenceRepository extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2261,38 +2261,38 @@ class MolecularSequenceRepository extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Click and see / RESTful API / Need login to see / RESTful API with
   /// authentication / Other ways to see resource.
-  final RepositoryType type;
+  RepositoryType type;
 
   /// [url]
   /// URI of an external repository which contains further details about the
   /// genetics data.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [name]
   /// URI of an external repository which contains further details about the
   /// genetics data.
-  final FhirString? name;
+  FhirString? name;
 
   /// [datasetId]
   /// Id of the variant in this external repository. The server will
   /// understand how to use this id to call for more info about datasets in
   /// external repository.
-  final FhirString? datasetId;
+  FhirString? datasetId;
 
   /// [variantsetId]
   /// Id of the variantset in this external repository. The server will
   /// understand how to use this id to call for more info about variantsets
   /// in external repository.
-  final FhirString? variantsetId;
+  FhirString? variantsetId;
 
   /// [readsetId]
   /// Id of the read in this external repository.
-  final FhirString? readsetId;
+  FhirString? readsetId;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2526,7 +2526,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2536,7 +2536,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2554,28 +2554,28 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [variantType]
   /// Information about chromosome structure variation DNA change type.
-  final CodeableConcept? variantType;
+  CodeableConcept? variantType;
 
   /// [exact]
   /// Used to indicate if the outer and inner start-end values have the same
   /// meaning.
-  final FhirBoolean? exact;
+  FhirBoolean? exact;
 
   /// [length]
   /// Length of the variant chromosome.
-  final FhirInteger? length;
+  FhirInteger? length;
 
   /// [outer]
   /// Structural variant outer.
-  final MolecularSequenceOuter? outer;
+  MolecularSequenceOuter? outer;
 
   /// [inner]
   /// Structural variant inner.
-  final MolecularSequenceInner? inner;
+  MolecularSequenceInner? inner;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2771,7 +2771,7 @@ class MolecularSequenceOuter extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2781,7 +2781,7 @@ class MolecularSequenceOuter extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2799,19 +2799,19 @@ class MolecularSequenceOuter extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [start]
   /// Structural variant outer start. If the coordinate system is either
   /// 0-based or 1-based, then start position is inclusive.
-  final FhirInteger? start;
+  FhirInteger? start;
 
   /// [end]
   /// Structural variant outer end. If the coordinate system is 0-based then
   /// end is exclusive and does not include the last position. If the
   /// coordinate system is 1-base, then end is inclusive and includes the
   /// last position.
-  final FhirInteger? end;
+  FhirInteger? end;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2989,7 +2989,7 @@ class MolecularSequenceInner extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2999,7 +2999,7 @@ class MolecularSequenceInner extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3017,19 +3017,19 @@ class MolecularSequenceInner extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [start]
   /// Structural variant inner start. If the coordinate system is either
   /// 0-based or 1-based, then start position is inclusive.
-  final FhirInteger? start;
+  FhirInteger? start;
 
   /// [end]
   /// Structural variant inner end. If the coordinate system is 0-based then
   /// end is exclusive and does not include the last position. If the
   /// coordinate system is 1-base, then end is inclusive and includes the
   /// last position.
-  final FhirInteger? end;
+  FhirInteger? end;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

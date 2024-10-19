@@ -158,12 +158,12 @@ class FhirDate extends FhirDateTimeBase {
   int dbId = 0;
 
   /// Serializes the instance to JSON with standardized keys
-  final String? dbValue;
+  String? dbValue;
 
   /// Element stored as a relation in ObjectBox
   @override
   // ignore: overridden_fields
-  final Element? element;
+  Element? element;
 
   /// Clones the current [FhirDate] and returns a new instance.
   @override

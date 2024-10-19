@@ -245,14 +245,14 @@ class RegulatedAuthorization extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -260,12 +260,12 @@ class RegulatedAuthorization extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -275,14 +275,14 @@ class RegulatedAuthorization extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -292,7 +292,7 @@ class RegulatedAuthorization extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -310,70 +310,70 @@ class RegulatedAuthorization extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business identifier for the authorization, typically assigned by the
   /// authorizing body.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [subject]
   /// The product type, treatment, facility or activity that is being
   /// authorized.
-  final List<Reference>? subject;
+  List<Reference>? subject;
 
   /// [type]
   /// Overall type of this authorization, for example drug marketing
   /// approval, orphan drug designation.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [description]
   /// General textual supporting information.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [region]
   /// The territory (e.g., country, jurisdiction etc.) in which the
   /// authorization has been granted.
-  final List<CodeableConcept>? region;
+  List<CodeableConcept>? region;
 
   /// [status]
   /// The status that is authorised e.g. approved. Intermediate states and
   /// actions can be tracked with cases and applications.
-  final CodeableConcept? status;
+  CodeableConcept? status;
 
   /// [statusDate]
   /// The date at which the current status was assigned.
-  final FhirDateTime? statusDate;
+  FhirDateTime? statusDate;
 
   /// [validityPeriod]
   /// The time period in which the regulatory approval, clearance or
   /// licencing is in effect. As an example, a Marketing Authorization
   /// includes the date of authorization and/or an expiration date.
-  final Period? validityPeriod;
+  Period? validityPeriod;
 
   /// [indication]
   /// Condition for which the use of the regulated product applies.
-  final CodeableReference? indication;
+  CodeableReference? indication;
 
   /// [intendedUse]
   /// The intended use of the product, e.g. prevention, treatment, diagnosis.
-  final CodeableConcept? intendedUse;
+  CodeableConcept? intendedUse;
 
   /// [basis]
   /// The legal or regulatory framework against which this authorization is
   /// granted, or other reasons for it.
-  final List<CodeableConcept>? basis;
+  List<CodeableConcept>? basis;
 
   /// [holder]
   /// The organization that has been granted this authorization, by some
   /// authoritative body (the 'regulator').
-  final Reference? holder;
+  Reference? holder;
 
   /// [regulator]
   /// The regulatory authority or authorizing body granting the
   /// authorization. For example, European Medicines Agency (EMA), Food and
   /// Drug Administration (FDA), Health Canada (HC), etc.
-  final Reference? regulator;
+  Reference? regulator;
 
   /// [case_]
   /// The case or regulatory procedure for granting or amending a regulated
@@ -383,7 +383,7 @@ class RegulatedAuthorization extends DomainResource {
   /// to this and assesses them. Note: This area is subject to ongoing review
   /// and the workgroup is seeking implementer feedback on its use (see link
   /// at bottom of page).
-  final RegulatedAuthorizationCase? case_;
+  RegulatedAuthorizationCase? case_;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -706,7 +706,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -716,7 +716,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -734,27 +734,27 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifier by which this case can be referenced.
-  final Identifier? identifier;
+  Identifier? identifier;
 
   /// [type]
   /// The defining type of case.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [status]
   /// The status associated with the case.
-  final CodeableConcept? status;
+  CodeableConcept? status;
 
   /// [datePeriod]
   /// Relevant date for this case.
-  final Period? datePeriod;
+  Period? datePeriod;
 
   /// [dateDateTime]
   /// Relevant date for this case.
-  final FhirDateTime? dateDateTime;
+  FhirDateTime? dateDateTime;
 
   /// [application]
   /// A regulatory submission from an organization to a regulator, as part of
@@ -762,7 +762,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// or different information to support or modify the submission or the
   /// authorization. The applications can be considered as steps within the
   /// longer running case or procedure for this authorization process.
-  final List<RegulatedAuthorizationCase>? application;
+  List<RegulatedAuthorizationCase>? application;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

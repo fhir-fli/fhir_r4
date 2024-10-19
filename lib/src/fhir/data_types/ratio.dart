@@ -104,7 +104,7 @@ class Ratio extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -114,15 +114,15 @@ class Ratio extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [numerator]
   /// The value of the numerator.
-  final Quantity? numerator;
+  Quantity? numerator;
 
   /// [denominator]
   /// The value of the denominator.
-  final Quantity? denominator;
+  Quantity? denominator;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

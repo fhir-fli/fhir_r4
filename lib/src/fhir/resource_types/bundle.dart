@@ -155,14 +155,14 @@ class Bundle extends Resource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -170,46 +170,46 @@ class Bundle extends Resource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [identifier]
   /// A persistent identifier for the bundle that won't change as a bundle is
   /// copied from server to server.
-  final Identifier? identifier;
+  Identifier? identifier;
 
   /// [type]
   /// Indicates the purpose of this bundle - how it is intended to be used.
-  final BundleType type;
+  BundleType type;
 
   /// [timestamp]
   /// The date/time that the bundle was assembled - i.e. when the resources
   /// were placed in the bundle.
-  final FhirInstant? timestamp;
+  FhirInstant? timestamp;
 
   /// [total]
   /// If a set of search matches, this is the total number of entries of type
   /// 'match' across all pages in the search. It does not include search.mode
   /// = 'include' or 'outcome' entries and it does not provide a count of the
   /// number of entries in the Bundle.
-  final FhirUnsignedInt? total;
+  FhirUnsignedInt? total;
 
   /// [link]
   /// A series of links that provide context to this bundle.
-  final List<BundleLink>? link;
+  List<BundleLink>? link;
 
   /// [entry]
   /// An entry in a bundle resource - will either contain a resource or
   /// information about a resource (transactions and history only).
-  final List<BundleEntry>? entry;
+  List<BundleEntry>? entry;
 
   /// [signature]
   /// Digital Signature - base64 encoded. XML-DSig or a JWT.
-  final Signature? signature;
+  Signature? signature;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -429,7 +429,7 @@ class BundleLink extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -439,7 +439,7 @@ class BundleLink extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -457,16 +457,16 @@ class BundleLink extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [relation]
   /// A name which details the functional use for this link - see
   /// [http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1](http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1).
-  final FhirString relation;
+  FhirString relation;
 
   /// [url]
   /// The reference details for the link.
-  final FhirUri url;
+  FhirUri url;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -668,7 +668,7 @@ class BundleEntry extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -678,7 +678,7 @@ class BundleEntry extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -696,11 +696,11 @@ class BundleEntry extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [link]
   /// A series of links that provide context to this entry.
-  final List<BundleLink>? link;
+  List<BundleLink>? link;
 
   /// [fullUrl]
   /// The Absolute URL for the resource. The fullUrl SHALL NOT disagree with
@@ -712,29 +712,29 @@ class BundleEntry extends BackboneElement {
   /// specifying a temporary id for reference in the bundle)
   /// * Results from operations might involve resources that are not
   /// identified.
-  final FhirUri? fullUrl;
+  FhirUri? fullUrl;
 
   /// [resource]
   /// The Resource for the entry. The purpose/meaning of the resource is
   /// determined by the Bundle.type.
-  final Resource? resource;
+  Resource? resource;
 
   /// [search]
   /// Information about the search process that lead to the creation of this
   /// entry.
-  final BundleSearch? search;
+  BundleSearch? search;
 
   /// [request]
   /// Additional information about how this entry should be processed as part
   /// of a transaction or batch. For history, it shows how the entry was
   /// processed to create the version contained in the entry.
-  final BundleRequest? request;
+  BundleRequest? request;
 
   /// [response]
   /// Indicates the results of processing the corresponding 'request' entry
   /// in the batch or transaction being responded to or what the results of
   /// an operation where when returning history.
-  final BundleResponse? response;
+  BundleResponse? response;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -933,7 +933,7 @@ class BundleSearch extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -943,7 +943,7 @@ class BundleSearch extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -961,17 +961,17 @@ class BundleSearch extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [mode]
   /// Why this entry is in the result set - whether it's included as a match
   /// or because of an _include requirement, or to convey information or
   /// warning information about the search process.
-  final SearchEntryMode? mode;
+  SearchEntryMode? mode;
 
   /// [score]
   /// When searching, the server's search ranking score for the entry.
-  final FhirDecimal? score;
+  FhirDecimal? score;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1176,7 +1176,7 @@ class BundleRequest extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1186,7 +1186,7 @@ class BundleRequest extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1204,41 +1204,41 @@ class BundleRequest extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [method]
   /// In a transaction or batch, this is the HTTP action to be executed for
   /// this entry. In a history bundle, this indicates the HTTP action that
   /// occurred.
-  final HTTPVerb method;
+  HTTPVerb method;
 
   /// [url]
   /// The URL for this entry, relative to the root (the address to which the
   /// request is posted).
-  final FhirUri url;
+  FhirUri url;
 
   /// [ifNoneMatch]
   /// If the ETag values match, return a 304 Not Modified status. See the API
   /// documentation for ["Conditional Read"](http.html#cread).
-  final FhirString? ifNoneMatch;
+  FhirString? ifNoneMatch;
 
   /// [ifModifiedSince]
   /// Only perform the operation if the last updated date matches. See the
   /// API documentation for ["Conditional Read"](http.html#cread).
-  final FhirInstant? ifModifiedSince;
+  FhirInstant? ifModifiedSince;
 
   /// [ifMatch]
   /// Only perform the operation if the Etag value matches. For more
   /// information, see the API section ["Managing Resource
   /// Contention"](http.html#concurrency).
-  final FhirString? ifMatch;
+  FhirString? ifMatch;
 
   /// [ifNoneExist]
   /// Instruct the server not to perform the create if a specified resource
   /// already exists. For further information, see the API documentation for
   /// ["Conditional Create"](http.html#ccreate). This is just the query
   /// portion of the URL - what follows the "?" (not including the "?").
-  final FhirString? ifNoneExist;
+  FhirString? ifNoneExist;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1473,7 +1473,7 @@ class BundleResponse extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1483,7 +1483,7 @@ class BundleResponse extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1501,34 +1501,34 @@ class BundleResponse extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [status]
   /// The status code returned by processing this entry. The status SHALL
   /// start with a 3 digit HTTP code (e.g. 404) and may contain the standard
   /// HTTP description associated with the status code.
-  final FhirString status;
+  FhirString status;
 
   /// [location]
   /// The location header created by processing this operation, populated if
   /// the operation returns a location.
-  final FhirUri? location;
+  FhirUri? location;
 
   /// [etag]
   /// The Etag for the resource, if the operation for the entry produced a
   /// versioned resource (see [Resource Metadata and
   /// Versioning](http.html#versioning) and [Managing Resource
   /// Contention](http.html#concurrency)).
-  final FhirString? etag;
+  FhirString? etag;
 
   /// [lastModified]
   /// The date/time that the resource was modified on the server.
-  final FhirInstant? lastModified;
+  FhirInstant? lastModified;
 
   /// [outcome]
   /// An OperationOutcome containing hints and warnings produced as part of
   /// processing this entry in a batch or transaction.
-  final Resource? outcome;
+  Resource? outcome;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

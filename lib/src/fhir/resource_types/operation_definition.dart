@@ -327,14 +327,14 @@ class OperationDefinition extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -342,12 +342,12 @@ class OperationDefinition extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -357,14 +357,14 @@ class OperationDefinition extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -374,7 +374,7 @@ class OperationDefinition extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -392,7 +392,7 @@ class OperationDefinition extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this operation definition when
@@ -402,7 +402,7 @@ class OperationDefinition extends DomainResource {
   /// of this operation definition is (or will be) published. This URL can be
   /// the target of a canonical reference. It SHALL remain the same when the
   /// operation definition is stored on different servers.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [version]
   /// The identifier that is used to identify this version of the operation
@@ -412,32 +412,32 @@ class OperationDefinition extends DomainResource {
   /// example, it might be a timestamp (e.g. yyyymmdd) if a managed version
   /// is not available. There is also no expectation that versions can be
   /// placed in a lexicographical sequence.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the operation definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString name;
+  FhirString name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the operation definition.
-  final FhirString? title;
+  FhirString? title;
 
   /// [status]
   /// The status of this operation definition. Enables tracking the
   /// life-cycle of the content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [kind]
   /// Whether this is an operation or a named query.
-  final OperationKind kind;
+  OperationKind kind;
 
   /// [experimental]
   /// A Boolean value to indicate that this operation definition is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [date]
   /// The date (and optionally time) when the operation definition was
@@ -445,22 +445,22 @@ class OperationDefinition extends DomainResource {
   /// it must change if the status code changes. In addition, it should
   /// change when the substantive content of the operation definition
   /// changes.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the operation
   /// definition.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the operation definition
   /// from a consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -468,78 +468,78 @@ class OperationDefinition extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate operation definition instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the operation definition is
   /// intended to be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this operation definition is needed and why it has
   /// been designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [affectsState]
   /// Whether the operation affects state. Side effects such as producing
   /// audit trail entries do not count as 'affecting state'.
-  final FhirBoolean? affectsState;
+  FhirBoolean? affectsState;
 
   /// [code]
   /// The name used to invoke the operation.
-  final FhirCode code;
+  FhirCode code;
 
   /// [comment]
   /// Additional information about how to use this operation or named query.
-  final FhirMarkdown? comment;
+  FhirMarkdown? comment;
 
   /// [base]
   /// Indicates that this operation definition is a constraining profile on
   /// the base.
-  final FhirCanonical? base;
+  FhirCanonical? base;
 
   /// [resource]
   /// The types on which this operation can be executed.
-  final List<FhirCode>? resource;
+  List<FhirCode>? resource;
 
   /// [system]
   /// Indicates whether this operation or named query can be invoked at the
   /// system level (e.g. without needing to choose a resource type for the
   /// context).
-  final FhirBoolean system;
+  FhirBoolean system;
 
   /// [type]
   /// Indicates whether this operation or named query can be invoked at the
   /// resource type level for any given resource type level (e.g. without
   /// needing to choose a specific resource id for the context).
-  final FhirBoolean type;
+  FhirBoolean type;
 
   /// [instance]
   /// Indicates whether this operation can be invoked on a particular
   /// instance of one of the given types.
-  final FhirBoolean instance;
+  FhirBoolean instance;
 
   /// [inputProfile]
   /// Additional validation information for the in parameters - a single
   /// profile that covers all the parameters. The profile is a constraint on
   /// the parameters resource as a whole.
-  final FhirCanonical? inputProfile;
+  FhirCanonical? inputProfile;
 
   /// [outputProfile]
   /// Additional validation information for the out parameters - a single
   /// profile that covers all the parameters. The profile is a constraint on
   /// the parameters resource.
-  final FhirCanonical? outputProfile;
+  FhirCanonical? outputProfile;
 
   /// [parameter]
   /// The parameters for the operation/query.
-  final List<OperationDefinitionParameter>? parameter;
+  List<OperationDefinitionParameter>? parameter;
 
   /// [overload]
   /// Defines an appropriate combination of parameters to use when invoking
   /// this operation, to help code generators when generating overloaded
   /// parameter sets for this operation.
-  final List<OperationDefinitionOverload>? overload;
+  List<OperationDefinitionOverload>? overload;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1022,7 +1022,7 @@ class OperationDefinitionParameter extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1032,7 +1032,7 @@ class OperationDefinitionParameter extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1050,33 +1050,33 @@ class OperationDefinitionParameter extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// The name of used to identify the parameter.
-  final FhirCode name;
+  FhirCode name;
 
   /// [use]
   /// Whether this is an input or an output parameter.
-  final OperationParameterUse use;
+  OperationParameterUse use;
 
   /// [min]
   /// The minimum number of times this parameter SHALL appear in the request
   /// or response.
-  final FhirInteger min;
+  FhirInteger min;
 
   /// [max]
   /// The maximum number of times this element is permitted to appear in the
   /// request or response.
-  final FhirString max;
+  FhirString max;
 
   /// [documentation]
   /// Describes the meaning or use of this parameter.
-  final FhirString? documentation;
+  FhirString? documentation;
 
   /// [type]
   /// The type for this parameter.
-  final FHIRAllTypes? type;
+  FHIRAllTypes? type;
 
   /// [targetProfile]
   /// Used when the type is "Reference" or "canonical", and identifies a
@@ -1087,26 +1087,26 @@ class OperationDefinitionParameter extends BackboneElement {
   /// another StructureDefinition or Implementation Guide by a canonical URL.
   /// When an implementation guide is specified, the target resource SHALL
   /// conform to at least one profile defined in the implementation guide.
-  final List<FhirCanonical>? targetProfile;
+  List<FhirCanonical>? targetProfile;
 
   /// [searchType]
   /// How the parameter is understood as a search parameter. This is only
   /// used if the parameter type is 'string'.
-  final SearchParamType? searchType;
+  SearchParamType? searchType;
 
   /// [binding]
   /// Binds to a value set if this parameter is coded (code, Coding,
   /// CodeableConcept).
-  final OperationDefinitionBinding? binding;
+  OperationDefinitionBinding? binding;
 
   /// [referencedFrom]
   /// Identifies other resource parameters within the operation invocation
   /// that are expected to resolve to this resource.
-  final List<OperationDefinitionReferencedFrom>? referencedFrom;
+  List<OperationDefinitionReferencedFrom>? referencedFrom;
 
   /// [part_]
   /// The parts of a nested Parameter.
-  final List<OperationDefinitionParameter>? part_;
+  List<OperationDefinitionParameter>? part_;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1351,7 +1351,7 @@ class OperationDefinitionBinding extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1361,7 +1361,7 @@ class OperationDefinitionBinding extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1379,18 +1379,18 @@ class OperationDefinitionBinding extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [strength]
   /// Indicates the degree of conformance expectations associated with this
   /// binding - that is, the degree to which the provided value set must be
   /// adhered to in the instances.
-  final BindingStrength strength;
+  BindingStrength strength;
 
   /// [valueSet]
   /// Points to the value set or external definition (e.g. implicit value
   /// set) that identifies the set of codes to be used.
-  final FhirCanonical valueSet;
+  FhirCanonical valueSet;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1563,7 +1563,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1573,7 +1573,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1591,18 +1591,18 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [source]
   /// The name of the parameter or dot-separated path of parameter names
   /// pointing to the resource parameter that is expected to contain a
   /// reference to this resource.
-  final FhirString source;
+  FhirString source;
 
   /// [sourceId]
   /// The id of the element in the referencing resource that is expected to
   /// resolve to this resource.
-  final FhirString? sourceId;
+  FhirString? sourceId;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1779,7 +1779,7 @@ class OperationDefinitionOverload extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1789,7 +1789,7 @@ class OperationDefinitionOverload extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1807,15 +1807,15 @@ class OperationDefinitionOverload extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [parameterName]
   /// Name of parameter to include in overload.
-  final List<FhirString>? parameterName;
+  List<FhirString>? parameterName;
 
   /// [comment]
   /// Comments to go on overload.
-  final FhirString? comment;
+  FhirString? comment;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

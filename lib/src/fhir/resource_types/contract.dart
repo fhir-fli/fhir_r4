@@ -400,14 +400,14 @@ class Contract extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -415,12 +415,12 @@ class Contract extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -430,14 +430,14 @@ class Contract extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -447,7 +447,7 @@ class Contract extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -465,26 +465,26 @@ class Contract extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Unique identifier for this Contract or a derivative that references a
   /// Source Contract.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [url]
   /// Canonical identifier for this contract, represented as a URI (globally
   /// unique).
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [version]
   /// An edition identifier used for business purposes to label business
   /// significant variants.
-  final FhirString? version;
+  FhirString? version;
 
   /// [status]
   /// The status of the resource instance.
-  final ContractResourceStatusCodes? status;
+  ContractResourceStatusCodes? status;
 
   /// [legalState]
   /// Legal states of the formation of a legal instrument, which is a
@@ -492,58 +492,58 @@ class Contract extends DomainResource {
   /// its author, records and formally expresses a legally enforceable act,
   /// process, or contractual duty, obligation, or right, and therefore
   /// evidences that act, process, or agreement.
-  final CodeableConcept? legalState;
+  CodeableConcept? legalState;
 
   /// [instantiatesCanonical]
   /// The URL pointing to a FHIR-defined Contract Definition that is adhered
   /// to in whole or part by this Contract.
-  final Reference? instantiatesCanonical;
+  Reference? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained definition that is adhered
   /// to in whole or in part by this Contract.
-  final FhirUri? instantiatesUri;
+  FhirUri? instantiatesUri;
 
   /// [contentDerivative]
   /// The minimal content derived from the basal information source at a
   /// specific stage in its lifecycle.
-  final CodeableConcept? contentDerivative;
+  CodeableConcept? contentDerivative;
 
   /// [issued]
   /// When this Contract was issued.
-  final FhirDateTime? issued;
+  FhirDateTime? issued;
 
   /// [applies]
   /// Relevant time or time-period when this Contract is applicable.
-  final Period? applies;
+  Period? applies;
 
   /// [expirationType]
   /// Event resulting in discontinuation or termination of this Contract
   /// instance by one or more parties to the contract.
-  final CodeableConcept? expirationType;
+  CodeableConcept? expirationType;
 
   /// [subject]
   /// The target entity impacted by or of interest to parties to the
   /// agreement.
-  final List<Reference>? subject;
+  List<Reference>? subject;
 
   /// [authority]
   /// A formally or informally recognized grouping of people, principals,
   /// organizations, or jurisdictions formed for the purpose of achieving
   /// some form of collective action such as the promulgation, administration
   /// and enforcement of contracts and policies.
-  final List<Reference>? authority;
+  List<Reference>? authority;
 
   /// [domain]
   /// Recognized governance framework or system operating with a
   /// circumscribed scope in accordance with specified principles, policies,
   /// processes or procedures for managing rights, actions, or behaviors of
   /// parties or principals relative to resources.
-  final List<Reference>? domain;
+  List<Reference>? domain;
 
   /// [site]
   /// Sites in which the contract is complied with, exercised, or in force.
-  final List<Reference>? site;
+  List<Reference>? site;
 
   /// [name]
   /// A natural language name identifying this Contract definition,
@@ -551,45 +551,45 @@ class Contract extends DomainResource {
   /// information about its content. This name should be usable as an
   /// identifier for the module by machine processing applications such as
   /// code generation.
-  final FhirString? name;
+  FhirString? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for this Contract definition,
   /// derivative, or instance in any legal state.t giving additional
   /// information about its content.
-  final FhirString? title;
+  FhirString? title;
 
   /// [subtitle]
   /// An explanatory or alternate user-friendly title for this Contract
   /// definition, derivative, or instance in any legal state.t giving
   /// additional information about its content.
-  final FhirString? subtitle;
+  FhirString? subtitle;
 
   /// [alias]
   /// Alternative representation of the title for this Contract definition,
   /// derivative, or instance in any legal state., e.g., a domain specific
   /// contract number related to legislation.
-  final List<FhirString>? alias;
+  List<FhirString>? alias;
 
   /// [author]
   /// The individual or organization that authored the Contract definition,
   /// derivative, or instance in any legal state.
-  final Reference? author;
+  Reference? author;
 
   /// [scope]
   /// A selector of legal concerns for this Contract definition, derivative,
   /// or instance in any legal state.
-  final CodeableConcept? scope;
+  CodeableConcept? scope;
 
   /// [topicCodeableConcept]
   /// Narrows the range of legal concerns to focus on the achievement of
   /// specific contractual objectives.
-  final CodeableConcept? topicCodeableConcept;
+  CodeableConcept? topicCodeableConcept;
 
   /// [topicReference]
   /// Narrows the range of legal concerns to focus on the achievement of
   /// specific contractual objectives.
-  final Reference? topicReference;
+  Reference? topicReference;
 
   /// [type]
   /// A high-level category for the legal instrument, whether constructed as
@@ -597,29 +597,29 @@ class Contract extends DomainResource {
   /// Provides additional information about its content within the context of
   /// the Contract's scope to distinguish the kinds of systems that would be
   /// interested in the contract.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [subType]
   /// Sub-category for the Contract that distinguishes the kinds of systems
   /// that would be interested in the Contract within the context of the
   /// Contract's scope.
-  final List<CodeableConcept>? subType;
+  List<CodeableConcept>? subType;
 
   /// [contentDefinition]
   /// Precusory content developed with a focus and intent of supporting the
   /// formation a Contract instance, which may be associated with and
   /// transformable into a Contract.
-  final ContractContentDefinition? contentDefinition;
+  ContractContentDefinition? contentDefinition;
 
   /// [term]
   /// One or more Contract Provisions, which may be related and conveyed as a
   /// group, and may contain nested groups.
-  final List<ContractTerm>? term;
+  List<ContractTerm>? term;
 
   /// [supportingInfo]
   /// Information that may be needed by/relevant to the performer in their
   /// execution of this term action.
-  final List<Reference>? supportingInfo;
+  List<Reference>? supportingInfo;
 
   /// [relevantHistory]
   /// Links to Provenance records for past versions of this Contract
@@ -628,14 +628,14 @@ class Contract extends DomainResource {
   /// at the current version of the Contract. The Provence.entity indicates
   /// the target that was changed in the update.
   /// http://build.fhir.org/provenance-definitions.html#Provenance.entity.
-  final List<Reference>? relevantHistory;
+  List<Reference>? relevantHistory;
 
   /// [signer]
   /// Parties with legal standing in the Contract, including the principal
   /// parties, the grantor(s) and grantee(s), which are any person or
   /// organization bound by the contract, and any ancillary parties, which
   /// facilitate the execution of the contract such as a notary or witness.
-  final List<ContractSigner>? signer;
+  List<ContractSigner>? signer;
 
   /// [friendly]
   /// The "patient friendly language" versionof the Contract in whole or in
@@ -645,16 +645,16 @@ class Contract extends DomainResource {
   /// communication styles that ensure that those agreeing to or signing the
   /// Contract understand the roles, actions, obligations, responsibilities,
   /// and implication of the agreement.
-  final List<ContractFriendly>? friendly;
+  List<ContractFriendly>? friendly;
 
   /// [legal]
   /// List of Legal expressions or representations of this Contract.
-  final List<ContractLegal>? legal;
+  List<ContractLegal>? legal;
 
   /// [rule]
   /// List of Computable Policy Rule Language Representations of this
   /// Contract.
-  final List<ContractRule>? rule;
+  List<ContractRule>? rule;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1111,7 +1111,7 @@ class ContractContentDefinition extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1121,7 +1121,7 @@ class ContractContentDefinition extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1139,41 +1139,41 @@ class ContractContentDefinition extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Precusory content structure and use, i.e., a boilerplate, template,
   /// application for a contract such as an insurance policy or benefits
   /// under a program, e.g., workers compensation.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [subType]
   /// Detailed Precusory content type.
-  final CodeableConcept? subType;
+  CodeableConcept? subType;
 
   /// [publisher]
   /// The individual or organization that published the Contract precursor
   /// content.
-  final Reference? publisher;
+  Reference? publisher;
 
   /// [publicationDate]
   /// The date (and optionally time) when the contract was published. The
   /// date must change when the business version changes and it must change
   /// if the status code changes. In addition, it should change when the
   /// substantive content of the contract changes.
-  final FhirDateTime? publicationDate;
+  FhirDateTime? publicationDate;
 
   /// [publicationStatus]
   /// amended | appended | cancelled | disputed | entered-in-error |
   /// executable | executed | negotiable | offered | policy | rejected |
   /// renewed | revoked | resolved | terminated.
-  final ContractResourcePublicationStatusCodes publicationStatus;
+  ContractResourcePublicationStatusCodes publicationStatus;
 
   /// [copyright]
   /// A copyright statement relating to Contract precursor content. Copyright
   /// statements are generally legal restrictions on the use and publishing
   /// of the Contract precursor content.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1456,7 +1456,7 @@ class ContractTerm extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1466,7 +1466,7 @@ class ContractTerm extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1484,66 +1484,66 @@ class ContractTerm extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Unique identifier for this particular Contract Provision.
-  final Identifier? identifier;
+  Identifier? identifier;
 
   /// [issued]
   /// When this Contract Provision was issued.
-  final FhirDateTime? issued;
+  FhirDateTime? issued;
 
   /// [applies]
   /// Relevant time or time-period when this Contract Provision is
   /// applicable.
-  final Period? applies;
+  Period? applies;
 
   /// [topicCodeableConcept]
   /// The entity that the term applies to.
-  final CodeableConcept? topicCodeableConcept;
+  CodeableConcept? topicCodeableConcept;
 
   /// [topicReference]
   /// The entity that the term applies to.
-  final Reference? topicReference;
+  Reference? topicReference;
 
   /// [type]
   /// A legal clause or condition contained within a contract that requires
   /// one or both parties to perform a particular requirement by some
   /// specified time or prevents one or both parties from performing a
   /// particular requirement by some specified time.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [subType]
   /// A specialized legal clause or condition based on overarching contract
   /// type.
-  final CodeableConcept? subType;
+  CodeableConcept? subType;
 
   /// [text]
   /// Statement of a provision in a policy or a contract.
-  final FhirString? text;
+  FhirString? text;
 
   /// [securityLabel]
   /// Security labels that protect the handling of information about the term
   /// and its elements, which may be specifically identified..
-  final List<ContractSecurityLabel>? securityLabel;
+  List<ContractSecurityLabel>? securityLabel;
 
   /// [offer]
   /// The matter of concern in the context of this provision of the agrement.
-  final ContractOffer offer;
+  ContractOffer offer;
 
   /// [asset]
   /// Contract Term Asset List.
-  final List<ContractAsset>? asset;
+  List<ContractAsset>? asset;
 
   /// [action]
   /// An actor taking a role in an activity for which it can be assigned some
   /// degree of responsibility for the activity taking place.
-  final List<ContractAction>? action;
+  List<ContractAction>? action;
 
   /// [group]
   /// Nested group of Contract Provisions.
-  final List<ContractTerm>? group;
+  List<ContractTerm>? group;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1802,7 +1802,7 @@ class ContractSecurityLabel extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1812,7 +1812,7 @@ class ContractSecurityLabel extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1830,27 +1830,27 @@ class ContractSecurityLabel extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [number]
   /// Number used to link this term or term element to the applicable
   /// Security Label.
-  final List<FhirUnsignedInt>? number;
+  List<FhirUnsignedInt>? number;
 
   /// [classification]
   /// Security label privacy tag that species the level of confidentiality
   /// protection required for this term and/or term elements.
-  final Coding classification;
+  Coding classification;
 
   /// [category]
   /// Security label privacy tag that species the applicable privacy and
   /// security policies governing this term and/or term elements.
-  final List<Coding>? category;
+  List<Coding>? category;
 
   /// [control]
   /// Security label privacy tag that species the manner in which term and/or
   /// term elements are to be protected.
-  final List<Coding>? control;
+  List<Coding>? control;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2097,7 +2097,7 @@ class ContractOffer extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2107,7 +2107,7 @@ class ContractOffer extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2125,52 +2125,52 @@ class ContractOffer extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Unique identifier for this particular Contract Provision.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [party]
   /// Offer Recipient.
-  final List<ContractParty>? party;
+  List<ContractParty>? party;
 
   /// [topic]
   /// The owner of an asset has the residual control rights over the asset:
   /// the right to decide all usages of the asset in any way not inconsistent
   /// with a prior contract, custom, or law (Hart, 1995, p. 30).
-  final Reference? topic;
+  Reference? topic;
 
   /// [type]
   /// Type of Contract Provision such as specific requirements, purposes for
   /// actions, obligations, prohibitions, e.g. life time maximum benefit.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [decision]
   /// Type of choice made by accepting party with respect to an offer made by
   /// an offeror/ grantee.
-  final CodeableConcept? decision;
+  CodeableConcept? decision;
 
   /// [decisionMode]
   /// How the decision about a Contract was conveyed.
-  final List<CodeableConcept>? decisionMode;
+  List<CodeableConcept>? decisionMode;
 
   /// [answer]
   /// Response to offer text.
-  final List<ContractAnswer>? answer;
+  List<ContractAnswer>? answer;
 
   /// [text]
   /// Human readable form of this Contract Offer.
-  final FhirString? text;
+  FhirString? text;
 
   /// [linkId]
   /// The id of the clause or question text of the offer in the referenced
   /// questionnaire/response.
-  final List<FhirString>? linkId;
+  List<FhirString>? linkId;
 
   /// [securityLabelNumber]
   /// Security labels that protects the offer.
-  final List<FhirUnsignedInt>? securityLabelNumber;
+  List<FhirUnsignedInt>? securityLabelNumber;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2401,7 +2401,7 @@ class ContractParty extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2411,7 +2411,7 @@ class ContractParty extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2429,15 +2429,15 @@ class ContractParty extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [reference]
   /// Participant in the offer.
-  final List<Reference> reference;
+  List<Reference> reference;
 
   /// [role]
   /// How the party participates in the offer.
-  final CodeableConcept role;
+  CodeableConcept role;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2673,7 +2673,7 @@ class ContractAnswer extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2683,7 +2683,7 @@ class ContractAnswer extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2701,91 +2701,91 @@ class ContractAnswer extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [valueBoolean]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueDecimal]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
-  final FhirDecimal? valueDecimal;
+  FhirDecimal? valueDecimal;
 
   /// [valueInteger]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
-  final FhirInteger? valueInteger;
+  FhirInteger? valueInteger;
 
   /// [valueDate]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
-  final FhirDate? valueDate;
+  FhirDate? valueDate;
 
   /// [valueDateTime]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
-  final FhirDateTime? valueDateTime;
+  FhirDateTime? valueDateTime;
 
   /// [valueTime]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
-  final FhirTime? valueTime;
+  FhirTime? valueTime;
 
   /// [valueString]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
-  final FhirString? valueString;
+  FhirString? valueString;
 
   /// [valueUri]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
-  final FhirUri? valueUri;
+  FhirUri? valueUri;
 
   /// [valueAttachment]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
-  final Attachment? valueAttachment;
+  Attachment? valueAttachment;
 
   /// [valueCoding]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
-  final Coding? valueCoding;
+  Coding? valueCoding;
 
   /// [valueQuantity]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueReference]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
-  final Reference? valueReference;
+  Reference? valueReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3151,7 +3151,7 @@ class ContractAsset extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3161,7 +3161,7 @@ class ContractAsset extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3179,69 +3179,69 @@ class ContractAsset extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [scope]
   /// Differentiates the kind of the asset .
-  final CodeableConcept? scope;
+  CodeableConcept? scope;
 
   /// [type]
   /// Target entity type about which the term may be concerned.
-  final List<CodeableConcept>? type;
+  List<CodeableConcept>? type;
 
   /// [typeReference]
   /// Associated entities.
-  final List<Reference>? typeReference;
+  List<Reference>? typeReference;
 
   /// [subtype]
   /// May be a subtype or part of an offered asset.
-  final List<CodeableConcept>? subtype;
+  List<CodeableConcept>? subtype;
 
   /// [relationship]
   /// Specifies the applicability of the term to an asset resource instance,
   /// and instances it refers to orinstances that refer to it, and/or are
   /// owned by the offeree.
-  final Coding? relationship;
+  Coding? relationship;
 
   /// [context]
   /// Circumstance of the asset.
-  final List<ContractContext>? context;
+  List<ContractContext>? context;
 
   /// [condition]
   /// Description of the quality and completeness of the asset that imay be a
   /// factor in its valuation.
-  final FhirString? condition;
+  FhirString? condition;
 
   /// [periodType]
   /// Type of Asset availability for use or ownership.
-  final List<CodeableConcept>? periodType;
+  List<CodeableConcept>? periodType;
 
   /// [period]
   /// Asset relevant contractual time period.
-  final List<Period>? period;
+  List<Period>? period;
 
   /// [usePeriod]
   /// Time period of asset use.
-  final List<Period>? usePeriod;
+  List<Period>? usePeriod;
 
   /// [text]
   /// Clause or question text (Prose Object) concerning the asset in a linked
   /// form, such as a QuestionnaireResponse used in the formation of the
   /// contract.
-  final FhirString? text;
+  FhirString? text;
 
   /// [linkId]
   /// Id [identifier??] of the clause or question text about the asset in the
   /// referenced form or QuestionnaireResponse.
-  final List<FhirString>? linkId;
+  List<FhirString>? linkId;
 
   /// [securityLabelNumber]
   /// Security labels that protects the asset.
-  final List<FhirUnsignedInt>? securityLabelNumber;
+  List<FhirUnsignedInt>? securityLabelNumber;
 
   /// [valuedItem]
   /// Contract Valued Item List.
-  final List<ContractValuedItem>? valuedItem;
+  List<ContractValuedItem>? valuedItem;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3509,7 +3509,7 @@ class ContractContext extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3519,7 +3519,7 @@ class ContractContext extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3537,22 +3537,22 @@ class ContractContext extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [reference]
   /// Asset context reference may include the creator, custodian, or owning
   /// Person or Organization (e.g., bank, repository), location held, e.g.,
   /// building, jurisdiction.
-  final Reference? reference;
+  Reference? reference;
 
   /// [code]
   /// Coded representation of the context generally or of the Referenced
   /// entity, such as the asset holder type or location.
-  final List<CodeableConcept>? code;
+  List<CodeableConcept>? code;
 
   /// [text]
   /// Context description.
-  final FhirString? text;
+  FhirString? text;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3814,7 +3814,7 @@ class ContractValuedItem extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3824,7 +3824,7 @@ class ContractValuedItem extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3842,41 +3842,41 @@ class ContractValuedItem extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [entityCodeableConcept]
   /// Specific type of Contract Valued Item that may be priced.
-  final CodeableConcept? entityCodeableConcept;
+  CodeableConcept? entityCodeableConcept;
 
   /// [entityReference]
   /// Specific type of Contract Valued Item that may be priced.
-  final Reference? entityReference;
+  Reference? entityReference;
 
   /// [identifier]
   /// Identifies a Contract Valued Item instance.
-  final Identifier? identifier;
+  Identifier? identifier;
 
   /// [effectiveTime]
   /// Indicates the time during which this Contract ValuedItem information is
   /// effective.
-  final FhirDateTime? effectiveTime;
+  FhirDateTime? effectiveTime;
 
   /// [quantity]
   /// Specifies the units by which the Contract Valued Item is measured or
   /// counted, and quantifies the countable or measurable Contract Valued
   /// Item instances.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [unitPrice]
   /// A Contract Valued Item unit valuation measure.
-  final Money? unitPrice;
+  Money? unitPrice;
 
   /// [factor]
   /// A real number that represents a multiplier used in determining the
   /// overall value of the Contract Valued Item delivered. The concept of a
   /// Factor allows for a discount or surcharge multiplier to be applied to a
   /// monetary amount.
-  final FhirDecimal? factor;
+  FhirDecimal? factor;
 
   /// [points]
   /// An amount that expresses the weighting (based on difficulty, cost
@@ -3884,40 +3884,40 @@ class ContractValuedItem extends BackboneElement {
   /// delivered. The concept of Points allows for assignment of point values
   /// for a Contract Valued Item, such that a monetary amount can be assigned
   /// to each point.
-  final FhirDecimal? points;
+  FhirDecimal? points;
 
   /// [net]
   /// Expresses the product of the Contract Valued Item unitQuantity and the
   /// unitPriceAmt. For example, the formula: unit Quantity * unit Price
   /// (Cost per Point) * factor Number * points = net Amount. Quantity,
   /// factor and points are assumed to be 1 if not supplied.
-  final Money? net;
+  Money? net;
 
   /// [payment]
   /// Terms of valuation.
-  final FhirString? payment;
+  FhirString? payment;
 
   /// [paymentDate]
   /// When payment is due.
-  final FhirDateTime? paymentDate;
+  FhirDateTime? paymentDate;
 
   /// [responsible]
   /// Who will make payment.
-  final Reference? responsible;
+  Reference? responsible;
 
   /// [recipient]
   /// Who will receive payment.
-  final Reference? recipient;
+  Reference? recipient;
 
   /// [linkId]
   /// Id of the clause or question text related to the context of this
   /// valuedItem in the referenced form or QuestionnaireResponse.
-  final List<FhirString>? linkId;
+  List<FhirString>? linkId;
 
   /// [securityLabelNumber]
   /// A set of security labels that define which terms are controlled by this
   /// condition.
-  final List<FhirUnsignedInt>? securityLabelNumber;
+  List<FhirUnsignedInt>? securityLabelNumber;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4342,7 +4342,7 @@ class ContractAction extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -4352,7 +4352,7 @@ class ContractAction extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -4370,118 +4370,118 @@ class ContractAction extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [doNotPerform]
   /// True if the term prohibits the action.
-  final FhirBoolean? doNotPerform;
+  FhirBoolean? doNotPerform;
 
   /// [type]
   /// Activity or service obligation to be done or not done, performed or not
   /// performed, effectuated or not by this Contract term.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [subject]
   /// Entity of the action.
-  final List<ContractSubject>? subject;
+  List<ContractSubject>? subject;
 
   /// [intent]
   /// Reason or purpose for the action stipulated by this Contract Provision.
-  final CodeableConcept intent;
+  CodeableConcept intent;
 
   /// [linkId]
   /// Id [identifier??] of the clause or question text related to this action
   /// in the referenced form or QuestionnaireResponse.
-  final List<FhirString>? linkId;
+  List<FhirString>? linkId;
 
   /// [status]
   /// Current state of the term action.
-  final CodeableConcept status;
+  CodeableConcept status;
 
   /// [context]
   /// Encounter or Episode with primary association to specified term
   /// activity.
-  final Reference? context;
+  Reference? context;
 
   /// [contextLinkId]
   /// Id [identifier??] of the clause or question text related to the
   /// requester of this action in the referenced form or
   /// QuestionnaireResponse.
-  final List<FhirString>? contextLinkId;
+  List<FhirString>? contextLinkId;
 
   /// [occurrenceDateTime]
   /// When action happens.
-  final FhirDateTime? occurrenceDateTime;
+  FhirDateTime? occurrenceDateTime;
 
   /// [occurrencePeriod]
   /// When action happens.
-  final Period? occurrencePeriod;
+  Period? occurrencePeriod;
 
   /// [occurrenceTiming]
   /// When action happens.
-  final Timing? occurrenceTiming;
+  Timing? occurrenceTiming;
 
   /// [requester]
   /// Who or what initiated the action and has responsibility for its
   /// activation.
-  final List<Reference>? requester;
+  List<Reference>? requester;
 
   /// [requesterLinkId]
   /// Id [identifier??] of the clause or question text related to the
   /// requester of this action in the referenced form or
   /// QuestionnaireResponse.
-  final List<FhirString>? requesterLinkId;
+  List<FhirString>? requesterLinkId;
 
   /// [performerType]
   /// The type of individual that is desired or required to perform or not
   /// perform the action.
-  final List<CodeableConcept>? performerType;
+  List<CodeableConcept>? performerType;
 
   /// [performerRole]
   /// The type of role or competency of an individual desired or required to
   /// perform or not perform the action.
-  final CodeableConcept? performerRole;
+  CodeableConcept? performerRole;
 
   /// [performer]
   /// Indicates who or what is being asked to perform (or not perform) the
   /// ction.
-  final Reference? performer;
+  Reference? performer;
 
   /// [performerLinkId]
   /// Id [identifier??] of the clause or question text related to the reason
   /// type or reference of this action in the referenced form or
   /// QuestionnaireResponse.
-  final List<FhirString>? performerLinkId;
+  List<FhirString>? performerLinkId;
 
   /// [reasonCode]
   /// Rationale for the action to be performed or not performed. Describes
   /// why the action is permitted or prohibited.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConcept>? reasonCode;
 
   /// [reasonReference]
   /// Indicates another resource whose existence justifies permitting or not
   /// permitting this action.
-  final List<Reference>? reasonReference;
+  List<Reference>? reasonReference;
 
   /// [reason]
   /// Describes why the action is to be performed or not performed in textual
   /// form.
-  final List<FhirString>? reason;
+  List<FhirString>? reason;
 
   /// [reasonLinkId]
   /// Id [identifier??] of the clause or question text related to the reason
   /// type or reference of this action in the referenced form or
   /// QuestionnaireResponse.
-  final List<FhirString>? reasonLinkId;
+  List<FhirString>? reasonLinkId;
 
   /// [note]
   /// Comments made about the term action made by the requester, performer,
   /// subject or other participants.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [securityLabelNumber]
   /// Security labels that protects the action.
-  final List<FhirUnsignedInt>? securityLabelNumber;
+  List<FhirUnsignedInt>? securityLabelNumber;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4811,7 +4811,7 @@ class ContractSubject extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -4821,7 +4821,7 @@ class ContractSubject extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -4839,15 +4839,15 @@ class ContractSubject extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [reference]
   /// The entity the action is performed or not performed on or for.
-  final List<Reference> reference;
+  List<Reference> reference;
 
   /// [role]
   /// Role type of agent assigned roles in this Contract.
-  final CodeableConcept? role;
+  CodeableConcept? role;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5022,7 +5022,7 @@ class ContractSigner extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -5032,7 +5032,7 @@ class ContractSigner extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -5050,19 +5050,19 @@ class ContractSigner extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Role of this Contract signer, e.g. notary, grantee.
-  final Coding type;
+  Coding type;
 
   /// [party]
   /// Party which is a signator to this Contract.
-  final Reference party;
+  Reference party;
 
   /// [signature]
   /// Legally binding Contract DSIG signature contents in Base64.
-  final List<Signature> signature;
+  List<Signature> signature;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5236,7 +5236,7 @@ class ContractFriendly extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -5246,7 +5246,7 @@ class ContractFriendly extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -5264,19 +5264,19 @@ class ContractFriendly extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [contentAttachment]
   /// Human readable rendering of this Contract in a format and
   /// representation intended to enhance comprehension and ensure
   /// understandability.
-  final Attachment? contentAttachment;
+  Attachment? contentAttachment;
 
   /// [contentReference]
   /// Human readable rendering of this Contract in a format and
   /// representation intended to enhance comprehension and ensure
   /// understandability.
-  final Reference? contentReference;
+  Reference? contentReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5456,7 +5456,7 @@ class ContractLegal extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -5466,7 +5466,7 @@ class ContractLegal extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -5484,29 +5484,29 @@ class ContractLegal extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [contentAttachment]
   /// Contract legal text in human renderable form.
-  final Attachment? contentAttachment;
+  Attachment? contentAttachment;
 
   /// [contentReference]
   /// Contract legal text in human renderable form.
-  final Reference? contentReference;
+  Reference? contentReference;
 
   /// [legallyBindingAttachment]
   /// Legally binding Contract: This is the signed and legally recognized
   /// representation of the Contract, which is considered the "source of
   /// truth" and which would be the basis for legal action related to
   /// enforcement of this Contract.
-  final Attachment? legallyBindingAttachment;
+  Attachment? legallyBindingAttachment;
 
   /// [legallyBindingReference]
   /// Legally binding Contract: This is the signed and legally recognized
   /// representation of the Contract, which is considered the "source of
   /// truth" and which would be the basis for legal action related to
   /// enforcement of this Contract.
-  final Reference? legallyBindingReference;
+  Reference? legallyBindingReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5689,7 +5689,7 @@ class ContractRule extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -5699,7 +5699,7 @@ class ContractRule extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -5717,17 +5717,17 @@ class ContractRule extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [contentAttachment]
   /// Computable Contract conveyed using a policy rule language (e.g. XACML,
   /// DKAL, SecPal).
-  final Attachment? contentAttachment;
+  Attachment? contentAttachment;
 
   /// [contentReference]
   /// Computable Contract conveyed using a policy rule language (e.g. XACML,
   /// DKAL, SecPal).
-  final Reference? contentReference;
+  Reference? contentReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

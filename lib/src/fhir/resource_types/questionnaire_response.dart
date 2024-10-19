@@ -222,14 +222,14 @@ class QuestionnaireResponse extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -237,12 +237,12 @@ class QuestionnaireResponse extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -252,14 +252,14 @@ class QuestionnaireResponse extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -269,7 +269,7 @@ class QuestionnaireResponse extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -287,64 +287,64 @@ class QuestionnaireResponse extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A business identifier assigned to a particular completed (or partially
   /// completed) questionnaire.
-  final Identifier? identifier;
+  Identifier? identifier;
 
   /// [basedOn]
   /// The order, proposal or plan that is fulfilled in whole or in part by
   /// this QuestionnaireResponse. For example, a ServiceRequest seeking an
   /// intake assessment or a decision support recommendation to assess for
   /// post-partum depression.
-  final List<Reference>? basedOn;
+  List<Reference>? basedOn;
 
   /// [partOf]
   /// A procedure or observation that this questionnaire was performed as
   /// part of the execution of. For example, the surgery a checklist was
   /// executed as part of.
-  final List<Reference>? partOf;
+  List<Reference>? partOf;
 
   /// [questionnaire]
   /// The Questionnaire that defines and organizes the questions for which
   /// answers are being provided.
-  final FhirCanonical? questionnaire;
+  FhirCanonical? questionnaire;
 
   /// [status]
   /// The position of the questionnaire response within its overall
   /// lifecycle.
-  final QuestionnaireResponseStatus status;
+  QuestionnaireResponseStatus status;
 
   /// [subject]
   /// The subject of the questionnaire response. This could be a patient,
   /// organization, practitioner, device, etc. This is who/what the answers
   /// apply to, but is not necessarily the source of information.
-  final Reference? subject;
+  Reference? subject;
 
   /// [encounter]
   /// The Encounter during which this questionnaire response was created or
   /// to which the creation of this record is tightly associated.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [authored]
   /// The date and/or time that this set of answers were last changed.
-  final FhirDateTime? authored;
+  FhirDateTime? authored;
 
   /// [author]
   /// Person who received the answers to the questions in the
   /// QuestionnaireResponse and recorded them in the system.
-  final Reference? author;
+  Reference? author;
 
   /// [source]
   /// The person who answered the questions about the subject.
-  final Reference? source;
+  Reference? source;
 
   /// [item]
   /// A group or question item from the original questionnaire for which
   /// answers are provided.
-  final List<QuestionnaireResponseItem>? item;
+  List<QuestionnaireResponseItem>? item;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -643,7 +643,7 @@ class QuestionnaireResponseItem extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -653,7 +653,7 @@ class QuestionnaireResponseItem extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -671,30 +671,30 @@ class QuestionnaireResponseItem extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [linkId]
   /// The item from the Questionnaire that corresponds to this item in the
   /// QuestionnaireResponse resource.
-  final FhirString linkId;
+  FhirString linkId;
 
   /// [definition]
   /// A reference to an [ElementDefinition](elementdefinition.html) that
   /// provides the details for the item.
-  final FhirUri? definition;
+  FhirUri? definition;
 
   /// [text]
   /// Text that is displayed above the contents of the group or as the text
   /// of the question being answered.
-  final FhirString? text;
+  FhirString? text;
 
   /// [answer]
   /// The respondent's answer(s) to the question.
-  final List<QuestionnaireResponseAnswer>? answer;
+  List<QuestionnaireResponseAnswer>? answer;
 
   /// [item]
   /// Questions or sub-groups nested beneath a question or group.
-  final List<QuestionnaireResponseItem>? item;
+  List<QuestionnaireResponseItem>? item;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -972,7 +972,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -982,7 +982,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1000,71 +1000,71 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [valueBoolean]
   /// The answer (or one of the answers) provided by the respondent to the
   /// question.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueDecimal]
   /// The answer (or one of the answers) provided by the respondent to the
   /// question.
-  final FhirDecimal? valueDecimal;
+  FhirDecimal? valueDecimal;
 
   /// [valueInteger]
   /// The answer (or one of the answers) provided by the respondent to the
   /// question.
-  final FhirInteger? valueInteger;
+  FhirInteger? valueInteger;
 
   /// [valueDate]
   /// The answer (or one of the answers) provided by the respondent to the
   /// question.
-  final FhirDate? valueDate;
+  FhirDate? valueDate;
 
   /// [valueDateTime]
   /// The answer (or one of the answers) provided by the respondent to the
   /// question.
-  final FhirDateTime? valueDateTime;
+  FhirDateTime? valueDateTime;
 
   /// [valueTime]
   /// The answer (or one of the answers) provided by the respondent to the
   /// question.
-  final FhirTime? valueTime;
+  FhirTime? valueTime;
 
   /// [valueString]
   /// The answer (or one of the answers) provided by the respondent to the
   /// question.
-  final FhirString? valueString;
+  FhirString? valueString;
 
   /// [valueUri]
   /// The answer (or one of the answers) provided by the respondent to the
   /// question.
-  final FhirUri? valueUri;
+  FhirUri? valueUri;
 
   /// [valueAttachment]
   /// The answer (or one of the answers) provided by the respondent to the
   /// question.
-  final Attachment? valueAttachment;
+  Attachment? valueAttachment;
 
   /// [valueCoding]
   /// The answer (or one of the answers) provided by the respondent to the
   /// question.
-  final Coding? valueCoding;
+  Coding? valueCoding;
 
   /// [valueQuantity]
   /// The answer (or one of the answers) provided by the respondent to the
   /// question.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueReference]
   /// The answer (or one of the answers) provided by the respondent to the
   /// question.
-  final Reference? valueReference;
+  Reference? valueReference;
 
   /// [item]
   /// Nested groups and/or questions found within this particular answer.
-  final List<QuestionnaireResponseItem>? item;
+  List<QuestionnaireResponseItem>? item;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

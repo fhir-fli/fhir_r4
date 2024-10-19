@@ -235,14 +235,14 @@ class DocumentManifest extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -250,12 +250,12 @@ class DocumentManifest extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -265,14 +265,14 @@ class DocumentManifest extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -282,7 +282,7 @@ class DocumentManifest extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -300,26 +300,26 @@ class DocumentManifest extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [masterIdentifier]
   /// A single identifier that uniquely identifies this manifest. Principally
   /// used to refer to the manifest in non-FHIR contexts.
-  final Identifier? masterIdentifier;
+  Identifier? masterIdentifier;
 
   /// [identifier]
   /// Other identifiers associated with the document manifest, including
   /// version independent identifiers.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// The status of this document manifest.
-  final DocumentReferenceStatus status;
+  DocumentReferenceStatus status;
 
   /// [type]
   /// The code specifying the type of clinical activity that resulted in
   /// placing the associated content into the DocumentManifest.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [subject]
   /// Who or what the set of documents is about. The documents can be about a
@@ -328,41 +328,41 @@ class DocumentManifest extends DomainResource {
   /// animals, or a set of patients that share a common exposure). If the
   /// documents cross more than one subject, then more than one subject is
   /// allowed here (unusual use case).
-  final Reference? subject;
+  Reference? subject;
 
   /// [created]
   /// When the document manifest was created for submission to the server
   /// (not necessarily the same thing as the actual resource last modified
   /// time, since it may be modified, replicated, etc.).
-  final FhirDateTime? created;
+  FhirDateTime? created;
 
   /// [author]
   /// Identifies who is the author of the manifest. Manifest author is not
   /// necessarly the author of the references included.
-  final List<Reference>? author;
+  List<Reference>? author;
 
   /// [recipient]
   /// A patient, practitioner, or organization for which this set of
   /// documents is intended.
-  final List<Reference>? recipient;
+  List<Reference>? recipient;
 
   /// [source]
   /// Identifies the source system, application, or software that produced
   /// the document manifest.
-  final FhirUri? source;
+  FhirUri? source;
 
   /// [description]
   /// Human-readable description of the source document. This is sometimes
   /// known as the "title".
-  final FhirString? description;
+  FhirString? description;
 
   /// [content]
   /// The list of Resources that consist of the parts of this manifest.
-  final List<Reference> content;
+  List<Reference> content;
 
   /// [related]
   /// Related identifiers or resources associated with the DocumentManifest.
-  final List<DocumentManifestRelated>? related;
+  List<DocumentManifestRelated>? related;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -641,7 +641,7 @@ class DocumentManifestRelated extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -651,7 +651,7 @@ class DocumentManifestRelated extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -669,17 +669,17 @@ class DocumentManifestRelated extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Related identifier to this DocumentManifest. For example, Order
   /// numbers, accession numbers, XDW workflow numbers.
-  final Identifier? identifier;
+  Identifier? identifier;
 
   /// [ref]
   /// Related Resource to this DocumentManifest. For example, Order,
   /// ServiceRequest, Procedure, EligibilityRequest, etc.
-  final Reference? ref;
+  Reference? ref;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -97,12 +97,12 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   int dbId = 0;
 
   /// The original value of the integer.
-  final String? dbValue;
+  String? dbValue;
 
   /// Element stored as a relation in ObjectBox
   @override
   // ignore: overridden_fields
-  final Element? element;
+  Element? element;
 
   /// Returns the FHIR type as 'integer64'.
   @override

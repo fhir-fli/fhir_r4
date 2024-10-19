@@ -242,14 +242,14 @@ class ImmunizationEvaluation extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -257,12 +257,12 @@ class ImmunizationEvaluation extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -272,14 +272,14 @@ class ImmunizationEvaluation extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -289,7 +289,7 @@ class ImmunizationEvaluation extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -307,72 +307,72 @@ class ImmunizationEvaluation extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A unique identifier assigned to this immunization evaluation record.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// Indicates the current status of the evaluation of the vaccination
   /// administration event.
-  final ImmunizationEvaluationStatusCodes status;
+  ImmunizationEvaluationStatusCodes status;
 
   /// [patient]
   /// The individual for whom the evaluation is being done.
-  final Reference patient;
+  Reference patient;
 
   /// [date]
   /// The date the evaluation of the vaccine administration event was
   /// performed.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [authority]
   /// Indicates the authority who published the protocol (e.g. ACIP).
-  final Reference? authority;
+  Reference? authority;
 
   /// [targetDisease]
   /// The vaccine preventable disease the dose is being evaluated against.
-  final CodeableConcept targetDisease;
+  CodeableConcept targetDisease;
 
   /// [immunizationEvent]
   /// The vaccine administration event being evaluated.
-  final Reference immunizationEvent;
+  Reference immunizationEvent;
 
   /// [doseStatus]
   /// Indicates if the dose is valid or not valid with respect to the
   /// published recommendations.
-  final CodeableConcept doseStatus;
+  CodeableConcept doseStatus;
 
   /// [doseStatusReason]
   /// Provides an explanation as to why the vaccine administration event is
   /// valid or not relative to the published recommendations.
-  final List<CodeableConcept>? doseStatusReason;
+  List<CodeableConcept>? doseStatusReason;
 
   /// [description]
   /// Additional information about the evaluation.
-  final FhirString? description;
+  FhirString? description;
 
   /// [series]
   /// One possible path to achieve presumed immunity against a disease -
   /// within the context of an authority.
-  final FhirString? series;
+  FhirString? series;
 
   /// [doseNumberPositiveInt]
   /// Nominal position in a series.
-  final FhirPositiveInt? doseNumberPositiveInt;
+  FhirPositiveInt? doseNumberPositiveInt;
 
   /// [doseNumberString]
   /// Nominal position in a series.
-  final FhirString? doseNumberString;
+  FhirString? doseNumberString;
 
   /// [seriesDosesPositiveInt]
   /// The recommended number of doses to achieve immunity.
-  final FhirPositiveInt? seriesDosesPositiveInt;
+  FhirPositiveInt? seriesDosesPositiveInt;
 
   /// [seriesDosesString]
   /// The recommended number of doses to achieve immunity.
-  final FhirString? seriesDosesString;
+  FhirString? seriesDosesString;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

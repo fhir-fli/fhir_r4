@@ -304,14 +304,14 @@ class DiagnosticReport extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -319,12 +319,12 @@ class DiagnosticReport extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -334,14 +334,14 @@ class DiagnosticReport extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -351,7 +351,7 @@ class DiagnosticReport extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -369,107 +369,107 @@ class DiagnosticReport extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifiers assigned to this report by the performer or other systems.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [basedOn]
   /// Details concerning a service requested.
-  final List<Reference>? basedOn;
+  List<Reference>? basedOn;
 
   /// [status]
   /// The status of the diagnostic report.
-  final DiagnosticReportStatus status;
+  DiagnosticReportStatus status;
 
   /// [category]
   /// A code that classifies the clinical discipline, department or
   /// diagnostic service that created the report (e.g. cardiology,
   /// biochemistry, hematology, MRI). This is used for searching, sorting and
   /// display purposes.
-  final List<CodeableConcept>? category;
+  List<CodeableConcept>? category;
 
   /// [code]
   /// A code or name that describes this diagnostic report.
-  final CodeableConcept code;
+  CodeableConcept code;
 
   /// [subject]
   /// The subject of the report. Usually, but not always, this is a patient.
   /// However, diagnostic services also perform analyses on specimens
   /// collected from a variety of other sources.
-  final Reference? subject;
+  Reference? subject;
 
   /// [encounter]
   /// The healthcare event (e.g. a patient and healthcare provider
   /// interaction) which this DiagnosticReport is about.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [effectiveDateTime]
   /// The time or time-period the observed values are related to. When the
   /// subject of the report is a patient, this is usually either the time of
   /// the procedure or of specimen collection(s), but very often the source
   /// of the date/time is not known, only the date/time itself.
-  final FhirDateTime? effectiveDateTime;
+  FhirDateTime? effectiveDateTime;
 
   /// [effectivePeriod]
   /// The time or time-period the observed values are related to. When the
   /// subject of the report is a patient, this is usually either the time of
   /// the procedure or of specimen collection(s), but very often the source
   /// of the date/time is not known, only the date/time itself.
-  final Period? effectivePeriod;
+  Period? effectivePeriod;
 
   /// [issued]
   /// The date and time that this version of the report was made available to
   /// providers, typically after the report was reviewed and verified.
-  final FhirInstant? issued;
+  FhirInstant? issued;
 
   /// [performer]
   /// The diagnostic service that is responsible for issuing the report.
-  final List<Reference>? performer;
+  List<Reference>? performer;
 
   /// [resultsInterpreter]
   /// The practitioner or organization that is responsible for the report's
   /// conclusions and interpretations.
-  final List<Reference>? resultsInterpreter;
+  List<Reference>? resultsInterpreter;
 
   /// [specimen]
   /// Details about the specimens on which this diagnostic report is based.
-  final List<Reference>? specimen;
+  List<Reference>? specimen;
 
   /// [result]
   /// [Observations](observation.html) that are part of this diagnostic
   /// report.
-  final List<Reference>? result;
+  List<Reference>? result;
 
   /// [imagingStudy]
   /// One or more links to full details of any imaging performed during the
   /// diagnostic investigation. Typically, this is imaging performed by DICOM
   /// enabled modalities, but this is not required. A fully enabled PACS
   /// viewer can use this information to provide views of the source images.
-  final List<Reference>? imagingStudy;
+  List<Reference>? imagingStudy;
 
   /// [media]
   /// A list of key images associated with this report. The images are
   /// generally created during the diagnostic process, and may be directly of
   /// the patient, or of treated specimens (i.e. slides of interest).
-  final List<DiagnosticReportMedia>? media;
+  List<DiagnosticReportMedia>? media;
 
   /// [conclusion]
   /// Concise and clinically contextualized summary conclusion
   /// (interpretation/impression) of the diagnostic report.
-  final FhirString? conclusion;
+  FhirString? conclusion;
 
   /// [conclusionCode]
   /// One or more codes that represent the summary conclusion
   /// (interpretation/impression) of the diagnostic report.
-  final List<CodeableConcept>? conclusionCode;
+  List<CodeableConcept>? conclusionCode;
 
   /// [presentedForm]
   /// Rich text representation of the entire result as issued by the
   /// diagnostic service. Multiple formats are allowed but they SHALL be
   /// semantically equivalent.
-  final List<Attachment>? presentedForm;
+  List<Attachment>? presentedForm;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -792,7 +792,7 @@ class DiagnosticReportMedia extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -802,7 +802,7 @@ class DiagnosticReportMedia extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -820,17 +820,17 @@ class DiagnosticReportMedia extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [comment]
   /// A comment about the image. Typically, this is used to provide an
   /// explanation for why the image is included, or to draw the viewer's
   /// attention to important features.
-  final FhirString? comment;
+  FhirString? comment;
 
   /// [link]
   /// Reference to the image source.
-  final Reference link;
+  Reference link;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

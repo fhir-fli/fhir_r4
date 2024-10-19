@@ -561,14 +561,14 @@ class ActivityDefinition extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -576,12 +576,12 @@ class ActivityDefinition extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -591,14 +591,14 @@ class ActivityDefinition extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -608,7 +608,7 @@ class ActivityDefinition extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -626,7 +626,7 @@ class ActivityDefinition extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this activity definition when
@@ -636,13 +636,13 @@ class ActivityDefinition extends DomainResource {
   /// of this activity definition is (or will be) published. This URL can be
   /// the target of a canonical reference. It SHALL remain the same when the
   /// activity definition is stored on different servers.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [identifier]
   /// A formal identifier that is used to identify this activity definition
   /// when it is represented in other formats, or referenced in a
   /// specification, model, design or an instance.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the activity
@@ -656,33 +656,33 @@ class ActivityDefinition extends DomainResource {
   /// Major.Minor.Revision (e.g. 1.0.0). For more information on versioning
   /// knowledge assets, refer to the Decision Support Service specification.
   /// Note that a version is required for non-experimental active assets.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the activity definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString? name;
+  FhirString? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the activity definition.
-  final FhirString? title;
+  FhirString? title;
 
   /// [subtitle]
   /// An explanatory or alternate title for the activity definition giving
   /// additional information about its content.
-  final FhirString? subtitle;
+  FhirString? subtitle;
 
   /// [status]
   /// The status of this activity definition. Enables tracking the life-cycle
   /// of the content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this activity definition is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [subjectCodeableConcept]
   /// A code, group definition, or canonical reference that describes or
@@ -692,7 +692,7 @@ class ActivityDefinition extends DomainResource {
   /// reference a MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  final CodeableConcept? subjectCodeableConcept;
+  CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference]
   /// A code, group definition, or canonical reference that describes or
@@ -702,7 +702,7 @@ class ActivityDefinition extends DomainResource {
   /// reference a MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  final Reference? subjectReference;
+  Reference? subjectReference;
 
   /// [subjectCanonical]
   /// A code, group definition, or canonical reference that describes or
@@ -712,29 +712,29 @@ class ActivityDefinition extends DomainResource {
   /// reference a MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  final SubjectType? subjectCanonical;
+  SubjectType? subjectCanonical;
 
   /// [date]
   /// The date (and optionally time) when the activity definition was
   /// published. The date must change when the business version changes and
   /// it must change if the status code changes. In addition, it should
   /// change when the substantive content of the activity definition changes.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the activity
   /// definition.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the activity definition
   /// from a consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -742,108 +742,108 @@ class ActivityDefinition extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate activity definition instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the activity definition is
   /// intended to be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this activity definition is needed and why it has
   /// been designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [usage]
   /// A detailed description of how the activity definition is used from a
   /// clinical perspective.
-  final FhirString? usage;
+  FhirString? usage;
 
   /// [copyright]
   /// A copyright statement relating to the activity definition and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the activity definition.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [approvalDate]
   /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for
   /// usage.
-  final FhirDate? approvalDate;
+  FhirDate? approvalDate;
 
   /// [lastReviewDate]
   /// The date on which the resource content was last reviewed. Review
   /// happens periodically after approval but does not change the original
   /// approval date.
-  final FhirDate? lastReviewDate;
+  FhirDate? lastReviewDate;
 
   /// [effectivePeriod]
   /// The period during which the activity definition content was or is
   /// planned to be in active use.
-  final Period? effectivePeriod;
+  Period? effectivePeriod;
 
   /// [topic]
   /// Descriptive topics related to the content of the activity. Topics
   /// provide a high-level categorization of the activity that can be useful
   /// for filtering and searching.
-  final List<CodeableConcept>? topic;
+  List<CodeableConcept>? topic;
 
   /// [author]
   /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
-  final List<ContactDetail>? author;
+  List<ContactDetail>? author;
 
   /// [editor]
   /// An individual or organization primarily responsible for internal
   /// coherence of the content.
-  final List<ContactDetail>? editor;
+  List<ContactDetail>? editor;
 
   /// [reviewer]
   /// An individual or organization primarily responsible for review of some
   /// aspect of the content.
-  final List<ContactDetail>? reviewer;
+  List<ContactDetail>? reviewer;
 
   /// [endorser]
   /// An individual or organization responsible for officially endorsing the
   /// content for use in some setting.
-  final List<ContactDetail>? endorser;
+  List<ContactDetail>? endorser;
 
   /// [relatedArtifact]
   /// Related artifacts such as additional documentation, justification, or
   /// bibliographic references.
-  final List<RelatedArtifact>? relatedArtifact;
+  List<RelatedArtifact>? relatedArtifact;
 
   /// [library_]
   /// A reference to a Library resource containing any formal logic used by
   /// the activity definition.
-  final List<FhirCanonical>? library_;
+  List<FhirCanonical>? library_;
 
   /// [kind]
   /// A description of the kind of resource the activity definition is
   /// representing. For example, a MedicationRequest, a ServiceRequest, or a
   /// CommunicationRequest. Typically, but not always, this is a Request
   /// resource.
-  final RequestResourceType? kind;
+  RequestResourceType? kind;
 
   /// [profile]
   /// A profile to which the target of the activity definition is expected to
   /// conform.
-  final FhirCanonical? profile;
+  FhirCanonical? profile;
 
   /// [code]
   /// Detailed description of the type of activity; e.g. What lab test, what
   /// procedure, what kind of encounter.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [intent]
   /// Indicates the level of authority/intentionality associated with the
   /// activity and where the request should fit into the workflow chain.
-  final RequestIntent? intent;
+  RequestIntent? intent;
 
   /// [priority]
   /// Indicates how quickly the activity should be addressed with respect to
   /// other requests.
-  final RequestPriority? priority;
+  RequestPriority? priority;
 
   /// [doNotPerform]
   /// Set this to true if the definition is to indicate that a particular
@@ -851,92 +851,92 @@ class ActivityDefinition extends DomainResource {
   /// interpreted to reinforce a negative coding. For example NPO as a code
   /// with a doNotPerform of true would still indicate to NOT perform the
   /// action.
-  final FhirBoolean? doNotPerform;
+  FhirBoolean? doNotPerform;
 
   /// [timingTiming]
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
-  final Timing? timingTiming;
+  Timing? timingTiming;
 
   /// [timingDateTime]
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
-  final FhirDateTime? timingDateTime;
+  FhirDateTime? timingDateTime;
 
   /// [timingAge]
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
-  final Age? timingAge;
+  Age? timingAge;
 
   /// [timingPeriod]
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
-  final Period? timingPeriod;
+  Period? timingPeriod;
 
   /// [timingRange]
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
-  final Range? timingRange;
+  Range? timingRange;
 
   /// [timingDuration]
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
-  final FhirDuration? timingDuration;
+  FhirDuration? timingDuration;
 
   /// [location]
   /// Identifies the facility where the activity will occur; e.g. home,
   /// hospital, specific clinic, etc.
-  final Reference? location;
+  Reference? location;
 
   /// [participant]
   /// Indicates who should participate in performing the action described.
-  final List<ActivityDefinitionParticipant>? participant;
+  List<ActivityDefinitionParticipant>? participant;
 
   /// [productReference]
   /// Identifies the food, drug or other product being consumed or supplied
   /// in the activity.
-  final Reference? productReference;
+  Reference? productReference;
 
   /// [productCodeableConcept]
   /// Identifies the food, drug or other product being consumed or supplied
   /// in the activity.
-  final CodeableConcept? productCodeableConcept;
+  CodeableConcept? productCodeableConcept;
 
   /// [quantity]
   /// Identifies the quantity expected to be consumed at once (per dose, per
   /// meal, etc.).
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [dosage]
   /// Provides detailed dosage instructions in the same way that they are
   /// described for MedicationRequest resources.
-  final List<Dosage>? dosage;
+  List<Dosage>? dosage;
 
   /// [bodySite]
   /// Indicates the sites on the subject's body where the procedure should be
   /// performed (I.e. the target sites).
-  final List<CodeableConcept>? bodySite;
+  List<CodeableConcept>? bodySite;
 
   /// [specimenRequirement]
   /// Defines specimen requirements for the action to be performed, such as
   /// required specimens for a lab test.
-  final List<Reference>? specimenRequirement;
+  List<Reference>? specimenRequirement;
 
   /// [observationRequirement]
   /// Defines observation requirements for the action to be performed, such
   /// as body weight or surface area.
-  final List<Reference>? observationRequirement;
+  List<Reference>? observationRequirement;
 
   /// [observationResultRequirement]
   /// Defines the observations that are expected to be produced by the
   /// action.
-  final List<Reference>? observationResultRequirement;
+  List<Reference>? observationResultRequirement;
 
   /// [transform]
   /// A reference to a StructureMap resource that defines a transform that
   /// can be executed to produce the intent resource using the
   /// ActivityDefinition instance as the input.
-  final FhirCanonical? transform;
+  FhirCanonical? transform;
 
   /// [dynamicValue]
   /// Dynamic values that will be evaluated to produce values for elements of
@@ -944,7 +944,7 @@ class ActivityDefinition extends DomainResource {
   /// be computed based on the patient's weight, a dynamic value would be
   /// used to specify an expression that calculated the weight, and the path
   /// on the request resource that would contain the result.
-  final List<ActivityDefinitionDynamicValue>? dynamicValue;
+  List<ActivityDefinitionDynamicValue>? dynamicValue;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1565,7 +1565,7 @@ class ActivityDefinitionParticipant extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1575,7 +1575,7 @@ class ActivityDefinitionParticipant extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1593,16 +1593,16 @@ class ActivityDefinitionParticipant extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The type of participant in the action.
-  final ActionParticipantType type;
+  ActionParticipantType type;
 
   /// [role]
   /// The role the participant should play in performing the described
   /// action.
-  final CodeableConcept? role;
+  CodeableConcept? role;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1773,7 +1773,7 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1783,7 +1783,7 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1801,7 +1801,7 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [path]
   /// The path to the element to be customized. This is the path on the
@@ -1813,11 +1813,11 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
   /// sub-elements, as well as indexers ([x]) to traverse
   /// multiple-cardinality sub-elements (see the [Simple FHIRPath
   /// Profile](fhirpath.html#simple) for full details).
-  final FhirString path;
+  FhirString path;
 
   /// [expression]
   /// An expression specifying the value of the customized element.
-  final FhirExpression expression;
+  FhirExpression expression;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

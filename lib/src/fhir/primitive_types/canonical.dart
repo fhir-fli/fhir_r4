@@ -97,12 +97,12 @@ class FhirCanonical extends PrimitiveType<Uri> {
   int dbId = 0;
 
   /// The canonical URL as a [String]
-  final String? dbValue;
+  String? dbValue;
 
   /// Element stored as a relation in ObjectBox
   @override
   // ignore: overridden_fields
-  final Element? element;
+  Element? element;
 
   @override
   @Transient()

@@ -216,14 +216,14 @@ class FhirGroup extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -231,12 +231,12 @@ class FhirGroup extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -246,14 +246,14 @@ class FhirGroup extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -263,7 +263,7 @@ class FhirGroup extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -281,54 +281,54 @@ class FhirGroup extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A unique business identifier for this group.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [active]
   /// Indicates whether the record for the group is available for use or is
   /// merely being retained for historical purposes.
-  final FhirBoolean? active;
+  FhirBoolean? active;
 
   /// [type]
   /// Identifies the broad classification of the kind of resources the group
   /// includes.
-  final GroupType type;
+  GroupType type;
 
   /// [actual]
   /// If true, indicates that the resource refers to a specific group of real
   /// individuals. If false, the group defines a set of intended individuals.
-  final FhirBoolean actual;
+  FhirBoolean actual;
 
   /// [code]
   /// Provides a specific type of resource the group includes; e.g. "cow",
   /// "syringe", etc.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [name]
   /// A label assigned to the group for human identification and
   /// communication.
-  final FhirString? name;
+  FhirString? name;
 
   /// [quantity]
   /// A count of the number of resource instances that are part of the group.
-  final FhirUnsignedInt? quantity;
+  FhirUnsignedInt? quantity;
 
   /// [managingEntity]
   /// Entity responsible for defining and maintaining Group characteristics
   /// and/or registered members.
-  final Reference? managingEntity;
+  Reference? managingEntity;
 
   /// [characteristic]
   /// Identifies traits whose presence r absence is shared by members of the
   /// group.
-  final List<GroupCharacteristic>? characteristic;
+  List<GroupCharacteristic>? characteristic;
 
   /// [member]
   /// Identifies the resource instances that are members of the group.
-  final List<GroupMember>? member;
+  List<GroupMember>? member;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -635,7 +635,7 @@ class GroupCharacteristic extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -645,7 +645,7 @@ class GroupCharacteristic extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -663,46 +663,46 @@ class GroupCharacteristic extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// A code that identifies the kind of trait being asserted.
-  final CodeableConcept code;
+  CodeableConcept code;
 
   /// [valueCodeableConcept]
   /// The value of the trait that holds (or does not hold - see 'exclude')
   /// for members of the group.
-  final CodeableConcept? valueCodeableConcept;
+  CodeableConcept? valueCodeableConcept;
 
   /// [valueBoolean]
   /// The value of the trait that holds (or does not hold - see 'exclude')
   /// for members of the group.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueQuantity]
   /// The value of the trait that holds (or does not hold - see 'exclude')
   /// for members of the group.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueRange]
   /// The value of the trait that holds (or does not hold - see 'exclude')
   /// for members of the group.
-  final Range? valueRange;
+  Range? valueRange;
 
   /// [valueReference]
   /// The value of the trait that holds (or does not hold - see 'exclude')
   /// for members of the group.
-  final Reference? valueReference;
+  Reference? valueReference;
 
   /// [exclude]
   /// If true, indicates the characteristic is one that is NOT held by
   /// members of the group.
-  final FhirBoolean exclude;
+  FhirBoolean exclude;
 
   /// [period]
   /// The period over which the characteristic is tested; e.g. the patient
   /// had an operation during the month of June.
-  final Period? period;
+  Period? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -915,7 +915,7 @@ class GroupMember extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -925,7 +925,7 @@ class GroupMember extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -943,22 +943,22 @@ class GroupMember extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [entity]
   /// A reference to the entity that is a member of the group. Must be
   /// consistent with Group.type. If the entity is another group, then the
   /// type must be the same.
-  final Reference entity;
+  Reference entity;
 
   /// [period]
   /// The period that the member was in the group, if known.
-  final Period? period;
+  Period? period;
 
   /// [inactive]
   /// A flag to indicate that the member is no longer in the group, but
   /// previously may have been a member.
-  final FhirBoolean? inactive;
+  FhirBoolean? inactive;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

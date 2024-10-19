@@ -140,7 +140,7 @@ class ParameterDefinition extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -150,40 +150,40 @@ class ParameterDefinition extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [name]
   /// The name of the parameter used to allow access to the value of the
   /// parameter in evaluation contexts.
-  final FhirCode? name;
+  FhirCode? name;
 
   /// [use]
   /// Whether the parameter is input or output for the module.
-  final OperationParameterUse use;
+  OperationParameterUse use;
 
   /// [min]
   /// The minimum number of times this parameter SHALL appear in the request
   /// or response.
-  final FhirInteger? min;
+  FhirInteger? min;
 
   /// [max]
   /// The maximum number of times this element is permitted to appear in the
   /// request or response.
-  final FhirString? max;
+  FhirString? max;
 
   /// [documentation]
   /// A brief discussion of what the parameter is for and how it is used by
   /// the module.
-  final FhirString? documentation;
+  FhirString? documentation;
 
   /// [type]
   /// The type of the parameter.
-  final FHIRAllTypes type;
+  FHIRAllTypes type;
 
   /// [profile]
   /// If specified, this indicates a profile that the input data must conform
   /// to, or that the output data will conform to.
-  final FhirCanonical? profile;
+  FhirCanonical? profile;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

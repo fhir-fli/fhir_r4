@@ -227,14 +227,14 @@ class NutritionProduct extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -242,12 +242,12 @@ class NutritionProduct extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -257,14 +257,14 @@ class NutritionProduct extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -274,7 +274,7 @@ class NutritionProduct extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -292,52 +292,52 @@ class NutritionProduct extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [status]
   /// The current state of the product.
-  final NutritionProductStatus status;
+  NutritionProductStatus status;
 
   /// [category]
   /// Nutrition products can have different classifications - according to
   /// its nutritional properties, preparation methods, etc.
-  final List<CodeableConcept>? category;
+  List<CodeableConcept>? category;
 
   /// [code]
   /// The code assigned to the product, for example a manufacturer number or
   /// other terminology.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [manufacturer]
   /// The organisation (manufacturer, representative or legal authorisation
   /// holder) that is responsible for the device.
-  final List<Reference>? manufacturer;
+  List<Reference>? manufacturer;
 
   /// [nutrient]
   /// The product's nutritional information expressed by the nutrients.
-  final List<NutritionProductNutrient>? nutrient;
+  List<NutritionProductNutrient>? nutrient;
 
   /// [ingredient]
   /// Ingredients contained in this product.
-  final List<NutritionProductIngredient>? ingredient;
+  List<NutritionProductIngredient>? ingredient;
 
   /// [knownAllergen]
   /// Allergens that are known or suspected to be a part of this nutrition
   /// product.
-  final List<CodeableReference>? knownAllergen;
+  List<CodeableReference>? knownAllergen;
 
   /// [productCharacteristic]
   /// Specifies descriptive properties of the nutrition product.
-  final List<NutritionProductProductCharacteristic>? productCharacteristic;
+  List<NutritionProductProductCharacteristic>? productCharacteristic;
 
   /// [instance]
   /// Conveys instance-level information about this product item. One or
   /// several physical, countable instances or occurrences of the product.
-  final NutritionProductInstance? instance;
+  NutritionProductInstance? instance;
 
   /// [note]
   /// Comments made about the product.
-  final List<Annotation>? note;
+  List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -600,7 +600,7 @@ class NutritionProductNutrient extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -610,7 +610,7 @@ class NutritionProductNutrient extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -628,16 +628,16 @@ class NutritionProductNutrient extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [item]
   /// The (relevant) nutrients in the product.
-  final CodeableReference? item;
+  CodeableReference? item;
 
   /// [amount]
   /// The amount of nutrient expressed in one or more units: X per pack / per
   /// serving / per dose.
-  final List<Ratio>? amount;
+  List<Ratio>? amount;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -807,7 +807,7 @@ class NutritionProductIngredient extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -817,7 +817,7 @@ class NutritionProductIngredient extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -835,15 +835,15 @@ class NutritionProductIngredient extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [item]
   /// The ingredient contained in the product.
-  final CodeableReference item;
+  CodeableReference item;
 
   /// [amount]
   /// The amount of ingredient that is in the product.
-  final List<Ratio>? amount;
+  List<Ratio>? amount;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1042,7 +1042,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1052,7 +1052,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1070,36 +1070,36 @@ class NutritionProductProductCharacteristic extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// A code specifying which characteristic of the product is being
   /// described (for example, colour, shape).
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [valueCodeableConcept]
   /// The actual characteristic value corresponding to the type.
-  final CodeableConcept? valueCodeableConcept;
+  CodeableConcept? valueCodeableConcept;
 
   /// [valueString]
   /// The actual characteristic value corresponding to the type.
-  final FhirString? valueString;
+  FhirString? valueString;
 
   /// [valueQuantity]
   /// The actual characteristic value corresponding to the type.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueBase64Binary]
   /// The actual characteristic value corresponding to the type.
-  final FhirBase64Binary? valueBase64Binary;
+  FhirBase64Binary? valueBase64Binary;
 
   /// [valueAttachment]
   /// The actual characteristic value corresponding to the type.
-  final Attachment? valueAttachment;
+  Attachment? valueAttachment;
 
   /// [valueBoolean]
   /// The actual characteristic value corresponding to the type.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1333,7 +1333,7 @@ class NutritionProductInstance extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1343,7 +1343,7 @@ class NutritionProductInstance extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1361,30 +1361,30 @@ class NutritionProductInstance extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [quantity]
   /// The amount of items or instances that the resource considers, for
   /// instance when referring to 2 identical units together.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [identifier]
   /// The identifier for the physical instance, typically a serial number.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [lotNumber]
   /// The identification of the batch or lot of the product.
-  final FhirString? lotNumber;
+  FhirString? lotNumber;
 
   /// [expiry]
   /// The time after which the product is no longer expected to be in proper
   /// condition, or its use is not advised or not allowed.
-  final FhirDateTime? expiry;
+  FhirDateTime? expiry;
 
   /// [useBy]
   /// The time after which the product is no longer expected to be in proper
   /// condition, or its use is not advised or not allowed.
-  final FhirDateTime? useBy;
+  FhirDateTime? useBy;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

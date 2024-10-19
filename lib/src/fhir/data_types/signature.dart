@@ -143,7 +143,7 @@ class Signature extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -153,45 +153,45 @@ class Signature extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [type]
   /// An indication of the reason that the entity signed this document. This
   /// may be explicitly included as part of the signature information and can
   /// be used when determining accountability for various actions concerning
   /// the document.
-  final List<Coding> type;
+  List<Coding> type;
 
   /// [when]
   /// When the digital signature was signed.
-  final FhirInstant when;
+  FhirInstant when;
 
   /// [who]
   /// A reference to an application-usable description of the identity that
   /// signed (e.g. the signature used their private key).
-  final Reference who;
+  Reference who;
 
   /// [onBehalfOf]
   /// A reference to an application-usable description of the identity that
   /// is represented by the signature.
-  final Reference? onBehalfOf;
+  Reference? onBehalfOf;
 
   /// [targetFormat]
   /// A mime type that indicates the technical format of the target resources
   /// signed by the signature.
-  final FhirCode? targetFormat;
+  FhirCode? targetFormat;
 
   /// [sigFormat]
   /// A mime type that indicates the technical format of the signature.
   /// Important mime types are application/signature+xml for X ML DigSig,
   /// application/jose for JWS, and image/* for a graphical image of a
   /// signature, etc.
-  final FhirCode? sigFormat;
+  FhirCode? sigFormat;
 
   /// [data]
   /// The base64 encoding of the Signature content. When signature is not
   /// recorded electronically this element would be empty.
-  final FhirBase64Binary? data;
+  FhirBase64Binary? data;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

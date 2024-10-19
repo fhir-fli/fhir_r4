@@ -118,7 +118,7 @@ class Reference extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -128,7 +128,7 @@ class Reference extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [reference]
   /// A reference to a location at which the other resource is found. The
@@ -138,7 +138,7 @@ class Reference extends DataType {
   /// not. If the reference is not to a FHIR RESTful server, then it should
   /// be assumed to be version specific. Internal fragment references (start
   /// with '#') refer to contained resources.
-  final FhirString? reference;
+  FhirString? reference;
 
   /// [type]
   /// The expected type of the target of the reference. If both
@@ -151,7 +151,7 @@ class Reference extends DataType {
   /// to http://hl7.org/fhir/StructureDefinition/Patient. Absolute URLs are
   /// only allowed for logical models (and can only be used in references in
   /// logical models, not resources).
-  final FhirUri? type;
+  FhirUri? type;
 
   /// [identifier]
   /// An identifier for the target resource. This is used when there is no
@@ -163,12 +163,12 @@ class Reference extends DataType {
   /// FHIR instance, but it SHALL point to a business concept that would be
   /// expected to be exposed as a FHIR instance, and that instance would need
   /// to be of a FHIR resource type allowed by the reference.
-  final Identifier? identifier;
+  Identifier? identifier;
 
   /// [display]
   /// Plain text narrative that identifies the resource in addition to the
   /// resource reference.
-  final FhirString? display;
+  FhirString? display;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

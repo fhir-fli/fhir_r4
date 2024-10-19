@@ -346,14 +346,14 @@ class CodeSystem extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -361,12 +361,12 @@ class CodeSystem extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -376,14 +376,14 @@ class CodeSystem extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -393,7 +393,7 @@ class CodeSystem extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -411,7 +411,7 @@ class CodeSystem extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this code system when it is
@@ -422,13 +422,13 @@ class CodeSystem extends DomainResource {
   /// target of a canonical reference. It SHALL remain the same when the code
   /// system is stored on different servers. This is used in
   /// [Coding](datatypes.html#Coding).system.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [identifier]
   /// A formal identifier that is used to identify this code system when it
   /// is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the code system
@@ -438,50 +438,50 @@ class CodeSystem extends DomainResource {
   /// (e.g. yyyymmdd) if a managed version is not available. There is also no
   /// expectation that versions can be placed in a lexicographical sequence.
   /// This is used in [Coding](datatypes.html#Coding).version.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the code system. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString? name;
+  FhirString? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the code system.
-  final FhirString? title;
+  FhirString? title;
 
   /// [status]
   /// The date (and optionally time) when the code system resource was
   /// created or revised.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this code system is authored for
   /// testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [date]
   /// The date (and optionally time) when the code system was published. The
   /// date must change when the business version changes and it must change
   /// if the status code changes. In addition, it should change when the
   /// substantive content of the code system changes.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the code
   /// system.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the code system from a
   /// consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -489,80 +489,80 @@ class CodeSystem extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate code system instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the code system is intended to be
   /// used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this code system is needed and why it has been
   /// designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [copyright]
   /// A copyright statement relating to the code system and/or its contents.
   /// Copyright statements are generally legal restrictions on the use and
   /// publishing of the code system.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [caseSensitive]
   /// If code comparison is case sensitive when codes within this system are
   /// compared to each other.
-  final FhirBoolean? caseSensitive;
+  FhirBoolean? caseSensitive;
 
   /// [valueSet]
   /// Canonical reference to the value set that contains the entire code
   /// system.
-  final FhirCanonical? valueSet;
+  FhirCanonical? valueSet;
 
   /// [hierarchyMeaning]
   /// The meaning of the hierarchy of concepts as represented in this
   /// resource.
-  final CodeSystemHierarchyMeaning? hierarchyMeaning;
+  CodeSystemHierarchyMeaning? hierarchyMeaning;
 
   /// [compositional]
   /// The code system defines a compositional (post-coordination) grammar.
-  final FhirBoolean? compositional;
+  FhirBoolean? compositional;
 
   /// [versionNeeded]
   /// This flag is used to signify that the code system does not commit to
   /// concept permanence across versions. If true, a version must be
   /// specified when referencing this code system.
-  final FhirBoolean? versionNeeded;
+  FhirBoolean? versionNeeded;
 
   /// [content]
   /// The extent of the content of the code system (the concepts and codes it
   /// defines) are represented in this resource instance.
-  final CodeSystemContentMode content;
+  CodeSystemContentMode content;
 
   /// [supplements]
   /// The canonical URL of the code system that this code system supplement
   /// is adding designations and properties to.
-  final FhirCanonical? supplements;
+  FhirCanonical? supplements;
 
   /// [count]
   /// The total number of concepts defined by the code system. Where the code
   /// system has a compositional grammar, the basis of this count is defined
   /// by the system steward.
-  final FhirUnsignedInt? count;
+  FhirUnsignedInt? count;
 
   /// [filter]
   /// A filter that can be used in a value set compose statement when
   /// selecting concepts using a filter.
-  final List<CodeSystemFilter>? filter;
+  List<CodeSystemFilter>? filter;
 
   /// [property]
   /// A property defines an additional slot through which additional
   /// information can be provided about a concept.
-  final List<CodeSystemProperty>? property;
+  List<CodeSystemProperty>? property;
 
   /// [concept]
   /// Concepts that are in the code system. The concept definitions are
   /// inherently hierarchical, but the definitions must be consulted to
   /// determine what the meanings of the hierarchical relationships are.
-  final List<CodeSystemConcept>? concept;
+  List<CodeSystemConcept>? concept;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -999,7 +999,7 @@ class CodeSystemFilter extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1009,7 +1009,7 @@ class CodeSystemFilter extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1027,24 +1027,24 @@ class CodeSystemFilter extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// The code that identifies this filter when it is used as a filter in
   /// [ValueSet](valueset.html#).compose.include.filter.
-  final FhirCode code;
+  FhirCode code;
 
   /// [description]
   /// A description of how or why the filter is used.
-  final FhirString? description;
+  FhirString? description;
 
   /// [operator_]
   /// A list of operators that can be used with the filter.
-  final List<FilterOperator> operator_;
+  List<FilterOperator> operator_;
 
   /// [value]
   /// A description of what the value for the filter should be.
-  final FhirString value;
+  FhirString value;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1247,7 +1247,7 @@ class CodeSystemProperty extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1257,7 +1257,7 @@ class CodeSystemProperty extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1275,30 +1275,30 @@ class CodeSystemProperty extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// A code that is used to identify the property. The code is used
   /// internally (in CodeSystem.concept.property.code) and also externally,
   /// such as in property filters.
-  final FhirCode code;
+  FhirCode code;
 
   /// [uri]
   /// Reference to the formal meaning of the property. One possible source of
   /// meaning is the [Concept Properties](codesystem-concept-properties.html)
   /// code system.
-  final FhirUri? uri;
+  FhirUri? uri;
 
   /// [description]
   /// A description of the property- why it is defined, and how its value
   /// might be used.
-  final FhirString? description;
+  FhirString? description;
 
   /// [type]
   /// The type of the property value. Properties of type "code" contain a
   /// code defined by the code system (e.g. a reference to another defined
   /// concept).
-  final PropertyTypeEnum type;
+  PropertyTypeEnum type;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1529,7 +1529,7 @@ class CodeSystemConcept extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1539,7 +1539,7 @@ class CodeSystemConcept extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1557,39 +1557,39 @@ class CodeSystemConcept extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// A code - a text symbol - that uniquely identifies the concept within
   /// the code system.
-  final FhirCode code;
+  FhirCode code;
 
   /// [display]
   /// A human readable string that is the recommended default way to present
   /// this concept to a user.
-  final FhirString? display;
+  FhirString? display;
 
   /// [definition]
   /// The formal definition of the concept. The code system resource does not
   /// make formal definitions required, because of the prevalence of legacy
   /// systems. However, they are highly recommended, as without them there is
   /// no formal meaning associated with the concept.
-  final FhirString? definition;
+  FhirString? definition;
 
   /// [designation]
   /// Additional representations for the concept - other languages, aliases,
   /// specialized purposes, used for particular purposes, etc.
-  final List<CodeSystemDesignation>? designation;
+  List<CodeSystemDesignation>? designation;
 
   /// [property]
   /// A property value for this concept.
-  final List<CodeSystemProperty1>? property;
+  List<CodeSystemProperty1>? property;
 
   /// [concept]
   /// Defines children of a concept to produce a hierarchy of concepts. The
   /// nature of the relationships is variable (is-a/contains/categorizes) -
   /// see hierarchyMeaning.
-  final List<CodeSystemConcept>? concept;
+  List<CodeSystemConcept>? concept;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1798,7 +1798,7 @@ class CodeSystemDesignation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1808,7 +1808,7 @@ class CodeSystemDesignation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1826,19 +1826,19 @@ class CodeSystemDesignation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [language]
   /// The language this designation is defined for.
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [use]
   /// A code that details how this designation would be used.
-  final Coding? use;
+  Coding? use;
 
   /// [value]
   /// The text value for this designation.
-  final FhirString value;
+  FhirString value;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2063,7 +2063,7 @@ class CodeSystemProperty1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2073,7 +2073,7 @@ class CodeSystemProperty1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2091,39 +2091,39 @@ class CodeSystemProperty1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// A code that is a reference to CodeSystem.property.code.
-  final FhirCode code;
+  FhirCode code;
 
   /// [valueCode]
   /// The value of this property.
-  final FhirCode? valueCode;
+  FhirCode? valueCode;
 
   /// [valueCoding]
   /// The value of this property.
-  final Coding? valueCoding;
+  Coding? valueCoding;
 
   /// [valueString]
   /// The value of this property.
-  final FhirString? valueString;
+  FhirString? valueString;
 
   /// [valueInteger]
   /// The value of this property.
-  final FhirInteger? valueInteger;
+  FhirInteger? valueInteger;
 
   /// [valueBoolean]
   /// The value of this property.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueDateTime]
   /// The value of this property.
-  final FhirDateTime? valueDateTime;
+  FhirDateTime? valueDateTime;
 
   /// [valueDecimal]
   /// The value of this property.
-  final FhirDecimal? valueDecimal;
+  FhirDecimal? valueDecimal;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -173,12 +173,12 @@ class FhirInstant extends FhirDateTimeBase {
 
   /// The value of the [FhirInstant] as a String
   @Property(type: PropertyType.date)
-  final DateTime? dbValue;
+  DateTime? dbValue;
 
   /// Element stored as a relation in ObjectBox
   @override
   // ignore: overridden_fields
-  final Element? element;
+  Element? element;
 
   /// Clones the [FhirInstant] object.
   @override

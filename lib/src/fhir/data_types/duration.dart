@@ -126,7 +126,7 @@ class FhirDuration extends Quantity {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -136,13 +136,13 @@ class FhirDuration extends Quantity {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [value]
   /// The value of the measured amount. The value includes an implicit
   /// precision in the presentation of the value.
   @override
-  final FhirDecimal? value;
+  FhirDecimal? value;
 
   /// [comparator]
   /// How the value should be understood and represented - whether the actual
@@ -150,24 +150,24 @@ class FhirDuration extends Quantity {
   /// issues; e.g. if the comparator is "<" , then the real value is < stated
   /// value.
   @override
-  final QuantityComparator? comparator;
+  QuantityComparator? comparator;
 
   /// [unit]
   /// A human-readable form of the unit.
   @override
-  final FhirString? unit;
+  FhirString? unit;
 
   /// [system]
   /// The identification of the system that provides the coded form of the
   /// unit.
   @override
-  final FhirUri? system;
+  FhirUri? system;
 
   /// [code]
   /// A computer processable form of the unit in some unit representation
   /// system.
   @override
-  final FhirCode? code;
+  FhirCode? code;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -69,12 +69,12 @@ class FhirInteger extends FhirNumber {
   int dbId = 0;
 
   /// Element stored as a relation in ObjectBox
-  final int? dbValue;
+  int? dbValue;
 
   /// Element stored as a relation in ObjectBox
   @override
   // ignore: overridden_fields
-  final Element? element;
+  Element? element;
 
   /// Returns the FHIR type as a string.
   @override

@@ -395,14 +395,14 @@ class MedicationRequest extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -410,12 +410,12 @@ class MedicationRequest extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -425,14 +425,14 @@ class MedicationRequest extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -442,7 +442,7 @@ class MedicationRequest extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -460,7 +460,7 @@ class MedicationRequest extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifiers associated with this medication request that are defined by
@@ -469,154 +469,154 @@ class MedicationRequest extends DomainResource {
   /// identifiers assigned to this resource by the performer or other systems
   /// and remain constant as the resource is updated and propagates from
   /// server to server.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// A code specifying the current state of the order. Generally, this will
   /// be active or completed state.
-  final MedicationrequestStatus status;
+  MedicationrequestStatus status;
 
   /// [statusReason]
   /// Captures the reason for the current state of the MedicationRequest.
-  final CodeableConcept? statusReason;
+  CodeableConcept? statusReason;
 
   /// [intent]
   /// Whether the request is a proposal, plan, or an original order.
-  final MedicationRequestIntent intent;
+  MedicationRequestIntent intent;
 
   /// [category]
   /// Indicates the type of medication request (for example, where the
   /// medication is expected to be consumed or administered (i.e. inpatient
   /// or outpatient)).
-  final List<CodeableConcept>? category;
+  List<CodeableConcept>? category;
 
   /// [priority]
   /// Indicates how quickly the Medication Request should be addressed with
   /// respect to other requests.
-  final RequestPriority? priority;
+  RequestPriority? priority;
 
   /// [doNotPerform]
   /// If true indicates that the provider is asking for the medication
   /// request not to occur.
-  final FhirBoolean? doNotPerform;
+  FhirBoolean? doNotPerform;
 
   /// [reportedBoolean]
   /// Indicates if this record was captured as a secondary 'reported' record
   /// rather than as an original primary source-of-truth record. It may also
   /// indicate the source of the report.
-  final FhirBoolean? reportedBoolean;
+  FhirBoolean? reportedBoolean;
 
   /// [reportedReference]
   /// Indicates if this record was captured as a secondary 'reported' record
   /// rather than as an original primary source-of-truth record. It may also
   /// indicate the source of the report.
-  final Reference? reportedReference;
+  Reference? reportedReference;
 
   /// [medicationCodeableConcept]
   /// Identifies the medication being requested. This is a link to a resource
   /// that represents the medication which may be the details of the
   /// medication or simply an attribute carrying a code that identifies the
   /// medication from a known list of medications.
-  final CodeableConcept? medicationCodeableConcept;
+  CodeableConcept? medicationCodeableConcept;
 
   /// [medicationReference]
   /// Identifies the medication being requested. This is a link to a resource
   /// that represents the medication which may be the details of the
   /// medication or simply an attribute carrying a code that identifies the
   /// medication from a known list of medications.
-  final Reference? medicationReference;
+  Reference? medicationReference;
 
   /// [subject]
   /// A link to a resource representing the person or set of individuals to
   /// whom the medication will be given.
-  final Reference subject;
+  Reference subject;
 
   /// [encounter]
   /// The Encounter during which this [x] was created or to which the
   /// creation of this record is tightly associated.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [supportingInformation]
   /// Include additional information (for example, patient height and weight)
   /// that supports the ordering of the medication.
-  final List<Reference>? supportingInformation;
+  List<Reference>? supportingInformation;
 
   /// [authoredOn]
   /// The date (and perhaps time) when the prescription was initially written
   /// or authored on.
-  final FhirDateTime? authoredOn;
+  FhirDateTime? authoredOn;
 
   /// [requester]
   /// The individual, organization, or device that initiated the request and
   /// has responsibility for its activation.
-  final Reference? requester;
+  Reference? requester;
 
   /// [performer]
   /// The specified desired performer of the medication treatment (e.g. the
   /// performer of the medication administration).
-  final Reference? performer;
+  Reference? performer;
 
   /// [performerType]
   /// Indicates the type of performer of the administration of the
   /// medication.
-  final CodeableConcept? performerType;
+  CodeableConcept? performerType;
 
   /// [recorder]
   /// The person who entered the order on behalf of another individual for
   /// example in the case of a verbal or a telephone order.
-  final Reference? recorder;
+  Reference? recorder;
 
   /// [reasonCode]
   /// The reason or the indication for ordering or not ordering the
   /// medication.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConcept>? reasonCode;
 
   /// [reasonReference]
   /// Condition or observation that supports why the medication was ordered.
-  final List<Reference>? reasonReference;
+  List<Reference>? reasonReference;
 
   /// [instantiatesCanonical]
   /// The URL pointing to a protocol, guideline, orderset, or other
   /// definition that is adhered to in whole or in part by this
   /// MedicationRequest.
-  final List<FhirCanonical>? instantiatesCanonical;
+  List<FhirCanonical>? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline,
   /// orderset or other definition that is adhered to in whole or in part by
   /// this MedicationRequest.
-  final List<FhirUri>? instantiatesUri;
+  List<FhirUri>? instantiatesUri;
 
   /// [basedOn]
   /// A plan or request that is fulfilled in whole or in part by this
   /// medication request.
-  final List<Reference>? basedOn;
+  List<Reference>? basedOn;
 
   /// [groupIdentifier]
   /// A shared identifier common to all requests that were authorized more or
   /// less simultaneously by a single author, representing the identifier of
   /// the requisition or prescription.
-  final Identifier? groupIdentifier;
+  Identifier? groupIdentifier;
 
   /// [courseOfTherapyType]
   /// The description of the overall patte3rn of the administration of the
   /// medication to the patient.
-  final CodeableConcept? courseOfTherapyType;
+  CodeableConcept? courseOfTherapyType;
 
   /// [insurance]
   /// Insurance plans, coverage extensions, pre-authorizations and/or
   /// pre-determinations that may be required for delivering the requested
   /// service.
-  final List<Reference>? insurance;
+  List<Reference>? insurance;
 
   /// [note]
   /// Extra information about the prescription that could not be conveyed by
   /// the other attributes.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [dosageInstruction]
   /// Indicates how the medication is to be used by the patient.
-  final List<Dosage>? dosageInstruction;
+  List<Dosage>? dosageInstruction;
 
   /// [dispenseRequest]
   /// Indicates the specific details for the dispense or medication supply
@@ -625,32 +625,32 @@ class MedicationRequest extends DomainResource {
   /// with the order. There may be in some settings (e.g. hospitals)
   /// institutional or system support for completing the dispense details in
   /// the pharmacy department.
-  final MedicationRequestDispenseRequest? dispenseRequest;
+  MedicationRequestDispenseRequest? dispenseRequest;
 
   /// [substitution]
   /// Indicates whether or not substitution can or should be part of the
   /// dispense. In some cases, substitution must happen, in other cases
   /// substitution must not happen. This block explains the prescriber's
   /// intent. If nothing is specified substitution may be done.
-  final MedicationRequestSubstitution? substitution;
+  MedicationRequestSubstitution? substitution;
 
   /// [priorPrescription]
   /// A link to a resource representing an earlier order related order or
   /// prescription.
-  final Reference? priorPrescription;
+  Reference? priorPrescription;
 
   /// [detectedIssue]
   /// Indicates an actual or potential clinical issue with or between one or
   /// more active or proposed clinical actions for a patient; e.g. Drug-drug
   /// interaction, duplicate therapy, dosage alert etc.
-  final List<Reference>? detectedIssue;
+  List<Reference>? detectedIssue;
 
   /// [eventHistory]
   /// Links to Provenance records for past versions of this resource or
   /// fulfilling request or event resources that identify key state
   /// transitions or updates that are likely to be relevant to a user looking
   /// at the current version of the resource.
-  final List<Reference>? eventHistory;
+  List<Reference>? eventHistory;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1121,7 +1121,7 @@ class MedicationRequestDispenseRequest extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1131,7 +1131,7 @@ class MedicationRequestDispenseRequest extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1149,22 +1149,22 @@ class MedicationRequestDispenseRequest extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [initialFill]
   /// Indicates the quantity or duration for the first dispense of the
   /// medication.
-  final MedicationRequestInitialFill? initialFill;
+  MedicationRequestInitialFill? initialFill;
 
   /// [dispenseInterval]
   /// The minimum period of time that must occur between dispenses of the
   /// medication.
-  final FhirDuration? dispenseInterval;
+  FhirDuration? dispenseInterval;
 
   /// [validityPeriod]
   /// This indicates the validity period of a prescription (stale dating the
   /// Prescription).
-  final Period? validityPeriod;
+  Period? validityPeriod;
 
   /// [numberOfRepeatsAllowed]
   /// An integer indicating the number of times, in addition to the original
@@ -1175,21 +1175,21 @@ class MedicationRequestDispenseRequest extends BackboneElement {
   /// 4 times and the patient can receive a total of 120 tablets. A
   /// prescriber may explicitly say that zero refills are permitted after the
   /// initial dispense.
-  final FhirUnsignedInt? numberOfRepeatsAllowed;
+  FhirUnsignedInt? numberOfRepeatsAllowed;
 
   /// [quantity]
   /// The amount that is to be dispensed for one fill.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [expectedSupplyDuration]
   /// Identifies the period time over which the supplied product is expected
   /// to be used, or the length of time the dispense is expected to last.
-  final FhirDuration? expectedSupplyDuration;
+  FhirDuration? expectedSupplyDuration;
 
   /// [performer]
   /// Indicates the intended dispensing Organization specified by the
   /// prescriber.
-  final Reference? performer;
+  Reference? performer;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1394,7 +1394,7 @@ class MedicationRequestInitialFill extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1404,7 +1404,7 @@ class MedicationRequestInitialFill extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1422,15 +1422,15 @@ class MedicationRequestInitialFill extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [quantity]
   /// The amount or quantity to provide as part of the first dispense.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [duration]
   /// The length of time that the first dispense is expected to last.
-  final FhirDuration? duration;
+  FhirDuration? duration;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1609,7 +1609,7 @@ class MedicationRequestSubstitution extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1619,7 +1619,7 @@ class MedicationRequestSubstitution extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1637,22 +1637,22 @@ class MedicationRequestSubstitution extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [allowedBoolean]
   /// True if the prescriber allows a different drug to be dispensed from
   /// what was prescribed.
-  final FhirBoolean? allowedBoolean;
+  FhirBoolean? allowedBoolean;
 
   /// [allowedCodeableConcept]
   /// True if the prescriber allows a different drug to be dispensed from
   /// what was prescribed.
-  final CodeableConcept? allowedCodeableConcept;
+  CodeableConcept? allowedCodeableConcept;
 
   /// [reason]
   /// Indicates the reason for the substitution, or why substitution must or
   /// must not be performed.
-  final CodeableConcept? reason;
+  CodeableConcept? reason;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

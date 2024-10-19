@@ -243,14 +243,14 @@ class Consent extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -258,12 +258,12 @@ class Consent extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -273,14 +273,14 @@ class Consent extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -290,7 +290,7 @@ class Consent extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -308,33 +308,33 @@ class Consent extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Unique identifier for this copy of the Consent Statement.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// Indicates the current state of this consent.
-  final ConsentState status;
+  ConsentState status;
 
   /// [scope]
   /// A selector of the type of consent being presented: ADR, Privacy,
   /// Treatment, Research. This list is now extensible.
-  final CodeableConcept scope;
+  CodeableConcept scope;
 
   /// [category]
   /// A classification of the type of consents found in the statement. This
   /// element supports indexing and retrieval of consent statements.
-  final List<CodeableConcept> category;
+  List<CodeableConcept> category;
 
   /// [patient]
   /// The patient/healthcare consumer to whom this consent applies.
-  final Reference? patient;
+  Reference? patient;
 
   /// [dateTime]
   /// When this Consent was issued / created / indexed.
-  final FhirDateTime? dateTime;
+  FhirDateTime? dateTime;
 
   /// [performer]
   /// Either the Grantor, which is the entity responsible for granting the
@@ -342,43 +342,43 @@ class Consent extends DomainResource {
   /// entity responsible for complying with the Consent Directive, including
   /// any obligations or limitations on authorizations and enforcement of
   /// prohibitions.
-  final List<Reference>? performer;
+  List<Reference>? performer;
 
   /// [organization]
   /// The organization that manages the consent, and the framework within
   /// which it is executed.
-  final List<Reference>? organization;
+  List<Reference>? organization;
 
   /// [sourceAttachment]
   /// The source on which this consent statement is based. The source might
   /// be a scanned original paper form, or a reference to a consent that
   /// links back to such a source, a reference to a document repository (e.g.
   /// XDS) that stores the original consent document.
-  final Attachment? sourceAttachment;
+  Attachment? sourceAttachment;
 
   /// [sourceReference]
   /// The source on which this consent statement is based. The source might
   /// be a scanned original paper form, or a reference to a consent that
   /// links back to such a source, a reference to a document repository (e.g.
   /// XDS) that stores the original consent document.
-  final Reference? sourceReference;
+  Reference? sourceReference;
 
   /// [policy]
   /// The references to the policies that are included in this consent scope.
   /// Policies may be organizational, but are often defined jurisdictionally,
   /// or in law.
-  final List<ConsentPolicy>? policy;
+  List<ConsentPolicy>? policy;
 
   /// [verification]
   /// Whether a treatment instruction (e.g. artificial respiration yes or no)
   /// was verified with the patient, his/her family or another authorized
   /// person.
-  final List<ConsentVerification>? verification;
+  List<ConsentVerification>? verification;
 
   /// [provision]
   /// An exception to the base policy of this consent. An exception can be an
   /// addition or removal of access permissions.
-  final ConsentProvision? provision;
+  ConsentProvision? provision;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -663,7 +663,7 @@ class ConsentPolicy extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -673,7 +673,7 @@ class ConsentPolicy extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -691,22 +691,22 @@ class ConsentPolicy extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [authority]
   /// Entity or Organization having regulatory jurisdiction or accountability
   /// for enforcing policies pertaining to Consent Directives.
-  final FhirUri? authority;
+  FhirUri? authority;
 
   /// [uri]
   /// The references to the policies that are included in this consent scope.
   /// Policies may be organizational, but are often defined jurisdictionally,
   /// or in law.
-  final FhirUri? uri;
+  FhirUri? uri;
 
   /// [policyRule]
   /// A reference to the specific base computable regulation or policy.
-  final CodeableConcept? policyRule;
+  CodeableConcept? policyRule;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -897,7 +897,7 @@ class ConsentVerification extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -907,7 +907,7 @@ class ConsentVerification extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -925,20 +925,20 @@ class ConsentVerification extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [verified]
   /// Has the instruction been verified.
-  final FhirBoolean verified;
+  FhirBoolean verified;
 
   /// [verifiedWith]
   /// Who verified the instruction (Patient, Relative or other Authorized
   /// Person).
-  final Reference? verifiedWith;
+  Reference? verifiedWith;
 
   /// [verificationDate]
   /// Date verification was collected.
-  final FhirDateTime? verificationDate;
+  FhirDateTime? verificationDate;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1206,7 +1206,7 @@ class ConsentProvision extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1216,7 +1216,7 @@ class ConsentProvision extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1234,59 +1234,59 @@ class ConsentProvision extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Action to take - permit or deny - when the rule conditions are met. Not
   /// permitted in root rule, required in all nested rules.
-  final ConsentProvisionType? type;
+  ConsentProvisionType? type;
 
   /// [period]
   /// The timeframe in this rule is valid.
-  final Period? period;
+  Period? period;
 
   /// [actor]
   /// Who or what is controlled by this rule. Use group to identify a set of
   /// actors by some property they share (e.g. 'admitting officers').
-  final List<ConsentActor>? actor;
+  List<ConsentActor>? actor;
 
   /// [action]
   /// Actions controlled by this Rule.
-  final List<CodeableConcept>? action;
+  List<CodeableConcept>? action;
 
   /// [securityLabel]
   /// A security label, comprised of 0..* security label fields (Privacy
   /// tags), which define which resources are controlled by this exception.
-  final List<Coding>? securityLabel;
+  List<Coding>? securityLabel;
 
   /// [purpose]
   /// The context of the activities a user is taking - why the user is
   /// accessing the data - that are controlled by this rule.
-  final List<Coding>? purpose;
+  List<Coding>? purpose;
 
   /// [class_]
   /// The class of information covered by this rule. The type can be a FHIR
   /// resource type, a profile on a type, or a CDA document, or some other
   /// type that indicates what sort of information the consent relates to.
-  final List<Coding>? class_;
+  List<Coding>? class_;
 
   /// [code]
   /// If this code is found in an instance, then the rule applies.
-  final List<CodeableConcept>? code;
+  List<CodeableConcept>? code;
 
   /// [dataPeriod]
   /// Clinical or Operational Relevant period of time that bounds the data
   /// controlled by this rule.
-  final Period? dataPeriod;
+  Period? dataPeriod;
 
   /// [data]
   /// The resources controlled by this rule if specific resources are
   /// referenced.
-  final List<ConsentData>? data;
+  List<ConsentData>? data;
 
   /// [provision]
   /// Rules which provide exceptions to the base rule or subrules.
-  final List<ConsentProvision>? provision;
+  List<ConsentProvision>? provision;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1509,7 +1509,7 @@ class ConsentActor extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1519,7 +1519,7 @@ class ConsentActor extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1537,18 +1537,18 @@ class ConsentActor extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [role]
   /// How the individual is involved in the resources content that is
   /// described in the exception.
-  final CodeableConcept role;
+  CodeableConcept role;
 
   /// [reference]
   /// The resource that identifies the actor. To identify actors by type, use
   /// group to identify a set of actors by some property they share (e.g.
   /// 'admitting officers').
-  final Reference reference;
+  Reference reference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1710,7 +1710,7 @@ class ConsentData extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1720,7 +1720,7 @@ class ConsentData extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1738,17 +1738,17 @@ class ConsentData extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [meaning]
   /// How the resource reference is interpreted when testing consent
   /// restrictions.
-  final ConsentDataMeaning meaning;
+  ConsentDataMeaning meaning;
 
   /// [reference]
   /// A reference to a specific resource that defines which resources are
   /// covered by this consent.
-  final Reference reference;
+  Reference reference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

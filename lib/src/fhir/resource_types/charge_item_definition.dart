@@ -320,14 +320,14 @@ class ChargeItemDefinition extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -335,12 +335,12 @@ class ChargeItemDefinition extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -350,14 +350,14 @@ class ChargeItemDefinition extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -367,7 +367,7 @@ class ChargeItemDefinition extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -385,7 +385,7 @@ class ChargeItemDefinition extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this charge item definition
@@ -395,13 +395,13 @@ class ChargeItemDefinition extends DomainResource {
   /// instance of this charge item definition is (or will be) published. This
   /// URL can be the target of a canonical reference. It SHALL remain the
   /// same when the charge item definition is stored on different servers.
-  final FhirUri url;
+  FhirUri url;
 
   /// [identifier]
   /// A formal identifier that is used to identify this charge item
   /// definition when it is represented in other formats, or referenced in a
   /// specification, model, design or an instance.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the charge item
@@ -415,37 +415,37 @@ class ChargeItemDefinition extends DomainResource {
   /// Major.Minor.Revision (e.g. 1.0.0). For more information on versioning
   /// knowledge assets, refer to the Decision Support Service specification.
   /// Note that a version is required for non-experimental active assets.
-  final FhirString? version;
+  FhirString? version;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the charge item
   /// definition.
-  final FhirString? title;
+  FhirString? title;
 
   /// [derivedFromUri]
   /// The URL pointing to an externally-defined charge item definition that
   /// is adhered to in whole or in part by this definition.
-  final List<FhirUri>? derivedFromUri;
+  List<FhirUri>? derivedFromUri;
 
   /// [partOf]
   /// A larger definition of which this particular definition is a component
   /// or step.
-  final List<FhirCanonical>? partOf;
+  List<FhirCanonical>? partOf;
 
   /// [replaces]
   /// As new versions of a protocol or guideline are defined, allows
   /// identification of what versions are replaced by a new instance.
-  final List<FhirCanonical>? replaces;
+  List<FhirCanonical>? replaces;
 
   /// [status]
   /// The current state of the ChargeItemDefinition.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this charge item definition is
   /// authored for testing purposes (or education/evaluation/marketing) and
   /// is not intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [date]
   /// The date (and optionally time) when the charge item definition was
@@ -453,22 +453,22 @@ class ChargeItemDefinition extends DomainResource {
   /// it must change if the status code changes. In addition, it should
   /// change when the substantive content of the charge item definition
   /// changes.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the charge
   /// item definition.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the charge item definition
   /// from a consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -476,55 +476,55 @@ class ChargeItemDefinition extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate charge item definition instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the charge item definition is
   /// intended to be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [copyright]
   /// A copyright statement relating to the charge item definition and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the charge item definition.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [approvalDate]
   /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for
   /// usage.
-  final FhirDate? approvalDate;
+  FhirDate? approvalDate;
 
   /// [lastReviewDate]
   /// The date on which the resource content was last reviewed. Review
   /// happens periodically after approval but does not change the original
   /// approval date.
-  final FhirDate? lastReviewDate;
+  FhirDate? lastReviewDate;
 
   /// [effectivePeriod]
   /// The period during which the charge item definition content was or is
   /// planned to be in active use.
-  final Period? effectivePeriod;
+  Period? effectivePeriod;
 
   /// [code]
   /// The defined billing details in this resource pertain to the given
   /// billing code.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [instance]
   /// The defined billing details in this resource pertain to the given
   /// product instance(s).
-  final List<Reference>? instance;
+  List<Reference>? instance;
 
   /// [applicability]
   /// Expressions that describe applicability criteria for the billing code.
-  final List<ChargeItemDefinitionApplicability>? applicability;
+  List<ChargeItemDefinitionApplicability>? applicability;
 
   /// [propertyGroup]
   /// Group of properties which are applicable under the same conditions. If
   /// no applicability rules are established for the group, then all
   /// properties always apply.
-  final List<ChargeItemDefinitionPropertyGroup>? propertyGroup;
+  List<ChargeItemDefinitionPropertyGroup>? propertyGroup;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -918,7 +918,7 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -928,7 +928,7 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -946,25 +946,25 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// A brief, natural language description of the condition that effectively
   /// communicates the intended semantics.
-  final FhirString? description;
+  FhirString? description;
 
   /// [language]
   /// The media type of the language for the expression, e.g. "text/cql" for
   /// Clinical Query Language expressions or "text/fhirpath" for FHIRPath
   /// expressions.
-  final FhirString? language;
+  FhirString? language;
 
   /// [expression]
   /// An expression that returns true or false, indicating whether the
   /// condition is satisfied. When using FHIRPath expressions, the %context
   /// environment variable must be replaced at runtime with the ChargeItem
   /// resource to which this definition is applied.
-  final FhirString? expression;
+  FhirString? expression;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1160,7 +1160,7 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1170,7 +1170,7 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1188,12 +1188,12 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [applicability]
   /// Expressions that describe applicability criteria for the
   /// priceComponent.
-  final List<ChargeItemDefinitionApplicability>? applicability;
+  List<ChargeItemDefinitionApplicability>? applicability;
 
   /// [priceComponent]
   /// The price for a ChargeItem may be calculated as a base price with
@@ -1202,7 +1202,7 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   /// conditions that apply to a billing code is currently under development.
   /// The priceComponent element can be used to offer transparency to the
   /// recipient of the Invoice of how the prices have been calculated.
-  final List<ChargeItemDefinitionPriceComponent>? priceComponent;
+  List<ChargeItemDefinitionPriceComponent>? priceComponent;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1387,7 +1387,7 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1397,7 +1397,7 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1415,25 +1415,25 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// This code identifies the type of the component.
-  final InvoicePriceComponentType type;
+  InvoicePriceComponentType type;
 
   /// [code]
   /// A code that identifies the component. Codes may be used to
   /// differentiate between kinds of taxes, surcharges, discounts etc.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [factor]
   /// The factor that has been applied on the base price for calculating this
   /// component.
-  final FhirDecimal? factor;
+  FhirDecimal? factor;
 
   /// [amount]
   /// The amount calculated for this component.
-  final Money? amount;
+  Money? amount;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -431,7 +431,7 @@ class FhirExtension extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -441,267 +441,267 @@ class FhirExtension extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [url]
   /// Source of the definition for the extension code - a logical name or a
   /// URL.
-  final FhirString url;
+  FhirString url;
 
   /// [valueBase64Binary]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirBase64Binary? valueBase64Binary;
+  FhirBase64Binary? valueBase64Binary;
 
   /// [valueBoolean]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueCanonical]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirCanonical? valueCanonical;
+  FhirCanonical? valueCanonical;
 
   /// [valueCode]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirCode? valueCode;
+  FhirCode? valueCode;
 
   /// [valueDate]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirDate? valueDate;
+  FhirDate? valueDate;
 
   /// [valueDateTime]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirDateTime? valueDateTime;
+  FhirDateTime? valueDateTime;
 
   /// [valueDecimal]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirDecimal? valueDecimal;
+  FhirDecimal? valueDecimal;
 
   /// [valueId]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirId? valueId;
+  FhirId? valueId;
 
   /// [valueInstant]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirInstant? valueInstant;
+  FhirInstant? valueInstant;
 
   /// [valueInteger]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirInteger? valueInteger;
+  FhirInteger? valueInteger;
 
   /// [valueMarkdown]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirMarkdown? valueMarkdown;
+  FhirMarkdown? valueMarkdown;
 
   /// [valueOid]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirOid? valueOid;
+  FhirOid? valueOid;
 
   /// [valuePositiveInt]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirPositiveInt? valuePositiveInt;
+  FhirPositiveInt? valuePositiveInt;
 
   /// [valueString]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirString? valueString;
+  FhirString? valueString;
 
   /// [valueTime]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirTime? valueTime;
+  FhirTime? valueTime;
 
   /// [valueUnsignedInt]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirUnsignedInt? valueUnsignedInt;
+  FhirUnsignedInt? valueUnsignedInt;
 
   /// [valueUri]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirUri? valueUri;
+  FhirUri? valueUri;
 
   /// [valueUrl]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirUrl? valueUrl;
+  FhirUrl? valueUrl;
 
   /// [valueUuid]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirUuid? valueUuid;
+  FhirUuid? valueUuid;
 
   /// [valueAddress]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Address? valueAddress;
+  Address? valueAddress;
 
   /// [valueAge]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Age? valueAge;
+  Age? valueAge;
 
   /// [valueAnnotation]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Annotation? valueAnnotation;
+  Annotation? valueAnnotation;
 
   /// [valueAttachment]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Attachment? valueAttachment;
+  Attachment? valueAttachment;
 
   /// [valueCodeableConcept]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final CodeableConcept? valueCodeableConcept;
+  CodeableConcept? valueCodeableConcept;
 
   /// [valueCodeableReference]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final CodeableReference? valueCodeableReference;
+  CodeableReference? valueCodeableReference;
 
   /// [valueCoding]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Coding? valueCoding;
+  Coding? valueCoding;
 
   /// [valueContactPoint]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final ContactPoint? valueContactPoint;
+  ContactPoint? valueContactPoint;
 
   /// [valueCount]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Count? valueCount;
+  Count? valueCount;
 
   /// [valueDistance]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Distance? valueDistance;
+  Distance? valueDistance;
 
   /// [valueDuration]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirDuration? valueDuration;
+  FhirDuration? valueDuration;
 
   /// [valueHumanName]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final HumanName? valueHumanName;
+  HumanName? valueHumanName;
 
   /// [valueIdentifier]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Identifier? valueIdentifier;
+  Identifier? valueIdentifier;
 
   /// [valueMoney]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Money? valueMoney;
+  Money? valueMoney;
 
   /// [valuePeriod]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Period? valuePeriod;
+  Period? valuePeriod;
 
   /// [valueQuantity]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueRange]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Range? valueRange;
+  Range? valueRange;
 
   /// [valueRatio]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Ratio? valueRatio;
+  Ratio? valueRatio;
 
   /// [valueRatioRange]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final RatioRange? valueRatioRange;
+  RatioRange? valueRatioRange;
 
   /// [valueReference]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Reference? valueReference;
+  Reference? valueReference;
 
   /// [valueSampledData]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final SampledData? valueSampledData;
+  SampledData? valueSampledData;
 
   /// [valueSignature]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Signature? valueSignature;
+  Signature? valueSignature;
 
   /// [valueTiming]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Timing? valueTiming;
+  Timing? valueTiming;
 
   /// [valueContactDetail]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final ContactDetail? valueContactDetail;
+  ContactDetail? valueContactDetail;
 
   /// [valueContributor]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Contributor? valueContributor;
+  Contributor? valueContributor;
 
   /// [valueDataRequirement]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final DataRequirement? valueDataRequirement;
+  DataRequirement? valueDataRequirement;
 
   /// [valueExpression]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirExpression? valueExpression;
+  FhirExpression? valueExpression;
 
   /// [valueParameterDefinition]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final ParameterDefinition? valueParameterDefinition;
+  ParameterDefinition? valueParameterDefinition;
 
   /// [valueRelatedArtifact]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final RelatedArtifact? valueRelatedArtifact;
+  RelatedArtifact? valueRelatedArtifact;
 
   /// [valueTriggerDefinition]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final TriggerDefinition? valueTriggerDefinition;
+  TriggerDefinition? valueTriggerDefinition;
 
   /// [valueUsageContext]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final UsageContext? valueUsageContext;
+  UsageContext? valueUsageContext;
 
   /// [valueDosage]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final Dosage? valueDosage;
+  Dosage? valueDosage;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -216,14 +216,14 @@ class MeasureReport extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -231,12 +231,12 @@ class MeasureReport extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -246,14 +246,14 @@ class MeasureReport extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -263,7 +263,7 @@ class MeasureReport extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -281,18 +281,18 @@ class MeasureReport extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A formal identifier that is used to identify this MeasureReport when it
   /// is represented in other formats or referenced in a specification,
   /// model, design or an instance.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// The MeasureReport status. No data will be available until the
   /// MeasureReport status is complete.
-  final MeasureReportStatus status;
+  MeasureReportStatus status;
 
   /// [type]
   /// The type of measure report. This may be an individual report, which
@@ -302,43 +302,43 @@ class MeasureReport extends DomainResource {
   /// returns a population count for each of the criteria in the measure; or
   /// a data-collection, which enables the MeasureReport to be used to
   /// exchange the data-of-interest for a quality measure.
-  final MeasureReportType type;
+  MeasureReportType type;
 
   /// [measure]
   /// A reference to the Measure that was calculated to produce this report.
-  final FhirCanonical measure;
+  FhirCanonical measure;
 
   /// [subject]
   /// Optional subject identifying the individual or individuals the report
   /// is for.
-  final Reference? subject;
+  Reference? subject;
 
   /// [date]
   /// The date this measure report was generated.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [reporter]
   /// The individual, location, or organization that is reporting the data.
-  final Reference? reporter;
+  Reference? reporter;
 
   /// [period]
   /// The reporting period for which the report was calculated.
-  final Period period;
+  Period period;
 
   /// [improvementNotation]
   /// Whether improvement in the measure is noted by an increase or decrease
   /// in the measure score.
-  final CodeableConcept? improvementNotation;
+  CodeableConcept? improvementNotation;
 
   /// [group]
   /// The results of the calculation, one for each population group in the
   /// measure.
-  final List<MeasureReportGroup>? group;
+  List<MeasureReportGroup>? group;
 
   /// [evaluatedResource]
   /// A reference to a Bundle containing the Resources that were used in the
   /// calculation of this measure.
-  final List<Reference>? evaluatedResource;
+  List<Reference>? evaluatedResource;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -629,7 +629,7 @@ class MeasureReportGroup extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -639,7 +639,7 @@ class MeasureReportGroup extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -657,28 +657,28 @@ class MeasureReportGroup extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// The meaning of the population group as defined in the measure
   /// definition.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [population]
   /// The populations that make up the population group, one for each type of
   /// population appropriate for the measure.
-  final List<MeasureReportPopulation>? population;
+  List<MeasureReportPopulation>? population;
 
   /// [measureScore]
   /// The measure score for this population group, calculated as appropriate
   /// for the measure type and scoring method, and based on the contents of
   /// the populations defined in the group.
-  final Quantity? measureScore;
+  Quantity? measureScore;
 
   /// [stratifier]
   /// When a measure includes multiple stratifiers, there will be a
   /// stratifier group for each stratifier defined by the measure.
-  final List<MeasureReportStratifier>? stratifier;
+  List<MeasureReportStratifier>? stratifier;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -866,7 +866,7 @@ class MeasureReportPopulation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -876,7 +876,7 @@ class MeasureReportPopulation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -894,20 +894,20 @@ class MeasureReportPopulation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// The type of the population.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [count]
   /// The number of members of the population.
-  final FhirInteger? count;
+  FhirInteger? count;
 
   /// [subjectResults]
   /// This element refers to a List of subject level MeasureReport resources,
   /// one for each subject in this population.
-  final Reference? subjectResults;
+  Reference? subjectResults;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1094,7 +1094,7 @@ class MeasureReportStratifier extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1104,7 +1104,7 @@ class MeasureReportStratifier extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1122,17 +1122,17 @@ class MeasureReportStratifier extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// The meaning of this stratifier, as defined in the measure definition.
-  final List<CodeableConcept>? code;
+  List<CodeableConcept>? code;
 
   /// [stratum]
   /// This element contains the results for a single stratum within the
   /// stratifier. For example, when stratifying on administrative gender,
   /// there will be four strata, one for each possible gender value.
-  final List<MeasureReportStratum>? stratum;
+  List<MeasureReportStratum>? stratum;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1322,7 +1322,7 @@ class MeasureReportStratum extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1332,7 +1332,7 @@ class MeasureReportStratum extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1350,28 +1350,28 @@ class MeasureReportStratum extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [value]
   /// The value for this stratum, expressed as a CodeableConcept. When
   /// defining stratifiers on complex values, the value must be rendered such
   /// that the value for each stratum within the stratifier is unique.
-  final CodeableConcept? value;
+  CodeableConcept? value;
 
   /// [component]
   /// A stratifier component value.
-  final List<MeasureReportComponent>? component;
+  List<MeasureReportComponent>? component;
 
   /// [population]
   /// The populations that make up the stratum, one for each type of
   /// population appropriate to the measure.
-  final List<MeasureReportPopulation>? population;
+  List<MeasureReportPopulation>? population;
 
   /// [measureScore]
   /// The measure score for this stratum, calculated as appropriate for the
   /// measure type and scoring method, and based on only the members of this
   /// stratum.
-  final Quantity? measureScore;
+  Quantity? measureScore;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1547,7 +1547,7 @@ class MeasureReportComponent extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1557,7 +1557,7 @@ class MeasureReportComponent extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1575,15 +1575,15 @@ class MeasureReportComponent extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// The code for the stratum component value.
-  final CodeableConcept code;
+  CodeableConcept code;
 
   /// [value]
   /// The stratum component value.
-  final CodeableConcept value;
+  CodeableConcept value;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1755,7 +1755,7 @@ class MeasureReportPopulation1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1765,7 +1765,7 @@ class MeasureReportPopulation1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1783,20 +1783,20 @@ class MeasureReportPopulation1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// The type of the population.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [count]
   /// The number of members of the population in this stratum.
-  final FhirInteger? count;
+  FhirInteger? count;
 
   /// [subjectResults]
   /// This element refers to a List of subject level MeasureReport resources,
   /// one for each subject in this population in this stratum.
-  final Reference? subjectResults;
+  Reference? subjectResults;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

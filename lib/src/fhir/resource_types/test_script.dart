@@ -327,14 +327,14 @@ class TestScript extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -342,12 +342,12 @@ class TestScript extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -357,14 +357,14 @@ class TestScript extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -374,7 +374,7 @@ class TestScript extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -392,7 +392,7 @@ class TestScript extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this test script when it is
@@ -402,13 +402,13 @@ class TestScript extends DomainResource {
   /// of this test script is (or will be) published. This URL can be the
   /// target of a canonical reference. It SHALL remain the same when the test
   /// script is stored on different servers.
-  final FhirUri url;
+  FhirUri url;
 
   /// [identifier]
   /// A formal identifier that is used to identify this test script when it
   /// is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
-  final Identifier? identifier;
+  Identifier? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the test script
@@ -417,50 +417,50 @@ class TestScript extends DomainResource {
   /// expected to be globally unique. For example, it might be a timestamp
   /// (e.g. yyyymmdd) if a managed version is not available. There is also no
   /// expectation that versions can be placed in a lexicographical sequence.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the test script. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString name;
+  FhirString name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the test script.
-  final FhirString? title;
+  FhirString? title;
 
   /// [status]
   /// The status of this test script. Enables tracking the life-cycle of the
   /// content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this test script is authored for
   /// testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [date]
   /// The date (and optionally time) when the test script was published. The
   /// date must change when the business version changes and it must change
   /// if the status code changes. In addition, it should change when the
   /// substantive content of the test script changes.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the test
   /// script.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the test script from a
   /// consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -468,65 +468,65 @@ class TestScript extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate test script instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the test script is intended to be
   /// used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this test script is needed and why it has been
   /// designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [copyright]
   /// A copyright statement relating to the test script and/or its contents.
   /// Copyright statements are generally legal restrictions on the use and
   /// publishing of the test script.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [origin]
   /// An abstract server used in operations within this test script in the
   /// origin element.
-  final List<TestScriptOrigin>? origin;
+  List<TestScriptOrigin>? origin;
 
   /// [destination]
   /// An abstract server used in operations within this test script in the
   /// destination element.
-  final List<TestScriptDestination>? destination;
+  List<TestScriptDestination>? destination;
 
   /// [metadata]
   /// The required capability must exist and are assumed to function
   /// correctly on the FHIR server being tested.
-  final TestScriptMetadata? metadata;
+  TestScriptMetadata? metadata;
 
   /// [fixture]
   /// Fixture in the test script - by reference (uri). All fixtures are
   /// required for the test script to execute.
-  final List<TestScriptFixture>? fixture;
+  List<TestScriptFixture>? fixture;
 
   /// [profile]
   /// Reference to the profile to be used for validation.
-  final List<Reference>? profile;
+  List<Reference>? profile;
 
   /// [variable]
   /// Variable is set based either on element value in response body or on
   /// header field value in the response headers.
-  final List<TestScriptVariable>? variable;
+  List<TestScriptVariable>? variable;
 
   /// [setup]
   /// A series of required setup operations before tests are executed.
-  final TestScriptSetup? setup;
+  TestScriptSetup? setup;
 
   /// [test]
   /// A test in this script.
-  final List<TestScriptTest>? test;
+  List<TestScriptTest>? test;
 
   /// [teardown]
   /// A series of operations required to clean up after all the tests are
   /// executed (successfully or otherwise).
-  final TestScriptTeardown? teardown;
+  TestScriptTeardown? teardown;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -901,7 +901,7 @@ class TestScriptOrigin extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -911,7 +911,7 @@ class TestScriptOrigin extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -929,16 +929,16 @@ class TestScriptOrigin extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [index]
   /// Abstract name given to an origin server in this test script. The name
   /// is provided as a number starting at 1.
-  final FhirInteger index;
+  FhirInteger index;
 
   /// [profile]
   /// The type of origin profile the test system supports.
-  final Coding profile;
+  Coding profile;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1104,7 +1104,7 @@ class TestScriptDestination extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1114,7 +1114,7 @@ class TestScriptDestination extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1132,16 +1132,16 @@ class TestScriptDestination extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [index]
   /// Abstract name given to a destination server in this test script. The
   /// name is provided as a number starting at 1.
-  final FhirInteger index;
+  FhirInteger index;
 
   /// [profile]
   /// The type of destination profile the test system supports.
-  final Coding profile;
+  Coding profile;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1318,7 +1318,7 @@ class TestScriptMetadata extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1328,7 +1328,7 @@ class TestScriptMetadata extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1346,16 +1346,16 @@ class TestScriptMetadata extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [link]
   /// A link to the FHIR specification that this test is covering.
-  final List<TestScriptLink>? link;
+  List<TestScriptLink>? link;
 
   /// [capability]
   /// Capabilities that must exist and are assumed to function correctly on
   /// the FHIR server being tested.
-  final List<TestScriptCapability> capability;
+  List<TestScriptCapability> capability;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1521,7 +1521,7 @@ class TestScriptLink extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1531,7 +1531,7 @@ class TestScriptLink extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1549,16 +1549,16 @@ class TestScriptLink extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// URL to a particular requirement or feature within the FHIR
   /// specification.
-  final FhirUri url;
+  FhirUri url;
 
   /// [description]
   /// Short description of the link.
-  final FhirString? description;
+  FhirString? description;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1762,7 +1762,7 @@ class TestScriptCapability extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1772,7 +1772,7 @@ class TestScriptCapability extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1790,41 +1790,41 @@ class TestScriptCapability extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [required_]
   /// Whether or not the test execution will require the given capabilities
   /// of the server in order for this test script to execute.
-  final FhirBoolean required_;
+  FhirBoolean required_;
 
   /// [validated]
   /// Whether or not the test execution will validate the given capabilities
   /// of the server in order for this test script to execute.
-  final FhirBoolean validated;
+  FhirBoolean validated;
 
   /// [description]
   /// Description of the capabilities that this test script is requiring the
   /// server to support.
-  final FhirString? description;
+  FhirString? description;
 
   /// [origin]
   /// Which origin server these requirements apply to.
-  final List<FhirInteger>? origin;
+  List<FhirInteger>? origin;
 
   /// [destination]
   /// Which server these requirements apply to.
-  final FhirInteger? destination;
+  FhirInteger? destination;
 
   /// [link]
   /// Links to the FHIR specification that describes this interaction and the
   /// resources involved in more detail.
-  final List<FhirUri>? link;
+  List<FhirUri>? link;
 
   /// [capabilities]
   /// Minimum capabilities required of server for test script to execute
   /// successfully. If server does not meet at a minimum the referenced
   /// capability statement, then all tests in this script are skipped.
-  final FhirCanonical capabilities;
+  FhirCanonical capabilities;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2049,7 +2049,7 @@ class TestScriptFixture extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2059,7 +2059,7 @@ class TestScriptFixture extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2077,26 +2077,26 @@ class TestScriptFixture extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [autocreate]
   /// Whether or not to implicitly create the fixture during setup. If true,
   /// the fixture is automatically created on each server being tested during
   /// setup, therefore no create operation is required for this fixture in
   /// the TestScript.setup section.
-  final FhirBoolean autocreate;
+  FhirBoolean autocreate;
 
   /// [autodelete]
   /// Whether or not to implicitly delete the fixture during teardown. If
   /// true, the fixture is automatically deleted on each server being tested
   /// during teardown, therefore no delete operation is required for this
   /// fixture in the TestScript.teardown section.
-  final FhirBoolean autodelete;
+  FhirBoolean autodelete;
 
   /// [resource]
   /// Reference to the resource (containing the contents of the resource
   /// needed for operations).
-  final Reference? resource;
+  Reference? resource;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2318,7 +2318,7 @@ class TestScriptVariable extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2328,7 +2328,7 @@ class TestScriptVariable extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2346,47 +2346,47 @@ class TestScriptVariable extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// Descriptive name for this variable.
-  final FhirString name;
+  FhirString name;
 
   /// [defaultValue]
   /// A default, hard-coded, or user-defined value for this variable.
-  final FhirString? defaultValue;
+  FhirString? defaultValue;
 
   /// [description]
   /// A free text natural language description of the variable and its
   /// purpose.
-  final FhirString? description;
+  FhirString? description;
 
   /// [expression]
   /// The FHIRPath expression to evaluate against the fixture body. When
   /// variables are defined, only one of either expression, headerField or
   /// path must be specified.
-  final FhirString? expression;
+  FhirString? expression;
 
   /// [headerField]
   /// Will be used to grab the HTTP header field value from the headers that
   /// sourceId is pointing to.
-  final FhirString? headerField;
+  FhirString? headerField;
 
   /// [hint]
   /// Displayable text string with hint help information to the user when
   /// entering a default value.
-  final FhirString? hint;
+  FhirString? hint;
 
   /// [path]
   /// XPath or JSONPath to evaluate against the fixture body. When variables
   /// are defined, only one of either expression, headerField or path must be
   /// specified.
-  final FhirString? path;
+  FhirString? path;
 
   /// [sourceId]
   /// Fixture to evaluate the XPath/JSONPath expression or the headerField
   /// against within this variable.
-  final FhirId? sourceId;
+  FhirId? sourceId;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2618,7 +2618,7 @@ class TestScriptSetup extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2628,7 +2628,7 @@ class TestScriptSetup extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2646,11 +2646,11 @@ class TestScriptSetup extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [action]
   /// Action would contain either an operation or an assertion.
-  final List<TestScriptAction> action;
+  List<TestScriptAction> action;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2810,7 +2810,7 @@ class TestScriptAction extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2820,7 +2820,7 @@ class TestScriptAction extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2838,16 +2838,16 @@ class TestScriptAction extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [operation]
   /// The operation to perform.
-  final TestScriptOperation? operation;
+  TestScriptOperation? operation;
 
   /// [assert_]
   /// Evaluates the results of previous operations to determine if the server
   /// under test behaves appropriately.
-  final TestScriptAssert? assert_;
+  TestScriptAssert? assert_;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3122,7 +3122,7 @@ class TestScriptOperation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3132,7 +3132,7 @@ class TestScriptOperation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3150,85 +3150,85 @@ class TestScriptOperation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Server interaction or operation type.
-  final Coding? type;
+  Coding? type;
 
   /// [resource]
   /// The type of the resource. See http://build.fhir.org/resourcelist.html.
-  final FHIRDefinedType? resource;
+  FHIRDefinedType? resource;
 
   /// [label]
   /// The label would be used for tracking/logging purposes by test engines.
-  final FhirString? label;
+  FhirString? label;
 
   /// [description]
   /// The description would be used by test engines for tracking and
   /// reporting purposes.
-  final FhirString? description;
+  FhirString? description;
 
   /// [accept]
   /// The mime-type to use for RESTful operation in the 'Accept' header.
-  final FhirCode? accept;
+  FhirCode? accept;
 
   /// [contentType]
   /// The mime-type to use for RESTful operation in the 'Content-Type'
   /// header.
-  final FhirCode? contentType;
+  FhirCode? contentType;
 
   /// [destination]
   /// The server where the request message is destined for. Must be one of
   /// the server numbers listed in TestScript.destination section.
-  final FhirInteger? destination;
+  FhirInteger? destination;
 
   /// [encodeRequestUrl]
   /// Whether or not to implicitly send the request url in encoded format.
   /// The default is true to match the standard RESTful client behavior. Set
   /// to false when communicating with a server that does not support encoded
   /// url paths.
-  final FhirBoolean encodeRequestUrl;
+  FhirBoolean encodeRequestUrl;
 
   /// [method]
   /// The HTTP method the test engine MUST use for this operation regardless
   /// of any other operation details.
-  final TestScriptRequestMethodCode? method;
+  TestScriptRequestMethodCode? method;
 
   /// [origin]
   /// The server where the request message originates from. Must be one of
   /// the server numbers listed in TestScript.origin section.
-  final FhirInteger? origin;
+  FhirInteger? origin;
 
   /// [params]
   /// Path plus parameters after [type]. Used to set parts of the request URL
   /// explicitly.
-  final FhirString? params;
+  FhirString? params;
 
   /// [requestHeader]
   /// Header elements would be used to set HTTP headers.
-  final List<TestScriptRequestHeader>? requestHeader;
+  List<TestScriptRequestHeader>? requestHeader;
 
   /// [requestId]
   /// The fixture id (maybe new) to map to the request.
-  final FhirId? requestId;
+  FhirId? requestId;
 
   /// [responseId]
   /// The fixture id (maybe new) to map to the response.
-  final FhirId? responseId;
+  FhirId? responseId;
 
   /// [sourceId]
   /// The id of the fixture used as the body of a PUT or POST request.
-  final FhirId? sourceId;
+  FhirId? sourceId;
 
   /// [targetId]
   /// Id of fixture used for extracting the [id], [type], and [vid] for GET
   /// requests.
-  final FhirId? targetId;
+  FhirId? targetId;
 
   /// [url]
   /// Complete request URL.
-  final FhirString? url;
+  FhirString? url;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3542,7 +3542,7 @@ class TestScriptRequestHeader extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3552,7 +3552,7 @@ class TestScriptRequestHeader extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3570,15 +3570,15 @@ class TestScriptRequestHeader extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [field]
   /// The HTTP header field e.g. "Accept".
-  final FhirString field;
+  FhirString field;
 
   /// [value]
   /// The value of the header e.g. "application/fhir+xml".
-  final FhirString value;
+  FhirString value;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3898,7 +3898,7 @@ class TestScriptAssert extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3908,7 +3908,7 @@ class TestScriptAssert extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3926,112 +3926,112 @@ class TestScriptAssert extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [label]
   /// The label would be used for tracking/logging purposes by test engines.
-  final FhirString? label;
+  FhirString? label;
 
   /// [description]
   /// The description would be used by test engines for tracking and
   /// reporting purposes.
-  final FhirString? description;
+  FhirString? description;
 
   /// [direction]
   /// The direction to use for the assertion.
-  final AssertionDirectionType? direction;
+  AssertionDirectionType? direction;
 
   /// [compareToSourceId]
   /// Id of the source fixture used as the contents to be evaluated by either
   /// the "source/expression" or "sourceId/path" definition.
-  final FhirString? compareToSourceId;
+  FhirString? compareToSourceId;
 
   /// [compareToSourceExpression]
   /// The FHIRPath expression to evaluate against the source fixture. When
   /// compareToSourceId is defined, either compareToSourceExpression or
   /// compareToSourcePath must be defined, but not both.
-  final FhirString? compareToSourceExpression;
+  FhirString? compareToSourceExpression;
 
   /// [compareToSourcePath]
   /// XPath or JSONPath expression to evaluate against the source fixture.
   /// When compareToSourceId is defined, either compareToSourceExpression or
   /// compareToSourcePath must be defined, but not both.
-  final FhirString? compareToSourcePath;
+  FhirString? compareToSourcePath;
 
   /// [contentType]
   /// The mime-type contents to compare against the request or response
   /// message 'Content-Type' header.
-  final FhirCode? contentType;
+  FhirCode? contentType;
 
   /// [expression]
   /// The FHIRPath expression to be evaluated against the request or response
   /// message contents - HTTP headers and payload.
-  final FhirString? expression;
+  FhirString? expression;
 
   /// [headerField]
   /// The HTTP header field name e.g. 'Location'.
-  final FhirString? headerField;
+  FhirString? headerField;
 
   /// [minimumId]
   /// The ID of a fixture. Asserts that the response contains at a minimum
   /// the fixture specified by minimumId.
-  final FhirString? minimumId;
+  FhirString? minimumId;
 
   /// [navigationLinks]
   /// Whether or not the test execution performs validation on the bundle
   /// navigation links.
-  final FhirBoolean? navigationLinks;
+  FhirBoolean? navigationLinks;
 
   /// [operator_]
   /// The operator type defines the conditional behavior of the assert. If
   /// not defined, the default is equals.
-  final AssertionOperatorType? operator_;
+  AssertionOperatorType? operator_;
 
   /// [path]
   /// The XPath or JSONPath expression to be evaluated against the fixture
   /// representing the response received from server.
-  final FhirString? path;
+  FhirString? path;
 
   /// [requestMethod]
   /// The request method or HTTP operation code to compare against that used
   /// by the client system under test.
-  final TestScriptRequestMethodCode? requestMethod;
+  TestScriptRequestMethodCode? requestMethod;
 
   /// [requestURL]
   /// The value to use in a comparison against the request URL path string.
-  final FhirString? requestURL;
+  FhirString? requestURL;
 
   /// [resource]
   /// The type of the resource. See http://build.fhir.org/resourcelist.html.
-  final FHIRDefinedType? resource;
+  FHIRDefinedType? resource;
 
   /// [response]
   /// okay | created | noContent | notModified | bad | forbidden | notFound |
   /// methodNotAllowed | conflict | gone | preconditionFailed |
   /// unprocessable.
-  final AssertionResponseTypes? response;
+  AssertionResponseTypes? response;
 
   /// [responseCode]
   /// The value of the HTTP response code to be tested.
-  final FhirString? responseCode;
+  FhirString? responseCode;
 
   /// [sourceId]
   /// Fixture to evaluate the XPath/JSONPath expression or the headerField
   /// against.
-  final FhirId? sourceId;
+  FhirId? sourceId;
 
   /// [validateProfileId]
   /// The ID of the Profile to validate against.
-  final FhirId? validateProfileId;
+  FhirId? validateProfileId;
 
   /// [value]
   /// The value to compare to.
-  final FhirString? value;
+  FhirString? value;
 
   /// [warningOnly]
   /// Whether or not the test execution will produce a warning only on error
   /// for this assert.
-  final FhirBoolean warningOnly;
+  FhirBoolean warningOnly;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4418,7 +4418,7 @@ class TestScriptTest extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -4428,7 +4428,7 @@ class TestScriptTest extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -4446,21 +4446,21 @@ class TestScriptTest extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// The name of this test used for tracking/logging purposes by test
   /// engines.
-  final FhirString? name;
+  FhirString? name;
 
   /// [description]
   /// A short description of the test used by test engines for tracking and
   /// reporting purposes.
-  final FhirString? description;
+  FhirString? description;
 
   /// [action]
   /// Action would contain either an operation or an assertion.
-  final List<TestScriptAction> action;
+  List<TestScriptAction> action;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4628,7 +4628,7 @@ class TestScriptAction1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -4638,7 +4638,7 @@ class TestScriptAction1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -4656,7 +4656,7 @@ class TestScriptAction1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4811,7 +4811,7 @@ class TestScriptTeardown extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -4821,7 +4821,7 @@ class TestScriptTeardown extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -4839,11 +4839,11 @@ class TestScriptTeardown extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [action]
   /// The teardown action will only contain an operation.
-  final List<TestScriptAction> action;
+  List<TestScriptAction> action;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4991,7 +4991,7 @@ class TestScriptAction2 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -5001,7 +5001,7 @@ class TestScriptAction2 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -5019,7 +5019,7 @@ class TestScriptAction2 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

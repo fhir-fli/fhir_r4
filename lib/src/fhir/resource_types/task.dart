@@ -369,14 +369,14 @@ class Task extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -384,12 +384,12 @@ class Task extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -399,14 +399,14 @@ class Task extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -416,7 +416,7 @@ class Task extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -434,22 +434,22 @@ class Task extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// The business identifier for this task.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [instantiatesCanonical]
   /// The URL pointing to a *FHIR*-defined protocol, guideline, orderset or
   /// other definition that is adhered to in whole or in part by this Task.
-  final FhirCanonical? instantiatesCanonical;
+  FhirCanonical? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// The URL pointing to an *externally* maintained protocol, guideline,
   /// orderset or other definition that is adhered to in whole or in part by
   /// this Task.
-  final FhirUri? instantiatesUri;
+  FhirUri? instantiatesUri;
 
   /// [basedOn]
   /// BasedOn refers to a higher-level authorization that triggered the
@@ -459,130 +459,130 @@ class Task extends DomainResource {
   /// This latter resource is referenced by FocusOn. For example, based on a
   /// ServiceRequest (= BasedOn), a task is created to fulfill a
   /// procedureRequest ( = FocusOn ) to collect a specimen from a patient.
-  final List<Reference>? basedOn;
+  List<Reference>? basedOn;
 
   /// [groupIdentifier]
   /// An identifier that links together multiple tasks and other requests
   /// that were created in the same context.
-  final Identifier? groupIdentifier;
+  Identifier? groupIdentifier;
 
   /// [partOf]
   /// Task that this particular task is part of.
-  final List<Reference>? partOf;
+  List<Reference>? partOf;
 
   /// [status]
   /// The current status of the task.
-  final TaskStatus status;
+  TaskStatus status;
 
   /// [statusReason]
   /// An explanation as to why this task is held, failed, was refused, etc.
-  final CodeableConcept? statusReason;
+  CodeableConcept? statusReason;
 
   /// [businessStatus]
   /// Contains business-specific nuances of the business state.
-  final CodeableConcept? businessStatus;
+  CodeableConcept? businessStatus;
 
   /// [intent]
   /// Indicates the "level" of actionability associated with the Task, i.e.
   /// i+R[9]Cs this a proposed task, a planned task, an actionable task, etc.
-  final TaskIntent intent;
+  TaskIntent intent;
 
   /// [priority]
   /// Indicates how quickly the Task should be addressed with respect to
   /// other requests.
-  final RequestPriority? priority;
+  RequestPriority? priority;
 
   /// [code]
   /// A name or code (or both) briefly describing what the task involves.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [description]
   /// A free-text description of what is to be performed.
-  final FhirString? description;
+  FhirString? description;
 
   /// [focus]
   /// The request being actioned or the resource being manipulated by this
   /// task.
-  final Reference? focus;
+  Reference? focus;
 
   /// [for_]
   /// The entity who benefits from the performance of the service specified
   /// in the task (e.g., the patient).
-  final Reference? for_;
+  Reference? for_;
 
   /// [encounter]
   /// The healthcare event (e.g. a patient and healthcare provider
   /// interaction) during which this task was created.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [executionPeriod]
   /// Identifies the time action was first taken against the task (start)
   /// and/or the time final action was taken against the task prior to
   /// marking it as completed (end).
-  final Period? executionPeriod;
+  Period? executionPeriod;
 
   /// [authoredOn]
   /// The date and time this task was created.
-  final FhirDateTime? authoredOn;
+  FhirDateTime? authoredOn;
 
   /// [lastModified]
   /// The date and time of last modification to this task.
-  final FhirDateTime? lastModified;
+  FhirDateTime? lastModified;
 
   /// [requester]
   /// The creator of the task.
-  final Reference? requester;
+  Reference? requester;
 
   /// [performerType]
   /// The kind of participant that should perform the task.
-  final List<CodeableConcept>? performerType;
+  List<CodeableConcept>? performerType;
 
   /// [owner]
   /// Individual organization or Device currently responsible for task
   /// execution.
-  final Reference? owner;
+  Reference? owner;
 
   /// [location]
   /// Principal physical location where the this task is performed.
-  final Reference? location;
+  Reference? location;
 
   /// [reasonCode]
   /// A description or code indicating why this task needs to be performed.
-  final CodeableConcept? reasonCode;
+  CodeableConcept? reasonCode;
 
   /// [reasonReference]
   /// A resource reference indicating why this task needs to be performed.
-  final Reference? reasonReference;
+  Reference? reasonReference;
 
   /// [insurance]
   /// Insurance plans, coverage extensions, pre-authorizations and/or
   /// pre-determinations that may be relevant to the Task.
-  final List<Reference>? insurance;
+  List<Reference>? insurance;
 
   /// [note]
   /// Free-text information captured about the task as it progresses.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [relevantHistory]
   /// Links to Provenance records for past versions of this Task that
   /// identify key state transitions or updates that are likely to be
   /// relevant to a user looking at the current version of the task.
-  final List<Reference>? relevantHistory;
+  List<Reference>? relevantHistory;
 
   /// [restriction]
   /// If the Task.focus is a request resource and the task is seeking
   /// fulfillment (i.e. is asking for the request to be actioned), this
   /// element identifies any limitations on what parts of the referenced
   /// request should be actioned.
-  final TaskRestriction? restriction;
+  TaskRestriction? restriction;
 
   /// [input]
   /// Additional information that may be needed in the execution of the task.
-  final List<TaskInput>? input;
+  List<TaskInput>? input;
 
   /// [output]
   /// Outputs produced by the Task.
-  final List<TaskOutput>? output;
+  List<TaskOutput>? output;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1007,7 +1007,7 @@ class TaskRestriction extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1017,7 +1017,7 @@ class TaskRestriction extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1035,20 +1035,20 @@ class TaskRestriction extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [repetitions]
   /// Indicates the number of times the requested action should occur.
-  final FhirPositiveInt? repetitions;
+  FhirPositiveInt? repetitions;
 
   /// [period]
   /// Over what time-period is fulfillment sought.
-  final Period? period;
+  Period? period;
 
   /// [recipient]
   /// For requests that are targeted to more than on potential
   /// recipient/target, for whom is fulfillment sought?
-  final List<Reference>? recipient;
+  List<Reference>? recipient;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1547,7 +1547,7 @@ class TaskInput extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1557,7 +1557,7 @@ class TaskInput extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1575,212 +1575,212 @@ class TaskInput extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// A code or description indicating how the input is intended to be used
   /// as part of the task execution.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [valueBase64Binary]
   /// The value of the input parameter as a basic type.
-  final FhirBase64Binary? valueBase64Binary;
+  FhirBase64Binary? valueBase64Binary;
 
   /// [valueBoolean]
   /// The value of the input parameter as a basic type.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueCanonical]
   /// The value of the input parameter as a basic type.
-  final FhirCanonical? valueCanonical;
+  FhirCanonical? valueCanonical;
 
   /// [valueCode]
   /// The value of the input parameter as a basic type.
-  final FhirCode? valueCode;
+  FhirCode? valueCode;
 
   /// [valueDate]
   /// The value of the input parameter as a basic type.
-  final FhirDate? valueDate;
+  FhirDate? valueDate;
 
   /// [valueDateTime]
   /// The value of the input parameter as a basic type.
-  final FhirDateTime? valueDateTime;
+  FhirDateTime? valueDateTime;
 
   /// [valueDecimal]
   /// The value of the input parameter as a basic type.
-  final FhirDecimal? valueDecimal;
+  FhirDecimal? valueDecimal;
 
   /// [valueId]
   /// The value of the input parameter as a basic type.
-  final FhirId? valueId;
+  FhirId? valueId;
 
   /// [valueInstant]
   /// The value of the input parameter as a basic type.
-  final FhirInstant? valueInstant;
+  FhirInstant? valueInstant;
 
   /// [valueInteger]
   /// The value of the input parameter as a basic type.
-  final FhirInteger? valueInteger;
+  FhirInteger? valueInteger;
 
   /// [valueMarkdown]
   /// The value of the input parameter as a basic type.
-  final FhirMarkdown? valueMarkdown;
+  FhirMarkdown? valueMarkdown;
 
   /// [valueOid]
   /// The value of the input parameter as a basic type.
-  final FhirOid? valueOid;
+  FhirOid? valueOid;
 
   /// [valuePositiveInt]
   /// The value of the input parameter as a basic type.
-  final FhirPositiveInt? valuePositiveInt;
+  FhirPositiveInt? valuePositiveInt;
 
   /// [valueString]
   /// The value of the input parameter as a basic type.
-  final FhirString? valueString;
+  FhirString? valueString;
 
   /// [valueTime]
   /// The value of the input parameter as a basic type.
-  final FhirTime? valueTime;
+  FhirTime? valueTime;
 
   /// [valueUnsignedInt]
   /// The value of the input parameter as a basic type.
-  final FhirUnsignedInt? valueUnsignedInt;
+  FhirUnsignedInt? valueUnsignedInt;
 
   /// [valueUri]
   /// The value of the input parameter as a basic type.
-  final FhirUri? valueUri;
+  FhirUri? valueUri;
 
   /// [valueUrl]
   /// The value of the input parameter as a basic type.
-  final FhirUrl? valueUrl;
+  FhirUrl? valueUrl;
 
   /// [valueUuid]
   /// The value of the input parameter as a basic type.
-  final FhirUuid? valueUuid;
+  FhirUuid? valueUuid;
 
   /// [valueAddress]
   /// The value of the input parameter as a basic type.
-  final Address? valueAddress;
+  Address? valueAddress;
 
   /// [valueAge]
   /// The value of the input parameter as a basic type.
-  final Age? valueAge;
+  Age? valueAge;
 
   /// [valueAnnotation]
   /// The value of the input parameter as a basic type.
-  final Annotation? valueAnnotation;
+  Annotation? valueAnnotation;
 
   /// [valueAttachment]
   /// The value of the input parameter as a basic type.
-  final Attachment? valueAttachment;
+  Attachment? valueAttachment;
 
   /// [valueCodeableConcept]
   /// The value of the input parameter as a basic type.
-  final CodeableConcept? valueCodeableConcept;
+  CodeableConcept? valueCodeableConcept;
 
   /// [valueCoding]
   /// The value of the input parameter as a basic type.
-  final Coding? valueCoding;
+  Coding? valueCoding;
 
   /// [valueContactPoint]
   /// The value of the input parameter as a basic type.
-  final ContactPoint? valueContactPoint;
+  ContactPoint? valueContactPoint;
 
   /// [valueCount]
   /// The value of the input parameter as a basic type.
-  final Count? valueCount;
+  Count? valueCount;
 
   /// [valueDistance]
   /// The value of the input parameter as a basic type.
-  final Distance? valueDistance;
+  Distance? valueDistance;
 
   /// [valueDuration]
   /// The value of the input parameter as a basic type.
-  final FhirDuration? valueDuration;
+  FhirDuration? valueDuration;
 
   /// [valueHumanName]
   /// The value of the input parameter as a basic type.
-  final HumanName? valueHumanName;
+  HumanName? valueHumanName;
 
   /// [valueIdentifier]
   /// The value of the input parameter as a basic type.
-  final Identifier? valueIdentifier;
+  Identifier? valueIdentifier;
 
   /// [valueMoney]
   /// The value of the input parameter as a basic type.
-  final Money? valueMoney;
+  Money? valueMoney;
 
   /// [valuePeriod]
   /// The value of the input parameter as a basic type.
-  final Period? valuePeriod;
+  Period? valuePeriod;
 
   /// [valueQuantity]
   /// The value of the input parameter as a basic type.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueRange]
   /// The value of the input parameter as a basic type.
-  final Range? valueRange;
+  Range? valueRange;
 
   /// [valueRatio]
   /// The value of the input parameter as a basic type.
-  final Ratio? valueRatio;
+  Ratio? valueRatio;
 
   /// [valueReference]
   /// The value of the input parameter as a basic type.
-  final Reference? valueReference;
+  Reference? valueReference;
 
   /// [valueSampledData]
   /// The value of the input parameter as a basic type.
-  final SampledData? valueSampledData;
+  SampledData? valueSampledData;
 
   /// [valueSignature]
   /// The value of the input parameter as a basic type.
-  final Signature? valueSignature;
+  Signature? valueSignature;
 
   /// [valueTiming]
   /// The value of the input parameter as a basic type.
-  final Timing? valueTiming;
+  Timing? valueTiming;
 
   /// [valueContactDetail]
   /// The value of the input parameter as a basic type.
-  final ContactDetail? valueContactDetail;
+  ContactDetail? valueContactDetail;
 
   /// [valueContributor]
   /// The value of the input parameter as a basic type.
-  final Contributor? valueContributor;
+  Contributor? valueContributor;
 
   /// [valueDataRequirement]
   /// The value of the input parameter as a basic type.
-  final DataRequirement? valueDataRequirement;
+  DataRequirement? valueDataRequirement;
 
   /// [valueExpression]
   /// The value of the input parameter as a basic type.
-  final FhirExpression? valueExpression;
+  FhirExpression? valueExpression;
 
   /// [valueParameterDefinition]
   /// The value of the input parameter as a basic type.
-  final ParameterDefinition? valueParameterDefinition;
+  ParameterDefinition? valueParameterDefinition;
 
   /// [valueRelatedArtifact]
   /// The value of the input parameter as a basic type.
-  final RelatedArtifact? valueRelatedArtifact;
+  RelatedArtifact? valueRelatedArtifact;
 
   /// [valueTriggerDefinition]
   /// The value of the input parameter as a basic type.
-  final TriggerDefinition? valueTriggerDefinition;
+  TriggerDefinition? valueTriggerDefinition;
 
   /// [valueUsageContext]
   /// The value of the input parameter as a basic type.
-  final UsageContext? valueUsageContext;
+  UsageContext? valueUsageContext;
 
   /// [valueDosage]
   /// The value of the input parameter as a basic type.
-  final Dosage? valueDosage;
+  Dosage? valueDosage;
 
   /// [valueMeta]
   /// The value of the input parameter as a basic type.
-  final FhirMeta? valueMeta;
+  FhirMeta? valueMeta;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2639,7 +2639,7 @@ class TaskOutput extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2649,7 +2649,7 @@ class TaskOutput extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2667,211 +2667,211 @@ class TaskOutput extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The name of the Output parameter.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [valueBase64Binary]
   /// The value of the Output parameter as a basic type.
-  final FhirBase64Binary? valueBase64Binary;
+  FhirBase64Binary? valueBase64Binary;
 
   /// [valueBoolean]
   /// The value of the Output parameter as a basic type.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueCanonical]
   /// The value of the Output parameter as a basic type.
-  final FhirCanonical? valueCanonical;
+  FhirCanonical? valueCanonical;
 
   /// [valueCode]
   /// The value of the Output parameter as a basic type.
-  final FhirCode? valueCode;
+  FhirCode? valueCode;
 
   /// [valueDate]
   /// The value of the Output parameter as a basic type.
-  final FhirDate? valueDate;
+  FhirDate? valueDate;
 
   /// [valueDateTime]
   /// The value of the Output parameter as a basic type.
-  final FhirDateTime? valueDateTime;
+  FhirDateTime? valueDateTime;
 
   /// [valueDecimal]
   /// The value of the Output parameter as a basic type.
-  final FhirDecimal? valueDecimal;
+  FhirDecimal? valueDecimal;
 
   /// [valueId]
   /// The value of the Output parameter as a basic type.
-  final FhirId? valueId;
+  FhirId? valueId;
 
   /// [valueInstant]
   /// The value of the Output parameter as a basic type.
-  final FhirInstant? valueInstant;
+  FhirInstant? valueInstant;
 
   /// [valueInteger]
   /// The value of the Output parameter as a basic type.
-  final FhirInteger? valueInteger;
+  FhirInteger? valueInteger;
 
   /// [valueMarkdown]
   /// The value of the Output parameter as a basic type.
-  final FhirMarkdown? valueMarkdown;
+  FhirMarkdown? valueMarkdown;
 
   /// [valueOid]
   /// The value of the Output parameter as a basic type.
-  final FhirOid? valueOid;
+  FhirOid? valueOid;
 
   /// [valuePositiveInt]
   /// The value of the Output parameter as a basic type.
-  final FhirPositiveInt? valuePositiveInt;
+  FhirPositiveInt? valuePositiveInt;
 
   /// [valueString]
   /// The value of the Output parameter as a basic type.
-  final FhirString? valueString;
+  FhirString? valueString;
 
   /// [valueTime]
   /// The value of the Output parameter as a basic type.
-  final FhirTime? valueTime;
+  FhirTime? valueTime;
 
   /// [valueUnsignedInt]
   /// The value of the Output parameter as a basic type.
-  final FhirUnsignedInt? valueUnsignedInt;
+  FhirUnsignedInt? valueUnsignedInt;
 
   /// [valueUri]
   /// The value of the Output parameter as a basic type.
-  final FhirUri? valueUri;
+  FhirUri? valueUri;
 
   /// [valueUrl]
   /// The value of the Output parameter as a basic type.
-  final FhirUrl? valueUrl;
+  FhirUrl? valueUrl;
 
   /// [valueUuid]
   /// The value of the Output parameter as a basic type.
-  final FhirUuid? valueUuid;
+  FhirUuid? valueUuid;
 
   /// [valueAddress]
   /// The value of the Output parameter as a basic type.
-  final Address? valueAddress;
+  Address? valueAddress;
 
   /// [valueAge]
   /// The value of the Output parameter as a basic type.
-  final Age? valueAge;
+  Age? valueAge;
 
   /// [valueAnnotation]
   /// The value of the Output parameter as a basic type.
-  final Annotation? valueAnnotation;
+  Annotation? valueAnnotation;
 
   /// [valueAttachment]
   /// The value of the Output parameter as a basic type.
-  final Attachment? valueAttachment;
+  Attachment? valueAttachment;
 
   /// [valueCodeableConcept]
   /// The value of the Output parameter as a basic type.
-  final CodeableConcept? valueCodeableConcept;
+  CodeableConcept? valueCodeableConcept;
 
   /// [valueCoding]
   /// The value of the Output parameter as a basic type.
-  final Coding? valueCoding;
+  Coding? valueCoding;
 
   /// [valueContactPoint]
   /// The value of the Output parameter as a basic type.
-  final ContactPoint? valueContactPoint;
+  ContactPoint? valueContactPoint;
 
   /// [valueCount]
   /// The value of the Output parameter as a basic type.
-  final Count? valueCount;
+  Count? valueCount;
 
   /// [valueDistance]
   /// The value of the Output parameter as a basic type.
-  final Distance? valueDistance;
+  Distance? valueDistance;
 
   /// [valueDuration]
   /// The value of the Output parameter as a basic type.
-  final FhirDuration? valueDuration;
+  FhirDuration? valueDuration;
 
   /// [valueHumanName]
   /// The value of the Output parameter as a basic type.
-  final HumanName? valueHumanName;
+  HumanName? valueHumanName;
 
   /// [valueIdentifier]
   /// The value of the Output parameter as a basic type.
-  final Identifier? valueIdentifier;
+  Identifier? valueIdentifier;
 
   /// [valueMoney]
   /// The value of the Output parameter as a basic type.
-  final Money? valueMoney;
+  Money? valueMoney;
 
   /// [valuePeriod]
   /// The value of the Output parameter as a basic type.
-  final Period? valuePeriod;
+  Period? valuePeriod;
 
   /// [valueQuantity]
   /// The value of the Output parameter as a basic type.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueRange]
   /// The value of the Output parameter as a basic type.
-  final Range? valueRange;
+  Range? valueRange;
 
   /// [valueRatio]
   /// The value of the Output parameter as a basic type.
-  final Ratio? valueRatio;
+  Ratio? valueRatio;
 
   /// [valueReference]
   /// The value of the Output parameter as a basic type.
-  final Reference? valueReference;
+  Reference? valueReference;
 
   /// [valueSampledData]
   /// The value of the Output parameter as a basic type.
-  final SampledData? valueSampledData;
+  SampledData? valueSampledData;
 
   /// [valueSignature]
   /// The value of the Output parameter as a basic type.
-  final Signature? valueSignature;
+  Signature? valueSignature;
 
   /// [valueTiming]
   /// The value of the Output parameter as a basic type.
-  final Timing? valueTiming;
+  Timing? valueTiming;
 
   /// [valueContactDetail]
   /// The value of the Output parameter as a basic type.
-  final ContactDetail? valueContactDetail;
+  ContactDetail? valueContactDetail;
 
   /// [valueContributor]
   /// The value of the Output parameter as a basic type.
-  final Contributor? valueContributor;
+  Contributor? valueContributor;
 
   /// [valueDataRequirement]
   /// The value of the Output parameter as a basic type.
-  final DataRequirement? valueDataRequirement;
+  DataRequirement? valueDataRequirement;
 
   /// [valueExpression]
   /// The value of the Output parameter as a basic type.
-  final FhirExpression? valueExpression;
+  FhirExpression? valueExpression;
 
   /// [valueParameterDefinition]
   /// The value of the Output parameter as a basic type.
-  final ParameterDefinition? valueParameterDefinition;
+  ParameterDefinition? valueParameterDefinition;
 
   /// [valueRelatedArtifact]
   /// The value of the Output parameter as a basic type.
-  final RelatedArtifact? valueRelatedArtifact;
+  RelatedArtifact? valueRelatedArtifact;
 
   /// [valueTriggerDefinition]
   /// The value of the Output parameter as a basic type.
-  final TriggerDefinition? valueTriggerDefinition;
+  TriggerDefinition? valueTriggerDefinition;
 
   /// [valueUsageContext]
   /// The value of the Output parameter as a basic type.
-  final UsageContext? valueUsageContext;
+  UsageContext? valueUsageContext;
 
   /// [valueDosage]
   /// The value of the Output parameter as a basic type.
-  final Dosage? valueDosage;
+  Dosage? valueDosage;
 
   /// [valueMeta]
   /// The value of the Output parameter as a basic type.
-  final FhirMeta? valueMeta;
+  FhirMeta? valueMeta;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

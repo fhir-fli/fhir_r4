@@ -294,14 +294,14 @@ class ConceptMap extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -309,12 +309,12 @@ class ConceptMap extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -324,14 +324,14 @@ class ConceptMap extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -341,7 +341,7 @@ class ConceptMap extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -359,7 +359,7 @@ class ConceptMap extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this concept map when it is
@@ -369,13 +369,13 @@ class ConceptMap extends DomainResource {
   /// of this concept map is (or will be) published. This URL can be the
   /// target of a canonical reference. It SHALL remain the same when the
   /// concept map is stored on different servers.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [identifier]
   /// A formal identifier that is used to identify this concept map when it
   /// is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
-  final Identifier? identifier;
+  Identifier? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the concept map
@@ -384,50 +384,50 @@ class ConceptMap extends DomainResource {
   /// expected to be globally unique. For example, it might be a timestamp
   /// (e.g. yyyymmdd) if a managed version is not available. There is also no
   /// expectation that versions can be placed in a lexicographical sequence.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the concept map. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString? name;
+  FhirString? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the concept map.
-  final FhirString? title;
+  FhirString? title;
 
   /// [status]
   /// The status of this concept map. Enables tracking the life-cycle of the
   /// content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this concept map is authored for
   /// testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [date]
   /// The date (and optionally time) when the concept map was published. The
   /// date must change when the business version changes and it must change
   /// if the status code changes. In addition, it should change when the
   /// substantive content of the concept map changes.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the concept
   /// map.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the concept map from a
   /// consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -435,51 +435,51 @@ class ConceptMap extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate concept map instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the concept map is intended to be
   /// used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this concept map is needed and why it has been
   /// designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [copyright]
   /// A copyright statement relating to the concept map and/or its contents.
   /// Copyright statements are generally legal restrictions on the use and
   /// publishing of the concept map.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [sourceUri]
   /// Identifier for the source value set that contains the concepts that are
   /// being mapped and provides context for the mappings.
-  final FhirUri? sourceUri;
+  FhirUri? sourceUri;
 
   /// [sourceCanonical]
   /// Identifier for the source value set that contains the concepts that are
   /// being mapped and provides context for the mappings.
-  final FhirCanonical? sourceCanonical;
+  FhirCanonical? sourceCanonical;
 
   /// [targetUri]
   /// The target value set provides context for the mappings. Note that the
   /// mapping is made between concepts, not between value sets, but the value
   /// set provides important context about how the concept mapping choices
   /// are made.
-  final FhirUri? targetUri;
+  FhirUri? targetUri;
 
   /// [targetCanonical]
   /// The target value set provides context for the mappings. Note that the
   /// mapping is made between concepts, not between value sets, but the value
   /// set provides important context about how the concept mapping choices
   /// are made.
-  final FhirCanonical? targetCanonical;
+  FhirCanonical? targetCanonical;
 
   /// [group]
   /// A group of mappings that all have the same source and target system.
-  final List<ConceptMapGroup>? group;
+  List<ConceptMapGroup>? group;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -886,7 +886,7 @@ class ConceptMapGroup extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -896,7 +896,7 @@ class ConceptMapGroup extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -914,38 +914,38 @@ class ConceptMapGroup extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [source]
   /// An absolute URI that identifies the source system where the concepts to
   /// be mapped are defined.
-  final FhirUri? source;
+  FhirUri? source;
 
   /// [sourceVersion]
   /// The specific version of the code system, as determined by the code
   /// system authority.
-  final FhirString? sourceVersion;
+  FhirString? sourceVersion;
 
   /// [target]
   /// An absolute URI that identifies the target system that the concepts
   /// will be mapped to.
-  final FhirUri? target;
+  FhirUri? target;
 
   /// [targetVersion]
   /// The specific version of the code system, as determined by the code
   /// system authority.
-  final FhirString? targetVersion;
+  FhirString? targetVersion;
 
   /// [element]
   /// Mappings for an individual concept in the source to one or more
   /// concepts in the target.
-  final List<ConceptMapElement> element;
+  List<ConceptMapElement> element;
 
   /// [unmapped]
   /// What to do when there is no mapping for the source concept. "Unmapped"
   /// does not include codes that are unmatched, and the unmapped element is
   /// ignored in a code is specified to have equivalence = unmatched.
-  final ConceptMapUnmapped? unmapped;
+  ConceptMapUnmapped? unmapped;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1164,7 +1164,7 @@ class ConceptMapElement extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1174,7 +1174,7 @@ class ConceptMapElement extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1192,20 +1192,20 @@ class ConceptMapElement extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// Identity (code or path) or the element/item being mapped.
-  final FhirCode? code;
+  FhirCode? code;
 
   /// [display]
   /// The display for the code. The display is only provided to help editors
   /// when editing the concept map.
-  final FhirString? display;
+  FhirString? display;
 
   /// [target]
   /// A concept from the target value set that this concept maps to.
-  final List<ConceptMapTarget>? target;
+  List<ConceptMapTarget>? target;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1411,7 +1411,7 @@ class ConceptMapTarget extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1421,7 +1421,7 @@ class ConceptMapTarget extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1439,33 +1439,33 @@ class ConceptMapTarget extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// Identity (code or path) or the element/item that the map refers to.
-  final FhirCode? code;
+  FhirCode? code;
 
   /// [display]
   /// The display for the code. The display is only provided to help editors
   /// when editing the concept map.
-  final FhirString? display;
+  FhirString? display;
 
   /// [equivalence]
   /// The equivalence between the source and target concepts (counting for
   /// the dependencies and products). The equivalence is read from target to
   /// source (e.g. the target is 'wider' than the source).
-  final ConceptMapEquivalence equivalence;
+  ConceptMapEquivalence equivalence;
 
   /// [comment]
   /// A description of status/issues in mapping that conveys additional
   /// information not represented in the structured data.
-  final FhirString? comment;
+  FhirString? comment;
 
   /// [dependsOn]
   /// A set of additional dependencies for this mapping to hold. This mapping
   /// is only applicable if the specified element can be resolved, and it has
   /// the specified value.
-  final List<ConceptMapDependsOn>? dependsOn;
+  List<ConceptMapDependsOn>? dependsOn;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1679,7 +1679,7 @@ class ConceptMapDependsOn extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1689,7 +1689,7 @@ class ConceptMapDependsOn extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1707,29 +1707,29 @@ class ConceptMapDependsOn extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [property]
   /// A reference to an element that holds a coded value that corresponds to
   /// a code system property. The idea is that the information model carries
   /// an element somewhere that is labeled to correspond with a code system
   /// property.
-  final FhirUri property;
+  FhirUri property;
 
   /// [system]
   /// An absolute URI that identifies the code system of the dependency code
   /// (if the source/dependency is a value set that crosses code systems).
-  final FhirCanonical? system;
+  FhirCanonical? system;
 
   /// [value]
   /// Identity (code or path) or the element/item/ValueSet/text that the map
   /// depends on / refers to.
-  final FhirString value;
+  FhirString value;
 
   /// [display]
   /// The display for the code. The display is only provided to help editors
   /// when editing the concept map.
-  final FhirString? display;
+  FhirString? display;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1937,7 +1937,7 @@ class ConceptMapUnmapped extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1947,7 +1947,7 @@ class ConceptMapUnmapped extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1965,7 +1965,7 @@ class ConceptMapUnmapped extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [mode]
   /// Defines which action to take if there is no match for the source
@@ -1974,23 +1974,23 @@ class ConceptMapUnmapped extends BackboneElement {
   /// mapping between versions, and only a few codes have changed), use a
   /// fixed code (a default code), or alternatively, a reference to a
   /// different concept map can be provided (by canonical URL).
-  final ConceptMapGroupUnmappedMode mode;
+  ConceptMapGroupUnmappedMode mode;
 
   /// [code]
   /// The fixed code to use when the mode = 'fixed' - all unmapped codes are
   /// mapped to a single fixed code.
-  final FhirCode? code;
+  FhirCode? code;
 
   /// [display]
   /// The display for the code. The display is only provided to help editors
   /// when editing the concept map.
-  final FhirString? display;
+  FhirString? display;
 
   /// [url]
   /// The canonical reference to an additional ConceptMap resource instance
   /// to use for mapping if this ConceptMap resource contains no matching
   /// mapping for the source concept.
-  final FhirCanonical? url;
+  FhirCanonical? url;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

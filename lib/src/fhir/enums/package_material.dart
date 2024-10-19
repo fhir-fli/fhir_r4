@@ -343,14 +343,15 @@ class PackageMaterial extends FhirCode {
   /// Value to store in ObjectBox
   @override
   // ignore: overridden_fields
-  final String? dbValue;
+  String? dbValue;
 
   /// Element stored as a relation in ObjectBox
   @override
   // ignore: overridden_fields
-  final Element? element;
+  Element? element;
 
   /// List of all enum-like values
+  @Transient()
   static final List<String> values = [
     '200000003200',
     '200000003201',

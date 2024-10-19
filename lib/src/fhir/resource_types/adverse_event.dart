@@ -292,14 +292,14 @@ class AdverseEvent extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -307,12 +307,12 @@ class AdverseEvent extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -322,14 +322,14 @@ class AdverseEvent extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -339,7 +339,7 @@ class AdverseEvent extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -357,78 +357,78 @@ class AdverseEvent extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business identifiers assigned to this adverse event by the performer or
   /// other systems which remain constant as the resource is updated and
   /// propagates from server to server.
-  final Identifier? identifier;
+  Identifier? identifier;
 
   /// [actuality]
   /// Whether the event actually happened, or just had the potential to. Note
   /// that this is independent of whether anyone was affected or harmed or
   /// how severely.
-  final AdverseEventActuality actuality;
+  AdverseEventActuality actuality;
 
   /// [category]
   /// The overall type of event, intended for search and filtering purposes.
-  final List<CodeableConcept>? category;
+  List<CodeableConcept>? category;
 
   /// [event]
   /// This element defines the specific type of event that occurred or that
   /// was prevented from occurring.
-  final CodeableConcept? event;
+  CodeableConcept? event;
 
   /// [subject]
   /// This subject or group impacted by the event.
-  final Reference subject;
+  Reference subject;
 
   /// [encounter]
   /// The Encounter during which AdverseEvent was created or to which the
   /// creation of this record is tightly associated.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [date]
   /// The date (and perhaps time) when the adverse event occurred.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [detected]
   /// Estimated or actual date the AdverseEvent began, in the opinion of the
   /// reporter.
-  final FhirDateTime? detected;
+  FhirDateTime? detected;
 
   /// [recordedDate]
   /// The date on which the existence of the AdverseEvent was first recorded.
-  final FhirDateTime? recordedDate;
+  FhirDateTime? recordedDate;
 
   /// [resultingCondition]
   /// Includes information about the reaction that occurred as a result of
   /// exposure to a substance (for example, a drug or a chemical).
-  final List<Reference>? resultingCondition;
+  List<Reference>? resultingCondition;
 
   /// [location]
   /// The information about where the adverse event occurred.
-  final Reference? location;
+  Reference? location;
 
   /// [seriousness]
   /// Assessment whether this event was of real importance.
-  final CodeableConcept? seriousness;
+  CodeableConcept? seriousness;
 
   /// [severity]
   /// Describes the severity of the adverse event, in relation to the
   /// subject. Contrast to AdverseEvent.seriousness - a severe rash might not
   /// be serious, but a mild heart problem is.
-  final CodeableConcept? severity;
+  CodeableConcept? severity;
 
   /// [outcome]
   /// Describes the type of outcome from the adverse event.
-  final CodeableConcept? outcome;
+  CodeableConcept? outcome;
 
   /// [recorder]
   /// Information on who recorded the adverse event. May be the patient or a
   /// practitioner.
-  final Reference? recorder;
+  Reference? recorder;
 
   /// [contributor]
   /// Parties that may or should contribute or have contributed information
@@ -438,24 +438,24 @@ class AdverseEvent extends DomainResource {
   /// that the activity itself seeks to reveal (e.g. informant of clinical
   /// history), or information about what activity was performed (e.g.
   /// informant witness).
-  final List<Reference>? contributor;
+  List<Reference>? contributor;
 
   /// [suspectEntity]
   /// Describes the entity that is suspected to have caused the adverse
   /// event.
-  final List<AdverseEventSuspectEntity>? suspectEntity;
+  List<AdverseEventSuspectEntity>? suspectEntity;
 
   /// [subjectMedicalHistory]
   /// AdverseEvent.subjectMedicalHistory.
-  final List<Reference>? subjectMedicalHistory;
+  List<Reference>? subjectMedicalHistory;
 
   /// [referenceDocument]
   /// AdverseEvent.referenceDocument.
-  final List<Reference>? referenceDocument;
+  List<Reference>? referenceDocument;
 
   /// [study]
   /// AdverseEvent.study.
-  final List<Reference>? study;
+  List<Reference>? study;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -789,7 +789,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -799,7 +799,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -817,17 +817,17 @@ class AdverseEventSuspectEntity extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [instance]
   /// Identifies the actual instance of what caused the adverse event. May be
   /// a substance, medication, medication administration, medication
   /// statement or a device.
-  final Reference instance;
+  Reference instance;
 
   /// [causality]
   /// Information on the possible cause of the event.
-  final List<AdverseEventCausality>? causality;
+  List<AdverseEventCausality>? causality;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1007,7 +1007,7 @@ class AdverseEventCausality extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1017,7 +1017,7 @@ class AdverseEventCausality extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1035,23 +1035,23 @@ class AdverseEventCausality extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [assessment]
   /// Assessment of if the entity caused the event.
-  final CodeableConcept? assessment;
+  CodeableConcept? assessment;
 
   /// [productRelatedness]
   /// AdverseEvent.suspectEntity.causalityProductRelatedness.
-  final FhirString? productRelatedness;
+  FhirString? productRelatedness;
 
   /// [author]
   /// AdverseEvent.suspectEntity.causalityAuthor.
-  final Reference? author;
+  Reference? author;
 
   /// [method]
   /// ProbabilityScale | Bayesian | Checklist.
-  final CodeableConcept? method;
+  CodeableConcept? method;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

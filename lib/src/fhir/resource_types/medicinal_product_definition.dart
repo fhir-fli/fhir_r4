@@ -388,14 +388,14 @@ class MedicinalProductDefinition extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -403,12 +403,12 @@ class MedicinalProductDefinition extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -418,14 +418,14 @@ class MedicinalProductDefinition extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -435,7 +435,7 @@ class MedicinalProductDefinition extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -453,7 +453,7 @@ class MedicinalProductDefinition extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business identifier for this product. Could be an MPID. When in
@@ -462,34 +462,34 @@ class MedicinalProductDefinition extends DomainResource {
   /// unique to a product (which, when compared to a product instance being
   /// prescribed, is actually a product type). See also
   /// MedicinalProductDefinition.code.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [type]
   /// Regulatory type, e.g. Investigational or Authorized.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [domain]
   /// If this medicine applies to human or veterinary uses.
-  final CodeableConcept? domain;
+  CodeableConcept? domain;
 
   /// [version]
   /// A business identifier relating to a specific version of the product,
   /// this is commonly used to support revisions to an existing product.
-  final FhirString? version;
+  FhirString? version;
 
   /// [status]
   /// The status within the lifecycle of this product record. A high-level
   /// status, this is not intended to duplicate details carried elsewhere
   /// such as legal status, or authorization status.
-  final CodeableConcept? status;
+  CodeableConcept? status;
 
   /// [statusDate]
   /// The date at which the given status became applicable.
-  final FhirDateTime? statusDate;
+  FhirDateTime? statusDate;
 
   /// [description]
   /// General description of this product.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [combinedPharmaceuticalDoseForm]
   /// The dose form for a single part product, or combined form of a multiple
@@ -497,7 +497,7 @@ class MedicinalProductDefinition extends DomainResource {
   /// does not represent the form with components physically mixed, if that
   /// might be necessary, for which see
   /// (AdministrableProductDefinition.administrableDoseForm).
-  final CodeableConcept? combinedPharmaceuticalDoseForm;
+  CodeableConcept? combinedPharmaceuticalDoseForm;
 
   /// [route]
   /// The path by which the product is taken into or makes contact with the
@@ -506,7 +506,7 @@ class MedicinalProductDefinition extends DomainResource {
   /// MedicinalProductDefinition.route is the same concept as
   /// AdministrableProductDefinition.routeOfAdministration.code, and they
   /// cannot be used together.
-  final List<CodeableConcept>? route;
+  List<CodeableConcept>? route;
 
   /// [indication]
   /// Description of indication(s) for this product, used when structured
@@ -514,44 +514,44 @@ class MedicinalProductDefinition extends DomainResource {
   /// required, they are captured using the ClinicalUseDefinition resource.
   /// An indication is a medical situation for which using the product is
   /// appropriate.
-  final FhirMarkdown? indication;
+  FhirMarkdown? indication;
 
   /// [legalStatusOfSupply]
   /// The legal status of supply of the medicinal product as classified by
   /// the regulator.
-  final CodeableConcept? legalStatusOfSupply;
+  CodeableConcept? legalStatusOfSupply;
 
   /// [additionalMonitoringIndicator]
   /// Whether the Medicinal Product is subject to additional monitoring for
   /// regulatory reasons, such as heightened reporting requirements.
-  final CodeableConcept? additionalMonitoringIndicator;
+  CodeableConcept? additionalMonitoringIndicator;
 
   /// [specialMeasures]
   /// Whether the Medicinal Product is subject to special measures for
   /// regulatory reasons, such as a requirement to conduct post-authorisation
   /// studies.
-  final List<CodeableConcept>? specialMeasures;
+  List<CodeableConcept>? specialMeasures;
 
   /// [pediatricUseIndicator]
   /// If authorised for use in children, or infants, neonates etc.
-  final CodeableConcept? pediatricUseIndicator;
+  CodeableConcept? pediatricUseIndicator;
 
   /// [classification]
   /// Allows the product to be classified by various systems, commonly WHO
   /// ATC.
-  final List<CodeableConcept>? classification;
+  List<CodeableConcept>? classification;
 
   /// [marketingStatus]
   /// Marketing status of the medicinal product, in contrast to marketing
   /// authorization. This refers to the product being actually 'on the
   /// market' as opposed to being allowed to be on the market (which is an
   /// authorization).
-  final List<MarketingStatus>? marketingStatus;
+  List<MarketingStatus>? marketingStatus;
 
   /// [packagedMedicinalProduct]
   /// Package type for the product. See also the PackagedProductDefinition
   /// resource.
-  final List<CodeableConcept>? packagedMedicinalProduct;
+  List<CodeableConcept>? packagedMedicinalProduct;
 
   /// [ingredient]
   /// The ingredients of this medicinal product - when not detailed in other
@@ -561,19 +561,19 @@ class MedicinalProductDefinition extends DomainResource {
   /// ManufacturedItemDefinition references. In cases where those levels of
   /// detail are not used, the ingredients may be specified directly here as
   /// codes.
-  final List<CodeableConcept>? ingredient;
+  List<CodeableConcept>? ingredient;
 
   /// [impurity]
   /// Any component of the drug product which is not the chemical entity
   /// defined as the drug substance, or an excipient in the drug product.
   /// This includes process-related impurities and contaminants,
   /// product-related impurities including degradation products.
-  final List<CodeableReference>? impurity;
+  List<CodeableReference>? impurity;
 
   /// [attachedDocument]
   /// Additional information or supporting documentation about the medicinal
   /// product.
-  final List<Reference>? attachedDocument;
+  List<Reference>? attachedDocument;
 
   /// [masterFile]
   /// A master file for the medicinal product (e.g. Pharmacovigilance System
@@ -581,15 +581,15 @@ class MedicinalProductDefinition extends DomainResource {
   /// regulatory agencies to provide confidential detailed information about
   /// facilities, processes or articles used in the manufacturing,
   /// processing, packaging and storing of drug products.
-  final List<Reference>? masterFile;
+  List<Reference>? masterFile;
 
   /// [contact]
   /// A product specific contact, person (in a role), or an organization.
-  final List<MedicinalProductDefinitionContact>? contact;
+  List<MedicinalProductDefinitionContact>? contact;
 
   /// [clinicalTrial]
   /// Clinical trials or studies that this product is involved in.
-  final List<Reference>? clinicalTrial;
+  List<Reference>? clinicalTrial;
 
   /// [code]
   /// A code that this product is known by, usually within some formal
@@ -599,26 +599,26 @@ class MedicinalProductDefinition extends DomainResource {
   /// However when they are prescribed they tend to be identified by codes.
   /// The same product may be have multiple codes, applied to it by multiple
   /// organizations.
-  final List<Coding>? code;
+  List<Coding>? code;
 
   /// [name]
   /// The product's name, including full name and possibly coded parts.
-  final List<MedicinalProductDefinitionName> name;
+  List<MedicinalProductDefinitionName> name;
 
   /// [crossReference]
   /// Reference to another product, e.g. for linking authorised to
   /// investigational product, or a virtual product.
-  final List<MedicinalProductDefinitionCrossReference>? crossReference;
+  List<MedicinalProductDefinitionCrossReference>? crossReference;
 
   /// [operation]
   /// A manufacturing or administrative process or step associated with (or
   /// performed on) the medicinal product.
-  final List<MedicinalProductDefinitionOperation>? operation;
+  List<MedicinalProductDefinitionOperation>? operation;
 
   /// [characteristic]
   /// Allows the key product features to be recorded, such as "sugar free",
   /// "modified release", "parallel import".
-  final List<MedicinalProductDefinitionCharacteristic>? characteristic;
+  List<MedicinalProductDefinitionCharacteristic>? characteristic;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1004,7 +1004,7 @@ class MedicinalProductDefinitionContact extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1014,7 +1014,7 @@ class MedicinalProductDefinitionContact extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1032,16 +1032,16 @@ class MedicinalProductDefinitionContact extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Allows the contact to be classified, for example QPPV,
   /// Pharmacovigilance Enquiry Information.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [contact]
   /// A product specific contact, person (in a role), or an organization.
-  final Reference contact;
+  Reference contact;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1226,7 +1226,7 @@ class MedicinalProductDefinitionName extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1236,7 +1236,7 @@ class MedicinalProductDefinitionName extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1254,24 +1254,24 @@ class MedicinalProductDefinitionName extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [productName]
   /// The full product name.
-  final FhirString productName;
+  FhirString productName;
 
   /// [type]
   /// Type of product name, such as rINN, BAN, Proprietary, Non-Proprietary.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [namePart]
   /// Coding words or phrases of the name.
-  final List<MedicinalProductDefinitionNamePart>? namePart;
+  List<MedicinalProductDefinitionNamePart>? namePart;
 
   /// [countryLanguage]
   /// Country and jurisdiction where the name applies, and associated
   /// language.
-  final List<MedicinalProductDefinitionCountryLanguage>? countryLanguage;
+  List<MedicinalProductDefinitionCountryLanguage>? countryLanguage;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1451,7 +1451,7 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1461,7 +1461,7 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1479,15 +1479,15 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [part_]
   /// A fragment of a product name.
-  final FhirString part_;
+  FhirString part_;
 
   /// [type]
   /// Identifying type for this part of the name (e.g. strength part).
-  final CodeableConcept type;
+  CodeableConcept type;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1658,7 +1658,7 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1668,7 +1668,7 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1686,20 +1686,20 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [country]
   /// Country code for where this name applies.
-  final CodeableConcept country;
+  CodeableConcept country;
 
   /// [jurisdiction]
   /// Jurisdiction code for where this name applies. A jurisdiction may be a
   /// sub- or supra-national entity (e.g. a state or a geographic region).
-  final CodeableConcept? jurisdiction;
+  CodeableConcept? jurisdiction;
 
   /// [language]
   /// Language code for this name.
-  final CodeableConcept language;
+  CodeableConcept language;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1869,7 +1869,7 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1879,7 +1879,7 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1897,18 +1897,18 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [product]
   /// Reference to another product, e.g. for linking authorised to
   /// investigational product.
-  final CodeableReference product;
+  CodeableReference product;
 
   /// [type]
   /// The type of relationship, for instance branded to generic, virtual to
   /// actual product, product to development product (investigational),
   /// parallel import version.
-  final CodeableConcept? type;
+  CodeableConcept? type;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2092,7 +2092,7 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2102,7 +2102,7 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2120,28 +2120,28 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The type of manufacturing operation e.g. manufacturing itself,
   /// re-packaging. For the authorization of this, a RegulatedAuthorization
   /// would point to the same plan or activity referenced here.
-  final CodeableReference? type;
+  CodeableReference? type;
 
   /// [effectiveDate]
   /// Date range of applicability.
-  final Period? effectiveDate;
+  Period? effectiveDate;
 
   /// [organization]
   /// The organization or establishment responsible for (or associated with)
   /// the particular process or step, examples include the manufacturer,
   /// importer, agent.
-  final List<Reference>? organization;
+  List<Reference>? organization;
 
   /// [confidentialityIndicator]
   /// Specifies whether this particular business or manufacturing process is
   /// considered proprietary or confidential.
-  final CodeableConcept? confidentialityIndicator;
+  CodeableConcept? confidentialityIndicator;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2348,7 +2348,7 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2358,7 +2358,7 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2376,31 +2376,31 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// A code expressing the type of characteristic.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [valueCodeableConcept]
   /// A value for the characteristic.
-  final CodeableConcept? valueCodeableConcept;
+  CodeableConcept? valueCodeableConcept;
 
   /// [valueQuantity]
   /// A value for the characteristic.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueDate]
   /// A value for the characteristic.
-  final FhirDate? valueDate;
+  FhirDate? valueDate;
 
   /// [valueBoolean]
   /// A value for the characteristic.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueAttachment]
   /// A value for the characteristic.
-  final Attachment? valueAttachment;
+  Attachment? valueAttachment;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

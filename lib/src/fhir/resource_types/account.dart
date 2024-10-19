@@ -225,14 +225,14 @@ class Account extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -240,12 +240,12 @@ class Account extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -255,14 +255,14 @@ class Account extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -272,7 +272,7 @@ class Account extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -290,59 +290,59 @@ class Account extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Unique identifier used to reference the account. Might or might not be
   /// intended for human use (e.g. credit card number).
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// Indicates whether the account is presently used/usable or not.
-  final AccountStatus status;
+  AccountStatus status;
 
   /// [type]
   /// Categorizes the account for reporting and searching purposes.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [name]
   /// Name used for the account when displaying it to humans in reports, etc.
-  final FhirString? name;
+  FhirString? name;
 
   /// [subject]
   /// Identifies the entity which incurs the expenses. While the immediate
   /// recipients of services or goods might be entities related to the
   /// subject, the expenses were ultimately incurred by the subject of the
   /// Account.
-  final List<Reference>? subject;
+  List<Reference>? subject;
 
   /// [servicePeriod]
   /// The date range of services associated with this account.
-  final Period? servicePeriod;
+  Period? servicePeriod;
 
   /// [coverage]
   /// The party(s) that are responsible for covering the payment of this
   /// account, and what order should they be applied to the account.
-  final List<AccountCoverage>? coverage;
+  List<AccountCoverage>? coverage;
 
   /// [owner]
   /// Indicates the service area, hospital, department, etc. with
   /// responsibility for managing the Account.
-  final Reference? owner;
+  Reference? owner;
 
   /// [description]
   /// Provides additional information about what the account tracks and how
   /// it is used.
-  final FhirString? description;
+  FhirString? description;
 
   /// [guarantor]
   /// The parties responsible for balancing the account if other payment
   /// options fall short.
-  final List<AccountGuarantor>? guarantor;
+  List<AccountGuarantor>? guarantor;
 
   /// [partOf]
   /// Reference to a parent Account.
-  final Reference? partOf;
+  Reference? partOf;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -613,7 +613,7 @@ class AccountCoverage extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -623,7 +623,7 @@ class AccountCoverage extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -641,7 +641,7 @@ class AccountCoverage extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [coverage]
   /// The party(s) that contribute to payment (or part of) of the charges
@@ -650,11 +650,11 @@ class AccountCoverage extends BackboneElement {
   /// A coverage may only be responsible for specific types of charges, and
   /// the sequence of the coverages in the account could be important when
   /// processing billing.
-  final Reference coverage;
+  Reference coverage;
 
   /// [priority]
   /// The priority of the coverage in the context of this account.
-  final FhirPositiveInt? priority;
+  FhirPositiveInt? priority;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -830,7 +830,7 @@ class AccountGuarantor extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -840,7 +840,7 @@ class AccountGuarantor extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -858,21 +858,21 @@ class AccountGuarantor extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [party]
   /// The entity who is responsible.
-  final Reference party;
+  Reference party;
 
   /// [onHold]
   /// A guarantor may be placed on credit hold or otherwise have their role
   /// temporarily suspended.
-  final FhirBoolean? onHold;
+  FhirBoolean? onHold;
 
   /// [period]
   /// The timeframe during which the guarantor accepts responsibility for the
   /// account.
-  final Period? period;
+  Period? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

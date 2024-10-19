@@ -138,7 +138,7 @@ class RelatedArtifact extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -148,41 +148,41 @@ class RelatedArtifact extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [type]
   /// The type of relationship to the related artifact.
-  final RelatedArtifactType type;
+  RelatedArtifactType type;
 
   /// [label]
   /// A short label that can be used to reference the citation from elsewhere
   /// in the containing artifact, such as a footnote index.
-  final FhirString? label;
+  FhirString? label;
 
   /// [display]
   /// A brief description of the document or knowledge resource being
   /// referenced, suitable for display to a consumer.
-  final FhirString? display;
+  FhirString? display;
 
   /// [citation]
   /// A bibliographic citation for the related artifact. This text SHOULD be
   /// formatted according to an accepted citation format.
-  final FhirMarkdown? citation;
+  FhirMarkdown? citation;
 
   /// [url]
   /// A url for the artifact that can be followed to access the actual
   /// content.
-  final FhirUrl? url;
+  FhirUrl? url;
 
   /// [document]
   /// The document being referenced, represented as an attachment. This is
   /// exclusive with the resource element.
-  final Attachment? document;
+  Attachment? document;
 
   /// [resource]
   /// The related resource, such as a library, value set, profile, or other
   /// knowledge resource.
-  final FhirCanonical? resource;
+  FhirCanonical? resource;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

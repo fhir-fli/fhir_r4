@@ -174,7 +174,7 @@ class ProdCharacteristic extends BackboneType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -184,7 +184,7 @@ class ProdCharacteristic extends BackboneType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -202,76 +202,76 @@ class ProdCharacteristic extends BackboneType {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [height]
   /// Where applicable, the height can be specified using a numerical value
   /// and its unit of measurement The unit of measurement shall be specified
   /// in accordance with ISO 11240 and the resulting terminology The symbol
   /// and the symbol identifier shall be used.
-  final Quantity? height;
+  Quantity? height;
 
   /// [width]
   /// Where applicable, the width can be specified using a numerical value
   /// and its unit of measurement The unit of measurement shall be specified
   /// in accordance with ISO 11240 and the resulting terminology The symbol
   /// and the symbol identifier shall be used.
-  final Quantity? width;
+  Quantity? width;
 
   /// [depth]
   /// Where applicable, the depth can be specified using a numerical value
   /// and its unit of measurement The unit of measurement shall be specified
   /// in accordance with ISO 11240 and the resulting terminology The symbol
   /// and the symbol identifier shall be used.
-  final Quantity? depth;
+  Quantity? depth;
 
   /// [weight]
   /// Where applicable, the weight can be specified using a numerical value
   /// and its unit of measurement The unit of measurement shall be specified
   /// in accordance with ISO 11240 and the resulting terminology The symbol
   /// and the symbol identifier shall be used.
-  final Quantity? weight;
+  Quantity? weight;
 
   /// [nominalVolume]
   /// Where applicable, the nominal volume can be specified using a numerical
   /// value and its unit of measurement The unit of measurement shall be
   /// specified in accordance with ISO 11240 and the resulting terminology
   /// The symbol and the symbol identifier shall be used.
-  final Quantity? nominalVolume;
+  Quantity? nominalVolume;
 
   /// [externalDiameter]
   /// Where applicable, the external diameter can be specified using a
   /// numerical value and its unit of measurement The unit of measurement
   /// shall be specified in accordance with ISO 11240 and the resulting
   /// terminology The symbol and the symbol identifier shall be used.
-  final Quantity? externalDiameter;
+  Quantity? externalDiameter;
 
   /// [shape]
   /// Where applicable, the shape can be specified An appropriate controlled
   /// vocabulary shall be used The term and the term identifier shall be
   /// used.
-  final FhirString? shape;
+  FhirString? shape;
 
   /// [color]
   /// Where applicable, the color can be specified An appropriate controlled
   /// vocabulary shall be used The term and the term identifier shall be
   /// used.
-  final List<FhirString>? color;
+  List<FhirString>? color;
 
   /// [imprint]
   /// Where applicable, the imprint can be specified as text.
-  final List<FhirString>? imprint;
+  List<FhirString>? imprint;
 
   /// [image]
   /// Where applicable, the image can be provided The format of the image
   /// attachment shall be specified by regional implementations.
-  final List<Attachment>? image;
+  List<Attachment>? image;
 
   /// [scoring]
   /// Where applicable, the scoring can be specified An appropriate
   /// controlled vocabulary shall be used The term and the term identifier
   /// shall be used.
-  final CodeableConcept? scoring;
+  CodeableConcept? scoring;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -72,12 +72,12 @@ class FhirOid extends PrimitiveType<String> {
   int dbId = 0;
 
   /// Returns the FHIR type as 'oid'.
-  final String? dbValue;
+  String? dbValue;
 
   /// Element stored as a relation in ObjectBox
   @override
   // ignore: overridden_fields
-  final Element? element;
+  Element? element;
 
   /// Returns the FHIR type as 'oid'.
   @override

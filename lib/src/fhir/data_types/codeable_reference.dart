@@ -104,7 +104,7 @@ class CodeableReference extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -114,17 +114,17 @@ class CodeableReference extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [concept]
   /// A reference to a concept - e.g. the information is identified by its
   /// general class to the degree of precision found in the terminology.
-  final CodeableConcept? concept;
+  CodeableConcept? concept;
 
   /// [reference]
   /// A reference to a resource the provides exact details about the
   /// information being referenced.
-  final Reference? reference;
+  Reference? reference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -241,14 +241,14 @@ class DetectedIssue extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -256,12 +256,12 @@ class DetectedIssue extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -271,14 +271,14 @@ class DetectedIssue extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -288,7 +288,7 @@ class DetectedIssue extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -306,70 +306,70 @@ class DetectedIssue extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business identifier associated with the detected issue record.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// Indicates the status of the detected issue.
-  final ObservationStatus status;
+  ObservationStatus status;
 
   /// [code]
   /// Identifies the general type of issue identified.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [severity]
   /// Indicates the degree of importance associated with the identified issue
   /// based on the potential impact on the patient.
-  final DetectedIssueSeverity? severity;
+  DetectedIssueSeverity? severity;
 
   /// [patient]
   /// Indicates the patient whose record the detected issue is associated
   /// with.
-  final Reference? patient;
+  Reference? patient;
 
   /// [identifiedDateTime]
   /// The date or period when the detected issue was initially identified.
-  final FhirDateTime? identifiedDateTime;
+  FhirDateTime? identifiedDateTime;
 
   /// [identifiedPeriod]
   /// The date or period when the detected issue was initially identified.
-  final Period? identifiedPeriod;
+  Period? identifiedPeriod;
 
   /// [author]
   /// Individual or device responsible for the issue being raised. For
   /// example, a decision support application or a pharmacist conducting a
   /// medication review.
-  final Reference? author;
+  Reference? author;
 
   /// [implicated]
   /// Indicates the resource representing the current activity or proposed
   /// activity that is potentially problematic.
-  final List<Reference>? implicated;
+  List<Reference>? implicated;
 
   /// [evidence]
   /// Supporting evidence or manifestations that provide the basis for
   /// identifying the detected issue such as a GuidanceResponse or
   /// MeasureReport.
-  final List<DetectedIssueEvidence>? evidence;
+  List<DetectedIssueEvidence>? evidence;
 
   /// [detail]
   /// A textual explanation of the detected issue.
-  final FhirString? detail;
+  FhirString? detail;
 
   /// [reference]
   /// The literature, knowledge-base or similar reference that describes the
   /// propensity for the detected issue identified.
-  final FhirUri? reference;
+  FhirUri? reference;
 
   /// [mitigation]
   /// Indicates an action that has been taken or is committed to reduce or
   /// eliminate the likelihood of the risk identified by the detected issue
   /// from manifesting. Can also reflect an observation of known mitigating
   /// factors that may reduce/eliminate the need for any action.
-  final List<DetectedIssueMitigation>? mitigation;
+  List<DetectedIssueMitigation>? mitigation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -670,7 +670,7 @@ class DetectedIssueEvidence extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -680,7 +680,7 @@ class DetectedIssueEvidence extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -698,16 +698,16 @@ class DetectedIssueEvidence extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// A manifestation that led to the recording of this detected issue.
-  final List<CodeableConcept>? code;
+  List<CodeableConcept>? code;
 
   /// [detail]
   /// Links to resources that constitute evidence for the detected issue such
   /// as a GuidanceResponse or MeasureReport.
-  final List<Reference>? detail;
+  List<Reference>? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -883,7 +883,7 @@ class DetectedIssueMitigation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -893,7 +893,7 @@ class DetectedIssueMitigation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -911,21 +911,21 @@ class DetectedIssueMitigation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [action]
   /// Describes the action that was taken or the observation that was made
   /// that reduces/eliminates the risk associated with the identified issue.
-  final CodeableConcept action;
+  CodeableConcept action;
 
   /// [date]
   /// Indicates when the mitigating action was documented.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [author]
   /// Identifies the practitioner who determined the mitigation and takes
   /// responsibility for the mitigation step occurring.
-  final Reference? author;
+  Reference? author;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -388,14 +388,14 @@ class Citation extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -403,12 +403,12 @@ class Citation extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -418,14 +418,14 @@ class Citation extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -435,7 +435,7 @@ class Citation extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -453,7 +453,7 @@ class Citation extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this citation when it is
@@ -463,13 +463,13 @@ class Citation extends DomainResource {
   /// of this summary is (or will be) published. This URL can be the target
   /// of a canonical reference. It SHALL remain the same when the summary is
   /// stored on different servers.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [identifier]
   /// A formal identifier that is used to identify this citation when it is
   /// represented in other formats, or referenced in a specification, model,
   /// design or an instance.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [version]
   /// The identifier that is used to identify this version of the citation
@@ -478,49 +478,49 @@ class Citation extends DomainResource {
   /// expected to be globally unique. For example, it might be a timestamp
   /// (e.g. yyyymmdd) if a managed version is not available. There is also no
   /// expectation that versions can be placed in a lexicographical sequence.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the citation. This name should be
   /// usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString? name;
+  FhirString? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the citation.
-  final FhirString? title;
+  FhirString? title;
 
   /// [status]
   /// The status of this summary. Enables tracking the life-cycle of the
   /// content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this citation is authored for testing
   /// purposes (or education/evaluation/marketing) and is not intended to be
   /// used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [date]
   /// The date (and optionally time) when the citation was published. The
   /// date must change when the business version changes and it must change
   /// if the status code changes. In addition, it should change when the
   /// substantive content of the citation changes.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the citation.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the citation from a
   /// consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -528,83 +528,83 @@ class Citation extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate citation instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the citation is intended to be
   /// used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this citation is needed and why it has been designed
   /// as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [copyright]
   /// Use and/or publishing restrictions for the Citation, not for the cited
   /// artifact.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [approvalDate]
   /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for
   /// usage.
-  final FhirDate? approvalDate;
+  FhirDate? approvalDate;
 
   /// [lastReviewDate]
   /// The date on which the resource content was last reviewed. Review
   /// happens periodically after approval but does not change the original
   /// approval date.
-  final FhirDate? lastReviewDate;
+  FhirDate? lastReviewDate;
 
   /// [effectivePeriod]
   /// The period during which the citation content was or is planned to be in
   /// active use.
-  final Period? effectivePeriod;
+  Period? effectivePeriod;
 
   /// [author]
   /// Who authored the Citation.
-  final List<ContactDetail>? author;
+  List<ContactDetail>? author;
 
   /// [editor]
   /// Who edited the Citation.
-  final List<ContactDetail>? editor;
+  List<ContactDetail>? editor;
 
   /// [reviewer]
   /// Who reviewed the Citation.
-  final List<ContactDetail>? reviewer;
+  List<ContactDetail>? reviewer;
 
   /// [endorser]
   /// Who endorsed the Citation.
-  final List<ContactDetail>? endorser;
+  List<ContactDetail>? endorser;
 
   /// [summary]
   /// A human-readable display of the citation.
-  final List<CitationSummary>? summary;
+  List<CitationSummary>? summary;
 
   /// [classification]
   /// The assignment to an organizing scheme.
-  final List<CitationClassification>? classification;
+  List<CitationClassification>? classification;
 
   /// [note]
   /// Used for general notes and annotations not coded elsewhere.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [currentState]
   /// The status of the citation.
-  final List<CodeableConcept>? currentState;
+  List<CodeableConcept>? currentState;
 
   /// [statusDate]
   /// An effective date or period for a status of the citation.
-  final List<CitationStatusDate>? statusDate;
+  List<CitationStatusDate>? statusDate;
 
   /// [relatesTo]
   /// Artifact related to the Citation Resource.
-  final List<CitationRelatesTo>? relatesTo;
+  List<CitationRelatesTo>? relatesTo;
 
   /// [citedArtifact]
   /// The article or artifact being described.
-  final CitationCitedArtifact? citedArtifact;
+  CitationCitedArtifact? citedArtifact;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1022,7 +1022,7 @@ class CitationSummary extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1032,7 +1032,7 @@ class CitationSummary extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1050,15 +1050,15 @@ class CitationSummary extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [style]
   /// Format for display of the citation.
-  final CodeableConcept? style;
+  CodeableConcept? style;
 
   /// [text]
   /// The human-readable display of the citation.
-  final FhirMarkdown text;
+  FhirMarkdown text;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1232,7 +1232,7 @@ class CitationClassification extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1242,7 +1242,7 @@ class CitationClassification extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1260,15 +1260,15 @@ class CitationClassification extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The kind of classifier (e.g. publication type, keyword).
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [classifier]
   /// The specific classification value.
-  final List<CodeableConcept>? classifier;
+  List<CodeableConcept>? classifier;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1439,7 +1439,7 @@ class CitationStatusDate extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1449,7 +1449,7 @@ class CitationStatusDate extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1467,19 +1467,19 @@ class CitationStatusDate extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [activity]
   /// Classification of the status.
-  final CodeableConcept activity;
+  CodeableConcept activity;
 
   /// [actual]
   /// Either occurred or expected.
-  final FhirBoolean? actual;
+  FhirBoolean? actual;
 
   /// [period]
   /// When the status started and/or ended.
-  final Period period;
+  Period period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1680,7 +1680,7 @@ class CitationRelatesTo extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1690,7 +1690,7 @@ class CitationRelatesTo extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1708,31 +1708,31 @@ class CitationRelatesTo extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [relationshipType]
   /// How the Citation resource relates to the target artifact.
-  final CodeableConcept relationshipType;
+  CodeableConcept relationshipType;
 
   /// [targetClassifier]
   /// The clasification of the related artifact.
-  final List<CodeableConcept>? targetClassifier;
+  List<CodeableConcept>? targetClassifier;
 
   /// [targetUri]
   /// The article or artifact that the Citation Resource is related to.
-  final FhirUri? targetUri;
+  FhirUri? targetUri;
 
   /// [targetIdentifier]
   /// The article or artifact that the Citation Resource is related to.
-  final Identifier? targetIdentifier;
+  Identifier? targetIdentifier;
 
   /// [targetReference]
   /// The article or artifact that the Citation Resource is related to.
-  final Reference? targetReference;
+  Reference? targetReference;
 
   /// [targetAttachment]
   /// The article or artifact that the Citation Resource is related to.
-  final Attachment? targetAttachment;
+  Attachment? targetAttachment;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2051,7 +2051,7 @@ class CitationCitedArtifact extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2061,7 +2061,7 @@ class CitationCitedArtifact extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2079,72 +2079,72 @@ class CitationCitedArtifact extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A formal identifier that is used to identify this citation when it is
   /// represented in other formats, or referenced in a specification, model,
   /// design or an instance.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [relatedIdentifier]
   /// A formal identifier that is used to identify things closely related to
   /// this citation.
-  final List<Identifier>? relatedIdentifier;
+  List<Identifier>? relatedIdentifier;
 
   /// [dateAccessed]
   /// When the cited artifact was accessed.
-  final FhirDateTime? dateAccessed;
+  FhirDateTime? dateAccessed;
 
   /// [version]
   /// The defined version of the cited artifact.
-  final CitationVersion? version;
+  CitationVersion? version;
 
   /// [currentState]
   /// The status of the cited artifact.
-  final List<CodeableConcept>? currentState;
+  List<CodeableConcept>? currentState;
 
   /// [statusDate]
   /// An effective date or period for a status of the cited artifact.
-  final List<CitationStatusDate>? statusDate;
+  List<CitationStatusDate>? statusDate;
 
   /// [title]
   /// The title details of the article or artifact.
-  final List<CitationTitle>? title;
+  List<CitationTitle>? title;
 
   /// [abstract_]
   /// Summary of the article or artifact.
-  final List<CitationAbstract>? abstract_;
+  List<CitationAbstract>? abstract_;
 
   /// [part_]
   /// The component of the article or artifact.
-  final CitationPart? part_;
+  CitationPart? part_;
 
   /// [relatesTo]
   /// The artifact related to the cited artifact.
-  final List<CitationRelatesTo>? relatesTo;
+  List<CitationRelatesTo>? relatesTo;
 
   /// [publicationForm]
   /// If multiple, used to represent alternative forms of the article that
   /// are not separate citations.
-  final List<CitationPublicationForm>? publicationForm;
+  List<CitationPublicationForm>? publicationForm;
 
   /// [webLocation]
   /// Used for any URL for the article or artifact cited.
-  final List<CitationWebLocation>? webLocation;
+  List<CitationWebLocation>? webLocation;
 
   /// [classification]
   /// The assignment to an organizing scheme.
-  final List<CitationClassification>? classification;
+  List<CitationClassification>? classification;
 
   /// [contributorship]
   /// This element is used to list authors and other contributors, their
   /// contact information, specific contributions, and summary statements.
-  final CitationContributorship? contributorship;
+  CitationContributorship? contributorship;
 
   /// [note]
   /// Any additional information or content for the article or artifact.
-  final List<Annotation>? note;
+  List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2395,7 +2395,7 @@ class CitationVersion extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2405,7 +2405,7 @@ class CitationVersion extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2423,15 +2423,15 @@ class CitationVersion extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [value]
   /// The version number or other version identifier.
-  final FhirString value;
+  FhirString value;
 
   /// [baseCitation]
   /// Citation for the main version of the cited artifact.
-  final Reference? baseCitation;
+  Reference? baseCitation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2604,7 +2604,7 @@ class CitationStatusDate1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2614,7 +2614,7 @@ class CitationStatusDate1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2632,19 +2632,19 @@ class CitationStatusDate1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [activity]
   /// Classification of the status.
-  final CodeableConcept activity;
+  CodeableConcept activity;
 
   /// [actual]
   /// Either occurred or expected.
-  final FhirBoolean? actual;
+  FhirBoolean? actual;
 
   /// [period]
   /// When the status started and/or ended.
-  final Period period;
+  Period period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2827,7 +2827,7 @@ class CitationTitle extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2837,7 +2837,7 @@ class CitationTitle extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2855,19 +2855,19 @@ class CitationTitle extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Used to express the reason or specific aspect for the title.
-  final List<CodeableConcept>? type;
+  List<CodeableConcept>? type;
 
   /// [language]
   /// Used to express the specific language.
-  final CodeableConcept? language;
+  CodeableConcept? language;
 
   /// [text]
   /// The title of the article or artifact.
-  final FhirMarkdown text;
+  FhirMarkdown text;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3055,7 +3055,7 @@ class CitationAbstract extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3065,7 +3065,7 @@ class CitationAbstract extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3083,23 +3083,23 @@ class CitationAbstract extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Used to express the reason or specific aspect for the abstract.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [language]
   /// Used to express the specific language.
-  final CodeableConcept? language;
+  CodeableConcept? language;
 
   /// [text]
   /// Abstract content.
-  final FhirMarkdown text;
+  FhirMarkdown text;
 
   /// [copyright]
   /// Copyright notice for the abstract.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3292,7 +3292,7 @@ class CitationPart extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3302,7 +3302,7 @@ class CitationPart extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3320,19 +3320,19 @@ class CitationPart extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The kind of component.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [value]
   /// The specification of the component.
-  final FhirString? value;
+  FhirString? value;
 
   /// [baseCitation]
   /// The citation for the full article or artifact.
-  final Reference? baseCitation;
+  Reference? baseCitation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3537,7 +3537,7 @@ class CitationRelatesTo1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3547,7 +3547,7 @@ class CitationRelatesTo1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3565,31 +3565,31 @@ class CitationRelatesTo1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [relationshipType]
   /// How the cited artifact relates to the target artifact.
-  final CodeableConcept relationshipType;
+  CodeableConcept relationshipType;
 
   /// [targetClassifier]
   /// The clasification of the related artifact.
-  final List<CodeableConcept>? targetClassifier;
+  List<CodeableConcept>? targetClassifier;
 
   /// [targetUri]
   /// The article or artifact that the cited artifact is related to.
-  final FhirUri? targetUri;
+  FhirUri? targetUri;
 
   /// [targetIdentifier]
   /// The article or artifact that the cited artifact is related to.
-  final Identifier? targetIdentifier;
+  Identifier? targetIdentifier;
 
   /// [targetReference]
   /// The article or artifact that the cited artifact is related to.
-  final Reference? targetReference;
+  Reference? targetReference;
 
   /// [targetAttachment]
   /// The article or artifact that the cited artifact is related to.
-  final Attachment? targetAttachment;
+  Attachment? targetAttachment;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3853,7 +3853,7 @@ class CitationPublicationForm extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3863,7 +3863,7 @@ class CitationPublicationForm extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3881,53 +3881,53 @@ class CitationPublicationForm extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [publishedIn]
   /// The collection the cited article or artifact is published in.
-  final CitationPublishedIn? publishedIn;
+  CitationPublishedIn? publishedIn;
 
   /// [periodicRelease]
   /// The specific issue in which the cited article resides.
-  final CitationPeriodicRelease? periodicRelease;
+  CitationPeriodicRelease? periodicRelease;
 
   /// [articleDate]
   /// The date the article was added to the database, or the date the article
   /// was released (which may differ from the journal issue publication
   /// date).
-  final FhirDateTime? articleDate;
+  FhirDateTime? articleDate;
 
   /// [lastRevisionDate]
   /// The date the article was last revised or updated in the database.
-  final FhirDateTime? lastRevisionDate;
+  FhirDateTime? lastRevisionDate;
 
   /// [language]
   /// Language in which this form of the article is published.
-  final List<CodeableConcept>? language;
+  List<CodeableConcept>? language;
 
   /// [accessionNumber]
   /// Entry number or identifier for inclusion in a database.
-  final FhirString? accessionNumber;
+  FhirString? accessionNumber;
 
   /// [pageString]
   /// Used for full display of pagination.
-  final FhirString? pageString;
+  FhirString? pageString;
 
   /// [firstPage]
   /// Used for isolated representation of first page.
-  final FhirString? firstPage;
+  FhirString? firstPage;
 
   /// [lastPage]
   /// Used for isolated representation of last page.
-  final FhirString? lastPage;
+  FhirString? lastPage;
 
   /// [pageCount]
   /// Actual or approximate number of pages or screens.
-  final FhirString? pageCount;
+  FhirString? pageCount;
 
   /// [copyright]
   /// Copyright notice for the full article or artifact.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4206,7 +4206,7 @@ class CitationPublishedIn extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -4216,7 +4216,7 @@ class CitationPublishedIn extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -4234,28 +4234,28 @@ class CitationPublishedIn extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Kind of container (e.g. Periodical, database, or book).
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [identifier]
   /// Journal identifiers include ISSN, ISO Abbreviation and NLMuniqueID;
   /// Book identifiers include ISBN.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [title]
   /// Name of the database or title of the book or journal.
-  final FhirString? title;
+  FhirString? title;
 
   /// [publisher]
   /// Name of the publisher.
-  final Reference? publisher;
+  Reference? publisher;
 
   /// [publisherLocation]
   /// Geographic location of the publisher.
-  final FhirString? publisherLocation;
+  FhirString? publisherLocation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4463,7 +4463,7 @@ class CitationPeriodicRelease extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -4473,7 +4473,7 @@ class CitationPeriodicRelease extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -4491,24 +4491,24 @@ class CitationPeriodicRelease extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [citedMedium]
   /// Describes the form of the medium cited. Common codes are "Internet" or
   /// "Print".
-  final CodeableConcept? citedMedium;
+  CodeableConcept? citedMedium;
 
   /// [volume]
   /// Volume number of journal in which the article is published.
-  final FhirString? volume;
+  FhirString? volume;
 
   /// [issue]
   /// Issue, part or supplement of journal in which the article is published.
-  final FhirString? issue;
+  FhirString? issue;
 
   /// [dateOfPublication]
   /// Defining the date on which the issue of the journal was published.
-  final CitationDateOfPublication? dateOfPublication;
+  CitationDateOfPublication? dateOfPublication;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4726,7 +4726,7 @@ class CitationDateOfPublication extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -4736,7 +4736,7 @@ class CitationDateOfPublication extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -4754,32 +4754,32 @@ class CitationDateOfPublication extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [date]
   /// Date on which the issue of the journal was published.
-  final FhirDate? date;
+  FhirDate? date;
 
   /// [year]
   /// Year on which the issue of the journal was published.
-  final FhirString? year;
+  FhirString? year;
 
   /// [month]
   /// Month on which the issue of the journal was published.
-  final FhirString? month;
+  FhirString? month;
 
   /// [day]
   /// Day on which the issue of the journal was published.
-  final FhirString? day;
+  FhirString? day;
 
   /// [season]
   /// Spring, Summer, Fall/Autumn, Winter.
-  final FhirString? season;
+  FhirString? season;
 
   /// [text]
   /// Text representation of the date of which the issue of the journal was
   /// published.
-  final FhirString? text;
+  FhirString? text;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4996,7 +4996,7 @@ class CitationWebLocation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -5006,7 +5006,7 @@ class CitationWebLocation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -5024,15 +5024,15 @@ class CitationWebLocation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Code the reason for different URLs, e.g. abstract and full-text.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [url]
   /// The specific URL.
-  final FhirUri? url;
+  FhirUri? url;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5214,7 +5214,7 @@ class CitationClassification1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -5224,7 +5224,7 @@ class CitationClassification1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -5242,19 +5242,19 @@ class CitationClassification1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The kind of classifier (e.g. publication type, keyword).
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [classifier]
   /// The specific classification value.
-  final List<CodeableConcept>? classifier;
+  List<CodeableConcept>? classifier;
 
   /// [whoClassified]
   /// Provenance and copyright of classification.
-  final CitationWhoClassified? whoClassified;
+  CitationWhoClassified? whoClassified;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5449,7 +5449,7 @@ class CitationWhoClassified extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -5459,7 +5459,7 @@ class CitationWhoClassified extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -5477,28 +5477,28 @@ class CitationWhoClassified extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [person]
   /// Person who created the classification.
-  final Reference? person;
+  Reference? person;
 
   /// [organization]
   /// Organization who created the classification.
-  final Reference? organization;
+  Reference? organization;
 
   /// [publisher]
   /// The publisher of the classification, not the publisher of the article
   /// or artifact being cited.
-  final Reference? publisher;
+  Reference? publisher;
 
   /// [classifierCopyright]
   /// Rights management statement for the classification.
-  final FhirString? classifierCopyright;
+  FhirString? classifierCopyright;
 
   /// [freeToShare]
   /// Acceptable to re-use the classification.
-  final FhirBoolean? freeToShare;
+  FhirBoolean? freeToShare;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5708,7 +5708,7 @@ class CitationContributorship extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -5718,7 +5718,7 @@ class CitationContributorship extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -5736,20 +5736,20 @@ class CitationContributorship extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [complete]
   /// Indicates if the list includes all authors and/or contributors.
-  final FhirBoolean? complete;
+  FhirBoolean? complete;
 
   /// [entry]
   /// An individual entity named in the author list or contributor list.
-  final List<CitationEntry>? entry;
+  List<CitationEntry>? entry;
 
   /// [summary]
   /// Used to record a display of the author/contributor list without
   /// separate coding for each list member.
-  final List<CitationSummary>? summary;
+  List<CitationSummary>? summary;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6017,7 +6017,7 @@ class CitationEntry extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -6027,7 +6027,7 @@ class CitationEntry extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -6045,57 +6045,57 @@ class CitationEntry extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// A name associated with the individual.
-  final HumanName? name;
+  HumanName? name;
 
   /// [initials]
   /// Initials for forename.
-  final FhirString? initials;
+  FhirString? initials;
 
   /// [collectiveName]
   /// Used for collective or corporate name as an author.
-  final FhirString? collectiveName;
+  FhirString? collectiveName;
 
   /// [identifier]
   /// Unique person identifier.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [affiliationInfo]
   /// Organization affiliated with the entity.
-  final List<CitationAffiliationInfo>? affiliationInfo;
+  List<CitationAffiliationInfo>? affiliationInfo;
 
   /// [address]
   /// Physical mailing address for the author or contributor.
-  final List<Address>? address;
+  List<Address>? address;
 
   /// [telecom]
   /// Email or telephone contact methods for the author or contributor.
-  final List<ContactPoint>? telecom;
+  List<ContactPoint>? telecom;
 
   /// [contributionType]
   /// This element identifies the specific nature of an individual’s
   /// contribution with respect to the cited work.
-  final List<CodeableConcept>? contributionType;
+  List<CodeableConcept>? contributionType;
 
   /// [role]
   /// The role of the contributor (e.g. author, editor, reviewer).
-  final CodeableConcept? role;
+  CodeableConcept? role;
 
   /// [contributionInstance]
   /// Contributions with accounting for time or number.
-  final List<CitationContributionInstance>? contributionInstance;
+  List<CitationContributionInstance>? contributionInstance;
 
   /// [correspondingContact]
   /// Indication of which contributor is the corresponding contributor for
   /// the role.
-  final FhirBoolean? correspondingContact;
+  FhirBoolean? correspondingContact;
 
   /// [listOrder]
   /// Used to code order of authors.
-  final FhirPositiveInt? listOrder;
+  FhirPositiveInt? listOrder;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6354,7 +6354,7 @@ class CitationAffiliationInfo extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -6364,7 +6364,7 @@ class CitationAffiliationInfo extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -6382,19 +6382,19 @@ class CitationAffiliationInfo extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [affiliation]
   /// Display for the organization.
-  final FhirString? affiliation;
+  FhirString? affiliation;
 
   /// [role]
   /// Role within the organization, such as professional title.
-  final FhirString? role;
+  FhirString? role;
 
   /// [identifier]
   /// Identifier for the organization.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6575,7 +6575,7 @@ class CitationContributionInstance extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -6585,7 +6585,7 @@ class CitationContributionInstance extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -6603,15 +6603,15 @@ class CitationContributionInstance extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The specific contribution.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [time]
   /// The time that the contribution was made.
-  final FhirDateTime? time;
+  FhirDateTime? time;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6793,7 +6793,7 @@ class CitationSummary1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -6803,7 +6803,7 @@ class CitationSummary1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -6821,25 +6821,25 @@ class CitationSummary1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Used most commonly to express an author list or a contributorship
   /// statement.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [style]
   /// The format for the display string.
-  final CodeableConcept? style;
+  CodeableConcept? style;
 
   /// [source]
   /// Used to code the producer or rule for creating the display string.
-  final CodeableConcept? source;
+  CodeableConcept? source;
 
   /// [value]
   /// The display string for the author list, contributor list, or
   /// contributorship statement.
-  final FhirMarkdown value;
+  FhirMarkdown value;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -436,14 +436,14 @@ class ExplanationOfBenefit extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -451,12 +451,12 @@ class ExplanationOfBenefit extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -466,14 +466,14 @@ class ExplanationOfBenefit extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -483,7 +483,7 @@ class ExplanationOfBenefit extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -501,25 +501,25 @@ class ExplanationOfBenefit extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A unique identifier assigned to this explanation of benefit.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// The status of the resource instance.
-  final ExplanationOfBenefitStatus status;
+  ExplanationOfBenefitStatus status;
 
   /// [type]
   /// The category of claim, e.g. oral, pharmacy, vision, institutional,
   /// professional.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [subType]
   /// A finer grained suite of claim type codes which may convey additional
   /// information such as Inpatient vs Outpatient and/or a specialty service.
-  final CodeableConcept? subType;
+  CodeableConcept? subType;
 
   /// [use]
   /// A code to indicate whether the nature of the request is: to request
@@ -527,180 +527,180 @@ class ExplanationOfBenefit extends DomainResource {
   /// requesting authorization and adjudication for provision in the future;
   /// or requesting the non-binding adjudication of the listed products and
   /// services which could be provided in the future.
-  final Use use;
+  Use use;
 
   /// [patient]
   /// The party to whom the professional services and/or products have been
   /// supplied or are being considered and for whom actual for forecast
   /// reimbursement is sought.
-  final Reference patient;
+  Reference patient;
 
   /// [billablePeriod]
   /// The period for which charges are being submitted.
-  final Period? billablePeriod;
+  Period? billablePeriod;
 
   /// [created]
   /// The date this resource was created.
-  final FhirDateTime created;
+  FhirDateTime created;
 
   /// [enterer]
   /// Individual who created the claim, predetermination or preauthorization.
-  final Reference? enterer;
+  Reference? enterer;
 
   /// [insurer]
   /// The party responsible for authorization, adjudication and
   /// reimbursement.
-  final Reference insurer;
+  Reference insurer;
 
   /// [provider]
   /// The provider which is responsible for the claim, predetermination or
   /// preauthorization.
-  final Reference provider;
+  Reference provider;
 
   /// [priority]
   /// The provider-required urgency of processing the request. Typical values
   /// include: stat, routine deferred.
-  final CodeableConcept? priority;
+  CodeableConcept? priority;
 
   /// [fundsReserveRequested]
   /// A code to indicate whether and for whom funds are to be reserved for
   /// future claims.
-  final CodeableConcept? fundsReserveRequested;
+  CodeableConcept? fundsReserveRequested;
 
   /// [fundsReserve]
   /// A code, used only on a response to a preauthorization, to indicate
   /// whether the benefits payable have been reserved and for whom.
-  final CodeableConcept? fundsReserve;
+  CodeableConcept? fundsReserve;
 
   /// [related]
   /// Other claims which are related to this claim such as prior submissions
   /// or claims for related services or for the same event.
-  final List<ExplanationOfBenefitRelated>? related;
+  List<ExplanationOfBenefitRelated>? related;
 
   /// [prescription]
   /// Prescription to support the dispensing of pharmacy, device or vision
   /// products.
-  final Reference? prescription;
+  Reference? prescription;
 
   /// [originalPrescription]
   /// Original prescription which has been superseded by this prescription to
   /// support the dispensing of pharmacy services, medications or products.
-  final Reference? originalPrescription;
+  Reference? originalPrescription;
 
   /// [payee]
   /// The party to be reimbursed for cost of the products and services
   /// according to the terms of the policy.
-  final ExplanationOfBenefitPayee? payee;
+  ExplanationOfBenefitPayee? payee;
 
   /// [referral]
   /// A reference to a referral resource.
-  final Reference? referral;
+  Reference? referral;
 
   /// [facility]
   /// Facility where the services were provided.
-  final Reference? facility;
+  Reference? facility;
 
   /// [claim]
   /// The business identifier for the instance of the adjudication request:
   /// claim predetermination or preauthorization.
-  final Reference? claim;
+  Reference? claim;
 
   /// [claimResponse]
   /// The business identifier for the instance of the adjudication response:
   /// claim, predetermination or preauthorization response.
-  final Reference? claimResponse;
+  Reference? claimResponse;
 
   /// [outcome]
   /// The outcome of the claim, predetermination, or preauthorization
   /// processing.
-  final RemittanceOutcome outcome;
+  RemittanceOutcome outcome;
 
   /// [disposition]
   /// A human readable description of the status of the adjudication.
-  final FhirString? disposition;
+  FhirString? disposition;
 
   /// [preAuthRef]
   /// Reference from the Insurer which is used in later communications which
   /// refers to this adjudication.
-  final List<FhirString>? preAuthRef;
+  List<FhirString>? preAuthRef;
 
   /// [preAuthRefPeriod]
   /// The timeframe during which the supplied preauthorization reference may
   /// be quoted on claims to obtain the adjudication as provided.
-  final List<Period>? preAuthRefPeriod;
+  List<Period>? preAuthRefPeriod;
 
   /// [careTeam]
   /// The members of the team who provided the products and services.
-  final List<ExplanationOfBenefitCareTeam>? careTeam;
+  List<ExplanationOfBenefitCareTeam>? careTeam;
 
   /// [supportingInfo]
   /// Additional information codes regarding exceptions, special
   /// considerations, the condition, situation, prior or concurrent issues.
-  final List<ExplanationOfBenefitSupportingInfo>? supportingInfo;
+  List<ExplanationOfBenefitSupportingInfo>? supportingInfo;
 
   /// [diagnosis]
   /// Information about diagnoses relevant to the claim items.
-  final List<ExplanationOfBenefitDiagnosis>? diagnosis;
+  List<ExplanationOfBenefitDiagnosis>? diagnosis;
 
   /// [procedure]
   /// Procedures performed on the patient relevant to the billing items with
   /// the claim.
-  final List<ExplanationOfBenefitProcedure>? procedure;
+  List<ExplanationOfBenefitProcedure>? procedure;
 
   /// [precedence]
   /// This indicates the relative order of a series of EOBs related to
   /// different coverages for the same suite of services.
-  final FhirPositiveInt? precedence;
+  FhirPositiveInt? precedence;
 
   /// [insurance]
   /// Financial instruments for reimbursement for the health care products
   /// and services specified on the claim.
-  final List<ExplanationOfBenefitInsurance> insurance;
+  List<ExplanationOfBenefitInsurance> insurance;
 
   /// [accident]
   /// Details of a accident which resulted in injuries which required the
   /// products and services listed in the claim.
-  final ExplanationOfBenefitAccident? accident;
+  ExplanationOfBenefitAccident? accident;
 
   /// [item]
   /// A claim line. Either a simple (a product or service) or a 'group' of
   /// details which can also be a simple items or groups of sub-details.
-  final List<ExplanationOfBenefitItem>? item;
+  List<ExplanationOfBenefitItem>? item;
 
   /// [addItem]
   /// The first-tier service adjudications for payor added product or service
   /// lines.
-  final List<ExplanationOfBenefitAddItem>? addItem;
+  List<ExplanationOfBenefitAddItem>? addItem;
 
   /// [total]
   /// Categorized monetary totals for the adjudication.
-  final List<ExplanationOfBenefitTotal>? total;
+  List<ExplanationOfBenefitTotal>? total;
 
   /// [payment]
   /// Payment details for the adjudication of the claim.
-  final ExplanationOfBenefitPayment? payment;
+  ExplanationOfBenefitPayment? payment;
 
   /// [formCode]
   /// A code for the form to be used for printing the content.
-  final CodeableConcept? formCode;
+  CodeableConcept? formCode;
 
   /// [form]
   /// The actual form, by reference or inclusion, for printing the content or
   /// an EOB.
-  final Attachment? form;
+  Attachment? form;
 
   /// [processNote]
   /// A note that describes or explains adjudication results in a human
   /// readable form.
-  final List<ExplanationOfBenefitProcessNote>? processNote;
+  List<ExplanationOfBenefitProcessNote>? processNote;
 
   /// [benefitPeriod]
   /// The term of the benefits documented in this response.
-  final Period? benefitPeriod;
+  Period? benefitPeriod;
 
   /// [benefitBalance]
   /// Balance by Benefit Category.
-  final List<ExplanationOfBenefitBenefitBalance>? benefitBalance;
+  List<ExplanationOfBenefitBenefitBalance>? benefitBalance;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1166,7 +1166,7 @@ class ExplanationOfBenefitRelated extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1176,7 +1176,7 @@ class ExplanationOfBenefitRelated extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1194,20 +1194,20 @@ class ExplanationOfBenefitRelated extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [claim]
   /// Reference to a related claim.
-  final Reference? claim;
+  Reference? claim;
 
   /// [relationship]
   /// A code to convey how the claims are related.
-  final CodeableConcept? relationship;
+  CodeableConcept? relationship;
 
   /// [reference]
   /// An alternate organizational reference to the case or file to which this
   /// particular claim pertains.
-  final Identifier? reference;
+  Identifier? reference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1382,7 +1382,7 @@ class ExplanationOfBenefitPayee extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1392,7 +1392,7 @@ class ExplanationOfBenefitPayee extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1410,16 +1410,16 @@ class ExplanationOfBenefitPayee extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Type of Party to be reimbursed: Subscriber, provider, other.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [party]
   /// Reference to the individual or organization to whom any payment will be
   /// made.
-  final Reference? party;
+  Reference? party;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1603,7 +1603,7 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1613,7 +1613,7 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1631,30 +1631,30 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [sequence]
   /// A number to uniquely identify care team entries.
-  final FhirPositiveInt sequence;
+  FhirPositiveInt sequence;
 
   /// [provider]
   /// Member of the team who provided the product or service.
-  final Reference provider;
+  Reference provider;
 
   /// [responsible]
   /// The party who is billing and/or responsible for the claimed products or
   /// services.
-  final FhirBoolean? responsible;
+  FhirBoolean? responsible;
 
   /// [role]
   /// The lead, assisting or supervising practitioner and their discipline if
   /// a multidisciplinary team.
-  final CodeableConcept? role;
+  CodeableConcept? role;
 
   /// [qualification]
   /// The qualification of the practitioner which is applicable for this
   /// service.
-  final CodeableConcept? qualification;
+  CodeableConcept? qualification;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1900,7 +1900,7 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1910,7 +1910,7 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1928,65 +1928,65 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [sequence]
   /// A number to uniquely identify supporting information entries.
-  final FhirPositiveInt sequence;
+  FhirPositiveInt sequence;
 
   /// [category]
   /// The general class of the information supplied: information; exception;
   /// accident, employment; onset, etc.
-  final CodeableConcept category;
+  CodeableConcept category;
 
   /// [code]
   /// System and code pertaining to the specific information regarding
   /// special conditions relating to the setting, treatment or patient for
   /// which care is sought.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [timingDate]
   /// The date when or period to which this information refers.
-  final FhirDate? timingDate;
+  FhirDate? timingDate;
 
   /// [timingPeriod]
   /// The date when or period to which this information refers.
-  final Period? timingPeriod;
+  Period? timingPeriod;
 
   /// [valueBoolean]
   /// Additional data or information such as resources, documents, images
   /// etc. including references to the data or the actual inclusion of the
   /// data.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueString]
   /// Additional data or information such as resources, documents, images
   /// etc. including references to the data or the actual inclusion of the
   /// data.
-  final FhirString? valueString;
+  FhirString? valueString;
 
   /// [valueQuantity]
   /// Additional data or information such as resources, documents, images
   /// etc. including references to the data or the actual inclusion of the
   /// data.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueAttachment]
   /// Additional data or information such as resources, documents, images
   /// etc. including references to the data or the actual inclusion of the
   /// data.
-  final Attachment? valueAttachment;
+  Attachment? valueAttachment;
 
   /// [valueReference]
   /// Additional data or information such as resources, documents, images
   /// etc. including references to the data or the actual inclusion of the
   /// data.
-  final Reference? valueReference;
+  Reference? valueReference;
 
   /// [reason]
   /// Provides the reason in the situation where a reason code is required in
   /// addition to the content.
-  final Coding? reason;
+  Coding? reason;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2247,7 +2247,7 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2257,7 +2257,7 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2275,36 +2275,36 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [sequence]
   /// A number to uniquely identify diagnosis entries.
-  final FhirPositiveInt sequence;
+  FhirPositiveInt sequence;
 
   /// [diagnosisCodeableConcept]
   /// The nature of illness or problem in a coded form or as a reference to
   /// an external defined Condition.
-  final CodeableConcept? diagnosisCodeableConcept;
+  CodeableConcept? diagnosisCodeableConcept;
 
   /// [diagnosisReference]
   /// The nature of illness or problem in a coded form or as a reference to
   /// an external defined Condition.
-  final Reference? diagnosisReference;
+  Reference? diagnosisReference;
 
   /// [type]
   /// When the condition was observed or the relative ranking.
-  final List<CodeableConcept>? type;
+  List<CodeableConcept>? type;
 
   /// [onAdmission]
   /// Indication of whether the diagnosis was present on admission to a
   /// facility.
-  final CodeableConcept? onAdmission;
+  CodeableConcept? onAdmission;
 
   /// [packageCode]
   /// A package billing code or bundle code used to group products and
   /// services to a particular health condition (such as heart attack) which
   /// is based on a predetermined grouping code system.
-  final CodeableConcept? packageCode;
+  CodeableConcept? packageCode;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2532,7 +2532,7 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2542,7 +2542,7 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2560,33 +2560,33 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [sequence]
   /// A number to uniquely identify procedure entries.
-  final FhirPositiveInt sequence;
+  FhirPositiveInt sequence;
 
   /// [type]
   /// When the condition was observed or the relative ranking.
-  final List<CodeableConcept>? type;
+  List<CodeableConcept>? type;
 
   /// [date]
   /// Date and optionally time the procedure was performed.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [procedureCodeableConcept]
   /// The code or reference to a Procedure resource which identifies the
   /// clinical intervention performed.
-  final CodeableConcept? procedureCodeableConcept;
+  CodeableConcept? procedureCodeableConcept;
 
   /// [procedureReference]
   /// The code or reference to a Procedure resource which identifies the
   /// clinical intervention performed.
-  final Reference? procedureReference;
+  Reference? procedureReference;
 
   /// [udi]
   /// Unique Device Identifiers associated with this line item.
-  final List<Reference>? udi;
+  List<Reference>? udi;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2789,7 +2789,7 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2799,7 +2799,7 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2817,25 +2817,25 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [focal]
   /// A flag to indicate that this Coverage is to be used for adjudication of
   /// this claim when set to true.
-  final FhirBoolean focal;
+  FhirBoolean focal;
 
   /// [coverage]
   /// Reference to the insurance card level information contained in the
   /// Coverage resource. The coverage issuing insurer will use these details
   /// to locate the patient's actual coverage within the insurer's
   /// information system.
-  final Reference coverage;
+  Reference coverage;
 
   /// [preAuthRef]
   /// Reference numbers previously provided by the insurer to the provider to
   /// be quoted on subsequent claims containing services or products related
   /// to the prior authorization.
-  final List<FhirString>? preAuthRef;
+  List<FhirString>? preAuthRef;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3027,7 +3027,7 @@ class ExplanationOfBenefitAccident extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3037,7 +3037,7 @@ class ExplanationOfBenefitAccident extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3055,26 +3055,26 @@ class ExplanationOfBenefitAccident extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [date]
   /// Date of an accident event related to the products and services
   /// contained in the claim.
-  final FhirDate? date;
+  FhirDate? date;
 
   /// [type]
   /// The type or context of the accident event for the purposes of selection
   /// of potential insurance coverages and determination of coordination
   /// between insurers.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [locationAddress]
   /// The physical location of the accident event.
-  final Address? locationAddress;
+  Address? locationAddress;
 
   /// [locationReference]
   /// The physical location of the accident event.
-  final Reference? locationReference;
+  Reference? locationReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3431,7 +3431,7 @@ class ExplanationOfBenefitItem extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3441,7 +3441,7 @@ class ExplanationOfBenefitItem extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3459,130 +3459,130 @@ class ExplanationOfBenefitItem extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [sequence]
   /// A number to uniquely identify item entries.
-  final FhirPositiveInt sequence;
+  FhirPositiveInt sequence;
 
   /// [careTeamSequence]
   /// Care team members related to this service or product.
-  final List<FhirPositiveInt>? careTeamSequence;
+  List<FhirPositiveInt>? careTeamSequence;
 
   /// [diagnosisSequence]
   /// Diagnoses applicable for this service or product.
-  final List<FhirPositiveInt>? diagnosisSequence;
+  List<FhirPositiveInt>? diagnosisSequence;
 
   /// [procedureSequence]
   /// Procedures applicable for this service or product.
-  final List<FhirPositiveInt>? procedureSequence;
+  List<FhirPositiveInt>? procedureSequence;
 
   /// [informationSequence]
   /// Exceptions, special conditions and supporting information applicable
   /// for this service or product.
-  final List<FhirPositiveInt>? informationSequence;
+  List<FhirPositiveInt>? informationSequence;
 
   /// [revenue]
   /// The type of revenue or cost center providing the product and/or
   /// service.
-  final CodeableConcept? revenue;
+  CodeableConcept? revenue;
 
   /// [category]
   /// Code to identify the general type of benefits under which products and
   /// services are provided.
-  final CodeableConcept? category;
+  CodeableConcept? category;
 
   /// [productOrService]
   /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or
   /// other billing code for the item.
-  final CodeableConcept productOrService;
+  CodeableConcept productOrService;
 
   /// [modifier]
   /// Item typification or modifiers codes to convey additional context for
   /// the product or service.
-  final List<CodeableConcept>? modifier;
+  List<CodeableConcept>? modifier;
 
   /// [programCode]
   /// Identifies the program under which this may be recovered.
-  final List<CodeableConcept>? programCode;
+  List<CodeableConcept>? programCode;
 
   /// [servicedDate]
   /// The date or dates when the service or product was supplied, performed
   /// or completed.
-  final FhirDate? servicedDate;
+  FhirDate? servicedDate;
 
   /// [servicedPeriod]
   /// The date or dates when the service or product was supplied, performed
   /// or completed.
-  final Period? servicedPeriod;
+  Period? servicedPeriod;
 
   /// [locationCodeableConcept]
   /// Where the product or service was provided.
-  final CodeableConcept? locationCodeableConcept;
+  CodeableConcept? locationCodeableConcept;
 
   /// [locationAddress]
   /// Where the product or service was provided.
-  final Address? locationAddress;
+  Address? locationAddress;
 
   /// [locationReference]
   /// Where the product or service was provided.
-  final Reference? locationReference;
+  Reference? locationReference;
 
   /// [quantity]
   /// The number of repetitions of a service or product.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [unitPrice]
   /// If the item is not a group then this is the fee for the product or
   /// service, otherwise this is the total of the fees for the details of the
   /// group.
-  final Money? unitPrice;
+  Money? unitPrice;
 
   /// [factor]
   /// A real number that represents a multiplier used in determining the
   /// overall value of services delivered and/or goods received. The concept
   /// of a Factor allows for a discount or surcharge multiplier to be applied
   /// to a monetary amount.
-  final FhirDecimal? factor;
+  FhirDecimal? factor;
 
   /// [net]
   /// The quantity times the unit price for an additional service or product
   /// or charge.
-  final Money? net;
+  Money? net;
 
   /// [udi]
   /// Unique Device Identifiers associated with this line item.
-  final List<Reference>? udi;
+  List<Reference>? udi;
 
   /// [bodySite]
   /// Physical service site on the patient (limb, tooth, etc.).
-  final CodeableConcept? bodySite;
+  CodeableConcept? bodySite;
 
   /// [subSite]
   /// A region or surface of the bodySite, e.g. limb region or tooth
   /// surface(s).
-  final List<CodeableConcept>? subSite;
+  List<CodeableConcept>? subSite;
 
   /// [encounter]
   /// A billed item may include goods or services provided in multiple
   /// encounters.
-  final List<Reference>? encounter;
+  List<Reference>? encounter;
 
   /// [noteNumber]
   /// The numbers associated with notes below which apply to the adjudication
   /// of this item.
-  final List<FhirPositiveInt>? noteNumber;
+  List<FhirPositiveInt>? noteNumber;
 
   /// [adjudication]
   /// If this item is a group then the values here are a summary of the
   /// adjudication of the detail items. If this item is a simple product or
   /// service then this is the result of the adjudication of this item.
-  final List<ExplanationOfBenefitAdjudication>? adjudication;
+  List<ExplanationOfBenefitAdjudication>? adjudication;
 
   /// [detail]
   /// Second-tier of goods and services.
-  final List<ExplanationOfBenefitDetail>? detail;
+  List<ExplanationOfBenefitDetail>? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3939,7 +3939,7 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -3949,7 +3949,7 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -3967,7 +3967,7 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [category]
   /// A code to indicate the information type of this adjudication record.
@@ -3975,21 +3975,21 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
   /// percentages allowed or payable under the plan, amounts that the patient
   /// is responsible for in-aggregate or pertaining to this item, amounts
   /// paid by other coverages, and the benefit payable for this item.
-  final CodeableConcept category;
+  CodeableConcept category;
 
   /// [reason]
   /// A code supporting the understanding of the adjudication result and
   /// explaining variance from expected amount.
-  final CodeableConcept? reason;
+  CodeableConcept? reason;
 
   /// [amount]
   /// Monetary amount associated with the category.
-  final Money? amount;
+  Money? amount;
 
   /// [value]
   /// A non-monetary value associated with the category. Mutually exclusive
   /// to the amount element above.
-  final FhirDecimal? value;
+  FhirDecimal? value;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4251,7 +4251,7 @@ class ExplanationOfBenefitDetail extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -4261,7 +4261,7 @@ class ExplanationOfBenefitDetail extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -4279,72 +4279,72 @@ class ExplanationOfBenefitDetail extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [sequence]
   /// A claim detail line. Either a simple (a product or service) or a
   /// 'group' of sub-details which are simple items.
-  final FhirPositiveInt sequence;
+  FhirPositiveInt sequence;
 
   /// [revenue]
   /// The type of revenue or cost center providing the product and/or
   /// service.
-  final CodeableConcept? revenue;
+  CodeableConcept? revenue;
 
   /// [category]
   /// Code to identify the general type of benefits under which products and
   /// services are provided.
-  final CodeableConcept? category;
+  CodeableConcept? category;
 
   /// [productOrService]
   /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or
   /// other billing code for the item.
-  final CodeableConcept productOrService;
+  CodeableConcept productOrService;
 
   /// [modifier]
   /// Item typification or modifiers codes to convey additional context for
   /// the product or service.
-  final List<CodeableConcept>? modifier;
+  List<CodeableConcept>? modifier;
 
   /// [programCode]
   /// Identifies the program under which this may be recovered.
-  final List<CodeableConcept>? programCode;
+  List<CodeableConcept>? programCode;
 
   /// [quantity]
   /// The number of repetitions of a service or product.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [unitPrice]
   /// If the item is not a group then this is the fee for the product or
   /// service, otherwise this is the total of the fees for the details of the
   /// group.
-  final Money? unitPrice;
+  Money? unitPrice;
 
   /// [factor]
   /// A real number that represents a multiplier used in determining the
   /// overall value of services delivered and/or goods received. The concept
   /// of a Factor allows for a discount or surcharge multiplier to be applied
   /// to a monetary amount.
-  final FhirDecimal? factor;
+  FhirDecimal? factor;
 
   /// [net]
   /// The quantity times the unit price for an additional service or product
   /// or charge.
-  final Money? net;
+  Money? net;
 
   /// [udi]
   /// Unique Device Identifiers associated with this line item.
-  final List<Reference>? udi;
+  List<Reference>? udi;
 
   /// [noteNumber]
   /// The numbers associated with notes below which apply to the adjudication
   /// of this item.
-  final List<FhirPositiveInt>? noteNumber;
+  List<FhirPositiveInt>? noteNumber;
 
   /// [subDetail]
   /// Third-tier of goods and services.
-  final List<ExplanationOfBenefitSubDetail>? subDetail;
+  List<ExplanationOfBenefitSubDetail>? subDetail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4656,7 +4656,7 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -4666,7 +4666,7 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -4684,68 +4684,68 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [sequence]
   /// A claim detail line. Either a simple (a product or service) or a
   /// 'group' of sub-details which are simple items.
-  final FhirPositiveInt sequence;
+  FhirPositiveInt sequence;
 
   /// [revenue]
   /// The type of revenue or cost center providing the product and/or
   /// service.
-  final CodeableConcept? revenue;
+  CodeableConcept? revenue;
 
   /// [category]
   /// Code to identify the general type of benefits under which products and
   /// services are provided.
-  final CodeableConcept? category;
+  CodeableConcept? category;
 
   /// [productOrService]
   /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or
   /// other billing code for the item.
-  final CodeableConcept productOrService;
+  CodeableConcept productOrService;
 
   /// [modifier]
   /// Item typification or modifiers codes to convey additional context for
   /// the product or service.
-  final List<CodeableConcept>? modifier;
+  List<CodeableConcept>? modifier;
 
   /// [programCode]
   /// Identifies the program under which this may be recovered.
-  final List<CodeableConcept>? programCode;
+  List<CodeableConcept>? programCode;
 
   /// [quantity]
   /// The number of repetitions of a service or product.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [unitPrice]
   /// If the item is not a group then this is the fee for the product or
   /// service, otherwise this is the total of the fees for the details of the
   /// group.
-  final Money? unitPrice;
+  Money? unitPrice;
 
   /// [factor]
   /// A real number that represents a multiplier used in determining the
   /// overall value of services delivered and/or goods received. The concept
   /// of a Factor allows for a discount or surcharge multiplier to be applied
   /// to a monetary amount.
-  final FhirDecimal? factor;
+  FhirDecimal? factor;
 
   /// [net]
   /// The quantity times the unit price for an additional service or product
   /// or charge.
-  final Money? net;
+  Money? net;
 
   /// [udi]
   /// Unique Device Identifiers associated with this line item.
-  final List<Reference>? udi;
+  List<Reference>? udi;
 
   /// [noteNumber]
   /// The numbers associated with notes below which apply to the adjudication
   /// of this item.
-  final List<FhirPositiveInt>? noteNumber;
+  List<FhirPositiveInt>? noteNumber;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5111,7 +5111,7 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -5121,7 +5121,7 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -5139,103 +5139,103 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [itemSequence]
   /// Claim items which this service line is intended to replace.
-  final List<FhirPositiveInt>? itemSequence;
+  List<FhirPositiveInt>? itemSequence;
 
   /// [detailSequence]
   /// The sequence number of the details within the claim item which this
   /// line is intended to replace.
-  final List<FhirPositiveInt>? detailSequence;
+  List<FhirPositiveInt>? detailSequence;
 
   /// [subDetailSequence]
   /// The sequence number of the sub-details woithin the details within the
   /// claim item which this line is intended to replace.
-  final List<FhirPositiveInt>? subDetailSequence;
+  List<FhirPositiveInt>? subDetailSequence;
 
   /// [provider]
   /// The providers who are authorized for the services rendered to the
   /// patient.
-  final List<Reference>? provider;
+  List<Reference>? provider;
 
   /// [productOrService]
   /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or
   /// other billing code for the item.
-  final CodeableConcept productOrService;
+  CodeableConcept productOrService;
 
   /// [modifier]
   /// Item typification or modifiers codes to convey additional context for
   /// the product or service.
-  final List<CodeableConcept>? modifier;
+  List<CodeableConcept>? modifier;
 
   /// [programCode]
   /// Identifies the program under which this may be recovered.
-  final List<CodeableConcept>? programCode;
+  List<CodeableConcept>? programCode;
 
   /// [servicedDate]
   /// The date or dates when the service or product was supplied, performed
   /// or completed.
-  final FhirDate? servicedDate;
+  FhirDate? servicedDate;
 
   /// [servicedPeriod]
   /// The date or dates when the service or product was supplied, performed
   /// or completed.
-  final Period? servicedPeriod;
+  Period? servicedPeriod;
 
   /// [locationCodeableConcept]
   /// Where the product or service was provided.
-  final CodeableConcept? locationCodeableConcept;
+  CodeableConcept? locationCodeableConcept;
 
   /// [locationAddress]
   /// Where the product or service was provided.
-  final Address? locationAddress;
+  Address? locationAddress;
 
   /// [locationReference]
   /// Where the product or service was provided.
-  final Reference? locationReference;
+  Reference? locationReference;
 
   /// [quantity]
   /// The number of repetitions of a service or product.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [unitPrice]
   /// If the item is not a group then this is the fee for the product or
   /// service, otherwise this is the total of the fees for the details of the
   /// group.
-  final Money? unitPrice;
+  Money? unitPrice;
 
   /// [factor]
   /// A real number that represents a multiplier used in determining the
   /// overall value of services delivered and/or goods received. The concept
   /// of a Factor allows for a discount or surcharge multiplier to be applied
   /// to a monetary amount.
-  final FhirDecimal? factor;
+  FhirDecimal? factor;
 
   /// [net]
   /// The quantity times the unit price for an additional service or product
   /// or charge.
-  final Money? net;
+  Money? net;
 
   /// [bodySite]
   /// Physical service site on the patient (limb, tooth, etc.).
-  final CodeableConcept? bodySite;
+  CodeableConcept? bodySite;
 
   /// [subSite]
   /// A region or surface of the bodySite, e.g. limb region or tooth
   /// surface(s).
-  final List<CodeableConcept>? subSite;
+  List<CodeableConcept>? subSite;
 
   /// [noteNumber]
   /// The numbers associated with notes below which apply to the adjudication
   /// of this item.
-  final List<FhirPositiveInt>? noteNumber;
+  List<FhirPositiveInt>? noteNumber;
 
   /// [detail]
   /// The second-tier service adjudications for payor added services.
-  final List<ExplanationOfBenefitDetail>? detail;
+  List<ExplanationOfBenefitDetail>? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5578,7 +5578,7 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -5588,7 +5588,7 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -5606,49 +5606,49 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [productOrService]
   /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or
   /// other billing code for the item.
-  final CodeableConcept productOrService;
+  CodeableConcept productOrService;
 
   /// [modifier]
   /// Item typification or modifiers codes to convey additional context for
   /// the product or service.
-  final List<CodeableConcept>? modifier;
+  List<CodeableConcept>? modifier;
 
   /// [quantity]
   /// The number of repetitions of a service or product.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [unitPrice]
   /// If the item is not a group then this is the fee for the product or
   /// service, otherwise this is the total of the fees for the details of the
   /// group.
-  final Money? unitPrice;
+  Money? unitPrice;
 
   /// [factor]
   /// A real number that represents a multiplier used in determining the
   /// overall value of services delivered and/or goods received. The concept
   /// of a Factor allows for a discount or surcharge multiplier to be applied
   /// to a monetary amount.
-  final FhirDecimal? factor;
+  FhirDecimal? factor;
 
   /// [net]
   /// The quantity times the unit price for an additional service or product
   /// or charge.
-  final Money? net;
+  Money? net;
 
   /// [noteNumber]
   /// The numbers associated with notes below which apply to the adjudication
   /// of this item.
-  final List<FhirPositiveInt>? noteNumber;
+  List<FhirPositiveInt>? noteNumber;
 
   /// [subDetail]
   /// The third-tier service adjudications for payor added services.
-  final List<ExplanationOfBenefitSubDetail>? subDetail;
+  List<ExplanationOfBenefitSubDetail>? subDetail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5891,7 +5891,7 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -5901,7 +5901,7 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -5919,45 +5919,45 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [productOrService]
   /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or
   /// other billing code for the item.
-  final CodeableConcept productOrService;
+  CodeableConcept productOrService;
 
   /// [modifier]
   /// Item typification or modifiers codes to convey additional context for
   /// the product or service.
-  final List<CodeableConcept>? modifier;
+  List<CodeableConcept>? modifier;
 
   /// [quantity]
   /// The number of repetitions of a service or product.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [unitPrice]
   /// If the item is not a group then this is the fee for the product or
   /// service, otherwise this is the total of the fees for the details of the
   /// group.
-  final Money? unitPrice;
+  Money? unitPrice;
 
   /// [factor]
   /// A real number that represents a multiplier used in determining the
   /// overall value of services delivered and/or goods received. The concept
   /// of a Factor allows for a discount or surcharge multiplier to be applied
   /// to a monetary amount.
-  final FhirDecimal? factor;
+  FhirDecimal? factor;
 
   /// [net]
   /// The quantity times the unit price for an additional service or product
   /// or charge.
-  final Money? net;
+  Money? net;
 
   /// [noteNumber]
   /// The numbers associated with notes below which apply to the adjudication
   /// of this item.
-  final List<FhirPositiveInt>? noteNumber;
+  List<FhirPositiveInt>? noteNumber;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6157,7 +6157,7 @@ class ExplanationOfBenefitTotal extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -6167,7 +6167,7 @@ class ExplanationOfBenefitTotal extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -6185,7 +6185,7 @@ class ExplanationOfBenefitTotal extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [category]
   /// A code to indicate the information type of this adjudication record.
@@ -6193,11 +6193,11 @@ class ExplanationOfBenefitTotal extends BackboneElement {
   /// percentages allowed or payable under the plan, amounts that the patient
   /// is responsible for in aggregate or pertaining to this item, amounts
   /// paid by other coverages, and the benefit payable for this item.
-  final CodeableConcept category;
+  CodeableConcept category;
 
   /// [amount]
   /// Monetary total amount associated with the category.
-  final Money amount;
+  Money amount;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6386,7 +6386,7 @@ class ExplanationOfBenefitPayment extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -6396,7 +6396,7 @@ class ExplanationOfBenefitPayment extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -6414,34 +6414,34 @@ class ExplanationOfBenefitPayment extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Whether this represents partial or complete payment of the benefits
   /// payable.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [adjustment]
   /// Total amount of all adjustments to this payment included in this
   /// transaction which are not related to this claim's adjudication.
-  final Money? adjustment;
+  Money? adjustment;
 
   /// [adjustmentReason]
   /// Reason for the payment adjustment.
-  final CodeableConcept? adjustmentReason;
+  CodeableConcept? adjustmentReason;
 
   /// [date]
   /// Estimated date the payment will be issued or the actual issue date of
   /// payment.
-  final FhirDate? date;
+  FhirDate? date;
 
   /// [amount]
   /// Benefits payable less any payment adjustment.
-  final Money? amount;
+  Money? amount;
 
   /// [identifier]
   /// Issuer's unique identifier for the payment instrument.
-  final Identifier? identifier;
+  Identifier? identifier;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6653,7 +6653,7 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -6663,7 +6663,7 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -6681,23 +6681,23 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [number]
   /// A number to uniquely identify a note entry.
-  final FhirPositiveInt? number;
+  FhirPositiveInt? number;
 
   /// [type]
   /// The business purpose of the note text.
-  final NoteType? type;
+  NoteType? type;
 
   /// [text]
   /// The explanation or description associated with the processing.
-  final FhirString? text;
+  FhirString? text;
 
   /// [language]
   /// A code to define the language used in the text of the note.
-  final CodeableConcept? language;
+  CodeableConcept? language;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6930,7 +6930,7 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -6940,7 +6940,7 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -6958,44 +6958,44 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [category]
   /// Code to identify the general type of benefits under which products and
   /// services are provided.
-  final CodeableConcept category;
+  CodeableConcept category;
 
   /// [excluded]
   /// True if the indicated class of service is excluded from the plan,
   /// missing or False indicates the product or service is included in the
   /// coverage.
-  final FhirBoolean? excluded;
+  FhirBoolean? excluded;
 
   /// [name]
   /// A short name or tag for the benefit.
-  final FhirString? name;
+  FhirString? name;
 
   /// [description]
   /// A richer description of the benefit or services covered.
-  final FhirString? description;
+  FhirString? description;
 
   /// [network]
   /// Is a flag to indicate whether the benefits refer to in-network
   /// providers or out-of-network providers.
-  final CodeableConcept? network;
+  CodeableConcept? network;
 
   /// [unit]
   /// Indicates if the benefits apply to an individual or to the family.
-  final CodeableConcept? unit;
+  CodeableConcept? unit;
 
   /// [term]
   /// The term or period of the values such as 'maximum lifetime benefit' or
   /// 'maximum annual visits'.
-  final CodeableConcept? term;
+  CodeableConcept? term;
 
   /// [financial]
   /// Benefits Used to date.
-  final List<ExplanationOfBenefitFinancial>? financial;
+  List<ExplanationOfBenefitFinancial>? financial;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -7237,7 +7237,7 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -7247,7 +7247,7 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -7265,31 +7265,31 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Classification of benefit being provided.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [allowedUnsignedInt]
   /// The quantity of the benefit which is permitted under the coverage.
-  final FhirUnsignedInt? allowedUnsignedInt;
+  FhirUnsignedInt? allowedUnsignedInt;
 
   /// [allowedString]
   /// The quantity of the benefit which is permitted under the coverage.
-  final FhirString? allowedString;
+  FhirString? allowedString;
 
   /// [allowedMoney]
   /// The quantity of the benefit which is permitted under the coverage.
-  final Money? allowedMoney;
+  Money? allowedMoney;
 
   /// [usedUnsignedInt]
   /// The quantity of the benefit which have been consumed to date.
-  final FhirUnsignedInt? usedUnsignedInt;
+  FhirUnsignedInt? usedUnsignedInt;
 
   /// [usedMoney]
   /// The quantity of the benefit which have been consumed to date.
-  final Money? usedMoney;
+  Money? usedMoney;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

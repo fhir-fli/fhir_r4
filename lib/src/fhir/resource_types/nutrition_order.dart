@@ -262,14 +262,14 @@ class NutritionOrder extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -277,12 +277,12 @@ class NutritionOrder extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -292,14 +292,14 @@ class NutritionOrder extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -309,7 +309,7 @@ class NutritionOrder extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -327,62 +327,62 @@ class NutritionOrder extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifiers assigned to this order by the order sender or by the order
   /// receiver.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [instantiatesCanonical]
   /// The URL pointing to a FHIR-defined protocol, guideline, orderset or
   /// other definition that is adhered to in whole or in part by this
   /// NutritionOrder.
-  final List<FhirCanonical>? instantiatesCanonical;
+  List<FhirCanonical>? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline,
   /// orderset or other definition that is adhered to in whole or in part by
   /// this NutritionOrder.
-  final List<FhirUri>? instantiatesUri;
+  List<FhirUri>? instantiatesUri;
 
   /// [instantiates]
   /// The URL pointing to a protocol, guideline, orderset or other definition
   /// that is adhered to in whole or in part by this NutritionOrder.
-  final List<FhirUri>? instantiates;
+  List<FhirUri>? instantiates;
 
   /// [status]
   /// The workflow status of the nutrition order/request.
-  final RequestStatus status;
+  RequestStatus status;
 
   /// [intent]
   /// Indicates the level of authority/intentionality associated with the
   /// NutrionOrder and where the request fits into the workflow chain.
-  final RequestIntent intent;
+  RequestIntent intent;
 
   /// [patient]
   /// The person (patient) who needs the nutrition order for an oral diet,
   /// nutritional supplement and/or enteral or formula feeding.
-  final Reference patient;
+  Reference patient;
 
   /// [encounter]
   /// An encounter that provides additional information about the healthcare
   /// context in which this request is made.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [dateTime]
   /// The date and time that this nutrition order was requested.
-  final FhirDateTime dateTime;
+  FhirDateTime dateTime;
 
   /// [orderer]
   /// The practitioner that holds legal responsibility for ordering the diet,
   /// nutritional supplement, or formula feedings.
-  final Reference? orderer;
+  Reference? orderer;
 
   /// [allergyIntolerance]
   /// A link to a record of allergies or intolerances which should be
   /// included in the nutrition order.
-  final List<Reference>? allergyIntolerance;
+  List<Reference>? allergyIntolerance;
 
   /// [foodPreferenceModifier]
   /// This modifier is used to convey order-specific modifiers about the type
@@ -390,7 +390,7 @@ class NutritionOrder extends DomainResource {
   /// allergies, intolerances, or preferences such as Halal, Vegan or Kosher.
   /// This modifier applies to the entire nutrition order inclusive of the
   /// oral diet, nutritional supplements and enteral formula feedings.
-  final List<CodeableConcept>? foodPreferenceModifier;
+  List<CodeableConcept>? foodPreferenceModifier;
 
   /// [excludeFoodModifier]
   /// This modifier is used to convey Order-specific modifier about the type
@@ -403,26 +403,26 @@ class NutritionOrder extends DomainResource {
   /// that should be eliminated from the patient’s diet for any reason. This
   /// modifier applies to the entire nutrition order inclusive of the oral
   /// diet, nutritional supplements and enteral formula feedings.
-  final List<CodeableConcept>? excludeFoodModifier;
+  List<CodeableConcept>? excludeFoodModifier;
 
   /// [oralDiet]
   /// Diet given orally in contrast to enteral (tube) feeding.
-  final NutritionOrderOralDiet? oralDiet;
+  NutritionOrderOralDiet? oralDiet;
 
   /// [supplement]
   /// Oral nutritional products given in order to add further nutritional
   /// value to the patient's diet.
-  final List<NutritionOrderSupplement>? supplement;
+  List<NutritionOrderSupplement>? supplement;
 
   /// [enteralFormula]
   /// Feeding provided through the gastrointestinal tract via a tube,
   /// catheter, or stoma that delivers nutrition distal to the oral cavity.
-  final NutritionOrderEnteralFormula? enteralFormula;
+  NutritionOrderEnteralFormula? enteralFormula;
 
   /// [note]
   /// Comments made about the {{title}} by the requester, performer, subject
   /// or other participants.
-  final List<Annotation>? note;
+  List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -787,7 +787,7 @@ class NutritionOrderOralDiet extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -797,7 +797,7 @@ class NutritionOrderOralDiet extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -815,38 +815,38 @@ class NutritionOrderOralDiet extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The kind of diet or dietary restriction such as fiber restricted diet
   /// or diabetic diet.
-  final List<CodeableConcept>? type;
+  List<CodeableConcept>? type;
 
   /// [schedule]
   /// The time period and frequency at which the diet should be given. The
   /// diet should be given for the combination of all schedules if more than
   /// one schedule is present.
-  final List<Timing>? schedule;
+  List<Timing>? schedule;
 
   /// [nutrient]
   /// Class that defines the quantity and type of nutrient modifications (for
   /// example carbohydrate, fiber or sodium) required for the oral diet.
-  final List<NutritionOrderNutrient>? nutrient;
+  List<NutritionOrderNutrient>? nutrient;
 
   /// [texture]
   /// Class that describes any texture modifications required for the patient
   /// to safely consume various types of solid foods.
-  final List<NutritionOrderTexture>? texture;
+  List<NutritionOrderTexture>? texture;
 
   /// [fluidConsistencyType]
   /// The required consistency (e.g. honey-thick, nectar-thick, thin,
   /// thickened.) of liquids or fluids served to the patient.
-  final List<CodeableConcept>? fluidConsistencyType;
+  List<CodeableConcept>? fluidConsistencyType;
 
   /// [instruction]
   /// Free text or additional instructions or information pertaining to the
   /// oral diet.
-  final FhirString? instruction;
+  FhirString? instruction;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1044,7 +1044,7 @@ class NutritionOrderNutrient extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1054,7 +1054,7 @@ class NutritionOrderNutrient extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1072,15 +1072,15 @@ class NutritionOrderNutrient extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [modifier]
   /// The nutrient that is being modified such as carbohydrate or sodium.
-  final CodeableConcept? modifier;
+  CodeableConcept? modifier;
 
   /// [amount]
   /// The quantity of the specified nutrient to include in diet.
-  final Quantity? amount;
+  Quantity? amount;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1249,7 +1249,7 @@ class NutritionOrderTexture extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1259,7 +1259,7 @@ class NutritionOrderTexture extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1277,17 +1277,17 @@ class NutritionOrderTexture extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [modifier]
   /// Any texture modifications (for solid foods) that should be made, e.g.
   /// easy to chew, chopped, ground, and pureed.
-  final CodeableConcept? modifier;
+  CodeableConcept? modifier;
 
   /// [foodType]
   /// The food type(s) (e.g. meats, all foods) that the texture modification
   /// applies to. This could be all foods types.
-  final CodeableConcept? foodType;
+  CodeableConcept? foodType;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1480,7 +1480,7 @@ class NutritionOrderSupplement extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1490,7 +1490,7 @@ class NutritionOrderSupplement extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1508,32 +1508,32 @@ class NutritionOrderSupplement extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The kind of nutritional supplement product required such as a high
   /// protein or pediatric clear liquid supplement.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [productName]
   /// The product or brand name of the nutritional supplement such as "Acme
   /// Protein Shake".
-  final FhirString? productName;
+  FhirString? productName;
 
   /// [schedule]
   /// The time period and frequency at which the supplement(s) should be
   /// given. The supplement should be given for the combination of all
   /// schedules if more than one schedule is present.
-  final List<Timing>? schedule;
+  List<Timing>? schedule;
 
   /// [quantity]
   /// The amount of the nutritional supplement to be given.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [instruction]
   /// Free text or additional instructions or information pertaining to the
   /// oral supplement.
-  final FhirString? instruction;
+  FhirString? instruction;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1772,7 +1772,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1782,7 +1782,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1800,41 +1800,41 @@ class NutritionOrderEnteralFormula extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [baseFormulaType]
   /// The type of enteral or infant formula such as an adult standard formula
   /// with fiber or a soy-based infant formula.
-  final CodeableConcept? baseFormulaType;
+  CodeableConcept? baseFormulaType;
 
   /// [baseFormulaProductName]
   /// The product or brand name of the enteral or infant formula product such
   /// as "ACME Adult Standard Formula".
-  final FhirString? baseFormulaProductName;
+  FhirString? baseFormulaProductName;
 
   /// [additiveType]
   /// Indicates the type of modular component such as protein, carbohydrate,
   /// fat or fiber to be provided in addition to or mixed with the base
   /// formula.
-  final CodeableConcept? additiveType;
+  CodeableConcept? additiveType;
 
   /// [additiveProductName]
   /// The product or brand name of the type of modular component to be added
   /// to the formula.
-  final FhirString? additiveProductName;
+  FhirString? additiveProductName;
 
   /// [caloricDensity]
   /// The amount of energy (calories) that the formula should provide per
   /// specified volume, typically per mL or fluid oz. For example, an infant
   /// may require a formula that provides 24 calories per fluid ounce or an
   /// adult may require an enteral formula that provides 1.5 calorie/mL.
-  final Quantity? caloricDensity;
+  Quantity? caloricDensity;
 
   /// [routeofAdministration]
   /// The route or physiological path of administration into the patient's
   /// gastrointestinal tract for purposes of providing the formula feeding,
   /// e.g. nasogastric tube.
-  final CodeableConcept? routeofAdministration;
+  CodeableConcept? routeofAdministration;
 
   /// [administration]
   /// Formula administration instructions as structured data. This repeating
@@ -1842,12 +1842,12 @@ class NutritionOrderEnteralFormula extends BackboneElement {
   /// time for both bolus and continuous feeding. An example of this would be
   /// an instruction to increase the rate of continuous feeding every 2
   /// hours.
-  final List<NutritionOrderAdministration>? administration;
+  List<NutritionOrderAdministration>? administration;
 
   /// [maxVolumeToDeliver]
   /// The maximum total quantity of formula that may be administered to a
   /// subject over the period of time, e.g. 1440 mL over 24 hours.
-  final Quantity? maxVolumeToDeliver;
+  Quantity? maxVolumeToDeliver;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2085,7 +2085,7 @@ class NutritionOrderAdministration extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2095,7 +2095,7 @@ class NutritionOrderAdministration extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2113,32 +2113,32 @@ class NutritionOrderAdministration extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [schedule]
   /// The time period and frequency at which the enteral formula should be
   /// delivered to the patient.
-  final Timing? schedule;
+  Timing? schedule;
 
   /// [quantity]
   /// The volume of formula to provide to the patient per the specified
   /// administration schedule.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [rateQuantity]
   /// The rate of administration of formula via a feeding pump, e.g. 60 mL
   /// per hour, according to the specified schedule.
-  final Quantity? rateQuantity;
+  Quantity? rateQuantity;
 
   /// [rateRatio]
   /// The rate of administration of formula via a feeding pump, e.g. 60 mL
   /// per hour, according to the specified schedule.
-  final Ratio? rateRatio;
+  Ratio? rateRatio;
 
   /// [administrationInstruction]
   /// Free text formula administration, feeding instructions or additional
   /// instructions or information.
-  final FhirString? administrationInstruction;
+  FhirString? administrationInstruction;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -306,14 +306,14 @@ class EvidenceReport extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -321,12 +321,12 @@ class EvidenceReport extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -336,14 +336,14 @@ class EvidenceReport extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -353,7 +353,7 @@ class EvidenceReport extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -371,7 +371,7 @@ class EvidenceReport extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this EvidenceReport when it is
@@ -381,12 +381,12 @@ class EvidenceReport extends DomainResource {
   /// of this summary is (or will be) published. This URL can be the target
   /// of a canonical reference. It SHALL remain the same when the summary is
   /// stored on different servers.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [status]
   /// The status of this summary. Enables tracking the life-cycle of the
   /// content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -394,83 +394,83 @@ class EvidenceReport extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate evidence report instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [identifier]
   /// A formal identifier that is used to identify this EvidenceReport when
   /// it is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [relatedIdentifier]
   /// A formal identifier that is used to identify things closely related to
   /// this EvidenceReport.
-  final List<Identifier>? relatedIdentifier;
+  List<Identifier>? relatedIdentifier;
 
   /// [citeAsReference]
   /// Citation Resource or display of suggested citation for this report.
-  final Reference? citeAsReference;
+  Reference? citeAsReference;
 
   /// [citeAsMarkdown]
   /// Citation Resource or display of suggested citation for this report.
-  final FhirMarkdown? citeAsMarkdown;
+  FhirMarkdown? citeAsMarkdown;
 
   /// [type]
   /// Specifies the kind of report, such as grouping of classifiers, search
   /// results, or human-compiled expression.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [note]
   /// Used for footnotes and annotations.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [relatedArtifact]
   /// Link, description or reference to artifact associated with the report.
-  final List<RelatedArtifact>? relatedArtifact;
+  List<RelatedArtifact>? relatedArtifact;
 
   /// [subject]
   /// Specifies the subject or focus of the report. Answers "What is this
   /// report about?".
-  final EvidenceReportSubject subject;
+  EvidenceReportSubject subject;
 
   /// [publisher]
   /// The name of the organization or individual that published the evidence
   /// report.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [author]
   /// An individiual, organization, or device primarily involved in the
   /// creation and maintenance of the content.
-  final List<ContactDetail>? author;
+  List<ContactDetail>? author;
 
   /// [editor]
   /// An individiual, organization, or device primarily responsible for
   /// internal coherence of the content.
-  final List<ContactDetail>? editor;
+  List<ContactDetail>? editor;
 
   /// [reviewer]
   /// An individiual, organization, or device primarily responsible for
   /// review of some aspect of the content.
-  final List<ContactDetail>? reviewer;
+  List<ContactDetail>? reviewer;
 
   /// [endorser]
   /// An individiual, organization, or device responsible for officially
   /// endorsing the content for use in some setting.
-  final List<ContactDetail>? endorser;
+  List<ContactDetail>? endorser;
 
   /// [relatesTo]
   /// Relationships that this composition has with other compositions or
   /// documents that already exist.
-  final List<EvidenceReportRelatesTo>? relatesTo;
+  List<EvidenceReportRelatesTo>? relatesTo;
 
   /// [section]
   /// The root of the sections that make up the composition.
-  final List<EvidenceReportSection>? section;
+  List<EvidenceReportSection>? section;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -802,7 +802,7 @@ class EvidenceReportSubject extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -812,7 +812,7 @@ class EvidenceReportSubject extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -830,15 +830,15 @@ class EvidenceReportSubject extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [characteristic]
   /// Characteristic.
-  final List<EvidenceReportCharacteristic>? characteristic;
+  List<EvidenceReportCharacteristic>? characteristic;
 
   /// [note]
   /// Used for general notes and annotations not coded elsewhere.
-  final List<Annotation>? note;
+  List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1043,7 +1043,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1053,7 +1053,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1071,39 +1071,39 @@ class EvidenceReportCharacteristic extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// Characteristic code.
-  final CodeableConcept code;
+  CodeableConcept code;
 
   /// [valueReference]
   /// Characteristic value.
-  final Reference? valueReference;
+  Reference? valueReference;
 
   /// [valueCodeableConcept]
   /// Characteristic value.
-  final CodeableConcept? valueCodeableConcept;
+  CodeableConcept? valueCodeableConcept;
 
   /// [valueBoolean]
   /// Characteristic value.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueQuantity]
   /// Characteristic value.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueRange]
   /// Characteristic value.
-  final Range? valueRange;
+  Range? valueRange;
 
   /// [exclude]
   /// Is used to express not the characteristic.
-  final FhirBoolean? exclude;
+  FhirBoolean? exclude;
 
   /// [period]
   /// Timeframe for the characteristic.
-  final Period? period;
+  Period? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1319,7 +1319,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1329,7 +1329,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1347,20 +1347,20 @@ class EvidenceReportRelatesTo extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// The type of relationship that this composition has with anther
   /// composition or document.
-  final ReportRelationshipType code;
+  ReportRelationshipType code;
 
   /// [targetIdentifier]
   /// The target composition/document of this relationship.
-  final Identifier? targetIdentifier;
+  Identifier? targetIdentifier;
 
   /// [targetReference]
   /// The target composition/document of this relationship.
-  final Reference? targetReference;
+  Reference? targetReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1618,7 +1618,7 @@ class EvidenceReportSection extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1628,7 +1628,7 @@ class EvidenceReportSection extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1646,28 +1646,28 @@ class EvidenceReportSection extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [title]
   /// The label for this particular section. This will be part of the
   /// rendered content for the document, and is often used to build a table
   /// of contents.
-  final FhirString? title;
+  FhirString? title;
 
   /// [focus]
   /// A code identifying the kind of content contained within the section.
   /// This should be consistent with the section title.
-  final CodeableConcept? focus;
+  CodeableConcept? focus;
 
   /// [focusReference]
   /// A definitional Resource identifying the kind of content contained
   /// within the section. This should be consistent with the section title.
-  final Reference? focusReference;
+  Reference? focusReference;
 
   /// [author]
   /// Identifies who is responsible for the information in this section, not
   /// necessarily who typed it in.
-  final List<Reference>? author;
+  List<Reference>? author;
 
   /// [text]
   /// A human-readable narrative that contains the attested content of the
@@ -1675,40 +1675,40 @@ class EvidenceReportSection extends BackboneElement {
   /// narrative need not encode all the structured data, but is peferred to
   /// contain sufficient detail to make it acceptable for a human to just
   /// read the narrative.
-  final Narrative? text;
+  Narrative? text;
 
   /// [mode]
   /// How the entry list was prepared - whether it is a working list that is
   /// suitable for being maintained on an ongoing basis, or if it represents
   /// a snapshot of a list of items from another source, or whether it is a
   /// prepared list where items may be marked as added, modified or deleted.
-  final ListMode? mode;
+  ListMode? mode;
 
   /// [orderedBy]
   /// Specifies the order applied to the items in the section entries.
-  final CodeableConcept? orderedBy;
+  CodeableConcept? orderedBy;
 
   /// [entryClassifier]
   /// Specifies any type of classification of the evidence report.
-  final List<CodeableConcept>? entryClassifier;
+  List<CodeableConcept>? entryClassifier;
 
   /// [entryReference]
   /// A reference to the actual resource from which the narrative in the
   /// section is derived.
-  final List<Reference>? entryReference;
+  List<Reference>? entryReference;
 
   /// [entryQuantity]
   /// Quantity as content.
-  final List<Quantity>? entryQuantity;
+  List<Quantity>? entryQuantity;
 
   /// [emptyReason]
   /// If the section is empty, why the list is empty. An empty section
   /// typically has some text explaining the empty reason.
-  final CodeableConcept? emptyReason;
+  CodeableConcept? emptyReason;
 
   /// [section]
   /// A nested sub-section within this section.
-  final List<EvidenceReportSection>? section;
+  List<EvidenceReportSection>? section;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

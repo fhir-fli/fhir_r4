@@ -287,12 +287,12 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   int dbId = 0;
 
   /// Element stored as a relation in ObjectBox
-  final String? dbValue;
+  String? dbValue;
 
   /// Element stored as a relation in ObjectBox
   @override
   // ignore: overridden_fields
-  final Element? element;
+  Element? element;
 
   /// Converts [FhirTime] to a JSON string.
   @override

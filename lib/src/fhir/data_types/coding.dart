@@ -127,7 +127,7 @@ class Coding extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -137,12 +137,12 @@ class Coding extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [system]
   /// The identification of the code system that defines the meaning of the
   /// symbol in the code.
-  final FhirUri? system;
+  FhirUri? system;
 
   /// [version]
   /// The version of the code system which was used when choosing this code.
@@ -150,23 +150,23 @@ class Coding extends DataType {
   /// reported, because the meaning of codes is consistent across versions.
   /// However this cannot consistently be assured, and when the meaning is
   /// not guaranteed to be consistent, the version SHOULD be exchanged.
-  final FhirString? version;
+  FhirString? version;
 
   /// [code]
   /// A symbol in syntax defined by the system. The symbol may be a
   /// predefined code or an expression in a syntax defined by the coding
   /// system (e.g. post-coordination).
-  final FhirCode? code;
+  FhirCode? code;
 
   /// [display]
   /// A representation of the meaning of the code in the system, following
   /// the rules of the system.
-  final FhirString? display;
+  FhirString? display;
 
   /// [userSelected]
   /// Indicates that this coding was chosen by a user directly - e.g. off a
   /// pick list of available items (codes or displays).
-  final FhirBoolean? userSelected;
+  FhirBoolean? userSelected;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

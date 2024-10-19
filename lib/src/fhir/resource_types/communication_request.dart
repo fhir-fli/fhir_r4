@@ -329,14 +329,14 @@ class CommunicationRequest extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -344,12 +344,12 @@ class CommunicationRequest extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -359,14 +359,14 @@ class CommunicationRequest extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -376,7 +376,7 @@ class CommunicationRequest extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -394,117 +394,117 @@ class CommunicationRequest extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business identifiers assigned to this communication request by the
   /// performer or other systems which remain constant as the resource is
   /// updated and propagates from server to server.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [basedOn]
   /// A plan or proposal that is fulfilled in whole or in part by this
   /// request.
-  final List<Reference>? basedOn;
+  List<Reference>? basedOn;
 
   /// [replaces]
   /// Completed or terminated request(s) whose function is taken by this new
   /// request.
-  final List<Reference>? replaces;
+  List<Reference>? replaces;
 
   /// [groupIdentifier]
   /// A shared identifier common to all requests that were authorized more or
   /// less simultaneously by a single author, representing the identifier of
   /// the requisition, prescription or similar form.
-  final Identifier? groupIdentifier;
+  Identifier? groupIdentifier;
 
   /// [status]
   /// The status of the proposal or order.
-  final RequestStatus status;
+  RequestStatus status;
 
   /// [statusReason]
   /// Captures the reason for the current state of the CommunicationRequest.
-  final CodeableConcept? statusReason;
+  CodeableConcept? statusReason;
 
   /// [category]
   /// The type of message to be sent such as alert, notification, reminder,
   /// instruction, etc.
-  final List<CodeableConcept>? category;
+  List<CodeableConcept>? category;
 
   /// [priority]
   /// Characterizes how quickly the proposed act must be initiated. Includes
   /// concepts such as stat, urgent, routine.
-  final RequestPriority? priority;
+  RequestPriority? priority;
 
   /// [doNotPerform]
   /// If true indicates that the CommunicationRequest is asking for the
   /// specified action to *not* occur.
-  final FhirBoolean? doNotPerform;
+  FhirBoolean? doNotPerform;
 
   /// [medium]
   /// A channel that was used for this communication (e.g. email, fax).
-  final List<CodeableConcept>? medium;
+  List<CodeableConcept>? medium;
 
   /// [subject]
   /// The patient or group that is the focus of this communication request.
-  final Reference? subject;
+  Reference? subject;
 
   /// [about]
   /// Other resources that pertain to this communication request and to which
   /// this communication request should be associated.
-  final List<Reference>? about;
+  List<Reference>? about;
 
   /// [encounter]
   /// The Encounter during which this CommunicationRequest was created or to
   /// which the creation of this record is tightly associated.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [payload]
   /// Text, attachment(s), or resource(s) to be communicated to the
   /// recipient.
-  final List<CommunicationRequestPayload>? payload;
+  List<CommunicationRequestPayload>? payload;
 
   /// [occurrenceDateTime]
   /// The time when this communication is to occur.
-  final FhirDateTime? occurrenceDateTime;
+  FhirDateTime? occurrenceDateTime;
 
   /// [occurrencePeriod]
   /// The time when this communication is to occur.
-  final Period? occurrencePeriod;
+  Period? occurrencePeriod;
 
   /// [authoredOn]
   /// For draft requests, indicates the date of initial creation. For
   /// requests with other statuses, indicates the date of activation.
-  final FhirDateTime? authoredOn;
+  FhirDateTime? authoredOn;
 
   /// [requester]
   /// The device, individual, or organization who initiated the request and
   /// has responsibility for its activation.
-  final Reference? requester;
+  Reference? requester;
 
   /// [recipient]
   /// The entity (e.g. person, organization, clinical information system,
   /// device, group, or care team) which is the intended target of the
   /// communication.
-  final List<Reference>? recipient;
+  List<Reference>? recipient;
 
   /// [sender]
   /// The entity (e.g. person, organization, clinical information system, or
   /// device) which is to be the source of the communication.
-  final Reference? sender;
+  Reference? sender;
 
   /// [reasonCode]
   /// Describes why the request is being made in coded or textual form.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConcept>? reasonCode;
 
   /// [reasonReference]
   /// Indicates another resource whose existence justifies this request.
-  final List<Reference>? reasonReference;
+  List<Reference>? reasonReference;
 
   /// [note]
   /// Comments made about the request by the requester, sender, recipient,
   /// subject or other participants.
-  final List<Annotation>? note;
+  List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -865,7 +865,7 @@ class CommunicationRequestPayload extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -875,7 +875,7 @@ class CommunicationRequestPayload extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -893,22 +893,22 @@ class CommunicationRequestPayload extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [contentString]
   /// The communicated content (or for multi-part communications, one portion
   /// of the communication).
-  final FhirString? contentString;
+  FhirString? contentString;
 
   /// [contentAttachment]
   /// The communicated content (or for multi-part communications, one portion
   /// of the communication).
-  final Attachment? contentAttachment;
+  Attachment? contentAttachment;
 
   /// [contentReference]
   /// The communicated content (or for multi-part communications, one portion
   /// of the communication).
-  final Reference? contentReference;
+  Reference? contentReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

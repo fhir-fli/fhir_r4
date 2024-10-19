@@ -134,7 +134,7 @@ class SampledData extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -144,45 +144,45 @@ class SampledData extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [origin]
   /// The base quantity that a measured value of zero represents. In
   /// addition, this provides the units of the entire measurement series.
-  final Quantity origin;
+  Quantity origin;
 
   /// [period]
   /// The length of time between sampling times, measured in milliseconds.
-  final FhirDecimal period;
+  FhirDecimal period;
 
   /// [factor]
   /// A correction factor that is applied to the sampled data points before
   /// they are added to the origin.
-  final FhirDecimal? factor;
+  FhirDecimal? factor;
 
   /// [lowerLimit]
   /// The lower limit of detection of the measured points. This is needed if
   /// any of the data points have the value "L" (lower than detection limit).
-  final FhirDecimal? lowerLimit;
+  FhirDecimal? lowerLimit;
 
   /// [upperLimit]
   /// The upper limit of detection of the measured points. This is needed if
   /// any of the data points have the value "U" (higher than detection
   /// limit).
-  final FhirDecimal? upperLimit;
+  FhirDecimal? upperLimit;
 
   /// [dimensions]
   /// The number of sample points at each time point. If this value is
   /// greater than one, then the dimensions will be interlaced - all the
   /// sample points for a point in time will be recorded at once.
-  final FhirPositiveInt dimensions;
+  FhirPositiveInt dimensions;
 
   /// [data]
   /// A series of data points which are decimal values separated by a single
   /// space (character u20). The special values "E" (error), "L" (below
   /// detection limit) and "U" (above detection limit) can also be used in
   /// place of a decimal value.
-  final FhirString? data;
+  FhirString? data;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -312,14 +312,14 @@ class TerminologyCapabilities extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -327,12 +327,12 @@ class TerminologyCapabilities extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -342,14 +342,14 @@ class TerminologyCapabilities extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -359,7 +359,7 @@ class TerminologyCapabilities extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -377,7 +377,7 @@ class TerminologyCapabilities extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this terminology capabilities
@@ -388,7 +388,7 @@ class TerminologyCapabilities extends DomainResource {
   /// This URL can be the target of a canonical reference. It SHALL remain
   /// the same when the terminology capabilities is stored on different
   /// servers.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [version]
   /// The identifier that is used to identify this version of the terminology
@@ -398,29 +398,29 @@ class TerminologyCapabilities extends DomainResource {
   /// example, it might be a timestamp (e.g. yyyymmdd) if a managed version
   /// is not available. There is also no expectation that versions can be
   /// placed in a lexicographical sequence.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the terminology capabilities. This
   /// name should be usable as an identifier for the module by machine
   /// processing applications such as code generation.
-  final FhirString? name;
+  FhirString? name;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the terminology
   /// capabilities.
-  final FhirString? title;
+  FhirString? title;
 
   /// [status]
   /// The status of this terminology capabilities. Enables tracking the
   /// life-cycle of the content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this terminology capabilities is
   /// authored for testing purposes (or education/evaluation/marketing) and
   /// is not intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [date]
   /// The date (and optionally time) when the terminology capabilities was
@@ -428,17 +428,17 @@ class TerminologyCapabilities extends DomainResource {
   /// it must change if the status code changes. In addition, it should
   /// change when the substantive content of the terminology capabilities
   /// changes.
-  final FhirDateTime date;
+  FhirDateTime date;
 
   /// [publisher]
   /// The name of the organization or individual that published the
   /// terminology capabilities.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the terminology
@@ -446,7 +446,7 @@ class TerminologyCapabilities extends DomainResource {
   /// when the capability statement describes a desired rather than an actual
   /// solution, for example as a formal expression of requirements as part of
   /// an RFP.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -454,77 +454,77 @@ class TerminologyCapabilities extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate terminology capabilities instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the terminology capabilities is
   /// intended to be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this terminology capabilities is needed and why it
   /// has been designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [copyright]
   /// A copyright statement relating to the terminology capabilities and/or
   /// its contents. Copyright statements are generally legal restrictions on
   /// the use and publishing of the terminology capabilities.
-  final FhirMarkdown? copyright;
+  FhirMarkdown? copyright;
 
   /// [kind]
   /// The way that this statement is intended to be used, to describe an
   /// actual running instance of software, a particular product (kind, not
   /// instance of software) or a class of implementation (e.g. a desired
   /// purchase).
-  final CapabilityStatementKind kind;
+  CapabilityStatementKind kind;
 
   /// [software]
   /// Software that is covered by this terminology capability statement. It
   /// is used when the statement describes the capabilities of a particular
   /// software version, independent of an installation.
-  final TerminologyCapabilitiesSoftware? software;
+  TerminologyCapabilitiesSoftware? software;
 
   /// [implementation]
   /// Identifies a specific implementation instance that is described by the
   /// terminology capability statement - i.e. a particular installation,
   /// rather than the capabilities of a software program.
-  final TerminologyCapabilitiesImplementation? implementation;
+  TerminologyCapabilitiesImplementation? implementation;
 
   /// [lockedDate]
   /// Whether the server supports lockedDate.
-  final FhirBoolean? lockedDate;
+  FhirBoolean? lockedDate;
 
   /// [codeSystem]
   /// Identifies a code system that is supported by the server. If there is a
   /// no code system URL, then this declares the general assumptions a client
   /// can make about support for any CodeSystem resource.
-  final List<TerminologyCapabilitiesCodeSystem>? codeSystem;
+  List<TerminologyCapabilitiesCodeSystem>? codeSystem;
 
   /// [expansion]
   /// Information about the
   /// [ValueSet/$expand](valueset-operation-expand.html) operation.
-  final TerminologyCapabilitiesExpansion? expansion;
+  TerminologyCapabilitiesExpansion? expansion;
 
   /// [codeSearch]
   /// The degree to which the server supports the code search parameter on
   /// ValueSet, if it is supported.
-  final CodeSearchSupport? codeSearch;
+  CodeSearchSupport? codeSearch;
 
   /// [validateCode]
   /// Information about the
   /// [ValueSet/$validate-code](valueset-operation-validate-code.html)
   /// operation.
-  final TerminologyCapabilitiesValidateCode? validateCode;
+  TerminologyCapabilitiesValidateCode? validateCode;
 
   /// [translation]
   /// Information about the
   /// [ConceptMap/$translate](conceptmap-operation-translate.html) operation.
-  final TerminologyCapabilitiesTranslation? translation;
+  TerminologyCapabilitiesTranslation? translation;
 
   /// [closure]
   /// Whether the $closure operation is supported.
-  final TerminologyCapabilitiesClosure? closure;
+  TerminologyCapabilitiesClosure? closure;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -915,7 +915,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -925,7 +925,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -943,15 +943,15 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// Name the software is known by.
-  final FhirString name;
+  FhirString name;
 
   /// [version]
   /// The version identifier for the software covered by this statement.
-  final FhirString? version;
+  FhirString? version;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1127,7 +1127,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1137,7 +1137,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1155,16 +1155,16 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// Information about the specific installation that this terminology
   /// capability statement relates to.
-  final FhirString description;
+  FhirString description;
 
   /// [url]
   /// An absolute base URL for the implementation.
-  final FhirUrl? url;
+  FhirUrl? url;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1352,7 +1352,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1362,7 +1362,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1380,20 +1380,20 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [uri]
   /// URI for the Code System.
-  final FhirCanonical? uri;
+  FhirCanonical? uri;
 
   /// [version]
   /// For the code system, a list of versions that are supported by the
   /// server.
-  final List<TerminologyCapabilitiesVersion>? version;
+  List<TerminologyCapabilitiesVersion>? version;
 
   /// [subsumption]
   /// True if subsumption is supported for this version of the code system.
-  final FhirBoolean? subsumption;
+  FhirBoolean? subsumption;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1608,7 +1608,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1618,7 +1618,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1636,32 +1636,32 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// For version-less code systems, there should be a single version with no
   /// identifier.
-  final FhirString? code;
+  FhirString? code;
 
   /// [isDefault]
   /// If this is the default version for this code system.
-  final FhirBoolean? isDefault;
+  FhirBoolean? isDefault;
 
   /// [compositional]
   /// If the compositional grammar defined by the code system is supported.
-  final FhirBoolean? compositional;
+  FhirBoolean? compositional;
 
   /// [language]
   /// Language Displays supported.
-  final List<FhirCode>? language;
+  List<FhirCode>? language;
 
   /// [filter]
   /// Filter Properties supported.
-  final List<TerminologyCapabilitiesFilter>? filter;
+  List<TerminologyCapabilitiesFilter>? filter;
 
   /// [property]
   /// Properties supported for $lookup.
-  final List<FhirCode>? property;
+  List<FhirCode>? property;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1874,7 +1874,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1884,7 +1884,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1902,15 +1902,15 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// Code of the property supported.
-  final FhirCode code;
+  FhirCode code;
 
   /// [op]
   /// Operations supported for the property.
-  final List<FhirCode> op;
+  List<FhirCode> op;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2110,7 +2110,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2120,7 +2120,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2138,27 +2138,27 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [hierarchical]
   /// Whether the server can return nested value sets.
-  final FhirBoolean? hierarchical;
+  FhirBoolean? hierarchical;
 
   /// [paging]
   /// Whether the server supports paging on expansion.
-  final FhirBoolean? paging;
+  FhirBoolean? paging;
 
   /// [incomplete]
   /// Allow request for incomplete expansions?
-  final FhirBoolean? incomplete;
+  FhirBoolean? incomplete;
 
   /// [parameter]
   /// Supported expansion parameter.
-  final List<TerminologyCapabilitiesParameter>? parameter;
+  List<TerminologyCapabilitiesParameter>? parameter;
 
   /// [textFilter]
   /// Documentation about text searching works.
-  final FhirMarkdown? textFilter;
+  FhirMarkdown? textFilter;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2361,7 +2361,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2371,7 +2371,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2389,15 +2389,15 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// Expansion Parameter name.
-  final FhirCode name;
+  FhirCode name;
 
   /// [documentation]
   /// Description of support for parameter.
-  final FhirString? documentation;
+  FhirString? documentation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2566,7 +2566,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2576,7 +2576,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2594,11 +2594,11 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [translations]
   /// Whether translations are validated.
-  final FhirBoolean translations;
+  FhirBoolean translations;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2756,7 +2756,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2766,7 +2766,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2784,11 +2784,11 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [needsMap]
   /// Whether the client must identify the map.
-  final FhirBoolean needsMap;
+  FhirBoolean needsMap;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2947,7 +2947,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2957,7 +2957,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2975,11 +2975,11 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [translation]
   /// If cross-system closure is supported.
-  final FhirBoolean? translation;
+  FhirBoolean? translation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

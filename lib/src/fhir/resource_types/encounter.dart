@@ -329,14 +329,14 @@ class Encounter extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -344,12 +344,12 @@ class Encounter extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -359,14 +359,14 @@ class Encounter extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -376,7 +376,7 @@ class Encounter extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -394,28 +394,28 @@ class Encounter extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifier(s) by which this encounter is known.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// planned | arrived | triaged | in-progress | onleave | finished |
   /// cancelled +.
-  final EncounterStatus status;
+  EncounterStatus status;
 
   /// [statusHistory]
   /// The status history permits the encounter resource to contain the status
   /// history without needing to read through the historical versions of the
   /// resource, or even have the server store them.
-  final List<EncounterStatusHistory>? statusHistory;
+  List<EncounterStatusHistory>? statusHistory;
 
   /// [class_]
   /// Concepts representing classification of patient encounter such as
   /// ambulatory (outpatient), inpatient, emergency, home health or others
   /// due to local variations.
-  final Coding class_;
+  Coding class_;
 
   /// [classHistory]
   /// The class history permits the tracking of the encounters transitions
@@ -425,25 +425,25 @@ class Encounter extends DomainResource {
   /// new encounter ensures that any lab/diagnostic results can more easily
   /// follow the patient and not require re-processing and not get lost or
   /// cancelled during a kind of discharge from emergency to inpatient.
-  final List<EncounterClassHistory>? classHistory;
+  List<EncounterClassHistory>? classHistory;
 
   /// [type]
   /// Specific type of encounter (e.g. e-mail consultation, surgical
   /// day-care, skilled nursing, rehabilitation).
-  final List<CodeableConcept>? type;
+  List<CodeableConcept>? type;
 
   /// [serviceType]
   /// Broad categorization of the service that is to be provided (e.g.
   /// cardiology).
-  final CodeableConcept? serviceType;
+  CodeableConcept? serviceType;
 
   /// [priority]
   /// Indicates the urgency of the encounter.
-  final CodeableConcept? priority;
+  CodeableConcept? priority;
 
   /// [subject]
   /// The patient or group present at the encounter.
-  final Reference? subject;
+  Reference? subject;
 
   /// [episodeOfCare]
   /// Where a specific encounter should be classified as a part of a specific
@@ -454,55 +454,55 @@ class Encounter extends DomainResource {
   /// are typically created after the episode of care and grouped on entry
   /// rather than editing the episode of care to append another encounter to
   /// it (the episode of care could span years).
-  final List<Reference>? episodeOfCare;
+  List<Reference>? episodeOfCare;
 
   /// [basedOn]
   /// The request this encounter satisfies (e.g. incoming referral or
   /// procedure request).
-  final List<Reference>? basedOn;
+  List<Reference>? basedOn;
 
   /// [participant]
   /// The list of people responsible for providing the service.
-  final List<EncounterParticipant>? participant;
+  List<EncounterParticipant>? participant;
 
   /// [appointment]
   /// The appointment that scheduled this encounter.
-  final List<Reference>? appointment;
+  List<Reference>? appointment;
 
   /// [period]
   /// The start and end time of the encounter.
-  final Period? period;
+  Period? period;
 
   /// [length]
   /// Quantity of time the encounter lasted. This excludes the time during
   /// leaves of absence.
-  final FhirDuration? length;
+  FhirDuration? length;
 
   /// [reasonCode]
   /// Reason the encounter takes place, expressed as a code. For admissions,
   /// this can be used for a coded admission diagnosis.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConcept>? reasonCode;
 
   /// [reasonReference]
   /// Reason the encounter takes place, expressed as a code. For admissions,
   /// this can be used for a coded admission diagnosis.
-  final List<Reference>? reasonReference;
+  List<Reference>? reasonReference;
 
   /// [diagnosis]
   /// The list of diagnosis relevant to this encounter.
-  final List<EncounterDiagnosis>? diagnosis;
+  List<EncounterDiagnosis>? diagnosis;
 
   /// [account]
   /// The set of accounts that may be used for billing for this Encounter.
-  final List<Reference>? account;
+  List<Reference>? account;
 
   /// [hospitalization]
   /// Details about the admission to a healthcare service.
-  final EncounterHospitalization? hospitalization;
+  EncounterHospitalization? hospitalization;
 
   /// [location]
   /// List of locations where the patient has been during this encounter.
-  final List<EncounterLocation>? location;
+  List<EncounterLocation>? location;
 
   /// [serviceProvider]
   /// The organization that is primarily responsible for this Encounter's
@@ -511,12 +511,12 @@ class Encounter extends DomainResource {
   /// the services was from an external organization (which may be billed
   /// seperately) for an external consultation. Refer to the example bundle
   /// showing an abbreviated set of Encounters for a colonoscopy.
-  final Reference? serviceProvider;
+  Reference? serviceProvider;
 
   /// [partOf]
   /// Another Encounter of which this encounter is a part of
   /// (administratively or in time).
-  final Reference? partOf;
+  Reference? partOf;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -849,7 +849,7 @@ class EncounterStatusHistory extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -859,7 +859,7 @@ class EncounterStatusHistory extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -877,16 +877,16 @@ class EncounterStatusHistory extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [status]
   /// planned | arrived | triaged | in-progress | onleave | finished |
   /// cancelled +.
-  final EncounterStatus status;
+  EncounterStatus status;
 
   /// [period]
   /// The time that the episode was in the specified status.
-  final Period period;
+  Period period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1056,7 +1056,7 @@ class EncounterClassHistory extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1066,7 +1066,7 @@ class EncounterClassHistory extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1084,15 +1084,15 @@ class EncounterClassHistory extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [class_]
   /// inpatient | outpatient | ambulatory | emergency +.
-  final Coding class_;
+  Coding class_;
 
   /// [period]
   /// The time that the episode was in the specified class.
-  final Period period;
+  Period period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1266,7 +1266,7 @@ class EncounterParticipant extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1276,7 +1276,7 @@ class EncounterParticipant extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1294,21 +1294,21 @@ class EncounterParticipant extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Role of participant in encounter.
-  final List<CodeableConcept>? type;
+  List<CodeableConcept>? type;
 
   /// [period]
   /// The period of time that the specified participant participated in the
   /// encounter. These can overlap or be sub-sets of the overall encounter's
   /// period.
-  final Period? period;
+  Period? period;
 
   /// [individual]
   /// Persons involved in the encounter other than the patient.
-  final Reference? individual;
+  Reference? individual;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1487,7 +1487,7 @@ class EncounterDiagnosis extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1497,7 +1497,7 @@ class EncounterDiagnosis extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1515,23 +1515,23 @@ class EncounterDiagnosis extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [condition]
   /// Reason the encounter takes place, as specified using information from
   /// another resource. For admissions, this is the admission diagnosis. The
   /// indication will typically be a Condition (with other resources
   /// referenced in the evidence.detail), or a Procedure.
-  final Reference condition;
+  Reference condition;
 
   /// [use]
   /// Role that this diagnosis has within the encounter (e.g. admission,
   /// billing, discharge …).
-  final CodeableConcept? use;
+  CodeableConcept? use;
 
   /// [rank]
   /// Ranking of the diagnosis (for each role type).
-  final FhirPositiveInt? rank;
+  FhirPositiveInt? rank;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1761,7 +1761,7 @@ class EncounterHospitalization extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1771,7 +1771,7 @@ class EncounterHospitalization extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1789,44 +1789,44 @@ class EncounterHospitalization extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [preAdmissionIdentifier]
   /// Pre-admission identifier.
-  final Identifier? preAdmissionIdentifier;
+  Identifier? preAdmissionIdentifier;
 
   /// [origin]
   /// The location/organization from which the patient came before admission.
-  final Reference? origin;
+  Reference? origin;
 
   /// [admitSource]
   /// From where patient was admitted (physician referral, transfer).
-  final CodeableConcept? admitSource;
+  CodeableConcept? admitSource;
 
   /// [reAdmission]
   /// Whether this hospitalization is a readmission and why if known.
-  final CodeableConcept? reAdmission;
+  CodeableConcept? reAdmission;
 
   /// [dietPreference]
   /// Diet preferences reported by the patient.
-  final List<CodeableConcept>? dietPreference;
+  List<CodeableConcept>? dietPreference;
 
   /// [specialCourtesy]
   /// Special courtesies (VIP, board member).
-  final List<CodeableConcept>? specialCourtesy;
+  List<CodeableConcept>? specialCourtesy;
 
   /// [specialArrangement]
   /// Any special requests that have been made for this hospitalization
   /// encounter, such as the provision of specific equipment or other things.
-  final List<CodeableConcept>? specialArrangement;
+  List<CodeableConcept>? specialArrangement;
 
   /// [destination]
   /// Location/organization to which the patient is discharged.
-  final Reference? destination;
+  Reference? destination;
 
   /// [dischargeDisposition]
   /// Category or kind of location after discharge.
-  final CodeableConcept? dischargeDisposition;
+  CodeableConcept? dischargeDisposition;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2050,7 +2050,7 @@ class EncounterLocation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2060,7 +2060,7 @@ class EncounterLocation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2078,26 +2078,26 @@ class EncounterLocation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [location]
   /// The location where the encounter takes place.
-  final Reference location;
+  Reference location;
 
   /// [status]
   /// The status of the participants' presence at the specified location
   /// during the period specified. If the participant is no longer at the
   /// location, then the period will have an end date/time.
-  final EncounterLocationStatus? status;
+  EncounterLocationStatus? status;
 
   /// [physicalType]
   /// This will be used to specify the required levels (bed/ward/room/etc.)
   /// desired to be recorded to simplify either messaging or query.
-  final CodeableConcept? physicalType;
+  CodeableConcept? physicalType;
 
   /// [period]
   /// Time period during which the patient was present at the location.
-  final Period? period;
+  Period? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

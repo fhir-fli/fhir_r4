@@ -140,7 +140,7 @@ class FhirMeta extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -150,17 +150,17 @@ class FhirMeta extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [versionId]
   /// The version specific identifier, as it appears in the version portion
   /// of the URL. This value changes when the resource is created, updated,
   /// or deleted.
-  final FhirId? versionId;
+  FhirId? versionId;
 
   /// [lastUpdated]
   /// When the resource last changed - e.g. when the version changed.
-  final FhirInstant? lastUpdated;
+  FhirInstant? lastUpdated;
 
   /// [source]
   /// A uri that identifies the source system of the resource. This provides
@@ -168,26 +168,26 @@ class FhirMeta extends DataType {
   /// be used to track or differentiate the source of information in the
   /// resource. The source may identify another FHIR server, document,
   /// message, database, etc.
-  final FhirUri? source;
+  FhirUri? source;
 
   /// [profile]
   /// A list of profiles (references to
   /// [StructureDefinition](structuredefinition.html#) resources) that this
   /// resource claims to conform to. The URL is a reference to
   /// [StructureDefinition.url](structuredefinition-definitions.html#StructureDefinition.url).
-  final List<FhirCanonical>? profile;
+  List<FhirCanonical>? profile;
 
   /// [security]
   /// Security labels applied to this resource. These tags connect specific
   /// resources to the overall security policy and infrastructure.
-  final List<Coding>? security;
+  List<Coding>? security;
 
   /// [tag]
   /// Tags applied to this resource. Tags are intended to be used to identify
   /// and relate resources to process and workflow, and applications are not
   /// required to consider the tags when interpreting the meaning of a
   /// resource.
-  final List<Coding>? tag;
+  List<Coding>? tag;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

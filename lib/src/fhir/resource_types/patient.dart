@@ -296,14 +296,14 @@ class Patient extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -311,12 +311,12 @@ class Patient extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -326,14 +326,14 @@ class Patient extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -343,7 +343,7 @@ class Patient extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -361,11 +361,11 @@ class Patient extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// An identifier for this patient.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [active]
   /// Whether this patient record is in active use.
@@ -377,76 +377,76 @@ class Patient extends DomainResource {
   ///
   /// Deceased patients may also be marked as inactive for the same reasons,
   /// but may be active for some time after death.
-  final FhirBoolean? active;
+  FhirBoolean? active;
 
   /// [name]
   /// A name associated with the individual.
-  final List<HumanName>? name;
+  List<HumanName>? name;
 
   /// [telecom]
   /// A contact detail (e.g. a telephone number or an email address) by which
   /// the individual may be contacted.
-  final List<ContactPoint>? telecom;
+  List<ContactPoint>? telecom;
 
   /// [gender]
   /// Administrative Gender - the gender that the patient is considered to
   /// have for administration and record keeping purposes.
-  final AdministrativeGender? gender;
+  AdministrativeGender? gender;
 
   /// [birthDate]
   /// The date of birth for the individual.
-  final FhirDate? birthDate;
+  FhirDate? birthDate;
 
   /// [deceasedBoolean]
   /// Indicates if the individual is deceased or not.
-  final FhirBoolean? deceasedBoolean;
+  FhirBoolean? deceasedBoolean;
 
   /// [deceasedDateTime]
   /// Indicates if the individual is deceased or not.
-  final FhirDateTime? deceasedDateTime;
+  FhirDateTime? deceasedDateTime;
 
   /// [address]
   /// An address for the individual.
-  final List<Address>? address;
+  List<Address>? address;
 
   /// [maritalStatus]
   /// This field contains a patient's most recent marital (civil) status.
-  final CodeableConcept? maritalStatus;
+  CodeableConcept? maritalStatus;
 
   /// [multipleBirthBoolean]
   /// Indicates whether the patient is part of a multiple (boolean) or
   /// indicates the actual birth order (integer).
-  final FhirBoolean? multipleBirthBoolean;
+  FhirBoolean? multipleBirthBoolean;
 
   /// [multipleBirthInteger]
   /// Indicates whether the patient is part of a multiple (boolean) or
   /// indicates the actual birth order (integer).
-  final FhirInteger? multipleBirthInteger;
+  FhirInteger? multipleBirthInteger;
 
   /// [photo]
   /// Image of the patient.
-  final List<Attachment>? photo;
+  List<Attachment>? photo;
 
   /// [contact]
   /// A contact party (e.g. guardian, partner, friend) for the patient.
-  final List<PatientContact>? contact;
+  List<PatientContact>? contact;
 
   /// [communication]
   /// A language which may be used to communicate with the patient about his
   /// or her health.
-  final List<PatientCommunication>? communication;
+  List<PatientCommunication>? communication;
 
   /// [generalPractitioner]
   /// Patient's nominated care provider.
-  final List<Reference>? generalPractitioner;
+  List<Reference>? generalPractitioner;
 
   /// [managingOrganization]
   /// Organization that is the custodian of the patient record.
-  final Reference? managingOrganization;
+  Reference? managingOrganization;
 
   /// [link]
   /// Link to another patient resource that concerns the same actual patient.
-  final List<PatientLink>? link;
+  List<PatientLink>? link;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -817,7 +817,7 @@ class PatientContact extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -827,7 +827,7 @@ class PatientContact extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -845,40 +845,40 @@ class PatientContact extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [relationship]
   /// The nature of the relationship between the patient and the contact
   /// person.
-  final List<CodeableConcept>? relationship;
+  List<CodeableConcept>? relationship;
 
   /// [name]
   /// A name associated with the contact person.
-  final HumanName? name;
+  HumanName? name;
 
   /// [telecom]
   /// A contact detail for the person, e.g. a telephone number or an email
   /// address.
-  final List<ContactPoint>? telecom;
+  List<ContactPoint>? telecom;
 
   /// [address]
   /// Address for the contact person.
-  final Address? address;
+  Address? address;
 
   /// [gender]
   /// Administrative Gender - the gender that the contact person is
   /// considered to have for administration and record keeping purposes.
-  final AdministrativeGender? gender;
+  AdministrativeGender? gender;
 
   /// [organization]
   /// Organization on behalf of which the contact is acting or for which the
   /// contact is working.
-  final Reference? organization;
+  Reference? organization;
 
   /// [period]
   /// The period during which this contact person or organization is valid to
   /// be contacted relating to this patient.
-  final Period? period;
+  Period? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1080,7 +1080,7 @@ class PatientCommunication extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1090,7 +1090,7 @@ class PatientCommunication extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1108,19 +1108,19 @@ class PatientCommunication extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [language]
   /// The ISO-639-1 alpha 2 code in lower case for the language, optionally
   /// followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in
   /// upper case; e.g. "en" for English, or "en-US" for American English
   /// versus "en-EN" for England English.
-  final CodeableConcept language;
+  CodeableConcept language;
 
   /// [preferred]
   /// Indicates whether or not the patient prefers this language (over other
   /// languages he masters up a certain level).
-  final FhirBoolean? preferred;
+  FhirBoolean? preferred;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1287,7 +1287,7 @@ class PatientLink extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1297,7 +1297,7 @@ class PatientLink extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1315,16 +1315,16 @@ class PatientLink extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [other]
   /// The other patient resource that the link refers to.
-  final Reference other;
+  Reference other;
 
   /// [type]
   /// The type of link between this patient resource and another patient
   /// resource.
-  final LinkType type;
+  LinkType type;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

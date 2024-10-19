@@ -102,7 +102,7 @@ class Narrative extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -112,17 +112,17 @@ class Narrative extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [status]
   /// The status of the narrative - whether it's entirely generated (from
   /// just the defined data or the extensions too), or whether a human
   /// authored it and it may contain additional data.
-  final NarrativeStatus status;
+  NarrativeStatus status;
 
   /// [div]
   /// The actual narrative content, a stripped down version of XHTML.
-  final FhirXhtml div;
+  FhirXhtml div;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

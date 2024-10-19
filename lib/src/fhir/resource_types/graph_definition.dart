@@ -255,14 +255,14 @@ class GraphDefinition extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -270,12 +270,12 @@ class GraphDefinition extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -285,14 +285,14 @@ class GraphDefinition extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -302,7 +302,7 @@ class GraphDefinition extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -320,7 +320,7 @@ class GraphDefinition extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [url]
   /// An absolute URI that is used to identify this graph definition when it
@@ -330,7 +330,7 @@ class GraphDefinition extends DomainResource {
   /// of this graph definition is (or will be) published. This URL can be the
   /// target of a canonical reference. It SHALL remain the same when the
   /// graph definition is stored on different servers.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [version]
   /// The identifier that is used to identify this version of the graph
@@ -340,46 +340,46 @@ class GraphDefinition extends DomainResource {
   /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
   /// There is also no expectation that versions can be placed in a
   /// lexicographical sequence.
-  final FhirString? version;
+  FhirString? version;
 
   /// [name]
   /// A natural language name identifying the graph definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
-  final FhirString name;
+  FhirString name;
 
   /// [status]
   /// The status of this graph definition. Enables tracking the life-cycle of
   /// the content.
-  final PublicationStatus status;
+  PublicationStatus status;
 
   /// [experimental]
   /// A Boolean value to indicate that this graph definition is authored for
   /// testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
+  FhirBoolean? experimental;
 
   /// [date]
   /// The date (and optionally time) when the graph definition was published.
   /// The date must change when the business version changes and it must
   /// change if the status code changes. In addition, it should change when
   /// the substantive content of the graph definition changes.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [publisher]
   /// The name of the organization or individual that published the graph
   /// definition.
-  final FhirString? publisher;
+  FhirString? publisher;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
   /// publisher.
-  final List<ContactDetail>? contact;
+  List<ContactDetail>? contact;
 
   /// [description]
   /// A free text natural language description of the graph definition from a
   /// consumer's perspective.
-  final FhirMarkdown? description;
+  FhirMarkdown? description;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -387,29 +387,29 @@ class GraphDefinition extends DomainResource {
   /// (gender, age, ...) or may be references to specific programs (insurance
   /// plans, studies, ...) and may be used to assist with indexing and
   /// searching for appropriate graph definition instances.
-  final List<UsageContext>? useContext;
+  List<UsageContext>? useContext;
 
   /// [jurisdiction]
   /// A legal or geographic region in which the graph definition is intended
   /// to be used.
-  final List<CodeableConcept>? jurisdiction;
+  List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this graph definition is needed and why it has been
   /// designed as it has.
-  final FhirMarkdown? purpose;
+  FhirMarkdown? purpose;
 
   /// [start]
   /// The type of FHIR resource at which instances of this graph start.
-  final FhirCode start;
+  FhirCode start;
 
   /// [profile]
   /// The profile that describes the use of the base resource.
-  final FhirCanonical? profile;
+  FhirCanonical? profile;
 
   /// [link]
   /// Links this graph makes rules about.
-  final List<GraphDefinitionLink>? link;
+  List<GraphDefinitionLink>? link;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -765,7 +765,7 @@ class GraphDefinitionLink extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -775,7 +775,7 @@ class GraphDefinitionLink extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -793,33 +793,33 @@ class GraphDefinitionLink extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [path]
   /// A FHIR expression that identifies one of FHIR References to other
   /// resources.
-  final FhirString? path;
+  FhirString? path;
 
   /// [sliceName]
   /// Which slice (if profiled).
-  final FhirString? sliceName;
+  FhirString? sliceName;
 
   /// [min]
   /// Minimum occurrences for this link.
-  final FhirInteger? min;
+  FhirInteger? min;
 
   /// [max]
   /// Maximum occurrences for this link.
-  final FhirString? max;
+  FhirString? max;
 
   /// [description]
   /// Information about why this link is of interest in this graph
   /// definition.
-  final FhirString? description;
+  FhirString? description;
 
   /// [target]
   /// Potential target for the link.
-  final List<GraphDefinitionTarget>? target;
+  List<GraphDefinitionTarget>? target;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1058,7 +1058,7 @@ class GraphDefinitionTarget extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1068,7 +1068,7 @@ class GraphDefinitionTarget extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1086,27 +1086,27 @@ class GraphDefinitionTarget extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Type of resource this link refers to.
-  final FhirCode type;
+  FhirCode type;
 
   /// [params]
   /// A set of parameters to look up.
-  final FhirString? params;
+  FhirString? params;
 
   /// [profile]
   /// Profile for the target resource.
-  final FhirCanonical? profile;
+  FhirCanonical? profile;
 
   /// [compartment]
   /// Compartment Consistency Rules.
-  final List<GraphDefinitionCompartment>? compartment;
+  List<GraphDefinitionCompartment>? compartment;
 
   /// [link]
   /// Additional links from target resource.
-  final List<GraphDefinitionLink>? link;
+  List<GraphDefinitionLink>? link;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1319,7 +1319,7 @@ class GraphDefinitionCompartment extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1329,7 +1329,7 @@ class GraphDefinitionCompartment extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1347,29 +1347,29 @@ class GraphDefinitionCompartment extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [use]
   /// Defines how the compartment rule is used - whether it it is used to
   /// test whether resources are subject to the rule, or whether it is a rule
   /// that must be followed.
-  final GraphCompartmentUse use;
+  GraphCompartmentUse use;
 
   /// [code]
   /// Identifies the compartment.
-  final CompartmentType code;
+  CompartmentType code;
 
   /// [rule]
   /// identical | matching | different | no-rule | custom.
-  final GraphCompartmentRule rule;
+  GraphCompartmentRule rule;
 
   /// [expression]
   /// Custom rule, as a FHIRPath expression.
-  final FhirString? expression;
+  FhirString? expression;
 
   /// [description]
   /// Documentation for FHIRPath expression.
-  final FhirString? description;
+  FhirString? description;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

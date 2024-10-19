@@ -272,14 +272,14 @@ class GuidanceResponse extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -287,12 +287,12 @@ class GuidanceResponse extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -302,14 +302,14 @@ class GuidanceResponse extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -319,7 +319,7 @@ class GuidanceResponse extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -337,34 +337,34 @@ class GuidanceResponse extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [requestIdentifier]
   /// The identifier of the request associated with this response. If an
   /// identifier was given as part of the request, it will be reproduced here
   /// to enable the requester to more easily identify the response in a
   /// multi-request scenario.
-  final Identifier? requestIdentifier;
+  Identifier? requestIdentifier;
 
   /// [identifier]
   /// Allows a service to provide unique, business identifiers for the
   /// response.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [moduleUri]
   /// An identifier, CodeableConcept or canonical reference to the guidance
   /// that was requested.
-  final FhirUri? moduleUri;
+  FhirUri? moduleUri;
 
   /// [moduleCanonical]
   /// An identifier, CodeableConcept or canonical reference to the guidance
   /// that was requested.
-  final FhirCanonical? moduleCanonical;
+  FhirCanonical? moduleCanonical;
 
   /// [moduleCodeableConcept]
   /// An identifier, CodeableConcept or canonical reference to the guidance
   /// that was requested.
-  final CodeableConcept? moduleCodeableConcept;
+  CodeableConcept? moduleCodeableConcept;
 
   /// [status]
   /// The status of the response. If the evaluation is completed
@@ -376,47 +376,47 @@ class GuidanceResponse extends DomainResource {
   /// potentially more accurate response could be provided if more data was
   /// available, the status will be data-requested, and the response will
   /// contain a description of the additional requested information.
-  final GuidanceResponseStatus status;
+  GuidanceResponseStatus status;
 
   /// [subject]
   /// The patient for which the request was processed.
-  final Reference? subject;
+  Reference? subject;
 
   /// [encounter]
   /// The encounter during which this response was created or to which the
   /// creation of this record is tightly associated.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [occurrenceDateTime]
   /// Indicates when the guidance response was processed.
-  final FhirDateTime? occurrenceDateTime;
+  FhirDateTime? occurrenceDateTime;
 
   /// [performer]
   /// Provides a reference to the device that performed the guidance.
-  final Reference? performer;
+  Reference? performer;
 
   /// [reasonCode]
   /// Describes the reason for the guidance response in coded or textual
   /// form.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConcept>? reasonCode;
 
   /// [reasonReference]
   /// Indicates the reason the request was initiated. This is typically
   /// provided as a parameter to the evaluation and echoed by the service,
   /// although for some use cases, such as subscription- or event-based
   /// scenarios, it may provide an indication of the cause for the response.
-  final List<Reference>? reasonReference;
+  List<Reference>? reasonReference;
 
   /// [note]
   /// Provides a mechanism to communicate additional information about the
   /// response.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [evaluationMessage]
   /// Messages resulting from the evaluation of the artifact or artifacts. As
   /// part of evaluating the request, the engine may produce informational or
   /// warning messages. These messages will be provided by this element.
-  final List<Reference>? evaluationMessage;
+  List<Reference>? evaluationMessage;
 
   /// [outputParameters]
   /// The output parameters of the evaluation, if any. Many modules will
@@ -425,11 +425,11 @@ class GuidanceResponse extends DomainResource {
   /// result. However, modules may define specific outputs that would be
   /// returned as the result of the evaluation, and these would be returned
   /// in this element.
-  final Reference? outputParameters;
+  Reference? outputParameters;
 
   /// [result]
   /// The actions, if any, produced by the evaluation of the artifact.
-  final Reference? result;
+  Reference? result;
 
   /// [dataRequirement]
   /// If the evaluation could not be completed due to lack of information, or
@@ -437,7 +437,7 @@ class GuidanceResponse extends DomainResource {
   /// response, this element will a description of the data required in order
   /// to proceed with the evaluation. A subsequent request to the service
   /// should include this data.
-  final List<DataRequirement>? dataRequirement;
+  List<DataRequirement>? dataRequirement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

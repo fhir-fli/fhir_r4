@@ -69,12 +69,12 @@ class FhirBoolean extends PrimitiveType<bool> {
   int dbId = 0;
 
   /// Element stored as a relation in ObjectBox
-  final bool? dbValue;
+  bool? dbValue;
 
   /// Element stored as a relation in ObjectBox
   @override
   // ignore: overridden_fields
-  final Element? element;
+  Element? element;
 
   @override
   @Transient()

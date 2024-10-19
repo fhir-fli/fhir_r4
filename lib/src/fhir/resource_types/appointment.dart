@@ -327,14 +327,14 @@ class Appointment extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -342,12 +342,12 @@ class Appointment extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -357,14 +357,14 @@ class Appointment extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -374,7 +374,7 @@ class Appointment extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -392,50 +392,50 @@ class Appointment extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// This records identifiers associated with this appointment concern that
   /// are defined by business processes and/or used to refer to it when a
   /// direct URL reference to the resource itself is not appropriate (e.g. in
   /// CDA documents, or in written / printed documentation).
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// The overall status of the Appointment. Each of the participants has
   /// their own participation status which indicates their involvement in the
   /// process, however this status indicates the shared status.
-  final AppointmentStatus status;
+  AppointmentStatus status;
 
   /// [cancelationReason]
   /// The coded reason for the appointment being cancelled. This is often
   /// used in reporting/billing/futher processing to determine if further
   /// actions are required, or specific fees apply.
-  final CodeableConcept? cancelationReason;
+  CodeableConcept? cancelationReason;
 
   /// [serviceCategory]
   /// A broad categorization of the service that is to be performed during
   /// this appointment.
-  final List<CodeableConcept>? serviceCategory;
+  List<CodeableConcept>? serviceCategory;
 
   /// [serviceType]
   /// The specific service that is to be performed during this appointment.
-  final List<CodeableConcept>? serviceType;
+  List<CodeableConcept>? serviceType;
 
   /// [specialty]
   /// The specialty of a practitioner that would be required to perform the
   /// service requested in this appointment.
-  final List<CodeableConcept>? specialty;
+  List<CodeableConcept>? specialty;
 
   /// [appointmentType]
   /// The style of appointment or patient that has been booked in the slot
   /// (not service type).
-  final CodeableConcept? appointmentType;
+  CodeableConcept? appointmentType;
 
   /// [reasonCode]
   /// The coded reason that this appointment is being scheduled. This is more
   /// clinical than administrative.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConcept>? reasonCode;
 
   /// [reasonReference]
   /// Reason the appointment has been scheduled to take place, as specified
@@ -443,32 +443,32 @@ class Appointment extends DomainResource {
   /// the encounter begins it may be used as the admission diagnosis. The
   /// indication will typically be a Condition (with other resources
   /// referenced in the evidence.detail), or a Procedure.
-  final List<Reference>? reasonReference;
+  List<Reference>? reasonReference;
 
   /// [priority]
   /// The priority of the appointment. Can be used to make informed decisions
   /// if needing to re-prioritize appointments. (The iCal Standard specifies
   /// 0 as undefined, 1 as highest, 9 as lowest priority).
-  final FhirUnsignedInt? priority;
+  FhirUnsignedInt? priority;
 
   /// [description]
   /// The brief description of the appointment as would be shown on a subject
   /// line in a meeting request, or appointment list. Detailed or expanded
   /// information should be put in the comment field.
-  final FhirString? description;
+  FhirString? description;
 
   /// [supportingInformation]
   /// Additional information to support the appointment provided when making
   /// the appointment.
-  final List<Reference>? supportingInformation;
+  List<Reference>? supportingInformation;
 
   /// [start]
   /// Date/Time that the appointment is to take place.
-  final FhirInstant? start;
+  FhirInstant? start;
 
   /// [end]
   /// Date/Time that the appointment is to conclude.
-  final FhirInstant? end;
+  FhirInstant? end;
 
   /// [minutesDuration]
   /// Number of minutes that the appointment is to take. This can be less
@@ -478,39 +478,39 @@ class Appointment extends DomainResource {
   /// is, for example, a planned 15 minute break in the middle of a long
   /// appointment, the duration may be 15 minutes less than the difference
   /// between the start and end.
-  final FhirPositiveInt? minutesDuration;
+  FhirPositiveInt? minutesDuration;
 
   /// [slot]
   /// The slots from the participants' schedules that will be filled by the
   /// appointment.
-  final List<Reference>? slot;
+  List<Reference>? slot;
 
   /// [created]
   /// The date that this appointment was initially created. This could be
   /// different to the meta.lastModified value on the initial entry, as this
   /// could have been before the resource was created on the FHIR server, and
   /// should remain unchanged over the lifespan of the appointment.
-  final FhirDateTime? created;
+  FhirDateTime? created;
 
   /// [comment]
   /// Additional comments about the appointment.
-  final FhirString? comment;
+  FhirString? comment;
 
   /// [patientInstruction]
   /// While Appointment.comment contains information for internal use,
   /// Appointment.patientInstructions is used to capture patient facing
   /// information about the Appointment (e.g. please bring your referral or
   /// fast from 8pm night before).
-  final FhirString? patientInstruction;
+  FhirString? patientInstruction;
 
   /// [basedOn]
   /// The service request this appointment is allocated to assess (e.g.
   /// incoming referral or procedure request).
-  final List<Reference>? basedOn;
+  List<Reference>? basedOn;
 
   /// [participant]
   /// List of participants involved in the appointment.
-  final List<AppointmentParticipant> participant;
+  List<AppointmentParticipant> participant;
 
   /// [requestedPeriod]
   /// A set of date ranges (potentially including times) that the appointment
@@ -520,7 +520,7 @@ class Appointment extends DomainResource {
   /// the length of the appointment to fill and populate the start/end times
   /// for the actual allocated time. However, in other situations the
   /// duration may be calculated by the scheduling system.
-  final List<Period>? requestedPeriod;
+  List<Period>? requestedPeriod;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -906,7 +906,7 @@ class AppointmentParticipant extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -916,7 +916,7 @@ class AppointmentParticipant extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -934,30 +934,30 @@ class AppointmentParticipant extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Role of participant in the appointment.
-  final List<CodeableConcept>? type;
+  List<CodeableConcept>? type;
 
   /// [actor]
   /// A Person, Location/HealthcareService or Device that is participating in
   /// the appointment.
-  final Reference? actor;
+  Reference? actor;
 
   /// [required_]
   /// Whether this participant is required to be present at the meeting. This
   /// covers a use-case where two doctors need to meet to discuss the results
   /// for a specific patient, and the patient is not required to be present.
-  final ParticipantRequired? required_;
+  ParticipantRequired? required_;
 
   /// [status]
   /// Participation status of the actor.
-  final ParticipationStatus status;
+  ParticipationStatus status;
 
   /// [period]
   /// Participation period of the actor.
-  final Period? period;
+  Period? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

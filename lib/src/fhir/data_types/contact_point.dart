@@ -126,7 +126,7 @@ class ContactPoint extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -136,31 +136,31 @@ class ContactPoint extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [system]
   /// Telecommunications form for contact point - what communications system
   /// is required to make use of the contact.
-  final ContactPointSystem? system;
+  ContactPointSystem? system;
 
   /// [value]
   /// The actual contact point details, in a form that is meaningful to the
   /// designated communication system (i.e. phone number or email address).
-  final FhirString? value;
+  FhirString? value;
 
   /// [use]
   /// Identifies the purpose for the contact point.
-  final ContactPointUse? use;
+  ContactPointUse? use;
 
   /// [rank]
   /// Specifies a preferred order in which to use a set of contacts.
   /// ContactPoints with lower rank values are more preferred than those with
   /// higher rank values.
-  final FhirPositiveInt? rank;
+  FhirPositiveInt? rank;
 
   /// [period]
   /// Time period when the contact point was/is in use.
-  final Period? period;
+  Period? period;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

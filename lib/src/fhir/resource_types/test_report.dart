@@ -221,14 +221,14 @@ class TestReport extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -236,12 +236,12 @@ class TestReport extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -251,14 +251,14 @@ class TestReport extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -268,7 +268,7 @@ class TestReport extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -286,62 +286,62 @@ class TestReport extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifier for the TestScript assigned for external purposes outside
   /// the context of FHIR.
-  final Identifier? identifier;
+  Identifier? identifier;
 
   /// [name]
   /// A free text natural language name identifying the executed TestScript.
-  final FhirString? name;
+  FhirString? name;
 
   /// [status]
   /// The current state of this test report.
-  final TestReportStatus status;
+  TestReportStatus status;
 
   /// [testScript]
   /// Ideally this is an absolute URL that is used to identify the
   /// version-specific TestScript that was executed, matching the
   /// `TestScript.url`.
-  final Reference testScript;
+  Reference testScript;
 
   /// [result]
   /// The overall result from the execution of the TestScript.
-  final TestReportResult result;
+  TestReportResult result;
 
   /// [score]
   /// The final score (percentage of tests passed) resulting from the
   /// execution of the TestScript.
-  final FhirDecimal? score;
+  FhirDecimal? score;
 
   /// [tester]
   /// Name of the tester producing this report (Organization or individual).
-  final FhirString? tester;
+  FhirString? tester;
 
   /// [issued]
   /// When the TestScript was executed and this TestReport was generated.
-  final FhirDateTime? issued;
+  FhirDateTime? issued;
 
   /// [participant]
   /// A participant in the test execution, either the execution engine, a
   /// client, or a server.
-  final List<TestReportParticipant>? participant;
+  List<TestReportParticipant>? participant;
 
   /// [setup]
   /// The results of the series of required setup operations before the tests
   /// were executed.
-  final TestReportSetup? setup;
+  TestReportSetup? setup;
 
   /// [test]
   /// A test executed from the test script.
-  final List<TestReportTest>? test;
+  List<TestReportTest>? test;
 
   /// [teardown]
   /// The results of the series of operations required to clean up after all
   /// the tests were executed (successfully or otherwise).
-  final TestReportTeardown? teardown;
+  TestReportTeardown? teardown;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -632,7 +632,7 @@ class TestReportParticipant extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -642,7 +642,7 @@ class TestReportParticipant extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -660,19 +660,19 @@ class TestReportParticipant extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The type of participant.
-  final TestReportParticipantType type;
+  TestReportParticipantType type;
 
   /// [uri]
   /// The uri of the participant. An absolute URL is preferred.
-  final FhirUri uri;
+  FhirUri uri;
 
   /// [display]
   /// The display name of the participant.
-  final FhirString? display;
+  FhirString? display;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -853,7 +853,7 @@ class TestReportSetup extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -863,7 +863,7 @@ class TestReportSetup extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -881,11 +881,11 @@ class TestReportSetup extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [action]
   /// Action would contain either an operation or an assertion.
-  final List<TestReportAction> action;
+  List<TestReportAction> action;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1045,7 +1045,7 @@ class TestReportAction extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1055,7 +1055,7 @@ class TestReportAction extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1073,15 +1073,15 @@ class TestReportAction extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [operation]
   /// The operation performed.
-  final TestReportOperation? operation;
+  TestReportOperation? operation;
 
   /// [assert_]
   /// The results of the assertion performed on the previous operations.
-  final TestReportAssert? assert_;
+  TestReportAssert? assert_;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1256,7 +1256,7 @@ class TestReportOperation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1266,7 +1266,7 @@ class TestReportOperation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1284,19 +1284,19 @@ class TestReportOperation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [result]
   /// The result of this operation.
-  final TestReportActionResult result;
+  TestReportActionResult result;
 
   /// [message]
   /// An explanatory message associated with the result.
-  final FhirMarkdown? message;
+  FhirMarkdown? message;
 
   /// [detail]
   /// A link to further details on the result.
-  final FhirUri? detail;
+  FhirUri? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1487,7 +1487,7 @@ class TestReportAssert extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1497,7 +1497,7 @@ class TestReportAssert extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1515,19 +1515,19 @@ class TestReportAssert extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [result]
   /// The result of this assertion.
-  final TestReportActionResult result;
+  TestReportActionResult result;
 
   /// [message]
   /// An explanatory message associated with the result.
-  final FhirMarkdown? message;
+  FhirMarkdown? message;
 
   /// [detail]
   /// A link to further details on the result.
-  final FhirString? detail;
+  FhirString? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1723,7 +1723,7 @@ class TestReportTest extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1733,7 +1733,7 @@ class TestReportTest extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1751,21 +1751,21 @@ class TestReportTest extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// The name of this test used for tracking/logging purposes by test
   /// engines.
-  final FhirString? name;
+  FhirString? name;
 
   /// [description]
   /// A short description of the test used by test engines for tracking and
   /// reporting purposes.
-  final FhirString? description;
+  FhirString? description;
 
   /// [action]
   /// Action would contain either an operation or an assertion.
-  final List<TestReportAction> action;
+  List<TestReportAction> action;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1933,7 +1933,7 @@ class TestReportAction1 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1943,7 +1943,7 @@ class TestReportAction1 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1961,7 +1961,7 @@ class TestReportAction1 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2116,7 +2116,7 @@ class TestReportTeardown extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2126,7 +2126,7 @@ class TestReportTeardown extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2144,11 +2144,11 @@ class TestReportTeardown extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [action]
   /// The teardown action will only contain an operation.
-  final List<TestReportAction> action;
+  List<TestReportAction> action;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2296,7 +2296,7 @@ class TestReportAction2 extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -2306,7 +2306,7 @@ class TestReportAction2 extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -2324,7 +2324,7 @@ class TestReportAction2 extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

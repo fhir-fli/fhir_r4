@@ -105,7 +105,7 @@ class Period extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -115,18 +115,18 @@ class Period extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [start]
   /// The start of the period. The boundary is inclusive.
-  final FhirDateTime? start;
+  FhirDateTime? start;
 
   /// [end]
   /// The end of the period. If the end of the period is missing, it means no
   /// end was known or planned at the time the instance was created. The
   /// start may be in the past, and the end date in the future, which means
   /// that period is expected/planned to end at that time.
-  final FhirDateTime? end;
+  FhirDateTime? end;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

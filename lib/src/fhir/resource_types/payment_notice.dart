@@ -210,14 +210,14 @@ class PaymentNotice extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -225,12 +225,12 @@ class PaymentNotice extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -240,14 +240,14 @@ class PaymentNotice extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -257,7 +257,7 @@ class PaymentNotice extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -275,57 +275,57 @@ class PaymentNotice extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A unique identifier assigned to this payment notice.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// The status of the resource instance.
-  final FinancialResourceStatusCodes status;
+  FinancialResourceStatusCodes status;
 
   /// [request]
   /// Reference of resource for which payment is being made.
-  final Reference? request;
+  Reference? request;
 
   /// [response]
   /// Reference of response to resource for which payment is being made.
-  final Reference? response;
+  Reference? response;
 
   /// [created]
   /// The date when this resource was created.
-  final FhirDateTime created;
+  FhirDateTime created;
 
   /// [provider]
   /// The practitioner who is responsible for the services rendered to the
   /// patient.
-  final Reference? provider;
+  Reference? provider;
 
   /// [payment]
   /// A reference to the payment which is the subject of this notice.
-  final Reference payment;
+  Reference payment;
 
   /// [paymentDate]
   /// The date when the above payment action occurred.
-  final FhirDate? paymentDate;
+  FhirDate? paymentDate;
 
   /// [payee]
   /// The party who will receive or has received payment that is the subject
   /// of this notification.
-  final Reference? payee;
+  Reference? payee;
 
   /// [recipient]
   /// The party who is notified of the payment status.
-  final Reference recipient;
+  Reference recipient;
 
   /// [amount]
   /// The amount sent to the payee.
-  final Money amount;
+  Money amount;
 
   /// [paymentStatus]
   /// A code indicating whether payment has been sent or cleared.
-  final CodeableConcept? paymentStatus;
+  CodeableConcept? paymentStatus;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

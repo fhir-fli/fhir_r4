@@ -314,14 +314,14 @@ class MedicationStatement extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -329,12 +329,12 @@ class MedicationStatement extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -344,14 +344,14 @@ class MedicationStatement extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -361,7 +361,7 @@ class MedicationStatement extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -379,7 +379,7 @@ class MedicationStatement extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifiers associated with this Medication Statement that are defined
@@ -388,102 +388,102 @@ class MedicationStatement extends DomainResource {
   /// identifiers assigned to this resource by the performer or other systems
   /// and remain constant as the resource is updated and propagates from
   /// server to server.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [basedOn]
   /// A plan, proposal or order that is fulfilled in whole or in part by this
   /// event.
-  final List<Reference>? basedOn;
+  List<Reference>? basedOn;
 
   /// [partOf]
   /// A larger event of which this particular event is a component or step.
-  final List<Reference>? partOf;
+  List<Reference>? partOf;
 
   /// [status]
   /// A code representing the patient or other source's judgment about the
   /// state of the medication used that this statement is about. Generally,
   /// this will be active or completed.
-  final MedicationStatementStatusCodes status;
+  MedicationStatementStatusCodes status;
 
   /// [statusReason]
   /// Captures the reason for the current state of the MedicationStatement.
-  final List<CodeableConcept>? statusReason;
+  List<CodeableConcept>? statusReason;
 
   /// [category]
   /// Indicates where the medication is expected to be consumed or
   /// administered.
-  final CodeableConcept? category;
+  CodeableConcept? category;
 
   /// [medicationCodeableConcept]
   /// Identifies the medication being administered. This is either a link to
   /// a resource representing the details of the medication or a simple
   /// attribute carrying a code that identifies the medication from a known
   /// list of medications.
-  final CodeableConcept? medicationCodeableConcept;
+  CodeableConcept? medicationCodeableConcept;
 
   /// [medicationReference]
   /// Identifies the medication being administered. This is either a link to
   /// a resource representing the details of the medication or a simple
   /// attribute carrying a code that identifies the medication from a known
   /// list of medications.
-  final Reference? medicationReference;
+  Reference? medicationReference;
 
   /// [subject]
   /// The person, animal or group who is/was taking the medication.
-  final Reference subject;
+  Reference subject;
 
   /// [context]
   /// The encounter or episode of care that establishes the context for this
   /// MedicationStatement.
-  final Reference? context;
+  Reference? context;
 
   /// [effectiveDateTime]
   /// The interval of time during which it is being asserted that the patient
   /// is/was/will be taking the medication (or was not taking, when the
   /// MedicationStatement.taken element is No).
-  final FhirDateTime? effectiveDateTime;
+  FhirDateTime? effectiveDateTime;
 
   /// [effectivePeriod]
   /// The interval of time during which it is being asserted that the patient
   /// is/was/will be taking the medication (or was not taking, when the
   /// MedicationStatement.taken element is No).
-  final Period? effectivePeriod;
+  Period? effectivePeriod;
 
   /// [dateAsserted]
   /// The date when the medication statement was asserted by the information
   /// source.
-  final FhirDateTime? dateAsserted;
+  FhirDateTime? dateAsserted;
 
   /// [informationSource]
   /// The person or organization that provided the information about the
   /// taking of this medication. Note: Use derivedFrom when a
   /// MedicationStatement is derived from other resources, e.g. Claim or
   /// MedicationRequest.
-  final Reference? informationSource;
+  Reference? informationSource;
 
   /// [derivedFrom]
   /// Allows linking the MedicationStatement to the underlying
   /// MedicationRequest, or to other information that supports or is used to
   /// derive the MedicationStatement.
-  final List<Reference>? derivedFrom;
+  List<Reference>? derivedFrom;
 
   /// [reasonCode]
   /// A reason for why the medication is being/was taken.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConcept>? reasonCode;
 
   /// [reasonReference]
   /// Condition or observation that supports why the medication is being/was
   /// taken.
-  final List<Reference>? reasonReference;
+  List<Reference>? reasonReference;
 
   /// [note]
   /// Provides extra information about the medication statement that is not
   /// conveyed by the other attributes.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [dosage]
   /// Indicates how the medication is/was or should be taken by the patient.
-  final List<Dosage>? dosage;
+  List<Dosage>? dosage;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

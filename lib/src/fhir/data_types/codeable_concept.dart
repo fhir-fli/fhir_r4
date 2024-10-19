@@ -109,7 +109,7 @@ class CodeableConcept extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -119,17 +119,17 @@ class CodeableConcept extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [coding]
   /// A reference to a code defined by a terminology system.
-  final List<Coding>? coding;
+  List<Coding>? coding;
 
   /// [text]
   /// A human language representation of the concept as seen/selected/uttered
   /// by the user who entered the data and/or which represents the intended
   /// meaning of the user.
-  final FhirString? text;
+  FhirString? text;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

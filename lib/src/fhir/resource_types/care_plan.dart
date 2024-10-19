@@ -328,14 +328,14 @@ class CarePlan extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -343,12 +343,12 @@ class CarePlan extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -358,14 +358,14 @@ class CarePlan extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -375,7 +375,7 @@ class CarePlan extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -393,123 +393,123 @@ class CarePlan extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business identifiers assigned to this care plan by the performer or
   /// other systems which remain constant as the resource is updated and
   /// propagates from server to server.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [instantiatesCanonical]
   /// The URL pointing to a FHIR-defined protocol, guideline, questionnaire
   /// or other definition that is adhered to in whole or in part by this
   /// CarePlan.
-  final List<FhirCanonical>? instantiatesCanonical;
+  List<FhirCanonical>? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline,
   /// questionnaire or other definition that is adhered to in whole or in
   /// part by this CarePlan.
-  final List<FhirUri>? instantiatesUri;
+  List<FhirUri>? instantiatesUri;
 
   /// [basedOn]
   /// A care plan that is fulfilled in whole or in part by this care plan.
-  final List<Reference>? basedOn;
+  List<Reference>? basedOn;
 
   /// [replaces]
   /// Completed or terminated care plan whose function is taken by this new
   /// care plan.
-  final List<Reference>? replaces;
+  List<Reference>? replaces;
 
   /// [partOf]
   /// A larger care plan of which this particular care plan is a component or
   /// step.
-  final List<Reference>? partOf;
+  List<Reference>? partOf;
 
   /// [status]
   /// Indicates whether the plan is currently being acted upon, represents
   /// future intentions or is now a historical record.
-  final RequestStatus status;
+  RequestStatus status;
 
   /// [intent]
   /// Indicates the level of authority/intentionality associated with the
   /// care plan and where the care plan fits into the workflow chain.
-  final CarePlanIntent intent;
+  CarePlanIntent intent;
 
   /// [category]
   /// Identifies what "kind" of plan this is to support differentiation
   /// between multiple co-existing plans; e.g. "Home health", "psychiatric",
   /// "asthma", "disease management", "wellness plan", etc.
-  final List<CodeableConcept>? category;
+  List<CodeableConcept>? category;
 
   /// [title]
   /// Human-friendly name for the care plan.
-  final FhirString? title;
+  FhirString? title;
 
   /// [description]
   /// A description of the scope and nature of the plan.
-  final FhirString? description;
+  FhirString? description;
 
   /// [subject]
   /// Identifies the patient or group whose intended care is described by the
   /// plan.
-  final Reference subject;
+  Reference subject;
 
   /// [encounter]
   /// The Encounter during which this CarePlan was created or to which the
   /// creation of this record is tightly associated.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [period]
   /// Indicates when the plan did (or is intended to) come into effect and
   /// end.
-  final Period? period;
+  Period? period;
 
   /// [created]
   /// Represents when this particular CarePlan record was created in the
   /// system, which is often a system-generated date.
-  final FhirDateTime? created;
+  FhirDateTime? created;
 
   /// [author]
   /// When populated, the author is responsible for the care plan. The care
   /// plan is attributed to the author.
-  final Reference? author;
+  Reference? author;
 
   /// [contributor]
   /// Identifies the individual(s) or organization who provided the contents
   /// of the care plan.
-  final List<Reference>? contributor;
+  List<Reference>? contributor;
 
   /// [careTeam]
   /// Identifies all people and organizations who are expected to be involved
   /// in the care envisioned by this plan.
-  final List<Reference>? careTeam;
+  List<Reference>? careTeam;
 
   /// [addresses]
   /// Identifies the conditions/problems/concerns/diagnoses/etc. whose
   /// management and/or mitigation are handled by this plan.
-  final List<Reference>? addresses;
+  List<Reference>? addresses;
 
   /// [supportingInfo]
   /// Identifies portions of the patient's record that specifically
   /// influenced the formation of the plan. These might include
   /// comorbidities, recent procedures, limitations, recent assessments, etc.
-  final List<Reference>? supportingInfo;
+  List<Reference>? supportingInfo;
 
   /// [goal]
   /// Describes the intended objective(s) of carrying out the care plan.
-  final List<Reference>? goal;
+  List<Reference>? goal;
 
   /// [activity]
   /// Identifies a planned action to occur as part of the plan. For example,
   /// a medication to be used, lab tests to perform, self-monitoring,
   /// education, etc.
-  final List<CarePlanActivity>? activity;
+  List<CarePlanActivity>? activity;
 
   /// [note]
   /// General notes about the care plan not covered elsewhere.
-  final List<Annotation>? note;
+  List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -899,7 +899,7 @@ class CarePlanActivity extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -909,7 +909,7 @@ class CarePlanActivity extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -927,13 +927,13 @@ class CarePlanActivity extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [outcomeCodeableConcept]
   /// Identifies the outcome at the point when the status of the activity is
   /// assessed. For example, the outcome of an education activity could be
   /// patient understands (or not).
-  final List<CodeableConcept>? outcomeCodeableConcept;
+  List<CodeableConcept>? outcomeCodeableConcept;
 
   /// [outcomeReference]
   /// Details of the outcome or action resulting from the activity. The
@@ -941,22 +941,22 @@ class CarePlanActivity extends BackboneElement {
   /// Observation, is the result/outcome of the activity itself. The activity
   /// can be conveyed using CarePlan.activity.detail OR using the
   /// CarePlan.activity.reference (a reference to a “request” resource).
-  final List<Reference>? outcomeReference;
+  List<Reference>? outcomeReference;
 
   /// [progress]
   /// Notes about the adherence/status/progress of the activity.
-  final List<Annotation>? progress;
+  List<Annotation>? progress;
 
   /// [reference]
   /// The details of the proposed activity represented in a specific
   /// resource.
-  final Reference? reference;
+  Reference? reference;
 
   /// [detail]
   /// A simple summary of a planned activity suitable for a general care plan
   /// system (e.g. form driven) that doesn't know about specific resources
   /// such as procedure etc.
-  final CarePlanDetail? detail;
+  CarePlanDetail? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1276,7 +1276,7 @@ class CarePlanDetail extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1286,7 +1286,7 @@ class CarePlanDetail extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1304,7 +1304,7 @@ class CarePlanDetail extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [kind]
   /// A description of the kind of resource the in-line definition of a care
@@ -1312,100 +1312,100 @@ class CarePlanDetail extends BackboneElement {
   /// in-line definition when a resource is not referenced using
   /// CarePlan.activity.reference. For example, a MedicationRequest, a
   /// ServiceRequest, or a CommunicationRequest.
-  final CarePlanActivityKind? kind;
+  CarePlanActivityKind? kind;
 
   /// [instantiatesCanonical]
   /// The URL pointing to a FHIR-defined protocol, guideline, questionnaire
   /// or other definition that is adhered to in whole or in part by this
   /// CarePlan activity.
-  final List<FhirCanonical>? instantiatesCanonical;
+  List<FhirCanonical>? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline,
   /// questionnaire or other definition that is adhered to in whole or in
   /// part by this CarePlan activity.
-  final List<FhirUri>? instantiatesUri;
+  List<FhirUri>? instantiatesUri;
 
   /// [code]
   /// Detailed description of the type of planned activity; e.g. what lab
   /// test, what procedure, what kind of encounter.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [reasonCode]
   /// Provides the rationale that drove the inclusion of this particular
   /// activity as part of the plan or the reason why the activity was
   /// prohibited.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConcept>? reasonCode;
 
   /// [reasonReference]
   /// Indicates another resource, such as the health condition(s), whose
   /// existence justifies this request and drove the inclusion of this
   /// particular activity as part of the plan.
-  final List<Reference>? reasonReference;
+  List<Reference>? reasonReference;
 
   /// [goal]
   /// Internal reference that identifies the goals that this activity is
   /// intended to contribute towards meeting.
-  final List<Reference>? goal;
+  List<Reference>? goal;
 
   /// [status]
   /// Identifies what progress is being made for the specific activity.
-  final CarePlanActivityStatus status;
+  CarePlanActivityStatus status;
 
   /// [statusReason]
   /// Provides reason why the activity isn't yet started, is on hold, was
   /// cancelled, etc.
-  final CodeableConcept? statusReason;
+  CodeableConcept? statusReason;
 
   /// [doNotPerform]
   /// If true, indicates that the described activity is one that must NOT be
   /// engaged in when following the plan. If false, or missing, indicates
   /// that the described activity is one that should be engaged in when
   /// following the plan.
-  final FhirBoolean? doNotPerform;
+  FhirBoolean? doNotPerform;
 
   /// [scheduledTiming]
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
-  final Timing? scheduledTiming;
+  Timing? scheduledTiming;
 
   /// [scheduledPeriod]
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
-  final Period? scheduledPeriod;
+  Period? scheduledPeriod;
 
   /// [scheduledString]
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
-  final FhirString? scheduledString;
+  FhirString? scheduledString;
 
   /// [location]
   /// Identifies the facility where the activity will occur; e.g. home,
   /// hospital, specific clinic, etc.
-  final Reference? location;
+  Reference? location;
 
   /// [performer]
   /// Identifies who's expected to be involved in the activity.
-  final List<Reference>? performer;
+  List<Reference>? performer;
 
   /// [productCodeableConcept]
   /// Identifies the food, drug or other product to be consumed or supplied
   /// in the activity.
-  final CodeableConcept? productCodeableConcept;
+  CodeableConcept? productCodeableConcept;
 
   /// [productReference]
   /// Identifies the food, drug or other product to be consumed or supplied
   /// in the activity.
-  final Reference? productReference;
+  Reference? productReference;
 
   /// [dailyAmount]
   /// Identifies the quantity expected to be consumed in a given day.
-  final Quantity? dailyAmount;
+  Quantity? dailyAmount;
 
   /// [quantity]
   /// Identifies the quantity expected to be supplied, administered or
   /// consumed by the subject.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [description]
   /// This provides a textual description of constraints on the intended
@@ -1413,7 +1413,7 @@ class CarePlanDetail extends BackboneElement {
   /// also include objectives, pre-conditions and end-conditions. Finally, it
   /// may convey specifics about the activity such as body site, method,
   /// route, etc.
-  final FhirString? description;
+  FhirString? description;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

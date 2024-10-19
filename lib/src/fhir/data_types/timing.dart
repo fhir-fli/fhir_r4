@@ -124,7 +124,7 @@ class Timing extends BackboneType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -134,7 +134,7 @@ class Timing extends BackboneType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -152,15 +152,15 @@ class Timing extends BackboneType {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [event]
   /// Identifies specific times when the event occurs.
-  final List<FhirDateTime>? event;
+  List<FhirDateTime>? event;
 
   /// [repeat]
   /// A set of rules that describe when the event is scheduled.
-  final TimingRepeat? repeat;
+  TimingRepeat? repeat;
 
   /// [code]
   /// A code for the timing schedule (or just text in code.text). Some codes
@@ -170,7 +170,7 @@ class Timing extends BackboneType {
   /// data, and either the code or the data may be used to interpret the
   /// Timing, with the exception that .repeat.bounds still applies over the
   /// code (and is not contained in the code).
-  final CodeableConcept? code;
+  CodeableConcept? code;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -441,7 +441,7 @@ class TimingRepeat extends Element {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -451,100 +451,100 @@ class TimingRepeat extends Element {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [boundsDuration]
   /// Either a duration for the length of the timing schedule, a range of
   /// possible length, or outer bounds for start and/or end limits of the
   /// timing schedule.
-  final FhirDuration? boundsDuration;
+  FhirDuration? boundsDuration;
 
   /// [boundsRange]
   /// Either a duration for the length of the timing schedule, a range of
   /// possible length, or outer bounds for start and/or end limits of the
   /// timing schedule.
-  final Range? boundsRange;
+  Range? boundsRange;
 
   /// [boundsPeriod]
   /// Either a duration for the length of the timing schedule, a range of
   /// possible length, or outer bounds for start and/or end limits of the
   /// timing schedule.
-  final Period? boundsPeriod;
+  Period? boundsPeriod;
 
   /// [count]
   /// A total count of the desired number of repetitions across the duration
   /// of the entire timing specification. If countMax is present, this
   /// element indicates the lower bound of the allowed range of count values.
-  final FhirPositiveInt? count;
+  FhirPositiveInt? count;
 
   /// [countMax]
   /// If present, indicates that the count is a range - so to perform the
   /// action between [count] and [countMax] times.
-  final FhirPositiveInt? countMax;
+  FhirPositiveInt? countMax;
 
   /// [duration]
   /// How long this thing happens for when it happens. If durationMax is
   /// present, this element indicates the lower bound of the allowed range of
   /// the duration.
-  final FhirDecimal? duration;
+  FhirDecimal? duration;
 
   /// [durationMax]
   /// If present, indicates that the duration is a range - so to perform the
   /// action between [duration] and [durationMax] time length.
-  final FhirDecimal? durationMax;
+  FhirDecimal? durationMax;
 
   /// [durationUnit]
   /// The units of time for the duration, in UCUM units.
-  final UnitsOfTime? durationUnit;
+  UnitsOfTime? durationUnit;
 
   /// [frequency]
   /// The number of times to repeat the action within the specified period.
   /// If frequencyMax is present, this element indicates the lower bound of
   /// the allowed range of the frequency.
-  final FhirPositiveInt? frequency;
+  FhirPositiveInt? frequency;
 
   /// [frequencyMax]
   /// If present, indicates that the frequency is a range - so to repeat
   /// between [frequency] and [frequencyMax] times within the period or
   /// period range.
-  final FhirPositiveInt? frequencyMax;
+  FhirPositiveInt? frequencyMax;
 
   /// [period]
   /// Indicates the duration of time over which repetitions are to occur;
   /// e.g. to express "3 times per day", 3 would be the frequency and "1 day"
   /// would be the period. If periodMax is present, this element indicates
   /// the lower bound of the allowed range of the period length.
-  final FhirDecimal? period;
+  FhirDecimal? period;
 
   /// [periodMax]
   /// If present, indicates that the period is a range from [period] to
   /// [periodMax], allowing expressing concepts such as "do this once every
   /// 3-5 days.
-  final FhirDecimal? periodMax;
+  FhirDecimal? periodMax;
 
   /// [periodUnit]
   /// The units of time for the period in UCUM units.
-  final UnitsOfTime? periodUnit;
+  UnitsOfTime? periodUnit;
 
   /// [dayOfWeek]
   /// If one or more days of week is provided, then the action happens only
   /// on the specified day(s).
-  final List<DaysOfWeek>? dayOfWeek;
+  List<DaysOfWeek>? dayOfWeek;
 
   /// [timeOfDay]
   /// Specified time of day for action to take place.
-  final List<FhirTime>? timeOfDay;
+  List<FhirTime>? timeOfDay;
 
   /// [when]
   /// An approximate time period during the day, potentially linked to an
   /// event of daily living that indicates when the action should occur.
-  final List<EventTiming>? when;
+  List<EventTiming>? when;
 
   /// [offset]
   /// The number of minutes from the event. If the event code does not
   /// indicate whether the minutes is before or after the event, then the
   /// offset is assumed to be after the event.
-  final FhirUnsignedInt? offset;
+  FhirUnsignedInt? offset;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

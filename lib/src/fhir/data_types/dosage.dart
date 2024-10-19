@@ -200,7 +200,7 @@ class Dosage extends BackboneType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -210,7 +210,7 @@ class Dosage extends BackboneType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -228,71 +228,71 @@ class Dosage extends BackboneType {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [sequence]
   /// Indicates the order in which the dosage instructions should be applied
   /// or interpreted.
-  final FhirInteger? sequence;
+  FhirInteger? sequence;
 
   /// [text]
   /// Free text dosage instructions e.g. SIG.
-  final FhirString? text;
+  FhirString? text;
 
   /// [additionalInstruction]
   /// Supplemental instructions to the patient on how to take the medication
   /// (e.g. "with meals" or"take half to one hour before food") or warnings
   /// for the patient about the medication (e.g. "may cause drowsiness" or
   /// "avoid exposure of skin to direct sunlight or sunlamps").
-  final List<CodeableConcept>? additionalInstruction;
+  List<CodeableConcept>? additionalInstruction;
 
   /// [patientInstruction]
   /// Instructions in terms that are understood by the patient or consumer.
-  final FhirString? patientInstruction;
+  FhirString? patientInstruction;
 
   /// [timing]
   /// When medication should be administered.
-  final Timing? timing;
+  Timing? timing;
 
   /// [asNeededBoolean]
   /// Indicates whether the Medication is only taken when needed within a
   /// specific dosing schedule (Boolean option), or it indicates the
   /// precondition for taking the Medication (CodeableConcept).
-  final FhirBoolean? asNeededBoolean;
+  FhirBoolean? asNeededBoolean;
 
   /// [asNeededCodeableConcept]
   /// Indicates whether the Medication is only taken when needed within a
   /// specific dosing schedule (Boolean option), or it indicates the
   /// precondition for taking the Medication (CodeableConcept).
-  final CodeableConcept? asNeededCodeableConcept;
+  CodeableConcept? asNeededCodeableConcept;
 
   /// [site]
   /// Body site to administer to.
-  final CodeableConcept? site;
+  CodeableConcept? site;
 
   /// [route]
   /// How drug should enter body.
-  final CodeableConcept? route;
+  CodeableConcept? route;
 
   /// [method]
   /// Technique for administering medication.
-  final CodeableConcept? method;
+  CodeableConcept? method;
 
   /// [doseAndRate]
   /// The amount of medication administered.
-  final List<DosageDoseAndRate>? doseAndRate;
+  List<DosageDoseAndRate>? doseAndRate;
 
   /// [maxDosePerPeriod]
   /// Upper limit on medication per unit of time.
-  final Ratio? maxDosePerPeriod;
+  Ratio? maxDosePerPeriod;
 
   /// [maxDosePerAdministration]
   /// Upper limit on medication per administration.
-  final Quantity? maxDosePerAdministration;
+  Quantity? maxDosePerAdministration;
 
   /// [maxDosePerLifetime]
   /// Upper limit on medication per lifetime of the patient.
-  final Quantity? maxDosePerLifetime;
+  Quantity? maxDosePerLifetime;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -566,7 +566,7 @@ class DosageDoseAndRate extends Element {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -576,31 +576,31 @@ class DosageDoseAndRate extends Element {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [type]
   /// The kind of dose or rate specified, for example, ordered or calculated.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [doseRange]
   /// Amount of medication per dose.
-  final Range? doseRange;
+  Range? doseRange;
 
   /// [doseQuantity]
   /// Amount of medication per dose.
-  final Quantity? doseQuantity;
+  Quantity? doseQuantity;
 
   /// [rateRatio]
   /// Amount of medication per unit of time.
-  final Ratio? rateRatio;
+  Ratio? rateRatio;
 
   /// [rateRange]
   /// Amount of medication per unit of time.
-  final Range? rateRange;
+  Range? rateRange;
 
   /// [rateQuantity]
   /// Amount of medication per unit of time.
-  final Quantity? rateQuantity;
+  Quantity? rateQuantity;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -333,14 +333,14 @@ class DeviceDefinition extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -348,12 +348,12 @@ class DeviceDefinition extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -363,14 +363,14 @@ class DeviceDefinition extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -380,7 +380,7 @@ class DeviceDefinition extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -398,112 +398,112 @@ class DeviceDefinition extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Unique instance identifiers assigned to a device by the software,
   /// manufacturers, other organizations or owners. For example: handle ID.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [udiDeviceIdentifier]
   /// Unique device identifier (UDI) assigned to device label or package.
   /// Note that the Device may include multiple udiCarriers as it either may
   /// include just the udiCarrier for the jurisdiction it is sold, or for
   /// multiple jurisdictions it could have been sold.
-  final List<DeviceDefinitionUdiDeviceIdentifier>? udiDeviceIdentifier;
+  List<DeviceDefinitionUdiDeviceIdentifier>? udiDeviceIdentifier;
 
   /// [manufacturerString]
   /// A name of the manufacturer.
-  final FhirString? manufacturerString;
+  FhirString? manufacturerString;
 
   /// [manufacturerReference]
   /// A name of the manufacturer.
-  final Reference? manufacturerReference;
+  Reference? manufacturerReference;
 
   /// [deviceName]
   /// A name given to the device to identify it.
-  final List<DeviceDefinitionDeviceName>? deviceName;
+  List<DeviceDefinitionDeviceName>? deviceName;
 
   /// [modelNumber]
   /// The model number for the device.
-  final FhirString? modelNumber;
+  FhirString? modelNumber;
 
   /// [type]
   /// What kind of device or device system this is.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [specialization]
   /// The capabilities supported on a device, the standards to which the
   /// device conforms for a particular purpose, and used for the
   /// communication.
-  final List<DeviceDefinitionSpecialization>? specialization;
+  List<DeviceDefinitionSpecialization>? specialization;
 
   /// [version]
   /// The available versions of the device, e.g., software versions.
-  final List<FhirString>? version;
+  List<FhirString>? version;
 
   /// [safety]
   /// Safety characteristics of the device.
-  final List<CodeableConcept>? safety;
+  List<CodeableConcept>? safety;
 
   /// [shelfLifeStorage]
   /// Shelf Life and storage information.
-  final List<ProductShelfLife>? shelfLifeStorage;
+  List<ProductShelfLife>? shelfLifeStorage;
 
   /// [physicalCharacteristics]
   /// Dimensions, color etc.
-  final ProdCharacteristic? physicalCharacteristics;
+  ProdCharacteristic? physicalCharacteristics;
 
   /// [languageCode]
   /// Language code for the human-readable text strings produced by the
   /// device (all supported).
-  final List<CodeableConcept>? languageCode;
+  List<CodeableConcept>? languageCode;
 
   /// [capability]
   /// Device capabilities.
-  final List<DeviceDefinitionCapability>? capability;
+  List<DeviceDefinitionCapability>? capability;
 
   /// [property]
   /// The actual configuration settings of a device as it actually operates,
   /// e.g., regulation status, time properties.
-  final List<DeviceDefinitionProperty>? property;
+  List<DeviceDefinitionProperty>? property;
 
   /// [owner]
   /// An organization that is responsible for the provision and ongoing
   /// maintenance of the device.
-  final Reference? owner;
+  Reference? owner;
 
   /// [contact]
   /// Contact details for an organization or a particular human that is
   /// responsible for the device.
-  final List<ContactPoint>? contact;
+  List<ContactPoint>? contact;
 
   /// [url]
   /// A network address on which the device may be contacted directly.
-  final FhirUri? url;
+  FhirUri? url;
 
   /// [onlineInformation]
   /// Access to on-line information about the device.
-  final FhirUri? onlineInformation;
+  FhirUri? onlineInformation;
 
   /// [note]
   /// Descriptive information, usage information or implantation information
   /// that is not captured in an existing element.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [quantity]
   /// The quantity of the device present in the packaging (e.g. the number of
   /// devices present in a pack, or the number of devices in the same package
   /// of the medicinal product).
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [parentDevice]
   /// The parent device it can be part of.
-  final Reference? parentDevice;
+  Reference? parentDevice;
 
   /// [material]
   /// A substance used to create the material(s) of which the device is made.
-  final List<DeviceDefinitionMaterial>? material;
+  List<DeviceDefinitionMaterial>? material;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -866,7 +866,7 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -876,7 +876,7 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -894,21 +894,21 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [deviceIdentifier]
   /// The identifier that is to be associated with every Device that
   /// references this DeviceDefintiion for the issuer and jurisdication
   /// porvided in the DeviceDefinition.udiDeviceIdentifier.
-  final FhirString deviceIdentifier;
+  FhirString deviceIdentifier;
 
   /// [issuer]
   /// The organization that assigns the identifier algorithm.
-  final FhirUri issuer;
+  FhirUri issuer;
 
   /// [jurisdiction]
   /// The jurisdiction to which the deviceIdentifier applies.
-  final FhirUri jurisdiction;
+  FhirUri jurisdiction;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1086,7 +1086,7 @@ class DeviceDefinitionDeviceName extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1096,7 +1096,7 @@ class DeviceDefinitionDeviceName extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1114,17 +1114,17 @@ class DeviceDefinitionDeviceName extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [name]
   /// The name of the device.
-  final FhirString name;
+  FhirString name;
 
   /// [type]
   /// The type of deviceName.
   /// UDILabelName | UserFriendlyName | PatientReportedName |
   /// ManufactureDeviceName | ModelName.
-  final DeviceNameType type;
+  DeviceNameType type;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1298,7 +1298,7 @@ class DeviceDefinitionSpecialization extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1308,7 +1308,7 @@ class DeviceDefinitionSpecialization extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1326,15 +1326,15 @@ class DeviceDefinitionSpecialization extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [systemType]
   /// The standard that is used to operate and communicate.
-  final FhirString systemType;
+  FhirString systemType;
 
   /// [version]
   /// The version of the standard that is used to operate and communicate.
-  final FhirString? version;
+  FhirString? version;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1510,7 +1510,7 @@ class DeviceDefinitionCapability extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1520,7 +1520,7 @@ class DeviceDefinitionCapability extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1538,15 +1538,15 @@ class DeviceDefinitionCapability extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Type of capability.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [description]
   /// Description of capability.
-  final List<CodeableConcept>? description;
+  List<CodeableConcept>? description;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1725,7 +1725,7 @@ class DeviceDefinitionProperty extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1735,7 +1735,7 @@ class DeviceDefinitionProperty extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1753,20 +1753,20 @@ class DeviceDefinitionProperty extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// Code that specifies the property DeviceDefinitionPropetyCode
   /// (Extensible).
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [valueQuantity]
   /// Property value as a quantity.
-  final List<Quantity>? valueQuantity;
+  List<Quantity>? valueQuantity;
 
   /// [valueCode]
   /// Property value as a code, e.g., NTP4 (synced to NTP).
-  final List<CodeableConcept>? valueCode;
+  List<CodeableConcept>? valueCode;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1945,7 +1945,7 @@ class DeviceDefinitionMaterial extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1955,7 +1955,7 @@ class DeviceDefinitionMaterial extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1973,19 +1973,19 @@ class DeviceDefinitionMaterial extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [substance]
   /// The substance.
-  final CodeableConcept substance;
+  CodeableConcept substance;
 
   /// [alternate]
   /// Indicates an alternative material of the device.
-  final FhirBoolean? alternate;
+  FhirBoolean? alternate;
 
   /// [allergenicIndicator]
   /// Whether the substance is a known or suspected allergen.
-  final FhirBoolean? allergenicIndicator;
+  FhirBoolean? allergenicIndicator;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

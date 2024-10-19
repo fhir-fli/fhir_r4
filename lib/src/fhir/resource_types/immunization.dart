@@ -362,14 +362,14 @@ class Immunization extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -377,12 +377,12 @@ class Immunization extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -392,14 +392,14 @@ class Immunization extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -409,7 +409,7 @@ class Immunization extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -427,121 +427,121 @@ class Immunization extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A unique identifier assigned to this immunization record.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// Indicates the current status of the immunization event.
-  final ImmunizationStatusCodes status;
+  ImmunizationStatusCodes status;
 
   /// [statusReason]
   /// Indicates the reason the immunization event was not performed.
-  final CodeableConcept? statusReason;
+  CodeableConcept? statusReason;
 
   /// [vaccineCode]
   /// Vaccine that was administered or was to be administered.
-  final CodeableConcept vaccineCode;
+  CodeableConcept vaccineCode;
 
   /// [patient]
   /// The patient who either received or did not receive the immunization.
-  final Reference patient;
+  Reference patient;
 
   /// [encounter]
   /// The visit or admission or other contact between patient and health care
   /// provider the immunization was performed as part of.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [occurrenceDateTime]
   /// Date vaccine administered or was to be administered.
-  final FhirDateTime? occurrenceDateTime;
+  FhirDateTime? occurrenceDateTime;
 
   /// [occurrenceString]
   /// Date vaccine administered or was to be administered.
-  final FhirString? occurrenceString;
+  FhirString? occurrenceString;
 
   /// [recorded]
   /// The date the occurrence of the immunization was first captured in the
   /// record - potentially significantly after the occurrence of the event.
-  final FhirDateTime? recorded;
+  FhirDateTime? recorded;
 
   /// [primarySource]
   /// An indication that the content of the record is based on information
   /// from the person who administered the vaccine. This reflects the context
   /// under which the data was originally recorded.
-  final FhirBoolean? primarySource;
+  FhirBoolean? primarySource;
 
   /// [reportOrigin]
   /// The source of the data when the report of the immunization event is not
   /// based on information from the person who administered the vaccine.
-  final CodeableConcept? reportOrigin;
+  CodeableConcept? reportOrigin;
 
   /// [location]
   /// The service delivery location where the vaccine administration
   /// occurred.
-  final Reference? location;
+  Reference? location;
 
   /// [manufacturer]
   /// Name of vaccine manufacturer.
-  final Reference? manufacturer;
+  Reference? manufacturer;
 
   /// [lotNumber]
   /// Lot number of the vaccine product.
-  final FhirString? lotNumber;
+  FhirString? lotNumber;
 
   /// [expirationDate]
   /// Date vaccine batch expires.
-  final FhirDate? expirationDate;
+  FhirDate? expirationDate;
 
   /// [site]
   /// Body site where vaccine was administered.
-  final CodeableConcept? site;
+  CodeableConcept? site;
 
   /// [route]
   /// The path by which the vaccine product is taken into the body.
-  final CodeableConcept? route;
+  CodeableConcept? route;
 
   /// [doseQuantity]
   /// The quantity of vaccine product that was administered.
-  final Quantity? doseQuantity;
+  Quantity? doseQuantity;
 
   /// [performer]
   /// Indicates who performed the immunization event.
-  final List<ImmunizationPerformer>? performer;
+  List<ImmunizationPerformer>? performer;
 
   /// [note]
   /// Extra information about the immunization that is not conveyed by the
   /// other attributes.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [reasonCode]
   /// Reasons why the vaccine was administered.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConcept>? reasonCode;
 
   /// [reasonReference]
   /// Condition, Observation or DiagnosticReport that supports why the
   /// immunization was administered.
-  final List<Reference>? reasonReference;
+  List<Reference>? reasonReference;
 
   /// [isSubpotent]
   /// Indication if a dose is considered to be subpotent. By default, a dose
   /// should be considered to be potent.
-  final FhirBoolean? isSubpotent;
+  FhirBoolean? isSubpotent;
 
   /// [subpotentReason]
   /// Reason why a dose is considered to be subpotent.
-  final List<CodeableConcept>? subpotentReason;
+  List<CodeableConcept>? subpotentReason;
 
   /// [education]
   /// Educational material presented to the patient (or guardian) at the time
   /// of vaccine administration.
-  final List<ImmunizationEducation>? education;
+  List<ImmunizationEducation>? education;
 
   /// [programEligibility]
   /// Indicates a patient's eligibility for a funding program.
-  final List<CodeableConcept>? programEligibility;
+  List<CodeableConcept>? programEligibility;
 
   /// [fundingSource]
   /// Indicates the source of the vaccine actually administered. This may be
@@ -549,17 +549,17 @@ class Immunization extends DomainResource {
   /// eligible for a publically purchased vaccine but due to inventory
   /// issues, vaccine purchased with private funds was actually
   /// administered).
-  final CodeableConcept? fundingSource;
+  CodeableConcept? fundingSource;
 
   /// [reaction]
   /// Categorical data indicating that an adverse event is associated in time
   /// to an immunization.
-  final List<ImmunizationReaction>? reaction;
+  List<ImmunizationReaction>? reaction;
 
   /// [protocolApplied]
   /// The protocol (set of recommendations) being followed by the provider
   /// who administered the dose.
-  final List<ImmunizationProtocolApplied>? protocolApplied;
+  List<ImmunizationProtocolApplied>? protocolApplied;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -956,7 +956,7 @@ class ImmunizationPerformer extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -966,7 +966,7 @@ class ImmunizationPerformer extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -984,16 +984,16 @@ class ImmunizationPerformer extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [function_]
   /// Describes the type of performance (e.g. ordering provider,
   /// administering provider, etc.).
-  final CodeableConcept? function_;
+  CodeableConcept? function_;
 
   /// [actor]
   /// The practitioner or organization who performed the action.
-  final Reference actor;
+  Reference actor;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1179,7 +1179,7 @@ class ImmunizationEducation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1189,7 +1189,7 @@ class ImmunizationEducation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1207,24 +1207,24 @@ class ImmunizationEducation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [documentType]
   /// Identifier of the material presented to the patient.
-  final FhirString? documentType;
+  FhirString? documentType;
 
   /// [reference]
   /// Reference pointer to the educational material given to the patient if
   /// the information was on line.
-  final FhirUri? reference;
+  FhirUri? reference;
 
   /// [publicationDate]
   /// Date the educational material was published.
-  final FhirDateTime? publicationDate;
+  FhirDateTime? publicationDate;
 
   /// [presentationDate]
   /// Date the educational material was given to the patient.
-  final FhirDateTime? presentationDate;
+  FhirDateTime? presentationDate;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1429,7 +1429,7 @@ class ImmunizationReaction extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1439,7 +1439,7 @@ class ImmunizationReaction extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1457,19 +1457,19 @@ class ImmunizationReaction extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [date]
   /// Date of reaction to the immunization.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [detail]
   /// Details of the reaction.
-  final Reference? detail;
+  Reference? detail;
 
   /// [reported]
   /// Self-reported indicator.
-  final FhirBoolean? reported;
+  FhirBoolean? reported;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1695,7 +1695,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1705,7 +1705,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1723,37 +1723,37 @@ class ImmunizationProtocolApplied extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [series]
   /// One possible path to achieve presumed immunity against a disease -
   /// within the context of an authority.
-  final FhirString? series;
+  FhirString? series;
 
   /// [authority]
   /// Indicates the authority who published the protocol (e.g. ACIP) that is
   /// being followed.
-  final Reference? authority;
+  Reference? authority;
 
   /// [targetDisease]
   /// The vaccine preventable disease the dose is being administered against.
-  final List<CodeableConcept>? targetDisease;
+  List<CodeableConcept>? targetDisease;
 
   /// [doseNumberPositiveInt]
   /// Nominal position in a series.
-  final FhirPositiveInt? doseNumberPositiveInt;
+  FhirPositiveInt? doseNumberPositiveInt;
 
   /// [doseNumberString]
   /// Nominal position in a series.
-  final FhirString? doseNumberString;
+  FhirString? doseNumberString;
 
   /// [seriesDosesPositiveInt]
   /// The recommended number of doses to achieve immunity.
-  final FhirPositiveInt? seriesDosesPositiveInt;
+  FhirPositiveInt? seriesDosesPositiveInt;
 
   /// [seriesDosesString]
   /// The recommended number of doses to achieve immunity.
-  final FhirString? seriesDosesString;
+  FhirString? seriesDosesString;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

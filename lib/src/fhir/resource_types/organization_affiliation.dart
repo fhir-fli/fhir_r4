@@ -247,14 +247,14 @@ class OrganizationAffiliation extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -262,12 +262,12 @@ class OrganizationAffiliation extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -277,14 +277,14 @@ class OrganizationAffiliation extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -294,7 +294,7 @@ class OrganizationAffiliation extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -312,65 +312,65 @@ class OrganizationAffiliation extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business identifiers that are specific to this role.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [active]
   /// Whether this organization affiliation record is in active use.
-  final FhirBoolean? active;
+  FhirBoolean? active;
 
   /// [period]
   /// The period during which the participatingOrganization is affiliated
   /// with the primary organization.
-  final Period? period;
+  Period? period;
 
   /// [organization]
   /// Organization where the role is available (primary organization/has
   /// members).
-  final Reference? organization;
+  Reference? organization;
 
   /// [participatingOrganization]
   /// The Participating Organization provides/performs the role(s) defined by
   /// the code to the Primary Organization (e.g. providing services or is a
   /// member of).
-  final Reference? participatingOrganization;
+  Reference? participatingOrganization;
 
   /// [network]
   /// Health insurance provider network in which the
   /// participatingOrganization provides the role's services (if defined) at
   /// the indicated locations (if defined).
-  final List<Reference>? network;
+  List<Reference>? network;
 
   /// [code]
   /// Definition of the role the participatingOrganization plays in the
   /// association.
-  final List<CodeableConcept>? code;
+  List<CodeableConcept>? code;
 
   /// [specialty]
   /// Specific specialty of the participatingOrganization in the context of
   /// the role.
-  final List<CodeableConcept>? specialty;
+  List<CodeableConcept>? specialty;
 
   /// [location]
   /// The location(s) at which the role occurs.
-  final List<Reference>? location;
+  List<Reference>? location;
 
   /// [healthcareService]
   /// Healthcare services provided through the role.
-  final List<Reference>? healthcareService;
+  List<Reference>? healthcareService;
 
   /// [telecom]
   /// Contact details at the participatingOrganization relevant to this
   /// Affiliation.
-  final List<ContactPoint>? telecom;
+  List<ContactPoint>? telecom;
 
   /// [endpoint]
   /// Technical endpoints providing access to services operated for this
   /// role.
-  final List<Reference>? endpoint;
+  List<Reference>? endpoint;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

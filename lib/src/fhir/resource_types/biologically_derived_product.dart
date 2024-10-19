@@ -232,14 +232,14 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -247,12 +247,12 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -262,14 +262,14 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -279,7 +279,7 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -297,7 +297,7 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// This records identifiers associated with this biologically derived
@@ -305,52 +305,52 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// refer to it when a direct URL reference to the resource itself is not
   /// appropriate (e.g. in CDA documents, or in written / printed
   /// documentation).
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [productCategory]
   /// Broad category of this product.
-  final BiologicallyDerivedProductCategory? productCategory;
+  BiologicallyDerivedProductCategory? productCategory;
 
   /// [productCode]
   /// A code that identifies the kind of this biologically derived product
   /// (SNOMED Ctcode).
-  final CodeableConcept? productCode;
+  CodeableConcept? productCode;
 
   /// [status]
   /// Whether the product is currently available.
-  final BiologicallyDerivedProductStatus? status;
+  BiologicallyDerivedProductStatus? status;
 
   /// [request]
   /// Procedure request to obtain this biologically derived product.
-  final List<Reference>? request;
+  List<Reference>? request;
 
   /// [quantity]
   /// Number of discrete units within this product.
-  final FhirInteger? quantity;
+  FhirInteger? quantity;
 
   /// [parent]
   /// Parent product (if any).
-  final List<Reference>? parent;
+  List<Reference>? parent;
 
   /// [collection]
   /// How this product was collected.
-  final BiologicallyDerivedProductCollection? collection;
+  BiologicallyDerivedProductCollection? collection;
 
   /// [processing]
   /// Any processing of the product during collection that does not change
   /// the fundamental nature of the product. For example adding
   /// anti-coagulants during the collection of Peripheral Blood Stem Cells.
-  final List<BiologicallyDerivedProductProcessing>? processing;
+  List<BiologicallyDerivedProductProcessing>? processing;
 
   /// [manipulation]
   /// Any manipulation of product post-collection that is intended to alter
   /// the product. For example a buffy-coat enrichment or CD8 reduction of
   /// Peripheral Blood Stem Cells to make it more suitable for infusion.
-  final BiologicallyDerivedProductManipulation? manipulation;
+  BiologicallyDerivedProductManipulation? manipulation;
 
   /// [storage]
   /// Product storage.
-  final List<BiologicallyDerivedProductStorage>? storage;
+  List<BiologicallyDerivedProductStorage>? storage;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -637,7 +637,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -647,7 +647,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -665,24 +665,24 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [collector]
   /// Healthcare professional who is performing the collection.
-  final Reference? collector;
+  Reference? collector;
 
   /// [source]
   /// The patient or entity, such as a hospital or vendor in the case of a
   /// processed/manipulated/manufactured product, providing the product.
-  final Reference? source;
+  Reference? source;
 
   /// [collectedDateTime]
   /// Time of product collection.
-  final FhirDateTime? collectedDateTime;
+  FhirDateTime? collectedDateTime;
 
   /// [collectedPeriod]
   /// Time of product collection.
-  final Period? collectedPeriod;
+  Period? collectedPeriod;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -889,7 +889,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -899,7 +899,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -917,27 +917,27 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// Description of of processing.
-  final FhirString? description;
+  FhirString? description;
 
   /// [procedure]
   /// Procesing code.
-  final CodeableConcept? procedure;
+  CodeableConcept? procedure;
 
   /// [additive]
   /// Substance added during processing.
-  final Reference? additive;
+  Reference? additive;
 
   /// [timeDateTime]
   /// Time of processing.
-  final FhirDateTime? timeDateTime;
+  FhirDateTime? timeDateTime;
 
   /// [timePeriod]
   /// Time of processing.
-  final Period? timePeriod;
+  Period? timePeriod;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1142,7 +1142,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1152,7 +1152,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1170,19 +1170,19 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// Description of manipulation.
-  final FhirString? description;
+  FhirString? description;
 
   /// [timeDateTime]
   /// Time of manipulation.
-  final FhirDateTime? timeDateTime;
+  FhirDateTime? timeDateTime;
 
   /// [timePeriod]
   /// Time of manipulation.
-  final Period? timePeriod;
+  Period? timePeriod;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1379,7 +1379,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1389,7 +1389,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1407,23 +1407,23 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [description]
   /// Description of storage.
-  final FhirString? description;
+  FhirString? description;
 
   /// [temperature]
   /// Storage temperature.
-  final FhirDecimal? temperature;
+  FhirDecimal? temperature;
 
   /// [scale]
   /// Temperature scale used.
-  final BiologicallyDerivedProductStorageScale? scale;
+  BiologicallyDerivedProductStorageScale? scale;
 
   /// [duration]
   /// Storage timeperiod.
-  final Period? duration;
+  Period? duration;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

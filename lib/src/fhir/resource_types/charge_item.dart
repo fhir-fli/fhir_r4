@@ -357,14 +357,14 @@ class ChargeItem extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -372,12 +372,12 @@ class ChargeItem extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -387,14 +387,14 @@ class ChargeItem extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -404,7 +404,7 @@ class ChargeItem extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -422,135 +422,135 @@ class ChargeItem extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifiers assigned to this event performer or other systems.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [definitionUri]
   /// References the (external) source of pricing information, rules of
   /// application for the code this ChargeItem uses.
-  final List<FhirUri>? definitionUri;
+  List<FhirUri>? definitionUri;
 
   /// [definitionCanonical]
   /// References the source of pricing information, rules of application for
   /// the code this ChargeItem uses.
-  final List<FhirCanonical>? definitionCanonical;
+  List<FhirCanonical>? definitionCanonical;
 
   /// [status]
   /// The current state of the ChargeItem.
-  final ChargeItemStatus status;
+  ChargeItemStatus status;
 
   /// [partOf]
   /// ChargeItems can be grouped to larger ChargeItems covering the whole
   /// set.
-  final List<Reference>? partOf;
+  List<Reference>? partOf;
 
   /// [code]
   /// A code that identifies the charge, like a billing code.
-  final CodeableConcept code;
+  CodeableConcept code;
 
   /// [subject]
   /// The individual or set of individuals the action is being or was
   /// performed on.
-  final Reference subject;
+  Reference subject;
 
   /// [context]
   /// The encounter or episode of care that establishes the context for this
   /// event.
-  final Reference? context;
+  Reference? context;
 
   /// [occurrenceDateTime]
   /// Date/time(s) or duration when the charged service was applied.
-  final FhirDateTime? occurrenceDateTime;
+  FhirDateTime? occurrenceDateTime;
 
   /// [occurrencePeriod]
   /// Date/time(s) or duration when the charged service was applied.
-  final Period? occurrencePeriod;
+  Period? occurrencePeriod;
 
   /// [occurrenceTiming]
   /// Date/time(s) or duration when the charged service was applied.
-  final Timing? occurrenceTiming;
+  Timing? occurrenceTiming;
 
   /// [performer]
   /// Indicates who or what performed or participated in the charged service.
-  final List<ChargeItemPerformer>? performer;
+  List<ChargeItemPerformer>? performer;
 
   /// [performingOrganization]
   /// The organization requesting the service.
-  final Reference? performingOrganization;
+  Reference? performingOrganization;
 
   /// [requestingOrganization]
   /// The organization performing the service.
-  final Reference? requestingOrganization;
+  Reference? requestingOrganization;
 
   /// [costCenter]
   /// The financial cost center permits the tracking of charge attribution.
-  final Reference? costCenter;
+  Reference? costCenter;
 
   /// [quantity]
   /// Quantity of which the charge item has been serviced.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [bodysite]
   /// The anatomical location where the related service has been applied.
-  final List<CodeableConcept>? bodysite;
+  List<CodeableConcept>? bodysite;
 
   /// [factorOverride]
   /// Factor overriding the factor determined by the rules associated with
   /// the code.
-  final FhirDecimal? factorOverride;
+  FhirDecimal? factorOverride;
 
   /// [priceOverride]
   /// Total price of the charge overriding the list price associated with the
   /// code.
-  final Money? priceOverride;
+  Money? priceOverride;
 
   /// [overrideReason]
   /// If the list price or the rule-based factor associated with the code is
   /// overridden, this attribute can capture a text to indicate the reason
   /// for this action.
-  final FhirString? overrideReason;
+  FhirString? overrideReason;
 
   /// [enterer]
   /// The device, practitioner, etc. who entered the charge item.
-  final Reference? enterer;
+  Reference? enterer;
 
   /// [enteredDate]
   /// Date the charge item was entered.
-  final FhirDateTime? enteredDate;
+  FhirDateTime? enteredDate;
 
   /// [reason]
   /// Describes why the event occurred in coded or textual form.
-  final List<CodeableConcept>? reason;
+  List<CodeableConcept>? reason;
 
   /// [service]
   /// Indicated the rendered service that caused this charge.
-  final List<Reference>? service;
+  List<Reference>? service;
 
   /// [productReference]
   /// Identifies the device, food, drug or other product being charged either
   /// by type code or reference to an instance.
-  final Reference? productReference;
+  Reference? productReference;
 
   /// [productCodeableConcept]
   /// Identifies the device, food, drug or other product being charged either
   /// by type code or reference to an instance.
-  final CodeableConcept? productCodeableConcept;
+  CodeableConcept? productCodeableConcept;
 
   /// [account]
   /// Account into which this ChargeItems belongs.
-  final List<Reference>? account;
+  List<Reference>? account;
 
   /// [note]
   /// Comments made about the event by the performer, subject or other
   /// participants.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [supportingInformation]
   /// Further information supporting this charge.
-  final List<Reference>? supportingInformation;
+  List<Reference>? supportingInformation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -945,7 +945,7 @@ class ChargeItemPerformer extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -955,7 +955,7 @@ class ChargeItemPerformer extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -973,17 +973,17 @@ class ChargeItemPerformer extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [function_]
   /// Describes the type of performance or participation(e.g. primary
   /// surgeon, anesthesiologiest, etc.).
-  final CodeableConcept? function_;
+  CodeableConcept? function_;
 
   /// [actor]
   /// The device, practitioner, etc. who performed or participated in the
   /// service.
-  final Reference actor;
+  Reference actor;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

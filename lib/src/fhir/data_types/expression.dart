@@ -127,7 +127,7 @@ class FhirExpression extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -137,29 +137,29 @@ class FhirExpression extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [description]
   /// A brief, natural language description of the condition that effectively
   /// communicates the intended semantics.
-  final FhirString? description;
+  FhirString? description;
 
   /// [name]
   /// A short name assigned to the expression to allow for multiple reuse of
   /// the expression in the context where it is defined.
-  final FhirId? name;
+  FhirId? name;
 
   /// [language]
   /// The media type of the language for the expression.
-  final ExpressionLanguage language;
+  ExpressionLanguage language;
 
   /// [expression]
   /// An expression in the specified language that returns a value.
-  final FhirString? expression;
+  FhirString? expression;
 
   /// [reference]
   /// A URI that defines where the expression is found.
-  final FhirUri? reference;
+  FhirUri? reference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

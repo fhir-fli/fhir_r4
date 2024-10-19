@@ -158,7 +158,7 @@ class DataRequirement extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -168,28 +168,28 @@ class DataRequirement extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [type]
   /// The type of the required data, specified as the type name of a
   /// resource. For profiles, this value is set to the type of the base
   /// resource of the profile.
-  final FHIRAllTypes type;
+  FHIRAllTypes type;
 
   /// [profile]
   /// The profile of the required data, specified as the uri of the profile
   /// definition.
-  final List<FhirCanonical>? profile;
+  List<FhirCanonical>? profile;
 
   /// [subjectCodeableConcept]
   /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
-  final CodeableConcept? subjectCodeableConcept;
+  CodeableConcept? subjectCodeableConcept;
 
   /// [subjectReference]
   /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
-  final Reference? subjectReference;
+  Reference? subjectReference;
 
   /// [mustSupport]
   /// Indicates that specific elements of the type are referenced by the
@@ -203,30 +203,30 @@ class DataRequirement extends DataType {
   /// the DataRequirement. The path SHALL consist only of identifiers,
   /// constant indexers, and .resolve() (see the [Simple FHIRPath
   /// Profile](fhirpath.html#simple) for full details).
-  final List<FhirString>? mustSupport;
+  List<FhirString>? mustSupport;
 
   /// [codeFilter]
   /// Code filters specify additional constraints on the data, specifying the
   /// value set of interest for a particular element of the data. Each code
   /// filter defines an additional constraint on the data, i.e. code filters
   /// are AND'ed, not OR'ed.
-  final List<DataRequirementCodeFilter>? codeFilter;
+  List<DataRequirementCodeFilter>? codeFilter;
 
   /// [dateFilter]
   /// Date filters specify additional constraints on the data in terms of the
   /// applicable date range for specific elements. Each date filter specifies
   /// an additional constraint on the data, i.e. date filters are AND'ed, not
   /// OR'ed.
-  final List<DataRequirementDateFilter>? dateFilter;
+  List<DataRequirementDateFilter>? dateFilter;
 
   /// [limit]
   /// Specifies a maximum number of results that are required (uses the
   /// _count search parameter).
-  final FhirPositiveInt? limit;
+  FhirPositiveInt? limit;
 
   /// [sort]
   /// Specifies the order of the results to be returned.
-  final List<DataRequirementSort>? sort;
+  List<DataRequirementSort>? sort;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -456,7 +456,7 @@ class DataRequirementCodeFilter extends Element {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -466,7 +466,7 @@ class DataRequirementCodeFilter extends Element {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [path]
   /// The code-valued attribute of the filter. The specified path SHALL be a
@@ -477,20 +477,20 @@ class DataRequirementCodeFilter extends Element {
   /// (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full
   /// details). Note that the index must be an integer constant. The path
   /// must resolve to an element of type code, Coding, or CodeableConcept.
-  final FhirString? path;
+  FhirString? path;
 
   /// [searchParam]
   /// A token parameter that refers to a search parameter defined on the
   /// specified type of the DataRequirement, and which searches on elements
   /// of type code, Coding, or CodeableConcept.
-  final FhirString? searchParam;
+  FhirString? searchParam;
 
   /// [valueSet]
   /// The valueset for the code filter. The valueSet and code elements are
   /// additive. If valueSet is specified, the filter will return only those
   /// data items for which the value of the code-valued element specified in
   /// the path is a member of the specified valueset.
-  final FhirCanonical? valueSet;
+  FhirCanonical? valueSet;
 
   /// [code]
   /// The codes for the code filter. If values are given, the filter will
@@ -498,7 +498,7 @@ class DataRequirementCodeFilter extends Element {
   /// specified by the path has a value that is one of the specified codes.
   /// If codes are specified in addition to a value set, the filter returns
   /// items matching a code in the value set or one of the specified codes.
-  final List<Coding>? code;
+  List<Coding>? code;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -698,7 +698,7 @@ class DataRequirementDateFilter extends Element {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -708,7 +708,7 @@ class DataRequirementDateFilter extends Element {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [path]
   /// The date-valued attribute of the filter. The specified path SHALL be a
@@ -720,13 +720,13 @@ class DataRequirementDateFilter extends Element {
   /// details). Note that the index must be an integer constant. The path
   /// must resolve to an element of type date, dateTime, Period, Schedule, or
   /// Timing.
-  final FhirString? path;
+  FhirString? path;
 
   /// [searchParam]
   /// A date parameter that refers to a search parameter defined on the
   /// specified type of the DataRequirement, and which searches on elements
   /// of type date, dateTime, Period, Schedule, or Timing.
-  final FhirString? searchParam;
+  FhirString? searchParam;
 
   /// [valueDateTime]
   /// The value of the filter. If period is specified, the filter will return
@@ -735,7 +735,7 @@ class DataRequirementDateFilter extends Element {
   /// the filter will return only those data items that are equal to the
   /// specified dateTime. If a Duration is specified, the filter will return
   /// only those data items that fall within Duration before now.
-  final FhirDateTime? valueDateTime;
+  FhirDateTime? valueDateTime;
 
   /// [valuePeriod]
   /// The value of the filter. If period is specified, the filter will return
@@ -744,7 +744,7 @@ class DataRequirementDateFilter extends Element {
   /// the filter will return only those data items that are equal to the
   /// specified dateTime. If a Duration is specified, the filter will return
   /// only those data items that fall within Duration before now.
-  final Period? valuePeriod;
+  Period? valuePeriod;
 
   /// [valueDuration]
   /// The value of the filter. If period is specified, the filter will return
@@ -753,7 +753,7 @@ class DataRequirementDateFilter extends Element {
   /// the filter will return only those data items that are equal to the
   /// specified dateTime. If a Duration is specified, the filter will return
   /// only those data items that fall within Duration before now.
-  final FhirDuration? valueDuration;
+  FhirDuration? valueDuration;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -932,7 +932,7 @@ class DataRequirementSort extends Element {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -942,7 +942,7 @@ class DataRequirementSort extends Element {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [path]
   /// The attribute of the sort. The specified path must be resolvable from
@@ -950,11 +950,11 @@ class DataRequirementSort extends Element {
   /// qualifiers (.) to traverse sub-elements, as well as indexers ([x]) to
   /// traverse multiple-cardinality sub-elements. Note that the index must be
   /// an integer constant.
-  final FhirString path;
+  FhirString path;
 
   /// [direction]
   /// The direction of the sort, ascending or descending.
-  final SortDirection direction;
+  SortDirection direction;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

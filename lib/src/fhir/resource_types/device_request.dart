@@ -346,14 +346,14 @@ class DeviceRequest extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -361,12 +361,12 @@ class DeviceRequest extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -376,14 +376,14 @@ class DeviceRequest extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -393,7 +393,7 @@ class DeviceRequest extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -411,141 +411,141 @@ class DeviceRequest extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifiers assigned to this order by the orderer or by the receiver.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [instantiatesCanonical]
   /// The URL pointing to a FHIR-defined protocol, guideline, orderset or
   /// other definition that is adhered to in whole or in part by this
   /// DeviceRequest.
-  final List<FhirCanonical>? instantiatesCanonical;
+  List<FhirCanonical>? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline,
   /// orderset or other definition that is adhered to in whole or in part by
   /// this DeviceRequest.
-  final List<FhirUri>? instantiatesUri;
+  List<FhirUri>? instantiatesUri;
 
   /// [basedOn]
   /// Plan/proposal/order fulfilled by this request.
-  final List<Reference>? basedOn;
+  List<Reference>? basedOn;
 
   /// [priorRequest]
   /// The request takes the place of the referenced completed or terminated
   /// request(s).
-  final List<Reference>? priorRequest;
+  List<Reference>? priorRequest;
 
   /// [groupIdentifier]
   /// Composite request this is part of.
-  final Identifier? groupIdentifier;
+  Identifier? groupIdentifier;
 
   /// [status]
   /// The status of the request.
-  final RequestStatus? status;
+  RequestStatus? status;
 
   /// [intent]
   /// Whether the request is a proposal, plan, an original order or a reflex
   /// order.
-  final RequestIntent intent;
+  RequestIntent intent;
 
   /// [priority]
   /// Indicates how quickly the {{title}} should be addressed with respect to
   /// other requests.
-  final RequestPriority? priority;
+  RequestPriority? priority;
 
   /// [codeReference]
   /// The details of the device to be used.
-  final Reference? codeReference;
+  Reference? codeReference;
 
   /// [codeCodeableConcept]
   /// The details of the device to be used.
-  final CodeableConcept? codeCodeableConcept;
+  CodeableConcept? codeCodeableConcept;
 
   /// [parameter]
   /// Specific parameters for the ordered item. For example, the prism value
   /// for lenses.
-  final List<DeviceRequestParameter>? parameter;
+  List<DeviceRequestParameter>? parameter;
 
   /// [subject]
   /// The patient who will use the device.
-  final Reference subject;
+  Reference subject;
 
   /// [encounter]
   /// An encounter that provides additional context in which this request is
   /// made.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [occurrenceDateTime]
   /// The timing schedule for the use of the device. The Schedule data type
   /// allows many different expressions, for example. "Every 8 hours"; "Three
   /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec
   /// 2011:"; "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
-  final FhirDateTime? occurrenceDateTime;
+  FhirDateTime? occurrenceDateTime;
 
   /// [occurrencePeriod]
   /// The timing schedule for the use of the device. The Schedule data type
   /// allows many different expressions, for example. "Every 8 hours"; "Three
   /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec
   /// 2011:"; "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
-  final Period? occurrencePeriod;
+  Period? occurrencePeriod;
 
   /// [occurrenceTiming]
   /// The timing schedule for the use of the device. The Schedule data type
   /// allows many different expressions, for example. "Every 8 hours"; "Three
   /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec
   /// 2011:"; "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
-  final Timing? occurrenceTiming;
+  Timing? occurrenceTiming;
 
   /// [authoredOn]
   /// When the request transitioned to being actionable.
-  final FhirDateTime? authoredOn;
+  FhirDateTime? authoredOn;
 
   /// [requester]
   /// The individual who initiated the request and has responsibility for its
   /// activation.
-  final Reference? requester;
+  Reference? requester;
 
   /// [performerType]
   /// Desired type of performer for doing the diagnostic testing.
-  final CodeableConcept? performerType;
+  CodeableConcept? performerType;
 
   /// [performer]
   /// The desired performer for doing the diagnostic testing.
-  final Reference? performer;
+  Reference? performer;
 
   /// [reasonCode]
   /// Reason or justification for the use of this device.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConcept>? reasonCode;
 
   /// [reasonReference]
   /// Reason or justification for the use of this device.
-  final List<Reference>? reasonReference;
+  List<Reference>? reasonReference;
 
   /// [insurance]
   /// Insurance plans, coverage extensions, pre-authorizations and/or
   /// pre-determinations that may be required for delivering the requested
   /// service.
-  final List<Reference>? insurance;
+  List<Reference>? insurance;
 
   /// [supportingInfo]
   /// Additional clinical information about the patient that may influence
   /// the request fulfilment. For example, this may include where on the
   /// subject's body the device will be used (i.e. the target site).
-  final List<Reference>? supportingInfo;
+  List<Reference>? supportingInfo;
 
   /// [note]
   /// Details about this request that were not represented at all or
   /// sufficiently in one of the attributes provided in a class. These may
   /// include for example a comment, an instruction, or a note associated
   /// with the statement.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [relevantHistory]
   /// Key events in the history of the request.
-  final List<Reference>? relevantHistory;
+  List<Reference>? relevantHistory;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -952,7 +952,7 @@ class DeviceRequestParameter extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -962,7 +962,7 @@ class DeviceRequestParameter extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -980,27 +980,27 @@ class DeviceRequestParameter extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// A code or string that identifies the device detail being asserted.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [valueCodeableConcept]
   /// The value of the device detail.
-  final CodeableConcept? valueCodeableConcept;
+  CodeableConcept? valueCodeableConcept;
 
   /// [valueQuantity]
   /// The value of the device detail.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueRange]
   /// The value of the device detail.
-  final Range? valueRange;
+  Range? valueRange;
 
   /// [valueBoolean]
   /// The value of the device detail.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

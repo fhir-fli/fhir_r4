@@ -248,14 +248,14 @@ class CoverageEligibilityRequest extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -263,12 +263,12 @@ class CoverageEligibilityRequest extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -278,14 +278,14 @@ class CoverageEligibilityRequest extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -295,7 +295,7 @@ class CoverageEligibilityRequest extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -313,19 +313,19 @@ class CoverageEligibilityRequest extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A unique identifier assigned to this coverage eligiblity request.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// The status of the resource instance.
-  final FinancialResourceStatusCodes status;
+  FinancialResourceStatusCodes status;
 
   /// [priority]
   /// When the requestor expects the processor to complete processing.
-  final CodeableConcept? priority;
+  CodeableConcept? priority;
 
   /// [purpose]
   /// Code to specify whether requesting: prior authorization requirements
@@ -333,59 +333,59 @@ class CoverageEligibilityRequest extends DomainResource {
   /// specified or discovered; discovery and return of coverages for the
   /// patient; and/or validation that the specified coverage is in-force at
   /// the date/period specified or 'now' if not specified.
-  final List<EligibilityRequestPurpose> purpose;
+  List<EligibilityRequestPurpose> purpose;
 
   /// [patient]
   /// The party who is the beneficiary of the supplied coverage and for whom
   /// eligibility is sought.
-  final Reference patient;
+  Reference patient;
 
   /// [servicedDate]
   /// The date or dates when the enclosed suite of services were performed or
   /// completed.
-  final FhirDate? servicedDate;
+  FhirDate? servicedDate;
 
   /// [servicedPeriod]
   /// The date or dates when the enclosed suite of services were performed or
   /// completed.
-  final Period? servicedPeriod;
+  Period? servicedPeriod;
 
   /// [created]
   /// The date when this resource was created.
-  final FhirDateTime created;
+  FhirDateTime created;
 
   /// [enterer]
   /// Person who created the request.
-  final Reference? enterer;
+  Reference? enterer;
 
   /// [provider]
   /// The provider which is responsible for the request.
-  final Reference? provider;
+  Reference? provider;
 
   /// [insurer]
   /// The Insurer who issued the coverage in question and is the recipient of
   /// the request.
-  final Reference insurer;
+  Reference insurer;
 
   /// [facility]
   /// Facility where the services are intended to be provided.
-  final Reference? facility;
+  Reference? facility;
 
   /// [supportingInfo]
   /// Additional information codes regarding exceptions, special
   /// considerations, the condition, situation, prior or concurrent issues.
-  final List<CoverageEligibilityRequestSupportingInfo>? supportingInfo;
+  List<CoverageEligibilityRequestSupportingInfo>? supportingInfo;
 
   /// [insurance]
   /// Financial instruments for reimbursement for the health care products
   /// and services.
-  final List<CoverageEligibilityRequestInsurance>? insurance;
+  List<CoverageEligibilityRequestInsurance>? insurance;
 
   /// [item]
   /// Service categories or billable services for which benefit details
   /// and/or an authorization prior to service delivery may be required by
   /// the payor.
-  final List<CoverageEligibilityRequestItem>? item;
+  List<CoverageEligibilityRequestItem>? item;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -682,7 +682,7 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -692,7 +692,7 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -710,22 +710,22 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [sequence]
   /// A number to uniquely identify supporting information entries.
-  final FhirPositiveInt sequence;
+  FhirPositiveInt sequence;
 
   /// [information]
   /// Additional data or information such as resources, documents, images
   /// etc. including references to the data or the actual inclusion of the
   /// data.
-  final Reference information;
+  Reference information;
 
   /// [appliesToAll]
   /// The supporting materials are applicable for all detail items,
   /// product/servce categories and specific billing codes.
-  final FhirBoolean? appliesToAll;
+  FhirBoolean? appliesToAll;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -912,7 +912,7 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -922,7 +922,7 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -940,24 +940,24 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [focal]
   /// A flag to indicate that this Coverage is to be used for evaluation of
   /// this request when set to true.
-  final FhirBoolean? focal;
+  FhirBoolean? focal;
 
   /// [coverage]
   /// Reference to the insurance card level information contained in the
   /// Coverage resource. The coverage issuing insurer will use these details
   /// to locate the patient's actual coverage within the insurer's
   /// information system.
-  final Reference coverage;
+  Reference coverage;
 
   /// [businessArrangement]
   /// A business agreement number established between the provider and the
   /// insurer for special business processing purposes.
-  final FhirString? businessArrangement;
+  FhirString? businessArrangement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1199,7 +1199,7 @@ class CoverageEligibilityRequestItem extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1209,7 +1209,7 @@ class CoverageEligibilityRequestItem extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1227,52 +1227,52 @@ class CoverageEligibilityRequestItem extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [supportingInfoSequence]
   /// Exceptions, special conditions and supporting information applicable
   /// for this service or product line.
-  final List<FhirPositiveInt>? supportingInfoSequence;
+  List<FhirPositiveInt>? supportingInfoSequence;
 
   /// [category]
   /// Code to identify the general type of benefits under which products and
   /// services are provided.
-  final CodeableConcept? category;
+  CodeableConcept? category;
 
   /// [productOrService]
   /// This contains the product, service, drug or other billing code for the
   /// item.
-  final CodeableConcept? productOrService;
+  CodeableConcept? productOrService;
 
   /// [modifier]
   /// Item typification or modifiers codes to convey additional context for
   /// the product or service.
-  final List<CodeableConcept>? modifier;
+  List<CodeableConcept>? modifier;
 
   /// [provider]
   /// The practitioner who is responsible for the product or service to be
   /// rendered to the patient.
-  final Reference? provider;
+  Reference? provider;
 
   /// [quantity]
   /// The number of repetitions of a service or product.
-  final Quantity? quantity;
+  Quantity? quantity;
 
   /// [unitPrice]
   /// The amount charged to the patient by the provider for a single unit.
-  final Money? unitPrice;
+  Money? unitPrice;
 
   /// [facility]
   /// Facility where the services will be provided.
-  final Reference? facility;
+  Reference? facility;
 
   /// [diagnosis]
   /// Patient diagnosis for which care is sought.
-  final List<CoverageEligibilityRequestDiagnosis>? diagnosis;
+  List<CoverageEligibilityRequestDiagnosis>? diagnosis;
 
   /// [detail]
   /// The plan/proposal/order describing the proposed service in detail.
-  final List<Reference>? detail;
+  List<Reference>? detail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1496,7 +1496,7 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1506,7 +1506,7 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1524,17 +1524,17 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [diagnosisCodeableConcept]
   /// The nature of illness or problem in a coded form or as a reference to
   /// an external defined Condition.
-  final CodeableConcept? diagnosisCodeableConcept;
+  CodeableConcept? diagnosisCodeableConcept;
 
   /// [diagnosisReference]
   /// The nature of illness or problem in a coded form or as a reference to
   /// an external defined Condition.
-  final Reference? diagnosisReference;
+  Reference? diagnosisReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

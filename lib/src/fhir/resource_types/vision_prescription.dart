@@ -190,14 +190,14 @@ class VisionPrescription extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -205,12 +205,12 @@ class VisionPrescription extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -220,14 +220,14 @@ class VisionPrescription extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -237,7 +237,7 @@ class VisionPrescription extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -255,44 +255,44 @@ class VisionPrescription extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A unique identifier assigned to this vision prescription.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// The status of the resource instance.
-  final FinancialResourceStatusCodes status;
+  FinancialResourceStatusCodes status;
 
   /// [created]
   /// The date this resource was created.
-  final FhirDateTime created;
+  FhirDateTime created;
 
   /// [patient]
   /// A resource reference to the person to whom the vision prescription
   /// applies.
-  final Reference patient;
+  Reference patient;
 
   /// [encounter]
   /// A reference to a resource that identifies the particular occurrence of
   /// contact between patient and health care provider during which the
   /// prescription was issued.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [dateWritten]
   /// The date (and perhaps time) when the prescription was written.
-  final FhirDateTime dateWritten;
+  FhirDateTime dateWritten;
 
   /// [prescriber]
   /// The healthcare professional responsible for authorizing the
   /// prescription.
-  final Reference prescriber;
+  Reference prescriber;
 
   /// [lensSpecification]
   /// Contain the details of the individual lens specifications and serves as
   /// the authorization for the fullfillment by certified professionals.
-  final List<VisionPrescriptionLensSpecification> lensSpecification;
+  List<VisionPrescriptionLensSpecification> lensSpecification;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -623,7 +623,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -633,7 +633,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -651,65 +651,65 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [product]
   /// Identifies the type of vision correction product which is required for
   /// the patient.
-  final CodeableConcept product;
+  CodeableConcept product;
 
   /// [eye]
   /// The eye for which the lens specification applies.
-  final VisionEyes eye;
+  VisionEyes eye;
 
   /// [sphere]
   /// Lens power measured in dioptres (0.25 units).
-  final FhirDecimal? sphere;
+  FhirDecimal? sphere;
 
   /// [cylinder]
   /// Power adjustment for astigmatism measured in dioptres (0.25 units).
-  final FhirDecimal? cylinder;
+  FhirDecimal? cylinder;
 
   /// [axis]
   /// Adjustment for astigmatism measured in integer degrees.
-  final FhirInteger? axis;
+  FhirInteger? axis;
 
   /// [prism]
   /// Allows for adjustment on two axis.
-  final List<VisionPrescriptionPrism>? prism;
+  List<VisionPrescriptionPrism>? prism;
 
   /// [add]
   /// Power adjustment for multifocal lenses measured in dioptres (0.25
   /// units).
-  final FhirDecimal? add;
+  FhirDecimal? add;
 
   /// [power]
   /// Contact lens power measured in dioptres (0.25 units).
-  final FhirDecimal? power;
+  FhirDecimal? power;
 
   /// [backCurve]
   /// Back curvature measured in millimetres.
-  final FhirDecimal? backCurve;
+  FhirDecimal? backCurve;
 
   /// [diameter]
   /// Contact lens diameter measured in millimetres.
-  final FhirDecimal? diameter;
+  FhirDecimal? diameter;
 
   /// [duration]
   /// The recommended maximum wear period for the lens.
-  final Quantity? duration;
+  Quantity? duration;
 
   /// [color]
   /// Special color or pattern.
-  final FhirString? color;
+  FhirString? color;
 
   /// [brand]
   /// Brand recommendations or restrictions.
-  final FhirString? brand;
+  FhirString? brand;
 
   /// [note]
   /// Notes for special requirements such as coatings and lens materials.
-  final List<Annotation>? note;
+  List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -983,7 +983,7 @@ class VisionPrescriptionPrism extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -993,7 +993,7 @@ class VisionPrescriptionPrism extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1011,15 +1011,15 @@ class VisionPrescriptionPrism extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [amount]
   /// Amount of prism to compensate for eye alignment in fractional units.
-  final FhirDecimal amount;
+  FhirDecimal amount;
 
   /// [base]
   /// The relative base, or reference lens edge, for the prism.
-  final VisionBase base;
+  VisionBase base;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

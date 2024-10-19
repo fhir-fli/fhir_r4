@@ -177,14 +177,14 @@ class ImmunizationRecommendation extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -192,12 +192,12 @@ class ImmunizationRecommendation extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -207,14 +207,14 @@ class ImmunizationRecommendation extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -224,7 +224,7 @@ class ImmunizationRecommendation extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -242,27 +242,27 @@ class ImmunizationRecommendation extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A unique identifier assigned to this particular recommendation record.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [patient]
   /// The patient the recommendation(s) are for.
-  final Reference patient;
+  Reference patient;
 
   /// [date]
   /// The date the immunization recommendation(s) were created.
-  final FhirDateTime date;
+  FhirDateTime date;
 
   /// [authority]
   /// Indicates the authority who published the protocol (e.g. ACIP).
-  final Reference? authority;
+  Reference? authority;
 
   /// [recommendation]
   /// Vaccine administration recommendations.
-  final List<ImmunizationRecommendationRecommendation> recommendation;
+  List<ImmunizationRecommendationRecommendation> recommendation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -589,7 +589,7 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -599,7 +599,7 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -617,72 +617,72 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [vaccineCode]
   /// Vaccine(s) or vaccine group that pertain to the recommendation.
-  final List<CodeableConcept>? vaccineCode;
+  List<CodeableConcept>? vaccineCode;
 
   /// [targetDisease]
   /// The targeted disease for the recommendation.
-  final CodeableConcept? targetDisease;
+  CodeableConcept? targetDisease;
 
   /// [contraindicatedVaccineCode]
   /// Vaccine(s) which should not be used to fulfill the recommendation.
-  final List<CodeableConcept>? contraindicatedVaccineCode;
+  List<CodeableConcept>? contraindicatedVaccineCode;
 
   /// [forecastStatus]
   /// Indicates the patient status with respect to the path to immunity for
   /// the target disease.
-  final CodeableConcept forecastStatus;
+  CodeableConcept forecastStatus;
 
   /// [forecastReason]
   /// The reason for the assigned forecast status.
-  final List<CodeableConcept>? forecastReason;
+  List<CodeableConcept>? forecastReason;
 
   /// [dateCriterion]
   /// Vaccine date recommendations. For example, earliest date to administer,
   /// latest date to administer, etc.
-  final List<ImmunizationRecommendationDateCriterion>? dateCriterion;
+  List<ImmunizationRecommendationDateCriterion>? dateCriterion;
 
   /// [description]
   /// Contains the description about the protocol under which the vaccine was
   /// administered.
-  final FhirString? description;
+  FhirString? description;
 
   /// [series]
   /// One possible path to achieve presumed immunity against a disease -
   /// within the context of an authority.
-  final FhirString? series;
+  FhirString? series;
 
   /// [doseNumberPositiveInt]
   /// Nominal position of the recommended dose in a series (e.g. dose 2 is
   /// the next recommended dose).
-  final FhirPositiveInt? doseNumberPositiveInt;
+  FhirPositiveInt? doseNumberPositiveInt;
 
   /// [doseNumberString]
   /// Nominal position of the recommended dose in a series (e.g. dose 2 is
   /// the next recommended dose).
-  final FhirString? doseNumberString;
+  FhirString? doseNumberString;
 
   /// [seriesDosesPositiveInt]
   /// The recommended number of doses to achieve immunity.
-  final FhirPositiveInt? seriesDosesPositiveInt;
+  FhirPositiveInt? seriesDosesPositiveInt;
 
   /// [seriesDosesString]
   /// The recommended number of doses to achieve immunity.
-  final FhirString? seriesDosesString;
+  FhirString? seriesDosesString;
 
   /// [supportingImmunization]
   /// Immunization event history and/or evaluation that supports the status
   /// and recommendation.
-  final List<Reference>? supportingImmunization;
+  List<Reference>? supportingImmunization;
 
   /// [supportingPatientInformation]
   /// Patient Information that supports the status and recommendation. This
   /// includes patient observations, adverse reactions and
   /// allergy/intolerance information.
-  final List<Reference>? supportingPatientInformation;
+  List<Reference>? supportingPatientInformation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -953,7 +953,7 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -963,7 +963,7 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -981,16 +981,16 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// Date classification of recommendation. For example, earliest date to
   /// give, latest date to give, etc.
-  final CodeableConcept code;
+  CodeableConcept code;
 
   /// [value]
   /// The date whose meaning is specified by dateCriterion.code.
-  final FhirDateTime value;
+  FhirDateTime value;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

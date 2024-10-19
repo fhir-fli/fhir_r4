@@ -307,14 +307,14 @@ class ClinicalImpression extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -322,12 +322,12 @@ class ClinicalImpression extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -337,14 +337,14 @@ class ClinicalImpression extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -354,7 +354,7 @@ class ClinicalImpression extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -372,66 +372,66 @@ class ClinicalImpression extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business identifiers assigned to this clinical impression by the
   /// performer or other systems which remain constant as the resource is
   /// updated and propagates from server to server.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// Identifies the workflow status of the assessment.
-  final ClinicalImpressionStatus status;
+  ClinicalImpressionStatus status;
 
   /// [statusReason]
   /// Captures the reason for the current state of the ClinicalImpression.
-  final CodeableConcept? statusReason;
+  CodeableConcept? statusReason;
 
   /// [code]
   /// Categorizes the type of clinical assessment performed.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [description]
   /// A summary of the context and/or cause of the assessment - why / where
   /// it was performed, and what patient events/status prompted it.
-  final FhirString? description;
+  FhirString? description;
 
   /// [subject]
   /// The patient or group of individuals assessed as part of this record.
-  final Reference subject;
+  Reference subject;
 
   /// [encounter]
   /// The Encounter during which this ClinicalImpression was created or to
   /// which the creation of this record is tightly associated.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [effectiveDateTime]
   /// The point in time or period over which the subject was assessed.
-  final FhirDateTime? effectiveDateTime;
+  FhirDateTime? effectiveDateTime;
 
   /// [effectivePeriod]
   /// The point in time or period over which the subject was assessed.
-  final Period? effectivePeriod;
+  Period? effectivePeriod;
 
   /// [date]
   /// Indicates when the documentation of the assessment was complete.
-  final FhirDateTime? date;
+  FhirDateTime? date;
 
   /// [assessor]
   /// The clinician performing the assessment.
-  final Reference? assessor;
+  Reference? assessor;
 
   /// [previous]
   /// A reference to the last assessment that was conducted on this patient.
   /// Assessments are often/usually ongoing in nature; a care provider
   /// (practitioner or team) will make new assessments on an ongoing basis as
   /// new data arises or the patient's conditions changes.
-  final Reference? previous;
+  Reference? previous;
 
   /// [problem]
   /// A list of the relevant problems/conditions for a patient.
-  final List<Reference>? problem;
+  List<Reference>? problem;
 
   /// [investigation]
   /// One or more sets of investigations (signs, symptoms, etc.). The actual
@@ -439,40 +439,40 @@ class ClinicalImpression extends DomainResource {
   /// context of the assessment. These investigations may include data
   /// generated during the assessment process, or data previously generated
   /// and recorded that is pertinent to the outcomes.
-  final List<ClinicalImpressionInvestigation>? investigation;
+  List<ClinicalImpressionInvestigation>? investigation;
 
   /// [protocol]
   /// Reference to a specific published clinical protocol that was followed
   /// during this assessment, and/or that provides evidence in support of the
   /// diagnosis.
-  final List<FhirUri>? protocol;
+  List<FhirUri>? protocol;
 
   /// [summary]
   /// A text summary of the investigations and the diagnosis.
-  final FhirString? summary;
+  FhirString? summary;
 
   /// [finding]
   /// Specific findings or diagnoses that were considered likely or relevant
   /// to ongoing treatment.
-  final List<ClinicalImpressionFinding>? finding;
+  List<ClinicalImpressionFinding>? finding;
 
   /// [prognosisCodeableConcept]
   /// Estimate of likely outcome.
-  final List<CodeableConcept>? prognosisCodeableConcept;
+  List<CodeableConcept>? prognosisCodeableConcept;
 
   /// [prognosisReference]
   /// RiskAssessment expressing likely outcome.
-  final List<Reference>? prognosisReference;
+  List<Reference>? prognosisReference;
 
   /// [supportingInfo]
   /// Information supporting the clinical impression.
-  final List<Reference>? supportingInfo;
+  List<Reference>? supportingInfo;
 
   /// [note]
   /// Commentary about the impression, typically recorded after the
   /// impression itself was made, though supplemental notes by the original
   /// author could also appear.
-  final List<Annotation>? note;
+  List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -823,7 +823,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -833,7 +833,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -851,18 +851,18 @@ class ClinicalImpressionInvestigation extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// A name/code for the group ("set") of investigations. Typically, this
   /// will be something like "signs", "symptoms", "clinical", "diagnostic",
   /// but the list is not constrained, and others such groups such as
   /// (exposure|family|travel|nutritional) history may be used.
-  final CodeableConcept code;
+  CodeableConcept code;
 
   /// [item]
   /// A record of a specific investigation that was undertaken.
-  final List<Reference>? item;
+  List<Reference>? item;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1036,7 +1036,7 @@ class ClinicalImpressionFinding extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1046,7 +1046,7 @@ class ClinicalImpressionFinding extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1064,21 +1064,21 @@ class ClinicalImpressionFinding extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [itemCodeableConcept]
   /// Specific text or code for finding or diagnosis, which may include
   /// ruled-out or resolved conditions.
-  final CodeableConcept? itemCodeableConcept;
+  CodeableConcept? itemCodeableConcept;
 
   /// [itemReference]
   /// Specific reference for finding or diagnosis, which may include
   /// ruled-out or resolved conditions.
-  final Reference? itemReference;
+  Reference? itemReference;
 
   /// [basis]
   /// Which investigations support finding or diagnosis.
-  final FhirString? basis;
+  FhirString? basis;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

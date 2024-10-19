@@ -395,14 +395,14 @@ class Procedure extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -410,12 +410,12 @@ class Procedure extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -425,14 +425,14 @@ class Procedure extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -442,7 +442,7 @@ class Procedure extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -460,177 +460,177 @@ class Procedure extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business identifiers assigned to this procedure by the performer or
   /// other systems which remain constant as the resource is updated and is
   /// propagated from server to server.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [instantiatesCanonical]
   /// The URL pointing to a FHIR-defined protocol, guideline, order set or
   /// other definition that is adhered to in whole or in part by this
   /// Procedure.
-  final List<FhirCanonical>? instantiatesCanonical;
+  List<FhirCanonical>? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline, order
   /// set or other definition that is adhered to in whole or in part by this
   /// Procedure.
-  final List<FhirUri>? instantiatesUri;
+  List<FhirUri>? instantiatesUri;
 
   /// [basedOn]
   /// A reference to a resource that contains details of the request for this
   /// procedure.
-  final List<Reference>? basedOn;
+  List<Reference>? basedOn;
 
   /// [partOf]
   /// A larger event of which this particular procedure is a component or
   /// step.
-  final List<Reference>? partOf;
+  List<Reference>? partOf;
 
   /// [status]
   /// A code specifying the state of the procedure. Generally, this will be
   /// the in-progress or completed state.
-  final EventStatus status;
+  EventStatus status;
 
   /// [statusReason]
   /// Captures the reason for the current state of the procedure.
-  final CodeableConcept? statusReason;
+  CodeableConcept? statusReason;
 
   /// [category]
   /// A code that classifies the procedure for searching, sorting and display
   /// purposes (e.g. "Surgical Procedure").
-  final CodeableConcept? category;
+  CodeableConcept? category;
 
   /// [code]
   /// The specific procedure that is performed. Use text if the exact nature
   /// of the procedure cannot be coded (e.g. "Laparoscopic Appendectomy").
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [subject]
   /// The person, animal or group on which the procedure was performed.
-  final Reference subject;
+  Reference subject;
 
   /// [encounter]
   /// The Encounter during which this Procedure was created or performed or
   /// to which the creation of this record is tightly associated.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [performedDateTime]
   /// Estimated or actual date, date-time, period, or age when the procedure
   /// was performed. Allows a period to support complex procedures that span
   /// more than one date, and also allows for the length of the procedure to
   /// be captured.
-  final FhirDateTime? performedDateTime;
+  FhirDateTime? performedDateTime;
 
   /// [performedPeriod]
   /// Estimated or actual date, date-time, period, or age when the procedure
   /// was performed. Allows a period to support complex procedures that span
   /// more than one date, and also allows for the length of the procedure to
   /// be captured.
-  final Period? performedPeriod;
+  Period? performedPeriod;
 
   /// [performedString]
   /// Estimated or actual date, date-time, period, or age when the procedure
   /// was performed. Allows a period to support complex procedures that span
   /// more than one date, and also allows for the length of the procedure to
   /// be captured.
-  final FhirString? performedString;
+  FhirString? performedString;
 
   /// [performedAge]
   /// Estimated or actual date, date-time, period, or age when the procedure
   /// was performed. Allows a period to support complex procedures that span
   /// more than one date, and also allows for the length of the procedure to
   /// be captured.
-  final Age? performedAge;
+  Age? performedAge;
 
   /// [performedRange]
   /// Estimated or actual date, date-time, period, or age when the procedure
   /// was performed. Allows a period to support complex procedures that span
   /// more than one date, and also allows for the length of the procedure to
   /// be captured.
-  final Range? performedRange;
+  Range? performedRange;
 
   /// [recorder]
   /// Individual who recorded the record and takes responsibility for its
   /// content.
-  final Reference? recorder;
+  Reference? recorder;
 
   /// [asserter]
   /// Individual who is making the procedure statement.
-  final Reference? asserter;
+  Reference? asserter;
 
   /// [performer]
   /// Limited to "real" people rather than equipment.
-  final List<ProcedurePerformer>? performer;
+  List<ProcedurePerformer>? performer;
 
   /// [location]
   /// The location where the procedure actually happened. E.g. a newborn at
   /// home, a tracheostomy at a restaurant.
-  final Reference? location;
+  Reference? location;
 
   /// [reasonCode]
   /// The coded reason why the procedure was performed. This may be a coded
   /// entity of some type, or may simply be present as text.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConcept>? reasonCode;
 
   /// [reasonReference]
   /// The justification of why the procedure was performed.
-  final List<Reference>? reasonReference;
+  List<Reference>? reasonReference;
 
   /// [bodySite]
   /// Detailed and structured anatomical location information. Multiple
   /// locations are allowed - e.g. multiple punch biopsies of a lesion.
-  final List<CodeableConcept>? bodySite;
+  List<CodeableConcept>? bodySite;
 
   /// [outcome]
   /// The outcome of the procedure - did it resolve the reasons for the
   /// procedure being performed?
-  final CodeableConcept? outcome;
+  CodeableConcept? outcome;
 
   /// [report]
   /// This could be a histology result, pathology report, surgical report,
   /// etc.
-  final List<Reference>? report;
+  List<Reference>? report;
 
   /// [complication]
   /// Any complications that occurred during the procedure, or in the
   /// immediate post-performance period. These are generally tracked
   /// separately from the notes, which will typically describe the procedure
   /// itself rather than any 'post procedure' issues.
-  final List<CodeableConcept>? complication;
+  List<CodeableConcept>? complication;
 
   /// [complicationDetail]
   /// Any complications that occurred during the procedure, or in the
   /// immediate post-performance period.
-  final List<Reference>? complicationDetail;
+  List<Reference>? complicationDetail;
 
   /// [followUp]
   /// If the procedure required specific follow up - e.g. removal of sutures.
   /// The follow up may be represented as a simple note or could potentially
   /// be more complex, in which case the CarePlan resource can be used.
-  final List<CodeableConcept>? followUp;
+  List<CodeableConcept>? followUp;
 
   /// [note]
   /// Any other notes and comments about the procedure.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [focalDevice]
   /// A device that is implanted, removed or otherwise manipulated
   /// (calibration, battery replacement, fitting a prosthesis, attaching a
   /// wound-vac, etc.) as a focal portion of the Procedure.
-  final List<ProcedureFocalDevice>? focalDevice;
+  List<ProcedureFocalDevice>? focalDevice;
 
   /// [usedReference]
   /// Identifies medications, devices and any other substance used as part of
   /// the procedure.
-  final List<Reference>? usedReference;
+  List<Reference>? usedReference;
 
   /// [usedCode]
   /// Identifies coded items that were used as part of the procedure.
-  final List<CodeableConcept>? usedCode;
+  List<CodeableConcept>? usedCode;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1042,7 +1042,7 @@ class ProcedurePerformer extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1052,7 +1052,7 @@ class ProcedurePerformer extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1070,20 +1070,20 @@ class ProcedurePerformer extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [function_]
   /// Distinguishes the type of involvement of the performer in the
   /// procedure. For example, surgeon, anaesthetist, endoscopist.
-  final CodeableConcept? function_;
+  CodeableConcept? function_;
 
   /// [actor]
   /// The practitioner who was involved in the procedure.
-  final Reference actor;
+  Reference actor;
 
   /// [onBehalfOf]
   /// The organization the device or practitioner was acting on behalf of.
-  final Reference? onBehalfOf;
+  Reference? onBehalfOf;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1255,7 +1255,7 @@ class ProcedureFocalDevice extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1265,7 +1265,7 @@ class ProcedureFocalDevice extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1283,15 +1283,15 @@ class ProcedureFocalDevice extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [action]
   /// The kind of change that happened to the device during the procedure.
-  final CodeableConcept? action;
+  CodeableConcept? action;
 
   /// [manipulated]
   /// The device that was manipulated (changed) during the procedure.
-  final Reference manipulated;
+  Reference manipulated;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

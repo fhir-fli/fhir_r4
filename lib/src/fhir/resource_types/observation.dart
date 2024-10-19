@@ -421,14 +421,14 @@ class Observation extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -436,12 +436,12 @@ class Observation extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -451,14 +451,14 @@ class Observation extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -468,7 +468,7 @@ class Observation extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -486,35 +486,35 @@ class Observation extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A unique identifier assigned to this observation.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [basedOn]
   /// A plan, proposal or order that is fulfilled in whole or in part by this
   /// event. For example, a MedicationRequest may require a patient to have
   /// laboratory test performed before it is dispensed.
-  final List<Reference>? basedOn;
+  List<Reference>? basedOn;
 
   /// [partOf]
   /// A larger event of which this particular Observation is a component or
   /// step. For example, an observation as part of a procedure.
-  final List<Reference>? partOf;
+  List<Reference>? partOf;
 
   /// [status]
   /// The status of the result value.
-  final ObservationStatus status;
+  ObservationStatus status;
 
   /// [category]
   /// A code that classifies the general type of observation being made.
-  final List<CodeableConcept>? category;
+  List<CodeableConcept>? category;
 
   /// [code]
   /// Describes what was observed. Sometimes this is called the observation
   /// "name".
-  final CodeableConcept code;
+  CodeableConcept code;
 
   /// [subject]
   /// The patient, or group of patients, location, or device this observation
@@ -522,7 +522,7 @@ class Observation extends DomainResource {
   /// focus of the observation is different from the subject (or a sample of,
   /// part, or region of the subject), the `focus` element or the `code`
   /// itself specifies the actual focus of the observation.
-  final Reference? subject;
+  Reference? subject;
 
   /// [focus]
   /// The actual focus of an observation when it is not the patient of record
@@ -535,12 +535,12 @@ class Observation extends DomainResource {
   /// whether the mother is trained to change her child's tracheostomy tube.
   /// In this example, the child is the patient of record and the mother is
   /// the focus.
-  final List<Reference>? focus;
+  List<Reference>? focus;
 
   /// [encounter]
   /// The healthcare event (e.g. a patient and healthcare provider
   /// interaction) during which this observation is made.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [effectiveDateTime]
   /// The time or time-period the observed value is asserted as being true.
@@ -548,7 +548,7 @@ class Observation extends DomainResource {
   /// the "physiologically relevant time". This is usually either the time of
   /// the procedure or of specimen collection, but very often the source of
   /// the date/time is not known, only the date/time itself.
-  final FhirDateTime? effectiveDateTime;
+  FhirDateTime? effectiveDateTime;
 
   /// [effectivePeriod]
   /// The time or time-period the observed value is asserted as being true.
@@ -556,7 +556,7 @@ class Observation extends DomainResource {
   /// the "physiologically relevant time". This is usually either the time of
   /// the procedure or of specimen collection, but very often the source of
   /// the date/time is not known, only the date/time itself.
-  final Period? effectivePeriod;
+  Period? effectivePeriod;
 
   /// [effectiveTiming]
   /// The time or time-period the observed value is asserted as being true.
@@ -564,7 +564,7 @@ class Observation extends DomainResource {
   /// the "physiologically relevant time". This is usually either the time of
   /// the procedure or of specimen collection, but very often the source of
   /// the date/time is not known, only the date/time itself.
-  final Timing? effectiveTiming;
+  Timing? effectiveTiming;
 
   /// [effectiveInstant]
   /// The time or time-period the observed value is asserted as being true.
@@ -572,121 +572,121 @@ class Observation extends DomainResource {
   /// the "physiologically relevant time". This is usually either the time of
   /// the procedure or of specimen collection, but very often the source of
   /// the date/time is not known, only the date/time itself.
-  final FhirInstant? effectiveInstant;
+  FhirInstant? effectiveInstant;
 
   /// [issued]
   /// The date and time this version of the observation was made available to
   /// providers, typically after the results have been reviewed and verified.
-  final FhirInstant? issued;
+  FhirInstant? issued;
 
   /// [performer]
   /// Who was responsible for asserting the observed value as "true".
-  final List<Reference>? performer;
+  List<Reference>? performer;
 
   /// [valueQuantity]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueCodeableConcept]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final CodeableConcept? valueCodeableConcept;
+  CodeableConcept? valueCodeableConcept;
 
   /// [valueString]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final FhirString? valueString;
+  FhirString? valueString;
 
   /// [valueBoolean]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueInteger]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final FhirInteger? valueInteger;
+  FhirInteger? valueInteger;
 
   /// [valueRange]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final Range? valueRange;
+  Range? valueRange;
 
   /// [valueRatio]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final Ratio? valueRatio;
+  Ratio? valueRatio;
 
   /// [valueSampledData]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final SampledData? valueSampledData;
+  SampledData? valueSampledData;
 
   /// [valueTime]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final FhirTime? valueTime;
+  FhirTime? valueTime;
 
   /// [valueDateTime]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final FhirDateTime? valueDateTime;
+  FhirDateTime? valueDateTime;
 
   /// [valuePeriod]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final Period? valuePeriod;
+  Period? valuePeriod;
 
   /// [dataAbsentReason]
   /// Provides a reason why the expected value in the element
   /// Observation.value[x] is missing.
-  final CodeableConcept? dataAbsentReason;
+  CodeableConcept? dataAbsentReason;
 
   /// [interpretation]
   /// A categorical assessment of an observation value. For example, high,
   /// low, normal.
-  final List<CodeableConcept>? interpretation;
+  List<CodeableConcept>? interpretation;
 
   /// [note]
   /// Comments about the observation or the results.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [bodySite]
   /// Indicates the site on the subject's body where the observation was made
   /// (i.e. the target site).
-  final CodeableConcept? bodySite;
+  CodeableConcept? bodySite;
 
   /// [method]
   /// Indicates the mechanism used to perform the observation.
-  final CodeableConcept? method;
+  CodeableConcept? method;
 
   /// [specimen]
   /// The specimen that was used when this observation was made.
-  final Reference? specimen;
+  Reference? specimen;
 
   /// [device]
   /// The device used to generate the observation data.
-  final Reference? device;
+  Reference? device;
 
   /// [referenceRange]
   /// Guidance on how to interpret the value by comparison to a normal or
   /// recommended range. Multiple reference ranges are interpreted as an
   /// "OR". In other words, to represent two distinct target populations, two
   /// `referenceRange` elements would be used.
-  final List<ObservationReferenceRange>? referenceRange;
+  List<ObservationReferenceRange>? referenceRange;
 
   /// [hasMember]
   /// This observation is a group observation (e.g. a battery, a panel of
   /// tests, a set of vital sign measurements) that includes the target as a
   /// member of the group.
-  final List<Reference>? hasMember;
+  List<Reference>? hasMember;
 
   /// [derivedFrom]
   /// The target resource that represents a measurement from which this
   /// observation value is derived. For example, a calculated anion gap or a
   /// fetal measurement based on an ultrasound image.
-  final List<Reference>? derivedFrom;
+  List<Reference>? derivedFrom;
 
   /// [component]
   /// Some observations have multiple component observations. These component
@@ -694,7 +694,7 @@ class Observation extends DomainResource {
   /// same attributes. Examples include systolic and diastolic component
   /// observations for blood pressure measurement and multiple component
   /// observations for genetics observations.
-  final List<ObservationComponent>? component;
+  List<ObservationComponent>? component;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1175,7 +1175,7 @@ class ObservationReferenceRange extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1185,7 +1185,7 @@ class ObservationReferenceRange extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1203,26 +1203,26 @@ class ObservationReferenceRange extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [low]
   /// The value of the low bound of the reference range. The low bound of the
   /// reference range endpoint is inclusive of the value (e.g. reference
   /// range is >=5 - <=9). If the low bound is omitted, it is assumed to be
   /// meaningless (e.g. reference range is <=2.3).
-  final Quantity? low;
+  Quantity? low;
 
   /// [high]
   /// The value of the high bound of the reference range. The high bound of
   /// the reference range endpoint is inclusive of the value (e.g. reference
   /// range is >=5 - <=9). If the high bound is omitted, it is assumed to be
   /// meaningless (e.g. reference range is >= 2.3).
-  final Quantity? high;
+  Quantity? high;
 
   /// [type]
   /// Codes to indicate the what part of the targeted reference population it
   /// applies to. For example, the normal or therapeutic range.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [appliesTo]
   /// Codes to indicate the target population this reference range applies
@@ -1231,19 +1231,19 @@ class ObservationReferenceRange extends BackboneElement {
   /// interpreted as an "AND" of the target populations. For example, to
   /// represent a target population of African American females, both a code
   /// of female and a code for African American would be used.
-  final List<CodeableConcept>? appliesTo;
+  List<CodeableConcept>? appliesTo;
 
   /// [age]
   /// The age at which this reference range is applicable. This is a neonatal
   /// age (e.g. number of weeks at term) if the meaning says so.
-  final Range? age;
+  Range? age;
 
   /// [text]
   /// Text based reference range in an observation which may be used when a
   /// quantitative range is not appropriate for an observation. An example
   /// would be a reference value of "Negative" or a list or table of
   /// "normals".
-  final FhirString? text;
+  FhirString? text;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1535,7 +1535,7 @@ class ObservationComponent extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1545,7 +1545,7 @@ class ObservationComponent extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1563,82 +1563,82 @@ class ObservationComponent extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [code]
   /// Describes what was observed. Sometimes this is called the observation
   /// "code".
-  final CodeableConcept code;
+  CodeableConcept code;
 
   /// [valueQuantity]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final Quantity? valueQuantity;
+  Quantity? valueQuantity;
 
   /// [valueCodeableConcept]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final CodeableConcept? valueCodeableConcept;
+  CodeableConcept? valueCodeableConcept;
 
   /// [valueString]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final FhirString? valueString;
+  FhirString? valueString;
 
   /// [valueBoolean]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final FhirBoolean? valueBoolean;
+  FhirBoolean? valueBoolean;
 
   /// [valueInteger]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final FhirInteger? valueInteger;
+  FhirInteger? valueInteger;
 
   /// [valueRange]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final Range? valueRange;
+  Range? valueRange;
 
   /// [valueRatio]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final Ratio? valueRatio;
+  Ratio? valueRatio;
 
   /// [valueSampledData]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final SampledData? valueSampledData;
+  SampledData? valueSampledData;
 
   /// [valueTime]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final FhirTime? valueTime;
+  FhirTime? valueTime;
 
   /// [valueDateTime]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final FhirDateTime? valueDateTime;
+  FhirDateTime? valueDateTime;
 
   /// [valuePeriod]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final Period? valuePeriod;
+  Period? valuePeriod;
 
   /// [dataAbsentReason]
   /// Provides a reason why the expected value in the element
   /// Observation.component.value[x] is missing.
-  final CodeableConcept? dataAbsentReason;
+  CodeableConcept? dataAbsentReason;
 
   /// [interpretation]
   /// A categorical assessment of an observation value. For example, high,
   /// low, normal.
-  final List<CodeableConcept>? interpretation;
+  List<CodeableConcept>? interpretation;
 
   /// [referenceRange]
   /// Guidance on how to interpret the value by comparison to a normal or
   /// recommended range.
-  final List<ObservationReferenceRange>? referenceRange;
+  List<ObservationReferenceRange>? referenceRange;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

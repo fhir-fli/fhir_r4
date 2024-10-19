@@ -240,14 +240,14 @@ class PaymentReconciliation extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -255,12 +255,12 @@ class PaymentReconciliation extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -270,14 +270,14 @@ class PaymentReconciliation extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -287,7 +287,7 @@ class PaymentReconciliation extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -305,72 +305,72 @@ class PaymentReconciliation extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// A unique identifier assigned to this payment reconciliation.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [status]
   /// The status of the resource instance.
-  final FinancialResourceStatusCodes status;
+  FinancialResourceStatusCodes status;
 
   /// [period]
   /// The period of time for which payments have been gathered into this bulk
   /// payment for settlement.
-  final Period? period;
+  Period? period;
 
   /// [created]
   /// The date when the resource was created.
-  final FhirDateTime created;
+  FhirDateTime created;
 
   /// [paymentIssuer]
   /// The party who generated the payment.
-  final Reference? paymentIssuer;
+  Reference? paymentIssuer;
 
   /// [request]
   /// Original request resource reference.
-  final Reference? request;
+  Reference? request;
 
   /// [requestor]
   /// The practitioner who is responsible for the services rendered to the
   /// patient.
-  final Reference? requestor;
+  Reference? requestor;
 
   /// [outcome]
   /// The outcome of a request for a reconciliation.
-  final RemittanceOutcome? outcome;
+  RemittanceOutcome? outcome;
 
   /// [disposition]
   /// A human readable description of the status of the request for the
   /// reconciliation.
-  final FhirString? disposition;
+  FhirString? disposition;
 
   /// [paymentDate]
   /// The date of payment as indicated on the financial instrument.
-  final FhirDate paymentDate;
+  FhirDate paymentDate;
 
   /// [paymentAmount]
   /// Total payment amount as indicated on the financial instrument.
-  final Money paymentAmount;
+  Money paymentAmount;
 
   /// [paymentIdentifier]
   /// Issuer's unique identifier for the payment instrument.
-  final Identifier? paymentIdentifier;
+  Identifier? paymentIdentifier;
 
   /// [detail]
   /// Distribution of the payment amount for a previously acknowledged
   /// payable.
-  final List<PaymentReconciliationDetail>? detail;
+  List<PaymentReconciliationDetail>? detail;
 
   /// [formCode]
   /// A code for the form to be used for printing the content.
-  final CodeableConcept? formCode;
+  CodeableConcept? formCode;
 
   /// [processNote]
   /// A note that describes or explains the processing in a human readable
   /// form.
-  final List<PaymentReconciliationProcessNote>? processNote;
+  List<PaymentReconciliationProcessNote>? processNote;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -715,7 +715,7 @@ class PaymentReconciliationDetail extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -725,7 +725,7 @@ class PaymentReconciliationDetail extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -743,52 +743,52 @@ class PaymentReconciliationDetail extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Unique identifier for the current payment item for the referenced
   /// payable.
-  final Identifier? identifier;
+  Identifier? identifier;
 
   /// [predecessor]
   /// Unique identifier for the prior payment item for the referenced
   /// payable.
-  final Identifier? predecessor;
+  Identifier? predecessor;
 
   /// [type]
   /// Code to indicate the nature of the payment.
-  final CodeableConcept type;
+  CodeableConcept type;
 
   /// [request]
   /// A resource, such as a Claim, the evaluation of which could lead to
   /// payment.
-  final Reference? request;
+  Reference? request;
 
   /// [submitter]
   /// The party which submitted the claim or financial transaction.
-  final Reference? submitter;
+  Reference? submitter;
 
   /// [response]
   /// A resource, such as a ClaimResponse, which contains a commitment to
   /// payment.
-  final Reference? response;
+  Reference? response;
 
   /// [date]
   /// The date from the response resource containing a commitment to pay.
-  final FhirDate? date;
+  FhirDate? date;
 
   /// [responsible]
   /// A reference to the individual who is responsible for inquiries
   /// regarding the response and its payment.
-  final Reference? responsible;
+  Reference? responsible;
 
   /// [payee]
   /// The party which is receiving the payment.
-  final Reference? payee;
+  Reference? payee;
 
   /// [amount]
   /// The monetary amount allocated from the total payment to the payable.
-  final Money? amount;
+  Money? amount;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1009,7 +1009,7 @@ class PaymentReconciliationProcessNote extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1019,7 +1019,7 @@ class PaymentReconciliationProcessNote extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1037,15 +1037,15 @@ class PaymentReconciliationProcessNote extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [type]
   /// The business purpose of the note text.
-  final NoteType? type;
+  NoteType? type;
 
   /// [text]
   /// The explanation or description associated with the processing.
-  final FhirString? text;
+  FhirString? text;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

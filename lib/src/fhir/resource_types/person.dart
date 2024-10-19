@@ -224,14 +224,14 @@ class Person extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -239,12 +239,12 @@ class Person extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -254,14 +254,14 @@ class Person extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -271,7 +271,7 @@ class Person extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -289,49 +289,49 @@ class Person extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Identifier for a person within a particular scope.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [name]
   /// A name associated with the person.
-  final List<HumanName>? name;
+  List<HumanName>? name;
 
   /// [telecom]
   /// A contact detail for the person, e.g. a telephone number or an email
   /// address.
-  final List<ContactPoint>? telecom;
+  List<ContactPoint>? telecom;
 
   /// [gender]
   /// Administrative Gender.
-  final AdministrativeGender? gender;
+  AdministrativeGender? gender;
 
   /// [birthDate]
   /// The birth date for the person.
-  final FhirDate? birthDate;
+  FhirDate? birthDate;
 
   /// [address]
   /// One or more addresses for the person.
-  final List<Address>? address;
+  List<Address>? address;
 
   /// [photo]
   /// An image that can be displayed as a thumbnail of the person to enhance
   /// the identification of the individual.
-  final Attachment? photo;
+  Attachment? photo;
 
   /// [managingOrganization]
   /// The organization that is the custodian of the person record.
-  final Reference? managingOrganization;
+  Reference? managingOrganization;
 
   /// [active]
   /// Whether this person's record is in active use.
-  final FhirBoolean? active;
+  FhirBoolean? active;
 
   /// [link]
   /// Link to a resource that concerns the same actual person.
-  final List<PersonLink>? link;
+  List<PersonLink>? link;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -597,7 +597,7 @@ class PersonLink extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -607,7 +607,7 @@ class PersonLink extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -625,16 +625,16 @@ class PersonLink extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [target]
   /// The resource to which this actual person is associated.
-  final Reference target;
+  Reference target;
 
   /// [assurance]
   /// Level of assurance that this link is associated with the target
   /// resource.
-  final IdentityAssuranceLevel? assurance;
+  IdentityAssuranceLevel? assurance;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

@@ -280,14 +280,14 @@ class AllergyIntolerance extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -295,12 +295,12 @@ class AllergyIntolerance extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -310,14 +310,14 @@ class AllergyIntolerance extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -327,7 +327,7 @@ class AllergyIntolerance extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -345,37 +345,37 @@ class AllergyIntolerance extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Business identifiers assigned to this AllergyIntolerance by the
   /// performer or other systems which remain constant as the resource is
   /// updated and propagates from server to server.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [clinicalStatus]
   /// The clinical status of the allergy or intolerance.
-  final CodeableConcept? clinicalStatus;
+  CodeableConcept? clinicalStatus;
 
   /// [verificationStatus]
   /// Assertion about certainty associated with the propensity, or potential
   /// risk, of a reaction to the identified substance (including
   /// pharmaceutical product).
-  final CodeableConcept? verificationStatus;
+  CodeableConcept? verificationStatus;
 
   /// [type]
   /// Identification of the underlying physiological mechanism for the
   /// reaction risk.
-  final AllergyIntoleranceType? type;
+  AllergyIntoleranceType? type;
 
   /// [category]
   /// Category of the identified substance.
-  final List<AllergyIntoleranceCategory>? category;
+  List<AllergyIntoleranceCategory>? category;
 
   /// [criticality]
   /// Estimate of the potential clinical harm, or seriousness, of the
   /// reaction to the identified substance.
-  final AllergyIntoleranceCriticality? criticality;
+  AllergyIntoleranceCriticality? criticality;
 
   /// [code]
   /// Code for an allergy or intolerance statement (either a positive or a
@@ -394,70 +394,70 @@ class AllergyIntolerance extends DomainResource {
   /// system is unable to confirm that AllergyIntolerance.reaction.substance
   /// falls within the semantic scope of AllergyIntolerance.code, then the
   /// receiving system should ignore AllergyIntolerance.reaction.substance.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [patient]
   /// The patient who has the allergy or intolerance.
-  final Reference patient;
+  Reference patient;
 
   /// [encounter]
   /// The encounter when the allergy or intolerance was asserted.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [onsetDateTime]
   /// Estimated or actual date, date-time, or age when allergy or intolerance
   /// was identified.
-  final FhirDateTime? onsetDateTime;
+  FhirDateTime? onsetDateTime;
 
   /// [onsetAge]
   /// Estimated or actual date, date-time, or age when allergy or intolerance
   /// was identified.
-  final Age? onsetAge;
+  Age? onsetAge;
 
   /// [onsetPeriod]
   /// Estimated or actual date, date-time, or age when allergy or intolerance
   /// was identified.
-  final Period? onsetPeriod;
+  Period? onsetPeriod;
 
   /// [onsetRange]
   /// Estimated or actual date, date-time, or age when allergy or intolerance
   /// was identified.
-  final Range? onsetRange;
+  Range? onsetRange;
 
   /// [onsetString]
   /// Estimated or actual date, date-time, or age when allergy or intolerance
   /// was identified.
-  final FhirString? onsetString;
+  FhirString? onsetString;
 
   /// [recordedDate]
   /// The recordedDate represents when this particular AllergyIntolerance
   /// record was created in the system, which is often a system-generated
   /// date.
-  final FhirDateTime? recordedDate;
+  FhirDateTime? recordedDate;
 
   /// [recorder]
   /// Individual who recorded the record and takes responsibility for its
   /// content.
-  final Reference? recorder;
+  Reference? recorder;
 
   /// [asserter]
   /// The source of the information about the allergy that is recorded.
-  final Reference? asserter;
+  Reference? asserter;
 
   /// [lastOccurrence]
   /// Represents the date and/or time of the last known occurrence of a
   /// reaction event.
-  final FhirDateTime? lastOccurrence;
+  FhirDateTime? lastOccurrence;
 
   /// [note]
   /// Additional narrative about the propensity for the Adverse Reaction, not
   /// captured in other fields.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [reaction]
   /// Details about each adverse reaction event linked to exposure to the
   /// identified substance.
-  final List<AllergyIntoleranceReaction>? reaction;
+  List<AllergyIntoleranceReaction>? reaction;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -840,7 +840,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -850,7 +850,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -868,7 +868,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [substance]
   /// Identification of the specific substance (or pharmaceutical product)
@@ -882,36 +882,36 @@ class AllergyIntoleranceReaction extends BackboneElement {
   /// confirm that AllergyIntolerance.reaction.substance falls within the
   /// semantic scope of AllergyIntolerance.code, then the receiving system
   /// should ignore AllergyIntolerance.reaction.substance.
-  final CodeableConcept? substance;
+  CodeableConcept? substance;
 
   /// [manifestation]
   /// Clinical symptoms and/or signs that are observed or associated with the
   /// adverse reaction event.
-  final List<CodeableConcept> manifestation;
+  List<CodeableConcept> manifestation;
 
   /// [description]
   /// Text description about the reaction as a whole, including details of
   /// the manifestation if required.
-  final FhirString? description;
+  FhirString? description;
 
   /// [onset]
   /// Record of the date and/or time of the onset of the Reaction.
-  final FhirDateTime? onset;
+  FhirDateTime? onset;
 
   /// [severity]
   /// Clinical assessment of the severity of the reaction event as a whole,
   /// potentially considering multiple different manifestations.
-  final AllergyIntoleranceSeverity? severity;
+  AllergyIntoleranceSeverity? severity;
 
   /// [exposureRoute]
   /// Identification of the route by which the subject was exposed to the
   /// substance.
-  final CodeableConcept? exposureRoute;
+  CodeableConcept? exposureRoute;
 
   /// [note]
   /// Additional text about the adverse reaction event not captured in other
   /// fields.
-  final List<Annotation>? note;
+  List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

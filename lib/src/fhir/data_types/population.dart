@@ -131,7 +131,7 @@ class Population extends BackboneType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -141,7 +141,7 @@ class Population extends BackboneType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -159,28 +159,28 @@ class Population extends BackboneType {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [ageRange]
   /// The age of the specific population.
-  final Range? ageRange;
+  Range? ageRange;
 
   /// [ageCodeableConcept]
   /// The age of the specific population.
-  final CodeableConcept? ageCodeableConcept;
+  CodeableConcept? ageCodeableConcept;
 
   /// [gender]
   /// The gender of the specific population.
-  final CodeableConcept? gender;
+  CodeableConcept? gender;
 
   /// [race]
   /// Race of the specific population.
-  final CodeableConcept? race;
+  CodeableConcept? race;
 
   /// [physiologicalCondition]
   /// The existing physiological conditions of the specific population to
   /// which this applies.
-  final CodeableConcept? physiologicalCondition;
+  CodeableConcept? physiologicalCondition;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

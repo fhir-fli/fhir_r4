@@ -278,14 +278,14 @@ class RequestGroup extends DomainResource {
   /// The logical id of the resource, as used in the URL for the resource.
   /// Once assigned, this value never changes.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [meta]
   /// The metadata about the resource. This is content that is maintained by
   /// the infrastructure. Changes to the content might not always be
   /// associated with version changes to the resource.
   @override
-  final FhirMeta? meta;
+  FhirMeta? meta;
 
   /// [implicitRules]
   /// A reference to a set of rules that were followed when the resource was
@@ -293,12 +293,12 @@ class RequestGroup extends DomainResource {
   /// Often, this is a reference to an implementation guide that defines the
   /// special rules along with other profiles etc.
   @override
-  final FhirUri? implicitRules;
+  FhirUri? implicitRules;
 
   /// [language]
   /// The base language in which the resource is written.
   @override
-  final CommonLanguages? language;
+  CommonLanguages? language;
 
   /// [text]
   /// A human-readable narrative that contains a summary of the resource and
@@ -308,14 +308,14 @@ class RequestGroup extends DomainResource {
   /// just read the narrative. Resource definitions may define what content
   /// should be represented in the narrative to ensure clinical safety.
   @override
-  final Narrative? text;
+  Narrative? text;
 
   /// [contained]
   /// These resources do not have an independent existence apart from the
   /// resource that contains them - they cannot be identified independently,
   /// and nor can they have their own independent transaction scope.
   @override
-  final List<Resource>? contained;
+  List<Resource>? contained;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -325,7 +325,7 @@ class RequestGroup extends DomainResource {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -343,93 +343,93 @@ class RequestGroup extends DomainResource {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [identifier]
   /// Allows a service to provide a unique, business identifier for the
   /// request.
-  final List<Identifier>? identifier;
+  List<Identifier>? identifier;
 
   /// [instantiatesCanonical]
   /// A canonical URL referencing a FHIR-defined protocol, guideline,
   /// orderset or other definition that is adhered to in whole or in part by
   /// this request.
-  final List<FhirCanonical>? instantiatesCanonical;
+  List<FhirCanonical>? instantiatesCanonical;
 
   /// [instantiatesUri]
   /// A URL referencing an externally defined protocol, guideline, orderset
   /// or other definition that is adhered to in whole or in part by this
   /// request.
-  final List<FhirUri>? instantiatesUri;
+  List<FhirUri>? instantiatesUri;
 
   /// [basedOn]
   /// A plan, proposal or order that is fulfilled in whole or in part by this
   /// request.
-  final List<Reference>? basedOn;
+  List<Reference>? basedOn;
 
   /// [replaces]
   /// Completed or terminated request(s) whose function is taken by this new
   /// request.
-  final List<Reference>? replaces;
+  List<Reference>? replaces;
 
   /// [groupIdentifier]
   /// A shared identifier common to all requests that were authorized more or
   /// less simultaneously by a single author, representing the identifier of
   /// the requisition, prescription or similar form.
-  final Identifier? groupIdentifier;
+  Identifier? groupIdentifier;
 
   /// [status]
   /// The current state of the request. For request groups, the status
   /// reflects the status of all the requests in the group.
-  final RequestStatus status;
+  RequestStatus status;
 
   /// [intent]
   /// Indicates the level of authority/intentionality associated with the
   /// request and where the request fits into the workflow chain.
-  final RequestIntent intent;
+  RequestIntent intent;
 
   /// [priority]
   /// Indicates how quickly the request should be addressed with respect to
   /// other requests.
-  final RequestPriority? priority;
+  RequestPriority? priority;
 
   /// [code]
   /// A code that identifies what the overall request group is.
-  final CodeableConcept? code;
+  CodeableConcept? code;
 
   /// [subject]
   /// The subject for which the request group was created.
-  final Reference? subject;
+  Reference? subject;
 
   /// [encounter]
   /// Describes the context of the request group, if any.
-  final Reference? encounter;
+  Reference? encounter;
 
   /// [authoredOn]
   /// Indicates when the request group was created.
-  final FhirDateTime? authoredOn;
+  FhirDateTime? authoredOn;
 
   /// [author]
   /// Provides a reference to the author of the request group.
-  final Reference? author;
+  Reference? author;
 
   /// [reasonCode]
   /// Describes the reason for the request group in coded or textual form.
-  final List<CodeableConcept>? reasonCode;
+  List<CodeableConcept>? reasonCode;
 
   /// [reasonReference]
   /// Indicates another resource whose existence justifies this request
   /// group.
-  final List<Reference>? reasonReference;
+  List<Reference>? reasonReference;
 
   /// [note]
   /// Provides a mechanism to communicate additional information about the
   /// response.
-  final List<Annotation>? note;
+  List<Annotation>? note;
 
   /// [action]
   /// The actions, if any, produced by the evaluation of the artifact.
-  final List<RequestGroupAction>? action;
+  List<RequestGroupAction>? action;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -930,7 +930,7 @@ class RequestGroupAction extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -940,7 +940,7 @@ class RequestGroupAction extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -958,115 +958,115 @@ class RequestGroupAction extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [prefix]
   /// A user-visible prefix for the action.
-  final FhirString? prefix;
+  FhirString? prefix;
 
   /// [title]
   /// The title of the action displayed to a user.
-  final FhirString? title;
+  FhirString? title;
 
   /// [description]
   /// A short description of the action used to provide a summary to display
   /// to the user.
-  final FhirString? description;
+  FhirString? description;
 
   /// [textEquivalent]
   /// A text equivalent of the action to be performed. This provides a
   /// human-interpretable description of the action when the definition is
   /// consumed by a system that might not be capable of interpreting it
   /// dynamically.
-  final FhirString? textEquivalent;
+  FhirString? textEquivalent;
 
   /// [priority]
   /// Indicates how quickly the action should be addressed with respect to
   /// other actions.
-  final RequestPriority? priority;
+  RequestPriority? priority;
 
   /// [code]
   /// A code that provides meaning for the action or action group. For
   /// example, a section may have a LOINC code for a section of a
   /// documentation template.
-  final List<CodeableConcept>? code;
+  List<CodeableConcept>? code;
 
   /// [documentation]
   /// Didactic or other informational resources associated with the action
   /// that can be provided to the CDS recipient. Information resources can
   /// include inline text commentary and links to web resources.
-  final List<RelatedArtifact>? documentation;
+  List<RelatedArtifact>? documentation;
 
   /// [condition]
   /// An expression that describes applicability criteria, or start/stop
   /// conditions for the action.
-  final List<RequestGroupCondition>? condition;
+  List<RequestGroupCondition>? condition;
 
   /// [relatedAction]
   /// A relationship to another action such as "before" or "30-60 minutes
   /// after start of".
-  final List<RequestGroupRelatedAction>? relatedAction;
+  List<RequestGroupRelatedAction>? relatedAction;
 
   /// [timingDateTime]
   /// An optional value describing when the action should be performed.
-  final FhirDateTime? timingDateTime;
+  FhirDateTime? timingDateTime;
 
   /// [timingAge]
   /// An optional value describing when the action should be performed.
-  final Age? timingAge;
+  Age? timingAge;
 
   /// [timingPeriod]
   /// An optional value describing when the action should be performed.
-  final Period? timingPeriod;
+  Period? timingPeriod;
 
   /// [timingDuration]
   /// An optional value describing when the action should be performed.
-  final FhirDuration? timingDuration;
+  FhirDuration? timingDuration;
 
   /// [timingRange]
   /// An optional value describing when the action should be performed.
-  final Range? timingRange;
+  Range? timingRange;
 
   /// [timingTiming]
   /// An optional value describing when the action should be performed.
-  final Timing? timingTiming;
+  Timing? timingTiming;
 
   /// [participant]
   /// The participant that should perform or be responsible for this action.
-  final List<Reference>? participant;
+  List<Reference>? participant;
 
   /// [type]
   /// The type of action to perform (create, update, remove).
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [groupingBehavior]
   /// Defines the grouping behavior for the action and its children.
-  final ActionGroupingBehavior? groupingBehavior;
+  ActionGroupingBehavior? groupingBehavior;
 
   /// [selectionBehavior]
   /// Defines the selection behavior for the action and its children.
-  final ActionSelectionBehavior? selectionBehavior;
+  ActionSelectionBehavior? selectionBehavior;
 
   /// [requiredBehavior]
   /// Defines expectations around whether an action is required.
-  final ActionRequiredBehavior? requiredBehavior;
+  ActionRequiredBehavior? requiredBehavior;
 
   /// [precheckBehavior]
   /// Defines whether the action should usually be preselected.
-  final ActionPrecheckBehavior? precheckBehavior;
+  ActionPrecheckBehavior? precheckBehavior;
 
   /// [cardinalityBehavior]
   /// Defines whether the action can be selected multiple times.
-  final ActionCardinalityBehavior? cardinalityBehavior;
+  ActionCardinalityBehavior? cardinalityBehavior;
 
   /// [resource]
   /// The resource that is the target of the action (e.g.
   /// CommunicationRequest).
-  final Reference? resource;
+  Reference? resource;
 
   /// [action]
   /// Sub actions.
-  final List<RequestGroupAction>? action;
+  List<RequestGroupAction>? action;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1410,7 +1410,7 @@ class RequestGroupCondition extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1420,7 +1420,7 @@ class RequestGroupCondition extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1438,16 +1438,16 @@ class RequestGroupCondition extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [kind]
   /// The kind of condition.
-  final ActionConditionKind kind;
+  ActionConditionKind kind;
 
   /// [expression]
   /// An expression that returns true or false, indicating whether or not the
   /// condition is satisfied.
-  final FhirExpression? expression;
+  FhirExpression? expression;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1628,7 +1628,7 @@ class RequestGroupRelatedAction extends BackboneElement {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -1638,7 +1638,7 @@ class RequestGroupRelatedAction extends BackboneElement {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [modifierExtension]
   /// May be used to represent additional information that is not part of the
@@ -1656,25 +1656,25 @@ class RequestGroupRelatedAction extends BackboneElement {
   /// Resource or DomainResource (including cannot change the meaning of
   /// modifierExtension itself).
   @override
-  final List<FhirExtension>? modifierExtension;
+  List<FhirExtension>? modifierExtension;
 
   /// [actionId]
   /// The element id of the action this is related to.
-  final FhirId actionId;
+  FhirId actionId;
 
   /// [relationship]
   /// The relationship of this action to the related action.
-  final ActionRelationshipType relationship;
+  ActionRelationshipType relationship;
 
   /// [offsetDuration]
   /// A duration or range of durations to apply to the relationship. For
   /// example, 30-60 minutes before.
-  final FhirDuration? offsetDuration;
+  FhirDuration? offsetDuration;
 
   /// [offsetRange]
   /// A duration or range of durations to apply to the relationship. For
   /// example, 30-60 minutes before.
-  final Range? offsetRange;
+  Range? offsetRange;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};

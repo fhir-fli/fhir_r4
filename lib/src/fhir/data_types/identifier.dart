@@ -131,7 +131,7 @@ class Identifier extends DataType {
   /// Unique id for the element within a resource (for internal references).
   /// This may be any string value that does not contain spaces.
   @override
-  final FhirString? id;
+  FhirString? id;
 
   /// [extension_]
   /// May be used to represent additional information that is not part of the
@@ -141,34 +141,34 @@ class Identifier extends DataType {
   /// extension, there is a set of requirements that SHALL be met as part of
   /// the definition of the extension.
   @override
-  final List<FhirExtension>? extension_;
+  List<FhirExtension>? extension_;
 
   /// [use]
   /// The purpose of this identifier.
-  final IdentifierUse? use;
+  IdentifierUse? use;
 
   /// [type]
   /// A coded type for the identifier that can be used to determine which
   /// identifier to use for a specific purpose.
-  final CodeableConcept? type;
+  CodeableConcept? type;
 
   /// [system]
   /// Establishes the namespace for the value - that is, a URL that describes
   /// a set values that are unique.
-  final FhirUri? system;
+  FhirUri? system;
 
   /// [value]
   /// The portion of the identifier typically relevant to the user and which
   /// is unique within the context of the system.
-  final FhirString? value;
+  FhirString? value;
 
   /// [period]
   /// Time period during which identifier is/was valid for use.
-  final Period? period;
+  Period? period;
 
   /// [assigner]
   /// Organization that issued/manages the identifier.
-  final Reference? assigner;
+  Reference? assigner;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
