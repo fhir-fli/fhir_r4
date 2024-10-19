@@ -1,37 +1,68 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Describes the state of a metric calibration.
-enum DeviceMetricCalibrationState {
-  /// Display: Not Calibrated
-  /// Definition: The metric has not been calibrated.
-  not_calibrated('not-calibrated'),
+class DeviceMetricCalibrationState {
+  // Private constructor for internal use (like enum)
+  DeviceMetricCalibrationState._(this.fhirCode, {this.element});
 
-  /// Display: Calibration Required
-  /// Definition: The metric needs to be calibrated.
-  calibration_required('calibration-required'),
-
-  /// Display: Calibrated
-  /// Definition: The metric has been calibrated.
-  calibrated('calibrated'),
-
-  /// Display: Unspecified
-  /// Definition: The state of calibration of this metric is unspecified.
-  unspecified('unspecified'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const DeviceMetricCalibrationState(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// DeviceMetricCalibrationState values
+  /// not_calibrated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DeviceMetricCalibrationState not_calibrated =
+      DeviceMetricCalibrationState._(
+    'not-calibrated',
+  );
+
+  /// calibration_required
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DeviceMetricCalibrationState calibration_required =
+      DeviceMetricCalibrationState._(
+    'calibration-required',
+  );
+
+  /// calibrated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DeviceMetricCalibrationState calibrated =
+      DeviceMetricCalibrationState._(
+    'calibrated',
+  );
+
+  /// unspecified
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DeviceMetricCalibrationState unspecified =
+      DeviceMetricCalibrationState._(
+    'unspecified',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final DeviceMetricCalibrationState elementOnly =
+      DeviceMetricCalibrationState._('');
+
+  /// List of all enum-like values
+  static final List<DeviceMetricCalibrationState> values = [
+    not_calibrated,
+    calibration_required,
+    calibrated,
+    unspecified,
+  ];
+
+  /// Returns the enum value with an element attached
+  DeviceMetricCalibrationState withElement(Element? newElement) {
+    return DeviceMetricCalibrationState._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -39,28 +70,20 @@ enum DeviceMetricCalibrationState {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [DeviceMetricCalibrationState] instances.
-  static DeviceMetricCalibrationState fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [DeviceMetricCalibrationState] from JSON.
+  static DeviceMetricCalibrationState fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DeviceMetricCalibrationState.elementOnly.withElement(
-        element,
-      );
+      return DeviceMetricCalibrationState.elementOnly.withElement(element);
     }
     return DeviceMetricCalibrationState.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  DeviceMetricCalibrationState withElement(Element? newElement) {
-    return DeviceMetricCalibrationState.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'DeviceMetricCalibrationState.$fhirCode';
 }

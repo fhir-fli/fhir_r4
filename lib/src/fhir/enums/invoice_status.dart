@@ -1,41 +1,71 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes identifying the lifecycle stage of an Invoice.
-enum InvoiceStatus {
-  /// Display: draft
-  /// Definition: the invoice has been prepared but not yet finalized.
-  draft('draft'),
+class InvoiceStatus {
+  // Private constructor for internal use (like enum)
+  InvoiceStatus._(this.fhirCode, {this.element});
 
-  /// Display: issued
-  /// Definition: the invoice has been finalized and sent to the recipient.
-  issued('issued'),
-
-  /// Display: balanced
-  /// Definition: the invoice has been balaced / completely paid.
-  balanced('balanced'),
-
-  /// Display: cancelled
-  /// Definition: the invoice was cancelled.
-  cancelled('cancelled'),
-
-  /// Display: entered in error
-  /// Definition: the invoice was determined as entered in error before it was issued.
-  entered_in_error('entered-in-error'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const InvoiceStatus(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// InvoiceStatus values
+  /// draft
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final InvoiceStatus draft = InvoiceStatus._(
+    'draft',
+  );
+
+  /// issued
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final InvoiceStatus issued = InvoiceStatus._(
+    'issued',
+  );
+
+  /// balanced
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final InvoiceStatus balanced = InvoiceStatus._(
+    'balanced',
+  );
+
+  /// cancelled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final InvoiceStatus cancelled = InvoiceStatus._(
+    'cancelled',
+  );
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final InvoiceStatus entered_in_error = InvoiceStatus._(
+    'entered-in-error',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final InvoiceStatus elementOnly = InvoiceStatus._('');
+
+  /// List of all enum-like values
+  static final List<InvoiceStatus> values = [
+    draft,
+    issued,
+    balanced,
+    cancelled,
+    entered_in_error,
+  ];
+
+  /// Returns the enum value with an element attached
+  InvoiceStatus withElement(Element? newElement) {
+    return InvoiceStatus._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -43,28 +73,20 @@ enum InvoiceStatus {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [InvoiceStatus] instances.
-  static InvoiceStatus fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [InvoiceStatus] from JSON.
+  static InvoiceStatus fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return InvoiceStatus.elementOnly.withElement(
-        element,
-      );
+      return InvoiceStatus.elementOnly.withElement(element);
     }
     return InvoiceStatus.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  InvoiceStatus withElement(Element? newElement) {
-    return InvoiceStatus.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'InvoiceStatus.$fhirCode';
 }

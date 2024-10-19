@@ -1,33 +1,58 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Overall type of this authorization.
-enum RegulatedAuthorizationType {
-  /// Display: Marketing Authorization
-  /// Definition:
-  MarketingAuth('MarketingAuth'),
+class RegulatedAuthorizationType {
+  // Private constructor for internal use (like enum)
+  RegulatedAuthorizationType._(this.fhirCode, {this.element});
 
-  /// Display: Orphan Drug Authorization
-  /// Definition:
-  Orphan('Orphan'),
-
-  /// Display: Pediatric Use Drug Authorization
-  /// Definition:
-  Pediatric('Pediatric'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const RegulatedAuthorizationType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// RegulatedAuthorizationType values
+  /// MarketingAuth
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final RegulatedAuthorizationType MarketingAuth =
+      RegulatedAuthorizationType._(
+    'MarketingAuth',
+  );
+
+  /// Orphan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final RegulatedAuthorizationType Orphan = RegulatedAuthorizationType._(
+    'Orphan',
+  );
+
+  /// Pediatric
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final RegulatedAuthorizationType Pediatric =
+      RegulatedAuthorizationType._(
+    'Pediatric',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final RegulatedAuthorizationType elementOnly =
+      RegulatedAuthorizationType._('');
+
+  /// List of all enum-like values
+  static final List<RegulatedAuthorizationType> values = [
+    MarketingAuth,
+    Orphan,
+    Pediatric,
+  ];
+
+  /// Returns the enum value with an element attached
+  RegulatedAuthorizationType withElement(Element? newElement) {
+    return RegulatedAuthorizationType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +60,20 @@ enum RegulatedAuthorizationType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [RegulatedAuthorizationType] instances.
-  static RegulatedAuthorizationType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [RegulatedAuthorizationType] from JSON.
+  static RegulatedAuthorizationType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RegulatedAuthorizationType.elementOnly.withElement(
-        element,
-      );
+      return RegulatedAuthorizationType.elementOnly.withElement(element);
     }
     return RegulatedAuthorizationType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  RegulatedAuthorizationType withElement(Element? newElement) {
-    return RegulatedAuthorizationType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'RegulatedAuthorizationType.$fhirCode';
 }

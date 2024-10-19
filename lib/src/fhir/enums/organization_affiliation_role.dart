@@ -1,53 +1,104 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This example value set defines a set of codes that can be used to indicate the role of one Organization in relation to another.
-enum OrganizationAffiliationRole {
-  /// Display: Provider
-  /// Definition:
-  provider('provider'),
+class OrganizationAffiliationRole {
+  // Private constructor for internal use (like enum)
+  OrganizationAffiliationRole._(this.fhirCode, {this.element});
 
-  /// Display: Agency
-  /// Definition: An organization such as a public health agency, community/social services provider, etc.
-  agency('agency'),
-
-  /// Display: Research
-  /// Definition: An organization providing research-related services such as conducting research, recruiting research participants, analyzing data, etc.
-  research('research'),
-
-  /// Display: Payer
-  /// Definition: An organization providing reimbursement, payment, or related services
-  payer('payer'),
-
-  /// Display: Diagnostics
-  /// Definition: An organization providing diagnostic testing/laboratory services
-  diagnostics('diagnostics'),
-
-  /// Display: Supplier
-  /// Definition: An organization that provides medical supplies (e.g. medical devices, equipment, pharmaceutical products, etc.)
-  supplier('supplier'),
-
-  /// Display: HIE/HIO
-  /// Definition: An organization that facilitates electronic clinical data exchange between entities
-  HIE_HIO('HIE/HIO'),
-
-  /// Display: Member
-  /// Definition: A type of non-ownership relationship between entities (encompasses partnerships, collaboration, joint ventures, etc.)
-  member('member'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const OrganizationAffiliationRole(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// OrganizationAffiliationRole values
+  /// provider
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OrganizationAffiliationRole provider =
+      OrganizationAffiliationRole._(
+    'provider',
+  );
+
+  /// agency
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OrganizationAffiliationRole agency =
+      OrganizationAffiliationRole._(
+    'agency',
+  );
+
+  /// research
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OrganizationAffiliationRole research =
+      OrganizationAffiliationRole._(
+    'research',
+  );
+
+  /// payer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OrganizationAffiliationRole payer =
+      OrganizationAffiliationRole._(
+    'payer',
+  );
+
+  /// diagnostics
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OrganizationAffiliationRole diagnostics =
+      OrganizationAffiliationRole._(
+    'diagnostics',
+  );
+
+  /// supplier
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OrganizationAffiliationRole supplier =
+      OrganizationAffiliationRole._(
+    'supplier',
+  );
+
+  /// HIE_HIO
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OrganizationAffiliationRole HIE_HIO =
+      OrganizationAffiliationRole._(
+    'HIE/HIO',
+  );
+
+  /// member
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OrganizationAffiliationRole member =
+      OrganizationAffiliationRole._(
+    'member',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final OrganizationAffiliationRole elementOnly =
+      OrganizationAffiliationRole._('');
+
+  /// List of all enum-like values
+  static final List<OrganizationAffiliationRole> values = [
+    provider,
+    agency,
+    research,
+    payer,
+    diagnostics,
+    supplier,
+    HIE_HIO,
+    member,
+  ];
+
+  /// Returns the enum value with an element attached
+  OrganizationAffiliationRole withElement(Element? newElement) {
+    return OrganizationAffiliationRole._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -55,28 +106,20 @@ enum OrganizationAffiliationRole {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [OrganizationAffiliationRole] instances.
-  static OrganizationAffiliationRole fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [OrganizationAffiliationRole] from JSON.
+  static OrganizationAffiliationRole fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return OrganizationAffiliationRole.elementOnly.withElement(
-        element,
-      );
+      return OrganizationAffiliationRole.elementOnly.withElement(element);
     }
     return OrganizationAffiliationRole.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  OrganizationAffiliationRole withElement(Element? newElement) {
-    return OrganizationAffiliationRole.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'OrganizationAffiliationRole.$fhirCode';
 }

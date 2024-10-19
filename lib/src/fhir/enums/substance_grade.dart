@@ -1,41 +1,71 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The quality standard, established benchmark, to which a substance complies.
-enum SubstanceGrade {
-  /// Display: USP/NF United States Pharmacopeia (USP) and the National Formulary (NF)
-  /// Definition:
-  USP_NF('USP-NF'),
+class SubstanceGrade {
+  // Private constructor for internal use (like enum)
+  SubstanceGrade._(this.fhirCode, {this.element});
 
-  /// Display: European Pharmacopoeia
-  /// Definition:
-  Ph_Eur('Ph.Eur'),
-
-  /// Display: Japanese Pharmacopoeia
-  /// Definition:
-  JP('JP'),
-
-  /// Display: British Pharmacopoeia
-  /// Definition:
-  BP('BP'),
-
-  /// Display: Company Standard
-  /// Definition:
-  CompanyStandard('CompanyStandard'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const SubstanceGrade(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// SubstanceGrade values
+  /// USP_NF
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubstanceGrade USP_NF = SubstanceGrade._(
+    'USP-NF',
+  );
+
+  /// Ph_Eur
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubstanceGrade Ph_Eur = SubstanceGrade._(
+    'Ph.Eur',
+  );
+
+  /// JP
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubstanceGrade JP = SubstanceGrade._(
+    'JP',
+  );
+
+  /// BP
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubstanceGrade BP = SubstanceGrade._(
+    'BP',
+  );
+
+  /// CompanyStandard
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubstanceGrade CompanyStandard = SubstanceGrade._(
+    'CompanyStandard',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final SubstanceGrade elementOnly = SubstanceGrade._('');
+
+  /// List of all enum-like values
+  static final List<SubstanceGrade> values = [
+    USP_NF,
+    Ph_Eur,
+    JP,
+    BP,
+    CompanyStandard,
+  ];
+
+  /// Returns the enum value with an element attached
+  SubstanceGrade withElement(Element? newElement) {
+    return SubstanceGrade._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -43,28 +73,20 @@ enum SubstanceGrade {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [SubstanceGrade] instances.
-  static SubstanceGrade fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [SubstanceGrade] from JSON.
+  static SubstanceGrade fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubstanceGrade.elementOnly.withElement(
-        element,
-      );
+      return SubstanceGrade.elementOnly.withElement(element);
     }
     return SubstanceGrade.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  SubstanceGrade withElement(Element? newElement) {
-    return SubstanceGrade.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'SubstanceGrade.$fhirCode';
 }

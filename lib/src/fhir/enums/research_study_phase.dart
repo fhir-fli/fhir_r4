@@ -1,53 +1,95 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes for the stage in the progression of a therapy from initial experimental use in humans in clinical trials to post-market evaluation.
-enum ResearchStudyPhase {
-  /// Display: N/A
-  /// Definition: Trials without phases (for example, studies of devices or behavioral interventions).
-  n_a('n-a'),
+class ResearchStudyPhase {
+  // Private constructor for internal use (like enum)
+  ResearchStudyPhase._(this.fhirCode, {this.element});
 
-  /// Display: Early Phase 1
-  /// Definition: Designation for optional exploratory trials conducted in accordance with the United States Food and Drug Administration's (FDA) 2006 Guidance on Exploratory Investigational New Drug (IND) Studies. Formerly called Phase 0.
-  early_phase_1('early-phase-1'),
-
-  /// Display: Phase 1
-  /// Definition: Includes initial studies to determine the metabolism and pharmacologic actions of drugs in humans, the side effects associated with increasing doses, and to gain early evidence of effectiveness; may include healthy participants and/or patients.
-  phase_1('phase-1'),
-
-  /// Display: Phase 1/Phase 2
-  /// Definition: Trials that are a combination of phases 1 and 2.
-  phase_1_phase_2('phase-1-phase-2'),
-
-  /// Display: Phase 2
-  /// Definition: Includes controlled clinical studies conducted to evaluate the effectiveness of the drug for a particular indication or indications in participants with the disease or condition under study and to determine the common short-term side effects and risks.
-  phase_2('phase-2'),
-
-  /// Display: Phase 2/Phase 3
-  /// Definition: Trials that are a combination of phases 2 and 3.
-  phase_2_phase_3('phase-2-phase-3'),
-
-  /// Display: Phase 3
-  /// Definition: Includes trials conducted after preliminary evidence suggesting effectiveness of the drug has been obtained, and are intended to gather additional information to evaluate the overall benefit-risk relationship of the drug.
-  phase_3('phase-3'),
-
-  /// Display: Phase 4
-  /// Definition: Studies of FDA-approved drugs to delineate additional information including the drug's risks, benefits, and optimal use.
-  phase_4('phase-4'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ResearchStudyPhase(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ResearchStudyPhase values
+  /// n_a
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ResearchStudyPhase n_a = ResearchStudyPhase._(
+    'n-a',
+  );
+
+  /// early_phase_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ResearchStudyPhase early_phase_1 = ResearchStudyPhase._(
+    'early-phase-1',
+  );
+
+  /// phase_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ResearchStudyPhase phase_1 = ResearchStudyPhase._(
+    'phase-1',
+  );
+
+  /// phase_1_phase_2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ResearchStudyPhase phase_1_phase_2 = ResearchStudyPhase._(
+    'phase-1-phase-2',
+  );
+
+  /// phase_2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ResearchStudyPhase phase_2 = ResearchStudyPhase._(
+    'phase-2',
+  );
+
+  /// phase_2_phase_3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ResearchStudyPhase phase_2_phase_3 = ResearchStudyPhase._(
+    'phase-2-phase-3',
+  );
+
+  /// phase_3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ResearchStudyPhase phase_3 = ResearchStudyPhase._(
+    'phase-3',
+  );
+
+  /// phase_4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ResearchStudyPhase phase_4 = ResearchStudyPhase._(
+    'phase-4',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ResearchStudyPhase elementOnly = ResearchStudyPhase._('');
+
+  /// List of all enum-like values
+  static final List<ResearchStudyPhase> values = [
+    n_a,
+    early_phase_1,
+    phase_1,
+    phase_1_phase_2,
+    phase_2,
+    phase_2_phase_3,
+    phase_3,
+    phase_4,
+  ];
+
+  /// Returns the enum value with an element attached
+  ResearchStudyPhase withElement(Element? newElement) {
+    return ResearchStudyPhase._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -55,28 +97,20 @@ enum ResearchStudyPhase {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ResearchStudyPhase] instances.
-  static ResearchStudyPhase fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ResearchStudyPhase] from JSON.
+  static ResearchStudyPhase fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResearchStudyPhase.elementOnly.withElement(
-        element,
-      );
+      return ResearchStudyPhase.elementOnly.withElement(element);
     }
     return ResearchStudyPhase.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ResearchStudyPhase withElement(Element? newElement) {
-    return ResearchStudyPhase.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ResearchStudyPhase.$fhirCode';
 }

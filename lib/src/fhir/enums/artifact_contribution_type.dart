@@ -1,77 +1,155 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Citation contribution.
-enum ArtifactContributionType {
-  /// Display: Conceptualization
-  /// Definition: Conceptualization (see https://jats4r.org/credit-taxonomy).
-  conceptualization('conceptualization'),
+class ArtifactContributionType {
+  // Private constructor for internal use (like enum)
+  ArtifactContributionType._(this.fhirCode, {this.element});
 
-  /// Display: Data curation
-  /// Definition: Data curation (see https://jats4r.org/credit-taxonomy).
-  data_curation('data-curation'),
-
-  /// Display: Formal analysis
-  /// Definition: Formal analysis (see https://jats4r.org/credit-taxonomy).
-  formal_analysis('formal-analysis'),
-
-  /// Display: Funding acquisition
-  /// Definition: Funding acquisition (see https://jats4r.org/credit-taxonomy).
-  funding_acquisition('funding-acquisition'),
-
-  /// Display: Investigation
-  /// Definition: Investigation (see https://jats4r.org/credit-taxonomy).
-  investigation('investigation'),
-
-  /// Display: Methodology
-  /// Definition: Methodology (see https://jats4r.org/credit-taxonomy).
-  methodology('methodology'),
-
-  /// Display: Project administration
-  /// Definition: Project administration (see https://jats4r.org/credit-taxonomy).
-  project_administration('project-administration'),
-
-  /// Display: Resources
-  /// Definition: Resources (see https://jats4r.org/credit-taxonomy).
-  resources('resources'),
-
-  /// Display: Software
-  /// Definition: Software (see https://jats4r.org/credit-taxonomy).
-  software('software'),
-
-  /// Display: Supervision
-  /// Definition: Supervision (see https://jats4r.org/credit-taxonomy).
-  supervision('supervision'),
-
-  /// Display: Validation
-  /// Definition: Validation (see https://jats4r.org/credit-taxonomy).
-  validation('validation'),
-
-  /// Display: Visualization
-  /// Definition: Visualization (see https://jats4r.org/credit-taxonomy).
-  visualization('visualization'),
-
-  /// Display: Writing - original draft
-  /// Definition: Writing - original draft (see https://jats4r.org/credit-taxonomy).
-  writing_original_draft('writing-original-draft'),
-
-  /// Display: Writing - review & editing
-  /// Definition: Writing - review & editing (see https://jats4r.org/credit-taxonomy).
-  writing_review_editing('writing-review-editing'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ArtifactContributionType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ArtifactContributionType values
+  /// conceptualization
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArtifactContributionType conceptualization =
+      ArtifactContributionType._(
+    'conceptualization',
+  );
+
+  /// data_curation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArtifactContributionType data_curation =
+      ArtifactContributionType._(
+    'data-curation',
+  );
+
+  /// formal_analysis
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArtifactContributionType formal_analysis =
+      ArtifactContributionType._(
+    'formal-analysis',
+  );
+
+  /// funding_acquisition
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArtifactContributionType funding_acquisition =
+      ArtifactContributionType._(
+    'funding-acquisition',
+  );
+
+  /// investigation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArtifactContributionType investigation =
+      ArtifactContributionType._(
+    'investigation',
+  );
+
+  /// methodology
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArtifactContributionType methodology =
+      ArtifactContributionType._(
+    'methodology',
+  );
+
+  /// project_administration
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArtifactContributionType project_administration =
+      ArtifactContributionType._(
+    'project-administration',
+  );
+
+  /// resources
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArtifactContributionType resources = ArtifactContributionType._(
+    'resources',
+  );
+
+  /// software
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArtifactContributionType software = ArtifactContributionType._(
+    'software',
+  );
+
+  /// supervision
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArtifactContributionType supervision =
+      ArtifactContributionType._(
+    'supervision',
+  );
+
+  /// validation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArtifactContributionType validation = ArtifactContributionType._(
+    'validation',
+  );
+
+  /// visualization
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArtifactContributionType visualization =
+      ArtifactContributionType._(
+    'visualization',
+  );
+
+  /// writing_original_draft
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArtifactContributionType writing_original_draft =
+      ArtifactContributionType._(
+    'writing-original-draft',
+  );
+
+  /// writing_review_editing
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArtifactContributionType writing_review_editing =
+      ArtifactContributionType._(
+    'writing-review-editing',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ArtifactContributionType elementOnly =
+      ArtifactContributionType._('');
+
+  /// List of all enum-like values
+  static final List<ArtifactContributionType> values = [
+    conceptualization,
+    data_curation,
+    formal_analysis,
+    funding_acquisition,
+    investigation,
+    methodology,
+    project_administration,
+    resources,
+    software,
+    supervision,
+    validation,
+    visualization,
+    writing_original_draft,
+    writing_review_editing,
+  ];
+
+  /// Returns the enum value with an element attached
+  ArtifactContributionType withElement(Element? newElement) {
+    return ArtifactContributionType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -79,28 +157,20 @@ enum ArtifactContributionType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ArtifactContributionType] instances.
-  static ArtifactContributionType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ArtifactContributionType] from JSON.
+  static ArtifactContributionType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ArtifactContributionType.elementOnly.withElement(
-        element,
-      );
+      return ArtifactContributionType.elementOnly.withElement(element);
     }
     return ArtifactContributionType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ArtifactContributionType withElement(Element? newElement) {
-    return ArtifactContributionType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ArtifactContributionType.$fhirCode';
 }

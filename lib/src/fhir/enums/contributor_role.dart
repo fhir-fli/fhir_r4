@@ -1,49 +1,87 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Used to code the format of the display string.
-enum ContributorRole {
-  /// Display: Publisher
-  /// Definition: Entity that makes the content available for public use
-  publisher('publisher'),
+class ContributorRole {
+  // Private constructor for internal use (like enum)
+  ContributorRole._(this.fhirCode, {this.element});
 
-  /// Display: Author/Creator
-  /// Definition: An entity primarily responsible for making the resource, often called author or creator
-  author('author'),
-
-  /// Display: Reviewer
-  /// Definition: Entity that examines the content, formally or informally, and suggests revisions or comments
-  reviewer('reviewer'),
-
-  /// Display: Endorser
-  /// Definition: Entity that supports, approves, or advocates for the content
-  endorser('endorser'),
-
-  /// Display: Editor
-  /// Definition: Entity that revises or has authority to control the content
-  editor('editor'),
-
-  /// Display: Informant
-  /// Definition: Entity that supplies information
-  informant('informant'),
-
-  /// Display: Funder
-  /// Definition: Entity that supplies financial support
-  funder('funder'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ContributorRole(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ContributorRole values
+  /// publisher
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorRole publisher = ContributorRole._(
+    'publisher',
+  );
+
+  /// author
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorRole author = ContributorRole._(
+    'author',
+  );
+
+  /// reviewer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorRole reviewer = ContributorRole._(
+    'reviewer',
+  );
+
+  /// endorser
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorRole endorser = ContributorRole._(
+    'endorser',
+  );
+
+  /// editor
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorRole editor = ContributorRole._(
+    'editor',
+  );
+
+  /// informant
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorRole informant = ContributorRole._(
+    'informant',
+  );
+
+  /// funder
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorRole funder = ContributorRole._(
+    'funder',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ContributorRole elementOnly = ContributorRole._('');
+
+  /// List of all enum-like values
+  static final List<ContributorRole> values = [
+    publisher,
+    author,
+    reviewer,
+    endorser,
+    editor,
+    informant,
+    funder,
+  ];
+
+  /// Returns the enum value with an element attached
+  ContributorRole withElement(Element? newElement) {
+    return ContributorRole._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -51,28 +89,20 @@ enum ContributorRole {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ContributorRole] instances.
-  static ContributorRole fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ContributorRole] from JSON.
+  static ContributorRole fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContributorRole.elementOnly.withElement(
-        element,
-      );
+      return ContributorRole.elementOnly.withElement(element);
     }
     return ContributorRole.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ContributorRole withElement(Element? newElement) {
-    return ContributorRole.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ContributorRole.$fhirCode';
 }

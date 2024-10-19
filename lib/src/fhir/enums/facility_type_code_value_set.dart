@@ -1,337 +1,743 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This is the code representing the type of organizational setting where the clinical encounter, service, interaction, or treatment occurred. The value set used for Healthcare Facility Type has been defined by HITSP to be the value set reproduced from HITSP C80 Table 2-147.
-enum FacilityTypeCodeValueSet {
-  /// Display: Hospital-children's
-  /// Definition:
-  value82242000('82242000'),
-
-  /// Display: Hospital-community
-  /// Definition:
-  value225732001('225732001'),
-
-  /// Display: Hospital-government
-  /// Definition:
-  value79993009('79993009'),
-
-  /// Display: Hospital-long term care
-  /// Definition:
-  value32074000('32074000'),
-
-  /// Display: Hospital-military field
-  /// Definition:
-  value4322002('4322002'),
-
-  /// Display: Hospital-prison
-  /// Definition:
-  value224687002('224687002'),
-
-  /// Display: Hospital-psychiatric
-  /// Definition:
-  value62480006('62480006'),
-
-  /// Display: Hospital-rehabilitation
-  /// Definition:
-  value80522000('80522000'),
-
-  /// Display: Hospital-trauma center
-  /// Definition:
-  value36125001('36125001'),
-
-  /// Display: Hospital-Veterans' Administration
-  /// Definition:
-  value48311003('48311003'),
-
-  /// Display: Hospice facility
-  /// Definition:
-  value284546000('284546000'),
-
-  /// Display: Nursing home
-  /// Definition:
-  value42665001('42665001'),
-
-  /// Display: Skilled nursing facility
-  /// Definition:
-  value45618002('45618002'),
-
-  /// Display: Dialysis unit--hospital
-  /// Definition:
-  value418518002('418518002'),
-
-  /// Display: Emergency department--hospital
-  /// Definition:
-  value73770003('73770003'),
-
-  /// Display: Hospital ambulatory surgery facility
-  /// Definition:
-  value69362002('69362002'),
-
-  /// Display: Hospital birthing center
-  /// Definition:
-  value52668009('52668009'),
-
-  /// Display: Hospital outpatient allergy clinic
-  /// Definition:
-  value360957003('360957003'),
-
-  /// Display: Hospital outpatient dental clinic
-  /// Definition:
-  value10206005('10206005'),
-
-  /// Display: Hospital outpatient dermatology clinic
-  /// Definition:
-  value37550003('37550003'),
-
-  /// Display: Hospital outpatient endocrinology clinic
-  /// Definition:
-  value73644007('73644007'),
-
-  /// Display: Hospital outpatient family medicine clinic
-  /// Definition:
-  value31628002('31628002'),
-
-  /// Display: Hospital outpatient gastroenterology clinic
-  /// Definition:
-  value58482006('58482006'),
-
-  /// Display: Hospital outpatient general surgery clinic
-  /// Definition:
-  value90484001('90484001'),
-
-  /// Display: Hospital outpatient geriatric health center
-  /// Definition:
-  value1814000('1814000'),
-
-  /// Display: Hospital outpatient gynecology clinic
-  /// Definition:
-  value22549003('22549003'),
-
-  /// Display: Hospital outpatient hematology clinic
-  /// Definition:
-  value56293002('56293002'),
-
-  /// Display: Hospital outpatient immunology clinic
-  /// Definition:
-  value360966004('360966004'),
-
-  /// Display: Hospital outpatient infectious disease clinic
-  /// Definition:
-  value2849009('2849009'),
-
-  /// Display: Hospital outpatient mental health center
-  /// Definition:
-  value14866005('14866005'),
-
-  /// Display: Hospital outpatient neurology clinic
-  /// Definition:
-  value38238005('38238005'),
-
-  /// Display: Hospital outpatient obstetrical clinic
-  /// Definition:
-  value56189001('56189001'),
-
-  /// Display: Hospital outpatient oncology clinic
-  /// Definition:
-  value89972002('89972002'),
-
-  /// Display: Hospital outpatient ophthalmology clinic
-  /// Definition:
-  value78088001('78088001'),
-
-  /// Display: Hospital outpatient orthopedics clinic
-  /// Definition:
-  value78001009('78001009'),
-
-  /// Display: Hospital outpatient otorhinolaryngology clinic
-  /// Definition:
-  value23392004('23392004'),
-
-  /// Display: Hospital outpatient pain clinic
-  /// Definition:
-  value36293008('36293008'),
-
-  /// Display: Hospital outpatient pediatric clinic
-  /// Definition:
-  value3729002('3729002'),
-
-  /// Display: Hospital outpatient peripheral vascular clinic
-  /// Definition:
-  value5584006('5584006'),
-
-  /// Display: Hospital outpatient rehabilitation clinic
-  /// Definition:
-  value37546005('37546005'),
-
-  /// Display: Hospital outpatient respiratory disease clinic
-  /// Definition:
-  value57159002('57159002'),
-
-  /// Display: Hospital outpatient rheumatology clinic
-  /// Definition:
-  value331006('331006'),
-
-  /// Display: Hospital outpatient urology clinic
-  /// Definition:
-  value50569004('50569004'),
-
-  /// Display: Hospital radiology facility
-  /// Definition:
-  value79491001('79491001'),
-
-  /// Display: Hospital-based outpatient clinic or department--OTHER-NOT LISTED
-  /// Definition:
-  value33022008('33022008'),
-
-  /// Display: Fee-for-service private physicians' group office
-  /// Definition:
-  value19602009('19602009'),
-
-  /// Display: Private physicians' group office
-  /// Definition:
-  value39350007('39350007'),
-
-  /// Display: Solo practice private office
-  /// Definition:
-  value83891005('83891005'),
-
-  /// Display: Independent ambulatory care provider site--OTHER--NOT LISTED
-  /// Definition:
-  value394759007('394759007'),
-
-  /// Display: Ambulatory surgery center
-  /// Definition:
-  value405607001('405607001'),
-
-  /// Display: Care of the elderly day hospital
-  /// Definition:
-  value309900005('309900005'),
-
-  /// Display: Elderly assessment clinic
-  /// Definition:
-  value275576008('275576008'),
-
-  /// Display: Free-standing ambulatory surgery facility
-  /// Definition:
-  value10531005('10531005'),
-
-  /// Display: Free-standing birthing center
-  /// Definition:
-  value91154008('91154008'),
-
-  /// Display: Free-standing geriatric health center
-  /// Definition:
-  value41844007('41844007'),
-
-  /// Display: Free-standing laboratory facility
-  /// Definition:
-  value45899008('45899008'),
-
-  /// Display: Free-standing mental health center
-  /// Definition:
-  value51563005('51563005'),
-
-  /// Display: Free-standing radiology facility
-  /// Definition:
-  value1773006('1773006'),
-
-  /// Display: Health maintenance organization
-  /// Definition:
-  value72311000('72311000'),
-
-  /// Display: Local community health center
-  /// Definition:
-  value6827000('6827000'),
-
-  /// Display: Psychogeriatric day hospital
-  /// Definition:
-  value309898008('309898008'),
-
-  /// Display: Residential school infirmary
-  /// Definition:
-  value39913001('39913001'),
-
-  /// Display: Rural health center
-  /// Definition:
-  value77931003('77931003'),
-
-  /// Display: Sexually transmitted disease health center
-  /// Definition:
-  value25681007('25681007'),
-
-  /// Display: Substance abuse treatment center
-  /// Definition:
-  value20078004('20078004'),
-
-  /// Display: Vaccination clinic
-  /// Definition:
-  value46224007('46224007'),
-
-  /// Display: Walk-in clinic
-  /// Definition:
-  value81234003('81234003'),
-
-  /// Display: Ambulatory care site--OTHER--NOT LISTED
-  /// Definition:
-  value35971002('35971002'),
-
-  /// Display: Ambulance-based care
-  /// Definition:
-  value11424001('11424001'),
-
-  /// Display: Contained casualty setting
-  /// Definition:
-  value409519008('409519008'),
-
-  /// Display: Helicopter-based care
-  /// Definition:
-  value901005('901005'),
-
-  /// Display: Hospital ship
-  /// Definition:
-  value2081004('2081004'),
-
-  /// Display: Traveler's aid clinic
-  /// Definition:
-  value59374000('59374000'),
-
-  /// Display: Adult day care center
-  /// Definition:
-  value413456002('413456002'),
-
-  /// Display: Child day care center
-  /// Definition:
-  value413817003('413817003'),
-
-  /// Display: Private residential home
-  /// Definition:
-  value310205006('310205006'),
-
-  /// Display: Residential institution
-  /// Definition:
-  value419955002('419955002'),
-
-  /// Display: Sports facility
-  /// Definition:
-  value272501009('272501009'),
-
-  /// Display: Health encounter site--NOT LISTED
-  /// Definition:
-  value394777002('394777002'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const FacilityTypeCodeValueSet(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+class FacilityTypeCodeValueSet {
+  // Private constructor for internal use (like enum)
+  FacilityTypeCodeValueSet._(this.fhirCode, {this.element});
+
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// FacilityTypeCodeValueSet values
+  /// value82242000
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value82242000 =
+      FacilityTypeCodeValueSet._(
+    '82242000',
+  );
+
+  /// value225732001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value225732001 =
+      FacilityTypeCodeValueSet._(
+    '225732001',
+  );
+
+  /// value79993009
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value79993009 =
+      FacilityTypeCodeValueSet._(
+    '79993009',
+  );
+
+  /// value32074000
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value32074000 =
+      FacilityTypeCodeValueSet._(
+    '32074000',
+  );
+
+  /// value4322002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value4322002 =
+      FacilityTypeCodeValueSet._(
+    '4322002',
+  );
+
+  /// value224687002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value224687002 =
+      FacilityTypeCodeValueSet._(
+    '224687002',
+  );
+
+  /// value62480006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value62480006 =
+      FacilityTypeCodeValueSet._(
+    '62480006',
+  );
+
+  /// value80522000
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value80522000 =
+      FacilityTypeCodeValueSet._(
+    '80522000',
+  );
+
+  /// value36125001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value36125001 =
+      FacilityTypeCodeValueSet._(
+    '36125001',
+  );
+
+  /// value48311003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value48311003 =
+      FacilityTypeCodeValueSet._(
+    '48311003',
+  );
+
+  /// value284546000
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value284546000 =
+      FacilityTypeCodeValueSet._(
+    '284546000',
+  );
+
+  /// value42665001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value42665001 =
+      FacilityTypeCodeValueSet._(
+    '42665001',
+  );
+
+  /// value45618002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value45618002 =
+      FacilityTypeCodeValueSet._(
+    '45618002',
+  );
+
+  /// value418518002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value418518002 =
+      FacilityTypeCodeValueSet._(
+    '418518002',
+  );
+
+  /// value73770003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value73770003 =
+      FacilityTypeCodeValueSet._(
+    '73770003',
+  );
+
+  /// value69362002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value69362002 =
+      FacilityTypeCodeValueSet._(
+    '69362002',
+  );
+
+  /// value52668009
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value52668009 =
+      FacilityTypeCodeValueSet._(
+    '52668009',
+  );
+
+  /// value360957003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value360957003 =
+      FacilityTypeCodeValueSet._(
+    '360957003',
+  );
+
+  /// value10206005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value10206005 =
+      FacilityTypeCodeValueSet._(
+    '10206005',
+  );
+
+  /// value37550003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value37550003 =
+      FacilityTypeCodeValueSet._(
+    '37550003',
+  );
+
+  /// value73644007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value73644007 =
+      FacilityTypeCodeValueSet._(
+    '73644007',
+  );
+
+  /// value31628002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value31628002 =
+      FacilityTypeCodeValueSet._(
+    '31628002',
+  );
+
+  /// value58482006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value58482006 =
+      FacilityTypeCodeValueSet._(
+    '58482006',
+  );
+
+  /// value90484001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value90484001 =
+      FacilityTypeCodeValueSet._(
+    '90484001',
+  );
+
+  /// value1814000
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value1814000 =
+      FacilityTypeCodeValueSet._(
+    '1814000',
+  );
+
+  /// value22549003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value22549003 =
+      FacilityTypeCodeValueSet._(
+    '22549003',
+  );
+
+  /// value56293002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value56293002 =
+      FacilityTypeCodeValueSet._(
+    '56293002',
+  );
+
+  /// value360966004
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value360966004 =
+      FacilityTypeCodeValueSet._(
+    '360966004',
+  );
+
+  /// value2849009
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value2849009 =
+      FacilityTypeCodeValueSet._(
+    '2849009',
+  );
+
+  /// value14866005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value14866005 =
+      FacilityTypeCodeValueSet._(
+    '14866005',
+  );
+
+  /// value38238005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value38238005 =
+      FacilityTypeCodeValueSet._(
+    '38238005',
+  );
+
+  /// value56189001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value56189001 =
+      FacilityTypeCodeValueSet._(
+    '56189001',
+  );
+
+  /// value89972002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value89972002 =
+      FacilityTypeCodeValueSet._(
+    '89972002',
+  );
+
+  /// value78088001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value78088001 =
+      FacilityTypeCodeValueSet._(
+    '78088001',
+  );
+
+  /// value78001009
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value78001009 =
+      FacilityTypeCodeValueSet._(
+    '78001009',
+  );
+
+  /// value23392004
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value23392004 =
+      FacilityTypeCodeValueSet._(
+    '23392004',
+  );
+
+  /// value36293008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value36293008 =
+      FacilityTypeCodeValueSet._(
+    '36293008',
+  );
+
+  /// value3729002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value3729002 =
+      FacilityTypeCodeValueSet._(
+    '3729002',
+  );
+
+  /// value5584006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value5584006 =
+      FacilityTypeCodeValueSet._(
+    '5584006',
+  );
+
+  /// value37546005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value37546005 =
+      FacilityTypeCodeValueSet._(
+    '37546005',
+  );
+
+  /// value57159002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value57159002 =
+      FacilityTypeCodeValueSet._(
+    '57159002',
+  );
+
+  /// value331006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value331006 =
+      FacilityTypeCodeValueSet._(
+    '331006',
+  );
+
+  /// value50569004
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value50569004 =
+      FacilityTypeCodeValueSet._(
+    '50569004',
+  );
+
+  /// value79491001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value79491001 =
+      FacilityTypeCodeValueSet._(
+    '79491001',
+  );
+
+  /// value33022008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value33022008 =
+      FacilityTypeCodeValueSet._(
+    '33022008',
+  );
+
+  /// value19602009
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value19602009 =
+      FacilityTypeCodeValueSet._(
+    '19602009',
+  );
+
+  /// value39350007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value39350007 =
+      FacilityTypeCodeValueSet._(
+    '39350007',
+  );
+
+  /// value83891005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value83891005 =
+      FacilityTypeCodeValueSet._(
+    '83891005',
+  );
+
+  /// value394759007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value394759007 =
+      FacilityTypeCodeValueSet._(
+    '394759007',
+  );
+
+  /// value405607001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value405607001 =
+      FacilityTypeCodeValueSet._(
+    '405607001',
+  );
+
+  /// value309900005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value309900005 =
+      FacilityTypeCodeValueSet._(
+    '309900005',
+  );
+
+  /// value275576008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value275576008 =
+      FacilityTypeCodeValueSet._(
+    '275576008',
+  );
+
+  /// value10531005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value10531005 =
+      FacilityTypeCodeValueSet._(
+    '10531005',
+  );
+
+  /// value91154008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value91154008 =
+      FacilityTypeCodeValueSet._(
+    '91154008',
+  );
+
+  /// value41844007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value41844007 =
+      FacilityTypeCodeValueSet._(
+    '41844007',
+  );
+
+  /// value45899008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value45899008 =
+      FacilityTypeCodeValueSet._(
+    '45899008',
+  );
+
+  /// value51563005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value51563005 =
+      FacilityTypeCodeValueSet._(
+    '51563005',
+  );
+
+  /// value1773006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value1773006 =
+      FacilityTypeCodeValueSet._(
+    '1773006',
+  );
+
+  /// value72311000
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value72311000 =
+      FacilityTypeCodeValueSet._(
+    '72311000',
+  );
+
+  /// value6827000
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value6827000 =
+      FacilityTypeCodeValueSet._(
+    '6827000',
+  );
+
+  /// value309898008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value309898008 =
+      FacilityTypeCodeValueSet._(
+    '309898008',
+  );
+
+  /// value39913001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value39913001 =
+      FacilityTypeCodeValueSet._(
+    '39913001',
+  );
+
+  /// value77931003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value77931003 =
+      FacilityTypeCodeValueSet._(
+    '77931003',
+  );
+
+  /// value25681007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value25681007 =
+      FacilityTypeCodeValueSet._(
+    '25681007',
+  );
+
+  /// value20078004
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value20078004 =
+      FacilityTypeCodeValueSet._(
+    '20078004',
+  );
+
+  /// value46224007
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value46224007 =
+      FacilityTypeCodeValueSet._(
+    '46224007',
+  );
+
+  /// value81234003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value81234003 =
+      FacilityTypeCodeValueSet._(
+    '81234003',
+  );
+
+  /// value35971002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value35971002 =
+      FacilityTypeCodeValueSet._(
+    '35971002',
+  );
+
+  /// value11424001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value11424001 =
+      FacilityTypeCodeValueSet._(
+    '11424001',
+  );
+
+  /// value409519008
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value409519008 =
+      FacilityTypeCodeValueSet._(
+    '409519008',
+  );
+
+  /// value901005
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value901005 =
+      FacilityTypeCodeValueSet._(
+    '901005',
+  );
+
+  /// value2081004
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value2081004 =
+      FacilityTypeCodeValueSet._(
+    '2081004',
+  );
+
+  /// value59374000
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value59374000 =
+      FacilityTypeCodeValueSet._(
+    '59374000',
+  );
+
+  /// value413456002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value413456002 =
+      FacilityTypeCodeValueSet._(
+    '413456002',
+  );
+
+  /// value413817003
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value413817003 =
+      FacilityTypeCodeValueSet._(
+    '413817003',
+  );
+
+  /// value310205006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value310205006 =
+      FacilityTypeCodeValueSet._(
+    '310205006',
+  );
+
+  /// value419955002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value419955002 =
+      FacilityTypeCodeValueSet._(
+    '419955002',
+  );
+
+  /// value272501009
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value272501009 =
+      FacilityTypeCodeValueSet._(
+    '272501009',
+  );
+
+  /// value394777002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final FacilityTypeCodeValueSet value394777002 =
+      FacilityTypeCodeValueSet._(
+    '394777002',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final FacilityTypeCodeValueSet elementOnly =
+      FacilityTypeCodeValueSet._('');
+
+  /// List of all enum-like values
+  static final List<FacilityTypeCodeValueSet> values = [
+    value82242000,
+    value225732001,
+    value79993009,
+    value32074000,
+    value4322002,
+    value224687002,
+    value62480006,
+    value80522000,
+    value36125001,
+    value48311003,
+    value284546000,
+    value42665001,
+    value45618002,
+    value418518002,
+    value73770003,
+    value69362002,
+    value52668009,
+    value360957003,
+    value10206005,
+    value37550003,
+    value73644007,
+    value31628002,
+    value58482006,
+    value90484001,
+    value1814000,
+    value22549003,
+    value56293002,
+    value360966004,
+    value2849009,
+    value14866005,
+    value38238005,
+    value56189001,
+    value89972002,
+    value78088001,
+    value78001009,
+    value23392004,
+    value36293008,
+    value3729002,
+    value5584006,
+    value37546005,
+    value57159002,
+    value331006,
+    value50569004,
+    value79491001,
+    value33022008,
+    value19602009,
+    value39350007,
+    value83891005,
+    value394759007,
+    value405607001,
+    value309900005,
+    value275576008,
+    value10531005,
+    value91154008,
+    value41844007,
+    value45899008,
+    value51563005,
+    value1773006,
+    value72311000,
+    value6827000,
+    value309898008,
+    value39913001,
+    value77931003,
+    value25681007,
+    value20078004,
+    value46224007,
+    value81234003,
+    value35971002,
+    value11424001,
+    value409519008,
+    value901005,
+    value2081004,
+    value59374000,
+    value413456002,
+    value413817003,
+    value310205006,
+    value419955002,
+    value272501009,
+    value394777002,
+  ];
+
+  /// Returns the enum value with an element attached
+  FacilityTypeCodeValueSet withElement(Element? newElement) {
+    return FacilityTypeCodeValueSet._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -339,28 +745,20 @@ enum FacilityTypeCodeValueSet {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [FacilityTypeCodeValueSet] instances.
-  static FacilityTypeCodeValueSet fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [FacilityTypeCodeValueSet] from JSON.
+  static FacilityTypeCodeValueSet fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return FacilityTypeCodeValueSet.elementOnly.withElement(
-        element,
-      );
+      return FacilityTypeCodeValueSet.elementOnly.withElement(element);
     }
     return FacilityTypeCodeValueSet.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  FacilityTypeCodeValueSet withElement(Element? newElement) {
-    return FacilityTypeCodeValueSet.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'FacilityTypeCodeValueSet.$fhirCode';
 }

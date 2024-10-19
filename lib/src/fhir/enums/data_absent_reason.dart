@@ -1,81 +1,151 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Used to specify why the normally expected content of the data element is missing.
-enum DataAbsentReason {
-  /// Display: Unknown
-  /// Definition: The value is expected to exist but is not known.
-  unknown('unknown'),
+class DataAbsentReason {
+  // Private constructor for internal use (like enum)
+  DataAbsentReason._(this.fhirCode, {this.element});
 
-  /// Display: Asked But Unknown
-  /// Definition: The source was asked but does not know the value.
-  asked_unknown('asked-unknown'),
-
-  /// Display: Temporarily Unknown
-  /// Definition: There is reason to expect (from the workflow) that the value may become known.
-  temp_unknown('temp-unknown'),
-
-  /// Display: Not Asked
-  /// Definition: The workflow didn't lead to this value being known.
-  not_asked('not-asked'),
-
-  /// Display: Asked But Declined
-  /// Definition: The source was asked but declined to answer.
-  asked_declined('asked-declined'),
-
-  /// Display: Masked
-  /// Definition: The information is not available due to security, privacy or related reasons.
-  masked('masked'),
-
-  /// Display: Not Applicable
-  /// Definition: There is no proper value for this element (e.g. last menstrual period for a male).
-  not_applicable('not-applicable'),
-
-  /// Display: Unsupported
-  /// Definition: The source system wasn't capable of supporting this element.
-  unsupported('unsupported'),
-
-  /// Display: As Text
-  /// Definition: The content of the data is represented in the resource narrative.
-  as_text('as-text'),
-
-  /// Display: Error
-  /// Definition: Some system or workflow process error means that the information is not available.
-  error('error'),
-
-  /// Display: Not a Number (NaN)
-  /// Definition: The numeric value is undefined or unrepresentable due to a floating point processing error.
-  not_a_number('not-a-number'),
-
-  /// Display: Negative Infinity (NINF)
-  /// Definition: The numeric value is excessively low and unrepresentable due to a floating point processing error.
-  negative_infinity('negative-infinity'),
-
-  /// Display: Positive Infinity (PINF)
-  /// Definition: The numeric value is excessively high and unrepresentable due to a floating point processing error.
-  positive_infinity('positive-infinity'),
-
-  /// Display: Not Performed
-  /// Definition: The value is not available because the observation procedure (test, etc.) was not performed.
-  not_performed('not-performed'),
-
-  /// Display: Not Permitted
-  /// Definition: The value is not permitted in this context (e.g. due to profiles, or the base data types).
-  not_permitted('not-permitted'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const DataAbsentReason(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// DataAbsentReason values
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DataAbsentReason unknown = DataAbsentReason._(
+    'unknown',
+  );
+
+  /// asked_unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DataAbsentReason asked_unknown = DataAbsentReason._(
+    'asked-unknown',
+  );
+
+  /// temp_unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DataAbsentReason temp_unknown = DataAbsentReason._(
+    'temp-unknown',
+  );
+
+  /// not_asked
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DataAbsentReason not_asked = DataAbsentReason._(
+    'not-asked',
+  );
+
+  /// asked_declined
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DataAbsentReason asked_declined = DataAbsentReason._(
+    'asked-declined',
+  );
+
+  /// masked
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DataAbsentReason masked = DataAbsentReason._(
+    'masked',
+  );
+
+  /// not_applicable
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DataAbsentReason not_applicable = DataAbsentReason._(
+    'not-applicable',
+  );
+
+  /// unsupported
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DataAbsentReason unsupported = DataAbsentReason._(
+    'unsupported',
+  );
+
+  /// as_text
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DataAbsentReason as_text = DataAbsentReason._(
+    'as-text',
+  );
+
+  /// error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DataAbsentReason error = DataAbsentReason._(
+    'error',
+  );
+
+  /// not_a_number
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DataAbsentReason not_a_number = DataAbsentReason._(
+    'not-a-number',
+  );
+
+  /// negative_infinity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DataAbsentReason negative_infinity = DataAbsentReason._(
+    'negative-infinity',
+  );
+
+  /// positive_infinity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DataAbsentReason positive_infinity = DataAbsentReason._(
+    'positive-infinity',
+  );
+
+  /// not_performed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DataAbsentReason not_performed = DataAbsentReason._(
+    'not-performed',
+  );
+
+  /// not_permitted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DataAbsentReason not_permitted = DataAbsentReason._(
+    'not-permitted',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final DataAbsentReason elementOnly = DataAbsentReason._('');
+
+  /// List of all enum-like values
+  static final List<DataAbsentReason> values = [
+    unknown,
+    asked_unknown,
+    temp_unknown,
+    not_asked,
+    asked_declined,
+    masked,
+    not_applicable,
+    unsupported,
+    as_text,
+    error,
+    not_a_number,
+    negative_infinity,
+    positive_infinity,
+    not_performed,
+    not_permitted,
+  ];
+
+  /// Returns the enum value with an element attached
+  DataAbsentReason withElement(Element? newElement) {
+    return DataAbsentReason._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -83,28 +153,20 @@ enum DataAbsentReason {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [DataAbsentReason] instances.
-  static DataAbsentReason fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [DataAbsentReason] from JSON.
+  static DataAbsentReason fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DataAbsentReason.elementOnly.withElement(
-        element,
-      );
+      return DataAbsentReason.elementOnly.withElement(element);
     }
     return DataAbsentReason.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  DataAbsentReason withElement(Element? newElement) {
-    return DataAbsentReason.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'DataAbsentReason.$fhirCode';
 }

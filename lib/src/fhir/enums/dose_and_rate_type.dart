@@ -1,29 +1,47 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The kind of dose or rate specified.
-enum DoseAndRateType {
-  /// Display: Calculated
-  /// Definition: The dose specified is calculated by the prescriber or the system.
-  calculated('calculated'),
+class DoseAndRateType {
+  // Private constructor for internal use (like enum)
+  DoseAndRateType._(this.fhirCode, {this.element});
 
-  /// Display: Ordered
-  /// Definition: The dose specified is as ordered by the prescriber.
-  ordered('ordered'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const DoseAndRateType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// DoseAndRateType values
+  /// calculated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DoseAndRateType calculated = DoseAndRateType._(
+    'calculated',
+  );
+
+  /// ordered
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DoseAndRateType ordered = DoseAndRateType._(
+    'ordered',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final DoseAndRateType elementOnly = DoseAndRateType._('');
+
+  /// List of all enum-like values
+  static final List<DoseAndRateType> values = [
+    calculated,
+    ordered,
+  ];
+
+  /// Returns the enum value with an element attached
+  DoseAndRateType withElement(Element? newElement) {
+    return DoseAndRateType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -31,28 +49,20 @@ enum DoseAndRateType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [DoseAndRateType] instances.
-  static DoseAndRateType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [DoseAndRateType] from JSON.
+  static DoseAndRateType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DoseAndRateType.elementOnly.withElement(
-        element,
-      );
+      return DoseAndRateType.elementOnly.withElement(element);
     }
     return DoseAndRateType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  DoseAndRateType withElement(Element? newElement) {
-    return DoseAndRateType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'DoseAndRateType.$fhirCode';
 }

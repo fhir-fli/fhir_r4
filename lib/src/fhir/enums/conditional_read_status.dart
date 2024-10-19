@@ -1,37 +1,63 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A code that indicates how the server supports conditional read.
-enum ConditionalReadStatus {
-  /// Display: Not Supported
-  /// Definition: No support for conditional reads.
-  not_supported('not-supported'),
+class ConditionalReadStatus {
+  // Private constructor for internal use (like enum)
+  ConditionalReadStatus._(this.fhirCode, {this.element});
 
-  /// Display: If-Modified-Since
-  /// Definition: Conditional reads are supported, but only with the If-Modified-Since HTTP Header.
-  modified_since('modified-since'),
-
-  /// Display: If-None-Match
-  /// Definition: Conditional reads are supported, but only with the If-None-Match HTTP Header.
-  not_match('not-match'),
-
-  /// Display: Full Support
-  /// Definition: Conditional reads are supported, with both If-Modified-Since and If-None-Match HTTP Headers.
-  full_support('full-support'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ConditionalReadStatus(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ConditionalReadStatus values
+  /// not_supported
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConditionalReadStatus not_supported = ConditionalReadStatus._(
+    'not-supported',
+  );
+
+  /// modified_since
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConditionalReadStatus modified_since = ConditionalReadStatus._(
+    'modified-since',
+  );
+
+  /// not_match
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConditionalReadStatus not_match = ConditionalReadStatus._(
+    'not-match',
+  );
+
+  /// full_support
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConditionalReadStatus full_support = ConditionalReadStatus._(
+    'full-support',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ConditionalReadStatus elementOnly = ConditionalReadStatus._('');
+
+  /// List of all enum-like values
+  static final List<ConditionalReadStatus> values = [
+    not_supported,
+    modified_since,
+    not_match,
+    full_support,
+  ];
+
+  /// Returns the enum value with an element attached
+  ConditionalReadStatus withElement(Element? newElement) {
+    return ConditionalReadStatus._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -39,28 +65,20 @@ enum ConditionalReadStatus {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ConditionalReadStatus] instances.
-  static ConditionalReadStatus fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ConditionalReadStatus] from JSON.
+  static ConditionalReadStatus fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConditionalReadStatus.elementOnly.withElement(
-        element,
-      );
+      return ConditionalReadStatus.elementOnly.withElement(element);
     }
     return ConditionalReadStatus.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ConditionalReadStatus withElement(Element? newElement) {
-    return ConditionalReadStatus.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ConditionalReadStatus.$fhirCode';
 }

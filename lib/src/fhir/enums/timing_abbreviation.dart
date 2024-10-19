@@ -1,85 +1,159 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Code for a known / defined timing pattern.
-enum TimingAbbreviation {
-  /// Display: BID
-  /// Definition:
-  BID('BID'),
+class TimingAbbreviation {
+  // Private constructor for internal use (like enum)
+  TimingAbbreviation._(this.fhirCode, {this.element});
 
-  /// Display: TID
-  /// Definition:
-  TID('TID'),
-
-  /// Display: QID
-  /// Definition:
-  QID('QID'),
-
-  /// Display: AM
-  /// Definition:
-  AM('AM'),
-
-  /// Display: PM
-  /// Definition:
-  PM('PM'),
-
-  /// Display: QD
-  /// Definition:
-  QD('QD'),
-
-  /// Display: QOD
-  /// Definition:
-  QOD('QOD'),
-
-  /// Display: every hour
-  /// Definition:
-  Q1H('Q1H'),
-
-  /// Display: every 2 hours
-  /// Definition:
-  Q2H('Q2H'),
-
-  /// Display: every 3 hours
-  /// Definition:
-  Q3H('Q3H'),
-
-  /// Display: Q4H
-  /// Definition:
-  Q4H('Q4H'),
-
-  /// Display: Q6H
-  /// Definition:
-  Q6H('Q6H'),
-
-  /// Display: every 8 hours
-  /// Definition:
-  Q8H('Q8H'),
-
-  /// Display: at bedtime
-  /// Definition:
-  BED('BED'),
-
-  /// Display: weekly
-  /// Definition:
-  WK('WK'),
-
-  /// Display: monthly
-  /// Definition:
-  MO('MO'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const TimingAbbreviation(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// TimingAbbreviation values
+  /// BID
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation BID = TimingAbbreviation._(
+    'BID',
+  );
+
+  /// TID
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation TID = TimingAbbreviation._(
+    'TID',
+  );
+
+  /// QID
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation QID = TimingAbbreviation._(
+    'QID',
+  );
+
+  /// AM
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation AM = TimingAbbreviation._(
+    'AM',
+  );
+
+  /// PM
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation PM = TimingAbbreviation._(
+    'PM',
+  );
+
+  /// QD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation QD = TimingAbbreviation._(
+    'QD',
+  );
+
+  /// QOD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation QOD = TimingAbbreviation._(
+    'QOD',
+  );
+
+  /// Q1H
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation Q1H = TimingAbbreviation._(
+    'Q1H',
+  );
+
+  /// Q2H
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation Q2H = TimingAbbreviation._(
+    'Q2H',
+  );
+
+  /// Q3H
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation Q3H = TimingAbbreviation._(
+    'Q3H',
+  );
+
+  /// Q4H
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation Q4H = TimingAbbreviation._(
+    'Q4H',
+  );
+
+  /// Q6H
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation Q6H = TimingAbbreviation._(
+    'Q6H',
+  );
+
+  /// Q8H
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation Q8H = TimingAbbreviation._(
+    'Q8H',
+  );
+
+  /// BED
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation BED = TimingAbbreviation._(
+    'BED',
+  );
+
+  /// WK
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation WK = TimingAbbreviation._(
+    'WK',
+  );
+
+  /// MO
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TimingAbbreviation MO = TimingAbbreviation._(
+    'MO',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final TimingAbbreviation elementOnly = TimingAbbreviation._('');
+
+  /// List of all enum-like values
+  static final List<TimingAbbreviation> values = [
+    BID,
+    TID,
+    QID,
+    AM,
+    PM,
+    QD,
+    QOD,
+    Q1H,
+    Q2H,
+    Q3H,
+    Q4H,
+    Q6H,
+    Q8H,
+    BED,
+    WK,
+    MO,
+  ];
+
+  /// Returns the enum value with an element attached
+  TimingAbbreviation withElement(Element? newElement) {
+    return TimingAbbreviation._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -87,28 +161,20 @@ enum TimingAbbreviation {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [TimingAbbreviation] instances.
-  static TimingAbbreviation fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [TimingAbbreviation] from JSON.
+  static TimingAbbreviation fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TimingAbbreviation.elementOnly.withElement(
-        element,
-      );
+      return TimingAbbreviation.elementOnly.withElement(element);
     }
     return TimingAbbreviation.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  TimingAbbreviation withElement(Element? newElement) {
-    return TimingAbbreviation.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'TimingAbbreviation.$fhirCode';
 }

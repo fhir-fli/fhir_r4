@@ -1,49 +1,87 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes indicating the type of action that is expected to be performed
-enum TaskCode {
-  /// Display: Activate/approve the focal resource
-  /// Definition: Take what actions are needed to transition the focus resource from 'draft' to 'active' or 'in-progress', as appropriate for the resource type. This may involve additing additional content, approval, validation, etc.
-  approve('approve'),
+class TaskCode {
+  // Private constructor for internal use (like enum)
+  TaskCode._(this.fhirCode, {this.element});
 
-  /// Display: Fulfill the focal request
-  /// Definition: Act to perform the actions defined in the focus request. This might result in a 'more assertive' request (order for a plan or proposal, filler order for a placer order), but is intend to eventually result in events. The degree of fulfillment requested might be limited by Task.restriction.
-  fulfill('fulfill'),
-
-  /// Display: Mark the focal resource as no longer active
-  /// Definition: Abort, cancel or withdraw the focal resource, as appropriate for the type of resource.
-  abort('abort'),
-
-  /// Display: Replace the focal resource with the input resource
-  /// Definition: Replace the focal resource with the specified input resource
-  replace('replace'),
-
-  /// Display: Change the focal resource
-  /// Definition: Update the focal resource of the owning system to reflect the content specified as the Task.focus
-  change('change'),
-
-  /// Display: Suspend the focal resource
-  /// Definition: Transition the focal resource from 'active' or 'in-progress' to 'suspended'
-  suspend('suspend'),
-
-  /// Display: Re-activate the focal resource
-  /// Definition: Transition the focal resource from 'suspended' to 'active' or 'in-progress' as appropriate for the resource type.
-  resume('resume'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const TaskCode(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// TaskCode values
+  /// approve
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskCode approve = TaskCode._(
+    'approve',
+  );
+
+  /// fulfill
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskCode fulfill = TaskCode._(
+    'fulfill',
+  );
+
+  /// abort
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskCode abort = TaskCode._(
+    'abort',
+  );
+
+  /// replace
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskCode replace = TaskCode._(
+    'replace',
+  );
+
+  /// change
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskCode change = TaskCode._(
+    'change',
+  );
+
+  /// suspend
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskCode suspend = TaskCode._(
+    'suspend',
+  );
+
+  /// resume
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskCode resume = TaskCode._(
+    'resume',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final TaskCode elementOnly = TaskCode._('');
+
+  /// List of all enum-like values
+  static final List<TaskCode> values = [
+    approve,
+    fulfill,
+    abort,
+    replace,
+    change,
+    suspend,
+    resume,
+  ];
+
+  /// Returns the enum value with an element attached
+  TaskCode withElement(Element? newElement) {
+    return TaskCode._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -51,28 +89,20 @@ enum TaskCode {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [TaskCode] instances.
-  static TaskCode fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [TaskCode] from JSON.
+  static TaskCode fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TaskCode.elementOnly.withElement(
-        element,
-      );
+      return TaskCode.elementOnly.withElement(element);
     }
     return TaskCode.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  TaskCode withElement(Element? newElement) {
-    return TaskCode.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'TaskCode.$fhirCode';
 }

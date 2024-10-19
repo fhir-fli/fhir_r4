@@ -1,37 +1,64 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The status of a subscription.
-enum SubscriptionStatusCodes {
-  /// Display: Requested
-  /// Definition: The client has requested the subscription, and the server has not yet set it up.
-  requested('requested'),
+class SubscriptionStatusCodes {
+  // Private constructor for internal use (like enum)
+  SubscriptionStatusCodes._(this.fhirCode, {this.element});
 
-  /// Display: Active
-  /// Definition: The subscription is active.
-  active('active'),
-
-  /// Display: Error
-  /// Definition: The server has an error executing the notification.
-  error('error'),
-
-  /// Display: Off
-  /// Definition: Too many errors have occurred or the subscription has expired.
-  off('off'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const SubscriptionStatusCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// SubscriptionStatusCodes values
+  /// requested
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionStatusCodes requested = SubscriptionStatusCodes._(
+    'requested',
+  );
+
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionStatusCodes active = SubscriptionStatusCodes._(
+    'active',
+  );
+
+  /// error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionStatusCodes error = SubscriptionStatusCodes._(
+    'error',
+  );
+
+  /// off
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionStatusCodes off = SubscriptionStatusCodes._(
+    'off',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final SubscriptionStatusCodes elementOnly =
+      SubscriptionStatusCodes._('');
+
+  /// List of all enum-like values
+  static final List<SubscriptionStatusCodes> values = [
+    requested,
+    active,
+    error,
+    off,
+  ];
+
+  /// Returns the enum value with an element attached
+  SubscriptionStatusCodes withElement(Element? newElement) {
+    return SubscriptionStatusCodes._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -39,28 +66,20 @@ enum SubscriptionStatusCodes {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [SubscriptionStatusCodes] instances.
-  static SubscriptionStatusCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [SubscriptionStatusCodes] from JSON.
+  static SubscriptionStatusCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubscriptionStatusCodes.elementOnly.withElement(
-        element,
-      );
+      return SubscriptionStatusCodes.elementOnly.withElement(element);
     }
     return SubscriptionStatusCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  SubscriptionStatusCodes withElement(Element? newElement) {
-    return SubscriptionStatusCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'SubscriptionStatusCodes.$fhirCode';
 }

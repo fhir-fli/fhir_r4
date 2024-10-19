@@ -1,201 +1,391 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set defines an example set of codes that could be can be used to classify groupings of service-types/specialties.
-enum Program {
-  /// Display: Acquired Brain Injury (ABI) Program
-  /// Definition:
-  value1('1'),
+class Program {
+  // Private constructor for internal use (like enum)
+  Program._(this.fhirCode, {this.element});
 
-  /// Display: ABI Slow To Recover (ABI STR) Program
-  /// Definition:
-  value2('2'),
-
-  /// Display: Access Programs
-  /// Definition:
-  value3('3'),
-
-  /// Display: Adult and Further Education (ACFE) Program
-  /// Definition:
-  value4('4'),
-
-  /// Display: Adult Day Activity and Support Services (ADASS) Program
-  /// Definition:
-  value5('5'),
-
-  /// Display: Adult Day Care Program
-  /// Definition:
-  value6('6'),
-
-  /// Display: ATSS (Adult Training Support Service)
-  /// Definition:
-  value7('7'),
-
-  /// Display: Community Aged Care Packages (CACP)
-  /// Definition:
-  value8('8'),
-
-  /// Display: Care Coordination & Supplementary Services (CCSS)
-  /// Definition:
-  value9('9'),
-
-  /// Display: Cognitive Dementia Memory Service (CDAMS)
-  /// Definition:
-  value10('10'),
-
-  /// Display: ChildFIRST
-  /// Definition:
-  value11('11'),
-
-  /// Display: Children's Contact Services
-  /// Definition:
-  value12('12'),
-
-  /// Display: Community Visitors Scheme
-  /// Definition:
-  value13('13'),
-
-  /// Display: CPP (Community Partners Program)
-  /// Definition:
-  value14('14'),
-
-  /// Display: Closing the Gap (CTG)
-  /// Definition:
-  value15('15'),
-
-  /// Display: Coordinated Veterans' Care (CVC) Program
-  /// Definition:
-  value16('16'),
-
-  /// Display: Day Program
-  /// Definition:
-  value17('17'),
-
-  /// Display: Drop In Program
-  /// Definition:
-  value18('18'),
-
-  /// Display: Early Years Program
-  /// Definition:
-  value19('19'),
-
-  /// Display: Employee Assistance Program
-  /// Definition:
-  value20('20'),
-
-  /// Display: Home And Community Care (HACC)
-  /// Definition:
-  value21('21'),
-
-  /// Display: Hospital Admission Risk Program (HARP)
-  /// Definition:
-  value22('22'),
-
-  /// Display: Hospital in the Home (HITH) Program
-  /// Definition:
-  value23('23'),
-
-  /// Display: ICTP (Intensive Community Treatment Program)
-  /// Definition:
-  value24('24'),
-
-  /// Display: IFSS (Intensive Family Support Program)
-  /// Definition:
-  value25('25'),
-
-  /// Display: JPET (Job Placement, Education and Training)
-  /// Definition:
-  value26('26'),
-
-  /// Display: Koori Juvenile Justice Program
-  /// Definition:
-  value27('27'),
-
-  /// Display: Language Literacy and Numeracy Program
-  /// Definition:
-  value28('28'),
-
-  /// Display: Life Skills Program
-  /// Definition:
-  value29('29'),
-
-  /// Display: LMP (Lifestyle Modification Program)
-  /// Definition:
-  value30('30'),
-
-  /// Display: MedsCheck Program
-  /// Definition:
-  value31('31'),
-
-  /// Display: Methadone/Buprenorphine Program
-  /// Definition:
-  value32('32'),
-
-  /// Display: National Disabilities Insurance Scheme (NDIS)
-  /// Definition:
-  value33('33'),
-
-  /// Display: National Diabetes Services Scheme (NDSS)
-  /// Definition:
-  value34('34'),
-
-  /// Display: Needle/Syringe Program
-  /// Definition:
-  value35('35'),
-
-  /// Display: nPEP Program
-  /// Definition:
-  value36('36'),
-
-  /// Display: Personal Support Program
-  /// Definition:
-  value37('37'),
-
-  /// Display: Partners in Recovery (PIR) Program
-  /// Definition:
-  value38('38'),
-
-  /// Display: Pre-employment Program
-  /// Definition:
-  value39('39'),
-
-  /// Display: Reconnect Program
-  /// Definition:
-  value40('40'),
-
-  /// Display: Sexual Abuse Counselling and Prevention Program (SACPP)
-  /// Definition:
-  value41('41'),
-
-  /// Display: Social Support Programs
-  /// Definition:
-  value42('42'),
-
-  /// Display: Supported Residential Service (SRS)
-  /// Definition:
-  value43('43'),
-
-  /// Display: Tasmanian Aboriginal Centre (TAC)
-  /// Definition:
-  value44('44'),
-
-  /// Display: Victim's Assistance Program
-  /// Definition:
-  value45('45'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const Program(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// Program values
+  /// value1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value1 = Program._(
+    '1',
+  );
+
+  /// value2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value2 = Program._(
+    '2',
+  );
+
+  /// value3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value3 = Program._(
+    '3',
+  );
+
+  /// value4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value4 = Program._(
+    '4',
+  );
+
+  /// value5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value5 = Program._(
+    '5',
+  );
+
+  /// value6
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value6 = Program._(
+    '6',
+  );
+
+  /// value7
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value7 = Program._(
+    '7',
+  );
+
+  /// value8
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value8 = Program._(
+    '8',
+  );
+
+  /// value9
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value9 = Program._(
+    '9',
+  );
+
+  /// value10
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value10 = Program._(
+    '10',
+  );
+
+  /// value11
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value11 = Program._(
+    '11',
+  );
+
+  /// value12
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value12 = Program._(
+    '12',
+  );
+
+  /// value13
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value13 = Program._(
+    '13',
+  );
+
+  /// value14
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value14 = Program._(
+    '14',
+  );
+
+  /// value15
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value15 = Program._(
+    '15',
+  );
+
+  /// value16
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value16 = Program._(
+    '16',
+  );
+
+  /// value17
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value17 = Program._(
+    '17',
+  );
+
+  /// value18
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value18 = Program._(
+    '18',
+  );
+
+  /// value19
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value19 = Program._(
+    '19',
+  );
+
+  /// value20
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value20 = Program._(
+    '20',
+  );
+
+  /// value21
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value21 = Program._(
+    '21',
+  );
+
+  /// value22
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value22 = Program._(
+    '22',
+  );
+
+  /// value23
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value23 = Program._(
+    '23',
+  );
+
+  /// value24
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value24 = Program._(
+    '24',
+  );
+
+  /// value25
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value25 = Program._(
+    '25',
+  );
+
+  /// value26
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value26 = Program._(
+    '26',
+  );
+
+  /// value27
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value27 = Program._(
+    '27',
+  );
+
+  /// value28
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value28 = Program._(
+    '28',
+  );
+
+  /// value29
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value29 = Program._(
+    '29',
+  );
+
+  /// value30
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value30 = Program._(
+    '30',
+  );
+
+  /// value31
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value31 = Program._(
+    '31',
+  );
+
+  /// value32
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value32 = Program._(
+    '32',
+  );
+
+  /// value33
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value33 = Program._(
+    '33',
+  );
+
+  /// value34
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value34 = Program._(
+    '34',
+  );
+
+  /// value35
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value35 = Program._(
+    '35',
+  );
+
+  /// value36
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value36 = Program._(
+    '36',
+  );
+
+  /// value37
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value37 = Program._(
+    '37',
+  );
+
+  /// value38
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value38 = Program._(
+    '38',
+  );
+
+  /// value39
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value39 = Program._(
+    '39',
+  );
+
+  /// value40
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value40 = Program._(
+    '40',
+  );
+
+  /// value41
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value41 = Program._(
+    '41',
+  );
+
+  /// value42
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value42 = Program._(
+    '42',
+  );
+
+  /// value43
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value43 = Program._(
+    '43',
+  );
+
+  /// value44
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value44 = Program._(
+    '44',
+  );
+
+  /// value45
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Program value45 = Program._(
+    '45',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final Program elementOnly = Program._('');
+
+  /// List of all enum-like values
+  static final List<Program> values = [
+    value1,
+    value2,
+    value3,
+    value4,
+    value5,
+    value6,
+    value7,
+    value8,
+    value9,
+    value10,
+    value11,
+    value12,
+    value13,
+    value14,
+    value15,
+    value16,
+    value17,
+    value18,
+    value19,
+    value20,
+    value21,
+    value22,
+    value23,
+    value24,
+    value25,
+    value26,
+    value27,
+    value28,
+    value29,
+    value30,
+    value31,
+    value32,
+    value33,
+    value34,
+    value35,
+    value36,
+    value37,
+    value38,
+    value39,
+    value40,
+    value41,
+    value42,
+    value43,
+    value44,
+    value45,
+  ];
+
+  /// Returns the enum value with an element attached
+  Program withElement(Element? newElement) {
+    return Program._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -203,28 +393,20 @@ enum Program {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [Program] instances.
-  static Program fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [Program] from JSON.
+  static Program fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return Program.elementOnly.withElement(
-        element,
-      );
+      return Program.elementOnly.withElement(element);
     }
     return Program.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  Program withElement(Element? newElement) {
-    return Program.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'Program.$fhirCode';
 }

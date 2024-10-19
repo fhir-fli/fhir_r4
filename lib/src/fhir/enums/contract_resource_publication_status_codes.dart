@@ -1,81 +1,168 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set contract specific codes for status.
-enum ContractResourcePublicationStatusCodes {
-  /// Display: Amended
-  /// Definition: Contract is augmented with additional information to correct errors in a predecessor or to updated values in a predecessor. Usage: Contract altered within effective time. Precedence Order = 9. Comparable FHIR and v.3 status codes: revised; replaced.
-  amended('amended'),
+class ContractResourcePublicationStatusCodes {
+  // Private constructor for internal use (like enum)
+  ContractResourcePublicationStatusCodes._(this.fhirCode, {this.element});
 
-  /// Display: Appended
-  /// Definition: Contract is augmented with additional information that was missing from a predecessor Contract. Usage: Contract altered within effective time. Precedence Order = 9. Comparable FHIR and v.3 status codes: updated, replaced.
-  appended('appended'),
-
-  /// Display: Cancelled
-  /// Definition: Contract is terminated due to failure of the Grantor and/or the Grantee to fulfil one or more contract provisions. Usage: Abnormal contract termination. Precedence Order = 10. Comparable FHIR and v.3 status codes: stopped; failed; aborted.
-  cancelled('cancelled'),
-
-  /// Display: Disputed
-  /// Definition: Contract is pended to rectify failure of the Grantor or the Grantee to fulfil contract provision(s). E.g., Grantee complaint about Grantor's failure to comply with contract provisions. Usage: Contract pended. Precedence Order = 7. Comparable FHIR and v.3 status codes: on hold; pended; suspended.
-  disputed('disputed'),
-
-  /// Display: Entered in Error
-  /// Definition: Contract was created in error. No Precedence Order. Status may be applied to a Contract with any status.
-  entered_in_error('entered-in-error'),
-
-  /// Display: Executable
-  /// Definition: Contract execution pending; may be executed when either the Grantor or the Grantee accepts the contract provisions by signing. I.e., where either the Grantor or the Grantee has signed, but not both. E.g., when an insurance applicant signs the insurers application, which references the policy. Usage: Optional first step of contract execution activity. May be skipped and contracting activity moves directly to executed state. Precedence Order = 3. Comparable FHIR and v.3 status codes: draft; preliminary; planned; intended; active.
-  executable('executable'),
-
-  /// Display: Executed
-  /// Definition: Contract is activated for period stipulated when both the Grantor and Grantee have signed it. Usage: Required state for normal completion of contracting activity. Precedence Order = 6. Comparable FHIR and v.3 status codes: accepted; completed.
-  executed('executed'),
-
-  /// Display: Negotiable
-  /// Definition: Contract execution is suspended while either or both the Grantor and Grantee propose and consider new or revised contract provisions. I.e., where the party which has not signed proposes changes to the terms. E .g., a life insurer declines to agree to the signed application because the life insurer has evidence that the applicant, who asserted to being younger or a non-smoker to get a lower premium rate - but offers instead to agree to a higher premium based on the applicants actual age or smoking status. Usage: Optional contract activity between executable and executed state. Precedence Order = 4. Comparable FHIR and v.3 status codes: in progress; review; held.
-  negotiable('negotiable'),
-
-  /// Display: Offered
-  /// Definition: Contract is a proposal by either the Grantor or the Grantee. Aka - A Contract hard copy or electronic 'template', 'form' or 'application'. E.g., health insurance application; consent directive form. Usage: Beginning of contract negotiation, which may have been completed as a precondition because used for 0..* contracts. Precedence Order = 2. Comparable FHIR and v.3 status codes: requested; new.
-  offered('offered'),
-
-  /// Display: Policy
-  /// Definition: Contract template is available as the basis for an application or offer by the Grantor or Grantee. E.g., health insurance policy; consent directive policy. Usage: Required initial contract activity, which may have been completed as a precondition because used for 0..* contracts. Precedence Order = 1. Comparable FHIR and v.3 status codes: proposed; intended.
-  policy('policy'),
-
-  /// Display: Rejected
-  /// Definition: Execution of the Contract is not completed because either or both the Grantor and Grantee decline to accept some or all of the contract provisions. Usage: Optional contract activity between executable and abnormal termination. Precedence Order = 5. Comparable FHIR and v.3 status codes: stopped; cancelled.
-  rejected('rejected'),
-
-  /// Display: Renewed
-  /// Definition: Beginning of a successor Contract at the termination of predecessor Contract lifecycle. Usage: Follows termination of a preceding Contract that has reached its expiry date. Precedence Order = 13. Comparable FHIR and v.3 status codes: superseded.
-  renewed('renewed'),
-
-  /// Display: Revoked
-  /// Definition: A Contract that is rescinded. May be required prior to replacing with an updated Contract. Comparable FHIR and v.3 status codes: nullified.
-  revoked('revoked'),
-
-  /// Display: Resolved
-  /// Definition: Contract is reactivated after being pended because of faulty execution. *E.g., competency of the signer(s), or where the policy is substantially different from and did not accompany the application/form so that the applicant could not compare them. Aka - ''reactivated''. Usage: Optional stage where a pended contract is reactivated. Precedence Order = 8. Comparable FHIR and v.3 status codes: reactivated.
-  resolved('resolved'),
-
-  /// Display: Terminated
-  /// Definition: Contract reaches its expiry date. It might or might not be renewed or renegotiated. Usage: Normal end of contract period. Precedence Order = 12. Comparable FHIR and v.3 status codes: Obsoleted.
-  terminated('terminated'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ContractResourcePublicationStatusCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ContractResourcePublicationStatusCodes values
+  /// amended
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContractResourcePublicationStatusCodes amended =
+      ContractResourcePublicationStatusCodes._(
+    'amended',
+  );
+
+  /// appended
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContractResourcePublicationStatusCodes appended =
+      ContractResourcePublicationStatusCodes._(
+    'appended',
+  );
+
+  /// cancelled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContractResourcePublicationStatusCodes cancelled =
+      ContractResourcePublicationStatusCodes._(
+    'cancelled',
+  );
+
+  /// disputed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContractResourcePublicationStatusCodes disputed =
+      ContractResourcePublicationStatusCodes._(
+    'disputed',
+  );
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContractResourcePublicationStatusCodes entered_in_error =
+      ContractResourcePublicationStatusCodes._(
+    'entered-in-error',
+  );
+
+  /// executable
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContractResourcePublicationStatusCodes executable =
+      ContractResourcePublicationStatusCodes._(
+    'executable',
+  );
+
+  /// executed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContractResourcePublicationStatusCodes executed =
+      ContractResourcePublicationStatusCodes._(
+    'executed',
+  );
+
+  /// negotiable
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContractResourcePublicationStatusCodes negotiable =
+      ContractResourcePublicationStatusCodes._(
+    'negotiable',
+  );
+
+  /// offered
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContractResourcePublicationStatusCodes offered =
+      ContractResourcePublicationStatusCodes._(
+    'offered',
+  );
+
+  /// policy
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContractResourcePublicationStatusCodes policy =
+      ContractResourcePublicationStatusCodes._(
+    'policy',
+  );
+
+  /// rejected
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContractResourcePublicationStatusCodes rejected =
+      ContractResourcePublicationStatusCodes._(
+    'rejected',
+  );
+
+  /// renewed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContractResourcePublicationStatusCodes renewed =
+      ContractResourcePublicationStatusCodes._(
+    'renewed',
+  );
+
+  /// revoked
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContractResourcePublicationStatusCodes revoked =
+      ContractResourcePublicationStatusCodes._(
+    'revoked',
+  );
+
+  /// resolved
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContractResourcePublicationStatusCodes resolved =
+      ContractResourcePublicationStatusCodes._(
+    'resolved',
+  );
+
+  /// terminated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContractResourcePublicationStatusCodes terminated =
+      ContractResourcePublicationStatusCodes._(
+    'terminated',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ContractResourcePublicationStatusCodes elementOnly =
+      ContractResourcePublicationStatusCodes._('');
+
+  /// List of all enum-like values
+  static final List<ContractResourcePublicationStatusCodes> values = [
+    amended,
+    appended,
+    cancelled,
+    disputed,
+    entered_in_error,
+    executable,
+    executed,
+    negotiable,
+    offered,
+    policy,
+    rejected,
+    renewed,
+    revoked,
+    resolved,
+    terminated,
+  ];
+
+  /// Returns the enum value with an element attached
+  ContractResourcePublicationStatusCodes withElement(Element? newElement) {
+    return ContractResourcePublicationStatusCodes._(fhirCode,
+        element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -83,28 +170,22 @@ enum ContractResourcePublicationStatusCodes {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ContractResourcePublicationStatusCodes] instances.
+  /// Factory constructor to create [ContractResourcePublicationStatusCodes] from JSON.
   static ContractResourcePublicationStatusCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+      Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContractResourcePublicationStatusCodes.elementOnly.withElement(
-        element,
-      );
+      return ContractResourcePublicationStatusCodes.elementOnly
+          .withElement(element);
     }
     return ContractResourcePublicationStatusCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ContractResourcePublicationStatusCodes withElement(Element? newElement) {
-    return ContractResourcePublicationStatusCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ContractResourcePublicationStatusCodes.$fhirCode';
 }

@@ -1,29 +1,47 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The degree to which the server supports the code search parameter on ValueSet, if it is supported.
-enum CodeSearchSupport {
-  /// Display: Explicit Codes
-  /// Definition: The search for code on ValueSet only includes codes explicitly detailed on includes or expansions.
-  explicit('explicit'),
+class CodeSearchSupport {
+  // Private constructor for internal use (like enum)
+  CodeSearchSupport._(this.fhirCode, {this.element});
 
-  /// Display: Implicit Codes
-  /// Definition: The search for code on ValueSet only includes all codes based on the expansion of the value set.
-  all('all'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const CodeSearchSupport(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// CodeSearchSupport values
+  /// explicit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CodeSearchSupport explicit = CodeSearchSupport._(
+    'explicit',
+  );
+
+  /// all
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CodeSearchSupport all = CodeSearchSupport._(
+    'all',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final CodeSearchSupport elementOnly = CodeSearchSupport._('');
+
+  /// List of all enum-like values
+  static final List<CodeSearchSupport> values = [
+    explicit,
+    all,
+  ];
+
+  /// Returns the enum value with an element attached
+  CodeSearchSupport withElement(Element? newElement) {
+    return CodeSearchSupport._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -31,28 +49,20 @@ enum CodeSearchSupport {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [CodeSearchSupport] instances.
-  static CodeSearchSupport fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [CodeSearchSupport] from JSON.
+  static CodeSearchSupport fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CodeSearchSupport.elementOnly.withElement(
-        element,
-      );
+      return CodeSearchSupport.elementOnly.withElement(element);
     }
     return CodeSearchSupport.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  CodeSearchSupport withElement(Element? newElement) {
-    return CodeSearchSupport.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'CodeSearchSupport.$fhirCode';
 }

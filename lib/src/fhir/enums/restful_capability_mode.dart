@@ -1,29 +1,47 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The mode of a RESTful capability statement.
-enum RestfulCapabilityMode {
-  /// Display: Client
-  /// Definition: The application acts as a client for this resource.
-  client('client'),
+class RestfulCapabilityMode {
+  // Private constructor for internal use (like enum)
+  RestfulCapabilityMode._(this.fhirCode, {this.element});
 
-  /// Display: Server
-  /// Definition: The application acts as a server for this resource.
-  server('server'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const RestfulCapabilityMode(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// RestfulCapabilityMode values
+  /// client
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final RestfulCapabilityMode client = RestfulCapabilityMode._(
+    'client',
+  );
+
+  /// server
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final RestfulCapabilityMode server = RestfulCapabilityMode._(
+    'server',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final RestfulCapabilityMode elementOnly = RestfulCapabilityMode._('');
+
+  /// List of all enum-like values
+  static final List<RestfulCapabilityMode> values = [
+    client,
+    server,
+  ];
+
+  /// Returns the enum value with an element attached
+  RestfulCapabilityMode withElement(Element? newElement) {
+    return RestfulCapabilityMode._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -31,28 +49,20 @@ enum RestfulCapabilityMode {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [RestfulCapabilityMode] instances.
-  static RestfulCapabilityMode fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [RestfulCapabilityMode] from JSON.
+  static RestfulCapabilityMode fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return RestfulCapabilityMode.elementOnly.withElement(
-        element,
-      );
+      return RestfulCapabilityMode.elementOnly.withElement(element);
     }
     return RestfulCapabilityMode.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  RestfulCapabilityMode withElement(Element? newElement) {
-    return RestfulCapabilityMode.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'RestfulCapabilityMode.$fhirCode';
 }

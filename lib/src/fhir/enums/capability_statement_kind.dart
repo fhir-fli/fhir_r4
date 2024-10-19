@@ -1,33 +1,56 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How a capability statement is intended to be used.
-enum CapabilityStatementKind {
-  /// Display: Instance
-  /// Definition: The CapabilityStatement instance represents the present capabilities of a specific system instance. This is the kind returned by /metadata for a FHIR server end-point.
-  instance('instance'),
+class CapabilityStatementKind {
+  // Private constructor for internal use (like enum)
+  CapabilityStatementKind._(this.fhirCode, {this.element});
 
-  /// Display: Capability
-  /// Definition: The CapabilityStatement instance represents the capabilities of a system or piece of software, independent of a particular installation.
-  capability('capability'),
-
-  /// Display: Requirements
-  /// Definition: The CapabilityStatement instance represents a set of requirements for other systems to meet; e.g. as part of an implementation guide or 'request for proposal'.
-  requirements('requirements'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const CapabilityStatementKind(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// CapabilityStatementKind values
+  /// instance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CapabilityStatementKind instance = CapabilityStatementKind._(
+    'instance',
+  );
+
+  /// capability
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CapabilityStatementKind capability = CapabilityStatementKind._(
+    'capability',
+  );
+
+  /// requirements
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CapabilityStatementKind requirements = CapabilityStatementKind._(
+    'requirements',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final CapabilityStatementKind elementOnly =
+      CapabilityStatementKind._('');
+
+  /// List of all enum-like values
+  static final List<CapabilityStatementKind> values = [
+    instance,
+    capability,
+    requirements,
+  ];
+
+  /// Returns the enum value with an element attached
+  CapabilityStatementKind withElement(Element? newElement) {
+    return CapabilityStatementKind._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +58,20 @@ enum CapabilityStatementKind {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [CapabilityStatementKind] instances.
-  static CapabilityStatementKind fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [CapabilityStatementKind] from JSON.
+  static CapabilityStatementKind fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CapabilityStatementKind.elementOnly.withElement(
-        element,
-      );
+      return CapabilityStatementKind.elementOnly.withElement(element);
     }
     return CapabilityStatementKind.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  CapabilityStatementKind withElement(Element? newElement) {
-    return CapabilityStatementKind.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'CapabilityStatementKind.$fhirCode';
 }

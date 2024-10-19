@@ -1,101 +1,191 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes a smattering of USCLS codes.
-enum USCLSCodes {
-  /// Display: Exam, comp, primary
-  /// Definition: Exam, comp, primary
-  value1101('1101'),
+class USCLSCodes {
+  // Private constructor for internal use (like enum)
+  USCLSCodes._(this.fhirCode, {this.element});
 
-  /// Display: Exam, comp, mixed
-  /// Definition: Exam, comp, mixed
-  value1102('1102'),
-
-  /// Display: Exam, comp, permanent
-  /// Definition: Exam, comp, permanent
-  value1103('1103'),
-
-  /// Display: Exam, recall
-  /// Definition: Exam, recall
-  value1201('1201'),
-
-  /// Display: Exam, emergency
-  /// Definition: Exam, emergency
-  value1205('1205'),
-
-  /// Display: Radiograph, series (12)
-  /// Definition: Radiograph, series (12)
-  value2101('2101'),
-
-  /// Display: Radiograph, series (16)
-  /// Definition: Radiograph, series (16)
-  value2102('2102'),
-
-  /// Display: Radiograph, bitewing
-  /// Definition: Radiograph, bitewing
-  value2141('2141'),
-
-  /// Display: Radiograph, panoramic
-  /// Definition: Radiograph, panoramic
-  value2601('2601'),
-
-  /// Display: Polishing, 1 unit
-  /// Definition: Polishing, 1 unit
-  value11101('11101'),
-
-  /// Display: Polishing, 2 unit
-  /// Definition: Polishing, 2 unit
-  value11102('11102'),
-
-  /// Display: Polishing, 3 unit
-  /// Definition: Polishing, 3 unit
-  value11103('11103'),
-
-  /// Display: Polishing, 4 unit
-  /// Definition: Polishing, 4 unit
-  value11104('11104'),
-
-  /// Display: Amalgam, 1 surface
-  /// Definition: Amalgam, 1 surface
-  value21211('21211'),
-
-  /// Display: Amalgam, 2 surface
-  /// Definition: Amalgam, 2 surface
-  value21212('21212'),
-
-  /// Display: Crown, PFM
-  /// Definition: Crown, PFM
-  value27211('27211'),
-
-  /// Display: Maryland Bridge
-  /// Definition: Maryland Bridge
-  value67211('67211'),
-
-  /// Display: Lab, commercial
-  /// Definition: Lab, commercial
-  value99111('99111'),
-
-  /// Display: Lab, in office
-  /// Definition: Lab, in office
-  value99333('99333'),
-
-  /// Display: Expense
-  /// Definition: Expense
-  value99555('99555'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const USCLSCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// USCLSCodes values
+  /// value1101
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value1101 = USCLSCodes._(
+    '1101',
+  );
+
+  /// value1102
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value1102 = USCLSCodes._(
+    '1102',
+  );
+
+  /// value1103
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value1103 = USCLSCodes._(
+    '1103',
+  );
+
+  /// value1201
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value1201 = USCLSCodes._(
+    '1201',
+  );
+
+  /// value1205
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value1205 = USCLSCodes._(
+    '1205',
+  );
+
+  /// value2101
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value2101 = USCLSCodes._(
+    '2101',
+  );
+
+  /// value2102
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value2102 = USCLSCodes._(
+    '2102',
+  );
+
+  /// value2141
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value2141 = USCLSCodes._(
+    '2141',
+  );
+
+  /// value2601
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value2601 = USCLSCodes._(
+    '2601',
+  );
+
+  /// value11101
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value11101 = USCLSCodes._(
+    '11101',
+  );
+
+  /// value11102
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value11102 = USCLSCodes._(
+    '11102',
+  );
+
+  /// value11103
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value11103 = USCLSCodes._(
+    '11103',
+  );
+
+  /// value11104
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value11104 = USCLSCodes._(
+    '11104',
+  );
+
+  /// value21211
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value21211 = USCLSCodes._(
+    '21211',
+  );
+
+  /// value21212
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value21212 = USCLSCodes._(
+    '21212',
+  );
+
+  /// value27211
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value27211 = USCLSCodes._(
+    '27211',
+  );
+
+  /// value67211
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value67211 = USCLSCodes._(
+    '67211',
+  );
+
+  /// value99111
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value99111 = USCLSCodes._(
+    '99111',
+  );
+
+  /// value99333
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value99333 = USCLSCodes._(
+    '99333',
+  );
+
+  /// value99555
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final USCLSCodes value99555 = USCLSCodes._(
+    '99555',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final USCLSCodes elementOnly = USCLSCodes._('');
+
+  /// List of all enum-like values
+  static final List<USCLSCodes> values = [
+    value1101,
+    value1102,
+    value1103,
+    value1201,
+    value1205,
+    value2101,
+    value2102,
+    value2141,
+    value2601,
+    value11101,
+    value11102,
+    value11103,
+    value11104,
+    value21211,
+    value21212,
+    value27211,
+    value67211,
+    value99111,
+    value99333,
+    value99555,
+  ];
+
+  /// Returns the enum value with an element attached
+  USCLSCodes withElement(Element? newElement) {
+    return USCLSCodes._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -103,28 +193,20 @@ enum USCLSCodes {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [USCLSCodes] instances.
-  static USCLSCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [USCLSCodes] from JSON.
+  static USCLSCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return USCLSCodes.elementOnly.withElement(
-        element,
-      );
+      return USCLSCodes.elementOnly.withElement(element);
     }
     return USCLSCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  USCLSCodes withElement(Element? newElement) {
-    return USCLSCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'USCLSCodes.$fhirCode';
 }

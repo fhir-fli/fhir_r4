@@ -1,65 +1,130 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Used to express the reason and specific aspect for the variant abstract, such as language and specific language.
-enum CitedArtifactAbstractType {
-  /// Display: Primary human use
-  /// Definition: Human-friendly main or official abstract
-  primary_human_use('primary-human-use'),
+class CitedArtifactAbstractType {
+  // Private constructor for internal use (like enum)
+  CitedArtifactAbstractType._(this.fhirCode, {this.element});
 
-  /// Display: Primary machine use
-  /// Definition: Machine-friendly main or official abstract
-  primary_machine_use('primary-machine-use'),
-
-  /// Display: Truncated
-  /// Definition: Truncated abstract
-  truncated('truncated'),
-
-  /// Display: Short abstract
-  /// Definition: Brief abstract, for use when abstracts are provided in different sizes or lengths
-  short_abstract('short-abstract'),
-
-  /// Display: Long abstract
-  /// Definition: Long version of the abstract, for use when abstracts are provided in different sizes or lengths
-  long_abstract('long-abstract'),
-
-  /// Display: Plain language
-  /// Definition: Additional form of abstract written for the general public
-  plain_language('plain-language'),
-
-  /// Display: Different publisher for abstract
-  /// Definition: Abstract produced by a different publisher than the cited artifact
-  different_publisher('different-publisher'),
-
-  /// Display: Different language
-  /// Definition: Additional form of abstract in a different language
-  language('language'),
-
-  /// Display: Different language derived from autotranslation
-  /// Definition: Machine translated form of abstract in a different language, language element codes the language into which it was translated by machine
-  autotranslated('autotranslated'),
-
-  /// Display: Different text in additional Medline entry
-  /// Definition: Alternative form of abstract in two or more Medline entries
-  duplicate_pmid('duplicate-pmid'),
-
-  /// Display: Different text in an earlier version
-  /// Definition: Alternative form of abstract in an earlier version such as epub ahead of print
-  earlier_abstract('earlier-abstract'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const CitedArtifactAbstractType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// CitedArtifactAbstractType values
+  /// primary_human_use
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactAbstractType primary_human_use =
+      CitedArtifactAbstractType._(
+    'primary-human-use',
+  );
+
+  /// primary_machine_use
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactAbstractType primary_machine_use =
+      CitedArtifactAbstractType._(
+    'primary-machine-use',
+  );
+
+  /// truncated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactAbstractType truncated =
+      CitedArtifactAbstractType._(
+    'truncated',
+  );
+
+  /// short_abstract
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactAbstractType short_abstract =
+      CitedArtifactAbstractType._(
+    'short-abstract',
+  );
+
+  /// long_abstract
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactAbstractType long_abstract =
+      CitedArtifactAbstractType._(
+    'long-abstract',
+  );
+
+  /// plain_language
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactAbstractType plain_language =
+      CitedArtifactAbstractType._(
+    'plain-language',
+  );
+
+  /// different_publisher
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactAbstractType different_publisher =
+      CitedArtifactAbstractType._(
+    'different-publisher',
+  );
+
+  /// language
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactAbstractType language = CitedArtifactAbstractType._(
+    'language',
+  );
+
+  /// autotranslated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactAbstractType autotranslated =
+      CitedArtifactAbstractType._(
+    'autotranslated',
+  );
+
+  /// duplicate_pmid
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactAbstractType duplicate_pmid =
+      CitedArtifactAbstractType._(
+    'duplicate-pmid',
+  );
+
+  /// earlier_abstract
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactAbstractType earlier_abstract =
+      CitedArtifactAbstractType._(
+    'earlier-abstract',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final CitedArtifactAbstractType elementOnly =
+      CitedArtifactAbstractType._('');
+
+  /// List of all enum-like values
+  static final List<CitedArtifactAbstractType> values = [
+    primary_human_use,
+    primary_machine_use,
+    truncated,
+    short_abstract,
+    long_abstract,
+    plain_language,
+    different_publisher,
+    language,
+    autotranslated,
+    duplicate_pmid,
+    earlier_abstract,
+  ];
+
+  /// Returns the enum value with an element attached
+  CitedArtifactAbstractType withElement(Element? newElement) {
+    return CitedArtifactAbstractType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -67,28 +132,20 @@ enum CitedArtifactAbstractType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [CitedArtifactAbstractType] instances.
-  static CitedArtifactAbstractType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [CitedArtifactAbstractType] from JSON.
+  static CitedArtifactAbstractType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CitedArtifactAbstractType.elementOnly.withElement(
-        element,
-      );
+      return CitedArtifactAbstractType.elementOnly.withElement(element);
     }
     return CitedArtifactAbstractType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  CitedArtifactAbstractType withElement(Element? newElement) {
-    return CitedArtifactAbstractType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'CitedArtifactAbstractType.$fhirCode';
 }

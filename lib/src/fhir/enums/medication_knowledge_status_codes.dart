@@ -1,33 +1,59 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// MedicationKnowledge Status Codes
-enum MedicationKnowledgeStatusCodes {
-  /// Display: Active
-  /// Definition: The medication is available for use.
-  active('active'),
+class MedicationKnowledgeStatusCodes {
+  // Private constructor for internal use (like enum)
+  MedicationKnowledgeStatusCodes._(this.fhirCode, {this.element});
 
-  /// Display: Inactive
-  /// Definition: The medication is not available for use.
-  inactive('inactive'),
-
-  /// Display: Entered in Error
-  /// Definition: The medication was entered in error.
-  entered_in_error('entered-in-error'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const MedicationKnowledgeStatusCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// MedicationKnowledgeStatusCodes values
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationKnowledgeStatusCodes active =
+      MedicationKnowledgeStatusCodes._(
+    'active',
+  );
+
+  /// inactive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationKnowledgeStatusCodes inactive =
+      MedicationKnowledgeStatusCodes._(
+    'inactive',
+  );
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationKnowledgeStatusCodes entered_in_error =
+      MedicationKnowledgeStatusCodes._(
+    'entered-in-error',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final MedicationKnowledgeStatusCodes elementOnly =
+      MedicationKnowledgeStatusCodes._('');
+
+  /// List of all enum-like values
+  static final List<MedicationKnowledgeStatusCodes> values = [
+    active,
+    inactive,
+    entered_in_error,
+  ];
+
+  /// Returns the enum value with an element attached
+  MedicationKnowledgeStatusCodes withElement(Element? newElement) {
+    return MedicationKnowledgeStatusCodes._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +61,20 @@ enum MedicationKnowledgeStatusCodes {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [MedicationKnowledgeStatusCodes] instances.
-  static MedicationKnowledgeStatusCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [MedicationKnowledgeStatusCodes] from JSON.
+  static MedicationKnowledgeStatusCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationKnowledgeStatusCodes.elementOnly.withElement(
-        element,
-      );
+      return MedicationKnowledgeStatusCodes.elementOnly.withElement(element);
     }
     return MedicationKnowledgeStatusCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  MedicationKnowledgeStatusCodes withElement(Element? newElement) {
-    return MedicationKnowledgeStatusCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'MedicationKnowledgeStatusCodes.$fhirCode';
 }

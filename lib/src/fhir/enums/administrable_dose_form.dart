@@ -1,825 +1,1840 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Dose form for a medication, in the form suitable for administering to the patient, after mixing, where necessary.
-enum AdministrableDoseForm {
-  /// Display: Oral suspension
-  /// Definition:
-  value100000073362('100000073362'),
-
-  /// Display: Oral gel
-  /// Definition:
-  value100000073363('100000073363'),
-
-  /// Display: Powder for oral solution
-  /// Definition:
-  value100000073364('100000073364'),
-
-  /// Display: Granules for oral solution
-  /// Definition:
-  value100000073365('100000073365'),
-
-  /// Display: Lyophilisate for suspension
-  /// Definition:
-  value100000073367('100000073367'),
-
-  /// Display: Powder for syrup
-  /// Definition:
-  value100000073368('100000073368'),
-
-  /// Display: Soluble tablet
-  /// Definition:
-  value100000073369('100000073369'),
-
-  /// Display: Herbal tea
-  /// Definition:
-  value100000073370('100000073370'),
-
-  /// Display: Instant herbal tea
-  /// Definition:
-  value100000073371('100000073371'),
-
-  /// Display: Granules
-  /// Definition:
-  value100000073372('100000073372'),
-
-  /// Display: Gastro-resistant granules
-  /// Definition:
-  value100000073373('100000073373'),
-
-  /// Display: Modified-release granules
-  /// Definition:
-  value100000073374('100000073374'),
-
-  /// Display: Capsule, hard
-  /// Definition:
-  value100000073375('100000073375'),
-
-  /// Display: Gastro-resistant capsule, hard
-  /// Definition:
-  value100000073376('100000073376'),
-
-  /// Display: Chewable capsule, soft
-  /// Definition:
-  value100000073377('100000073377'),
-
-  /// Display: Prolonged-release capsule, soft
-  /// Definition:
-  value100000073378('100000073378'),
-
-  /// Display: Modified-release capsule, soft
-  /// Definition:
-  value100000073379('100000073379'),
-
-  /// Display: Coated tablet
-  /// Definition:
-  value100000073380('100000073380'),
-
-  /// Display: Oral drops, solution
-  /// Definition:
-  value100000073642('100000073642'),
-
-  /// Display: Oral drops, suspension
-  /// Definition:
-  value100000073643('100000073643'),
-
-  /// Display: Oral drops, emulsion
-  /// Definition:
-  value100000073644('100000073644'),
-
-  /// Display: Oral liquid
-  /// Definition:
-  value100000073645('100000073645'),
-
-  /// Display: Oral solution
-  /// Definition:
-  value100000073646('100000073646'),
-
-  /// Display: Oral emulsion
-  /// Definition:
-  value100000073647('100000073647'),
-
-  /// Display: Oral paste
-  /// Definition:
-  value100000073648('100000073648'),
-
-  /// Display: Powder for oral suspension
-  /// Definition:
-  value100000073649('100000073649'),
-
-  /// Display: Granules for oral suspension
-  /// Definition:
-  value100000073650('100000073650'),
-
-  /// Display: Syrup
-  /// Definition:
-  value100000073652('100000073652'),
-
-  /// Display: Granules for syrup
-  /// Definition:
-  value100000073653('100000073653'),
-
-  /// Display: Dispersible tablet
-  /// Definition:
-  value100000073654('100000073654'),
-
-  /// Display: Oral powder
-  /// Definition:
-  value100000073655('100000073655'),
-
-  /// Display: Effervescent powder
-  /// Definition:
-  value100000073656('100000073656'),
-
-  /// Display: Effervescent granules
-  /// Definition:
-  value100000073657('100000073657'),
-
-  /// Display: Prolonged-release granules
-  /// Definition:
-  value100000073658('100000073658'),
-
-  /// Display: Cachet
-  /// Definition:
-  value100000073659('100000073659'),
-
-  /// Display: Capsule, soft
-  /// Definition:
-  value100000073660('100000073660'),
-
-  /// Display: Gastro-resistant capsule, soft
-  /// Definition:
-  value100000073661('100000073661'),
-
-  /// Display: Prolonged-release capsule, hard
-  /// Definition:
-  value100000073662('100000073662'),
-
-  /// Display: Modified-release capsule, hard
-  /// Definition:
-  value100000073663('100000073663'),
-
-  /// Display: Tablet
-  /// Definition:
-  value100000073664('100000073664'),
-
-  /// Display: Film-coated tablet
-  /// Definition:
-  value100000073665('100000073665'),
-
-  /// Display: Orodispersible tablet
-  /// Definition:
-  value100000073666('100000073666'),
-
-  /// Display: Gastro-resistant tablet
-  /// Definition:
-  value100000073667('100000073667'),
-
-  /// Display: Modified-release tablet
-  /// Definition:
-  value100000073668('100000073668'),
-
-  /// Display: Medicated chewing-gum
-  /// Definition:
-  value100000073669('100000073669'),
-
-  /// Display: Pillules
-  /// Definition:
-  value100000073670('100000073670'),
-
-  /// Display: Pulsatile-release intraruminal device
-  /// Definition:
-  value100000073671('100000073671'),
-
-  /// Display: Premix for medicated feeding stuff
-  /// Definition:
-  value100000073672('100000073672'),
-
-  /// Display: Gargle
-  /// Definition:
-  value100000073673('100000073673'),
-
-  /// Display: Gargle, powder for solution
-  /// Definition:
-  value100000073674('100000073674'),
-
-  /// Display: Oromucosal suspension
-  /// Definition:
-  value100000073675('100000073675'),
-
-  /// Display: Oromucosal spray
-  /// Definition:
-  value100000073676('100000073676'),
-
-  /// Display: Mouthwash
-  /// Definition:
-  value100000073677('100000073677'),
-
-  /// Display: Gingival solution
-  /// Definition:
-  value100000073678('100000073678'),
-
-  /// Display: Oromucosal paste
-  /// Definition:
-  value100000073679('100000073679'),
-
-  /// Display: Gingival gel
-  /// Definition:
-  value100000073680('100000073680'),
-
-  /// Display: Effervescent tablet
-  /// Definition:
-  value100000073681('100000073681'),
-
-  /// Display: Oral lyophilisate
-  /// Definition:
-  value100000073682('100000073682'),
-
-  /// Display: Prolonged-release tablet
-  /// Definition:
-  value100000073683('100000073683'),
-
-  /// Display: Chewable tablet
-  /// Definition:
-  value100000073684('100000073684'),
-
-  /// Display: Oral gum
-  /// Definition:
-  value100000073685('100000073685'),
-
-  /// Display: Continuous-release intraruminal device
-  /// Definition:
-  value100000073686('100000073686'),
-
-  /// Display: Lick block
-  /// Definition:
-  value100000073687('100000073687'),
-
-  /// Display: Medicated pellets
-  /// Definition:
-  value100000073688('100000073688'),
-
-  /// Display: Concentrate for gargle
-  /// Definition:
-  value100000073689('100000073689'),
-
-  /// Display: Gargle, tablet for solution
-  /// Definition:
-  value100000073690('100000073690'),
-
-  /// Display: Oromucosal solution
-  /// Definition:
-  value100000073691('100000073691'),
-
-  /// Display: Oromucosal drops
-  /// Definition:
-  value100000073692('100000073692'),
-
-  /// Display: Sublingual spray
-  /// Definition:
-  value100000073693('100000073693'),
-
-  /// Display: Mouthwash, tablet for solution
-  /// Definition:
-  value100000073694('100000073694'),
-
-  /// Display: Oromucosal gel
-  /// Definition:
-  value100000073695('100000073695'),
-
-  /// Display: Oromucosal cream
-  /// Definition:
-  value100000073696('100000073696'),
-
-  /// Display: Gingival paste
-  /// Definition:
-  value100000073697('100000073697'),
-
-  /// Display: Sublingual tablet
-  /// Definition:
-  value100000073698('100000073698'),
-
-  /// Display: Buccal tablet
-  /// Definition:
-  value100000073699('100000073699'),
-
-  /// Display: Compressed lozenge
-  /// Definition:
-  value100000073700('100000073700'),
-
-  /// Display: Oromucosal capsule
-  /// Definition:
-  value100000073701('100000073701'),
-
-  /// Display: Muco-adhesive buccal tablet
-  /// Definition:
-  value100000073702('100000073702'),
-
-  /// Display: Lozenge
-  /// Definition:
-  value100000073703('100000073703'),
-
-  /// Display: Pastille
-  /// Definition:
-  value100000073704('100000073704'),
-
-  /// Display: Dental gel
-  /// Definition:
-  value100000073705('100000073705'),
-
-  /// Display: Dental insert
-  /// Definition:
-  value100000073706('100000073706'),
-
-  /// Display: Dental powder
-  /// Definition:
-  value100000073707('100000073707'),
-
-  /// Display: Dental suspension
-  /// Definition:
-  value100000073708('100000073708'),
-
-  /// Display: Toothpaste
-  /// Definition:
-  value100000073709('100000073709'),
-
-  /// Display: Periodontal gel
-  /// Definition:
-  value100000073710('100000073710'),
-
-  /// Display: Bath additive
-  /// Definition:
-  value100000073711('100000073711'),
-
-  /// Display: Cream
-  /// Definition:
-  value100000073712('100000073712'),
-
-  /// Display: Ointment
-  /// Definition:
-  value100000073713('100000073713'),
-
-  /// Display: Medicated plaster
-  /// Definition:
-  value100000073714('100000073714'),
-
-  /// Display: Shampoo
-  /// Definition:
-  value100000073715('100000073715'),
-
-  /// Display: Cutaneous spray, suspension
-  /// Definition:
-  value100000073716('100000073716'),
-
-  /// Display: Cutaneous liquid
-  /// Definition:
-  value100000073717('100000073717'),
-
-  /// Display: Concentrate for cutaneous solution
-  /// Definition:
-  value100000073718('100000073718'),
-
-  /// Display: Cutaneous emulsion
-  /// Definition:
-  value100000073719('100000073719'),
-
-  /// Display: Cutaneous patch
-  /// Definition:
-  value100000073720('100000073720'),
-
-  /// Display: Periodontal powder
-  /// Definition:
-  value100000073721('100000073721'),
-
-  /// Display: Dental stick
-  /// Definition:
-  value100000073722('100000073722'),
-
-  /// Display: Dental solution
-  /// Definition:
-  value100000073723('100000073723'),
-
-  /// Display: Dental emulsion
-  /// Definition:
-  value100000073724('100000073724'),
-
-  /// Display: Periodontal insert
-  /// Definition:
-  value100000073725('100000073725'),
-
-  /// Display: Gel
-  /// Definition:
-  value100000073726('100000073726'),
-
-  /// Display: Cutaneous paste
-  /// Definition:
-  value100000073727('100000073727'),
-
-  /// Display: Cutaneous foam
-  /// Definition:
-  value100000073728('100000073728'),
-
-  /// Display: Cutaneous spray, solution
-  /// Definition:
-  value100000073729('100000073729'),
-
-  /// Display: Cutaneous spray, powder
-  /// Definition:
-  value100000073730('100000073730'),
-
-  /// Display: Cutaneous solution
-  /// Definition:
-  value100000073731('100000073731'),
-
-  /// Display: Cutaneous suspension
-  /// Definition:
-  value100000073732('100000073732'),
-
-  /// Display: Cutaneous powder
-  /// Definition:
-  value100000073733('100000073733'),
-
-  /// Display: Solution for iontophoresis
-  /// Definition:
-  value100000073734('100000073734'),
-
-  /// Display: Collodion
-  /// Definition:
-  value100000073735('100000073735'),
-
-  /// Display: Poultice
-  /// Definition:
-  value100000073736('100000073736'),
-
-  /// Display: Cutaneous sponge
-  /// Definition:
-  value100000073737('100000073737'),
-
-  /// Display: Collar
-  /// Definition:
-  value100000073738('100000073738'),
-
-  /// Display: Ear tag
-  /// Definition:
-  value100000073739('100000073739'),
-
-  /// Display: Dip suspension
-  /// Definition:
-  value100000073740('100000073740'),
-
-  /// Display: Transdermal patch
-  /// Definition:
-  value100000073741('100000073741'),
-
-  /// Display: Medicated nail lacquer
-  /// Definition:
-  value100000073742('100000073742'),
-
-  /// Display: Cutaneous stick
-  /// Definition:
-  value100000073743('100000073743'),
-
-  /// Display: Impregnated dressing
-  /// Definition:
-  value100000073744('100000073744'),
-
-  /// Display: Medicated pendant
-  /// Definition:
-  value100000073745('100000073745'),
-
-  /// Display: Dip solution
-  /// Definition:
-  value100000073746('100000073746'),
-
-  /// Display: Dip emulsion
-  /// Definition:
-  value100000073747('100000073747'),
-
-  /// Display: Concentrate for dip suspension
-  /// Definition:
-  value100000073748('100000073748'),
-
-  /// Display: Powder for dip solution
-  /// Definition:
-  value100000073749('100000073749'),
-
-  /// Display: Powder for suspension for fish treatment
-  /// Definition:
-  value100000073750('100000073750'),
-
-  /// Display: Pour-on suspension
-  /// Definition:
-  value100000073751('100000073751'),
-
-  /// Display: Spot-on solution
-  /// Definition:
-  value100000073752('100000073752'),
-
-  /// Display: Spot-on emulsion
-  /// Definition:
-  value100000073753('100000073753'),
-
-  /// Display: Teat dip suspension
-  /// Definition:
-  value100000073754('100000073754'),
-
-  /// Display: Teat spray solution
-  /// Definition:
-  value100000073755('100000073755'),
-
-  /// Display: Solution for skin-prick test
-  /// Definition:
-  value100000073756('100000073756'),
-
-  /// Display: Plaster for provocation test
-  /// Definition:
-  value100000073757('100000073757'),
-
-  /// Display: Eye gel
-  /// Definition:
-  value100000073758('100000073758'),
-
-  /// Display: Eye drops, solution
-  /// Definition:
-  value100000073759('100000073759'),
-
-  /// Display: Eye drops, suspension
-  /// Definition:
-  value100000073760('100000073760'),
-
-  /// Display: Concentrate for dip solution
-  /// Definition:
-  value100000073761('100000073761'),
-
-  /// Display: Concentrate for dip emulsion
-  /// Definition:
-  value100000073762('100000073762'),
-
-  /// Display: Concentrate for solution for fish treatment
-  /// Definition:
-  value100000073763('100000073763'),
-
-  /// Display: Pour-on solution
-  /// Definition:
-  value100000073764('100000073764'),
-
-  /// Display: Pour-on emulsion
-  /// Definition:
-  value100000073765('100000073765'),
-
-  /// Display: Spot-on suspension
-  /// Definition:
-  value100000073766('100000073766'),
-
-  /// Display: Teat dip solution
-  /// Definition:
-  value100000073767('100000073767'),
-
-  /// Display: Teat dip emulsion
-  /// Definition:
-  value100000073768('100000073768'),
-
-  /// Display: Transdermal system
-  /// Definition:
-  value100000073769('100000073769'),
-
-  /// Display: Solution for skin-scratch test
-  /// Definition:
-  value100000073770('100000073770'),
-
-  /// Display: Eye cream
-  /// Definition:
-  value100000073771('100000073771'),
-
-  /// Display: Eye ointment
-  /// Definition:
-  value100000073772('100000073772'),
-
-  /// Display: Eye drops, emulsion
-  /// Definition:
-  value100000073773('100000073773'),
-
-  /// Display: Eye drops, solvent for reconstitution
-  /// Definition:
-  value100000073775('100000073775'),
-
-  /// Display: Eye lotion
-  /// Definition:
-  value100000073776('100000073776'),
-
-  /// Display: Ophthalmic insert
-  /// Definition:
-  value100000073777('100000073777'),
-
-  /// Display: Ear cream
-  /// Definition:
-  value100000073778('100000073778'),
-
-  /// Display: Ear ointment
-  /// Definition:
-  value100000073779('100000073779'),
-
-  /// Display: Ear drops, suspension
-  /// Definition:
-  value100000073780('100000073780'),
-
-  /// Display: Eye drops, prolonged-release
-  /// Definition:
-  value100000073782('100000073782'),
-
-  /// Display: Eye lotion, solvent for reconstitution
-  /// Definition:
-  value100000073783('100000073783'),
-
-  /// Display: Ophthalmic strip
-  /// Definition:
-  value100000073784('100000073784'),
-
-  /// Display: Ear gel
-  /// Definition:
-  value100000073785('100000073785'),
-
-  /// Display: Ear drops, solution
-  /// Definition:
-  value100000073786('100000073786'),
-
-  /// Display: Ear drops, emulsion
-  /// Definition:
-  value100000073787('100000073787'),
-
-  /// Display: Ear powder
-  /// Definition:
-  value100000073788('100000073788'),
-
-  /// Display: Ear spray, suspension
-  /// Definition:
-  value100000073789('100000073789'),
-
-  /// Display: Ear wash, solution
-  /// Definition:
-  value100000073790('100000073790'),
-
-  /// Display: Ear tampon
-  /// Definition:
-  value100000073791('100000073791'),
-
-  /// Display: Nasal cream
-  /// Definition:
-  value100000073792('100000073792'),
-
-  /// Display: Nasal gel
-  /// Definition:
-  value100000073793('100000073793'),
-
-  /// Display: Nasal drops, solution
-  /// Definition:
-  value100000073794('100000073794'),
-
-  /// Display: Nasal drops, emulsion
-  /// Definition:
-  value100000073795('100000073795'),
-
-  /// Display: Nasal spray, solution
-  /// Definition:
-  value100000073796('100000073796'),
-
-  /// Display: Nasal spray, emulsion
-  /// Definition:
-  value100000073797('100000073797'),
-
-  /// Display: Nasal stick
-  /// Definition:
-  value100000073798('100000073798'),
-
-  /// Display: Vaginal gel
-  /// Definition:
-  value100000073799('100000073799'),
-
-  /// Display: Vaginal foam
-  /// Definition:
-  value100000073800('100000073800'),
-
-  /// Display: Ear spray, solution
-  /// Definition:
-  value100000073802('100000073802'),
-
-  /// Display: Ear spray, emulsion
-  /// Definition:
-  value100000073803('100000073803'),
-
-  /// Display: Ear wash, emulsion
-  /// Definition:
-  value100000073804('100000073804'),
-
-  /// Display: Ear stick
-  /// Definition:
-  value100000073805('100000073805'),
-
-  /// Display: Nasal ointment
-  /// Definition:
-  value100000073806('100000073806'),
-
-  /// Display: Nasal drops, suspension
-  /// Definition:
-  value100000073807('100000073807'),
-
-  /// Display: Nasal powder
-  /// Definition:
-  value100000073808('100000073808'),
-
-  /// Display: Nasal spray, suspension
-  /// Definition:
-  value100000073809('100000073809'),
-
-  /// Display: Nasal wash
-  /// Definition:
-  value100000073810('100000073810'),
-
-  /// Display: Vaginal cream
-  /// Definition:
-  value100000073811('100000073811'),
-
-  /// Display: Vaginal ointment
-  /// Definition:
-  value100000073812('100000073812'),
-
-  /// Display: Vaginal solution
-  /// Definition:
-  value100000073813('100000073813'),
-
-  /// Display: Vaginal emulsion
-  /// Definition:
-  value100000073814('100000073814'),
-
-  /// Display: Pessary
-  /// Definition:
-  value100000073815('100000073815'),
-
-  /// Display: Vaginal capsule, soft
-  /// Definition:
-  value100000073816('100000073816'),
-
-  /// Display: Effervescent vaginal tablet
-  /// Definition:
-  value100000073817('100000073817'),
-
-  /// Display: Vaginal delivery system
-  /// Definition:
-  value100000073818('100000073818'),
-
-  /// Display: Rectal cream
-  /// Definition:
-  value100000073819('100000073819'),
-
-  /// Display: Rectal foam
-  /// Definition:
-  value100000073820('100000073820'),
-
-  /// Display: Vaginal suspension
-  /// Definition:
-  value100000073821('100000073821'),
-
-  /// Display: Tablet for vaginal solution
-  /// Definition:
-  value100000073822('100000073822'),
-
-  /// Display: Vaginal capsule, hard
-  /// Definition:
-  value100000073823('100000073823'),
-
-  /// Display: Vaginal tablet
-  /// Definition:
-  value100000073824('100000073824'),
-
-  /// Display: Medicated vaginal tampon
-  /// Definition:
-  value100000073825('100000073825'),
-
-  /// Display: Vaginal sponge
-  /// Definition:
-  value100000073826('100000073826'),
-
-  /// Display: Rectal gel
-  /// Definition:
-  value100000073827('100000073827'),
-
-  /// Display: Solution for injection
-  /// Definition:
-  value100000073863('100000073863'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const AdministrableDoseForm(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+class AdministrableDoseForm {
+  // Private constructor for internal use (like enum)
+  AdministrableDoseForm._(this.fhirCode, {this.element});
+
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// AdministrableDoseForm values
+  /// value100000073362
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073362 =
+      AdministrableDoseForm._(
+    '100000073362',
+  );
+
+  /// value100000073363
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073363 =
+      AdministrableDoseForm._(
+    '100000073363',
+  );
+
+  /// value100000073364
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073364 =
+      AdministrableDoseForm._(
+    '100000073364',
+  );
+
+  /// value100000073365
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073365 =
+      AdministrableDoseForm._(
+    '100000073365',
+  );
+
+  /// value100000073367
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073367 =
+      AdministrableDoseForm._(
+    '100000073367',
+  );
+
+  /// value100000073368
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073368 =
+      AdministrableDoseForm._(
+    '100000073368',
+  );
+
+  /// value100000073369
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073369 =
+      AdministrableDoseForm._(
+    '100000073369',
+  );
+
+  /// value100000073370
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073370 =
+      AdministrableDoseForm._(
+    '100000073370',
+  );
+
+  /// value100000073371
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073371 =
+      AdministrableDoseForm._(
+    '100000073371',
+  );
+
+  /// value100000073372
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073372 =
+      AdministrableDoseForm._(
+    '100000073372',
+  );
+
+  /// value100000073373
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073373 =
+      AdministrableDoseForm._(
+    '100000073373',
+  );
+
+  /// value100000073374
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073374 =
+      AdministrableDoseForm._(
+    '100000073374',
+  );
+
+  /// value100000073375
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073375 =
+      AdministrableDoseForm._(
+    '100000073375',
+  );
+
+  /// value100000073376
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073376 =
+      AdministrableDoseForm._(
+    '100000073376',
+  );
+
+  /// value100000073377
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073377 =
+      AdministrableDoseForm._(
+    '100000073377',
+  );
+
+  /// value100000073378
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073378 =
+      AdministrableDoseForm._(
+    '100000073378',
+  );
+
+  /// value100000073379
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073379 =
+      AdministrableDoseForm._(
+    '100000073379',
+  );
+
+  /// value100000073380
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073380 =
+      AdministrableDoseForm._(
+    '100000073380',
+  );
+
+  /// value100000073642
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073642 =
+      AdministrableDoseForm._(
+    '100000073642',
+  );
+
+  /// value100000073643
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073643 =
+      AdministrableDoseForm._(
+    '100000073643',
+  );
+
+  /// value100000073644
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073644 =
+      AdministrableDoseForm._(
+    '100000073644',
+  );
+
+  /// value100000073645
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073645 =
+      AdministrableDoseForm._(
+    '100000073645',
+  );
+
+  /// value100000073646
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073646 =
+      AdministrableDoseForm._(
+    '100000073646',
+  );
+
+  /// value100000073647
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073647 =
+      AdministrableDoseForm._(
+    '100000073647',
+  );
+
+  /// value100000073648
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073648 =
+      AdministrableDoseForm._(
+    '100000073648',
+  );
+
+  /// value100000073649
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073649 =
+      AdministrableDoseForm._(
+    '100000073649',
+  );
+
+  /// value100000073650
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073650 =
+      AdministrableDoseForm._(
+    '100000073650',
+  );
+
+  /// value100000073652
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073652 =
+      AdministrableDoseForm._(
+    '100000073652',
+  );
+
+  /// value100000073653
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073653 =
+      AdministrableDoseForm._(
+    '100000073653',
+  );
+
+  /// value100000073654
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073654 =
+      AdministrableDoseForm._(
+    '100000073654',
+  );
+
+  /// value100000073655
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073655 =
+      AdministrableDoseForm._(
+    '100000073655',
+  );
+
+  /// value100000073656
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073656 =
+      AdministrableDoseForm._(
+    '100000073656',
+  );
+
+  /// value100000073657
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073657 =
+      AdministrableDoseForm._(
+    '100000073657',
+  );
+
+  /// value100000073658
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073658 =
+      AdministrableDoseForm._(
+    '100000073658',
+  );
+
+  /// value100000073659
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073659 =
+      AdministrableDoseForm._(
+    '100000073659',
+  );
+
+  /// value100000073660
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073660 =
+      AdministrableDoseForm._(
+    '100000073660',
+  );
+
+  /// value100000073661
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073661 =
+      AdministrableDoseForm._(
+    '100000073661',
+  );
+
+  /// value100000073662
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073662 =
+      AdministrableDoseForm._(
+    '100000073662',
+  );
+
+  /// value100000073663
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073663 =
+      AdministrableDoseForm._(
+    '100000073663',
+  );
+
+  /// value100000073664
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073664 =
+      AdministrableDoseForm._(
+    '100000073664',
+  );
+
+  /// value100000073665
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073665 =
+      AdministrableDoseForm._(
+    '100000073665',
+  );
+
+  /// value100000073666
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073666 =
+      AdministrableDoseForm._(
+    '100000073666',
+  );
+
+  /// value100000073667
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073667 =
+      AdministrableDoseForm._(
+    '100000073667',
+  );
+
+  /// value100000073668
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073668 =
+      AdministrableDoseForm._(
+    '100000073668',
+  );
+
+  /// value100000073669
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073669 =
+      AdministrableDoseForm._(
+    '100000073669',
+  );
+
+  /// value100000073670
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073670 =
+      AdministrableDoseForm._(
+    '100000073670',
+  );
+
+  /// value100000073671
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073671 =
+      AdministrableDoseForm._(
+    '100000073671',
+  );
+
+  /// value100000073672
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073672 =
+      AdministrableDoseForm._(
+    '100000073672',
+  );
+
+  /// value100000073673
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073673 =
+      AdministrableDoseForm._(
+    '100000073673',
+  );
+
+  /// value100000073674
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073674 =
+      AdministrableDoseForm._(
+    '100000073674',
+  );
+
+  /// value100000073675
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073675 =
+      AdministrableDoseForm._(
+    '100000073675',
+  );
+
+  /// value100000073676
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073676 =
+      AdministrableDoseForm._(
+    '100000073676',
+  );
+
+  /// value100000073677
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073677 =
+      AdministrableDoseForm._(
+    '100000073677',
+  );
+
+  /// value100000073678
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073678 =
+      AdministrableDoseForm._(
+    '100000073678',
+  );
+
+  /// value100000073679
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073679 =
+      AdministrableDoseForm._(
+    '100000073679',
+  );
+
+  /// value100000073680
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073680 =
+      AdministrableDoseForm._(
+    '100000073680',
+  );
+
+  /// value100000073681
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073681 =
+      AdministrableDoseForm._(
+    '100000073681',
+  );
+
+  /// value100000073682
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073682 =
+      AdministrableDoseForm._(
+    '100000073682',
+  );
+
+  /// value100000073683
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073683 =
+      AdministrableDoseForm._(
+    '100000073683',
+  );
+
+  /// value100000073684
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073684 =
+      AdministrableDoseForm._(
+    '100000073684',
+  );
+
+  /// value100000073685
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073685 =
+      AdministrableDoseForm._(
+    '100000073685',
+  );
+
+  /// value100000073686
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073686 =
+      AdministrableDoseForm._(
+    '100000073686',
+  );
+
+  /// value100000073687
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073687 =
+      AdministrableDoseForm._(
+    '100000073687',
+  );
+
+  /// value100000073688
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073688 =
+      AdministrableDoseForm._(
+    '100000073688',
+  );
+
+  /// value100000073689
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073689 =
+      AdministrableDoseForm._(
+    '100000073689',
+  );
+
+  /// value100000073690
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073690 =
+      AdministrableDoseForm._(
+    '100000073690',
+  );
+
+  /// value100000073691
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073691 =
+      AdministrableDoseForm._(
+    '100000073691',
+  );
+
+  /// value100000073692
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073692 =
+      AdministrableDoseForm._(
+    '100000073692',
+  );
+
+  /// value100000073693
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073693 =
+      AdministrableDoseForm._(
+    '100000073693',
+  );
+
+  /// value100000073694
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073694 =
+      AdministrableDoseForm._(
+    '100000073694',
+  );
+
+  /// value100000073695
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073695 =
+      AdministrableDoseForm._(
+    '100000073695',
+  );
+
+  /// value100000073696
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073696 =
+      AdministrableDoseForm._(
+    '100000073696',
+  );
+
+  /// value100000073697
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073697 =
+      AdministrableDoseForm._(
+    '100000073697',
+  );
+
+  /// value100000073698
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073698 =
+      AdministrableDoseForm._(
+    '100000073698',
+  );
+
+  /// value100000073699
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073699 =
+      AdministrableDoseForm._(
+    '100000073699',
+  );
+
+  /// value100000073700
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073700 =
+      AdministrableDoseForm._(
+    '100000073700',
+  );
+
+  /// value100000073701
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073701 =
+      AdministrableDoseForm._(
+    '100000073701',
+  );
+
+  /// value100000073702
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073702 =
+      AdministrableDoseForm._(
+    '100000073702',
+  );
+
+  /// value100000073703
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073703 =
+      AdministrableDoseForm._(
+    '100000073703',
+  );
+
+  /// value100000073704
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073704 =
+      AdministrableDoseForm._(
+    '100000073704',
+  );
+
+  /// value100000073705
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073705 =
+      AdministrableDoseForm._(
+    '100000073705',
+  );
+
+  /// value100000073706
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073706 =
+      AdministrableDoseForm._(
+    '100000073706',
+  );
+
+  /// value100000073707
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073707 =
+      AdministrableDoseForm._(
+    '100000073707',
+  );
+
+  /// value100000073708
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073708 =
+      AdministrableDoseForm._(
+    '100000073708',
+  );
+
+  /// value100000073709
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073709 =
+      AdministrableDoseForm._(
+    '100000073709',
+  );
+
+  /// value100000073710
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073710 =
+      AdministrableDoseForm._(
+    '100000073710',
+  );
+
+  /// value100000073711
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073711 =
+      AdministrableDoseForm._(
+    '100000073711',
+  );
+
+  /// value100000073712
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073712 =
+      AdministrableDoseForm._(
+    '100000073712',
+  );
+
+  /// value100000073713
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073713 =
+      AdministrableDoseForm._(
+    '100000073713',
+  );
+
+  /// value100000073714
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073714 =
+      AdministrableDoseForm._(
+    '100000073714',
+  );
+
+  /// value100000073715
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073715 =
+      AdministrableDoseForm._(
+    '100000073715',
+  );
+
+  /// value100000073716
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073716 =
+      AdministrableDoseForm._(
+    '100000073716',
+  );
+
+  /// value100000073717
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073717 =
+      AdministrableDoseForm._(
+    '100000073717',
+  );
+
+  /// value100000073718
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073718 =
+      AdministrableDoseForm._(
+    '100000073718',
+  );
+
+  /// value100000073719
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073719 =
+      AdministrableDoseForm._(
+    '100000073719',
+  );
+
+  /// value100000073720
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073720 =
+      AdministrableDoseForm._(
+    '100000073720',
+  );
+
+  /// value100000073721
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073721 =
+      AdministrableDoseForm._(
+    '100000073721',
+  );
+
+  /// value100000073722
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073722 =
+      AdministrableDoseForm._(
+    '100000073722',
+  );
+
+  /// value100000073723
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073723 =
+      AdministrableDoseForm._(
+    '100000073723',
+  );
+
+  /// value100000073724
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073724 =
+      AdministrableDoseForm._(
+    '100000073724',
+  );
+
+  /// value100000073725
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073725 =
+      AdministrableDoseForm._(
+    '100000073725',
+  );
+
+  /// value100000073726
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073726 =
+      AdministrableDoseForm._(
+    '100000073726',
+  );
+
+  /// value100000073727
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073727 =
+      AdministrableDoseForm._(
+    '100000073727',
+  );
+
+  /// value100000073728
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073728 =
+      AdministrableDoseForm._(
+    '100000073728',
+  );
+
+  /// value100000073729
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073729 =
+      AdministrableDoseForm._(
+    '100000073729',
+  );
+
+  /// value100000073730
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073730 =
+      AdministrableDoseForm._(
+    '100000073730',
+  );
+
+  /// value100000073731
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073731 =
+      AdministrableDoseForm._(
+    '100000073731',
+  );
+
+  /// value100000073732
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073732 =
+      AdministrableDoseForm._(
+    '100000073732',
+  );
+
+  /// value100000073733
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073733 =
+      AdministrableDoseForm._(
+    '100000073733',
+  );
+
+  /// value100000073734
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073734 =
+      AdministrableDoseForm._(
+    '100000073734',
+  );
+
+  /// value100000073735
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073735 =
+      AdministrableDoseForm._(
+    '100000073735',
+  );
+
+  /// value100000073736
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073736 =
+      AdministrableDoseForm._(
+    '100000073736',
+  );
+
+  /// value100000073737
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073737 =
+      AdministrableDoseForm._(
+    '100000073737',
+  );
+
+  /// value100000073738
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073738 =
+      AdministrableDoseForm._(
+    '100000073738',
+  );
+
+  /// value100000073739
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073739 =
+      AdministrableDoseForm._(
+    '100000073739',
+  );
+
+  /// value100000073740
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073740 =
+      AdministrableDoseForm._(
+    '100000073740',
+  );
+
+  /// value100000073741
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073741 =
+      AdministrableDoseForm._(
+    '100000073741',
+  );
+
+  /// value100000073742
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073742 =
+      AdministrableDoseForm._(
+    '100000073742',
+  );
+
+  /// value100000073743
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073743 =
+      AdministrableDoseForm._(
+    '100000073743',
+  );
+
+  /// value100000073744
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073744 =
+      AdministrableDoseForm._(
+    '100000073744',
+  );
+
+  /// value100000073745
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073745 =
+      AdministrableDoseForm._(
+    '100000073745',
+  );
+
+  /// value100000073746
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073746 =
+      AdministrableDoseForm._(
+    '100000073746',
+  );
+
+  /// value100000073747
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073747 =
+      AdministrableDoseForm._(
+    '100000073747',
+  );
+
+  /// value100000073748
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073748 =
+      AdministrableDoseForm._(
+    '100000073748',
+  );
+
+  /// value100000073749
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073749 =
+      AdministrableDoseForm._(
+    '100000073749',
+  );
+
+  /// value100000073750
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073750 =
+      AdministrableDoseForm._(
+    '100000073750',
+  );
+
+  /// value100000073751
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073751 =
+      AdministrableDoseForm._(
+    '100000073751',
+  );
+
+  /// value100000073752
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073752 =
+      AdministrableDoseForm._(
+    '100000073752',
+  );
+
+  /// value100000073753
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073753 =
+      AdministrableDoseForm._(
+    '100000073753',
+  );
+
+  /// value100000073754
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073754 =
+      AdministrableDoseForm._(
+    '100000073754',
+  );
+
+  /// value100000073755
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073755 =
+      AdministrableDoseForm._(
+    '100000073755',
+  );
+
+  /// value100000073756
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073756 =
+      AdministrableDoseForm._(
+    '100000073756',
+  );
+
+  /// value100000073757
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073757 =
+      AdministrableDoseForm._(
+    '100000073757',
+  );
+
+  /// value100000073758
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073758 =
+      AdministrableDoseForm._(
+    '100000073758',
+  );
+
+  /// value100000073759
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073759 =
+      AdministrableDoseForm._(
+    '100000073759',
+  );
+
+  /// value100000073760
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073760 =
+      AdministrableDoseForm._(
+    '100000073760',
+  );
+
+  /// value100000073761
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073761 =
+      AdministrableDoseForm._(
+    '100000073761',
+  );
+
+  /// value100000073762
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073762 =
+      AdministrableDoseForm._(
+    '100000073762',
+  );
+
+  /// value100000073763
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073763 =
+      AdministrableDoseForm._(
+    '100000073763',
+  );
+
+  /// value100000073764
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073764 =
+      AdministrableDoseForm._(
+    '100000073764',
+  );
+
+  /// value100000073765
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073765 =
+      AdministrableDoseForm._(
+    '100000073765',
+  );
+
+  /// value100000073766
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073766 =
+      AdministrableDoseForm._(
+    '100000073766',
+  );
+
+  /// value100000073767
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073767 =
+      AdministrableDoseForm._(
+    '100000073767',
+  );
+
+  /// value100000073768
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073768 =
+      AdministrableDoseForm._(
+    '100000073768',
+  );
+
+  /// value100000073769
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073769 =
+      AdministrableDoseForm._(
+    '100000073769',
+  );
+
+  /// value100000073770
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073770 =
+      AdministrableDoseForm._(
+    '100000073770',
+  );
+
+  /// value100000073771
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073771 =
+      AdministrableDoseForm._(
+    '100000073771',
+  );
+
+  /// value100000073772
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073772 =
+      AdministrableDoseForm._(
+    '100000073772',
+  );
+
+  /// value100000073773
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073773 =
+      AdministrableDoseForm._(
+    '100000073773',
+  );
+
+  /// value100000073775
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073775 =
+      AdministrableDoseForm._(
+    '100000073775',
+  );
+
+  /// value100000073776
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073776 =
+      AdministrableDoseForm._(
+    '100000073776',
+  );
+
+  /// value100000073777
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073777 =
+      AdministrableDoseForm._(
+    '100000073777',
+  );
+
+  /// value100000073778
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073778 =
+      AdministrableDoseForm._(
+    '100000073778',
+  );
+
+  /// value100000073779
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073779 =
+      AdministrableDoseForm._(
+    '100000073779',
+  );
+
+  /// value100000073780
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073780 =
+      AdministrableDoseForm._(
+    '100000073780',
+  );
+
+  /// value100000073782
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073782 =
+      AdministrableDoseForm._(
+    '100000073782',
+  );
+
+  /// value100000073783
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073783 =
+      AdministrableDoseForm._(
+    '100000073783',
+  );
+
+  /// value100000073784
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073784 =
+      AdministrableDoseForm._(
+    '100000073784',
+  );
+
+  /// value100000073785
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073785 =
+      AdministrableDoseForm._(
+    '100000073785',
+  );
+
+  /// value100000073786
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073786 =
+      AdministrableDoseForm._(
+    '100000073786',
+  );
+
+  /// value100000073787
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073787 =
+      AdministrableDoseForm._(
+    '100000073787',
+  );
+
+  /// value100000073788
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073788 =
+      AdministrableDoseForm._(
+    '100000073788',
+  );
+
+  /// value100000073789
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073789 =
+      AdministrableDoseForm._(
+    '100000073789',
+  );
+
+  /// value100000073790
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073790 =
+      AdministrableDoseForm._(
+    '100000073790',
+  );
+
+  /// value100000073791
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073791 =
+      AdministrableDoseForm._(
+    '100000073791',
+  );
+
+  /// value100000073792
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073792 =
+      AdministrableDoseForm._(
+    '100000073792',
+  );
+
+  /// value100000073793
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073793 =
+      AdministrableDoseForm._(
+    '100000073793',
+  );
+
+  /// value100000073794
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073794 =
+      AdministrableDoseForm._(
+    '100000073794',
+  );
+
+  /// value100000073795
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073795 =
+      AdministrableDoseForm._(
+    '100000073795',
+  );
+
+  /// value100000073796
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073796 =
+      AdministrableDoseForm._(
+    '100000073796',
+  );
+
+  /// value100000073797
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073797 =
+      AdministrableDoseForm._(
+    '100000073797',
+  );
+
+  /// value100000073798
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073798 =
+      AdministrableDoseForm._(
+    '100000073798',
+  );
+
+  /// value100000073799
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073799 =
+      AdministrableDoseForm._(
+    '100000073799',
+  );
+
+  /// value100000073800
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073800 =
+      AdministrableDoseForm._(
+    '100000073800',
+  );
+
+  /// value100000073802
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073802 =
+      AdministrableDoseForm._(
+    '100000073802',
+  );
+
+  /// value100000073803
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073803 =
+      AdministrableDoseForm._(
+    '100000073803',
+  );
+
+  /// value100000073804
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073804 =
+      AdministrableDoseForm._(
+    '100000073804',
+  );
+
+  /// value100000073805
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073805 =
+      AdministrableDoseForm._(
+    '100000073805',
+  );
+
+  /// value100000073806
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073806 =
+      AdministrableDoseForm._(
+    '100000073806',
+  );
+
+  /// value100000073807
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073807 =
+      AdministrableDoseForm._(
+    '100000073807',
+  );
+
+  /// value100000073808
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073808 =
+      AdministrableDoseForm._(
+    '100000073808',
+  );
+
+  /// value100000073809
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073809 =
+      AdministrableDoseForm._(
+    '100000073809',
+  );
+
+  /// value100000073810
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073810 =
+      AdministrableDoseForm._(
+    '100000073810',
+  );
+
+  /// value100000073811
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073811 =
+      AdministrableDoseForm._(
+    '100000073811',
+  );
+
+  /// value100000073812
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073812 =
+      AdministrableDoseForm._(
+    '100000073812',
+  );
+
+  /// value100000073813
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073813 =
+      AdministrableDoseForm._(
+    '100000073813',
+  );
+
+  /// value100000073814
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073814 =
+      AdministrableDoseForm._(
+    '100000073814',
+  );
+
+  /// value100000073815
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073815 =
+      AdministrableDoseForm._(
+    '100000073815',
+  );
+
+  /// value100000073816
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073816 =
+      AdministrableDoseForm._(
+    '100000073816',
+  );
+
+  /// value100000073817
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073817 =
+      AdministrableDoseForm._(
+    '100000073817',
+  );
+
+  /// value100000073818
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073818 =
+      AdministrableDoseForm._(
+    '100000073818',
+  );
+
+  /// value100000073819
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073819 =
+      AdministrableDoseForm._(
+    '100000073819',
+  );
+
+  /// value100000073820
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073820 =
+      AdministrableDoseForm._(
+    '100000073820',
+  );
+
+  /// value100000073821
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073821 =
+      AdministrableDoseForm._(
+    '100000073821',
+  );
+
+  /// value100000073822
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073822 =
+      AdministrableDoseForm._(
+    '100000073822',
+  );
+
+  /// value100000073823
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073823 =
+      AdministrableDoseForm._(
+    '100000073823',
+  );
+
+  /// value100000073824
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073824 =
+      AdministrableDoseForm._(
+    '100000073824',
+  );
+
+  /// value100000073825
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073825 =
+      AdministrableDoseForm._(
+    '100000073825',
+  );
+
+  /// value100000073826
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073826 =
+      AdministrableDoseForm._(
+    '100000073826',
+  );
+
+  /// value100000073827
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073827 =
+      AdministrableDoseForm._(
+    '100000073827',
+  );
+
+  /// value100000073863
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdministrableDoseForm value100000073863 =
+      AdministrableDoseForm._(
+    '100000073863',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final AdministrableDoseForm elementOnly = AdministrableDoseForm._('');
+
+  /// List of all enum-like values
+  static final List<AdministrableDoseForm> values = [
+    value100000073362,
+    value100000073363,
+    value100000073364,
+    value100000073365,
+    value100000073367,
+    value100000073368,
+    value100000073369,
+    value100000073370,
+    value100000073371,
+    value100000073372,
+    value100000073373,
+    value100000073374,
+    value100000073375,
+    value100000073376,
+    value100000073377,
+    value100000073378,
+    value100000073379,
+    value100000073380,
+    value100000073642,
+    value100000073643,
+    value100000073644,
+    value100000073645,
+    value100000073646,
+    value100000073647,
+    value100000073648,
+    value100000073649,
+    value100000073650,
+    value100000073652,
+    value100000073653,
+    value100000073654,
+    value100000073655,
+    value100000073656,
+    value100000073657,
+    value100000073658,
+    value100000073659,
+    value100000073660,
+    value100000073661,
+    value100000073662,
+    value100000073663,
+    value100000073664,
+    value100000073665,
+    value100000073666,
+    value100000073667,
+    value100000073668,
+    value100000073669,
+    value100000073670,
+    value100000073671,
+    value100000073672,
+    value100000073673,
+    value100000073674,
+    value100000073675,
+    value100000073676,
+    value100000073677,
+    value100000073678,
+    value100000073679,
+    value100000073680,
+    value100000073681,
+    value100000073682,
+    value100000073683,
+    value100000073684,
+    value100000073685,
+    value100000073686,
+    value100000073687,
+    value100000073688,
+    value100000073689,
+    value100000073690,
+    value100000073691,
+    value100000073692,
+    value100000073693,
+    value100000073694,
+    value100000073695,
+    value100000073696,
+    value100000073697,
+    value100000073698,
+    value100000073699,
+    value100000073700,
+    value100000073701,
+    value100000073702,
+    value100000073703,
+    value100000073704,
+    value100000073705,
+    value100000073706,
+    value100000073707,
+    value100000073708,
+    value100000073709,
+    value100000073710,
+    value100000073711,
+    value100000073712,
+    value100000073713,
+    value100000073714,
+    value100000073715,
+    value100000073716,
+    value100000073717,
+    value100000073718,
+    value100000073719,
+    value100000073720,
+    value100000073721,
+    value100000073722,
+    value100000073723,
+    value100000073724,
+    value100000073725,
+    value100000073726,
+    value100000073727,
+    value100000073728,
+    value100000073729,
+    value100000073730,
+    value100000073731,
+    value100000073732,
+    value100000073733,
+    value100000073734,
+    value100000073735,
+    value100000073736,
+    value100000073737,
+    value100000073738,
+    value100000073739,
+    value100000073740,
+    value100000073741,
+    value100000073742,
+    value100000073743,
+    value100000073744,
+    value100000073745,
+    value100000073746,
+    value100000073747,
+    value100000073748,
+    value100000073749,
+    value100000073750,
+    value100000073751,
+    value100000073752,
+    value100000073753,
+    value100000073754,
+    value100000073755,
+    value100000073756,
+    value100000073757,
+    value100000073758,
+    value100000073759,
+    value100000073760,
+    value100000073761,
+    value100000073762,
+    value100000073763,
+    value100000073764,
+    value100000073765,
+    value100000073766,
+    value100000073767,
+    value100000073768,
+    value100000073769,
+    value100000073770,
+    value100000073771,
+    value100000073772,
+    value100000073773,
+    value100000073775,
+    value100000073776,
+    value100000073777,
+    value100000073778,
+    value100000073779,
+    value100000073780,
+    value100000073782,
+    value100000073783,
+    value100000073784,
+    value100000073785,
+    value100000073786,
+    value100000073787,
+    value100000073788,
+    value100000073789,
+    value100000073790,
+    value100000073791,
+    value100000073792,
+    value100000073793,
+    value100000073794,
+    value100000073795,
+    value100000073796,
+    value100000073797,
+    value100000073798,
+    value100000073799,
+    value100000073800,
+    value100000073802,
+    value100000073803,
+    value100000073804,
+    value100000073805,
+    value100000073806,
+    value100000073807,
+    value100000073808,
+    value100000073809,
+    value100000073810,
+    value100000073811,
+    value100000073812,
+    value100000073813,
+    value100000073814,
+    value100000073815,
+    value100000073816,
+    value100000073817,
+    value100000073818,
+    value100000073819,
+    value100000073820,
+    value100000073821,
+    value100000073822,
+    value100000073823,
+    value100000073824,
+    value100000073825,
+    value100000073826,
+    value100000073827,
+    value100000073863,
+  ];
+
+  /// Returns the enum value with an element attached
+  AdministrableDoseForm withElement(Element? newElement) {
+    return AdministrableDoseForm._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -827,28 +1842,20 @@ enum AdministrableDoseForm {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [AdministrableDoseForm] instances.
-  static AdministrableDoseForm fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [AdministrableDoseForm] from JSON.
+  static AdministrableDoseForm fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdministrableDoseForm.elementOnly.withElement(
-        element,
-      );
+      return AdministrableDoseForm.elementOnly.withElement(element);
     }
     return AdministrableDoseForm.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  AdministrableDoseForm withElement(Element? newElement) {
-    return AdministrableDoseForm.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'AdministrableDoseForm.$fhirCode';
 }

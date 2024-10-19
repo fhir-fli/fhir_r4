@@ -1,33 +1,55 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes sample Payee Type codes.
-enum ClaimPayeeTypeCodes {
-  /// Display: Subscriber
-  /// Definition: The subscriber (policy holder) will be reimbursed.
-  subscriber('subscriber'),
+class ClaimPayeeTypeCodes {
+  // Private constructor for internal use (like enum)
+  ClaimPayeeTypeCodes._(this.fhirCode, {this.element});
 
-  /// Display: Provider
-  /// Definition: Any benefit payable will be paid to the provider (Assignment of Benefit).
-  provider('provider'),
-
-  /// Display: Provider
-  /// Definition: Any benefit payable will be paid to a third party such as a guarrantor.
-  other('other'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ClaimPayeeTypeCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ClaimPayeeTypeCodes values
+  /// subscriber
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ClaimPayeeTypeCodes subscriber = ClaimPayeeTypeCodes._(
+    'subscriber',
+  );
+
+  /// provider
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ClaimPayeeTypeCodes provider = ClaimPayeeTypeCodes._(
+    'provider',
+  );
+
+  /// other
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ClaimPayeeTypeCodes other = ClaimPayeeTypeCodes._(
+    'other',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ClaimPayeeTypeCodes elementOnly = ClaimPayeeTypeCodes._('');
+
+  /// List of all enum-like values
+  static final List<ClaimPayeeTypeCodes> values = [
+    subscriber,
+    provider,
+    other,
+  ];
+
+  /// Returns the enum value with an element attached
+  ClaimPayeeTypeCodes withElement(Element? newElement) {
+    return ClaimPayeeTypeCodes._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +57,20 @@ enum ClaimPayeeTypeCodes {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ClaimPayeeTypeCodes] instances.
-  static ClaimPayeeTypeCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ClaimPayeeTypeCodes] from JSON.
+  static ClaimPayeeTypeCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ClaimPayeeTypeCodes.elementOnly.withElement(
-        element,
-      );
+      return ClaimPayeeTypeCodes.elementOnly.withElement(element);
     }
     return ClaimPayeeTypeCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ClaimPayeeTypeCodes withElement(Element? newElement) {
-    return ClaimPayeeTypeCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ClaimPayeeTypeCodes.$fhirCode';
 }

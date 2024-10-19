@@ -1,33 +1,59 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of a name given to a substance.
-enum SubstanceRepresentationType {
-  /// Display: systematic
-  /// Definition:
-  Systematic('Systematic'),
+class SubstanceRepresentationType {
+  // Private constructor for internal use (like enum)
+  SubstanceRepresentationType._(this.fhirCode, {this.element});
 
-  /// Display: scientific
-  /// Definition:
-  Scientific('Scientific'),
-
-  /// Display: brand
-  /// Definition:
-  Brand('Brand'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const SubstanceRepresentationType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// SubstanceRepresentationType values
+  /// Systematic
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubstanceRepresentationType Systematic =
+      SubstanceRepresentationType._(
+    'Systematic',
+  );
+
+  /// Scientific
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubstanceRepresentationType Scientific =
+      SubstanceRepresentationType._(
+    'Scientific',
+  );
+
+  /// Brand
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubstanceRepresentationType Brand =
+      SubstanceRepresentationType._(
+    'Brand',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final SubstanceRepresentationType elementOnly =
+      SubstanceRepresentationType._('');
+
+  /// List of all enum-like values
+  static final List<SubstanceRepresentationType> values = [
+    Systematic,
+    Scientific,
+    Brand,
+  ];
+
+  /// Returns the enum value with an element attached
+  SubstanceRepresentationType withElement(Element? newElement) {
+    return SubstanceRepresentationType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +61,20 @@ enum SubstanceRepresentationType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [SubstanceRepresentationType] instances.
-  static SubstanceRepresentationType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [SubstanceRepresentationType] from JSON.
+  static SubstanceRepresentationType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubstanceRepresentationType.elementOnly.withElement(
-        element,
-      );
+      return SubstanceRepresentationType.elementOnly.withElement(element);
     }
     return SubstanceRepresentationType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  SubstanceRepresentationType withElement(Element? newElement) {
-    return SubstanceRepresentationType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'SubstanceRepresentationType.$fhirCode';
 }

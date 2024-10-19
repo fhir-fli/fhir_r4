@@ -1,33 +1,55 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Set of handling instructions prior testing of the specimen.
-enum HandlingConditionSet {
-  /// Display: room temperature
-  /// Definition: room temperature.
-  room('room'),
+class HandlingConditionSet {
+  // Private constructor for internal use (like enum)
+  HandlingConditionSet._(this.fhirCode, {this.element});
 
-  /// Display: refrigerated
-  /// Definition: refrigerated temperature.
-  refrigerated('refrigerated'),
-
-  /// Display: frozen
-  /// Definition: frozen temperature.
-  frozen('frozen'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const HandlingConditionSet(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// HandlingConditionSet values
+  /// room
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final HandlingConditionSet room = HandlingConditionSet._(
+    'room',
+  );
+
+  /// refrigerated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final HandlingConditionSet refrigerated = HandlingConditionSet._(
+    'refrigerated',
+  );
+
+  /// frozen
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final HandlingConditionSet frozen = HandlingConditionSet._(
+    'frozen',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final HandlingConditionSet elementOnly = HandlingConditionSet._('');
+
+  /// List of all enum-like values
+  static final List<HandlingConditionSet> values = [
+    room,
+    refrigerated,
+    frozen,
+  ];
+
+  /// Returns the enum value with an element attached
+  HandlingConditionSet withElement(Element? newElement) {
+    return HandlingConditionSet._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +57,20 @@ enum HandlingConditionSet {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [HandlingConditionSet] instances.
-  static HandlingConditionSet fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [HandlingConditionSet] from JSON.
+  static HandlingConditionSet fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return HandlingConditionSet.elementOnly.withElement(
-        element,
-      );
+      return HandlingConditionSet.elementOnly.withElement(element);
     }
     return HandlingConditionSet.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  HandlingConditionSet withElement(Element? newElement) {
-    return HandlingConditionSet.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'HandlingConditionSet.$fhirCode';
 }

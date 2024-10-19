@@ -1,125 +1,243 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes sample Regulatory consent policy types from the US and other regions.
-enum ConsentPolicyRuleCodes {
-  /// Display: Common Rule Informed Consent
-  /// Definition: 45 CFR part 46 §46.116 General requirements for informed consent; and §46.117 Documentation of informed consent. https://www.gpo.gov/fdsys/pkg/FR-2017-01-19/pdf/2017-01058.pdf
-  cric('cric'),
+class ConsentPolicyRuleCodes {
+  // Private constructor for internal use (like enum)
+  ConsentPolicyRuleCodes._(this.fhirCode, {this.element});
 
-  /// Display: Illinois Consent by Minors to Medical Procedures
-  /// Definition: The consent to the performance of a medical or surgical procedure by a physician licensed to practice medicine and surgery, a licensed advanced practice nurse, or a licensed physician assistant executed by a married person who is a minor, by a parent who is a minor, by a pregnant woman who is a minor, or by any person 18 years of age or older, is not voidable because of such minority, and, for such purpose, a married person who is a minor, a parent who is a minor, a pregnant woman who is a minor, or any person 18 years of age or older, is deemed to have the same legal capacity to act and has the same powers and obligations as has a person of legal age. Consent by Minors to Medical Procedures Act. (410 ILCS 210/0.01) (from Ch. 111, par. 4500) Sec. 0.01. Short title. This Act may be cited as the Consent by Minors to Medical Procedures Act. (Source: P.A. 86-1324.) http://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=1539&ChapterID=35
-  illinois_minor_procedure('illinois-minor-procedure'),
-
-  /// Display: HIPAA Authorization
-  /// Definition: HIPAA 45 CFR Section 164.508 Uses and disclosures for which an authorization is required. (a) Standard: Authorizations for uses and disclosures. (1) Authorization required: General rule. Except as otherwise permitted or required by this subchapter, a covered entity SHALL not use or disclose protected health information without an authorization that is valid under this section. When a covered entity obtains or receives a valid authorization for its use or disclosure of protected health information, such use or disclosure must be consistent with such authorization. Usage Note: Authorizations governed under this regulation meet the definition of an opt in class of consent directive.
-  hipaa_auth('hipaa-auth'),
-
-  /// Display: HIPAA Notice of Privacy Practices
-  /// Definition: 164.520 Notice of privacy practices for protected health information. (1) Right to notice. Except as provided by paragraph (a)(2) or (3) of this section, an individual has a right to adequate notice of the uses and disclosures of protected health information that may be made by the covered entity, and of the individual's rights and the covered entity's legal duties with respect to protected health information. Usage Note: Restrictions governed under this regulation meet the definition of an implied with an opportunity to dissent class of consent directive.
-  hipaa_npp('hipaa-npp'),
-
-  /// Display: HIPAA Restrictions
-  /// Definition: HIPAA 45 CFR 164.510 - Uses and disclosures requiring an opportunity for the individual to agree or to object. A covered entity may use or disclose protected health information, provided that the individual is informed in advance of the use or disclosure and has the opportunity to agree to or prohibit or restrict the use or disclosure, in accordance with the applicable requirements of this section. The covered entity may orally inform the individual of and obtain the individual's oral agreement or objection to a use or disclosure permitted by this section. Usage Note: Restrictions governed under this regulation meet the definition of an opt out with exception class of consent directive.
-  hipaa_restrictions('hipaa-restrictions'),
-
-  /// Display: HIPAA Research Authorization
-  /// Definition: HIPAA 45 CFR 164.508 - Uses and disclosures for which an authorization is required. (a) Standard: Authorizations for uses and disclosures. (3) Compound authorizations. An authorization for use or disclosure of protected health information SHALL NOT be combined with any other document to create a compound authorization, except as follows: (i) An authorization for the use or disclosure of protected health information for a research study may be combined with any other type of written permission for the same or another research study. This exception includes combining an authorization for the use or disclosure of protected health information for a research study with another authorization for the same research study, with an authorization for the creation or maintenance of a research database or repository, or with a consent to participate in research. Where a covered health care provider has conditioned the provision of research-related treatment on the provision of one of the authorizations, as permitted under paragraph (b)(4)(i) of this section, any compound authorization created under this paragraph must clearly differentiate between the conditioned and unconditioned components and provide the individual with an opportunity to opt in to the research activities described in the unconditioned authorization. Usage Notes: See HHS http://www.hhs.gov/hipaa/for-professionals/special-topics/research/index.html and OCR http://www.hhs.gov/hipaa/for-professionals/special-topics/research/index.html
-  hipaa_research('hipaa-research'),
-
-  /// Display: HIPAA Self-Pay Restriction
-  /// Definition: HIPAA 45 CFR 164.522(a) Right To Request a Restriction of Uses and Disclosures. (vi) A covered entity must agree to the request of an individual to restrict disclosure of protected health information about the individual to a health plan if: (A) The disclosure is for the purpose of carrying out payment or health care operations and is not otherwise required by law; and (B) The protected health information pertains solely to a health care item or service for which the individual, or person other than the health plan on behalf of the individual, has paid the covered entity in full. Usage Note: Restrictions governed under this regulation meet the definition of an opt out with exception class of consent directive. Opt out is limited to disclosures to a payer for payment and operations purpose of use. See HL7 HIPAA Self-Pay code in ActPrivacyLaw (2.16.840.1.113883.1.11.20426).
-  hipaa_self_pay('hipaa-self-pay'),
-
-  /// Display: Michigan MDHHS-5515 Consent to Share Behavioral Health Information for Care Coordination Purposes
-  /// Definition: On January 1, 2015, the Michigan Department of Health and Human Services (MDHHS) released a standard consent form for the sharing of health information specific to behavioral health and substance use treatment in accordance with Public Act 129 of 2014. In Michigan, while providers are not required to use this new standard form (MDHHS-5515), they are required to accept it. Note: Form is available at http://www.michigan.gov/documents/mdhhs/Consent_to_Share_Behavioral_Health_Information_for_Care_Coordination_Purposes_548835_7.docx For more information see http://www.michigan.gov/documents/mdhhs/Behavioral_Health_Consent_Form_Background_Information_548864_7.pdf
-  mdhhs_5515('mdhhs-5515'),
-
-  /// Display: New York State Surgical and Invasive Procedure Protocol
-  /// Definition: The New York State Surgical and Invasive Procedure Protocol (NYSSIPP) applies to all operative and invasive procedures including endoscopy, general surgery or interventional radiology. Other procedures that involve puncture or incision of the skin, or insertion of an instrument or foreign material into the body are within the scope of the protocol. This protocol also applies to those anesthesia procedures either prior to a surgical procedure or independent of a surgical procedure such as spinal facet blocks. Example: Certain 'minor' procedures such as venipuncture, peripheral IV placement, insertion of nasogastric tube and foley catheter insertion are not within the scope of the protocol. From http://www.health.ny.gov/professionals/protocols_and_guidelines/surgical_and_invasive_procedure/nyssipp_faq.htm Note: HHC 100B-1 Form is available at http://www.downstate.edu/emergency_medicine/documents/Consent_CT_with_contrast.pdf
-  nyssipp('nyssipp'),
-
-  /// Display: VA Form 10-0484
-  /// Definition: VA Form 10-0484 Revocation for Release of Individually-Identifiable Health Information enables a veteran to revoke authorization for the VA to release specified copies of individually-identifiable health information with the non-VA health care provider organizations participating in the eHealth Exchange and partnering with VA. Comment: Opt-in Consent Directive with status = rescinded (aka 'revoked'). Note: Form is available at http://www.va.gov/vaforms/medical/pdf/vha-10-0484-fill.pdf
-  va_10_0484('va-10-0484'),
-
-  /// Display: VA Form 10-0485
-  /// Definition: VA Form 10-0485 Request for and Authorization to Release Protected Health Information to eHealth Exchange enables a veteran to request and authorize a VA health care facility to release protected health information (PHI) for treatment purposes only to the communities that are participating in the eHealth Exchange, VLER Directive, and other Health Information Exchanges with who VA has an agreement. This information may consist of the diagnosis of Sickle Cell Anemia, the treatment of or referral for Drug Abuse, treatment of or referral for Alcohol Abuse or the treatment of or testing for infection with Human Immunodeficiency Virus. This authorization covers the diagnoses that I may have upon signing of the authorization and the diagnoses that I may acquire in the future including those protected by 38 U.S.C. 7332. Comment: Opt-in Consent Directive. Note: Form is available at http://www.va.gov/vaforms/medical/pdf/10-0485-fill.pdf
-  va_10_0485('va-10-0485'),
-
-  /// Display: VA Form 10-5345
-  /// Definition: VA Form 10-5345 Request for and Authorization to Release Medical Records or Health Information enables a veteran to request and authorize the VA to release specified copies of protected health information (PHI), such as hospital summary or outpatient treatment notes, which may include information about conditions governed under Title 38 Section 7332 (drug abuse, alcoholism or alcohol abuse, testing for or infection with HIV, and sickle cell anemia). Comment: Opt-in Consent Directive. Note: Form is available at http://www.va.gov/vaforms/medical/pdf/vha-10-5345-fill.pdf
-  va_10_5345('va-10-5345'),
-
-  /// Display: VA Form 10-5345a
-  /// Definition: VA Form 10-5345a Individuals' Request for a Copy of Their Own Health Information enables a veteran to request and authorize the VA to release specified copies of protected health information (PHI), such as hospital summary or outpatient treatment notes. Note: Form is available at http://www.va.gov/vaforms/medical/pdf/vha-10-5345a-fill.pdf
-  va_10_5345a('va-10-5345a'),
-
-  /// Display: VA Form 10-5345a-MHV
-  /// Definition: VA Form 10-5345a-MHV Individual's Request for a Copy of their own health information from MyHealtheVet enables a veteran to receive a copy of all available personal health information to be delivered through the veteran's My HealtheVet account. Note: Form is available at http://www.va.gov/vaforms/medical/pdf/vha-10-5345a-MHV-fill.pdf
-  va_10_5345a_mhv('va-10-5345a-mhv'),
-
-  /// Display: VA Form 10-10-10116
-  /// Definition: VA Form 10-10116 Revocation of Authorization for Use and Release of Individually Identifiable Health Information for Veterans Health Administration Research. Comment: Opt-in with Restriction Consent Directive with status = 'completed'. Note: Form is available at http://www.northerncalifornia.va.gov/northerncalifornia/services/rnd/docs/vha-10-10116.pdf
-  va_10_10116('va-10-10116'),
-
-  /// Display: VA Form 21-4142
-  /// Definition: VA Form 21-4142 (Authorization and Consent to Release Information to the Department of Veterans Affairs (VA) enables a veteran to authorize the US Veterans Administration [VA] to request veteran's health information from non-VA providers. Aka VA Compensation Application Note: Form is available at http://www.vba.va.gov/pubs/forms/VBA-21-4142-ARE.pdf . For additional information regarding VA Form 21-4142, refer to the following website: www.benefits.va.gov/compensation/consent_privateproviders
-  va_21_4142('va-21-4142'),
-
-  /// Display: SSA Authorization to Disclose
-  /// Definition: SA Form SSA-827 (Authorization to Disclose Information to the Social Security Administration (SSA)). Form is available at https://www.socialsecurity.gov/forms/ssa-827-inst-sp.pdf
-  ssa_827('ssa-827'),
-
-  /// Display: Michigan behavior and mental health consent
-  /// Definition: Michigan DCH-3927 Consent to Share Behavioral Health Information for Care Coordination Purposes, which combines 42 CFR Part 2 and Michigan Mental Health Code, Act 258 of 1974. Form is available at http://www.michigan.gov/documents/mdch/DCH-3927_Consent_to_Share_Health_Information_477005_7.docx
-  dch_3927('dch-3927'),
-
-  /// Display: Squaxin Indian behavioral health and HIPAA consent
-  /// Definition: Squaxin Indian HIPAA and 42 CFR Part 2 Consent for Release and Exchange of Confidential Information, which permits consenter to select healthcare record type and types of treatment purposes. This consent requires disclosers and recipients to comply with 42 C.F.R. Part 2, and HIPAA 45 C.F.R. parts 160 and 164. It includes patient notice of the refrain policy not to disclose without consent, and revocation rights. https://www.ncsacw.samhsa.gov/files/SI_ConsentForReleaseAndExchange.PDF
-  squaxin('squaxin'),
-
-  /// Display: NL LSP Permission
-  /// Definition: LSP (National Exchange Point) requires that providers, hospitals and pharmacy obtain explicit permission [opt-in] from healthcare consumers to submit and retrieve all or only some of a subject of care’s health information collected by the LSP for purpose of treatment, which can be revoked. Without permission, a provider cannot access LSP information even in an emergency. The LSP provides healthcare consumers with accountings of disclosures. https://www.vzvz.nl/uploaded/FILES/htmlcontent/Formulieren/TOESTEMMINGSFORMULIER.pdf, https://www.ikgeeftoestemming.nl/en, https://www.ikgeeftoestemming.nl/en/registration/find-healthcare-provider
-  nl_lsp('nl-lsp'),
-
-  /// Display: AT ELGA Opt-in Consent
-  /// Definition: Pursuant to Sec. 2 no. 9 Health Telematics Act 2012, ELGA Health Data ( “ELGA-Gesundheitsdaten”) = Medical documents. Austria opted for an opt-out approach. This means that a person is by default ‘ELGA participant’ unless he/she objects. ELGA participants have the following options: General opt out: No participation in ELGA, Partial opt-out: No participation in a particular ELGA application, e.g. eMedication and Case-specific opt-out: No participation in ELGA only regarding a particular case/treatment. There is the possibility to opt-in again. ELGA participants can also exclude the access of a particular ELGA healthcare provider to a particular piece of or all of their ELGA data. http://ec.europa.eu/health/ehealth/docs/laws_austria_en.pdf
-  at_elga('at-elga'),
-
-  /// Display: HHS NIH HIPAA Research Authorization
-  /// Definition: Guidance and template form https://privacyruleandresearch.nih.gov/pdf/authorization.pdf
-  nih_hipaa('nih-hipaa'),
-
-  /// Display: NCI Cancer Clinical Trial consent
-  /// Definition: see http://ctep.cancer.gov/protocolDevelopment/docs/Informed_Consent_Template.docx
-  nci('nci'),
-
-  /// Display: NIH Global Rare Disease Patient Registry and Data Repository consent
-  /// Definition: Global Rare Disease Patient Registry and Data Repository (GRDR) consent is an agreement of a healthcare consumer to permit collection, access, use and disclosure of de-identified rare disease information and collection of bio-specimens, medical information, family history and other related information from patients to permit the registry collection of health and genetic information, and specimens for pseudonymized disclosure for research purpose of use. https://rarediseases.info.nih.gov/files/informed_consent_template.pdf
-  nih_grdr('nih-grdr'),
-
-  /// Display: NIH Authorization for the Release of Medical Information
-  /// Definition: NIH Authorization for the Release of Medical Information is a patient’s consent for the National Institutes of Health Clinical Center to release medical information to care providers, which can be revoked. Note: Consent Form available @ http://cc.nih.gov/participate/_pdf/NIH-527.pdf
-  nih_527('nih-527'),
-
-  /// Display: Population origins and ancestry research consent
-  /// Definition: Global Alliance for Genomic Health Data Sharing Consent Form is an example of the GA4GH Population origins and ancestry research consent form. Consenters agree to permitting a specified research project to collect ancestry and genetic information in controlled-access databases, and to allow other researchers to use deidentified information from those databases. http://www.commonaccord.org/index.php?action=doc&file=Wx/org/genomicsandhealth/REWG/Demo/Roberta_Robinson_US
-  ga4gh('ga4gh'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ConsentPolicyRuleCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ConsentPolicyRuleCodes values
+  /// cric
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes cric = ConsentPolicyRuleCodes._(
+    'cric',
+  );
+
+  /// illinois_minor_procedure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes illinois_minor_procedure =
+      ConsentPolicyRuleCodes._(
+    'illinois-minor-procedure',
+  );
+
+  /// hipaa_auth
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes hipaa_auth = ConsentPolicyRuleCodes._(
+    'hipaa-auth',
+  );
+
+  /// hipaa_npp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes hipaa_npp = ConsentPolicyRuleCodes._(
+    'hipaa-npp',
+  );
+
+  /// hipaa_restrictions
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes hipaa_restrictions =
+      ConsentPolicyRuleCodes._(
+    'hipaa-restrictions',
+  );
+
+  /// hipaa_research
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes hipaa_research = ConsentPolicyRuleCodes._(
+    'hipaa-research',
+  );
+
+  /// hipaa_self_pay
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes hipaa_self_pay = ConsentPolicyRuleCodes._(
+    'hipaa-self-pay',
+  );
+
+  /// mdhhs_5515
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes mdhhs_5515 = ConsentPolicyRuleCodes._(
+    'mdhhs-5515',
+  );
+
+  /// nyssipp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes nyssipp = ConsentPolicyRuleCodes._(
+    'nyssipp',
+  );
+
+  /// va_10_0484
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes va_10_0484 = ConsentPolicyRuleCodes._(
+    'va-10-0484',
+  );
+
+  /// va_10_0485
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes va_10_0485 = ConsentPolicyRuleCodes._(
+    'va-10-0485',
+  );
+
+  /// va_10_5345
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes va_10_5345 = ConsentPolicyRuleCodes._(
+    'va-10-5345',
+  );
+
+  /// va_10_5345a
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes va_10_5345a = ConsentPolicyRuleCodes._(
+    'va-10-5345a',
+  );
+
+  /// va_10_5345a_mhv
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes va_10_5345a_mhv =
+      ConsentPolicyRuleCodes._(
+    'va-10-5345a-mhv',
+  );
+
+  /// va_10_10116
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes va_10_10116 = ConsentPolicyRuleCodes._(
+    'va-10-10116',
+  );
+
+  /// va_21_4142
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes va_21_4142 = ConsentPolicyRuleCodes._(
+    'va-21-4142',
+  );
+
+  /// ssa_827
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes ssa_827 = ConsentPolicyRuleCodes._(
+    'ssa-827',
+  );
+
+  /// dch_3927
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes dch_3927 = ConsentPolicyRuleCodes._(
+    'dch-3927',
+  );
+
+  /// squaxin
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes squaxin = ConsentPolicyRuleCodes._(
+    'squaxin',
+  );
+
+  /// nl_lsp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes nl_lsp = ConsentPolicyRuleCodes._(
+    'nl-lsp',
+  );
+
+  /// at_elga
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes at_elga = ConsentPolicyRuleCodes._(
+    'at-elga',
+  );
+
+  /// nih_hipaa
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes nih_hipaa = ConsentPolicyRuleCodes._(
+    'nih-hipaa',
+  );
+
+  /// nci
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes nci = ConsentPolicyRuleCodes._(
+    'nci',
+  );
+
+  /// nih_grdr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes nih_grdr = ConsentPolicyRuleCodes._(
+    'nih-grdr',
+  );
+
+  /// nih_527
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes nih_527 = ConsentPolicyRuleCodes._(
+    'nih-527',
+  );
+
+  /// ga4gh
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentPolicyRuleCodes ga4gh = ConsentPolicyRuleCodes._(
+    'ga4gh',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ConsentPolicyRuleCodes elementOnly =
+      ConsentPolicyRuleCodes._('');
+
+  /// List of all enum-like values
+  static final List<ConsentPolicyRuleCodes> values = [
+    cric,
+    illinois_minor_procedure,
+    hipaa_auth,
+    hipaa_npp,
+    hipaa_restrictions,
+    hipaa_research,
+    hipaa_self_pay,
+    mdhhs_5515,
+    nyssipp,
+    va_10_0484,
+    va_10_0485,
+    va_10_5345,
+    va_10_5345a,
+    va_10_5345a_mhv,
+    va_10_10116,
+    va_21_4142,
+    ssa_827,
+    dch_3927,
+    squaxin,
+    nl_lsp,
+    at_elga,
+    nih_hipaa,
+    nci,
+    nih_grdr,
+    nih_527,
+    ga4gh,
+  ];
+
+  /// Returns the enum value with an element attached
+  ConsentPolicyRuleCodes withElement(Element? newElement) {
+    return ConsentPolicyRuleCodes._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -127,28 +245,20 @@ enum ConsentPolicyRuleCodes {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ConsentPolicyRuleCodes] instances.
-  static ConsentPolicyRuleCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ConsentPolicyRuleCodes] from JSON.
+  static ConsentPolicyRuleCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConsentPolicyRuleCodes.elementOnly.withElement(
-        element,
-      );
+      return ConsentPolicyRuleCodes.elementOnly.withElement(element);
     }
     return ConsentPolicyRuleCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ConsentPolicyRuleCodes withElement(Element? newElement) {
-    return ConsentPolicyRuleCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ConsentPolicyRuleCodes.$fhirCode';
 }

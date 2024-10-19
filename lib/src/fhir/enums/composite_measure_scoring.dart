@@ -1,37 +1,65 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The composite scoring method of the measure.
-enum CompositeMeasureScoring {
-  /// Display: Opportunity
-  /// Definition: Opportunity scoring combines the scores from component measures by combining the numerators and denominators for each component.
-  opportunity('opportunity'),
+class CompositeMeasureScoring {
+  // Private constructor for internal use (like enum)
+  CompositeMeasureScoring._(this.fhirCode, {this.element});
 
-  /// Display: All-or-nothing
-  /// Definition: All-or-nothing scoring includes an individual in the numerator of the composite measure if they are in the numerators of all of the component measures in which they are in the denominator.
-  all_or_nothing('all-or-nothing'),
-
-  /// Display: Linear
-  /// Definition: Linear scoring gives an individual a score based on the number of numerators in which they appear.
-  linear('linear'),
-
-  /// Display: Weighted
-  /// Definition: Weighted scoring gives an individual a score based on a weighted factor for each component numerator in which they appear.
-  weighted('weighted'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const CompositeMeasureScoring(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// CompositeMeasureScoring values
+  /// opportunity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CompositeMeasureScoring opportunity = CompositeMeasureScoring._(
+    'opportunity',
+  );
+
+  /// all_or_nothing
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CompositeMeasureScoring all_or_nothing =
+      CompositeMeasureScoring._(
+    'all-or-nothing',
+  );
+
+  /// linear
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CompositeMeasureScoring linear = CompositeMeasureScoring._(
+    'linear',
+  );
+
+  /// weighted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CompositeMeasureScoring weighted = CompositeMeasureScoring._(
+    'weighted',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final CompositeMeasureScoring elementOnly =
+      CompositeMeasureScoring._('');
+
+  /// List of all enum-like values
+  static final List<CompositeMeasureScoring> values = [
+    opportunity,
+    all_or_nothing,
+    linear,
+    weighted,
+  ];
+
+  /// Returns the enum value with an element attached
+  CompositeMeasureScoring withElement(Element? newElement) {
+    return CompositeMeasureScoring._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -39,28 +67,20 @@ enum CompositeMeasureScoring {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [CompositeMeasureScoring] instances.
-  static CompositeMeasureScoring fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [CompositeMeasureScoring] from JSON.
+  static CompositeMeasureScoring fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CompositeMeasureScoring.elementOnly.withElement(
-        element,
-      );
+      return CompositeMeasureScoring.elementOnly.withElement(element);
     }
     return CompositeMeasureScoring.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  CompositeMeasureScoring withElement(Element? newElement) {
-    return CompositeMeasureScoring.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'CompositeMeasureScoring.$fhirCode';
 }

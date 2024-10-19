@@ -1,61 +1,116 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The role that a provenance participant played
-enum ProvenanceParticipantRole {
-  /// Display: Enterer
-  /// Definition: A person entering the data into the originating system
-  enterer('enterer'),
+class ProvenanceParticipantRole {
+  // Private constructor for internal use (like enum)
+  ProvenanceParticipantRole._(this.fhirCode, {this.element});
 
-  /// Display: Performer
-  /// Definition: A person, animal, organization or device that who actually and principally carries out the activity
-  performer('performer'),
-
-  /// Display: Author
-  /// Definition: A party that originates the resource and therefore has responsibility for the information given in the resource and ownership of this resource
-  author('author'),
-
-  /// Display: Verifier
-  /// Definition: A person who verifies the correctness and appropriateness of activity
-  verifier('verifier'),
-
-  /// Display: Legal Authenticator
-  /// Definition: The person authenticated the content and accepted legal responsibility for its content
-  legal('legal'),
-
-  /// Display: Attester
-  /// Definition: A verifier who attests to the accuracy of the resource
-  attester('attester'),
-
-  /// Display: Informant
-  /// Definition: A person who reported information that contributed to the resource
-  informant('informant'),
-
-  /// Display: Custodian
-  /// Definition: The entity that is accountable for maintaining a true an accurate copy of the original record
-  custodian('custodian'),
-
-  /// Display: Assembler
-  /// Definition: A device that operates independently of an author on custodian's algorithms for data extraction of existing information for purpose of generating a new artifact.
-  assembler('assembler'),
-
-  /// Display: Composer
-  /// Definition: A device used by an author to record new information, which may also be used by the author to select existing information for aggregation with newly recorded information for the purpose of generating a new artifact.
-  composer('composer'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ProvenanceParticipantRole(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ProvenanceParticipantRole values
+  /// enterer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProvenanceParticipantRole enterer = ProvenanceParticipantRole._(
+    'enterer',
+  );
+
+  /// performer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProvenanceParticipantRole performer =
+      ProvenanceParticipantRole._(
+    'performer',
+  );
+
+  /// author
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProvenanceParticipantRole author = ProvenanceParticipantRole._(
+    'author',
+  );
+
+  /// verifier
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProvenanceParticipantRole verifier = ProvenanceParticipantRole._(
+    'verifier',
+  );
+
+  /// legal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProvenanceParticipantRole legal = ProvenanceParticipantRole._(
+    'legal',
+  );
+
+  /// attester
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProvenanceParticipantRole attester = ProvenanceParticipantRole._(
+    'attester',
+  );
+
+  /// informant
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProvenanceParticipantRole informant =
+      ProvenanceParticipantRole._(
+    'informant',
+  );
+
+  /// custodian
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProvenanceParticipantRole custodian =
+      ProvenanceParticipantRole._(
+    'custodian',
+  );
+
+  /// assembler
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProvenanceParticipantRole assembler =
+      ProvenanceParticipantRole._(
+    'assembler',
+  );
+
+  /// composer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ProvenanceParticipantRole composer = ProvenanceParticipantRole._(
+    'composer',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ProvenanceParticipantRole elementOnly =
+      ProvenanceParticipantRole._('');
+
+  /// List of all enum-like values
+  static final List<ProvenanceParticipantRole> values = [
+    enterer,
+    performer,
+    author,
+    verifier,
+    legal,
+    attester,
+    informant,
+    custodian,
+    assembler,
+    composer,
+  ];
+
+  /// Returns the enum value with an element attached
+  ProvenanceParticipantRole withElement(Element? newElement) {
+    return ProvenanceParticipantRole._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -63,28 +118,20 @@ enum ProvenanceParticipantRole {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ProvenanceParticipantRole] instances.
-  static ProvenanceParticipantRole fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ProvenanceParticipantRole] from JSON.
+  static ProvenanceParticipantRole fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ProvenanceParticipantRole.elementOnly.withElement(
-        element,
-      );
+      return ProvenanceParticipantRole.elementOnly.withElement(element);
     }
     return ProvenanceParticipantRole.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ProvenanceParticipantRole withElement(Element? newElement) {
-    return ProvenanceParticipantRole.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ProvenanceParticipantRole.$fhirCode';
 }

@@ -1,69 +1,127 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Color of the container cap.
-enum ContainerCap {
-  /// Display: red cap
-  /// Definition: red cap.
-  red('red'),
+class ContainerCap {
+  // Private constructor for internal use (like enum)
+  ContainerCap._(this.fhirCode, {this.element});
 
-  /// Display: yellow cap
-  /// Definition: yellow cap.
-  yellow('yellow'),
-
-  /// Display: dark yellow cap
-  /// Definition: dark yellow cap.
-  dark_yellow('dark-yellow'),
-
-  /// Display: grey cap
-  /// Definition: grey cap.
-  grey('grey'),
-
-  /// Display: light blue cap
-  /// Definition: light blue cap.
-  light_blue('light-blue'),
-
-  /// Display: black cap
-  /// Definition: black cap.
-  black('black'),
-
-  /// Display: green cap
-  /// Definition: green cap.
-  green('green'),
-
-  /// Display: light green cap
-  /// Definition: light green cap.
-  light_green('light-green'),
-
-  /// Display: lavender cap
-  /// Definition: lavender cap.
-  lavender('lavender'),
-
-  /// Display: brown cap
-  /// Definition: brown cap.
-  brown('brown'),
-
-  /// Display: white cap
-  /// Definition: white cap.
-  white('white'),
-
-  /// Display: pink cap
-  /// Definition: pink cap.
-  pink('pink'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ContainerCap(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ContainerCap values
+  /// red
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap red = ContainerCap._(
+    'red',
+  );
+
+  /// yellow
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap yellow = ContainerCap._(
+    'yellow',
+  );
+
+  /// dark_yellow
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap dark_yellow = ContainerCap._(
+    'dark-yellow',
+  );
+
+  /// grey
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap grey = ContainerCap._(
+    'grey',
+  );
+
+  /// light_blue
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap light_blue = ContainerCap._(
+    'light-blue',
+  );
+
+  /// black
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap black = ContainerCap._(
+    'black',
+  );
+
+  /// green
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap green = ContainerCap._(
+    'green',
+  );
+
+  /// light_green
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap light_green = ContainerCap._(
+    'light-green',
+  );
+
+  /// lavender
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap lavender = ContainerCap._(
+    'lavender',
+  );
+
+  /// brown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap brown = ContainerCap._(
+    'brown',
+  );
+
+  /// white
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap white = ContainerCap._(
+    'white',
+  );
+
+  /// pink
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContainerCap pink = ContainerCap._(
+    'pink',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ContainerCap elementOnly = ContainerCap._('');
+
+  /// List of all enum-like values
+  static final List<ContainerCap> values = [
+    red,
+    yellow,
+    dark_yellow,
+    grey,
+    light_blue,
+    black,
+    green,
+    light_green,
+    lavender,
+    brown,
+    white,
+    pink,
+  ];
+
+  /// Returns the enum value with an element attached
+  ContainerCap withElement(Element? newElement) {
+    return ContainerCap._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -71,28 +129,20 @@ enum ContainerCap {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ContainerCap] instances.
-  static ContainerCap fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ContainerCap] from JSON.
+  static ContainerCap fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContainerCap.elementOnly.withElement(
-        element,
-      );
+      return ContainerCap.elementOnly.withElement(element);
     }
     return ContainerCap.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ContainerCap withElement(Element? newElement) {
-    return ContainerCap.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ContainerCap.$fhirCode';
 }

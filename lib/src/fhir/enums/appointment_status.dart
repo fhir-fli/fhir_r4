@@ -1,61 +1,111 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The free/busy status of an appointment.
-enum AppointmentStatus {
-  /// Display: Proposed
-  /// Definition: None of the participant(s) have finalized their acceptance of the appointment request, and the start/end time might not be set yet.
-  proposed('proposed'),
+class AppointmentStatus {
+  // Private constructor for internal use (like enum)
+  AppointmentStatus._(this.fhirCode, {this.element});
 
-  /// Display: Pending
-  /// Definition: Some or all of the participant(s) have not finalized their acceptance of the appointment request.
-  pending('pending'),
-
-  /// Display: Booked
-  /// Definition: All participant(s) have been considered and the appointment is confirmed to go ahead at the date/times specified.
-  booked('booked'),
-
-  /// Display: Arrived
-  /// Definition: The patient/patients has/have arrived and is/are waiting to be seen.
-  arrived('arrived'),
-
-  /// Display: Fulfilled
-  /// Definition: The planning stages of the appointment are now complete, the encounter resource will exist and will track further status changes. Note that an encounter may exist before the appointment status is fulfilled for many reasons.
-  fulfilled('fulfilled'),
-
-  /// Display: Cancelled
-  /// Definition: The appointment has been cancelled.
-  cancelled('cancelled'),
-
-  /// Display: No Show
-  /// Definition: Some or all of the participant(s) have not/did not appear for the appointment (usually the patient).
-  noshow('noshow'),
-
-  /// Display: Entered in error
-  /// Definition: This instance should not have been part of this patient's medical record.
-  entered_in_error('entered-in-error'),
-
-  /// Display: Checked In
-  /// Definition: When checked in, all pre-encounter administrative work is complete, and the encounter may begin. (where multiple patients are involved, they are all present).
-  checked_in('checked-in'),
-
-  /// Display: Waitlisted
-  /// Definition: The appointment has been placed on a waitlist, to be scheduled/confirmed in the future when a slot/service is available. A specific time might or might not be pre-allocated.
-  waitlist('waitlist'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const AppointmentStatus(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// AppointmentStatus values
+  /// proposed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AppointmentStatus proposed = AppointmentStatus._(
+    'proposed',
+  );
+
+  /// pending
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AppointmentStatus pending = AppointmentStatus._(
+    'pending',
+  );
+
+  /// booked
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AppointmentStatus booked = AppointmentStatus._(
+    'booked',
+  );
+
+  /// arrived
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AppointmentStatus arrived = AppointmentStatus._(
+    'arrived',
+  );
+
+  /// fulfilled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AppointmentStatus fulfilled = AppointmentStatus._(
+    'fulfilled',
+  );
+
+  /// cancelled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AppointmentStatus cancelled = AppointmentStatus._(
+    'cancelled',
+  );
+
+  /// noshow
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AppointmentStatus noshow = AppointmentStatus._(
+    'noshow',
+  );
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AppointmentStatus entered_in_error = AppointmentStatus._(
+    'entered-in-error',
+  );
+
+  /// checked_in
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AppointmentStatus checked_in = AppointmentStatus._(
+    'checked-in',
+  );
+
+  /// waitlist
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AppointmentStatus waitlist = AppointmentStatus._(
+    'waitlist',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final AppointmentStatus elementOnly = AppointmentStatus._('');
+
+  /// List of all enum-like values
+  static final List<AppointmentStatus> values = [
+    proposed,
+    pending,
+    booked,
+    arrived,
+    fulfilled,
+    cancelled,
+    noshow,
+    entered_in_error,
+    checked_in,
+    waitlist,
+  ];
+
+  /// Returns the enum value with an element attached
+  AppointmentStatus withElement(Element? newElement) {
+    return AppointmentStatus._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -63,28 +113,20 @@ enum AppointmentStatus {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [AppointmentStatus] instances.
-  static AppointmentStatus fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [AppointmentStatus] from JSON.
+  static AppointmentStatus fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AppointmentStatus.elementOnly.withElement(
-        element,
-      );
+      return AppointmentStatus.elementOnly.withElement(element);
     }
     return AppointmentStatus.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  AppointmentStatus withElement(Element? newElement) {
-    return AppointmentStatus.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'AppointmentStatus.$fhirCode';
 }

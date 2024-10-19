@@ -1,37 +1,66 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The handling of the variable in statistical analysis for exposures or outcomes (E.g. Dichotomous, Continuous, Descriptive).
-enum EvidenceVariableHandling {
-  /// Display: continuous variable
-  /// Definition: A continuous variable is one for which, within the limits the variable ranges, any value is possible (from STATO http://purl.obolibrary.org/obo/STATO_0000251).
-  continuous('continuous'),
+class EvidenceVariableHandling {
+  // Private constructor for internal use (like enum)
+  EvidenceVariableHandling._(this.fhirCode, {this.element});
 
-  /// Display: dichotomous variable
-  /// Definition: A dichotomous variable is a categorical variable which is defined to have only 2 categories or possible values (from STATO http://purl.obolibrary.org/obo/STATO_0000090).
-  dichotomous('dichotomous'),
-
-  /// Display: ordinal variable
-  /// Definition: An ordinal variable is a categorical variable where the discrete possible values are ordered or correspond to an implicit ranking (from STATO http://purl.obolibrary.org/obo/STATO_0000228).
-  ordinal('ordinal'),
-
-  /// Display: polychotomous variable
-  /// Definition: A polychotomous variable is a categorical variable which is defined to have minimally 2 categories or possible values. (from STATO http://purl.obolibrary.org/obo/STATO_0000087). Suggestion to limit code use to situations when neither dichotomous nor ordinal variables apply.
-  polychotomous('polychotomous'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const EvidenceVariableHandling(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// EvidenceVariableHandling values
+  /// continuous
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EvidenceVariableHandling continuous = EvidenceVariableHandling._(
+    'continuous',
+  );
+
+  /// dichotomous
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EvidenceVariableHandling dichotomous =
+      EvidenceVariableHandling._(
+    'dichotomous',
+  );
+
+  /// ordinal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EvidenceVariableHandling ordinal = EvidenceVariableHandling._(
+    'ordinal',
+  );
+
+  /// polychotomous
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EvidenceVariableHandling polychotomous =
+      EvidenceVariableHandling._(
+    'polychotomous',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final EvidenceVariableHandling elementOnly =
+      EvidenceVariableHandling._('');
+
+  /// List of all enum-like values
+  static final List<EvidenceVariableHandling> values = [
+    continuous,
+    dichotomous,
+    ordinal,
+    polychotomous,
+  ];
+
+  /// Returns the enum value with an element attached
+  EvidenceVariableHandling withElement(Element? newElement) {
+    return EvidenceVariableHandling._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -39,28 +68,20 @@ enum EvidenceVariableHandling {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [EvidenceVariableHandling] instances.
-  static EvidenceVariableHandling fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [EvidenceVariableHandling] from JSON.
+  static EvidenceVariableHandling fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EvidenceVariableHandling.elementOnly.withElement(
-        element,
-      );
+      return EvidenceVariableHandling.elementOnly.withElement(element);
     }
     return EvidenceVariableHandling.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  EvidenceVariableHandling withElement(Element? newElement) {
-    return EvidenceVariableHandling.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'EvidenceVariableHandling.$fhirCode';
 }

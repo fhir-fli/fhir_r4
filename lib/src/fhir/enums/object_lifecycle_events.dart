@@ -1,189 +1,367 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This example FHIR value set is comprised of lifecycle event codes. The FHIR Actor value set is based on DICOM Audit Message, ParticipantObjectDataLifeCycle; ISO Standard, TS 21089-2017;
-enum ObjectLifecycleEvents {
-  /// Display: Origination / Creation
-  /// Definition:
-  value1('1'),
+class ObjectLifecycleEvents {
+  // Private constructor for internal use (like enum)
+  ObjectLifecycleEvents._(this.fhirCode, {this.element});
 
-  /// Display: Import / Copy
-  /// Definition:
-  value2('2'),
-
-  /// Display: Amendment
-  /// Definition:
-  value3('3'),
-
-  /// Display: Verification
-  /// Definition:
-  value4('4'),
-
-  /// Display: Translation
-  /// Definition:
-  value5('5'),
-
-  /// Display: Access / Use
-  /// Definition:
-  value6('6'),
-
-  /// Display: De-identification
-  /// Definition:
-  value7('7'),
-
-  /// Display: Aggregation / summarization / derivation
-  /// Definition:
-  value8('8'),
-
-  /// Display: Report
-  /// Definition:
-  value9('9'),
-
-  /// Display: Export
-  /// Definition:
-  value10('10'),
-
-  /// Display: Disclosure
-  /// Definition:
-  value11('11'),
-
-  /// Display: Receipt of disclosure
-  /// Definition:
-  value12('12'),
-
-  /// Display: Archiving
-  /// Definition:
-  value13('13'),
-
-  /// Display: Logical deletion
-  /// Definition:
-  value14('14'),
-
-  /// Display: Permanent erasure / Physical destruction
-  /// Definition:
-  value15('15'),
-
-  /// Display: Access/View Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to obtain and open a record entry for inspection or review.
-  access('access'),
-
-  /// Display: Add Legal Hold Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to tag or otherwise indicate special access management and suspension of record entry deletion/destruction, if deemed relevant to a lawsuit or which are reasonably anticipated to be relevant or to fulfill organizational policy under the legal doctrine of “duty to preserve”.
-  hold('hold'),
-
-  /// Display: Amend (Update) Record Lifecycle Event
-  /// Definition: Occurs when an agent makes any change to record entry content currently residing in storage considered permanent (persistent).
-  amend('amend'),
-
-  /// Display: Archive Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to create and move archive artifacts containing record entry content, typically to long-term offline storage.
-  archive('archive'),
-
-  /// Display: Attest Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to capture the agent’s digital signature (or equivalent indication) during formal validation of record entry content.
-  attest('attest'),
-
-  /// Display: Decrypt Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to decode record entry content from a cipher.
-  decrypt('decrypt'),
-
-  /// Display: De-Identify (Anononymize) Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to scrub record entry content to reduce the association between a set of identifying data and the data subject in a way that might or might not be reversible.
-  deidentify('deidentify'),
-
-  /// Display: Deprecate Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to tag record entry(ies) as obsolete, erroneous or untrustworthy, to warn against its future use.
-  deprecate('deprecate'),
-
-  /// Display: Destroy/Delete Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to permanently erase record entry content from the system.
-  destroy('destroy'),
-
-  /// Display: Disclose Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to release, transfer, provision access to, or otherwise divulge record entry content.
-  disclose('disclose'),
-
-  /// Display: Encrypt Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to encode record entry content in a cipher.
-  encrypt('encrypt'),
-
-  /// Display: Extract Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to selectively pull out a subset of record entry content, based on explicit criteria.
-  extract('extract'),
-
-  /// Display: Link Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to connect related record entries.
-  link('link'),
-
-  /// Display: Merge Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to combine or join content from two or more record entries, resulting in a single logical record entry.
-  merge('merge'),
-
-  /// Display: Originate/Retain Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to: a) initiate capture of potential record content, and b) incorporate that content into the storage considered a permanent part of the health record.
-  originate('originate'),
-
-  /// Display: Pseudonymize Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to remove record entry content to reduce the association between a set of identifying data and the data subject in a way that may be reversible.
-  pseudonymize('pseudonymize'),
-
-  /// Display: Re-activate Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to recreate or restore full status to record entries previously deleted or deprecated.
-  reactivate('reactivate'),
-
-  /// Display: Receive/Retain Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to a) initiate capture of data content from elsewhere, and b) incorporate that content into the storage considered a permanent part of the health record.
-  receive('receive'),
-
-  /// Display: Re-identify Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to restore information to data that allows identification of information source and/or information subject.
-  reidentify('reidentify'),
-
-  /// Display: Remove Legal Hold Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to remove a tag or other cues for special access management had required to fulfill organizational policy under the legal doctrine of “duty to preserve”.
-  unhold('unhold'),
-
-  /// Display: Report (Output) Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to produce and deliver record entry content in a particular form and manner.
-  report('report'),
-
-  /// Display: Restore Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to recreate record entries and their content from a previous created archive artefact.
-  restore('restore'),
-
-  /// Display: Transform/Translate Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to change the form, language or code system used to represent record entry content.
-  transform('transform'),
-
-  /// Display: Transmit Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to send record entry content from one (EHR/PHR/other) system to another.
-  transmit('transmit'),
-
-  /// Display: Unlink Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to disconnect two or more record entries previously connected, rendering them separate (disconnected) again.
-  unlink('unlink'),
-
-  /// Display: Unmerge Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to reverse a previous record entry merge operation, rendering them separate again.
-  unmerge('unmerge'),
-
-  /// Display: Verify Record Lifecycle Event
-  /// Definition: Occurs when an agent causes the system to confirm compliance of data or data objects with regulations, requirements, specifications, or other imposed conditions based on organizational policy.
-  verify('verify'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ObjectLifecycleEvents(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ObjectLifecycleEvents values
+  /// value1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents value1 = ObjectLifecycleEvents._(
+    '1',
+  );
+
+  /// value2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents value2 = ObjectLifecycleEvents._(
+    '2',
+  );
+
+  /// value3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents value3 = ObjectLifecycleEvents._(
+    '3',
+  );
+
+  /// value4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents value4 = ObjectLifecycleEvents._(
+    '4',
+  );
+
+  /// value5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents value5 = ObjectLifecycleEvents._(
+    '5',
+  );
+
+  /// value6
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents value6 = ObjectLifecycleEvents._(
+    '6',
+  );
+
+  /// value7
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents value7 = ObjectLifecycleEvents._(
+    '7',
+  );
+
+  /// value8
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents value8 = ObjectLifecycleEvents._(
+    '8',
+  );
+
+  /// value9
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents value9 = ObjectLifecycleEvents._(
+    '9',
+  );
+
+  /// value10
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents value10 = ObjectLifecycleEvents._(
+    '10',
+  );
+
+  /// value11
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents value11 = ObjectLifecycleEvents._(
+    '11',
+  );
+
+  /// value12
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents value12 = ObjectLifecycleEvents._(
+    '12',
+  );
+
+  /// value13
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents value13 = ObjectLifecycleEvents._(
+    '13',
+  );
+
+  /// value14
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents value14 = ObjectLifecycleEvents._(
+    '14',
+  );
+
+  /// value15
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents value15 = ObjectLifecycleEvents._(
+    '15',
+  );
+
+  /// access
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents access = ObjectLifecycleEvents._(
+    'access',
+  );
+
+  /// hold
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents hold = ObjectLifecycleEvents._(
+    'hold',
+  );
+
+  /// amend
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents amend = ObjectLifecycleEvents._(
+    'amend',
+  );
+
+  /// archive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents archive = ObjectLifecycleEvents._(
+    'archive',
+  );
+
+  /// attest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents attest = ObjectLifecycleEvents._(
+    'attest',
+  );
+
+  /// decrypt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents decrypt = ObjectLifecycleEvents._(
+    'decrypt',
+  );
+
+  /// deidentify
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents deidentify = ObjectLifecycleEvents._(
+    'deidentify',
+  );
+
+  /// deprecate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents deprecate = ObjectLifecycleEvents._(
+    'deprecate',
+  );
+
+  /// destroy
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents destroy = ObjectLifecycleEvents._(
+    'destroy',
+  );
+
+  /// disclose
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents disclose = ObjectLifecycleEvents._(
+    'disclose',
+  );
+
+  /// encrypt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents encrypt = ObjectLifecycleEvents._(
+    'encrypt',
+  );
+
+  /// extract
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents extract = ObjectLifecycleEvents._(
+    'extract',
+  );
+
+  /// link
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents link = ObjectLifecycleEvents._(
+    'link',
+  );
+
+  /// merge
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents merge = ObjectLifecycleEvents._(
+    'merge',
+  );
+
+  /// originate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents originate = ObjectLifecycleEvents._(
+    'originate',
+  );
+
+  /// pseudonymize
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents pseudonymize = ObjectLifecycleEvents._(
+    'pseudonymize',
+  );
+
+  /// reactivate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents reactivate = ObjectLifecycleEvents._(
+    'reactivate',
+  );
+
+  /// receive
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents receive = ObjectLifecycleEvents._(
+    'receive',
+  );
+
+  /// reidentify
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents reidentify = ObjectLifecycleEvents._(
+    'reidentify',
+  );
+
+  /// unhold
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents unhold = ObjectLifecycleEvents._(
+    'unhold',
+  );
+
+  /// report
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents report = ObjectLifecycleEvents._(
+    'report',
+  );
+
+  /// restore
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents restore = ObjectLifecycleEvents._(
+    'restore',
+  );
+
+  /// transform
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents transform = ObjectLifecycleEvents._(
+    'transform',
+  );
+
+  /// transmit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents transmit = ObjectLifecycleEvents._(
+    'transmit',
+  );
+
+  /// unlink
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents unlink = ObjectLifecycleEvents._(
+    'unlink',
+  );
+
+  /// unmerge
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents unmerge = ObjectLifecycleEvents._(
+    'unmerge',
+  );
+
+  /// verify
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObjectLifecycleEvents verify = ObjectLifecycleEvents._(
+    'verify',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ObjectLifecycleEvents elementOnly = ObjectLifecycleEvents._('');
+
+  /// List of all enum-like values
+  static final List<ObjectLifecycleEvents> values = [
+    value1,
+    value2,
+    value3,
+    value4,
+    value5,
+    value6,
+    value7,
+    value8,
+    value9,
+    value10,
+    value11,
+    value12,
+    value13,
+    value14,
+    value15,
+    access,
+    hold,
+    amend,
+    archive,
+    attest,
+    decrypt,
+    deidentify,
+    deprecate,
+    destroy,
+    disclose,
+    encrypt,
+    extract,
+    link,
+    merge,
+    originate,
+    pseudonymize,
+    reactivate,
+    receive,
+    reidentify,
+    unhold,
+    report,
+    restore,
+    transform,
+    transmit,
+    unlink,
+    unmerge,
+    verify,
+  ];
+
+  /// Returns the enum value with an element attached
+  ObjectLifecycleEvents withElement(Element? newElement) {
+    return ObjectLifecycleEvents._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -191,28 +369,20 @@ enum ObjectLifecycleEvents {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ObjectLifecycleEvents] instances.
-  static ObjectLifecycleEvents fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ObjectLifecycleEvents] from JSON.
+  static ObjectLifecycleEvents fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObjectLifecycleEvents.elementOnly.withElement(
-        element,
-      );
+      return ObjectLifecycleEvents.elementOnly.withElement(element);
     }
     return ObjectLifecycleEvents.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ObjectLifecycleEvents withElement(Element? newElement) {
-    return ObjectLifecycleEvents.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ObjectLifecycleEvents.$fhirCode';
 }

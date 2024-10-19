@@ -1,57 +1,113 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes sample Revenue Center codes.
-enum ExampleRevenueCenterCodes {
-  /// Display: Anaesthesia
-  /// Definition: Anaesthesia.
-  value0370('0370'),
+class ExampleRevenueCenterCodes {
+  // Private constructor for internal use (like enum)
+  ExampleRevenueCenterCodes._(this.fhirCode, {this.element});
 
-  /// Display: Physical Therapy
-  /// Definition: Physical Therapy.
-  value0420('0420'),
-
-  /// Display: Physical Therapy -
-  /// Definition: Physical Therapy - visit charge.
-  value0421('0421'),
-
-  /// Display: Speech-Language Pathology
-  /// Definition: Speech-Language Pathology.
-  value0440('0440'),
-
-  /// Display: Speech-Language Pathology - Visit
-  /// Definition: Speech-Language Pathology- visit charge
-  value0441('0441'),
-
-  /// Display: Emergency Room
-  /// Definition: Emergency Room
-  value0450('0450'),
-
-  /// Display: Emergency Room - EM/EMTALA
-  /// Definition: Emergency Room - EM/EMTALA
-  value0451('0451'),
-
-  /// Display: Emergency Room - beyond EMTALA
-  /// Definition: Emergency Room - beyond EMTALA
-  value0452('0452'),
-
-  /// Display: Vision Clinic
-  /// Definition: Vision Clinic
-  value0010('0010'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ExampleRevenueCenterCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ExampleRevenueCenterCodes values
+  /// value0370
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExampleRevenueCenterCodes value0370 =
+      ExampleRevenueCenterCodes._(
+    '0370',
+  );
+
+  /// value0420
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExampleRevenueCenterCodes value0420 =
+      ExampleRevenueCenterCodes._(
+    '0420',
+  );
+
+  /// value0421
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExampleRevenueCenterCodes value0421 =
+      ExampleRevenueCenterCodes._(
+    '0421',
+  );
+
+  /// value0440
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExampleRevenueCenterCodes value0440 =
+      ExampleRevenueCenterCodes._(
+    '0440',
+  );
+
+  /// value0441
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExampleRevenueCenterCodes value0441 =
+      ExampleRevenueCenterCodes._(
+    '0441',
+  );
+
+  /// value0450
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExampleRevenueCenterCodes value0450 =
+      ExampleRevenueCenterCodes._(
+    '0450',
+  );
+
+  /// value0451
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExampleRevenueCenterCodes value0451 =
+      ExampleRevenueCenterCodes._(
+    '0451',
+  );
+
+  /// value0452
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExampleRevenueCenterCodes value0452 =
+      ExampleRevenueCenterCodes._(
+    '0452',
+  );
+
+  /// value0010
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExampleRevenueCenterCodes value0010 =
+      ExampleRevenueCenterCodes._(
+    '0010',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ExampleRevenueCenterCodes elementOnly =
+      ExampleRevenueCenterCodes._('');
+
+  /// List of all enum-like values
+  static final List<ExampleRevenueCenterCodes> values = [
+    value0370,
+    value0420,
+    value0421,
+    value0440,
+    value0441,
+    value0450,
+    value0451,
+    value0452,
+    value0010,
+  ];
+
+  /// Returns the enum value with an element attached
+  ExampleRevenueCenterCodes withElement(Element? newElement) {
+    return ExampleRevenueCenterCodes._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -59,28 +115,20 @@ enum ExampleRevenueCenterCodes {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ExampleRevenueCenterCodes] instances.
-  static ExampleRevenueCenterCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ExampleRevenueCenterCodes] from JSON.
+  static ExampleRevenueCenterCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleRevenueCenterCodes.elementOnly.withElement(
-        element,
-      );
+      return ExampleRevenueCenterCodes.elementOnly.withElement(element);
     }
     return ExampleRevenueCenterCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ExampleRevenueCenterCodes withElement(Element? newElement) {
-    return ExampleRevenueCenterCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ExampleRevenueCenterCodes.$fhirCode';
 }

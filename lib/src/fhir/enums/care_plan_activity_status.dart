@@ -1,57 +1,105 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes that reflect the current state of a care plan activity within its overall life cycle.
-enum CarePlanActivityStatus {
-  /// Display: Not Started
-  /// Definition: Care plan activity is planned but no action has yet been taken.
-  not_started('not-started'),
+class CarePlanActivityStatus {
+  // Private constructor for internal use (like enum)
+  CarePlanActivityStatus._(this.fhirCode, {this.element});
 
-  /// Display: Scheduled
-  /// Definition: Appointment or other booking has occurred but activity has not yet begun.
-  scheduled('scheduled'),
-
-  /// Display: In Progress
-  /// Definition: Care plan activity has been started but is not yet complete.
-  in_progress('in-progress'),
-
-  /// Display: On Hold
-  /// Definition: Care plan activity was started but has temporarily ceased with an expectation of resumption at a future time.
-  on_hold('on-hold'),
-
-  /// Display: Completed
-  /// Definition: Care plan activity has been completed (more or less) as planned.
-  completed('completed'),
-
-  /// Display: Cancelled
-  /// Definition: The planned care plan activity has been withdrawn.
-  cancelled('cancelled'),
-
-  /// Display: Stopped
-  /// Definition: The planned care plan activity has been ended prior to completion after the activity was started.
-  stopped('stopped'),
-
-  /// Display: Unknown
-  /// Definition: The current state of the care plan activity is not known. Note: This concept is not to be used for "other" - one of the listed statuses is presumed to apply, but the authoring/source system does not know which one.
-  unknown('unknown'),
-
-  /// Display: Entered in Error
-  /// Definition: Care plan activity was entered in error and voided.
-  entered_in_error('entered-in-error'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const CarePlanActivityStatus(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// CarePlanActivityStatus values
+  /// not_started
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CarePlanActivityStatus not_started = CarePlanActivityStatus._(
+    'not-started',
+  );
+
+  /// scheduled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CarePlanActivityStatus scheduled = CarePlanActivityStatus._(
+    'scheduled',
+  );
+
+  /// in_progress
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CarePlanActivityStatus in_progress = CarePlanActivityStatus._(
+    'in-progress',
+  );
+
+  /// on_hold
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CarePlanActivityStatus on_hold = CarePlanActivityStatus._(
+    'on-hold',
+  );
+
+  /// completed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CarePlanActivityStatus completed = CarePlanActivityStatus._(
+    'completed',
+  );
+
+  /// cancelled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CarePlanActivityStatus cancelled = CarePlanActivityStatus._(
+    'cancelled',
+  );
+
+  /// stopped
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CarePlanActivityStatus stopped = CarePlanActivityStatus._(
+    'stopped',
+  );
+
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CarePlanActivityStatus unknown = CarePlanActivityStatus._(
+    'unknown',
+  );
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CarePlanActivityStatus entered_in_error =
+      CarePlanActivityStatus._(
+    'entered-in-error',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final CarePlanActivityStatus elementOnly =
+      CarePlanActivityStatus._('');
+
+  /// List of all enum-like values
+  static final List<CarePlanActivityStatus> values = [
+    not_started,
+    scheduled,
+    in_progress,
+    on_hold,
+    completed,
+    cancelled,
+    stopped,
+    unknown,
+    entered_in_error,
+  ];
+
+  /// Returns the enum value with an element attached
+  CarePlanActivityStatus withElement(Element? newElement) {
+    return CarePlanActivityStatus._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -59,28 +107,20 @@ enum CarePlanActivityStatus {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [CarePlanActivityStatus] instances.
-  static CarePlanActivityStatus fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [CarePlanActivityStatus] from JSON.
+  static CarePlanActivityStatus fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CarePlanActivityStatus.elementOnly.withElement(
-        element,
-      );
+      return CarePlanActivityStatus.elementOnly.withElement(element);
     }
     return CarePlanActivityStatus.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  CarePlanActivityStatus withElement(Element? newElement) {
-    return CarePlanActivityStatus.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'CarePlanActivityStatus.$fhirCode';
 }

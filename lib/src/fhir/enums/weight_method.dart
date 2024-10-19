@@ -1,53 +1,95 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The method by which the substance weight was measured.
-enum WeightMethod {
-  /// Display: SDS-PAGE (sodium dodecyl sulfate-polyacrylamide gel electrophoresis)
-  /// Definition:
-  SDS_PAGE('SDS-PAGE'),
+class WeightMethod {
+  // Private constructor for internal use (like enum)
+  WeightMethod._(this.fhirCode, {this.element});
 
-  /// Display: calculated
-  /// Definition:
-  Calculated('Calculated'),
-
-  /// Display: light scattering
-  /// Definition:
-  LighScattering('LighScattering'),
-
-  /// Display: viscosity
-  /// Definition:
-  Viscosity('Viscosity'),
-
-  /// Display: gel permeation centrifugation
-  /// Definition:
-  GelPermeationCentrifugation('GelPermeationCentrifugation'),
-
-  /// Display: End-group analysis
-  /// Definition:
-  End_groupAnalysis('End-groupAnalysis'),
-
-  /// Display: End-group titration
-  /// Definition:
-  End_groupTitration('End-groupTitration'),
-
-  /// Display: Size-exclusion chromatography
-  /// Definition:
-  Size_ExclusionChromatography('Size-ExclusionChromatography'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const WeightMethod(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// WeightMethod values
+  /// SDS_PAGE
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final WeightMethod SDS_PAGE = WeightMethod._(
+    'SDS-PAGE',
+  );
+
+  /// Calculated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final WeightMethod Calculated = WeightMethod._(
+    'Calculated',
+  );
+
+  /// LighScattering
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final WeightMethod LighScattering = WeightMethod._(
+    'LighScattering',
+  );
+
+  /// Viscosity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final WeightMethod Viscosity = WeightMethod._(
+    'Viscosity',
+  );
+
+  /// GelPermeationCentrifugation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final WeightMethod GelPermeationCentrifugation = WeightMethod._(
+    'GelPermeationCentrifugation',
+  );
+
+  /// End_groupAnalysis
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final WeightMethod End_groupAnalysis = WeightMethod._(
+    'End-groupAnalysis',
+  );
+
+  /// End_groupTitration
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final WeightMethod End_groupTitration = WeightMethod._(
+    'End-groupTitration',
+  );
+
+  /// Size_ExclusionChromatography
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final WeightMethod Size_ExclusionChromatography = WeightMethod._(
+    'Size-ExclusionChromatography',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final WeightMethod elementOnly = WeightMethod._('');
+
+  /// List of all enum-like values
+  static final List<WeightMethod> values = [
+    SDS_PAGE,
+    Calculated,
+    LighScattering,
+    Viscosity,
+    GelPermeationCentrifugation,
+    End_groupAnalysis,
+    End_groupTitration,
+    Size_ExclusionChromatography,
+  ];
+
+  /// Returns the enum value with an element attached
+  WeightMethod withElement(Element? newElement) {
+    return WeightMethod._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -55,28 +97,20 @@ enum WeightMethod {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [WeightMethod] instances.
-  static WeightMethod fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [WeightMethod] from JSON.
+  static WeightMethod fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return WeightMethod.elementOnly.withElement(
-        element,
-      );
+      return WeightMethod.elementOnly.withElement(element);
     }
     return WeightMethod.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  WeightMethod withElement(Element? newElement) {
-    return WeightMethod.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'WeightMethod.$fhirCode';
 }

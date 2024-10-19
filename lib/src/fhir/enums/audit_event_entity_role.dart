@@ -1,117 +1,223 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Code representing the role the entity played in the audit event.
-enum AuditEventEntityRole {
-  /// Display: Patient
-  /// Definition: This object is the patient that is the subject of care related to this event. It is identifiable by patient ID or equivalent. The patient may be either human or animal.
-  value1('1'),
+class AuditEventEntityRole {
+  // Private constructor for internal use (like enum)
+  AuditEventEntityRole._(this.fhirCode, {this.element});
 
-  /// Display: Location
-  /// Definition: This is a location identified as related to the event. This is usually the location where the event took place. Note that for shipping, the usual events are arrival at a location or departure from a location.
-  value2('2'),
-
-  /// Display: Report
-  /// Definition: This object is any kind of persistent document created as a result of the event. This could be a paper report, film, electronic report, DICOM Study, etc. Issues related to medical records life cycle management are conveyed elsewhere.
-  value3('3'),
-
-  /// Display: Domain Resource
-  /// Definition: A logical object related to a health record event. This is any healthcare specific resource (object) not restricted to FHIR defined Resources.
-  value4('4'),
-
-  /// Display: Master file
-  /// Definition: This is any configurable file used to control creation of documents. Examples include the objects maintained by the HL7 Master File transactions, Value Sets, etc.
-  value5('5'),
-
-  /// Display: User
-  /// Definition: A human participant not otherwise identified by some other category.
-  value6('6'),
-
-  /// Display: List
-  /// Definition: (deprecated).
-  value7('7'),
-
-  /// Display: Doctor
-  /// Definition: Typically, a licensed person who is providing or performing care related to the event, generally a physician. The key distinction between doctor and practitioner is with regards to their role, not the licensing. The doctor is the human who actually performed the work. The practitioner is the human or organization that is responsible for the work.
-  value8('8'),
-
-  /// Display: Subscriber
-  /// Definition: A person or system that is being notified as part of the event. This is relevant in situations where automated systems provide notifications to other parties when an event took place.
-  value9('9'),
-
-  /// Display: Guarantor
-  /// Definition: Insurance company, or any other organization who accepts responsibility for paying for the healthcare event.
-  value10('10'),
-
-  /// Display: Security User Entity
-  /// Definition: A person or active system object involved in the event with a security role.
-  value11('11'),
-
-  /// Display: Security User Group
-  /// Definition: A person or system object involved in the event with the authority to modify security roles of other objects.
-  value12('12'),
-
-  /// Display: Security Resource
-  /// Definition: A passive object, such as a role table, that is relevant to the event.
-  value13('13'),
-
-  /// Display: Security Granularity Definition
-  /// Definition: (deprecated) Relevant to certain RBAC security methodologies.
-  value14('14'),
-
-  /// Display: Practitioner
-  /// Definition: Any person or organization responsible for providing care. This encompasses all forms of care, licensed or otherwise, and all sorts of teams and care groups. Note the distinction between practitioner and the doctor that actually provided the care to the patient.
-  value15('15'),
-
-  /// Display: Data Destination
-  /// Definition: The source or destination for data transfer, when it does not match some other role.
-  value16('16'),
-
-  /// Display: Data Repository
-  /// Definition: A source or destination for data transfer that acts as an archive, database, or similar role.
-  value17('17'),
-
-  /// Display: Schedule
-  /// Definition: An object that holds schedule information. This could be an appointment book, availability information, etc.
-  value18('18'),
-
-  /// Display: Customer
-  /// Definition: An organization or person that is the recipient of services. This could be an organization that is buying services for a patient, or a person that is buying services for an animal.
-  value19('19'),
-
-  /// Display: Job
-  /// Definition: An order, task, work item, procedure step, or other description of work to be performed; e.g. a particular instance of an MPPS.
-  value20('20'),
-
-  /// Display: Job Stream
-  /// Definition: A list of jobs or a system that provides lists of jobs; e.g. an MWL SCP.
-  value21('21'),
-
-  /// Display: Table
-  /// Definition: (Deprecated).
-  value22('22'),
-
-  /// Display: Routing Criteria
-  /// Definition: An object that specifies or controls the routing or delivery of items. For example, a distribution list is the routing criteria for mail. The items delivered may be documents, jobs, or other objects.
-  value23('23'),
-
-  /// Display: Query
-  /// Definition: The contents of a query. This is used to capture the contents of any kind of query. For security surveillance purposes knowing the queries being made is very important.
-  value24('24'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const AuditEventEntityRole(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// AuditEventEntityRole values
+  /// value1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value1 = AuditEventEntityRole._(
+    '1',
+  );
+
+  /// value2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value2 = AuditEventEntityRole._(
+    '2',
+  );
+
+  /// value3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value3 = AuditEventEntityRole._(
+    '3',
+  );
+
+  /// value4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value4 = AuditEventEntityRole._(
+    '4',
+  );
+
+  /// value5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value5 = AuditEventEntityRole._(
+    '5',
+  );
+
+  /// value6
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value6 = AuditEventEntityRole._(
+    '6',
+  );
+
+  /// value7
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value7 = AuditEventEntityRole._(
+    '7',
+  );
+
+  /// value8
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value8 = AuditEventEntityRole._(
+    '8',
+  );
+
+  /// value9
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value9 = AuditEventEntityRole._(
+    '9',
+  );
+
+  /// value10
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value10 = AuditEventEntityRole._(
+    '10',
+  );
+
+  /// value11
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value11 = AuditEventEntityRole._(
+    '11',
+  );
+
+  /// value12
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value12 = AuditEventEntityRole._(
+    '12',
+  );
+
+  /// value13
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value13 = AuditEventEntityRole._(
+    '13',
+  );
+
+  /// value14
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value14 = AuditEventEntityRole._(
+    '14',
+  );
+
+  /// value15
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value15 = AuditEventEntityRole._(
+    '15',
+  );
+
+  /// value16
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value16 = AuditEventEntityRole._(
+    '16',
+  );
+
+  /// value17
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value17 = AuditEventEntityRole._(
+    '17',
+  );
+
+  /// value18
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value18 = AuditEventEntityRole._(
+    '18',
+  );
+
+  /// value19
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value19 = AuditEventEntityRole._(
+    '19',
+  );
+
+  /// value20
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value20 = AuditEventEntityRole._(
+    '20',
+  );
+
+  /// value21
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value21 = AuditEventEntityRole._(
+    '21',
+  );
+
+  /// value22
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value22 = AuditEventEntityRole._(
+    '22',
+  );
+
+  /// value23
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value23 = AuditEventEntityRole._(
+    '23',
+  );
+
+  /// value24
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AuditEventEntityRole value24 = AuditEventEntityRole._(
+    '24',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final AuditEventEntityRole elementOnly = AuditEventEntityRole._('');
+
+  /// List of all enum-like values
+  static final List<AuditEventEntityRole> values = [
+    value1,
+    value2,
+    value3,
+    value4,
+    value5,
+    value6,
+    value7,
+    value8,
+    value9,
+    value10,
+    value11,
+    value12,
+    value13,
+    value14,
+    value15,
+    value16,
+    value17,
+    value18,
+    value19,
+    value20,
+    value21,
+    value22,
+    value23,
+    value24,
+  ];
+
+  /// Returns the enum value with an element attached
+  AuditEventEntityRole withElement(Element? newElement) {
+    return AuditEventEntityRole._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -119,28 +225,20 @@ enum AuditEventEntityRole {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [AuditEventEntityRole] instances.
-  static AuditEventEntityRole fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [AuditEventEntityRole] from JSON.
+  static AuditEventEntityRole fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AuditEventEntityRole.elementOnly.withElement(
-        element,
-      );
+      return AuditEventEntityRole.elementOnly.withElement(element);
     }
     return AuditEventEntityRole.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  AuditEventEntityRole withElement(Element? newElement) {
-    return AuditEventEntityRole.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'AuditEventEntityRole.$fhirCode';
 }

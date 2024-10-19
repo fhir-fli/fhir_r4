@@ -1,49 +1,88 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The criteria by which a question is enabled.
-enum QuestionnaireItemOperator {
-  /// Display: Exists
-  /// Definition: True if whether an answer exists is equal to the enableWhen answer (which must be a boolean).
-  exists('exists'),
+class QuestionnaireItemOperator {
+  // Private constructor for internal use (like enum)
+  QuestionnaireItemOperator._(this.fhirCode, {this.element});
 
-  /// Display: Equals
-  /// Definition: True if whether at least one answer has a value that is equal to the enableWhen answer.
-  eq('='),
-
-  /// Display: Not Equals
-  /// Definition: True if whether at least no answer has a value that is equal to the enableWhen answer.
-  ne('!='),
-
-  /// Display: Greater Than
-  /// Definition: True if whether at least no answer has a value that is greater than the enableWhen answer.
-  gt('>'),
-
-  /// Display: Less Than
-  /// Definition: True if whether at least no answer has a value that is less than the enableWhen answer.
-  lt('<'),
-
-  /// Display: Greater or Equals
-  /// Definition: True if whether at least no answer has a value that is greater or equal to the enableWhen answer.
-  ge('>='),
-
-  /// Display: Less or Equals
-  /// Definition: True if whether at least no answer has a value that is less or equal to the enableWhen answer.
-  le('<='),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const QuestionnaireItemOperator(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// QuestionnaireItemOperator values
+  /// exists
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuestionnaireItemOperator exists = QuestionnaireItemOperator._(
+    'exists',
+  );
+
+  /// eq
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuestionnaireItemOperator eq = QuestionnaireItemOperator._(
+    '=',
+  );
+
+  /// ne
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuestionnaireItemOperator ne = QuestionnaireItemOperator._(
+    '!=',
+  );
+
+  /// gt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuestionnaireItemOperator gt = QuestionnaireItemOperator._(
+    '>',
+  );
+
+  /// lt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuestionnaireItemOperator lt = QuestionnaireItemOperator._(
+    '<',
+  );
+
+  /// ge
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuestionnaireItemOperator ge = QuestionnaireItemOperator._(
+    '>=',
+  );
+
+  /// le
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuestionnaireItemOperator le = QuestionnaireItemOperator._(
+    '<=',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final QuestionnaireItemOperator elementOnly =
+      QuestionnaireItemOperator._('');
+
+  /// List of all enum-like values
+  static final List<QuestionnaireItemOperator> values = [
+    exists,
+    eq,
+    ne,
+    gt,
+    lt,
+    ge,
+    le,
+  ];
+
+  /// Returns the enum value with an element attached
+  QuestionnaireItemOperator withElement(Element? newElement) {
+    return QuestionnaireItemOperator._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -51,28 +90,20 @@ enum QuestionnaireItemOperator {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [QuestionnaireItemOperator] instances.
-  static QuestionnaireItemOperator fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [QuestionnaireItemOperator] from JSON.
+  static QuestionnaireItemOperator fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QuestionnaireItemOperator.elementOnly.withElement(
-        element,
-      );
+      return QuestionnaireItemOperator.elementOnly.withElement(element);
     }
     return QuestionnaireItemOperator.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  QuestionnaireItemOperator withElement(Element? newElement) {
-    return QuestionnaireItemOperator.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'QuestionnaireItemOperator.$fhirCode';
 }

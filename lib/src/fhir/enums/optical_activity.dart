@@ -1,29 +1,47 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The optical rotation type of a substance.
-enum OpticalActivity {
-  /// Display: dextrorotary
-  /// Definition:
-  _('+'),
+class OpticalActivity {
+  // Private constructor for internal use (like enum)
+  OpticalActivity._(this.fhirCode, {this.element});
 
-  /// Display: levorotary
-  /// Definition:
-  __1('-'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const OpticalActivity(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// OpticalActivity values
+  /// plus
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OpticalActivity plus = OpticalActivity._(
+    '+',
+  );
+
+  /// minus
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OpticalActivity minus = OpticalActivity._(
+    '-',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final OpticalActivity elementOnly = OpticalActivity._('');
+
+  /// List of all enum-like values
+  static final List<OpticalActivity> values = [
+    plus,
+    minus,
+  ];
+
+  /// Returns the enum value with an element attached
+  OpticalActivity withElement(Element? newElement) {
+    return OpticalActivity._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -31,28 +49,20 @@ enum OpticalActivity {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [OpticalActivity] instances.
-  static OpticalActivity fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [OpticalActivity] from JSON.
+  static OpticalActivity fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return OpticalActivity.elementOnly.withElement(
-        element,
-      );
+      return OpticalActivity.elementOnly.withElement(element);
     }
     return OpticalActivity.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  OpticalActivity withElement(Element? newElement) {
-    return OpticalActivity.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'OpticalActivity.$fhirCode';
 }

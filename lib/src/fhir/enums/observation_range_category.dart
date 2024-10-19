@@ -1,33 +1,56 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes identifying the category of observation range.
-enum ObservationRangeCategory {
-  /// Display: reference range
-  /// Definition: Reference (Normal) Range for Ordinal and Continuous Observations.
-  reference('reference'),
+class ObservationRangeCategory {
+  // Private constructor for internal use (like enum)
+  ObservationRangeCategory._(this.fhirCode, {this.element});
 
-  /// Display: critical range
-  /// Definition: Critical Range for Ordinal and Continuous Observations.
-  critical('critical'),
-
-  /// Display: absolute range
-  /// Definition: Absolute Range for Ordinal and Continuous Observations. Results outside this range are not possible.
-  absolute('absolute'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ObservationRangeCategory(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ObservationRangeCategory values
+  /// reference
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObservationRangeCategory reference = ObservationRangeCategory._(
+    'reference',
+  );
+
+  /// critical
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObservationRangeCategory critical = ObservationRangeCategory._(
+    'critical',
+  );
+
+  /// absolute
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObservationRangeCategory absolute = ObservationRangeCategory._(
+    'absolute',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ObservationRangeCategory elementOnly =
+      ObservationRangeCategory._('');
+
+  /// List of all enum-like values
+  static final List<ObservationRangeCategory> values = [
+    reference,
+    critical,
+    absolute,
+  ];
+
+  /// Returns the enum value with an element attached
+  ObservationRangeCategory withElement(Element? newElement) {
+    return ObservationRangeCategory._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +58,20 @@ enum ObservationRangeCategory {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ObservationRangeCategory] instances.
-  static ObservationRangeCategory fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ObservationRangeCategory] from JSON.
+  static ObservationRangeCategory fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObservationRangeCategory.elementOnly.withElement(
-        element,
-      );
+      return ObservationRangeCategory.elementOnly.withElement(element);
     }
     return ObservationRangeCategory.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ObservationRangeCategory withElement(Element? newElement) {
-    return ObservationRangeCategory.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ObservationRangeCategory.$fhirCode';
 }

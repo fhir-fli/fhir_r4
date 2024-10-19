@@ -1,33 +1,55 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The possible types of research elements (E.g. Population, Exposure, Outcome).
-enum ResearchElementType {
-  /// Display: Population
-  /// Definition: The element defines the population that forms the basis for research.
-  population('population'),
+class ResearchElementType {
+  // Private constructor for internal use (like enum)
+  ResearchElementType._(this.fhirCode, {this.element});
 
-  /// Display: Exposure
-  /// Definition: The element defines an exposure within the population that is being researched.
-  exposure('exposure'),
-
-  /// Display: Outcome
-  /// Definition: The element defines an outcome within the population that is being researched.
-  outcome('outcome'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ResearchElementType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ResearchElementType values
+  /// population
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ResearchElementType population = ResearchElementType._(
+    'population',
+  );
+
+  /// exposure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ResearchElementType exposure = ResearchElementType._(
+    'exposure',
+  );
+
+  /// outcome
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ResearchElementType outcome = ResearchElementType._(
+    'outcome',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ResearchElementType elementOnly = ResearchElementType._('');
+
+  /// List of all enum-like values
+  static final List<ResearchElementType> values = [
+    population,
+    exposure,
+    outcome,
+  ];
+
+  /// Returns the enum value with an element attached
+  ResearchElementType withElement(Element? newElement) {
+    return ResearchElementType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +57,20 @@ enum ResearchElementType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ResearchElementType] instances.
-  static ResearchElementType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ResearchElementType] from JSON.
+  static ResearchElementType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ResearchElementType.elementOnly.withElement(
-        element,
-      );
+      return ResearchElementType.elementOnly.withElement(element);
     }
     return ResearchElementType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ResearchElementType withElement(Element? newElement) {
-    return ResearchElementType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ResearchElementType.$fhirCode';
 }

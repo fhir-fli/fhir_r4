@@ -1,133 +1,264 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Evidence Report Section Type.
-enum ReportSectionType {
-  /// Display: Evidence Results
-  /// Definition: Evidence Results.
-  Evidence('Evidence'),
+class ReportSectionType {
+  // Private constructor for internal use (like enum)
+  ReportSectionType._(this.fhirCode, {this.element});
 
-  /// Display: Evidence Results for the intervention exposure only
-  /// Definition: Evidence Results for the intervention exposure only.
-  Intervention_group_alone_Evidence('Intervention-group-alone-Evidence'),
-
-  /// Display: Evidence Results for comparison of Intervention and Control
-  /// Definition: Evidence Results for comparison of Intervention and Control.
-  Intervention_vs_Control_Evidence('Intervention-vs-Control-Evidence'),
-
-  /// Display: Evidence Results for the control exposure only
-  /// Definition: Evidence Results for the control exposure only.
-  Control_group_alone_Evidence('Control-group-alone-Evidence'),
-
-  /// Display: Evidence Variables used
-  /// Definition: Evidence Variables used.
-  EvidenceVariable('EvidenceVariable'),
-
-  /// Display: Evidence Variables actually observed
-  /// Definition: Evidence Variables as observed in the research data.
-  EvidenceVariable_observed('EvidenceVariable-observed'),
-
-  /// Display: Evidence Variables intended for interpretation
-  /// Definition: Evidence Variables intended for interpretation.
-  EvidenceVariable_intended('EvidenceVariable-intended'),
-
-  /// Display: Evidence Variable in variable role Population
-  /// Definition: Evidence Variable in variable role Population.
-  EvidenceVariable_population('EvidenceVariable-population'),
-
-  /// Display: Evidence Variable in variable role Exposure
-  /// Definition: Evidence Variable in variable role Exposure.
-  EvidenceVariable_exposure('EvidenceVariable-exposure'),
-
-  /// Display: Evidence Variable in variable role Outcome (MeasuredVariable)
-  /// Definition: Evidence Variable in variable role Outcome (MeasuredVariable).
-  EvidenceVariable_outcome('EvidenceVariable-outcome'),
-
-  /// Display: Efficacy-outcomes
-  /// Definition: Outcomes related to efficacy or potential benefits of interventions.
-  Efficacy_outcomes('Efficacy-outcomes'),
-
-  /// Display: Harms outcomes
-  /// Definition: Outcomes related to adverse effects or potential harms of interventions.
-  Harms_outcomes('Harms-outcomes'),
-
-  /// Display: Sample Size
-  /// Definition: Sample Size.
-  SampleSize('SampleSize'),
-
-  /// Display: References
-  /// Definition: References.
-  References('References'),
-
-  /// Display: Assertion
-  /// Definition: Assertion.
-  Assertion('Assertion'),
-
-  /// Display: Reasons
-  /// Definition: Reasons.
-  Reasons('Reasons'),
-
-  /// Display: Certainty of Evidence
-  /// Definition: Certainty of Evidence.
-  Certainty_of_Evidence('Certainty-of-Evidence'),
-
-  /// Display: Evidence Classifier section
-  /// Definition: This section is used for classifiers of the evidence.
-  Evidence_Classifier('Evidence-Classifier'),
-
-  /// Display: Warnings
-  /// Definition: Warnings.
-  Warnings('Warnings'),
-
-  /// Display: Text Summary
-  /// Definition: Denotes a section specifying text summary for a report.
-  Text_Summary('Text-Summary'),
-
-  /// Display: Summary of Body of Evidence Findings
-  /// Definition: Summary of Body of Evidence Findings.
-  SummaryOfBodyOfEvidenceFindings('SummaryOfBodyOfEvidenceFindings'),
-
-  /// Display: Summary of Individual Study Findings
-  /// Definition: Summary of Individual Study Findings.
-  SummaryOfIndividualStudyFindings('SummaryOfIndividualStudyFindings'),
-
-  /// Display: Header
-  /// Definition: Denotes the header to use for a Text Summary or above a Table.
-  Header('Header'),
-
-  /// Display: Tables
-  /// Definition: Tables.
-  Tables('Tables'),
-
-  /// Display: Table
-  /// Definition:
-  Table('Table'),
-
-  /// Display: Row Headers
-  /// Definition: Denotes a section specifying row headers for a tabular report.
-  Row_Headers('Row-Headers'),
-
-  /// Display: Column Header
-  /// Definition: Denotes the header to use for the column for a tabular report.
-  Column_Header('Column-Header'),
-
-  /// Display: Column Headers
-  /// Definition: Denotes a section specifying column headers for a tabular report.
-  Column_Headers('Column-Headers'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ReportSectionType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ReportSectionType values
+  /// Evidence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Evidence = ReportSectionType._(
+    'Evidence',
+  );
+
+  /// Intervention_group_alone_Evidence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Intervention_group_alone_Evidence =
+      ReportSectionType._(
+    'Intervention-group-alone-Evidence',
+  );
+
+  /// Intervention_vs_Control_Evidence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Intervention_vs_Control_Evidence =
+      ReportSectionType._(
+    'Intervention-vs-Control-Evidence',
+  );
+
+  /// Control_group_alone_Evidence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Control_group_alone_Evidence =
+      ReportSectionType._(
+    'Control-group-alone-Evidence',
+  );
+
+  /// EvidenceVariable
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType EvidenceVariable = ReportSectionType._(
+    'EvidenceVariable',
+  );
+
+  /// EvidenceVariable_observed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType EvidenceVariable_observed =
+      ReportSectionType._(
+    'EvidenceVariable-observed',
+  );
+
+  /// EvidenceVariable_intended
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType EvidenceVariable_intended =
+      ReportSectionType._(
+    'EvidenceVariable-intended',
+  );
+
+  /// EvidenceVariable_population
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType EvidenceVariable_population =
+      ReportSectionType._(
+    'EvidenceVariable-population',
+  );
+
+  /// EvidenceVariable_exposure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType EvidenceVariable_exposure =
+      ReportSectionType._(
+    'EvidenceVariable-exposure',
+  );
+
+  /// EvidenceVariable_outcome
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType EvidenceVariable_outcome = ReportSectionType._(
+    'EvidenceVariable-outcome',
+  );
+
+  /// Efficacy_outcomes
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Efficacy_outcomes = ReportSectionType._(
+    'Efficacy-outcomes',
+  );
+
+  /// Harms_outcomes
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Harms_outcomes = ReportSectionType._(
+    'Harms-outcomes',
+  );
+
+  /// SampleSize
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType SampleSize = ReportSectionType._(
+    'SampleSize',
+  );
+
+  /// References
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType References = ReportSectionType._(
+    'References',
+  );
+
+  /// Assertion
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Assertion = ReportSectionType._(
+    'Assertion',
+  );
+
+  /// Reasons
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Reasons = ReportSectionType._(
+    'Reasons',
+  );
+
+  /// Certainty_of_Evidence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Certainty_of_Evidence = ReportSectionType._(
+    'Certainty-of-Evidence',
+  );
+
+  /// Evidence_Classifier
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Evidence_Classifier = ReportSectionType._(
+    'Evidence-Classifier',
+  );
+
+  /// Warnings
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Warnings = ReportSectionType._(
+    'Warnings',
+  );
+
+  /// Text_Summary
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Text_Summary = ReportSectionType._(
+    'Text-Summary',
+  );
+
+  /// SummaryOfBodyOfEvidenceFindings
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType SummaryOfBodyOfEvidenceFindings =
+      ReportSectionType._(
+    'SummaryOfBodyOfEvidenceFindings',
+  );
+
+  /// SummaryOfIndividualStudyFindings
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType SummaryOfIndividualStudyFindings =
+      ReportSectionType._(
+    'SummaryOfIndividualStudyFindings',
+  );
+
+  /// Header
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Header = ReportSectionType._(
+    'Header',
+  );
+
+  /// Tables
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Tables = ReportSectionType._(
+    'Tables',
+  );
+
+  /// Table
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Table = ReportSectionType._(
+    'Table',
+  );
+
+  /// Row_Headers
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Row_Headers = ReportSectionType._(
+    'Row-Headers',
+  );
+
+  /// Column_Header
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Column_Header = ReportSectionType._(
+    'Column-Header',
+  );
+
+  /// Column_Headers
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ReportSectionType Column_Headers = ReportSectionType._(
+    'Column-Headers',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ReportSectionType elementOnly = ReportSectionType._('');
+
+  /// List of all enum-like values
+  static final List<ReportSectionType> values = [
+    Evidence,
+    Intervention_group_alone_Evidence,
+    Intervention_vs_Control_Evidence,
+    Control_group_alone_Evidence,
+    EvidenceVariable,
+    EvidenceVariable_observed,
+    EvidenceVariable_intended,
+    EvidenceVariable_population,
+    EvidenceVariable_exposure,
+    EvidenceVariable_outcome,
+    Efficacy_outcomes,
+    Harms_outcomes,
+    SampleSize,
+    References,
+    Assertion,
+    Reasons,
+    Certainty_of_Evidence,
+    Evidence_Classifier,
+    Warnings,
+    Text_Summary,
+    SummaryOfBodyOfEvidenceFindings,
+    SummaryOfIndividualStudyFindings,
+    Header,
+    Tables,
+    Table,
+    Row_Headers,
+    Column_Header,
+    Column_Headers,
+  ];
+
+  /// Returns the enum value with an element attached
+  ReportSectionType withElement(Element? newElement) {
+    return ReportSectionType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -135,28 +266,20 @@ enum ReportSectionType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ReportSectionType] instances.
-  static ReportSectionType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ReportSectionType] from JSON.
+  static ReportSectionType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ReportSectionType.elementOnly.withElement(
-        element,
-      );
+      return ReportSectionType.elementOnly.withElement(element);
     }
     return ReportSectionType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ReportSectionType withElement(Element? newElement) {
-    return ReportSectionType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ReportSectionType.$fhirCode';
 }

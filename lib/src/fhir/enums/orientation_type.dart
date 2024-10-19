@@ -1,29 +1,47 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Type for orientation.
-enum OrientationType {
-  /// Display: Sense orientation of referenceSeq
-  /// Definition: Sense orientation of reference sequence.
-  sense('sense'),
+class OrientationType {
+  // Private constructor for internal use (like enum)
+  OrientationType._(this.fhirCode, {this.element});
 
-  /// Display: Antisense orientation of referenceSeq
-  /// Definition: Antisense orientation of reference sequence.
-  antisense('antisense'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const OrientationType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// OrientationType values
+  /// sense
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OrientationType sense = OrientationType._(
+    'sense',
+  );
+
+  /// antisense
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OrientationType antisense = OrientationType._(
+    'antisense',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final OrientationType elementOnly = OrientationType._('');
+
+  /// List of all enum-like values
+  static final List<OrientationType> values = [
+    sense,
+    antisense,
+  ];
+
+  /// Returns the enum value with an element attached
+  OrientationType withElement(Element? newElement) {
+    return OrientationType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -31,28 +49,20 @@ enum OrientationType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [OrientationType] instances.
-  static OrientationType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [OrientationType] from JSON.
+  static OrientationType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return OrientationType.elementOnly.withElement(
-        element,
-      );
+      return OrientationType.elementOnly.withElement(element);
     }
     return OrientationType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  OrientationType withElement(Element? newElement) {
-    return OrientationType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'OrientationType.$fhirCode';
 }

@@ -1,33 +1,55 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Used to distinguish different roles a resource can play within a set of linked resources.
-enum LinkageType {
-  /// Display: Source of Truth
-  /// Definition: The resource represents the "source of truth" (from the perspective of this Linkage resource) for the underlying event/condition/etc.
-  source('source'),
+class LinkageType {
+  // Private constructor for internal use (like enum)
+  LinkageType._(this.fhirCode, {this.element});
 
-  /// Display: Alternate Record
-  /// Definition: The resource represents an alternative view of the underlying event/condition/etc. The resource may still be actively maintained, even though it is not considered to be the source of truth.
-  alternate('alternate'),
-
-  /// Display: Historical/Obsolete Record
-  /// Definition: The resource represents an obsolete record of the underlying event/condition/etc. It is not expected to be actively maintained.
-  historical('historical'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const LinkageType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// LinkageType values
+  /// source
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final LinkageType source = LinkageType._(
+    'source',
+  );
+
+  /// alternate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final LinkageType alternate = LinkageType._(
+    'alternate',
+  );
+
+  /// historical
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final LinkageType historical = LinkageType._(
+    'historical',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final LinkageType elementOnly = LinkageType._('');
+
+  /// List of all enum-like values
+  static final List<LinkageType> values = [
+    source,
+    alternate,
+    historical,
+  ];
+
+  /// Returns the enum value with an element attached
+  LinkageType withElement(Element? newElement) {
+    return LinkageType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +57,20 @@ enum LinkageType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [LinkageType] instances.
-  static LinkageType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [LinkageType] from JSON.
+  static LinkageType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return LinkageType.elementOnly.withElement(
-        element,
-      );
+      return LinkageType.elementOnly.withElement(element);
     }
     return LinkageType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  LinkageType withElement(Element? newElement) {
-    return LinkageType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'LinkageType.$fhirCode';
 }

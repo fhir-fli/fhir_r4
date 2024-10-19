@@ -1,37 +1,63 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How the Quantity should be understood and represented.
-enum QuantityComparator {
-  /// Display: Less than
-  /// Definition: The actual value is less than the given value.
-  lt('<'),
+class QuantityComparator {
+  // Private constructor for internal use (like enum)
+  QuantityComparator._(this.fhirCode, {this.element});
 
-  /// Display: Less or Equal to
-  /// Definition: The actual value is less than or equal to the given value.
-  le('<='),
-
-  /// Display: Greater or Equal to
-  /// Definition: The actual value is greater than or equal to the given value.
-  ge('>='),
-
-  /// Display: Greater than
-  /// Definition: The actual value is greater than the given value.
-  gt('>'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const QuantityComparator(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// QuantityComparator values
+  /// lt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuantityComparator lt = QuantityComparator._(
+    '<',
+  );
+
+  /// le
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuantityComparator le = QuantityComparator._(
+    '<=',
+  );
+
+  /// ge
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuantityComparator ge = QuantityComparator._(
+    '>=',
+  );
+
+  /// gt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QuantityComparator gt = QuantityComparator._(
+    '>',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final QuantityComparator elementOnly = QuantityComparator._('');
+
+  /// List of all enum-like values
+  static final List<QuantityComparator> values = [
+    lt,
+    le,
+    ge,
+    gt,
+  ];
+
+  /// Returns the enum value with an element attached
+  QuantityComparator withElement(Element? newElement) {
+    return QuantityComparator._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -39,28 +65,20 @@ enum QuantityComparator {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [QuantityComparator] instances.
-  static QuantityComparator fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [QuantityComparator] from JSON.
+  static QuantityComparator fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QuantityComparator.elementOnly.withElement(
-        element,
-      );
+      return QuantityComparator.elementOnly.withElement(element);
     }
     return QuantityComparator.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  QuantityComparator withElement(Element? newElement) {
-    return QuantityComparator.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'QuantityComparator.$fhirCode';
 }

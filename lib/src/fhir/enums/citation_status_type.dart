@@ -1,130 +1,266 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Citation status type
-enum CitationStatusType {
-  /// Display: PubMed Pubstatus of Received
-  /// Definition: PubMed Pubstatus of Received
-  pubmed_pubstatus_received('pubmed-pubstatus-received'),
+class CitationStatusType {
+  // Private constructor for internal use (like enum)
+  CitationStatusType._(this.fhirCode, {this.element});
 
-  /// Display: PubMed Pubstatus of Accepted
-  /// Definition: PubMed Pubstatus of Accepted
-  pubmed_pubstatus_accepted('pubmed-pubstatus-accepted'),
-
-  /// Display: PubMed Pubstatus of Epublish
-  /// Definition: PubMed Pubstatus of Epublish
-  pubmed_pubstatus_epublish('pubmed-pubstatus-epublish'),
-
-  /// Display: PubMed Pubstatus of Ppublish
-  /// Definition: PubMed Pubstatus of Ppublish
-  pubmed_pubstatus_ppublish('pubmed-pubstatus-ppublish'),
-
-  /// Display: PubMed Pubstatus of Revised
-  /// Definition: PubMed Pubstatus of Revised
-  pubmed_pubstatus_revised('pubmed-pubstatus-revised'),
-
-  /// Display: PubMed Pubstatus of aheadofprint
-  /// Definition: PubMed Pubstatus of aheadofprint
-  pubmed_pubstatus_aheadofprint('pubmed-pubstatus-aheadofprint'),
-
-  /// Display: PubMed Pubstatus of Retracted
-  /// Definition: PubMed Pubstatus of Retracted
-  pubmed_pubstatus_retracted('pubmed-pubstatus-retracted'),
-
-  /// Display: PubMed Pubstatus of Ecollection
-  /// Definition: PubMed Pubstatus of Ecollection
-  pubmed_pubstatus_ecollection('pubmed-pubstatus-ecollection'),
-
-  /// Display: PubMed Pubstatus of PMC
-  /// Definition: PubMed Pubstatus of PMC
-  pubmed_pubstatus_pmc('pubmed-pubstatus-pmc'),
-
-  /// Display: PubMed Pubstatus of PMCr
-  /// Definition: PubMed Pubstatus of PMCr
-  pubmed_pubstatus_pmcr('pubmed-pubstatus-pmcr'),
-
-  /// Display: PubMed Pubstatus of PubMed
-  /// Definition: PubMed Pubstatus of PubMed
-  pubmed_pubstatus_pubmed('pubmed-pubstatus-pubmed'),
-
-  /// Display: PubMed Pubstatus of PubMedr
-  /// Definition: PubMed Pubstatus of PubMedr
-  pubmed_pubstatus_pubmedr('pubmed-pubstatus-pubmedr'),
-
-  /// Display: PubMed Pubstatus of Premedline
-  /// Definition: PubMed Pubstatus of Premedline
-  pubmed_pubstatus_premedline('pubmed-pubstatus-premedline'),
-
-  /// Display: PubMed Pubstatus of Medline
-  /// Definition: PubMed Pubstatus of Medline
-  pubmed_pubstatus_medline('pubmed-pubstatus-medline'),
-
-  /// Display: PubMed Pubstatus of Medliner
-  /// Definition: PubMed Pubstatus of Medliner
-  pubmed_pubstatus_medliner('pubmed-pubstatus-medliner'),
-
-  /// Display: PubMed Pubstatus of Entrez
-  /// Definition: PubMed Pubstatus of Entrez
-  pubmed_pubstatus_entrez('pubmed-pubstatus-entrez'),
-
-  /// Display: PubMed Pubstatus of PMC release
-  /// Definition: PubMed Pubstatus of PMC release
-  pubmed_pubstatus_pmc_release('pubmed-pubstatus-pmc-release'),
-
-  /// Display: Medline Citation Status of Completed
-  /// Definition: Medline Citation Status of Completed
-  medline_completed('medline-completed'),
-
-  /// Display: Medline Citation Status of In-Process
-  /// Definition: Medline Citation Status of In-Process
-  medline_in_process('medline-in-process'),
-
-  /// Display: Medline Citation Status of PubMed-not-MEDLINE
-  /// Definition: Medline Citation Status of PubMed-not-MEDLINE
-  medline_pubmed_not_medline('medline-pubmed-not-medline'),
-
-  /// Display: Medline Citation Status of In-Data-Review
-  /// Definition: Medline Citation Status of In-Data-Review
-  medline_in_data_review('medline-in-data-review'),
-
-  /// Display: Medline Citation Status of Publisher
-  /// Definition: Medline Citation Status of Publisher
-  medline_publisher('medline-publisher'),
-
-  /// Display: Medline Citation Status of MEDLINE
-  /// Definition: Medline Citation Status of MEDLINE
-  medline_medline('medline-medline'),
-
-  /// Display: Medline Citation Status of OLDMEDLINE
-  /// Definition: Medline Citation Status of OLDMEDLINE
-  medline_oldmedline('medline-oldmedline'),
-
-  /// Display: PubMed PublicationStatus of ppublish
-  /// Definition: published in print
-  pubmed_publication_status_ppublish('pubmed-publication-status-ppublish'),
-
-  /// Display: PubMed PublicationStatus of epublish
-  /// Definition: electronically published only, never published in print
-  pubmed_publication_status_epublish('pubmed-publication-status-epublish'),
-
-  /// Display: PubMed PublicationStatus of aheadofprint
-  /// Definition: electronically published, but followed by print
-  pubmed_publication_status_aheadofprint(
-      'pubmed-publication-status-aheadofprint'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const CitationStatusType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// CitationStatusType values
+  /// pubmed_pubstatus_received
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_received =
+      CitationStatusType._(
+    'pubmed-pubstatus-received',
+  );
+
+  /// pubmed_pubstatus_accepted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_accepted =
+      CitationStatusType._(
+    'pubmed-pubstatus-accepted',
+  );
+
+  /// pubmed_pubstatus_epublish
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_epublish =
+      CitationStatusType._(
+    'pubmed-pubstatus-epublish',
+  );
+
+  /// pubmed_pubstatus_ppublish
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_ppublish =
+      CitationStatusType._(
+    'pubmed-pubstatus-ppublish',
+  );
+
+  /// pubmed_pubstatus_revised
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_revised =
+      CitationStatusType._(
+    'pubmed-pubstatus-revised',
+  );
+
+  /// pubmed_pubstatus_aheadofprint
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_aheadofprint =
+      CitationStatusType._(
+    'pubmed-pubstatus-aheadofprint',
+  );
+
+  /// pubmed_pubstatus_retracted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_retracted =
+      CitationStatusType._(
+    'pubmed-pubstatus-retracted',
+  );
+
+  /// pubmed_pubstatus_ecollection
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_ecollection =
+      CitationStatusType._(
+    'pubmed-pubstatus-ecollection',
+  );
+
+  /// pubmed_pubstatus_pmc
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_pmc = CitationStatusType._(
+    'pubmed-pubstatus-pmc',
+  );
+
+  /// pubmed_pubstatus_pmcr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_pmcr = CitationStatusType._(
+    'pubmed-pubstatus-pmcr',
+  );
+
+  /// pubmed_pubstatus_pubmed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_pubmed =
+      CitationStatusType._(
+    'pubmed-pubstatus-pubmed',
+  );
+
+  /// pubmed_pubstatus_pubmedr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_pubmedr =
+      CitationStatusType._(
+    'pubmed-pubstatus-pubmedr',
+  );
+
+  /// pubmed_pubstatus_premedline
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_premedline =
+      CitationStatusType._(
+    'pubmed-pubstatus-premedline',
+  );
+
+  /// pubmed_pubstatus_medline
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_medline =
+      CitationStatusType._(
+    'pubmed-pubstatus-medline',
+  );
+
+  /// pubmed_pubstatus_medliner
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_medliner =
+      CitationStatusType._(
+    'pubmed-pubstatus-medliner',
+  );
+
+  /// pubmed_pubstatus_entrez
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_entrez =
+      CitationStatusType._(
+    'pubmed-pubstatus-entrez',
+  );
+
+  /// pubmed_pubstatus_pmc_release
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_pubstatus_pmc_release =
+      CitationStatusType._(
+    'pubmed-pubstatus-pmc-release',
+  );
+
+  /// medline_completed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType medline_completed = CitationStatusType._(
+    'medline-completed',
+  );
+
+  /// medline_in_process
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType medline_in_process = CitationStatusType._(
+    'medline-in-process',
+  );
+
+  /// medline_pubmed_not_medline
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType medline_pubmed_not_medline =
+      CitationStatusType._(
+    'medline-pubmed-not-medline',
+  );
+
+  /// medline_in_data_review
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType medline_in_data_review = CitationStatusType._(
+    'medline-in-data-review',
+  );
+
+  /// medline_publisher
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType medline_publisher = CitationStatusType._(
+    'medline-publisher',
+  );
+
+  /// medline_medline
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType medline_medline = CitationStatusType._(
+    'medline-medline',
+  );
+
+  /// medline_oldmedline
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType medline_oldmedline = CitationStatusType._(
+    'medline-oldmedline',
+  );
+
+  /// pubmed_publication_status_ppublish
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_publication_status_ppublish =
+      CitationStatusType._(
+    'pubmed-publication-status-ppublish',
+  );
+
+  /// pubmed_publication_status_epublish
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_publication_status_epublish =
+      CitationStatusType._(
+    'pubmed-publication-status-epublish',
+  );
+
+  /// pubmed_publication_status_aheadofprint
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitationStatusType pubmed_publication_status_aheadofprint =
+      CitationStatusType._(
+    'pubmed-publication-status-aheadofprint',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final CitationStatusType elementOnly = CitationStatusType._('');
+
+  /// List of all enum-like values
+  static final List<CitationStatusType> values = [
+    pubmed_pubstatus_received,
+    pubmed_pubstatus_accepted,
+    pubmed_pubstatus_epublish,
+    pubmed_pubstatus_ppublish,
+    pubmed_pubstatus_revised,
+    pubmed_pubstatus_aheadofprint,
+    pubmed_pubstatus_retracted,
+    pubmed_pubstatus_ecollection,
+    pubmed_pubstatus_pmc,
+    pubmed_pubstatus_pmcr,
+    pubmed_pubstatus_pubmed,
+    pubmed_pubstatus_pubmedr,
+    pubmed_pubstatus_premedline,
+    pubmed_pubstatus_medline,
+    pubmed_pubstatus_medliner,
+    pubmed_pubstatus_entrez,
+    pubmed_pubstatus_pmc_release,
+    medline_completed,
+    medline_in_process,
+    medline_pubmed_not_medline,
+    medline_in_data_review,
+    medline_publisher,
+    medline_medline,
+    medline_oldmedline,
+    pubmed_publication_status_ppublish,
+    pubmed_publication_status_epublish,
+    pubmed_publication_status_aheadofprint,
+  ];
+
+  /// Returns the enum value with an element attached
+  CitationStatusType withElement(Element? newElement) {
+    return CitationStatusType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -132,28 +268,20 @@ enum CitationStatusType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [CitationStatusType] instances.
-  static CitationStatusType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [CitationStatusType] from JSON.
+  static CitationStatusType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CitationStatusType.elementOnly.withElement(
-        element,
-      );
+      return CitationStatusType.elementOnly.withElement(element);
     }
     return CitationStatusType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  CitationStatusType withElement(Element? newElement) {
-    return CitationStatusType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'CitationStatusType.$fhirCode';
 }

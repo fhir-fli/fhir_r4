@@ -1,29 +1,50 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Biologically Derived Product Status.
-enum BiologicallyDerivedProductStatus {
-  /// Display: Available
-  /// Definition: Product is currently available for use.
-  available('available'),
+class BiologicallyDerivedProductStatus {
+  // Private constructor for internal use (like enum)
+  BiologicallyDerivedProductStatus._(this.fhirCode, {this.element});
 
-  /// Display: Unavailable
-  /// Definition: Product is not currently available for use.
-  unavailable('unavailable'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const BiologicallyDerivedProductStatus(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// BiologicallyDerivedProductStatus values
+  /// available
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final BiologicallyDerivedProductStatus available =
+      BiologicallyDerivedProductStatus._(
+    'available',
+  );
+
+  /// unavailable
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final BiologicallyDerivedProductStatus unavailable =
+      BiologicallyDerivedProductStatus._(
+    'unavailable',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final BiologicallyDerivedProductStatus elementOnly =
+      BiologicallyDerivedProductStatus._('');
+
+  /// List of all enum-like values
+  static final List<BiologicallyDerivedProductStatus> values = [
+    available,
+    unavailable,
+  ];
+
+  /// Returns the enum value with an element attached
+  BiologicallyDerivedProductStatus withElement(Element? newElement) {
+    return BiologicallyDerivedProductStatus._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -31,28 +52,20 @@ enum BiologicallyDerivedProductStatus {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [BiologicallyDerivedProductStatus] instances.
-  static BiologicallyDerivedProductStatus fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [BiologicallyDerivedProductStatus] from JSON.
+  static BiologicallyDerivedProductStatus fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return BiologicallyDerivedProductStatus.elementOnly.withElement(
-        element,
-      );
+      return BiologicallyDerivedProductStatus.elementOnly.withElement(element);
     }
     return BiologicallyDerivedProductStatus.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  BiologicallyDerivedProductStatus withElement(Element? newElement) {
-    return BiologicallyDerivedProductStatus.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'BiologicallyDerivedProductStatus.$fhirCode';
 }

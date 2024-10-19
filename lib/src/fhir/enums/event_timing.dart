@@ -1,125 +1,239 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Real world event relating to the schedule.
-enum EventTiming {
-  /// Display: Morning
-  /// Definition: Event occurs during the morning. The exact time is unspecified and established by institution convention or patient interpretation.
-  MORN('MORN'),
+class EventTiming {
+  // Private constructor for internal use (like enum)
+  EventTiming._(this.fhirCode, {this.element});
 
-  /// Display: Early Morning
-  /// Definition: Event occurs during the early morning. The exact time is unspecified and established by institution convention or patient interpretation.
-  MORN_early('MORN.early'),
-
-  /// Display: Late Morning
-  /// Definition: Event occurs during the late morning. The exact time is unspecified and established by institution convention or patient interpretation.
-  MORN_late('MORN.late'),
-
-  /// Display: Noon
-  /// Definition: Event occurs around 12:00pm. The exact time is unspecified and established by institution convention or patient interpretation.
-  NOON('NOON'),
-
-  /// Display: Afternoon
-  /// Definition: Event occurs during the afternoon. The exact time is unspecified and established by institution convention or patient interpretation.
-  AFT('AFT'),
-
-  /// Display: Early Afternoon
-  /// Definition: Event occurs during the early afternoon. The exact time is unspecified and established by institution convention or patient interpretation.
-  AFT_early('AFT.early'),
-
-  /// Display: Late Afternoon
-  /// Definition: Event occurs during the late afternoon. The exact time is unspecified and established by institution convention or patient interpretation.
-  AFT_late('AFT.late'),
-
-  /// Display: Evening
-  /// Definition: Event occurs during the evening. The exact time is unspecified and established by institution convention or patient interpretation.
-  EVE('EVE'),
-
-  /// Display: Early Evening
-  /// Definition: Event occurs during the early evening. The exact time is unspecified and established by institution convention or patient interpretation.
-  EVE_early('EVE.early'),
-
-  /// Display: Late Evening
-  /// Definition: Event occurs during the late evening. The exact time is unspecified and established by institution convention or patient interpretation.
-  EVE_late('EVE.late'),
-
-  /// Display: Night
-  /// Definition: Event occurs during the night. The exact time is unspecified and established by institution convention or patient interpretation.
-  NIGHT('NIGHT'),
-
-  /// Display: After Sleep
-  /// Definition: Event occurs [offset] after subject goes to sleep. The exact time is unspecified and established by institution convention or patient interpretation.
-  PHS('PHS'),
-
-  /// Display:
-  /// Definition:
-  HS('HS'),
-
-  /// Display:
-  /// Definition:
-  WAKE('WAKE'),
-
-  /// Display:
-  /// Definition:
-  C('C'),
-
-  /// Display:
-  /// Definition:
-  CM('CM'),
-
-  /// Display:
-  /// Definition:
-  CD('CD'),
-
-  /// Display:
-  /// Definition:
-  CV('CV'),
-
-  /// Display:
-  /// Definition:
-  AC('AC'),
-
-  /// Display:
-  /// Definition:
-  ACM('ACM'),
-
-  /// Display:
-  /// Definition:
-  ACD('ACD'),
-
-  /// Display:
-  /// Definition:
-  ACV('ACV'),
-
-  /// Display:
-  /// Definition:
-  PC('PC'),
-
-  /// Display:
-  /// Definition:
-  PCM('PCM'),
-
-  /// Display:
-  /// Definition:
-  PCD('PCD'),
-
-  /// Display:
-  /// Definition:
-  PCV('PCV'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const EventTiming(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// EventTiming values
+  /// MORN
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming MORN = EventTiming._(
+    'MORN',
+  );
+
+  /// MORN_early
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming MORN_early = EventTiming._(
+    'MORN.early',
+  );
+
+  /// MORN_late
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming MORN_late = EventTiming._(
+    'MORN.late',
+  );
+
+  /// NOON
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming NOON = EventTiming._(
+    'NOON',
+  );
+
+  /// AFT
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming AFT = EventTiming._(
+    'AFT',
+  );
+
+  /// AFT_early
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming AFT_early = EventTiming._(
+    'AFT.early',
+  );
+
+  /// AFT_late
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming AFT_late = EventTiming._(
+    'AFT.late',
+  );
+
+  /// EVE
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming EVE = EventTiming._(
+    'EVE',
+  );
+
+  /// EVE_early
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming EVE_early = EventTiming._(
+    'EVE.early',
+  );
+
+  /// EVE_late
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming EVE_late = EventTiming._(
+    'EVE.late',
+  );
+
+  /// NIGHT
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming NIGHT = EventTiming._(
+    'NIGHT',
+  );
+
+  /// PHS
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming PHS = EventTiming._(
+    'PHS',
+  );
+
+  /// HS
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming HS = EventTiming._(
+    'HS',
+  );
+
+  /// WAKE
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming WAKE = EventTiming._(
+    'WAKE',
+  );
+
+  /// C
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming C = EventTiming._(
+    'C',
+  );
+
+  /// CM
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming CM = EventTiming._(
+    'CM',
+  );
+
+  /// CD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming CD = EventTiming._(
+    'CD',
+  );
+
+  /// CV
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming CV = EventTiming._(
+    'CV',
+  );
+
+  /// AC
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming AC = EventTiming._(
+    'AC',
+  );
+
+  /// ACM
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming ACM = EventTiming._(
+    'ACM',
+  );
+
+  /// ACD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming ACD = EventTiming._(
+    'ACD',
+  );
+
+  /// ACV
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming ACV = EventTiming._(
+    'ACV',
+  );
+
+  /// PC
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming PC = EventTiming._(
+    'PC',
+  );
+
+  /// PCM
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming PCM = EventTiming._(
+    'PCM',
+  );
+
+  /// PCD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming PCD = EventTiming._(
+    'PCD',
+  );
+
+  /// PCV
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EventTiming PCV = EventTiming._(
+    'PCV',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final EventTiming elementOnly = EventTiming._('');
+
+  /// List of all enum-like values
+  static final List<EventTiming> values = [
+    MORN,
+    MORN_early,
+    MORN_late,
+    NOON,
+    AFT,
+    AFT_early,
+    AFT_late,
+    EVE,
+    EVE_early,
+    EVE_late,
+    NIGHT,
+    PHS,
+    HS,
+    WAKE,
+    C,
+    CM,
+    CD,
+    CV,
+    AC,
+    ACM,
+    ACD,
+    ACV,
+    PC,
+    PCM,
+    PCD,
+    PCV,
+  ];
+
+  /// Returns the enum value with an element attached
+  EventTiming withElement(Element? newElement) {
+    return EventTiming._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -127,28 +241,20 @@ enum EventTiming {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [EventTiming] instances.
-  static EventTiming fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [EventTiming] from JSON.
+  static EventTiming fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EventTiming.elementOnly.withElement(
-        element,
-      );
+      return EventTiming.elementOnly.withElement(element);
     }
     return EventTiming.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  EventTiming withElement(Element? newElement) {
-    return EventTiming.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'EventTiming.$fhirCode';
 }

@@ -1,41 +1,71 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The method used to elucidate the structure or characterization of the drug substance.
-enum StructureTechnique {
-  /// Display: X-ray
-  /// Definition:
-  X_Ray('X-Ray'),
+class StructureTechnique {
+  // Private constructor for internal use (like enum)
+  StructureTechnique._(this.fhirCode, {this.element});
 
-  /// Display: HPLC
-  /// Definition:
-  HPLC('HPLC'),
-
-  /// Display: NMR
-  /// Definition:
-  NMR('NMR'),
-
-  /// Display: Peptide mapping
-  /// Definition:
-  PeptideMapping('PeptideMapping'),
-
-  /// Display: Ligand binding assay
-  /// Definition:
-  LigandBindingAssay('LigandBindingAssay'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const StructureTechnique(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// StructureTechnique values
+  /// X_Ray
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StructureTechnique X_Ray = StructureTechnique._(
+    'X-Ray',
+  );
+
+  /// HPLC
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StructureTechnique HPLC = StructureTechnique._(
+    'HPLC',
+  );
+
+  /// NMR
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StructureTechnique NMR = StructureTechnique._(
+    'NMR',
+  );
+
+  /// PeptideMapping
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StructureTechnique PeptideMapping = StructureTechnique._(
+    'PeptideMapping',
+  );
+
+  /// LigandBindingAssay
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StructureTechnique LigandBindingAssay = StructureTechnique._(
+    'LigandBindingAssay',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final StructureTechnique elementOnly = StructureTechnique._('');
+
+  /// List of all enum-like values
+  static final List<StructureTechnique> values = [
+    X_Ray,
+    HPLC,
+    NMR,
+    PeptideMapping,
+    LigandBindingAssay,
+  ];
+
+  /// Returns the enum value with an element attached
+  StructureTechnique withElement(Element? newElement) {
+    return StructureTechnique._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -43,28 +73,20 @@ enum StructureTechnique {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [StructureTechnique] instances.
-  static StructureTechnique fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [StructureTechnique] from JSON.
+  static StructureTechnique fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StructureTechnique.elementOnly.withElement(
-        element,
-      );
+      return StructureTechnique.elementOnly.withElement(element);
     }
     return StructureTechnique.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  StructureTechnique withElement(Element? newElement) {
-    return StructureTechnique.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'StructureTechnique.$fhirCode';
 }

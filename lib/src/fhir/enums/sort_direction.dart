@@ -1,29 +1,47 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The possible sort directions, ascending or descending.
-enum SortDirection {
-  /// Display: Ascending
-  /// Definition: Sort by the value ascending, so that lower values appear first.
-  ascending('ascending'),
+class SortDirection {
+  // Private constructor for internal use (like enum)
+  SortDirection._(this.fhirCode, {this.element});
 
-  /// Display: Descending
-  /// Definition: Sort by the value descending, so that lower values appear last.
-  descending('descending'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const SortDirection(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// SortDirection values
+  /// ascending
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SortDirection ascending = SortDirection._(
+    'ascending',
+  );
+
+  /// descending
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SortDirection descending = SortDirection._(
+    'descending',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final SortDirection elementOnly = SortDirection._('');
+
+  /// List of all enum-like values
+  static final List<SortDirection> values = [
+    ascending,
+    descending,
+  ];
+
+  /// Returns the enum value with an element attached
+  SortDirection withElement(Element? newElement) {
+    return SortDirection._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -31,28 +49,20 @@ enum SortDirection {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [SortDirection] instances.
-  static SortDirection fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [SortDirection] from JSON.
+  static SortDirection fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SortDirection.elementOnly.withElement(
-        element,
-      );
+      return SortDirection.elementOnly.withElement(element);
     }
     return SortDirection.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  SortDirection withElement(Element? newElement) {
-    return SortDirection.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'SortDirection.$fhirCode';
 }

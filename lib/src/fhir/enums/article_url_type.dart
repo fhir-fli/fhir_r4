@@ -1,85 +1,159 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Code the reason for different URLs, eg abstract and full-text.
-enum ArticleUrlType {
-  /// Display: Abstract
-  /// Definition: URL to reach the abstract for the article.
-  abstract_('abstract'),
+class ArticleUrlType {
+  // Private constructor for internal use (like enum)
+  ArticleUrlType._(this.fhirCode, {this.element});
 
-  /// Display: Abstract Version
-  /// Definition: URL to reach a specific version of the abstract for the article.
-  abstract_version('abstract-version'),
-
-  /// Display: DOI Based
-  /// Definition: URL derived from DOI.
-  doi_based('doi-based'),
-
-  /// Display: Full-Text
-  /// Definition: URL to reach the full-text of the article.
-  full_text('full-text'),
-
-  /// Display: Full-Text Version
-  /// Definition: URL to reach a specific version of the full-text of the article.
-  full_text_version('full-text-version'),
-
-  /// Display: PDF
-  /// Definition: URL to reach the full-text of the article in PDF form.
-  pdf('pdf'),
-
-  /// Display: PDF Version
-  /// Definition: URL to reach a specific version of the full-text of the article in PDF form.
-  pdf_version('pdf-version'),
-
-  /// Display: Webpage
-  /// Definition: Used when URL type is a webpage, but other codes do not apply.
-  webpage('webpage'),
-
-  /// Display: Not Specified
-  /// Definition: Used when URL type is not specified, commonly when only a single URL is provided.
-  not_specified('not-specified'),
-
-  /// Display: JSON
-  /// Definition: URL to reach computable content in JSON format.
-  json('json'),
-
-  /// Display: JSON Version
-  /// Definition: URL to reach a specific version of computable content in JSON format.
-  json_version('json-version'),
-
-  /// Display: XML
-  /// Definition: URL to reach computable content in XML format.
-  xml('xml'),
-
-  /// Display: XML
-  /// Definition: URL to reach a specific version of computable content in XML format.
-  xml_version('xml-version'),
-
-  /// Display: Supplement
-  /// Definition: Supplement
-  supplement('supplement'),
-
-  /// Display: Supplementary file directory
-  /// Definition: Supplementary file directory
-  supplementary_file_directory('supplementary-file-directory'),
-
-  /// Display: Compressed file
-  /// Definition: Compressed archive file (e.g. a zip file) that contains multiple files
-  compressed_file('compressed-file'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ArticleUrlType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ArticleUrlType values
+  /// abstract_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType abstract_ = ArticleUrlType._(
+    'abstract',
+  );
+
+  /// abstract_version
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType abstract_version = ArticleUrlType._(
+    'abstract-version',
+  );
+
+  /// doi_based
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType doi_based = ArticleUrlType._(
+    'doi-based',
+  );
+
+  /// full_text
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType full_text = ArticleUrlType._(
+    'full-text',
+  );
+
+  /// full_text_version
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType full_text_version = ArticleUrlType._(
+    'full-text-version',
+  );
+
+  /// pdf
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType pdf = ArticleUrlType._(
+    'pdf',
+  );
+
+  /// pdf_version
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType pdf_version = ArticleUrlType._(
+    'pdf-version',
+  );
+
+  /// webpage
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType webpage = ArticleUrlType._(
+    'webpage',
+  );
+
+  /// not_specified
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType not_specified = ArticleUrlType._(
+    'not-specified',
+  );
+
+  /// json
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType json = ArticleUrlType._(
+    'json',
+  );
+
+  /// json_version
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType json_version = ArticleUrlType._(
+    'json-version',
+  );
+
+  /// xml
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType xml = ArticleUrlType._(
+    'xml',
+  );
+
+  /// xml_version
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType xml_version = ArticleUrlType._(
+    'xml-version',
+  );
+
+  /// supplement
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType supplement = ArticleUrlType._(
+    'supplement',
+  );
+
+  /// supplementary_file_directory
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType supplementary_file_directory = ArticleUrlType._(
+    'supplementary-file-directory',
+  );
+
+  /// compressed_file
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ArticleUrlType compressed_file = ArticleUrlType._(
+    'compressed-file',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ArticleUrlType elementOnly = ArticleUrlType._('');
+
+  /// List of all enum-like values
+  static final List<ArticleUrlType> values = [
+    abstract_,
+    abstract_version,
+    doi_based,
+    full_text,
+    full_text_version,
+    pdf,
+    pdf_version,
+    webpage,
+    not_specified,
+    json,
+    json_version,
+    xml,
+    xml_version,
+    supplement,
+    supplementary_file_directory,
+    compressed_file,
+  ];
+
+  /// Returns the enum value with an element attached
+  ArticleUrlType withElement(Element? newElement) {
+    return ArticleUrlType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -87,28 +161,20 @@ enum ArticleUrlType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ArticleUrlType] instances.
-  static ArticleUrlType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ArticleUrlType] from JSON.
+  static ArticleUrlType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ArticleUrlType.elementOnly.withElement(
-        element,
-      );
+      return ArticleUrlType.elementOnly.withElement(element);
     }
     return ArticleUrlType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ArticleUrlType withElement(Element? newElement) {
-    return ArticleUrlType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ArticleUrlType.$fhirCode';
 }

@@ -1,33 +1,55 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Type if a sequence -- DNA, RNA, or amino acid sequence.
-enum SequenceType {
-  /// Display: AA Sequence
-  /// Definition: Amino acid sequence.
-  aa('aa'),
+class SequenceType {
+  // Private constructor for internal use (like enum)
+  SequenceType._(this.fhirCode, {this.element});
 
-  /// Display: DNA Sequence
-  /// Definition: DNA Sequence.
-  dna('dna'),
-
-  /// Display: RNA Sequence
-  /// Definition: RNA Sequence.
-  rna('rna'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const SequenceType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// SequenceType values
+  /// aa
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SequenceType aa = SequenceType._(
+    'aa',
+  );
+
+  /// dna
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SequenceType dna = SequenceType._(
+    'dna',
+  );
+
+  /// rna
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SequenceType rna = SequenceType._(
+    'rna',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final SequenceType elementOnly = SequenceType._('');
+
+  /// List of all enum-like values
+  static final List<SequenceType> values = [
+    aa,
+    dna,
+    rna,
+  ];
+
+  /// Returns the enum value with an element attached
+  SequenceType withElement(Element? newElement) {
+    return SequenceType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +57,20 @@ enum SequenceType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [SequenceType] instances.
-  static SequenceType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [SequenceType] from JSON.
+  static SequenceType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SequenceType.elementOnly.withElement(
-        element,
-      );
+      return SequenceType.elementOnly.withElement(element);
     }
     return SequenceType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  SequenceType withElement(Element? newElement) {
-    return SequenceType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'SequenceType.$fhirCode';
 }

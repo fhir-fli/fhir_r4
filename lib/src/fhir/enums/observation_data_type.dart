@@ -1,65 +1,119 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Permitted data type for observation value.
-enum ObservationDataType {
-  /// Display: Quantity
-  /// Definition: A measured amount.
-  Quantity('Quantity'),
+class ObservationDataType {
+  // Private constructor for internal use (like enum)
+  ObservationDataType._(this.fhirCode, {this.element});
 
-  /// Display: CodeableConcept
-  /// Definition: A coded concept from a reference terminology and/or text.
-  CodeableConcept('CodeableConcept'),
-
-  /// Display: string
-  /// Definition: A sequence of Unicode characters.
-  string('string'),
-
-  /// Display: boolean
-  /// Definition: true or false.
-  boolean('boolean'),
-
-  /// Display: integer
-  /// Definition: A signed integer.
-  integer('integer'),
-
-  /// Display: Range
-  /// Definition: A set of values bounded by low and high.
-  Range('Range'),
-
-  /// Display: Ratio
-  /// Definition: A ratio of two Quantity values - a numerator and a denominator.
-  Ratio('Ratio'),
-
-  /// Display: SampledData
-  /// Definition: A series of measurements taken by a device.
-  SampledData('SampledData'),
-
-  /// Display: time
-  /// Definition: A time during the day, in the format hh:mm:ss.
-  time('time'),
-
-  /// Display: dateTime
-  /// Definition: A date, date-time or partial date (e.g. just year or year + month) as used in human communication.
-  dateTime('dateTime'),
-
-  /// Display: Period
-  /// Definition: A time range defined by start and end date/time.
-  Period('Period'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ObservationDataType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ObservationDataType values
+  /// Quantity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObservationDataType Quantity = ObservationDataType._(
+    'Quantity',
+  );
+
+  /// CodeableConcept
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObservationDataType CodeableConcept = ObservationDataType._(
+    'CodeableConcept',
+  );
+
+  /// string
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObservationDataType string = ObservationDataType._(
+    'string',
+  );
+
+  /// boolean
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObservationDataType boolean = ObservationDataType._(
+    'boolean',
+  );
+
+  /// integer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObservationDataType integer = ObservationDataType._(
+    'integer',
+  );
+
+  /// Range
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObservationDataType Range = ObservationDataType._(
+    'Range',
+  );
+
+  /// Ratio
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObservationDataType Ratio = ObservationDataType._(
+    'Ratio',
+  );
+
+  /// SampledData
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObservationDataType SampledData = ObservationDataType._(
+    'SampledData',
+  );
+
+  /// time
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObservationDataType time = ObservationDataType._(
+    'time',
+  );
+
+  /// dateTime
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObservationDataType dateTime = ObservationDataType._(
+    'dateTime',
+  );
+
+  /// Period
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ObservationDataType Period = ObservationDataType._(
+    'Period',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ObservationDataType elementOnly = ObservationDataType._('');
+
+  /// List of all enum-like values
+  static final List<ObservationDataType> values = [
+    Quantity,
+    CodeableConcept,
+    string,
+    boolean,
+    integer,
+    Range,
+    Ratio,
+    SampledData,
+    time,
+    dateTime,
+    Period,
+  ];
+
+  /// Returns the enum value with an element attached
+  ObservationDataType withElement(Element? newElement) {
+    return ObservationDataType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -67,28 +121,20 @@ enum ObservationDataType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ObservationDataType] instances.
-  static ObservationDataType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ObservationDataType] from JSON.
+  static ObservationDataType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ObservationDataType.elementOnly.withElement(
-        element,
-      );
+      return ObservationDataType.elementOnly.withElement(element);
     }
     return ObservationDataType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ObservationDataType withElement(Element? newElement) {
-    return ObservationDataType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ObservationDataType.$fhirCode';
 }

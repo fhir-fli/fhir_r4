@@ -1,33 +1,55 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A high level categorisation of a package.
-enum PackageType {
-  /// Display: Medicinal product pack
-  /// Definition:
-  MedicinalProductPack('MedicinalProductPack'),
+class PackageType {
+  // Private constructor for internal use (like enum)
+  PackageType._(this.fhirCode, {this.element});
 
-  /// Display: Raw material package
-  /// Definition:
-  RawMaterialPackage('RawMaterialPackage'),
-
-  /// Display: Shipping or transport container
-  /// Definition:
-  Shipping_TransportContainer('Shipping-TransportContainer'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const PackageType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// PackageType values
+  /// MedicinalProductPack
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final PackageType MedicinalProductPack = PackageType._(
+    'MedicinalProductPack',
+  );
+
+  /// RawMaterialPackage
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final PackageType RawMaterialPackage = PackageType._(
+    'RawMaterialPackage',
+  );
+
+  /// Shipping_TransportContainer
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final PackageType Shipping_TransportContainer = PackageType._(
+    'Shipping-TransportContainer',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final PackageType elementOnly = PackageType._('');
+
+  /// List of all enum-like values
+  static final List<PackageType> values = [
+    MedicinalProductPack,
+    RawMaterialPackage,
+    Shipping_TransportContainer,
+  ];
+
+  /// Returns the enum value with an element attached
+  PackageType withElement(Element? newElement) {
+    return PackageType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +57,20 @@ enum PackageType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [PackageType] instances.
-  static PackageType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [PackageType] from JSON.
+  static PackageType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PackageType.elementOnly.withElement(
-        element,
-      );
+      return PackageType.elementOnly.withElement(element);
     }
     return PackageType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  PackageType withElement(Element? newElement) {
-    return PackageType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'PackageType.$fhirCode';
 }

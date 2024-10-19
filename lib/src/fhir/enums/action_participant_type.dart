@@ -1,37 +1,63 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of participant for the action.
-enum ActionParticipantType {
-  /// Display: Patient
-  /// Definition: The participant is the patient under evaluation.
-  patient('patient'),
+class ActionParticipantType {
+  // Private constructor for internal use (like enum)
+  ActionParticipantType._(this.fhirCode, {this.element});
 
-  /// Display: Practitioner
-  /// Definition: The participant is a practitioner involved in the patient's care.
-  practitioner('practitioner'),
-
-  /// Display: Related Person
-  /// Definition: The participant is a person related to the patient.
-  related_person('related-person'),
-
-  /// Display: Device
-  /// Definition: The participant is a system or device used in the care of the patient.
-  device('device'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ActionParticipantType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ActionParticipantType values
+  /// patient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionParticipantType patient = ActionParticipantType._(
+    'patient',
+  );
+
+  /// practitioner
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionParticipantType practitioner = ActionParticipantType._(
+    'practitioner',
+  );
+
+  /// related_person
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionParticipantType related_person = ActionParticipantType._(
+    'related-person',
+  );
+
+  /// device
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionParticipantType device = ActionParticipantType._(
+    'device',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ActionParticipantType elementOnly = ActionParticipantType._('');
+
+  /// List of all enum-like values
+  static final List<ActionParticipantType> values = [
+    patient,
+    practitioner,
+    related_person,
+    device,
+  ];
+
+  /// Returns the enum value with an element attached
+  ActionParticipantType withElement(Element? newElement) {
+    return ActionParticipantType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -39,28 +65,20 @@ enum ActionParticipantType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ActionParticipantType] instances.
-  static ActionParticipantType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ActionParticipantType] from JSON.
+  static ActionParticipantType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionParticipantType.elementOnly.withElement(
-        element,
-      );
+      return ActionParticipantType.elementOnly.withElement(element);
     }
     return ActionParticipantType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ActionParticipantType withElement(Element? newElement) {
-    return ActionParticipantType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ActionParticipantType.$fhirCode';
 }

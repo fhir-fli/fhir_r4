@@ -1,245 +1,479 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The presentation type in which an administrable medicinal product is given to a patient.
-enum UnitOfPresentation {
-  /// Display: Barrel
-  /// Definition:
-  value200000002108('200000002108'),
+class UnitOfPresentation {
+  // Private constructor for internal use (like enum)
+  UnitOfPresentation._(this.fhirCode, {this.element});
 
-  /// Display: Blister
-  /// Definition:
-  value200000002109('200000002109'),
-
-  /// Display: Block
-  /// Definition:
-  value200000002110('200000002110'),
-
-  /// Display: Bottle
-  /// Definition:
-  value200000002111('200000002111'),
-
-  /// Display: Cachet
-  /// Definition:
-  value200000002112('200000002112'),
-
-  /// Display: Capsule
-  /// Definition:
-  value200000002113('200000002113'),
-
-  /// Display: Cartridge
-  /// Definition:
-  value200000002114('200000002114'),
-
-  /// Display: Collar
-  /// Definition:
-  value200000002115('200000002115'),
-
-  /// Display: Container
-  /// Definition:
-  value200000002116('200000002116'),
-
-  /// Display: Cup
-  /// Definition:
-  value200000002117('200000002117'),
-
-  /// Display: Cylinder
-  /// Definition:
-  value200000002118('200000002118'),
-
-  /// Display: Dart
-  /// Definition:
-  value200000002119('200000002119'),
-
-  /// Display: Dressing
-  /// Definition:
-  value200000002120('200000002120'),
-
-  /// Display: Drop
-  /// Definition:
-  value200000002121('200000002121'),
-
-  /// Display: Film
-  /// Definition:
-  value200000002122('200000002122'),
-
-  /// Display: Chewing gum
-  /// Definition:
-  value200000002123('200000002123'),
-
-  /// Display: Implant
-  /// Definition:
-  value200000002124('200000002124'),
-
-  /// Display: Inhaler
-  /// Definition:
-  value200000002125('200000002125'),
-
-  /// Display: Insert
-  /// Definition:
-  value200000002126('200000002126'),
-
-  /// Display: Jar
-  /// Definition:
-  value200000002127('200000002127'),
-
-  /// Display: Lozenge
-  /// Definition:
-  value200000002128('200000002128'),
-
-  /// Display: Lyophilisate
-  /// Definition:
-  value200000002129('200000002129'),
-
-  /// Display: Matrix
-  /// Definition:
-  value200000002130('200000002130'),
-
-  /// Display: Pad
-  /// Definition:
-  value200000002131('200000002131'),
-
-  /// Display: Paper
-  /// Definition:
-  value200000002132('200000002132'),
-
-  /// Display: Pastille
-  /// Definition:
-  value200000002133('200000002133'),
-
-  /// Display: Patch
-  /// Definition:
-  value200000002134('200000002134'),
-
-  /// Display: Pen
-  /// Definition:
-  value200000002135('200000002135'),
-
-  /// Display: Pendant
-  /// Definition:
-  value200000002136('200000002136'),
-
-  /// Display: Pessary
-  /// Definition:
-  value200000002137('200000002137'),
-
-  /// Display: Pillule
-  /// Definition:
-  value200000002138('200000002138'),
-
-  /// Display: Pipette
-  /// Definition:
-  value200000002139('200000002139'),
-
-  /// Display: Plaster
-  /// Definition:
-  value200000002140('200000002140'),
-
-  /// Display: Plug
-  /// Definition:
-  value200000002141('200000002141'),
-
-  /// Display: Pouch
-  /// Definition:
-  value200000002142('200000002142'),
-
-  /// Display: Sachet
-  /// Definition:
-  value200000002143('200000002143'),
-
-  /// Display: Sponge
-  /// Definition:
-  value200000002144('200000002144'),
-
-  /// Display: Spoonful
-  /// Definition:
-  value200000002145('200000002145'),
-
-  /// Display: Stick
-  /// Definition:
-  value200000002146('200000002146'),
-
-  /// Display: Straw
-  /// Definition:
-  value200000002147('200000002147'),
-
-  /// Display: Strip
-  /// Definition:
-  value200000002148('200000002148'),
-
-  /// Display: Suppository
-  /// Definition:
-  value200000002149('200000002149'),
-
-  /// Display: Syringe
-  /// Definition:
-  value200000002150('200000002150'),
-
-  /// Display: System
-  /// Definition:
-  value200000002151('200000002151'),
-
-  /// Display: Tablet
-  /// Definition:
-  value200000002152('200000002152'),
-
-  /// Display: Tag
-  /// Definition:
-  value200000002153('200000002153'),
-
-  /// Display: Tampon
-  /// Definition:
-  value200000002154('200000002154'),
-
-  /// Display: Thread
-  /// Definition:
-  value200000002155('200000002155'),
-
-  /// Display: Tube
-  /// Definition:
-  value200000002156('200000002156'),
-
-  /// Display: Vessel
-  /// Definition:
-  value200000002157('200000002157'),
-
-  /// Display: Vial
-  /// Definition:
-  value200000002158('200000002158'),
-
-  /// Display: Puff
-  /// Definition:
-  value200000002159('200000002159'),
-
-  /// Display: Actuation
-  /// Definition:
-  value200000002163('200000002163'),
-
-  /// Display: Ampoule
-  /// Definition:
-  value200000002164('200000002164'),
-
-  /// Display: Applicator
-  /// Definition:
-  value200000002165('200000002165'),
-
-  /// Display: Bag
-  /// Definition:
-  value200000002166('200000002166'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const UnitOfPresentation(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// UnitOfPresentation values
+  /// value200000002108
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002108 = UnitOfPresentation._(
+    '200000002108',
+  );
+
+  /// value200000002109
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002109 = UnitOfPresentation._(
+    '200000002109',
+  );
+
+  /// value200000002110
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002110 = UnitOfPresentation._(
+    '200000002110',
+  );
+
+  /// value200000002111
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002111 = UnitOfPresentation._(
+    '200000002111',
+  );
+
+  /// value200000002112
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002112 = UnitOfPresentation._(
+    '200000002112',
+  );
+
+  /// value200000002113
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002113 = UnitOfPresentation._(
+    '200000002113',
+  );
+
+  /// value200000002114
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002114 = UnitOfPresentation._(
+    '200000002114',
+  );
+
+  /// value200000002115
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002115 = UnitOfPresentation._(
+    '200000002115',
+  );
+
+  /// value200000002116
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002116 = UnitOfPresentation._(
+    '200000002116',
+  );
+
+  /// value200000002117
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002117 = UnitOfPresentation._(
+    '200000002117',
+  );
+
+  /// value200000002118
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002118 = UnitOfPresentation._(
+    '200000002118',
+  );
+
+  /// value200000002119
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002119 = UnitOfPresentation._(
+    '200000002119',
+  );
+
+  /// value200000002120
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002120 = UnitOfPresentation._(
+    '200000002120',
+  );
+
+  /// value200000002121
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002121 = UnitOfPresentation._(
+    '200000002121',
+  );
+
+  /// value200000002122
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002122 = UnitOfPresentation._(
+    '200000002122',
+  );
+
+  /// value200000002123
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002123 = UnitOfPresentation._(
+    '200000002123',
+  );
+
+  /// value200000002124
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002124 = UnitOfPresentation._(
+    '200000002124',
+  );
+
+  /// value200000002125
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002125 = UnitOfPresentation._(
+    '200000002125',
+  );
+
+  /// value200000002126
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002126 = UnitOfPresentation._(
+    '200000002126',
+  );
+
+  /// value200000002127
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002127 = UnitOfPresentation._(
+    '200000002127',
+  );
+
+  /// value200000002128
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002128 = UnitOfPresentation._(
+    '200000002128',
+  );
+
+  /// value200000002129
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002129 = UnitOfPresentation._(
+    '200000002129',
+  );
+
+  /// value200000002130
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002130 = UnitOfPresentation._(
+    '200000002130',
+  );
+
+  /// value200000002131
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002131 = UnitOfPresentation._(
+    '200000002131',
+  );
+
+  /// value200000002132
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002132 = UnitOfPresentation._(
+    '200000002132',
+  );
+
+  /// value200000002133
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002133 = UnitOfPresentation._(
+    '200000002133',
+  );
+
+  /// value200000002134
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002134 = UnitOfPresentation._(
+    '200000002134',
+  );
+
+  /// value200000002135
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002135 = UnitOfPresentation._(
+    '200000002135',
+  );
+
+  /// value200000002136
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002136 = UnitOfPresentation._(
+    '200000002136',
+  );
+
+  /// value200000002137
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002137 = UnitOfPresentation._(
+    '200000002137',
+  );
+
+  /// value200000002138
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002138 = UnitOfPresentation._(
+    '200000002138',
+  );
+
+  /// value200000002139
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002139 = UnitOfPresentation._(
+    '200000002139',
+  );
+
+  /// value200000002140
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002140 = UnitOfPresentation._(
+    '200000002140',
+  );
+
+  /// value200000002141
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002141 = UnitOfPresentation._(
+    '200000002141',
+  );
+
+  /// value200000002142
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002142 = UnitOfPresentation._(
+    '200000002142',
+  );
+
+  /// value200000002143
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002143 = UnitOfPresentation._(
+    '200000002143',
+  );
+
+  /// value200000002144
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002144 = UnitOfPresentation._(
+    '200000002144',
+  );
+
+  /// value200000002145
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002145 = UnitOfPresentation._(
+    '200000002145',
+  );
+
+  /// value200000002146
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002146 = UnitOfPresentation._(
+    '200000002146',
+  );
+
+  /// value200000002147
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002147 = UnitOfPresentation._(
+    '200000002147',
+  );
+
+  /// value200000002148
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002148 = UnitOfPresentation._(
+    '200000002148',
+  );
+
+  /// value200000002149
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002149 = UnitOfPresentation._(
+    '200000002149',
+  );
+
+  /// value200000002150
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002150 = UnitOfPresentation._(
+    '200000002150',
+  );
+
+  /// value200000002151
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002151 = UnitOfPresentation._(
+    '200000002151',
+  );
+
+  /// value200000002152
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002152 = UnitOfPresentation._(
+    '200000002152',
+  );
+
+  /// value200000002153
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002153 = UnitOfPresentation._(
+    '200000002153',
+  );
+
+  /// value200000002154
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002154 = UnitOfPresentation._(
+    '200000002154',
+  );
+
+  /// value200000002155
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002155 = UnitOfPresentation._(
+    '200000002155',
+  );
+
+  /// value200000002156
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002156 = UnitOfPresentation._(
+    '200000002156',
+  );
+
+  /// value200000002157
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002157 = UnitOfPresentation._(
+    '200000002157',
+  );
+
+  /// value200000002158
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002158 = UnitOfPresentation._(
+    '200000002158',
+  );
+
+  /// value200000002159
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002159 = UnitOfPresentation._(
+    '200000002159',
+  );
+
+  /// value200000002163
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002163 = UnitOfPresentation._(
+    '200000002163',
+  );
+
+  /// value200000002164
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002164 = UnitOfPresentation._(
+    '200000002164',
+  );
+
+  /// value200000002165
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002165 = UnitOfPresentation._(
+    '200000002165',
+  );
+
+  /// value200000002166
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final UnitOfPresentation value200000002166 = UnitOfPresentation._(
+    '200000002166',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final UnitOfPresentation elementOnly = UnitOfPresentation._('');
+
+  /// List of all enum-like values
+  static final List<UnitOfPresentation> values = [
+    value200000002108,
+    value200000002109,
+    value200000002110,
+    value200000002111,
+    value200000002112,
+    value200000002113,
+    value200000002114,
+    value200000002115,
+    value200000002116,
+    value200000002117,
+    value200000002118,
+    value200000002119,
+    value200000002120,
+    value200000002121,
+    value200000002122,
+    value200000002123,
+    value200000002124,
+    value200000002125,
+    value200000002126,
+    value200000002127,
+    value200000002128,
+    value200000002129,
+    value200000002130,
+    value200000002131,
+    value200000002132,
+    value200000002133,
+    value200000002134,
+    value200000002135,
+    value200000002136,
+    value200000002137,
+    value200000002138,
+    value200000002139,
+    value200000002140,
+    value200000002141,
+    value200000002142,
+    value200000002143,
+    value200000002144,
+    value200000002145,
+    value200000002146,
+    value200000002147,
+    value200000002148,
+    value200000002149,
+    value200000002150,
+    value200000002151,
+    value200000002152,
+    value200000002153,
+    value200000002154,
+    value200000002155,
+    value200000002156,
+    value200000002157,
+    value200000002158,
+    value200000002159,
+    value200000002163,
+    value200000002164,
+    value200000002165,
+    value200000002166,
+  ];
+
+  /// Returns the enum value with an element attached
+  UnitOfPresentation withElement(Element? newElement) {
+    return UnitOfPresentation._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -247,28 +481,20 @@ enum UnitOfPresentation {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [UnitOfPresentation] instances.
-  static UnitOfPresentation fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [UnitOfPresentation] from JSON.
+  static UnitOfPresentation fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return UnitOfPresentation.elementOnly.withElement(
-        element,
-      );
+      return UnitOfPresentation.elementOnly.withElement(element);
     }
     return UnitOfPresentation.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  UnitOfPresentation withElement(Element? newElement) {
-    return UnitOfPresentation.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'UnitOfPresentation.$fhirCode';
 }

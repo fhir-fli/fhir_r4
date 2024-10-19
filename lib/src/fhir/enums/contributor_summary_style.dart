@@ -1,85 +1,168 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Used to code the format of the display string.
-enum ContributorSummaryStyle {
-  /// Display: First author (full name) et al
-  /// Definition: Example: Jennifer Laskowski et al.
-  a1full('a1full'),
+class ContributorSummaryStyle {
+  // Private constructor for internal use (like enum)
+  ContributorSummaryStyle._(this.fhirCode, {this.element});
 
-  /// Display: First author (last name first initials) et al
-  /// Definition: Example: Laskowski J et al.
-  a1init('a1init'),
-
-  /// Display: First 3 authors (full name) et al
-  /// Definition: Example: Jennifer Laskowski, Brandon Renner, Matthew C. Pickering, et al.
-  a3full('a3full'),
-
-  /// Display: First 3 authors (last name first initials) et al
-  /// Definition: Example: Laskowski J, Renner B, Pickering MC, et al.
-  a3init('a3init'),
-
-  /// Display: First 6 authors (full name) et al
-  /// Definition: Example: Jennifer Laskowski, Brandon Renner, Matthew C. Pickering, Natalie J. Serkova, Peter M. Smith-Jones, Eric T. Clambey, et al.
-  a6full('a6full'),
-
-  /// Display: First 6 authors (last name first initials) et al
-  /// Definition: Example: Laskowski J, Renner B, Pickering MC, Serkova NJ, Smith-Jones PM, Clambey ET, et al.
-  a6init('a6init'),
-
-  /// Display: All authors (full name)
-  /// Definition: Example: Jennifer Laskowski, Brandon Renner, Matthew C. Pickering, Natalie J. Serkova, Peter M. Smith-Jones, Eric T. Clambey, Raphael A. Nemenoff, Joshua M. Thurman.
-  aallfull('aallfull'),
-
-  /// Display: All authors (full name) with and before last author
-  /// Definition: Example: Jennifer Laskowski, Brandon Renner, Matthew C. Pickering, Natalie J. Serkova, Peter M. Smith-Jones, Eric T. Clambey, Raphael A. Nemenoff, and Joshua M. Thurman.
-  aallfullwithand('aallfullwithand'),
-
-  /// Display: All authors (full name) with an ampersand before last author
-  /// Definition: Example: Jennifer Laskowski, Brandon Renner, Matthew C. Pickering, Natalie J. Serkova, Peter M. Smith-Jones, Eric T. Clambey, Raphael A. Nemenoff, & Joshua M. Thurman.
-  aallfullwithampersand('aallfullwithampersand'),
-
-  /// Display: All authors (last name first initials)
-  /// Definition: Example: Laskowski J, Renner B, Pickering MC, Serkova NJ, Smith-Jones PM, Clambey ET, Nemenoff RA, Thurman JM.
-  aallinit('aallinit'),
-
-  /// Display: All authors (last name first initials) with and before last author
-  /// Definition: Example: Laskowski J, Renner B, Pickering MC, Serkova NJ, Smith-Jones PM, Clambey ET, Nemenoff RA, and Thurman JM.
-  aallinitwithand('aallinitwithand'),
-
-  /// Display: All authors (last name first initials) with an ampersand before last author
-  /// Definition: Example: Laskowski J, Renner B, Pickering MC, Serkova NJ, Smith-Jones PM, Clambey ET, Nemenoff RA, & Thurman JM.
-  aallinitwithampersand('aallinitwithampersand'),
-
-  /// Display: Contributorship statement listed by person with full names
-  /// Definition: Jennnifer Laskowski designed project; developed and performed experiments; collected and analyzed data; wrote and revised manuscript. Brandon Renner performed critical review of manuscript. Matthew C. Pickering provided technical advice and contributed to study design. Natalie J. Serkova and Peter M. Smith-Jones performed PET imaging and associated analyses. Eric T. Clambey and Raphael A. Nemenoff provided conceptual and technical guidance and critical review of manuscript. Joshua M. Thurman contributed to experimental design and wrote manuscript.
-  contr_full_by_person('contr-full-by-person'),
-
-  /// Display: Contributorship statement listed by person with initials
-  /// Definition: J.L. designed project; developed and performed experiments; collected and analyzed data; wrote and revised manuscript. B.R. performed critical review of manuscript. M.C.P. provided technical advice and contributed to study design. N.J.S and P.M.S.-J. performed PET imaging and associated analyses. E.T.C. and R.A.N provided conceptual and technical guidance and critical review of manuscript. J.M.T contributed to experimental design and wrote manuscript.
-  contr_init_by_person('contr-init-by-person'),
-
-  /// Display: Contributorship statement listed by contribution with full names
-  /// Definition: Project design by Jennnifer Laskowski (JL), Experiment design by JL and Joshua M. Thurman (JMT), technical advice and study design contribution by Matthew C. Pickering, experiments performed by JL, data collection and analysis by JL, PET imaging and associated analyses by Natalie J. Serkova and Peter M. Smith-Jones, conceptual and technical guidance by Eric T. Clambey (ETC) and Raphael A. Nemenoff (RAN), manuscript writing by JL and JMT, manuscript revised critically by JL, Brandon Renner, ETC, and RAN.
-  contr_full_by_contr('contr-full-by-contr'),
-
-  /// Display: Contributorship statement listed by contribution with initials
-  /// Definition: Project design by JL, Experiment design by JL and JMT, technical advice and study design contribution by MCP, experiments performed by JL, data collection and analysis by JL, PET imaging and associated analyses by NJS and PMS-J, conceptual and technical guidance by ETC and RAN, manuscript writing by JL and JMT, manuscript revised critically by JL, BR, ETC, and RAN.
-  contr_init_by_contr('contr-init-by-contr'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ContributorSummaryStyle(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ContributorSummaryStyle values
+  /// a1full
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle a1full = ContributorSummaryStyle._(
+    'a1full',
+  );
+
+  /// a1init
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle a1init = ContributorSummaryStyle._(
+    'a1init',
+  );
+
+  /// a3full
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle a3full = ContributorSummaryStyle._(
+    'a3full',
+  );
+
+  /// a3init
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle a3init = ContributorSummaryStyle._(
+    'a3init',
+  );
+
+  /// a6full
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle a6full = ContributorSummaryStyle._(
+    'a6full',
+  );
+
+  /// a6init
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle a6init = ContributorSummaryStyle._(
+    'a6init',
+  );
+
+  /// aallfull
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle aallfull = ContributorSummaryStyle._(
+    'aallfull',
+  );
+
+  /// aallfullwithand
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle aallfullwithand =
+      ContributorSummaryStyle._(
+    'aallfullwithand',
+  );
+
+  /// aallfullwithampersand
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle aallfullwithampersand =
+      ContributorSummaryStyle._(
+    'aallfullwithampersand',
+  );
+
+  /// aallinit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle aallinit = ContributorSummaryStyle._(
+    'aallinit',
+  );
+
+  /// aallinitwithand
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle aallinitwithand =
+      ContributorSummaryStyle._(
+    'aallinitwithand',
+  );
+
+  /// aallinitwithampersand
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle aallinitwithampersand =
+      ContributorSummaryStyle._(
+    'aallinitwithampersand',
+  );
+
+  /// contr_full_by_person
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle contr_full_by_person =
+      ContributorSummaryStyle._(
+    'contr-full-by-person',
+  );
+
+  /// contr_init_by_person
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle contr_init_by_person =
+      ContributorSummaryStyle._(
+    'contr-init-by-person',
+  );
+
+  /// contr_full_by_contr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle contr_full_by_contr =
+      ContributorSummaryStyle._(
+    'contr-full-by-contr',
+  );
+
+  /// contr_init_by_contr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummaryStyle contr_init_by_contr =
+      ContributorSummaryStyle._(
+    'contr-init-by-contr',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ContributorSummaryStyle elementOnly =
+      ContributorSummaryStyle._('');
+
+  /// List of all enum-like values
+  static final List<ContributorSummaryStyle> values = [
+    a1full,
+    a1init,
+    a3full,
+    a3init,
+    a6full,
+    a6init,
+    aallfull,
+    aallfullwithand,
+    aallfullwithampersand,
+    aallinit,
+    aallinitwithand,
+    aallinitwithampersand,
+    contr_full_by_person,
+    contr_init_by_person,
+    contr_full_by_contr,
+    contr_init_by_contr,
+  ];
+
+  /// Returns the enum value with an element attached
+  ContributorSummaryStyle withElement(Element? newElement) {
+    return ContributorSummaryStyle._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -87,28 +170,20 @@ enum ContributorSummaryStyle {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ContributorSummaryStyle] instances.
-  static ContributorSummaryStyle fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ContributorSummaryStyle] from JSON.
+  static ContributorSummaryStyle fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContributorSummaryStyle.elementOnly.withElement(
-        element,
-      );
+      return ContributorSummaryStyle.elementOnly.withElement(element);
     }
     return ContributorSummaryStyle.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ContributorSummaryStyle withElement(Element? newElement) {
-    return ContributorSummaryStyle.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ContributorSummaryStyle.$fhirCode';
 }

@@ -1,33 +1,55 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Type for quality report.
-enum QualityType {
-  /// Display: INDEL Comparison
-  /// Definition: INDEL Comparison.
-  indel('indel'),
+class QualityType {
+  // Private constructor for internal use (like enum)
+  QualityType._(this.fhirCode, {this.element});
 
-  /// Display: SNP Comparison
-  /// Definition: SNP Comparison.
-  snp('snp'),
-
-  /// Display: UNKNOWN Comparison
-  /// Definition: UNKNOWN Comparison.
-  unknown('unknown'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const QualityType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// QualityType values
+  /// indel
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QualityType indel = QualityType._(
+    'indel',
+  );
+
+  /// snp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QualityType snp = QualityType._(
+    'snp',
+  );
+
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final QualityType unknown = QualityType._(
+    'unknown',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final QualityType elementOnly = QualityType._('');
+
+  /// List of all enum-like values
+  static final List<QualityType> values = [
+    indel,
+    snp,
+    unknown,
+  ];
+
+  /// Returns the enum value with an element attached
+  QualityType withElement(Element? newElement) {
+    return QualityType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +57,20 @@ enum QualityType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [QualityType] instances.
-  static QualityType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [QualityType] from JSON.
+  static QualityType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return QualityType.elementOnly.withElement(
-        element,
-      );
+      return QualityType.elementOnly.withElement(element);
     }
     return QualityType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  QualityType withElement(Element? newElement) {
-    return QualityType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'QualityType.$fhirCode';
 }

@@ -1,45 +1,79 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Structure Definition Use Codes / Keywords
-enum DefinitionUseCodes {
-  /// Display: FHIR Structure
-  /// Definition: This structure is defined as part of the base FHIR Specification
-  fhir_structure('fhir-structure'),
+class DefinitionUseCodes {
+  // Private constructor for internal use (like enum)
+  DefinitionUseCodes._(this.fhirCode, {this.element});
 
-  /// Display: Custom Resource
-  /// Definition: This structure is intended to be treated like a FHIR resource (e.g. on the FHIR API)
-  custom_resource('custom-resource'),
-
-  /// Display: Domain Analysis Model
-  /// Definition: This structure captures an analysis of a domain
-  dam('dam'),
-
-  /// Display: Wire Format
-  /// Definition: This structure represents and existing structure (e.g. CDA, HL7 v2)
-  wire_format('wire-format'),
-
-  /// Display: Domain Analysis Model
-  /// Definition: This structure captures an analysis of a domain
-  archetype('archetype'),
-
-  /// Display: Template
-  /// Definition: This structure is a template (n.b: 'template' has many meanings)
-  template('template'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const DefinitionUseCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// DefinitionUseCodes values
+  /// fhir_structure
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DefinitionUseCodes fhir_structure = DefinitionUseCodes._(
+    'fhir-structure',
+  );
+
+  /// custom_resource
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DefinitionUseCodes custom_resource = DefinitionUseCodes._(
+    'custom-resource',
+  );
+
+  /// dam
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DefinitionUseCodes dam = DefinitionUseCodes._(
+    'dam',
+  );
+
+  /// wire_format
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DefinitionUseCodes wire_format = DefinitionUseCodes._(
+    'wire-format',
+  );
+
+  /// archetype
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DefinitionUseCodes archetype = DefinitionUseCodes._(
+    'archetype',
+  );
+
+  /// template
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final DefinitionUseCodes template = DefinitionUseCodes._(
+    'template',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final DefinitionUseCodes elementOnly = DefinitionUseCodes._('');
+
+  /// List of all enum-like values
+  static final List<DefinitionUseCodes> values = [
+    fhir_structure,
+    custom_resource,
+    dam,
+    wire_format,
+    archetype,
+    template,
+  ];
+
+  /// Returns the enum value with an element attached
+  DefinitionUseCodes withElement(Element? newElement) {
+    return DefinitionUseCodes._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -47,28 +81,20 @@ enum DefinitionUseCodes {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [DefinitionUseCodes] instances.
-  static DefinitionUseCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [DefinitionUseCodes] from JSON.
+  static DefinitionUseCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return DefinitionUseCodes.elementOnly.withElement(
-        element,
-      );
+      return DefinitionUseCodes.elementOnly.withElement(element);
     }
     return DefinitionUseCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  DefinitionUseCodes withElement(Element? newElement) {
-    return DefinitionUseCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'DefinitionUseCodes.$fhirCode';
 }

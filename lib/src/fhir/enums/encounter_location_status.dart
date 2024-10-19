@@ -1,37 +1,64 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The status of the location.
-enum EncounterLocationStatus {
-  /// Display: Planned
-  /// Definition: The patient is planned to be moved to this location at some point in the future.
-  planned('planned'),
+class EncounterLocationStatus {
+  // Private constructor for internal use (like enum)
+  EncounterLocationStatus._(this.fhirCode, {this.element});
 
-  /// Display: Active
-  /// Definition: The patient is currently at this location, or was between the period specified. A system may update these records when the patient leaves the location to either reserved, or completed.
-  active('active'),
-
-  /// Display: Reserved
-  /// Definition: This location is held empty for this patient.
-  reserved('reserved'),
-
-  /// Display: Completed
-  /// Definition: The patient was at this location during the period specified. Not to be used when the patient is currently at the location.
-  completed('completed'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const EncounterLocationStatus(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// EncounterLocationStatus values
+  /// planned
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EncounterLocationStatus planned = EncounterLocationStatus._(
+    'planned',
+  );
+
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EncounterLocationStatus active = EncounterLocationStatus._(
+    'active',
+  );
+
+  /// reserved
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EncounterLocationStatus reserved = EncounterLocationStatus._(
+    'reserved',
+  );
+
+  /// completed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final EncounterLocationStatus completed = EncounterLocationStatus._(
+    'completed',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final EncounterLocationStatus elementOnly =
+      EncounterLocationStatus._('');
+
+  /// List of all enum-like values
+  static final List<EncounterLocationStatus> values = [
+    planned,
+    active,
+    reserved,
+    completed,
+  ];
+
+  /// Returns the enum value with an element attached
+  EncounterLocationStatus withElement(Element? newElement) {
+    return EncounterLocationStatus._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -39,28 +66,20 @@ enum EncounterLocationStatus {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [EncounterLocationStatus] instances.
-  static EncounterLocationStatus fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [EncounterLocationStatus] from JSON.
+  static EncounterLocationStatus fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return EncounterLocationStatus.elementOnly.withElement(
-        element,
-      );
+      return EncounterLocationStatus.elementOnly.withElement(element);
     }
     return EncounterLocationStatus.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  EncounterLocationStatus withElement(Element? newElement) {
-    return EncounterLocationStatus.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'EncounterLocationStatus.$fhirCode';
 }

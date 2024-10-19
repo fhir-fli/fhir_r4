@@ -1,45 +1,79 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// TODO (and should this be required?).
-enum AdverseEventOutcome {
-  /// Display: Resolved
-  /// Definition:
-  resolved('resolved'),
+class AdverseEventOutcome {
+  // Private constructor for internal use (like enum)
+  AdverseEventOutcome._(this.fhirCode, {this.element});
 
-  /// Display: Recovering
-  /// Definition:
-  recovering('recovering'),
-
-  /// Display: Ongoing
-  /// Definition:
-  ongoing('ongoing'),
-
-  /// Display: Resolved with Sequelae
-  /// Definition:
-  resolvedWithSequelae('resolvedWithSequelae'),
-
-  /// Display: Fatal
-  /// Definition:
-  fatal('fatal'),
-
-  /// Display: Unknown
-  /// Definition:
-  unknown('unknown'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const AdverseEventOutcome(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// AdverseEventOutcome values
+  /// resolved
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdverseEventOutcome resolved = AdverseEventOutcome._(
+    'resolved',
+  );
+
+  /// recovering
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdverseEventOutcome recovering = AdverseEventOutcome._(
+    'recovering',
+  );
+
+  /// ongoing
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdverseEventOutcome ongoing = AdverseEventOutcome._(
+    'ongoing',
+  );
+
+  /// resolvedWithSequelae
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdverseEventOutcome resolvedWithSequelae = AdverseEventOutcome._(
+    'resolvedWithSequelae',
+  );
+
+  /// fatal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdverseEventOutcome fatal = AdverseEventOutcome._(
+    'fatal',
+  );
+
+  /// unknown
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final AdverseEventOutcome unknown = AdverseEventOutcome._(
+    'unknown',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final AdverseEventOutcome elementOnly = AdverseEventOutcome._('');
+
+  /// List of all enum-like values
+  static final List<AdverseEventOutcome> values = [
+    resolved,
+    recovering,
+    ongoing,
+    resolvedWithSequelae,
+    fatal,
+    unknown,
+  ];
+
+  /// Returns the enum value with an element attached
+  AdverseEventOutcome withElement(Element? newElement) {
+    return AdverseEventOutcome._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -47,28 +81,20 @@ enum AdverseEventOutcome {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [AdverseEventOutcome] instances.
-  static AdverseEventOutcome fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [AdverseEventOutcome] from JSON.
+  static AdverseEventOutcome fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return AdverseEventOutcome.elementOnly.withElement(
-        element,
-      );
+      return AdverseEventOutcome.elementOnly.withElement(element);
     }
     return AdverseEventOutcome.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  AdverseEventOutcome withElement(Element? newElement) {
-    return AdverseEventOutcome.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'AdverseEventOutcome.$fhirCode';
 }

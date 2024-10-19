@@ -1,29 +1,49 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of relations between entries.
-enum CatalogEntryRelationType {
-  /// Display: Triggers
-  /// Definition: the related entry represents an activity that may be triggered by the current item.
-  triggers('triggers'),
+class CatalogEntryRelationType {
+  // Private constructor for internal use (like enum)
+  CatalogEntryRelationType._(this.fhirCode, {this.element});
 
-  /// Display: Replaced By
-  /// Definition: the related entry represents an item that replaces the current retired item.
-  is_replaced_by('is-replaced-by'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const CatalogEntryRelationType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// CatalogEntryRelationType values
+  /// triggers
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CatalogEntryRelationType triggers = CatalogEntryRelationType._(
+    'triggers',
+  );
+
+  /// is_replaced_by
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CatalogEntryRelationType is_replaced_by =
+      CatalogEntryRelationType._(
+    'is-replaced-by',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final CatalogEntryRelationType elementOnly =
+      CatalogEntryRelationType._('');
+
+  /// List of all enum-like values
+  static final List<CatalogEntryRelationType> values = [
+    triggers,
+    is_replaced_by,
+  ];
+
+  /// Returns the enum value with an element attached
+  CatalogEntryRelationType withElement(Element? newElement) {
+    return CatalogEntryRelationType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -31,28 +51,20 @@ enum CatalogEntryRelationType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [CatalogEntryRelationType] instances.
-  static CatalogEntryRelationType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [CatalogEntryRelationType] from JSON.
+  static CatalogEntryRelationType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CatalogEntryRelationType.elementOnly.withElement(
-        element,
-      );
+      return CatalogEntryRelationType.elementOnly.withElement(element);
     }
     return CatalogEntryRelationType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  CatalogEntryRelationType withElement(Element? newElement) {
-    return CatalogEntryRelationType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'CatalogEntryRelationType.$fhirCode';
 }

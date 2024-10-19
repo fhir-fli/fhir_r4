@@ -1,29 +1,50 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes smattering of Payment Adjustment Reason codes.
-enum PaymentAdjustmentReasonCodes {
-  /// Display: Prior Payment Reversal
-  /// Definition: Prior Payment Reversal
-  a001('a001'),
+class PaymentAdjustmentReasonCodes {
+  // Private constructor for internal use (like enum)
+  PaymentAdjustmentReasonCodes._(this.fhirCode, {this.element});
 
-  /// Display: Prior Overpayment
-  /// Definition: Prior Overpayment
-  a002('a002'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const PaymentAdjustmentReasonCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// PaymentAdjustmentReasonCodes values
+  /// a001
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final PaymentAdjustmentReasonCodes a001 =
+      PaymentAdjustmentReasonCodes._(
+    'a001',
+  );
+
+  /// a002
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final PaymentAdjustmentReasonCodes a002 =
+      PaymentAdjustmentReasonCodes._(
+    'a002',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final PaymentAdjustmentReasonCodes elementOnly =
+      PaymentAdjustmentReasonCodes._('');
+
+  /// List of all enum-like values
+  static final List<PaymentAdjustmentReasonCodes> values = [
+    a001,
+    a002,
+  ];
+
+  /// Returns the enum value with an element attached
+  PaymentAdjustmentReasonCodes withElement(Element? newElement) {
+    return PaymentAdjustmentReasonCodes._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -31,28 +52,20 @@ enum PaymentAdjustmentReasonCodes {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [PaymentAdjustmentReasonCodes] instances.
-  static PaymentAdjustmentReasonCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [PaymentAdjustmentReasonCodes] from JSON.
+  static PaymentAdjustmentReasonCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return PaymentAdjustmentReasonCodes.elementOnly.withElement(
-        element,
-      );
+      return PaymentAdjustmentReasonCodes.elementOnly.withElement(element);
     }
     return PaymentAdjustmentReasonCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  PaymentAdjustmentReasonCodes withElement(Element? newElement) {
-    return PaymentAdjustmentReasonCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'PaymentAdjustmentReasonCodes.$fhirCode';
 }

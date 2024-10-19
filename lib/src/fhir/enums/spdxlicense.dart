@@ -1,1405 +1,2799 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The license that applies to an Implementation Guide (using an SPDX license Identifiers, or 'not-open-source'). The binding is required but new SPDX license Identifiers are allowed to be used (https://spdx.org/licenses/).
-enum SPDXLicense {
-  /// Display: Not open source
-  /// Definition: Not an open source license.
-  not_open_source('not-open-source'),
-
-  /// Display: BSD Zero Clause License
-  /// Definition: BSD Zero Clause License.
-  value0BSD('0BSD'),
-
-  /// Display: Attribution Assurance License
-  /// Definition: Attribution Assurance License.
-  AAL('AAL'),
-
-  /// Display: Abstyles License
-  /// Definition: Abstyles License.
-  Abstyles('Abstyles'),
-
-  /// Display: Adobe Systems Incorporated Source Code License Agreement
-  /// Definition: Adobe Systems Incorporated Source Code License Agreement.
-  Adobe_2006('Adobe-2006'),
-
-  /// Display: Adobe Glyph List License
-  /// Definition: Adobe Glyph List License.
-  Adobe_Glyph('Adobe-Glyph'),
-
-  /// Display: Amazon Digital Services License
-  /// Definition: Amazon Digital Services License.
-  ADSL('ADSL'),
-
-  /// Display: Academic Free License v1.1
-  /// Definition: Academic Free License v1.1.
-  AFL_1_1('AFL-1.1'),
-
-  /// Display: Academic Free License v1.2
-  /// Definition: Academic Free License v1.2.
-  AFL_1_2('AFL-1.2'),
-
-  /// Display: Academic Free License v2.0
-  /// Definition: Academic Free License v2.0.
-  AFL_2_0('AFL-2.0'),
-
-  /// Display: Academic Free License v2.1
-  /// Definition: Academic Free License v2.1.
-  AFL_2_1('AFL-2.1'),
-
-  /// Display: Academic Free License v3.0
-  /// Definition: Academic Free License v3.0.
-  AFL_3_0('AFL-3.0'),
-
-  /// Display: Afmparse License
-  /// Definition: Afmparse License.
-  Afmparse('Afmparse'),
-
-  /// Display: Affero General Public License v1.0 only
-  /// Definition: Affero General Public License v1.0 only.
-  AGPL_1_0_only('AGPL-1.0-only'),
-
-  /// Display: Affero General Public License v1.0 or later
-  /// Definition: Affero General Public License v1.0 or later.
-  AGPL_1_0_or_later('AGPL-1.0-or-later'),
-
-  /// Display: GNU Affero General Public License v3.0 only
-  /// Definition: GNU Affero General Public License v3.0 only.
-  AGPL_3_0_only('AGPL-3.0-only'),
-
-  /// Display: GNU Affero General Public License v3.0 or later
-  /// Definition: GNU Affero General Public License v3.0 or later.
-  AGPL_3_0_or_later('AGPL-3.0-or-later'),
-
-  /// Display: Aladdin Free Public License
-  /// Definition: Aladdin Free Public License.
-  Aladdin('Aladdin'),
-
-  /// Display: AMD's plpa_map.c License
-  /// Definition: AMD's plpa_map.c License.
-  AMDPLPA('AMDPLPA'),
-
-  /// Display: Apple MIT License
-  /// Definition: Apple MIT License.
-  AML('AML'),
-
-  /// Display: Academy of Motion Picture Arts and Sciences BSD
-  /// Definition: Academy of Motion Picture Arts and Sciences BSD.
-  AMPAS('AMPAS'),
-
-  /// Display: ANTLR Software Rights Notice
-  /// Definition: ANTLR Software Rights Notice.
-  ANTLR_PD('ANTLR-PD'),
-
-  /// Display: Apache License 1.0
-  /// Definition: Apache License 1.0.
-  Apache_1_0('Apache-1.0'),
-
-  /// Display: Apache License 1.1
-  /// Definition: Apache License 1.1.
-  Apache_1_1('Apache-1.1'),
-
-  /// Display: Apache License 2.0
-  /// Definition: Apache License 2.0.
-  Apache_2_0('Apache-2.0'),
-
-  /// Display: Adobe Postscript AFM License
-  /// Definition: Adobe Postscript AFM License.
-  APAFML('APAFML'),
-
-  /// Display: Adaptive Public License 1.0
-  /// Definition: Adaptive Public License 1.0.
-  APL_1_0('APL-1.0'),
-
-  /// Display: Apple Public Source License 1.0
-  /// Definition: Apple Public Source License 1.0.
-  APSL_1_0('APSL-1.0'),
-
-  /// Display: Apple Public Source License 1.1
-  /// Definition: Apple Public Source License 1.1.
-  APSL_1_1('APSL-1.1'),
-
-  /// Display: Apple Public Source License 1.2
-  /// Definition: Apple Public Source License 1.2.
-  APSL_1_2('APSL-1.2'),
-
-  /// Display: Apple Public Source License 2.0
-  /// Definition: Apple Public Source License 2.0.
-  APSL_2_0('APSL-2.0'),
-
-  /// Display: Artistic License 1.0 w/clause 8
-  /// Definition: Artistic License 1.0 w/clause 8.
-  Artistic_1_0_cl8('Artistic-1.0-cl8'),
-
-  /// Display: Artistic License 1.0 (Perl)
-  /// Definition: Artistic License 1.0 (Perl).
-  Artistic_1_0_Perl('Artistic-1.0-Perl'),
-
-  /// Display: Artistic License 1.0
-  /// Definition: Artistic License 1.0.
-  Artistic_1_0('Artistic-1.0'),
-
-  /// Display: Artistic License 2.0
-  /// Definition: Artistic License 2.0.
-  Artistic_2_0('Artistic-2.0'),
-
-  /// Display: Bahyph License
-  /// Definition: Bahyph License.
-  Bahyph('Bahyph'),
-
-  /// Display: Barr License
-  /// Definition: Barr License.
-  Barr('Barr'),
-
-  /// Display: Beerware License
-  /// Definition: Beerware License.
-  Beerware('Beerware'),
-
-  /// Display: BitTorrent Open Source License v1.0
-  /// Definition: BitTorrent Open Source License v1.0.
-  BitTorrent_1_0('BitTorrent-1.0'),
-
-  /// Display: BitTorrent Open Source License v1.1
-  /// Definition: BitTorrent Open Source License v1.1.
-  BitTorrent_1_1('BitTorrent-1.1'),
-
-  /// Display: Borceux license
-  /// Definition: Borceux license.
-  Borceux('Borceux'),
-
-  /// Display: BSD 1-Clause License
-  /// Definition: BSD 1-Clause License.
-  BSD_1_Clause('BSD-1-Clause'),
-
-  /// Display: BSD 2-Clause FreeBSD License
-  /// Definition: BSD 2-Clause FreeBSD License.
-  BSD_2_Clause_FreeBSD('BSD-2-Clause-FreeBSD'),
-
-  /// Display: BSD 2-Clause NetBSD License
-  /// Definition: BSD 2-Clause NetBSD License.
-  BSD_2_Clause_NetBSD('BSD-2-Clause-NetBSD'),
-
-  /// Display: BSD-2-Clause Plus Patent License
-  /// Definition: BSD-2-Clause Plus Patent License.
-  BSD_2_Clause_Patent('BSD-2-Clause-Patent'),
-
-  /// Display: BSD 2-Clause "Simplified" License
-  /// Definition: BSD 2-Clause "Simplified" License.
-  BSD_2_Clause('BSD-2-Clause'),
-
-  /// Display: BSD with attribution
-  /// Definition: BSD with attribution.
-  BSD_3_Clause_Attribution('BSD-3-Clause-Attribution'),
-
-  /// Display: BSD 3-Clause Clear License
-  /// Definition: BSD 3-Clause Clear License.
-  BSD_3_Clause_Clear('BSD-3-Clause-Clear'),
-
-  /// Display: Lawrence Berkeley National Labs BSD variant license
-  /// Definition: Lawrence Berkeley National Labs BSD variant license.
-  BSD_3_Clause_LBNL('BSD-3-Clause-LBNL'),
-
-  /// Display: BSD 3-Clause No Nuclear License 2014
-  /// Definition: BSD 3-Clause No Nuclear License 2014.
-  BSD_3_Clause_No_Nuclear_License_2014('BSD-3-Clause-No-Nuclear-License-2014'),
-
-  /// Display: BSD 3-Clause No Nuclear License
-  /// Definition: BSD 3-Clause No Nuclear License.
-  BSD_3_Clause_No_Nuclear_License('BSD-3-Clause-No-Nuclear-License'),
-
-  /// Display: BSD 3-Clause No Nuclear Warranty
-  /// Definition: BSD 3-Clause No Nuclear Warranty.
-  BSD_3_Clause_No_Nuclear_Warranty('BSD-3-Clause-No-Nuclear-Warranty'),
-
-  /// Display: BSD 3-Clause "New" or "Revised" License
-  /// Definition: BSD 3-Clause "New" or "Revised" License.
-  BSD_3_Clause('BSD-3-Clause'),
-
-  /// Display: BSD-4-Clause (University of California-Specific)
-  /// Definition: BSD-4-Clause (University of California-Specific).
-  BSD_4_Clause_UC('BSD-4-Clause-UC'),
-
-  /// Display: BSD 4-Clause "Original" or "Old" License
-  /// Definition: BSD 4-Clause "Original" or "Old" License.
-  BSD_4_Clause('BSD-4-Clause'),
-
-  /// Display: BSD Protection License
-  /// Definition: BSD Protection License.
-  BSD_Protection('BSD-Protection'),
-
-  /// Display: BSD Source Code Attribution
-  /// Definition: BSD Source Code Attribution.
-  BSD_Source_Code('BSD-Source-Code'),
-
-  /// Display: Boost Software License 1.0
-  /// Definition: Boost Software License 1.0.
-  BSL_1_0('BSL-1.0'),
-
-  /// Display: bzip2 and libbzip2 License v1.0.5
-  /// Definition: bzip2 and libbzip2 License v1.0.5.
-  bzip2_1_0_5('bzip2-1.0.5'),
-
-  /// Display: bzip2 and libbzip2 License v1.0.6
-  /// Definition: bzip2 and libbzip2 License v1.0.6.
-  bzip2_1_0_6('bzip2-1.0.6'),
-
-  /// Display: Caldera License
-  /// Definition: Caldera License.
-  Caldera('Caldera'),
-
-  /// Display: Computer Associates Trusted Open Source License 1.1
-  /// Definition: Computer Associates Trusted Open Source License 1.1.
-  CATOSL_1_1('CATOSL-1.1'),
-
-  /// Display: Creative Commons Attribution 1.0 Generic
-  /// Definition: Creative Commons Attribution 1.0 Generic.
-  CC_BY_1_0('CC-BY-1.0'),
-
-  /// Display: Creative Commons Attribution 2.0 Generic
-  /// Definition: Creative Commons Attribution 2.0 Generic.
-  CC_BY_2_0('CC-BY-2.0'),
-
-  /// Display: Creative Commons Attribution 2.5 Generic
-  /// Definition: Creative Commons Attribution 2.5 Generic.
-  CC_BY_2_5('CC-BY-2.5'),
-
-  /// Display: Creative Commons Attribution 3.0 Unported
-  /// Definition: Creative Commons Attribution 3.0 Unported.
-  CC_BY_3_0('CC-BY-3.0'),
-
-  /// Display: Creative Commons Attribution 4.0 International
-  /// Definition: Creative Commons Attribution 4.0 International.
-  CC_BY_4_0('CC-BY-4.0'),
-
-  /// Display: Creative Commons Attribution Non Commercial 1.0 Generic
-  /// Definition: Creative Commons Attribution Non Commercial 1.0 Generic.
-  CC_BY_NC_1_0('CC-BY-NC-1.0'),
-
-  /// Display: Creative Commons Attribution Non Commercial 2.0 Generic
-  /// Definition: Creative Commons Attribution Non Commercial 2.0 Generic.
-  CC_BY_NC_2_0('CC-BY-NC-2.0'),
-
-  /// Display: Creative Commons Attribution Non Commercial 2.5 Generic
-  /// Definition: Creative Commons Attribution Non Commercial 2.5 Generic.
-  CC_BY_NC_2_5('CC-BY-NC-2.5'),
-
-  /// Display: Creative Commons Attribution Non Commercial 3.0 Unported
-  /// Definition: Creative Commons Attribution Non Commercial 3.0 Unported.
-  CC_BY_NC_3_0('CC-BY-NC-3.0'),
-
-  /// Display: Creative Commons Attribution Non Commercial 4.0 International
-  /// Definition: Creative Commons Attribution Non Commercial 4.0 International.
-  CC_BY_NC_4_0('CC-BY-NC-4.0'),
-
-  /// Display: Creative Commons Attribution Non Commercial No Derivatives 1.0 Generic
-  /// Definition: Creative Commons Attribution Non Commercial No Derivatives 1.0 Generic.
-  CC_BY_NC_ND_1_0('CC-BY-NC-ND-1.0'),
-
-  /// Display: Creative Commons Attribution Non Commercial No Derivatives 2.0 Generic
-  /// Definition: Creative Commons Attribution Non Commercial No Derivatives 2.0 Generic.
-  CC_BY_NC_ND_2_0('CC-BY-NC-ND-2.0'),
-
-  /// Display: Creative Commons Attribution Non Commercial No Derivatives 2.5 Generic
-  /// Definition: Creative Commons Attribution Non Commercial No Derivatives 2.5 Generic.
-  CC_BY_NC_ND_2_5('CC-BY-NC-ND-2.5'),
-
-  /// Display: Creative Commons Attribution Non Commercial No Derivatives 3.0 Unported
-  /// Definition: Creative Commons Attribution Non Commercial No Derivatives 3.0 Unported.
-  CC_BY_NC_ND_3_0('CC-BY-NC-ND-3.0'),
-
-  /// Display: Creative Commons Attribution Non Commercial No Derivatives 4.0 International
-  /// Definition: Creative Commons Attribution Non Commercial No Derivatives 4.0 International.
-  CC_BY_NC_ND_4_0('CC-BY-NC-ND-4.0'),
-
-  /// Display: Creative Commons Attribution Non Commercial Share Alike 1.0 Generic
-  /// Definition: Creative Commons Attribution Non Commercial Share Alike 1.0 Generic.
-  CC_BY_NC_SA_1_0('CC-BY-NC-SA-1.0'),
-
-  /// Display: Creative Commons Attribution Non Commercial Share Alike 2.0 Generic
-  /// Definition: Creative Commons Attribution Non Commercial Share Alike 2.0 Generic.
-  CC_BY_NC_SA_2_0('CC-BY-NC-SA-2.0'),
-
-  /// Display: Creative Commons Attribution Non Commercial Share Alike 2.5 Generic
-  /// Definition: Creative Commons Attribution Non Commercial Share Alike 2.5 Generic.
-  CC_BY_NC_SA_2_5('CC-BY-NC-SA-2.5'),
-
-  /// Display: Creative Commons Attribution Non Commercial Share Alike 3.0 Unported
-  /// Definition: Creative Commons Attribution Non Commercial Share Alike 3.0 Unported.
-  CC_BY_NC_SA_3_0('CC-BY-NC-SA-3.0'),
-
-  /// Display: Creative Commons Attribution Non Commercial Share Alike 4.0 International
-  /// Definition: Creative Commons Attribution Non Commercial Share Alike 4.0 International.
-  CC_BY_NC_SA_4_0('CC-BY-NC-SA-4.0'),
-
-  /// Display: Creative Commons Attribution No Derivatives 1.0 Generic
-  /// Definition: Creative Commons Attribution No Derivatives 1.0 Generic.
-  CC_BY_ND_1_0('CC-BY-ND-1.0'),
-
-  /// Display: Creative Commons Attribution No Derivatives 2.0 Generic
-  /// Definition: Creative Commons Attribution No Derivatives 2.0 Generic.
-  CC_BY_ND_2_0('CC-BY-ND-2.0'),
-
-  /// Display: Creative Commons Attribution No Derivatives 2.5 Generic
-  /// Definition: Creative Commons Attribution No Derivatives 2.5 Generic.
-  CC_BY_ND_2_5('CC-BY-ND-2.5'),
-
-  /// Display: Creative Commons Attribution No Derivatives 3.0 Unported
-  /// Definition: Creative Commons Attribution No Derivatives 3.0 Unported.
-  CC_BY_ND_3_0('CC-BY-ND-3.0'),
-
-  /// Display: Creative Commons Attribution No Derivatives 4.0 International
-  /// Definition: Creative Commons Attribution No Derivatives 4.0 International.
-  CC_BY_ND_4_0('CC-BY-ND-4.0'),
-
-  /// Display: Creative Commons Attribution Share Alike 1.0 Generic
-  /// Definition: Creative Commons Attribution Share Alike 1.0 Generic.
-  CC_BY_SA_1_0('CC-BY-SA-1.0'),
-
-  /// Display: Creative Commons Attribution Share Alike 2.0 Generic
-  /// Definition: Creative Commons Attribution Share Alike 2.0 Generic.
-  CC_BY_SA_2_0('CC-BY-SA-2.0'),
-
-  /// Display: Creative Commons Attribution Share Alike 2.5 Generic
-  /// Definition: Creative Commons Attribution Share Alike 2.5 Generic.
-  CC_BY_SA_2_5('CC-BY-SA-2.5'),
-
-  /// Display: Creative Commons Attribution Share Alike 3.0 Unported
-  /// Definition: Creative Commons Attribution Share Alike 3.0 Unported.
-  CC_BY_SA_3_0('CC-BY-SA-3.0'),
-
-  /// Display: Creative Commons Attribution Share Alike 4.0 International
-  /// Definition: Creative Commons Attribution Share Alike 4.0 International.
-  CC_BY_SA_4_0('CC-BY-SA-4.0'),
-
-  /// Display: Creative Commons Zero v1.0 Universal
-  /// Definition: Creative Commons Zero v1.0 Universal.
-  CC0_1_0('CC0-1.0'),
-
-  /// Display: Common Development and Distribution License 1.0
-  /// Definition: Common Development and Distribution License 1.0.
-  CDDL_1_0('CDDL-1.0'),
-
-  /// Display: Common Development and Distribution License 1.1
-  /// Definition: Common Development and Distribution License 1.1.
-  CDDL_1_1('CDDL-1.1'),
-
-  /// Display: Community Data License Agreement Permissive 1.0
-  /// Definition: Community Data License Agreement Permissive 1.0.
-  CDLA_Permissive_1_0('CDLA-Permissive-1.0'),
-
-  /// Display: Community Data License Agreement Sharing 1.0
-  /// Definition: Community Data License Agreement Sharing 1.0.
-  CDLA_Sharing_1_0('CDLA-Sharing-1.0'),
-
-  /// Display: CeCILL Free Software License Agreement v1.0
-  /// Definition: CeCILL Free Software License Agreement v1.0.
-  CECILL_1_0('CECILL-1.0'),
-
-  /// Display: CeCILL Free Software License Agreement v1.1
-  /// Definition: CeCILL Free Software License Agreement v1.1.
-  CECILL_1_1('CECILL-1.1'),
-
-  /// Display: CeCILL Free Software License Agreement v2.0
-  /// Definition: CeCILL Free Software License Agreement v2.0.
-  CECILL_2_0('CECILL-2.0'),
-
-  /// Display: CeCILL Free Software License Agreement v2.1
-  /// Definition: CeCILL Free Software License Agreement v2.1.
-  CECILL_2_1('CECILL-2.1'),
-
-  /// Display: CeCILL-B Free Software License Agreement
-  /// Definition: CeCILL-B Free Software License Agreement.
-  CECILL_B('CECILL-B'),
-
-  /// Display: CeCILL-C Free Software License Agreement
-  /// Definition: CeCILL-C Free Software License Agreement.
-  CECILL_C('CECILL-C'),
-
-  /// Display: Clarified Artistic License
-  /// Definition: Clarified Artistic License.
-  ClArtistic('ClArtistic'),
-
-  /// Display: CNRI Jython License
-  /// Definition: CNRI Jython License.
-  CNRI_Jython('CNRI-Jython'),
-
-  /// Display: CNRI Python Open Source GPL Compatible License Agreement
-  /// Definition: CNRI Python Open Source GPL Compatible License Agreement.
-  CNRI_Python_GPL_Compatible('CNRI-Python-GPL-Compatible'),
-
-  /// Display: CNRI Python License
-  /// Definition: CNRI Python License.
-  CNRI_Python('CNRI-Python'),
-
-  /// Display: Condor Public License v1.1
-  /// Definition: Condor Public License v1.1.
-  Condor_1_1('Condor-1.1'),
-
-  /// Display: Common Public Attribution License 1.0
-  /// Definition: Common Public Attribution License 1.0.
-  CPAL_1_0('CPAL-1.0'),
-
-  /// Display: Common Public License 1.0
-  /// Definition: Common Public License 1.0.
-  CPL_1_0('CPL-1.0'),
-
-  /// Display: Code Project Open License 1.02
-  /// Definition: Code Project Open License 1.02.
-  CPOL_1_02('CPOL-1.02'),
-
-  /// Display: Crossword License
-  /// Definition: Crossword License.
-  Crossword('Crossword'),
-
-  /// Display: CrystalStacker License
-  /// Definition: CrystalStacker License.
-  CrystalStacker('CrystalStacker'),
-
-  /// Display: CUA Office Public License v1.0
-  /// Definition: CUA Office Public License v1.0.
-  CUA_OPL_1_0('CUA-OPL-1.0'),
-
-  /// Display: Cube License
-  /// Definition: Cube License.
-  Cube('Cube'),
-
-  /// Display: curl License
-  /// Definition: curl License.
-  curl('curl'),
-
-  /// Display: Deutsche Freie Software Lizenz
-  /// Definition: Deutsche Freie Software Lizenz.
-  D_FSL_1_0('D-FSL-1.0'),
-
-  /// Display: diffmark license
-  /// Definition: diffmark license.
-  diffmark('diffmark'),
-
-  /// Display: DOC License
-  /// Definition: DOC License.
-  DOC('DOC'),
-
-  /// Display: Dotseqn License
-  /// Definition: Dotseqn License.
-  Dotseqn('Dotseqn'),
-
-  /// Display: DSDP License
-  /// Definition: DSDP License.
-  DSDP('DSDP'),
-
-  /// Display: dvipdfm License
-  /// Definition: dvipdfm License.
-  dvipdfm('dvipdfm'),
-
-  /// Display: Educational Community License v1.0
-  /// Definition: Educational Community License v1.0.
-  ECL_1_0('ECL-1.0'),
-
-  /// Display: Educational Community License v2.0
-  /// Definition: Educational Community License v2.0.
-  ECL_2_0('ECL-2.0'),
-
-  /// Display: Eiffel Forum License v1.0
-  /// Definition: Eiffel Forum License v1.0.
-  EFL_1_0('EFL-1.0'),
-
-  /// Display: Eiffel Forum License v2.0
-  /// Definition: Eiffel Forum License v2.0.
-  EFL_2_0('EFL-2.0'),
-
-  /// Display: eGenix.com Public License 1.1.0
-  /// Definition: eGenix.com Public License 1.1.0.
-  eGenix('eGenix'),
-
-  /// Display: Entessa Public License v1.0
-  /// Definition: Entessa Public License v1.0.
-  Entessa('Entessa'),
-
-  /// Display: Eclipse Public License 1.0
-  /// Definition: Eclipse Public License 1.0.
-  EPL_1_0('EPL-1.0'),
-
-  /// Display: Eclipse Public License 2.0
-  /// Definition: Eclipse Public License 2.0.
-  EPL_2_0('EPL-2.0'),
-
-  /// Display: Erlang Public License v1.1
-  /// Definition: Erlang Public License v1.1.
-  ErlPL_1_1('ErlPL-1.1'),
-
-  /// Display: EU DataGrid Software License
-  /// Definition: EU DataGrid Software License.
-  EUDatagrid('EUDatagrid'),
-
-  /// Display: European Union Public License 1.0
-  /// Definition: European Union Public License 1.0.
-  EUPL_1_0('EUPL-1.0'),
-
-  /// Display: European Union Public License 1.1
-  /// Definition: European Union Public License 1.1.
-  EUPL_1_1('EUPL-1.1'),
-
-  /// Display: European Union Public License 1.2
-  /// Definition: European Union Public License 1.2.
-  EUPL_1_2('EUPL-1.2'),
-
-  /// Display: Eurosym License
-  /// Definition: Eurosym License.
-  Eurosym('Eurosym'),
-
-  /// Display: Fair License
-  /// Definition: Fair License.
-  Fair('Fair'),
-
-  /// Display: Frameworx Open License 1.0
-  /// Definition: Frameworx Open License 1.0.
-  Frameworx_1_0('Frameworx-1.0'),
-
-  /// Display: FreeImage Public License v1.0
-  /// Definition: FreeImage Public License v1.0.
-  FreeImage('FreeImage'),
-
-  /// Display: FSF All Permissive License
-  /// Definition: FSF All Permissive License.
-  FSFAP('FSFAP'),
-
-  /// Display: FSF Unlimited License
-  /// Definition: FSF Unlimited License.
-  FSFUL('FSFUL'),
-
-  /// Display: FSF Unlimited License (with License Retention)
-  /// Definition: FSF Unlimited License (with License Retention).
-  FSFULLR('FSFULLR'),
-
-  /// Display: Freetype Project License
-  /// Definition: Freetype Project License.
-  FTL('FTL'),
-
-  /// Display: GNU Free Documentation License v1.1 only
-  /// Definition: GNU Free Documentation License v1.1 only.
-  GFDL_1_1_only('GFDL-1.1-only'),
-
-  /// Display: GNU Free Documentation License v1.1 or later
-  /// Definition: GNU Free Documentation License v1.1 or later.
-  GFDL_1_1_or_later('GFDL-1.1-or-later'),
-
-  /// Display: GNU Free Documentation License v1.2 only
-  /// Definition: GNU Free Documentation License v1.2 only.
-  GFDL_1_2_only('GFDL-1.2-only'),
-
-  /// Display: GNU Free Documentation License v1.2 or later
-  /// Definition: GNU Free Documentation License v1.2 or later.
-  GFDL_1_2_or_later('GFDL-1.2-or-later'),
-
-  /// Display: GNU Free Documentation License v1.3 only
-  /// Definition: GNU Free Documentation License v1.3 only.
-  GFDL_1_3_only('GFDL-1.3-only'),
-
-  /// Display: GNU Free Documentation License v1.3 or later
-  /// Definition: GNU Free Documentation License v1.3 or later.
-  GFDL_1_3_or_later('GFDL-1.3-or-later'),
-
-  /// Display: Giftware License
-  /// Definition: Giftware License.
-  Giftware('Giftware'),
-
-  /// Display: GL2PS License
-  /// Definition: GL2PS License.
-  GL2PS('GL2PS'),
-
-  /// Display: 3dfx Glide License
-  /// Definition: 3dfx Glide License.
-  Glide('Glide'),
-
-  /// Display: Glulxe License
-  /// Definition: Glulxe License.
-  Glulxe('Glulxe'),
-
-  /// Display: gnuplot License
-  /// Definition: gnuplot License.
-  gnuplot('gnuplot'),
-
-  /// Display: GNU General Public License v1.0 only
-  /// Definition: GNU General Public License v1.0 only.
-  GPL_1_0_only('GPL-1.0-only'),
-
-  /// Display: GNU General Public License v1.0 or later
-  /// Definition: GNU General Public License v1.0 or later.
-  GPL_1_0_or_later('GPL-1.0-or-later'),
-
-  /// Display: GNU General Public License v2.0 only
-  /// Definition: GNU General Public License v2.0 only.
-  GPL_2_0_only('GPL-2.0-only'),
-
-  /// Display: GNU General Public License v2.0 or later
-  /// Definition: GNU General Public License v2.0 or later.
-  GPL_2_0_or_later('GPL-2.0-or-later'),
-
-  /// Display: GNU General Public License v3.0 only
-  /// Definition: GNU General Public License v3.0 only.
-  GPL_3_0_only('GPL-3.0-only'),
-
-  /// Display: GNU General Public License v3.0 or later
-  /// Definition: GNU General Public License v3.0 or later.
-  GPL_3_0_or_later('GPL-3.0-or-later'),
-
-  /// Display: gSOAP Public License v1.3b
-  /// Definition: gSOAP Public License v1.3b.
-  gSOAP_1_3b('gSOAP-1.3b'),
-
-  /// Display: Haskell Language Report License
-  /// Definition: Haskell Language Report License.
-  HaskellReport('HaskellReport'),
-
-  /// Display: Historical Permission Notice and Disclaimer
-  /// Definition: Historical Permission Notice and Disclaimer.
-  HPND('HPND'),
-
-  /// Display: IBM PowerPC Initialization and Boot Software
-  /// Definition: IBM PowerPC Initialization and Boot Software.
-  IBM_pibs('IBM-pibs'),
-
-  /// Display: ICU License
-  /// Definition: ICU License.
-  ICU('ICU'),
-
-  /// Display: Independent JPEG Group License
-  /// Definition: Independent JPEG Group License.
-  IJG('IJG'),
-
-  /// Display: ImageMagick License
-  /// Definition: ImageMagick License.
-  ImageMagick('ImageMagick'),
-
-  /// Display: iMatix Standard Function Library Agreement
-  /// Definition: iMatix Standard Function Library Agreement.
-  iMatix('iMatix'),
-
-  /// Display: Imlib2 License
-  /// Definition: Imlib2 License.
-  Imlib2('Imlib2'),
-
-  /// Display: Info-ZIP License
-  /// Definition: Info-ZIP License.
-  Info_ZIP('Info-ZIP'),
-
-  /// Display: Intel ACPI Software License Agreement
-  /// Definition: Intel ACPI Software License Agreement.
-  Intel_ACPI('Intel-ACPI'),
-
-  /// Display: Intel Open Source License
-  /// Definition: Intel Open Source License.
-  Intel('Intel'),
-
-  /// Display: Interbase Public License v1.0
-  /// Definition: Interbase Public License v1.0.
-  Interbase_1_0('Interbase-1.0'),
-
-  /// Display: IPA Font License
-  /// Definition: IPA Font License.
-  IPA('IPA'),
-
-  /// Display: IBM Public License v1.0
-  /// Definition: IBM Public License v1.0.
-  IPL_1_0('IPL-1.0'),
-
-  /// Display: ISC License
-  /// Definition: ISC License.
-  ISC('ISC'),
-
-  /// Display: JasPer License
-  /// Definition: JasPer License.
-  JasPer_2_0('JasPer-2.0'),
-
-  /// Display: JSON License
-  /// Definition: JSON License.
-  JSON('JSON'),
-
-  /// Display: Licence Art Libre 1.2
-  /// Definition: Licence Art Libre 1.2.
-  LAL_1_2('LAL-1.2'),
-
-  /// Display: Licence Art Libre 1.3
-  /// Definition: Licence Art Libre 1.3.
-  LAL_1_3('LAL-1.3'),
-
-  /// Display: Latex2e License
-  /// Definition: Latex2e License.
-  Latex2e('Latex2e'),
-
-  /// Display: Leptonica License
-  /// Definition: Leptonica License.
-  Leptonica('Leptonica'),
-
-  /// Display: GNU Library General Public License v2 only
-  /// Definition: GNU Library General Public License v2 only.
-  LGPL_2_0_only('LGPL-2.0-only'),
-
-  /// Display: GNU Library General Public License v2 or later
-  /// Definition: GNU Library General Public License v2 or later.
-  LGPL_2_0_or_later('LGPL-2.0-or-later'),
-
-  /// Display: GNU Lesser General Public License v2.1 only
-  /// Definition: GNU Lesser General Public License v2.1 only.
-  LGPL_2_1_only('LGPL-2.1-only'),
-
-  /// Display: GNU Lesser General Public License v2.1 or later
-  /// Definition: GNU Lesser General Public License v2.1 or later.
-  LGPL_2_1_or_later('LGPL-2.1-or-later'),
-
-  /// Display: GNU Lesser General Public License v3.0 only
-  /// Definition: GNU Lesser General Public License v3.0 only.
-  LGPL_3_0_only('LGPL-3.0-only'),
-
-  /// Display: GNU Lesser General Public License v3.0 or later
-  /// Definition: GNU Lesser General Public License v3.0 or later.
-  LGPL_3_0_or_later('LGPL-3.0-or-later'),
-
-  /// Display: Lesser General Public License For Linguistic Resources
-  /// Definition: Lesser General Public License For Linguistic Resources.
-  LGPLLR('LGPLLR'),
-
-  /// Display: libpng License
-  /// Definition: libpng License.
-  Libpng('Libpng'),
-
-  /// Display: libtiff License
-  /// Definition: libtiff License.
-  libtiff('libtiff'),
-
-  /// Display: Licence Libre du Québec – Permissive version 1.1
-  /// Definition: Licence Libre du Québec – Permissive version 1.1.
-  LiLiQ_P_1_1('LiLiQ-P-1.1'),
-
-  /// Display: Licence Libre du Québec – Réciprocité version 1.1
-  /// Definition: Licence Libre du Québec – Réciprocité version 1.1.
-  LiLiQ_R_1_1('LiLiQ-R-1.1'),
-
-  /// Display: Licence Libre du Québec – Réciprocité forte version 1.1
-  /// Definition: Licence Libre du Québec – Réciprocité forte version 1.1.
-  LiLiQ_Rplus_1_1('LiLiQ-Rplus-1.1'),
-
-  /// Display: Linux Kernel Variant of OpenIB.org license
-  /// Definition: Linux Kernel Variant of OpenIB.org license.
-  Linux_OpenIB('Linux-OpenIB'),
-
-  /// Display: Lucent Public License Version 1.0
-  /// Definition: Lucent Public License Version 1.0.
-  LPL_1_0('LPL-1.0'),
-
-  /// Display: Lucent Public License v1.02
-  /// Definition: Lucent Public License v1.02.
-  LPL_1_02('LPL-1.02'),
-
-  /// Display: LaTeX Project Public License v1.0
-  /// Definition: LaTeX Project Public License v1.0.
-  LPPL_1_0('LPPL-1.0'),
-
-  /// Display: LaTeX Project Public License v1.1
-  /// Definition: LaTeX Project Public License v1.1.
-  LPPL_1_1('LPPL-1.1'),
-
-  /// Display: LaTeX Project Public License v1.2
-  /// Definition: LaTeX Project Public License v1.2.
-  LPPL_1_2('LPPL-1.2'),
-
-  /// Display: LaTeX Project Public License v1.3a
-  /// Definition: LaTeX Project Public License v1.3a.
-  LPPL_1_3a('LPPL-1.3a'),
-
-  /// Display: LaTeX Project Public License v1.3c
-  /// Definition: LaTeX Project Public License v1.3c.
-  LPPL_1_3c('LPPL-1.3c'),
-
-  /// Display: MakeIndex License
-  /// Definition: MakeIndex License.
-  MakeIndex('MakeIndex'),
-
-  /// Display: MirOS License
-  /// Definition: MirOS License.
-  MirOS('MirOS'),
-
-  /// Display: MIT No Attribution
-  /// Definition: MIT No Attribution.
-  MIT_0('MIT-0'),
-
-  /// Display: Enlightenment License (e16)
-  /// Definition: Enlightenment License (e16).
-  MIT_advertising('MIT-advertising'),
-
-  /// Display: CMU License
-  /// Definition: CMU License.
-  MIT_CMU('MIT-CMU'),
-
-  /// Display: enna License
-  /// Definition: enna License.
-  MIT_enna('MIT-enna'),
-
-  /// Display: feh License
-  /// Definition: feh License.
-  MIT_feh('MIT-feh'),
-
-  /// Display: MIT License
-  /// Definition: MIT License.
-  MIT('MIT'),
-
-  /// Display: MIT +no-false-attribs license
-  /// Definition: MIT +no-false-attribs license.
-  MITNFA('MITNFA'),
-
-  /// Display: Motosoto License
-  /// Definition: Motosoto License.
-  Motosoto('Motosoto'),
-
-  /// Display: mpich2 License
-  /// Definition: mpich2 License.
-  mpich2('mpich2'),
-
-  /// Display: Mozilla Public License 1.0
-  /// Definition: Mozilla Public License 1.0.
-  MPL_1_0('MPL-1.0'),
-
-  /// Display: Mozilla Public License 1.1
-  /// Definition: Mozilla Public License 1.1.
-  MPL_1_1('MPL-1.1'),
-
-  /// Display: Mozilla Public License 2.0 (no copyleft exception)
-  /// Definition: Mozilla Public License 2.0 (no copyleft exception).
-  MPL_2_0_no_copyleft_exception('MPL-2.0-no-copyleft-exception'),
-
-  /// Display: Mozilla Public License 2.0
-  /// Definition: Mozilla Public License 2.0.
-  MPL_2_0('MPL-2.0'),
-
-  /// Display: Microsoft Public License
-  /// Definition: Microsoft Public License.
-  MS_PL('MS-PL'),
-
-  /// Display: Microsoft Reciprocal License
-  /// Definition: Microsoft Reciprocal License.
-  MS_RL('MS-RL'),
-
-  /// Display: Matrix Template Library License
-  /// Definition: Matrix Template Library License.
-  MTLL('MTLL'),
-
-  /// Display: Multics License
-  /// Definition: Multics License.
-  Multics('Multics'),
-
-  /// Display: Mup License
-  /// Definition: Mup License.
-  Mup('Mup'),
-
-  /// Display: NASA Open Source Agreement 1.3
-  /// Definition: NASA Open Source Agreement 1.3.
-  NASA_1_3('NASA-1.3'),
-
-  /// Display: Naumen Public License
-  /// Definition: Naumen Public License.
-  Naumen('Naumen'),
-
-  /// Display: Net Boolean Public License v1
-  /// Definition: Net Boolean Public License v1.
-  NBPL_1_0('NBPL-1.0'),
-
-  /// Display: University of Illinois/NCSA Open Source License
-  /// Definition: University of Illinois/NCSA Open Source License.
-  NCSA('NCSA'),
-
-  /// Display: Net-SNMP License
-  /// Definition: Net-SNMP License.
-  Net_SNMP('Net-SNMP'),
-
-  /// Display: NetCDF license
-  /// Definition: NetCDF license.
-  NetCDF('NetCDF'),
-
-  /// Display: Newsletr License
-  /// Definition: Newsletr License.
-  Newsletr('Newsletr'),
-
-  /// Display: Nethack General Public License
-  /// Definition: Nethack General Public License.
-  NGPL('NGPL'),
-
-  /// Display: Norwegian Licence for Open Government Data
-  /// Definition: Norwegian Licence for Open Government Data.
-  NLOD_1_0('NLOD-1.0'),
-
-  /// Display: No Limit Public License
-  /// Definition: No Limit Public License.
-  NLPL('NLPL'),
-
-  /// Display: Nokia Open Source License
-  /// Definition: Nokia Open Source License.
-  Nokia('Nokia'),
-
-  /// Display: Netizen Open Source License
-  /// Definition: Netizen Open Source License.
-  NOSL('NOSL'),
-
-  /// Display: Noweb License
-  /// Definition: Noweb License.
-  Noweb('Noweb'),
-
-  /// Display: Netscape Public License v1.0
-  /// Definition: Netscape Public License v1.0.
-  NPL_1_0('NPL-1.0'),
-
-  /// Display: Netscape Public License v1.1
-  /// Definition: Netscape Public License v1.1.
-  NPL_1_1('NPL-1.1'),
-
-  /// Display: Non-Profit Open Software License 3.0
-  /// Definition: Non-Profit Open Software License 3.0.
-  NPOSL_3_0('NPOSL-3.0'),
-
-  /// Display: NRL License
-  /// Definition: NRL License.
-  NRL('NRL'),
-
-  /// Display: NTP License
-  /// Definition: NTP License.
-  NTP('NTP'),
-
-  /// Display: Open CASCADE Technology Public License
-  /// Definition: Open CASCADE Technology Public License.
-  OCCT_PL('OCCT-PL'),
-
-  /// Display: OCLC Research Public License 2.0
-  /// Definition: OCLC Research Public License 2.0.
-  OCLC_2_0('OCLC-2.0'),
-
-  /// Display: ODC Open Database License v1.0
-  /// Definition: ODC Open Database License v1.0.
-  ODbL_1_0('ODbL-1.0'),
-
-  /// Display: SIL Open Font License 1.0
-  /// Definition: SIL Open Font License 1.0.
-  OFL_1_0('OFL-1.0'),
-
-  /// Display: SIL Open Font License 1.1
-  /// Definition: SIL Open Font License 1.1.
-  OFL_1_1('OFL-1.1'),
-
-  /// Display: Open Group Test Suite License
-  /// Definition: Open Group Test Suite License.
-  OGTSL('OGTSL'),
-
-  /// Display: Open LDAP Public License v1.1
-  /// Definition: Open LDAP Public License v1.1.
-  OLDAP_1_1('OLDAP-1.1'),
-
-  /// Display: Open LDAP Public License v1.2
-  /// Definition: Open LDAP Public License v1.2.
-  OLDAP_1_2('OLDAP-1.2'),
-
-  /// Display: Open LDAP Public License v1.3
-  /// Definition: Open LDAP Public License v1.3.
-  OLDAP_1_3('OLDAP-1.3'),
-
-  /// Display: Open LDAP Public License v1.4
-  /// Definition: Open LDAP Public License v1.4.
-  OLDAP_1_4('OLDAP-1.4'),
-
-  /// Display: Open LDAP Public License v2.0.1
-  /// Definition: Open LDAP Public License v2.0.1.
-  OLDAP_2_0_1('OLDAP-2.0.1'),
-
-  /// Display: Open LDAP Public License v2.0 (or possibly 2.0A and 2.0B)
-  /// Definition: Open LDAP Public License v2.0 (or possibly 2.0A and 2.0B).
-  OLDAP_2_0('OLDAP-2.0'),
-
-  /// Display: Open LDAP Public License v2.1
-  /// Definition: Open LDAP Public License v2.1.
-  OLDAP_2_1('OLDAP-2.1'),
-
-  /// Display: Open LDAP Public License v2.2.1
-  /// Definition: Open LDAP Public License v2.2.1.
-  OLDAP_2_2_1('OLDAP-2.2.1'),
-
-  /// Display: Open LDAP Public License 2.2.2
-  /// Definition: Open LDAP Public License 2.2.2.
-  OLDAP_2_2_2('OLDAP-2.2.2'),
-
-  /// Display: Open LDAP Public License v2.2
-  /// Definition: Open LDAP Public License v2.2.
-  OLDAP_2_2('OLDAP-2.2'),
-
-  /// Display: Open LDAP Public License v2.3
-  /// Definition: Open LDAP Public License v2.3.
-  OLDAP_2_3('OLDAP-2.3'),
-
-  /// Display: Open LDAP Public License v2.4
-  /// Definition: Open LDAP Public License v2.4.
-  OLDAP_2_4('OLDAP-2.4'),
-
-  /// Display: Open LDAP Public License v2.5
-  /// Definition: Open LDAP Public License v2.5.
-  OLDAP_2_5('OLDAP-2.5'),
-
-  /// Display: Open LDAP Public License v2.6
-  /// Definition: Open LDAP Public License v2.6.
-  OLDAP_2_6('OLDAP-2.6'),
-
-  /// Display: Open LDAP Public License v2.7
-  /// Definition: Open LDAP Public License v2.7.
-  OLDAP_2_7('OLDAP-2.7'),
-
-  /// Display: Open LDAP Public License v2.8
-  /// Definition: Open LDAP Public License v2.8.
-  OLDAP_2_8('OLDAP-2.8'),
-
-  /// Display: Open Market License
-  /// Definition: Open Market License.
-  OML('OML'),
-
-  /// Display: OpenSSL License
-  /// Definition: OpenSSL License.
-  OpenSSL('OpenSSL'),
-
-  /// Display: Open Public License v1.0
-  /// Definition: Open Public License v1.0.
-  OPL_1_0('OPL-1.0'),
-
-  /// Display: OSET Public License version 2.1
-  /// Definition: OSET Public License version 2.1.
-  OSET_PL_2_1('OSET-PL-2.1'),
-
-  /// Display: Open Software License 1.0
-  /// Definition: Open Software License 1.0.
-  OSL_1_0('OSL-1.0'),
-
-  /// Display: Open Software License 1.1
-  /// Definition: Open Software License 1.1.
-  OSL_1_1('OSL-1.1'),
-
-  /// Display: Open Software License 2.0
-  /// Definition: Open Software License 2.0.
-  OSL_2_0('OSL-2.0'),
-
-  /// Display: Open Software License 2.1
-  /// Definition: Open Software License 2.1.
-  OSL_2_1('OSL-2.1'),
-
-  /// Display: Open Software License 3.0
-  /// Definition: Open Software License 3.0.
-  OSL_3_0('OSL-3.0'),
-
-  /// Display: ODC Public Domain Dedication & License 1.0
-  /// Definition: ODC Public Domain Dedication & License 1.0.
-  PDDL_1_0('PDDL-1.0'),
-
-  /// Display: PHP License v3.0
-  /// Definition: PHP License v3.0.
-  PHP_3_0('PHP-3.0'),
-
-  /// Display: PHP License v3.01
-  /// Definition: PHP License v3.01.
-  PHP_3_01('PHP-3.01'),
-
-  /// Display: Plexus Classworlds License
-  /// Definition: Plexus Classworlds License.
-  Plexus('Plexus'),
-
-  /// Display: PostgreSQL License
-  /// Definition: PostgreSQL License.
-  PostgreSQL('PostgreSQL'),
-
-  /// Display: psfrag License
-  /// Definition: psfrag License.
-  psfrag('psfrag'),
-
-  /// Display: psutils License
-  /// Definition: psutils License.
-  psutils('psutils'),
-
-  /// Display: Python License 2.0
-  /// Definition: Python License 2.0.
-  Python_2_0('Python-2.0'),
-
-  /// Display: Qhull License
-  /// Definition: Qhull License.
-  Qhull('Qhull'),
-
-  /// Display: Q Public License 1.0
-  /// Definition: Q Public License 1.0.
-  QPL_1_0('QPL-1.0'),
-
-  /// Display: Rdisc License
-  /// Definition: Rdisc License.
-  Rdisc('Rdisc'),
-
-  /// Display: Red Hat eCos Public License v1.1
-  /// Definition: Red Hat eCos Public License v1.1.
-  RHeCos_1_1('RHeCos-1.1'),
-
-  /// Display: Reciprocal Public License 1.1
-  /// Definition: Reciprocal Public License 1.1.
-  RPL_1_1('RPL-1.1'),
-
-  /// Display: Reciprocal Public License 1.5
-  /// Definition: Reciprocal Public License 1.5.
-  RPL_1_5('RPL-1.5'),
-
-  /// Display: RealNetworks Public Source License v1.0
-  /// Definition: RealNetworks Public Source License v1.0.
-  RPSL_1_0('RPSL-1.0'),
-
-  /// Display: RSA Message-Digest License
-  /// Definition: RSA Message-Digest License.
-  RSA_MD('RSA-MD'),
-
-  /// Display: Ricoh Source Code Public License
-  /// Definition: Ricoh Source Code Public License.
-  RSCPL('RSCPL'),
-
-  /// Display: Ruby License
-  /// Definition: Ruby License.
-  Ruby('Ruby'),
-
-  /// Display: Sax Public Domain Notice
-  /// Definition: Sax Public Domain Notice.
-  SAX_PD('SAX-PD'),
-
-  /// Display: Saxpath License
-  /// Definition: Saxpath License.
-  Saxpath('Saxpath'),
-
-  /// Display: SCEA Shared Source License
-  /// Definition: SCEA Shared Source License.
-  SCEA('SCEA'),
-
-  /// Display: Sendmail License
-  /// Definition: Sendmail License.
-  Sendmail('Sendmail'),
-
-  /// Display: SGI Free Software License B v1.0
-  /// Definition: SGI Free Software License B v1.0.
-  SGI_B_1_0('SGI-B-1.0'),
-
-  /// Display: SGI Free Software License B v1.1
-  /// Definition: SGI Free Software License B v1.1.
-  SGI_B_1_1('SGI-B-1.1'),
-
-  /// Display: SGI Free Software License B v2.0
-  /// Definition: SGI Free Software License B v2.0.
-  SGI_B_2_0('SGI-B-2.0'),
-
-  /// Display: Simple Public License 2.0
-  /// Definition: Simple Public License 2.0.
-  SimPL_2_0('SimPL-2.0'),
-
-  /// Display: Sun Industry Standards Source License v1.2
-  /// Definition: Sun Industry Standards Source License v1.2.
-  SISSL_1_2('SISSL-1.2'),
-
-  /// Display: Sun Industry Standards Source License v1.1
-  /// Definition: Sun Industry Standards Source License v1.1.
-  SISSL('SISSL'),
-
-  /// Display: Sleepycat License
-  /// Definition: Sleepycat License.
-  Sleepycat('Sleepycat'),
-
-  /// Display: Standard ML of New Jersey License
-  /// Definition: Standard ML of New Jersey License.
-  SMLNJ('SMLNJ'),
-
-  /// Display: Secure Messaging Protocol Public License
-  /// Definition: Secure Messaging Protocol Public License.
-  SMPPL('SMPPL'),
-
-  /// Display: SNIA Public License 1.1
-  /// Definition: SNIA Public License 1.1.
-  SNIA('SNIA'),
-
-  /// Display: Spencer License 86
-  /// Definition: Spencer License 86.
-  Spencer_86('Spencer-86'),
-
-  /// Display: Spencer License 94
-  /// Definition: Spencer License 94.
-  Spencer_94('Spencer-94'),
-
-  /// Display: Spencer License 99
-  /// Definition: Spencer License 99.
-  Spencer_99('Spencer-99'),
-
-  /// Display: Sun Public License v1.0
-  /// Definition: Sun Public License v1.0.
-  SPL_1_0('SPL-1.0'),
-
-  /// Display: SugarCRM Public License v1.1.3
-  /// Definition: SugarCRM Public License v1.1.3.
-  SugarCRM_1_1_3('SugarCRM-1.1.3'),
-
-  /// Display: Scheme Widget Library (SWL) Software License Agreement
-  /// Definition: Scheme Widget Library (SWL) Software License Agreement.
-  SWL('SWL'),
-
-  /// Display: TCL/TK License
-  /// Definition: TCL/TK License.
-  TCL('TCL'),
-
-  /// Display: TCP Wrappers License
-  /// Definition: TCP Wrappers License.
-  TCP_wrappers('TCP-wrappers'),
-
-  /// Display: TMate Open Source License
-  /// Definition: TMate Open Source License.
-  TMate('TMate'),
-
-  /// Display: TORQUE v2.5+ Software License v1.1
-  /// Definition: TORQUE v2.5+ Software License v1.1.
-  TORQUE_1_1('TORQUE-1.1'),
-
-  /// Display: Trusster Open Source License
-  /// Definition: Trusster Open Source License.
-  TOSL('TOSL'),
-
-  /// Display: Unicode License Agreement - Data Files and Software (2015)
-  /// Definition: Unicode License Agreement - Data Files and Software (2015).
-  Unicode_DFS_2015('Unicode-DFS-2015'),
-
-  /// Display: Unicode License Agreement - Data Files and Software (2016)
-  /// Definition: Unicode License Agreement - Data Files and Software (2016).
-  Unicode_DFS_2016('Unicode-DFS-2016'),
-
-  /// Display: Unicode Terms of Use
-  /// Definition: Unicode Terms of Use.
-  Unicode_TOU('Unicode-TOU'),
-
-  /// Display: The Unlicense
-  /// Definition: The Unlicense.
-  Unlicense('Unlicense'),
-
-  /// Display: Universal Permissive License v1.0
-  /// Definition: Universal Permissive License v1.0.
-  UPL_1_0('UPL-1.0'),
-
-  /// Display: Vim License
-  /// Definition: Vim License.
-  Vim('Vim'),
-
-  /// Display: VOSTROM Public License for Open Source
-  /// Definition: VOSTROM Public License for Open Source.
-  VOSTROM('VOSTROM'),
-
-  /// Display: Vovida Software License v1.0
-  /// Definition: Vovida Software License v1.0.
-  VSL_1_0('VSL-1.0'),
-
-  /// Display: W3C Software Notice and License (1998-07-20)
-  /// Definition: W3C Software Notice and License (1998-07-20).
-  W3C_19980720('W3C-19980720'),
-
-  /// Display: W3C Software Notice and Document License (2015-05-13)
-  /// Definition: W3C Software Notice and Document License (2015-05-13).
-  W3C_20150513('W3C-20150513'),
-
-  /// Display: W3C Software Notice and License (2002-12-31)
-  /// Definition: W3C Software Notice and License (2002-12-31).
-  W3C('W3C'),
-
-  /// Display: Sybase Open Watcom Public License 1.0
-  /// Definition: Sybase Open Watcom Public License 1.0.
-  Watcom_1_0('Watcom-1.0'),
-
-  /// Display: Wsuipa License
-  /// Definition: Wsuipa License.
-  Wsuipa('Wsuipa'),
-
-  /// Display: Do What The F*ck You Want To Public License
-  /// Definition: Do What The F*ck You Want To Public License.
-  WTFPL('WTFPL'),
-
-  /// Display: X11 License
-  /// Definition: X11 License.
-  X11('X11'),
-
-  /// Display: Xerox License
-  /// Definition: Xerox License.
-  Xerox('Xerox'),
-
-  /// Display: XFree86 License 1.1
-  /// Definition: XFree86 License 1.1.
-  XFree86_1_1('XFree86-1.1'),
-
-  /// Display: xinetd License
-  /// Definition: xinetd License.
-  xinetd('xinetd'),
-
-  /// Display: X.Net License
-  /// Definition: X.Net License.
-  Xnet('Xnet'),
-
-  /// Display: XPP License
-  /// Definition: XPP License.
-  xpp('xpp'),
-
-  /// Display: XSkat License
-  /// Definition: XSkat License.
-  XSkat('XSkat'),
-
-  /// Display: Yahoo! Public License v1.0
-  /// Definition: Yahoo! Public License v1.0.
-  YPL_1_0('YPL-1.0'),
-
-  /// Display: Yahoo! Public License v1.1
-  /// Definition: Yahoo! Public License v1.1.
-  YPL_1_1('YPL-1.1'),
-
-  /// Display: Zed License
-  /// Definition: Zed License.
-  Zed('Zed'),
-
-  /// Display: Zend License v2.0
-  /// Definition: Zend License v2.0.
-  Zend_2_0('Zend-2.0'),
-
-  /// Display: Zimbra Public License v1.3
-  /// Definition: Zimbra Public License v1.3.
-  Zimbra_1_3('Zimbra-1.3'),
-
-  /// Display: Zimbra Public License v1.4
-  /// Definition: Zimbra Public License v1.4.
-  Zimbra_1_4('Zimbra-1.4'),
-
-  /// Display: zlib/libpng License with Acknowledgement
-  /// Definition: zlib/libpng License with Acknowledgement.
-  zlib_acknowledgement('zlib-acknowledgement'),
-
-  /// Display: zlib License
-  /// Definition: zlib License.
-  Zlib('Zlib'),
-
-  /// Display: Zope Public License 1.1
-  /// Definition: Zope Public License 1.1.
-  ZPL_1_1('ZPL-1.1'),
-
-  /// Display: Zope Public License 2.0
-  /// Definition: Zope Public License 2.0.
-  ZPL_2_0('ZPL-2.0'),
-
-  /// Display: Zope Public License 2.1
-  /// Definition: Zope Public License 2.1.
-  ZPL_2_1('ZPL-2.1'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const SPDXLicense(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+class SPDXLicense {
+  // Private constructor for internal use (like enum)
+  SPDXLicense._(this.fhirCode, {this.element});
+
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// SPDXLicense values
+  /// not_open_source
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense not_open_source = SPDXLicense._(
+    'not-open-source',
+  );
+
+  /// value0BSD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense value0BSD = SPDXLicense._(
+    '0BSD',
+  );
+
+  /// AAL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense AAL = SPDXLicense._(
+    'AAL',
+  );
+
+  /// Abstyles
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Abstyles = SPDXLicense._(
+    'Abstyles',
+  );
+
+  /// Adobe_2006
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Adobe_2006 = SPDXLicense._(
+    'Adobe-2006',
+  );
+
+  /// Adobe_Glyph
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Adobe_Glyph = SPDXLicense._(
+    'Adobe-Glyph',
+  );
+
+  /// ADSL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense ADSL = SPDXLicense._(
+    'ADSL',
+  );
+
+  /// AFL_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense AFL_1_1 = SPDXLicense._(
+    'AFL-1.1',
+  );
+
+  /// AFL_1_2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense AFL_1_2 = SPDXLicense._(
+    'AFL-1.2',
+  );
+
+  /// AFL_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense AFL_2_0 = SPDXLicense._(
+    'AFL-2.0',
+  );
+
+  /// AFL_2_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense AFL_2_1 = SPDXLicense._(
+    'AFL-2.1',
+  );
+
+  /// AFL_3_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense AFL_3_0 = SPDXLicense._(
+    'AFL-3.0',
+  );
+
+  /// Afmparse
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Afmparse = SPDXLicense._(
+    'Afmparse',
+  );
+
+  /// AGPL_1_0_only
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense AGPL_1_0_only = SPDXLicense._(
+    'AGPL-1.0-only',
+  );
+
+  /// AGPL_1_0_or_later
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense AGPL_1_0_or_later = SPDXLicense._(
+    'AGPL-1.0-or-later',
+  );
+
+  /// AGPL_3_0_only
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense AGPL_3_0_only = SPDXLicense._(
+    'AGPL-3.0-only',
+  );
+
+  /// AGPL_3_0_or_later
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense AGPL_3_0_or_later = SPDXLicense._(
+    'AGPL-3.0-or-later',
+  );
+
+  /// Aladdin
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Aladdin = SPDXLicense._(
+    'Aladdin',
+  );
+
+  /// AMDPLPA
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense AMDPLPA = SPDXLicense._(
+    'AMDPLPA',
+  );
+
+  /// AML
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense AML = SPDXLicense._(
+    'AML',
+  );
+
+  /// AMPAS
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense AMPAS = SPDXLicense._(
+    'AMPAS',
+  );
+
+  /// ANTLR_PD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense ANTLR_PD = SPDXLicense._(
+    'ANTLR-PD',
+  );
+
+  /// Apache_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Apache_1_0 = SPDXLicense._(
+    'Apache-1.0',
+  );
+
+  /// Apache_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Apache_1_1 = SPDXLicense._(
+    'Apache-1.1',
+  );
+
+  /// Apache_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Apache_2_0 = SPDXLicense._(
+    'Apache-2.0',
+  );
+
+  /// APAFML
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense APAFML = SPDXLicense._(
+    'APAFML',
+  );
+
+  /// APL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense APL_1_0 = SPDXLicense._(
+    'APL-1.0',
+  );
+
+  /// APSL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense APSL_1_0 = SPDXLicense._(
+    'APSL-1.0',
+  );
+
+  /// APSL_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense APSL_1_1 = SPDXLicense._(
+    'APSL-1.1',
+  );
+
+  /// APSL_1_2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense APSL_1_2 = SPDXLicense._(
+    'APSL-1.2',
+  );
+
+  /// APSL_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense APSL_2_0 = SPDXLicense._(
+    'APSL-2.0',
+  );
+
+  /// Artistic_1_0_cl8
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Artistic_1_0_cl8 = SPDXLicense._(
+    'Artistic-1.0-cl8',
+  );
+
+  /// Artistic_1_0_Perl
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Artistic_1_0_Perl = SPDXLicense._(
+    'Artistic-1.0-Perl',
+  );
+
+  /// Artistic_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Artistic_1_0 = SPDXLicense._(
+    'Artistic-1.0',
+  );
+
+  /// Artistic_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Artistic_2_0 = SPDXLicense._(
+    'Artistic-2.0',
+  );
+
+  /// Bahyph
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Bahyph = SPDXLicense._(
+    'Bahyph',
+  );
+
+  /// Barr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Barr = SPDXLicense._(
+    'Barr',
+  );
+
+  /// Beerware
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Beerware = SPDXLicense._(
+    'Beerware',
+  );
+
+  /// BitTorrent_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BitTorrent_1_0 = SPDXLicense._(
+    'BitTorrent-1.0',
+  );
+
+  /// BitTorrent_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BitTorrent_1_1 = SPDXLicense._(
+    'BitTorrent-1.1',
+  );
+
+  /// Borceux
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Borceux = SPDXLicense._(
+    'Borceux',
+  );
+
+  /// BSD_1_Clause
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_1_Clause = SPDXLicense._(
+    'BSD-1-Clause',
+  );
+
+  /// BSD_2_Clause_FreeBSD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_2_Clause_FreeBSD = SPDXLicense._(
+    'BSD-2-Clause-FreeBSD',
+  );
+
+  /// BSD_2_Clause_NetBSD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_2_Clause_NetBSD = SPDXLicense._(
+    'BSD-2-Clause-NetBSD',
+  );
+
+  /// BSD_2_Clause_Patent
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_2_Clause_Patent = SPDXLicense._(
+    'BSD-2-Clause-Patent',
+  );
+
+  /// BSD_2_Clause
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_2_Clause = SPDXLicense._(
+    'BSD-2-Clause',
+  );
+
+  /// BSD_3_Clause_Attribution
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_3_Clause_Attribution = SPDXLicense._(
+    'BSD-3-Clause-Attribution',
+  );
+
+  /// BSD_3_Clause_Clear
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_3_Clause_Clear = SPDXLicense._(
+    'BSD-3-Clause-Clear',
+  );
+
+  /// BSD_3_Clause_LBNL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_3_Clause_LBNL = SPDXLicense._(
+    'BSD-3-Clause-LBNL',
+  );
+
+  /// BSD_3_Clause_No_Nuclear_License_2014
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_3_Clause_No_Nuclear_License_2014 = SPDXLicense._(
+    'BSD-3-Clause-No-Nuclear-License-2014',
+  );
+
+  /// BSD_3_Clause_No_Nuclear_License
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_3_Clause_No_Nuclear_License = SPDXLicense._(
+    'BSD-3-Clause-No-Nuclear-License',
+  );
+
+  /// BSD_3_Clause_No_Nuclear_Warranty
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_3_Clause_No_Nuclear_Warranty = SPDXLicense._(
+    'BSD-3-Clause-No-Nuclear-Warranty',
+  );
+
+  /// BSD_3_Clause
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_3_Clause = SPDXLicense._(
+    'BSD-3-Clause',
+  );
+
+  /// BSD_4_Clause_UC
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_4_Clause_UC = SPDXLicense._(
+    'BSD-4-Clause-UC',
+  );
+
+  /// BSD_4_Clause
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_4_Clause = SPDXLicense._(
+    'BSD-4-Clause',
+  );
+
+  /// BSD_Protection
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_Protection = SPDXLicense._(
+    'BSD-Protection',
+  );
+
+  /// BSD_Source_Code
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSD_Source_Code = SPDXLicense._(
+    'BSD-Source-Code',
+  );
+
+  /// BSL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense BSL_1_0 = SPDXLicense._(
+    'BSL-1.0',
+  );
+
+  /// bzip2_1_0_5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense bzip2_1_0_5 = SPDXLicense._(
+    'bzip2-1.0.5',
+  );
+
+  /// bzip2_1_0_6
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense bzip2_1_0_6 = SPDXLicense._(
+    'bzip2-1.0.6',
+  );
+
+  /// Caldera
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Caldera = SPDXLicense._(
+    'Caldera',
+  );
+
+  /// CATOSL_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CATOSL_1_1 = SPDXLicense._(
+    'CATOSL-1.1',
+  );
+
+  /// CC_BY_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_1_0 = SPDXLicense._(
+    'CC-BY-1.0',
+  );
+
+  /// CC_BY_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_2_0 = SPDXLicense._(
+    'CC-BY-2.0',
+  );
+
+  /// CC_BY_2_5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_2_5 = SPDXLicense._(
+    'CC-BY-2.5',
+  );
+
+  /// CC_BY_3_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_3_0 = SPDXLicense._(
+    'CC-BY-3.0',
+  );
+
+  /// CC_BY_4_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_4_0 = SPDXLicense._(
+    'CC-BY-4.0',
+  );
+
+  /// CC_BY_NC_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_NC_1_0 = SPDXLicense._(
+    'CC-BY-NC-1.0',
+  );
+
+  /// CC_BY_NC_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_NC_2_0 = SPDXLicense._(
+    'CC-BY-NC-2.0',
+  );
+
+  /// CC_BY_NC_2_5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_NC_2_5 = SPDXLicense._(
+    'CC-BY-NC-2.5',
+  );
+
+  /// CC_BY_NC_3_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_NC_3_0 = SPDXLicense._(
+    'CC-BY-NC-3.0',
+  );
+
+  /// CC_BY_NC_4_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_NC_4_0 = SPDXLicense._(
+    'CC-BY-NC-4.0',
+  );
+
+  /// CC_BY_NC_ND_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_NC_ND_1_0 = SPDXLicense._(
+    'CC-BY-NC-ND-1.0',
+  );
+
+  /// CC_BY_NC_ND_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_NC_ND_2_0 = SPDXLicense._(
+    'CC-BY-NC-ND-2.0',
+  );
+
+  /// CC_BY_NC_ND_2_5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_NC_ND_2_5 = SPDXLicense._(
+    'CC-BY-NC-ND-2.5',
+  );
+
+  /// CC_BY_NC_ND_3_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_NC_ND_3_0 = SPDXLicense._(
+    'CC-BY-NC-ND-3.0',
+  );
+
+  /// CC_BY_NC_ND_4_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_NC_ND_4_0 = SPDXLicense._(
+    'CC-BY-NC-ND-4.0',
+  );
+
+  /// CC_BY_NC_SA_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_NC_SA_1_0 = SPDXLicense._(
+    'CC-BY-NC-SA-1.0',
+  );
+
+  /// CC_BY_NC_SA_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_NC_SA_2_0 = SPDXLicense._(
+    'CC-BY-NC-SA-2.0',
+  );
+
+  /// CC_BY_NC_SA_2_5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_NC_SA_2_5 = SPDXLicense._(
+    'CC-BY-NC-SA-2.5',
+  );
+
+  /// CC_BY_NC_SA_3_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_NC_SA_3_0 = SPDXLicense._(
+    'CC-BY-NC-SA-3.0',
+  );
+
+  /// CC_BY_NC_SA_4_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_NC_SA_4_0 = SPDXLicense._(
+    'CC-BY-NC-SA-4.0',
+  );
+
+  /// CC_BY_ND_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_ND_1_0 = SPDXLicense._(
+    'CC-BY-ND-1.0',
+  );
+
+  /// CC_BY_ND_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_ND_2_0 = SPDXLicense._(
+    'CC-BY-ND-2.0',
+  );
+
+  /// CC_BY_ND_2_5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_ND_2_5 = SPDXLicense._(
+    'CC-BY-ND-2.5',
+  );
+
+  /// CC_BY_ND_3_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_ND_3_0 = SPDXLicense._(
+    'CC-BY-ND-3.0',
+  );
+
+  /// CC_BY_ND_4_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_ND_4_0 = SPDXLicense._(
+    'CC-BY-ND-4.0',
+  );
+
+  /// CC_BY_SA_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_SA_1_0 = SPDXLicense._(
+    'CC-BY-SA-1.0',
+  );
+
+  /// CC_BY_SA_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_SA_2_0 = SPDXLicense._(
+    'CC-BY-SA-2.0',
+  );
+
+  /// CC_BY_SA_2_5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_SA_2_5 = SPDXLicense._(
+    'CC-BY-SA-2.5',
+  );
+
+  /// CC_BY_SA_3_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_SA_3_0 = SPDXLicense._(
+    'CC-BY-SA-3.0',
+  );
+
+  /// CC_BY_SA_4_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC_BY_SA_4_0 = SPDXLicense._(
+    'CC-BY-SA-4.0',
+  );
+
+  /// CC0_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CC0_1_0 = SPDXLicense._(
+    'CC0-1.0',
+  );
+
+  /// CDDL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CDDL_1_0 = SPDXLicense._(
+    'CDDL-1.0',
+  );
+
+  /// CDDL_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CDDL_1_1 = SPDXLicense._(
+    'CDDL-1.1',
+  );
+
+  /// CDLA_Permissive_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CDLA_Permissive_1_0 = SPDXLicense._(
+    'CDLA-Permissive-1.0',
+  );
+
+  /// CDLA_Sharing_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CDLA_Sharing_1_0 = SPDXLicense._(
+    'CDLA-Sharing-1.0',
+  );
+
+  /// CECILL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CECILL_1_0 = SPDXLicense._(
+    'CECILL-1.0',
+  );
+
+  /// CECILL_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CECILL_1_1 = SPDXLicense._(
+    'CECILL-1.1',
+  );
+
+  /// CECILL_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CECILL_2_0 = SPDXLicense._(
+    'CECILL-2.0',
+  );
+
+  /// CECILL_2_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CECILL_2_1 = SPDXLicense._(
+    'CECILL-2.1',
+  );
+
+  /// CECILL_B
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CECILL_B = SPDXLicense._(
+    'CECILL-B',
+  );
+
+  /// CECILL_C
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CECILL_C = SPDXLicense._(
+    'CECILL-C',
+  );
+
+  /// ClArtistic
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense ClArtistic = SPDXLicense._(
+    'ClArtistic',
+  );
+
+  /// CNRI_Jython
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CNRI_Jython = SPDXLicense._(
+    'CNRI-Jython',
+  );
+
+  /// CNRI_Python_GPL_Compatible
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CNRI_Python_GPL_Compatible = SPDXLicense._(
+    'CNRI-Python-GPL-Compatible',
+  );
+
+  /// CNRI_Python
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CNRI_Python = SPDXLicense._(
+    'CNRI-Python',
+  );
+
+  /// Condor_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Condor_1_1 = SPDXLicense._(
+    'Condor-1.1',
+  );
+
+  /// CPAL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CPAL_1_0 = SPDXLicense._(
+    'CPAL-1.0',
+  );
+
+  /// CPL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CPL_1_0 = SPDXLicense._(
+    'CPL-1.0',
+  );
+
+  /// CPOL_1_02
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CPOL_1_02 = SPDXLicense._(
+    'CPOL-1.02',
+  );
+
+  /// Crossword
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Crossword = SPDXLicense._(
+    'Crossword',
+  );
+
+  /// CrystalStacker
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CrystalStacker = SPDXLicense._(
+    'CrystalStacker',
+  );
+
+  /// CUA_OPL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense CUA_OPL_1_0 = SPDXLicense._(
+    'CUA-OPL-1.0',
+  );
+
+  /// Cube
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Cube = SPDXLicense._(
+    'Cube',
+  );
+
+  /// curl
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense curl = SPDXLicense._(
+    'curl',
+  );
+
+  /// D_FSL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense D_FSL_1_0 = SPDXLicense._(
+    'D-FSL-1.0',
+  );
+
+  /// diffmark
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense diffmark = SPDXLicense._(
+    'diffmark',
+  );
+
+  /// DOC
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense DOC = SPDXLicense._(
+    'DOC',
+  );
+
+  /// Dotseqn
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Dotseqn = SPDXLicense._(
+    'Dotseqn',
+  );
+
+  /// DSDP
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense DSDP = SPDXLicense._(
+    'DSDP',
+  );
+
+  /// dvipdfm
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense dvipdfm = SPDXLicense._(
+    'dvipdfm',
+  );
+
+  /// ECL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense ECL_1_0 = SPDXLicense._(
+    'ECL-1.0',
+  );
+
+  /// ECL_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense ECL_2_0 = SPDXLicense._(
+    'ECL-2.0',
+  );
+
+  /// EFL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense EFL_1_0 = SPDXLicense._(
+    'EFL-1.0',
+  );
+
+  /// EFL_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense EFL_2_0 = SPDXLicense._(
+    'EFL-2.0',
+  );
+
+  /// eGenix
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense eGenix = SPDXLicense._(
+    'eGenix',
+  );
+
+  /// Entessa
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Entessa = SPDXLicense._(
+    'Entessa',
+  );
+
+  /// EPL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense EPL_1_0 = SPDXLicense._(
+    'EPL-1.0',
+  );
+
+  /// EPL_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense EPL_2_0 = SPDXLicense._(
+    'EPL-2.0',
+  );
+
+  /// ErlPL_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense ErlPL_1_1 = SPDXLicense._(
+    'ErlPL-1.1',
+  );
+
+  /// EUDatagrid
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense EUDatagrid = SPDXLicense._(
+    'EUDatagrid',
+  );
+
+  /// EUPL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense EUPL_1_0 = SPDXLicense._(
+    'EUPL-1.0',
+  );
+
+  /// EUPL_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense EUPL_1_1 = SPDXLicense._(
+    'EUPL-1.1',
+  );
+
+  /// EUPL_1_2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense EUPL_1_2 = SPDXLicense._(
+    'EUPL-1.2',
+  );
+
+  /// Eurosym
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Eurosym = SPDXLicense._(
+    'Eurosym',
+  );
+
+  /// Fair
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Fair = SPDXLicense._(
+    'Fair',
+  );
+
+  /// Frameworx_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Frameworx_1_0 = SPDXLicense._(
+    'Frameworx-1.0',
+  );
+
+  /// FreeImage
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense FreeImage = SPDXLicense._(
+    'FreeImage',
+  );
+
+  /// FSFAP
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense FSFAP = SPDXLicense._(
+    'FSFAP',
+  );
+
+  /// FSFUL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense FSFUL = SPDXLicense._(
+    'FSFUL',
+  );
+
+  /// FSFULLR
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense FSFULLR = SPDXLicense._(
+    'FSFULLR',
+  );
+
+  /// FTL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense FTL = SPDXLicense._(
+    'FTL',
+  );
+
+  /// GFDL_1_1_only
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense GFDL_1_1_only = SPDXLicense._(
+    'GFDL-1.1-only',
+  );
+
+  /// GFDL_1_1_or_later
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense GFDL_1_1_or_later = SPDXLicense._(
+    'GFDL-1.1-or-later',
+  );
+
+  /// GFDL_1_2_only
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense GFDL_1_2_only = SPDXLicense._(
+    'GFDL-1.2-only',
+  );
+
+  /// GFDL_1_2_or_later
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense GFDL_1_2_or_later = SPDXLicense._(
+    'GFDL-1.2-or-later',
+  );
+
+  /// GFDL_1_3_only
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense GFDL_1_3_only = SPDXLicense._(
+    'GFDL-1.3-only',
+  );
+
+  /// GFDL_1_3_or_later
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense GFDL_1_3_or_later = SPDXLicense._(
+    'GFDL-1.3-or-later',
+  );
+
+  /// Giftware
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Giftware = SPDXLicense._(
+    'Giftware',
+  );
+
+  /// GL2PS
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense GL2PS = SPDXLicense._(
+    'GL2PS',
+  );
+
+  /// Glide
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Glide = SPDXLicense._(
+    'Glide',
+  );
+
+  /// Glulxe
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Glulxe = SPDXLicense._(
+    'Glulxe',
+  );
+
+  /// gnuplot
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense gnuplot = SPDXLicense._(
+    'gnuplot',
+  );
+
+  /// GPL_1_0_only
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense GPL_1_0_only = SPDXLicense._(
+    'GPL-1.0-only',
+  );
+
+  /// GPL_1_0_or_later
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense GPL_1_0_or_later = SPDXLicense._(
+    'GPL-1.0-or-later',
+  );
+
+  /// GPL_2_0_only
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense GPL_2_0_only = SPDXLicense._(
+    'GPL-2.0-only',
+  );
+
+  /// GPL_2_0_or_later
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense GPL_2_0_or_later = SPDXLicense._(
+    'GPL-2.0-or-later',
+  );
+
+  /// GPL_3_0_only
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense GPL_3_0_only = SPDXLicense._(
+    'GPL-3.0-only',
+  );
+
+  /// GPL_3_0_or_later
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense GPL_3_0_or_later = SPDXLicense._(
+    'GPL-3.0-or-later',
+  );
+
+  /// gSOAP_1_3b
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense gSOAP_1_3b = SPDXLicense._(
+    'gSOAP-1.3b',
+  );
+
+  /// HaskellReport
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense HaskellReport = SPDXLicense._(
+    'HaskellReport',
+  );
+
+  /// HPND
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense HPND = SPDXLicense._(
+    'HPND',
+  );
+
+  /// IBM_pibs
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense IBM_pibs = SPDXLicense._(
+    'IBM-pibs',
+  );
+
+  /// ICU
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense ICU = SPDXLicense._(
+    'ICU',
+  );
+
+  /// IJG
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense IJG = SPDXLicense._(
+    'IJG',
+  );
+
+  /// ImageMagick
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense ImageMagick = SPDXLicense._(
+    'ImageMagick',
+  );
+
+  /// iMatix
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense iMatix = SPDXLicense._(
+    'iMatix',
+  );
+
+  /// Imlib2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Imlib2 = SPDXLicense._(
+    'Imlib2',
+  );
+
+  /// Info_ZIP
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Info_ZIP = SPDXLicense._(
+    'Info-ZIP',
+  );
+
+  /// Intel_ACPI
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Intel_ACPI = SPDXLicense._(
+    'Intel-ACPI',
+  );
+
+  /// Intel
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Intel = SPDXLicense._(
+    'Intel',
+  );
+
+  /// Interbase_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Interbase_1_0 = SPDXLicense._(
+    'Interbase-1.0',
+  );
+
+  /// IPA
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense IPA = SPDXLicense._(
+    'IPA',
+  );
+
+  /// IPL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense IPL_1_0 = SPDXLicense._(
+    'IPL-1.0',
+  );
+
+  /// ISC
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense ISC = SPDXLicense._(
+    'ISC',
+  );
+
+  /// JasPer_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense JasPer_2_0 = SPDXLicense._(
+    'JasPer-2.0',
+  );
+
+  /// JSON
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense JSON = SPDXLicense._(
+    'JSON',
+  );
+
+  /// LAL_1_2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LAL_1_2 = SPDXLicense._(
+    'LAL-1.2',
+  );
+
+  /// LAL_1_3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LAL_1_3 = SPDXLicense._(
+    'LAL-1.3',
+  );
+
+  /// Latex2e
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Latex2e = SPDXLicense._(
+    'Latex2e',
+  );
+
+  /// Leptonica
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Leptonica = SPDXLicense._(
+    'Leptonica',
+  );
+
+  /// LGPL_2_0_only
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LGPL_2_0_only = SPDXLicense._(
+    'LGPL-2.0-only',
+  );
+
+  /// LGPL_2_0_or_later
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LGPL_2_0_or_later = SPDXLicense._(
+    'LGPL-2.0-or-later',
+  );
+
+  /// LGPL_2_1_only
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LGPL_2_1_only = SPDXLicense._(
+    'LGPL-2.1-only',
+  );
+
+  /// LGPL_2_1_or_later
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LGPL_2_1_or_later = SPDXLicense._(
+    'LGPL-2.1-or-later',
+  );
+
+  /// LGPL_3_0_only
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LGPL_3_0_only = SPDXLicense._(
+    'LGPL-3.0-only',
+  );
+
+  /// LGPL_3_0_or_later
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LGPL_3_0_or_later = SPDXLicense._(
+    'LGPL-3.0-or-later',
+  );
+
+  /// LGPLLR
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LGPLLR = SPDXLicense._(
+    'LGPLLR',
+  );
+
+  /// Libpng
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Libpng = SPDXLicense._(
+    'Libpng',
+  );
+
+  /// libtiff
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense libtiff = SPDXLicense._(
+    'libtiff',
+  );
+
+  /// LiLiQ_P_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LiLiQ_P_1_1 = SPDXLicense._(
+    'LiLiQ-P-1.1',
+  );
+
+  /// LiLiQ_R_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LiLiQ_R_1_1 = SPDXLicense._(
+    'LiLiQ-R-1.1',
+  );
+
+  /// LiLiQ_Rplus_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LiLiQ_Rplus_1_1 = SPDXLicense._(
+    'LiLiQ-Rplus-1.1',
+  );
+
+  /// Linux_OpenIB
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Linux_OpenIB = SPDXLicense._(
+    'Linux-OpenIB',
+  );
+
+  /// LPL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LPL_1_0 = SPDXLicense._(
+    'LPL-1.0',
+  );
+
+  /// LPL_1_02
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LPL_1_02 = SPDXLicense._(
+    'LPL-1.02',
+  );
+
+  /// LPPL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LPPL_1_0 = SPDXLicense._(
+    'LPPL-1.0',
+  );
+
+  /// LPPL_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LPPL_1_1 = SPDXLicense._(
+    'LPPL-1.1',
+  );
+
+  /// LPPL_1_2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LPPL_1_2 = SPDXLicense._(
+    'LPPL-1.2',
+  );
+
+  /// LPPL_1_3a
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LPPL_1_3a = SPDXLicense._(
+    'LPPL-1.3a',
+  );
+
+  /// LPPL_1_3c
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense LPPL_1_3c = SPDXLicense._(
+    'LPPL-1.3c',
+  );
+
+  /// MakeIndex
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MakeIndex = SPDXLicense._(
+    'MakeIndex',
+  );
+
+  /// MirOS
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MirOS = SPDXLicense._(
+    'MirOS',
+  );
+
+  /// MIT_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MIT_0 = SPDXLicense._(
+    'MIT-0',
+  );
+
+  /// MIT_advertising
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MIT_advertising = SPDXLicense._(
+    'MIT-advertising',
+  );
+
+  /// MIT_CMU
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MIT_CMU = SPDXLicense._(
+    'MIT-CMU',
+  );
+
+  /// MIT_enna
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MIT_enna = SPDXLicense._(
+    'MIT-enna',
+  );
+
+  /// MIT_feh
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MIT_feh = SPDXLicense._(
+    'MIT-feh',
+  );
+
+  /// MIT
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MIT = SPDXLicense._(
+    'MIT',
+  );
+
+  /// MITNFA
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MITNFA = SPDXLicense._(
+    'MITNFA',
+  );
+
+  /// Motosoto
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Motosoto = SPDXLicense._(
+    'Motosoto',
+  );
+
+  /// mpich2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense mpich2 = SPDXLicense._(
+    'mpich2',
+  );
+
+  /// MPL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MPL_1_0 = SPDXLicense._(
+    'MPL-1.0',
+  );
+
+  /// MPL_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MPL_1_1 = SPDXLicense._(
+    'MPL-1.1',
+  );
+
+  /// MPL_2_0_no_copyleft_exception
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MPL_2_0_no_copyleft_exception = SPDXLicense._(
+    'MPL-2.0-no-copyleft-exception',
+  );
+
+  /// MPL_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MPL_2_0 = SPDXLicense._(
+    'MPL-2.0',
+  );
+
+  /// MS_PL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MS_PL = SPDXLicense._(
+    'MS-PL',
+  );
+
+  /// MS_RL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MS_RL = SPDXLicense._(
+    'MS-RL',
+  );
+
+  /// MTLL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense MTLL = SPDXLicense._(
+    'MTLL',
+  );
+
+  /// Multics
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Multics = SPDXLicense._(
+    'Multics',
+  );
+
+  /// Mup
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Mup = SPDXLicense._(
+    'Mup',
+  );
+
+  /// NASA_1_3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense NASA_1_3 = SPDXLicense._(
+    'NASA-1.3',
+  );
+
+  /// Naumen
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Naumen = SPDXLicense._(
+    'Naumen',
+  );
+
+  /// NBPL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense NBPL_1_0 = SPDXLicense._(
+    'NBPL-1.0',
+  );
+
+  /// NCSA
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense NCSA = SPDXLicense._(
+    'NCSA',
+  );
+
+  /// Net_SNMP
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Net_SNMP = SPDXLicense._(
+    'Net-SNMP',
+  );
+
+  /// NetCDF
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense NetCDF = SPDXLicense._(
+    'NetCDF',
+  );
+
+  /// Newsletr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Newsletr = SPDXLicense._(
+    'Newsletr',
+  );
+
+  /// NGPL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense NGPL = SPDXLicense._(
+    'NGPL',
+  );
+
+  /// NLOD_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense NLOD_1_0 = SPDXLicense._(
+    'NLOD-1.0',
+  );
+
+  /// NLPL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense NLPL = SPDXLicense._(
+    'NLPL',
+  );
+
+  /// Nokia
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Nokia = SPDXLicense._(
+    'Nokia',
+  );
+
+  /// NOSL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense NOSL = SPDXLicense._(
+    'NOSL',
+  );
+
+  /// Noweb
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Noweb = SPDXLicense._(
+    'Noweb',
+  );
+
+  /// NPL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense NPL_1_0 = SPDXLicense._(
+    'NPL-1.0',
+  );
+
+  /// NPL_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense NPL_1_1 = SPDXLicense._(
+    'NPL-1.1',
+  );
+
+  /// NPOSL_3_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense NPOSL_3_0 = SPDXLicense._(
+    'NPOSL-3.0',
+  );
+
+  /// NRL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense NRL = SPDXLicense._(
+    'NRL',
+  );
+
+  /// NTP
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense NTP = SPDXLicense._(
+    'NTP',
+  );
+
+  /// OCCT_PL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OCCT_PL = SPDXLicense._(
+    'OCCT-PL',
+  );
+
+  /// OCLC_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OCLC_2_0 = SPDXLicense._(
+    'OCLC-2.0',
+  );
+
+  /// ODbL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense ODbL_1_0 = SPDXLicense._(
+    'ODbL-1.0',
+  );
+
+  /// OFL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OFL_1_0 = SPDXLicense._(
+    'OFL-1.0',
+  );
+
+  /// OFL_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OFL_1_1 = SPDXLicense._(
+    'OFL-1.1',
+  );
+
+  /// OGTSL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OGTSL = SPDXLicense._(
+    'OGTSL',
+  );
+
+  /// OLDAP_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_1_1 = SPDXLicense._(
+    'OLDAP-1.1',
+  );
+
+  /// OLDAP_1_2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_1_2 = SPDXLicense._(
+    'OLDAP-1.2',
+  );
+
+  /// OLDAP_1_3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_1_3 = SPDXLicense._(
+    'OLDAP-1.3',
+  );
+
+  /// OLDAP_1_4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_1_4 = SPDXLicense._(
+    'OLDAP-1.4',
+  );
+
+  /// OLDAP_2_0_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_2_0_1 = SPDXLicense._(
+    'OLDAP-2.0.1',
+  );
+
+  /// OLDAP_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_2_0 = SPDXLicense._(
+    'OLDAP-2.0',
+  );
+
+  /// OLDAP_2_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_2_1 = SPDXLicense._(
+    'OLDAP-2.1',
+  );
+
+  /// OLDAP_2_2_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_2_2_1 = SPDXLicense._(
+    'OLDAP-2.2.1',
+  );
+
+  /// OLDAP_2_2_2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_2_2_2 = SPDXLicense._(
+    'OLDAP-2.2.2',
+  );
+
+  /// OLDAP_2_2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_2_2 = SPDXLicense._(
+    'OLDAP-2.2',
+  );
+
+  /// OLDAP_2_3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_2_3 = SPDXLicense._(
+    'OLDAP-2.3',
+  );
+
+  /// OLDAP_2_4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_2_4 = SPDXLicense._(
+    'OLDAP-2.4',
+  );
+
+  /// OLDAP_2_5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_2_5 = SPDXLicense._(
+    'OLDAP-2.5',
+  );
+
+  /// OLDAP_2_6
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_2_6 = SPDXLicense._(
+    'OLDAP-2.6',
+  );
+
+  /// OLDAP_2_7
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_2_7 = SPDXLicense._(
+    'OLDAP-2.7',
+  );
+
+  /// OLDAP_2_8
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OLDAP_2_8 = SPDXLicense._(
+    'OLDAP-2.8',
+  );
+
+  /// OML
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OML = SPDXLicense._(
+    'OML',
+  );
+
+  /// OpenSSL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OpenSSL = SPDXLicense._(
+    'OpenSSL',
+  );
+
+  /// OPL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OPL_1_0 = SPDXLicense._(
+    'OPL-1.0',
+  );
+
+  /// OSET_PL_2_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OSET_PL_2_1 = SPDXLicense._(
+    'OSET-PL-2.1',
+  );
+
+  /// OSL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OSL_1_0 = SPDXLicense._(
+    'OSL-1.0',
+  );
+
+  /// OSL_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OSL_1_1 = SPDXLicense._(
+    'OSL-1.1',
+  );
+
+  /// OSL_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OSL_2_0 = SPDXLicense._(
+    'OSL-2.0',
+  );
+
+  /// OSL_2_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OSL_2_1 = SPDXLicense._(
+    'OSL-2.1',
+  );
+
+  /// OSL_3_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense OSL_3_0 = SPDXLicense._(
+    'OSL-3.0',
+  );
+
+  /// PDDL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense PDDL_1_0 = SPDXLicense._(
+    'PDDL-1.0',
+  );
+
+  /// PHP_3_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense PHP_3_0 = SPDXLicense._(
+    'PHP-3.0',
+  );
+
+  /// PHP_3_01
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense PHP_3_01 = SPDXLicense._(
+    'PHP-3.01',
+  );
+
+  /// Plexus
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Plexus = SPDXLicense._(
+    'Plexus',
+  );
+
+  /// PostgreSQL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense PostgreSQL = SPDXLicense._(
+    'PostgreSQL',
+  );
+
+  /// psfrag
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense psfrag = SPDXLicense._(
+    'psfrag',
+  );
+
+  /// psutils
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense psutils = SPDXLicense._(
+    'psutils',
+  );
+
+  /// Python_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Python_2_0 = SPDXLicense._(
+    'Python-2.0',
+  );
+
+  /// Qhull
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Qhull = SPDXLicense._(
+    'Qhull',
+  );
+
+  /// QPL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense QPL_1_0 = SPDXLicense._(
+    'QPL-1.0',
+  );
+
+  /// Rdisc
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Rdisc = SPDXLicense._(
+    'Rdisc',
+  );
+
+  /// RHeCos_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense RHeCos_1_1 = SPDXLicense._(
+    'RHeCos-1.1',
+  );
+
+  /// RPL_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense RPL_1_1 = SPDXLicense._(
+    'RPL-1.1',
+  );
+
+  /// RPL_1_5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense RPL_1_5 = SPDXLicense._(
+    'RPL-1.5',
+  );
+
+  /// RPSL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense RPSL_1_0 = SPDXLicense._(
+    'RPSL-1.0',
+  );
+
+  /// RSA_MD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense RSA_MD = SPDXLicense._(
+    'RSA-MD',
+  );
+
+  /// RSCPL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense RSCPL = SPDXLicense._(
+    'RSCPL',
+  );
+
+  /// Ruby
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Ruby = SPDXLicense._(
+    'Ruby',
+  );
+
+  /// SAX_PD
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense SAX_PD = SPDXLicense._(
+    'SAX-PD',
+  );
+
+  /// Saxpath
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Saxpath = SPDXLicense._(
+    'Saxpath',
+  );
+
+  /// SCEA
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense SCEA = SPDXLicense._(
+    'SCEA',
+  );
+
+  /// Sendmail
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Sendmail = SPDXLicense._(
+    'Sendmail',
+  );
+
+  /// SGI_B_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense SGI_B_1_0 = SPDXLicense._(
+    'SGI-B-1.0',
+  );
+
+  /// SGI_B_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense SGI_B_1_1 = SPDXLicense._(
+    'SGI-B-1.1',
+  );
+
+  /// SGI_B_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense SGI_B_2_0 = SPDXLicense._(
+    'SGI-B-2.0',
+  );
+
+  /// SimPL_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense SimPL_2_0 = SPDXLicense._(
+    'SimPL-2.0',
+  );
+
+  /// SISSL_1_2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense SISSL_1_2 = SPDXLicense._(
+    'SISSL-1.2',
+  );
+
+  /// SISSL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense SISSL = SPDXLicense._(
+    'SISSL',
+  );
+
+  /// Sleepycat
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Sleepycat = SPDXLicense._(
+    'Sleepycat',
+  );
+
+  /// SMLNJ
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense SMLNJ = SPDXLicense._(
+    'SMLNJ',
+  );
+
+  /// SMPPL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense SMPPL = SPDXLicense._(
+    'SMPPL',
+  );
+
+  /// SNIA
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense SNIA = SPDXLicense._(
+    'SNIA',
+  );
+
+  /// Spencer_86
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Spencer_86 = SPDXLicense._(
+    'Spencer-86',
+  );
+
+  /// Spencer_94
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Spencer_94 = SPDXLicense._(
+    'Spencer-94',
+  );
+
+  /// Spencer_99
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Spencer_99 = SPDXLicense._(
+    'Spencer-99',
+  );
+
+  /// SPL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense SPL_1_0 = SPDXLicense._(
+    'SPL-1.0',
+  );
+
+  /// SugarCRM_1_1_3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense SugarCRM_1_1_3 = SPDXLicense._(
+    'SugarCRM-1.1.3',
+  );
+
+  /// SWL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense SWL = SPDXLicense._(
+    'SWL',
+  );
+
+  /// TCL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense TCL = SPDXLicense._(
+    'TCL',
+  );
+
+  /// TCP_wrappers
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense TCP_wrappers = SPDXLicense._(
+    'TCP-wrappers',
+  );
+
+  /// TMate
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense TMate = SPDXLicense._(
+    'TMate',
+  );
+
+  /// TORQUE_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense TORQUE_1_1 = SPDXLicense._(
+    'TORQUE-1.1',
+  );
+
+  /// TOSL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense TOSL = SPDXLicense._(
+    'TOSL',
+  );
+
+  /// Unicode_DFS_2015
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Unicode_DFS_2015 = SPDXLicense._(
+    'Unicode-DFS-2015',
+  );
+
+  /// Unicode_DFS_2016
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Unicode_DFS_2016 = SPDXLicense._(
+    'Unicode-DFS-2016',
+  );
+
+  /// Unicode_TOU
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Unicode_TOU = SPDXLicense._(
+    'Unicode-TOU',
+  );
+
+  /// Unlicense
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Unlicense = SPDXLicense._(
+    'Unlicense',
+  );
+
+  /// UPL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense UPL_1_0 = SPDXLicense._(
+    'UPL-1.0',
+  );
+
+  /// Vim
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Vim = SPDXLicense._(
+    'Vim',
+  );
+
+  /// VOSTROM
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense VOSTROM = SPDXLicense._(
+    'VOSTROM',
+  );
+
+  /// VSL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense VSL_1_0 = SPDXLicense._(
+    'VSL-1.0',
+  );
+
+  /// W3C_19980720
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense W3C_19980720 = SPDXLicense._(
+    'W3C-19980720',
+  );
+
+  /// W3C_20150513
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense W3C_20150513 = SPDXLicense._(
+    'W3C-20150513',
+  );
+
+  /// W3C
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense W3C = SPDXLicense._(
+    'W3C',
+  );
+
+  /// Watcom_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Watcom_1_0 = SPDXLicense._(
+    'Watcom-1.0',
+  );
+
+  /// Wsuipa
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Wsuipa = SPDXLicense._(
+    'Wsuipa',
+  );
+
+  /// WTFPL
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense WTFPL = SPDXLicense._(
+    'WTFPL',
+  );
+
+  /// X11
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense X11 = SPDXLicense._(
+    'X11',
+  );
+
+  /// Xerox
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Xerox = SPDXLicense._(
+    'Xerox',
+  );
+
+  /// XFree86_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense XFree86_1_1 = SPDXLicense._(
+    'XFree86-1.1',
+  );
+
+  /// xinetd
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense xinetd = SPDXLicense._(
+    'xinetd',
+  );
+
+  /// Xnet
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Xnet = SPDXLicense._(
+    'Xnet',
+  );
+
+  /// xpp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense xpp = SPDXLicense._(
+    'xpp',
+  );
+
+  /// XSkat
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense XSkat = SPDXLicense._(
+    'XSkat',
+  );
+
+  /// YPL_1_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense YPL_1_0 = SPDXLicense._(
+    'YPL-1.0',
+  );
+
+  /// YPL_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense YPL_1_1 = SPDXLicense._(
+    'YPL-1.1',
+  );
+
+  /// Zed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Zed = SPDXLicense._(
+    'Zed',
+  );
+
+  /// Zend_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Zend_2_0 = SPDXLicense._(
+    'Zend-2.0',
+  );
+
+  /// Zimbra_1_3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Zimbra_1_3 = SPDXLicense._(
+    'Zimbra-1.3',
+  );
+
+  /// Zimbra_1_4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Zimbra_1_4 = SPDXLicense._(
+    'Zimbra-1.4',
+  );
+
+  /// zlib_acknowledgement
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense zlib_acknowledgement = SPDXLicense._(
+    'zlib-acknowledgement',
+  );
+
+  /// Zlib
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense Zlib = SPDXLicense._(
+    'Zlib',
+  );
+
+  /// ZPL_1_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense ZPL_1_1 = SPDXLicense._(
+    'ZPL-1.1',
+  );
+
+  /// ZPL_2_0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense ZPL_2_0 = SPDXLicense._(
+    'ZPL-2.0',
+  );
+
+  /// ZPL_2_1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SPDXLicense ZPL_2_1 = SPDXLicense._(
+    'ZPL-2.1',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final SPDXLicense elementOnly = SPDXLicense._('');
+
+  /// List of all enum-like values
+  static final List<SPDXLicense> values = [
+    not_open_source,
+    value0BSD,
+    AAL,
+    Abstyles,
+    Adobe_2006,
+    Adobe_Glyph,
+    ADSL,
+    AFL_1_1,
+    AFL_1_2,
+    AFL_2_0,
+    AFL_2_1,
+    AFL_3_0,
+    Afmparse,
+    AGPL_1_0_only,
+    AGPL_1_0_or_later,
+    AGPL_3_0_only,
+    AGPL_3_0_or_later,
+    Aladdin,
+    AMDPLPA,
+    AML,
+    AMPAS,
+    ANTLR_PD,
+    Apache_1_0,
+    Apache_1_1,
+    Apache_2_0,
+    APAFML,
+    APL_1_0,
+    APSL_1_0,
+    APSL_1_1,
+    APSL_1_2,
+    APSL_2_0,
+    Artistic_1_0_cl8,
+    Artistic_1_0_Perl,
+    Artistic_1_0,
+    Artistic_2_0,
+    Bahyph,
+    Barr,
+    Beerware,
+    BitTorrent_1_0,
+    BitTorrent_1_1,
+    Borceux,
+    BSD_1_Clause,
+    BSD_2_Clause_FreeBSD,
+    BSD_2_Clause_NetBSD,
+    BSD_2_Clause_Patent,
+    BSD_2_Clause,
+    BSD_3_Clause_Attribution,
+    BSD_3_Clause_Clear,
+    BSD_3_Clause_LBNL,
+    BSD_3_Clause_No_Nuclear_License_2014,
+    BSD_3_Clause_No_Nuclear_License,
+    BSD_3_Clause_No_Nuclear_Warranty,
+    BSD_3_Clause,
+    BSD_4_Clause_UC,
+    BSD_4_Clause,
+    BSD_Protection,
+    BSD_Source_Code,
+    BSL_1_0,
+    bzip2_1_0_5,
+    bzip2_1_0_6,
+    Caldera,
+    CATOSL_1_1,
+    CC_BY_1_0,
+    CC_BY_2_0,
+    CC_BY_2_5,
+    CC_BY_3_0,
+    CC_BY_4_0,
+    CC_BY_NC_1_0,
+    CC_BY_NC_2_0,
+    CC_BY_NC_2_5,
+    CC_BY_NC_3_0,
+    CC_BY_NC_4_0,
+    CC_BY_NC_ND_1_0,
+    CC_BY_NC_ND_2_0,
+    CC_BY_NC_ND_2_5,
+    CC_BY_NC_ND_3_0,
+    CC_BY_NC_ND_4_0,
+    CC_BY_NC_SA_1_0,
+    CC_BY_NC_SA_2_0,
+    CC_BY_NC_SA_2_5,
+    CC_BY_NC_SA_3_0,
+    CC_BY_NC_SA_4_0,
+    CC_BY_ND_1_0,
+    CC_BY_ND_2_0,
+    CC_BY_ND_2_5,
+    CC_BY_ND_3_0,
+    CC_BY_ND_4_0,
+    CC_BY_SA_1_0,
+    CC_BY_SA_2_0,
+    CC_BY_SA_2_5,
+    CC_BY_SA_3_0,
+    CC_BY_SA_4_0,
+    CC0_1_0,
+    CDDL_1_0,
+    CDDL_1_1,
+    CDLA_Permissive_1_0,
+    CDLA_Sharing_1_0,
+    CECILL_1_0,
+    CECILL_1_1,
+    CECILL_2_0,
+    CECILL_2_1,
+    CECILL_B,
+    CECILL_C,
+    ClArtistic,
+    CNRI_Jython,
+    CNRI_Python_GPL_Compatible,
+    CNRI_Python,
+    Condor_1_1,
+    CPAL_1_0,
+    CPL_1_0,
+    CPOL_1_02,
+    Crossword,
+    CrystalStacker,
+    CUA_OPL_1_0,
+    Cube,
+    curl,
+    D_FSL_1_0,
+    diffmark,
+    DOC,
+    Dotseqn,
+    DSDP,
+    dvipdfm,
+    ECL_1_0,
+    ECL_2_0,
+    EFL_1_0,
+    EFL_2_0,
+    eGenix,
+    Entessa,
+    EPL_1_0,
+    EPL_2_0,
+    ErlPL_1_1,
+    EUDatagrid,
+    EUPL_1_0,
+    EUPL_1_1,
+    EUPL_1_2,
+    Eurosym,
+    Fair,
+    Frameworx_1_0,
+    FreeImage,
+    FSFAP,
+    FSFUL,
+    FSFULLR,
+    FTL,
+    GFDL_1_1_only,
+    GFDL_1_1_or_later,
+    GFDL_1_2_only,
+    GFDL_1_2_or_later,
+    GFDL_1_3_only,
+    GFDL_1_3_or_later,
+    Giftware,
+    GL2PS,
+    Glide,
+    Glulxe,
+    gnuplot,
+    GPL_1_0_only,
+    GPL_1_0_or_later,
+    GPL_2_0_only,
+    GPL_2_0_or_later,
+    GPL_3_0_only,
+    GPL_3_0_or_later,
+    gSOAP_1_3b,
+    HaskellReport,
+    HPND,
+    IBM_pibs,
+    ICU,
+    IJG,
+    ImageMagick,
+    iMatix,
+    Imlib2,
+    Info_ZIP,
+    Intel_ACPI,
+    Intel,
+    Interbase_1_0,
+    IPA,
+    IPL_1_0,
+    ISC,
+    JasPer_2_0,
+    JSON,
+    LAL_1_2,
+    LAL_1_3,
+    Latex2e,
+    Leptonica,
+    LGPL_2_0_only,
+    LGPL_2_0_or_later,
+    LGPL_2_1_only,
+    LGPL_2_1_or_later,
+    LGPL_3_0_only,
+    LGPL_3_0_or_later,
+    LGPLLR,
+    Libpng,
+    libtiff,
+    LiLiQ_P_1_1,
+    LiLiQ_R_1_1,
+    LiLiQ_Rplus_1_1,
+    Linux_OpenIB,
+    LPL_1_0,
+    LPL_1_02,
+    LPPL_1_0,
+    LPPL_1_1,
+    LPPL_1_2,
+    LPPL_1_3a,
+    LPPL_1_3c,
+    MakeIndex,
+    MirOS,
+    MIT_0,
+    MIT_advertising,
+    MIT_CMU,
+    MIT_enna,
+    MIT_feh,
+    MIT,
+    MITNFA,
+    Motosoto,
+    mpich2,
+    MPL_1_0,
+    MPL_1_1,
+    MPL_2_0_no_copyleft_exception,
+    MPL_2_0,
+    MS_PL,
+    MS_RL,
+    MTLL,
+    Multics,
+    Mup,
+    NASA_1_3,
+    Naumen,
+    NBPL_1_0,
+    NCSA,
+    Net_SNMP,
+    NetCDF,
+    Newsletr,
+    NGPL,
+    NLOD_1_0,
+    NLPL,
+    Nokia,
+    NOSL,
+    Noweb,
+    NPL_1_0,
+    NPL_1_1,
+    NPOSL_3_0,
+    NRL,
+    NTP,
+    OCCT_PL,
+    OCLC_2_0,
+    ODbL_1_0,
+    OFL_1_0,
+    OFL_1_1,
+    OGTSL,
+    OLDAP_1_1,
+    OLDAP_1_2,
+    OLDAP_1_3,
+    OLDAP_1_4,
+    OLDAP_2_0_1,
+    OLDAP_2_0,
+    OLDAP_2_1,
+    OLDAP_2_2_1,
+    OLDAP_2_2_2,
+    OLDAP_2_2,
+    OLDAP_2_3,
+    OLDAP_2_4,
+    OLDAP_2_5,
+    OLDAP_2_6,
+    OLDAP_2_7,
+    OLDAP_2_8,
+    OML,
+    OpenSSL,
+    OPL_1_0,
+    OSET_PL_2_1,
+    OSL_1_0,
+    OSL_1_1,
+    OSL_2_0,
+    OSL_2_1,
+    OSL_3_0,
+    PDDL_1_0,
+    PHP_3_0,
+    PHP_3_01,
+    Plexus,
+    PostgreSQL,
+    psfrag,
+    psutils,
+    Python_2_0,
+    Qhull,
+    QPL_1_0,
+    Rdisc,
+    RHeCos_1_1,
+    RPL_1_1,
+    RPL_1_5,
+    RPSL_1_0,
+    RSA_MD,
+    RSCPL,
+    Ruby,
+    SAX_PD,
+    Saxpath,
+    SCEA,
+    Sendmail,
+    SGI_B_1_0,
+    SGI_B_1_1,
+    SGI_B_2_0,
+    SimPL_2_0,
+    SISSL_1_2,
+    SISSL,
+    Sleepycat,
+    SMLNJ,
+    SMPPL,
+    SNIA,
+    Spencer_86,
+    Spencer_94,
+    Spencer_99,
+    SPL_1_0,
+    SugarCRM_1_1_3,
+    SWL,
+    TCL,
+    TCP_wrappers,
+    TMate,
+    TORQUE_1_1,
+    TOSL,
+    Unicode_DFS_2015,
+    Unicode_DFS_2016,
+    Unicode_TOU,
+    Unlicense,
+    UPL_1_0,
+    Vim,
+    VOSTROM,
+    VSL_1_0,
+    W3C_19980720,
+    W3C_20150513,
+    W3C,
+    Watcom_1_0,
+    Wsuipa,
+    WTFPL,
+    X11,
+    Xerox,
+    XFree86_1_1,
+    xinetd,
+    Xnet,
+    xpp,
+    XSkat,
+    YPL_1_0,
+    YPL_1_1,
+    Zed,
+    Zend_2_0,
+    Zimbra_1_3,
+    Zimbra_1_4,
+    zlib_acknowledgement,
+    Zlib,
+    ZPL_1_1,
+    ZPL_2_0,
+    ZPL_2_1,
+  ];
+
+  /// Returns the enum value with an element attached
+  SPDXLicense withElement(Element? newElement) {
+    return SPDXLicense._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -1407,28 +2801,20 @@ enum SPDXLicense {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [SPDXLicense] instances.
-  static SPDXLicense fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [SPDXLicense] from JSON.
+  static SPDXLicense fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SPDXLicense.elementOnly.withElement(
-        element,
-      );
+      return SPDXLicense.elementOnly.withElement(element);
     }
     return SPDXLicense.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  SPDXLicense withElement(Element? newElement) {
-    return SPDXLicense.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'SPDXLicense.$fhirCode';
 }

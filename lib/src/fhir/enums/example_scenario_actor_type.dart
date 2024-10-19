@@ -1,29 +1,48 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of actor - system or human.
-enum ExampleScenarioActorType {
-  /// Display: Person
-  /// Definition: A person.
-  person('person'),
+class ExampleScenarioActorType {
+  // Private constructor for internal use (like enum)
+  ExampleScenarioActorType._(this.fhirCode, {this.element});
 
-  /// Display: System
-  /// Definition: A system.
-  entity('entity'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ExampleScenarioActorType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ExampleScenarioActorType values
+  /// person
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExampleScenarioActorType person = ExampleScenarioActorType._(
+    'person',
+  );
+
+  /// entity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExampleScenarioActorType entity = ExampleScenarioActorType._(
+    'entity',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ExampleScenarioActorType elementOnly =
+      ExampleScenarioActorType._('');
+
+  /// List of all enum-like values
+  static final List<ExampleScenarioActorType> values = [
+    person,
+    entity,
+  ];
+
+  /// Returns the enum value with an element attached
+  ExampleScenarioActorType withElement(Element? newElement) {
+    return ExampleScenarioActorType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -31,28 +50,20 @@ enum ExampleScenarioActorType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ExampleScenarioActorType] instances.
-  static ExampleScenarioActorType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ExampleScenarioActorType] from JSON.
+  static ExampleScenarioActorType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExampleScenarioActorType.elementOnly.withElement(
-        element,
-      );
+      return ExampleScenarioActorType.elementOnly.withElement(element);
     }
     return ExampleScenarioActorType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ExampleScenarioActorType withElement(Element? newElement) {
-    return ExampleScenarioActorType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ExampleScenarioActorType.$fhirCode';
 }

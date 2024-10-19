@@ -1,37 +1,67 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Used to code the producer or rule for creating the display string.
-enum ContributorSummarySource {
-  /// Display: Publisher provided
-  /// Definition: Data copied by machine from publisher data.
-  publisher_data('publisher-data'),
+class ContributorSummarySource {
+  // Private constructor for internal use (like enum)
+  ContributorSummarySource._(this.fhirCode, {this.element});
 
-  /// Display: Copied from article
-  /// Definition: Data copied by human from article text.
-  article_copy('article-copy'),
-
-  /// Display: Reported by citation manager
-  /// Definition: Data copied by machine from citation manager data.
-  citation_manager('citation-manager'),
-
-  /// Display: custom format
-  /// Definition: Custom format (may be described in text note).
-  custom('custom'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ContributorSummarySource(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ContributorSummarySource values
+  /// publisher_data
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummarySource publisher_data =
+      ContributorSummarySource._(
+    'publisher-data',
+  );
+
+  /// article_copy
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummarySource article_copy =
+      ContributorSummarySource._(
+    'article-copy',
+  );
+
+  /// citation_manager
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummarySource citation_manager =
+      ContributorSummarySource._(
+    'citation-manager',
+  );
+
+  /// custom
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContributorSummarySource custom = ContributorSummarySource._(
+    'custom',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ContributorSummarySource elementOnly =
+      ContributorSummarySource._('');
+
+  /// List of all enum-like values
+  static final List<ContributorSummarySource> values = [
+    publisher_data,
+    article_copy,
+    citation_manager,
+    custom,
+  ];
+
+  /// Returns the enum value with an element attached
+  ContributorSummarySource withElement(Element? newElement) {
+    return ContributorSummarySource._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -39,28 +69,20 @@ enum ContributorSummarySource {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ContributorSummarySource] instances.
-  static ContributorSummarySource fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ContributorSummarySource] from JSON.
+  static ContributorSummarySource fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContributorSummarySource.elementOnly.withElement(
-        element,
-      );
+      return ContributorSummarySource.elementOnly.withElement(element);
     }
     return ContributorSummarySource.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ContributorSummarySource withElement(Element? newElement) {
-    return ContributorSummarySource.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ContributorSummarySource.$fhirCode';
 }

@@ -1,29 +1,48 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines behavior for an action or a group for how many times that item may be repeated.
-enum ActionCardinalityBehavior {
-  /// Display: Single
-  /// Definition: The action may only be selected one time.
-  single('single'),
+class ActionCardinalityBehavior {
+  // Private constructor for internal use (like enum)
+  ActionCardinalityBehavior._(this.fhirCode, {this.element});
 
-  /// Display: Multiple
-  /// Definition: The action may be selected multiple times.
-  multiple('multiple'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ActionCardinalityBehavior(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ActionCardinalityBehavior values
+  /// single
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionCardinalityBehavior single = ActionCardinalityBehavior._(
+    'single',
+  );
+
+  /// multiple
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionCardinalityBehavior multiple = ActionCardinalityBehavior._(
+    'multiple',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ActionCardinalityBehavior elementOnly =
+      ActionCardinalityBehavior._('');
+
+  /// List of all enum-like values
+  static final List<ActionCardinalityBehavior> values = [
+    single,
+    multiple,
+  ];
+
+  /// Returns the enum value with an element attached
+  ActionCardinalityBehavior withElement(Element? newElement) {
+    return ActionCardinalityBehavior._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -31,28 +50,20 @@ enum ActionCardinalityBehavior {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ActionCardinalityBehavior] instances.
-  static ActionCardinalityBehavior fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ActionCardinalityBehavior] from JSON.
+  static ActionCardinalityBehavior fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionCardinalityBehavior.elementOnly.withElement(
-        element,
-      );
+      return ActionCardinalityBehavior.elementOnly.withElement(element);
     }
     return ActionCardinalityBehavior.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ActionCardinalityBehavior withElement(Element? newElement) {
-    return ActionCardinalityBehavior.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ActionCardinalityBehavior.$fhirCode';
 }

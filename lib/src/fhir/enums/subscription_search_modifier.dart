@@ -1,81 +1,145 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// FHIR search modifiers allowed for use in Subscriptions and SubscriptionTopics.
-enum SubscriptionSearchModifier {
-  /// Display: =
-  /// Definition: Used to match a value according to FHIR Search rules (e.g., Patient/123, Encounter/2002).
-  eq('='),
+class SubscriptionSearchModifier {
+  // Private constructor for internal use (like enum)
+  SubscriptionSearchModifier._(this.fhirCode, {this.element});
 
-  /// Display: Equal
-  /// Definition: The value for the parameter in the resource is equal to the provided value.
-  eq_1('eq'),
-
-  /// Display: Not Equal
-  /// Definition: The value for the parameter in the resource is not equal to the provided value.
-  ne('ne'),
-
-  /// Display: Greater Than
-  /// Definition: The value for the parameter in the resource is greater than the provided value.
-  gt('gt'),
-
-  /// Display: Less Than
-  /// Definition: The value for the parameter in the resource is less than the provided value.
-  lt('lt'),
-
-  /// Display: Greater Than or Equal
-  /// Definition: The value for the parameter in the resource is greater or equal to the provided value.
-  ge('ge'),
-
-  /// Display: Less Than or Equal
-  /// Definition: The value for the parameter in the resource is less or equal to the provided value.
-  le('le'),
-
-  /// Display: Starts After
-  /// Definition: The value for the parameter in the resource starts after the provided value.
-  sa('sa'),
-
-  /// Display: Ends Before
-  /// Definition: The value for the parameter in the resource ends before the provided value.
-  eb('eb'),
-
-  /// Display: Approximately
-  /// Definition: The value for the parameter in the resource is approximately the same to the provided value. Note that the recommended value for the approximation is 10% of the stated value (or for a date, 10% of the gap between now and the date), but systems may choose other values where appropriate.
-  ap('ap'),
-
-  /// Display: Above
-  /// Definition: The search parameter is a concept with the form [system]|[code], and the search parameter tests whether the coding in a resource subsumes the specified search code.
-  above('above'),
-
-  /// Display: Below
-  /// Definition: The search parameter is a concept with the form [system]|[code], and the search parameter tests whether the coding in a resource is subsumed by the specified search code.
-  below('below'),
-
-  /// Display: In
-  /// Definition: The search parameter is a member of a Group or List, or the search parameter is a URI (relative or absolute) that identifies a value set, and the search parameter tests whether the value is present in the specified Group, List, or Value Set.
-  in_('in'),
-
-  /// Display: Not In
-  /// Definition: The search parameter is a member of a Group or List, or the search parameter is a URI (relative or absolute) that identifies a value set, and the search parameter tests whether the value is NOT present in the specified Group, List, or Value Set.
-  not_in('not-in'),
-
-  /// Display: Of Type
-  /// Definition: The search parameter has the format system|code|value, where the system and code refer to a Identifier.type.coding.system and .code, and match if any of the type codes match. All 3 parts must be present.
-  of_type('of-type'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const SubscriptionSearchModifier(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// SubscriptionSearchModifier values
+  /// eq
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionSearchModifier eq = SubscriptionSearchModifier._(
+    '=',
+  );
+
+  /// ne
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionSearchModifier ne = SubscriptionSearchModifier._(
+    'ne',
+  );
+
+  /// gt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionSearchModifier gt = SubscriptionSearchModifier._(
+    'gt',
+  );
+
+  /// lt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionSearchModifier lt = SubscriptionSearchModifier._(
+    'lt',
+  );
+
+  /// ge
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionSearchModifier ge = SubscriptionSearchModifier._(
+    'ge',
+  );
+
+  /// le
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionSearchModifier le = SubscriptionSearchModifier._(
+    'le',
+  );
+
+  /// sa
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionSearchModifier sa = SubscriptionSearchModifier._(
+    'sa',
+  );
+
+  /// eb
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionSearchModifier eb = SubscriptionSearchModifier._(
+    'eb',
+  );
+
+  /// ap
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionSearchModifier ap = SubscriptionSearchModifier._(
+    'ap',
+  );
+
+  /// above
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionSearchModifier above = SubscriptionSearchModifier._(
+    'above',
+  );
+
+  /// below
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionSearchModifier below = SubscriptionSearchModifier._(
+    'below',
+  );
+
+  /// in_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionSearchModifier in_ = SubscriptionSearchModifier._(
+    'in',
+  );
+
+  /// not_in
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionSearchModifier not_in = SubscriptionSearchModifier._(
+    'not-in',
+  );
+
+  /// of_type
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SubscriptionSearchModifier of_type =
+      SubscriptionSearchModifier._(
+    'of-type',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final SubscriptionSearchModifier elementOnly =
+      SubscriptionSearchModifier._('');
+
+  /// List of all enum-like values
+  static final List<SubscriptionSearchModifier> values = [
+    eq,
+    ne,
+    gt,
+    lt,
+    ge,
+    le,
+    sa,
+    eb,
+    ap,
+    above,
+    below,
+    in_,
+    not_in,
+    of_type,
+  ];
+
+  /// Returns the enum value with an element attached
+  SubscriptionSearchModifier withElement(Element? newElement) {
+    return SubscriptionSearchModifier._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -83,28 +147,20 @@ enum SubscriptionSearchModifier {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [SubscriptionSearchModifier] instances.
-  static SubscriptionSearchModifier fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [SubscriptionSearchModifier] from JSON.
+  static SubscriptionSearchModifier fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SubscriptionSearchModifier.elementOnly.withElement(
-        element,
-      );
+      return SubscriptionSearchModifier.elementOnly.withElement(element);
     }
     return SubscriptionSearchModifier.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  SubscriptionSearchModifier withElement(Element? newElement) {
-    return SubscriptionSearchModifier.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'SubscriptionSearchModifier.$fhirCode';
 }

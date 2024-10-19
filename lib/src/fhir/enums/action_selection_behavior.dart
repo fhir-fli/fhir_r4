@@ -1,45 +1,80 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines selection behavior of a group.
-enum ActionSelectionBehavior {
-  /// Display: Any
-  /// Definition: Any number of the actions in the group may be chosen, from zero to all.
-  any('any'),
+class ActionSelectionBehavior {
+  // Private constructor for internal use (like enum)
+  ActionSelectionBehavior._(this.fhirCode, {this.element});
 
-  /// Display: All
-  /// Definition: All the actions in the group must be selected as a single unit.
-  all('all'),
-
-  /// Display: All Or None
-  /// Definition: All the actions in the group are meant to be chosen as a single unit: either all must be selected by the end user, or none may be selected.
-  all_or_none('all-or-none'),
-
-  /// Display: Exactly One
-  /// Definition: The end user must choose one and only one of the selectable actions in the group. The user SHALL NOT choose none of the actions in the group.
-  exactly_one('exactly-one'),
-
-  /// Display: At Most One
-  /// Definition: The end user may choose zero or at most one of the actions in the group.
-  at_most_one('at-most-one'),
-
-  /// Display: One Or More
-  /// Definition: The end user must choose a minimum of one, and as many additional as desired.
-  one_or_more('one-or-more'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ActionSelectionBehavior(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ActionSelectionBehavior values
+  /// any
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionSelectionBehavior any = ActionSelectionBehavior._(
+    'any',
+  );
+
+  /// all
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionSelectionBehavior all = ActionSelectionBehavior._(
+    'all',
+  );
+
+  /// all_or_none
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionSelectionBehavior all_or_none = ActionSelectionBehavior._(
+    'all-or-none',
+  );
+
+  /// exactly_one
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionSelectionBehavior exactly_one = ActionSelectionBehavior._(
+    'exactly-one',
+  );
+
+  /// at_most_one
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionSelectionBehavior at_most_one = ActionSelectionBehavior._(
+    'at-most-one',
+  );
+
+  /// one_or_more
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ActionSelectionBehavior one_or_more = ActionSelectionBehavior._(
+    'one-or-more',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ActionSelectionBehavior elementOnly =
+      ActionSelectionBehavior._('');
+
+  /// List of all enum-like values
+  static final List<ActionSelectionBehavior> values = [
+    any,
+    all,
+    all_or_none,
+    exactly_one,
+    at_most_one,
+    one_or_more,
+  ];
+
+  /// Returns the enum value with an element attached
+  ActionSelectionBehavior withElement(Element? newElement) {
+    return ActionSelectionBehavior._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -47,28 +82,20 @@ enum ActionSelectionBehavior {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ActionSelectionBehavior] instances.
-  static ActionSelectionBehavior fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ActionSelectionBehavior] from JSON.
+  static ActionSelectionBehavior fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ActionSelectionBehavior.elementOnly.withElement(
-        element,
-      );
+      return ActionSelectionBehavior.elementOnly.withElement(element);
     }
     return ActionSelectionBehavior.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ActionSelectionBehavior withElement(Element? newElement) {
-    return ActionSelectionBehavior.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ActionSelectionBehavior.$fhirCode';
 }

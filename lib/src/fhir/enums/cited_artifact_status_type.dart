@@ -1,81 +1,155 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Cited Artifact Status Type
-enum CitedArtifactStatusType {
-  /// Display: Created
-  /// Definition: The content was originally constructed or composed.
-  created('created'),
+class CitedArtifactStatusType {
+  // Private constructor for internal use (like enum)
+  CitedArtifactStatusType._(this.fhirCode, {this.element});
 
-  /// Display: Submitted
-  /// Definition: The content was sent to the publisher for consideration of publication.
-  submitted('submitted'),
-
-  /// Display: Withdrawn
-  /// Definition: The content that was not published has been removed from consideration for publishing by the submitter.
-  withdrawn('withdrawn'),
-
-  /// Display: Pre review
-  /// Definition: The content is awaiting assignment and delivery to reviewer(s).
-  pre_review('pre-review'),
-
-  /// Display: Under review
-  /// Definition: The content is in a state of being reviewed.
-  under_review('under-review'),
-
-  /// Display: Post review pre published
-  /// Definition: The content is in a state between the review(s) being completed and being published.
-  post_review_pre_published('post-review-pre-published'),
-
-  /// Display: Rejected
-  /// Definition: The content that was not published has been removed from consideration for publishing by a publisher or editor.
-  rejected('rejected'),
-
-  /// Display: Published early form
-  /// Definition: The content is published but future changes to the published version are expected.
-  published_early_form('published-early-form'),
-
-  /// Display: Published final form
-  /// Definition: The content is published and further changes to the content are not expected.
-  published_final_form('published-final-form'),
-
-  /// Display: Accepted
-  /// Definition: The content that was not published yet has been approved for publication by the publisher and/or editor.
-  accepted('accepted'),
-
-  /// Display: Archived
-  /// Definition: The content is retired or considered no longer current but still available as part of the public record.
-  archived('archived'),
-
-  /// Display: Retracted
-  /// Definition: The content that was published is removed from publication and should no longer be considered part of the public record.
-  retracted('retracted'),
-
-  /// Display: Draft
-  /// Definition: The content is considered unfinished or incomplete and not representative of the current state desired by the content creator.
-  draft('draft'),
-
-  /// Display: Active
-  /// Definition: The content is considered complete for its current state by the content creator.
-  active('active'),
-
-  /// Display: Approved
-  /// Definition: The content has been approved for a state transition, with the focus of approval described in the text associated with this coding.
-  approved('approved'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const CitedArtifactStatusType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// CitedArtifactStatusType values
+  /// created
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactStatusType created = CitedArtifactStatusType._(
+    'created',
+  );
+
+  /// submitted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactStatusType submitted = CitedArtifactStatusType._(
+    'submitted',
+  );
+
+  /// withdrawn
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactStatusType withdrawn = CitedArtifactStatusType._(
+    'withdrawn',
+  );
+
+  /// pre_review
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactStatusType pre_review = CitedArtifactStatusType._(
+    'pre-review',
+  );
+
+  /// under_review
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactStatusType under_review = CitedArtifactStatusType._(
+    'under-review',
+  );
+
+  /// post_review_pre_published
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactStatusType post_review_pre_published =
+      CitedArtifactStatusType._(
+    'post-review-pre-published',
+  );
+
+  /// rejected
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactStatusType rejected = CitedArtifactStatusType._(
+    'rejected',
+  );
+
+  /// published_early_form
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactStatusType published_early_form =
+      CitedArtifactStatusType._(
+    'published-early-form',
+  );
+
+  /// published_final_form
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactStatusType published_final_form =
+      CitedArtifactStatusType._(
+    'published-final-form',
+  );
+
+  /// accepted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactStatusType accepted = CitedArtifactStatusType._(
+    'accepted',
+  );
+
+  /// archived
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactStatusType archived = CitedArtifactStatusType._(
+    'archived',
+  );
+
+  /// retracted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactStatusType retracted = CitedArtifactStatusType._(
+    'retracted',
+  );
+
+  /// draft
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactStatusType draft = CitedArtifactStatusType._(
+    'draft',
+  );
+
+  /// active
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactStatusType active = CitedArtifactStatusType._(
+    'active',
+  );
+
+  /// approved
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final CitedArtifactStatusType approved = CitedArtifactStatusType._(
+    'approved',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final CitedArtifactStatusType elementOnly =
+      CitedArtifactStatusType._('');
+
+  /// List of all enum-like values
+  static final List<CitedArtifactStatusType> values = [
+    created,
+    submitted,
+    withdrawn,
+    pre_review,
+    under_review,
+    post_review_pre_published,
+    rejected,
+    published_early_form,
+    published_final_form,
+    accepted,
+    archived,
+    retracted,
+    draft,
+    active,
+    approved,
+  ];
+
+  /// Returns the enum value with an element attached
+  CitedArtifactStatusType withElement(Element? newElement) {
+    return CitedArtifactStatusType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -83,28 +157,20 @@ enum CitedArtifactStatusType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [CitedArtifactStatusType] instances.
-  static CitedArtifactStatusType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [CitedArtifactStatusType] from JSON.
+  static CitedArtifactStatusType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return CitedArtifactStatusType.elementOnly.withElement(
-        element,
-      );
+      return CitedArtifactStatusType.elementOnly.withElement(element);
     }
     return CitedArtifactStatusType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  CitedArtifactStatusType withElement(Element? newElement) {
-    return CitedArtifactStatusType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'CitedArtifactStatusType.$fhirCode';
 }

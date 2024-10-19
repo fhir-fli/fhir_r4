@@ -1,117 +1,223 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Chromosome number for human.
-enum ChromosomeHuman {
-  /// Display: chromosome 1
-  /// Definition: chromosome 1.
-  value1('1'),
+class ChromosomeHuman {
+  // Private constructor for internal use (like enum)
+  ChromosomeHuman._(this.fhirCode, {this.element});
 
-  /// Display: chromosome 2
-  /// Definition: chromosome 2.
-  value2('2'),
-
-  /// Display: chromosome 3
-  /// Definition: chromosome 3.
-  value3('3'),
-
-  /// Display: chromosome 4
-  /// Definition: chromosome 4.
-  value4('4'),
-
-  /// Display: chromosome 5
-  /// Definition: chromosome 5.
-  value5('5'),
-
-  /// Display: chromosome 6
-  /// Definition: chromosome 6.
-  value6('6'),
-
-  /// Display: chromosome 7
-  /// Definition: chromosome 7.
-  value7('7'),
-
-  /// Display: chromosome 8
-  /// Definition: chromosome 8.
-  value8('8'),
-
-  /// Display: chromosome 9
-  /// Definition: chromosome 9.
-  value9('9'),
-
-  /// Display: chromosome 10
-  /// Definition: chromosome 10.
-  value10('10'),
-
-  /// Display: chromosome 11
-  /// Definition: chromosome 11.
-  value11('11'),
-
-  /// Display: chromosome 12
-  /// Definition: chromosome 12.
-  value12('12'),
-
-  /// Display: chromosome 13
-  /// Definition: chromosome 13.
-  value13('13'),
-
-  /// Display: chromosome 14
-  /// Definition: chromosome 14.
-  value14('14'),
-
-  /// Display: chromosome 15
-  /// Definition: chromosome 15.
-  value15('15'),
-
-  /// Display: chromosome 16
-  /// Definition: chromosome 16.
-  value16('16'),
-
-  /// Display: chromosome 17
-  /// Definition: chromosome 17.
-  value17('17'),
-
-  /// Display: chromosome 18
-  /// Definition: chromosome 18.
-  value18('18'),
-
-  /// Display: chromosome 19
-  /// Definition: chromosome 19.
-  value19('19'),
-
-  /// Display: chromosome 20
-  /// Definition: chromosome 20.
-  value20('20'),
-
-  /// Display: chromosome 21
-  /// Definition: chromosome 21.
-  value21('21'),
-
-  /// Display: chromosome 22
-  /// Definition: chromosome 22.
-  value22('22'),
-
-  /// Display: chromosome X
-  /// Definition: chromosome X.
-  X('X'),
-
-  /// Display: chromosome Y
-  /// Definition: chromosome Y.
-  Y('Y'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ChromosomeHuman(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ChromosomeHuman values
+  /// value1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value1 = ChromosomeHuman._(
+    '1',
+  );
+
+  /// value2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value2 = ChromosomeHuman._(
+    '2',
+  );
+
+  /// value3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value3 = ChromosomeHuman._(
+    '3',
+  );
+
+  /// value4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value4 = ChromosomeHuman._(
+    '4',
+  );
+
+  /// value5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value5 = ChromosomeHuman._(
+    '5',
+  );
+
+  /// value6
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value6 = ChromosomeHuman._(
+    '6',
+  );
+
+  /// value7
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value7 = ChromosomeHuman._(
+    '7',
+  );
+
+  /// value8
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value8 = ChromosomeHuman._(
+    '8',
+  );
+
+  /// value9
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value9 = ChromosomeHuman._(
+    '9',
+  );
+
+  /// value10
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value10 = ChromosomeHuman._(
+    '10',
+  );
+
+  /// value11
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value11 = ChromosomeHuman._(
+    '11',
+  );
+
+  /// value12
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value12 = ChromosomeHuman._(
+    '12',
+  );
+
+  /// value13
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value13 = ChromosomeHuman._(
+    '13',
+  );
+
+  /// value14
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value14 = ChromosomeHuman._(
+    '14',
+  );
+
+  /// value15
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value15 = ChromosomeHuman._(
+    '15',
+  );
+
+  /// value16
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value16 = ChromosomeHuman._(
+    '16',
+  );
+
+  /// value17
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value17 = ChromosomeHuman._(
+    '17',
+  );
+
+  /// value18
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value18 = ChromosomeHuman._(
+    '18',
+  );
+
+  /// value19
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value19 = ChromosomeHuman._(
+    '19',
+  );
+
+  /// value20
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value20 = ChromosomeHuman._(
+    '20',
+  );
+
+  /// value21
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value21 = ChromosomeHuman._(
+    '21',
+  );
+
+  /// value22
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman value22 = ChromosomeHuman._(
+    '22',
+  );
+
+  /// X
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman X = ChromosomeHuman._(
+    'X',
+  );
+
+  /// Y
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ChromosomeHuman Y = ChromosomeHuman._(
+    'Y',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ChromosomeHuman elementOnly = ChromosomeHuman._('');
+
+  /// List of all enum-like values
+  static final List<ChromosomeHuman> values = [
+    value1,
+    value2,
+    value3,
+    value4,
+    value5,
+    value6,
+    value7,
+    value8,
+    value9,
+    value10,
+    value11,
+    value12,
+    value13,
+    value14,
+    value15,
+    value16,
+    value17,
+    value18,
+    value19,
+    value20,
+    value21,
+    value22,
+    X,
+    Y,
+  ];
+
+  /// Returns the enum value with an element attached
+  ChromosomeHuman withElement(Element? newElement) {
+    return ChromosomeHuman._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -119,28 +225,20 @@ enum ChromosomeHuman {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ChromosomeHuman] instances.
-  static ChromosomeHuman fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ChromosomeHuman] from JSON.
+  static ChromosomeHuman fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ChromosomeHuman.elementOnly.withElement(
-        element,
-      );
+      return ChromosomeHuman.elementOnly.withElement(element);
     }
     return ChromosomeHuman.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ChromosomeHuman withElement(Element? newElement) {
-    return ChromosomeHuman.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ChromosomeHuman.$fhirCode';
 }

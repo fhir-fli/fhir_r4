@@ -1,33 +1,59 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The impact of the content of a message.
-enum MessageSignificanceCategory {
-  /// Display: Consequence
-  /// Definition: The message represents/requests a change that should not be processed more than once; e.g., making a booking for an appointment.
-  consequence('consequence'),
+class MessageSignificanceCategory {
+  // Private constructor for internal use (like enum)
+  MessageSignificanceCategory._(this.fhirCode, {this.element});
 
-  /// Display: Currency
-  /// Definition: The message represents a response to query for current information. Retrospective processing is wrong and/or wasteful.
-  currency('currency'),
-
-  /// Display: Notification
-  /// Definition: The content is not necessarily intended to be current, and it can be reprocessed, though there may be version issues created by processing old notifications.
-  notification('notification'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const MessageSignificanceCategory(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// MessageSignificanceCategory values
+  /// consequence
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MessageSignificanceCategory consequence =
+      MessageSignificanceCategory._(
+    'consequence',
+  );
+
+  /// currency
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MessageSignificanceCategory currency =
+      MessageSignificanceCategory._(
+    'currency',
+  );
+
+  /// notification
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MessageSignificanceCategory notification =
+      MessageSignificanceCategory._(
+    'notification',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final MessageSignificanceCategory elementOnly =
+      MessageSignificanceCategory._('');
+
+  /// List of all enum-like values
+  static final List<MessageSignificanceCategory> values = [
+    consequence,
+    currency,
+    notification,
+  ];
+
+  /// Returns the enum value with an element attached
+  MessageSignificanceCategory withElement(Element? newElement) {
+    return MessageSignificanceCategory._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +61,20 @@ enum MessageSignificanceCategory {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [MessageSignificanceCategory] instances.
-  static MessageSignificanceCategory fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [MessageSignificanceCategory] from JSON.
+  static MessageSignificanceCategory fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MessageSignificanceCategory.elementOnly.withElement(
-        element,
-      );
+      return MessageSignificanceCategory.elementOnly.withElement(element);
     }
     return MessageSignificanceCategory.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  MessageSignificanceCategory withElement(Element? newElement) {
-    return MessageSignificanceCategory.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'MessageSignificanceCategory.$fhirCode';
 }

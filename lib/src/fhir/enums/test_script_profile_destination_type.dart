@@ -1,37 +1,68 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set defines a set of codes that are used to indicate the profile type of a test system when acting as the destination within a TestScript.
-enum TestScriptProfileDestinationType {
-  /// Display: FHIR Server
-  /// Definition: General FHIR server used to respond to operations sent from a FHIR client.
-  FHIR_Server('FHIR-Server'),
+class TestScriptProfileDestinationType {
+  // Private constructor for internal use (like enum)
+  TestScriptProfileDestinationType._(this.fhirCode, {this.element});
 
-  /// Display: FHIR SDC FormManager
-  /// Definition: A FHIR server acting as a Structured Data Capture Form Manager.
-  FHIR_SDC_FormManager('FHIR-SDC-FormManager'),
-
-  /// Display: FHIR SDC FormProcessor
-  /// Definition: A FHIR server acting as a Structured Data Capture Form Processor.
-  FHIR_SDC_FormProcessor('FHIR-SDC-FormProcessor'),
-
-  /// Display: FHIR SDC FormReceiver
-  /// Definition: A FHIR server acting as a Structured Data Capture Form Receiver.
-  FHIR_SDC_FormReceiver('FHIR-SDC-FormReceiver'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const TestScriptProfileDestinationType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// TestScriptProfileDestinationType values
+  /// FHIR_Server
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TestScriptProfileDestinationType FHIR_Server =
+      TestScriptProfileDestinationType._(
+    'FHIR-Server',
+  );
+
+  /// FHIR_SDC_FormManager
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TestScriptProfileDestinationType FHIR_SDC_FormManager =
+      TestScriptProfileDestinationType._(
+    'FHIR-SDC-FormManager',
+  );
+
+  /// FHIR_SDC_FormProcessor
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TestScriptProfileDestinationType FHIR_SDC_FormProcessor =
+      TestScriptProfileDestinationType._(
+    'FHIR-SDC-FormProcessor',
+  );
+
+  /// FHIR_SDC_FormReceiver
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TestScriptProfileDestinationType FHIR_SDC_FormReceiver =
+      TestScriptProfileDestinationType._(
+    'FHIR-SDC-FormReceiver',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final TestScriptProfileDestinationType elementOnly =
+      TestScriptProfileDestinationType._('');
+
+  /// List of all enum-like values
+  static final List<TestScriptProfileDestinationType> values = [
+    FHIR_Server,
+    FHIR_SDC_FormManager,
+    FHIR_SDC_FormProcessor,
+    FHIR_SDC_FormReceiver,
+  ];
+
+  /// Returns the enum value with an element attached
+  TestScriptProfileDestinationType withElement(Element? newElement) {
+    return TestScriptProfileDestinationType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -39,28 +70,20 @@ enum TestScriptProfileDestinationType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [TestScriptProfileDestinationType] instances.
-  static TestScriptProfileDestinationType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [TestScriptProfileDestinationType] from JSON.
+  static TestScriptProfileDestinationType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TestScriptProfileDestinationType.elementOnly.withElement(
-        element,
-      );
+      return TestScriptProfileDestinationType.elementOnly.withElement(element);
     }
     return TestScriptProfileDestinationType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  TestScriptProfileDestinationType withElement(Element? newElement) {
-    return TestScriptProfileDestinationType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'TestScriptProfileDestinationType.$fhirCode';
 }

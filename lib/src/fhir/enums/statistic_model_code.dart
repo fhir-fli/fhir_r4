@@ -1,337 +1,670 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The handling of the variable in statistical analysis for exposures or outcomes.
-enum StatisticModelCode {
-  /// Display: one-tailed test (1 threshold)
-  /// Definition: Used for one-tailed test (1 threshold), no additional elements needed
-  oneTailedTest('oneTailedTest'),
-
-  /// Display: two-tailed test (2 thresholds)
-  /// Definition: Used for two-tailed test (2 threshold), no additional elements needed
-  twoTailedTest('twoTailedTest'),
-
-  /// Display: z-test
-  /// Definition: Used for z-test, no additional elements needed
-  zTest('zTest'),
-
-  /// Display: 1-sample t-test
-  /// Definition: Used for 1-sample t-test, may be paired with "value" to express degrees of freedom
-  oneSampleTTest('oneSampleTTest'),
-
-  /// Display: 2-sample t-test
-  /// Definition: Used for 2-sample t-test, may be paired with "value" to express degrees of freedom
-  twoSampleTTest('twoSampleTTest'),
-
-  /// Display: paired t-test
-  /// Definition: Used for paired t-test, may be paired with "value" to express degrees of freedom
-  pairedTTest('pairedTTest'),
-
-  /// Display: Chi-square test
-  /// Definition: Used for Chi-square test, may be paired with "value" to express degrees of freedom
-  chiSquareTest('chiSquareTest'),
-
-  /// Display: Chi-square test for trend
-  /// Definition: Used for Chi-square test for trend, may be paired with "value" to express degrees of freedom
-  chiSquareTestTrend('chiSquareTestTrend'),
-
-  /// Display: Pearson correlation
-  /// Definition: Used for Pearson correlation, no additional elements needed
-  pearsonCorrelation('pearsonCorrelation'),
-
-  /// Display: ANOVA (ANalysis Of VAriance)
-  /// Definition: Used for ANOVA method of analysis, may be paired with "value" to express degrees of freedom
-  anova('anova'),
-
-  /// Display: one-way ANOVA
-  /// Definition: Used for one-way ANOVA method of analysis, may be paired with "value" to express degrees of freedom
-  anovaOneWay('anovaOneWay'),
-
-  /// Display: 2-way ANOVA without replication
-  /// Definition: Used for 2-way ANOVA without replication method of analysis, may be paired with "value" to express degrees of freedom
-  anovaTwoWay('anovaTwoWay'),
-
-  /// Display: 2-way ANOVA with replication
-  /// Definition: Used for 2-way ANOVA with replication method of analysis, may be paired with "value" to express degrees of freedom
-  anovaTwoWayReplication('anovaTwoWayReplication'),
-
-  /// Display: multivariate ANOVA (MANOVA)
-  /// Definition: Used for multivariate ANOVA (MANOVA) method of analysis, may be paired with "value" to express degrees of freedom
-  manova('manova'),
-
-  /// Display: 3-way ANOVA
-  /// Definition: Used for 3-way ANOVA method of analysis, may be paired with "value" to express degrees of freedom
-  anovaThreeWay('anovaThreeWay'),
-
-  /// Display: sign test
-  /// Definition: Used for sign test, no additional elements needed
-  signTest('signTest'),
-
-  /// Display: Wilcoxon signed-rank test
-  /// Definition: Used for Wilcoxon signed-rank test, no additional elements needed
-  wilcoxonSignedRankTest('wilcoxonSignedRankTest'),
-
-  /// Display: Wilcoxon rank-sum test
-  /// Definition: Used for Wilcoxon rank-sum test, no additional elements needed
-  wilcoxonRankSumTest('wilcoxonRankSumTest'),
-
-  /// Display: Mann-Whitney U test
-  /// Definition: Used for Mann-Whitney U test, no additional elements needed
-  mannWhitneyUTest('mannWhitneyUTest'),
-
-  /// Display: Fisher’s exact test
-  /// Definition: Used for Fisher's exact test, may be paired with "value" to express degrees of freedom
-  fishersExactTest('fishersExactTest'),
-
-  /// Display: McNemar’s test
-  /// Definition: Used for McNemar's test, no additional elements needed
-  mcnemarsTest('mcnemarsTest'),
-
-  /// Display: Kruskal Wallis test
-  /// Definition: Used for Kruskal Wallis test, may be paired with "value" to express degrees of freedom
-  kruskalWallisTest('kruskalWallisTest'),
-
-  /// Display: Spearman correlation
-  /// Definition: Used for Spearman correlation, no additional elements needed
-  spearmanCorrelation('spearmanCorrelation'),
-
-  /// Display: Kendall correlation
-  /// Definition: Used for Kendall correlation, no additional elements needed
-  kendallCorrelation('kendallCorrelation'),
-
-  /// Display: Friedman test
-  /// Definition: Used for Friedman test, no additional elements needed
-  friedmanTest('friedmanTest'),
-
-  /// Display: Goodman Kruska’s Gamma
-  /// Definition: Used for Goodman Kruska’s Gamma, no additional elements needed
-  goodmanKruskasGamma('goodmanKruskasGamma'),
-
-  /// Display: GLM (Generalized Linear Model)
-  /// Definition: Used for GLM (Generalized Linear Model), no additional elements needed
-  glm('glm'),
-
-  /// Display: GLM with probit link
-  /// Definition: Used for GLM with probit link, no additional elements needed
-  glmProbit('glmProbit'),
-
-  /// Display: GLM with logit link
-  /// Definition: Used for GLM with logit link, no additional elements needed
-  glmLogit('glmLogit'),
-
-  /// Display: GLM with identity link
-  /// Definition: Used for GLM with identity link, no additional elements needed
-  glmIdentity('glmIdentity'),
-
-  /// Display: GLM with log link
-  /// Definition: Used for GLM with log link, no additional elements needed
-  glmLog('glmLog'),
-
-  /// Display: GLM with generalized logit link
-  /// Definition: Used for GLM with generalized logit link, no additional elements needed
-  glmGeneralizedLogit('glmGeneralizedLogit'),
-
-  /// Display: Generalized linear mixed model (GLMM)
-  /// Definition: Used for Generalized linear mixed model (GLMM), no additional elements needed
-  glmm('glmm'),
-
-  /// Display: GLMM with probit link
-  /// Definition: Used for GLMM with probit link, no additional elements needed
-  glmmProbit('glmmProbit'),
-
-  /// Display: GLMM with logit link
-  /// Definition: Used for GLMM with logit link, no additional elements needed
-  glmmLogit('glmmLogit'),
-
-  /// Display: GLMM with identity link
-  /// Definition: Used for GLMM with identity link, no additional elements needed
-  glmmIdentity('glmmIdentity'),
-
-  /// Display: GLMM with log link
-  /// Definition: Used for GLMM with log link, no additional elements needed
-  glmmLog('glmmLog'),
-
-  /// Display: GLMM with generalized logit link
-  /// Definition: Used for GLMM with generalized logit link, no additional elements needed
-  glmmGeneralizedLogit('glmmGeneralizedLogit'),
-
-  /// Display: Linear Regression
-  /// Definition: Used for linear regression method of analysis, no additional elements needed
-  linearRegression('linearRegression'),
-
-  /// Display: Logistic Regression
-  /// Definition: Used for logistic regression method of analysis, no additional elements needed
-  logisticRegression('logisticRegression'),
-
-  /// Display: Polynomial Regression
-  /// Definition: Used for Polynomial regression method of analysis, no additional elements needed
-  polynomialRegression('polynomialRegression'),
-
-  /// Display: Cox Proportional Hazards
-  /// Definition: Used for Cox proportional hazards method of analysis, no additional elements needed
-  coxProportionalHazards('coxProportionalHazards'),
-
-  /// Display: Binomial Distribution for Regression
-  /// Definition: Used for Binomial Distribution for Regression, no additional elements needed
-  binomialDistributionRegression('binomialDistributionRegression'),
-
-  /// Display: Multinomial Distribution for Regression
-  /// Definition: Used for Multinomial Distribution for Regression, no additional elements needed
-  multinomialDistributionRegression('multinomialDistributionRegression'),
-
-  /// Display: Poisson Regression
-  /// Definition: Used for Poisson Regression, no additional elements needed
-  poissonRegression('poissonRegression'),
-
-  /// Display: Negative Binomial Regression
-  /// Definition: Used for Negative Binomial Regression, no additional elements needed
-  negativeBinomialRegression('negativeBinomialRegression'),
-
-  /// Display: Zero-cell adjustment with constant
-  /// Definition: Zero-cell adjustment done by adding a constant to all cells of affected studies, paired with "value" to define the constant
-  zeroCellConstant('zeroCellConstant'),
-
-  /// Display: Zero-cell adjustment with continuity correction
-  /// Definition: Zero-cell adjustment done by treatment arm continuity correction, no additional elements needed
-  zeroCellContinuityCorrection('zeroCellContinuityCorrection'),
-
-  /// Display: Adjusted analysis
-  /// Definition: Used for adjusted analysis, paired with variable element(s)
-  adjusted('adjusted'),
-
-  /// Display: Interaction term
-  /// Definition: Used for interaction term, paired with "value" and two or more variable elements
-  interactionTerm('interactionTerm'),
-
-  /// Display: Mantel-Haenszel method
-  /// Definition: Used for Mantel-Haenszel method, no additional elements needed
-  manteHaenszelMethod('manteHaenszelMethod'),
-
-  /// Display: Meta-analysis
-  /// Definition: Used for meta-analysis, no additional elements needed
-  metaAnalysis('metaAnalysis'),
-
-  /// Display: Inverse variance method
-  /// Definition: Used for inverse variance method of meta-analysis, no additional elements needed
-  inverseVariance('inverseVariance'),
-
-  /// Display: Peto method
-  /// Definition: Used for Peto method of meta-analysis, no additional elements needed
-  petoMethod('petoMethod'),
-
-  /// Display: Hartung-Knapp adjustment
-  /// Definition: Hartung-Knapp/Hartung-Knapp-Sidik-Jonkman adjustment used in meta-analysis, no additional elements needed
-  hartungKnapp('hartungKnapp'),
-
-  /// Display: Modified Hartung-Knapp adjustment
-  /// Definition: Modified Hartung-Knapp/Hartung-Knapp-Sidik-Jonkman adjustment used in meta-analysis, no additional elements needed
-  modifiedHartungKnapp('modifiedHartungKnapp'),
-
-  /// Display: Fixed-effects
-  /// Definition: From a fixed-effects analysis, no additional elements needed
-  effectsFixed('effectsFixed'),
-
-  /// Display: Random-effects
-  /// Definition: From a random-effects analysis, no additional elements needed
-  effectsRandom('effectsRandom'),
-
-  /// Display: Chi-square test for homogeneity
-  /// Definition: Used for Chi-square test for homogeneity, may be paired with "value" to express degrees of freedom
-  chiSquareTestHomogeneity('chiSquareTestHomogeneity'),
-
-  /// Display: Dersimonian-Laird method
-  /// Definition: Used for Dersimonian-Laird method of tau estimation, no additional elements needed
-  dersimonianLairdMethod('dersimonianLairdMethod'),
-
-  /// Display: Paule-Mandel method
-  /// Definition: Used for Paule-Mandel method of tau estimation, no additional elements needed
-  pauleMandelMethod('pauleMandelMethod'),
-
-  /// Display: Restricted Maximum Likelihood method
-  /// Definition: Used for Restricted Maximum Likelihood method of tau estimation, no additional elements needed
-  restrictedLikelihood('restrictedLikelihood'),
-
-  /// Display: Maximum Likelihood method
-  /// Definition: Used for Maximum Likelihood method of tau estimation, no additional elements needed
-  maximumLikelihood('maximumLikelihood'),
-
-  /// Display: Empirical Bayes method
-  /// Definition: Used for Empirical Bayes method of tau estimation, no additional elements needed
-  empiricalBayes('empiricalBayes'),
-
-  /// Display: Hunter-Schmidt method
-  /// Definition: Used for Hunter-Schmidt method of tau estimation, no additional elements needed
-  hunterSchmidt('hunterSchmidt'),
-
-  /// Display: Sidik-Jonkman method
-  /// Definition: Used for Sidik-Jonkman method of tau estimation, no additional elements needed
-  sidikJonkman('sidikJonkman'),
-
-  /// Display: Hedges method
-  /// Definition: Used for Hedges method of tau estimation, no additional elements needed
-  hedgesMethod('hedgesMethod'),
-
-  /// Display: Dersimonian-Laird method
-  /// Definition: Dersimonian-Laird method for tau squared
-  tauDersimonianLaird('tauDersimonianLaird'),
-
-  /// Display: Paule-Mandel method
-  /// Definition: Paule-Mandel method for tau squared
-  tauPauleMandel('tauPauleMandel'),
-
-  /// Display: Restricted Maximum Likelihood method
-  /// Definition: Restricted Maximum Likelihood method for tau squared
-  tauRestrictedMaximumLikelihood('tauRestrictedMaximumLikelihood'),
-
-  /// Display: Maximum Likelihood method
-  /// Definition: Maximum Likelihood method for tau squared
-  tauMaximumLikelihood('tauMaximumLikelihood'),
-
-  /// Display: Empirical Bayes method
-  /// Definition: Empirical Bayes method for tau squared
-  tauEmpiricalBayes('tauEmpiricalBayes'),
-
-  /// Display: Hunter-Schmidt method
-  /// Definition: Hunter-Schmidt method for tau squared
-  tauHunterSchmidt('tauHunterSchmidt'),
-
-  /// Display: Sidik-Jonkman method
-  /// Definition: Sidik-Jonkman method for tau squared
-  tauSidikJonkman('tauSidikJonkman'),
-
-  /// Display: Hedges method
-  /// Definition: Hedges method for tau squared
-  tauHedges('tauHedges'),
-
-  /// Display: Mantel-Haenszel method
-  /// Definition: Mantel-Haenszel method for pooling in meta-analysis
-  poolMantelHaenzsel('poolMantelHaenzsel'),
-
-  /// Display: Inverse variance method
-  /// Definition: Inverse variance method for pooling in meta-analysis
-  poolInverseVariance('poolInverseVariance'),
-
-  /// Display: Peto method
-  /// Definition: Peto method for pooling in meta-analysis
-  poolPeto('poolPeto'),
-
-  /// Display: Generalized linear mixed model (GLMM)
-  /// Definition: Generalized linear mixed model (GLMM) method for pooling in meta-analysis
-  poolGeneralizedLinearMixedModel('poolGeneralizedLinearMixedModel'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const StatisticModelCode(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+class StatisticModelCode {
+  // Private constructor for internal use (like enum)
+  StatisticModelCode._(this.fhirCode, {this.element});
+
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// StatisticModelCode values
+  /// oneTailedTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode oneTailedTest = StatisticModelCode._(
+    'oneTailedTest',
+  );
+
+  /// twoTailedTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode twoTailedTest = StatisticModelCode._(
+    'twoTailedTest',
+  );
+
+  /// zTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode zTest = StatisticModelCode._(
+    'zTest',
+  );
+
+  /// oneSampleTTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode oneSampleTTest = StatisticModelCode._(
+    'oneSampleTTest',
+  );
+
+  /// twoSampleTTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode twoSampleTTest = StatisticModelCode._(
+    'twoSampleTTest',
+  );
+
+  /// pairedTTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode pairedTTest = StatisticModelCode._(
+    'pairedTTest',
+  );
+
+  /// chiSquareTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode chiSquareTest = StatisticModelCode._(
+    'chiSquareTest',
+  );
+
+  /// chiSquareTestTrend
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode chiSquareTestTrend = StatisticModelCode._(
+    'chiSquareTestTrend',
+  );
+
+  /// pearsonCorrelation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode pearsonCorrelation = StatisticModelCode._(
+    'pearsonCorrelation',
+  );
+
+  /// anova
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode anova = StatisticModelCode._(
+    'anova',
+  );
+
+  /// anovaOneWay
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode anovaOneWay = StatisticModelCode._(
+    'anovaOneWay',
+  );
+
+  /// anovaTwoWay
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode anovaTwoWay = StatisticModelCode._(
+    'anovaTwoWay',
+  );
+
+  /// anovaTwoWayReplication
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode anovaTwoWayReplication = StatisticModelCode._(
+    'anovaTwoWayReplication',
+  );
+
+  /// manova
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode manova = StatisticModelCode._(
+    'manova',
+  );
+
+  /// anovaThreeWay
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode anovaThreeWay = StatisticModelCode._(
+    'anovaThreeWay',
+  );
+
+  /// signTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode signTest = StatisticModelCode._(
+    'signTest',
+  );
+
+  /// wilcoxonSignedRankTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode wilcoxonSignedRankTest = StatisticModelCode._(
+    'wilcoxonSignedRankTest',
+  );
+
+  /// wilcoxonRankSumTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode wilcoxonRankSumTest = StatisticModelCode._(
+    'wilcoxonRankSumTest',
+  );
+
+  /// mannWhitneyUTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode mannWhitneyUTest = StatisticModelCode._(
+    'mannWhitneyUTest',
+  );
+
+  /// fishersExactTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode fishersExactTest = StatisticModelCode._(
+    'fishersExactTest',
+  );
+
+  /// mcnemarsTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode mcnemarsTest = StatisticModelCode._(
+    'mcnemarsTest',
+  );
+
+  /// kruskalWallisTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode kruskalWallisTest = StatisticModelCode._(
+    'kruskalWallisTest',
+  );
+
+  /// spearmanCorrelation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode spearmanCorrelation = StatisticModelCode._(
+    'spearmanCorrelation',
+  );
+
+  /// kendallCorrelation
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode kendallCorrelation = StatisticModelCode._(
+    'kendallCorrelation',
+  );
+
+  /// friedmanTest
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode friedmanTest = StatisticModelCode._(
+    'friedmanTest',
+  );
+
+  /// goodmanKruskasGamma
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode goodmanKruskasGamma = StatisticModelCode._(
+    'goodmanKruskasGamma',
+  );
+
+  /// glm
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode glm = StatisticModelCode._(
+    'glm',
+  );
+
+  /// glmProbit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode glmProbit = StatisticModelCode._(
+    'glmProbit',
+  );
+
+  /// glmLogit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode glmLogit = StatisticModelCode._(
+    'glmLogit',
+  );
+
+  /// glmIdentity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode glmIdentity = StatisticModelCode._(
+    'glmIdentity',
+  );
+
+  /// glmLog
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode glmLog = StatisticModelCode._(
+    'glmLog',
+  );
+
+  /// glmGeneralizedLogit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode glmGeneralizedLogit = StatisticModelCode._(
+    'glmGeneralizedLogit',
+  );
+
+  /// glmm
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode glmm = StatisticModelCode._(
+    'glmm',
+  );
+
+  /// glmmProbit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode glmmProbit = StatisticModelCode._(
+    'glmmProbit',
+  );
+
+  /// glmmLogit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode glmmLogit = StatisticModelCode._(
+    'glmmLogit',
+  );
+
+  /// glmmIdentity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode glmmIdentity = StatisticModelCode._(
+    'glmmIdentity',
+  );
+
+  /// glmmLog
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode glmmLog = StatisticModelCode._(
+    'glmmLog',
+  );
+
+  /// glmmGeneralizedLogit
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode glmmGeneralizedLogit = StatisticModelCode._(
+    'glmmGeneralizedLogit',
+  );
+
+  /// linearRegression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode linearRegression = StatisticModelCode._(
+    'linearRegression',
+  );
+
+  /// logisticRegression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode logisticRegression = StatisticModelCode._(
+    'logisticRegression',
+  );
+
+  /// polynomialRegression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode polynomialRegression = StatisticModelCode._(
+    'polynomialRegression',
+  );
+
+  /// coxProportionalHazards
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode coxProportionalHazards = StatisticModelCode._(
+    'coxProportionalHazards',
+  );
+
+  /// binomialDistributionRegression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode binomialDistributionRegression =
+      StatisticModelCode._(
+    'binomialDistributionRegression',
+  );
+
+  /// multinomialDistributionRegression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode multinomialDistributionRegression =
+      StatisticModelCode._(
+    'multinomialDistributionRegression',
+  );
+
+  /// poissonRegression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode poissonRegression = StatisticModelCode._(
+    'poissonRegression',
+  );
+
+  /// negativeBinomialRegression
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode negativeBinomialRegression =
+      StatisticModelCode._(
+    'negativeBinomialRegression',
+  );
+
+  /// zeroCellConstant
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode zeroCellConstant = StatisticModelCode._(
+    'zeroCellConstant',
+  );
+
+  /// zeroCellContinuityCorrection
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode zeroCellContinuityCorrection =
+      StatisticModelCode._(
+    'zeroCellContinuityCorrection',
+  );
+
+  /// adjusted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode adjusted = StatisticModelCode._(
+    'adjusted',
+  );
+
+  /// interactionTerm
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode interactionTerm = StatisticModelCode._(
+    'interactionTerm',
+  );
+
+  /// manteHaenszelMethod
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode manteHaenszelMethod = StatisticModelCode._(
+    'manteHaenszelMethod',
+  );
+
+  /// metaAnalysis
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode metaAnalysis = StatisticModelCode._(
+    'metaAnalysis',
+  );
+
+  /// inverseVariance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode inverseVariance = StatisticModelCode._(
+    'inverseVariance',
+  );
+
+  /// petoMethod
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode petoMethod = StatisticModelCode._(
+    'petoMethod',
+  );
+
+  /// hartungKnapp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode hartungKnapp = StatisticModelCode._(
+    'hartungKnapp',
+  );
+
+  /// modifiedHartungKnapp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode modifiedHartungKnapp = StatisticModelCode._(
+    'modifiedHartungKnapp',
+  );
+
+  /// effectsFixed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode effectsFixed = StatisticModelCode._(
+    'effectsFixed',
+  );
+
+  /// effectsRandom
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode effectsRandom = StatisticModelCode._(
+    'effectsRandom',
+  );
+
+  /// chiSquareTestHomogeneity
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode chiSquareTestHomogeneity =
+      StatisticModelCode._(
+    'chiSquareTestHomogeneity',
+  );
+
+  /// dersimonianLairdMethod
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode dersimonianLairdMethod = StatisticModelCode._(
+    'dersimonianLairdMethod',
+  );
+
+  /// pauleMandelMethod
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode pauleMandelMethod = StatisticModelCode._(
+    'pauleMandelMethod',
+  );
+
+  /// restrictedLikelihood
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode restrictedLikelihood = StatisticModelCode._(
+    'restrictedLikelihood',
+  );
+
+  /// maximumLikelihood
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode maximumLikelihood = StatisticModelCode._(
+    'maximumLikelihood',
+  );
+
+  /// empiricalBayes
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode empiricalBayes = StatisticModelCode._(
+    'empiricalBayes',
+  );
+
+  /// hunterSchmidt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode hunterSchmidt = StatisticModelCode._(
+    'hunterSchmidt',
+  );
+
+  /// sidikJonkman
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode sidikJonkman = StatisticModelCode._(
+    'sidikJonkman',
+  );
+
+  /// hedgesMethod
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode hedgesMethod = StatisticModelCode._(
+    'hedgesMethod',
+  );
+
+  /// tauDersimonianLaird
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode tauDersimonianLaird = StatisticModelCode._(
+    'tauDersimonianLaird',
+  );
+
+  /// tauPauleMandel
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode tauPauleMandel = StatisticModelCode._(
+    'tauPauleMandel',
+  );
+
+  /// tauRestrictedMaximumLikelihood
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode tauRestrictedMaximumLikelihood =
+      StatisticModelCode._(
+    'tauRestrictedMaximumLikelihood',
+  );
+
+  /// tauMaximumLikelihood
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode tauMaximumLikelihood = StatisticModelCode._(
+    'tauMaximumLikelihood',
+  );
+
+  /// tauEmpiricalBayes
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode tauEmpiricalBayes = StatisticModelCode._(
+    'tauEmpiricalBayes',
+  );
+
+  /// tauHunterSchmidt
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode tauHunterSchmidt = StatisticModelCode._(
+    'tauHunterSchmidt',
+  );
+
+  /// tauSidikJonkman
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode tauSidikJonkman = StatisticModelCode._(
+    'tauSidikJonkman',
+  );
+
+  /// tauHedges
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode tauHedges = StatisticModelCode._(
+    'tauHedges',
+  );
+
+  /// poolMantelHaenzsel
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode poolMantelHaenzsel = StatisticModelCode._(
+    'poolMantelHaenzsel',
+  );
+
+  /// poolInverseVariance
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode poolInverseVariance = StatisticModelCode._(
+    'poolInverseVariance',
+  );
+
+  /// poolPeto
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode poolPeto = StatisticModelCode._(
+    'poolPeto',
+  );
+
+  /// poolGeneralizedLinearMixedModel
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final StatisticModelCode poolGeneralizedLinearMixedModel =
+      StatisticModelCode._(
+    'poolGeneralizedLinearMixedModel',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final StatisticModelCode elementOnly = StatisticModelCode._('');
+
+  /// List of all enum-like values
+  static final List<StatisticModelCode> values = [
+    oneTailedTest,
+    twoTailedTest,
+    zTest,
+    oneSampleTTest,
+    twoSampleTTest,
+    pairedTTest,
+    chiSquareTest,
+    chiSquareTestTrend,
+    pearsonCorrelation,
+    anova,
+    anovaOneWay,
+    anovaTwoWay,
+    anovaTwoWayReplication,
+    manova,
+    anovaThreeWay,
+    signTest,
+    wilcoxonSignedRankTest,
+    wilcoxonRankSumTest,
+    mannWhitneyUTest,
+    fishersExactTest,
+    mcnemarsTest,
+    kruskalWallisTest,
+    spearmanCorrelation,
+    kendallCorrelation,
+    friedmanTest,
+    goodmanKruskasGamma,
+    glm,
+    glmProbit,
+    glmLogit,
+    glmIdentity,
+    glmLog,
+    glmGeneralizedLogit,
+    glmm,
+    glmmProbit,
+    glmmLogit,
+    glmmIdentity,
+    glmmLog,
+    glmmGeneralizedLogit,
+    linearRegression,
+    logisticRegression,
+    polynomialRegression,
+    coxProportionalHazards,
+    binomialDistributionRegression,
+    multinomialDistributionRegression,
+    poissonRegression,
+    negativeBinomialRegression,
+    zeroCellConstant,
+    zeroCellContinuityCorrection,
+    adjusted,
+    interactionTerm,
+    manteHaenszelMethod,
+    metaAnalysis,
+    inverseVariance,
+    petoMethod,
+    hartungKnapp,
+    modifiedHartungKnapp,
+    effectsFixed,
+    effectsRandom,
+    chiSquareTestHomogeneity,
+    dersimonianLairdMethod,
+    pauleMandelMethod,
+    restrictedLikelihood,
+    maximumLikelihood,
+    empiricalBayes,
+    hunterSchmidt,
+    sidikJonkman,
+    hedgesMethod,
+    tauDersimonianLaird,
+    tauPauleMandel,
+    tauRestrictedMaximumLikelihood,
+    tauMaximumLikelihood,
+    tauEmpiricalBayes,
+    tauHunterSchmidt,
+    tauSidikJonkman,
+    tauHedges,
+    poolMantelHaenzsel,
+    poolInverseVariance,
+    poolPeto,
+    poolGeneralizedLinearMixedModel,
+  ];
+
+  /// Returns the enum value with an element attached
+  StatisticModelCode withElement(Element? newElement) {
+    return StatisticModelCode._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -339,28 +672,20 @@ enum StatisticModelCode {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [StatisticModelCode] instances.
-  static StatisticModelCode fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [StatisticModelCode] from JSON.
+  static StatisticModelCode fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return StatisticModelCode.elementOnly.withElement(
-        element,
-      );
+      return StatisticModelCode.elementOnly.withElement(element);
     }
     return StatisticModelCode.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  StatisticModelCode withElement(Element? newElement) {
-    return StatisticModelCode.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'StatisticModelCode.$fhirCode';
 }

@@ -1,2405 +1,4799 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set defines an example set of codes of service-types.
-enum ServiceType {
-  /// Display: Adoption/Permanent Care Info/Support
-  /// Definition: Adoption & permanent care information/support
-  value1('1'),
-
-  /// Display: Aged Care Assessment
-  /// Definition: Aged care assessment
-  value2('2'),
-
-  /// Display: Aged Care Information/Referral
-  /// Definition: Aged Care information/referral
-  value3('3'),
-
-  /// Display: Aged Residential Care
-  /// Definition: Aged Residential Care
-  value4('4'),
-
-  /// Display: Case Management for Older Persons
-  /// Definition: Case management for older persons
-  value5('5'),
-
-  /// Display: Delivered Meals (Meals On Wheels)
-  /// Definition: Delivered meals (meals on wheels)
-  value6('6'),
-
-  /// Display: Friendly Visiting
-  /// Definition: Friendly visiting
-  value7('7'),
-
-  /// Display: Home Care/Housekeeping Assistance
-  /// Definition: Home care/housekeeping assistance
-  value8('8'),
-
-  /// Display: Home Maintenance and Repair
-  /// Definition: Home maintenance and repair
-  value9('9'),
-
-  /// Display: Personal Alarms/Alerts
-  /// Definition: Personal alarms/alerts
-  value10('10'),
-
-  /// Display: Personal Care for Older Persons
-  /// Definition: Personal care for older persons
-  value11('11'),
-
-  /// Display: Planned Activity Groups
-  /// Definition: Planned activity groups
-  value12('12'),
-
-  /// Display: Acupuncture
-  /// Definition: Acupuncture
-  value13('13'),
-
-  /// Display: Alexander Technique Therapy
-  /// Definition: Alexander technique therapy
-  value14('14'),
-
-  /// Display: Aromatherapy
-  /// Definition: Aromatherapy
-  value15('15'),
-
-  /// Display: Biorhythm Services
-  /// Definition: Biorhythm services
-  value16('16'),
-
-  /// Display: Bowen Therapy
-  /// Definition: Bowen therapy
-  value17('17'),
-
-  /// Display: Chinese Herbal Medicine
-  /// Definition: Chinese herbal medicine
-  value18('18'),
-
-  /// Display: Feldenkrais
-  /// Definition: Feldenkrais
-  value19('19'),
-
-  /// Display: Homoeopathy
-  /// Definition: Homoeopathy
-  value20('20'),
-
-  /// Display: Hydrotherapy
-  /// Definition: Hydrotherapy
-  value21('21'),
-
-  /// Display: Hypnotherapy
-  /// Definition: Hypnotherapy
-  value22('22'),
-
-  /// Display: Kinesiology
-  /// Definition: Kinesiology
-  value23('23'),
-
-  /// Display: Magnetic Therapy
-  /// Definition: Magnetic therapy
-  value24('24'),
-
-  /// Display: Massage Therapy
-  /// Definition: Massage therapy
-  value25('25'),
-
-  /// Display: Meditation
-  /// Definition: Meditation
-  value26('26'),
-
-  /// Display: Myotherapy
-  /// Definition: Myotherapy
-  value27('27'),
-
-  /// Display: Naturopathy
-  /// Definition: Naturopathy
-  value28('28'),
-
-  /// Display: Reflexology
-  /// Definition: Reflexology
-  value29('29'),
-
-  /// Display: Reiki
-  /// Definition: Reiki
-  value30('30'),
-
-  /// Display: Relaxation Therapy
-  /// Definition: Relaxation therapy
-  value31('31'),
-
-  /// Display: Shiatsu
-  /// Definition: Shiatsu
-  value32('32'),
-
-  /// Display: Western Herbal Medicine
-  /// Definition: Western herbal medicine
-  value33('33'),
-
-  /// Display: Family Day care
-  /// Definition: Family day care
-  value34('34'),
-
-  /// Display: Holiday Programs
-  /// Definition: Holiday programs
-  value35('35'),
-
-  /// Display: Kindergarten Inclusion Support
-  /// Definition: Kindergarten inclusion support for children with a disability
-  value36('36'),
-
-  /// Display: Kindergarten/Preschool
-  /// Definition: Kindergarten/preschool
-  value37('37'),
-
-  /// Display: Long Day Child Care
-  /// Definition: Long day child care
-  value38('38'),
-
-  /// Display: Occasional Child Care
-  /// Definition: Occasional child care
-  value39('39'),
-
-  /// Display: Outside School Hours Care
-  /// Definition: Outside school hours care
-  value40('40'),
-
-  /// Display: Children's Play Programs
-  /// Definition: Children's play programs
-  value41('41'),
-
-  /// Display: Parenting/Family Support/Education
-  /// Definition: Parenting & family management support/education
-  value42('42'),
-
-  /// Display: Playgroup
-  /// Definition: Playgroup
-  value43('43'),
-
-  /// Display: School Nursing
-  /// Definition: School nursing
-  value44('44'),
-
-  /// Display: Toy Library
-  /// Definition: Toy library
-  value45('45'),
-
-  /// Display: Child Protection/Child Abuse Report
-  /// Definition: Child protection/child abuse report
-  value46('46'),
-
-  /// Display: Foster Care
-  /// Definition: Foster care
-  value47('47'),
-
-  /// Display: Residential/Out-of-Home Care
-  /// Definition: Residential/ out of home care
-  value48('48'),
-
-  /// Display: Support - Young People Leaving Care
-  /// Definition: Support for young people leaving care
-  value49('49'),
-
-  /// Display: Audiology
-  /// Definition: Audiology
-  value50('50'),
-
-  /// Display: Blood Donation
-  /// Definition: Blood donation
-  value51('51'),
-
-  /// Display: Chiropractic
-  /// Definition: Chiropractic
-  value52('52'),
-
-  /// Display: Dietetics
-  /// Definition: Dietetics
-  value53('53'),
-
-  /// Display: Family Planning
-  /// Definition: Family planning
-  value54('54'),
-
-  /// Display: Health Advocacy/Liaison Service
-  /// Definition: Health advocacy/Liaison service
-  value55('55'),
-
-  /// Display: Health Information/Referral
-  /// Definition: Health information/referral
-  value56('56'),
-
-  /// Display: Immunization
-  /// Definition: Immunization
-  value57('57'),
-
-  /// Display: Maternal & Child Health
-  /// Definition: Maternal & child health
-  value58('58'),
-
-  /// Display: Nursing
-  /// Definition: Nursing
-  value59('59'),
-
-  /// Display: Nutrition
-  /// Definition: Nutrition
-  value60('60'),
-
-  /// Display: Occupational Therapy
-  /// Definition: Occupational therapy
-  value61('61'),
-
-  /// Display: Optometry
-  /// Definition: Optometry
-  value62('62'),
-
-  /// Display: Osteopathy
-  /// Definition: Osteopathy
-  value63('63'),
-
-  /// Display: Pharmacy
-  /// Definition: Pharmacy
-  value64('64'),
-
-  /// Display: Physiotherapy
-  /// Definition: Physiotherapy
-  value65('65'),
-
-  /// Display: Podiatry
-  /// Definition: Podiatry
-  value66('66'),
-
-  /// Display: Sexual Health
-  /// Definition: Sexual health
-  value67('67'),
-
-  /// Display: Speech Pathology/Therapy
-  /// Definition: Speech pathology/therapy
-  value68('68'),
-
-  /// Display: Bereavement Counselling
-  /// Definition: Bereavement counselling
-  value69('69'),
-
-  /// Display: Crisis Counselling
-  /// Definition: Crisis counselling
-  value70('70'),
-
-  /// Display: Family Counselling/Therapy
-  /// Definition: Family counselling and/or family therapy
-  value71('71'),
-
-  /// Display: Family Violence Counselling
-  /// Definition: Family violence counselling
-  value72('72'),
-
-  /// Display: Financial Counselling
-  /// Definition: Financial counselling
-  value73('73'),
-
-  /// Display: Generalist Counselling
-  /// Definition: Generalist counselling
-  value74('74'),
-
-  /// Display: Genetic Counselling
-  /// Definition: Genetic counselling
-  value75('75'),
-
-  /// Display: Health Counselling
-  /// Definition: Health counselling
-  value76('76'),
-
-  /// Display: Mediation
-  /// Definition: Mediation
-  value77('77'),
-
-  /// Display: Problem Gambling Counselling
-  /// Definition: Problem gambling counselling
-  value78('78'),
-
-  /// Display: Relationship Counselling
-  /// Definition: Relationship counselling
-  value79('79'),
-
-  /// Display: Sexual Assault Counselling
-  /// Definition: Sexual assault counselling
-  value80('80'),
-
-  /// Display: Trauma Counselling
-  /// Definition: Trauma counselling
-  value81('81'),
-
-  /// Display: Victims of Crime Counselling
-  /// Definition: Victims of crime counselling
-  value82('82'),
-
-  /// Display: Cemetery Operation
-  /// Definition: Cemetery operation
-  value83('83'),
-
-  /// Display: Cremation
-  /// Definition: Cremation
-  value84('84'),
-
-  /// Display: Death Service Information
-  /// Definition: Death service information
-  value85('85'),
-
-  /// Display: Funeral Services
-  /// Definition: Funeral services
-  value86('86'),
-
-  /// Display: Endodontic
-  /// Definition: Endodontic
-  value87('87'),
-
-  /// Display: General Dental
-  /// Definition: General dental
-  value88('88'),
-
-  /// Display: Oral Medicine
-  /// Definition: Oral medicine
-  value89('89'),
-
-  /// Display: Oral Surgery
-  /// Definition: Oral surgery
-  value90('90'),
-
-  /// Display: Orthodontic
-  /// Definition: Orthodontic
-  value91('91'),
-
-  /// Display: Paediatric Dentistry
-  /// Definition: Paediatric Dentistry
-  value92('92'),
-
-  /// Display: Periodontic
-  /// Definition: Periodontic
-  value93('93'),
-
-  /// Display: Prosthodontic
-  /// Definition: Prosthodontic
-  value94('94'),
-
-  /// Display: Acquired Brain Injury Info/Referral
-  /// Definition: Acquired brain injury information/referral
-  value95('95'),
-
-  /// Display: Disability Advocacy
-  /// Definition: Disability advocacy
-  value96('96'),
-
-  /// Display: Disability Aids & Equipment
-  /// Definition: Disability aids & equipment
-  value97('97'),
-
-  /// Display: Disability Case Management
-  /// Definition: Disability case management
-  value98('98'),
-
-  /// Display: Disability Day Programs/Activities
-  /// Definition: Disability day programs & activities
-  value99('99'),
-
-  /// Display: Disability Information/Referral
-  /// Definition: Disability information/referral
-  value100('100'),
-
-  /// Display: Disability Support Packages
-  /// Definition: Disability support packages
-  value101('101'),
-
-  /// Display: Disability Supported Accommodation
-  /// Definition: Disability supported accommodation
-  value102('102'),
-
-  /// Display: Early Childhood Intervention
-  /// Definition: Early childhood intervention
-  value103('103'),
-
-  /// Display: Hearing Aids & Equipment
-  /// Definition: Hearing aids & equipment
-  value104('104'),
-
-  /// Display: Drug and/or Alcohol Counselling
-  /// Definition: Drug and/or alcohol counselling
-  value105('105'),
-
-  /// Display: Drug/Alcohol Information/Referral
-  /// Definition: Drug and/or alcohol information/referral
-  value106('106'),
-
-  /// Display: Needle & Syringe Exchange
-  /// Definition: Needle & Syringe exchange
-  value107('107'),
-
-  /// Display: Non-resid. Alcohol/Drug Treatment
-  /// Definition: Non-residential alcohol and/or drug dependence treatment
-  value108('108'),
-
-  /// Display: Pharmacotherapy
-  /// Definition: Pharmacotherapy (eg. methadone) program
-  value109('109'),
-
-  /// Display: Quit Program
-  /// Definition: Quit program
-  value110('110'),
-
-  /// Display: Residential Alcohol/Drug Treatment
-  /// Definition: Residential alcohol and/or drug dependence treatment
-  value111('111'),
-
-  /// Display: Adult/Community Education
-  /// Definition: Adult/community education
-  value112('112'),
-
-  /// Display: Higher Education
-  /// Definition: Higher education
-  value113('113'),
-
-  /// Display: Primary Education
-  /// Definition: Primary education
-  value114('114'),
-
-  /// Display: Secondary Education
-  /// Definition: Secondary education
-  value115('115'),
-
-  /// Display: Training & Vocational Education
-  /// Definition: Training & vocational education
-  value116('116'),
-
-  /// Display: Emergency Medical
-  /// Definition: Emergency medical
-  value117('117'),
-
-  /// Display: Employment Placement and/or Support
-  /// Definition: Employment placement and/or support
-  value118('118'),
-
-  /// Display: Vocational Rehabilitation
-  /// Definition: Vocational Rehabilitation
-  value119('119'),
-
-  /// Display: Work Safety/Accident Prevention
-  /// Definition: Workplace safety and/or accident prevention
-  value120('120'),
-
-  /// Display: Financial Assistance
-  /// Definition: Financial assistance
-  value121('121'),
-
-  /// Display: Financial Information/Advice
-  /// Definition: Financial information/advice
-  value122('122'),
-
-  /// Display: Material Aid
-  /// Definition: Material aid
-  value123('123'),
-
-  /// Display: General Practice
-  /// Definition: General Practice/GP (doctor)
-  value124('124'),
-
-  /// Display: Accommodation Placement/Support
-  /// Definition: Accommodation placement and/or support
-  value125('125'),
-
-  /// Display: Crisis/Emergency Accommodation
-  /// Definition: Crisis/emergency accommodation
-  value126('126'),
-
-  /// Display: Homelessness Support
-  /// Definition: Homelessness support
-  value127('127'),
-
-  /// Display: Housing Information/Referral
-  /// Definition: Housing information/referral
-  value128('128'),
-
-  /// Display: Public Rental Housing
-  /// Definition: Public rental housing
-  value129('129'),
-
-  /// Display: Interpreting/Multilingual Service
-  /// Definition: Interpreting/Multilingual/Language service
-  value130('130'),
-
-  /// Display: Juvenile Justice
-  /// Definition: Juvenile Justice
-  value131('131'),
-
-  /// Display: Legal Advocacy
-  /// Definition: Legal advocacy
-  value132('132'),
-
-  /// Display: Legal Information/Advice/Referral
-  /// Definition: Legal information/advice/referral
-  value133('133'),
-
-  /// Display: Mental Health Advocacy
-  /// Definition: Mental health advocacy
-  value134('134'),
-
-  /// Display: Mental Health Assess/Triage/Crisis Response
-  /// Definition: Mental health assessment/triage/crisis response
-  value135('135'),
-
-  /// Display: Mental Health Case Management
-  /// Definition: Mental health case management/continuing care
-  value136('136'),
-
-  /// Display: Mental Health Information/Referral
-  /// Definition: Mental health information/referral
-  value137('137'),
-
-  /// Display: Mental Health Inpatient Services
-  /// Definition: Mental health inpatient services (hospital psychiatric unit) - requires referral
-  value138('138'),
-
-  /// Display: Mental Health Non-residential Rehab
-  /// Definition: Mental health non-residential rehabilitation
-  value139('139'),
-
-  /// Display: Mental Health Residential Rehab/CCU
-  /// Definition: Mental health residential rehabilitation/community care unit
-  value140('140'),
-
-  /// Display: Psychiatry (Requires Referral)
-  /// Definition: Psychiatry (requires referral)
-  value141('141'),
-
-  /// Display: Psychology
-  /// Definition: Psychology
-  value142('142'),
-
-  /// Display: Martial Arts
-  /// Definition: Martial arts
-  value143('143'),
-
-  /// Display: Personal Fitness Training
-  /// Definition: Personal fitness training
-  value144('144'),
-
-  /// Display: Physical Activity Group
-  /// Definition: Physical activity group
-  value145('145'),
-
-  /// Display: Physical Activity Programs
-  /// Definition: Physical activity programs
-  value146('146'),
-
-  /// Display: Physical Fitness Testing
-  /// Definition: Physical fitness testing
-  value147('147'),
-
-  /// Display: Pilates
-  /// Definition: Pilates
-  value148('148'),
-
-  /// Display: Self-Defence
-  /// Definition: Self defence
-  value149('149'),
-
-  /// Display: Sporting Club
-  /// Definition: Sporting club
-  value150('150'),
-
-  /// Display: Yoga
-  /// Definition: Yoga
-  value151('151'),
-
-  /// Display: Food Safety
-  /// Definition: Food safety
-  value152('152'),
-
-  /// Display: Health Regulatory /Inspection /Cert.
-  /// Definition: Health regulatory, inspection and/or certification
-  value153('153'),
-
-  /// Display: Work Health/Safety Inspection/Cert.
-  /// Definition: Workplace health and/or safety inspection and/or certification
-  value154('154'),
-
-  /// Display: Carer Support
-  /// Definition: Carer support
-  value155('155'),
-
-  /// Display: Respite Care
-  /// Definition: Respite care
-  value156('156'),
-
-  /// Display: Anatomical Pathology
-  /// Definition: Anatomical Pathology (including Cytopathology & Forensic Pathology)
-  value157('157'),
-
-  /// Display: Pathology - Clinical Chemistry
-  /// Definition: Pathology - Clinical Chemistry
-  value158('158'),
-
-  /// Display: Pathology - General
-  /// Definition: Pathology - General
-  value159('159'),
-
-  /// Display: Pathology - Genetics
-  /// Definition: Pathology - Genetics
-  value160('160'),
-
-  /// Display: Pathology - Haematology
-  /// Definition: Pathology - Haematology
-  value161('161'),
-
-  /// Display: Pathology - Immunology
-  /// Definition: Pathology - Immunology
-  value162('162'),
-
-  /// Display: Pathology - Microbiology
-  /// Definition: Pathology - Microbiology
-  value163('163'),
-
-  /// Display: Anaesthesiology - Pain Medicine
-  /// Definition: Anaesthesiology - Pain Medicine
-  value164('164'),
-
-  /// Display: Cardiology
-  /// Definition: Cardiology
-  value165('165'),
-
-  /// Display: Clinical Genetics
-  /// Definition: Clinical Genetics
-  value166('166'),
-
-  /// Display: Clinical Pharmacology
-  /// Definition: Clinical Pharmacology
-  value167('167'),
-
-  /// Display: Dermatology
-  /// Definition: Dermatology
-  value168('168'),
-
-  /// Display: Endocrinology
-  /// Definition: Endocrinology
-  value169('169'),
-
-  /// Display: Gastroenterology & Hepatology
-  /// Definition: Gastroenterology & Hepatology
-  value170('170'),
-
-  /// Display: Geriatric Medicine
-  /// Definition: Geriatric medicine
-  value171('171'),
-
-  /// Display: Immunology & Allergy
-  /// Definition: Immunology & Allergy
-  value172('172'),
-
-  /// Display: Infectious Diseases
-  /// Definition: Infectious diseases
-  value173('173'),
-
-  /// Display: Intensive Care Medicine
-  /// Definition: Intensive care medicine
-  value174('174'),
-
-  /// Display: Medical Oncology
-  /// Definition: Medical Oncology
-  value175('175'),
-
-  /// Display: Nephrology
-  /// Definition: Nephrology
-  value176('176'),
-
-  /// Display: Neurology
-  /// Definition: Neurology
-  value177('177'),
-
-  /// Display: Occupational Medicine
-  /// Definition: Occupational Medicine
-  value178('178'),
-
-  /// Display: Palliative Medicine
-  /// Definition: Palliative Medicine
-  value179('179'),
-
-  /// Display: Public Health Medicine
-  /// Definition: Public Health Medicine
-  value180('180'),
-
-  /// Display: Rehabilitation Medicine
-  /// Definition: Rehabilitation Medicine
-  value181('181'),
-
-  /// Display: Rheumatology
-  /// Definition: Rheumatology
-  value182('182'),
-
-  /// Display: Sleep Medicine
-  /// Definition: Sleep Medicine
-  value183('183'),
-
-  /// Display: Thoracic Medicine
-  /// Definition: Thoracic medicine
-  value184('184'),
-
-  /// Display: Gynaecological Oncology
-  /// Definition: Gynaecological Oncology
-  value185('185'),
-
-  /// Display: Obstetrics & Gynaecology
-  /// Definition: Obstetrics & Gynaecology
-  value186('186'),
-
-  /// Display: Reproductive Endocrinology/Infertility
-  /// Definition: Reproductive Endocrinology & Infertility
-  value187('187'),
-
-  /// Display: Urogynaecology
-  /// Definition: Urogynaecology
-  value188('188'),
-
-  /// Display: Neonatology & Perinatology
-  /// Definition: Neonatology & Perinatology
-  value189('189'),
-
-  /// Display: Paediatric Cardiology
-  /// Definition: Paediatric Cardiology
-  value190('190'),
-
-  /// Display: Paediatric Clinical Genetics
-  /// Definition: Paediatric Clinical Genetics
-  value191('191'),
-
-  /// Display: Paediatric Clinical Pharmacology
-  /// Definition: Paediatric Clinical Pharmacology
-  value192('192'),
-
-  /// Display: Paediatric Endocrinology
-  /// Definition: Paediatric Endocrinology
-  value193('193'),
-
-  /// Display: Paed. Gastroenterology/Hepatology
-  /// Definition: Paediatric Gastroenterology & Hepatology
-  value194('194'),
-
-  /// Display: Paediatric Haematology
-  /// Definition: Paediatric Haematology
-  value195('195'),
-
-  /// Display: Paediatric Immunology & Allergy
-  /// Definition: Paediatric Immunology & Allergy
-  value196('196'),
-
-  /// Display: Paediatric Infectious Diseases
-  /// Definition: Paediatric Infectious diseases
-  value197('197'),
-
-  /// Display: Paediatric Intensive Care Medicine
-  /// Definition: Paediatric intensive care medicine
-  value198('198'),
-
-  /// Display: Paediatric Medical Oncology
-  /// Definition: Paediatric Medical Oncology
-  value199('199'),
-
-  /// Display: Paediatric Medicine
-  /// Definition: Paediatric Medicine
-  value200('200'),
-
-  /// Display: Paediatric Nephrology
-  /// Definition: Paediatric Nephrology
-  value201('201'),
-
-  /// Display: Paediatric Neurology
-  /// Definition: Paediatric Neurology
-  value202('202'),
-
-  /// Display: Paediatric Nuclear Medicine
-  /// Definition: Paediatric Nuclear Medicine
-  value203('203'),
-
-  /// Display: Paediatric Rehabilitation Medicine
-  /// Definition: Paediatric Rehabilitation Medicine
-  value204('204'),
-
-  /// Display: Paediatric Rheumatology
-  /// Definition: Paediatric Rheumatology
-  value205('205'),
-
-  /// Display: Paediatric Sleep Medicine
-  /// Definition: Paediatric Sleep Medicine
-  value206('206'),
-
-  /// Display: Paediatric Surgery
-  /// Definition: Paediatric Surgery
-  value207('207'),
-
-  /// Display: Paediatric Thoracic Medicine
-  /// Definition: Paediatric Thoracic Medicine
-  value208('208'),
-
-  /// Display: Diag. Radiology /Xray /CT /Fluoroscopy
-  /// Definition: Diagnostic Radiology/Xray/CT/Fluoroscopy
-  value209('209'),
-
-  /// Display: Diagnostic Ultrasound
-  /// Definition: Diagnostic Ultrasound
-  value210('210'),
-
-  /// Display: Magnetic Resonance Imaging (MRI)
-  /// Definition: Magnetic Resonance Imaging (MRI)
-  value211('211'),
-
-  /// Display: Nuclear Medicine
-  /// Definition: Nuclear Medicine
-  value212('212'),
-
-  /// Display: Obstetric/Gynaecological Ultrasound
-  /// Definition: Obstetric & Gynaecological Ultrasound
-  value213('213'),
-
-  /// Display: Radiation Oncology
-  /// Definition: Radiation oncology
-  value214('214'),
-
-  /// Display: Cardiothoracic Surgery
-  /// Definition: Cardiothoracic surgery
-  value215('215'),
-
-  /// Display: Neurosurgery
-  /// Definition: Neurosurgery
-  value216('216'),
-
-  /// Display: Ophthalmology
-  /// Definition: Ophthalmology
-  value217('217'),
-
-  /// Display: Orthopaedic Surgery
-  /// Definition: Orthopaedic surgery
-  value218('218'),
-
-  /// Display: Otolaryngology/Head & Neck Surgery
-  /// Definition: Otolaryngology - Head & Neck Surgery
-  value219('219'),
-
-  /// Display: Plastic & Reconstructive Surgery
-  /// Definition: Plastic & Reconstructive Surgery
-  value220('220'),
-
-  /// Display: Surgery - General
-  /// Definition: Surgery - General
-  value221('221'),
-
-  /// Display: Urology
-  /// Definition: Urology
-  value222('222'),
-
-  /// Display: Vascular Surgery
-  /// Definition: Vascular surgery
-  value223('223'),
-
-  /// Display: Support Groups
-  /// Definition: Support groups
-  value224('224'),
-
-  /// Display: Air ambulance
-  /// Definition: Air ambulance
-  value225('225'),
-
-  /// Display: Ambulance
-  /// Definition: Ambulance
-  value226('226'),
-
-  /// Display: Blood Transport
-  /// Definition: Blood transport
-  value227('227'),
-
-  /// Display: Community Bus
-  /// Definition: Community bus
-  value228('228'),
-
-  /// Display: Flying Doctor Service
-  /// Definition: Flying doctor service
-  value229('229'),
-
-  /// Display: Patient Transport
-  /// Definition: Patient transport
-  value230('230'),
-
-  /// Display: A&E
-  /// Definition: A&E
-  value231('231'),
-
-  /// Display: A&EP
-  /// Definition: A&EP
-  value232('232'),
-
-  /// Display: Abuse
-  /// Definition: Abuse
-  value233('233'),
-
-  /// Display: ACAS
-  /// Definition: ACAS
-  value234('234'),
-
-  /// Display: Access
-  /// Definition: Access
-  value235('235'),
-
-  /// Display: Accident
-  /// Definition: Accident
-  value236('236'),
-
-  /// Display: Acute Inpatient Serv
-  /// Definition: Acute Inpatient Service's
-  value237('237'),
-
-  /// Display: Adult Day Programs
-  /// Definition: Adult Day Programs
-  value238('238'),
-
-  /// Display: Adult Mental Health Services
-  /// Definition: Adult Mental Health Services
-  value239('239'),
-
-  /// Display: Advice
-  /// Definition: Advice
-  value240('240'),
-
-  /// Display: Advocacy
-  /// Definition: Advocacy
-  value241('241'),
-
-  /// Display: Aged Persons Mental
-  /// Definition: Aged Persons Mental Health Residential Units
-  value242('242'),
-
-  /// Display: Aged Persons Mental
-  /// Definition: Aged Persons Mental Health Services
-  value243('243'),
-
-  /// Display: Aged Persons Mental
-  /// Definition: Aged Persons Mental Health Teams
-  value244('244'),
-
-  /// Display: Aids
-  /// Definition: Aids
-  value245('245'),
-
-  /// Display: Al-Anon
-  /// Definition: Al-Anon
-  value246('246'),
-
-  /// Display: Alcohol
-  /// Definition: Alcohol
-  value247('247'),
-
-  /// Display: Al-Teen
-  /// Definition: Al-Teen
-  value248('248'),
-
-  /// Display: Antenatal
-  /// Definition: Antenatal
-  value249('249'),
-
-  /// Display: Anxiety
-  /// Definition: Anxiety
-  value250('250'),
-
-  /// Display: Arthritis
-  /// Definition: Arthritis
-  value251('251'),
-
-  /// Display: Assessment
-  /// Definition: Assessment
-  value252('252'),
-
-  /// Display: Assistance
-  /// Definition: Assistance
-  value253('253'),
-
-  /// Display: Asthma
-  /// Definition: Asthma
-  value254('254'),
-
-  /// Display: ATSS
-  /// Definition: ATSS
-  value255('255'),
-
-  /// Display: Attendant Care
-  /// Definition: Attendant Care
-  value256('256'),
-
-  /// Display: Babies
-  /// Definition: Babies
-  value257('257'),
-
-  /// Display: Bathroom Modificatio
-  /// Definition: Bathroom Modification
-  value258('258'),
-
-  /// Display: Behavior
-  /// Definition: Behavior
-  value259('259'),
-
-  /// Display: Behavior Interventi
-  /// Definition: Behavior Intervention
-  value260('260'),
-
-  /// Display: Bereavement
-  /// Definition: Bereavement
-  value261('261'),
-
-  /// Display: Bipolar
-  /// Definition: Bipolar
-  value262('262'),
-
-  /// Display: Birth
-  /// Definition: Birth
-  value263('263'),
-
-  /// Display: Birth Control
-  /// Definition: Birth Control
-  value264('264'),
-
-  /// Display: Birthing Options
-  /// Definition: Birthing Options
-  value265('265'),
-
-  /// Display: BIST
-  /// Definition: BIST
-  value266('266'),
-
-  /// Display: Blood
-  /// Definition: Blood
-  value267('267'),
-
-  /// Display: Bone
-  /// Definition: Bone
-  value268('268'),
-
-  /// Display: Bowel
-  /// Definition: Bowel
-  value269('269'),
-
-  /// Display: Brain
-  /// Definition: Brain
-  value270('270'),
-
-  /// Display: Breast Feeding
-  /// Definition: Breast Feeding
-  value271('271'),
-
-  /// Display: Breast Screen
-  /// Definition: Breast Screen
-  value272('272'),
-
-  /// Display: Brokerage
-  /// Definition: Brokerage
-  value273('273'),
-
-  /// Display: Cancer
-  /// Definition: Cancer
-  value274('274'),
-
-  /// Display: Cancer Support
-  /// Definition: Cancer Support
-  value275('275'),
-
-  /// Display: Cardiovascular Disea
-  /// Definition: Cardiovascular Disease
-  value276('276'),
-
-  /// Display: Care Packages
-  /// Definition: Care Packages
-  value277('277'),
-
-  /// Display: Carer
-  /// Definition: Carer
-  value278('278'),
-
-  /// Display: Case Management
-  /// Definition: Case Management
-  value279('279'),
-
-  /// Display: Casualty
-  /// Definition: Casualty
-  value280('280'),
-
-  /// Display: Centrelink
-  /// Definition: Centrelink
-  value281('281'),
-
-  /// Display: Chemists
-  /// Definition: Chemists
-  value282('282'),
-
-  /// Display: Child And Adolescent
-  /// Definition: Child And Adolescent Mental Health Services
-  value283('283'),
-
-  /// Display: Child Care
-  /// Definition: Child Care
-  value284('284'),
-
-  /// Display: Child Services
-  /// Definition: Child Services
-  value285('285'),
-
-  /// Display: Children
-  /// Definition: Children
-  value286('286'),
-
-  /// Display: Children's Services
-  /// Definition: Children's Services
-  value287('287'),
-
-  /// Display: Cholesterol
-  /// Definition: Cholesterol
-  value288('288'),
-
-  /// Display: Clothing
-  /// Definition: Clothing
-  value289('289'),
-
-  /// Display: Community Based Acco
-  /// Definition: Community Based Accommodation
-  value290('290'),
-
-  /// Display: Community Care Unit
-  /// Definition: Community Care Unit
-  value291('291'),
-
-  /// Display: Community Child And
-  /// Definition: Community Child And Adolescent Mental Health Services
-  value292('292'),
-
-  /// Display: Community Health
-  /// Definition: Community Health
-  value293('293'),
-
-  /// Display: Community Residentia
-  /// Definition: Community Residential Unit
-  value294('294'),
-
-  /// Display: Community Transport
-  /// Definition: Community Transport
-  value295('295'),
-
-  /// Display: Companion Visiting
-  /// Definition: Companion Visiting
-  value296('296'),
-
-  /// Display: Companionship
-  /// Definition: Companionship
-  value297('297'),
-
-  /// Display: Consumer Advice
-  /// Definition: Consumer Advice
-  value298('298'),
-
-  /// Display: Consumer Issues
-  /// Definition: Consumer Issues
-  value299('299'),
-
-  /// Display: Continuing Care Serv
-  /// Definition: Continuing Care Services
-  value300('300'),
-
-  /// Display: Contraception Inform
-  /// Definition: Contraception Information
-  value301('301'),
-
-  /// Display: Coordinating Bodies
-  /// Definition: Coordinating Bodies
-  value302('302'),
-
-  /// Display: Correctional Service
-  /// Definition: Correctional Services
-  value303('303'),
-
-  /// Display: Council Environmenta
-  /// Definition: Council Environmental Health
-  value304('304'),
-
-  /// Display: Counselling
-  /// Definition: Counselling
-  value305('305'),
-
-  /// Display: Criminal
-  /// Definition: Criminal
-  value306('306'),
-
-  /// Display: Crises
-  /// Definition: Crises
-  value307('307'),
-
-  /// Display: Crisis Assessment An
-  /// Definition: Crisis Assessment And Treatment Services (Cats)
-  value308('308'),
-
-  /// Display: Crisis Assistance
-  /// Definition: Crisis Assistance
-  value309('309'),
-
-  /// Display: Crisis Refuge
-  /// Definition: Crisis Refuge
-  value310('310'),
-
-  /// Display: Day Program
-  /// Definition: Day Program
-  value311('311'),
-
-  /// Display: Deaf
-  /// Definition: Deaf
-  value312('312'),
-
-  /// Display: Dental Hygiene
-  /// Definition: Dental Hygiene
-  value313('313'),
-
-  /// Display: Dentistry
-  /// Definition: Dentistry
-  value314('314'),
-
-  /// Display: Dentures
-  /// Definition: Dentures
-  value315('315'),
-
-  /// Display: Depression
-  /// Definition: Depression
-  value316('316'),
-
-  /// Display: Detoxification
-  /// Definition: Detoxification
-  value317('317'),
-
-  /// Display: Diabetes
-  /// Definition: Diabetes
-  value318('318'),
-
-  /// Display: Diaphragm Fitting
-  /// Definition: Diaphragm Fitting
-  value319('319'),
-
-  /// Display: Dieticians
-  /// Definition: Dieticians
-  value320('320'),
-
-  /// Display: Disabled Parking
-  /// Definition: Disabled Parking
-  value321('321'),
-
-  /// Display: District Nursing
-  /// Definition: District Nursing
-  value322('322'),
-
-  /// Display: Divorce
-  /// Definition: Divorce
-  value323('323'),
-
-  /// Display: Doctors
-  /// Definition: Doctors
-  value324('324'),
-
-  /// Display: Drink-Drive
-  /// Definition: Drink-Drive
-  value325('325'),
-
-  /// Display: Dual Diagnosis Servi
-  /// Definition: Dual Diagnosis Services
-  value326('326'),
-
-  /// Display: Early Choice
-  /// Definition: Early Choice
-  value327('327'),
-
-  /// Display: Eating Disorder
-  /// Definition: Eating Disorder
-  value328('328'),
-
-  /// Display: Emergency Relief
-  /// Definition: Emergency Relief
-  value330('330'),
-
-  /// Display: Employment And Train
-  /// Definition: Employment And Training
-  value331('331'),
-
-  /// Display: Environment
-  /// Definition: Environment
-  value332('332'),
-
-  /// Display: Equipment
-  /// Definition: Equipment
-  value333('333'),
-
-  /// Display: Exercise
-  /// Definition: Exercise
-  value334('334'),
-
-  /// Display: Facility
-  /// Definition: Facility
-  value335('335'),
-
-  /// Display: Family Choice
-  /// Definition: Family Choice
-  value336('336'),
-
-  /// Display: Family Law
-  /// Definition: Family Law
-  value337('337'),
-
-  /// Display: Family Options
-  /// Definition: Family Options
-  value338('338'),
-
-  /// Display: Family Services
-  /// Definition: Family Services
-  value339('339'),
-
-  /// Display: FFYA
-  /// Definition: FFYA
-  value340('340'),
-
-  /// Display: Financial Aid
-  /// Definition: Financial Aid
-  value341('341'),
-
-  /// Display: Fitness
-  /// Definition: Fitness
-  value342('342'),
-
-  /// Display: Flexible Care Packag
-  /// Definition: Flexible Care Packages
-  value343('343'),
-
-  /// Display: Food
-  /// Definition: Food
-  value344('344'),
-
-  /// Display: Food Vouchers
-  /// Definition: Food Vouchers
-  value345('345'),
-
-  /// Display: Forensic Mental Heal
-  /// Definition: Forensic Mental Health Services
-  value346('346'),
-
-  /// Display: Futures
-  /// Definition: Futures
-  value347('347'),
-
-  /// Display: Futures For Young Ad
-  /// Definition: Futures For Young Adults
-  value348('348'),
-
-  /// Display: General Practitioner
-  /// Definition: General Practitioners
-  value349('349'),
-
-  /// Display: Grants
-  /// Definition: Grants
-  value350('350'),
-
-  /// Display: Grief
-  /// Definition: Grief
-  value351('351'),
-
-  /// Display: Grief Counselling
-  /// Definition: Grief Counselling
-  value352('352'),
-
-  /// Display: HACC
-  /// Definition: HACC
-  value353('353'),
-
-  /// Display: Heart Disease
-  /// Definition: Heart Disease
-  value354('354'),
-
-  /// Display: Help
-  /// Definition: Help
-  value355('355'),
-
-  /// Display: High Blood Pressure
-  /// Definition: High Blood Pressure
-  value356('356'),
-
-  /// Display: Home Help
-  /// Definition: Home Help
-  value357('357'),
-
-  /// Display: Home Nursing
-  /// Definition: Home Nursing
-  value358('358'),
-
-  /// Display: Homefirst
-  /// Definition: Homefirst
-  value359('359'),
-
-  /// Display: Hospice Care
-  /// Definition: Hospice Care
-  value360('360'),
-
-  /// Display: Hospital Services
-  /// Definition: Hospital Services
-  value361('361'),
-
-  /// Display: Hospital To Home
-  /// Definition: Hospital To Home
-  value362('362'),
-
-  /// Display: Hostel
-  /// Definition: Hostel
-  value364('364'),
-
-  /// Display: Hostel Accommodation
-  /// Definition: Hostel Accommodation
-  value365('365'),
-
-  /// Display: Household Items
-  /// Definition: Household Items
-  value366('366'),
-
-  /// Display: Hypertension
-  /// Definition: Hypertension
-  value367('367'),
-
-  /// Display: Illness
-  /// Definition: Illness
-  value368('368'),
-
-  /// Display: Independent Living
-  /// Definition: Independent Living
-  value369('369'),
-
-  /// Display: Information
-  /// Definition: Information
-  value370('370'),
-
-  /// Display: Injury
-  /// Definition: Injury
-  value371('371'),
-
-  /// Display: Intake
-  /// Definition: Intake
-  value372('372'),
-
-  /// Display: Intensive Mobile You
-  /// Definition: Intensive Mobile Youth Outreach Services (Imyos)
-  value373('373'),
-
-  /// Display: Intervention
-  /// Definition: Intervention
-  value374('374'),
-
-  /// Display: Job Searching
-  /// Definition: Job Searching
-  value375('375'),
-
-  /// Display: Justice
-  /// Definition: Justice
-  value376('376'),
-
-  /// Display: Leisure
-  /// Definition: Leisure
-  value377('377'),
-
-  /// Display: Loans
-  /// Definition: Loans
-  value378('378'),
-
-  /// Display: Low Income Earners
-  /// Definition: Low Income Earners
-  value379('379'),
-
-  /// Display: Lung
-  /// Definition: Lung
-  value380('380'),
-
-  /// Display: Making A Difference
-  /// Definition: Making A Difference
-  value381('381'),
-
-  /// Display: Medical Services
-  /// Definition: Medical Services
-  value382('382'),
-
-  /// Display: Medical Specialists
-  /// Definition: Medical Specialists
-  value383('383'),
-
-  /// Display: Medication Administr
-  /// Definition: Medication Administration
-  value384('384'),
-
-  /// Display: Menstrual Informatio
-  /// Definition: Menstrual Information
-  value385('385'),
-
-  /// Display: Methadone
-  /// Definition: Methadone
-  value386('386'),
-
-  /// Display: Mobile Support And T
-  /// Definition: Mobile Support And Treatment Services (MSTS)
-  value387('387'),
-
-  /// Display: Motor Neurone
-  /// Definition: Motor Neurone
-  value388('388'),
-
-  /// Display: Multiple Sclerosis
-  /// Definition: Multiple Sclerosis
-  value389('389'),
-
-  /// Display: Neighbourhood House
-  /// Definition: Neighbourhood House
-  value390('390'),
-
-  /// Display: Nursing Home
-  /// Definition: Nursing Home
-  value391('391'),
-
-  /// Display: Nursing Mothers
-  /// Definition: Nursing Mothers
-  value392('392'),
-
-  /// Display: Obesity
-  /// Definition: Obesity
-  value393('393'),
-
-  /// Display: Occupational Health
-  /// Definition: Occupational Health & Safety
-  value394('394'),
-
-  /// Display: Optometrist
-  /// Definition: Optometrist
-  value395('395'),
-
-  /// Display: Oral Hygiene
-  /// Definition: Oral Hygiene
-  value396('396'),
-
-  /// Display: Outpatients
-  /// Definition: Outpatients
-  value397('397'),
-
-  /// Display: Outreach Service
-  /// Definition: Outreach Service
-  value398('398'),
-
-  /// Display: PADP
-  /// Definition: PADP
-  value399('399'),
-
-  /// Display: Pain
-  /// Definition: Pain
-  value400('400'),
-
-  /// Display: Pap Smear
-  /// Definition: Pap Smear
-  value401('401'),
-
-  /// Display: Parenting
-  /// Definition: Parenting
-  value402('402'),
-
-  /// Display: Peak Organizations
-  /// Definition: Peak Organizations
-  value403('403'),
-
-  /// Display: Personal Care
-  /// Definition: Personal Care
-  value404('404'),
-
-  /// Display: Pharmacies
-  /// Definition: Pharmacies
-  value405('405'),
-
-  /// Display: Phobias
-  /// Definition: Phobias
-  value406('406'),
-
-  /// Display: Physical
-  /// Definition: Physical
-  value407('407'),
-
-  /// Display: Physical Activity
-  /// Definition: Physical Activity
-  value408('408'),
-
-  /// Display: Postnatal
-  /// Definition: Postnatal
-  value409('409'),
-
-  /// Display: Pregnancy
-  /// Definition: Pregnancy
-  value410('410'),
-
-  /// Display: Pregnancy Tests
-  /// Definition: Pregnancy Tests
-  value411('411'),
-
-  /// Display: Preschool
-  /// Definition: Preschool
-  value412('412'),
-
-  /// Display: Prescriptions
-  /// Definition: Prescriptions
-  value413('413'),
-
-  /// Display: Primary Mental Healt
-  /// Definition: Primary Mental Health And Early Intervention Teams
-  value414('414'),
-
-  /// Display: Property Maintenance
-  /// Definition: Property Maintenance
-  value415('415'),
-
-  /// Display: Prostate
-  /// Definition: Prostate
-  value416('416'),
-
-  /// Display: Psychiatric
-  /// Definition: Psychiatric
-  value417('417'),
-
-  /// Display: Psychiatric Disabili
-  /// Definition: Psychiatric Disability Support Services - Home-Based Outreach
-  value418('418'),
-
-  /// Display: Psychiatric Disabili
-  /// Definition: Psychiatric Disability Support Services - Planned Respite
-  value419('419'),
-
-  /// Display: Psychiatric Disabili
-  /// Definition: Psychiatric Disability Support Services - Residential Rehabilitation
-  value420('420'),
-
-  /// Display: Psychiatric Disabili
-  /// Definition: Psychiatric Disability Support Services Home-Based Outreach
-  value421('421'),
-
-  /// Display: Psychiatric Disabili
-  /// Definition: Psychiatric Disability Support Services Mutual Support And Self Help
-  value422('422'),
-
-  /// Display: Psychiatric Support
-  /// Definition: Psychiatric Support
-  value423('423'),
-
-  /// Display: Recreation
-  /// Definition: Recreation
-  value424('424'),
-
-  /// Display: Referral
-  /// Definition: Referral
-  value425('425'),
-
-  /// Display: Refuge
-  /// Definition: Refuge
-  value426('426'),
-
-  /// Display: Rent Assistance
-  /// Definition: Rent Assistance
-  value427('427'),
-
-  /// Display: Residential Faciliti
-  /// Definition: Residential Facilities
-  value428('428'),
-
-  /// Display: Residential Respite
-  /// Definition: Residential Respite
-  value429('429'),
-
-  /// Display: Respiratory
-  /// Definition: Respiratory
-  value430('430'),
-
-  /// Display: Response
-  /// Definition: Response
-  value431('431'),
-
-  /// Display: Rooming Houses
-  /// Definition: Rooming Houses
-  value432('432'),
-
-  /// Display: Safe Sex
-  /// Definition: Safe Sex
-  value433('433'),
-
-  /// Display: Secure Extended Care
-  /// Definition: Secure Extended Care Inpatient Services
-  value434('434'),
-
-  /// Display: Self Help
-  /// Definition: Self Help
-  value435('435'),
-
-  /// Display: Separation
-  /// Definition: Separation
-  value436('436'),
-
-  /// Display: Services
-  /// Definition: Services
-  value437('437'),
-
-  /// Display: Sex Education
-  /// Definition: Sex Education
-  value438('438'),
-
-  /// Display: Sexual Abuse
-  /// Definition: Sexual Abuse
-  value439('439'),
-
-  /// Display: Sexual Issues
-  /// Definition: Sexual Issues
-  value440('440'),
-
-  /// Display: Sexually Transmitted
-  /// Definition: Sexually Transmitted Diseases
-  value441('441'),
-
-  /// Display: SIDS
-  /// Definition: SIDS
-  value442('442'),
-
-  /// Display: Social Support
-  /// Definition: Social Support
-  value443('443'),
-
-  /// Display: Socialisation
-  /// Definition: Socialisation
-  value444('444'),
-
-  /// Display: Special Needs
-  /// Definition: Special Needs
-  value445('445'),
-
-  /// Display: Speech Therapist
-  /// Definition: Speech Therapist
-  value446('446'),
-
-  /// Display: Splinting
-  /// Definition: Splinting
-  value447('447'),
-
-  /// Display: Sport
-  /// Definition: Sport
-  value448('448'),
-
-  /// Display: Statewide And Specia
-  /// Definition: Statewide And Specialist Services
-  value449('449'),
-
-  /// Display: STD
-  /// Definition: STD
-  value450('450'),
-
-  /// Display: STI
-  /// Definition: STI
-  value451('451'),
-
-  /// Display: Stillbirth
-  /// Definition: Stillbirth
-  value452('452'),
-
-  /// Display: Stomal Care
-  /// Definition: Stomal Care
-  value453('453'),
-
-  /// Display: Stroke
-  /// Definition: Stroke
-  value454('454'),
-
-  /// Display: Substance Abuse
-  /// Definition: Substance Abuse
-  value455('455'),
-
-  /// Display: Support
-  /// Definition: Support
-  value456('456'),
-
-  /// Display: Syringes
-  /// Definition: Syringes
-  value457('457'),
-
-  /// Display: Teeth
-  /// Definition: Teeth
-  value458('458'),
-
-  /// Display: Tenancy Advice
-  /// Definition: Tenancy Advice
-  value459('459'),
-
-  /// Display: Terminal Illness
-  /// Definition: Terminal Illness
-  value460('460'),
-
-  /// Display: Therapy
-  /// Definition: Therapy
-  value461('461'),
-
-  /// Display: Transcription
-  /// Definition: Transcription
-  value462('462'),
-
-  /// Display: Translating Services
-  /// Definition: Translating Services
-  value463('463'),
-
-  /// Display: Translator
-  /// Definition: Translator
-  value464('464'),
-
-  /// Display: Transport
-  /// Definition: Transport
-  value465('465'),
-
-  /// Display: Vertebrae
-  /// Definition: Vertebrae
-  value466('466'),
-
-  /// Display: Violence
-  /// Definition: Violence
-  value467('467'),
-
-  /// Display: Vocational Guidance
-  /// Definition: Vocational Guidance
-  value468('468'),
-
-  /// Display: Weight
-  /// Definition: Weight
-  value469('469'),
-
-  /// Display: Welfare Assistance
-  /// Definition: Welfare Assistance
-  value470('470'),
-
-  /// Display: Welfare Counselling
-  /// Definition: Welfare Counselling
-  value471('471'),
-
-  /// Display: Wheelchairs
-  /// Definition: Wheelchairs
-  value472('472'),
-
-  /// Display: Wound Management
-  /// Definition: Wound Management
-  value473('473'),
-
-  /// Display: Young People At Risk
-  /// Definition: Young People At Risk
-  value474('474'),
-
-  /// Display: Further Desc. - Community Health Care
-  /// Definition: Further Description - Community Health Care
-  value475('475'),
-
-  /// Display: Library
-  /// Definition: Library
-  value476('476'),
-
-  /// Display: Community Hours
-  /// Definition: Community Hours
-  value477('477'),
-
-  /// Display: Further Desc. - Specialist Medical
-  /// Definition: Further Description - Specialist Medical
-  value478('478'),
-
-  /// Display: Hepatology
-  /// Definition: Hepatology
-  value479('479'),
-
-  /// Display: Gastroenterology
-  /// Definition: Gastroenterology
-  value480('480'),
-
-  /// Display: Gynaecology
-  /// Definition: Gynaecology
-  value481('481'),
-
-  /// Display: Obstetrics
-  /// Definition: Obstetrics
-  value482('482'),
-
-  /// Display: Further Desc. - Specialist Surgical
-  /// Definition: Further Description - Specialist Surgical
-  value483('483'),
-
-  /// Display: Placement Protection
-  /// Definition: Placement Protection
-  value484('484'),
-
-  /// Display: Family Violence
-  /// Definition: Family Violence
-  value485('485'),
-
-  /// Display: Integrated Family Services
-  /// Definition: Integrated Family Services
-  value486('486'),
-
-  /// Display: Diabetes Educator
-  /// Definition: Diabetes Educator
-  value488('488'),
-
-  /// Display: Kinship Care
-  /// Definition: Kinship Care
-  value489('489'),
-
-  /// Display: General Mental Health Services
-  /// Definition: General Mental Health Services
-  value490('490'),
-
-  /// Display: Exercise Physiology
-  /// Definition: Exercise Physiology
-  value491('491'),
-
-  /// Display: Medical Research
-  /// Definition: Medical Research
-  value492('492'),
-
-  /// Display: Youth
-  /// Definition: Youth
-  value493('493'),
-
-  /// Display: Youth Services
-  /// Definition: Youth Services
-  value494('494'),
-
-  /// Display: Youth Health
-  /// Definition: Youth Health
-  value495('495'),
-
-  /// Display: Child and Family Ser
-  /// Definition: Child and Family Services
-  value496('496'),
-
-  /// Display: Home Visits
-  /// Definition: Home Visits
-  value497('497'),
-
-  /// Display: Mobile Services
-  /// Definition: Mobile Services
-  value498('498'),
-
-  /// Display: Before and/or After
-  /// Definition: Before and/or After School Care
-  value500('500'),
-
-  /// Display: Cancer Services
-  /// Definition: Cancer Services
-  value501('501'),
-
-  /// Display: Integrated Cancer Se
-  /// Definition: Integrated Cancer Services
-  value502('502'),
-
-  /// Display: Multidisciplinary Se
-  /// Definition: Multidisciplinary Services
-  value503('503'),
-
-  /// Display: Multidisciplinary Ca
-  /// Definition: Multidisciplinary Cancer Services
-  value504('504'),
-
-  /// Display: Meetings
-  /// Definition: Meetings
-  value505('505'),
-
-  /// Display: Blood pressure monit
-  /// Definition: Blood pressure monitoring
-  value506('506'),
-
-  /// Display: Dose administration
-  /// Definition: Dose administration aid
-  value507('507'),
-
-  /// Display: Medical Equipment Hi
-  /// Definition: Medical Equipment Hire
-  value508('508'),
-
-  /// Display: Parenting/Family Support/Education
-  /// Definition: Parenting & family support/education
-  value509('509'),
-
-  /// Display: Deputising Service
-  /// Definition: Deputising Service
-  value510('510'),
-
-  /// Display: Cancer Support Groups
-  /// Definition: Cancer Support Groups
-  value513('513'),
-
-  /// Display: Community Cancer Services
-  /// Definition: Community Cancer Services
-  value514('514'),
-
-  /// Display: Disability Care Transport
-  /// Definition: Disability Care Transport
-  value530('530'),
-
-  /// Display: Aged Care Transport
-  /// Definition: Aged Care Transport
-  value531('531'),
-
-  /// Display: Diabetes Education s
-  /// Definition: Diabetes Education service
-  value532('532'),
-
-  /// Display: Cardiac Rehabilitati
-  /// Definition: Cardiac Rehabilitation Service
-  value533('533'),
-
-  /// Display: Young Adult Diabetes
-  /// Definition: Young Adult Diabetes services (YADS)
-  value534('534'),
-
-  /// Display: Pulmonary Rehabilita
-  /// Definition: Pulmonary Rehabilitation Service
-  value535('535'),
-
-  /// Display: Art therapy
-  /// Definition: Art therapy
-  value536('536'),
-
-  /// Display: Medication Reviews
-  /// Definition: Medication Reviews
-  value537('537'),
-
-  /// Display: Telephone Counselling
-  /// Definition: Telephone Counselling
-  value538('538'),
-
-  /// Display: Telephone Help Line
-  /// Definition: Telephone Help Line
-  value539('539'),
-
-  /// Display: Online Service
-  /// Definition: Online Service
-  value540('540'),
-
-  /// Display: Crisis - Mental Health
-  /// Definition: Crisis - Mental Health
-  value541('541'),
-
-  /// Display: Youth Crisis
-  /// Definition: Youth Crisis
-  value542('542'),
-
-  /// Display: Sexual Assault
-  /// Definition: Sexual Assault
-  value543('543'),
-
-  /// Display: GPAH Other
-  /// Definition: GPAH Other
-  value544('544'),
-
-  /// Display: Paediatric Dermatology
-  /// Definition: Paediatric Dermatology
-  value545('545'),
-
-  /// Display: Veterans Services
-  /// Definition: Veterans Services
-  value546('546'),
-
-  /// Display: Veterans
-  /// Definition: Veterans
-  value547('547'),
-
-  /// Display: Food Relief/Food/Meals
-  /// Definition: Food Relief/food/meals
-  value548('548'),
-
-  /// Display: Dementia Care
-  /// Definition: Dementia Care
-  value550('550'),
-
-  /// Display: Alzheimer
-  /// Definition: Alzheimer
-  value551('551'),
-
-  /// Display: Drug and/or Alcohol Support Groups
-  /// Definition: Drug and/or alcohol support groups
-  value552('552'),
-
-  /// Display: 1-on-1 Support /Mentoring /Coaching
-  /// Definition: One on One Support/Mentoring/Coaching
-  value553('553'),
-
-  /// Display: Chronic Disease Management
-  /// Definition: Chronic Disease Management
-  value554('554'),
-
-  /// Display: Liaison Services
-  /// Definition: Liaison Services
-  value555('555'),
-
-  /// Display: Walk-in Centre /Non-Emergency
-  /// Definition: Walk in Centre / non emergency
-  value556('556'),
-
-  /// Display: Inpatients
-  /// Definition: Inpatients
-  value557('557'),
-
-  /// Display: Spiritual Counselling
-  /// Definition: Spiritual Counselling
-  value558('558'),
-
-  /// Display: Women's Health
-  /// Definition: Women's Health
-  value559('559'),
-
-  /// Display: Men's Health
-  /// Definition: Men's Health
-  value560('560'),
-
-  /// Display: Health Education/Awareness Program
-  /// Definition: Health education/Health awareness program
-  value561('561'),
-
-  /// Display: Test Message
-  /// Definition: Test Message
-  value562('562'),
-
-  /// Display: Remedial Massage
-  /// Definition: Remedial Massage
-  value563('563'),
-
-  /// Display: Adolescent Mental Health Services
-  /// Definition: Adolescent Mental Health Services
-  value564('564'),
-
-  /// Display: Youth Drop In/Assistance/Support
-  /// Definition: Youth drop in/assistance/support
-  value565('565'),
-
-  /// Display: Aboriginal Health Worker
-  /// Definition: Aboriginal Health Worker
-  value566('566'),
-
-  /// Display: Women's Health Clinic
-  /// Definition: Women's Health Clinic
-  value567('567'),
-
-  /// Display: Men's Health Clinic
-  /// Definition: Men's Health Clinic
-  value568('568'),
-
-  /// Display: Migrant Health Clinic
-  /// Definition: Migrant Health Clinic
-  value569('569'),
-
-  /// Display: Refugee Health Clinic
-  /// Definition: Refugee Health Clinic
-  value570('570'),
-
-  /// Display: Aboriginal Health Clinic
-  /// Definition: Aboriginal Health Clinic
-  value571('571'),
-
-  /// Display: Nurse Practitioner Lead Clinic/s
-  /// Definition: Nurse Practitioner lead Clinic/s
-  value572('572'),
-
-  /// Display: Nurse Lead Clinic/s
-  /// Definition: Nurse lead Clinic/s
-  value573('573'),
-
-  /// Display: Culturally Tailored Support Groups
-  /// Definition: Culturally tailored support groups
-  value574('574'),
-
-  /// Display: Culturally Tailored Health Promotion
-  /// Definition: Culturally tailored health promotion
-  value575('575'),
-
-  /// Display: Rehabilitation
-  /// Definition: Rehabilitation
-  value576('576'),
-
-  /// Display: Education Information/Referral
-  /// Definition: Education information/referral
-  value577('577'),
-
-  /// Display: Social Work
-  /// Definition: Social Work
-  value580('580'),
-
-  /// Display: Haematology
-  /// Definition: Haematology
-  value581('581'),
-
-  /// Display: Maternity Shared Car
-  /// Definition: Maternity Shared Care
-  value582('582'),
-
-  /// Display: Rehabilitation Servi
-  /// Definition: Rehabilitation Service
-  value583('583'),
-
-  /// Display: Cranio-sacral Therapy
-  /// Definition: Cranio-Sacral Therapy
-  value584('584'),
-
-  /// Display: Prosthetics & Orthotics
-  /// Definition: Prosthetics & Orthotics
-  value585('585'),
-
-  /// Display: Home Medicine Review
-  /// Definition: Home Medicine Review
-  value589('589'),
-
-  /// Display: GPAH - Medical
-  /// Definition: GPAH - Medical
-  value590('590'),
-
-  /// Display: Music Therapy
-  /// Definition: Music Therapy
-  value591('591'),
-
-  /// Display: Falls Prevention
-  /// Definition: Falls Prevention
-  value593('593'),
-
-  /// Display: Accommodation/Tenancy
-  /// Definition: Accommodation/Tenancy
-  value599('599'),
-
-  /// Display: Assess-Skill, Ability, Needs
-  /// Definition: Assess-Skill, Ability, Needs
-  value600('600'),
-
-  /// Display: Assist Access/Maintain Employ
-  /// Definition: Assist Access/Maintain Employ
-  value601('601'),
-
-  /// Display: Assist Prod-Pers Care/Safety
-  /// Definition: Assist Prod-Pers Care/Safety
-  value602('602'),
-
-  /// Display: Assist-Integrate School/Ed
-  /// Definition: Assist-Integrate School/Ed
-  value603('603'),
-
-  /// Display: Assist-Life Stage, Transition
-  /// Definition: Assist-Life Stage, Transition
-  value604('604'),
-
-  /// Display: Assist-Personal Activities
-  /// Definition: Assist-Personal Activities
-  value605('605'),
-
-  /// Display: Assist-Travel/Transport
-  /// Definition: Assist-Travel/Transport
-  value606('606'),
-
-  /// Display: Assistive Equip-General Tasks
-  /// Definition: Assistive Equip-General Tasks
-  value607('607'),
-
-  /// Display: Assistive Equip-Recreation
-  /// Definition: Assistive Equip-Recreation
-  value608('608'),
-
-  /// Display: Assistive Prod-Household Task
-  /// Definition: Assistive Prod-Household Task
-  value609('609'),
-
-  /// Display: Behavior Support
-  /// Definition: Behavior Support
-  value610('610'),
-
-  /// Display: Comms & Info Equipment
-  /// Definition: Comms & Info Equipment
-  value611('611'),
-
-  /// Display: Community Nursing Care
-  /// Definition: Community Nursing Care
-  value612('612'),
-
-  /// Display: Daily Tasks/Shared Living
-  /// Definition: Daily Tasks/Shared Living
-  value613('613'),
-
-  /// Display: Development-Life Skills
-  /// Definition: Development-Life Skills
-  value614('614'),
-
-  /// Display: Early Childhood Supports
-  /// Definition: Early Childhood Supports
-  value615('615'),
-
-  /// Display: Equipment Special Assess Setup
-  /// Definition: Equipment Special Assess Setup
-  value616('616'),
-
-  /// Display: Hearing Equipment
-  /// Definition: Hearing Equipment
-  value617('617'),
-
-  /// Display: Home Modification
-  /// Definition: Home Modification
-  value618('618'),
-
-  /// Display: Household Tasks
-  /// Definition: Household Tasks
-  value619('619'),
-
-  /// Display: Interpret/Translate
-  /// Definition: Interpret/Translate
-  value620('620'),
-
-  /// Display: Other Innovative Supports
-  /// Definition: Other Innovative Supports
-  value621('621'),
-
-  /// Display: Participate Community
-  /// Definition: Participate Community
-  value622('622'),
-
-  /// Display: Personal Mobility Equipment
-  /// Definition: Personal Mobility Equipment
-  value623('623'),
-
-  /// Display: Physical Wellbeing
-  /// Definition: Physical Wellbeing
-  value624('624'),
-
-  /// Display: Plan Management
-  /// Definition: Plan Management
-  value625('625'),
-
-  /// Display: Therapeutic Supports
-  /// Definition: Therapeutic Supports
-  value626('626'),
-
-  /// Display: Training-Travel Independence
-  /// Definition: Training-Travel Independence
-  value627('627'),
-
-  /// Display: Vehicle modifications
-  /// Definition: Vehicle modifications
-  value628('628'),
-
-  /// Display: Vision Equipment
-  /// Definition: Vision Equipment
-  value629('629'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ServiceType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+class ServiceType {
+  // Private constructor for internal use (like enum)
+  ServiceType._(this.fhirCode, {this.element});
+
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ServiceType values
+  /// value1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value1 = ServiceType._(
+    '1',
+  );
+
+  /// value2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value2 = ServiceType._(
+    '2',
+  );
+
+  /// value3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value3 = ServiceType._(
+    '3',
+  );
+
+  /// value4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value4 = ServiceType._(
+    '4',
+  );
+
+  /// value5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value5 = ServiceType._(
+    '5',
+  );
+
+  /// value6
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value6 = ServiceType._(
+    '6',
+  );
+
+  /// value7
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value7 = ServiceType._(
+    '7',
+  );
+
+  /// value8
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value8 = ServiceType._(
+    '8',
+  );
+
+  /// value9
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value9 = ServiceType._(
+    '9',
+  );
+
+  /// value10
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value10 = ServiceType._(
+    '10',
+  );
+
+  /// value11
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value11 = ServiceType._(
+    '11',
+  );
+
+  /// value12
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value12 = ServiceType._(
+    '12',
+  );
+
+  /// value13
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value13 = ServiceType._(
+    '13',
+  );
+
+  /// value14
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value14 = ServiceType._(
+    '14',
+  );
+
+  /// value15
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value15 = ServiceType._(
+    '15',
+  );
+
+  /// value16
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value16 = ServiceType._(
+    '16',
+  );
+
+  /// value17
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value17 = ServiceType._(
+    '17',
+  );
+
+  /// value18
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value18 = ServiceType._(
+    '18',
+  );
+
+  /// value19
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value19 = ServiceType._(
+    '19',
+  );
+
+  /// value20
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value20 = ServiceType._(
+    '20',
+  );
+
+  /// value21
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value21 = ServiceType._(
+    '21',
+  );
+
+  /// value22
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value22 = ServiceType._(
+    '22',
+  );
+
+  /// value23
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value23 = ServiceType._(
+    '23',
+  );
+
+  /// value24
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value24 = ServiceType._(
+    '24',
+  );
+
+  /// value25
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value25 = ServiceType._(
+    '25',
+  );
+
+  /// value26
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value26 = ServiceType._(
+    '26',
+  );
+
+  /// value27
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value27 = ServiceType._(
+    '27',
+  );
+
+  /// value28
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value28 = ServiceType._(
+    '28',
+  );
+
+  /// value29
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value29 = ServiceType._(
+    '29',
+  );
+
+  /// value30
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value30 = ServiceType._(
+    '30',
+  );
+
+  /// value31
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value31 = ServiceType._(
+    '31',
+  );
+
+  /// value32
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value32 = ServiceType._(
+    '32',
+  );
+
+  /// value33
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value33 = ServiceType._(
+    '33',
+  );
+
+  /// value34
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value34 = ServiceType._(
+    '34',
+  );
+
+  /// value35
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value35 = ServiceType._(
+    '35',
+  );
+
+  /// value36
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value36 = ServiceType._(
+    '36',
+  );
+
+  /// value37
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value37 = ServiceType._(
+    '37',
+  );
+
+  /// value38
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value38 = ServiceType._(
+    '38',
+  );
+
+  /// value39
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value39 = ServiceType._(
+    '39',
+  );
+
+  /// value40
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value40 = ServiceType._(
+    '40',
+  );
+
+  /// value41
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value41 = ServiceType._(
+    '41',
+  );
+
+  /// value42
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value42 = ServiceType._(
+    '42',
+  );
+
+  /// value43
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value43 = ServiceType._(
+    '43',
+  );
+
+  /// value44
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value44 = ServiceType._(
+    '44',
+  );
+
+  /// value45
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value45 = ServiceType._(
+    '45',
+  );
+
+  /// value46
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value46 = ServiceType._(
+    '46',
+  );
+
+  /// value47
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value47 = ServiceType._(
+    '47',
+  );
+
+  /// value48
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value48 = ServiceType._(
+    '48',
+  );
+
+  /// value49
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value49 = ServiceType._(
+    '49',
+  );
+
+  /// value50
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value50 = ServiceType._(
+    '50',
+  );
+
+  /// value51
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value51 = ServiceType._(
+    '51',
+  );
+
+  /// value52
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value52 = ServiceType._(
+    '52',
+  );
+
+  /// value53
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value53 = ServiceType._(
+    '53',
+  );
+
+  /// value54
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value54 = ServiceType._(
+    '54',
+  );
+
+  /// value55
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value55 = ServiceType._(
+    '55',
+  );
+
+  /// value56
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value56 = ServiceType._(
+    '56',
+  );
+
+  /// value57
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value57 = ServiceType._(
+    '57',
+  );
+
+  /// value58
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value58 = ServiceType._(
+    '58',
+  );
+
+  /// value59
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value59 = ServiceType._(
+    '59',
+  );
+
+  /// value60
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value60 = ServiceType._(
+    '60',
+  );
+
+  /// value61
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value61 = ServiceType._(
+    '61',
+  );
+
+  /// value62
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value62 = ServiceType._(
+    '62',
+  );
+
+  /// value63
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value63 = ServiceType._(
+    '63',
+  );
+
+  /// value64
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value64 = ServiceType._(
+    '64',
+  );
+
+  /// value65
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value65 = ServiceType._(
+    '65',
+  );
+
+  /// value66
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value66 = ServiceType._(
+    '66',
+  );
+
+  /// value67
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value67 = ServiceType._(
+    '67',
+  );
+
+  /// value68
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value68 = ServiceType._(
+    '68',
+  );
+
+  /// value69
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value69 = ServiceType._(
+    '69',
+  );
+
+  /// value70
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value70 = ServiceType._(
+    '70',
+  );
+
+  /// value71
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value71 = ServiceType._(
+    '71',
+  );
+
+  /// value72
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value72 = ServiceType._(
+    '72',
+  );
+
+  /// value73
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value73 = ServiceType._(
+    '73',
+  );
+
+  /// value74
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value74 = ServiceType._(
+    '74',
+  );
+
+  /// value75
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value75 = ServiceType._(
+    '75',
+  );
+
+  /// value76
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value76 = ServiceType._(
+    '76',
+  );
+
+  /// value77
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value77 = ServiceType._(
+    '77',
+  );
+
+  /// value78
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value78 = ServiceType._(
+    '78',
+  );
+
+  /// value79
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value79 = ServiceType._(
+    '79',
+  );
+
+  /// value80
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value80 = ServiceType._(
+    '80',
+  );
+
+  /// value81
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value81 = ServiceType._(
+    '81',
+  );
+
+  /// value82
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value82 = ServiceType._(
+    '82',
+  );
+
+  /// value83
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value83 = ServiceType._(
+    '83',
+  );
+
+  /// value84
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value84 = ServiceType._(
+    '84',
+  );
+
+  /// value85
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value85 = ServiceType._(
+    '85',
+  );
+
+  /// value86
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value86 = ServiceType._(
+    '86',
+  );
+
+  /// value87
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value87 = ServiceType._(
+    '87',
+  );
+
+  /// value88
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value88 = ServiceType._(
+    '88',
+  );
+
+  /// value89
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value89 = ServiceType._(
+    '89',
+  );
+
+  /// value90
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value90 = ServiceType._(
+    '90',
+  );
+
+  /// value91
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value91 = ServiceType._(
+    '91',
+  );
+
+  /// value92
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value92 = ServiceType._(
+    '92',
+  );
+
+  /// value93
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value93 = ServiceType._(
+    '93',
+  );
+
+  /// value94
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value94 = ServiceType._(
+    '94',
+  );
+
+  /// value95
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value95 = ServiceType._(
+    '95',
+  );
+
+  /// value96
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value96 = ServiceType._(
+    '96',
+  );
+
+  /// value97
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value97 = ServiceType._(
+    '97',
+  );
+
+  /// value98
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value98 = ServiceType._(
+    '98',
+  );
+
+  /// value99
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value99 = ServiceType._(
+    '99',
+  );
+
+  /// value100
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value100 = ServiceType._(
+    '100',
+  );
+
+  /// value101
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value101 = ServiceType._(
+    '101',
+  );
+
+  /// value102
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value102 = ServiceType._(
+    '102',
+  );
+
+  /// value103
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value103 = ServiceType._(
+    '103',
+  );
+
+  /// value104
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value104 = ServiceType._(
+    '104',
+  );
+
+  /// value105
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value105 = ServiceType._(
+    '105',
+  );
+
+  /// value106
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value106 = ServiceType._(
+    '106',
+  );
+
+  /// value107
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value107 = ServiceType._(
+    '107',
+  );
+
+  /// value108
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value108 = ServiceType._(
+    '108',
+  );
+
+  /// value109
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value109 = ServiceType._(
+    '109',
+  );
+
+  /// value110
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value110 = ServiceType._(
+    '110',
+  );
+
+  /// value111
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value111 = ServiceType._(
+    '111',
+  );
+
+  /// value112
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value112 = ServiceType._(
+    '112',
+  );
+
+  /// value113
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value113 = ServiceType._(
+    '113',
+  );
+
+  /// value114
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value114 = ServiceType._(
+    '114',
+  );
+
+  /// value115
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value115 = ServiceType._(
+    '115',
+  );
+
+  /// value116
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value116 = ServiceType._(
+    '116',
+  );
+
+  /// value117
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value117 = ServiceType._(
+    '117',
+  );
+
+  /// value118
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value118 = ServiceType._(
+    '118',
+  );
+
+  /// value119
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value119 = ServiceType._(
+    '119',
+  );
+
+  /// value120
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value120 = ServiceType._(
+    '120',
+  );
+
+  /// value121
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value121 = ServiceType._(
+    '121',
+  );
+
+  /// value122
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value122 = ServiceType._(
+    '122',
+  );
+
+  /// value123
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value123 = ServiceType._(
+    '123',
+  );
+
+  /// value124
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value124 = ServiceType._(
+    '124',
+  );
+
+  /// value125
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value125 = ServiceType._(
+    '125',
+  );
+
+  /// value126
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value126 = ServiceType._(
+    '126',
+  );
+
+  /// value127
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value127 = ServiceType._(
+    '127',
+  );
+
+  /// value128
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value128 = ServiceType._(
+    '128',
+  );
+
+  /// value129
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value129 = ServiceType._(
+    '129',
+  );
+
+  /// value130
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value130 = ServiceType._(
+    '130',
+  );
+
+  /// value131
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value131 = ServiceType._(
+    '131',
+  );
+
+  /// value132
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value132 = ServiceType._(
+    '132',
+  );
+
+  /// value133
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value133 = ServiceType._(
+    '133',
+  );
+
+  /// value134
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value134 = ServiceType._(
+    '134',
+  );
+
+  /// value135
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value135 = ServiceType._(
+    '135',
+  );
+
+  /// value136
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value136 = ServiceType._(
+    '136',
+  );
+
+  /// value137
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value137 = ServiceType._(
+    '137',
+  );
+
+  /// value138
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value138 = ServiceType._(
+    '138',
+  );
+
+  /// value139
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value139 = ServiceType._(
+    '139',
+  );
+
+  /// value140
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value140 = ServiceType._(
+    '140',
+  );
+
+  /// value141
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value141 = ServiceType._(
+    '141',
+  );
+
+  /// value142
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value142 = ServiceType._(
+    '142',
+  );
+
+  /// value143
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value143 = ServiceType._(
+    '143',
+  );
+
+  /// value144
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value144 = ServiceType._(
+    '144',
+  );
+
+  /// value145
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value145 = ServiceType._(
+    '145',
+  );
+
+  /// value146
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value146 = ServiceType._(
+    '146',
+  );
+
+  /// value147
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value147 = ServiceType._(
+    '147',
+  );
+
+  /// value148
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value148 = ServiceType._(
+    '148',
+  );
+
+  /// value149
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value149 = ServiceType._(
+    '149',
+  );
+
+  /// value150
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value150 = ServiceType._(
+    '150',
+  );
+
+  /// value151
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value151 = ServiceType._(
+    '151',
+  );
+
+  /// value152
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value152 = ServiceType._(
+    '152',
+  );
+
+  /// value153
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value153 = ServiceType._(
+    '153',
+  );
+
+  /// value154
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value154 = ServiceType._(
+    '154',
+  );
+
+  /// value155
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value155 = ServiceType._(
+    '155',
+  );
+
+  /// value156
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value156 = ServiceType._(
+    '156',
+  );
+
+  /// value157
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value157 = ServiceType._(
+    '157',
+  );
+
+  /// value158
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value158 = ServiceType._(
+    '158',
+  );
+
+  /// value159
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value159 = ServiceType._(
+    '159',
+  );
+
+  /// value160
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value160 = ServiceType._(
+    '160',
+  );
+
+  /// value161
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value161 = ServiceType._(
+    '161',
+  );
+
+  /// value162
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value162 = ServiceType._(
+    '162',
+  );
+
+  /// value163
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value163 = ServiceType._(
+    '163',
+  );
+
+  /// value164
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value164 = ServiceType._(
+    '164',
+  );
+
+  /// value165
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value165 = ServiceType._(
+    '165',
+  );
+
+  /// value166
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value166 = ServiceType._(
+    '166',
+  );
+
+  /// value167
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value167 = ServiceType._(
+    '167',
+  );
+
+  /// value168
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value168 = ServiceType._(
+    '168',
+  );
+
+  /// value169
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value169 = ServiceType._(
+    '169',
+  );
+
+  /// value170
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value170 = ServiceType._(
+    '170',
+  );
+
+  /// value171
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value171 = ServiceType._(
+    '171',
+  );
+
+  /// value172
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value172 = ServiceType._(
+    '172',
+  );
+
+  /// value173
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value173 = ServiceType._(
+    '173',
+  );
+
+  /// value174
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value174 = ServiceType._(
+    '174',
+  );
+
+  /// value175
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value175 = ServiceType._(
+    '175',
+  );
+
+  /// value176
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value176 = ServiceType._(
+    '176',
+  );
+
+  /// value177
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value177 = ServiceType._(
+    '177',
+  );
+
+  /// value178
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value178 = ServiceType._(
+    '178',
+  );
+
+  /// value179
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value179 = ServiceType._(
+    '179',
+  );
+
+  /// value180
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value180 = ServiceType._(
+    '180',
+  );
+
+  /// value181
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value181 = ServiceType._(
+    '181',
+  );
+
+  /// value182
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value182 = ServiceType._(
+    '182',
+  );
+
+  /// value183
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value183 = ServiceType._(
+    '183',
+  );
+
+  /// value184
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value184 = ServiceType._(
+    '184',
+  );
+
+  /// value185
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value185 = ServiceType._(
+    '185',
+  );
+
+  /// value186
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value186 = ServiceType._(
+    '186',
+  );
+
+  /// value187
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value187 = ServiceType._(
+    '187',
+  );
+
+  /// value188
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value188 = ServiceType._(
+    '188',
+  );
+
+  /// value189
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value189 = ServiceType._(
+    '189',
+  );
+
+  /// value190
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value190 = ServiceType._(
+    '190',
+  );
+
+  /// value191
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value191 = ServiceType._(
+    '191',
+  );
+
+  /// value192
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value192 = ServiceType._(
+    '192',
+  );
+
+  /// value193
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value193 = ServiceType._(
+    '193',
+  );
+
+  /// value194
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value194 = ServiceType._(
+    '194',
+  );
+
+  /// value195
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value195 = ServiceType._(
+    '195',
+  );
+
+  /// value196
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value196 = ServiceType._(
+    '196',
+  );
+
+  /// value197
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value197 = ServiceType._(
+    '197',
+  );
+
+  /// value198
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value198 = ServiceType._(
+    '198',
+  );
+
+  /// value199
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value199 = ServiceType._(
+    '199',
+  );
+
+  /// value200
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value200 = ServiceType._(
+    '200',
+  );
+
+  /// value201
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value201 = ServiceType._(
+    '201',
+  );
+
+  /// value202
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value202 = ServiceType._(
+    '202',
+  );
+
+  /// value203
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value203 = ServiceType._(
+    '203',
+  );
+
+  /// value204
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value204 = ServiceType._(
+    '204',
+  );
+
+  /// value205
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value205 = ServiceType._(
+    '205',
+  );
+
+  /// value206
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value206 = ServiceType._(
+    '206',
+  );
+
+  /// value207
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value207 = ServiceType._(
+    '207',
+  );
+
+  /// value208
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value208 = ServiceType._(
+    '208',
+  );
+
+  /// value209
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value209 = ServiceType._(
+    '209',
+  );
+
+  /// value210
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value210 = ServiceType._(
+    '210',
+  );
+
+  /// value211
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value211 = ServiceType._(
+    '211',
+  );
+
+  /// value212
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value212 = ServiceType._(
+    '212',
+  );
+
+  /// value213
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value213 = ServiceType._(
+    '213',
+  );
+
+  /// value214
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value214 = ServiceType._(
+    '214',
+  );
+
+  /// value215
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value215 = ServiceType._(
+    '215',
+  );
+
+  /// value216
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value216 = ServiceType._(
+    '216',
+  );
+
+  /// value217
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value217 = ServiceType._(
+    '217',
+  );
+
+  /// value218
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value218 = ServiceType._(
+    '218',
+  );
+
+  /// value219
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value219 = ServiceType._(
+    '219',
+  );
+
+  /// value220
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value220 = ServiceType._(
+    '220',
+  );
+
+  /// value221
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value221 = ServiceType._(
+    '221',
+  );
+
+  /// value222
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value222 = ServiceType._(
+    '222',
+  );
+
+  /// value223
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value223 = ServiceType._(
+    '223',
+  );
+
+  /// value224
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value224 = ServiceType._(
+    '224',
+  );
+
+  /// value225
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value225 = ServiceType._(
+    '225',
+  );
+
+  /// value226
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value226 = ServiceType._(
+    '226',
+  );
+
+  /// value227
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value227 = ServiceType._(
+    '227',
+  );
+
+  /// value228
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value228 = ServiceType._(
+    '228',
+  );
+
+  /// value229
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value229 = ServiceType._(
+    '229',
+  );
+
+  /// value230
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value230 = ServiceType._(
+    '230',
+  );
+
+  /// value231
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value231 = ServiceType._(
+    '231',
+  );
+
+  /// value232
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value232 = ServiceType._(
+    '232',
+  );
+
+  /// value233
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value233 = ServiceType._(
+    '233',
+  );
+
+  /// value234
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value234 = ServiceType._(
+    '234',
+  );
+
+  /// value235
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value235 = ServiceType._(
+    '235',
+  );
+
+  /// value236
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value236 = ServiceType._(
+    '236',
+  );
+
+  /// value237
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value237 = ServiceType._(
+    '237',
+  );
+
+  /// value238
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value238 = ServiceType._(
+    '238',
+  );
+
+  /// value239
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value239 = ServiceType._(
+    '239',
+  );
+
+  /// value240
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value240 = ServiceType._(
+    '240',
+  );
+
+  /// value241
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value241 = ServiceType._(
+    '241',
+  );
+
+  /// value242
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value242 = ServiceType._(
+    '242',
+  );
+
+  /// value243
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value243 = ServiceType._(
+    '243',
+  );
+
+  /// value244
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value244 = ServiceType._(
+    '244',
+  );
+
+  /// value245
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value245 = ServiceType._(
+    '245',
+  );
+
+  /// value246
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value246 = ServiceType._(
+    '246',
+  );
+
+  /// value247
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value247 = ServiceType._(
+    '247',
+  );
+
+  /// value248
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value248 = ServiceType._(
+    '248',
+  );
+
+  /// value249
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value249 = ServiceType._(
+    '249',
+  );
+
+  /// value250
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value250 = ServiceType._(
+    '250',
+  );
+
+  /// value251
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value251 = ServiceType._(
+    '251',
+  );
+
+  /// value252
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value252 = ServiceType._(
+    '252',
+  );
+
+  /// value253
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value253 = ServiceType._(
+    '253',
+  );
+
+  /// value254
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value254 = ServiceType._(
+    '254',
+  );
+
+  /// value255
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value255 = ServiceType._(
+    '255',
+  );
+
+  /// value256
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value256 = ServiceType._(
+    '256',
+  );
+
+  /// value257
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value257 = ServiceType._(
+    '257',
+  );
+
+  /// value258
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value258 = ServiceType._(
+    '258',
+  );
+
+  /// value259
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value259 = ServiceType._(
+    '259',
+  );
+
+  /// value260
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value260 = ServiceType._(
+    '260',
+  );
+
+  /// value261
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value261 = ServiceType._(
+    '261',
+  );
+
+  /// value262
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value262 = ServiceType._(
+    '262',
+  );
+
+  /// value263
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value263 = ServiceType._(
+    '263',
+  );
+
+  /// value264
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value264 = ServiceType._(
+    '264',
+  );
+
+  /// value265
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value265 = ServiceType._(
+    '265',
+  );
+
+  /// value266
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value266 = ServiceType._(
+    '266',
+  );
+
+  /// value267
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value267 = ServiceType._(
+    '267',
+  );
+
+  /// value268
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value268 = ServiceType._(
+    '268',
+  );
+
+  /// value269
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value269 = ServiceType._(
+    '269',
+  );
+
+  /// value270
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value270 = ServiceType._(
+    '270',
+  );
+
+  /// value271
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value271 = ServiceType._(
+    '271',
+  );
+
+  /// value272
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value272 = ServiceType._(
+    '272',
+  );
+
+  /// value273
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value273 = ServiceType._(
+    '273',
+  );
+
+  /// value274
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value274 = ServiceType._(
+    '274',
+  );
+
+  /// value275
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value275 = ServiceType._(
+    '275',
+  );
+
+  /// value276
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value276 = ServiceType._(
+    '276',
+  );
+
+  /// value277
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value277 = ServiceType._(
+    '277',
+  );
+
+  /// value278
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value278 = ServiceType._(
+    '278',
+  );
+
+  /// value279
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value279 = ServiceType._(
+    '279',
+  );
+
+  /// value280
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value280 = ServiceType._(
+    '280',
+  );
+
+  /// value281
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value281 = ServiceType._(
+    '281',
+  );
+
+  /// value282
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value282 = ServiceType._(
+    '282',
+  );
+
+  /// value283
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value283 = ServiceType._(
+    '283',
+  );
+
+  /// value284
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value284 = ServiceType._(
+    '284',
+  );
+
+  /// value285
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value285 = ServiceType._(
+    '285',
+  );
+
+  /// value286
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value286 = ServiceType._(
+    '286',
+  );
+
+  /// value287
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value287 = ServiceType._(
+    '287',
+  );
+
+  /// value288
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value288 = ServiceType._(
+    '288',
+  );
+
+  /// value289
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value289 = ServiceType._(
+    '289',
+  );
+
+  /// value290
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value290 = ServiceType._(
+    '290',
+  );
+
+  /// value291
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value291 = ServiceType._(
+    '291',
+  );
+
+  /// value292
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value292 = ServiceType._(
+    '292',
+  );
+
+  /// value293
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value293 = ServiceType._(
+    '293',
+  );
+
+  /// value294
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value294 = ServiceType._(
+    '294',
+  );
+
+  /// value295
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value295 = ServiceType._(
+    '295',
+  );
+
+  /// value296
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value296 = ServiceType._(
+    '296',
+  );
+
+  /// value297
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value297 = ServiceType._(
+    '297',
+  );
+
+  /// value298
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value298 = ServiceType._(
+    '298',
+  );
+
+  /// value299
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value299 = ServiceType._(
+    '299',
+  );
+
+  /// value300
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value300 = ServiceType._(
+    '300',
+  );
+
+  /// value301
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value301 = ServiceType._(
+    '301',
+  );
+
+  /// value302
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value302 = ServiceType._(
+    '302',
+  );
+
+  /// value303
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value303 = ServiceType._(
+    '303',
+  );
+
+  /// value304
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value304 = ServiceType._(
+    '304',
+  );
+
+  /// value305
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value305 = ServiceType._(
+    '305',
+  );
+
+  /// value306
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value306 = ServiceType._(
+    '306',
+  );
+
+  /// value307
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value307 = ServiceType._(
+    '307',
+  );
+
+  /// value308
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value308 = ServiceType._(
+    '308',
+  );
+
+  /// value309
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value309 = ServiceType._(
+    '309',
+  );
+
+  /// value310
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value310 = ServiceType._(
+    '310',
+  );
+
+  /// value311
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value311 = ServiceType._(
+    '311',
+  );
+
+  /// value312
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value312 = ServiceType._(
+    '312',
+  );
+
+  /// value313
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value313 = ServiceType._(
+    '313',
+  );
+
+  /// value314
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value314 = ServiceType._(
+    '314',
+  );
+
+  /// value315
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value315 = ServiceType._(
+    '315',
+  );
+
+  /// value316
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value316 = ServiceType._(
+    '316',
+  );
+
+  /// value317
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value317 = ServiceType._(
+    '317',
+  );
+
+  /// value318
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value318 = ServiceType._(
+    '318',
+  );
+
+  /// value319
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value319 = ServiceType._(
+    '319',
+  );
+
+  /// value320
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value320 = ServiceType._(
+    '320',
+  );
+
+  /// value321
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value321 = ServiceType._(
+    '321',
+  );
+
+  /// value322
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value322 = ServiceType._(
+    '322',
+  );
+
+  /// value323
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value323 = ServiceType._(
+    '323',
+  );
+
+  /// value324
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value324 = ServiceType._(
+    '324',
+  );
+
+  /// value325
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value325 = ServiceType._(
+    '325',
+  );
+
+  /// value326
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value326 = ServiceType._(
+    '326',
+  );
+
+  /// value327
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value327 = ServiceType._(
+    '327',
+  );
+
+  /// value328
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value328 = ServiceType._(
+    '328',
+  );
+
+  /// value330
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value330 = ServiceType._(
+    '330',
+  );
+
+  /// value331
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value331 = ServiceType._(
+    '331',
+  );
+
+  /// value332
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value332 = ServiceType._(
+    '332',
+  );
+
+  /// value333
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value333 = ServiceType._(
+    '333',
+  );
+
+  /// value334
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value334 = ServiceType._(
+    '334',
+  );
+
+  /// value335
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value335 = ServiceType._(
+    '335',
+  );
+
+  /// value336
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value336 = ServiceType._(
+    '336',
+  );
+
+  /// value337
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value337 = ServiceType._(
+    '337',
+  );
+
+  /// value338
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value338 = ServiceType._(
+    '338',
+  );
+
+  /// value339
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value339 = ServiceType._(
+    '339',
+  );
+
+  /// value340
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value340 = ServiceType._(
+    '340',
+  );
+
+  /// value341
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value341 = ServiceType._(
+    '341',
+  );
+
+  /// value342
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value342 = ServiceType._(
+    '342',
+  );
+
+  /// value343
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value343 = ServiceType._(
+    '343',
+  );
+
+  /// value344
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value344 = ServiceType._(
+    '344',
+  );
+
+  /// value345
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value345 = ServiceType._(
+    '345',
+  );
+
+  /// value346
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value346 = ServiceType._(
+    '346',
+  );
+
+  /// value347
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value347 = ServiceType._(
+    '347',
+  );
+
+  /// value348
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value348 = ServiceType._(
+    '348',
+  );
+
+  /// value349
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value349 = ServiceType._(
+    '349',
+  );
+
+  /// value350
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value350 = ServiceType._(
+    '350',
+  );
+
+  /// value351
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value351 = ServiceType._(
+    '351',
+  );
+
+  /// value352
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value352 = ServiceType._(
+    '352',
+  );
+
+  /// value353
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value353 = ServiceType._(
+    '353',
+  );
+
+  /// value354
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value354 = ServiceType._(
+    '354',
+  );
+
+  /// value355
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value355 = ServiceType._(
+    '355',
+  );
+
+  /// value356
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value356 = ServiceType._(
+    '356',
+  );
+
+  /// value357
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value357 = ServiceType._(
+    '357',
+  );
+
+  /// value358
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value358 = ServiceType._(
+    '358',
+  );
+
+  /// value359
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value359 = ServiceType._(
+    '359',
+  );
+
+  /// value360
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value360 = ServiceType._(
+    '360',
+  );
+
+  /// value361
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value361 = ServiceType._(
+    '361',
+  );
+
+  /// value362
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value362 = ServiceType._(
+    '362',
+  );
+
+  /// value364
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value364 = ServiceType._(
+    '364',
+  );
+
+  /// value365
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value365 = ServiceType._(
+    '365',
+  );
+
+  /// value366
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value366 = ServiceType._(
+    '366',
+  );
+
+  /// value367
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value367 = ServiceType._(
+    '367',
+  );
+
+  /// value368
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value368 = ServiceType._(
+    '368',
+  );
+
+  /// value369
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value369 = ServiceType._(
+    '369',
+  );
+
+  /// value370
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value370 = ServiceType._(
+    '370',
+  );
+
+  /// value371
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value371 = ServiceType._(
+    '371',
+  );
+
+  /// value372
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value372 = ServiceType._(
+    '372',
+  );
+
+  /// value373
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value373 = ServiceType._(
+    '373',
+  );
+
+  /// value374
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value374 = ServiceType._(
+    '374',
+  );
+
+  /// value375
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value375 = ServiceType._(
+    '375',
+  );
+
+  /// value376
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value376 = ServiceType._(
+    '376',
+  );
+
+  /// value377
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value377 = ServiceType._(
+    '377',
+  );
+
+  /// value378
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value378 = ServiceType._(
+    '378',
+  );
+
+  /// value379
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value379 = ServiceType._(
+    '379',
+  );
+
+  /// value380
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value380 = ServiceType._(
+    '380',
+  );
+
+  /// value381
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value381 = ServiceType._(
+    '381',
+  );
+
+  /// value382
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value382 = ServiceType._(
+    '382',
+  );
+
+  /// value383
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value383 = ServiceType._(
+    '383',
+  );
+
+  /// value384
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value384 = ServiceType._(
+    '384',
+  );
+
+  /// value385
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value385 = ServiceType._(
+    '385',
+  );
+
+  /// value386
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value386 = ServiceType._(
+    '386',
+  );
+
+  /// value387
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value387 = ServiceType._(
+    '387',
+  );
+
+  /// value388
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value388 = ServiceType._(
+    '388',
+  );
+
+  /// value389
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value389 = ServiceType._(
+    '389',
+  );
+
+  /// value390
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value390 = ServiceType._(
+    '390',
+  );
+
+  /// value391
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value391 = ServiceType._(
+    '391',
+  );
+
+  /// value392
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value392 = ServiceType._(
+    '392',
+  );
+
+  /// value393
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value393 = ServiceType._(
+    '393',
+  );
+
+  /// value394
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value394 = ServiceType._(
+    '394',
+  );
+
+  /// value395
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value395 = ServiceType._(
+    '395',
+  );
+
+  /// value396
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value396 = ServiceType._(
+    '396',
+  );
+
+  /// value397
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value397 = ServiceType._(
+    '397',
+  );
+
+  /// value398
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value398 = ServiceType._(
+    '398',
+  );
+
+  /// value399
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value399 = ServiceType._(
+    '399',
+  );
+
+  /// value400
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value400 = ServiceType._(
+    '400',
+  );
+
+  /// value401
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value401 = ServiceType._(
+    '401',
+  );
+
+  /// value402
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value402 = ServiceType._(
+    '402',
+  );
+
+  /// value403
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value403 = ServiceType._(
+    '403',
+  );
+
+  /// value404
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value404 = ServiceType._(
+    '404',
+  );
+
+  /// value405
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value405 = ServiceType._(
+    '405',
+  );
+
+  /// value406
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value406 = ServiceType._(
+    '406',
+  );
+
+  /// value407
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value407 = ServiceType._(
+    '407',
+  );
+
+  /// value408
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value408 = ServiceType._(
+    '408',
+  );
+
+  /// value409
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value409 = ServiceType._(
+    '409',
+  );
+
+  /// value410
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value410 = ServiceType._(
+    '410',
+  );
+
+  /// value411
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value411 = ServiceType._(
+    '411',
+  );
+
+  /// value412
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value412 = ServiceType._(
+    '412',
+  );
+
+  /// value413
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value413 = ServiceType._(
+    '413',
+  );
+
+  /// value414
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value414 = ServiceType._(
+    '414',
+  );
+
+  /// value415
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value415 = ServiceType._(
+    '415',
+  );
+
+  /// value416
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value416 = ServiceType._(
+    '416',
+  );
+
+  /// value417
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value417 = ServiceType._(
+    '417',
+  );
+
+  /// value418
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value418 = ServiceType._(
+    '418',
+  );
+
+  /// value419
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value419 = ServiceType._(
+    '419',
+  );
+
+  /// value420
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value420 = ServiceType._(
+    '420',
+  );
+
+  /// value421
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value421 = ServiceType._(
+    '421',
+  );
+
+  /// value422
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value422 = ServiceType._(
+    '422',
+  );
+
+  /// value423
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value423 = ServiceType._(
+    '423',
+  );
+
+  /// value424
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value424 = ServiceType._(
+    '424',
+  );
+
+  /// value425
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value425 = ServiceType._(
+    '425',
+  );
+
+  /// value426
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value426 = ServiceType._(
+    '426',
+  );
+
+  /// value427
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value427 = ServiceType._(
+    '427',
+  );
+
+  /// value428
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value428 = ServiceType._(
+    '428',
+  );
+
+  /// value429
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value429 = ServiceType._(
+    '429',
+  );
+
+  /// value430
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value430 = ServiceType._(
+    '430',
+  );
+
+  /// value431
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value431 = ServiceType._(
+    '431',
+  );
+
+  /// value432
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value432 = ServiceType._(
+    '432',
+  );
+
+  /// value433
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value433 = ServiceType._(
+    '433',
+  );
+
+  /// value434
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value434 = ServiceType._(
+    '434',
+  );
+
+  /// value435
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value435 = ServiceType._(
+    '435',
+  );
+
+  /// value436
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value436 = ServiceType._(
+    '436',
+  );
+
+  /// value437
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value437 = ServiceType._(
+    '437',
+  );
+
+  /// value438
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value438 = ServiceType._(
+    '438',
+  );
+
+  /// value439
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value439 = ServiceType._(
+    '439',
+  );
+
+  /// value440
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value440 = ServiceType._(
+    '440',
+  );
+
+  /// value441
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value441 = ServiceType._(
+    '441',
+  );
+
+  /// value442
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value442 = ServiceType._(
+    '442',
+  );
+
+  /// value443
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value443 = ServiceType._(
+    '443',
+  );
+
+  /// value444
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value444 = ServiceType._(
+    '444',
+  );
+
+  /// value445
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value445 = ServiceType._(
+    '445',
+  );
+
+  /// value446
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value446 = ServiceType._(
+    '446',
+  );
+
+  /// value447
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value447 = ServiceType._(
+    '447',
+  );
+
+  /// value448
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value448 = ServiceType._(
+    '448',
+  );
+
+  /// value449
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value449 = ServiceType._(
+    '449',
+  );
+
+  /// value450
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value450 = ServiceType._(
+    '450',
+  );
+
+  /// value451
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value451 = ServiceType._(
+    '451',
+  );
+
+  /// value452
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value452 = ServiceType._(
+    '452',
+  );
+
+  /// value453
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value453 = ServiceType._(
+    '453',
+  );
+
+  /// value454
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value454 = ServiceType._(
+    '454',
+  );
+
+  /// value455
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value455 = ServiceType._(
+    '455',
+  );
+
+  /// value456
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value456 = ServiceType._(
+    '456',
+  );
+
+  /// value457
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value457 = ServiceType._(
+    '457',
+  );
+
+  /// value458
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value458 = ServiceType._(
+    '458',
+  );
+
+  /// value459
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value459 = ServiceType._(
+    '459',
+  );
+
+  /// value460
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value460 = ServiceType._(
+    '460',
+  );
+
+  /// value461
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value461 = ServiceType._(
+    '461',
+  );
+
+  /// value462
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value462 = ServiceType._(
+    '462',
+  );
+
+  /// value463
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value463 = ServiceType._(
+    '463',
+  );
+
+  /// value464
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value464 = ServiceType._(
+    '464',
+  );
+
+  /// value465
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value465 = ServiceType._(
+    '465',
+  );
+
+  /// value466
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value466 = ServiceType._(
+    '466',
+  );
+
+  /// value467
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value467 = ServiceType._(
+    '467',
+  );
+
+  /// value468
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value468 = ServiceType._(
+    '468',
+  );
+
+  /// value469
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value469 = ServiceType._(
+    '469',
+  );
+
+  /// value470
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value470 = ServiceType._(
+    '470',
+  );
+
+  /// value471
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value471 = ServiceType._(
+    '471',
+  );
+
+  /// value472
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value472 = ServiceType._(
+    '472',
+  );
+
+  /// value473
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value473 = ServiceType._(
+    '473',
+  );
+
+  /// value474
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value474 = ServiceType._(
+    '474',
+  );
+
+  /// value475
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value475 = ServiceType._(
+    '475',
+  );
+
+  /// value476
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value476 = ServiceType._(
+    '476',
+  );
+
+  /// value477
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value477 = ServiceType._(
+    '477',
+  );
+
+  /// value478
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value478 = ServiceType._(
+    '478',
+  );
+
+  /// value479
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value479 = ServiceType._(
+    '479',
+  );
+
+  /// value480
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value480 = ServiceType._(
+    '480',
+  );
+
+  /// value481
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value481 = ServiceType._(
+    '481',
+  );
+
+  /// value482
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value482 = ServiceType._(
+    '482',
+  );
+
+  /// value483
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value483 = ServiceType._(
+    '483',
+  );
+
+  /// value484
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value484 = ServiceType._(
+    '484',
+  );
+
+  /// value485
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value485 = ServiceType._(
+    '485',
+  );
+
+  /// value486
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value486 = ServiceType._(
+    '486',
+  );
+
+  /// value488
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value488 = ServiceType._(
+    '488',
+  );
+
+  /// value489
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value489 = ServiceType._(
+    '489',
+  );
+
+  /// value490
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value490 = ServiceType._(
+    '490',
+  );
+
+  /// value491
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value491 = ServiceType._(
+    '491',
+  );
+
+  /// value492
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value492 = ServiceType._(
+    '492',
+  );
+
+  /// value493
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value493 = ServiceType._(
+    '493',
+  );
+
+  /// value494
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value494 = ServiceType._(
+    '494',
+  );
+
+  /// value495
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value495 = ServiceType._(
+    '495',
+  );
+
+  /// value496
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value496 = ServiceType._(
+    '496',
+  );
+
+  /// value497
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value497 = ServiceType._(
+    '497',
+  );
+
+  /// value498
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value498 = ServiceType._(
+    '498',
+  );
+
+  /// value500
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value500 = ServiceType._(
+    '500',
+  );
+
+  /// value501
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value501 = ServiceType._(
+    '501',
+  );
+
+  /// value502
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value502 = ServiceType._(
+    '502',
+  );
+
+  /// value503
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value503 = ServiceType._(
+    '503',
+  );
+
+  /// value504
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value504 = ServiceType._(
+    '504',
+  );
+
+  /// value505
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value505 = ServiceType._(
+    '505',
+  );
+
+  /// value506
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value506 = ServiceType._(
+    '506',
+  );
+
+  /// value507
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value507 = ServiceType._(
+    '507',
+  );
+
+  /// value508
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value508 = ServiceType._(
+    '508',
+  );
+
+  /// value509
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value509 = ServiceType._(
+    '509',
+  );
+
+  /// value510
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value510 = ServiceType._(
+    '510',
+  );
+
+  /// value513
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value513 = ServiceType._(
+    '513',
+  );
+
+  /// value514
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value514 = ServiceType._(
+    '514',
+  );
+
+  /// value530
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value530 = ServiceType._(
+    '530',
+  );
+
+  /// value531
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value531 = ServiceType._(
+    '531',
+  );
+
+  /// value532
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value532 = ServiceType._(
+    '532',
+  );
+
+  /// value533
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value533 = ServiceType._(
+    '533',
+  );
+
+  /// value534
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value534 = ServiceType._(
+    '534',
+  );
+
+  /// value535
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value535 = ServiceType._(
+    '535',
+  );
+
+  /// value536
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value536 = ServiceType._(
+    '536',
+  );
+
+  /// value537
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value537 = ServiceType._(
+    '537',
+  );
+
+  /// value538
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value538 = ServiceType._(
+    '538',
+  );
+
+  /// value539
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value539 = ServiceType._(
+    '539',
+  );
+
+  /// value540
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value540 = ServiceType._(
+    '540',
+  );
+
+  /// value541
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value541 = ServiceType._(
+    '541',
+  );
+
+  /// value542
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value542 = ServiceType._(
+    '542',
+  );
+
+  /// value543
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value543 = ServiceType._(
+    '543',
+  );
+
+  /// value544
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value544 = ServiceType._(
+    '544',
+  );
+
+  /// value545
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value545 = ServiceType._(
+    '545',
+  );
+
+  /// value546
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value546 = ServiceType._(
+    '546',
+  );
+
+  /// value547
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value547 = ServiceType._(
+    '547',
+  );
+
+  /// value548
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value548 = ServiceType._(
+    '548',
+  );
+
+  /// value550
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value550 = ServiceType._(
+    '550',
+  );
+
+  /// value551
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value551 = ServiceType._(
+    '551',
+  );
+
+  /// value552
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value552 = ServiceType._(
+    '552',
+  );
+
+  /// value553
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value553 = ServiceType._(
+    '553',
+  );
+
+  /// value554
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value554 = ServiceType._(
+    '554',
+  );
+
+  /// value555
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value555 = ServiceType._(
+    '555',
+  );
+
+  /// value556
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value556 = ServiceType._(
+    '556',
+  );
+
+  /// value557
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value557 = ServiceType._(
+    '557',
+  );
+
+  /// value558
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value558 = ServiceType._(
+    '558',
+  );
+
+  /// value559
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value559 = ServiceType._(
+    '559',
+  );
+
+  /// value560
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value560 = ServiceType._(
+    '560',
+  );
+
+  /// value561
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value561 = ServiceType._(
+    '561',
+  );
+
+  /// value562
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value562 = ServiceType._(
+    '562',
+  );
+
+  /// value563
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value563 = ServiceType._(
+    '563',
+  );
+
+  /// value564
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value564 = ServiceType._(
+    '564',
+  );
+
+  /// value565
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value565 = ServiceType._(
+    '565',
+  );
+
+  /// value566
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value566 = ServiceType._(
+    '566',
+  );
+
+  /// value567
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value567 = ServiceType._(
+    '567',
+  );
+
+  /// value568
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value568 = ServiceType._(
+    '568',
+  );
+
+  /// value569
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value569 = ServiceType._(
+    '569',
+  );
+
+  /// value570
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value570 = ServiceType._(
+    '570',
+  );
+
+  /// value571
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value571 = ServiceType._(
+    '571',
+  );
+
+  /// value572
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value572 = ServiceType._(
+    '572',
+  );
+
+  /// value573
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value573 = ServiceType._(
+    '573',
+  );
+
+  /// value574
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value574 = ServiceType._(
+    '574',
+  );
+
+  /// value575
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value575 = ServiceType._(
+    '575',
+  );
+
+  /// value576
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value576 = ServiceType._(
+    '576',
+  );
+
+  /// value577
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value577 = ServiceType._(
+    '577',
+  );
+
+  /// value580
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value580 = ServiceType._(
+    '580',
+  );
+
+  /// value581
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value581 = ServiceType._(
+    '581',
+  );
+
+  /// value582
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value582 = ServiceType._(
+    '582',
+  );
+
+  /// value583
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value583 = ServiceType._(
+    '583',
+  );
+
+  /// value584
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value584 = ServiceType._(
+    '584',
+  );
+
+  /// value585
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value585 = ServiceType._(
+    '585',
+  );
+
+  /// value589
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value589 = ServiceType._(
+    '589',
+  );
+
+  /// value590
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value590 = ServiceType._(
+    '590',
+  );
+
+  /// value591
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value591 = ServiceType._(
+    '591',
+  );
+
+  /// value593
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value593 = ServiceType._(
+    '593',
+  );
+
+  /// value599
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value599 = ServiceType._(
+    '599',
+  );
+
+  /// value600
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value600 = ServiceType._(
+    '600',
+  );
+
+  /// value601
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value601 = ServiceType._(
+    '601',
+  );
+
+  /// value602
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value602 = ServiceType._(
+    '602',
+  );
+
+  /// value603
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value603 = ServiceType._(
+    '603',
+  );
+
+  /// value604
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value604 = ServiceType._(
+    '604',
+  );
+
+  /// value605
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value605 = ServiceType._(
+    '605',
+  );
+
+  /// value606
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value606 = ServiceType._(
+    '606',
+  );
+
+  /// value607
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value607 = ServiceType._(
+    '607',
+  );
+
+  /// value608
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value608 = ServiceType._(
+    '608',
+  );
+
+  /// value609
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value609 = ServiceType._(
+    '609',
+  );
+
+  /// value610
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value610 = ServiceType._(
+    '610',
+  );
+
+  /// value611
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value611 = ServiceType._(
+    '611',
+  );
+
+  /// value612
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value612 = ServiceType._(
+    '612',
+  );
+
+  /// value613
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value613 = ServiceType._(
+    '613',
+  );
+
+  /// value614
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value614 = ServiceType._(
+    '614',
+  );
+
+  /// value615
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value615 = ServiceType._(
+    '615',
+  );
+
+  /// value616
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value616 = ServiceType._(
+    '616',
+  );
+
+  /// value617
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value617 = ServiceType._(
+    '617',
+  );
+
+  /// value618
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value618 = ServiceType._(
+    '618',
+  );
+
+  /// value619
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value619 = ServiceType._(
+    '619',
+  );
+
+  /// value620
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value620 = ServiceType._(
+    '620',
+  );
+
+  /// value621
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value621 = ServiceType._(
+    '621',
+  );
+
+  /// value622
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value622 = ServiceType._(
+    '622',
+  );
+
+  /// value623
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value623 = ServiceType._(
+    '623',
+  );
+
+  /// value624
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value624 = ServiceType._(
+    '624',
+  );
+
+  /// value625
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value625 = ServiceType._(
+    '625',
+  );
+
+  /// value626
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value626 = ServiceType._(
+    '626',
+  );
+
+  /// value627
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value627 = ServiceType._(
+    '627',
+  );
+
+  /// value628
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value628 = ServiceType._(
+    '628',
+  );
+
+  /// value629
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ServiceType value629 = ServiceType._(
+    '629',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ServiceType elementOnly = ServiceType._('');
+
+  /// List of all enum-like values
+  static final List<ServiceType> values = [
+    value1,
+    value2,
+    value3,
+    value4,
+    value5,
+    value6,
+    value7,
+    value8,
+    value9,
+    value10,
+    value11,
+    value12,
+    value13,
+    value14,
+    value15,
+    value16,
+    value17,
+    value18,
+    value19,
+    value20,
+    value21,
+    value22,
+    value23,
+    value24,
+    value25,
+    value26,
+    value27,
+    value28,
+    value29,
+    value30,
+    value31,
+    value32,
+    value33,
+    value34,
+    value35,
+    value36,
+    value37,
+    value38,
+    value39,
+    value40,
+    value41,
+    value42,
+    value43,
+    value44,
+    value45,
+    value46,
+    value47,
+    value48,
+    value49,
+    value50,
+    value51,
+    value52,
+    value53,
+    value54,
+    value55,
+    value56,
+    value57,
+    value58,
+    value59,
+    value60,
+    value61,
+    value62,
+    value63,
+    value64,
+    value65,
+    value66,
+    value67,
+    value68,
+    value69,
+    value70,
+    value71,
+    value72,
+    value73,
+    value74,
+    value75,
+    value76,
+    value77,
+    value78,
+    value79,
+    value80,
+    value81,
+    value82,
+    value83,
+    value84,
+    value85,
+    value86,
+    value87,
+    value88,
+    value89,
+    value90,
+    value91,
+    value92,
+    value93,
+    value94,
+    value95,
+    value96,
+    value97,
+    value98,
+    value99,
+    value100,
+    value101,
+    value102,
+    value103,
+    value104,
+    value105,
+    value106,
+    value107,
+    value108,
+    value109,
+    value110,
+    value111,
+    value112,
+    value113,
+    value114,
+    value115,
+    value116,
+    value117,
+    value118,
+    value119,
+    value120,
+    value121,
+    value122,
+    value123,
+    value124,
+    value125,
+    value126,
+    value127,
+    value128,
+    value129,
+    value130,
+    value131,
+    value132,
+    value133,
+    value134,
+    value135,
+    value136,
+    value137,
+    value138,
+    value139,
+    value140,
+    value141,
+    value142,
+    value143,
+    value144,
+    value145,
+    value146,
+    value147,
+    value148,
+    value149,
+    value150,
+    value151,
+    value152,
+    value153,
+    value154,
+    value155,
+    value156,
+    value157,
+    value158,
+    value159,
+    value160,
+    value161,
+    value162,
+    value163,
+    value164,
+    value165,
+    value166,
+    value167,
+    value168,
+    value169,
+    value170,
+    value171,
+    value172,
+    value173,
+    value174,
+    value175,
+    value176,
+    value177,
+    value178,
+    value179,
+    value180,
+    value181,
+    value182,
+    value183,
+    value184,
+    value185,
+    value186,
+    value187,
+    value188,
+    value189,
+    value190,
+    value191,
+    value192,
+    value193,
+    value194,
+    value195,
+    value196,
+    value197,
+    value198,
+    value199,
+    value200,
+    value201,
+    value202,
+    value203,
+    value204,
+    value205,
+    value206,
+    value207,
+    value208,
+    value209,
+    value210,
+    value211,
+    value212,
+    value213,
+    value214,
+    value215,
+    value216,
+    value217,
+    value218,
+    value219,
+    value220,
+    value221,
+    value222,
+    value223,
+    value224,
+    value225,
+    value226,
+    value227,
+    value228,
+    value229,
+    value230,
+    value231,
+    value232,
+    value233,
+    value234,
+    value235,
+    value236,
+    value237,
+    value238,
+    value239,
+    value240,
+    value241,
+    value242,
+    value243,
+    value244,
+    value245,
+    value246,
+    value247,
+    value248,
+    value249,
+    value250,
+    value251,
+    value252,
+    value253,
+    value254,
+    value255,
+    value256,
+    value257,
+    value258,
+    value259,
+    value260,
+    value261,
+    value262,
+    value263,
+    value264,
+    value265,
+    value266,
+    value267,
+    value268,
+    value269,
+    value270,
+    value271,
+    value272,
+    value273,
+    value274,
+    value275,
+    value276,
+    value277,
+    value278,
+    value279,
+    value280,
+    value281,
+    value282,
+    value283,
+    value284,
+    value285,
+    value286,
+    value287,
+    value288,
+    value289,
+    value290,
+    value291,
+    value292,
+    value293,
+    value294,
+    value295,
+    value296,
+    value297,
+    value298,
+    value299,
+    value300,
+    value301,
+    value302,
+    value303,
+    value304,
+    value305,
+    value306,
+    value307,
+    value308,
+    value309,
+    value310,
+    value311,
+    value312,
+    value313,
+    value314,
+    value315,
+    value316,
+    value317,
+    value318,
+    value319,
+    value320,
+    value321,
+    value322,
+    value323,
+    value324,
+    value325,
+    value326,
+    value327,
+    value328,
+    value330,
+    value331,
+    value332,
+    value333,
+    value334,
+    value335,
+    value336,
+    value337,
+    value338,
+    value339,
+    value340,
+    value341,
+    value342,
+    value343,
+    value344,
+    value345,
+    value346,
+    value347,
+    value348,
+    value349,
+    value350,
+    value351,
+    value352,
+    value353,
+    value354,
+    value355,
+    value356,
+    value357,
+    value358,
+    value359,
+    value360,
+    value361,
+    value362,
+    value364,
+    value365,
+    value366,
+    value367,
+    value368,
+    value369,
+    value370,
+    value371,
+    value372,
+    value373,
+    value374,
+    value375,
+    value376,
+    value377,
+    value378,
+    value379,
+    value380,
+    value381,
+    value382,
+    value383,
+    value384,
+    value385,
+    value386,
+    value387,
+    value388,
+    value389,
+    value390,
+    value391,
+    value392,
+    value393,
+    value394,
+    value395,
+    value396,
+    value397,
+    value398,
+    value399,
+    value400,
+    value401,
+    value402,
+    value403,
+    value404,
+    value405,
+    value406,
+    value407,
+    value408,
+    value409,
+    value410,
+    value411,
+    value412,
+    value413,
+    value414,
+    value415,
+    value416,
+    value417,
+    value418,
+    value419,
+    value420,
+    value421,
+    value422,
+    value423,
+    value424,
+    value425,
+    value426,
+    value427,
+    value428,
+    value429,
+    value430,
+    value431,
+    value432,
+    value433,
+    value434,
+    value435,
+    value436,
+    value437,
+    value438,
+    value439,
+    value440,
+    value441,
+    value442,
+    value443,
+    value444,
+    value445,
+    value446,
+    value447,
+    value448,
+    value449,
+    value450,
+    value451,
+    value452,
+    value453,
+    value454,
+    value455,
+    value456,
+    value457,
+    value458,
+    value459,
+    value460,
+    value461,
+    value462,
+    value463,
+    value464,
+    value465,
+    value466,
+    value467,
+    value468,
+    value469,
+    value470,
+    value471,
+    value472,
+    value473,
+    value474,
+    value475,
+    value476,
+    value477,
+    value478,
+    value479,
+    value480,
+    value481,
+    value482,
+    value483,
+    value484,
+    value485,
+    value486,
+    value488,
+    value489,
+    value490,
+    value491,
+    value492,
+    value493,
+    value494,
+    value495,
+    value496,
+    value497,
+    value498,
+    value500,
+    value501,
+    value502,
+    value503,
+    value504,
+    value505,
+    value506,
+    value507,
+    value508,
+    value509,
+    value510,
+    value513,
+    value514,
+    value530,
+    value531,
+    value532,
+    value533,
+    value534,
+    value535,
+    value536,
+    value537,
+    value538,
+    value539,
+    value540,
+    value541,
+    value542,
+    value543,
+    value544,
+    value545,
+    value546,
+    value547,
+    value548,
+    value550,
+    value551,
+    value552,
+    value553,
+    value554,
+    value555,
+    value556,
+    value557,
+    value558,
+    value559,
+    value560,
+    value561,
+    value562,
+    value563,
+    value564,
+    value565,
+    value566,
+    value567,
+    value568,
+    value569,
+    value570,
+    value571,
+    value572,
+    value573,
+    value574,
+    value575,
+    value576,
+    value577,
+    value580,
+    value581,
+    value582,
+    value583,
+    value584,
+    value585,
+    value589,
+    value590,
+    value591,
+    value593,
+    value599,
+    value600,
+    value601,
+    value602,
+    value603,
+    value604,
+    value605,
+    value606,
+    value607,
+    value608,
+    value609,
+    value610,
+    value611,
+    value612,
+    value613,
+    value614,
+    value615,
+    value616,
+    value617,
+    value618,
+    value619,
+    value620,
+    value621,
+    value622,
+    value623,
+    value624,
+    value625,
+    value626,
+    value627,
+    value628,
+    value629,
+  ];
+
+  /// Returns the enum value with an element attached
+  ServiceType withElement(Element? newElement) {
+    return ServiceType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -2407,28 +4801,20 @@ enum ServiceType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ServiceType] instances.
-  static ServiceType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ServiceType] from JSON.
+  static ServiceType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ServiceType.elementOnly.withElement(
-        element,
-      );
+      return ServiceType.elementOnly.withElement(element);
     }
     return ServiceType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ServiceType withElement(Element? newElement) {
-    return ServiceType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ServiceType.$fhirCode';
 }

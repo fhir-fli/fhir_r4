@@ -1,41 +1,71 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Use of contact point.
-enum ContactPointUse {
-  /// Display: Home
-  /// Definition: A communication contact point at a home; attempted contacts for business purposes might intrude privacy and chances are one will contact family or other household members instead of the person one wishes to call. Typically used with urgent cases, or if no other contacts are available.
-  home('home'),
+class ContactPointUse {
+  // Private constructor for internal use (like enum)
+  ContactPointUse._(this.fhirCode, {this.element});
 
-  /// Display: Work
-  /// Definition: An office contact point. First choice for business related contacts during business hours.
-  work('work'),
-
-  /// Display: Temp
-  /// Definition: A temporary contact point. The period can provide more detailed information.
-  temp('temp'),
-
-  /// Display: Old
-  /// Definition: This contact point is no longer in use (or was never correct, but retained for records).
-  old('old'),
-
-  /// Display: Mobile
-  /// Definition: A telecommunication device that moves and stays with its owner. May have characteristics of all other use codes, suitable for urgent matters, not the first choice for routine business.
-  mobile('mobile'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ContactPointUse(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ContactPointUse values
+  /// home
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContactPointUse home = ContactPointUse._(
+    'home',
+  );
+
+  /// work
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContactPointUse work = ContactPointUse._(
+    'work',
+  );
+
+  /// temp
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContactPointUse temp = ContactPointUse._(
+    'temp',
+  );
+
+  /// old
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContactPointUse old = ContactPointUse._(
+    'old',
+  );
+
+  /// mobile
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ContactPointUse mobile = ContactPointUse._(
+    'mobile',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ContactPointUse elementOnly = ContactPointUse._('');
+
+  /// List of all enum-like values
+  static final List<ContactPointUse> values = [
+    home,
+    work,
+    temp,
+    old,
+    mobile,
+  ];
+
+  /// Returns the enum value with an element attached
+  ContactPointUse withElement(Element? newElement) {
+    return ContactPointUse._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -43,28 +73,20 @@ enum ContactPointUse {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ContactPointUse] instances.
-  static ContactPointUse fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ContactPointUse] from JSON.
+  static ContactPointUse fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ContactPointUse.elementOnly.withElement(
-        element,
-      );
+      return ContactPointUse.elementOnly.withElement(element);
     }
     return ContactPointUse.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ContactPointUse withElement(Element? newElement) {
-    return ContactPointUse.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ContactPointUse.$fhirCode';
 }

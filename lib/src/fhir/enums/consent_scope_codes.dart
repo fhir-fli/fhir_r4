@@ -1,37 +1,63 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes the four Consent scope codes.
-enum ConsentScopeCodes {
-  /// Display: Advanced Care Directive
-  /// Definition: Actions to be taken if they are no longer able to make decisions for themselves
-  adr('adr'),
+class ConsentScopeCodes {
+  // Private constructor for internal use (like enum)
+  ConsentScopeCodes._(this.fhirCode, {this.element});
 
-  /// Display: Research
-  /// Definition: Consent to participate in research protocol and information sharing required
-  research('research'),
-
-  /// Display: Privacy Consent
-  /// Definition: Agreement to collect, access, use or disclose (share) information
-  patient_privacy('patient-privacy'),
-
-  /// Display: Treatment
-  /// Definition: Consent to undergo a specific treatment
-  treatment('treatment'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ConsentScopeCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ConsentScopeCodes values
+  /// adr
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentScopeCodes adr = ConsentScopeCodes._(
+    'adr',
+  );
+
+  /// research
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentScopeCodes research = ConsentScopeCodes._(
+    'research',
+  );
+
+  /// patient_privacy
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentScopeCodes patient_privacy = ConsentScopeCodes._(
+    'patient-privacy',
+  );
+
+  /// treatment
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ConsentScopeCodes treatment = ConsentScopeCodes._(
+    'treatment',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ConsentScopeCodes elementOnly = ConsentScopeCodes._('');
+
+  /// List of all enum-like values
+  static final List<ConsentScopeCodes> values = [
+    adr,
+    research,
+    patient_privacy,
+    treatment,
+  ];
+
+  /// Returns the enum value with an element attached
+  ConsentScopeCodes withElement(Element? newElement) {
+    return ConsentScopeCodes._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -39,28 +65,20 @@ enum ConsentScopeCodes {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ConsentScopeCodes] instances.
-  static ConsentScopeCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ConsentScopeCodes] from JSON.
+  static ConsentScopeCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ConsentScopeCodes.elementOnly.withElement(
-        element,
-      );
+      return ConsentScopeCodes.elementOnly.withElement(element);
     }
     return ConsentScopeCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ConsentScopeCodes withElement(Element? newElement) {
-    return ConsentScopeCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ConsentScopeCodes.$fhirCode';
 }

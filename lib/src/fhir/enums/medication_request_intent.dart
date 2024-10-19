@@ -1,53 +1,98 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// MedicationRequest Intent Codes
-enum MedicationRequestIntent {
-  /// Display: Proposal
-  /// Definition: The request is a suggestion made by someone/something that doesn't have an intention to ensure it occurs and without providing an authorization to act
-  proposal('proposal'),
+class MedicationRequestIntent {
+  // Private constructor for internal use (like enum)
+  MedicationRequestIntent._(this.fhirCode, {this.element});
 
-  /// Display: Plan
-  /// Definition: The request represents an intention to ensure something occurs without providing an authorization for others to act.
-  plan('plan'),
-
-  /// Display: Order
-  /// Definition: The request represents a request/demand and authorization for action
-  order('order'),
-
-  /// Display: Original Order
-  /// Definition: The request represents the original authorization for the medication request.
-  original_order('original-order'),
-
-  /// Display: Reflex Order
-  /// Definition: The request represents an automatically generated supplemental authorization for action based on a parent authorization together with initial results of the action taken against that parent authorization..
-  reflex_order('reflex-order'),
-
-  /// Display: Filler Order
-  /// Definition: The request represents the view of an authorization instantiated by a fulfilling system representing the details of the fulfiller's intention to act upon a submitted order.
-  filler_order('filler-order'),
-
-  /// Display: Instance Order
-  /// Definition: The request represents an instance for the particular order, for example a medication administration record.
-  instance_order('instance-order'),
-
-  /// Display: Option
-  /// Definition: The request represents a component or option for a RequestGroup that establishes timing, conditionality and/or other constraints among a set of requests.
-  option('option'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const MedicationRequestIntent(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// MedicationRequestIntent values
+  /// proposal
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationRequestIntent proposal = MedicationRequestIntent._(
+    'proposal',
+  );
+
+  /// plan
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationRequestIntent plan = MedicationRequestIntent._(
+    'plan',
+  );
+
+  /// order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationRequestIntent order = MedicationRequestIntent._(
+    'order',
+  );
+
+  /// original_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationRequestIntent original_order =
+      MedicationRequestIntent._(
+    'original-order',
+  );
+
+  /// reflex_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationRequestIntent reflex_order = MedicationRequestIntent._(
+    'reflex-order',
+  );
+
+  /// filler_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationRequestIntent filler_order = MedicationRequestIntent._(
+    'filler-order',
+  );
+
+  /// instance_order
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationRequestIntent instance_order =
+      MedicationRequestIntent._(
+    'instance-order',
+  );
+
+  /// option
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MedicationRequestIntent option = MedicationRequestIntent._(
+    'option',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final MedicationRequestIntent elementOnly =
+      MedicationRequestIntent._('');
+
+  /// List of all enum-like values
+  static final List<MedicationRequestIntent> values = [
+    proposal,
+    plan,
+    order,
+    original_order,
+    reflex_order,
+    filler_order,
+    instance_order,
+    option,
+  ];
+
+  /// Returns the enum value with an element attached
+  MedicationRequestIntent withElement(Element? newElement) {
+    return MedicationRequestIntent._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -55,28 +100,20 @@ enum MedicationRequestIntent {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [MedicationRequestIntent] instances.
-  static MedicationRequestIntent fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [MedicationRequestIntent] from JSON.
+  static MedicationRequestIntent fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MedicationRequestIntent.elementOnly.withElement(
-        element,
-      );
+      return MedicationRequestIntent.elementOnly.withElement(element);
     }
     return MedicationRequestIntent.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  MedicationRequestIntent withElement(Element? newElement) {
-    return MedicationRequestIntent.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'MedicationRequestIntent.$fhirCode';
 }

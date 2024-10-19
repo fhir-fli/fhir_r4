@@ -1,37 +1,63 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of the measure report.
-enum MeasureReportType {
-  /// Display: Individual
-  /// Definition: An individual report that provides information on the performance for a given measure with respect to a single subject.
-  individual('individual'),
+class MeasureReportType {
+  // Private constructor for internal use (like enum)
+  MeasureReportType._(this.fhirCode, {this.element});
 
-  /// Display: Subject List
-  /// Definition: A subject list report that includes a listing of subjects that satisfied each population criteria in the measure.
-  subject_list('subject-list'),
-
-  /// Display: Summary
-  /// Definition: A summary report that returns the number of members in each population criteria for the measure.
-  summary('summary'),
-
-  /// Display: Data Collection
-  /// Definition: A data collection report that contains data-of-interest for the measure.
-  data_collection('data-collection'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const MeasureReportType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// MeasureReportType values
+  /// individual
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MeasureReportType individual = MeasureReportType._(
+    'individual',
+  );
+
+  /// subject_list
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MeasureReportType subject_list = MeasureReportType._(
+    'subject-list',
+  );
+
+  /// summary
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MeasureReportType summary = MeasureReportType._(
+    'summary',
+  );
+
+  /// data_collection
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final MeasureReportType data_collection = MeasureReportType._(
+    'data-collection',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final MeasureReportType elementOnly = MeasureReportType._('');
+
+  /// List of all enum-like values
+  static final List<MeasureReportType> values = [
+    individual,
+    subject_list,
+    summary,
+    data_collection,
+  ];
+
+  /// Returns the enum value with an element attached
+  MeasureReportType withElement(Element? newElement) {
+    return MeasureReportType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -39,28 +65,20 @@ enum MeasureReportType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [MeasureReportType] instances.
-  static MeasureReportType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [MeasureReportType] from JSON.
+  static MeasureReportType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return MeasureReportType.elementOnly.withElement(
-        element,
-      );
+      return MeasureReportType.elementOnly.withElement(element);
     }
     return MeasureReportType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  MeasureReportType withElement(Element? newElement) {
-    return MeasureReportType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'MeasureReportType.$fhirCode';
 }

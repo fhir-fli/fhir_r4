@@ -1,29 +1,47 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Whether an operation parameter is an input or an output parameter.
-enum OperationParameterUse {
-  /// Display: In
-  /// Definition: This is an input parameter.
-  in_('in'),
+class OperationParameterUse {
+  // Private constructor for internal use (like enum)
+  OperationParameterUse._(this.fhirCode, {this.element});
 
-  /// Display: Out
-  /// Definition: This is an output parameter.
-  out('out'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const OperationParameterUse(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// OperationParameterUse values
+  /// in_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OperationParameterUse in_ = OperationParameterUse._(
+    'in',
+  );
+
+  /// out
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OperationParameterUse out = OperationParameterUse._(
+    'out',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final OperationParameterUse elementOnly = OperationParameterUse._('');
+
+  /// List of all enum-like values
+  static final List<OperationParameterUse> values = [
+    in_,
+    out,
+  ];
+
+  /// Returns the enum value with an element attached
+  OperationParameterUse withElement(Element? newElement) {
+    return OperationParameterUse._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -31,28 +49,20 @@ enum OperationParameterUse {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [OperationParameterUse] instances.
-  static OperationParameterUse fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [OperationParameterUse] from JSON.
+  static OperationParameterUse fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return OperationParameterUse.elementOnly.withElement(
-        element,
-      );
+      return OperationParameterUse.elementOnly.withElement(element);
     }
     return OperationParameterUse.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  OperationParameterUse withElement(Element? newElement) {
-    return OperationParameterUse.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'OperationParameterUse.$fhirCode';
 }

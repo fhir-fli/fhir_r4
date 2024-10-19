@@ -1,29 +1,47 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value sets refers to a specific supply item.
-enum SupplyItemType {
-  /// Display: Medication
-  /// Definition: Supply is a kind of medication.
-  medication('medication'),
+class SupplyItemType {
+  // Private constructor for internal use (like enum)
+  SupplyItemType._(this.fhirCode, {this.element});
 
-  /// Display: Device
-  /// Definition: What is supplied (or requested) is a device.
-  device('device'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const SupplyItemType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// SupplyItemType values
+  /// medication
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SupplyItemType medication = SupplyItemType._(
+    'medication',
+  );
+
+  /// device
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final SupplyItemType device = SupplyItemType._(
+    'device',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final SupplyItemType elementOnly = SupplyItemType._('');
+
+  /// List of all enum-like values
+  static final List<SupplyItemType> values = [
+    medication,
+    device,
+  ];
+
+  /// Returns the enum value with an element attached
+  SupplyItemType withElement(Element? newElement) {
+    return SupplyItemType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -31,28 +49,20 @@ enum SupplyItemType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [SupplyItemType] instances.
-  static SupplyItemType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [SupplyItemType] from JSON.
+  static SupplyItemType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return SupplyItemType.elementOnly.withElement(
-        element,
-      );
+      return SupplyItemType.elementOnly.withElement(element);
     }
     return SupplyItemType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  SupplyItemType withElement(Element? newElement) {
-    return SupplyItemType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'SupplyItemType.$fhirCode';
 }

@@ -1,69 +1,127 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The current status of the task.
-enum TaskStatus {
-  /// Display: Draft
-  /// Definition: The task is not yet ready to be acted upon.
-  draft('draft'),
+class TaskStatus {
+  // Private constructor for internal use (like enum)
+  TaskStatus._(this.fhirCode, {this.element});
 
-  /// Display: Requested
-  /// Definition: The task is ready to be acted upon and action is sought.
-  requested('requested'),
-
-  /// Display: Received
-  /// Definition: A potential performer has claimed ownership of the task and is evaluating whether to perform it.
-  received('received'),
-
-  /// Display: Accepted
-  /// Definition: The potential performer has agreed to execute the task but has not yet started work.
-  accepted('accepted'),
-
-  /// Display: Rejected
-  /// Definition: The potential performer who claimed ownership of the task has decided not to execute it prior to performing any action.
-  rejected('rejected'),
-
-  /// Display: Ready
-  /// Definition: The task is ready to be performed, but no action has yet been taken. Used in place of requested/received/accepted/rejected when request assignment and acceptance is a given.
-  ready('ready'),
-
-  /// Display: Cancelled
-  /// Definition: The task was not completed.
-  cancelled('cancelled'),
-
-  /// Display: In Progress
-  /// Definition: The task has been started but is not yet complete.
-  in_progress('in-progress'),
-
-  /// Display: On Hold
-  /// Definition: The task has been started but work has been paused.
-  on_hold('on-hold'),
-
-  /// Display: Failed
-  /// Definition: The task was attempted but could not be completed due to some error.
-  failed('failed'),
-
-  /// Display: Completed
-  /// Definition: The task has been completed.
-  completed('completed'),
-
-  /// Display: Entered in Error
-  /// Definition: The task should never have existed and is retained only because of the possibility it may have used.
-  entered_in_error('entered-in-error'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const TaskStatus(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// TaskStatus values
+  /// draft
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskStatus draft = TaskStatus._(
+    'draft',
+  );
+
+  /// requested
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskStatus requested = TaskStatus._(
+    'requested',
+  );
+
+  /// received
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskStatus received = TaskStatus._(
+    'received',
+  );
+
+  /// accepted
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskStatus accepted = TaskStatus._(
+    'accepted',
+  );
+
+  /// rejected
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskStatus rejected = TaskStatus._(
+    'rejected',
+  );
+
+  /// ready
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskStatus ready = TaskStatus._(
+    'ready',
+  );
+
+  /// cancelled
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskStatus cancelled = TaskStatus._(
+    'cancelled',
+  );
+
+  /// in_progress
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskStatus in_progress = TaskStatus._(
+    'in-progress',
+  );
+
+  /// on_hold
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskStatus on_hold = TaskStatus._(
+    'on-hold',
+  );
+
+  /// failed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskStatus failed = TaskStatus._(
+    'failed',
+  );
+
+  /// completed
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskStatus completed = TaskStatus._(
+    'completed',
+  );
+
+  /// entered_in_error
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final TaskStatus entered_in_error = TaskStatus._(
+    'entered-in-error',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final TaskStatus elementOnly = TaskStatus._('');
+
+  /// List of all enum-like values
+  static final List<TaskStatus> values = [
+    draft,
+    requested,
+    received,
+    accepted,
+    rejected,
+    ready,
+    cancelled,
+    in_progress,
+    on_hold,
+    failed,
+    completed,
+    entered_in_error,
+  ];
+
+  /// Returns the enum value with an element attached
+  TaskStatus withElement(Element? newElement) {
+    return TaskStatus._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -71,28 +129,20 @@ enum TaskStatus {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [TaskStatus] instances.
-  static TaskStatus fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [TaskStatus] from JSON.
+  static TaskStatus fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return TaskStatus.elementOnly.withElement(
-        element,
-      );
+      return TaskStatus.elementOnly.withElement(element);
     }
     return TaskStatus.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  TaskStatus withElement(Element? newElement) {
-    return TaskStatus.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'TaskStatus.$fhirCode';
 }

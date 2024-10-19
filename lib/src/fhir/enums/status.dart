@@ -1,45 +1,79 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The validation status of the target
-enum Status {
-  /// Display: Attested
-  /// Definition: ***TODO***
-  attested('attested'),
+class Status {
+  // Private constructor for internal use (like enum)
+  Status._(this.fhirCode, {this.element});
 
-  /// Display: Validated
-  /// Definition: ***TODO***
-  validated('validated'),
-
-  /// Display: In process
-  /// Definition: ***TODO***
-  in_process('in-process'),
-
-  /// Display: Requires revalidation
-  /// Definition: ***TODO***
-  req_revalid('req-revalid'),
-
-  /// Display: Validation failed
-  /// Definition: ***TODO***
-  val_fail('val-fail'),
-
-  /// Display: Re-Validation failed
-  /// Definition: ***TODO***
-  reval_fail('reval-fail'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const Status(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// Status values
+  /// attested
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Status attested = Status._(
+    'attested',
+  );
+
+  /// validated
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Status validated = Status._(
+    'validated',
+  );
+
+  /// in_process
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Status in_process = Status._(
+    'in-process',
+  );
+
+  /// req_revalid
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Status req_revalid = Status._(
+    'req-revalid',
+  );
+
+  /// val_fail
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Status val_fail = Status._(
+    'val-fail',
+  );
+
+  /// reval_fail
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final Status reval_fail = Status._(
+    'reval-fail',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final Status elementOnly = Status._('');
+
+  /// List of all enum-like values
+  static final List<Status> values = [
+    attested,
+    validated,
+    in_process,
+    req_revalid,
+    val_fail,
+    reval_fail,
+  ];
+
+  /// Returns the enum value with an element attached
+  Status withElement(Element? newElement) {
+    return Status._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -47,28 +81,20 @@ enum Status {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [Status] instances.
-  static Status fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [Status] from JSON.
+  static Status fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return Status.elementOnly.withElement(
-        element,
-      );
+      return Status.elementOnly.withElement(element);
     }
     return Status.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  Status withElement(Element? newElement) {
-    return Status.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'Status.$fhirCode';
 }

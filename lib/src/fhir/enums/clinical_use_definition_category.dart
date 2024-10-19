@@ -1,33 +1,59 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A categorisation for a clinical use information item.
-enum ClinicalUseDefinitionCategory {
-  /// Display: Pregnancy and Lactation
-  /// Definition:
-  Pregnancy('Pregnancy'),
+class ClinicalUseDefinitionCategory {
+  // Private constructor for internal use (like enum)
+  ClinicalUseDefinitionCategory._(this.fhirCode, {this.element});
 
-  /// Display: Overdose
-  /// Definition:
-  Overdose('Overdose'),
-
-  /// Display: Effects on Ability to Drive and Use Machines
-  /// Definition:
-  DriveAndMachines('DriveAndMachines'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ClinicalUseDefinitionCategory(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ClinicalUseDefinitionCategory values
+  /// Pregnancy
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ClinicalUseDefinitionCategory Pregnancy =
+      ClinicalUseDefinitionCategory._(
+    'Pregnancy',
+  );
+
+  /// Overdose
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ClinicalUseDefinitionCategory Overdose =
+      ClinicalUseDefinitionCategory._(
+    'Overdose',
+  );
+
+  /// DriveAndMachines
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ClinicalUseDefinitionCategory DriveAndMachines =
+      ClinicalUseDefinitionCategory._(
+    'DriveAndMachines',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ClinicalUseDefinitionCategory elementOnly =
+      ClinicalUseDefinitionCategory._('');
+
+  /// List of all enum-like values
+  static final List<ClinicalUseDefinitionCategory> values = [
+    Pregnancy,
+    Overdose,
+    DriveAndMachines,
+  ];
+
+  /// Returns the enum value with an element attached
+  ClinicalUseDefinitionCategory withElement(Element? newElement) {
+    return ClinicalUseDefinitionCategory._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +61,20 @@ enum ClinicalUseDefinitionCategory {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ClinicalUseDefinitionCategory] instances.
-  static ClinicalUseDefinitionCategory fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ClinicalUseDefinitionCategory] from JSON.
+  static ClinicalUseDefinitionCategory fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ClinicalUseDefinitionCategory.elementOnly.withElement(
-        element,
-      );
+      return ClinicalUseDefinitionCategory.elementOnly.withElement(element);
     }
     return ClinicalUseDefinitionCategory.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ClinicalUseDefinitionCategory withElement(Element? newElement) {
-    return ClinicalUseDefinitionCategory.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ClinicalUseDefinitionCategory.$fhirCode';
 }

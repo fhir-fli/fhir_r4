@@ -1,33 +1,55 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How an extension context is interpreted.
-enum ExtensionContextType {
-  /// Display: FHIRPath
-  /// Definition: The context is all elements that match the FHIRPath query found in the expression.
-  fhirpath('fhirpath'),
+class ExtensionContextType {
+  // Private constructor for internal use (like enum)
+  ExtensionContextType._(this.fhirCode, {this.element});
 
-  /// Display: Element ID
-  /// Definition: The context is any element that has an ElementDefinition.id that matches that found in the expression. This includes ElementDefinition Ids that have slicing identifiers. The full path for the element is [url]#[elementid]. If there is no #, the Element id is one defined in the base specification.
-  element_('element'),
-
-  /// Display: Extension URL
-  /// Definition: The context is a particular extension from a particular StructureDefinition, and the expression is just a uri that identifies the extension.
-  extension_('extension'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ExtensionContextType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ExtensionContextType values
+  /// fhirpath
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExtensionContextType fhirpath = ExtensionContextType._(
+    'fhirpath',
+  );
+
+  /// element_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExtensionContextType element_ = ExtensionContextType._(
+    'element',
+  );
+
+  /// extension_
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ExtensionContextType extension_ = ExtensionContextType._(
+    'extension',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ExtensionContextType elementOnly = ExtensionContextType._('');
+
+  /// List of all enum-like values
+  static final List<ExtensionContextType> values = [
+    fhirpath,
+    element_,
+    extension_,
+  ];
+
+  /// Returns the enum value with an element attached
+  ExtensionContextType withElement(Element? newElement) {
+    return ExtensionContextType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +57,20 @@ enum ExtensionContextType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ExtensionContextType] instances.
-  static ExtensionContextType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ExtensionContextType] from JSON.
+  static ExtensionContextType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ExtensionContextType.elementOnly.withElement(
-        element,
-      );
+      return ExtensionContextType.elementOnly.withElement(element);
     }
     return ExtensionContextType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ExtensionContextType withElement(Element? newElement) {
-    return ExtensionContextType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ExtensionContextType.$fhirCode';
 }

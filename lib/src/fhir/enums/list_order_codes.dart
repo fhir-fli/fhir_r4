@@ -1,53 +1,95 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Base values for the order of the items in a list resource.
-enum ListOrderCodes {
-  /// Display: Sorted by User
-  /// Definition: The list was sorted by a user. The criteria the user used are not specified.
-  user('user'),
+class ListOrderCodes {
+  // Private constructor for internal use (like enum)
+  ListOrderCodes._(this.fhirCode, {this.element});
 
-  /// Display: Sorted by System
-  /// Definition: The list was sorted by the system. The criteria the user used are not specified; define additional codes to specify a particular order (or use other defined codes).
-  system('system'),
-
-  /// Display: Sorted by Event Date
-  /// Definition: The list is sorted by the data of the event. This can be used when the list has items which are dates with past or future events.
-  event_date('event-date'),
-
-  /// Display: Sorted by Item Date
-  /// Definition: The list is sorted by the date the item was added to the list. Note that the date added to the list is not explicit in the list itself.
-  entry_date('entry-date'),
-
-  /// Display: Sorted by Priority
-  /// Definition: The list is sorted by priority. The exact method in which priority has been determined is not specified.
-  priority('priority'),
-
-  /// Display: Sorted Alphabetically
-  /// Definition: The list is sorted alphabetically by an unspecified property of the items in the list.
-  alphabetic('alphabetic'),
-
-  /// Display: Sorted by Category
-  /// Definition: The list is sorted categorically by an unspecified property of the items in the list.
-  category('category'),
-
-  /// Display: Sorted by Patient
-  /// Definition: The list is sorted by patient, with items for each patient grouped together.
-  patient('patient'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const ListOrderCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// ListOrderCodes values
+  /// user
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ListOrderCodes user = ListOrderCodes._(
+    'user',
+  );
+
+  /// system
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ListOrderCodes system = ListOrderCodes._(
+    'system',
+  );
+
+  /// event_date
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ListOrderCodes event_date = ListOrderCodes._(
+    'event-date',
+  );
+
+  /// entry_date
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ListOrderCodes entry_date = ListOrderCodes._(
+    'entry-date',
+  );
+
+  /// priority
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ListOrderCodes priority = ListOrderCodes._(
+    'priority',
+  );
+
+  /// alphabetic
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ListOrderCodes alphabetic = ListOrderCodes._(
+    'alphabetic',
+  );
+
+  /// category
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ListOrderCodes category = ListOrderCodes._(
+    'category',
+  );
+
+  /// patient
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final ListOrderCodes patient = ListOrderCodes._(
+    'patient',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final ListOrderCodes elementOnly = ListOrderCodes._('');
+
+  /// List of all enum-like values
+  static final List<ListOrderCodes> values = [
+    user,
+    system,
+    event_date,
+    entry_date,
+    priority,
+    alphabetic,
+    category,
+    patient,
+  ];
+
+  /// Returns the enum value with an element attached
+  ListOrderCodes withElement(Element? newElement) {
+    return ListOrderCodes._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -55,28 +97,20 @@ enum ListOrderCodes {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [ListOrderCodes] instances.
-  static ListOrderCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [ListOrderCodes] from JSON.
+  static ListOrderCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return ListOrderCodes.elementOnly.withElement(
-        element,
-      );
+      return ListOrderCodes.elementOnly.withElement(element);
     }
     return ListOrderCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  ListOrderCodes withElement(Element? newElement) {
-    return ListOrderCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'ListOrderCodes.$fhirCode';
 }

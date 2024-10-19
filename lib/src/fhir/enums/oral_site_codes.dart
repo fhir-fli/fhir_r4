@@ -1,185 +1,359 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes a smattering of FDI oral site codes.
-enum OralSiteCodes {
-  /// Display: Oral cavity
-  /// Definition: Oral cavity.
-  value0('0'),
+class OralSiteCodes {
+  // Private constructor for internal use (like enum)
+  OralSiteCodes._(this.fhirCode, {this.element});
 
-  /// Display: 1
-  /// Definition: Permanent teeth Maxillary right.
-  value1('1'),
-
-  /// Display: 2
-  /// Definition: Permanent teeth Maxillary left.
-  value2('2'),
-
-  /// Display: 3
-  /// Definition: Permanent teeth Mandibular right.
-  value3('3'),
-
-  /// Display: 4
-  /// Definition: Permanent teeth Mandibular left.
-  value4('4'),
-
-  /// Display: 5
-  /// Definition: Deciduous teeth Maxillary right.
-  value5('5'),
-
-  /// Display: 6
-  /// Definition: Deciduous teeth Maxillary left.
-  value6('6'),
-
-  /// Display: 7
-  /// Definition: Deciduous teeth Mandibular right.
-  value7('7'),
-
-  /// Display: 8
-  /// Definition: Deciduous teeth Mandibular left.
-  value8('8'),
-
-  /// Display: 11
-  /// Definition: Upper Right Tooth 1 from the central axis, permanent dentition.
-  value11('11'),
-
-  /// Display: 12
-  /// Definition: Upper Right Tooth 2 from the central axis, permanent dentition.
-  value12('12'),
-
-  /// Display: 13
-  /// Definition: Upper Right Tooth 3 from the central axis, permanent dentition.
-  value13('13'),
-
-  /// Display: 14
-  /// Definition: Upper Right Tooth 4 from the central axis, permanent dentition.
-  value14('14'),
-
-  /// Display: 15
-  /// Definition: Upper Right Tooth 5 from the central axis, permanent dentition.
-  value15('15'),
-
-  /// Display: 16
-  /// Definition: Upper Right Tooth 6 from the central axis, permanent dentition.
-  value16('16'),
-
-  /// Display: 17
-  /// Definition: Upper Right Tooth 7 from the central axis, permanent dentition.
-  value17('17'),
-
-  /// Display: 18
-  /// Definition: Upper Right Tooth 8 from the central axis, permanent dentition.
-  value18('18'),
-
-  /// Display: 21
-  /// Definition: Upper Left Tooth 1 from the central axis, permanent dentition.
-  value21('21'),
-
-  /// Display: 22
-  /// Definition: Upper Left Tooth 2 from the central axis, permanent dentition.
-  value22('22'),
-
-  /// Display: 23
-  /// Definition: Upper Left Tooth 3 from the central axis, permanent dentition.
-  value23('23'),
-
-  /// Display: 24
-  /// Definition: Upper Left Tooth 4 from the central axis, permanent dentition.
-  value24('24'),
-
-  /// Display: 25
-  /// Definition: Upper Left Tooth 5 from the central axis, permanent dentition.
-  value25('25'),
-
-  /// Display: 26
-  /// Definition: Upper Left Tooth 6 from the central axis, permanent dentition.
-  value26('26'),
-
-  /// Display: 27
-  /// Definition: Upper Left Tooth 7 from the central axis, permanent dentition.
-  value27('27'),
-
-  /// Display: 28
-  /// Definition: Upper Left Tooth 8 from the central axis, permanent dentition.
-  value28('28'),
-
-  /// Display: 31
-  /// Definition: Lower Left Tooth 1 from the central axis, permanent dentition.
-  value31('31'),
-
-  /// Display: 32
-  /// Definition: Lower Left Tooth 2 from the central axis, permanent dentition.
-  value32('32'),
-
-  /// Display: 33
-  /// Definition: Lower Left Tooth 3 from the central axis, permanent dentition.
-  value33('33'),
-
-  /// Display: 34
-  /// Definition: Lower Left Tooth 4 from the central axis, permanent dentition.
-  value34('34'),
-
-  /// Display: 35
-  /// Definition: Lower Left Tooth 5 from the central axis, permanent dentition.
-  value35('35'),
-
-  /// Display: 36
-  /// Definition: Lower Left Tooth 6 from the central axis, permanent dentition.
-  value36('36'),
-
-  /// Display: 37
-  /// Definition: Lower Left Tooth 7 from the central axis, permanent dentition.
-  value37('37'),
-
-  /// Display: 38
-  /// Definition: Lower Left Tooth 8 from the central axis, permanent dentition.
-  value38('38'),
-
-  /// Display: 41
-  /// Definition: Lower Right Tooth 1 from the central axis, permanent dentition.
-  value41('41'),
-
-  /// Display: 42
-  /// Definition: Lower Right Tooth 2 from the central axis, permanent dentition.
-  value42('42'),
-
-  /// Display: 43
-  /// Definition: Lower Right Tooth 3 from the central axis, permanent dentition.
-  value43('43'),
-
-  /// Display: 44
-  /// Definition: Lower Right Tooth 4 from the central axis, permanent dentition.
-  value44('44'),
-
-  /// Display: 45
-  /// Definition: Lower Right Tooth 5 from the central axis, permanent dentition.
-  value45('45'),
-
-  /// Display: 46
-  /// Definition: Lower Right Tooth 6 from the central axis, permanent dentition.
-  value46('46'),
-
-  /// Display: 47
-  /// Definition: Lower Right Tooth 7 from the central axis, permanent dentition.
-  value47('47'),
-
-  /// Display: 48
-  /// Definition: Lower Right Tooth 8 from the central axis, permanent dentition.
-  value48('48'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const OralSiteCodes(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// OralSiteCodes values
+  /// value0
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value0 = OralSiteCodes._(
+    '0',
+  );
+
+  /// value1
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value1 = OralSiteCodes._(
+    '1',
+  );
+
+  /// value2
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value2 = OralSiteCodes._(
+    '2',
+  );
+
+  /// value3
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value3 = OralSiteCodes._(
+    '3',
+  );
+
+  /// value4
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value4 = OralSiteCodes._(
+    '4',
+  );
+
+  /// value5
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value5 = OralSiteCodes._(
+    '5',
+  );
+
+  /// value6
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value6 = OralSiteCodes._(
+    '6',
+  );
+
+  /// value7
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value7 = OralSiteCodes._(
+    '7',
+  );
+
+  /// value8
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value8 = OralSiteCodes._(
+    '8',
+  );
+
+  /// value11
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value11 = OralSiteCodes._(
+    '11',
+  );
+
+  /// value12
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value12 = OralSiteCodes._(
+    '12',
+  );
+
+  /// value13
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value13 = OralSiteCodes._(
+    '13',
+  );
+
+  /// value14
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value14 = OralSiteCodes._(
+    '14',
+  );
+
+  /// value15
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value15 = OralSiteCodes._(
+    '15',
+  );
+
+  /// value16
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value16 = OralSiteCodes._(
+    '16',
+  );
+
+  /// value17
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value17 = OralSiteCodes._(
+    '17',
+  );
+
+  /// value18
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value18 = OralSiteCodes._(
+    '18',
+  );
+
+  /// value21
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value21 = OralSiteCodes._(
+    '21',
+  );
+
+  /// value22
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value22 = OralSiteCodes._(
+    '22',
+  );
+
+  /// value23
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value23 = OralSiteCodes._(
+    '23',
+  );
+
+  /// value24
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value24 = OralSiteCodes._(
+    '24',
+  );
+
+  /// value25
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value25 = OralSiteCodes._(
+    '25',
+  );
+
+  /// value26
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value26 = OralSiteCodes._(
+    '26',
+  );
+
+  /// value27
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value27 = OralSiteCodes._(
+    '27',
+  );
+
+  /// value28
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value28 = OralSiteCodes._(
+    '28',
+  );
+
+  /// value31
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value31 = OralSiteCodes._(
+    '31',
+  );
+
+  /// value32
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value32 = OralSiteCodes._(
+    '32',
+  );
+
+  /// value33
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value33 = OralSiteCodes._(
+    '33',
+  );
+
+  /// value34
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value34 = OralSiteCodes._(
+    '34',
+  );
+
+  /// value35
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value35 = OralSiteCodes._(
+    '35',
+  );
+
+  /// value36
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value36 = OralSiteCodes._(
+    '36',
+  );
+
+  /// value37
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value37 = OralSiteCodes._(
+    '37',
+  );
+
+  /// value38
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value38 = OralSiteCodes._(
+    '38',
+  );
+
+  /// value41
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value41 = OralSiteCodes._(
+    '41',
+  );
+
+  /// value42
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value42 = OralSiteCodes._(
+    '42',
+  );
+
+  /// value43
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value43 = OralSiteCodes._(
+    '43',
+  );
+
+  /// value44
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value44 = OralSiteCodes._(
+    '44',
+  );
+
+  /// value45
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value45 = OralSiteCodes._(
+    '45',
+  );
+
+  /// value46
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value46 = OralSiteCodes._(
+    '46',
+  );
+
+  /// value47
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value47 = OralSiteCodes._(
+    '47',
+  );
+
+  /// value48
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final OralSiteCodes value48 = OralSiteCodes._(
+    '48',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final OralSiteCodes elementOnly = OralSiteCodes._('');
+
+  /// List of all enum-like values
+  static final List<OralSiteCodes> values = [
+    value0,
+    value1,
+    value2,
+    value3,
+    value4,
+    value5,
+    value6,
+    value7,
+    value8,
+    value11,
+    value12,
+    value13,
+    value14,
+    value15,
+    value16,
+    value17,
+    value18,
+    value21,
+    value22,
+    value23,
+    value24,
+    value25,
+    value26,
+    value27,
+    value28,
+    value31,
+    value32,
+    value33,
+    value34,
+    value35,
+    value36,
+    value37,
+    value38,
+    value41,
+    value42,
+    value43,
+    value44,
+    value45,
+    value46,
+    value47,
+    value48,
+  ];
+
+  /// Returns the enum value with an element attached
+  OralSiteCodes withElement(Element? newElement) {
+    return OralSiteCodes._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -187,28 +361,20 @@ enum OralSiteCodes {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [OralSiteCodes] instances.
-  static OralSiteCodes fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [OralSiteCodes] from JSON.
+  static OralSiteCodes fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return OralSiteCodes.elementOnly.withElement(
-        element,
-      );
+      return OralSiteCodes.elementOnly.withElement(element);
     }
     return OralSiteCodes.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  OralSiteCodes withElement(Element? newElement) {
-    return OralSiteCodes.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'OralSiteCodes.$fhirCode';
 }

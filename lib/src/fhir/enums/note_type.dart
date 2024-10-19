@@ -1,33 +1,55 @@
-// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
 
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The presentation types of notes.
-enum NoteType {
-  /// Display: Display
-  /// Definition: Display the note.
-  display('display'),
+class NoteType {
+  // Private constructor for internal use (like enum)
+  NoteType._(this.fhirCode, {this.element});
 
-  /// Display: Print (Form)
-  /// Definition: Print the note on the form.
-  print('print'),
-
-  /// Display: Print (Operator)
-  /// Definition: Print the note for the operator.
-  printoper('printoper'),
-
-  /// For instances where an Element is present but not value
-
-  elementOnly(''),
-  ;
-
-  const NoteType(this.fhirCode, [this.element]);
-
-  /// The String value of this enum
+  /// The String value of this enum (FHIR code)
   final String fhirCode;
 
   /// The Element value of this enum
   final Element? element;
+
+  /// NoteType values
+  /// display
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final NoteType display = NoteType._(
+    'display',
+  );
+
+  /// print
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final NoteType print = NoteType._(
+    'print',
+  );
+
+  /// printoper
+  /// Instance of 'EnumValue'.display
+  /// Instance of 'EnumValue'.definition
+  static final NoteType printoper = NoteType._(
+    'printoper',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final NoteType elementOnly = NoteType._('');
+
+  /// List of all enum-like values
+  static final List<NoteType> values = [
+    display,
+    print,
+    printoper,
+  ];
+
+  /// Returns the enum value with an element attached
+  NoteType withElement(Element? newElement) {
+    return NoteType._(fhirCode, element: newElement);
+  }
 
   /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
@@ -35,28 +57,20 @@ enum NoteType {
         if (element != null) '_value': element!.toJson(),
       };
 
-  /// Converts a list of JSON values to a list of [NoteType] instances.
-  static NoteType fromJson(
-    Map<String, dynamic> json,
-  ) {
+  /// Factory constructor to create [NoteType] from JSON.
+  static NoteType fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
-      return NoteType.elementOnly.withElement(
-        element,
-      );
+      return NoteType.elementOnly.withElement(element);
     }
     return NoteType.values.firstWhere(
       (e) => e.fhirCode == value,
     );
   }
 
-  /// Returns the enum value with an element
-  NoteType withElement(Element? newElement) {
-    return NoteType.fromJson({
-      'value': fhirCode,
-      '_value': newElement?.toJson(),
-    });
-  }
+  /// String representation (for debugging purposes)
+  @override
+  String toString() => 'NoteType.$fhirCode';
 }
