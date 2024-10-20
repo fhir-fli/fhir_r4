@@ -141,6 +141,7 @@ class FhirXhtml extends PrimitiveType<String?> {
     'td',
     'pre',
     'code',
+    'blockquote',
   ];
 
   /// Allowed XHTML attributes (expanded to be more flexible)
