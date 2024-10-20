@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 
 import 'package:fhir_r4/fhir_r4.dart';
 
+/// The FHIRPath specification defines a number of special variables that can
 class BracketsIndexParser extends ValueParser<int> {
   /// Constructor for [BracketsIndexParser]
   BracketsIndexParser(super.value);

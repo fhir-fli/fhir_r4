@@ -69,7 +69,9 @@ class FhirXhtml extends PrimitiveType<String?> {
 
       // Recursively validate elements
       if (!_validateElement(rootElement, isRoot: true)) {
-        throw const FormatException('Invalid XHTML element structure');
+        throw FormatException(
+          'Invalid XHTML element structure ${rootElement.name.local}',
+        );
       }
 
       return xhtml; // Return the valid XHTML string
@@ -78,90 +80,40 @@ class FhirXhtml extends PrimitiveType<String?> {
     }
   }
 
-  // Helper method to validate XHTML attributes
   static bool _isValidAttribute(
     XmlAttribute attribute,
     String elementName,
     bool isRoot,
   ) {
-    /// Allowed attributes
-    if (attribute.name.local == 'style') {
-      return _validateStyleAttribute(
-        attribute.value,
-      );
+    final attributeName = attribute.name.local;
 
-      /// Only validate styles for style attribute
-    } else if (attribute.name.local == 'class') {
-      return true;
-
-      /// Class does not need style validation, just allowed as is
-    } else if (attribute.name.local == 'src' &&
-        attribute.value.startsWith('#')) {
-      return true;
-    } else if (attribute.name.local == 'xml:id' ||
-        attribute.name.local == 'lang') {
-      return true;
-    } else if (isRoot &&
-        attribute.name.local == 'xmlns' &&
-        attribute.value == 'http://www.w3.org/1999/xhtml') {
-      return true;
-    } else if (elementName == 'a' &&
-        (attribute.name.local == 'href' || attribute.name.local == 'name')) {
+    /// Allow `cellpadding` only for `table` elements
+    if (elementName == 'table' && attributeName == 'cellpadding') {
       return true;
     }
 
-    /// Disallowed event attributes (e.g., onClick, onLoad)
-    if (attribute.name.local.startsWith('on')) {
-      return false;
+    /// Check allowed attributes or additional allowed attributes
+    if (_allowedAttributes.contains(attributeName)) {
+      return true;
+    }
+
+    if (attributeName == 'cellspacing') {
+      throw Exception(
+        'Checking attribute :$attributeName: :$_allowedAttributes:',
+      );
+    }
+
+    if (isRoot &&
+        attributeName == 'xmlns' &&
+        attribute.value == 'http://www.w3.org/1999/xhtml') {
+      return true;
     }
 
     return false;
   }
 
-// Method to validate allowed CSS properties in the 'style' attribute
-  static bool _validateStyleAttribute(String style) {
-    final allowedStyles = <String>[
-      'font-weight',
-      'font-style',
-      'text-decoration',
-      'text-align',
-      'border-left',
-      'border-right',
-      'border-top',
-      'border-bottom',
-      'list-style-type',
-      'color',
-      'background-color',
-      'white-space',
-    ];
-
-    // Split the style attribute on semicolons and remove any empty or
-    // malformed entries
-    final styles = style.split(';').where((s) => s.trim().isNotEmpty);
-
-    for (final styleProperty in styles) {
-      // Split each style into property and value
-      final parts = styleProperty.split(':');
-
-      if (parts.length != 2) {
-        return false; // Invalid style format (no property or value)
-      }
-
-      final property =
-          parts[0].trim(); // Normalize property name by trimming whitespace
-      final value = parts[1].trim(); // Normalize value by trimming whitespace
-
-      // Ensure the style property is in the allowed list and has a valid value
-      if (!allowedStyles.contains(property) || value.isEmpty) {
-        return false; // Disallowed or improperly formatted style
-      }
-    }
-
-    return true; // All styles are valid
-  }
-
-  /// Allowed XHTML elements based on FHIR's specification
-  static final List<String> allowedElements = <String>[
+  /// Allowed XHTML elements based on FHIR's specification, plus custom ones
+  static final List<String> _allowedElements = <String>[
     'div',
     'p',
     'b',
@@ -187,38 +139,53 @@ class FhirXhtml extends PrimitiveType<String?> {
     'tr',
     'th',
     'td',
+    'pre',
+    'code',
   ];
 
-  /// Prohibited elements as per FHIR's specification
-  static final List<String> prohibitedElements = <String>[
-    'head',
-    'body',
-    'script',
-    'form',
-    'base',
-    'link',
-    'frame',
-    'iframe',
-    'object',
-    'frameset',
-    'meta',
-    'input',
-    'textarea',
-    'button',
-    'select',
-    'option',
+  /// Allowed XHTML attributes (expanded to be more flexible)
+  static final List<String> _allowedAttributes = <String>[
     'style',
+    'class',
+    'src',
+    'xml:id',
+    'lang',
+    'href',
+    'name',
+    'alt',
+    'title',
+    'colspan',
+    'rowspan',
+    'width',
+    'height',
+    'align',
+    'valign',
+    'border',
+    'xmlns',
+    'cellpadding',
+    'cellspacing',
   ];
 
   static bool _validateElement(XmlElement element, {bool isRoot = false}) {
-    /// Check if the element is allowed
-    if (!allowedElements.contains(element.name.local)) {
+    final elementName = element.name.local;
+
+    /// Allow `div` inside `table`, `tr`, and `td` elements
+    if ((elementName == 'table' ||
+            elementName == 'tr' ||
+            elementName == 'td') &&
+        element.children
+            .any((child) => child is XmlElement && child.name.local == 'div')) {
+      return true; // Explicitly allow `div` inside `table`, `tr`, and `td`
+    }
+
+    /// Check if the element is allowed in the base list or additional list
+    if (!_allowedElements.contains(elementName)) {
       return false;
     }
 
     /// Validate attributes
     for (final attribute in element.attributes) {
-      if (_isValidAttribute(attribute, element.name.local, isRoot)) {
+      if (_isValidAttribute(attribute, elementName, isRoot)) {
         continue;
       } else {
         return false;
@@ -232,11 +199,6 @@ class FhirXhtml extends PrimitiveType<String?> {
           return false;
         }
       }
-    }
-
-    /// Ensure the root div has non-whitespace content
-    if (element.name.local == 'div' && element.innerText.trim().isEmpty) {
-      return false;
     }
 
     return true;
