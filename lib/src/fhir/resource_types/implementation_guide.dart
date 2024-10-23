@@ -1706,6 +1706,7 @@ class ImplementationGuidePage extends BackboneElement {
     this.nameReference,
     required this.title,
     required this.generation,
+    this.page,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1759,6 +1760,15 @@ class ImplementationGuidePage extends BackboneElement {
         'value': json['generation'],
         '_value': json['_generation'],
       }),
+      page: json['page'] != null
+          ? (json['page'] as List<dynamic>)
+              .map<ImplementationGuidePage>(
+                (v) => ImplementationGuidePage.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
     );
   }
 
@@ -1816,6 +1826,10 @@ class ImplementationGuidePage extends BackboneElement {
   /// [generation]
   /// A code that indicates how the page is generated.
   final GuidePageGeneration generation;
+
+  /// [page]
+  /// Nested Pages/Sections under this page.
+  final List<ImplementationGuidePage>? page;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1856,6 +1870,10 @@ class ImplementationGuidePage extends BackboneElement {
       json['_generation'] = fieldJson5['_value'];
     }
 
+    if (page != null && page!.isNotEmpty) {
+      json['page'] = page!.map((e) => e.toJson()).toList();
+    }
+
     return json;
   }
 
@@ -1870,6 +1888,7 @@ class ImplementationGuidePage extends BackboneElement {
     Reference? nameReference,
     FhirString? title,
     GuidePageGeneration? generation,
+    List<ImplementationGuidePage>? page,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1885,6 +1904,7 @@ class ImplementationGuidePage extends BackboneElement {
       nameReference: nameReference ?? this.nameReference,
       title: title ?? this.title,
       generation: generation ?? this.generation,
+      page: page ?? this.page,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

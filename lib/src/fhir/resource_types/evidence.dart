@@ -1582,6 +1582,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
     this.quantity,
     this.level,
     this.range,
+    this.attributeEstimate,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1652,6 +1653,15 @@ class EvidenceAttributeEstimate extends BackboneElement {
               json['range'] as Map<String, dynamic>,
             )
           : null,
+      attributeEstimate: json['attributeEstimate'] != null
+          ? (json['attributeEstimate'] as List<dynamic>)
+              .map<EvidenceAttributeEstimate>(
+                (v) => EvidenceAttributeEstimate.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
     );
   }
 
@@ -1718,6 +1728,11 @@ class EvidenceAttributeEstimate extends BackboneElement {
   /// [range]
   /// Lower bound of confidence interval.
   final Range? range;
+
+  /// [attributeEstimate]
+  /// A nested attribute estimate; which is the attribute estimate of an
+  /// attribute estimate.
+  final List<EvidenceAttributeEstimate>? attributeEstimate;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1766,6 +1781,11 @@ class EvidenceAttributeEstimate extends BackboneElement {
       json['range'] = range!.toJson();
     }
 
+    if (attributeEstimate != null && attributeEstimate!.isNotEmpty) {
+      json['attributeEstimate'] =
+          attributeEstimate!.map((e) => e.toJson()).toList();
+    }
+
     return json;
   }
 
@@ -1782,6 +1802,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
     Quantity? quantity,
     FhirDecimal? level,
     Range? range,
+    List<EvidenceAttributeEstimate>? attributeEstimate,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1799,6 +1820,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
       quantity: quantity ?? this.quantity,
       level: level ?? this.level,
       range: range ?? this.range,
+      attributeEstimate: attributeEstimate ?? this.attributeEstimate,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1822,6 +1844,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
     required this.code,
     this.value,
     this.variable,
+    this.attributeEstimate,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1868,6 +1891,15 @@ class EvidenceModelCharacteristic extends BackboneElement {
           ? (json['variable'] as List<dynamic>)
               .map<EvidenceModelCharacteristicVariable>(
                 (v) => EvidenceModelCharacteristicVariable.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      attributeEstimate: json['attributeEstimate'] != null
+          ? (json['attributeEstimate'] as List<dynamic>)
+              .map<EvidenceAttributeEstimate>(
+                (v) => EvidenceAttributeEstimate.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1926,6 +1958,10 @@ class EvidenceModelCharacteristic extends BackboneElement {
   /// [variable]
   /// A variable adjusted for in the adjusted analysis.
   final List<EvidenceModelCharacteristicVariable>? variable;
+
+  /// [attributeEstimate]
+  /// An attribute of the statistic used as a model characteristic.
+  final List<EvidenceAttributeEstimate>? attributeEstimate;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1952,6 +1988,11 @@ class EvidenceModelCharacteristic extends BackboneElement {
       json['variable'] = variable!.map((e) => e.toJson()).toList();
     }
 
+    if (attributeEstimate != null && attributeEstimate!.isNotEmpty) {
+      json['attributeEstimate'] =
+          attributeEstimate!.map((e) => e.toJson()).toList();
+    }
+
     return json;
   }
 
@@ -1965,6 +2006,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
     CodeableConcept? code,
     Quantity? value,
     List<EvidenceModelCharacteristicVariable>? variable,
+    List<EvidenceAttributeEstimate>? attributeEstimate,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1979,6 +2021,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
       code: code ?? this.code,
       value: value ?? this.value,
       variable: variable ?? this.variable,
+      attributeEstimate: attributeEstimate ?? this.attributeEstimate,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

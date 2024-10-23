@@ -815,6 +815,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     this.durationRange,
     this.durationString,
     this.undesirableEffect,
+    this.otherTherapy,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -889,6 +890,15 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
           ? (json['undesirableEffect'] as List<dynamic>)
               .map<Reference>(
                 (v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      otherTherapy: json['otherTherapy'] != null
+          ? (json['otherTherapy'] as List<dynamic>)
+              .map<ClinicalUseDefinitionOtherTherapy>(
+                (v) => ClinicalUseDefinitionOtherTherapy.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -971,6 +981,11 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   /// An unwanted side effect or negative outcome that may happen if you use
   /// the drug (or other subject of this resource) for this indication.
   final List<Reference>? undesirableEffect;
+
+  /// [otherTherapy]
+  /// Information about the use of the medicinal product in relation to other
+  /// therapies described as part of the indication.
+  final List<ClinicalUseDefinitionOtherTherapy>? otherTherapy;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1020,6 +1035,10 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
           undesirableEffect!.map((e) => e.toJson()).toList();
     }
 
+    if (otherTherapy != null && otherTherapy!.isNotEmpty) {
+      json['otherTherapy'] = otherTherapy!.map((e) => e.toJson()).toList();
+    }
+
     return json;
   }
 
@@ -1037,6 +1056,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     Range? durationRange,
     FhirString? durationString,
     List<Reference>? undesirableEffect,
+    List<ClinicalUseDefinitionOtherTherapy>? otherTherapy,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1056,6 +1076,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       durationRange: durationRange ?? this.durationRange,
       durationString: durationString ?? this.durationString,
       undesirableEffect: undesirableEffect ?? this.undesirableEffect,
+      otherTherapy: otherTherapy ?? this.otherTherapy,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

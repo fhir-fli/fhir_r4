@@ -29,6 +29,7 @@ class Invoice extends DomainResource {
     this.issuer,
     this.account,
     this.lineItem,
+    this.totalPriceComponent,
     this.totalNet,
     this.totalGross,
     this.paymentTerms,
@@ -170,6 +171,15 @@ class Invoice extends DomainResource {
               )
               .toList()
           : null,
+      totalPriceComponent: json['totalPriceComponent'] != null
+          ? (json['totalPriceComponent'] as List<dynamic>)
+              .map<InvoicePriceComponent>(
+                (v) => InvoicePriceComponent.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       totalNet: json['totalNet'] != null
           ? Money.fromJson(
               json['totalNet'] as Map<String, dynamic>,
@@ -288,6 +298,13 @@ class Invoice extends DomainResource {
   /// ChargeItem resource.
   final List<InvoiceLineItem>? lineItem;
 
+  /// [totalPriceComponent]
+  /// The total amount for the Invoice may be calculated as the sum of the
+  /// line items with surcharges/deductions that apply in certain conditions.
+  /// The priceComponent element can be used to offer transparency to the
+  /// recipient of the Invoice of how the total price was calculated.
+  final List<InvoicePriceComponent>? totalPriceComponent;
+
   /// [totalNet]
   /// Invoice total , taxes excluded.
   final Money? totalNet;
@@ -404,6 +421,11 @@ class Invoice extends DomainResource {
       json['lineItem'] = lineItem!.map((e) => e.toJson()).toList();
     }
 
+    if (totalPriceComponent != null && totalPriceComponent!.isNotEmpty) {
+      json['totalPriceComponent'] =
+          totalPriceComponent!.map((e) => e.toJson()).toList();
+    }
+
     if (totalNet != null) {
       json['totalNet'] = totalNet!.toJson();
     }
@@ -413,10 +435,10 @@ class Invoice extends DomainResource {
     }
 
     if (paymentTerms != null) {
-      final fieldJson20 = paymentTerms!.toJson();
-      json['paymentTerms'] = fieldJson20['value'];
-      if (fieldJson20['_value'] != null) {
-        json['_paymentTerms'] = fieldJson20['_value'];
+      final fieldJson21 = paymentTerms!.toJson();
+      json['paymentTerms'] = fieldJson21['value'];
+      if (fieldJson21['_value'] != null) {
+        json['_paymentTerms'] = fieldJson21['_value'];
       }
     }
 
@@ -450,6 +472,7 @@ class Invoice extends DomainResource {
     Reference? issuer,
     Reference? account,
     List<InvoiceLineItem>? lineItem,
+    List<InvoicePriceComponent>? totalPriceComponent,
     Money? totalNet,
     Money? totalGross,
     FhirMarkdown? paymentTerms,
@@ -481,6 +504,7 @@ class Invoice extends DomainResource {
       issuer: issuer ?? this.issuer,
       account: account ?? this.account,
       lineItem: lineItem ?? this.lineItem,
+      totalPriceComponent: totalPriceComponent ?? this.totalPriceComponent,
       totalNet: totalNet ?? this.totalNet,
       totalGross: totalGross ?? this.totalGross,
       paymentTerms: paymentTerms ?? this.paymentTerms,

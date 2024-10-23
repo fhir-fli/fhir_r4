@@ -637,6 +637,8 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'security': const FhirField(false, 'CapabilityStatementSecurity'),
     'resource': const FhirField(true, 'CapabilityStatementResource'),
     'interaction': const FhirField(true, 'CapabilityStatementInteraction'),
+    'searchParam': const FhirField(true, 'CapabilityStatementSearchParam'),
+    'operation': const FhirField(true, 'CapabilityStatementOperation'),
     'compartment': const FhirField(true, 'FhirCanonical'),
   },
   'CapabilityStatementSecurity': <String, FhirField>{
@@ -1439,6 +1441,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'payeeType': const FhirField(false, 'CodeableConcept'),
     'item': const FhirField(true, 'ClaimResponseItem'),
     'addItem': const FhirField(true, 'ClaimResponseAddItem'),
+    'adjudication': const FhirField(true, 'ClaimResponseAdjudication'),
     'total': const FhirField(true, 'ClaimResponseTotal'),
     'payment': const FhirField(false, 'ClaimResponsePayment'),
     'fundsReserve': const FhirField(false, 'CodeableConcept'),
@@ -1473,6 +1476,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'modifierExtension': const FhirField(true, 'FhirExtension'),
     'detailSequence': const FhirField(false, 'FhirPositiveInt'),
     'noteNumber': const FhirField(true, 'FhirPositiveInt'),
+    'adjudication': const FhirField(true, 'ClaimResponseAdjudication'),
     'subDetail': const FhirField(true, 'ClaimResponseSubDetail'),
   },
   'ClaimResponseSubDetail': <String, FhirField>{
@@ -1481,6 +1485,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'modifierExtension': const FhirField(true, 'FhirExtension'),
     'subDetailSequence': const FhirField(false, 'FhirPositiveInt'),
     'noteNumber': const FhirField(true, 'FhirPositiveInt'),
+    'adjudication': const FhirField(true, 'ClaimResponseAdjudication'),
   },
   'ClaimResponseAddItem': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -1505,6 +1510,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'bodySite': const FhirField(false, 'CodeableConcept'),
     'subSite': const FhirField(true, 'CodeableConcept'),
     'noteNumber': const FhirField(true, 'FhirPositiveInt'),
+    'adjudication': const FhirField(true, 'ClaimResponseAdjudication'),
     'detail': const FhirField(true, 'ClaimResponseDetail'),
   },
   'ClaimResponseDetail1': <String, FhirField>{
@@ -1518,6 +1524,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'factor': const FhirField(false, 'FhirDecimal'),
     'net': const FhirField(false, 'Money'),
     'noteNumber': const FhirField(true, 'FhirPositiveInt'),
+    'adjudication': const FhirField(true, 'ClaimResponseAdjudication'),
     'subDetail': const FhirField(true, 'ClaimResponseSubDetail'),
   },
   'ClaimResponseSubDetail1': <String, FhirField>{
@@ -1531,6 +1538,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'factor': const FhirField(false, 'FhirDecimal'),
     'net': const FhirField(false, 'Money'),
     'noteNumber': const FhirField(true, 'FhirPositiveInt'),
+    'adjudication': const FhirField(true, 'ClaimResponseAdjudication'),
   },
   'ClaimResponseTotal': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -1675,6 +1683,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'durationRange': const FhirField(false, 'Range'),
     'durationString': const FhirField(false, 'FhirString'),
     'undesirableEffect': const FhirField(true, 'Reference'),
+    'otherTherapy': const FhirField(true, 'ClinicalUseDefinitionOtherTherapy'),
   },
   'ClinicalUseDefinitionInteraction': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -2030,6 +2039,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'equivalence': const FhirField(false, 'ConceptMapEquivalence'),
     'comment': const FhirField(false, 'FhirString'),
     'dependsOn': const FhirField(true, 'ConceptMapDependsOn'),
+    'product': const FhirField(true, 'ConceptMapDependsOn'),
   },
   'ConceptMapDependsOn': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -2305,6 +2315,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'usePeriod': const FhirField(true, 'Period'),
     'text': const FhirField(false, 'FhirString'),
     'linkId': const FhirField(true, 'FhirString'),
+    'answer': const FhirField(true, 'ContractAnswer'),
     'securityLabelNumber': const FhirField(true, 'FhirUnsignedInt'),
     'valuedItem': const FhirField(true, 'ContractValuedItem'),
   },
@@ -3301,6 +3312,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'quantity': const FhirField(false, 'Quantity'),
     'level': const FhirField(false, 'FhirDecimal'),
     'range': const FhirField(false, 'Range'),
+    'attributeEstimate': const FhirField(true, 'EvidenceAttributeEstimate'),
   },
   'EvidenceModelCharacteristic': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -3309,6 +3321,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'code': const FhirField(false, 'CodeableConcept'),
     'value': const FhirField(false, 'Quantity'),
     'variable': const FhirField(true, 'EvidenceModelCharacteristicVariable'),
+    'attributeEstimate': const FhirField(true, 'EvidenceAttributeEstimate'),
   },
   'EvidenceModelCharacteristicVariable': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -3566,6 +3579,8 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'description': const FhirField(false, 'FhirMarkdown'),
     'initiatorActive': const FhirField(false, 'FhirBoolean'),
     'receiverActive': const FhirField(false, 'FhirBoolean'),
+    'request': const FhirField(false, 'ExampleScenarioContainedInstance'),
+    'response': const FhirField(false, 'ExampleScenarioContainedInstance'),
   },
   'ExampleScenarioAlternative': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -3573,6 +3588,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'modifierExtension': const FhirField(true, 'FhirExtension'),
     'title': const FhirField(false, 'FhirString'),
     'description': const FhirField(false, 'FhirMarkdown'),
+    'step': const FhirField(true, 'ExampleScenarioStep'),
   },
   'ExplanationOfBenefit': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -3619,6 +3635,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'accident': const FhirField(false, 'ExplanationOfBenefitAccident'),
     'item': const FhirField(true, 'ExplanationOfBenefitItem'),
     'addItem': const FhirField(true, 'ExplanationOfBenefitAddItem'),
+    'adjudication': const FhirField(true, 'ExplanationOfBenefitAdjudication'),
     'total': const FhirField(true, 'ExplanationOfBenefitTotal'),
     'payment': const FhirField(false, 'ExplanationOfBenefitPayment'),
     'formCode': const FhirField(false, 'CodeableConcept'),
@@ -3764,6 +3781,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'net': const FhirField(false, 'Money'),
     'udi': const FhirField(true, 'Reference'),
     'noteNumber': const FhirField(true, 'FhirPositiveInt'),
+    'adjudication': const FhirField(true, 'ExplanationOfBenefitAdjudication'),
     'subDetail': const FhirField(true, 'ExplanationOfBenefitSubDetail'),
   },
   'ExplanationOfBenefitSubDetail': <String, FhirField>{
@@ -3782,6 +3800,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'net': const FhirField(false, 'Money'),
     'udi': const FhirField(true, 'Reference'),
     'noteNumber': const FhirField(true, 'FhirPositiveInt'),
+    'adjudication': const FhirField(true, 'ExplanationOfBenefitAdjudication'),
   },
   'ExplanationOfBenefitAddItem': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -3806,6 +3825,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'bodySite': const FhirField(false, 'CodeableConcept'),
     'subSite': const FhirField(true, 'CodeableConcept'),
     'noteNumber': const FhirField(true, 'FhirPositiveInt'),
+    'adjudication': const FhirField(true, 'ExplanationOfBenefitAdjudication'),
     'detail': const FhirField(true, 'ExplanationOfBenefitDetail'),
   },
   'ExplanationOfBenefitDetail1': <String, FhirField>{
@@ -3819,6 +3839,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'factor': const FhirField(false, 'FhirDecimal'),
     'net': const FhirField(false, 'Money'),
     'noteNumber': const FhirField(true, 'FhirPositiveInt'),
+    'adjudication': const FhirField(true, 'ExplanationOfBenefitAdjudication'),
     'subDetail': const FhirField(true, 'ExplanationOfBenefitSubDetail'),
   },
   'ExplanationOfBenefitSubDetail1': <String, FhirField>{
@@ -3832,6 +3853,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'factor': const FhirField(false, 'FhirDecimal'),
     'net': const FhirField(false, 'Money'),
     'noteNumber': const FhirField(true, 'FhirPositiveInt'),
+    'adjudication': const FhirField(true, 'ExplanationOfBenefitAdjudication'),
   },
   'ExplanationOfBenefitTotal': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -4462,6 +4484,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'nameReference': const FhirField(false, 'Reference'),
     'title': const FhirField(false, 'FhirString'),
     'generation': const FhirField(false, 'GuidePageGeneration'),
+    'page': const FhirField(true, 'ImplementationGuidePage'),
   },
   'ImplementationGuideParameter': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -4680,6 +4703,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'issuer': const FhirField(false, 'Reference'),
     'account': const FhirField(false, 'Reference'),
     'lineItem': const FhirField(true, 'InvoiceLineItem'),
+    'totalPriceComponent': const FhirField(true, 'InvoicePriceComponent'),
     'totalNet': const FhirField(false, 'Money'),
     'totalGross': const FhirField(false, 'Money'),
     'paymentTerms': const FhirField(false, 'FhirMarkdown'),
@@ -7713,6 +7737,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'name': const FhirField(false, 'FhirId'),
     'source': const FhirField(true, 'StructureMapSource'),
     'target': const FhirField(true, 'StructureMapTarget'),
+    'rule': const FhirField(true, 'StructureMapRule'),
     'dependent': const FhirField(true, 'StructureMapDependent'),
     'documentation': const FhirField(false, 'FhirString'),
   },
@@ -8539,6 +8564,8 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'id': const FhirField(false, 'FhirString'),
     'extension': const FhirField(true, 'FhirExtension'),
     'modifierExtension': const FhirField(true, 'FhirExtension'),
+    'operation': const FhirField(false, 'TestReportOperation'),
+    'assert': const FhirField(false, 'TestReportAssert'),
   },
   'TestReportTeardown': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -8550,6 +8577,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'id': const FhirField(false, 'FhirString'),
     'extension': const FhirField(true, 'FhirExtension'),
     'modifierExtension': const FhirField(true, 'FhirExtension'),
+    'operation': const FhirField(false, 'TestReportOperation'),
   },
   'TestScript': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -8727,6 +8755,8 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'id': const FhirField(false, 'FhirString'),
     'extension': const FhirField(true, 'FhirExtension'),
     'modifierExtension': const FhirField(true, 'FhirExtension'),
+    'operation': const FhirField(false, 'TestScriptOperation'),
+    'assert': const FhirField(false, 'TestScriptAssert'),
   },
   'TestScriptTeardown': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -8738,6 +8768,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'id': const FhirField(false, 'FhirString'),
     'extension': const FhirField(true, 'FhirExtension'),
     'modifierExtension': const FhirField(true, 'FhirExtension'),
+    'operation': const FhirField(false, 'TestScriptOperation'),
   },
   'ValueSet': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -8774,6 +8805,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'lockedDate': const FhirField(false, 'FhirDate'),
     'inactive': const FhirField(false, 'FhirBoolean'),
     'include': const FhirField(true, 'ValueSetInclude'),
+    'exclude': const FhirField(true, 'ValueSetInclude'),
   },
   'ValueSetInclude': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -8843,6 +8875,8 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'version': const FhirField(false, 'FhirString'),
     'code': const FhirField(false, 'FhirCode'),
     'display': const FhirField(false, 'FhirString'),
+    'designation': const FhirField(true, 'ValueSetDesignation'),
+    'contains': const FhirField(true, 'ValueSetContains'),
   },
   'VerificationResult': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),

@@ -1286,6 +1286,7 @@ class StructureMapRule extends BackboneElement {
     required this.name,
     required this.source,
     this.target,
+    this.rule,
     this.dependent,
     this.documentation,
     super.userData,
@@ -1339,6 +1340,15 @@ class StructureMapRule extends BackboneElement {
           ? (json['target'] as List<dynamic>)
               .map<StructureMapTarget>(
                 (v) => StructureMapTarget.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      rule: json['rule'] != null
+          ? (json['rule'] as List<dynamic>)
+              .map<StructureMapRule>(
+                (v) => StructureMapRule.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1413,6 +1423,10 @@ class StructureMapRule extends BackboneElement {
   /// Content to create because of this mapping rule.
   final List<StructureMapTarget>? target;
 
+  /// [rule]
+  /// Rules contained in this rule.
+  final List<StructureMapRule>? rule;
+
   /// [dependent]
   /// Which other rules to apply in the context of this rule.
   final List<StructureMapDependent>? dependent;
@@ -1448,15 +1462,19 @@ class StructureMapRule extends BackboneElement {
       json['target'] = target!.map((e) => e.toJson()).toList();
     }
 
+    if (rule != null && rule!.isNotEmpty) {
+      json['rule'] = rule!.map((e) => e.toJson()).toList();
+    }
+
     if (dependent != null && dependent!.isNotEmpty) {
       json['dependent'] = dependent!.map((e) => e.toJson()).toList();
     }
 
     if (documentation != null) {
-      final fieldJson6 = documentation!.toJson();
-      json['documentation'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_documentation'] = fieldJson6['_value'];
+      final fieldJson7 = documentation!.toJson();
+      json['documentation'] = fieldJson7['value'];
+      if (fieldJson7['_value'] != null) {
+        json['_documentation'] = fieldJson7['_value'];
       }
     }
 
@@ -1473,6 +1491,7 @@ class StructureMapRule extends BackboneElement {
     FhirId? name,
     List<StructureMapSource>? source,
     List<StructureMapTarget>? target,
+    List<StructureMapRule>? rule,
     List<StructureMapDependent>? dependent,
     FhirString? documentation,
     Map<String, Object?>? userData,
@@ -1489,6 +1508,7 @@ class StructureMapRule extends BackboneElement {
       name: name ?? this.name,
       source: source ?? this.source,
       target: target ?? this.target,
+      rule: rule ?? this.rule,
       dependent: dependent ?? this.dependent,
       documentation: documentation ?? this.documentation,
       userData: userData ?? this.userData,

@@ -1131,6 +1131,7 @@ class ConceptMapTarget extends BackboneElement {
     required this.equivalence,
     this.comment,
     this.dependsOn,
+    this.product,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1189,6 +1190,15 @@ class ConceptMapTarget extends BackboneElement {
           : null,
       dependsOn: json['dependsOn'] != null
           ? (json['dependsOn'] as List<dynamic>)
+              .map<ConceptMapDependsOn>(
+                (v) => ConceptMapDependsOn.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      product: json['product'] != null
+          ? (json['product'] as List<dynamic>)
               .map<ConceptMapDependsOn>(
                 (v) => ConceptMapDependsOn.fromJson(
                   v as Map<String, dynamic>,
@@ -1262,6 +1272,14 @@ class ConceptMapTarget extends BackboneElement {
   /// is only applicable if the specified element can be resolved, and it has
   /// the specified value.
   final List<ConceptMapDependsOn>? dependsOn;
+
+  /// [product]
+  /// A set of additional outcomes from this mapping to other elements. To
+  /// properly execute this mapping, the specified element must be mapped to
+  /// some data element or source that is in context. The mapping may still
+  /// be useful without a place for the additional data elements, but the
+  /// equivalence cannot be relied on.
+  final List<ConceptMapDependsOn>? product;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1312,6 +1330,10 @@ class ConceptMapTarget extends BackboneElement {
       json['dependsOn'] = dependsOn!.map((e) => e.toJson()).toList();
     }
 
+    if (product != null && product!.isNotEmpty) {
+      json['product'] = product!.map((e) => e.toJson()).toList();
+    }
+
     return json;
   }
 
@@ -1327,6 +1349,7 @@ class ConceptMapTarget extends BackboneElement {
     ConceptMapEquivalence? equivalence,
     FhirString? comment,
     List<ConceptMapDependsOn>? dependsOn,
+    List<ConceptMapDependsOn>? product,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1343,6 +1366,7 @@ class ConceptMapTarget extends BackboneElement {
       equivalence: equivalence ?? this.equivalence,
       comment: comment ?? this.comment,
       dependsOn: dependsOn ?? this.dependsOn,
+      product: product ?? this.product,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

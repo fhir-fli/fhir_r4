@@ -2632,6 +2632,7 @@ class ContractAsset extends BackboneElement {
     this.usePeriod,
     this.text,
     this.linkId,
+    this.answer,
     this.securityLabelNumber,
     this.valuedItem,
     super.userData,
@@ -2758,6 +2759,15 @@ class ContractAsset extends BackboneElement {
         json['_linkId'] as List<dynamic>?,
         fromJson: FhirString.fromJson,
       ),
+      answer: json['answer'] != null
+          ? (json['answer'] as List<dynamic>)
+              .map<ContractAnswer>(
+                (v) => ContractAnswer.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       securityLabelNumber: parsePrimitiveList<FhirUnsignedInt>(
         json['securityLabelNumber'] as List<dynamic>?,
         json['_securityLabelNumber'] as List<dynamic>?,
@@ -2867,6 +2877,10 @@ class ContractAsset extends BackboneElement {
   /// referenced form or QuestionnaireResponse.
   final List<FhirString>? linkId;
 
+  /// [answer]
+  /// Response to assets.
+  final List<ContractAnswer>? answer;
+
   /// [securityLabelNumber]
   /// Security labels that protects the asset.
   final List<FhirUnsignedInt>? securityLabelNumber;
@@ -2950,12 +2964,16 @@ class ContractAsset extends BackboneElement {
       }
     }
 
+    if (answer != null && answer!.isNotEmpty) {
+      json['answer'] = answer!.map((e) => e.toJson()).toList();
+    }
+
     if (securityLabelNumber != null && securityLabelNumber!.isNotEmpty) {
-      final fieldJson14 = securityLabelNumber!.map((e) => e.toJson()).toList();
-      json['securityLabelNumber'] = fieldJson14.map((e) => e['value']).toList();
-      if (fieldJson14.any((e) => e['_value'] != null)) {
+      final fieldJson15 = securityLabelNumber!.map((e) => e.toJson()).toList();
+      json['securityLabelNumber'] = fieldJson15.map((e) => e['value']).toList();
+      if (fieldJson15.any((e) => e['_value'] != null)) {
         json['_securityLabelNumber'] =
-            fieldJson14.map((e) => e['_value']).toList();
+            fieldJson15.map((e) => e['_value']).toList();
       }
     }
 
@@ -2985,6 +3003,7 @@ class ContractAsset extends BackboneElement {
     List<Period>? usePeriod,
     FhirString? text,
     List<FhirString>? linkId,
+    List<ContractAnswer>? answer,
     List<FhirUnsignedInt>? securityLabelNumber,
     List<ContractValuedItem>? valuedItem,
     Map<String, Object?>? userData,
@@ -3010,6 +3029,7 @@ class ContractAsset extends BackboneElement {
       usePeriod: usePeriod ?? this.usePeriod,
       text: text ?? this.text,
       linkId: linkId ?? this.linkId,
+      answer: answer ?? this.answer,
       securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
       valuedItem: valuedItem ?? this.valuedItem,
       userData: userData ?? this.userData,

@@ -54,6 +54,7 @@ class ExplanationOfBenefit extends DomainResource {
     this.accident,
     this.item,
     this.addItem,
+    this.adjudication,
     this.total,
     this.payment,
     this.formCode,
@@ -334,6 +335,15 @@ class ExplanationOfBenefit extends DomainResource {
               )
               .toList()
           : null,
+      adjudication: json['adjudication'] != null
+          ? (json['adjudication'] as List<dynamic>)
+              .map<ExplanationOfBenefitAdjudication>(
+                (v) => ExplanationOfBenefitAdjudication.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       total: json['total'] != null
           ? (json['total'] as List<dynamic>)
               .map<ExplanationOfBenefitTotal>(
@@ -591,6 +601,11 @@ class ExplanationOfBenefit extends DomainResource {
   /// lines.
   final List<ExplanationOfBenefitAddItem>? addItem;
 
+  /// [adjudication]
+  /// The adjudication results which are presented at the header level rather
+  /// than at the line-item or add-item levels.
+  final List<ExplanationOfBenefitAdjudication>? adjudication;
+
   /// [total]
   /// Categorized monetary totals for the adjudication.
   final List<ExplanationOfBenefitTotal>? total;
@@ -816,6 +831,10 @@ class ExplanationOfBenefit extends DomainResource {
       json['addItem'] = addItem!.map((e) => e.toJson()).toList();
     }
 
+    if (adjudication != null && adjudication!.isNotEmpty) {
+      json['adjudication'] = adjudication!.map((e) => e.toJson()).toList();
+    }
+
     if (total != null && total!.isNotEmpty) {
       json['total'] = total!.map((e) => e.toJson()).toList();
     }
@@ -894,6 +913,7 @@ class ExplanationOfBenefit extends DomainResource {
     ExplanationOfBenefitAccident? accident,
     List<ExplanationOfBenefitItem>? item,
     List<ExplanationOfBenefitAddItem>? addItem,
+    List<ExplanationOfBenefitAdjudication>? adjudication,
     List<ExplanationOfBenefitTotal>? total,
     ExplanationOfBenefitPayment? payment,
     CodeableConcept? formCode,
@@ -953,6 +973,7 @@ class ExplanationOfBenefit extends DomainResource {
       accident: accident ?? this.accident,
       item: item ?? this.item,
       addItem: addItem ?? this.addItem,
+      adjudication: adjudication ?? this.adjudication,
       total: total ?? this.total,
       payment: payment ?? this.payment,
       formCode: formCode ?? this.formCode,
@@ -3594,6 +3615,7 @@ class ExplanationOfBenefitDetail extends BackboneElement {
     this.net,
     this.udi,
     this.noteNumber,
+    this.adjudication,
     this.subDetail,
     super.userData,
     super.formatCommentsPre,
@@ -3699,6 +3721,15 @@ class ExplanationOfBenefitDetail extends BackboneElement {
         json['_noteNumber'] as List<dynamic>?,
         fromJson: FhirPositiveInt.fromJson,
       ),
+      adjudication: json['adjudication'] != null
+          ? (json['adjudication'] as List<dynamic>)
+              .map<ExplanationOfBenefitAdjudication>(
+                (v) => ExplanationOfBenefitAdjudication.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       subDetail: json['subDetail'] != null
           ? (json['subDetail'] as List<dynamic>)
               .map<ExplanationOfBenefitSubDetail>(
@@ -3810,6 +3841,10 @@ class ExplanationOfBenefitDetail extends BackboneElement {
   /// of this item.
   final List<FhirPositiveInt>? noteNumber;
 
+  /// [adjudication]
+  /// The adjudication results.
+  final List<ExplanationOfBenefitAdjudication>? adjudication;
+
   /// [subDetail]
   /// Third-tier of goods and services.
   final List<ExplanationOfBenefitSubDetail>? subDetail;
@@ -3885,6 +3920,10 @@ class ExplanationOfBenefitDetail extends BackboneElement {
       }
     }
 
+    if (adjudication != null && adjudication!.isNotEmpty) {
+      json['adjudication'] = adjudication!.map((e) => e.toJson()).toList();
+    }
+
     if (subDetail != null && subDetail!.isNotEmpty) {
       json['subDetail'] = subDetail!.map((e) => e.toJson()).toList();
     }
@@ -3911,6 +3950,7 @@ class ExplanationOfBenefitDetail extends BackboneElement {
     Money? net,
     List<Reference>? udi,
     List<FhirPositiveInt>? noteNumber,
+    List<ExplanationOfBenefitAdjudication>? adjudication,
     List<ExplanationOfBenefitSubDetail>? subDetail,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -3935,6 +3975,7 @@ class ExplanationOfBenefitDetail extends BackboneElement {
       net: net ?? this.net,
       udi: udi ?? this.udi,
       noteNumber: noteNumber ?? this.noteNumber,
+      adjudication: adjudication ?? this.adjudication,
       subDetail: subDetail ?? this.subDetail,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -3968,6 +4009,7 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
     this.net,
     this.udi,
     this.noteNumber,
+    this.adjudication,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -4072,6 +4114,15 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
         json['_noteNumber'] as List<dynamic>?,
         fromJson: FhirPositiveInt.fromJson,
       ),
+      adjudication: json['adjudication'] != null
+          ? (json['adjudication'] as List<dynamic>)
+              .map<ExplanationOfBenefitAdjudication>(
+                (v) => ExplanationOfBenefitAdjudication.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
     );
   }
 
@@ -4173,6 +4224,10 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
   /// The numbers associated with notes below which apply to the adjudication
   /// of this item.
   final List<FhirPositiveInt>? noteNumber;
+
+  /// [adjudication]
+  /// The adjudication results.
+  final List<ExplanationOfBenefitAdjudication>? adjudication;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4245,6 +4300,10 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
       }
     }
 
+    if (adjudication != null && adjudication!.isNotEmpty) {
+      json['adjudication'] = adjudication!.map((e) => e.toJson()).toList();
+    }
+
     return json;
   }
 
@@ -4267,6 +4326,7 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
     Money? net,
     List<Reference>? udi,
     List<FhirPositiveInt>? noteNumber,
+    List<ExplanationOfBenefitAdjudication>? adjudication,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4290,6 +4350,7 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
       net: net ?? this.net,
       udi: udi ?? this.udi,
       noteNumber: noteNumber ?? this.noteNumber,
+      adjudication: adjudication ?? this.adjudication,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -4330,6 +4391,7 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     this.bodySite,
     this.subSite,
     this.noteNumber,
+    this.adjudication,
     this.detail,
     super.userData,
     super.formatCommentsPre,
@@ -4477,6 +4539,15 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
         json['_noteNumber'] as List<dynamic>?,
         fromJson: FhirPositiveInt.fromJson,
       ),
+      adjudication: json['adjudication'] != null
+          ? (json['adjudication'] as List<dynamic>)
+              .map<ExplanationOfBenefitAdjudication>(
+                (v) => ExplanationOfBenefitAdjudication.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       detail: json['detail'] != null
           ? (json['detail'] as List<dynamic>)
               .map<ExplanationOfBenefitDetail>(
@@ -4619,6 +4690,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
   /// of this item.
   final List<FhirPositiveInt>? noteNumber;
 
+  /// [adjudication]
+  /// The adjudication results.
+  final List<ExplanationOfBenefitAdjudication>? adjudication;
+
   /// [detail]
   /// The second-tier service adjudications for payor added services.
   final List<ExplanationOfBenefitDetail>? detail;
@@ -4737,6 +4812,10 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
       }
     }
 
+    if (adjudication != null && adjudication!.isNotEmpty) {
+      json['adjudication'] = adjudication!.map((e) => e.toJson()).toList();
+    }
+
     if (detail != null && detail!.isNotEmpty) {
       json['detail'] = detail!.map((e) => e.toJson()).toList();
     }
@@ -4770,6 +4849,7 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     CodeableConcept? bodySite,
     List<CodeableConcept>? subSite,
     List<FhirPositiveInt>? noteNumber,
+    List<ExplanationOfBenefitAdjudication>? adjudication,
     List<ExplanationOfBenefitDetail>? detail,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -4802,6 +4882,7 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
       bodySite: bodySite ?? this.bodySite,
       subSite: subSite ?? this.subSite,
       noteNumber: noteNumber ?? this.noteNumber,
+      adjudication: adjudication ?? this.adjudication,
       detail: detail ?? this.detail,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -4830,6 +4911,7 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
     this.factor,
     this.net,
     this.noteNumber,
+    this.adjudication,
     this.subDetail,
     super.userData,
     super.formatCommentsPre,
@@ -4903,6 +4985,15 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
         json['_noteNumber'] as List<dynamic>?,
         fromJson: FhirPositiveInt.fromJson,
       ),
+      adjudication: json['adjudication'] != null
+          ? (json['adjudication'] as List<dynamic>)
+              .map<ExplanationOfBenefitAdjudication>(
+                (v) => ExplanationOfBenefitAdjudication.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       subDetail: json['subDetail'] != null
           ? (json['subDetail'] as List<dynamic>)
               .map<ExplanationOfBenefitSubDetail>(
@@ -4991,6 +5082,10 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
   /// of this item.
   final List<FhirPositiveInt>? noteNumber;
 
+  /// [adjudication]
+  /// The adjudication results.
+  final List<ExplanationOfBenefitAdjudication>? adjudication;
+
   /// [subDetail]
   /// The third-tier service adjudications for payor added services.
   final List<ExplanationOfBenefitSubDetail>? subDetail;
@@ -5044,6 +5139,10 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
       }
     }
 
+    if (adjudication != null && adjudication!.isNotEmpty) {
+      json['adjudication'] = adjudication!.map((e) => e.toJson()).toList();
+    }
+
     if (subDetail != null && subDetail!.isNotEmpty) {
       json['subDetail'] = subDetail!.map((e) => e.toJson()).toList();
     }
@@ -5065,6 +5164,7 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
     FhirDecimal? factor,
     Money? net,
     List<FhirPositiveInt>? noteNumber,
+    List<ExplanationOfBenefitAdjudication>? adjudication,
     List<ExplanationOfBenefitSubDetail>? subDetail,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -5084,6 +5184,7 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
       factor: factor ?? this.factor,
       net: net ?? this.net,
       noteNumber: noteNumber ?? this.noteNumber,
+      adjudication: adjudication ?? this.adjudication,
       subDetail: subDetail ?? this.subDetail,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -5112,6 +5213,7 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
     this.factor,
     this.net,
     this.noteNumber,
+    this.adjudication,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -5184,6 +5286,15 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
         json['_noteNumber'] as List<dynamic>?,
         fromJson: FhirPositiveInt.fromJson,
       ),
+      adjudication: json['adjudication'] != null
+          ? (json['adjudication'] as List<dynamic>)
+              .map<ExplanationOfBenefitAdjudication>(
+                (v) => ExplanationOfBenefitAdjudication.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
     );
   }
 
@@ -5262,6 +5373,10 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
   /// The numbers associated with notes below which apply to the adjudication
   /// of this item.
   final List<FhirPositiveInt>? noteNumber;
+
+  /// [adjudication]
+  /// The adjudication results.
+  final List<ExplanationOfBenefitAdjudication>? adjudication;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -5312,6 +5427,10 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
       }
     }
 
+    if (adjudication != null && adjudication!.isNotEmpty) {
+      json['adjudication'] = adjudication!.map((e) => e.toJson()).toList();
+    }
+
     return json;
   }
 
@@ -5329,6 +5448,7 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
     FhirDecimal? factor,
     Money? net,
     List<FhirPositiveInt>? noteNumber,
+    List<ExplanationOfBenefitAdjudication>? adjudication,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -5347,6 +5467,7 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
       factor: factor ?? this.factor,
       net: net ?? this.net,
       noteNumber: noteNumber ?? this.noteNumber,
+      adjudication: adjudication ?? this.adjudication,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

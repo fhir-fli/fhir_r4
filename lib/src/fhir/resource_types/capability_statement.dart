@@ -1178,6 +1178,8 @@ class CapabilityStatementRest extends BackboneElement {
     this.security,
     this.resource,
     this.interaction,
+    this.searchParam,
+    this.operation,
     this.compartment,
     super.userData,
     super.formatCommentsPre,
@@ -1242,6 +1244,24 @@ class CapabilityStatementRest extends BackboneElement {
           ? (json['interaction'] as List<dynamic>)
               .map<CapabilityStatementInteraction>(
                 (v) => CapabilityStatementInteraction.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      searchParam: json['searchParam'] != null
+          ? (json['searchParam'] as List<dynamic>)
+              .map<CapabilityStatementSearchParam>(
+                (v) => CapabilityStatementSearchParam.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      operation: json['operation'] != null
+          ? (json['operation'] as List<dynamic>)
+              .map<CapabilityStatementOperation>(
+                (v) => CapabilityStatementOperation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1317,6 +1337,18 @@ class CapabilityStatementRest extends BackboneElement {
   /// A specification of restful operations supported by the system.
   final List<CapabilityStatementInteraction>? interaction;
 
+  /// [searchParam]
+  /// Search parameters that are supported for searching all resources for
+  /// implementations to support and/or make use of - either references to
+  /// ones defined in the specification, or additional ones defined for/by
+  /// the implementation.
+  final List<CapabilityStatementSearchParam>? searchParam;
+
+  /// [operation]
+  /// Definition of an operation or a named query together with its
+  /// parameters and their meaning and type.
+  final List<CapabilityStatementOperation>? operation;
+
   /// [compartment]
   /// An absolute URI which is a reference to the definition of a compartment
   /// that the system supports. The reference is to a CompartmentDefinition
@@ -1364,11 +1396,19 @@ class CapabilityStatementRest extends BackboneElement {
       json['interaction'] = interaction!.map((e) => e.toJson()).toList();
     }
 
+    if (searchParam != null && searchParam!.isNotEmpty) {
+      json['searchParam'] = searchParam!.map((e) => e.toJson()).toList();
+    }
+
+    if (operation != null && operation!.isNotEmpty) {
+      json['operation'] = operation!.map((e) => e.toJson()).toList();
+    }
+
     if (compartment != null && compartment!.isNotEmpty) {
-      final fieldJson7 = compartment!.map((e) => e.toJson()).toList();
-      json['compartment'] = fieldJson7.map((e) => e['value']).toList();
-      if (fieldJson7.any((e) => e['_value'] != null)) {
-        json['_compartment'] = fieldJson7.map((e) => e['_value']).toList();
+      final fieldJson9 = compartment!.map((e) => e.toJson()).toList();
+      json['compartment'] = fieldJson9.map((e) => e['value']).toList();
+      if (fieldJson9.any((e) => e['_value'] != null)) {
+        json['_compartment'] = fieldJson9.map((e) => e['_value']).toList();
       }
     }
 
@@ -1387,6 +1427,8 @@ class CapabilityStatementRest extends BackboneElement {
     CapabilityStatementSecurity? security,
     List<CapabilityStatementResource>? resource,
     List<CapabilityStatementInteraction>? interaction,
+    List<CapabilityStatementSearchParam>? searchParam,
+    List<CapabilityStatementOperation>? operation,
     List<FhirCanonical>? compartment,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1404,6 +1446,8 @@ class CapabilityStatementRest extends BackboneElement {
       security: security ?? this.security,
       resource: resource ?? this.resource,
       interaction: interaction ?? this.interaction,
+      searchParam: searchParam ?? this.searchParam,
+      operation: operation ?? this.operation,
       compartment: compartment ?? this.compartment,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

@@ -1842,6 +1842,8 @@ class ExampleScenarioOperation extends BackboneElement {
     this.description,
     this.initiatorActive,
     this.receiverActive,
+    this.request,
+    this.response,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1924,6 +1926,16 @@ class ExampleScenarioOperation extends BackboneElement {
                   '_value': json['_receiverActive'],
                 })
               : null,
+      request: json['request'] != null
+          ? ExampleScenarioContainedInstance.fromJson(
+              json['request'] as Map<String, dynamic>,
+            )
+          : null,
+      response: json['response'] != null
+          ? ExampleScenarioContainedInstance.fromJson(
+              json['response'] as Map<String, dynamic>,
+            )
+          : null,
     );
   }
 
@@ -1996,6 +2008,14 @@ class ExampleScenarioOperation extends BackboneElement {
   /// [receiverActive]
   /// Whether the receiver is deactivated right after the transaction.
   final FhirBoolean? receiverActive;
+
+  /// [request]
+  /// Each resource instance used by the initiator.
+  final ExampleScenarioContainedInstance? request;
+
+  /// [response]
+  /// Each resource instance used by the responder.
+  final ExampleScenarioContainedInstance? response;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2074,6 +2094,14 @@ class ExampleScenarioOperation extends BackboneElement {
       }
     }
 
+    if (request != null) {
+      json['request'] = request!.toJson();
+    }
+
+    if (response != null) {
+      json['response'] = response!.toJson();
+    }
+
     return json;
   }
 
@@ -2092,6 +2120,8 @@ class ExampleScenarioOperation extends BackboneElement {
     FhirMarkdown? description,
     FhirBoolean? initiatorActive,
     FhirBoolean? receiverActive,
+    ExampleScenarioContainedInstance? request,
+    ExampleScenarioContainedInstance? response,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2111,6 +2141,8 @@ class ExampleScenarioOperation extends BackboneElement {
       description: description ?? this.description,
       initiatorActive: initiatorActive ?? this.initiatorActive,
       receiverActive: receiverActive ?? this.receiverActive,
+      request: request ?? this.request,
+      response: response ?? this.response,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2134,6 +2166,7 @@ class ExampleScenarioAlternative extends BackboneElement {
     super.modifierExtension,
     required this.title,
     this.description,
+    this.step,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2177,6 +2210,15 @@ class ExampleScenarioAlternative extends BackboneElement {
               'value': json['description'],
               '_value': json['_description'],
             })
+          : null,
+      step: json['step'] != null
+          ? (json['step'] as List<dynamic>)
+              .map<ExampleScenarioStep>(
+                (v) => ExampleScenarioStep.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
           : null,
     );
   }
@@ -2228,6 +2270,10 @@ class ExampleScenarioAlternative extends BackboneElement {
   /// A human-readable description of the alternative explaining when the
   /// alternative should occur rather than the base step.
   final FhirMarkdown? description;
+
+  /// [step]
+  /// What happens in each alternative option.
+  final List<ExampleScenarioStep>? step;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2258,6 +2304,10 @@ class ExampleScenarioAlternative extends BackboneElement {
       }
     }
 
+    if (step != null && step!.isNotEmpty) {
+      json['step'] = step!.map((e) => e.toJson()).toList();
+    }
+
     return json;
   }
 
@@ -2270,6 +2320,7 @@ class ExampleScenarioAlternative extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? title,
     FhirMarkdown? description,
+    List<ExampleScenarioStep>? step,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2283,6 +2334,7 @@ class ExampleScenarioAlternative extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       title: title ?? this.title,
       description: description ?? this.description,
+      step: step ?? this.step,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

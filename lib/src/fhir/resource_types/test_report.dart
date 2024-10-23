@@ -1520,6 +1520,8 @@ class TestReportAction1 extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
+    this.operation,
+    this.assert_,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1553,6 +1555,16 @@ class TestReportAction1 extends BackboneElement {
                 ),
               )
               .toList()
+          : null,
+      operation: json['operation'] != null
+          ? TestReportOperation.fromJson(
+              json['operation'] as Map<String, dynamic>,
+            )
+          : null,
+      assert_: json['assert'] != null
+          ? TestReportAssert.fromJson(
+              json['assert'] as Map<String, dynamic>,
+            )
           : null,
     );
   }
@@ -1595,6 +1607,13 @@ class TestReportAction1 extends BackboneElement {
   @override
   String get fhirType => 'TestReportAction1';
 
+  /// [operation]
+  /// An operation would involve a REST request to a server.
+  final TestReportOperation? operation;
+
+  /// [assert_]
+  /// The results of the assertion performed on the previous operations.
+  final TestReportAssert? assert_;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1611,6 +1630,14 @@ class TestReportAction1 extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
+    if (operation != null) {
+      json['operation'] = operation!.toJson();
+    }
+
+    if (assert_ != null) {
+      json['assert'] = assert_!.toJson();
+    }
+
     return json;
   }
 
@@ -1621,6 +1648,8 @@ class TestReportAction1 extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
+    TestReportOperation? operation,
+    TestReportAssert? assert_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1632,6 +1661,8 @@ class TestReportAction1 extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
+      operation: operation ?? this.operation,
+      assert_: assert_ ?? this.assert_,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1802,6 +1833,7 @@ class TestReportAction2 extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
+    required this.operation,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1836,6 +1868,9 @@ class TestReportAction2 extends BackboneElement {
               )
               .toList()
           : null,
+      operation: TestReportOperation.fromJson(
+        json['operation'] as Map<String, dynamic>,
+      ),
     );
   }
 
@@ -1877,6 +1912,9 @@ class TestReportAction2 extends BackboneElement {
   @override
   String get fhirType => 'TestReportAction2';
 
+  /// [operation]
+  /// An operation would involve a REST request to a server.
+  final TestReportOperation operation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1893,6 +1931,8 @@ class TestReportAction2 extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
+    json['operation'] = operation.toJson();
+
     return json;
   }
 
@@ -1903,6 +1943,7 @@ class TestReportAction2 extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
+    TestReportOperation? operation,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1914,6 +1955,7 @@ class TestReportAction2 extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
+      operation: operation ?? this.operation,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

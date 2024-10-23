@@ -631,6 +631,7 @@ class ValueSetCompose extends BackboneElement {
     this.lockedDate,
     this.inactive,
     required this.include,
+    this.exclude,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -686,6 +687,15 @@ class ValueSetCompose extends BackboneElement {
             )
             .toList(),
       ),
+      exclude: json['exclude'] != null
+          ? (json['exclude'] as List<dynamic>)
+              .map<ValueSetInclude>(
+                (v) => ValueSetInclude.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
     );
   }
 
@@ -746,6 +756,11 @@ class ValueSetCompose extends BackboneElement {
   /// [include]
   /// Include one or more codes from a code system or other value set(s).
   final List<ValueSetInclude> include;
+
+  /// [exclude]
+  /// Exclude one or more codes from the value set based on code system
+  /// filters and/or other value sets.
+  final List<ValueSetInclude>? exclude;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -780,6 +795,10 @@ class ValueSetCompose extends BackboneElement {
 
     json['include'] = include.map((e) => e.toJson()).toList();
 
+    if (exclude != null && exclude!.isNotEmpty) {
+      json['exclude'] = exclude!.map((e) => e.toJson()).toList();
+    }
+
     return json;
   }
 
@@ -793,6 +812,7 @@ class ValueSetCompose extends BackboneElement {
     FhirDate? lockedDate,
     FhirBoolean? inactive,
     List<ValueSetInclude>? include,
+    List<ValueSetInclude>? exclude,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -807,6 +827,7 @@ class ValueSetCompose extends BackboneElement {
       lockedDate: lockedDate ?? this.lockedDate,
       inactive: inactive ?? this.inactive,
       include: include ?? this.include,
+      exclude: exclude ?? this.exclude,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2212,6 +2233,8 @@ class ValueSetContains extends BackboneElement {
     this.version,
     this.code,
     this.display,
+    this.designation,
+    this.contains,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2281,6 +2304,24 @@ class ValueSetContains extends BackboneElement {
               'value': json['display'],
               '_value': json['_display'],
             })
+          : null,
+      designation: json['designation'] != null
+          ? (json['designation'] as List<dynamic>)
+              .map<ValueSetDesignation>(
+                (v) => ValueSetDesignation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      contains: json['contains'] != null
+          ? (json['contains'] as List<dynamic>)
+              .map<ValueSetContains>(
+                (v) => ValueSetContains.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
           : null,
     );
   }
@@ -2359,6 +2400,17 @@ class ValueSetContains extends BackboneElement {
   /// [display]
   /// The recommended display for this item in the expansion.
   final FhirString? display;
+
+  /// [designation]
+  /// Additional representations for this item - other languages, aliases,
+  /// specialized purposes, used for particular purposes, etc. These are
+  /// relevant when the conditions of the expansion do not fix to a single
+  /// correct representation.
+  final List<ValueSetDesignation>? designation;
+
+  /// [contains]
+  /// Other codes and entries contained under this entry in the hierarchy.
+  final List<ValueSetContains>? contains;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2423,6 +2475,14 @@ class ValueSetContains extends BackboneElement {
       }
     }
 
+    if (designation != null && designation!.isNotEmpty) {
+      json['designation'] = designation!.map((e) => e.toJson()).toList();
+    }
+
+    if (contains != null && contains!.isNotEmpty) {
+      json['contains'] = contains!.map((e) => e.toJson()).toList();
+    }
+
     return json;
   }
 
@@ -2439,6 +2499,8 @@ class ValueSetContains extends BackboneElement {
     FhirString? version,
     FhirCode? code,
     FhirString? display,
+    List<ValueSetDesignation>? designation,
+    List<ValueSetContains>? contains,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2456,6 +2518,8 @@ class ValueSetContains extends BackboneElement {
       version: version ?? this.version,
       code: code ?? this.code,
       display: display ?? this.display,
+      designation: designation ?? this.designation,
+      contains: contains ?? this.contains,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
