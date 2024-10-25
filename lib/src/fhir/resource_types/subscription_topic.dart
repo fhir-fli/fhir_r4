@@ -757,7 +757,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
               '_value': json['_description'],
             })
           : null,
-      resource: FHIRDefinedType.fromJson({
+      resource: FhirUri.fromJson({
         'value': json['resource'],
         '_value': json['_resource'],
       }),
@@ -833,7 +833,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   /// to http://hl7.org/fhir/StructureDefinition/Patient. For more
   /// information, see <a
   /// href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDefinition.type.code</a>.
-  final FHIRDefinedType resource;
+  final FhirUri resource;
 
   /// [supportedInteraction]
   /// The FHIR RESTful interaction which can be used to trigger a
@@ -912,7 +912,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirMarkdown? description,
-    FHIRDefinedType? resource,
+    FhirUri? resource,
     List<InteractionTrigger>? supportedInteraction,
     SubscriptionTopicQueryCriteria? queryCriteria,
     FhirString? fhirPathCriteria,
@@ -1243,7 +1243,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
       event: CodeableConcept.fromJson(
         json['event'] as Map<String, dynamic>,
       ),
-      resource: FHIRDefinedType.fromJson({
+      resource: FhirUri.fromJson({
         'value': json['resource'],
         '_value': json['_resource'],
       }),
@@ -1308,7 +1308,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   /// to http://hl7.org/fhir/StructureDefinition/Patient. For more
   /// information, see <a
   /// href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDefinition.type.code</a>.
-  final FHIRDefinedType resource;
+  final FhirUri resource;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1353,7 +1353,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirMarkdown? description,
     CodeableConcept? event,
-    FHIRDefinedType? resource,
+    FhirUri? resource,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1437,7 +1437,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
             })
           : null,
       resource: (json['resource'] != null || json['_resource'] != null)
-          ? FHIRDefinedType.fromJson({
+          ? FhirUri.fromJson({
               'value': json['resource'],
               '_value': json['_resource'],
             })
@@ -1509,7 +1509,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   /// will be the same, a generality, or a specificity of
   /// SubscriptionTopic.resourceTrigger.resource or
   /// SubscriptionTopic.eventTrigger.resource when they are present.
-  final FHIRDefinedType? resource;
+  final FhirUri? resource;
 
   /// [filterParameter]
   /// Either the canonical URL to a search parameter (like
@@ -1596,7 +1596,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirMarkdown? description,
-    FHIRDefinedType? resource,
+    FhirUri? resource,
     FhirString? filterParameter,
     FhirUri? filterDefinition,
     List<SubscriptionSearchModifier>? modifier,
@@ -1674,7 +1674,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
               )
               .toList()
           : null,
-      resource: FHIRDefinedType.fromJson({
+      resource: FhirUri.fromJson({
         'value': json['resource'],
         '_value': json['_resource'],
       }),
@@ -1736,7 +1736,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   /// generality, or a specificity of
   /// SubscriptionTopic.resourceTrigger.resource or
   /// SubscriptionTopic.eventTrigger.resource when they are present.
-  final FHIRDefinedType resource;
+  final FhirUri resource;
 
   /// [include]
   /// Search-style _include directives, rooted in the resource for this
@@ -1801,7 +1801,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FHIRDefinedType? resource,
+    FhirUri? resource,
     List<FhirString>? include,
     List<FhirString>? revInclude,
     Map<String, Object?>? userData,

@@ -251,7 +251,7 @@ class StructureDefinition extends DomainResource {
               )
               .toList()
           : null,
-      type: FHIRDefinedType.fromJson({
+      type: FhirUri.fromJson({
         'value': json['type'],
         '_value': json['_type'],
       }),
@@ -456,7 +456,7 @@ class StructureDefinition extends DomainResource {
   /// http://hl7.org/fhir/StructureDefinition e.g. "string" is a reference to
   /// http://hl7.org/fhir/StructureDefinition/string. Absolute URLs are only
   /// allowed in logical models.
-  final FHIRDefinedType type;
+  final FhirUri type;
 
   /// [baseDefinition]
   /// An absolute URI that is the base structure from which this type is
@@ -717,7 +717,7 @@ class StructureDefinition extends DomainResource {
     StructureDefinitionKind? kind,
     FhirBoolean? abstract_,
     List<StructureDefinitionContext>? context,
-    FHIRDefinedType? type,
+    FhirUri? type,
     FhirCanonical? baseDefinition,
     TypeDerivationRule? derivation,
     StructureDefinitionSnapshot? snapshot,

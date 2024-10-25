@@ -2524,7 +2524,7 @@ class TestScriptOperation extends BackboneElement {
             )
           : null,
       resource: (json['resource'] != null || json['_resource'] != null)
-          ? FHIRDefinedType.fromJson({
+          ? FhirCode.fromJson({
               'value': json['resource'],
               '_value': json['_resource'],
             })
@@ -2667,7 +2667,7 @@ class TestScriptOperation extends BackboneElement {
 
   /// [resource]
   /// The type of the resource. See http://build.fhir.org/resourcelist.html.
-  final FHIRDefinedType? resource;
+  final FhirCode? resource;
 
   /// [label]
   /// The label would be used for tracking/logging purposes by test engines.
@@ -2891,7 +2891,7 @@ class TestScriptOperation extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Coding? type,
-    FHIRDefinedType? resource,
+    FhirCode? resource,
     FhirString? label,
     FhirString? description,
     FhirCode? accept,
@@ -3273,7 +3273,7 @@ class TestScriptAssert extends BackboneElement {
             })
           : null,
       resource: (json['resource'] != null || json['_resource'] != null)
-          ? FHIRDefinedType.fromJson({
+          ? FhirCode.fromJson({
               'value': json['resource'],
               '_value': json['_resource'],
             })
@@ -3430,7 +3430,7 @@ class TestScriptAssert extends BackboneElement {
 
   /// [resource]
   /// The type of the resource. See http://build.fhir.org/resourcelist.html.
-  final FHIRDefinedType? resource;
+  final FhirCode? resource;
 
   /// [response]
   /// okay | created | noContent | notModified | bad | forbidden | notFound |
@@ -3674,7 +3674,7 @@ class TestScriptAssert extends BackboneElement {
     FhirString? path,
     TestScriptRequestMethodCode? requestMethod,
     FhirString? requestURL,
-    FHIRDefinedType? resource,
+    FhirCode? resource,
     AssertionResponseTypes? response,
     FhirString? responseCode,
     FhirId? sourceId,
