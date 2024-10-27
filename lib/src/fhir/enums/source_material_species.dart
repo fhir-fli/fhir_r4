@@ -62,7 +62,7 @@ class SourceMaterialSpecies {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SourceMaterialSpecies.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -78,7 +78,7 @@ class CompositionStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CompositionStatus.$fhirCode';
+  String toString() => fhirCode;
 }

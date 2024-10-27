@@ -102,7 +102,7 @@ class RequestStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'RequestStatus.$fhirCode';
+  String toString() => fhirCode;
 }

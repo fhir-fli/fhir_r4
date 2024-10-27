@@ -79,7 +79,7 @@ class SubscriptionStatusCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SubscriptionStatusCodes.$fhirCode';
+  String toString() => fhirCode;
 }

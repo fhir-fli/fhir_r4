@@ -111,7 +111,7 @@ class CommonUCUMCodesForDuration {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CommonUCUMCodesForDuration.$fhirCode';
+  String toString() => fhirCode;
 }

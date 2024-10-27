@@ -94,7 +94,7 @@ class DefinitionUseCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DefinitionUseCodes.$fhirCode';
+  String toString() => fhirCode;
 }

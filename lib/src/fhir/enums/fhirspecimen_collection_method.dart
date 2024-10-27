@@ -137,7 +137,7 @@ class FHIRSpecimenCollectionMethod {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FHIRSpecimenCollectionMethod.$fhirCode';
+  String toString() => fhirCode;
 }

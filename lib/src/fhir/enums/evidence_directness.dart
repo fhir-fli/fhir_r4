@@ -78,7 +78,7 @@ class EvidenceDirectness {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EvidenceDirectness.$fhirCode';
+  String toString() => fhirCode;
 }

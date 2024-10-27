@@ -83,7 +83,7 @@ class ExampleDiagnosisOnAdmissionCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExampleDiagnosisOnAdmissionCodes.$fhirCode';
+  String toString() => fhirCode;
 }

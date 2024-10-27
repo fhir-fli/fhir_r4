@@ -78,7 +78,7 @@ class BindingStrength {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'BindingStrength.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -118,7 +118,7 @@ class SearchComparator {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SearchComparator.$fhirCode';
+  String toString() => fhirCode;
 }

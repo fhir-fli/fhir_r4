@@ -62,7 +62,7 @@ class OpticalActivity {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'OpticalActivity.$fhirCode';
+  String toString() => fhirCode;
 }

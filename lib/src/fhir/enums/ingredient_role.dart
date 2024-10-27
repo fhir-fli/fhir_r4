@@ -118,7 +118,7 @@ class IngredientRole {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'IngredientRole.$fhirCode';
+  String toString() => fhirCode;
 }

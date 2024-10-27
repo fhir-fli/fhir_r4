@@ -71,7 +71,7 @@ class ActionGroupingBehavior {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ActionGroupingBehavior.$fhirCode';
+  String toString() => fhirCode;
 }

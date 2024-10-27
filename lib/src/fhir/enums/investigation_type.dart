@@ -62,7 +62,7 @@ class InvestigationType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'InvestigationType.$fhirCode';
+  String toString() => fhirCode;
 }

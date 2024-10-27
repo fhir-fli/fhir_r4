@@ -78,7 +78,7 @@ class RemittanceOutcome {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'RemittanceOutcome.$fhirCode';
+  String toString() => fhirCode;
 }

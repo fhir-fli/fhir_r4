@@ -94,7 +94,7 @@ class BiologicallyDerivedProductCategory {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'BiologicallyDerivedProductCategory.$fhirCode';
+  String toString() => fhirCode;
 }

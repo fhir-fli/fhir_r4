@@ -118,7 +118,7 @@ class GoalLifecycleStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'GoalLifecycleStatus.$fhirCode';
+  String toString() => fhirCode;
 }

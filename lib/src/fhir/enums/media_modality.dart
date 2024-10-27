@@ -110,7 +110,7 @@ class MediaModality {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MediaModality.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -174,7 +174,7 @@ class TimingAbbreviation {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'TimingAbbreviation.$fhirCode';
+  String toString() => fhirCode;
 }

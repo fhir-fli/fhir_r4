@@ -86,7 +86,7 @@ class DiscriminatorType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DiscriminatorType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -2814,7 +2814,7 @@ class SPDXLicense {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SPDXLicense.$fhirCode';
+  String toString() => fhirCode;
 }

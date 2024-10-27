@@ -183,7 +183,7 @@ class ExampleServicePlaceCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExampleServicePlaceCodes.$fhirCode';
+  String toString() => fhirCode;
 }

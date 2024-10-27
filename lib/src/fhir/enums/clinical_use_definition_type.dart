@@ -91,7 +91,7 @@ class ClinicalUseDefinitionType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ClinicalUseDefinitionType.$fhirCode';
+  String toString() => fhirCode;
 }

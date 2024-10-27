@@ -62,7 +62,7 @@ class MeasureGroupExample {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MeasureGroupExample.$fhirCode';
+  String toString() => fhirCode;
 }

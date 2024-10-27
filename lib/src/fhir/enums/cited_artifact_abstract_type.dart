@@ -145,7 +145,7 @@ class CitedArtifactAbstractType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CitedArtifactAbstractType.$fhirCode';
+  String toString() => fhirCode;
 }

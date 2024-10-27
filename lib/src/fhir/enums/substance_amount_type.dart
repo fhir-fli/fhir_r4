@@ -78,7 +78,7 @@ class SubstanceAmountType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SubstanceAmountType.$fhirCode';
+  String toString() => fhirCode;
 }

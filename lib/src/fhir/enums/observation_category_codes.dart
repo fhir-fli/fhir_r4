@@ -121,7 +121,7 @@ class ObservationCategoryCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ObservationCategoryCodes.$fhirCode';
+  String toString() => fhirCode;
 }

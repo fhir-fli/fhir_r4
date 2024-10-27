@@ -170,7 +170,7 @@ class ArtifactContributionType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ArtifactContributionType.$fhirCode';
+  String toString() => fhirCode;
 }

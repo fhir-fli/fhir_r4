@@ -109,7 +109,7 @@ class ContributorSummaryType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContributorSummaryType.$fhirCode';
+  String toString() => fhirCode;
 }

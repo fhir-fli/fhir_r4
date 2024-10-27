@@ -62,7 +62,7 @@ class DoseAndRateType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DoseAndRateType.$fhirCode';
+  String toString() => fhirCode;
 }

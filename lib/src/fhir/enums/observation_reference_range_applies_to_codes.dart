@@ -77,7 +77,7 @@ class ObservationReferenceRangeAppliesToCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ObservationReferenceRangeAppliesToCodes.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -62,7 +62,7 @@ class CodeSearchSupport {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CodeSearchSupport.$fhirCode';
+  String toString() => fhirCode;
 }

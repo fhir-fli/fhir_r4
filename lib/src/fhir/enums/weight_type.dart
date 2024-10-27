@@ -70,7 +70,7 @@ class WeightType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'WeightType.$fhirCode';
+  String toString() => fhirCode;
 }

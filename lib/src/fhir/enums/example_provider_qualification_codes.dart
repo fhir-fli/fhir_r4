@@ -74,7 +74,7 @@ class ExampleProviderQualificationCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExampleProviderQualificationCodes.$fhirCode';
+  String toString() => fhirCode;
 }

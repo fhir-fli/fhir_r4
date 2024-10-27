@@ -70,7 +70,7 @@ class ICD10ProcedureCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ICD10ProcedureCodes.$fhirCode';
+  String toString() => fhirCode;
 }

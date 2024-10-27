@@ -81,7 +81,7 @@ class EvidenceVariableHandling {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EvidenceVariableHandling.$fhirCode';
+  String toString() => fhirCode;
 }

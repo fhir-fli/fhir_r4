@@ -110,7 +110,7 @@ class TriggerType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'TriggerType.$fhirCode';
+  String toString() => fhirCode;
 }

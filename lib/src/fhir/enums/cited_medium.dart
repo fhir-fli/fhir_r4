@@ -95,7 +95,7 @@ class CitedMedium {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CitedMedium.$fhirCode';
+  String toString() => fhirCode;
 }

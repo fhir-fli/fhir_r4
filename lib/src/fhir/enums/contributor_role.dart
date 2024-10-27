@@ -102,7 +102,7 @@ class ContributorRole {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContributorRole.$fhirCode';
+  String toString() => fhirCode;
 }

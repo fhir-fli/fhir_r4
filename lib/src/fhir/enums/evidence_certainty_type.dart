@@ -120,7 +120,7 @@ class EvidenceCertaintyType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EvidenceCertaintyType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -4814,7 +4814,7 @@ class ServiceType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ServiceType.$fhirCode';
+  String toString() => fhirCode;
 }

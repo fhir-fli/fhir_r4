@@ -87,7 +87,7 @@ class AuditEventAgentNetworkType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AuditEventAgentNetworkType.$fhirCode';
+  String toString() => fhirCode;
 }

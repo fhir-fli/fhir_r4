@@ -70,7 +70,7 @@ class ProcessPriorityCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ProcessPriorityCodes.$fhirCode';
+  String toString() => fhirCode;
 }

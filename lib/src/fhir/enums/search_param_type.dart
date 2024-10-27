@@ -118,7 +118,7 @@ class SearchParamType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SearchParamType.$fhirCode';
+  String toString() => fhirCode;
 }

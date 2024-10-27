@@ -131,7 +131,7 @@ class ProvenanceParticipantRole {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ProvenanceParticipantRole.$fhirCode';
+  String toString() => fhirCode;
 }

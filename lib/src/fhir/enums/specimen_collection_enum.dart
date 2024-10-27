@@ -127,7 +127,7 @@ class SpecimenCollectionEnum {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SpecimenCollectionEnum.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -128,7 +128,7 @@ class TherapyRelationshipType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'TherapyRelationshipType.$fhirCode';
+  String toString() => fhirCode;
 }

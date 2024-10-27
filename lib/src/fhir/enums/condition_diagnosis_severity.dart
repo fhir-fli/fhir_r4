@@ -74,7 +74,7 @@ class ConditionDiagnosisSeverity {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConditionDiagnosisSeverity.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -87,7 +87,7 @@ class PropertyRepresentation {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'PropertyRepresentation.$fhirCode';
+  String toString() => fhirCode;
 }

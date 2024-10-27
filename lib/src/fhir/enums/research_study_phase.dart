@@ -110,7 +110,7 @@ class ResearchStudyPhase {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ResearchStudyPhase.$fhirCode';
+  String toString() => fhirCode;
 }

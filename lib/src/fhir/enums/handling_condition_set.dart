@@ -70,7 +70,7 @@ class HandlingConditionSet {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'HandlingConditionSet.$fhirCode';
+  String toString() => fhirCode;
 }

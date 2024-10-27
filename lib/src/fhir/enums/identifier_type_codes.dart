@@ -190,7 +190,7 @@ class IdentifierTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'IdentifierTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

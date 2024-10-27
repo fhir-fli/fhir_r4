@@ -73,7 +73,7 @@ class RegulatedAuthorizationType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'RegulatedAuthorizationType.$fhirCode';
+  String toString() => fhirCode;
 }

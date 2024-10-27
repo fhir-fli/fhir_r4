@@ -92,7 +92,7 @@ class SubscriptionNotificationType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SubscriptionNotificationType.$fhirCode';
+  String toString() => fhirCode;
 }

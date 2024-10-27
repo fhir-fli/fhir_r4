@@ -182,7 +182,7 @@ class InteractionTrigger {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'InteractionTrigger.$fhirCode';
+  String toString() => fhirCode;
 }

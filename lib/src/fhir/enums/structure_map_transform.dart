@@ -182,7 +182,7 @@ class StructureMapTransform {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'StructureMapTransform.$fhirCode';
+  String toString() => fhirCode;
 }

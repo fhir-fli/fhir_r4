@@ -118,7 +118,7 @@ class RequestIntent {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'RequestIntent.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -100,7 +100,7 @@ class ProductCrossReferenceType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ProductCrossReferenceType.$fhirCode';
+  String toString() => fhirCode;
 }

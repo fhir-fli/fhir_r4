@@ -62,7 +62,7 @@ class FormCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FormCodes.$fhirCode';
+  String toString() => fhirCode;
 }

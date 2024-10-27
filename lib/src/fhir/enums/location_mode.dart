@@ -62,7 +62,7 @@ class LocationMode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'LocationMode.$fhirCode';
+  String toString() => fhirCode;
 }

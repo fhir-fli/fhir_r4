@@ -160,7 +160,7 @@ class SubscriptionSearchModifier {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SubscriptionSearchModifier.$fhirCode';
+  String toString() => fhirCode;
 }

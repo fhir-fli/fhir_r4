@@ -70,7 +70,7 @@ class ListMode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ListMode.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -78,7 +78,7 @@ class ConsentScopeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConsentScopeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

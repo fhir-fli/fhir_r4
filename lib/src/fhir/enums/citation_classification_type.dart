@@ -74,7 +74,7 @@ class CitationClassificationType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CitationClassificationType.$fhirCode';
+  String toString() => fhirCode;
 }

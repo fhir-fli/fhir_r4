@@ -137,7 +137,7 @@ class ProcedureFollowUpCodesSNOMEDCT {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ProcedureFollowUpCodesSNOMEDCT.$fhirCode';
+  String toString() => fhirCode;
 }

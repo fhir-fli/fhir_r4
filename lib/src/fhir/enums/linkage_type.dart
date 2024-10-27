@@ -70,7 +70,7 @@ class LinkageType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'LinkageType.$fhirCode';
+  String toString() => fhirCode;
 }

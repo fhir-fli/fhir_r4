@@ -62,7 +62,7 @@ class SubstanceNameDomain {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SubstanceNameDomain.$fhirCode';
+  String toString() => fhirCode;
 }

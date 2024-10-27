@@ -83,7 +83,7 @@ class FinancialResourceStatusCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FinancialResourceStatusCodes.$fhirCode';
+  String toString() => fhirCode;
 }

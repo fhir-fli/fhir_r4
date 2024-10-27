@@ -70,7 +70,7 @@ class QualityType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'QualityType.$fhirCode';
+  String toString() => fhirCode;
 }

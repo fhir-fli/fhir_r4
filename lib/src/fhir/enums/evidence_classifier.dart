@@ -297,7 +297,7 @@ class EvidenceClassifier {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EvidenceClassifier.$fhirCode';
+  String toString() => fhirCode;
 }

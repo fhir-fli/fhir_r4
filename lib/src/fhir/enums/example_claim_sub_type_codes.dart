@@ -63,7 +63,7 @@ class ExampleClaimSubTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExampleClaimSubTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

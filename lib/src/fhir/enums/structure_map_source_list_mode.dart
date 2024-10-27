@@ -90,7 +90,7 @@ class StructureMapSourceListMode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'StructureMapSourceListMode.$fhirCode';
+  String toString() => fhirCode;
 }

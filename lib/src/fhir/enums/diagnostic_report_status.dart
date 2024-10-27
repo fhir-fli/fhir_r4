@@ -128,7 +128,7 @@ class DiagnosticReportStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DiagnosticReportStatus.$fhirCode';
+  String toString() => fhirCode;
 }

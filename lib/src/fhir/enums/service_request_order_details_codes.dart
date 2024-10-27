@@ -92,7 +92,7 @@ class ServiceRequestOrderDetailsCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ServiceRequestOrderDetailsCodes.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -70,7 +70,7 @@ class ExtensionContextType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExtensionContextType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -114,7 +114,7 @@ class ClinicalImpressionStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ClinicalImpressionStatus.$fhirCode';
+  String toString() => fhirCode;
 }

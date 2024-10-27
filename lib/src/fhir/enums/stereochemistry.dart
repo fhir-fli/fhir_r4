@@ -70,7 +70,7 @@ class Stereochemistry {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'Stereochemistry.$fhirCode';
+  String toString() => fhirCode;
 }

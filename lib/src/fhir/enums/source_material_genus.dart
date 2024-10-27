@@ -70,7 +70,7 @@ class SourceMaterialGenus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SourceMaterialGenus.$fhirCode';
+  String toString() => fhirCode;
 }

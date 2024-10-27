@@ -170,7 +170,7 @@ class CitedArtifactStatusType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CitedArtifactStatusType.$fhirCode';
+  String toString() => fhirCode;
 }

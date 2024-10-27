@@ -167,7 +167,7 @@ class RequestResourceType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'RequestResourceType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -128,7 +128,7 @@ class MedicationDispenseStatusCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MedicationDispenseStatusCodes.$fhirCode';
+  String toString() => fhirCode;
 }

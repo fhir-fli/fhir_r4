@@ -62,7 +62,7 @@ class StrandType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'StrandType.$fhirCode';
+  String toString() => fhirCode;
 }

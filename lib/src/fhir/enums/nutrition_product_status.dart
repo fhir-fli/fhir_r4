@@ -72,7 +72,7 @@ class NutritionProductStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'NutritionProductStatus.$fhirCode';
+  String toString() => fhirCode;
 }

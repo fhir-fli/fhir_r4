@@ -1855,7 +1855,7 @@ class AdministrableDoseForm {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AdministrableDoseForm.$fhirCode';
+  String toString() => fhirCode;
 }

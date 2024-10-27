@@ -126,7 +126,7 @@ class ConceptMapEquivalence {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConceptMapEquivalence.$fhirCode';
+  String toString() => fhirCode;
 }

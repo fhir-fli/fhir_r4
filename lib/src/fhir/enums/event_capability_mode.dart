@@ -62,7 +62,7 @@ class EventCapabilityMode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EventCapabilityMode.$fhirCode';
+  String toString() => fhirCode;
 }

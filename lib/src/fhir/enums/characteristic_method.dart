@@ -54,7 +54,7 @@ class CharacteristicMethod {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CharacteristicMethod.$fhirCode';
+  String toString() => fhirCode;
 }

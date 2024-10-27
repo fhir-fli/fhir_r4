@@ -78,7 +78,7 @@ class MeasureScoring {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MeasureScoring.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -70,7 +70,7 @@ class VariableType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'VariableType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -1221,7 +1221,7 @@ class CarePlanActivityKind {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CarePlanActivityKind.$fhirCode';
+  String toString() => fhirCode;
 }

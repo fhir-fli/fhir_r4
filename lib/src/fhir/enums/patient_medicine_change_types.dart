@@ -101,7 +101,7 @@ class PatientMedicineChangeTypes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'PatientMedicineChangeTypes.$fhirCode';
+  String toString() => fhirCode;
 }

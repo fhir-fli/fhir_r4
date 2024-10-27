@@ -70,7 +70,7 @@ class Laterality {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'Laterality.$fhirCode';
+  String toString() => fhirCode;
 }

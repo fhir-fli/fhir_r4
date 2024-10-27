@@ -126,7 +126,7 @@ class WarningType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'WarningType.$fhirCode';
+  String toString() => fhirCode;
 }

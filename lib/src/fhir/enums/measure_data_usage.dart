@@ -62,7 +62,7 @@ class MeasureDataUsage {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MeasureDataUsage.$fhirCode';
+  String toString() => fhirCode;
 }

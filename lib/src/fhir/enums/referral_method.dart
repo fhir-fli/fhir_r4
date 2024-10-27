@@ -86,7 +86,7 @@ class ReferralMethod {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ReferralMethod.$fhirCode';
+  String toString() => fhirCode;
 }

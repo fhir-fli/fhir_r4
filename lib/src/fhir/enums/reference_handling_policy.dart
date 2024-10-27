@@ -87,7 +87,7 @@ class ReferenceHandlingPolicy {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ReferenceHandlingPolicy.$fhirCode';
+  String toString() => fhirCode;
 }

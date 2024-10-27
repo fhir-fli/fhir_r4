@@ -63,7 +63,7 @@ class ImmunizationFundingSource {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ImmunizationFundingSource.$fhirCode';
+  String toString() => fhirCode;
 }

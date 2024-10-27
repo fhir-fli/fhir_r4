@@ -102,7 +102,7 @@ class DiagnosisRole {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DiagnosisRole.$fhirCode';
+  String toString() => fhirCode;
 }

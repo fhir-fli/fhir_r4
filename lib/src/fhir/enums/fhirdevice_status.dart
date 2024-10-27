@@ -78,7 +78,7 @@ class FHIRDeviceStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FHIRDeviceStatus.$fhirCode';
+  String toString() => fhirCode;
 }

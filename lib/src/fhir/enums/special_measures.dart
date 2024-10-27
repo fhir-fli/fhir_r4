@@ -54,7 +54,7 @@ class SpecialMeasures {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SpecialMeasures.$fhirCode';
+  String toString() => fhirCode;
 }

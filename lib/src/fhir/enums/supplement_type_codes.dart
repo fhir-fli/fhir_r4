@@ -406,7 +406,7 @@ class SupplementTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SupplementTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

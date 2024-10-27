@@ -72,7 +72,7 @@ class ConditionalDeleteStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConditionalDeleteStatus.$fhirCode';
+  String toString() => fhirCode;
 }

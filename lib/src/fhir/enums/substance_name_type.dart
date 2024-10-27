@@ -70,7 +70,7 @@ class SubstanceNameType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SubstanceNameType.$fhirCode';
+  String toString() => fhirCode;
 }

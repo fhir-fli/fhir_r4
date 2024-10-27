@@ -113,7 +113,7 @@ class MedicationKnowledgeCharacteristicCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MedicationKnowledgeCharacteristicCodes.$fhirCode';
+  String toString() => fhirCode;
 }

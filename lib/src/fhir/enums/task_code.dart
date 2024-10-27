@@ -102,7 +102,7 @@ class TaskCode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'TaskCode.$fhirCode';
+  String toString() => fhirCode;
 }

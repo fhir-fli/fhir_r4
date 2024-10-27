@@ -128,7 +128,7 @@ class ExampleRevenueCenterCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExampleRevenueCenterCodes.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -102,7 +102,7 @@ class SupplyRequestStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SupplyRequestStatus.$fhirCode';
+  String toString() => fhirCode;
 }

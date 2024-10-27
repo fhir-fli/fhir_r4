@@ -94,7 +94,7 @@ class GroupType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'GroupType.$fhirCode';
+  String toString() => fhirCode;
 }

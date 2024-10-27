@@ -94,7 +94,7 @@ class EvidenceVariableRole {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EvidenceVariableRole.$fhirCode';
+  String toString() => fhirCode;
 }

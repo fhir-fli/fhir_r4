@@ -70,7 +70,7 @@ class AggregationMode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AggregationMode.$fhirCode';
+  String toString() => fhirCode;
 }

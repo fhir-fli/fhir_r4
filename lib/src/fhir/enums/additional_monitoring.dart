@@ -55,7 +55,7 @@ class AdditionalMonitoring {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AdditionalMonitoring.$fhirCode';
+  String toString() => fhirCode;
 }

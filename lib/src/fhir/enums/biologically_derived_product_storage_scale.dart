@@ -77,7 +77,7 @@ class BiologicallyDerivedProductStorageScale {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'BiologicallyDerivedProductStorageScale.$fhirCode';
+  String toString() => fhirCode;
 }

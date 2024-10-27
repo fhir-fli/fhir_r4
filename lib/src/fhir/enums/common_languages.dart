@@ -494,7 +494,7 @@ class CommonLanguages {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CommonLanguages.$fhirCode';
+  String toString() => fhirCode;
 }

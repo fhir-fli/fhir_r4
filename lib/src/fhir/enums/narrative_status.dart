@@ -78,7 +78,7 @@ class NarrativeStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'NarrativeStatus.$fhirCode';
+  String toString() => fhirCode;
 }

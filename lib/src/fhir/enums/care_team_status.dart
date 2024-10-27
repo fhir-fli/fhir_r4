@@ -86,7 +86,7 @@ class CareTeamStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CareTeamStatus.$fhirCode';
+  String toString() => fhirCode;
 }

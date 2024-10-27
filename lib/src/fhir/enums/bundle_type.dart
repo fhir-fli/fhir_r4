@@ -118,7 +118,7 @@ class BundleType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'BundleType.$fhirCode';
+  String toString() => fhirCode;
 }

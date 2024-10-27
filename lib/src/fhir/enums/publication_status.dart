@@ -78,7 +78,7 @@ class PublicationStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'PublicationStatus.$fhirCode';
+  String toString() => fhirCode;
 }

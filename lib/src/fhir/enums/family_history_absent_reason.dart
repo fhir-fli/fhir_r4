@@ -82,7 +82,7 @@ class FamilyHistoryAbsentReason {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FamilyHistoryAbsentReason.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -118,7 +118,7 @@ class CarePlanIntent {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CarePlanIntent.$fhirCode';
+  String toString() => fhirCode;
 }

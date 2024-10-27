@@ -250,7 +250,7 @@ class ArtifactRelationshipType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ArtifactRelationshipType.$fhirCode';
+  String toString() => fhirCode;
 }

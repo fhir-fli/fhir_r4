@@ -110,7 +110,7 @@ class LegalStatusOfSupply {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'LegalStatusOfSupply.$fhirCode';
+  String toString() => fhirCode;
 }

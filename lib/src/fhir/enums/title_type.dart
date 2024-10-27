@@ -150,7 +150,7 @@ class TitleType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'TitleType.$fhirCode';
+  String toString() => fhirCode;
 }

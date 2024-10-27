@@ -78,7 +78,7 @@ class ContributorType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContributorType.$fhirCode';
+  String toString() => fhirCode;
 }

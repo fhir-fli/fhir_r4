@@ -72,7 +72,7 @@ class AllergyIntoleranceSeverity {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AllergyIntoleranceSeverity.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -70,7 +70,7 @@ class NutrientModifierCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'NutrientModifierCodes.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -71,7 +71,7 @@ class ObservationRangeCategory {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ObservationRangeCategory.$fhirCode';
+  String toString() => fhirCode;
 }

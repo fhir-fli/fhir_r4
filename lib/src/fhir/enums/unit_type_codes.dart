@@ -62,7 +62,7 @@ class UnitTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'UnitTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

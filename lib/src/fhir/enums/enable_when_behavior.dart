@@ -62,7 +62,7 @@ class EnableWhenBehavior {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EnableWhenBehavior.$fhirCode';
+  String toString() => fhirCode;
 }

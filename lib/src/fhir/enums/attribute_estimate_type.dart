@@ -134,7 +134,7 @@ class AttributeEstimateType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AttributeEstimateType.$fhirCode';
+  String toString() => fhirCode;
 }

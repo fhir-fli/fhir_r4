@@ -68,7 +68,7 @@ class ExampleRelatedClaimRelationshipCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExampleRelatedClaimRelationshipCodes.$fhirCode';
+  String toString() => fhirCode;
 }

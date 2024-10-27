@@ -78,7 +78,7 @@ class ParticipationStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ParticipationStatus.$fhirCode';
+  String toString() => fhirCode;
 }

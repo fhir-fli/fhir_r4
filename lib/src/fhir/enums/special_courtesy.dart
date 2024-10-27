@@ -94,7 +94,7 @@ class SpecialCourtesy {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SpecialCourtesy.$fhirCode';
+  String toString() => fhirCode;
 }

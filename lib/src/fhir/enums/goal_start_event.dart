@@ -78,7 +78,7 @@ class GoalStartEvent {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'GoalStartEvent.$fhirCode';
+  String toString() => fhirCode;
 }

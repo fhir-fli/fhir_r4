@@ -86,7 +86,7 @@ class StructureTechnique {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'StructureTechnique.$fhirCode';
+  String toString() => fhirCode;
 }

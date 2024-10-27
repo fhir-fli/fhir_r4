@@ -173,7 +173,7 @@ class TextureModifiedFoodTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'TextureModifiedFoodTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

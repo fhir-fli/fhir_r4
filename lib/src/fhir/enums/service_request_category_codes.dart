@@ -92,7 +92,7 @@ class ServiceRequestCategoryCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ServiceRequestCategoryCodes.$fhirCode';
+  String toString() => fhirCode;
 }

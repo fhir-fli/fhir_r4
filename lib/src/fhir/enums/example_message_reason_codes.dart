@@ -96,7 +96,7 @@ class ExampleMessageReasonCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExampleMessageReasonCodes.$fhirCode';
+  String toString() => fhirCode;
 }

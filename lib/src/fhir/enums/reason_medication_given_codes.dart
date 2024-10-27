@@ -71,7 +71,7 @@ class ReasonMedicationGivenCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ReasonMedicationGivenCodes.$fhirCode';
+  String toString() => fhirCode;
 }

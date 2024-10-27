@@ -102,7 +102,7 @@ class NameUse {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'NameUse.$fhirCode';
+  String toString() => fhirCode;
 }

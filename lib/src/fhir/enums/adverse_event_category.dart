@@ -163,7 +163,7 @@ class AdverseEventCategory {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AdverseEventCategory.$fhirCode';
+  String toString() => fhirCode;
 }

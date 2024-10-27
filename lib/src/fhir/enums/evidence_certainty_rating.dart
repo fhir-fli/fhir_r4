@@ -178,7 +178,7 @@ class EvidenceCertaintyRating {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EvidenceCertaintyRating.$fhirCode';
+  String toString() => fhirCode;
 }

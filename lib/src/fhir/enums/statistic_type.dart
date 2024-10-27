@@ -222,7 +222,7 @@ class StatisticType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'StatisticType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -56,7 +56,7 @@ class ContractResourceAssetTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContractResourceAssetTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

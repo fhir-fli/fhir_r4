@@ -25430,7 +25430,7 @@ class AuditEventSubType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AuditEventSubType.$fhirCode';
+  String toString() => fhirCode;
 }

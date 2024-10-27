@@ -262,7 +262,7 @@ class FHIRVersion {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FHIRVersion.$fhirCode';
+  String toString() => fhirCode;
 }

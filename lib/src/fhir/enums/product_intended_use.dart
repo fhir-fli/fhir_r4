@@ -86,7 +86,7 @@ class ProductIntendedUse {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ProductIntendedUse.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -81,7 +81,7 @@ class ExplanationOfBenefitStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExplanationOfBenefitStatus.$fhirCode';
+  String toString() => fhirCode;
 }

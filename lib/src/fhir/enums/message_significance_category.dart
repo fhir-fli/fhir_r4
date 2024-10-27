@@ -74,7 +74,7 @@ class MessageSignificanceCategory {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MessageSignificanceCategory.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -184,7 +184,7 @@ class TypeRestfulInteraction {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'TypeRestfulInteraction.$fhirCode';
+  String toString() => fhirCode;
 }

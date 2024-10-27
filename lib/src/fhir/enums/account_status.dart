@@ -86,7 +86,7 @@ class AccountStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AccountStatus.$fhirCode';
+  String toString() => fhirCode;
 }

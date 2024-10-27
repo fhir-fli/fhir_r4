@@ -83,7 +83,7 @@ class ResearchStudyReasonStopped {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ResearchStudyReasonStopped.$fhirCode';
+  String toString() => fhirCode;
 }

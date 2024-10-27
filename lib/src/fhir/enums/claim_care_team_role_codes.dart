@@ -79,7 +79,7 @@ class ClaimCareTeamRoleCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ClaimCareTeamRoleCodes.$fhirCode';
+  String toString() => fhirCode;
 }

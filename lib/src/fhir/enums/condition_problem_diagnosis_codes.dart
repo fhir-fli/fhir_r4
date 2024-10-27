@@ -56,7 +56,7 @@ class ConditionProblemDiagnosisCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConditionProblemDiagnosisCodes.$fhirCode';
+  String toString() => fhirCode;
 }

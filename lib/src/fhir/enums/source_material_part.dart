@@ -70,7 +70,7 @@ class SourceMaterialPart {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SourceMaterialPart.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -126,7 +126,7 @@ class GuideParameterCode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'GuideParameterCode.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -70,7 +70,7 @@ class ContainerMaterials {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContainerMaterials.$fhirCode';
+  String toString() => fhirCode;
 }

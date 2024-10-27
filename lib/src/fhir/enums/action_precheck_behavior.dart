@@ -63,7 +63,7 @@ class ActionPrecheckBehavior {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ActionPrecheckBehavior.$fhirCode';
+  String toString() => fhirCode;
 }

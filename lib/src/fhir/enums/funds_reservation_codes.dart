@@ -70,7 +70,7 @@ class FundsReservationCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FundsReservationCodes.$fhirCode';
+  String toString() => fhirCode;
 }

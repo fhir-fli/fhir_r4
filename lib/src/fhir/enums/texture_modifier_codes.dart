@@ -164,7 +164,7 @@ class TextureModifierCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'TextureModifierCodes.$fhirCode';
+  String toString() => fhirCode;
 }

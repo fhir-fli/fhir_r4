@@ -63,7 +63,7 @@ class MedicinalProductType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MedicinalProductType.$fhirCode';
+  String toString() => fhirCode;
 }

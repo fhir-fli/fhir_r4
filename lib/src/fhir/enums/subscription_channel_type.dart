@@ -87,7 +87,7 @@ class SubscriptionChannelType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SubscriptionChannelType.$fhirCode';
+  String toString() => fhirCode;
 }

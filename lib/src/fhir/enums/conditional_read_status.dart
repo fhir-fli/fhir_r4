@@ -78,7 +78,7 @@ class ConditionalReadStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConditionalReadStatus.$fhirCode';
+  String toString() => fhirCode;
 }

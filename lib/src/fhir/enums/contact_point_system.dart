@@ -102,7 +102,7 @@ class ContactPointSystem {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContactPointSystem.$fhirCode';
+  String toString() => fhirCode;
 }

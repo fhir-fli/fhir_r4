@@ -86,7 +86,7 @@ class AuditEventAction {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AuditEventAction.$fhirCode';
+  String toString() => fhirCode;
 }

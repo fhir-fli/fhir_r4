@@ -662,7 +662,7 @@ class CombinedDoseForm {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CombinedDoseForm.$fhirCode';
+  String toString() => fhirCode;
 }

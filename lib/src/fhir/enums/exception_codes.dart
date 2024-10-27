@@ -62,7 +62,7 @@ class ExceptionCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExceptionCodes.$fhirCode';
+  String toString() => fhirCode;
 }

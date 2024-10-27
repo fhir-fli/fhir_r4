@@ -260,7 +260,7 @@ class CitationArtifactClassifier {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CitationArtifactClassifier.$fhirCode';
+  String toString() => fhirCode;
 }

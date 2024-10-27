@@ -86,7 +86,7 @@ class ImagingStudyStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ImagingStudyStatus.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -119,7 +119,7 @@ class ResearchStudyPrimaryPurposeType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ResearchStudyPrimaryPurposeType.$fhirCode';
+  String toString() => fhirCode;
 }

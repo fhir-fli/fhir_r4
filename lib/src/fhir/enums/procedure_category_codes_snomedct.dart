@@ -110,7 +110,7 @@ class ProcedureCategoryCodesSNOMEDCT {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ProcedureCategoryCodesSNOMEDCT.$fhirCode';
+  String toString() => fhirCode;
 }

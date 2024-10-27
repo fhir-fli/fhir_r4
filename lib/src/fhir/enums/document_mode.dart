@@ -62,7 +62,7 @@ class DocumentMode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DocumentMode.$fhirCode';
+  String toString() => fhirCode;
 }

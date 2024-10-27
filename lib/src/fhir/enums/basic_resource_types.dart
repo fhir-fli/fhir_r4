@@ -174,7 +174,7 @@ class BasicResourceTypes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'BasicResourceTypes.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -59,7 +59,7 @@ class ContractResourceDefinitionSubtypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContractResourceDefinitionSubtypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

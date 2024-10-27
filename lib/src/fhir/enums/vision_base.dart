@@ -78,7 +78,7 @@ class VisionBase {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'VisionBase.$fhirCode';
+  String toString() => fhirCode;
 }

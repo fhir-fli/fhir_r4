@@ -70,7 +70,7 @@ class AdverseEventSeverity {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AdverseEventSeverity.$fhirCode';
+  String toString() => fhirCode;
 }

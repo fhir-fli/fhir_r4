@@ -110,7 +110,7 @@ class ObservationStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ObservationStatus.$fhirCode';
+  String toString() => fhirCode;
 }

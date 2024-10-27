@@ -94,7 +94,7 @@ class ListEmptyReasons {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ListEmptyReasons.$fhirCode';
+  String toString() => fhirCode;
 }

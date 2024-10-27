@@ -68,7 +68,7 @@ class ImmunizationEvaluationDoseStatusCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ImmunizationEvaluationDoseStatusCodes.$fhirCode';
+  String toString() => fhirCode;
 }

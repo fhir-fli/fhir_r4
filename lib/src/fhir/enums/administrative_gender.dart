@@ -78,7 +78,7 @@ class AdministrativeGender {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AdministrativeGender.$fhirCode';
+  String toString() => fhirCode;
 }

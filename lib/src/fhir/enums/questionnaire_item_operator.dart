@@ -103,7 +103,7 @@ class QuestionnaireItemOperator {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'QuestionnaireItemOperator.$fhirCode';
+  String toString() => fhirCode;
 }

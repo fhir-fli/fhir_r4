@@ -63,7 +63,7 @@ class AdjudicationErrorCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AdjudicationErrorCodes.$fhirCode';
+  String toString() => fhirCode;
 }

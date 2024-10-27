@@ -62,7 +62,7 @@ class NetworkTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'NetworkTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

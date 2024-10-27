@@ -685,7 +685,7 @@ class StatisticModelCode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'StatisticModelCode.$fhirCode';
+  String toString() => fhirCode;
 }

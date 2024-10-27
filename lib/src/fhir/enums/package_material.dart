@@ -390,7 +390,7 @@ class PackageMaterial {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'PackageMaterial.$fhirCode';
+  String toString() => fhirCode;
 }

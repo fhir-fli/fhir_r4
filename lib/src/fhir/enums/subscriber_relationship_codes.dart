@@ -109,7 +109,7 @@ class SubscriberRelationshipCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SubscriberRelationshipCodes.$fhirCode';
+  String toString() => fhirCode;
 }

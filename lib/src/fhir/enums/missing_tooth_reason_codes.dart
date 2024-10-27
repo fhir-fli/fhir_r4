@@ -79,7 +79,7 @@ class MissingToothReasonCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MissingToothReasonCodes.$fhirCode';
+  String toString() => fhirCode;
 }

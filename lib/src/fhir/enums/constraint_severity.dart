@@ -62,7 +62,7 @@ class ConstraintSeverity {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConstraintSeverity.$fhirCode';
+  String toString() => fhirCode;
 }

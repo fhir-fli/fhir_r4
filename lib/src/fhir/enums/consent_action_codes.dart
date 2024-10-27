@@ -86,7 +86,7 @@ class ConsentActionCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConsentActionCodes.$fhirCode';
+  String toString() => fhirCode;
 }

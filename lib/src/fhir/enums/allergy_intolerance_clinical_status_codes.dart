@@ -77,7 +77,7 @@ class AllergyIntoleranceClinicalStatusCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AllergyIntoleranceClinicalStatusCodes.$fhirCode';
+  String toString() => fhirCode;
 }

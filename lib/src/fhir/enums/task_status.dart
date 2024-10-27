@@ -142,7 +142,7 @@ class TaskStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'TaskStatus.$fhirCode';
+  String toString() => fhirCode;
 }

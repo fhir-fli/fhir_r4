@@ -86,7 +86,7 @@ class CompartmentType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CompartmentType.$fhirCode';
+  String toString() => fhirCode;
 }

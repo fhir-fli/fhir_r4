@@ -63,7 +63,7 @@ class ActionCardinalityBehavior {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ActionCardinalityBehavior.$fhirCode';
+  String toString() => fhirCode;
 }

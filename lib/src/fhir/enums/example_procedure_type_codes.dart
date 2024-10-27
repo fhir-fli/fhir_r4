@@ -64,7 +64,7 @@ class ExampleProcedureTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExampleProcedureTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

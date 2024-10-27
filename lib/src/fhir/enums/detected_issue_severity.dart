@@ -70,7 +70,7 @@ class DetectedIssueSeverity {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DetectedIssueSeverity.$fhirCode';
+  String toString() => fhirCode;
 }

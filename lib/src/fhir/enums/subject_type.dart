@@ -1190,7 +1190,7 @@ class SubjectType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SubjectType.$fhirCode';
+  String toString() => fhirCode;
 }

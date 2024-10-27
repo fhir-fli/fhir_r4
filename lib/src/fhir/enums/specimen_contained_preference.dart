@@ -65,7 +65,7 @@ class SpecimenContainedPreference {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SpecimenContainedPreference.$fhirCode';
+  String toString() => fhirCode;
 }

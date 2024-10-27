@@ -25294,7 +25294,7 @@ class MediaTypeCode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MediaTypeCode.$fhirCode';
+  String toString() => fhirCode;
 }

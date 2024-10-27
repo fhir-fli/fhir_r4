@@ -110,7 +110,7 @@ class RelatedArtifactType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'RelatedArtifactType.$fhirCode';
+  String toString() => fhirCode;
 }

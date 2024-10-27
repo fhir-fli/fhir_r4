@@ -406,7 +406,7 @@ class Program {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'Program.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -79,7 +79,7 @@ class ExampleProgramReasonCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExampleProgramReasonCodes.$fhirCode';
+  String toString() => fhirCode;
 }

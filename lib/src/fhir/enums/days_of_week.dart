@@ -102,7 +102,7 @@ class DaysOfWeek {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DaysOfWeek.$fhirCode';
+  String toString() => fhirCode;
 }

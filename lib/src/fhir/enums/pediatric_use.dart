@@ -158,7 +158,7 @@ class PediatricUse {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'PediatricUse.$fhirCode';
+  String toString() => fhirCode;
 }

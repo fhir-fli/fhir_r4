@@ -126,7 +126,7 @@ class AppointmentStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AppointmentStatus.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -281,7 +281,7 @@ class CitationStatusType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CitationStatusType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -167,7 +167,7 @@ class SubstanceNameAuthority {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SubstanceNameAuthority.$fhirCode';
+  String toString() => fhirCode;
 }

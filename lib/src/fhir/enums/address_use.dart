@@ -86,7 +86,7 @@ class AddressUse {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AddressUse.$fhirCode';
+  String toString() => fhirCode;
 }

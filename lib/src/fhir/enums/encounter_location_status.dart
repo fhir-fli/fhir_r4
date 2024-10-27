@@ -79,7 +79,7 @@ class EncounterLocationStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EncounterLocationStatus.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -70,7 +70,7 @@ class MeasureReportStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MeasureReportStatus.$fhirCode';
+  String toString() => fhirCode;
 }

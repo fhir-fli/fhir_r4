@@ -119,7 +119,7 @@ class ExampleUseCodesForList {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExampleUseCodesForList.$fhirCode';
+  String toString() => fhirCode;
 }

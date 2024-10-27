@@ -78,7 +78,7 @@ class ActionParticipantType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ActionParticipantType.$fhirCode';
+  String toString() => fhirCode;
 }

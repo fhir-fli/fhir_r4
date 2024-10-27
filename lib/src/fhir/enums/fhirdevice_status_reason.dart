@@ -112,7 +112,7 @@ class FHIRDeviceStatusReason {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FHIRDeviceStatusReason.$fhirCode';
+  String toString() => fhirCode;
 }

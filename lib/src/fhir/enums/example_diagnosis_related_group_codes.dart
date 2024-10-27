@@ -83,7 +83,7 @@ class ExampleDiagnosisRelatedGroupCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExampleDiagnosisRelatedGroupCodes.$fhirCode';
+  String toString() => fhirCode;
 }

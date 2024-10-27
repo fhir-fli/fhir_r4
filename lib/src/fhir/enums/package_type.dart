@@ -70,7 +70,7 @@ class PackageType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'PackageType.$fhirCode';
+  String toString() => fhirCode;
 }

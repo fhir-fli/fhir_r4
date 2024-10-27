@@ -102,7 +102,7 @@ class PropertyTypeEnum {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'PropertyTypeEnum.$fhirCode';
+  String toString() => fhirCode;
 }

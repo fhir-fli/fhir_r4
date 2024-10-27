@@ -87,7 +87,7 @@ class ImmunizationRecommendationDateCriterionCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ImmunizationRecommendationDateCriterionCodes.$fhirCode';
+  String toString() => fhirCode;
 }

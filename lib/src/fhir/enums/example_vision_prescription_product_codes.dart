@@ -68,7 +68,7 @@ class ExampleVisionPrescriptionProductCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExampleVisionPrescriptionProductCodes.$fhirCode';
+  String toString() => fhirCode;
 }

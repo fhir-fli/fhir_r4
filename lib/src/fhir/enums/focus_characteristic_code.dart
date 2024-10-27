@@ -113,7 +113,7 @@ class FocusCharacteristicCode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FocusCharacteristicCode.$fhirCode';
+  String toString() => fhirCode;
 }

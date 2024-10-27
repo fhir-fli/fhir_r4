@@ -110,7 +110,7 @@ class ListOrderCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ListOrderCodes.$fhirCode';
+  String toString() => fhirCode;
 }

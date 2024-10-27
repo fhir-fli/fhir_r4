@@ -65,7 +65,7 @@ class MeasureImprovementNotation {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MeasureImprovementNotation.$fhirCode';
+  String toString() => fhirCode;
 }

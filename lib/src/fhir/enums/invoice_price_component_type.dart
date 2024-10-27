@@ -98,7 +98,7 @@ class InvoicePriceComponentType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'InvoicePriceComponentType.$fhirCode';
+  String toString() => fhirCode;
 }

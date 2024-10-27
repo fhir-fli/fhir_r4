@@ -62,7 +62,7 @@ class SupplyItemType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SupplyItemType.$fhirCode';
+  String toString() => fhirCode;
 }

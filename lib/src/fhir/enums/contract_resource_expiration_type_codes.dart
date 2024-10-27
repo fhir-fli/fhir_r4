@@ -58,7 +58,7 @@ class ContractResourceExpirationTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContractResourceExpirationTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

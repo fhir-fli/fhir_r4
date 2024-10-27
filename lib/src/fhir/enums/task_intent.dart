@@ -126,7 +126,7 @@ class TaskIntent {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'TaskIntent.$fhirCode';
+  String toString() => fhirCode;
 }

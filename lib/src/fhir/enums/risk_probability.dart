@@ -86,7 +86,7 @@ class RiskProbability {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'RiskProbability.$fhirCode';
+  String toString() => fhirCode;
 }

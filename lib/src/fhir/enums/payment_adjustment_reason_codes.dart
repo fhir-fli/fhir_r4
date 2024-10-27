@@ -65,7 +65,7 @@ class PaymentAdjustmentReasonCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'PaymentAdjustmentReasonCodes.$fhirCode';
+  String toString() => fhirCode;
 }

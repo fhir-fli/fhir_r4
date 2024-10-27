@@ -135,7 +135,7 @@ class ProvenanceActivityType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ProvenanceActivityType.$fhirCode';
+  String toString() => fhirCode;
 }

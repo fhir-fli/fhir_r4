@@ -62,7 +62,7 @@ class InteractionIncidence {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'InteractionIncidence.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -70,7 +70,7 @@ class DefinitionTopic {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DefinitionTopic.$fhirCode';
+  String toString() => fhirCode;
 }

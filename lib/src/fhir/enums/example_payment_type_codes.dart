@@ -63,7 +63,7 @@ class ExamplePaymentTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExamplePaymentTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

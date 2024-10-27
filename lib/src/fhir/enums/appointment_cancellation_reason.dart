@@ -335,7 +335,7 @@ class AppointmentCancellationReason {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AppointmentCancellationReason.$fhirCode';
+  String toString() => fhirCode;
 }

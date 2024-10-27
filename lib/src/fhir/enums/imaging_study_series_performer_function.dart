@@ -94,7 +94,7 @@ class ImagingStudySeriesPerformerFunction {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ImagingStudySeriesPerformerFunction.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -65,7 +65,7 @@ class ProductConfidentiality {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ProductConfidentiality.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -72,7 +72,7 @@ class MedicinalProductDomain {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MedicinalProductDomain.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -78,7 +78,7 @@ class LinkType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'LinkType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -82,7 +82,7 @@ class ContributorSummarySource {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContributorSummarySource.$fhirCode';
+  String toString() => fhirCode;
 }

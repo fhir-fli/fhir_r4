@@ -1082,7 +1082,7 @@ class PracticeSettingCodeValueSet {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'PracticeSettingCodeValueSet.$fhirCode';
+  String toString() => fhirCode;
 }

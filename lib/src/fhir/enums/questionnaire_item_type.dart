@@ -182,7 +182,7 @@ class QuestionnaireItemType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'QuestionnaireItemType.$fhirCode';
+  String toString() => fhirCode;
 }

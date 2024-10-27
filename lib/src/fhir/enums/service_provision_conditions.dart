@@ -71,7 +71,7 @@ class ServiceProvisionConditions {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ServiceProvisionConditions.$fhirCode';
+  String toString() => fhirCode;
 }

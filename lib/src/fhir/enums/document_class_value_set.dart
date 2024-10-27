@@ -406,7 +406,7 @@ class DocumentClassValueSet {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DocumentClassValueSet.$fhirCode';
+  String toString() => fhirCode;
 }

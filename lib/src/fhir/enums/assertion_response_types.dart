@@ -145,7 +145,7 @@ class AssertionResponseTypes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AssertionResponseTypes.$fhirCode';
+  String toString() => fhirCode;
 }

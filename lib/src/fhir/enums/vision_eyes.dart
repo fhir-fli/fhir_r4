@@ -62,7 +62,7 @@ class VisionEyes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'VisionEyes.$fhirCode';
+  String toString() => fhirCode;
 }

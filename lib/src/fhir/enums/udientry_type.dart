@@ -94,7 +94,7 @@ class UDIEntryType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'UDIEntryType.$fhirCode';
+  String toString() => fhirCode;
 }

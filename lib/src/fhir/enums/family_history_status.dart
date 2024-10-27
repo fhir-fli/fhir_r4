@@ -78,7 +78,7 @@ class FamilyHistoryStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FamilyHistoryStatus.$fhirCode';
+  String toString() => fhirCode;
 }

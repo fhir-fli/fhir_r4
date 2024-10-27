@@ -182,7 +182,7 @@ class ContractResourceLegalStateCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContractResourceLegalStateCodes.$fhirCode';
+  String toString() => fhirCode;
 }

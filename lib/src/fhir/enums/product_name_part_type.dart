@@ -175,7 +175,7 @@ class ProductNamePartType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ProductNamePartType.$fhirCode';
+  String toString() => fhirCode;
 }

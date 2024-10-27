@@ -95,7 +95,7 @@ class RestfulSecurityService {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'RestfulSecurityService.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -78,7 +78,7 @@ class SupplyDeliveryStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SupplyDeliveryStatus.$fhirCode';
+  String toString() => fhirCode;
 }

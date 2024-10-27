@@ -25782,7 +25782,7 @@ class SecurityRoleType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SecurityRoleType.$fhirCode';
+  String toString() => fhirCode;
 }

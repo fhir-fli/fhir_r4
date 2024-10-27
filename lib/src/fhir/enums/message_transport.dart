@@ -70,7 +70,7 @@ class MessageTransport {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MessageTransport.$fhirCode';
+  String toString() => fhirCode;
 }

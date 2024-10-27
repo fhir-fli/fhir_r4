@@ -190,7 +190,7 @@ class SystemRestfulInteraction {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SystemRestfulInteraction.$fhirCode';
+  String toString() => fhirCode;
 }

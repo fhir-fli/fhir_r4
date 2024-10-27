@@ -78,7 +78,7 @@ class IssueSeverity {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'IssueSeverity.$fhirCode';
+  String toString() => fhirCode;
 }

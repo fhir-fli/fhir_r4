@@ -64,7 +64,7 @@ class CatalogEntryRelationType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CatalogEntryRelationType.$fhirCode';
+  String toString() => fhirCode;
 }

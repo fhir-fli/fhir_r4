@@ -65,7 +65,7 @@ class ImmunizationProgramEligibility {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ImmunizationProgramEligibility.$fhirCode';
+  String toString() => fhirCode;
 }

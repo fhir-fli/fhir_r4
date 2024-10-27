@@ -71,7 +71,7 @@ class PackageCharacteristic {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'PackageCharacteristic.$fhirCode';
+  String toString() => fhirCode;
 }

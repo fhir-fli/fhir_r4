@@ -254,7 +254,7 @@ class EventTiming {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EventTiming.$fhirCode';
+  String toString() => fhirCode;
 }

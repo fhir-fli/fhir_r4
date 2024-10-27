@@ -70,7 +70,7 @@ class AddressType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AddressType.$fhirCode';
+  String toString() => fhirCode;
 }

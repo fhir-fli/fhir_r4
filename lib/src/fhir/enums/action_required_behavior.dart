@@ -72,7 +72,7 @@ class ActionRequiredBehavior {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ActionRequiredBehavior.$fhirCode';
+  String toString() => fhirCode;
 }

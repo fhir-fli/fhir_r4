@@ -118,7 +118,7 @@ class UsageContextType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'UsageContextType.$fhirCode';
+  String toString() => fhirCode;
 }

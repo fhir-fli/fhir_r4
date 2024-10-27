@@ -70,7 +70,7 @@ class Use {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'Use.$fhirCode';
+  String toString() => fhirCode;
 }

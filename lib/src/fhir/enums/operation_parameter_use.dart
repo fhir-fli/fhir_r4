@@ -62,7 +62,7 @@ class OperationParameterUse {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'OperationParameterUse.$fhirCode';
+  String toString() => fhirCode;
 }

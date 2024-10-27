@@ -106,7 +106,7 @@ class TestScriptRequestMethodCode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'TestScriptRequestMethodCode.$fhirCode';
+  String toString() => fhirCode;
 }

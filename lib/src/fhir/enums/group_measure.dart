@@ -94,7 +94,7 @@ class GroupMeasure {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'GroupMeasure.$fhirCode';
+  String toString() => fhirCode;
 }

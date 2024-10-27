@@ -101,7 +101,7 @@ class AdverseEventCausalityAssessment {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AdverseEventCausalityAssessment.$fhirCode';
+  String toString() => fhirCode;
 }

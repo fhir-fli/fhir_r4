@@ -374,7 +374,7 @@ class OralSiteCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'OralSiteCodes.$fhirCode';
+  String toString() => fhirCode;
 }

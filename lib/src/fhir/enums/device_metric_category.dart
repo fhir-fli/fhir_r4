@@ -78,7 +78,7 @@ class DeviceMetricCategory {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DeviceMetricCategory.$fhirCode';
+  String toString() => fhirCode;
 }

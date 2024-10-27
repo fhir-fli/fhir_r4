@@ -118,7 +118,7 @@ class FilterOperator {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FilterOperator.$fhirCode';
+  String toString() => fhirCode;
 }

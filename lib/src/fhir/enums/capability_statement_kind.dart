@@ -71,7 +71,7 @@ class CapabilityStatementKind {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CapabilityStatementKind.$fhirCode';
+  String toString() => fhirCode;
 }

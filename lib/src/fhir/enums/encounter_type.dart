@@ -78,7 +78,7 @@ class EncounterType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EncounterType.$fhirCode';
+  String toString() => fhirCode;
 }

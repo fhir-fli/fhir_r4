@@ -70,7 +70,7 @@ class SlicingRules {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SlicingRules.$fhirCode';
+  String toString() => fhirCode;
 }

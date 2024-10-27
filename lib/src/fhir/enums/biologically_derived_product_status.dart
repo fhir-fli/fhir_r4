@@ -65,7 +65,7 @@ class BiologicallyDerivedProductStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'BiologicallyDerivedProductStatus.$fhirCode';
+  String toString() => fhirCode;
 }

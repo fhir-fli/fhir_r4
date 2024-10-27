@@ -74,7 +74,7 @@ class ArtifactContributionInstanceType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ArtifactContributionInstanceType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -62,7 +62,7 @@ class OperationKind {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'OperationKind.$fhirCode';
+  String toString() => fhirCode;
 }

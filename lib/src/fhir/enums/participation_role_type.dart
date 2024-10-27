@@ -25782,7 +25782,7 @@ class ParticipationRoleType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ParticipationRoleType.$fhirCode';
+  String toString() => fhirCode;
 }

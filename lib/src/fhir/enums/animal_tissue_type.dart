@@ -1558,7 +1558,7 @@ class AnimalTissueType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AnimalTissueType.$fhirCode';
+  String toString() => fhirCode;
 }

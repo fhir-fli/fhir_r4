@@ -83,7 +83,7 @@ class MeasureSupplementalDataExample {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MeasureSupplementalDataExample.$fhirCode';
+  String toString() => fhirCode;
 }

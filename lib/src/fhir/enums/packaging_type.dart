@@ -862,7 +862,7 @@ class PackagingType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'PackagingType.$fhirCode';
+  String toString() => fhirCode;
 }

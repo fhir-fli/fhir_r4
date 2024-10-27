@@ -78,7 +78,7 @@ class QuantityComparator {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'QuantityComparator.$fhirCode';
+  String toString() => fhirCode;
 }

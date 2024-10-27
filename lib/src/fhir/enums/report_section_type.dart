@@ -279,7 +279,7 @@ class ReportSectionType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ReportSectionType.$fhirCode';
+  String toString() => fhirCode;
 }

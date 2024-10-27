@@ -64,7 +64,7 @@ class CharacteristicCombination {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CharacteristicCombination.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -758,7 +758,7 @@ class FacilityTypeCodeValueSet {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FacilityTypeCodeValueSet.$fhirCode';
+  String toString() => fhirCode;
 }

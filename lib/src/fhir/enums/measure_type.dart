@@ -86,7 +86,7 @@ class MeasureType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MeasureType.$fhirCode';
+  String toString() => fhirCode;
 }

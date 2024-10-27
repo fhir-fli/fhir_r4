@@ -1253,7 +1253,7 @@ class AuditEventEntityType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AuditEventEntityType.$fhirCode';
+  String toString() => fhirCode;
 }

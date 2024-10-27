@@ -142,7 +142,7 @@ class BenefitTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'BenefitTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

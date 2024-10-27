@@ -494,7 +494,7 @@ class UnitOfPresentation {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'UnitOfPresentation.$fhirCode';
+  String toString() => fhirCode;
 }

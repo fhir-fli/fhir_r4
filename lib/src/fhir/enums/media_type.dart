@@ -70,7 +70,7 @@ class MediaType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MediaType.$fhirCode';
+  String toString() => fhirCode;
 }

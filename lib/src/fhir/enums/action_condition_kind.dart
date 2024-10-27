@@ -70,7 +70,7 @@ class ActionConditionKind {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ActionConditionKind.$fhirCode';
+  String toString() => fhirCode;
 }

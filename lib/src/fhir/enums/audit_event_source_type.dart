@@ -118,7 +118,7 @@ class AuditEventSourceType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AuditEventSourceType.$fhirCode';
+  String toString() => fhirCode;
 }

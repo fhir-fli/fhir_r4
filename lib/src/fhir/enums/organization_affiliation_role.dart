@@ -119,7 +119,7 @@ class OrganizationAffiliationRole {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'OrganizationAffiliationRole.$fhirCode';
+  String toString() => fhirCode;
 }

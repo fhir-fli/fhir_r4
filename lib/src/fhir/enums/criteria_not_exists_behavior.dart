@@ -65,7 +65,7 @@ class CriteriaNotExistsBehavior {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CriteriaNotExistsBehavior.$fhirCode';
+  String toString() => fhirCode;
 }

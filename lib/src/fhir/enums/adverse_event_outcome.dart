@@ -94,7 +94,7 @@ class AdverseEventOutcome {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AdverseEventOutcome.$fhirCode';
+  String toString() => fhirCode;
 }

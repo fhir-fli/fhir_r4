@@ -101,7 +101,7 @@ class ConditionClinicalStatusCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConditionClinicalStatusCodes.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -62,7 +62,7 @@ class AdverseEventActuality {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AdverseEventActuality.$fhirCode';
+  String toString() => fhirCode;
 }

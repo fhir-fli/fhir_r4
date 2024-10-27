@@ -96,7 +96,7 @@ class DeviceUseStatementStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DeviceUseStatementStatus.$fhirCode';
+  String toString() => fhirCode;
 }

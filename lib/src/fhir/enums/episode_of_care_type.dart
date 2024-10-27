@@ -86,7 +86,7 @@ class EpisodeOfCareType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EpisodeOfCareType.$fhirCode';
+  String toString() => fhirCode;
 }

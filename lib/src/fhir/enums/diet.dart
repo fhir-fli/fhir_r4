@@ -102,7 +102,7 @@ class Diet {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'Diet.$fhirCode';
+  String toString() => fhirCode;
 }

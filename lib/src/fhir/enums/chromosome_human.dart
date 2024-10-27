@@ -238,7 +238,7 @@ class ChromosomeHuman {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ChromosomeHuman.$fhirCode';
+  String toString() => fhirCode;
 }

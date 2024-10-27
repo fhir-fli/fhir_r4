@@ -62,7 +62,7 @@ class SupplyRequestReason {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SupplyRequestReason.$fhirCode';
+  String toString() => fhirCode;
 }

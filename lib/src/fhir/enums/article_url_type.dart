@@ -174,7 +174,7 @@ class ArticleUrlType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ArticleUrlType.$fhirCode';
+  String toString() => fhirCode;
 }

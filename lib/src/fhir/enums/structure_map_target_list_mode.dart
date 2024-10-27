@@ -80,7 +80,7 @@ class StructureMapTargetListMode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'StructureMapTargetListMode.$fhirCode';
+  String toString() => fhirCode;
 }

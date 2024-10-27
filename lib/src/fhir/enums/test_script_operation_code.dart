@@ -414,7 +414,7 @@ class TestScriptOperationCode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'TestScriptOperationCode.$fhirCode';
+  String toString() => fhirCode;
 }

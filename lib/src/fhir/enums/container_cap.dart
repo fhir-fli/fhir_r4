@@ -142,7 +142,7 @@ class ContainerCap {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContainerCap.$fhirCode';
+  String toString() => fhirCode;
 }

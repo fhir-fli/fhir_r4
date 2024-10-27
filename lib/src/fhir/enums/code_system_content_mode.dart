@@ -86,7 +86,7 @@ class CodeSystemContentMode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CodeSystemContentMode.$fhirCode';
+  String toString() => fhirCode;
 }

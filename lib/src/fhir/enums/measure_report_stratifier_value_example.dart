@@ -85,7 +85,7 @@ class MeasureReportStratifierValueExample {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MeasureReportStratifierValueExample.$fhirCode';
+  String toString() => fhirCode;
 }

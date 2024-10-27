@@ -117,7 +117,7 @@ class AdverseEventSeriousness {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AdverseEventSeriousness.$fhirCode';
+  String toString() => fhirCode;
 }

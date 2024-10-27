@@ -150,7 +150,7 @@ class ExampleDiagnosisTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExampleDiagnosisTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

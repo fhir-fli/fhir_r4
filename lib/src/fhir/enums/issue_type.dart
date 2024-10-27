@@ -294,7 +294,7 @@ class IssueType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'IssueType.$fhirCode';
+  String toString() => fhirCode;
 }

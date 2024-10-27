@@ -80,7 +80,7 @@ class CompositeMeasureScoring {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CompositeMeasureScoring.$fhirCode';
+  String toString() => fhirCode;
 }

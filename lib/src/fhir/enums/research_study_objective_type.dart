@@ -74,7 +74,7 @@ class ResearchStudyObjectiveType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ResearchStudyObjectiveType.$fhirCode';
+  String toString() => fhirCode;
 }

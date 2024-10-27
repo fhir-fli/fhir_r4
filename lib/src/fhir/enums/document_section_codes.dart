@@ -486,7 +486,7 @@ class DocumentSectionCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DocumentSectionCodes.$fhirCode';
+  String toString() => fhirCode;
 }

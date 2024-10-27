@@ -70,7 +70,7 @@ class NoteType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'NoteType.$fhirCode';
+  String toString() => fhirCode;
 }

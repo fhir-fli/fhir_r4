@@ -70,7 +70,7 @@ class LocationStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'LocationStatus.$fhirCode';
+  String toString() => fhirCode;
 }

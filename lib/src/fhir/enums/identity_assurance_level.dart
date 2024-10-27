@@ -79,7 +79,7 @@ class IdentityAssuranceLevel {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'IdentityAssuranceLevel.$fhirCode';
+  String toString() => fhirCode;
 }

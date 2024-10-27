@@ -68,7 +68,7 @@ class ExampleCoverageFinancialExceptionCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExampleCoverageFinancialExceptionCodes.$fhirCode';
+  String toString() => fhirCode;
 }

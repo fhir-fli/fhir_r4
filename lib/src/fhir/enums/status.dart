@@ -94,7 +94,7 @@ class Status {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'Status.$fhirCode';
+  String toString() => fhirCode;
 }

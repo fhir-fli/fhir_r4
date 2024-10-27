@@ -683,7 +683,7 @@ class EndpointPayloadType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EndpointPayloadType.$fhirCode';
+  String toString() => fhirCode;
 }

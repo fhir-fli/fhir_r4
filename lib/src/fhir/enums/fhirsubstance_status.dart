@@ -70,7 +70,7 @@ class FHIRSubstanceStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FHIRSubstanceStatus.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -86,7 +86,7 @@ class ActionReasonCode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ActionReasonCode.$fhirCode';
+  String toString() => fhirCode;
 }

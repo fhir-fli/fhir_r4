@@ -87,7 +87,7 @@ class ExpressionLanguage {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExpressionLanguage.$fhirCode';
+  String toString() => fhirCode;
 }

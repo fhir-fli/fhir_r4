@@ -71,7 +71,7 @@ class UndesirablEffectFrequency {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'UndesirablEffectFrequency.$fhirCode';
+  String toString() => fhirCode;
 }

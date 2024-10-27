@@ -70,7 +70,7 @@ class ResourceVersionPolicy {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ResourceVersionPolicy.$fhirCode';
+  String toString() => fhirCode;
 }

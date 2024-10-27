@@ -110,7 +110,7 @@ class DeviceMetricColor {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DeviceMetricColor.$fhirCode';
+  String toString() => fhirCode;
 }

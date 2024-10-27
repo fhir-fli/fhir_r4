@@ -94,7 +94,7 @@ class HTTPVerb {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'HTTPVerb.$fhirCode';
+  String toString() => fhirCode;
 }

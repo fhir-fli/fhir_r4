@@ -65,7 +65,7 @@ class ConditionCategoryCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConditionCategoryCodes.$fhirCode';
+  String toString() => fhirCode;
 }

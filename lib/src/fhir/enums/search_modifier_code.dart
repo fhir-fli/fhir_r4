@@ -142,7 +142,7 @@ class SearchModifierCode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SearchModifierCode.$fhirCode';
+  String toString() => fhirCode;
 }

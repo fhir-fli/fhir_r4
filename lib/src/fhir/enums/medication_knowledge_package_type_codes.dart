@@ -247,7 +247,7 @@ class MedicationKnowledgePackageTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MedicationKnowledgePackageTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -166,7 +166,7 @@ class MedicationRequestStatusReasonCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MedicationRequestStatusReasonCodes.$fhirCode';
+  String toString() => fhirCode;
 }

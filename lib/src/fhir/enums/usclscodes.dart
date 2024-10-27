@@ -206,7 +206,7 @@ class USCLSCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'USCLSCodes.$fhirCode';
+  String toString() => fhirCode;
 }

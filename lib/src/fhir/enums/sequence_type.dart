@@ -70,7 +70,7 @@ class SequenceType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SequenceType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -78,7 +78,7 @@ class RequestPriority {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'RequestPriority.$fhirCode';
+  String toString() => fhirCode;
 }

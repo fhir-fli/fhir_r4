@@ -62,7 +62,7 @@ class SortDirection {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SortDirection.$fhirCode';
+  String toString() => fhirCode;
 }

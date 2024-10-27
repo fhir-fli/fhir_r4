@@ -78,7 +78,7 @@ class PublishedInType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'PublishedInType.$fhirCode';
+  String toString() => fhirCode;
 }

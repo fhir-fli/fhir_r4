@@ -82,7 +82,7 @@ class CodeSystemHierarchyMeaning {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CodeSystemHierarchyMeaning.$fhirCode';
+  String toString() => fhirCode;
 }

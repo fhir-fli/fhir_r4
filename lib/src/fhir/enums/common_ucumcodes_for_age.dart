@@ -94,7 +94,7 @@ class CommonUCUMCodesForAge {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CommonUCUMCodesForAge.$fhirCode';
+  String toString() => fhirCode;
 }

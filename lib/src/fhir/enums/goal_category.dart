@@ -86,7 +86,7 @@ class GoalCategory {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'GoalCategory.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -155,7 +155,7 @@ class BodystructureLocationQualifier {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'BodystructureLocationQualifier.$fhirCode';
+  String toString() => fhirCode;
 }

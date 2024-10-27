@@ -25518,7 +25518,7 @@ class AuditEventID {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AuditEventID.$fhirCode';
+  String toString() => fhirCode;
 }

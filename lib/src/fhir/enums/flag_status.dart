@@ -70,7 +70,7 @@ class FlagStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FlagStatus.$fhirCode';
+  String toString() => fhirCode;
 }

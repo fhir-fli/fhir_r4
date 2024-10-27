@@ -134,7 +134,7 @@ class SurfaceCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SurfaceCodes.$fhirCode';
+  String toString() => fhirCode;
 }

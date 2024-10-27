@@ -78,7 +78,7 @@ class EvidenceReportType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EvidenceReportType.$fhirCode';
+  String toString() => fhirCode;
 }

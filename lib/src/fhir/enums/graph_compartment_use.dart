@@ -62,7 +62,7 @@ class GraphCompartmentUse {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'GraphCompartmentUse.$fhirCode';
+  String toString() => fhirCode;
 }

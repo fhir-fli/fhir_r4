@@ -82,7 +82,7 @@ class AllergyIntoleranceCategory {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AllergyIntoleranceCategory.$fhirCode';
+  String toString() => fhirCode;
 }

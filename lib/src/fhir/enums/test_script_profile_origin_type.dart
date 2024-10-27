@@ -65,7 +65,7 @@ class TestScriptProfileOriginType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'TestScriptProfileOriginType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -101,7 +101,7 @@ class CommunicationNotDoneReason {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CommunicationNotDoneReason.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -110,7 +110,7 @@ class WeightMethod {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'WeightMethod.$fhirCode';
+  String toString() => fhirCode;
 }

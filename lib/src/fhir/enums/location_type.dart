@@ -158,7 +158,7 @@ class LocationType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'LocationType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -87,7 +87,7 @@ class TestReportActionResult {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'TestReportActionResult.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -95,7 +95,7 @@ class ActionSelectionBehavior {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ActionSelectionBehavior.$fhirCode';
+  String toString() => fhirCode;
 }

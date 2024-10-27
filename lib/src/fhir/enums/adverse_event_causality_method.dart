@@ -74,7 +74,7 @@ class AdverseEventCausalityMethod {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AdverseEventCausalityMethod.$fhirCode';
+  String toString() => fhirCode;
 }

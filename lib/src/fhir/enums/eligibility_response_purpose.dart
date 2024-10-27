@@ -83,7 +83,7 @@ class EligibilityResponsePurpose {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EligibilityResponsePurpose.$fhirCode';
+  String toString() => fhirCode;
 }

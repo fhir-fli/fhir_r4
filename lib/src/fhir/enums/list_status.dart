@@ -70,7 +70,7 @@ class ListStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ListStatus.$fhirCode';
+  String toString() => fhirCode;
 }

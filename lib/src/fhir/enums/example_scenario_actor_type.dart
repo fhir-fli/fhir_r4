@@ -63,7 +63,7 @@ class ExampleScenarioActorType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ExampleScenarioActorType.$fhirCode';
+  String toString() => fhirCode;
 }

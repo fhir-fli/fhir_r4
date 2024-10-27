@@ -87,7 +87,7 @@ class CommonUCUMCodesForDistance {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CommonUCUMCodesForDistance.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -78,7 +78,7 @@ class GraphCompartmentRule {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'GraphCompartmentRule.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -71,7 +71,7 @@ class MeasureStratifierExample {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MeasureStratifierExample.$fhirCode';
+  String toString() => fhirCode;
 }

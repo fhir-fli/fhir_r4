@@ -103,7 +103,7 @@ class ImmunizationRouteCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ImmunizationRouteCodes.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -70,7 +70,7 @@ class NamingSystemType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'NamingSystemType.$fhirCode';
+  String toString() => fhirCode;
 }

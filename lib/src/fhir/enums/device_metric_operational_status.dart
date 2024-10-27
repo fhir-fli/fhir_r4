@@ -83,7 +83,7 @@ class DeviceMetricOperationalStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DeviceMetricOperationalStatus.$fhirCode';
+  String toString() => fhirCode;
 }

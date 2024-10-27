@@ -62,7 +62,7 @@ class DesignationUse {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DesignationUse.$fhirCode';
+  String toString() => fhirCode;
 }

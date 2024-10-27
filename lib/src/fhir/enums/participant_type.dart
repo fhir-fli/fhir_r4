@@ -86,7 +86,7 @@ class ParticipantType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ParticipantType.$fhirCode';
+  String toString() => fhirCode;
 }

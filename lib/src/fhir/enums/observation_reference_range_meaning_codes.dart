@@ -167,7 +167,7 @@ class ObservationReferenceRangeMeaningCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ObservationReferenceRangeMeaningCodes.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -62,7 +62,7 @@ class ConditionStageType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConditionStageType.$fhirCode';
+  String toString() => fhirCode;
 }

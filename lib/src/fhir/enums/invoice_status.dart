@@ -86,7 +86,7 @@ class InvoiceStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'InvoiceStatus.$fhirCode';
+  String toString() => fhirCode;
 }

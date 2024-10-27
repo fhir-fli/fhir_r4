@@ -78,7 +78,7 @@ class MeasureReportType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MeasureReportType.$fhirCode';
+  String toString() => fhirCode;
 }

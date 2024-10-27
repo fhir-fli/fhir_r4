@@ -56,7 +56,7 @@ class ContractResourceActionStatusCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContractResourceActionStatusCodes.$fhirCode';
+  String toString() => fhirCode;
 }

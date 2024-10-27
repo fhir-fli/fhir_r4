@@ -166,7 +166,7 @@ class DataAbsentReason {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DataAbsentReason.$fhirCode';
+  String toString() => fhirCode;
 }

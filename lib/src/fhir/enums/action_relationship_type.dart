@@ -121,7 +121,7 @@ class ActionRelationshipType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ActionRelationshipType.$fhirCode';
+  String toString() => fhirCode;
 }

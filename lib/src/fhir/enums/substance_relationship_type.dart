@@ -90,7 +90,7 @@ class SubstanceRelationshipType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SubstanceRelationshipType.$fhirCode';
+  String toString() => fhirCode;
 }

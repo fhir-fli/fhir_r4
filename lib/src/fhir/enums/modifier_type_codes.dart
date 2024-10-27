@@ -94,7 +94,7 @@ class ModifierTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ModifierTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

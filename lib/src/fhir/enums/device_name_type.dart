@@ -94,7 +94,7 @@ class DeviceNameType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DeviceNameType.$fhirCode';
+  String toString() => fhirCode;
 }

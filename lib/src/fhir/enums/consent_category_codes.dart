@@ -150,7 +150,7 @@ class ConsentCategoryCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConsentCategoryCodes.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -102,7 +102,7 @@ class StudyType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'StudyType.$fhirCode';
+  String toString() => fhirCode;
 }

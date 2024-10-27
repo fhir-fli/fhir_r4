@@ -77,7 +77,7 @@ class MedicationRequestCourseOfTherapyCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MedicationRequestCourseOfTherapyCodes.$fhirCode';
+  String toString() => fhirCode;
 }

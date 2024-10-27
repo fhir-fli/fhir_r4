@@ -86,7 +86,7 @@ class SubstanceGrade {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SubstanceGrade.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -134,7 +134,7 @@ class DischargeDisposition {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DischargeDisposition.$fhirCode';
+  String toString() => fhirCode;
 }

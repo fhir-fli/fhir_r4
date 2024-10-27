@@ -59,7 +59,7 @@ class ContractResourceSecurityControlCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContractResourceSecurityControlCodes.$fhirCode';
+  String toString() => fhirCode;
 }

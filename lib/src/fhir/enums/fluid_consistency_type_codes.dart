@@ -83,7 +83,7 @@ class FluidConsistencyTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FluidConsistencyTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

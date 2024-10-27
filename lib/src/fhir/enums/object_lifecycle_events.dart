@@ -382,7 +382,7 @@ class ObjectLifecycleEvents {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ObjectLifecycleEvents.$fhirCode';
+  String toString() => fhirCode;
 }

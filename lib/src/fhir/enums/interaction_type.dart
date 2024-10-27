@@ -78,7 +78,7 @@ class InteractionType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'InteractionType.$fhirCode';
+  String toString() => fhirCode;
 }

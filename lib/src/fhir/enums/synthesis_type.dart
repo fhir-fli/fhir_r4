@@ -102,7 +102,7 @@ class SynthesisType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SynthesisType.$fhirCode';
+  String toString() => fhirCode;
 }

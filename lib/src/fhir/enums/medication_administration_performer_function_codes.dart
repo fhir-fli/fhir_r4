@@ -79,8 +79,7 @@ class MedicationAdministrationPerformerFunctionCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() =>
-      'MedicationAdministrationPerformerFunctionCodes.$fhirCode';
+  String toString() => fhirCode;
 }

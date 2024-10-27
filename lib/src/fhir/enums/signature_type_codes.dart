@@ -208,7 +208,7 @@ class SignatureTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SignatureTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -70,7 +70,7 @@ class ReferenceVersionRules {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ReferenceVersionRules.$fhirCode';
+  String toString() => fhirCode;
 }

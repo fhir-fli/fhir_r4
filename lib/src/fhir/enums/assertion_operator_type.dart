@@ -134,7 +134,7 @@ class AssertionOperatorType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AssertionOperatorType.$fhirCode';
+  String toString() => fhirCode;
 }

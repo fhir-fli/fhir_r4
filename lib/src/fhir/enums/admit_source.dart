@@ -126,7 +126,7 @@ class AdmitSource {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AdmitSource.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -96,7 +96,7 @@ class GuidanceResponseStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'GuidanceResponseStatus.$fhirCode';
+  String toString() => fhirCode;
 }

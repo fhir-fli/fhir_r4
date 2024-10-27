@@ -86,7 +86,7 @@ class ClaimTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ClaimTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

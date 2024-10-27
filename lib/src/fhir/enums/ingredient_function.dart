@@ -62,7 +62,7 @@ class IngredientFunction {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'IngredientFunction.$fhirCode';
+  String toString() => fhirCode;
 }

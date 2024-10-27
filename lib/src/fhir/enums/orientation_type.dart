@@ -62,7 +62,7 @@ class OrientationType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'OrientationType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -77,7 +77,7 @@ class MedicationAdministrationCategoryCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MedicationAdministrationCategoryCodes.$fhirCode';
+  String toString() => fhirCode;
 }

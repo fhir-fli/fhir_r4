@@ -74,7 +74,7 @@ class ProcedureOutcomeCodesSNOMEDCT {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ProcedureOutcomeCodesSNOMEDCT.$fhirCode';
+  String toString() => fhirCode;
 }

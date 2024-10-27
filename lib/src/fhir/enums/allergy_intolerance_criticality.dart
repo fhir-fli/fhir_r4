@@ -74,7 +74,7 @@ class AllergyIntoleranceCriticality {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AllergyIntoleranceCriticality.$fhirCode';
+  String toString() => fhirCode;
 }

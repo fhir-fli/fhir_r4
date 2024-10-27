@@ -78,7 +78,7 @@ class LibraryType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'LibraryType.$fhirCode';
+  String toString() => fhirCode;
 }

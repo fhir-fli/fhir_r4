@@ -142,7 +142,7 @@ class OrganizationType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'OrganizationType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -102,7 +102,7 @@ class UnitsOfTime {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'UnitsOfTime.$fhirCode';
+  String toString() => fhirCode;
 }

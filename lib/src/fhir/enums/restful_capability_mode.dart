@@ -62,7 +62,7 @@ class RestfulCapabilityMode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'RestfulCapabilityMode.$fhirCode';
+  String toString() => fhirCode;
 }

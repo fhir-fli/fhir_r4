@@ -119,7 +119,7 @@ class CitedArtifactPartType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CitedArtifactPartType.$fhirCode';
+  String toString() => fhirCode;
 }

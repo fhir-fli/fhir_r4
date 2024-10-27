@@ -94,7 +94,7 @@ class ContactEntityType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContactEntityType.$fhirCode';
+  String toString() => fhirCode;
 }

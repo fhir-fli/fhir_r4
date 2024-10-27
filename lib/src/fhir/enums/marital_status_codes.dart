@@ -54,7 +54,7 @@ class MaritalStatusCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MaritalStatusCodes.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -70,7 +70,7 @@ class GoalPriority {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'GoalPriority.$fhirCode';
+  String toString() => fhirCode;
 }

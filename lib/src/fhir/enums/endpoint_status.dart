@@ -94,7 +94,7 @@ class EndpointStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EndpointStatus.$fhirCode';
+  String toString() => fhirCode;
 }

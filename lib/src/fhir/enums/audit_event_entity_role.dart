@@ -238,7 +238,7 @@ class AuditEventEntityRole {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AuditEventEntityRole.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -62,7 +62,7 @@ class StructureMapInputMode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'StructureMapInputMode.$fhirCode';
+  String toString() => fhirCode;
 }

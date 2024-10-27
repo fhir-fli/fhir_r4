@@ -70,7 +70,7 @@ class ResearchElementType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ResearchElementType.$fhirCode';
+  String toString() => fhirCode;
 }

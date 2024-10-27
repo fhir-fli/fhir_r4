@@ -113,7 +113,7 @@ class MedicationRequestIntent {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MedicationRequestIntent.$fhirCode';
+  String toString() => fhirCode;
 }

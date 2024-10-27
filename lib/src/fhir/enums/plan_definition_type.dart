@@ -78,7 +78,7 @@ class PlanDefinitionType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'PlanDefinitionType.$fhirCode';
+  String toString() => fhirCode;
 }

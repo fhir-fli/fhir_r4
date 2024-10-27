@@ -111,7 +111,7 @@ class AdjudicationValueCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AdjudicationValueCodes.$fhirCode';
+  String toString() => fhirCode;
 }

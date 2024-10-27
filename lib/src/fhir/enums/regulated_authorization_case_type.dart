@@ -245,7 +245,7 @@ class RegulatedAuthorizationCaseType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'RegulatedAuthorizationCaseType.$fhirCode';
+  String toString() => fhirCode;
 }

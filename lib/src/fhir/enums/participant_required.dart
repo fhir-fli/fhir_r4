@@ -70,7 +70,7 @@ class ParticipantRequired {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ParticipantRequired.$fhirCode';
+  String toString() => fhirCode;
 }

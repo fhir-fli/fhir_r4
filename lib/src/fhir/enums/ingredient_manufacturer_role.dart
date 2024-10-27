@@ -73,7 +73,7 @@ class IngredientManufacturerRole {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'IngredientManufacturerRole.$fhirCode';
+  String toString() => fhirCode;
 }

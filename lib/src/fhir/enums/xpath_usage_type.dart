@@ -86,7 +86,7 @@ class XPathUsageType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'XPathUsageType.$fhirCode';
+  String toString() => fhirCode;
 }

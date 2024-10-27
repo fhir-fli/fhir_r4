@@ -1718,7 +1718,7 @@ class FHIRAllTypes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'FHIRAllTypes.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -92,7 +92,7 @@ class EnteralFormulaAdditiveTypeCode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EnteralFormulaAdditiveTypeCode.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -63,7 +63,7 @@ class StructureMapContextType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'StructureMapContextType.$fhirCode';
+  String toString() => fhirCode;
 }

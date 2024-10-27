@@ -159,7 +159,7 @@ class EndpointConnectionType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EndpointConnectionType.$fhirCode';
+  String toString() => fhirCode;
 }

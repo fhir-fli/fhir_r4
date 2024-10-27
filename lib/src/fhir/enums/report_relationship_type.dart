@@ -112,7 +112,7 @@ class ReportRelationshipType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ReportRelationshipType.$fhirCode';
+  String toString() => fhirCode;
 }

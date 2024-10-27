@@ -79,7 +79,7 @@ class DocumentRelationshipType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DocumentRelationshipType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -70,7 +70,7 @@ class ResponseType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ResponseType.$fhirCode';
+  String toString() => fhirCode;
 }

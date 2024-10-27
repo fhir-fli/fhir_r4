@@ -120,7 +120,7 @@ class CarePlanActivityStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CarePlanActivityStatus.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -92,7 +92,7 @@ class QuestionnaireResponseStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'QuestionnaireResponseStatus.$fhirCode';
+  String toString() => fhirCode;
 }

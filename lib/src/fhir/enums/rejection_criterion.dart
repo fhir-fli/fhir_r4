@@ -86,7 +86,7 @@ class RejectionCriterion {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'RejectionCriterion.$fhirCode';
+  String toString() => fhirCode;
 }

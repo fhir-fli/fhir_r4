@@ -74,7 +74,7 @@ class ImmunizationSubpotentReason {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ImmunizationSubpotentReason.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -54,7 +54,7 @@ class CommonTags {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CommonTags.$fhirCode';
+  String toString() => fhirCode;
 }

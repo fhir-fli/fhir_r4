@@ -158,7 +158,7 @@ class CitationSummaryStyle {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CitationSummaryStyle.$fhirCode';
+  String toString() => fhirCode;
 }

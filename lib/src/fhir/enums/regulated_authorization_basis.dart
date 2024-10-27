@@ -136,7 +136,7 @@ class RegulatedAuthorizationBasis {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'RegulatedAuthorizationBasis.$fhirCode';
+  String toString() => fhirCode;
 }

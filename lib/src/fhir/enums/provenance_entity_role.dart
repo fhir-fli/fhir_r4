@@ -86,7 +86,7 @@ class ProvenanceEntityRole {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ProvenanceEntityRole.$fhirCode';
+  String toString() => fhirCode;
 }

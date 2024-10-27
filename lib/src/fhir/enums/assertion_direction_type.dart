@@ -63,7 +63,7 @@ class AssertionDirectionType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'AssertionDirectionType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -131,7 +131,7 @@ class ImmunizationEvaluationTargetDiseaseCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ImmunizationEvaluationTargetDiseaseCodes.$fhirCode';
+  String toString() => fhirCode;
 }

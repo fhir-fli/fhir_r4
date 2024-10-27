@@ -62,7 +62,7 @@ class ConsentProvisionType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConsentProvisionType.$fhirCode';
+  String toString() => fhirCode;
 }

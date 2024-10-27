@@ -86,7 +86,7 @@ class SpecialArrangements {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SpecialArrangements.$fhirCode';
+  String toString() => fhirCode;
 }

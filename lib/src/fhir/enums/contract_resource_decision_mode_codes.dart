@@ -56,7 +56,7 @@ class ContractResourceDecisionModeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContractResourceDecisionModeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

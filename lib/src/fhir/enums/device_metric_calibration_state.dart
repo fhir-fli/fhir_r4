@@ -83,7 +83,7 @@ class DeviceMetricCalibrationState {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'DeviceMetricCalibrationState.$fhirCode';
+  String toString() => fhirCode;
 }

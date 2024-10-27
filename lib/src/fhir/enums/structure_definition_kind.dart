@@ -80,7 +80,7 @@ class StructureDefinitionKind {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'StructureDefinitionKind.$fhirCode';
+  String toString() => fhirCode;
 }

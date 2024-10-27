@@ -78,7 +78,7 @@ class GuidePageGeneration {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'GuidePageGeneration.$fhirCode';
+  String toString() => fhirCode;
 }

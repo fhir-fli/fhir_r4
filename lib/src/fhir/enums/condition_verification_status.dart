@@ -101,7 +101,7 @@ class ConditionVerificationStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConditionVerificationStatus.$fhirCode';
+  String toString() => fhirCode;
 }

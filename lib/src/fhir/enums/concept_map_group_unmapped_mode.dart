@@ -74,7 +74,7 @@ class ConceptMapGroupUnmappedMode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConceptMapGroupUnmappedMode.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -56,7 +56,7 @@ class ContractResourcePartyRoleCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ContractResourcePartyRoleCodes.$fhirCode';
+  String toString() => fhirCode;
 }

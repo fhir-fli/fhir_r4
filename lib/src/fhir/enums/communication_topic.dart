@@ -95,7 +95,7 @@ class CommunicationTopic {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CommunicationTopic.$fhirCode';
+  String toString() => fhirCode;
 }

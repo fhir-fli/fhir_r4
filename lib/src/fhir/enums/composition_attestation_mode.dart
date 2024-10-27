@@ -82,7 +82,7 @@ class CompositionAttestationMode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CompositionAttestationMode.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -258,7 +258,7 @@ class ConsentPolicyRuleCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConsentPolicyRuleCodes.$fhirCode';
+  String toString() => fhirCode;
 }

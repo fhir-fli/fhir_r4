@@ -78,7 +78,7 @@ class CommunicationCategory {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CommunicationCategory.$fhirCode';
+  String toString() => fhirCode;
 }

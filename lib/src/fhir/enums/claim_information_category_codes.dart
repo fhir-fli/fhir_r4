@@ -173,7 +173,7 @@ class ClaimInformationCategoryCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ClaimInformationCategoryCodes.$fhirCode';
+  String toString() => fhirCode;
 }

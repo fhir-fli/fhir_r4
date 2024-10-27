@@ -86,7 +86,7 @@ class SlotStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SlotStatus.$fhirCode';
+  String toString() => fhirCode;
 }

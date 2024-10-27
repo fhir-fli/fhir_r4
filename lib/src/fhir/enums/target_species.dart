@@ -1646,7 +1646,7 @@ class TargetSpecies {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'TargetSpecies.$fhirCode';
+  String toString() => fhirCode;
 }

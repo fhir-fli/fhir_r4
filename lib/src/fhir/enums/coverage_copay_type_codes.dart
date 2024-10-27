@@ -127,7 +127,7 @@ class CoverageCopayTypeCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CoverageCopayTypeCodes.$fhirCode';
+  String toString() => fhirCode;
 }

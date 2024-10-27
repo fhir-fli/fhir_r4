@@ -125,7 +125,7 @@ class MeasurePopulationType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MeasurePopulationType.$fhirCode';
+  String toString() => fhirCode;
 }

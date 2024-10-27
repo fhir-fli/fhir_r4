@@ -134,7 +134,7 @@ class ObservationDataType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ObservationDataType.$fhirCode';
+  String toString() => fhirCode;
 }

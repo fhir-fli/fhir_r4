@@ -122,7 +122,7 @@ class CoverageEligibilityResponseAuthSupportCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'CoverageEligibilityResponseAuthSupportCodes.$fhirCode';
+  String toString() => fhirCode;
 }

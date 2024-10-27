@@ -118,7 +118,7 @@ class EnteralRouteCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EnteralRouteCodes.$fhirCode';
+  String toString() => fhirCode;
 }

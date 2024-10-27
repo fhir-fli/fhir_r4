@@ -110,7 +110,7 @@ class EventStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EventStatus.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -86,7 +86,7 @@ class ProductContactType {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ProductContactType.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -78,7 +78,7 @@ class StructureMapModelMode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'StructureMapModelMode.$fhirCode';
+  String toString() => fhirCode;
 }

@@ -63,7 +63,7 @@ class ImmunizationFunctionCodes {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ImmunizationFunctionCodes.$fhirCode';
+  String toString() => fhirCode;
 }

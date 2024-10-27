@@ -70,7 +70,7 @@ class SearchEntryMode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'SearchEntryMode.$fhirCode';
+  String toString() => fhirCode;
 }

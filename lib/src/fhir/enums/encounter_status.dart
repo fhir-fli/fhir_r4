@@ -118,7 +118,7 @@ class EncounterStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'EncounterStatus.$fhirCode';
+  String toString() => fhirCode;
 }

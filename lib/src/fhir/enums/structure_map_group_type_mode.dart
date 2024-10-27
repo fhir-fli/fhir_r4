@@ -72,7 +72,7 @@ class StructureMapGroupTypeMode {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'StructureMapGroupTypeMode.$fhirCode';
+  String toString() => fhirCode;
 }

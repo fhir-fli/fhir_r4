@@ -78,7 +78,7 @@ class ConsentDataMeaning {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ConsentDataMeaning.$fhirCode';
+  String toString() => fhirCode;
 }

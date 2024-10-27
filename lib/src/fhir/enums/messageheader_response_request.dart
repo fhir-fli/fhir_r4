@@ -83,7 +83,7 @@ class MessageheaderResponseRequest {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'MessageheaderResponseRequest.$fhirCode';
+  String toString() => fhirCode;
 }

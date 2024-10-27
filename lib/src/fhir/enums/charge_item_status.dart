@@ -102,7 +102,7 @@ class ChargeItemStatus {
     );
   }
 
-  /// String representation (for debugging purposes)
+  /// String representation
   @override
-  String toString() => 'ChargeItemStatus.$fhirCode';
+  String toString() => fhirCode;
 }
