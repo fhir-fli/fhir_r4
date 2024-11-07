@@ -199,41 +199,46 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     final rhsParts = rhs.value!.split(':');
 
     for (var i = 0; i < lhsParts.length; i++) {
-      final lhs = int.parse(lhsParts[i]);
-      final rhsValue = int.parse(rhsParts[i]);
+      final lhsValue = double.parse(lhsParts[i]);
+      final rhsValue = double.parse(rhsParts[i]);
 
       switch (comparator) {
-        case Comparator.eq:
-          if (lhs != rhsValue) {
+        case Comparator.equal:
+          if (lhsValue != rhsValue) {
             return false;
           }
-        case Comparator.gt:
-          if (lhs > rhsValue) {
+        case Comparator.equivalent:
+          if (lhsValue == rhsValue) {
             return true;
           }
-          if (lhs < rhsValue) {
-            return false;
-          }
-        case Comparator.lt:
-          if (lhs < rhsValue) {
+        case Comparator.greaterThan:
+          if (lhsValue > rhsValue) {
             return true;
           }
-          if (lhs > rhsValue) {
+          if (lhsValue < rhsValue) {
             return false;
           }
-        case Comparator.gte:
-          if (lhs >= rhsValue) {
+        case Comparator.lessThan:
+          if (lhsValue < rhsValue) {
+            return true;
+          }
+          if (lhsValue > rhsValue) {
+            return false;
+          }
+        case Comparator.greaterThanEqual:
+          if (lhsValue >= rhsValue) {
             return true;
           }
           return false;
-        case Comparator.lte:
-          if (lhs <= rhsValue) {
+        case Comparator.lessThanEqual:
+          if (lhsValue <= rhsValue) {
             return true;
           }
           return false;
       }
     }
-    return comparator == Comparator.eq;
+    return comparator == Comparator.equal ||
+        comparator == Comparator.equivalent;
   }
 
   /// Hash code for the [FhirTime] based on the value.
@@ -244,23 +249,44 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   /// Equality operator for comparing two [FhirTime] objects.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  bool operator ==(Object other) => _compare(Comparator.eq, other) ?? false;
+  bool operator ==(Object other) => _compare(Comparator.equal, other) ?? false;
 
   /// Checks equality between this [FhirTime] and another [FhirTime].
   @override
-  bool equals(Object other) => _compare(Comparator.eq, other) ?? false;
+  bool equals(Object other) => _compare(Comparator.equal, other) ?? false;
 
   /// Greater-than comparison operator for comparing two [FhirTime] objects.
-  bool? operator >(Object other) => _compare(Comparator.gt, other);
+  bool? operator >(Object other) => _compare(Comparator.greaterThan, other);
 
   /// Greater-than-or-equal comparison operator for two [FhirTime] objects.
-  bool? operator >=(Object other) => _compare(Comparator.gte, other);
+  bool? operator >=(Object other) =>
+      _compare(Comparator.greaterThanEqual, other);
 
   /// Less-than comparison operator for comparing two [FhirTime] objects.
-  bool? operator <(Object other) => _compare(Comparator.lt, other);
+  bool? operator <(Object other) => _compare(Comparator.lessThan, other);
 
   /// Less-than-or-equal comparison operator for two [FhirTime] objects.
-  bool? operator <=(Object other) => _compare(Comparator.lte, other);
+  bool? operator <=(Object other) => _compare(Comparator.lessThanEqual, other);
+
+  /// Checks if this [FhirTime] is after another [FhirTime].
+  bool? isAfter(Object other) => _compare(Comparator.greaterThan, other);
+
+  /// Checks if this [FhirTime] is before another [FhirTime].
+  bool? isBefore(Object other) => _compare(Comparator.lessThan, other);
+
+  /// Checks if this [FhirTime] is the same or after another [FhirTime].
+  bool? isSameOrAfter(Object other) =>
+      _compare(Comparator.greaterThanEqual, other);
+
+  /// Checks if this [FhirTime] is the same or before another [FhirTime].
+  bool? isSameOrBefore(Object other) =>
+      _compare(Comparator.lessThanEqual, other);
+
+  /// Checks if this [FhirTime] is the same as another [FhirTime].
+  bool? isEqual(Object other) => _compare(Comparator.equal, other);
+
+  /// Checks if this [FhirTime] is equivalent to another [FhirTime].
+  bool? isEquivalent(Object other) => _compare(Comparator.equivalent, other);
 
   /// Comparison method to compare this [FhirTime] with another [FhirTime].
   @override

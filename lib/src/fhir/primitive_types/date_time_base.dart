@@ -268,7 +268,6 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         return lhs.day!.compareTo(rhs.day!);
       }
     }
-
     if (lhs.hour != null || rhs.hour != null) {
       if (lhs.hour == null || rhs.hour == null) {
         return 0;
@@ -319,15 +318,17 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
 
   bool? _comparatorResult(Comparator comparator, int comparisonResult) {
     switch (comparator) {
-      case Comparator.eq:
+      case Comparator.equal:
         return comparisonResult == 0;
-      case Comparator.gt:
+      case Comparator.equivalent:
+        return comparisonResult != 0;
+      case Comparator.greaterThan:
         return comparisonResult > 0;
-      case Comparator.gte:
+      case Comparator.greaterThanEqual:
         return comparisonResult >= 0;
-      case Comparator.lt:
+      case Comparator.lessThan:
         return comparisonResult < 0;
-      case Comparator.lte:
+      case Comparator.lessThanEqual:
         return comparisonResult <= 0;
     }
   }
@@ -631,45 +632,51 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  bool operator ==(Object other) => _compare(Comparator.eq, other) ?? false;
+  bool operator ==(Object other) => _compare(Comparator.equal, other) ?? false;
 
   @override
-  bool equals(Object other) => _compare(Comparator.eq, other) ?? false;
+  bool equals(Object other) => _compare(Comparator.equal, other) ?? false;
 
   /// Greater than operator.
-  bool? operator >(Object other) => _compare(Comparator.gt, other);
+  bool? operator >(Object other) => _compare(Comparator.greaterThan, other);
 
   /// Greater than or equal to operator.
-  bool? operator >=(Object other) => _compare(Comparator.gte, other);
+  bool? operator >=(Object other) =>
+      _compare(Comparator.greaterThanEqual, other);
 
   /// Less than operator.
-  bool? operator <(Object other) => _compare(Comparator.lt, other);
+  bool? operator <(Object other) => _compare(Comparator.lessThan, other);
 
   /// Less than or equal to operator.
-  bool? operator <=(Object other) => _compare(Comparator.lte, other);
+  bool? operator <=(Object other) => _compare(Comparator.lessThanEqual, other);
 
   /// Arithmetic Operators
-  bool? isBefore(FhirDateTimeBase other) => _compare(Comparator.lt, other);
+  bool? isBefore(FhirDateTimeBase other) =>
+      _compare(Comparator.lessThan, other);
 
   /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
-  bool? isAfter(FhirDateTimeBase other) => _compare(Comparator.gt, other);
+  bool? isAfter(FhirDateTimeBase other) =>
+      _compare(Comparator.greaterThan, other);
 
   /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
   bool? isSameOrBefore(FhirDateTimeBase other) =>
-      _compare(Comparator.lte, other);
+      _compare(Comparator.lessThanEqual, other);
 
   /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
   bool? isSameOrAfter(FhirDateTimeBase other) =>
-      _compare(Comparator.gte, other);
+      _compare(Comparator.greaterThanEqual, other);
 
   /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
   bool? isAtSameMomentAs(FhirDateTimeBase other) =>
-      _compare(Comparator.eq, other);
+      _compare(Comparator.equal, other);
 
-  /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
-  bool? isEqual(Object other) => _compare(Comparator.eq, other);
+  /// Checks if the date-time is equal to another object.
+  bool? isEqual(Object other) => _compare(Comparator.equal, other);
 
-  /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
+  /// Checks if the date-time is equivalent to another object.
+  bool? isEquivalent(Object other) => _compare(Comparator.equivalent, other);
+
+  /// Adds an [ExtendedDuration] from a [FhirDateTimeBase].
   FhirDateTimeBase? operator +(ExtendedDuration other);
 
   /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
@@ -712,6 +719,100 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           : 1,
     };
   }
+
+  /// Returns if the date-time is valid with instant precision.
+  bool get isValidInstantPrecision =>
+      year != null &&
+      month != null &&
+      day != null &&
+      hour != null &&
+      minute != null &&
+      second != null &&
+      timeZoneOffset != null;
+
+  /// Returns if the date-time is valid with date precision (meaning it can
+  /// only have a year, month, and day)
+  bool get isValidDatePrecision =>
+      hasYear &&
+      hour == null &&
+      minute == null &&
+      second == null &&
+      millisecond == null;
+
+  /// Returns if the date-time is valid with time precision.
+  bool get isValidFhirDateTimePrecision => hasYear;
+
+  /// Returns if the date-time has values at least up to year
+  bool get hasYear => year != null;
+
+  /// Returns if the date-time has values at least up to month
+  bool get hasMonth => hasYear && month != null;
+
+  /// Returns if the date-time has values at least up to day
+  bool get hasDay => hasMonth && day != null;
+
+  /// Returns if the date-time has values at lesat up to hour
+  bool get hasHours => hasDay && hour != null;
+
+  /// Returns if the date-time has values at least up to minute
+  bool get hasMinutes => hasHours && minute != null;
+
+  /// Returns if the date-time has values at least up to second
+  bool get hasSeconds => hasMinutes && second != null;
+
+  /// Returns if the date-time has values at least up to millisecond
+  bool get hasMilliseconds => hasSeconds && millisecond != null;
+
+  /// Returns if the date-time has a time zone offset
+  bool get hasTimezoneOffset => timeZoneOffset != null;
+
+  /// Returns if the date-time only precise to years
+  bool get yearsPrecision =>
+      hasYear &&
+      month == null &&
+      day == null &&
+      hour == null &&
+      minute == null &&
+      second == null &&
+      millisecond == null;
+
+  /// Returns if the date-time only precise to months
+  bool get monthsPrecision =>
+      hasMonth &&
+      day == null &&
+      hour == null &&
+      minute == null &&
+      second == null &&
+      millisecond == null;
+
+  /// Returns if the date-time only precise to days
+  bool get daysPrecision =>
+      hasDay &&
+      hour == null &&
+      minute == null &&
+      second == null &&
+      millisecond == null;
+
+  /// Returns if the date-time only precise to hours
+  bool get hoursPrecision =>
+      hasHours && minute == null && second == null && millisecond == null;
+
+  /// Returns if the date-time only precise to minutes
+  bool get minutesPrecision =>
+      hasMinutes && second == null && millisecond == null;
+
+  /// Returns if the date-time only precise to seconds
+  bool get secondsPrecision => hasSeconds && millisecond == null;
+
+  /// Returns if the passed in [FhirDateTimeBase] is equivalent to this
+  /// in terms of precision
+  bool isEquivalentTo(FhirDateTimeBase other) =>
+      (yearsPrecision && other.yearsPrecision) ||
+      (monthsPrecision && other.monthsPrecision) ||
+      (daysPrecision && other.daysPrecision) ||
+      (hoursPrecision && other.hoursPrecision) ||
+      (minutesPrecision && other.minutesPrecision) ||
+      (secondsPrecision && other.secondsPrecision);
 }
 
 /// [Date](https://www.hl7.org/fhir/datatypes.html#date)

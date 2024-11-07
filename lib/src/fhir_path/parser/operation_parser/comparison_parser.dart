@@ -12,7 +12,13 @@ class GreaterParser extends OperatorParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) =>
-      executeComparisons(results, before, after, passed, Comparator.gt);
+      executeComparisons(
+        results,
+        before,
+        after,
+        passed,
+        Comparator.greaterThan,
+      );
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
   /// of the Parsers that are used in this package by the names used in
@@ -45,7 +51,7 @@ class LessParser extends OperatorParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) =>
-      executeComparisons(results, before, after, passed, Comparator.lt);
+      executeComparisons(results, before, after, passed, Comparator.lessThan);
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
   /// of the Parsers that are used in this package by the names used in
@@ -81,7 +87,13 @@ class GreaterEqualParser extends OperatorParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) {
-    return executeComparisons(results, before, after, passed, Comparator.gte);
+    return executeComparisons(
+      results,
+      before,
+      after,
+      passed,
+      Comparator.greaterThanEqual,
+    );
   }
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
@@ -118,7 +130,13 @@ class LessEqualParser extends OperatorParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) =>
-      executeComparisons(results, before, after, passed, Comparator.lte);
+      executeComparisons(
+        results,
+        before,
+        after,
+        passed,
+        Comparator.lessThanEqual,
+      );
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
   /// of the Parsers that are used in this package by the names used in
@@ -143,6 +161,7 @@ class LessEqualParser extends OperatorParser {
 }
 
 // TODO(Dokotela): review if appropriately comparing different types
+/// [executeComparisons] is a function that takes in the results of a FHIRPath
 @override
 List<dynamic> executeComparisons(
   List<dynamic> results,
@@ -152,9 +171,9 @@ List<dynamic> executeComparisons(
   Comparator comparator, {
   bool where = false,
 }) {
-  // TODO(Dokotela): Currently, this is going to assume that if a String is being compared
-  // with a Date, DateTime, or Time, and the String is a valid format of a Time
-  // or DateTime, then they should still be compared
+  // TODO(Dokotela): Currently, this is going to assume that if a String is
+  // being compared with a Date, DateTime, or Time, and the String is a valid
+  // format of a Time or DateTime, then they should still be compared
   // another type, for instance:
   // Patient.birthDate = "1981-09-18"
   // today() = Date("2022-04-15")
@@ -182,15 +201,21 @@ List<dynamic> executeComparisons(
   bool? makeComparison(Comparator comparator, dynamic param1, dynamic param2) {
     try {
       switch (comparator) {
-        case Comparator.gt:
+        case Comparator.greaterThan:
+          // ignore: avoid_dynamic_calls
           return param1 > param2 as bool?;
-        case Comparator.gte:
+        case Comparator.greaterThanEqual:
+          // ignore: avoid_dynamic_calls
           return param1 >= param2 as bool?;
-        case Comparator.lt:
+        case Comparator.lessThan:
+          // ignore: avoid_dynamic_calls
           return param1 < param2 as bool?;
-        case Comparator.lte:
+        case Comparator.lessThanEqual:
+          // ignore: avoid_dynamic_calls
           return param1 <= param2 as bool?;
-        case Comparator.eq:
+        case Comparator.equal:
+          return param1 == param2 as bool?;
+        case Comparator.equivalent:
           return param1 == param2 as bool?;
       }
     } catch (e) {
@@ -212,8 +237,8 @@ List<dynamic> executeComparisons(
   Exception invalidException(dynamic param1, dynamic param2) =>
       FhirPathEvaluationException(
           'The comparator $comparator was not passed two valid types.\n'
-          'Param1: $param1 - ${param1.runtimeType} - Valid? ${param1.isValid}\n'
-          'Param1: $param2 - ${param2.runtimeType} - Valid? ${param2.isValid}\n');
+          'Param1: $param1 - ${param1.runtimeType}\n'
+          'Param1: $param2 - ${param2.runtimeType}\n');
 
   bool? compare(Comparator comparator, dynamic lhs, dynamic rhs) {
     switch (lhs) {
@@ -276,17 +301,16 @@ List<dynamic> executeComparisons(
       default:
         {
           if (lhs is String && rhs is String) {
-            return (comparator == Comparator.gt || comparator == Comparator.lt)
-                ? lhs == rhs
-                    ? false
-                    : comparator == Comparator.gt
+            return (comparator == Comparator.greaterThan ||
+                    comparator == Comparator.lessThan)
+                ? lhs == rhs &&
+                    (comparator == Comparator.greaterThan
                         ? stringGt(lhs, rhs)
-                        : !stringGt(lhs, rhs)
-                : lhs == rhs
-                    ? true
-                    : comparator == Comparator.gte
+                        : !stringGt(lhs, rhs))
+                : lhs == rhs ||
+                    (comparator == Comparator.greaterThanEqual
                         ? stringGt(lhs, rhs)
-                        : !stringGt(lhs, rhs);
+                        : !stringGt(lhs, rhs));
           } else if (rhs is FhirTime && FhirTime.tryParse(lhs) != null) {
             return makeComparison(comparator, FhirTime.tryParse(lhs), rhs);
           } else if (rhs is FhirDate || rhs is FhirDateTime) {
@@ -337,13 +361,15 @@ List<dynamic> executeComparisons(
     );
   }
   {
+    // ignore: avoid_dynamic_calls
     if (!_allowedTypes.contains(lhs.first.runtimeType) ||
+        // ignore: avoid_dynamic_calls
         !_allowedTypes.contains(rhs.first.runtimeType)) {
-      final functionName = comparator == Comparator.gt
+      final functionName = comparator == Comparator.greaterThan
           ? '>'
-          : comparator == Comparator.gte
+          : comparator == Comparator.greaterThanEqual
               ? '>='
-              : comparator == Comparator.lt
+              : comparator == Comparator.lessThan
                   ? '<'
                   : '<=';
       throw FhirPathEvaluationException(
@@ -357,6 +383,7 @@ List<dynamic> executeComparisons(
     } else if (where) {
       results.retainWhere(
         (dynamic element) =>
+            // ignore: avoid_dynamic_calls
             compare(comparator, element[lhs.first], rhs.first) ?? false,
       );
       return results;

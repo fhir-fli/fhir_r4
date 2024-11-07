@@ -1,17 +1,20 @@
 /// A value set that defines a set of codes that are used to indicate the
 enum Comparator {
   /// The value of the target is equal to the reference value.
-  eq,
+  equal,
+
+  /// The value of the target is not equal to the reference value.
+  equivalent,
 
   /// The value of the target is greater than the reference value.
-  gt,
+  greaterThan,
 
   /// The value of the target is less than the reference value.
-  gte,
+  greaterThanEqual,
 
   /// The value of the target is less than or equal to the reference value.
-  lt,
+  lessThan,
 
   /// The value of the target is greater than or equal to the reference value.
-  lte,
+  lessThanEqual,
 }
