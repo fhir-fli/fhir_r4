@@ -31,6 +31,7 @@ class Consent extends DomainResource {
     this.sourceAttachment,
     this.sourceReference,
     this.policy,
+    this.policyRule,
     this.verification,
     this.provision,
     super.userData,
@@ -174,6 +175,11 @@ class Consent extends DomainResource {
               )
               .toList()
           : null,
+      policyRule: json['policyRule'] != null
+          ? CodeableConcept.fromJson(
+              json['policyRule'] as Map<String, dynamic>,
+            )
+          : null,
       verification: json['verification'] != null
           ? (json['verification'] as List<dynamic>)
               .map<ConsentVerification>(
@@ -288,6 +294,10 @@ class Consent extends DomainResource {
   /// or in law.
   final List<ConsentPolicy>? policy;
 
+  /// [policyRule]
+  /// A reference to the specific base computable regulation or policy.
+  final CodeableConcept? policyRule;
+
   /// [verification]
   /// Whether a treatment instruction (e.g. artificial respiration yes or no)
   /// was verified with the patient, his/her family or another authorized
@@ -389,6 +399,10 @@ class Consent extends DomainResource {
       json['policy'] = policy!.map((e) => e.toJson()).toList();
     }
 
+    if (policyRule != null) {
+      json['policyRule'] = policyRule!.toJson();
+    }
+
     if (verification != null && verification!.isNotEmpty) {
       json['verification'] = verification!.map((e) => e.toJson()).toList();
     }
@@ -423,6 +437,7 @@ class Consent extends DomainResource {
     Attachment? sourceAttachment,
     Reference? sourceReference,
     List<ConsentPolicy>? policy,
+    CodeableConcept? policyRule,
     List<ConsentVerification>? verification,
     ConsentProvision? provision,
     Map<String, Object?>? userData,
@@ -452,6 +467,7 @@ class Consent extends DomainResource {
       sourceAttachment: sourceAttachment ?? this.sourceAttachment,
       sourceReference: sourceReference ?? this.sourceReference,
       policy: policy ?? this.policy,
+      policyRule: policyRule ?? this.policyRule,
       verification: verification ?? this.verification,
       provision: provision ?? this.provision,
       userData: userData ?? this.userData,
@@ -478,7 +494,6 @@ class ConsentPolicy extends BackboneElement {
     super.modifierExtension,
     this.authority,
     this.uri,
-    this.policyRule,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -524,11 +539,6 @@ class ConsentPolicy extends BackboneElement {
               'value': json['uri'],
               '_value': json['_uri'],
             })
-          : null,
-      policyRule: json['policyRule'] != null
-          ? CodeableConcept.fromJson(
-              json['policyRule'] as Map<String, dynamic>,
-            )
           : null,
     );
   }
@@ -581,10 +591,6 @@ class ConsentPolicy extends BackboneElement {
   /// Policies may be organizational, but are often defined jurisdictionally,
   /// or in law.
   final FhirUri? uri;
-
-  /// [policyRule]
-  /// A reference to the specific base computable regulation or policy.
-  final CodeableConcept? policyRule;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -617,10 +623,6 @@ class ConsentPolicy extends BackboneElement {
       }
     }
 
-    if (policyRule != null) {
-      json['policyRule'] = policyRule!.toJson();
-    }
-
     return json;
   }
 
@@ -633,7 +635,6 @@ class ConsentPolicy extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirUri? authority,
     FhirUri? uri,
-    CodeableConcept? policyRule,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -647,7 +648,6 @@ class ConsentPolicy extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       authority: authority ?? this.authority,
       uri: uri ?? this.uri,
-      policyRule: policyRule ?? this.policyRule,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

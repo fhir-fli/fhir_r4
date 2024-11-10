@@ -1393,6 +1393,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     this.routeofAdministration,
     this.administration,
     this.maxVolumeToDeliver,
+    this.administrationInstruction,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1474,6 +1475,13 @@ class NutritionOrderEnteralFormula extends BackboneElement {
           ? Quantity.fromJson(
               json['maxVolumeToDeliver'] as Map<String, dynamic>,
             )
+          : null,
+      administrationInstruction: (json['administrationInstruction'] != null ||
+              json['_administrationInstruction'] != null)
+          ? FhirString.fromJson({
+              'value': json['administrationInstruction'],
+              '_value': json['_administrationInstruction'],
+            })
           : null,
     );
   }
@@ -1562,6 +1570,11 @@ class NutritionOrderEnteralFormula extends BackboneElement {
   /// The maximum total quantity of formula that may be administered to a
   /// subject over the period of time, e.g. 1440 mL over 24 hours.
   final Quantity? maxVolumeToDeliver;
+
+  /// [administrationInstruction]
+  /// Free text formula administration, feeding instructions or additional
+  /// instructions or information.
+  final FhirString? administrationInstruction;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1618,6 +1631,14 @@ class NutritionOrderEnteralFormula extends BackboneElement {
       json['maxVolumeToDeliver'] = maxVolumeToDeliver!.toJson();
     }
 
+    if (administrationInstruction != null) {
+      final fieldJson10 = administrationInstruction!.toJson();
+      json['administrationInstruction'] = fieldJson10['value'];
+      if (fieldJson10['_value'] != null) {
+        json['_administrationInstruction'] = fieldJson10['_value'];
+      }
+    }
+
     return json;
   }
 
@@ -1636,6 +1657,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     CodeableConcept? routeofAdministration,
     List<NutritionOrderAdministration>? administration,
     Quantity? maxVolumeToDeliver,
+    FhirString? administrationInstruction,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1657,6 +1679,8 @@ class NutritionOrderEnteralFormula extends BackboneElement {
           routeofAdministration ?? this.routeofAdministration,
       administration: administration ?? this.administration,
       maxVolumeToDeliver: maxVolumeToDeliver ?? this.maxVolumeToDeliver,
+      administrationInstruction:
+          administrationInstruction ?? this.administrationInstruction,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1685,7 +1709,6 @@ class NutritionOrderAdministration extends BackboneElement {
     this.quantity,
     this.rateQuantity,
     this.rateRatio,
-    this.administrationInstruction,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1739,13 +1762,6 @@ class NutritionOrderAdministration extends BackboneElement {
           ? Ratio.fromJson(
               json['rateRatio'] as Map<String, dynamic>,
             )
-          : null,
-      administrationInstruction: (json['administrationInstruction'] != null ||
-              json['_administrationInstruction'] != null)
-          ? FhirString.fromJson({
-              'value': json['administrationInstruction'],
-              '_value': json['_administrationInstruction'],
-            })
           : null,
     );
   }
@@ -1807,11 +1823,6 @@ class NutritionOrderAdministration extends BackboneElement {
   /// The rate of administration of formula via a feeding pump, e.g. 60 mL
   /// per hour, according to the specified schedule.
   final Ratio? rateRatio;
-
-  /// [administrationInstruction]
-  /// Free text formula administration, feeding instructions or additional
-  /// instructions or information.
-  final FhirString? administrationInstruction;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1844,14 +1855,6 @@ class NutritionOrderAdministration extends BackboneElement {
       json['rateRatio'] = rateRatio!.toJson();
     }
 
-    if (administrationInstruction != null) {
-      final fieldJson6 = administrationInstruction!.toJson();
-      json['administrationInstruction'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_administrationInstruction'] = fieldJson6['_value'];
-      }
-    }
-
     return json;
   }
 
@@ -1866,7 +1869,6 @@ class NutritionOrderAdministration extends BackboneElement {
     Quantity? quantity,
     Quantity? rateQuantity,
     Ratio? rateRatio,
-    FhirString? administrationInstruction,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1882,8 +1884,6 @@ class NutritionOrderAdministration extends BackboneElement {
       quantity: quantity ?? this.quantity,
       rateQuantity: rateQuantity ?? this.rateQuantity,
       rateRatio: rateRatio ?? this.rateRatio,
-      administrationInstruction:
-          administrationInstruction ?? this.administrationInstruction,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

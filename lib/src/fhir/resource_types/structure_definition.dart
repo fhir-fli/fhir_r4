@@ -40,6 +40,7 @@ class StructureDefinition extends DomainResource {
     required this.kind,
     required this.abstract_,
     this.context,
+    this.contextInvariant,
     required this.type,
     this.baseDefinition,
     this.derivation,
@@ -251,6 +252,11 @@ class StructureDefinition extends DomainResource {
               )
               .toList()
           : null,
+      contextInvariant: parsePrimitiveList<FhirString>(
+        json['contextInvariant'] as List<dynamic>?,
+        json['_contextInvariant'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       type: FhirUri.fromJson({
         'value': json['type'],
         '_value': json['_type'],
@@ -445,6 +451,12 @@ class StructureDefinition extends DomainResource {
   /// Identifies the types of resource or data type elements to which the
   /// extension can be applied.
   final List<StructureDefinitionContext>? context;
+
+  /// [contextInvariant]
+  /// A set of rules as FHIRPath Invariants about when the extension can be
+  /// used (e.g. co-occurrence variants for the extension). All the rules
+  /// must be true.
+  final List<FhirString>? contextInvariant;
 
   /// [type]
   /// The type this structure describes. If the derivation kind is
@@ -651,25 +663,34 @@ class StructureDefinition extends DomainResource {
       json['context'] = context!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson28 = type.toJson();
-    json['type'] = fieldJson28['value'];
-    if (fieldJson28['_value'] != null) {
-      json['_type'] = fieldJson28['_value'];
+    if (contextInvariant != null && contextInvariant!.isNotEmpty) {
+      final fieldJson28 = contextInvariant!.map((e) => e.toJson()).toList();
+      json['contextInvariant'] = fieldJson28.map((e) => e['value']).toList();
+      if (fieldJson28.any((e) => e['_value'] != null)) {
+        json['_contextInvariant'] =
+            fieldJson28.map((e) => e['_value']).toList();
+      }
+    }
+
+    final fieldJson29 = type.toJson();
+    json['type'] = fieldJson29['value'];
+    if (fieldJson29['_value'] != null) {
+      json['_type'] = fieldJson29['_value'];
     }
 
     if (baseDefinition != null) {
-      final fieldJson29 = baseDefinition!.toJson();
-      json['baseDefinition'] = fieldJson29['value'];
-      if (fieldJson29['_value'] != null) {
-        json['_baseDefinition'] = fieldJson29['_value'];
+      final fieldJson30 = baseDefinition!.toJson();
+      json['baseDefinition'] = fieldJson30['value'];
+      if (fieldJson30['_value'] != null) {
+        json['_baseDefinition'] = fieldJson30['_value'];
       }
     }
 
     if (derivation != null) {
-      final fieldJson30 = derivation!.toJson();
-      json['derivation'] = fieldJson30['value'];
-      if (fieldJson30['_value'] != null) {
-        json['_derivation'] = fieldJson30['_value'];
+      final fieldJson31 = derivation!.toJson();
+      json['derivation'] = fieldJson31['value'];
+      if (fieldJson31['_value'] != null) {
+        json['_derivation'] = fieldJson31['_value'];
       }
     }
 
@@ -717,6 +738,7 @@ class StructureDefinition extends DomainResource {
     StructureDefinitionKind? kind,
     FhirBoolean? abstract_,
     List<StructureDefinitionContext>? context,
+    List<FhirString>? contextInvariant,
     FhirUri? type,
     FhirCanonical? baseDefinition,
     TypeDerivationRule? derivation,
@@ -759,6 +781,7 @@ class StructureDefinition extends DomainResource {
       kind: kind ?? this.kind,
       abstract_: abstract_ ?? this.abstract_,
       context: context ?? this.context,
+      contextInvariant: contextInvariant ?? this.contextInvariant,
       type: type ?? this.type,
       baseDefinition: baseDefinition ?? this.baseDefinition,
       derivation: derivation ?? this.derivation,
@@ -1001,7 +1024,6 @@ class StructureDefinitionContext extends BackboneElement {
     super.modifierExtension,
     required this.type,
     required this.expression,
-    this.contextInvariant,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1044,11 +1066,6 @@ class StructureDefinitionContext extends BackboneElement {
         'value': json['expression'],
         '_value': json['_expression'],
       }),
-      contextInvariant: parsePrimitiveList<FhirString>(
-        json['contextInvariant'] as List<dynamic>?,
-        json['_contextInvariant'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
-      ),
     );
   }
 
@@ -1098,12 +1115,6 @@ class StructureDefinitionContext extends BackboneElement {
   /// [expression]
   /// An expression that defines where an extension can be used in resources.
   final FhirString expression;
-
-  /// [contextInvariant]
-  /// A set of rules as FHIRPath Invariants about when the extension can be
-  /// used (e.g. co-occurrence variants for the extension). All the rules
-  /// must be true.
-  final List<FhirString>? contextInvariant;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1132,14 +1143,6 @@ class StructureDefinitionContext extends BackboneElement {
       json['_expression'] = fieldJson3['_value'];
     }
 
-    if (contextInvariant != null && contextInvariant!.isNotEmpty) {
-      final fieldJson4 = contextInvariant!.map((e) => e.toJson()).toList();
-      json['contextInvariant'] = fieldJson4.map((e) => e['value']).toList();
-      if (fieldJson4.any((e) => e['_value'] != null)) {
-        json['_contextInvariant'] = fieldJson4.map((e) => e['_value']).toList();
-      }
-    }
-
     return json;
   }
 
@@ -1152,7 +1155,6 @@ class StructureDefinitionContext extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     ExtensionContextType? type,
     FhirString? expression,
-    List<FhirString>? contextInvariant,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1166,7 +1168,6 @@ class StructureDefinitionContext extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       expression: expression ?? this.expression,
-      contextInvariant: contextInvariant ?? this.contextInvariant,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

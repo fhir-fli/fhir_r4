@@ -51,6 +51,8 @@ class Contract extends DomainResource {
     this.friendly,
     this.legal,
     this.rule,
+    this.legallyBindingAttachment,
+    this.legallyBindingReference,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -345,6 +347,16 @@ class Contract extends DomainResource {
               )
               .toList()
           : null,
+      legallyBindingAttachment: json['legallyBindingAttachment'] != null
+          ? Attachment.fromJson(
+              json['legallyBindingAttachment'] as Map<String, dynamic>,
+            )
+          : null,
+      legallyBindingReference: json['legallyBindingReference'] != null
+          ? Reference.fromJson(
+              json['legallyBindingReference'] as Map<String, dynamic>,
+            )
+          : null,
     );
   }
 
@@ -574,6 +586,20 @@ class Contract extends DomainResource {
   /// List of Computable Policy Rule Language Representations of this
   /// Contract.
   final List<ContractRule>? rule;
+
+  /// [legallyBindingAttachment]
+  /// Legally binding Contract: This is the signed and legally recognized
+  /// representation of the Contract, which is considered the "source of
+  /// truth" and which would be the basis for legal action related to
+  /// enforcement of this Contract.
+  final Attachment? legallyBindingAttachment;
+
+  /// [legallyBindingReference]
+  /// Legally binding Contract: This is the signed and legally recognized
+  /// representation of the Contract, which is considered the "source of
+  /// truth" and which would be the basis for legal action related to
+  /// enforcement of this Contract.
+  final Reference? legallyBindingReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -788,6 +814,14 @@ class Contract extends DomainResource {
       json['rule'] = rule!.map((e) => e.toJson()).toList();
     }
 
+    if (legallyBindingAttachment != null) {
+      json['legallyBindingAttachment'] = legallyBindingAttachment!.toJson();
+    }
+
+    if (legallyBindingReference != null) {
+      json['legallyBindingReference'] = legallyBindingReference!.toJson();
+    }
+
     return json;
   }
 
@@ -836,6 +870,8 @@ class Contract extends DomainResource {
     List<ContractFriendly>? friendly,
     List<ContractLegal>? legal,
     List<ContractRule>? rule,
+    Attachment? legallyBindingAttachment,
+    Reference? legallyBindingReference,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -886,6 +922,10 @@ class Contract extends DomainResource {
       friendly: friendly ?? this.friendly,
       legal: legal ?? this.legal,
       rule: rule ?? this.rule,
+      legallyBindingAttachment:
+          legallyBindingAttachment ?? this.legallyBindingAttachment,
+      legallyBindingReference:
+          legallyBindingReference ?? this.legallyBindingReference,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -4754,8 +4794,6 @@ class ContractLegal extends BackboneElement {
     super.modifierExtension,
     this.contentAttachment,
     this.contentReference,
-    this.legallyBindingAttachment,
-    this.legallyBindingReference,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -4798,16 +4836,6 @@ class ContractLegal extends BackboneElement {
       contentReference: json['contentReference'] != null
           ? Reference.fromJson(
               json['contentReference'] as Map<String, dynamic>,
-            )
-          : null,
-      legallyBindingAttachment: json['legallyBindingAttachment'] != null
-          ? Attachment.fromJson(
-              json['legallyBindingAttachment'] as Map<String, dynamic>,
-            )
-          : null,
-      legallyBindingReference: json['legallyBindingReference'] != null
-          ? Reference.fromJson(
-              json['legallyBindingReference'] as Map<String, dynamic>,
             )
           : null,
     );
@@ -4858,20 +4886,6 @@ class ContractLegal extends BackboneElement {
   /// [contentReference]
   /// Contract legal text in human renderable form.
   final Reference? contentReference;
-
-  /// [legallyBindingAttachment]
-  /// Legally binding Contract: This is the signed and legally recognized
-  /// representation of the Contract, which is considered the "source of
-  /// truth" and which would be the basis for legal action related to
-  /// enforcement of this Contract.
-  final Attachment? legallyBindingAttachment;
-
-  /// [legallyBindingReference]
-  /// Legally binding Contract: This is the signed and legally recognized
-  /// representation of the Contract, which is considered the "source of
-  /// truth" and which would be the basis for legal action related to
-  /// enforcement of this Contract.
-  final Reference? legallyBindingReference;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4896,14 +4910,6 @@ class ContractLegal extends BackboneElement {
       json['contentReference'] = contentReference!.toJson();
     }
 
-    if (legallyBindingAttachment != null) {
-      json['legallyBindingAttachment'] = legallyBindingAttachment!.toJson();
-    }
-
-    if (legallyBindingReference != null) {
-      json['legallyBindingReference'] = legallyBindingReference!.toJson();
-    }
-
     return json;
   }
 
@@ -4916,8 +4922,6 @@ class ContractLegal extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Attachment? contentAttachment,
     Reference? contentReference,
-    Attachment? legallyBindingAttachment,
-    Reference? legallyBindingReference,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4931,10 +4935,6 @@ class ContractLegal extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       contentAttachment: contentAttachment ?? this.contentAttachment,
       contentReference: contentReference ?? this.contentReference,
-      legallyBindingAttachment:
-          legallyBindingAttachment ?? this.legallyBindingAttachment,
-      legallyBindingReference:
-          legallyBindingReference ?? this.legallyBindingReference,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

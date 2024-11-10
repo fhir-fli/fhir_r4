@@ -42,6 +42,7 @@ class CapabilityStatement extends DomainResource {
     required this.fhirVersion,
     required this.format,
     this.patchFormat,
+    this.implementationGuide,
     this.rest,
     this.messaging,
     this.document,
@@ -242,6 +243,11 @@ class CapabilityStatement extends DomainResource {
         json['patchFormat'] as List<dynamic>?,
         json['_patchFormat'] as List<dynamic>?,
         fromJson: FhirCode.fromJson,
+      ),
+      implementationGuide: parsePrimitiveList<FhirCanonical>(
+        json['implementationGuide'] as List<dynamic>?,
+        json['_implementationGuide'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
       ),
       rest: json['rest'] != null
           ? (json['rest'] as List<dynamic>)
@@ -454,6 +460,11 @@ class CapabilityStatement extends DomainResource {
   /// their content types.
   final List<FhirCode>? patchFormat;
 
+  /// [implementationGuide]
+  /// A list of implementation guides that the server does (or should)
+  /// support in their entirety.
+  final List<FhirCanonical>? implementationGuide;
+
   /// [rest]
   /// A definition of the restful capabilities of the solution, if any.
   final List<CapabilityStatementRest>? rest;
@@ -656,6 +667,15 @@ class CapabilityStatement extends DomainResource {
       }
     }
 
+    if (implementationGuide != null && implementationGuide!.isNotEmpty) {
+      final fieldJson29 = implementationGuide!.map((e) => e.toJson()).toList();
+      json['implementationGuide'] = fieldJson29.map((e) => e['value']).toList();
+      if (fieldJson29.any((e) => e['_value'] != null)) {
+        json['_implementationGuide'] =
+            fieldJson29.map((e) => e['_value']).toList();
+      }
+    }
+
     if (rest != null && rest!.isNotEmpty) {
       json['rest'] = rest!.map((e) => e.toJson()).toList();
     }
@@ -705,6 +725,7 @@ class CapabilityStatement extends DomainResource {
     FHIRVersion? fhirVersion,
     List<FhirCode>? format,
     List<FhirCode>? patchFormat,
+    List<FhirCanonical>? implementationGuide,
     List<CapabilityStatementRest>? rest,
     List<CapabilityStatementMessaging>? messaging,
     List<CapabilityStatementDocument>? document,
@@ -746,6 +767,7 @@ class CapabilityStatement extends DomainResource {
       fhirVersion: fhirVersion ?? this.fhirVersion,
       format: format ?? this.format,
       patchFormat: patchFormat ?? this.patchFormat,
+      implementationGuide: implementationGuide ?? this.implementationGuide,
       rest: rest ?? this.rest,
       messaging: messaging ?? this.messaging,
       document: document ?? this.document,
@@ -966,7 +988,6 @@ class CapabilityStatementImplementation extends BackboneElement {
     required this.description,
     this.url,
     this.custodian,
-    this.implementationGuide,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1016,11 +1037,6 @@ class CapabilityStatementImplementation extends BackboneElement {
               json['custodian'] as Map<String, dynamic>,
             )
           : null,
-      implementationGuide: parsePrimitiveList<FhirCanonical>(
-        json['implementationGuide'] as List<dynamic>?,
-        json['_implementationGuide'] as List<dynamic>?,
-        fromJson: FhirCanonical.fromJson,
-      ),
     );
   }
 
@@ -1076,11 +1092,6 @@ class CapabilityStatementImplementation extends BackboneElement {
   /// The organization responsible for the management of the instance and
   /// oversight of the data on the server at the specified URL.
   final Reference? custodian;
-
-  /// [implementationGuide]
-  /// A list of implementation guides that the server does (or should)
-  /// support in their entirety.
-  final List<FhirCanonical>? implementationGuide;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1115,15 +1126,6 @@ class CapabilityStatementImplementation extends BackboneElement {
       json['custodian'] = custodian!.toJson();
     }
 
-    if (implementationGuide != null && implementationGuide!.isNotEmpty) {
-      final fieldJson5 = implementationGuide!.map((e) => e.toJson()).toList();
-      json['implementationGuide'] = fieldJson5.map((e) => e['value']).toList();
-      if (fieldJson5.any((e) => e['_value'] != null)) {
-        json['_implementationGuide'] =
-            fieldJson5.map((e) => e['_value']).toList();
-      }
-    }
-
     return json;
   }
 
@@ -1137,7 +1139,6 @@ class CapabilityStatementImplementation extends BackboneElement {
     FhirString? description,
     FhirUrl? url,
     Reference? custodian,
-    List<FhirCanonical>? implementationGuide,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1152,7 +1153,6 @@ class CapabilityStatementImplementation extends BackboneElement {
       description: description ?? this.description,
       url: url ?? this.url,
       custodian: custodian ?? this.custodian,
-      implementationGuide: implementationGuide ?? this.implementationGuide,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

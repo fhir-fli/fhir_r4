@@ -607,6 +607,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'fhirVersion': const FhirField(false, 'FHIRVersion'),
     'format': const FhirField(true, 'FhirCode'),
     'patchFormat': const FhirField(true, 'FhirCode'),
+    'implementationGuide': const FhirField(true, 'FhirCanonical'),
     'rest': const FhirField(true, 'CapabilityStatementRest'),
     'messaging': const FhirField(true, 'CapabilityStatementMessaging'),
     'document': const FhirField(true, 'CapabilityStatementDocument'),
@@ -626,7 +627,6 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'description': const FhirField(false, 'FhirString'),
     'url': const FhirField(false, 'FhirUrl'),
     'custodian': const FhirField(false, 'Reference'),
-    'implementationGuide': const FhirField(true, 'FhirCanonical'),
   },
   'CapabilityStatementRest': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -2129,6 +2129,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'sourceAttachment': const FhirField(false, 'Attachment'),
     'sourceReference': const FhirField(false, 'Reference'),
     'policy': const FhirField(true, 'ConsentPolicy'),
+    'policyRule': const FhirField(false, 'CodeableConcept'),
     'verification': const FhirField(true, 'ConsentVerification'),
     'provision': const FhirField(false, 'ConsentProvision'),
   },
@@ -2138,7 +2139,6 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'modifierExtension': const FhirField(true, 'FhirExtension'),
     'authority': const FhirField(false, 'FhirUri'),
     'uri': const FhirField(false, 'FhirUri'),
-    'policyRule': const FhirField(false, 'CodeableConcept'),
   },
   'ConsentVerification': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -2220,6 +2220,8 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'friendly': const FhirField(true, 'ContractFriendly'),
     'legal': const FhirField(true, 'ContractLegal'),
     'rule': const FhirField(true, 'ContractRule'),
+    'legallyBindingAttachment': const FhirField(false, 'Attachment'),
+    'legallyBindingReference': const FhirField(false, 'Reference'),
   },
   'ContractContentDefinition': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -2403,8 +2405,6 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'modifierExtension': const FhirField(true, 'FhirExtension'),
     'contentAttachment': const FhirField(false, 'Attachment'),
     'contentReference': const FhirField(false, 'Reference'),
-    'legallyBindingAttachment': const FhirField(false, 'Attachment'),
-    'legallyBindingReference': const FhirField(false, 'Reference'),
   },
   'ContractRule': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -5921,6 +5921,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'routeofAdministration': const FhirField(false, 'CodeableConcept'),
     'administration': const FhirField(true, 'NutritionOrderAdministration'),
     'maxVolumeToDeliver': const FhirField(false, 'Quantity'),
+    'administrationInstruction': const FhirField(false, 'FhirString'),
   },
   'NutritionOrderAdministration': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -5930,7 +5931,6 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'quantity': const FhirField(false, 'Quantity'),
     'rateQuantity': const FhirField(false, 'Quantity'),
     'rateRatio': const FhirField(false, 'Ratio'),
-    'administrationInstruction': const FhirField(false, 'FhirString'),
   },
   'NutritionProduct': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
@@ -7638,6 +7638,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'kind': const FhirField(false, 'StructureDefinitionKind'),
     'abstract': const FhirField(false, 'FhirBoolean'),
     'context': const FhirField(true, 'StructureDefinitionContext'),
+    'contextInvariant': const FhirField(true, 'FhirString'),
     'type': const FhirField(false, 'FhirUri'),
     'baseDefinition': const FhirField(false, 'FhirCanonical'),
     'derivation': const FhirField(false, 'TypeDerivationRule'),
@@ -7659,7 +7660,6 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'modifierExtension': const FhirField(true, 'FhirExtension'),
     'type': const FhirField(false, 'ExtensionContextType'),
     'expression': const FhirField(false, 'FhirString'),
-    'contextInvariant': const FhirField(true, 'FhirString'),
   },
   'StructureDefinitionSnapshot': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
