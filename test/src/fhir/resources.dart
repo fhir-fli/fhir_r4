@@ -19,8 +19,8 @@ void main() {
     () {
       test(
         '\n****R4 JSON is being Validated****',
-        () async {
-          final tested = <String>[...await r4Validation()];
+        () {
+          final tested = <String>[...r4Validation()];
           expect(tested.isEmpty, true);
         },
         timeout: const Timeout(Duration(minutes: 15)),
@@ -29,11 +29,14 @@ void main() {
   );
 }
 
-Future<List<String>> r4Validation() async {
+String filePath = '';
+
+List<String> r4Validation() {
   final dir = Directory('./test/src/fhir/assets');
   final string = <String>[];
   for (final file in dir.listSync()) {
     print(file.path);
+    filePath = file.path;
     final contents = File(file.path).readAsStringSync();
     final contentJson = jsonDecode(contents) as Map<String, dynamic>;
     final resource = Resource.fromJson(contentJson);
@@ -70,7 +73,8 @@ dynamic decodeUrlIfString(dynamic value) {
 }
 
 bool _compare(dynamic oldLeft, dynamic oldRight) {
-  const equality = DeepCollectionEquality.unordered(CustomBaseEquality());
+  const equality =
+      DeepCollectionEquality.unordered(CustomBaseEquality());
   return equality.equals(
     oldLeft,
     oldRight,
@@ -88,6 +92,7 @@ class CustomBaseEquality extends DefaultEquality<Object?> {
 
   @override
   bool equals(Object? o1, Object? o2) {
+    print('$filePath ${DateTime.now()}');
     if (o1 is String && o2 is String) {
       return const CustomStringEquality().equals(o1, o2);
     }
@@ -113,7 +118,7 @@ class CustomStringEquality implements Equality<String> {
       return Uri.decodeFull(str1) == Uri.decodeFull(str2);
     } catch (e) {
       // If decoding fails, fall back to direct comparison and log the error
-      print('Invalid URL encoding detected: "$str1" or "$str2". Error: $e');
+      // print('Invalid URL encoding detected: "$str1" or "$str2". Error: $e');
       return str1 == str2;
     }
   }
@@ -125,7 +130,7 @@ class CustomStringEquality implements Equality<String> {
       return Uri.decodeFull(str).hashCode;
     } catch (e) {
       // If decoding fails, log the error and return hash of original string
-      print('Invalid URL encoding for hash calculation: "$str". Error: $e');
+      // print('Invalid URL encoding for hash calculation: "$str". Error: $e');
       return str.hashCode;
     }
   }
