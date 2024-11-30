@@ -17,9 +17,9 @@ extension FhirUrlUriExtension on Uri {
 /// Represents a canonical URL in FHIR as a [PrimitiveType] of [Uri]
 class FhirUrl extends PrimitiveType<Uri> {
   /// Constructs a [FhirUrl] from a [String]
-  FhirUrl(String? input, [Element? element])
+  FhirUrl(this.valueString, [Element? element])
       : super(
-          input == null ? null : _validateCanonical(input),
+          valueString == null ? null : _validateCanonical(valueString),
           element,
         ) {
     if (value == null && element == null) {
@@ -28,11 +28,12 @@ class FhirUrl extends PrimitiveType<Uri> {
   }
 
   /// Constructs a [FhirUrl] from a [Uri] object
-  FhirUrl.fromUri(super.input, [super.element]);
+  FhirUrl.fromUri(super.input, [super.element, this.valueString]);
 
   /// Factory constructor to create [FhirUrl] from JSON
   factory FhirUrl.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
+
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     return FhirUrl(value, element);
@@ -72,6 +73,9 @@ class FhirUrl extends PrimitiveType<Uri> {
     throw FormatException('Invalid Canonical String: $input');
   }
 
+  /// The String representation for the URI
+  late final String? valueString;
+
   /// Boolean getter to determine if only a value is present
   bool get valueOnly => value != null && element == null;
 
@@ -83,10 +87,12 @@ class FhirUrl extends PrimitiveType<Uri> {
 
   /// Serializes the instance to JSON with standardized keys
   @override
-  Map<String, dynamic> toJson() => {
-        if (value != null) 'value': value!.toString(),
-        if (element != null) '_value': element!.toJson(),
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      if (valueString != null) 'value': valueString,
+      if (element != null) '_value': element!.toJson(),
+    };
+  }
 
   /// Converts a list of JSON values to a list of [FhirUrl] instances
   static List<FhirUrl> fromJsonList(

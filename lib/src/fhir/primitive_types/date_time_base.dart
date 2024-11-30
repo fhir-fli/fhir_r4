@@ -706,11 +706,11 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       'microsecond': fractionString == null
           ? null
           : fractionString.length > 3
-              ? fractionString.length <= 6
-                  ? int.tryParse(
-                      fractionString.substring(3, fractionString.length),
-                    )
-                  : int.tryParse(fractionString.substring(3, 6))
+              // ? fractionString.length <= 6
+              ? int.tryParse(
+                  fractionString.substring(3, fractionString.length),
+                )
+              // : int.tryParse(fractionString.substring(3, 6))
               : null,
       'timeZoneOffset':
           dateTimeRegExp?.namedGroup('timezone')?.stringToTimeZoneOffset,

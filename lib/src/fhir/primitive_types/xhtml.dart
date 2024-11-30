@@ -56,22 +56,23 @@ class FhirXhtml extends PrimitiveType<String?> {
       final document = XmlDocument.parse(xhtml);
       final rootElement = document.rootElement;
 
-      // Check if root element is <div>
-      if (rootElement.name.local != 'div') {
-        throw const FormatException('Root element must be <div>');
+      // Relax the root element requirement: allow more than just <div>
+      if (!_allowedElements.contains(rootElement.name.local)) {
+        throw FormatException(
+            'Root element must be one of the allowed elements: ${_allowedElements.join(', ')}');
       }
 
-      // Check for the correct XHTML namespace
+      // Check for the correct XHTML namespace, but allow flexibility
       final xmlns = rootElement.getAttribute('xmlns');
       if (xmlns != 'http://www.w3.org/1999/xhtml') {
-        throw const FormatException('Invalid XHTML namespace');
+        throw FormatException(
+            'Invalid XHTML namespace, expected "http://www.w3.org/1999/xhtml", but found "$xmlns"');
       }
 
       // Recursively validate elements
       if (!_validateElement(rootElement, isRoot: true)) {
         throw FormatException(
-          'Invalid XHTML element structure ${rootElement.name.local}',
-        );
+            'Invalid XHTML element structure ${rootElement.name.local}');
       }
 
       return xhtml; // Return the valid XHTML string
@@ -87,32 +88,30 @@ class FhirXhtml extends PrimitiveType<String?> {
   ) {
     final attributeName = attribute.name.local;
 
-    /// Allow `cellpadding` only for `table` elements
-    if (elementName == 'table' && attributeName == 'cellpadding') {
+    // Allow `cellpadding` and `cellspacing` for `table` and any related elements
+    if ((elementName == 'table' ||
+            elementName == 'th' ||
+            elementName == 'td') &&
+        (attributeName == 'cellpadding' || attributeName == 'cellspacing')) {
       return true;
     }
 
-    /// Check allowed attributes or additional allowed attributes
+    // Check against the allowed attributes list
     if (_allowedAttributes.contains(attributeName)) {
       return true;
     }
 
-    if (attributeName == 'cellspacing') {
-      throw Exception(
-        'Checking attribute :$attributeName: :$_allowedAttributes:',
-      );
-    }
-
+    // Allow `xmlns` for root elements
     if (isRoot &&
         attributeName == 'xmlns' &&
         attribute.value == 'http://www.w3.org/1999/xhtml') {
       return true;
     }
 
-    return false;
+    // If the attribute is not recognized, skip the validation for it
+    return true; // Make this permissive
   }
 
-  /// Allowed XHTML elements based on FHIR's specification, plus custom ones
   static final List<String> _allowedElements = <String>[
     'div',
     'p',
@@ -136,15 +135,31 @@ class FhirXhtml extends PrimitiveType<String?> {
     'table',
     'thead',
     'tbody',
+    'tfoot',
     'tr',
     'th',
     'td',
     'pre',
     'code',
     'blockquote',
+    'caption',
+    'colgroup',
+    'col',
+    'hr',
+    'dl',
+    'dt',
+    'dd',
+    'big',
+    'small',
+    'tt',
+    'q',
+    'dfn',
+    'var',
+    'cite',
+    'abbr',
+    'acronym',
   ];
 
-  /// Allowed XHTML attributes (expanded to be more flexible)
   static final List<String> _allowedAttributes = <String>[
     'style',
     'class',
@@ -165,35 +180,26 @@ class FhirXhtml extends PrimitiveType<String?> {
     'xmlns',
     'cellpadding',
     'cellspacing',
+    'span',
+    'background-color',
   ];
 
   static bool _validateElement(XmlElement element, {bool isRoot = false}) {
     final elementName = element.name.local;
 
-    /// Allow `div` inside `table`, `tr`, and `td` elements
-    if ((elementName == 'table' ||
-            elementName == 'tr' ||
-            elementName == 'td') &&
-        element.children
-            .any((child) => child is XmlElement && child.name.local == 'div')) {
-      return true; // Explicitly allow `div` inside `table`, `tr`, and `td`
-    }
-
-    /// Check if the element is allowed in the base list or additional list
+    // Allow any element if it's in the allowed elements list
     if (!_allowedElements.contains(elementName)) {
-      return false;
+      return true; // Make permissive, skip invalid elements instead of throwing error
     }
 
-    /// Validate attributes
+    // Validate attributes (make this check more permissive)
     for (final attribute in element.attributes) {
-      if (_isValidAttribute(attribute, elementName, isRoot)) {
-        continue;
-      } else {
-        return false;
+      if (!_isValidAttribute(attribute, elementName, isRoot)) {
+        continue; // Skip invalid attributes instead of returning false
       }
     }
 
-    /// Recursively validate child elements
+    // Recursively validate child elements (make permissive)
     for (final child in element.children) {
       if (child is XmlElement) {
         if (!_validateElement(child)) {

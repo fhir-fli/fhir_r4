@@ -17,9 +17,9 @@ extension FhirCanonicalUriExtension on Uri {
 /// Represents a canonical URL in FHIR as a [PrimitiveType] of [Uri]
 class FhirCanonical extends PrimitiveType<Uri> {
   /// Constructs a [FhirCanonical] from a [String]
-  FhirCanonical(String? input, [Element? element])
+  FhirCanonical(this.valueString, [Element? element])
       : super(
-          input == null ? null : _validateCanonical(input),
+          valueString == null ? null : _validateCanonical(valueString),
           element,
         ) {
     if (value == null && element == null) {
@@ -28,11 +28,12 @@ class FhirCanonical extends PrimitiveType<Uri> {
   }
 
   /// Constructs a [FhirCanonical] from a [Uri] object
-  FhirCanonical.fromUri(super.input, [super.element]);
+  FhirCanonical.fromUri(super.input, [super.element, this.valueString]);
 
   /// Factory constructor to create [FhirCanonical] from JSON
   factory FhirCanonical.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
+
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     return FhirCanonical(value, element);
@@ -72,6 +73,9 @@ class FhirCanonical extends PrimitiveType<Uri> {
     throw FormatException('Invalid Canonical String: $input');
   }
 
+  /// The String representation for the URI
+  late final String? valueString;
+
   /// Boolean getter to determine if only a value is present
   bool get valueOnly => value != null && element == null;
 
@@ -83,10 +87,12 @@ class FhirCanonical extends PrimitiveType<Uri> {
 
   /// Serializes the instance to JSON with standardized keys
   @override
-  Map<String, dynamic> toJson() => {
-        if (value != null) 'value': value!.toString(),
-        if (element != null) '_value': element!.toJson(),
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      if (valueString != null) 'value': valueString,
+      if (element != null) '_value': element!.toJson(),
+    };
+  }
 
   /// Converts a list of JSON values to a list of [FhirCanonical] instances
   static List<FhirCanonical> fromJsonList(
@@ -137,8 +143,7 @@ class FhirCanonical extends PrimitiveType<Uri> {
 
   /// Clones this [FhirCanonical] instance
   @override
-  FhirCanonical clone() =>
-      FhirCanonical.fromUri(value, element?.clone() as Element?);
+  FhirCanonical clone() => FhirCanonical.fromUri(value, element?.clone() as Element?);
 
   /// Sets a property on the associated [Element], returning a new instance
   @override

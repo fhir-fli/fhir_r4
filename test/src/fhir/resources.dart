@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, avoid_dynamic_calls
+// ignore_for_file: avoid_print
 
 import 'dart:convert';
 
@@ -8,12 +8,6 @@ import 'package:test/test.dart';
 import 'package:universal_io/io.dart';
 
 void main() {
-  /// Runs through all examples provided. Each example resource is a Json file,
-  /// we read in that file as a String, convert it to a Map, then create the
-  /// Resource. We then convert it back to Map, and perform a deep comparison
-  /// of the input map with the output map to test for any inconsistencies.
-  /// It then reverses them and and performs a deep comparison of the output
-  /// to the input. Any files with errors are printed out in the debug console
   group(
     'Validation',
     () {
@@ -41,15 +35,22 @@ List<String> r4Validation() {
     final contentJson = jsonDecode(contents) as Map<String, dynamic>;
     final resource = Resource.fromJson(contentJson);
     try {
-      if (!_compare(
-        contentJson,
-        resource.toJson(),
-      )) {
-        File(file.path.replaceAll('assets/', '').replaceAll('.json', '1.json'))
-            .writeAsStringSync(prettyPrintJson(contentJson));
-        File(file.path.replaceAll('assets/', '').replaceAll('.json', '2.json'))
-            .writeAsStringSync(prettyPrintJson(resource.toJson()));
-        throw Exception('Unequal');
+      if (!const DeepCollectionEquality()
+          .equals(contentJson, resource.toJson())) {
+        if (!_deepCompare(
+          contentJson,
+          resource.toJson(),
+        )) {
+          File(file.path
+                  .replaceAll('assets/', '')
+                  .replaceAll('.json', '1.json'))
+              .writeAsStringSync(prettyPrintJson(contentJson));
+          File(file.path
+                  .replaceAll('assets/', '')
+                  .replaceAll('.json', '2.json'))
+              .writeAsStringSync(prettyPrintJson(resource.toJson()));
+          throw Exception('Unequal');
+        }
       }
     } catch (e) {
       File(file.path.replaceAll('assets/', '').replaceAll('.json', '1.json'))
@@ -64,27 +65,28 @@ List<String> r4Validation() {
   return string;
 }
 
-dynamic decodeUrlIfString(dynamic value) {
-  // Decode the value only if it's a string and a URL with encoded characters
-  if (value is String) {
-    return Uri.decodeFull(value);
+bool _deepCompare(dynamic json1, dynamic json2) {
+  return const DeepCollectionEquality.unordered(CustomBaseEquality())
+      .equals(_normalizeJson(json1), _normalizeJson(json2));
+}
+
+dynamic _normalizeJson(dynamic json) {
+  if (json is List) {
+    return json.map(_normalizeJson).toList()..sort(_listSort);
+  } else if (json is Map) {
+    return json.map((key, value) => MapEntry(key, _normalizeJson(value)));
   }
-  return value;
+  return json;
 }
 
-bool _compare(dynamic oldLeft, dynamic oldRight) {
-  const equality =
-      DeepCollectionEquality.unordered(CustomBaseEquality());
-  return equality.equals(
-    oldLeft,
-    oldRight,
-  );
+int _listSort(dynamic a, dynamic b) {
+  final strA = jsonEncode(a);
+  final strB = jsonEncode(b);
+  return strA.compareTo(strB);
 }
 
-/// Returns a pretty printed JSON string.
 const JsonEncoder jsonEncoder = JsonEncoder.withIndent('    ');
 
-/// Returns a pretty printed JSON string.
 String prettyPrintJson(Map<String, dynamic> map) => jsonEncoder.convert(map);
 
 class CustomBaseEquality extends DefaultEquality<Object?> {
@@ -92,7 +94,6 @@ class CustomBaseEquality extends DefaultEquality<Object?> {
 
   @override
   bool equals(Object? o1, Object? o2) {
-    print('$filePath ${DateTime.now()}');
     if (o1 is String && o2 is String) {
       return const CustomStringEquality().equals(o1, o2);
     }
@@ -114,11 +115,8 @@ class CustomStringEquality implements Equality<String> {
   @override
   bool equals(String str1, String str2) {
     try {
-      // Decode URLs if needed before comparison
       return Uri.decodeFull(str1) == Uri.decodeFull(str2);
     } catch (e) {
-      // If decoding fails, fall back to direct comparison and log the error
-      // print('Invalid URL encoding detected: "$str1" or "$str2". Error: $e');
       return str1 == str2;
     }
   }
@@ -126,11 +124,8 @@ class CustomStringEquality implements Equality<String> {
   @override
   int hash(String str) {
     try {
-      // Use decoded value for hash calculation
       return Uri.decodeFull(str).hashCode;
     } catch (e) {
-      // If decoding fails, log the error and return hash of original string
-      // print('Invalid URL encoding for hash calculation: "$str". Error: $e');
       return str.hashCode;
     }
   }

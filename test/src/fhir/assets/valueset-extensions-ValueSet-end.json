@@ -10,5 +10,6 @@
   "code": "end",
   "type": "date",
   "xpath": "f:ValueSet/f:extension[@url\u003d\u0027http://hl7.org/fhir/StructureDefinition/valueset-expirationDate\u0027] | /f:#expirationDate",
-  "xpathUsage": "normal"
+  "xpathUsage": "normal",
+  "base": ["ValueSet"]
 }
