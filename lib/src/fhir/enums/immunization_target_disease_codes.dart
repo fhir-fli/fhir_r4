@@ -123,9 +123,7 @@ class ImmunizationTargetDiseaseCodes {
     if (value == null && element != null) {
       return ImmunizationTargetDiseaseCodes.elementOnly.withElement(element);
     }
-    return ImmunizationTargetDiseaseCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationTargetDiseaseCodes._(value!, element: element);
   }
 
   /// String representation

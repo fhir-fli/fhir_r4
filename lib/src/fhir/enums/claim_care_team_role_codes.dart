@@ -74,9 +74,7 @@ class ClaimCareTeamRoleCodes {
     if (value == null && element != null) {
       return ClaimCareTeamRoleCodes.elementOnly.withElement(element);
     }
-    return ClaimCareTeamRoleCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ClaimCareTeamRoleCodes._(value!, element: element);
   }
 
   /// String representation

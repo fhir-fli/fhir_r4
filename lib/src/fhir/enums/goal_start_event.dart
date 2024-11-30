@@ -73,9 +73,7 @@ class GoalStartEvent {
     if (value == null && element != null) {
       return GoalStartEvent.elementOnly.withElement(element);
     }
-    return GoalStartEvent.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return GoalStartEvent._(value!, element: element);
   }
 
   /// String representation

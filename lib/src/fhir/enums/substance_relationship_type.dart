@@ -85,9 +85,7 @@ class SubstanceRelationshipType {
     if (value == null && element != null) {
       return SubstanceRelationshipType.elementOnly.withElement(element);
     }
-    return SubstanceRelationshipType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SubstanceRelationshipType._(value!, element: element);
   }
 
   /// String representation

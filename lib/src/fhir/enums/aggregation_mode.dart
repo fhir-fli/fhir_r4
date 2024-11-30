@@ -65,9 +65,7 @@ class AggregationMode {
     if (value == null && element != null) {
       return AggregationMode.elementOnly.withElement(element);
     }
-    return AggregationMode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AggregationMode._(value!, element: element);
   }
 
   /// String representation

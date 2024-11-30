@@ -143,7 +143,8 @@ class FhirCanonical extends PrimitiveType<Uri> {
 
   /// Clones this [FhirCanonical] instance
   @override
-  FhirCanonical clone() => FhirCanonical.fromUri(value, element?.clone() as Element?);
+  FhirCanonical clone() =>
+      FhirCanonical.fromUri(value, element?.clone() as Element?);
 
   /// Sets a property on the associated [Element], returning a new instance
   @override

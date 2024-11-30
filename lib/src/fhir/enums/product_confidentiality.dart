@@ -60,9 +60,7 @@ class ProductConfidentiality {
     if (value == null && element != null) {
       return ProductConfidentiality.elementOnly.withElement(element);
     }
-    return ProductConfidentiality.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ProductConfidentiality._(value!, element: element);
   }
 
   /// String representation

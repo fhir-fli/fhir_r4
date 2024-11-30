@@ -69,9 +69,7 @@ class AdverseEventCausalityMethod {
     if (value == null && element != null) {
       return AdverseEventCausalityMethod.elementOnly.withElement(element);
     }
-    return AdverseEventCausalityMethod.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AdverseEventCausalityMethod._(value!, element: element);
   }
 
   /// String representation

@@ -169,9 +169,7 @@ class BasicResourceTypes {
     if (value == null && element != null) {
       return BasicResourceTypes.elementOnly.withElement(element);
     }
-    return BasicResourceTypes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return BasicResourceTypes._(value!, element: element);
   }
 
   /// String representation

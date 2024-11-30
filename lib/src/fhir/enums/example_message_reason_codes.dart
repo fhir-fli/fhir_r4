@@ -91,9 +91,7 @@ class ExampleMessageReasonCodes {
     if (value == null && element != null) {
       return ExampleMessageReasonCodes.elementOnly.withElement(element);
     }
-    return ExampleMessageReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExampleMessageReasonCodes._(value!, element: element);
   }
 
   /// String representation

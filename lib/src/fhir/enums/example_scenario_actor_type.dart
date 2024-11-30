@@ -58,9 +58,7 @@ class ExampleScenarioActorType {
     if (value == null && element != null) {
       return ExampleScenarioActorType.elementOnly.withElement(element);
     }
-    return ExampleScenarioActorType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExampleScenarioActorType._(value!, element: element);
   }
 
   /// String representation

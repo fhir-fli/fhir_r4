@@ -330,9 +330,7 @@ class AppointmentCancellationReason {
     if (value == null && element != null) {
       return AppointmentCancellationReason.elementOnly.withElement(element);
     }
-    return AppointmentCancellationReason.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AppointmentCancellationReason._(value!, element: element);
   }
 
   /// String representation

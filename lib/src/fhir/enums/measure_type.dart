@@ -81,9 +81,7 @@ class MeasureType {
     if (value == null && element != null) {
       return MeasureType.elementOnly.withElement(element);
     }
-    return MeasureType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MeasureType._(value!, element: element);
   }
 
   /// String representation

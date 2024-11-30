@@ -57,9 +57,7 @@ class MeasureGroupExample {
     if (value == null && element != null) {
       return MeasureGroupExample.elementOnly.withElement(element);
     }
-    return MeasureGroupExample.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MeasureGroupExample._(value!, element: element);
   }
 
   /// String representation

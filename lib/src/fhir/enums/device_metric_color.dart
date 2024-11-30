@@ -105,9 +105,7 @@ class DeviceMetricColor {
     if (value == null && element != null) {
       return DeviceMetricColor.elementOnly.withElement(element);
     }
-    return DeviceMetricColor.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DeviceMetricColor._(value!, element: element);
   }
 
   /// String representation

@@ -105,9 +105,7 @@ class SubstanceRepresentationFormat {
     if (value == null && element != null) {
       return SubstanceRepresentationFormat.elementOnly.withElement(element);
     }
-    return SubstanceRepresentationFormat.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SubstanceRepresentationFormat._(value!, element: element);
   }
 
   /// String representation

@@ -69,9 +69,7 @@ class ImmunizationSubpotentReason {
     if (value == null && element != null) {
       return ImmunizationSubpotentReason.elementOnly.withElement(element);
     }
-    return ImmunizationSubpotentReason.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationSubpotentReason._(value!, element: element);
   }
 
   /// String representation

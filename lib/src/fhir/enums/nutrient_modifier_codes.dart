@@ -65,9 +65,7 @@ class NutrientModifierCodes {
     if (value == null && element != null) {
       return NutrientModifierCodes.elementOnly.withElement(element);
     }
-    return NutrientModifierCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return NutrientModifierCodes._(value!, element: element);
   }
 
   /// String representation

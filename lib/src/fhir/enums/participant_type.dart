@@ -81,9 +81,7 @@ class ParticipantType {
     if (value == null && element != null) {
       return ParticipantType.elementOnly.withElement(element);
     }
-    return ParticipantType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ParticipantType._(value!, element: element);
   }
 
   /// String representation

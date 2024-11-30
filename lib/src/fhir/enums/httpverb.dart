@@ -89,9 +89,7 @@ class HTTPVerb {
     if (value == null && element != null) {
       return HTTPVerb.elementOnly.withElement(element);
     }
-    return HTTPVerb.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return HTTPVerb._(value!, element: element);
   }
 
   /// String representation

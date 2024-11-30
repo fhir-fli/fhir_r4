@@ -123,9 +123,7 @@ class TherapyRelationshipType {
     if (value == null && element != null) {
       return TherapyRelationshipType.elementOnly.withElement(element);
     }
-    return TherapyRelationshipType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TherapyRelationshipType._(value!, element: element);
   }
 
   /// String representation

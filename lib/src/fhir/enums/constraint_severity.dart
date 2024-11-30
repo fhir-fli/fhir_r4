@@ -57,9 +57,7 @@ class ConstraintSeverity {
     if (value == null && element != null) {
       return ConstraintSeverity.elementOnly.withElement(element);
     }
-    return ConstraintSeverity.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConstraintSeverity._(value!, element: element);
   }
 
   /// String representation

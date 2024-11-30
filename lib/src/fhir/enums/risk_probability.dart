@@ -81,9 +81,7 @@ class RiskProbability {
     if (value == null && element != null) {
       return RiskProbability.elementOnly.withElement(element);
     }
-    return RiskProbability.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return RiskProbability._(value!, element: element);
   }
 
   /// String representation

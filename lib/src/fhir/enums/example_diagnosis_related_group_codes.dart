@@ -78,9 +78,7 @@ class ExampleDiagnosisRelatedGroupCodes {
     if (value == null && element != null) {
       return ExampleDiagnosisRelatedGroupCodes.elementOnly.withElement(element);
     }
-    return ExampleDiagnosisRelatedGroupCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExampleDiagnosisRelatedGroupCodes._(value!, element: element);
   }
 
   /// String representation

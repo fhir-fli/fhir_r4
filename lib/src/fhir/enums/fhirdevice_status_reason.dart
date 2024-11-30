@@ -107,9 +107,7 @@ class FHIRDeviceStatusReason {
     if (value == null && element != null) {
       return FHIRDeviceStatusReason.elementOnly.withElement(element);
     }
-    return FHIRDeviceStatusReason.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FHIRDeviceStatusReason._(value!, element: element);
   }
 
   /// String representation

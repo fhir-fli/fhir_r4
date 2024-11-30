@@ -657,9 +657,7 @@ class CombinedDoseForm {
     if (value == null && element != null) {
       return CombinedDoseForm.elementOnly.withElement(element);
     }
-    return CombinedDoseForm.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CombinedDoseForm._(value!, element: element);
   }
 
   /// String representation

@@ -98,9 +98,7 @@ class ImmunizationRouteCodes {
     if (value == null && element != null) {
       return ImmunizationRouteCodes.elementOnly.withElement(element);
     }
-    return ImmunizationRouteCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationRouteCodes._(value!, element: element);
   }
 
   /// String representation

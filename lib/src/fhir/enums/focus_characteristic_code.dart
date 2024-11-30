@@ -108,9 +108,7 @@ class FocusCharacteristicCode {
     if (value == null && element != null) {
       return FocusCharacteristicCode.elementOnly.withElement(element);
     }
-    return FocusCharacteristicCode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FocusCharacteristicCode._(value!, element: element);
   }
 
   /// String representation

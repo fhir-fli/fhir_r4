@@ -49,9 +49,7 @@ class MaritalStatusCodes {
     if (value == null && element != null) {
       return MaritalStatusCodes.elementOnly.withElement(element);
     }
-    return MaritalStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MaritalStatusCodes._(value!, element: element);
   }
 
   /// String representation

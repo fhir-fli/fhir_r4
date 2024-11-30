@@ -106,9 +106,7 @@ class AdjudicationValueCodes {
     if (value == null && element != null) {
       return AdjudicationValueCodes.elementOnly.withElement(element);
     }
-    return AdjudicationValueCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AdjudicationValueCodes._(value!, element: element);
   }
 
   /// String representation

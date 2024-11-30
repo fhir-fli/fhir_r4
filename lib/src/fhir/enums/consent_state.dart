@@ -89,9 +89,7 @@ class ConsentState {
     if (value == null && element != null) {
       return ConsentState.elementOnly.withElement(element);
     }
-    return ConsentState.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConsentState._(value!, element: element);
   }
 
   /// String representation

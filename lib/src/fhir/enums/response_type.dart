@@ -65,9 +65,7 @@ class ResponseType {
     if (value == null && element != null) {
       return ResponseType.elementOnly.withElement(element);
     }
-    return ResponseType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ResponseType._(value!, element: element);
   }
 
   /// String representation

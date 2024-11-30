@@ -753,9 +753,7 @@ class FacilityTypeCodeValueSet {
     if (value == null && element != null) {
       return FacilityTypeCodeValueSet.elementOnly.withElement(element);
     }
-    return FacilityTypeCodeValueSet.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FacilityTypeCodeValueSet._(value!, element: element);
   }
 
   /// String representation

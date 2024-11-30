@@ -69,9 +69,7 @@ class MessageSignificanceCategory {
     if (value == null && element != null) {
       return MessageSignificanceCategory.elementOnly.withElement(element);
     }
-    return MessageSignificanceCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MessageSignificanceCategory._(value!, element: element);
   }
 
   /// String representation

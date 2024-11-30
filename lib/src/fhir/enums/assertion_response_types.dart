@@ -140,9 +140,7 @@ class AssertionResponseTypes {
     if (value == null && element != null) {
       return AssertionResponseTypes.elementOnly.withElement(element);
     }
-    return AssertionResponseTypes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AssertionResponseTypes._(value!, element: element);
   }
 
   /// String representation

@@ -91,9 +91,7 @@ class GuidanceResponseStatus {
     if (value == null && element != null) {
       return GuidanceResponseStatus.elementOnly.withElement(element);
     }
-    return GuidanceResponseStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return GuidanceResponseStatus._(value!, element: element);
   }
 
   /// String representation

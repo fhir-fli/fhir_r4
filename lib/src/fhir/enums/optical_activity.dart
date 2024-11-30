@@ -57,9 +57,7 @@ class OpticalActivity {
     if (value == null && element != null) {
       return OpticalActivity.elementOnly.withElement(element);
     }
-    return OpticalActivity.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return OpticalActivity._(value!, element: element);
   }
 
   /// String representation

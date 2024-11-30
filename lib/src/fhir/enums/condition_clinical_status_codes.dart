@@ -96,9 +96,7 @@ class ConditionClinicalStatusCodes {
     if (value == null && element != null) {
       return ConditionClinicalStatusCodes.elementOnly.withElement(element);
     }
-    return ConditionClinicalStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConditionClinicalStatusCodes._(value!, element: element);
   }
 
   /// String representation

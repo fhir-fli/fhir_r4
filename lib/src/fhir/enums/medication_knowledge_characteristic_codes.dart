@@ -108,9 +108,7 @@ class MedicationKnowledgeCharacteristicCodes {
       return MedicationKnowledgeCharacteristicCodes.elementOnly
           .withElement(element);
     }
-    return MedicationKnowledgeCharacteristicCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicationKnowledgeCharacteristicCodes._(value!, element: element);
   }
 
   /// String representation

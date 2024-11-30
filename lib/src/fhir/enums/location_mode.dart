@@ -57,9 +57,7 @@ class LocationMode {
     if (value == null && element != null) {
       return LocationMode.elementOnly.withElement(element);
     }
-    return LocationMode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return LocationMode._(value!, element: element);
   }
 
   /// String representation

@@ -108,9 +108,7 @@ class MedicationRequestIntent {
     if (value == null && element != null) {
       return MedicationRequestIntent.elementOnly.withElement(element);
     }
-    return MedicationRequestIntent.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicationRequestIntent._(value!, element: element);
   }
 
   /// String representation

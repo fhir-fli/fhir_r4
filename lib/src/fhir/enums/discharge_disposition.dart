@@ -129,9 +129,7 @@ class DischargeDisposition {
     if (value == null && element != null) {
       return DischargeDisposition.elementOnly.withElement(element);
     }
-    return DischargeDisposition.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DischargeDisposition._(value!, element: element);
   }
 
   /// String representation

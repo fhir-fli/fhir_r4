@@ -65,9 +65,7 @@ class PackageType {
     if (value == null && element != null) {
       return PackageType.elementOnly.withElement(element);
     }
-    return PackageType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return PackageType._(value!, element: element);
   }
 
   /// String representation

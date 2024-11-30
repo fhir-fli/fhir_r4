@@ -81,9 +81,7 @@ class RejectionCriterion {
     if (value == null && element != null) {
       return RejectionCriterion.elementOnly.withElement(element);
     }
-    return RejectionCriterion.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return RejectionCriterion._(value!, element: element);
   }
 
   /// String representation

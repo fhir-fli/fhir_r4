@@ -105,9 +105,7 @@ class TriggerType {
     if (value == null && element != null) {
       return TriggerType.elementOnly.withElement(element);
     }
-    return TriggerType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TriggerType._(value!, element: element);
   }
 
   /// String representation

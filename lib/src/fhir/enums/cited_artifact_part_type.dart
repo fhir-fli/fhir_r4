@@ -114,9 +114,7 @@ class CitedArtifactPartType {
     if (value == null && element != null) {
       return CitedArtifactPartType.elementOnly.withElement(element);
     }
-    return CitedArtifactPartType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CitedArtifactPartType._(value!, element: element);
   }
 
   /// String representation

@@ -89,9 +89,7 @@ class ListEmptyReasons {
     if (value == null && element != null) {
       return ListEmptyReasons.elementOnly.withElement(element);
     }
-    return ListEmptyReasons.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ListEmptyReasons._(value!, element: element);
   }
 
   /// String representation

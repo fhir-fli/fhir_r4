@@ -97,9 +97,7 @@ class ChargeItemStatus {
     if (value == null && element != null) {
       return ChargeItemStatus.elementOnly.withElement(element);
     }
-    return ChargeItemStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ChargeItemStatus._(value!, element: element);
   }
 
   /// String representation

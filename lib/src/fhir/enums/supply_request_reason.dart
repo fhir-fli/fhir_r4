@@ -57,9 +57,7 @@ class SupplyRequestReason {
     if (value == null && element != null) {
       return SupplyRequestReason.elementOnly.withElement(element);
     }
-    return SupplyRequestReason.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SupplyRequestReason._(value!, element: element);
   }
 
   /// String representation

@@ -25777,9 +25777,7 @@ class SecurityRoleType {
     if (value == null && element != null) {
       return SecurityRoleType.elementOnly.withElement(element);
     }
-    return SecurityRoleType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SecurityRoleType._(value!, element: element);
   }
 
   /// String representation

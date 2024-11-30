@@ -60,9 +60,7 @@ class CriteriaNotExistsBehavior {
     if (value == null && element != null) {
       return CriteriaNotExistsBehavior.elementOnly.withElement(element);
     }
-    return CriteriaNotExistsBehavior.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CriteriaNotExistsBehavior._(value!, element: element);
   }
 
   /// String representation

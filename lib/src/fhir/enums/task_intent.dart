@@ -121,9 +121,7 @@ class TaskIntent {
     if (value == null && element != null) {
       return TaskIntent.elementOnly.withElement(element);
     }
-    return TaskIntent.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TaskIntent._(value!, element: element);
   }
 
   /// String representation

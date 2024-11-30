@@ -89,9 +89,7 @@ class EndpointStatus {
     if (value == null && element != null) {
       return EndpointStatus.elementOnly.withElement(element);
     }
-    return EndpointStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EndpointStatus._(value!, element: element);
   }
 
   /// String representation

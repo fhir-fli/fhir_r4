@@ -72,9 +72,7 @@ class MedicationRequestCourseOfTherapyCodes {
       return MedicationRequestCourseOfTherapyCodes.elementOnly
           .withElement(element);
     }
-    return MedicationRequestCourseOfTherapyCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicationRequestCourseOfTherapyCodes._(value!, element: element);
   }
 
   /// String representation

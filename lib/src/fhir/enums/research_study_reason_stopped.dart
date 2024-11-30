@@ -78,9 +78,7 @@ class ResearchStudyReasonStopped {
     if (value == null && element != null) {
       return ResearchStudyReasonStopped.elementOnly.withElement(element);
     }
-    return ResearchStudyReasonStopped.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ResearchStudyReasonStopped._(value!, element: element);
   }
 
   /// String representation

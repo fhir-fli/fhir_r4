@@ -145,9 +145,7 @@ class TitleType {
     if (value == null && element != null) {
       return TitleType.elementOnly.withElement(element);
     }
-    return TitleType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TitleType._(value!, element: element);
   }
 
   /// String representation

@@ -129,9 +129,7 @@ class SurfaceCodes {
     if (value == null && element != null) {
       return SurfaceCodes.elementOnly.withElement(element);
     }
-    return SurfaceCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SurfaceCodes._(value!, element: element);
   }
 
   /// String representation

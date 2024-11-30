@@ -65,9 +65,7 @@ class SlicingRules {
     if (value == null && element != null) {
       return SlicingRules.elementOnly.withElement(element);
     }
-    return SlicingRules.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SlicingRules._(value!, element: element);
   }
 
   /// String representation

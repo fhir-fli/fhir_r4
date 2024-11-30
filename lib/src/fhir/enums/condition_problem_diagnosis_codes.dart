@@ -51,9 +51,7 @@ class ConditionProblemDiagnosisCodes {
     if (value == null && element != null) {
       return ConditionProblemDiagnosisCodes.elementOnly.withElement(element);
     }
-    return ConditionProblemDiagnosisCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConditionProblemDiagnosisCodes._(value!, element: element);
   }
 
   /// String representation

@@ -73,9 +73,7 @@ class MeasureScoring {
     if (value == null && element != null) {
       return MeasureScoring.elementOnly.withElement(element);
     }
-    return MeasureScoring.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MeasureScoring._(value!, element: element);
   }
 
   /// String representation

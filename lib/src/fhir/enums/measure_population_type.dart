@@ -120,9 +120,7 @@ class MeasurePopulationType {
     if (value == null && element != null) {
       return MeasurePopulationType.elementOnly.withElement(element);
     }
-    return MeasurePopulationType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MeasurePopulationType._(value!, element: element);
   }
 
   /// String representation

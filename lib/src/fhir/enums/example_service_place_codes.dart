@@ -178,9 +178,7 @@ class ExampleServicePlaceCodes {
     if (value == null && element != null) {
       return ExampleServicePlaceCodes.elementOnly.withElement(element);
     }
-    return ExampleServicePlaceCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExampleServicePlaceCodes._(value!, element: element);
   }
 
   /// String representation

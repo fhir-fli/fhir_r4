@@ -97,9 +97,7 @@ class SynthesisType {
     if (value == null && element != null) {
       return SynthesisType.elementOnly.withElement(element);
     }
-    return SynthesisType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SynthesisType._(value!, element: element);
   }
 
   /// String representation

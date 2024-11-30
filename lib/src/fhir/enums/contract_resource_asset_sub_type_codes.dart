@@ -51,9 +51,7 @@ class ContractResourceAssetSubTypeCodes {
     if (value == null && element != null) {
       return ContractResourceAssetSubTypeCodes.elementOnly.withElement(element);
     }
-    return ContractResourceAssetSubTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContractResourceAssetSubTypeCodes._(value!, element: element);
   }
 
   /// String representation

@@ -69,9 +69,7 @@ class ProcedureOutcomeCodesSNOMEDCT {
     if (value == null && element != null) {
       return ProcedureOutcomeCodesSNOMEDCT.elementOnly.withElement(element);
     }
-    return ProcedureOutcomeCodesSNOMEDCT.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ProcedureOutcomeCodesSNOMEDCT._(value!, element: element);
   }
 
   /// String representation

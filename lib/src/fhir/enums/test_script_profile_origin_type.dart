@@ -60,9 +60,7 @@ class TestScriptProfileOriginType {
     if (value == null && element != null) {
       return TestScriptProfileOriginType.elementOnly.withElement(element);
     }
-    return TestScriptProfileOriginType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TestScriptProfileOriginType._(value!, element: element);
   }
 
   /// String representation

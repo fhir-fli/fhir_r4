@@ -78,9 +78,7 @@ class MeasureSupplementalDataExample {
     if (value == null && element != null) {
       return MeasureSupplementalDataExample.elementOnly.withElement(element);
     }
-    return MeasureSupplementalDataExample.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MeasureSupplementalDataExample._(value!, element: element);
   }
 
   /// String representation

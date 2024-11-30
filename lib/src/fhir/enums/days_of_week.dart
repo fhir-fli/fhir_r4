@@ -97,9 +97,7 @@ class DaysOfWeek {
     if (value == null && element != null) {
       return DaysOfWeek.elementOnly.withElement(element);
     }
-    return DaysOfWeek.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DaysOfWeek._(value!, element: element);
   }
 
   /// String representation

@@ -114,9 +114,7 @@ class OrganizationAffiliationRole {
     if (value == null && element != null) {
       return OrganizationAffiliationRole.elementOnly.withElement(element);
     }
-    return OrganizationAffiliationRole.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return OrganizationAffiliationRole._(value!, element: element);
   }
 
   /// String representation

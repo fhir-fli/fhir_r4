@@ -60,9 +60,7 @@ class ConditionCategoryCodes {
     if (value == null && element != null) {
       return ConditionCategoryCodes.elementOnly.withElement(element);
     }
-    return ConditionCategoryCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConditionCategoryCodes._(value!, element: element);
   }
 
   /// String representation

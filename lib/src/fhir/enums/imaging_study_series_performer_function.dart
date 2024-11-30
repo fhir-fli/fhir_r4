@@ -89,9 +89,7 @@ class ImagingStudySeriesPerformerFunction {
       return ImagingStudySeriesPerformerFunction.elementOnly
           .withElement(element);
     }
-    return ImagingStudySeriesPerformerFunction.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImagingStudySeriesPerformerFunction._(value!, element: element);
   }
 
   /// String representation

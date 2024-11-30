@@ -81,9 +81,7 @@ class IdentifierUse {
     if (value == null && element != null) {
       return IdentifierUse.elementOnly.withElement(element);
     }
-    return IdentifierUse.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return IdentifierUse._(value!, element: element);
   }
 
   /// String representation

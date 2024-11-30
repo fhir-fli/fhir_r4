@@ -67,9 +67,7 @@ class ConditionalDeleteStatus {
     if (value == null && element != null) {
       return ConditionalDeleteStatus.elementOnly.withElement(element);
     }
-    return ConditionalDeleteStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConditionalDeleteStatus._(value!, element: element);
   }
 
   /// String representation

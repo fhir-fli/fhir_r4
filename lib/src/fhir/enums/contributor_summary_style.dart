@@ -178,9 +178,7 @@ class ContributorSummaryStyle {
     if (value == null && element != null) {
       return ContributorSummaryStyle.elementOnly.withElement(element);
     }
-    return ContributorSummaryStyle.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContributorSummaryStyle._(value!, element: element);
   }
 
   /// String representation

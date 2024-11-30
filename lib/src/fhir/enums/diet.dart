@@ -97,9 +97,7 @@ class Diet {
     if (value == null && element != null) {
       return Diet.elementOnly.withElement(element);
     }
-    return Diet.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return Diet._(value!, element: element);
   }
 
   /// String representation

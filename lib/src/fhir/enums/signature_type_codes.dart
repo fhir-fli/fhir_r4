@@ -203,9 +203,7 @@ class SignatureTypeCodes {
     if (value == null && element != null) {
       return SignatureTypeCodes.elementOnly.withElement(element);
     }
-    return SignatureTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SignatureTypeCodes._(value!, element: element);
   }
 
   /// String representation

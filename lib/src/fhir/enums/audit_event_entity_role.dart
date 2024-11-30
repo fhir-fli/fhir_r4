@@ -233,9 +233,7 @@ class AuditEventEntityRole {
     if (value == null && element != null) {
       return AuditEventEntityRole.elementOnly.withElement(element);
     }
-    return AuditEventEntityRole.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AuditEventEntityRole._(value!, element: element);
   }
 
   /// String representation

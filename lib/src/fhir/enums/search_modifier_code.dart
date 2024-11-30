@@ -137,9 +137,7 @@ class SearchModifierCode {
     if (value == null && element != null) {
       return SearchModifierCode.elementOnly.withElement(element);
     }
-    return SearchModifierCode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SearchModifierCode._(value!, element: element);
   }
 
   /// String representation

@@ -105,9 +105,7 @@ class EventStatus {
     if (value == null && element != null) {
       return EventStatus.elementOnly.withElement(element);
     }
-    return EventStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EventStatus._(value!, element: element);
   }
 
   /// String representation

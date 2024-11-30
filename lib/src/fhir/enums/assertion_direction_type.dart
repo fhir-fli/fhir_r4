@@ -58,9 +58,7 @@ class AssertionDirectionType {
     if (value == null && element != null) {
       return AssertionDirectionType.elementOnly.withElement(element);
     }
-    return AssertionDirectionType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AssertionDirectionType._(value!, element: element);
   }
 
   /// String representation

@@ -87,9 +87,7 @@ class EnteralFormulaAdditiveTypeCode {
     if (value == null && element != null) {
       return EnteralFormulaAdditiveTypeCode.elementOnly.withElement(element);
     }
-    return EnteralFormulaAdditiveTypeCode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EnteralFormulaAdditiveTypeCode._(value!, element: element);
   }
 
   /// String representation

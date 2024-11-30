@@ -78,9 +78,7 @@ class FinancialResourceStatusCodes {
     if (value == null && element != null) {
       return FinancialResourceStatusCodes.elementOnly.withElement(element);
     }
-    return FinancialResourceStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FinancialResourceStatusCodes._(value!, element: element);
   }
 
   /// String representation

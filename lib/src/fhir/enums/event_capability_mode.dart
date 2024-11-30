@@ -57,9 +57,7 @@ class EventCapabilityMode {
     if (value == null && element != null) {
       return EventCapabilityMode.elementOnly.withElement(element);
     }
-    return EventCapabilityMode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EventCapabilityMode._(value!, element: element);
   }
 
   /// String representation

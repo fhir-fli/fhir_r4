@@ -66,9 +66,7 @@ class CapabilityStatementKind {
     if (value == null && element != null) {
       return CapabilityStatementKind.elementOnly.withElement(element);
     }
-    return CapabilityStatementKind.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CapabilityStatementKind._(value!, element: element);
   }
 
   /// String representation

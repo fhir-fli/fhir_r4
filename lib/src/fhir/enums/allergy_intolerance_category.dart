@@ -77,9 +77,7 @@ class AllergyIntoleranceCategory {
     if (value == null && element != null) {
       return AllergyIntoleranceCategory.elementOnly.withElement(element);
     }
-    return AllergyIntoleranceCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AllergyIntoleranceCategory._(value!, element: element);
   }
 
   /// String representation

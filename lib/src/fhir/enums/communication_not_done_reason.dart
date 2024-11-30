@@ -96,9 +96,7 @@ class CommunicationNotDoneReason {
     if (value == null && element != null) {
       return CommunicationNotDoneReason.elementOnly.withElement(element);
     }
-    return CommunicationNotDoneReason.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CommunicationNotDoneReason._(value!, element: element);
   }
 
   /// String representation

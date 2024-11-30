@@ -105,9 +105,7 @@ class ObservationStatus {
     if (value == null && element != null) {
       return ObservationStatus.elementOnly.withElement(element);
     }
-    return ObservationStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ObservationStatus._(value!, element: element);
   }
 
   /// String representation

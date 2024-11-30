@@ -81,9 +81,7 @@ class ConsentActionCodes {
     if (value == null && element != null) {
       return ConsentActionCodes.elementOnly.withElement(element);
     }
-    return ConsentActionCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConsentActionCodes._(value!, element: element);
   }
 
   /// String representation

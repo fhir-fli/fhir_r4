@@ -57,9 +57,7 @@ class ConsentProvisionType {
     if (value == null && element != null) {
       return ConsentProvisionType.elementOnly.withElement(element);
     }
-    return ConsentProvisionType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConsentProvisionType._(value!, element: element);
   }
 
   /// String representation

@@ -65,9 +65,7 @@ class SearchEntryMode {
     if (value == null && element != null) {
       return SearchEntryMode.elementOnly.withElement(element);
     }
-    return SearchEntryMode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SearchEntryMode._(value!, element: element);
   }
 
   /// String representation

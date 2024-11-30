@@ -65,9 +65,7 @@ class ActionConditionKind {
     if (value == null && element != null) {
       return ActionConditionKind.elementOnly.withElement(element);
     }
-    return ActionConditionKind.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ActionConditionKind._(value!, element: element);
   }
 
   /// String representation

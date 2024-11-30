@@ -65,9 +65,7 @@ class AddressType {
     if (value == null && element != null) {
       return AddressType.elementOnly.withElement(element);
     }
-    return AddressType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AddressType._(value!, element: element);
   }
 
   /// String representation

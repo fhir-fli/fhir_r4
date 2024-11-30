@@ -73,9 +73,7 @@ class EvidenceDirectness {
     if (value == null && element != null) {
       return EvidenceDirectness.elementOnly.withElement(element);
     }
-    return EvidenceDirectness.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EvidenceDirectness._(value!, element: element);
   }
 
   /// String representation

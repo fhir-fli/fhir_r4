@@ -57,9 +57,7 @@ class AdverseEventActuality {
     if (value == null && element != null) {
       return AdverseEventActuality.elementOnly.withElement(element);
     }
-    return AdverseEventActuality.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AdverseEventActuality._(value!, element: element);
   }
 
   /// String representation

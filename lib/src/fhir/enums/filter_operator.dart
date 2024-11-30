@@ -113,9 +113,7 @@ class FilterOperator {
     if (value == null && element != null) {
       return FilterOperator.elementOnly.withElement(element);
     }
-    return FilterOperator.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FilterOperator._(value!, element: element);
   }
 
   /// String representation

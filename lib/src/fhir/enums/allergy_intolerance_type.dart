@@ -58,9 +58,7 @@ class AllergyIntoleranceType {
     if (value == null && element != null) {
       return AllergyIntoleranceType.elementOnly.withElement(element);
     }
-    return AllergyIntoleranceType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AllergyIntoleranceType._(value!, element: element);
   }
 
   /// String representation

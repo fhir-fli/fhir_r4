@@ -90,9 +90,7 @@ class RestfulSecurityService {
     if (value == null && element != null) {
       return RestfulSecurityService.elementOnly.withElement(element);
     }
-    return RestfulSecurityService.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return RestfulSecurityService._(value!, element: element);
   }
 
   /// String representation

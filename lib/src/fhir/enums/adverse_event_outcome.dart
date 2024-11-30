@@ -89,9 +89,7 @@ class AdverseEventOutcome {
     if (value == null && element != null) {
       return AdverseEventOutcome.elementOnly.withElement(element);
     }
-    return AdverseEventOutcome.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AdverseEventOutcome._(value!, element: element);
   }
 
   /// String representation

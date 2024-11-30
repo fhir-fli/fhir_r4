@@ -489,9 +489,7 @@ class UnitOfPresentation {
     if (value == null && element != null) {
       return UnitOfPresentation.elementOnly.withElement(element);
     }
-    return UnitOfPresentation.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return UnitOfPresentation._(value!, element: element);
   }
 
   /// String representation

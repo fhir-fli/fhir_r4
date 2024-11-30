@@ -177,9 +177,7 @@ class StructureMapTransform {
     if (value == null && element != null) {
       return StructureMapTransform.elementOnly.withElement(element);
     }
-    return StructureMapTransform.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return StructureMapTransform._(value!, element: element);
   }
 
   /// String representation

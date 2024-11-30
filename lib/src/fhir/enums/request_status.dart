@@ -97,9 +97,7 @@ class RequestStatus {
     if (value == null && element != null) {
       return RequestStatus.elementOnly.withElement(element);
     }
-    return RequestStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return RequestStatus._(value!, element: element);
   }
 
   /// String representation

@@ -165,9 +165,7 @@ class CitedArtifactStatusType {
     if (value == null && element != null) {
       return CitedArtifactStatusType.elementOnly.withElement(element);
     }
-    return CitedArtifactStatusType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CitedArtifactStatusType._(value!, element: element);
   }
 
   /// String representation

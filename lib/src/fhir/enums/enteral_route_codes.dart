@@ -113,9 +113,7 @@ class EnteralRouteCodes {
     if (value == null && element != null) {
       return EnteralRouteCodes.elementOnly.withElement(element);
     }
-    return EnteralRouteCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EnteralRouteCodes._(value!, element: element);
   }
 
   /// String representation

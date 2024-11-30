@@ -127,9 +127,8 @@ class ImmunizationRecommendationTargetDiseaseCodes {
       return ImmunizationRecommendationTargetDiseaseCodes.elementOnly
           .withElement(element);
     }
-    return ImmunizationRecommendationTargetDiseaseCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationRecommendationTargetDiseaseCodes._(value!,
+        element: element);
   }
 
   /// String representation

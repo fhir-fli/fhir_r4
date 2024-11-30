@@ -63,9 +63,7 @@ class CodesForImmunizationSiteOfAdministration {
       return CodesForImmunizationSiteOfAdministration.elementOnly
           .withElement(element);
     }
-    return CodesForImmunizationSiteOfAdministration.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CodesForImmunizationSiteOfAdministration._(value!, element: element);
   }
 
   /// String representation

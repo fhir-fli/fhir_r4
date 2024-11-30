@@ -74,9 +74,7 @@ class EncounterLocationStatus {
     if (value == null && element != null) {
       return EncounterLocationStatus.elementOnly.withElement(element);
     }
-    return EncounterLocationStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EncounterLocationStatus._(value!, element: element);
   }
 
   /// String representation

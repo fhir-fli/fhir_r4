@@ -107,9 +107,7 @@ class MedicationAdministrationStatusCodes {
       return MedicationAdministrationStatusCodes.elementOnly
           .withElement(element);
     }
-    return MedicationAdministrationStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicationAdministrationStatusCodes._(value!, element: element);
   }
 
   /// String representation

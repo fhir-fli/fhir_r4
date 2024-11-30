@@ -49,9 +49,7 @@ class CharacteristicMethod {
     if (value == null && element != null) {
       return CharacteristicMethod.elementOnly.withElement(element);
     }
-    return CharacteristicMethod.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CharacteristicMethod._(value!, element: element);
   }
 
   /// String representation

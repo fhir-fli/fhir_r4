@@ -57,9 +57,7 @@ class SupplyType {
     if (value == null && element != null) {
       return SupplyType.elementOnly.withElement(element);
     }
-    return SupplyType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SupplyType._(value!, element: element);
   }
 
   /// String representation

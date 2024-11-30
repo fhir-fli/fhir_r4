@@ -162,9 +162,7 @@ class RequestResourceType {
     if (value == null && element != null) {
       return RequestResourceType.elementOnly.withElement(element);
     }
-    return RequestResourceType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return RequestResourceType._(value!, element: element);
   }
 
   /// String representation

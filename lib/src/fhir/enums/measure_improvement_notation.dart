@@ -60,9 +60,7 @@ class MeasureImprovementNotation {
     if (value == null && element != null) {
       return MeasureImprovementNotation.elementOnly.withElement(element);
     }
-    return MeasureImprovementNotation.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MeasureImprovementNotation._(value!, element: element);
   }
 
   /// String representation

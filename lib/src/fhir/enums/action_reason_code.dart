@@ -81,9 +81,7 @@ class ActionReasonCode {
     if (value == null && element != null) {
       return ActionReasonCode.elementOnly.withElement(element);
     }
-    return ActionReasonCode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ActionReasonCode._(value!, element: element);
   }
 
   /// String representation

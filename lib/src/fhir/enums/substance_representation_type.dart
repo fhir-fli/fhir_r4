@@ -69,9 +69,7 @@ class SubstanceRepresentationType {
     if (value == null && element != null) {
       return SubstanceRepresentationType.elementOnly.withElement(element);
     }
-    return SubstanceRepresentationType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SubstanceRepresentationType._(value!, element: element);
   }
 
   /// String representation

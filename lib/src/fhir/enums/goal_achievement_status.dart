@@ -113,9 +113,7 @@ class GoalAchievementStatus {
     if (value == null && element != null) {
       return GoalAchievementStatus.elementOnly.withElement(element);
     }
-    return GoalAchievementStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return GoalAchievementStatus._(value!, element: element);
   }
 
   /// String representation

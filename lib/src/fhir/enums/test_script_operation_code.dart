@@ -409,9 +409,7 @@ class TestScriptOperationCode {
     if (value == null && element != null) {
       return TestScriptOperationCode.elementOnly.withElement(element);
     }
-    return TestScriptOperationCode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TestScriptOperationCode._(value!, element: element);
   }
 
   /// String representation

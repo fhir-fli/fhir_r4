@@ -65,9 +65,7 @@ class FundsReservationCodes {
     if (value == null && element != null) {
       return FundsReservationCodes.elementOnly.withElement(element);
     }
-    return FundsReservationCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FundsReservationCodes._(value!, element: element);
   }
 
   /// String representation

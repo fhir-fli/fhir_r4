@@ -126,9 +126,7 @@ class ImmunizationEvaluationTargetDiseaseCodes {
       return ImmunizationEvaluationTargetDiseaseCodes.elementOnly
           .withElement(element);
     }
-    return ImmunizationEvaluationTargetDiseaseCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationEvaluationTargetDiseaseCodes._(value!, element: element);
   }
 
   /// String representation

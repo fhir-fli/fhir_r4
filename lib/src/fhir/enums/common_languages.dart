@@ -489,9 +489,7 @@ class CommonLanguages {
     if (value == null && element != null) {
       return CommonLanguages.elementOnly.withElement(element);
     }
-    return CommonLanguages.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CommonLanguages._(value!, element: element);
   }
 
   /// String representation

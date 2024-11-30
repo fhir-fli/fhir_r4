@@ -1713,9 +1713,7 @@ class FHIRAllTypes {
     if (value == null && element != null) {
       return FHIRAllTypes.elementOnly.withElement(element);
     }
-    return FHIRAllTypes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FHIRAllTypes._(value!, element: element);
   }
 
   /// String representation

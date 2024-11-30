@@ -169,9 +169,7 @@ class ArticleUrlType {
     if (value == null && element != null) {
       return ArticleUrlType.elementOnly.withElement(element);
     }
-    return ArticleUrlType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ArticleUrlType._(value!, element: element);
   }
 
   /// String representation

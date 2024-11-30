@@ -97,9 +97,7 @@ class NameUse {
     if (value == null && element != null) {
       return NameUse.elementOnly.withElement(element);
     }
-    return NameUse.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return NameUse._(value!, element: element);
   }
 
   /// String representation

@@ -249,9 +249,7 @@ class EventTiming {
     if (value == null && element != null) {
       return EventTiming.elementOnly.withElement(element);
     }
-    return EventTiming.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EventTiming._(value!, element: element);
   }
 
   /// String representation

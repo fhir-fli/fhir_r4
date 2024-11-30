@@ -289,9 +289,7 @@ class IssueType {
     if (value == null && element != null) {
       return IssueType.elementOnly.withElement(element);
     }
-    return IssueType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return IssueType._(value!, element: element);
   }
 
   /// String representation

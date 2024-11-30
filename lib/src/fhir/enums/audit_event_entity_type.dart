@@ -1248,9 +1248,7 @@ class AuditEventEntityType {
     if (value == null && element != null) {
       return AuditEventEntityType.elementOnly.withElement(element);
     }
-    return AuditEventEntityType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AuditEventEntityType._(value!, element: element);
   }
 
   /// String representation

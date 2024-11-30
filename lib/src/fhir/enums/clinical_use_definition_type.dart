@@ -86,9 +86,7 @@ class ClinicalUseDefinitionType {
     if (value == null && element != null) {
       return ClinicalUseDefinitionType.elementOnly.withElement(element);
     }
-    return ClinicalUseDefinitionType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ClinicalUseDefinitionType._(value!, element: element);
   }
 
   /// String representation

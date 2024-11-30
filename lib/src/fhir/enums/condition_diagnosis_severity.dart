@@ -69,9 +69,7 @@ class ConditionDiagnosisSeverity {
     if (value == null && element != null) {
       return ConditionDiagnosisSeverity.elementOnly.withElement(element);
     }
-    return ConditionDiagnosisSeverity.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConditionDiagnosisSeverity._(value!, element: element);
   }
 
   /// String representation

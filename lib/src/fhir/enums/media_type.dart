@@ -65,9 +65,7 @@ class MediaType {
     if (value == null && element != null) {
       return MediaType.elementOnly.withElement(element);
     }
-    return MediaType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MediaType._(value!, element: element);
   }
 
   /// String representation

@@ -131,9 +131,7 @@ class RegulatedAuthorizationBasis {
     if (value == null && element != null) {
       return RegulatedAuthorizationBasis.elementOnly.withElement(element);
     }
-    return RegulatedAuthorizationBasis.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return RegulatedAuthorizationBasis._(value!, element: element);
   }
 
   /// String representation

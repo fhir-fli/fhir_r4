@@ -81,9 +81,7 @@ class MedicationDispensePerformerFunctionCodes {
       return MedicationDispensePerformerFunctionCodes.elementOnly
           .withElement(element);
     }
-    return MedicationDispensePerformerFunctionCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicationDispensePerformerFunctionCodes._(value!, element: element);
   }
 
   /// String representation

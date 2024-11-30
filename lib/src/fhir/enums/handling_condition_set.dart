@@ -65,9 +65,7 @@ class HandlingConditionSet {
     if (value == null && element != null) {
       return HandlingConditionSet.elementOnly.withElement(element);
     }
-    return HandlingConditionSet.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return HandlingConditionSet._(value!, element: element);
   }
 
   /// String representation

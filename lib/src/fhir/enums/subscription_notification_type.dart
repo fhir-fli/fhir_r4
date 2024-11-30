@@ -87,9 +87,7 @@ class SubscriptionNotificationType {
     if (value == null && element != null) {
       return SubscriptionNotificationType.elementOnly.withElement(element);
     }
-    return SubscriptionNotificationType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SubscriptionNotificationType._(value!, element: element);
   }
 
   /// String representation

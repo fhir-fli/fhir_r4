@@ -25425,9 +25425,7 @@ class AuditEventSubType {
     if (value == null && element != null) {
       return AuditEventSubType.elementOnly.withElement(element);
     }
-    return AuditEventSubType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AuditEventSubType._(value!, element: element);
   }
 
   /// String representation

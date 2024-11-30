@@ -65,9 +65,7 @@ class BenefitTermCodes {
     if (value == null && element != null) {
       return BenefitTermCodes.elementOnly.withElement(element);
     }
-    return BenefitTermCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return BenefitTermCodes._(value!, element: element);
   }
 
   /// String representation

@@ -82,9 +82,8 @@ class ImmunizationRecommendationDateCriterionCodes {
       return ImmunizationRecommendationDateCriterionCodes.elementOnly
           .withElement(element);
     }
-    return ImmunizationRecommendationDateCriterionCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationRecommendationDateCriterionCodes._(value!,
+        element: element);
   }
 
   /// String representation

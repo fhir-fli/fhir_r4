@@ -81,9 +81,7 @@ class ProvenanceEntityRole {
     if (value == null && element != null) {
       return ProvenanceEntityRole.elementOnly.withElement(element);
     }
-    return ProvenanceEntityRole.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ProvenanceEntityRole._(value!, element: element);
   }
 
   /// String representation

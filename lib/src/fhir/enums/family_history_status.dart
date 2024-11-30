@@ -73,9 +73,7 @@ class FamilyHistoryStatus {
     if (value == null && element != null) {
       return FamilyHistoryStatus.elementOnly.withElement(element);
     }
-    return FamilyHistoryStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FamilyHistoryStatus._(value!, element: element);
   }
 
   /// String representation

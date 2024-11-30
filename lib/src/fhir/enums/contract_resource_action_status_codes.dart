@@ -51,9 +51,7 @@ class ContractResourceActionStatusCodes {
     if (value == null && element != null) {
       return ContractResourceActionStatusCodes.elementOnly.withElement(element);
     }
-    return ContractResourceActionStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContractResourceActionStatusCodes._(value!, element: element);
   }
 
   /// String representation

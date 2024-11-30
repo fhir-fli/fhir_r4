@@ -90,9 +90,7 @@ class CommunicationTopic {
     if (value == null && element != null) {
       return CommunicationTopic.elementOnly.withElement(element);
     }
-    return CommunicationTopic.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CommunicationTopic._(value!, element: element);
   }
 
   /// String representation

@@ -89,9 +89,7 @@ class DeviceNameType {
     if (value == null && element != null) {
       return DeviceNameType.elementOnly.withElement(element);
     }
-    return DeviceNameType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DeviceNameType._(value!, element: element);
   }
 
   /// String representation

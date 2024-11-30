@@ -173,9 +173,7 @@ class EvidenceCertaintyRating {
     if (value == null && element != null) {
       return EvidenceCertaintyRating.elementOnly.withElement(element);
     }
-    return EvidenceCertaintyRating.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EvidenceCertaintyRating._(value!, element: element);
   }
 
   /// String representation

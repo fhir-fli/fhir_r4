@@ -78,9 +78,7 @@ class FluidConsistencyTypeCodes {
     if (value == null && element != null) {
       return FluidConsistencyTypeCodes.elementOnly.withElement(element);
     }
-    return FluidConsistencyTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FluidConsistencyTypeCodes._(value!, element: element);
   }
 
   /// String representation

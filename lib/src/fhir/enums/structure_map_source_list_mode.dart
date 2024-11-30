@@ -85,9 +85,7 @@ class StructureMapSourceListMode {
     if (value == null && element != null) {
       return StructureMapSourceListMode.elementOnly.withElement(element);
     }
-    return StructureMapSourceListMode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return StructureMapSourceListMode._(value!, element: element);
   }
 
   /// String representation

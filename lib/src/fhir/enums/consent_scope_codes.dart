@@ -73,9 +73,7 @@ class ConsentScopeCodes {
     if (value == null && element != null) {
       return ConsentScopeCodes.elementOnly.withElement(element);
     }
-    return ConsentScopeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConsentScopeCodes._(value!, element: element);
   }
 
   /// String representation

@@ -57,9 +57,7 @@ class NetworkTypeCodes {
     if (value == null && element != null) {
       return NetworkTypeCodes.elementOnly.withElement(element);
     }
-    return NetworkTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return NetworkTypeCodes._(value!, element: element);
   }
 
   /// String representation

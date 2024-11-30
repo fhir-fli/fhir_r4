@@ -89,9 +89,7 @@ class Status {
     if (value == null && element != null) {
       return Status.elementOnly.withElement(element);
     }
-    return Status.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return Status._(value!, element: element);
   }
 
   /// String representation

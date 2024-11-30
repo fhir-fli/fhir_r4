@@ -81,9 +81,7 @@ class EpisodeOfCareType {
     if (value == null && element != null) {
       return EpisodeOfCareType.elementOnly.withElement(element);
     }
-    return EpisodeOfCareType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EpisodeOfCareType._(value!, element: element);
   }
 
   /// String representation

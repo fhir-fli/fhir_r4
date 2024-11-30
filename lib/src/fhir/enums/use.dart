@@ -65,9 +65,7 @@ class Use {
     if (value == null && element != null) {
       return Use.elementOnly.withElement(element);
     }
-    return Use.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return Use._(value!, element: element);
   }
 
   /// String representation

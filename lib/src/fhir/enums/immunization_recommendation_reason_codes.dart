@@ -63,9 +63,7 @@ class ImmunizationRecommendationReasonCodes {
       return ImmunizationRecommendationReasonCodes.elementOnly
           .withElement(element);
     }
-    return ImmunizationRecommendationReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationRecommendationReasonCodes._(value!, element: element);
   }
 
   /// String representation

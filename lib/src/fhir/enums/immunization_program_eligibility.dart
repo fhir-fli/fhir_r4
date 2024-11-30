@@ -60,9 +60,7 @@ class ImmunizationProgramEligibility {
     if (value == null && element != null) {
       return ImmunizationProgramEligibility.elementOnly.withElement(element);
     }
-    return ImmunizationProgramEligibility.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationProgramEligibility._(value!, element: element);
   }
 
   /// String representation

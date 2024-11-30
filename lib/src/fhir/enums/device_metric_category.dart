@@ -73,9 +73,7 @@ class DeviceMetricCategory {
     if (value == null && element != null) {
       return DeviceMetricCategory.elementOnly.withElement(element);
     }
-    return DeviceMetricCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DeviceMetricCategory._(value!, element: element);
   }
 
   /// String representation

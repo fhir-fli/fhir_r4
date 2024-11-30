@@ -133,9 +133,7 @@ class ResearchStudyStatus {
     if (value == null && element != null) {
       return ResearchStudyStatus.elementOnly.withElement(element);
     }
-    return ResearchStudyStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ResearchStudyStatus._(value!, element: element);
   }
 
   /// String representation

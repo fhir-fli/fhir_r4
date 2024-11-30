@@ -65,9 +65,7 @@ class ClaimPayeeTypeCodes {
     if (value == null && element != null) {
       return ClaimPayeeTypeCodes.elementOnly.withElement(element);
     }
-    return ClaimPayeeTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ClaimPayeeTypeCodes._(value!, element: element);
   }
 
   /// String representation

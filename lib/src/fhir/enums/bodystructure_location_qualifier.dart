@@ -150,9 +150,7 @@ class BodystructureLocationQualifier {
     if (value == null && element != null) {
       return BodystructureLocationQualifier.elementOnly.withElement(element);
     }
-    return BodystructureLocationQualifier.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return BodystructureLocationQualifier._(value!, element: element);
   }
 
   /// String representation

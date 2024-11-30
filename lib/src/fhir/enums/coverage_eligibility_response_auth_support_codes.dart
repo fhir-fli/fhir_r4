@@ -117,9 +117,8 @@ class CoverageEligibilityResponseAuthSupportCodes {
       return CoverageEligibilityResponseAuthSupportCodes.elementOnly
           .withElement(element);
     }
-    return CoverageEligibilityResponseAuthSupportCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CoverageEligibilityResponseAuthSupportCodes._(value!,
+        element: element);
   }
 
   /// String representation

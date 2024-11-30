@@ -121,9 +121,7 @@ class ConceptMapEquivalence {
     if (value == null && element != null) {
       return ConceptMapEquivalence.elementOnly.withElement(element);
     }
-    return ConceptMapEquivalence.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConceptMapEquivalence._(value!, element: element);
   }
 
   /// String representation

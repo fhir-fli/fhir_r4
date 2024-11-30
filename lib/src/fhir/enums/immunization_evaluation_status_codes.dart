@@ -105,9 +105,7 @@ class ImmunizationEvaluationStatusCodes {
     if (value == null && element != null) {
       return ImmunizationEvaluationStatusCodes.elementOnly.withElement(element);
     }
-    return ImmunizationEvaluationStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationEvaluationStatusCodes._(value!, element: element);
   }
 
   /// String representation

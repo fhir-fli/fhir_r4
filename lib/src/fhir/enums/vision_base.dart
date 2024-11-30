@@ -73,9 +73,7 @@ class VisionBase {
     if (value == null && element != null) {
       return VisionBase.elementOnly.withElement(element);
     }
-    return VisionBase.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return VisionBase._(value!, element: element);
   }
 
   /// String representation

@@ -65,9 +65,7 @@ class Laterality {
     if (value == null && element != null) {
       return Laterality.elementOnly.withElement(element);
     }
-    return Laterality.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return Laterality._(value!, element: element);
   }
 
   /// String representation

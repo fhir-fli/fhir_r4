@@ -123,9 +123,7 @@ class ExampleRevenueCenterCodes {
     if (value == null && element != null) {
       return ExampleRevenueCenterCodes.elementOnly.withElement(element);
     }
-    return ExampleRevenueCenterCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExampleRevenueCenterCodes._(value!, element: element);
   }
 
   /// String representation

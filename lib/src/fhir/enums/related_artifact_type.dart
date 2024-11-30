@@ -105,9 +105,7 @@ class RelatedArtifactType {
     if (value == null && element != null) {
       return RelatedArtifactType.elementOnly.withElement(element);
     }
-    return RelatedArtifactType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return RelatedArtifactType._(value!, element: element);
   }
 
   /// String representation

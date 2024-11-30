@@ -75,9 +75,7 @@ class CompositeMeasureScoring {
     if (value == null && element != null) {
       return CompositeMeasureScoring.elementOnly.withElement(element);
     }
-    return CompositeMeasureScoring.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CompositeMeasureScoring._(value!, element: element);
   }
 
   /// String representation

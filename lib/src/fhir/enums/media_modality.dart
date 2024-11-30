@@ -105,9 +105,7 @@ class MediaModality {
     if (value == null && element != null) {
       return MediaModality.elementOnly.withElement(element);
     }
-    return MediaModality.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MediaModality._(value!, element: element);
   }
 
   /// String representation

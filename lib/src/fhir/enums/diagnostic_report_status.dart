@@ -123,9 +123,7 @@ class DiagnosticReportStatus {
     if (value == null && element != null) {
       return DiagnosticReportStatus.elementOnly.withElement(element);
     }
-    return DiagnosticReportStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DiagnosticReportStatus._(value!, element: element);
   }
 
   /// String representation

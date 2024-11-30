@@ -65,9 +65,7 @@ class SequenceType {
     if (value == null && element != null) {
       return SequenceType.elementOnly.withElement(element);
     }
-    return SequenceType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SequenceType._(value!, element: element);
   }
 
   /// String representation

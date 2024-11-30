@@ -73,9 +73,7 @@ class InteractionType {
     if (value == null && element != null) {
       return InteractionType.elementOnly.withElement(element);
     }
-    return InteractionType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return InteractionType._(value!, element: element);
   }
 
   /// String representation

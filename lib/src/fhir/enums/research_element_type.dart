@@ -65,9 +65,7 @@ class ResearchElementType {
     if (value == null && element != null) {
       return ResearchElementType.elementOnly.withElement(element);
     }
-    return ResearchElementType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ResearchElementType._(value!, element: element);
   }
 
   /// String representation

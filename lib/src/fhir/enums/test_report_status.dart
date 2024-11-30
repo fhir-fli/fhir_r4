@@ -81,9 +81,7 @@ class TestReportStatus {
     if (value == null && element != null) {
       return TestReportStatus.elementOnly.withElement(element);
     }
-    return TestReportStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TestReportStatus._(value!, element: element);
   }
 
   /// String representation

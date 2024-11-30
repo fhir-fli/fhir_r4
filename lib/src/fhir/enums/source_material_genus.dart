@@ -65,9 +65,7 @@ class SourceMaterialGenus {
     if (value == null && element != null) {
       return SourceMaterialGenus.elementOnly.withElement(element);
     }
-    return SourceMaterialGenus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SourceMaterialGenus._(value!, element: element);
   }
 
   /// String representation

@@ -57,9 +57,7 @@ class OperationParameterUse {
     if (value == null && element != null) {
       return OperationParameterUse.elementOnly.withElement(element);
     }
-    return OperationParameterUse.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return OperationParameterUse._(value!, element: element);
   }
 
   /// String representation

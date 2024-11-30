@@ -73,9 +73,7 @@ class EvidenceReportType {
     if (value == null && element != null) {
       return EvidenceReportType.elementOnly.withElement(element);
     }
-    return EvidenceReportType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EvidenceReportType._(value!, element: element);
   }
 
   /// String representation

@@ -54,9 +54,7 @@ class ContractResourceDefinitionSubtypeCodes {
       return ContractResourceDefinitionSubtypeCodes.elementOnly
           .withElement(element);
     }
-    return ContractResourceDefinitionSubtypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContractResourceDefinitionSubtypeCodes._(value!, element: element);
   }
 
   /// String representation

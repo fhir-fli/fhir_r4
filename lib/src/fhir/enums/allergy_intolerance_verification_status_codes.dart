@@ -81,9 +81,8 @@ class AllergyIntoleranceVerificationStatusCodes {
       return AllergyIntoleranceVerificationStatusCodes.elementOnly
           .withElement(element);
     }
-    return AllergyIntoleranceVerificationStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AllergyIntoleranceVerificationStatusCodes._(value!,
+        element: element);
   }
 
   /// String representation

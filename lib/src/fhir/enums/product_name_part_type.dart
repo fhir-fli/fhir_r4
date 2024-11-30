@@ -170,9 +170,7 @@ class ProductNamePartType {
     if (value == null && element != null) {
       return ProductNamePartType.elementOnly.withElement(element);
     }
-    return ProductNamePartType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ProductNamePartType._(value!, element: element);
   }
 
   /// String representation

@@ -25289,9 +25289,7 @@ class MediaTypeCode {
     if (value == null && element != null) {
       return MediaTypeCode.elementOnly.withElement(element);
     }
-    return MediaTypeCode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MediaTypeCode._(value!, element: element);
   }
 
   /// String representation

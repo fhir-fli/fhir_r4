@@ -106,9 +106,7 @@ class CommonUCUMCodesForDuration {
     if (value == null && element != null) {
       return CommonUCUMCodesForDuration.elementOnly.withElement(element);
     }
-    return CommonUCUMCodesForDuration.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CommonUCUMCodesForDuration._(value!, element: element);
   }
 
   /// String representation

@@ -89,9 +89,7 @@ class DefinitionUseCodes {
     if (value == null && element != null) {
       return DefinitionUseCodes.elementOnly.withElement(element);
     }
-    return DefinitionUseCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DefinitionUseCodes._(value!, element: element);
   }
 
   /// String representation

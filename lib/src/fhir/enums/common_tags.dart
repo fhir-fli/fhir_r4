@@ -49,9 +49,7 @@ class CommonTags {
     if (value == null && element != null) {
       return CommonTags.elementOnly.withElement(element);
     }
-    return CommonTags.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CommonTags._(value!, element: element);
   }
 
   /// String representation

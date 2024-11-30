@@ -113,9 +113,7 @@ class ActionCode {
     if (value == null && element != null) {
       return ActionCode.elementOnly.withElement(element);
     }
-    return ActionCode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ActionCode._(value!, element: element);
   }
 
   /// String representation

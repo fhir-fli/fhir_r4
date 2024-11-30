@@ -97,9 +97,7 @@ class SupplyRequestStatus {
     if (value == null && element != null) {
       return SupplyRequestStatus.elementOnly.withElement(element);
     }
-    return SupplyRequestStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SupplyRequestStatus._(value!, element: element);
   }
 
   /// String representation

@@ -82,9 +82,7 @@ class PropertyRepresentation {
     if (value == null && element != null) {
       return PropertyRepresentation.elementOnly.withElement(element);
     }
-    return PropertyRepresentation.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return PropertyRepresentation._(value!, element: element);
   }
 
   /// String representation

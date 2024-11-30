@@ -401,9 +401,7 @@ class DocumentClassValueSet {
     if (value == null && element != null) {
       return DocumentClassValueSet.elementOnly.withElement(element);
     }
-    return DocumentClassValueSet.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DocumentClassValueSet._(value!, element: element);
   }
 
   /// String representation

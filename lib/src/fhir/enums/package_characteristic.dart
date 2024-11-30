@@ -66,9 +66,7 @@ class PackageCharacteristic {
     if (value == null && element != null) {
       return PackageCharacteristic.elementOnly.withElement(element);
     }
-    return PackageCharacteristic.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return PackageCharacteristic._(value!, element: element);
   }
 
   /// String representation

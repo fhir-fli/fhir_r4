@@ -154,9 +154,7 @@ class EndpointConnectionType {
     if (value == null && element != null) {
       return EndpointConnectionType.elementOnly.withElement(element);
     }
-    return EndpointConnectionType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EndpointConnectionType._(value!, element: element);
   }
 
   /// String representation

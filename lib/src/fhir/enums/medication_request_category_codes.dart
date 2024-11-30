@@ -78,9 +78,7 @@ class MedicationRequestCategoryCodes {
     if (value == null && element != null) {
       return MedicationRequestCategoryCodes.elementOnly.withElement(element);
     }
-    return MedicationRequestCategoryCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicationRequestCategoryCodes._(value!, element: element);
   }
 
   /// String representation

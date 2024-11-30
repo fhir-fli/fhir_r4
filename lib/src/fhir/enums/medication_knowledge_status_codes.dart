@@ -69,9 +69,7 @@ class MedicationKnowledgeStatusCodes {
     if (value == null && element != null) {
       return MedicationKnowledgeStatusCodes.elementOnly.withElement(element);
     }
-    return MedicationKnowledgeStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicationKnowledgeStatusCodes._(value!, element: element);
   }
 
   /// String representation

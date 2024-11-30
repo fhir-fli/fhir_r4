@@ -122,9 +122,7 @@ class CoverageCopayTypeCodes {
     if (value == null && element != null) {
       return CoverageCopayTypeCodes.elementOnly.withElement(element);
     }
-    return CoverageCopayTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CoverageCopayTypeCodes._(value!, element: element);
   }
 
   /// String representation

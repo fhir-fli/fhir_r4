@@ -201,9 +201,7 @@ class USCLSCodes {
     if (value == null && element != null) {
       return USCLSCodes.elementOnly.withElement(element);
     }
-    return USCLSCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return USCLSCodes._(value!, element: element);
   }
 
   /// String representation

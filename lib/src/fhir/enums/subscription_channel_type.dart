@@ -82,9 +82,7 @@ class SubscriptionChannelType {
     if (value == null && element != null) {
       return SubscriptionChannelType.elementOnly.withElement(element);
     }
-    return SubscriptionChannelType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SubscriptionChannelType._(value!, element: element);
   }
 
   /// String representation

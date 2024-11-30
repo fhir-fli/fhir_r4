@@ -114,9 +114,7 @@ class ResearchStudyPrimaryPurposeType {
     if (value == null && element != null) {
       return ResearchStudyPrimaryPurposeType.elementOnly.withElement(element);
     }
-    return ResearchStudyPrimaryPurposeType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ResearchStudyPrimaryPurposeType._(value!, element: element);
   }
 
   /// String representation

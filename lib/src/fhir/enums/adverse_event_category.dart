@@ -158,9 +158,7 @@ class AdverseEventCategory {
     if (value == null && element != null) {
       return AdverseEventCategory.elementOnly.withElement(element);
     }
-    return AdverseEventCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AdverseEventCategory._(value!, element: element);
   }
 
   /// String representation

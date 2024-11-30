@@ -58,9 +58,7 @@ class MedicinalProductType {
     if (value == null && element != null) {
       return MedicinalProductType.elementOnly.withElement(element);
     }
-    return MedicinalProductType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicinalProductType._(value!, element: element);
   }
 
   /// String representation

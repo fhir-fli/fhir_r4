@@ -57,9 +57,7 @@ class CodeSearchSupport {
     if (value == null && element != null) {
       return CodeSearchSupport.elementOnly.withElement(element);
     }
-    return CodeSearchSupport.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CodeSearchSupport._(value!, element: element);
   }
 
   /// String representation

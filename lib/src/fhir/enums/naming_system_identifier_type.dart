@@ -74,9 +74,7 @@ class NamingSystemIdentifierType {
     if (value == null && element != null) {
       return NamingSystemIdentifierType.elementOnly.withElement(element);
     }
-    return NamingSystemIdentifierType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return NamingSystemIdentifierType._(value!, element: element);
   }
 
   /// String representation

@@ -57,9 +57,7 @@ class DesignationUse {
     if (value == null && element != null) {
       return DesignationUse.elementOnly.withElement(element);
     }
-    return DesignationUse.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DesignationUse._(value!, element: element);
   }
 
   /// String representation

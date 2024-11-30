@@ -73,9 +73,7 @@ class LibraryType {
     if (value == null && element != null) {
       return LibraryType.elementOnly.withElement(element);
     }
-    return LibraryType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return LibraryType._(value!, element: element);
   }
 
   /// String representation

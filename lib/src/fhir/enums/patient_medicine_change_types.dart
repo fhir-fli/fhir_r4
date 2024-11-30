@@ -96,9 +96,7 @@ class PatientMedicineChangeTypes {
     if (value == null && element != null) {
       return PatientMedicineChangeTypes.elementOnly.withElement(element);
     }
-    return PatientMedicineChangeTypes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return PatientMedicineChangeTypes._(value!, element: element);
   }
 
   /// String representation

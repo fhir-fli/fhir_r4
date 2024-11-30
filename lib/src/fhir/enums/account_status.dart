@@ -81,9 +81,7 @@ class AccountStatus {
     if (value == null && element != null) {
       return AccountStatus.elementOnly.withElement(element);
     }
-    return AccountStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AccountStatus._(value!, element: element);
   }
 
   /// String representation

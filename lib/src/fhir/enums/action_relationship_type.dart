@@ -116,9 +116,7 @@ class ActionRelationshipType {
     if (value == null && element != null) {
       return ActionRelationshipType.elementOnly.withElement(element);
     }
-    return ActionRelationshipType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ActionRelationshipType._(value!, element: element);
   }
 
   /// String representation

@@ -80,9 +80,7 @@ class MeasureReportStratifierValueExample {
       return MeasureReportStratifierValueExample.elementOnly
           .withElement(element);
     }
-    return MeasureReportStratifierValueExample.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MeasureReportStratifierValueExample._(value!, element: element);
   }
 
   /// String representation

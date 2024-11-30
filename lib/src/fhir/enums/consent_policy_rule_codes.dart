@@ -253,9 +253,7 @@ class ConsentPolicyRuleCodes {
     if (value == null && element != null) {
       return ConsentPolicyRuleCodes.elementOnly.withElement(element);
     }
-    return ConsentPolicyRuleCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConsentPolicyRuleCodes._(value!, element: element);
   }
 
   /// String representation

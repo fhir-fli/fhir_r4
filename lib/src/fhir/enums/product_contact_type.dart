@@ -81,9 +81,7 @@ class ProductContactType {
     if (value == null && element != null) {
       return ProductContactType.elementOnly.withElement(element);
     }
-    return ProductContactType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ProductContactType._(value!, element: element);
   }
 
   /// String representation

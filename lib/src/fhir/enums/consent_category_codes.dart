@@ -145,9 +145,7 @@ class ConsentCategoryCodes {
     if (value == null && element != null) {
       return ConsentCategoryCodes.elementOnly.withElement(element);
     }
-    return ConsentCategoryCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConsentCategoryCodes._(value!, element: element);
   }
 
   /// String representation

@@ -74,9 +74,7 @@ class SubscriptionStatusCodes {
     if (value == null && element != null) {
       return SubscriptionStatusCodes.elementOnly.withElement(element);
     }
-    return SubscriptionStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SubscriptionStatusCodes._(value!, element: element);
   }
 
   /// String representation

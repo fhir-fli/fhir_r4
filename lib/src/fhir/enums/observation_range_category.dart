@@ -66,9 +66,7 @@ class ObservationRangeCategory {
     if (value == null && element != null) {
       return ObservationRangeCategory.elementOnly.withElement(element);
     }
-    return ObservationRangeCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ObservationRangeCategory._(value!, element: element);
   }
 
   /// String representation

@@ -76,9 +76,7 @@ class ExplanationOfBenefitStatus {
     if (value == null && element != null) {
       return ExplanationOfBenefitStatus.elementOnly.withElement(element);
     }
-    return ExplanationOfBenefitStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExplanationOfBenefitStatus._(value!, element: element);
   }
 
   /// String representation

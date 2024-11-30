@@ -65,9 +65,7 @@ class FlagStatus {
     if (value == null && element != null) {
       return FlagStatus.elementOnly.withElement(element);
     }
-    return FlagStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FlagStatus._(value!, element: element);
   }
 
   /// String representation

@@ -73,9 +73,7 @@ class AuditEventOutcome {
     if (value == null && element != null) {
       return AuditEventOutcome.elementOnly.withElement(element);
     }
-    return AuditEventOutcome.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AuditEventOutcome._(value!, element: element);
   }
 
   /// String representation

@@ -233,9 +233,7 @@ class ChromosomeHuman {
     if (value == null && element != null) {
       return ChromosomeHuman.elementOnly.withElement(element);
     }
-    return ChromosomeHuman.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ChromosomeHuman._(value!, element: element);
   }
 
   /// String representation

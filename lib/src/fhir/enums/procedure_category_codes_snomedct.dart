@@ -105,9 +105,7 @@ class ProcedureCategoryCodesSNOMEDCT {
     if (value == null && element != null) {
       return ProcedureCategoryCodesSNOMEDCT.elementOnly.withElement(element);
     }
-    return ProcedureCategoryCodesSNOMEDCT.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ProcedureCategoryCodesSNOMEDCT._(value!, element: element);
   }
 
   /// String representation

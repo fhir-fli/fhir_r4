@@ -76,9 +76,7 @@ class EvidenceVariableHandling {
     if (value == null && element != null) {
       return EvidenceVariableHandling.elementOnly.withElement(element);
     }
-    return EvidenceVariableHandling.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EvidenceVariableHandling._(value!, element: element);
   }
 
   /// String representation

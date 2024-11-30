@@ -177,9 +177,7 @@ class QuestionnaireItemType {
     if (value == null && element != null) {
       return QuestionnaireItemType.elementOnly.withElement(element);
     }
-    return QuestionnaireItemType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return QuestionnaireItemType._(value!, element: element);
   }
 
   /// String representation

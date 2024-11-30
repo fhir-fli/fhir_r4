@@ -105,9 +105,7 @@ class LegalStatusOfSupply {
     if (value == null && element != null) {
       return LegalStatusOfSupply.elementOnly.withElement(element);
     }
-    return LegalStatusOfSupply.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return LegalStatusOfSupply._(value!, element: element);
   }
 
   /// String representation

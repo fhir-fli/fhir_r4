@@ -69,9 +69,7 @@ class ClinicalUseDefinitionCategory {
     if (value == null && element != null) {
       return ClinicalUseDefinitionCategory.elementOnly.withElement(element);
     }
-    return ClinicalUseDefinitionCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ClinicalUseDefinitionCategory._(value!, element: element);
   }
 
   /// String representation

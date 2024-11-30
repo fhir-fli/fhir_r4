@@ -274,9 +274,7 @@ class ReportSectionType {
     if (value == null && element != null) {
       return ReportSectionType.elementOnly.withElement(element);
     }
-    return ReportSectionType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ReportSectionType._(value!, element: element);
   }
 
   /// String representation

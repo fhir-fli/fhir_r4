@@ -67,9 +67,7 @@ class StructureMapGroupTypeMode {
     if (value == null && element != null) {
       return StructureMapGroupTypeMode.elementOnly.withElement(element);
     }
-    return StructureMapGroupTypeMode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return StructureMapGroupTypeMode._(value!, element: element);
   }
 
   /// String representation

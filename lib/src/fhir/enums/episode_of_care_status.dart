@@ -97,9 +97,7 @@ class EpisodeOfCareStatus {
     if (value == null && element != null) {
       return EpisodeOfCareStatus.elementOnly.withElement(element);
     }
-    return EpisodeOfCareStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EpisodeOfCareStatus._(value!, element: element);
   }
 
   /// String representation

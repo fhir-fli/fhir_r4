@@ -97,9 +97,7 @@ class StudyType {
     if (value == null && element != null) {
       return StudyType.elementOnly.withElement(element);
     }
-    return StudyType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return StudyType._(value!, element: element);
   }
 
   /// String representation

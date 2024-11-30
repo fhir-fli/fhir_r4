@@ -93,9 +93,7 @@ class InvoicePriceComponentType {
     if (value == null && element != null) {
       return InvoicePriceComponentType.elementOnly.withElement(element);
     }
-    return InvoicePriceComponentType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return InvoicePriceComponentType._(value!, element: element);
   }
 
   /// String representation

@@ -65,9 +65,7 @@ class VariableType {
     if (value == null && element != null) {
       return VariableType.elementOnly.withElement(element);
     }
-    return VariableType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return VariableType._(value!, element: element);
   }
 
   /// String representation

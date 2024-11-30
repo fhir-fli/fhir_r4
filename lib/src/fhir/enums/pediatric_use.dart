@@ -153,9 +153,7 @@ class PediatricUse {
     if (value == null && element != null) {
       return PediatricUse.elementOnly.withElement(element);
     }
-    return PediatricUse.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return PediatricUse._(value!, element: element);
   }
 
   /// String representation

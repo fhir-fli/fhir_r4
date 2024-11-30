@@ -65,9 +65,7 @@ class ListMode {
     if (value == null && element != null) {
       return ListMode.elementOnly.withElement(element);
     }
-    return ListMode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ListMode._(value!, element: element);
   }
 
   /// String representation

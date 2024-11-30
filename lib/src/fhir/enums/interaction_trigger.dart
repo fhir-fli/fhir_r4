@@ -177,9 +177,7 @@ class InteractionTrigger {
     if (value == null && element != null) {
       return InteractionTrigger.elementOnly.withElement(element);
     }
-    return InteractionTrigger.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return InteractionTrigger._(value!, element: element);
   }
 
   /// String representation

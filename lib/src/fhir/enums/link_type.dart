@@ -73,9 +73,7 @@ class LinkType {
     if (value == null && element != null) {
       return LinkType.elementOnly.withElement(element);
     }
-    return LinkType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return LinkType._(value!, element: element);
   }
 
   /// String representation

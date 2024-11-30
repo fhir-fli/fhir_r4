@@ -161,9 +161,7 @@ class DataAbsentReason {
     if (value == null && element != null) {
       return DataAbsentReason.elementOnly.withElement(element);
     }
-    return DataAbsentReason.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DataAbsentReason._(value!, element: element);
   }
 
   /// String representation

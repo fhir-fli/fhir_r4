@@ -105,9 +105,7 @@ class WeightMethod {
     if (value == null && element != null) {
       return WeightMethod.elementOnly.withElement(element);
     }
-    return WeightMethod.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return WeightMethod._(value!, element: element);
   }
 
   /// String representation

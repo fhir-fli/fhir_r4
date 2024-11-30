@@ -65,9 +65,7 @@ class WeightType {
     if (value == null && element != null) {
       return WeightType.elementOnly.withElement(element);
     }
-    return WeightType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return WeightType._(value!, element: element);
   }
 
   /// String representation

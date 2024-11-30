@@ -73,9 +73,7 @@ class RemittanceOutcome {
     if (value == null && element != null) {
       return RemittanceOutcome.elementOnly.withElement(element);
     }
-    return RemittanceOutcome.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return RemittanceOutcome._(value!, element: element);
   }
 
   /// String representation

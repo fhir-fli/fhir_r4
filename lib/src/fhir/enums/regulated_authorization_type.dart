@@ -68,9 +68,7 @@ class RegulatedAuthorizationType {
     if (value == null && element != null) {
       return RegulatedAuthorizationType.elementOnly.withElement(element);
     }
-    return RegulatedAuthorizationType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return RegulatedAuthorizationType._(value!, element: element);
   }
 
   /// String representation

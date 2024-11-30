@@ -77,9 +77,7 @@ class DeviceMetricCalibrationType {
     if (value == null && element != null) {
       return DeviceMetricCalibrationType.elementOnly.withElement(element);
     }
-    return DeviceMetricCalibrationType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DeviceMetricCalibrationType._(value!, element: element);
   }
 
   /// String representation

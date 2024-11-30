@@ -73,9 +73,7 @@ class CommunicationCategory {
     if (value == null && element != null) {
       return CommunicationCategory.elementOnly.withElement(element);
     }
-    return CommunicationCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CommunicationCategory._(value!, element: element);
   }
 
   /// String representation

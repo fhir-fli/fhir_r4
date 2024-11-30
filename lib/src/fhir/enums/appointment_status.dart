@@ -121,9 +121,7 @@ class AppointmentStatus {
     if (value == null && element != null) {
       return AppointmentStatus.elementOnly.withElement(element);
     }
-    return AppointmentStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AppointmentStatus._(value!, element: element);
   }
 
   /// String representation

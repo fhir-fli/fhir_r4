@@ -82,9 +82,7 @@ class ImmunizationOriginCodes {
     if (value == null && element != null) {
       return ImmunizationOriginCodes.elementOnly.withElement(element);
     }
-    return ImmunizationOriginCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationOriginCodes._(value!, element: element);
   }
 
   /// String representation

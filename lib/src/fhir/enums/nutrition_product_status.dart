@@ -67,9 +67,7 @@ class NutritionProductStatus {
     if (value == null && element != null) {
       return NutritionProductStatus.elementOnly.withElement(element);
     }
-    return NutritionProductStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return NutritionProductStatus._(value!, element: element);
   }
 
   /// String representation

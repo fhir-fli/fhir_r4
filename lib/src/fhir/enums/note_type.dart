@@ -65,9 +65,7 @@ class NoteType {
     if (value == null && element != null) {
       return NoteType.elementOnly.withElement(element);
     }
-    return NoteType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return NoteType._(value!, element: element);
   }
 
   /// String representation

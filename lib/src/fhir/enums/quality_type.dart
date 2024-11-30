@@ -65,9 +65,7 @@ class QualityType {
     if (value == null && element != null) {
       return QualityType.elementOnly.withElement(element);
     }
-    return QualityType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return QualityType._(value!, element: element);
   }
 
   /// String representation

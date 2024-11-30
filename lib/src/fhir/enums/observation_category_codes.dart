@@ -116,9 +116,7 @@ class ObservationCategoryCodes {
     if (value == null && element != null) {
       return ObservationCategoryCodes.elementOnly.withElement(element);
     }
-    return ObservationCategoryCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ObservationCategoryCodes._(value!, element: element);
   }
 
   /// String representation

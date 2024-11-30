@@ -58,9 +58,7 @@ class ExampleClaimSubTypeCodes {
     if (value == null && element != null) {
       return ExampleClaimSubTypeCodes.elementOnly.withElement(element);
     }
-    return ExampleClaimSubTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExampleClaimSubTypeCodes._(value!, element: element);
   }
 
   /// String representation

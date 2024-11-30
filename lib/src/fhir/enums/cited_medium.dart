@@ -90,9 +90,7 @@ class CitedMedium {
     if (value == null && element != null) {
       return CitedMedium.elementOnly.withElement(element);
     }
-    return CitedMedium.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CitedMedium._(value!, element: element);
   }
 
   /// String representation

@@ -97,9 +97,7 @@ class ContactPointSystem {
     if (value == null && element != null) {
       return ContactPointSystem.elementOnly.withElement(element);
     }
-    return ContactPointSystem.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContactPointSystem._(value!, element: element);
   }
 
   /// String representation

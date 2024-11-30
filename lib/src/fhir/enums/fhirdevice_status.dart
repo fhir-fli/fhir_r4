@@ -73,9 +73,7 @@ class FHIRDeviceStatus {
     if (value == null && element != null) {
       return FHIRDeviceStatus.elementOnly.withElement(element);
     }
-    return FHIRDeviceStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FHIRDeviceStatus._(value!, element: element);
   }
 
   /// String representation

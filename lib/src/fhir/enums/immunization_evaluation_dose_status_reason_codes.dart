@@ -90,9 +90,8 @@ class ImmunizationEvaluationDoseStatusReasonCodes {
       return ImmunizationEvaluationDoseStatusReasonCodes.elementOnly
           .withElement(element);
     }
-    return ImmunizationEvaluationDoseStatusReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationEvaluationDoseStatusReasonCodes._(value!,
+        element: element);
   }
 
   /// String representation

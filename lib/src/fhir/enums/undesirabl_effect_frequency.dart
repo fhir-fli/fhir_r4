@@ -66,9 +66,7 @@ class UndesirablEffectFrequency {
     if (value == null && element != null) {
       return UndesirablEffectFrequency.elementOnly.withElement(element);
     }
-    return UndesirablEffectFrequency.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return UndesirablEffectFrequency._(value!, element: element);
   }
 
   /// String representation

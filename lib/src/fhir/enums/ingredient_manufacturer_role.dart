@@ -68,9 +68,7 @@ class IngredientManufacturerRole {
     if (value == null && element != null) {
       return IngredientManufacturerRole.elementOnly.withElement(element);
     }
-    return IngredientManufacturerRole.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return IngredientManufacturerRole._(value!, element: element);
   }
 
   /// String representation

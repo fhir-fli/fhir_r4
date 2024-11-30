@@ -115,9 +115,7 @@ class CarePlanActivityStatus {
     if (value == null && element != null) {
       return CarePlanActivityStatus.elementOnly.withElement(element);
     }
-    return CarePlanActivityStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CarePlanActivityStatus._(value!, element: element);
   }
 
   /// String representation

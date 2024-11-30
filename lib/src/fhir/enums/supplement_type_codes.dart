@@ -401,9 +401,7 @@ class SupplementTypeCodes {
     if (value == null && element != null) {
       return SupplementTypeCodes.elementOnly.withElement(element);
     }
-    return SupplementTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SupplementTypeCodes._(value!, element: element);
   }
 
   /// String representation

@@ -59,9 +59,7 @@ class CatalogEntryRelationType {
     if (value == null && element != null) {
       return CatalogEntryRelationType.elementOnly.withElement(element);
     }
-    return CatalogEntryRelationType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CatalogEntryRelationType._(value!, element: element);
   }
 
   /// String representation

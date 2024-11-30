@@ -65,9 +65,7 @@ class FHIRSubstanceStatus {
     if (value == null && element != null) {
       return FHIRSubstanceStatus.elementOnly.withElement(element);
     }
-    return FHIRSubstanceStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FHIRSubstanceStatus._(value!, element: element);
   }
 
   /// String representation

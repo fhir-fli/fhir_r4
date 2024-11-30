@@ -65,9 +65,7 @@ class Stereochemistry {
     if (value == null && element != null) {
       return Stereochemistry.elementOnly.withElement(element);
     }
-    return Stereochemistry.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return Stereochemistry._(value!, element: element);
   }
 
   /// String representation

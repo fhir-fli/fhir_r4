@@ -73,9 +73,7 @@ class SupplyDeliveryStatus {
     if (value == null && element != null) {
       return SupplyDeliveryStatus.elementOnly.withElement(element);
     }
-    return SupplyDeliveryStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SupplyDeliveryStatus._(value!, element: element);
   }
 
   /// String representation

@@ -51,9 +51,7 @@ class ContractResourceAssetScopeCodes {
     if (value == null && element != null) {
       return ContractResourceAssetScopeCodes.elementOnly.withElement(element);
     }
-    return ContractResourceAssetScopeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContractResourceAssetScopeCodes._(value!, element: element);
   }
 
   /// String representation

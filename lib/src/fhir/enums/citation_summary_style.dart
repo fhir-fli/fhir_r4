@@ -153,9 +153,7 @@ class CitationSummaryStyle {
     if (value == null && element != null) {
       return CitationSummaryStyle.elementOnly.withElement(element);
     }
-    return CitationSummaryStyle.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CitationSummaryStyle._(value!, element: element);
   }
 
   /// String representation

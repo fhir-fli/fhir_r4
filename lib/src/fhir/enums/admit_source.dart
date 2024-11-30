@@ -121,9 +121,7 @@ class AdmitSource {
     if (value == null && element != null) {
       return AdmitSource.elementOnly.withElement(element);
     }
-    return AdmitSource.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AdmitSource._(value!, element: element);
   }
 
   /// String representation

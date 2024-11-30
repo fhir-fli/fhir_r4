@@ -58,9 +58,7 @@ class ActionPrecheckBehavior {
     if (value == null && element != null) {
       return ActionPrecheckBehavior.elementOnly.withElement(element);
     }
-    return ActionPrecheckBehavior.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ActionPrecheckBehavior._(value!, element: element);
   }
 
   /// String representation

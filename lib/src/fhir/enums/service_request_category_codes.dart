@@ -87,9 +87,7 @@ class ServiceRequestCategoryCodes {
     if (value == null && element != null) {
       return ServiceRequestCategoryCodes.elementOnly.withElement(element);
     }
-    return ServiceRequestCategoryCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ServiceRequestCategoryCodes._(value!, element: element);
   }
 
   /// String representation

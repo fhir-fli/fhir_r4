@@ -65,9 +65,7 @@ class SourceMaterialType {
     if (value == null && element != null) {
       return SourceMaterialType.elementOnly.withElement(element);
     }
-    return SourceMaterialType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SourceMaterialType._(value!, element: element);
   }
 
   /// String representation

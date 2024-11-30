@@ -78,9 +78,7 @@ class TestScriptProfileDestinationType {
     if (value == null && element != null) {
       return TestScriptProfileDestinationType.elementOnly.withElement(element);
     }
-    return TestScriptProfileDestinationType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TestScriptProfileDestinationType._(value!, element: element);
   }
 
   /// String representation

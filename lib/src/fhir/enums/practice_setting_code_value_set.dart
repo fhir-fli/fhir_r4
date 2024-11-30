@@ -1077,9 +1077,7 @@ class PracticeSettingCodeValueSet {
     if (value == null && element != null) {
       return PracticeSettingCodeValueSet.elementOnly.withElement(element);
     }
-    return PracticeSettingCodeValueSet.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return PracticeSettingCodeValueSet._(value!, element: element);
   }
 
   /// String representation

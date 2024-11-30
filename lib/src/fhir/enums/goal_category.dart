@@ -81,9 +81,7 @@ class GoalCategory {
     if (value == null && element != null) {
       return GoalCategory.elementOnly.withElement(element);
     }
-    return GoalCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return GoalCategory._(value!, element: element);
   }
 
   /// String representation

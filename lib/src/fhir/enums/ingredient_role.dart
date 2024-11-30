@@ -113,9 +113,7 @@ class IngredientRole {
     if (value == null && element != null) {
       return IngredientRole.elementOnly.withElement(element);
     }
-    return IngredientRole.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return IngredientRole._(value!, element: element);
   }
 
   /// String representation

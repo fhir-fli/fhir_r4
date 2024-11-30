@@ -72,9 +72,7 @@ class AllergyIntoleranceClinicalStatusCodes {
       return AllergyIntoleranceClinicalStatusCodes.elementOnly
           .withElement(element);
     }
-    return AllergyIntoleranceClinicalStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AllergyIntoleranceClinicalStatusCodes._(value!, element: element);
   }
 
   /// String representation

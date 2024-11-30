@@ -78,9 +78,7 @@ class MessageheaderResponseRequest {
     if (value == null && element != null) {
       return MessageheaderResponseRequest.elementOnly.withElement(element);
     }
-    return MessageheaderResponseRequest.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MessageheaderResponseRequest._(value!, element: element);
   }
 
   /// String representation

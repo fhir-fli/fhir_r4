@@ -121,9 +121,7 @@ class WarningType {
     if (value == null && element != null) {
       return WarningType.elementOnly.withElement(element);
     }
-    return WarningType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return WarningType._(value!, element: element);
   }
 
   /// String representation

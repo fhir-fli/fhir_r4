@@ -57,9 +57,7 @@ class StrandType {
     if (value == null && element != null) {
       return StrandType.elementOnly.withElement(element);
     }
-    return StrandType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return StrandType._(value!, element: element);
   }
 
   /// String representation

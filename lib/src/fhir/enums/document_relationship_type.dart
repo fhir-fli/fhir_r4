@@ -74,9 +74,7 @@ class DocumentRelationshipType {
     if (value == null && element != null) {
       return DocumentRelationshipType.elementOnly.withElement(element);
     }
-    return DocumentRelationshipType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DocumentRelationshipType._(value!, element: element);
   }
 
   /// String representation

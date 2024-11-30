@@ -98,9 +98,7 @@ class QuestionnaireItemOperator {
     if (value == null && element != null) {
       return QuestionnaireItemOperator.elementOnly.withElement(element);
     }
-    return QuestionnaireItemOperator.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return QuestionnaireItemOperator._(value!, element: element);
   }
 
   /// String representation

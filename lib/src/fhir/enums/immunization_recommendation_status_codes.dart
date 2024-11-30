@@ -90,9 +90,7 @@ class ImmunizationRecommendationStatusCodes {
       return ImmunizationRecommendationStatusCodes.elementOnly
           .withElement(element);
     }
-    return ImmunizationRecommendationStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationRecommendationStatusCodes._(value!, element: element);
   }
 
   /// String representation

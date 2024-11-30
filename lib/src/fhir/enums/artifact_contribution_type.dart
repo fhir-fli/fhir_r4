@@ -165,9 +165,7 @@ class ArtifactContributionType {
     if (value == null && element != null) {
       return ArtifactContributionType.elementOnly.withElement(element);
     }
-    return ArtifactContributionType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ArtifactContributionType._(value!, element: element);
   }
 
   /// String representation

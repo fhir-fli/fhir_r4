@@ -78,9 +78,7 @@ class ImmunizationStatusReasonCodes {
     if (value == null && element != null) {
       return ImmunizationStatusReasonCodes.elementOnly.withElement(element);
     }
-    return ImmunizationStatusReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationStatusReasonCodes._(value!, element: element);
   }
 
   /// String representation

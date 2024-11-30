@@ -57,9 +57,7 @@ class UnitTypeCodes {
     if (value == null && element != null) {
       return UnitTypeCodes.elementOnly.withElement(element);
     }
-    return UnitTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return UnitTypeCodes._(value!, element: element);
   }
 
   /// String representation

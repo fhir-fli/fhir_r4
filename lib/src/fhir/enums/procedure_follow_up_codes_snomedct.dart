@@ -132,9 +132,7 @@ class ProcedureFollowUpCodesSNOMEDCT {
     if (value == null && element != null) {
       return ProcedureFollowUpCodesSNOMEDCT.elementOnly.withElement(element);
     }
-    return ProcedureFollowUpCodesSNOMEDCT.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ProcedureFollowUpCodesSNOMEDCT._(value!, element: element);
   }
 
   /// String representation

@@ -73,9 +73,7 @@ class ConsentDataMeaning {
     if (value == null && element != null) {
       return ConsentDataMeaning.elementOnly.withElement(element);
     }
-    return ConsentDataMeaning.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConsentDataMeaning._(value!, element: element);
   }
 
   /// String representation

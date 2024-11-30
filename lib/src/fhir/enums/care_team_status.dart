@@ -81,9 +81,7 @@ class CareTeamStatus {
     if (value == null && element != null) {
       return CareTeamStatus.elementOnly.withElement(element);
     }
-    return CareTeamStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CareTeamStatus._(value!, element: element);
   }
 
   /// String representation

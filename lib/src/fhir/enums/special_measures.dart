@@ -49,9 +49,7 @@ class SpecialMeasures {
     if (value == null && element != null) {
       return SpecialMeasures.elementOnly.withElement(element);
     }
-    return SpecialMeasures.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SpecialMeasures._(value!, element: element);
   }
 
   /// String representation

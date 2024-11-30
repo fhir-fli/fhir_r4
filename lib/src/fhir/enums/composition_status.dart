@@ -73,9 +73,7 @@ class CompositionStatus {
     if (value == null && element != null) {
       return CompositionStatus.elementOnly.withElement(element);
     }
-    return CompositionStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CompositionStatus._(value!, element: element);
   }
 
   /// String representation

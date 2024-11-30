@@ -81,9 +81,7 @@ class SubstanceGrade {
     if (value == null && element != null) {
       return SubstanceGrade.elementOnly.withElement(element);
     }
-    return SubstanceGrade.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SubstanceGrade._(value!, element: element);
   }
 
   /// String representation

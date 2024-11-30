@@ -130,9 +130,7 @@ class ProvenanceActivityType {
     if (value == null && element != null) {
       return ProvenanceActivityType.elementOnly.withElement(element);
     }
-    return ProvenanceActivityType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ProvenanceActivityType._(value!, element: element);
   }
 
   /// String representation

@@ -65,9 +65,7 @@ class SubstanceNameType {
     if (value == null && element != null) {
       return SubstanceNameType.elementOnly.withElement(element);
     }
-    return SubstanceNameType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SubstanceNameType._(value!, element: element);
   }
 
   /// String representation

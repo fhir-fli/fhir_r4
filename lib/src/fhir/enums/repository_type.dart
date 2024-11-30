@@ -81,9 +81,7 @@ class RepositoryType {
     if (value == null && element != null) {
       return RepositoryType.elementOnly.withElement(element);
     }
-    return RepositoryType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return RepositoryType._(value!, element: element);
   }
 
   /// String representation

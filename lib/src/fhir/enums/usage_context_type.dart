@@ -113,9 +113,7 @@ class UsageContextType {
     if (value == null && element != null) {
       return UsageContextType.elementOnly.withElement(element);
     }
-    return UsageContextType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return UsageContextType._(value!, element: element);
   }
 
   /// String representation

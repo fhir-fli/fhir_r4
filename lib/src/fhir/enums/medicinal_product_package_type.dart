@@ -150,9 +150,7 @@ class MedicinalProductPackageType {
     if (value == null && element != null) {
       return MedicinalProductPackageType.elementOnly.withElement(element);
     }
-    return MedicinalProductPackageType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicinalProductPackageType._(value!, element: element);
   }
 
   /// String representation

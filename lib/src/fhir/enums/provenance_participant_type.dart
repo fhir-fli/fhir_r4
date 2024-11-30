@@ -126,9 +126,7 @@ class ProvenanceParticipantType {
     if (value == null && element != null) {
       return ProvenanceParticipantType.elementOnly.withElement(element);
     }
-    return ProvenanceParticipantType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ProvenanceParticipantType._(value!, element: element);
   }
 
   /// String representation

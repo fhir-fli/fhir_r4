@@ -72,9 +72,7 @@ class BiologicallyDerivedProductStorageScale {
       return BiologicallyDerivedProductStorageScale.elementOnly
           .withElement(element);
     }
-    return BiologicallyDerivedProductStorageScale.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return BiologicallyDerivedProductStorageScale._(value!, element: element);
   }
 
   /// String representation

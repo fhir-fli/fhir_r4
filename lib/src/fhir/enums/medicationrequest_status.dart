@@ -107,9 +107,7 @@ class MedicationrequestStatus {
     if (value == null && element != null) {
       return MedicationrequestStatus.elementOnly.withElement(element);
     }
-    return MedicationrequestStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicationrequestStatus._(value!, element: element);
   }
 
   /// String representation

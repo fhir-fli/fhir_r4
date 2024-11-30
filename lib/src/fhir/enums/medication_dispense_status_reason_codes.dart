@@ -233,9 +233,7 @@ class MedicationDispenseStatusReasonCodes {
       return MedicationDispenseStatusReasonCodes.elementOnly
           .withElement(element);
     }
-    return MedicationDispenseStatusReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicationDispenseStatusReasonCodes._(value!, element: element);
   }
 
   /// String representation

@@ -65,9 +65,7 @@ class AdverseEventSeverity {
     if (value == null && element != null) {
       return AdverseEventSeverity.elementOnly.withElement(element);
     }
-    return AdverseEventSeverity.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AdverseEventSeverity._(value!, element: element);
   }
 
   /// String representation

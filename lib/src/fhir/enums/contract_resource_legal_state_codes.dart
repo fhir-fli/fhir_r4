@@ -177,9 +177,7 @@ class ContractResourceLegalStateCodes {
     if (value == null && element != null) {
       return ContractResourceLegalStateCodes.elementOnly.withElement(element);
     }
-    return ContractResourceLegalStateCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContractResourceLegalStateCodes._(value!, element: element);
   }
 
   /// String representation

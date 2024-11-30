@@ -57,9 +57,7 @@ class ConditionStageType {
     if (value == null && element != null) {
       return ConditionStageType.elementOnly.withElement(element);
     }
-    return ConditionStageType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConditionStageType._(value!, element: element);
   }
 
   /// String representation

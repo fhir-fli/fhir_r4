@@ -242,9 +242,7 @@ class MedicationKnowledgePackageTypeCodes {
       return MedicationKnowledgePackageTypeCodes.elementOnly
           .withElement(element);
     }
-    return MedicationKnowledgePackageTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicationKnowledgePackageTypeCodes._(value!, element: element);
   }
 
   /// String representation

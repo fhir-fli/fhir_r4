@@ -161,9 +161,7 @@ class MedicationRequestStatusReasonCodes {
       return MedicationRequestStatusReasonCodes.elementOnly
           .withElement(element);
     }
-    return MedicationRequestStatusReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicationRequestStatusReasonCodes._(value!, element: element);
   }
 
   /// String representation

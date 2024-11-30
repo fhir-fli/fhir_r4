@@ -137,9 +137,7 @@ class TaskStatus {
     if (value == null && element != null) {
       return TaskStatus.elementOnly.withElement(element);
     }
-    return TaskStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TaskStatus._(value!, element: element);
   }
 
   /// String representation

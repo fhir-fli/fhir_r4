@@ -73,9 +73,7 @@ class ParticipationStatus {
     if (value == null && element != null) {
       return ParticipationStatus.elementOnly.withElement(element);
     }
-    return ParticipationStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ParticipationStatus._(value!, element: element);
   }
 
   /// String representation

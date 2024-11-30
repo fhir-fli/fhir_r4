@@ -678,9 +678,7 @@ class EndpointPayloadType {
     if (value == null && element != null) {
       return EndpointPayloadType.elementOnly.withElement(element);
     }
-    return EndpointPayloadType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EndpointPayloadType._(value!, element: element);
   }
 
   /// String representation

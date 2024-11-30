@@ -129,9 +129,7 @@ class AttributeEstimateType {
     if (value == null && element != null) {
       return AttributeEstimateType.elementOnly.withElement(element);
     }
-    return AttributeEstimateType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AttributeEstimateType._(value!, element: element);
   }
 
   /// String representation

@@ -680,9 +680,7 @@ class StatisticModelCode {
     if (value == null && element != null) {
       return StatisticModelCode.elementOnly.withElement(element);
     }
-    return StatisticModelCode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return StatisticModelCode._(value!, element: element);
   }
 
   /// String representation

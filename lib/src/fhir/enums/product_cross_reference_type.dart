@@ -95,9 +95,7 @@ class ProductCrossReferenceType {
     if (value == null && element != null) {
       return ProductCrossReferenceType.elementOnly.withElement(element);
     }
-    return ProductCrossReferenceType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ProductCrossReferenceType._(value!, element: element);
   }
 
   /// String representation

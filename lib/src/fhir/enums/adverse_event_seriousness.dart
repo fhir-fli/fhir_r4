@@ -112,9 +112,7 @@ class AdverseEventSeriousness {
     if (value == null && element != null) {
       return AdverseEventSeriousness.elementOnly.withElement(element);
     }
-    return AdverseEventSeriousness.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AdverseEventSeriousness._(value!, element: element);
   }
 
   /// String representation

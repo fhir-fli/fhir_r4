@@ -60,9 +60,7 @@ class ImmunizationReasonCodes {
     if (value == null && element != null) {
       return ImmunizationReasonCodes.elementOnly.withElement(element);
     }
-    return ImmunizationReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationReasonCodes._(value!, element: element);
   }
 
   /// String representation

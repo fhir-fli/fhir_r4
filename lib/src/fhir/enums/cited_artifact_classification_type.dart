@@ -141,9 +141,7 @@ class CitedArtifactClassificationType {
     if (value == null && element != null) {
       return CitedArtifactClassificationType.elementOnly.withElement(element);
     }
-    return CitedArtifactClassificationType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CitedArtifactClassificationType._(value!, element: element);
   }
 
   /// String representation

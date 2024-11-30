@@ -129,9 +129,7 @@ class AssertionOperatorType {
     if (value == null && element != null) {
       return AssertionOperatorType.elementOnly.withElement(element);
     }
-    return AssertionOperatorType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AssertionOperatorType._(value!, element: element);
   }
 
   /// String representation

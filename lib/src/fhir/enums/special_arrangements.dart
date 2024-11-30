@@ -81,9 +81,7 @@ class SpecialArrangements {
     if (value == null && element != null) {
       return SpecialArrangements.elementOnly.withElement(element);
     }
-    return SpecialArrangements.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SpecialArrangements._(value!, element: element);
   }
 
   /// String representation

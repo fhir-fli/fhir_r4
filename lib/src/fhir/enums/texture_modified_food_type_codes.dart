@@ -168,9 +168,7 @@ class TextureModifiedFoodTypeCodes {
     if (value == null && element != null) {
       return TextureModifiedFoodTypeCodes.elementOnly.withElement(element);
     }
-    return TextureModifiedFoodTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TextureModifiedFoodTypeCodes._(value!, element: element);
   }
 
   /// String representation

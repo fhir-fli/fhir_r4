@@ -57,9 +57,7 @@ class StructureMapInputMode {
     if (value == null && element != null) {
       return StructureMapInputMode.elementOnly.withElement(element);
     }
-    return StructureMapInputMode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return StructureMapInputMode._(value!, element: element);
   }
 
   /// String representation

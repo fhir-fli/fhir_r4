@@ -179,9 +179,7 @@ class TypeRestfulInteraction {
     if (value == null && element != null) {
       return TypeRestfulInteraction.elementOnly.withElement(element);
     }
-    return TypeRestfulInteraction.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TypeRestfulInteraction._(value!, element: element);
   }
 
   /// String representation

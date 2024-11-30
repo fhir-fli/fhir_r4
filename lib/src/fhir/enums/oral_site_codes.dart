@@ -369,9 +369,7 @@ class OralSiteCodes {
     if (value == null && element != null) {
       return OralSiteCodes.elementOnly.withElement(element);
     }
-    return OralSiteCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return OralSiteCodes._(value!, element: element);
   }
 
   /// String representation

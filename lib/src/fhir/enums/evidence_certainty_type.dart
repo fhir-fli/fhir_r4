@@ -115,9 +115,7 @@ class EvidenceCertaintyType {
     if (value == null && element != null) {
       return EvidenceCertaintyType.elementOnly.withElement(element);
     }
-    return EvidenceCertaintyType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EvidenceCertaintyType._(value!, element: element);
   }
 
   /// String representation

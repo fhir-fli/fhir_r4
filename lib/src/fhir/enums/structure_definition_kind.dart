@@ -75,9 +75,7 @@ class StructureDefinitionKind {
     if (value == null && element != null) {
       return StructureDefinitionKind.elementOnly.withElement(element);
     }
-    return StructureDefinitionKind.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return StructureDefinitionKind._(value!, element: element);
   }
 
   /// String representation

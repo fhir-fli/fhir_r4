@@ -57,9 +57,7 @@ class OperationKind {
     if (value == null && element != null) {
       return OperationKind.elementOnly.withElement(element);
     }
-    return OperationKind.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return OperationKind._(value!, element: element);
   }
 
   /// String representation

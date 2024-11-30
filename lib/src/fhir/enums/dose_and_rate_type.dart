@@ -57,9 +57,7 @@ class DoseAndRateType {
     if (value == null && element != null) {
       return DoseAndRateType.elementOnly.withElement(element);
     }
-    return DoseAndRateType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DoseAndRateType._(value!, element: element);
   }
 
   /// String representation

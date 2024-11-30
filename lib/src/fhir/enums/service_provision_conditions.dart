@@ -66,9 +66,7 @@ class ServiceProvisionConditions {
     if (value == null && element != null) {
       return ServiceProvisionConditions.elementOnly.withElement(element);
     }
-    return ServiceProvisionConditions.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ServiceProvisionConditions._(value!, element: element);
   }
 
   /// String representation

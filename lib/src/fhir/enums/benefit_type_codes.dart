@@ -137,9 +137,7 @@ class BenefitTypeCodes {
     if (value == null && element != null) {
       return BenefitTypeCodes.elementOnly.withElement(element);
     }
-    return BenefitTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return BenefitTypeCodes._(value!, element: element);
   }
 
   /// String representation

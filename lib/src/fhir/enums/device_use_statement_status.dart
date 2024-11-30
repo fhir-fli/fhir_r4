@@ -91,9 +91,7 @@ class DeviceUseStatementStatus {
     if (value == null && element != null) {
       return DeviceUseStatementStatus.elementOnly.withElement(element);
     }
-    return DeviceUseStatementStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DeviceUseStatementStatus._(value!, element: element);
   }
 
   /// String representation

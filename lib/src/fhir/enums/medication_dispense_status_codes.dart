@@ -123,9 +123,7 @@ class MedicationDispenseStatusCodes {
     if (value == null && element != null) {
       return MedicationDispenseStatusCodes.elementOnly.withElement(element);
     }
-    return MedicationDispenseStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicationDispenseStatusCodes._(value!, element: element);
   }
 
   /// String representation

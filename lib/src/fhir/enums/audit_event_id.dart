@@ -25513,9 +25513,7 @@ class AuditEventID {
     if (value == null && element != null) {
       return AuditEventID.elementOnly.withElement(element);
     }
-    return AuditEventID.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AuditEventID._(value!, element: element);
   }
 
   /// String representation

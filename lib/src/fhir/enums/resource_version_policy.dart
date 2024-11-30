@@ -65,9 +65,7 @@ class ResourceVersionPolicy {
     if (value == null && element != null) {
       return ResourceVersionPolicy.elementOnly.withElement(element);
     }
-    return ResourceVersionPolicy.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ResourceVersionPolicy._(value!, element: element);
   }
 
   /// String representation

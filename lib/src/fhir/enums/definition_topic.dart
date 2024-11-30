@@ -65,9 +65,7 @@ class DefinitionTopic {
     if (value == null && element != null) {
       return DefinitionTopic.elementOnly.withElement(element);
     }
-    return DefinitionTopic.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DefinitionTopic._(value!, element: element);
   }
 
   /// String representation

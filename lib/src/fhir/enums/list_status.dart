@@ -65,9 +65,7 @@ class ListStatus {
     if (value == null && element != null) {
       return ListStatus.elementOnly.withElement(element);
     }
-    return ListStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ListStatus._(value!, element: element);
   }
 
   /// String representation

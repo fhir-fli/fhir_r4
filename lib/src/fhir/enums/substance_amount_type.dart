@@ -73,9 +73,7 @@ class SubstanceAmountType {
     if (value == null && element != null) {
       return SubstanceAmountType.elementOnly.withElement(element);
     }
-    return SubstanceAmountType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SubstanceAmountType._(value!, element: element);
   }
 
   /// String representation

@@ -82,9 +82,7 @@ class ReferenceHandlingPolicy {
     if (value == null && element != null) {
       return ReferenceHandlingPolicy.elementOnly.withElement(element);
     }
-    return ReferenceHandlingPolicy.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ReferenceHandlingPolicy._(value!, element: element);
   }
 
   /// String representation

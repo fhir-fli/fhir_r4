@@ -87,9 +87,7 @@ class ServiceRequestOrderDetailsCodes {
     if (value == null && element != null) {
       return ServiceRequestOrderDetailsCodes.elementOnly.withElement(element);
     }
-    return ServiceRequestOrderDetailsCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ServiceRequestOrderDetailsCodes._(value!, element: element);
   }
 
   /// String representation

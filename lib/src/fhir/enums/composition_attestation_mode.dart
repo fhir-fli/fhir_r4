@@ -77,9 +77,7 @@ class CompositionAttestationMode {
     if (value == null && element != null) {
       return CompositionAttestationMode.elementOnly.withElement(element);
     }
-    return CompositionAttestationMode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CompositionAttestationMode._(value!, element: element);
   }
 
   /// String representation

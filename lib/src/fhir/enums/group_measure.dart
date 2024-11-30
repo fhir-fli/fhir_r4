@@ -89,9 +89,7 @@ class GroupMeasure {
     if (value == null && element != null) {
       return GroupMeasure.elementOnly.withElement(element);
     }
-    return GroupMeasure.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return GroupMeasure._(value!, element: element);
   }
 
   /// String representation

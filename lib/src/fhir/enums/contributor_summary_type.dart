@@ -104,9 +104,7 @@ class ContributorSummaryType {
     if (value == null && element != null) {
       return ContributorSummaryType.elementOnly.withElement(element);
     }
-    return ContributorSummaryType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContributorSummaryType._(value!, element: element);
   }
 
   /// String representation

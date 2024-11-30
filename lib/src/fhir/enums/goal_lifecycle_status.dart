@@ -113,9 +113,7 @@ class GoalLifecycleStatus {
     if (value == null && element != null) {
       return GoalLifecycleStatus.elementOnly.withElement(element);
     }
-    return GoalLifecycleStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return GoalLifecycleStatus._(value!, element: element);
   }
 
   /// String representation

@@ -60,9 +60,7 @@ class BiologicallyDerivedProductStatus {
     if (value == null && element != null) {
       return BiologicallyDerivedProductStatus.elementOnly.withElement(element);
     }
-    return BiologicallyDerivedProductStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return BiologicallyDerivedProductStatus._(value!, element: element);
   }
 
   /// String representation

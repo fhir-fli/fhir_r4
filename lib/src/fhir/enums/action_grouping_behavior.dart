@@ -66,9 +66,7 @@ class ActionGroupingBehavior {
     if (value == null && element != null) {
       return ActionGroupingBehavior.elementOnly.withElement(element);
     }
-    return ActionGroupingBehavior.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ActionGroupingBehavior._(value!, element: element);
   }
 
   /// String representation

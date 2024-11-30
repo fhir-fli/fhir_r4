@@ -57,9 +57,7 @@ class MeasureDataUsage {
     if (value == null && element != null) {
       return MeasureDataUsage.elementOnly.withElement(element);
     }
-    return MeasureDataUsage.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MeasureDataUsage._(value!, element: element);
   }
 
   /// String representation

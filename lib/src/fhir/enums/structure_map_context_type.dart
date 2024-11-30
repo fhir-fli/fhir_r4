@@ -58,9 +58,7 @@ class StructureMapContextType {
     if (value == null && element != null) {
       return StructureMapContextType.elementOnly.withElement(element);
     }
-    return StructureMapContextType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return StructureMapContextType._(value!, element: element);
   }
 
   /// String representation

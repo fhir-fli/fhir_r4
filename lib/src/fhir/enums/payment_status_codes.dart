@@ -57,9 +57,7 @@ class PaymentStatusCodes {
     if (value == null && element != null) {
       return PaymentStatusCodes.elementOnly.withElement(element);
     }
-    return PaymentStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return PaymentStatusCodes._(value!, element: element);
   }
 
   /// String representation

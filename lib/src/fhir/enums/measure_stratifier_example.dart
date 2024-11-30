@@ -66,9 +66,7 @@ class MeasureStratifierExample {
     if (value == null && element != null) {
       return MeasureStratifierExample.elementOnly.withElement(element);
     }
-    return MeasureStratifierExample.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MeasureStratifierExample._(value!, element: element);
   }
 
   /// String representation

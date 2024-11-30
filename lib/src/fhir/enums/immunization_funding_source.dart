@@ -58,9 +58,7 @@ class ImmunizationFundingSource {
     if (value == null && element != null) {
       return ImmunizationFundingSource.elementOnly.withElement(element);
     }
-    return ImmunizationFundingSource.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationFundingSource._(value!, element: element);
   }
 
   /// String representation

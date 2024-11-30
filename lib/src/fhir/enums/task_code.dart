@@ -97,9 +97,7 @@ class TaskCode {
     if (value == null && element != null) {
       return TaskCode.elementOnly.withElement(element);
     }
-    return TaskCode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TaskCode._(value!, element: element);
   }
 
   /// String representation

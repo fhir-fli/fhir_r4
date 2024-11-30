@@ -65,9 +65,7 @@ class ReferenceVersionRules {
     if (value == null && element != null) {
       return ReferenceVersionRules.elementOnly.withElement(element);
     }
-    return ReferenceVersionRules.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ReferenceVersionRules._(value!, element: element);
   }
 
   /// String representation

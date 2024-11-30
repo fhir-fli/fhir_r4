@@ -59,9 +59,7 @@ class CharacteristicCombination {
     if (value == null && element != null) {
       return CharacteristicCombination.elementOnly.withElement(element);
     }
-    return CharacteristicCombination.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CharacteristicCombination._(value!, element: element);
   }
 
   /// String representation

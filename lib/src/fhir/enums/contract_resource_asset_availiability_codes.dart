@@ -54,9 +54,7 @@ class ContractResourceAssetAvailiabilityCodes {
       return ContractResourceAssetAvailiabilityCodes.elementOnly
           .withElement(element);
     }
-    return ContractResourceAssetAvailiabilityCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContractResourceAssetAvailiabilityCodes._(value!, element: element);
   }
 
   /// String representation

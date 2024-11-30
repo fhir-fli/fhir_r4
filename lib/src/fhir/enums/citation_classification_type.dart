@@ -69,9 +69,7 @@ class CitationClassificationType {
     if (value == null && element != null) {
       return CitationClassificationType.elementOnly.withElement(element);
     }
-    return CitationClassificationType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CitationClassificationType._(value!, element: element);
   }
 
   /// String representation

@@ -65,9 +65,7 @@ class LinkageType {
     if (value == null && element != null) {
       return LinkageType.elementOnly.withElement(element);
     }
-    return LinkageType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return LinkageType._(value!, element: element);
   }
 
   /// String representation

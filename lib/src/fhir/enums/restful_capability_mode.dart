@@ -57,9 +57,7 @@ class RestfulCapabilityMode {
     if (value == null && element != null) {
       return RestfulCapabilityMode.elementOnly.withElement(element);
     }
-    return RestfulCapabilityMode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return RestfulCapabilityMode._(value!, element: element);
   }
 
   /// String representation

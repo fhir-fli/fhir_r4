@@ -58,9 +58,7 @@ class AdjudicationReasonCodes {
     if (value == null && element != null) {
       return AdjudicationReasonCodes.elementOnly.withElement(element);
     }
-    return AdjudicationReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AdjudicationReasonCodes._(value!, element: element);
   }
 
   /// String representation

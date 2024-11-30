@@ -105,9 +105,7 @@ class ListOrderCodes {
     if (value == null && element != null) {
       return ListOrderCodes.elementOnly.withElement(element);
     }
-    return ListOrderCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ListOrderCodes._(value!, element: element);
   }
 
   /// String representation

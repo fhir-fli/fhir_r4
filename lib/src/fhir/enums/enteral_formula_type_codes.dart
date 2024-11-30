@@ -366,9 +366,7 @@ class EnteralFormulaTypeCodes {
     if (value == null && element != null) {
       return EnteralFormulaTypeCodes.elementOnly.withElement(element);
     }
-    return EnteralFormulaTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EnteralFormulaTypeCodes._(value!, element: element);
   }
 
   /// String representation

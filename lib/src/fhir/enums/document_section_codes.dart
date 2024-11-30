@@ -481,9 +481,7 @@ class DocumentSectionCodes {
     if (value == null && element != null) {
       return DocumentSectionCodes.elementOnly.withElement(element);
     }
-    return DocumentSectionCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DocumentSectionCodes._(value!, element: element);
   }
 
   /// String representation

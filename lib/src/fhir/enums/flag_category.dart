@@ -121,9 +121,7 @@ class FlagCategory {
     if (value == null && element != null) {
       return FlagCategory.elementOnly.withElement(element);
     }
-    return FlagCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FlagCategory._(value!, element: element);
   }
 
   /// String representation

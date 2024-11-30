@@ -67,9 +67,7 @@ class DocumentReferenceStatus {
     if (value == null && element != null) {
       return DocumentReferenceStatus.elementOnly.withElement(element);
     }
-    return DocumentReferenceStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DocumentReferenceStatus._(value!, element: element);
   }
 
   /// String representation

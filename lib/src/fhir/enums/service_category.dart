@@ -345,9 +345,7 @@ class ServiceCategory {
     if (value == null && element != null) {
       return ServiceCategory.elementOnly.withElement(element);
     }
-    return ServiceCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ServiceCategory._(value!, element: element);
   }
 
   /// String representation

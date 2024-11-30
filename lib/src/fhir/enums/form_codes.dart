@@ -57,9 +57,7 @@ class FormCodes {
     if (value == null && element != null) {
       return FormCodes.elementOnly.withElement(element);
     }
-    return FormCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FormCodes._(value!, element: element);
   }
 
   /// String representation

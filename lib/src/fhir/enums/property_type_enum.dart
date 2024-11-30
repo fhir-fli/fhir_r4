@@ -97,9 +97,7 @@ class PropertyTypeEnum {
     if (value == null && element != null) {
       return PropertyTypeEnum.elementOnly.withElement(element);
     }
-    return PropertyTypeEnum.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return PropertyTypeEnum._(value!, element: element);
   }
 
   /// String representation

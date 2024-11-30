@@ -51,9 +51,7 @@ class ContractResourceDecisionModeCodes {
     if (value == null && element != null) {
       return ContractResourceDecisionModeCodes.elementOnly.withElement(element);
     }
-    return ContractResourceDecisionModeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContractResourceDecisionModeCodes._(value!, element: element);
   }
 
   /// String representation

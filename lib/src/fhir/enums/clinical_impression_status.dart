@@ -109,9 +109,7 @@ class ClinicalImpressionStatus {
     if (value == null && element != null) {
       return ClinicalImpressionStatus.elementOnly.withElement(element);
     }
-    return ClinicalImpressionStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ClinicalImpressionStatus._(value!, element: element);
   }
 
   /// String representation

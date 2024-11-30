@@ -81,9 +81,7 @@ class InvoiceStatus {
     if (value == null && element != null) {
       return InvoiceStatus.elementOnly.withElement(element);
     }
-    return InvoiceStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return InvoiceStatus._(value!, element: element);
   }
 
   /// String representation

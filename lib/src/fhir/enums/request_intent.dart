@@ -113,9 +113,7 @@ class RequestIntent {
     if (value == null && element != null) {
       return RequestIntent.elementOnly.withElement(element);
     }
-    return RequestIntent.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return RequestIntent._(value!, element: element);
   }
 
   /// String representation

@@ -96,9 +96,7 @@ class AdverseEventCausalityAssessment {
     if (value == null && element != null) {
       return AdverseEventCausalityAssessment.elementOnly.withElement(element);
     }
-    return AdverseEventCausalityAssessment.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AdverseEventCausalityAssessment._(value!, element: element);
   }
 
   /// String representation

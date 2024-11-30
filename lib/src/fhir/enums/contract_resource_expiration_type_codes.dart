@@ -53,9 +53,7 @@ class ContractResourceExpirationTypeCodes {
       return ContractResourceExpirationTypeCodes.elementOnly
           .withElement(element);
     }
-    return ContractResourceExpirationTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContractResourceExpirationTypeCodes._(value!, element: element);
   }
 
   /// String representation

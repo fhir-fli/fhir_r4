@@ -73,9 +73,7 @@ class StructureMapModelMode {
     if (value == null && element != null) {
       return StructureMapModelMode.elementOnly.withElement(element);
     }
-    return StructureMapModelMode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return StructureMapModelMode._(value!, element: element);
   }
 
   /// String representation

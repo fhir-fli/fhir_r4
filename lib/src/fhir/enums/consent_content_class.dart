@@ -1223,9 +1223,7 @@ class ConsentContentClass {
     if (value == null && element != null) {
       return ConsentContentClass.elementOnly.withElement(element);
     }
-    return ConsentContentClass.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConsentContentClass._(value!, element: element);
   }
 
   /// String representation

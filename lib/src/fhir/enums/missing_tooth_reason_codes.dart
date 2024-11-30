@@ -74,9 +74,7 @@ class MissingToothReasonCodes {
     if (value == null && element != null) {
       return MissingToothReasonCodes.elementOnly.withElement(element);
     }
-    return MissingToothReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MissingToothReasonCodes._(value!, element: element);
   }
 
   /// String representation

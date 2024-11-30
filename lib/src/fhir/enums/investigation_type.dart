@@ -57,9 +57,7 @@ class InvestigationType {
     if (value == null && element != null) {
       return InvestigationType.elementOnly.withElement(element);
     }
-    return InvestigationType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return InvestigationType._(value!, element: element);
   }
 
   /// String representation

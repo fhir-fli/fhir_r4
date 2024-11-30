@@ -73,9 +73,7 @@ class SpecimenStatus {
     if (value == null && element != null) {
       return SpecimenStatus.elementOnly.withElement(element);
     }
-    return SpecimenStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SpecimenStatus._(value!, element: element);
   }
 
   /// String representation

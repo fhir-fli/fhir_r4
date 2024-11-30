@@ -87,9 +87,7 @@ class QuestionnaireResponseStatus {
     if (value == null && element != null) {
       return QuestionnaireResponseStatus.elementOnly.withElement(element);
     }
-    return QuestionnaireResponseStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return QuestionnaireResponseStatus._(value!, element: element);
   }
 
   /// String representation

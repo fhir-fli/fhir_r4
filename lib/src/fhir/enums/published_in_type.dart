@@ -73,9 +73,7 @@ class PublishedInType {
     if (value == null && element != null) {
       return PublishedInType.elementOnly.withElement(element);
     }
-    return PublishedInType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return PublishedInType._(value!, element: element);
   }
 
   /// String representation

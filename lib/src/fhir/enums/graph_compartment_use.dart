@@ -57,9 +57,7 @@ class GraphCompartmentUse {
     if (value == null && element != null) {
       return GraphCompartmentUse.elementOnly.withElement(element);
     }
-    return GraphCompartmentUse.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return GraphCompartmentUse._(value!, element: element);
   }
 
   /// String representation

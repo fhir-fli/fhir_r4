@@ -63,9 +63,7 @@ class ExampleCoverageFinancialExceptionCodes {
       return ExampleCoverageFinancialExceptionCodes.elementOnly
           .withElement(element);
     }
-    return ExampleCoverageFinancialExceptionCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExampleCoverageFinancialExceptionCodes._(value!, element: element);
   }
 
   /// String representation

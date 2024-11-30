@@ -65,9 +65,7 @@ class ContainerMaterials {
     if (value == null && element != null) {
       return ContainerMaterials.elementOnly.withElement(element);
     }
-    return ContainerMaterials.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContainerMaterials._(value!, element: element);
   }
 
   /// String representation

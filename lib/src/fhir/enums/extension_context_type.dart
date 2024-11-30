@@ -65,9 +65,7 @@ class ExtensionContextType {
     if (value == null && element != null) {
       return ExtensionContextType.elementOnly.withElement(element);
     }
-    return ExtensionContextType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExtensionContextType._(value!, element: element);
   }
 
   /// String representation

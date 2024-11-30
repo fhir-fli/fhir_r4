@@ -73,9 +73,7 @@ class ActionParticipantType {
     if (value == null && element != null) {
       return ActionParticipantType.elementOnly.withElement(element);
     }
-    return ActionParticipantType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ActionParticipantType._(value!, element: element);
   }
 
   /// String representation

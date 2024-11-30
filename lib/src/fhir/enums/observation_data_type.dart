@@ -129,9 +129,7 @@ class ObservationDataType {
     if (value == null && element != null) {
       return ObservationDataType.elementOnly.withElement(element);
     }
-    return ObservationDataType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ObservationDataType._(value!, element: element);
   }
 
   /// String representation

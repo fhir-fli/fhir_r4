@@ -89,9 +89,7 @@ class BiologicallyDerivedProductCategory {
       return BiologicallyDerivedProductCategory.elementOnly
           .withElement(element);
     }
-    return BiologicallyDerivedProductCategory.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return BiologicallyDerivedProductCategory._(value!, element: element);
   }
 
   /// String representation

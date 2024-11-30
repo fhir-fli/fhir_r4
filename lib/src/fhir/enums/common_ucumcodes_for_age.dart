@@ -89,9 +89,7 @@ class CommonUCUMCodesForAge {
     if (value == null && element != null) {
       return CommonUCUMCodesForAge.elementOnly.withElement(element);
     }
-    return CommonUCUMCodesForAge.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CommonUCUMCodesForAge._(value!, element: element);
   }
 
   /// String representation

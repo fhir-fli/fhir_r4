@@ -69,9 +69,7 @@ class ConceptMapGroupUnmappedMode {
     if (value == null && element != null) {
       return ConceptMapGroupUnmappedMode.elementOnly.withElement(element);
     }
-    return ConceptMapGroupUnmappedMode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConceptMapGroupUnmappedMode._(value!, element: element);
   }
 
   /// String representation

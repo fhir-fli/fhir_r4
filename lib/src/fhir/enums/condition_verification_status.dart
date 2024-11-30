@@ -96,9 +96,7 @@ class ConditionVerificationStatus {
     if (value == null && element != null) {
       return ConditionVerificationStatus.elementOnly.withElement(element);
     }
-    return ConditionVerificationStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ConditionVerificationStatus._(value!, element: element);
   }
 
   /// String representation

@@ -73,9 +73,7 @@ class NarrativeStatus {
     if (value == null && element != null) {
       return NarrativeStatus.elementOnly.withElement(element);
     }
-    return NarrativeStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return NarrativeStatus._(value!, element: element);
   }
 
   /// String representation

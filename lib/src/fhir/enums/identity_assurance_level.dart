@@ -74,9 +74,7 @@ class IdentityAssuranceLevel {
     if (value == null && element != null) {
       return IdentityAssuranceLevel.elementOnly.withElement(element);
     }
-    return IdentityAssuranceLevel.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return IdentityAssuranceLevel._(value!, element: element);
   }
 
   /// String representation

@@ -66,9 +66,7 @@ class ReasonMedicationGivenCodes {
     if (value == null && element != null) {
       return ReasonMedicationGivenCodes.elementOnly.withElement(element);
     }
-    return ReasonMedicationGivenCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ReasonMedicationGivenCodes._(value!, element: element);
   }
 
   /// String representation

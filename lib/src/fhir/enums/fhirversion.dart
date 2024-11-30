@@ -257,9 +257,7 @@ class FHIRVersion {
     if (value == null && element != null) {
       return FHIRVersion.elementOnly.withElement(element);
     }
-    return FHIRVersion.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FHIRVersion._(value!, element: element);
   }
 
   /// String representation

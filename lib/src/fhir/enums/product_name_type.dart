@@ -81,9 +81,7 @@ class ProductNameType {
     if (value == null && element != null) {
       return ProductNameType.elementOnly.withElement(element);
     }
-    return ProductNameType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ProductNameType._(value!, element: element);
   }
 
   /// String representation

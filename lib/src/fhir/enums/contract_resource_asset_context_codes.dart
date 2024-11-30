@@ -51,9 +51,7 @@ class ContractResourceAssetContextCodes {
     if (value == null && element != null) {
       return ContractResourceAssetContextCodes.elementOnly.withElement(element);
     }
-    return ContractResourceAssetContextCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContractResourceAssetContextCodes._(value!, element: element);
   }
 
   /// String representation

@@ -89,9 +89,7 @@ class UDIEntryType {
     if (value == null && element != null) {
       return UDIEntryType.elementOnly.withElement(element);
     }
-    return UDIEntryType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return UDIEntryType._(value!, element: element);
   }
 
   /// String representation

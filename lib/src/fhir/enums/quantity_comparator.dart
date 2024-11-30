@@ -73,9 +73,7 @@ class QuantityComparator {
     if (value == null && element != null) {
       return QuantityComparator.elementOnly.withElement(element);
     }
-    return QuantityComparator.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return QuantityComparator._(value!, element: element);
   }
 
   /// String representation

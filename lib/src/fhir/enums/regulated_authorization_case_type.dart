@@ -240,9 +240,7 @@ class RegulatedAuthorizationCaseType {
     if (value == null && element != null) {
       return RegulatedAuthorizationCaseType.elementOnly.withElement(element);
     }
-    return RegulatedAuthorizationCaseType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return RegulatedAuthorizationCaseType._(value!, element: element);
   }
 
   /// String representation

@@ -78,9 +78,7 @@ class EligibilityResponsePurpose {
     if (value == null && element != null) {
       return EligibilityResponsePurpose.elementOnly.withElement(element);
     }
-    return EligibilityResponsePurpose.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EligibilityResponsePurpose._(value!, element: element);
   }
 
   /// String representation

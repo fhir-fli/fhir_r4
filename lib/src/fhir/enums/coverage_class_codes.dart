@@ -129,9 +129,7 @@ class CoverageClassCodes {
     if (value == null && element != null) {
       return CoverageClassCodes.elementOnly.withElement(element);
     }
-    return CoverageClassCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CoverageClassCodes._(value!, element: element);
   }
 
   /// String representation

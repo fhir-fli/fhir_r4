@@ -73,9 +73,7 @@ class PlanDefinitionType {
     if (value == null && element != null) {
       return PlanDefinitionType.elementOnly.withElement(element);
     }
-    return PlanDefinitionType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return PlanDefinitionType._(value!, element: element);
   }
 
   /// String representation

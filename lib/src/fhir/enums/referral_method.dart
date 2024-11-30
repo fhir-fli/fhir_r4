@@ -81,9 +81,7 @@ class ReferralMethod {
     if (value == null && element != null) {
       return ReferralMethod.elementOnly.withElement(element);
     }
-    return ReferralMethod.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ReferralMethod._(value!, element: element);
   }
 
   /// String representation

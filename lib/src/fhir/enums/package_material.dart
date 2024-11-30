@@ -385,9 +385,7 @@ class PackageMaterial {
     if (value == null && element != null) {
       return PackageMaterial.elementOnly.withElement(element);
     }
-    return PackageMaterial.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return PackageMaterial._(value!, element: element);
   }
 
   /// String representation

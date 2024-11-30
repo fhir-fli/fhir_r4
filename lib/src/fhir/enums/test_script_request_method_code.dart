@@ -101,9 +101,7 @@ class TestScriptRequestMethodCode {
     if (value == null && element != null) {
       return TestScriptRequestMethodCode.elementOnly.withElement(element);
     }
-    return TestScriptRequestMethodCode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TestScriptRequestMethodCode._(value!, element: element);
   }
 
   /// String representation

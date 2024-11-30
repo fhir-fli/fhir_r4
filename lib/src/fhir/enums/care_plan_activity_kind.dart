@@ -1216,9 +1216,7 @@ class CarePlanActivityKind {
     if (value == null && element != null) {
       return CarePlanActivityKind.elementOnly.withElement(element);
     }
-    return CarePlanActivityKind.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CarePlanActivityKind._(value!, element: element);
   }
 
   /// String representation

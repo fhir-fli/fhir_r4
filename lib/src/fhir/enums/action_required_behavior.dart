@@ -67,9 +67,7 @@ class ActionRequiredBehavior {
     if (value == null && element != null) {
       return ActionRequiredBehavior.elementOnly.withElement(element);
     }
-    return ActionRequiredBehavior.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ActionRequiredBehavior._(value!, element: element);
   }
 
   /// String representation

@@ -107,9 +107,7 @@ class ReportRelationshipType {
     if (value == null && element != null) {
       return ReportRelationshipType.elementOnly.withElement(element);
     }
-    return ReportRelationshipType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ReportRelationshipType._(value!, element: element);
   }
 
   /// String representation

@@ -255,9 +255,7 @@ class CitationArtifactClassifier {
     if (value == null && element != null) {
       return CitationArtifactClassifier.elementOnly.withElement(element);
     }
-    return CitationArtifactClassifier.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CitationArtifactClassifier._(value!, element: element);
   }
 
   /// String representation

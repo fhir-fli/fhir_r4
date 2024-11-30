@@ -121,9 +121,7 @@ class GuideParameterCode {
     if (value == null && element != null) {
       return GuideParameterCode.elementOnly.withElement(element);
     }
-    return GuideParameterCode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return GuideParameterCode._(value!, element: element);
   }
 
   /// String representation

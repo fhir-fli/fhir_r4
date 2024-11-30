@@ -97,9 +97,7 @@ class ContributorRole {
     if (value == null && element != null) {
       return ContributorRole.elementOnly.withElement(element);
     }
-    return ContributorRole.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContributorRole._(value!, element: element);
   }
 
   /// String representation

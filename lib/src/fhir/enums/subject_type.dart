@@ -1185,9 +1185,7 @@ class SubjectType {
     if (value == null && element != null) {
       return SubjectType.elementOnly.withElement(element);
     }
-    return SubjectType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SubjectType._(value!, element: element);
   }
 
   /// String representation

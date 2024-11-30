@@ -73,9 +73,7 @@ class RequestPriority {
     if (value == null && element != null) {
       return RequestPriority.elementOnly.withElement(element);
     }
-    return RequestPriority.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return RequestPriority._(value!, element: element);
   }
 
   /// String representation

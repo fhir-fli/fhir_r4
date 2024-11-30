@@ -73,9 +73,7 @@ class EncounterType {
     if (value == null && element != null) {
       return EncounterType.elementOnly.withElement(element);
     }
-    return EncounterType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EncounterType._(value!, element: element);
   }
 
   /// String representation

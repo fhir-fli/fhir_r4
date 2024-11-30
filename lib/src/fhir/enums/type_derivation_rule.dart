@@ -57,9 +57,7 @@ class TypeDerivationRule {
     if (value == null && element != null) {
       return TypeDerivationRule.elementOnly.withElement(element);
     }
-    return TypeDerivationRule.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TypeDerivationRule._(value!, element: element);
   }
 
   /// String representation

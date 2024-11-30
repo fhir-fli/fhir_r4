@@ -292,9 +292,7 @@ class EvidenceClassifier {
     if (value == null && element != null) {
       return EvidenceClassifier.elementOnly.withElement(element);
     }
-    return EvidenceClassifier.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EvidenceClassifier._(value!, element: element);
   }
 
   /// String representation

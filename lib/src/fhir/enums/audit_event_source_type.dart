@@ -113,9 +113,7 @@ class AuditEventSourceType {
     if (value == null && element != null) {
       return AuditEventSourceType.elementOnly.withElement(element);
     }
-    return AuditEventSourceType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AuditEventSourceType._(value!, element: element);
   }
 
   /// String representation

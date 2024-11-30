@@ -58,9 +58,7 @@ class ImmunizationFunctionCodes {
     if (value == null && element != null) {
       return ImmunizationFunctionCodes.elementOnly.withElement(element);
     }
-    return ImmunizationFunctionCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationFunctionCodes._(value!, element: element);
   }
 
   /// String representation

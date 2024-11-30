@@ -54,9 +54,7 @@ class ContractResourceSecurityControlCodes {
       return ContractResourceSecurityControlCodes.elementOnly
           .withElement(element);
     }
-    return ContractResourceSecurityControlCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContractResourceSecurityControlCodes._(value!, element: element);
   }
 
   /// String representation

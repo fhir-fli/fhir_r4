@@ -65,9 +65,7 @@ class ICD10ProcedureCodes {
     if (value == null && element != null) {
       return ICD10ProcedureCodes.elementOnly.withElement(element);
     }
-    return ICD10ProcedureCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ICD10ProcedureCodes._(value!, element: element);
   }
 
   /// String representation

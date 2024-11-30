@@ -73,9 +73,7 @@ class BindingStrength {
     if (value == null && element != null) {
       return BindingStrength.elementOnly.withElement(element);
     }
-    return BindingStrength.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return BindingStrength._(value!, element: element);
   }
 
   /// String representation

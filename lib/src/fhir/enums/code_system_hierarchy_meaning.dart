@@ -77,9 +77,7 @@ class CodeSystemHierarchyMeaning {
     if (value == null && element != null) {
       return CodeSystemHierarchyMeaning.elementOnly.withElement(element);
     }
-    return CodeSystemHierarchyMeaning.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CodeSystemHierarchyMeaning._(value!, element: element);
   }
 
   /// String representation

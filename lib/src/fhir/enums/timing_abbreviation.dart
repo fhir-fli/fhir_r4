@@ -169,9 +169,7 @@ class TimingAbbreviation {
     if (value == null && element != null) {
       return TimingAbbreviation.elementOnly.withElement(element);
     }
-    return TimingAbbreviation.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TimingAbbreviation._(value!, element: element);
   }
 
   /// String representation

@@ -217,9 +217,7 @@ class StatisticType {
     if (value == null && element != null) {
       return StatisticType.elementOnly.withElement(element);
     }
-    return StatisticType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return StatisticType._(value!, element: element);
   }
 
   /// String representation

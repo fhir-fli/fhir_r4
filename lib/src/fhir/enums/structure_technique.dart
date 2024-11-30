@@ -81,9 +81,7 @@ class StructureTechnique {
     if (value == null && element != null) {
       return StructureTechnique.elementOnly.withElement(element);
     }
-    return StructureTechnique.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return StructureTechnique._(value!, element: element);
   }
 
   /// String representation

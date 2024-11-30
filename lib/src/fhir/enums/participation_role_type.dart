@@ -25777,9 +25777,7 @@ class ParticipationRoleType {
     if (value == null && element != null) {
       return ParticipationRoleType.elementOnly.withElement(element);
     }
-    return ParticipationRoleType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ParticipationRoleType._(value!, element: element);
   }
 
   /// String representation

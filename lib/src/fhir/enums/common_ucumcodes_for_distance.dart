@@ -82,9 +82,7 @@ class CommonUCUMCodesForDistance {
     if (value == null && element != null) {
       return CommonUCUMCodesForDistance.elementOnly.withElement(element);
     }
-    return CommonUCUMCodesForDistance.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CommonUCUMCodesForDistance._(value!, element: element);
   }
 
   /// String representation

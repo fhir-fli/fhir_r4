@@ -57,9 +57,7 @@ class SortDirection {
     if (value == null && element != null) {
       return SortDirection.elementOnly.withElement(element);
     }
-    return SortDirection.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SortDirection._(value!, element: element);
   }
 
   /// String representation

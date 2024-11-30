@@ -57,9 +57,7 @@ class IngredientFunction {
     if (value == null && element != null) {
       return IngredientFunction.elementOnly.withElement(element);
     }
-    return IngredientFunction.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return IngredientFunction._(value!, element: element);
   }
 
   /// String representation

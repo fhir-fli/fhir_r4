@@ -81,9 +81,7 @@ class DiscriminatorType {
     if (value == null && element != null) {
       return DiscriminatorType.elementOnly.withElement(element);
     }
-    return DiscriminatorType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DiscriminatorType._(value!, element: element);
   }
 
   /// String representation

@@ -65,9 +65,7 @@ class GoalPriority {
     if (value == null && element != null) {
       return GoalPriority.elementOnly.withElement(element);
     }
-    return GoalPriority.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return GoalPriority._(value!, element: element);
   }
 
   /// String representation

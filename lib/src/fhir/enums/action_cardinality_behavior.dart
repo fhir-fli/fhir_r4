@@ -58,9 +58,7 @@ class ActionCardinalityBehavior {
     if (value == null && element != null) {
       return ActionCardinalityBehavior.elementOnly.withElement(element);
     }
-    return ActionCardinalityBehavior.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ActionCardinalityBehavior._(value!, element: element);
   }
 
   /// String representation

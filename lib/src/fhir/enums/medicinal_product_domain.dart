@@ -67,9 +67,7 @@ class MedicinalProductDomain {
     if (value == null && element != null) {
       return MedicinalProductDomain.elementOnly.withElement(element);
     }
-    return MedicinalProductDomain.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicinalProductDomain._(value!, element: element);
   }
 
   /// String representation

@@ -81,9 +81,7 @@ class CompartmentType {
     if (value == null && element != null) {
       return CompartmentType.elementOnly.withElement(element);
     }
-    return CompartmentType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CompartmentType._(value!, element: element);
   }
 
   /// String representation

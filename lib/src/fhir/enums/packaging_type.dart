@@ -857,9 +857,7 @@ class PackagingType {
     if (value == null && element != null) {
       return PackagingType.elementOnly.withElement(element);
     }
-    return PackagingType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return PackagingType._(value!, element: element);
   }
 
   /// String representation

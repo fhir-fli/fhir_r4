@@ -89,9 +89,7 @@ class ContactEntityType {
     if (value == null && element != null) {
       return ContactEntityType.elementOnly.withElement(element);
     }
-    return ContactEntityType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContactEntityType._(value!, element: element);
   }
 
   /// String representation

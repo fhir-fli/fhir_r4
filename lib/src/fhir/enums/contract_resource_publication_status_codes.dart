@@ -180,9 +180,7 @@ class ContractResourcePublicationStatusCodes {
       return ContractResourcePublicationStatusCodes.elementOnly
           .withElement(element);
     }
-    return ContractResourcePublicationStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContractResourcePublicationStatusCodes._(value!, element: element);
   }
 
   /// String representation

@@ -63,9 +63,7 @@ class ExampleVisionPrescriptionProductCodes {
       return ExampleVisionPrescriptionProductCodes.elementOnly
           .withElement(element);
     }
-    return ExampleVisionPrescriptionProductCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExampleVisionPrescriptionProductCodes._(value!, element: element);
   }
 
   /// String representation

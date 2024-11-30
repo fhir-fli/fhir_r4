@@ -73,9 +73,7 @@ class GuidePageGeneration {
     if (value == null && element != null) {
       return GuidePageGeneration.elementOnly.withElement(element);
     }
-    return GuidePageGeneration.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return GuidePageGeneration._(value!, element: element);
   }
 
   /// String representation

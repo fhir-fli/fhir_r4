@@ -245,9 +245,7 @@ class ArtifactRelationshipType {
     if (value == null && element != null) {
       return ArtifactRelationshipType.elementOnly.withElement(element);
     }
-    return ArtifactRelationshipType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ArtifactRelationshipType._(value!, element: element);
   }
 
   /// String representation

@@ -140,9 +140,7 @@ class CitedArtifactAbstractType {
     if (value == null && element != null) {
       return CitedArtifactAbstractType.elementOnly.withElement(element);
     }
-    return CitedArtifactAbstractType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CitedArtifactAbstractType._(value!, element: element);
   }
 
   /// String representation

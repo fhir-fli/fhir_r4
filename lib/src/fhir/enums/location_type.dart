@@ -153,9 +153,7 @@ class LocationType {
     if (value == null && element != null) {
       return LocationType.elementOnly.withElement(element);
     }
-    return LocationType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return LocationType._(value!, element: element);
   }
 
   /// String representation

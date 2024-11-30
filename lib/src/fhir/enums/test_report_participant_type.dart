@@ -67,9 +67,7 @@ class TestReportParticipantType {
     if (value == null && element != null) {
       return TestReportParticipantType.elementOnly.withElement(element);
     }
-    return TestReportParticipantType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TestReportParticipantType._(value!, element: element);
   }
 
   /// String representation

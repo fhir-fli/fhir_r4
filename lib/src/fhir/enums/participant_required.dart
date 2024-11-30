@@ -65,9 +65,7 @@ class ParticipantRequired {
     if (value == null && element != null) {
       return ParticipantRequired.elementOnly.withElement(element);
     }
-    return ParticipantRequired.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ParticipantRequired._(value!, element: element);
   }
 
   /// String representation

@@ -97,9 +97,7 @@ class UnitsOfTime {
     if (value == null && element != null) {
       return UnitsOfTime.elementOnly.withElement(element);
     }
-    return UnitsOfTime.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return UnitsOfTime._(value!, element: element);
   }
 
   /// String representation

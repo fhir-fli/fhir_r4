@@ -1553,9 +1553,7 @@ class AnimalTissueType {
     if (value == null && element != null) {
       return AnimalTissueType.elementOnly.withElement(element);
     }
-    return AnimalTissueType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AnimalTissueType._(value!, element: element);
   }
 
   /// String representation

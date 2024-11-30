@@ -114,9 +114,7 @@ class ExampleUseCodesForList {
     if (value == null && element != null) {
       return ExampleUseCodesForList.elementOnly.withElement(element);
     }
-    return ExampleUseCodesForList.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExampleUseCodesForList._(value!, element: element);
   }
 
   /// String representation

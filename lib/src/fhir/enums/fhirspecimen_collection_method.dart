@@ -132,9 +132,7 @@ class FHIRSpecimenCollectionMethod {
     if (value == null && element != null) {
       return FHIRSpecimenCollectionMethod.elementOnly.withElement(element);
     }
-    return FHIRSpecimenCollectionMethod.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FHIRSpecimenCollectionMethod._(value!, element: element);
   }
 
   /// String representation

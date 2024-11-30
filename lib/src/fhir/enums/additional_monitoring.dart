@@ -50,9 +50,7 @@ class AdditionalMonitoring {
     if (value == null && element != null) {
       return AdditionalMonitoring.elementOnly.withElement(element);
     }
-    return AdditionalMonitoring.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AdditionalMonitoring._(value!, element: element);
   }
 
   /// String representation

@@ -155,9 +155,7 @@ class SubscriptionSearchModifier {
     if (value == null && element != null) {
       return SubscriptionSearchModifier.elementOnly.withElement(element);
     }
-    return SubscriptionSearchModifier.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SubscriptionSearchModifier._(value!, element: element);
   }
 
   /// String representation

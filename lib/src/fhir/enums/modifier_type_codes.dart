@@ -89,9 +89,7 @@ class ModifierTypeCodes {
     if (value == null && element != null) {
       return ModifierTypeCodes.elementOnly.withElement(element);
     }
-    return ModifierTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ModifierTypeCodes._(value!, element: element);
   }
 
   /// String representation

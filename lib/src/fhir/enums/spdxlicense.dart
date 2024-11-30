@@ -2809,9 +2809,7 @@ class SPDXLicense {
     if (value == null && element != null) {
       return SPDXLicense.elementOnly.withElement(element);
     }
-    return SPDXLicense.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SPDXLicense._(value!, element: element);
   }
 
   /// String representation

@@ -185,9 +185,7 @@ class SystemRestfulInteraction {
     if (value == null && element != null) {
       return SystemRestfulInteraction.elementOnly.withElement(element);
     }
-    return SystemRestfulInteraction.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SystemRestfulInteraction._(value!, element: element);
   }
 
   /// String representation

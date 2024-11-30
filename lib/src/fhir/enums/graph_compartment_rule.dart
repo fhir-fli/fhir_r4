@@ -73,9 +73,7 @@ class GraphCompartmentRule {
     if (value == null && element != null) {
       return GraphCompartmentRule.elementOnly.withElement(element);
     }
-    return GraphCompartmentRule.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return GraphCompartmentRule._(value!, element: element);
   }
 
   /// String representation

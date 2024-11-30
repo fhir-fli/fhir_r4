@@ -82,9 +82,7 @@ class ExpressionLanguage {
     if (value == null && element != null) {
       return ExpressionLanguage.elementOnly.withElement(element);
     }
-    return ExpressionLanguage.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExpressionLanguage._(value!, element: element);
   }
 
   /// String representation

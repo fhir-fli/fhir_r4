@@ -162,9 +162,7 @@ class SubstanceNameAuthority {
     if (value == null && element != null) {
       return SubstanceNameAuthority.elementOnly.withElement(element);
     }
-    return SubstanceNameAuthority.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SubstanceNameAuthority._(value!, element: element);
   }
 
   /// String representation

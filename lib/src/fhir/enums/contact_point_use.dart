@@ -81,9 +81,7 @@ class ContactPointUse {
     if (value == null && element != null) {
       return ContactPointUse.elementOnly.withElement(element);
     }
-    return ContactPointUse.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContactPointUse._(value!, element: element);
   }
 
   /// String representation

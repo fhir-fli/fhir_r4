@@ -81,9 +81,7 @@ class ProductIntendedUse {
     if (value == null && element != null) {
       return ProductIntendedUse.elementOnly.withElement(element);
     }
-    return ProductIntendedUse.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ProductIntendedUse._(value!, element: element);
   }
 
   /// String representation

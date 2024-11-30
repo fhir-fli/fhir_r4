@@ -73,9 +73,7 @@ class IssueSeverity {
     if (value == null && element != null) {
       return IssueSeverity.elementOnly.withElement(element);
     }
-    return IssueSeverity.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return IssueSeverity._(value!, element: element);
   }
 
   /// String representation

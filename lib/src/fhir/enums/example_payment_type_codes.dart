@@ -58,9 +58,7 @@ class ExamplePaymentTypeCodes {
     if (value == null && element != null) {
       return ExamplePaymentTypeCodes.elementOnly.withElement(element);
     }
-    return ExamplePaymentTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExamplePaymentTypeCodes._(value!, element: element);
   }
 
   /// String representation

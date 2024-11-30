@@ -72,9 +72,7 @@ class ObservationReferenceRangeAppliesToCodes {
       return ObservationReferenceRangeAppliesToCodes.elementOnly
           .withElement(element);
     }
-    return ObservationReferenceRangeAppliesToCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ObservationReferenceRangeAppliesToCodes._(value!, element: element);
   }
 
   /// String representation

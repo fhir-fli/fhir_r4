@@ -65,9 +65,7 @@ class LocationStatus {
     if (value == null && element != null) {
       return LocationStatus.elementOnly.withElement(element);
     }
-    return LocationStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return LocationStatus._(value!, element: element);
   }
 
   /// String representation

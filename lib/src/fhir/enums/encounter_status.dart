@@ -113,9 +113,7 @@ class EncounterStatus {
     if (value == null && element != null) {
       return EncounterStatus.elementOnly.withElement(element);
     }
-    return EncounterStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EncounterStatus._(value!, element: element);
   }
 
   /// String representation

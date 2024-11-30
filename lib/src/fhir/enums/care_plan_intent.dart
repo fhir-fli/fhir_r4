@@ -113,9 +113,7 @@ class CarePlanIntent {
     if (value == null && element != null) {
       return CarePlanIntent.elementOnly.withElement(element);
     }
-    return CarePlanIntent.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CarePlanIntent._(value!, element: element);
   }
 
   /// String representation

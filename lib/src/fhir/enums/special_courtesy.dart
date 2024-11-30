@@ -89,9 +89,7 @@ class SpecialCourtesy {
     if (value == null && element != null) {
       return SpecialCourtesy.elementOnly.withElement(element);
     }
-    return SpecialCourtesy.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SpecialCourtesy._(value!, element: element);
   }
 
   /// String representation

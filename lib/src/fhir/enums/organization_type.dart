@@ -137,9 +137,7 @@ class OrganizationType {
     if (value == null && element != null) {
       return OrganizationType.elementOnly.withElement(element);
     }
-    return OrganizationType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return OrganizationType._(value!, element: element);
   }
 
   /// String representation

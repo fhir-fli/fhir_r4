@@ -51,9 +51,7 @@ class ContractResourcePartyRoleCodes {
     if (value == null && element != null) {
       return ContractResourcePartyRoleCodes.elementOnly.withElement(element);
     }
-    return ContractResourcePartyRoleCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContractResourcePartyRoleCodes._(value!, element: element);
   }
 
   /// String representation

@@ -75,9 +75,7 @@ class StructureMapTargetListMode {
     if (value == null && element != null) {
       return StructureMapTargetListMode.elementOnly.withElement(element);
     }
-    return StructureMapTargetListMode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return StructureMapTargetListMode._(value!, element: element);
   }
 
   /// String representation

@@ -81,9 +81,7 @@ class AddressUse {
     if (value == null && element != null) {
       return AddressUse.elementOnly.withElement(element);
     }
-    return AddressUse.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AddressUse._(value!, element: element);
   }
 
   /// String representation

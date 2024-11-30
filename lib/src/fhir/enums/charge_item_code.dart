@@ -65,9 +65,7 @@ class ChargeItemCode {
     if (value == null && element != null) {
       return ChargeItemCode.elementOnly.withElement(element);
     }
-    return ChargeItemCode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ChargeItemCode._(value!, element: element);
   }
 
   /// String representation

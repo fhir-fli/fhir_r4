@@ -113,9 +113,7 @@ class BundleType {
     if (value == null && element != null) {
       return BundleType.elementOnly.withElement(element);
     }
-    return BundleType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return BundleType._(value!, element: element);
   }
 
   /// String representation

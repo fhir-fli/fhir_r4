@@ -65,9 +65,7 @@ class PaymentTypeCodes {
     if (value == null && element != null) {
       return PaymentTypeCodes.elementOnly.withElement(element);
     }
-    return PaymentTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return PaymentTypeCodes._(value!, element: element);
   }
 
   /// String representation

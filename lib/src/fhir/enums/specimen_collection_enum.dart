@@ -122,9 +122,7 @@ class SpecimenCollectionEnum {
     if (value == null && element != null) {
       return SpecimenCollectionEnum.elementOnly.withElement(element);
     }
-    return SpecimenCollectionEnum.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SpecimenCollectionEnum._(value!, element: element);
   }
 
   /// String representation

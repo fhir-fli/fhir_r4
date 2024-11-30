@@ -81,9 +81,7 @@ class ImagingStudyStatus {
     if (value == null && element != null) {
       return ImagingStudyStatus.elementOnly.withElement(element);
     }
-    return ImagingStudyStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImagingStudyStatus._(value!, element: element);
   }
 
   /// String representation

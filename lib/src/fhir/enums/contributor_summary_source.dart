@@ -77,9 +77,7 @@ class ContributorSummarySource {
     if (value == null && element != null) {
       return ContributorSummarySource.elementOnly.withElement(element);
     }
-    return ContributorSummarySource.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContributorSummarySource._(value!, element: element);
   }
 
   /// String representation

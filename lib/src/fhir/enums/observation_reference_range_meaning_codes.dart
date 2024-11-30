@@ -162,9 +162,7 @@ class ObservationReferenceRangeMeaningCodes {
       return ObservationReferenceRangeMeaningCodes.elementOnly
           .withElement(element);
     }
-    return ObservationReferenceRangeMeaningCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ObservationReferenceRangeMeaningCodes._(value!, element: element);
   }
 
   /// String representation

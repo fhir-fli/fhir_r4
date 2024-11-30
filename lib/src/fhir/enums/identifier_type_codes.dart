@@ -185,9 +185,7 @@ class IdentifierTypeCodes {
     if (value == null && element != null) {
       return IdentifierTypeCodes.elementOnly.withElement(element);
     }
-    return IdentifierTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return IdentifierTypeCodes._(value!, element: element);
   }
 
   /// String representation

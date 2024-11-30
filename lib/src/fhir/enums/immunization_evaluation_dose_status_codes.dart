@@ -63,9 +63,7 @@ class ImmunizationEvaluationDoseStatusCodes {
       return ImmunizationEvaluationDoseStatusCodes.elementOnly
           .withElement(element);
     }
-    return ImmunizationEvaluationDoseStatusCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ImmunizationEvaluationDoseStatusCodes._(value!, element: element);
   }
 
   /// String representation

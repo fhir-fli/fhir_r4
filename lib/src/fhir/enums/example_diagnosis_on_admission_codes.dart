@@ -78,9 +78,7 @@ class ExampleDiagnosisOnAdmissionCodes {
     if (value == null && element != null) {
       return ExampleDiagnosisOnAdmissionCodes.elementOnly.withElement(element);
     }
-    return ExampleDiagnosisOnAdmissionCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExampleDiagnosisOnAdmissionCodes._(value!, element: element);
   }
 
   /// String representation

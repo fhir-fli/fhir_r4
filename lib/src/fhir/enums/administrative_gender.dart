@@ -73,9 +73,7 @@ class AdministrativeGender {
     if (value == null && element != null) {
       return AdministrativeGender.elementOnly.withElement(element);
     }
-    return AdministrativeGender.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AdministrativeGender._(value!, element: element);
   }
 
   /// String representation

@@ -72,9 +72,7 @@ class MedicationAdministrationCategoryCodes {
       return MedicationAdministrationCategoryCodes.elementOnly
           .withElement(element);
     }
-    return MedicationAdministrationCategoryCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MedicationAdministrationCategoryCodes._(value!, element: element);
   }
 
   /// String representation

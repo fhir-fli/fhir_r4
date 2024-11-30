@@ -113,9 +113,7 @@ class SearchComparator {
     if (value == null && element != null) {
       return SearchComparator.elementOnly.withElement(element);
     }
-    return SearchComparator.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SearchComparator._(value!, element: element);
   }
 
   /// String representation

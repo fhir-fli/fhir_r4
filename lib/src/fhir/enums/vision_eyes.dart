@@ -57,9 +57,7 @@ class VisionEyes {
     if (value == null && element != null) {
       return VisionEyes.elementOnly.withElement(element);
     }
-    return VisionEyes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return VisionEyes._(value!, element: element);
   }
 
   /// String representation

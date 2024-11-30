@@ -65,9 +65,7 @@ class MessageTransport {
     if (value == null && element != null) {
       return MessageTransport.elementOnly.withElement(element);
     }
-    return MessageTransport.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MessageTransport._(value!, element: element);
   }
 
   /// String representation

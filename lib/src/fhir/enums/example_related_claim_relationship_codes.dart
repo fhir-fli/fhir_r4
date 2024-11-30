@@ -63,9 +63,7 @@ class ExampleRelatedClaimRelationshipCodes {
       return ExampleRelatedClaimRelationshipCodes.elementOnly
           .withElement(element);
     }
-    return ExampleRelatedClaimRelationshipCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExampleRelatedClaimRelationshipCodes._(value!, element: element);
   }
 
   /// String representation

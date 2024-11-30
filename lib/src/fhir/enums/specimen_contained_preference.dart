@@ -60,9 +60,7 @@ class SpecimenContainedPreference {
     if (value == null && element != null) {
       return SpecimenContainedPreference.elementOnly.withElement(element);
     }
-    return SpecimenContainedPreference.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SpecimenContainedPreference._(value!, element: element);
   }
 
   /// String representation

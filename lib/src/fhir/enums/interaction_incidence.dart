@@ -57,9 +57,7 @@ class InteractionIncidence {
     if (value == null && element != null) {
       return InteractionIncidence.elementOnly.withElement(element);
     }
-    return InteractionIncidence.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return InteractionIncidence._(value!, element: element);
   }
 
   /// String representation

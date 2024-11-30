@@ -57,9 +57,7 @@ class DocumentMode {
     if (value == null && element != null) {
       return DocumentMode.elementOnly.withElement(element);
     }
-    return DocumentMode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DocumentMode._(value!, element: element);
   }
 
   /// String representation

@@ -159,9 +159,7 @@ class TextureModifierCodes {
     if (value == null && element != null) {
       return TextureModifierCodes.elementOnly.withElement(element);
     }
-    return TextureModifierCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TextureModifierCodes._(value!, element: element);
   }
 
   /// String representation

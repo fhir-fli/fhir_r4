@@ -4809,9 +4809,7 @@ class ServiceType {
     if (value == null && element != null) {
       return ServiceType.elementOnly.withElement(element);
     }
-    return ServiceType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ServiceType._(value!, element: element);
   }
 
   /// String representation

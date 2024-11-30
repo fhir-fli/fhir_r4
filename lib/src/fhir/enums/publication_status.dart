@@ -73,9 +73,7 @@ class PublicationStatus {
     if (value == null && element != null) {
       return PublicationStatus.elementOnly.withElement(element);
     }
-    return PublicationStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return PublicationStatus._(value!, element: element);
   }
 
   /// String representation

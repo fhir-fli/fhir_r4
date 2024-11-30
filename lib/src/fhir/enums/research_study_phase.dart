@@ -105,9 +105,7 @@ class ResearchStudyPhase {
     if (value == null && element != null) {
       return ResearchStudyPhase.elementOnly.withElement(element);
     }
-    return ResearchStudyPhase.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ResearchStudyPhase._(value!, element: element);
   }
 
   /// String representation

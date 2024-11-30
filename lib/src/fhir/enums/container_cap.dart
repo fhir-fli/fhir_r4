@@ -137,9 +137,7 @@ class ContainerCap {
     if (value == null && element != null) {
       return ContainerCap.elementOnly.withElement(element);
     }
-    return ContainerCap.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContainerCap._(value!, element: element);
   }
 
   /// String representation

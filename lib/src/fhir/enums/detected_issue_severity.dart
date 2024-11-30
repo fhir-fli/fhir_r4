@@ -65,9 +65,7 @@ class DetectedIssueSeverity {
     if (value == null && element != null) {
       return DetectedIssueSeverity.elementOnly.withElement(element);
     }
-    return DetectedIssueSeverity.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DetectedIssueSeverity._(value!, element: element);
   }
 
   /// String representation

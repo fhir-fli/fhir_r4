@@ -90,9 +90,7 @@ class ActionSelectionBehavior {
     if (value == null && element != null) {
       return ActionSelectionBehavior.elementOnly.withElement(element);
     }
-    return ActionSelectionBehavior.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ActionSelectionBehavior._(value!, element: element);
   }
 
   /// String representation

@@ -1641,9 +1641,7 @@ class TargetSpecies {
     if (value == null && element != null) {
       return TargetSpecies.elementOnly.withElement(element);
     }
-    return TargetSpecies.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return TargetSpecies._(value!, element: element);
   }
 
   /// String representation

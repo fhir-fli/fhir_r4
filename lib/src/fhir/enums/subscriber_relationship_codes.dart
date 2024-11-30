@@ -104,9 +104,7 @@ class SubscriberRelationshipCodes {
     if (value == null && element != null) {
       return SubscriberRelationshipCodes.elementOnly.withElement(element);
     }
-    return SubscriberRelationshipCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SubscriberRelationshipCodes._(value!, element: element);
   }
 
   /// String representation

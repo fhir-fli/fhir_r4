@@ -113,9 +113,7 @@ class SearchParamType {
     if (value == null && element != null) {
       return SearchParamType.elementOnly.withElement(element);
     }
-    return SearchParamType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SearchParamType._(value!, element: element);
   }
 
   /// String representation

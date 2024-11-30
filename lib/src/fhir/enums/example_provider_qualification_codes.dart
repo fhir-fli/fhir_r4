@@ -69,9 +69,7 @@ class ExampleProviderQualificationCodes {
     if (value == null && element != null) {
       return ExampleProviderQualificationCodes.elementOnly.withElement(element);
     }
-    return ExampleProviderQualificationCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExampleProviderQualificationCodes._(value!, element: element);
   }
 
   /// String representation

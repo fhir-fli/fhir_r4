@@ -57,9 +57,7 @@ class ExceptionCodes {
     if (value == null && element != null) {
       return ExceptionCodes.elementOnly.withElement(element);
     }
-    return ExceptionCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExceptionCodes._(value!, element: element);
   }
 
   /// String representation

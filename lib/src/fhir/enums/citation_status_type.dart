@@ -276,9 +276,7 @@ class CitationStatusType {
     if (value == null && element != null) {
       return CitationStatusType.elementOnly.withElement(element);
     }
-    return CitationStatusType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CitationStatusType._(value!, element: element);
   }
 
   /// String representation

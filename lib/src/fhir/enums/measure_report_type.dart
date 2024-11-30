@@ -73,9 +73,7 @@ class MeasureReportType {
     if (value == null && element != null) {
       return MeasureReportType.elementOnly.withElement(element);
     }
-    return MeasureReportType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return MeasureReportType._(value!, element: element);
   }
 
   /// String representation

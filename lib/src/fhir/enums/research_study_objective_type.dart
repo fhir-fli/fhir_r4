@@ -69,9 +69,7 @@ class ResearchStudyObjectiveType {
     if (value == null && element != null) {
       return ResearchStudyObjectiveType.elementOnly.withElement(element);
     }
-    return ResearchStudyObjectiveType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ResearchStudyObjectiveType._(value!, element: element);
   }
 
   /// String representation

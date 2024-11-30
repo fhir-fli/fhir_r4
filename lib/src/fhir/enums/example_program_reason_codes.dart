@@ -74,9 +74,7 @@ class ExampleProgramReasonCodes {
     if (value == null && element != null) {
       return ExampleProgramReasonCodes.elementOnly.withElement(element);
     }
-    return ExampleProgramReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExampleProgramReasonCodes._(value!, element: element);
   }
 
   /// String representation

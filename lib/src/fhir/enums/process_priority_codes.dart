@@ -65,9 +65,7 @@ class ProcessPriorityCodes {
     if (value == null && element != null) {
       return ProcessPriorityCodes.elementOnly.withElement(element);
     }
-    return ProcessPriorityCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ProcessPriorityCodes._(value!, element: element);
   }
 
   /// String representation

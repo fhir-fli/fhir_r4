@@ -89,9 +89,7 @@ class GroupType {
     if (value == null && element != null) {
       return GroupType.elementOnly.withElement(element);
     }
-    return GroupType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return GroupType._(value!, element: element);
   }
 
   /// String representation

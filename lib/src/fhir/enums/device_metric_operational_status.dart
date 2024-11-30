@@ -78,9 +78,7 @@ class DeviceMetricOperationalStatus {
     if (value == null && element != null) {
       return DeviceMetricOperationalStatus.elementOnly.withElement(element);
     }
-    return DeviceMetricOperationalStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DeviceMetricOperationalStatus._(value!, element: element);
   }
 
   /// String representation

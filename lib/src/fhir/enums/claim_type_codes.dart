@@ -81,9 +81,7 @@ class ClaimTypeCodes {
     if (value == null && element != null) {
       return ClaimTypeCodes.elementOnly.withElement(element);
     }
-    return ClaimTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ClaimTypeCodes._(value!, element: element);
   }
 
   /// String representation

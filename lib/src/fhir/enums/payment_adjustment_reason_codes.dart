@@ -60,9 +60,7 @@ class PaymentAdjustmentReasonCodes {
     if (value == null && element != null) {
       return PaymentAdjustmentReasonCodes.elementOnly.withElement(element);
     }
-    return PaymentAdjustmentReasonCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return PaymentAdjustmentReasonCodes._(value!, element: element);
   }
 
   /// String representation

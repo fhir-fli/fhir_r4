@@ -265,9 +265,7 @@ class BenefitCategoryCodes {
     if (value == null && element != null) {
       return BenefitCategoryCodes.elementOnly.withElement(element);
     }
-    return BenefitCategoryCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return BenefitCategoryCodes._(value!, element: element);
   }
 
   /// String representation

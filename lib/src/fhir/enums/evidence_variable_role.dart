@@ -89,9 +89,7 @@ class EvidenceVariableRole {
     if (value == null && element != null) {
       return EvidenceVariableRole.elementOnly.withElement(element);
     }
-    return EvidenceVariableRole.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return EvidenceVariableRole._(value!, element: element);
   }
 
   /// String representation

@@ -69,9 +69,7 @@ class ArtifactContributionInstanceType {
     if (value == null && element != null) {
       return ArtifactContributionInstanceType.elementOnly.withElement(element);
     }
-    return ArtifactContributionInstanceType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ArtifactContributionInstanceType._(value!, element: element);
   }
 
   /// String representation

@@ -145,9 +145,7 @@ class ExampleDiagnosisTypeCodes {
     if (value == null && element != null) {
       return ExampleDiagnosisTypeCodes.elementOnly.withElement(element);
     }
-    return ExampleDiagnosisTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExampleDiagnosisTypeCodes._(value!, element: element);
   }
 
   /// String representation

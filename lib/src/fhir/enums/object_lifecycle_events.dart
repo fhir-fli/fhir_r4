@@ -377,9 +377,7 @@ class ObjectLifecycleEvents {
     if (value == null && element != null) {
       return ObjectLifecycleEvents.elementOnly.withElement(element);
     }
-    return ObjectLifecycleEvents.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ObjectLifecycleEvents._(value!, element: element);
   }
 
   /// String representation

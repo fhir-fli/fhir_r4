@@ -82,9 +82,7 @@ class AuditEventAgentNetworkType {
     if (value == null && element != null) {
       return AuditEventAgentNetworkType.elementOnly.withElement(element);
     }
-    return AuditEventAgentNetworkType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AuditEventAgentNetworkType._(value!, element: element);
   }
 
   /// String representation

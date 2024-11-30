@@ -81,9 +81,7 @@ class CodeSystemContentMode {
     if (value == null && element != null) {
       return CodeSystemContentMode.elementOnly.withElement(element);
     }
-    return CodeSystemContentMode.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return CodeSystemContentMode._(value!, element: element);
   }
 
   /// String representation

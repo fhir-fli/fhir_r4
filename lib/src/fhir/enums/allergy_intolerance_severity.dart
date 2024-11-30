@@ -67,9 +67,7 @@ class AllergyIntoleranceSeverity {
     if (value == null && element != null) {
       return AllergyIntoleranceSeverity.elementOnly.withElement(element);
     }
-    return AllergyIntoleranceSeverity.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return AllergyIntoleranceSeverity._(value!, element: element);
   }
 
   /// String representation

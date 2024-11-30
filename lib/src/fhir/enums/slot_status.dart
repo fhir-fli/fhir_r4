@@ -81,9 +81,7 @@ class SlotStatus {
     if (value == null && element != null) {
       return SlotStatus.elementOnly.withElement(element);
     }
-    return SlotStatus.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SlotStatus._(value!, element: element);
   }
 
   /// String representation

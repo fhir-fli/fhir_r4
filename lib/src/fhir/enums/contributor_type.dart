@@ -73,9 +73,7 @@ class ContributorType {
     if (value == null && element != null) {
       return ContributorType.elementOnly.withElement(element);
     }
-    return ContributorType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ContributorType._(value!, element: element);
   }
 
   /// String representation

@@ -81,9 +81,7 @@ class XPathUsageType {
     if (value == null && element != null) {
       return XPathUsageType.elementOnly.withElement(element);
     }
-    return XPathUsageType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return XPathUsageType._(value!, element: element);
   }
 
   /// String representation

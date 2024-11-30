@@ -57,9 +57,7 @@ class OrientationType {
     if (value == null && element != null) {
       return OrientationType.elementOnly.withElement(element);
     }
-    return OrientationType.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return OrientationType._(value!, element: element);
   }
 
   /// String representation

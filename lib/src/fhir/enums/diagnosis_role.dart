@@ -97,9 +97,7 @@ class DiagnosisRole {
     if (value == null && element != null) {
       return DiagnosisRole.elementOnly.withElement(element);
     }
-    return DiagnosisRole.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return DiagnosisRole._(value!, element: element);
   }
 
   /// String representation

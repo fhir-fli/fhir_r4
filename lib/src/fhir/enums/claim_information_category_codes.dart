@@ -168,9 +168,7 @@ class ClaimInformationCategoryCodes {
     if (value == null && element != null) {
       return ClaimInformationCategoryCodes.elementOnly.withElement(element);
     }
-    return ClaimInformationCategoryCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ClaimInformationCategoryCodes._(value!, element: element);
   }
 
   /// String representation

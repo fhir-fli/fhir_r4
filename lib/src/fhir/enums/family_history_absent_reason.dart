@@ -77,9 +77,7 @@ class FamilyHistoryAbsentReason {
     if (value == null && element != null) {
       return FamilyHistoryAbsentReason.elementOnly.withElement(element);
     }
-    return FamilyHistoryAbsentReason.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return FamilyHistoryAbsentReason._(value!, element: element);
   }
 
   /// String representation

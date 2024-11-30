@@ -57,9 +57,7 @@ class SubstanceNameDomain {
     if (value == null && element != null) {
       return SubstanceNameDomain.elementOnly.withElement(element);
     }
-    return SubstanceNameDomain.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return SubstanceNameDomain._(value!, element: element);
   }
 
   /// String representation

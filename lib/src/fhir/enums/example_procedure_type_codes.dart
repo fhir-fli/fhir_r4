@@ -59,9 +59,7 @@ class ExampleProcedureTypeCodes {
     if (value == null && element != null) {
       return ExampleProcedureTypeCodes.elementOnly.withElement(element);
     }
-    return ExampleProcedureTypeCodes.values.firstWhere(
-      (e) => e.fhirCode == value,
-    );
+    return ExampleProcedureTypeCodes._(value!, element: element);
   }
 
   /// String representation
