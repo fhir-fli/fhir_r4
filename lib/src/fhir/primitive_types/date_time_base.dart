@@ -109,10 +109,8 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
             buffer
               ..write('.')
               ..write(millisecond?.toString().padLeft(3, '0') ?? '000');
-            print(buffer);
             if (microsecond != null) {
               buffer.write(microsecond);
-              print(buffer);
             }
           }
         }
@@ -138,8 +136,6 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         '${timeZoneOffset!.toInt().abs().toString().padLeft(2, '0')}:00',
       );
     }
-
-    print(buffer);
 
     return buffer.toString();
   }
@@ -362,7 +358,6 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
 
   /// Constructors and static methods
   static FhirDateTimeBase constructor<T>(dynamic inValue, [Element? element]) {
-    print('invalue: $inValue');
     // If inValue is null, return an instance with only the element
     if (inValue == null) {
       return _constructor<T>({}, null, true, element);
