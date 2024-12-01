@@ -117,13 +117,11 @@ class FhirBase64Binary extends PrimitiveType<String?> {
 
   /// Validates that the input is a valid Base64 string
   static String _validateBase64(String input) {
-    print('INPUT:$input:');
     if (input.length % 4 == 0 && _isBase64(input)) {
       return input;
     } else {
       // Attempt to remove whitespace and validate again
       final formattedInput = input.replaceAll(RegExp(r'\s'), '');
-      print('FORMATTED INPUT: $formattedInput');
       if (formattedInput.length % 4 == 0 && _isBase64(formattedInput)) {
         return formattedInput;
       }
