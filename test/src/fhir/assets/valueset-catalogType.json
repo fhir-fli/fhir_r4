@@ -7,7 +7,6 @@
       "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
     ]
   },
-  "status":"draft",
   "text": {
     "status": "generated",
     "div": "\u003cdiv xmlns\u003d\"http://www.w3.org/1999/xhtml\"\u003e\u003cul\u003e\u003cli\u003eInclude all codes defined in \u003ca href\u003d\"codesystem-catalogType.html\"\u003e\u003ccode\u003ehttp://hl7.org/fhir/catalogType\u003c/code\u003e\u003c/a\u003e\u003c/li\u003e\u003c/ul\u003e\u003c/div\u003e"
