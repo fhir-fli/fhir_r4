@@ -40,7 +40,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   final int? millisecond;
 
   /// Microsecond
-  final int? microsecond;
+  final String? microsecond;
 
   /// Time zone offset
   final num? timeZoneOffset;
@@ -67,7 +67,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
               minute ?? 0,
               second ?? 0,
               millisecond ?? 0,
-              microsecond ?? 0,
+              _convertMicrosecondToInt(microsecond),
             )
           : DateTime(
               year!,
@@ -77,7 +77,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
               minute ?? 0,
               second ?? 0,
               millisecond ?? 0,
-              microsecond ?? 0,
+              _convertMicrosecondToInt(microsecond),
             );
 
   /// Returns the value as a [String].
@@ -109,8 +109,10 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
             buffer
               ..write('.')
               ..write(millisecond?.toString().padLeft(3, '0') ?? '000');
+            print(buffer);
             if (microsecond != null) {
-              buffer.write(microsecond!.toString().padLeft(3, '0'));
+              buffer.write(microsecond);
+              print(buffer);
             }
           }
         }
@@ -137,6 +139,8 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       );
     }
 
+    print(buffer);
+
     return buffer.toString();
   }
 
@@ -151,7 +155,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       };
 
   /// Map representation
-  Map<String, num?> toMap() => <String, num?>{
+  Map<String, Object?> toMap() => <String, Object?>{
         'year': year,
         'month': month,
         'day': day,
@@ -202,7 +206,29 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       return result;
     }
 
-    result = _compareParts(microsecond, other.microsecond);
+    int? compareMicrosecondStrings(String? micro1, String? micro2) {
+      if (micro1 == null && micro2 == null) {
+        return null;
+      }
+      if (micro1 == null) {
+        return -1;
+      }
+      if (micro2 == null) {
+        return 1;
+      }
+
+      // Normalize both strings to be 6 characters for comparison
+      final paddedMicro1 = micro1.padRight(6, '0');
+      final paddedMicro2 = micro2.padRight(6, '0');
+
+      return paddedMicro1.compareTo(paddedMicro2);
+    }
+
+    result = compareMicrosecondStrings(microsecond, other.microsecond);
+    if (result != null) {
+      return result;
+    }
+
     if (result != null) {
       return result;
     }
@@ -308,9 +334,10 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       if (lhs.microsecond == null || rhs.microsecond == null) {
         return 0;
       }
-      if (lhs.microsecond != rhs.microsecond) {
-        return lhs.microsecond!.compareTo(rhs.microsecond!);
-      }
+      // Apply normalization here to both microsecond values before comparison
+      final lhsNum = num.parse('.${lhs.microsecond!.padRight(6, '0')}');
+      final rhsNum = num.parse('.${rhs.microsecond!.padRight(6, '0')}');
+      return lhsNum.compareTo(rhsNum);
     }
 
     return 0;
@@ -335,11 +362,12 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
 
   /// Constructors and static methods
   static FhirDateTimeBase constructor<T>(dynamic inValue, [Element? element]) {
+    print('invalue: $inValue');
     // If inValue is null, return an instance with only the element
     if (inValue == null) {
       return _constructor<T>({}, null, true, element);
     }
-    Map<String, num?>? dateTimeMap;
+    Map<String, Object?>? dateTimeMap;
     String? input;
 
     if (inValue is String) {
@@ -359,7 +387,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   }
 
   static FhirDateTimeBase _constructor<T>(
-    Map<String, num?> dateTimeMap,
+    Map<String, Object?> dateTimeMap,
     String? exception,
     bool regexpValid, [
     Element? element,
@@ -384,15 +412,15 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         throw ArgumentError('Year is required for FhirDateTime');
       }
       return FhirDateTime.fromBase(
-        year: dateTimeMap['year']!.toInt(),
-        month: dateTimeMap['month']?.toInt(),
-        day: dateTimeMap['day']?.toInt(),
-        hour: dateTimeMap['hour']?.toInt(),
-        minute: dateTimeMap['minute']?.toInt(),
-        second: dateTimeMap['second']?.toInt(),
-        millisecond: dateTimeMap['millisecond']?.toInt(),
-        microsecond: dateTimeMap['microsecond']?.toInt(),
-        timeZoneOffset: dateTimeMap['timeZoneOffset'],
+        year: dateTimeMap['year']! as int,
+        month: dateTimeMap['month'] as int?,
+        day: dateTimeMap['day'] as int?,
+        hour: dateTimeMap['hour'] as int?,
+        minute: dateTimeMap['minute'] as int?,
+        second: dateTimeMap['second'] as int?,
+        millisecond: dateTimeMap['millisecond'] as int?,
+        microsecond: dateTimeMap['microsecond'] as String?,
+        timeZoneOffset: dateTimeMap['timeZoneOffset'] as num?,
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
       );
@@ -409,10 +437,10 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         throw ArgumentError('Year is required for FhirDate');
       }
       return FhirDate.fromBase(
-        year: dateTimeMap['year']?.toInt(),
-        month: dateTimeMap['month']?.toInt(),
-        day: dateTimeMap['day']?.toInt(),
-        timeZoneOffset: dateTimeMap['timeZoneOffset'],
+        year: dateTimeMap['year'] as int?,
+        month: dateTimeMap['month'] as int?,
+        day: dateTimeMap['day'] as int?,
+        timeZoneOffset: dateTimeMap['timeZoneOffset'] as num?,
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
       );
@@ -443,15 +471,15 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         );
       }
       final instant = FhirInstant.fromBase(
-        year: dateTimeMap['year']!.toInt(),
-        month: dateTimeMap['month']!.toInt(),
-        day: dateTimeMap['day']!.toInt(),
-        hour: dateTimeMap['hour']!.toInt(),
-        minute: dateTimeMap['minute']!.toInt(),
-        second: dateTimeMap['second']!.toInt(),
-        millisecond: dateTimeMap['millisecond']?.toInt(),
-        microsecond: dateTimeMap['microsecond']?.toInt(),
-        timeZoneOffset: dateTimeMap['timeZoneOffset'] ?? 0,
+        year: dateTimeMap['year']! as int,
+        month: dateTimeMap['month']! as int,
+        day: dateTimeMap['day']! as int,
+        hour: dateTimeMap['hour']! as int,
+        minute: dateTimeMap['minute']! as int,
+        second: dateTimeMap['second']! as int,
+        millisecond: dateTimeMap['millisecond'] as int?,
+        microsecond: dateTimeMap['microsecond'] as String?,
+        timeZoneOffset: dateTimeMap['timeZoneOffset'] as num? ?? 0,
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
       );
@@ -466,6 +494,10 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     FhirDateTimeBase fhirDateTimeBase,
     ExtendedDuration o,
   ) {
+    final normalizedMicrosecond =
+        int.tryParse(fhirDateTimeBase.microsecond?.padRight(6, '0') ?? '0') ??
+            0;
+
     final dateTime = DateTime(
       fhirDateTimeBase.year ?? 0 + o.years,
       fhirDateTimeBase.month ?? 0 + o.months,
@@ -474,7 +506,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       fhirDateTimeBase.minute ?? 0 + o.minutes,
       fhirDateTimeBase.second ?? 0 + o.seconds,
       fhirDateTimeBase.millisecond ?? 0 + o.milliseconds,
-      fhirDateTimeBase.microsecond ?? 0 + o.microseconds,
+      normalizedMicrosecond + o.microseconds,
     );
     return fromMathUnits<T>(dateTime, fhirDateTimeBase);
   }
@@ -484,6 +516,9 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     FhirDateTimeBase fhirDateTimeBase,
     ExtendedDuration o,
   ) {
+    final normalizedMicrosecond =
+        int.tryParse(fhirDateTimeBase.microsecond?.padRight(6, '0') ?? '0') ??
+            0;
     final dateTime = DateTime(
       fhirDateTimeBase.year ?? 0 - o.years,
       fhirDateTimeBase.month ?? 0 - o.months,
@@ -492,7 +527,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       fhirDateTimeBase.minute ?? 0 - o.minutes,
       fhirDateTimeBase.second ?? 0 - o.seconds,
       fhirDateTimeBase.millisecond ?? 0 - o.milliseconds,
-      fhirDateTimeBase.microsecond ?? 0 - o.microseconds,
+      normalizedMicrosecond - o.microseconds,
     );
     return fromMathUnits<T>(dateTime, fhirDateTimeBase);
   }
@@ -553,7 +588,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     num? timeZoneOffset,
     Element? element,
   }) {
-    final dateTimeMap = <String, num?>{
+    final dateTimeMap = <String, Object?>{
       'year': year,
       'month': month,
       'day': day,
@@ -561,7 +596,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       'minute': minute,
       'second': second,
       'millisecond': millisecond,
-      'microsecond': microsecond,
+      'microsecond': microsecond?.toString(),
       'timeZoneOffset': timeZoneOffset,
       'isUtc': isUtc ? 0 : 1,
     };
@@ -604,7 +639,9 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       minute ?? 0,
       second ?? 0,
       millisecond ?? 0,
-      microsecond ?? 0,
+      microsecond == null
+          ? 0
+          : ((num.tryParse(microsecond!) ?? 0) / 1000).toInt(),
     );
     final dateTimeBase = other is DateTime
         ? FhirDateTime.fromDateTime(other)
@@ -621,7 +658,9 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       dateTimeBase.minute ?? 0,
       dateTimeBase.second ?? 0,
       dateTimeBase.millisecond ?? 0,
-      dateTimeBase.microsecond ?? 0,
+      dateTimeBase.microsecond == null
+          ? 0
+          : ((num.tryParse(dateTimeBase.microsecond!) ?? 0) / 1000).toInt(),
     );
     return thisDateTime.difference(otherDateTime);
   }
@@ -688,10 +727,10 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   );
 
   /// Formats a date-time string into a map of date-time parts.
-  static Map<String, num?> formatDateTimeString<T>(String dateTimeString) {
+  static Map<String, Object?> formatDateTimeString<T>(String dateTimeString) {
     final dateTimeRegExp = dateTimeExp.firstMatch(dateTimeString);
     final fractionString = dateTimeRegExp?.namedGroup('fraction');
-    return <String, num?>{
+    return <String, Object?>{
       'year': int.tryParse(dateTimeRegExp?.namedGroup('year') ?? ''),
       'month': int.tryParse(dateTimeRegExp?.namedGroup('month') ?? ''),
       'day': int.tryParse(dateTimeRegExp?.namedGroup('day') ?? ''),
@@ -706,11 +745,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       'microsecond': fractionString == null
           ? null
           : fractionString.length > 3
-              // ? fractionString.length <= 6
-              ? int.tryParse(
-                  fractionString.substring(3, fractionString.length),
-                )
-              // : int.tryParse(fractionString.substring(3, 6))
+              ? fractionString.substring(3, fractionString.length)
               : null,
       'timeZoneOffset':
           dateTimeRegExp?.namedGroup('timezone')?.stringToTimeZoneOffset,
@@ -718,6 +753,22 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           ? 0
           : 1,
     };
+  }
+
+  // Helper function to normalize and convert microseconds
+  int _convertMicrosecondToInt(String? microsecond) {
+    if (microsecond == null) {
+      return 0;
+    }
+
+    // Normalize to 6 digits
+    var normalizedMicrosecond = microsecond.padRight(6, '0');
+    if (normalizedMicrosecond.length > 6) {
+      normalizedMicrosecond = normalizedMicrosecond.substring(0, 6);
+    }
+
+    // Convert to integer
+    return (int.tryParse(normalizedMicrosecond) ?? 0) ~/ 1000;
   }
 
   /// Returns if the date-time is valid with instant precision.

@@ -50,7 +50,6 @@ class Patient extends DomainResource {
   factory Patient.fromJson(
     Map<String, dynamic> json,
   ) {
-    print('_GENDER: ${json["_gender"]}');
     return Patient(
       id: json['id'] != null
           ? FhirString.fromJson({'value': json['id']})

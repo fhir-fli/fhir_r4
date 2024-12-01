@@ -299,14 +299,17 @@ void main() {
     test('dateyyyyMMddTHHmmssSSSmmmOffsetFromString', () {
       final dateyyyyMMddTHHmmssSSSmmmOffsetFromString =
           FhirDateTime.fromString(yyyyMMddTHHmmssSSSmmmOffset);
+          print(1);
       expect(
         dateyyyyMMddTHHmmssSSSmmmOffsetFromString.valueString,
         equals(yyyyMMddTHHmmssSSSmmmOffset),
       );
+      print(2);
       expect(
         dateyyyyMMddTHHmmssSSSmmmOffsetFromString.valueDateTime,
         equals(yyyyMMddTHHmmssSSSmmmOffsetDateTime),
       );
+      print(3);
       expect(
         dateyyyyMMddTHHmmssSSSmmmOffsetFromString.toJson()['value'],
         equals(yyyyMMddTHHmmssSSSmmmOffset),
