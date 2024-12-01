@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
@@ -11,7 +12,7 @@ extension FhirBase64BinaryExtension on String {
 /// [FhirBase64Binary] class that extends [PrimitiveType]
 class FhirBase64Binary extends PrimitiveType<String?> {
   /// Public generative constructor with validation logic
-  FhirBase64Binary(String? input, [Element? element])
+  FhirBase64Binary(this.input, [Element? element])
       : super(
           input != null ? _validateBase64(input) : null,
           element,
@@ -19,6 +20,8 @@ class FhirBase64Binary extends PrimitiveType<String?> {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
+    object = value != null ? base64.decode(value!) : null;
+    fileType = object != null ? _detectFileType(object!) : null;
   }
 
   /// Factory constructor to create from JSON with standardized keys
@@ -64,10 +67,19 @@ class FhirBase64Binary extends PrimitiveType<String?> {
   /// Boolean getter to determine if both value and element are present
   bool get valueAndElement => value != null && element != null;
 
+  /// The original input value
+  final String? input;
+
+  /// The decoded object
+  late final Uint8List? object;
+
+  /// The detected file type
+  late final Base64BinaryFileType? fileType;
+
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        if (value != null) 'value': value,
+        if (input != null) 'value': input,
         if (element != null) '_value': element!.toJson(),
       };
 
@@ -105,9 +117,16 @@ class FhirBase64Binary extends PrimitiveType<String?> {
 
   /// Validates that the input is a valid Base64 string
   static String _validateBase64(String input) {
+    print('INPUT:$input:');
     if (input.length % 4 == 0 && _isBase64(input)) {
       return input;
     } else {
+      // Attempt to remove whitespace and validate again
+      final formattedInput = input.replaceAll(RegExp(r'\s'), '');
+      print('FORMATTED INPUT: $formattedInput');
+      if (formattedInput.length % 4 == 0 && _isBase64(formattedInput)) {
+        return formattedInput;
+      }
       throw const FormatException('Invalid Base64 String');
     }
   }
@@ -120,6 +139,32 @@ class FhirBase64Binary extends PrimitiveType<String?> {
     } catch (e) {
       return false;
     }
+  }
+
+  Base64BinaryFileType _detectFileType(Uint8List data) {
+    try {
+      if (data.length >= 4) {
+        if (data[0] == 0xFF && data[1] == 0xD8 && data[2] == 0xFF) {
+          return Base64BinaryFileType.jpeg;
+        } else if (data[0] == 0x89 &&
+            data[1] == 0x50 &&
+            data[2] == 0x4E &&
+            data[3] == 0x47) {
+          return Base64BinaryFileType.png;
+        } else if (utf8.decode(data.take(4).toList()).startsWith('%PDF')) {
+          return Base64BinaryFileType.pdf;
+        } else if (data[0] == 0x50 && data[1] == 0x4B) {
+          return Base64BinaryFileType.zip;
+        } else if (data[0] == 0x47 && data[1] == 0x49 && data[2] == 0x46) {
+          return Base64BinaryFileType.gif;
+        } else if (data[0] == 0x42 && data[1] == 0x4D) {
+          return Base64BinaryFileType.bmp;
+        }
+      }
+    } catch (_) {
+      // Catch any error and do nothing
+    }
+    return Base64BinaryFileType.unknown;
   }
 
   /// Overrides equality operator
@@ -174,4 +219,28 @@ class FhirBase64Binary extends PrimitiveType<String?> {
       ),
     );
   }
+}
+
+/// Enum for the detected file type
+enum Base64BinaryFileType {
+  /// JPEG Image
+  jpeg,
+
+  /// PNG Image
+  png,
+
+  /// PDF Document
+  pdf,
+
+  /// ZIP Archive
+  zip,
+
+  /// GIF Image
+  gif,
+
+  /// BMP Image
+  bmp,
+
+  /// Unknown File Type
+  unknown,
 }
