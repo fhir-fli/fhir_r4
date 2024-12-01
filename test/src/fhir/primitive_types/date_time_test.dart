@@ -299,7 +299,7 @@ void main() {
     test('dateyyyyMMddTHHmmssSSSmmmOffsetFromString', () {
       final dateyyyyMMddTHHmmssSSSmmmOffsetFromString =
           FhirDateTime.fromString(yyyyMMddTHHmmssSSSmmmOffset);
-          print(1);
+      print(1);
       expect(
         dateyyyyMMddTHHmmssSSSmmmOffsetFromString.valueString,
         equals(yyyyMMddTHHmmssSSSmmmOffset),
